@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-25 20:49:25 $'
-      '$Revision: 1.20 $'
+          '$Date: 2002-10-25 21:03:54 $'
+      '$Revision: 1.21 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -351,7 +351,7 @@
     <dimension name="mass" power="-1"/>
   </unitType>
 <!-- ======================================================================= -->
-<!-- ====================== fundamental SI units =========================== -->
+<!-- ====================== Unit Definitions =============================== -->
 <!-- ======================================================================= -->
 
   <unit id="undefined" name="undefined" unitType="undefined">
@@ -400,7 +400,7 @@
 
   <unit id="cubicMeter" name="cubicMeter" unitType="volume" multiplierToSI="1">
     <description>cubic meter</description>
-  Not clear to me why this isn't a derived unit.</unit>
+  </unit>
 
   <!--mass-->
   <unit id="nanogram" name="nanogram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000000000001" abbreviation="ng">
@@ -494,7 +494,7 @@
   </unit>
   <unit id="foot" name="foot" parentSI="meter" abbreviation="ft" multiplierToSI=".3048">
     <description>12 inches</description>
-  Same description as Foot_US, but different multiplier.  Odd.</unit>
+  </unit>
   <unit id="Foot_Gold_Coast" name="Foot_Gold_Coast" parentSI="meter" abbreviation="gcft" multiplierToSI=".3047997">
     <description>12 inches</description>
   </unit>
@@ -503,19 +503,19 @@
   </unit>
   <unit id="nauticalMile" name="nauticalMile" parentSI="meter" multiplierToSI="1852">
     <description>natical mile</description>
-  Presumed correct.</unit>
+  </unit>
   <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI=".9144">
     <description>3 feet</description>
   </unit>
   <unit id="Yard_Indian" name="Yard_Indian" parentSI="meter" multiplierToSI=".914398530744440774">
     <description/>
-  Presumed correct.</unit>
+  </unit>
   <unit id="Link_Clarke" name="Link_Clarke" parentSI="meter" multiplierToSI=".2011661949">
     <description/>
   </unit>
   <unit id="Yard_Sears" name="Yard_Sears" parentSI="meter" multiplierToSI=".91439841461602867">
     <description/>
-  Presumed correct.</unit>
+  </unit>
   <unit id="mile" name="mile" parentSI="meter" abbreviation="mile" multiplierToSI="1609.344">
     <description>5280 ft or 1609.344 meters</description>
   </unit>
@@ -561,7 +561,7 @@
   </unit>
   <unit id="microliter" name="microliter" unitType="volume" parentSI="cubicMeter" multiplierToSI=".000000001" abbreviation="microl">
     <description>1/1000000 of a liter</description>
-  micro symbol?</unit>
+  </unit>
   <unit id="milliliter" name="milliliter" unitType="volume" parentSI="cubicMeter" multiplierToSI=".000001" abbreviation="ml">
     <description>1/1000 of a liter</description>
   </unit>
@@ -578,7 +578,7 @@
 
   <unit id="bushel" name="bushel" unitType="volume" multiplierToSI="0.035239">
     <description>1 bushel = 35.23907 liters</description>
-  parentSI not stated; same for many of the following.</unit>
+  </unit>
 
   <unit id="cubicInch" name="cubicInch" unitType="volume" multiplierToSI=".000016387064">
     <description>cubic inch</description>
@@ -598,7 +598,7 @@
   </unit>
   <unit id="gradient" name="gradient" unitType="angle" multiplierToSI="63.661977" abbreviation="grad">
     <description>grad</description>
-  Presumed correct.</unit>
+  </unit>
 
   <!--frequency-->
   <unit id="megahertz" name="megahertz" unitType="frequency" multiplierToSI="1000000" abbreviation="MHz">
