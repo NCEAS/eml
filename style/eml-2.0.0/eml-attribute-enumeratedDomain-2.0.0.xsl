@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-06-23 21:38:42 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,11 @@
               indent="yes" />  
 
    <xsl:template name="nonNumericDomain">
+     <xsl:param name="docid"/>
+     <xsl:param name="displaymodule"/>
+     <xsl:param name="entitytype"/>
+     <xsl:param name="entityindex"/>
+     <xsl:param name="attributeindex"/>
      <xsl:param name="nondomainfirstColStyle"/>
      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
@@ -174,12 +179,15 @@
             <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/valueAttributeReference"/>
             </td>
        </tr>
+     </xsl:if>
        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Definition Reference</td>
             <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/definitionAttributeReference"/>
             </td>
        </tr>
-     </xsl:if>
-
+       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Definition Order</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/orderAttributeReference"/>
+            </td>
+       </tr>
   </xsl:template>
 
 

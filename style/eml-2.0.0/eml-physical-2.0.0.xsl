@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-06-23 21:38:42 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -337,7 +337,7 @@
         </tr>
   </xsl:template>
 
-  <xsl:template match="consecutiveDelimitersAreSingle">
+  <xsl:template match="collapseDelimiters">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
         <td class="{$firstColStyle}" width="{$firstColWidth}">Consecutive Delimiters are Single:</td>

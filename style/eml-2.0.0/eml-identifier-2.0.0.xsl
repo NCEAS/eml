@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,9 @@
         <xsl:param name="packageID"/>
         <xsl:param name="system"/>
         <xsl:if test="normalize-space(.)">
+        <tr><td colspan="2">
+        <table xsl:use-attribute-sets="cellspacing" width="100%"
+                                        class="{$mainContainerTableStyle}">
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
              <xsl:value-of select="$packageID"/></td></tr>
@@ -48,6 +51,8 @@
                   Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
                   <xsl:value-of select="$system"/></td></tr>
              </xsl:if>
+         </table>
+         </td></tr>
         </xsl:if>
     </xsl:template>
     

@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@
                 <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:if test="normalize-space(acl/@order)='denyFirst' and (allow)">
+        <xsl:if test="normalize-space(./@order)='denyFirst' and (allow)">
             <xsl:call-template name="allow_deny">
                 <xsl:with-param name="permission" select="'allow'"/>
                 <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
@@ -100,12 +100,12 @@
    <xsl:choose>
        <xsl:when test="$permission='allow'">
            <xsl:for-each select="allow">
-           <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
-            ALLOW:</td><td width="{$secondColWidth}">
+           <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
+            ALLOW:<br/></td><td width="{$secondColWidth}">
                     <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                         <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
                         <xsl:for-each select="./permission">
-                            <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
+                            <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text><br/>
                         </xsl:for-each></td>
                         <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
                         <xsl:for-each select="principal">
@@ -117,12 +117,12 @@
        </xsl:when>
        <xsl:otherwise>
            <xsl:for-each select="deny">
-        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
-            DENY:</td><td width="{$secondColWidth}">
+        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
+	     DENY:<br/></td><td width="{$secondColWidth}">
            <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
               <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
                 <xsl:for-each select="permission">
-                    <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
+                    <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text><br/>
                 </xsl:for-each></td>
                 <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
                 <xsl:for-each select="principal">

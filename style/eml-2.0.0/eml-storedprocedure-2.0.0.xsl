@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -190,7 +190,7 @@
             </td>
        </tr>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1'">
+    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="storedProcedureAttributeList">
         <xsl:with-param name="storedprocedurefirstColStyle" select="$storedprocedurefirstColStyle"/>

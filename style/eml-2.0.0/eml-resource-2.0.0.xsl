@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: higgins $'
-  *     '$Date: 2003-12-29 22:22:32 $'
-  * '$Revision: 1.6 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -153,14 +153,14 @@
           <xsl:with-param name="docid" select="$docid"/>
         </xsl:call-template>
       </xsl:for-each>
-    </table>
 
-    <xsl:for-each select="coverage">
-      <xsl:call-template name="resourcecoverage">
+      <xsl:for-each select="coverage">
+        <xsl:call-template name="resourcecoverage">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
-      </xsl:call-template>
-    </xsl:for-each>
+        </xsl:call-template>
+      </xsl:for-each>
+    </table>
 
   </xsl:template>
 

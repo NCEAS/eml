@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@
   <!-- para template without table structure. It does actually transfer.
        Currently, only get the text and it need more revision-->
   <xsl:template match="para" mode="lowlevel">
-       <xsl:value-of select="."/>
+       <xsl:value-of select="."/><br/>
   </xsl:template>
 
 </xsl:stylesheet>

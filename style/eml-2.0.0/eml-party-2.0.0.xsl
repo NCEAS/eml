@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 20:44:41 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -182,9 +182,14 @@
           <td width="{$secondColWidth}">
             <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
               <tr><td width="100%" class="{$secondColStyle}">
-                    <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                 <xsl:if test="$withHTMLLinks='1'">
+                   <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
                     <xsl:value-of select="."/></a>
-                   </td>
+                  </xsl:if>
+                  <xsl:if test="$withHTMLLinks='0'">
+                    <xsl:value-of select="."/>
+                  </xsl:if>
+                </td>
               </tr>
             </table>
           </td>
@@ -202,9 +207,14 @@
           <td width="{$secondColWidth}">
              <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
                <tr><td width="100%" class="{$secondColStyle}">
-                     <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
-                     <xsl:value-of select="."/></a>
-                    </td>
+                 <xsl:if test="$withHTMLLinks='1'">
+                   <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                   <xsl:value-of select="."/></a>
+                 </xsl:if>
+                 <xsl:if test="$withHTMLLinks='0'">
+                   <xsl:value-of select="."/>
+                 </xsl:if>
+                 </td>
                </tr>
              </table>
            </td>
