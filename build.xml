@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-12-06 22:23:42 $'
-      '$Revision: 1.62 $'
+        '$Author: berkley $'
+          '$Date: 2003-03-13 17:45:18 $'
+      '$Revision: 1.63 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
     <property name="servlet.install.dir"
               value="/usr/local/devtools/jakarta-tomcat/webapps/emlparser"/>
     <!-- the server the servlet will run on -->
-    <property name="server" value="http://knb.ecoinformatics.org"/>
+    <property name="server" value="http://pine.nceas.ucsb.edu:8080"/>
     <!--the servlet context directory-->
     <property name="servletdir" value="emlparser"/>
     <!-- the path to the servlet from the servletdir -->
@@ -50,7 +50,7 @@
     <property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml.xsd"/>
     <!-- the path from the tomcat/bin directory to the config.xml file -->
-    <property name="servletconfigfile" value="../webapps/emlparser/lib/config.xml"/>
+    <property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
     <property name="servlettempdir" value="/tmp/emlparser"/>
     <filter token="tempdir" value="${servlettempdir}"/>
 
@@ -69,6 +69,7 @@
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
     <property name="config.file" value="lib/config.xml"/>
+    <property name="configfileinemljar" value="/config.xml"/>
 
     <property name="xmlp"
         value="lib/apache/xercesImpl.jar"/>
@@ -96,6 +97,7 @@
     <filter token="server" value="${server}"/>
     <filter token="servletdir" value="${servletdir}"/>
     <filter token="servletpath" value="${servletpath}"/>
+    <filter token="configfileinemljar" value="${configfileinemljar}" />
 
     <property name="dist.dir" value="./dist"/>
     <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
@@ -300,7 +302,7 @@
          <exclude name="**/.#*"/>
        </fileset>
      </copy>
-
+     <copy file ="${config.file}" todir="${build.dest}" />
      <javac srcdir="${build.tests}"
             destdir="${build.dest}"
             classpath="${cpath}"
@@ -309,7 +311,7 @@
 
   <target name="jar" depends="compile">
     <jar jarfile="${build.dir}/${name}.jar" basedir="${build.dest}"
-          includes="${package.home}/**" />
+          includes="${package.home}/** config.xml" />
     <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
   </target>
 

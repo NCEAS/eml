@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-03 21:36:17 $'
- *    '$Revision: 1.11 $'
+ *        '$Date: 2003-03-13 17:45:18 $'
+ *    '$Revision: 1.12 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 package org.ecoinformatics.eml;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 import org.xml.sax.Attributes;
@@ -108,14 +109,29 @@ public class EMLParser
   private Hashtable idHash = new Hashtable();
   private Hashtable idrefHash = new Hashtable();
   private File xml;
-
+  
   /**
    * parses an eml file
    * @param xml the eml input stream to parse
    */
   public EMLParser(File xml)
   {
-    this(xml, new File("@config.file@"));
+    //this(xml, new File("@config.file@"));
+    this.xml = xml;
+    URL configFile = getClass().getResource("@configfileinemljar@");
+    try
+    {
+      
+      config = new ConfigXML(configFile.openStream());
+    }
+    catch(Exception e)
+    {
+      throw new EMLParserException("Config file not found: " + e.getMessage());
+    }
+
+    parseConfig();
+    parseKeys();
+    parseKeyrefs();
   }
 
   /**
@@ -140,7 +156,38 @@ public class EMLParser
     parseKeys();
     parseKeyrefs();
   }
-
+  
+  
+  /**
+   * parses an eml reader
+   * @param xmlReader the xml need to parse
+   * @param configFile the alternate config file to use
+   */
+  public EMLParser(String xmlReader)
+         throws EMLParserException, IOException
+  {
+    if (xmlReader == null || xmlReader.equals(""))
+    {
+      throw new EMLParserException("The string need to be parse is null");
+    }
+    URL configFile = getClass().getResource("@configfileinemljar@");
+    try
+    {
+      
+      config = new ConfigXML(configFile.openStream());
+    }
+    catch(Exception e)
+    {
+      throw new EMLParserException("Config file not found: " + e.getMessage());
+    }
+    // catch the String reader
+    String xmlString = xmlReader;
+    parseConfig();
+    parseKeys(xmlString);
+    parseKeyrefs(xmlString);
+  }
+  
+  
   /**
    * make sure all ids are unique and hash the keys
    */
@@ -152,8 +199,46 @@ public class EMLParser
       {
         NodeList keyNL = getPathContent(new FileInputStream(xml),
                                         keys[i].selector);
-        for(int j=0; j<keyNL.getLength(); j++)
-        {
+        parseKeysByNodeList(keyNL, i);
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error running xpath expression: " +
+                                     keys[i].selector + " : " + e.getMessage());
+      }
+    }
+  }
+  
+   /**
+   * make sure all ids are unique and hash the keys for xml reader
+   */
+  private void parseKeys(String xmlString)
+  {
+    
+    for(int i=0; i<keys.length; i++)
+    {
+      StringReader reader = new StringReader(xmlString);
+      try
+      {
+      
+        NodeList keyNL = getPathContent(reader, keys[i].selector);
+        parseKeysByNodeList(keyNL, i);
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error running xpath expression: " +
+                                     keys[i].selector + " : " + e.getMessage());
+      }
+    }
+  }
+  
+  /*
+   * Check nodelist has a unique key
+   */
+  private void parseKeysByNodeList(NodeList keyNL, int i) throws Exception
+  {
+    for(int j=0; j<keyNL.getLength(); j++)
+    {
           Node n = keyNL.item(j);
           Node id = XPathAPI.selectSingleNode(n, keys[i].field);
           String idval;
@@ -187,15 +272,9 @@ public class EMLParser
             idval + " occurs " +
             "more than once.  IDs must be unique.");
           }
-        }
-      }
-      catch(Exception e)
-      {
-        throw new EMLParserException("Error running xpath expression: " +
-                                     keys[i].selector + " : " + e.getMessage());
-      }
-    }
+     }//for
   }
+  
 
   /**
    * get all the keyrefs and make sure they don't have an id
@@ -208,8 +287,47 @@ public class EMLParser
       {
         NodeList keyrefNL = getPathContent(new FileInputStream(xml),
                                            keyrefs[i].selector);
-        for(int j=0; j<keyrefNL.getLength(); j++)
-        {
+        parseKeyrefsByNodeList(keyrefNL, i);
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error processing keyrefs: " +
+                                     keyrefs[i].selector + " : " +
+                                     e.getMessage());
+      }
+    }
+  }
+  
+  /**
+   * get all the keyrefs and make sure they don't have an id for xml reader
+   */
+  private void parseKeyrefs(String xmlString)
+  {
+    for(int i=0; i<keyrefs.length; i++)
+    {
+      StringReader reader = new StringReader(xmlString);
+      try
+      {
+        NodeList keyrefNL = getPathContent(reader, keyrefs[i].selector);
+        parseKeyrefsByNodeList(keyrefNL, i);
+       
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error processing keyrefs: " +
+                                     keyrefs[i].selector + " : " +
+                                     e.getMessage());
+      }
+    }
+  }
+  
+  /*
+   * get all the keyrefs and make usre they don't have and id(by node list)
+   */
+  private void parseKeyrefsByNodeList(NodeList keyrefNL, int i) throws Exception
+  {
+     for(int j=0; j<keyrefNL.getLength(); j++)
+     {
           Node n = keyrefNL.item(j);
           Node id;
           if(keyrefs[i].field.equals("."))
@@ -279,15 +397,7 @@ public class EMLParser
                 "and it is being used in a keyref expression.");
             }
           }
-        }
-      }
-      catch(Exception e)
-      {
-        throw new EMLParserException("Error processing keyrefs: " +
-                                     keyrefs[i].selector + " : " +
-                                     e.getMessage());
-      }
-    }
+     }//for
   }
 
   /**
@@ -350,12 +460,39 @@ public class EMLParser
   }
 
   /**
-   * Gets the content of a path in an xml file
+   * Gets the content of a path in an xml file(form input stream)
    */
   public static NodeList getPathContent(InputStream is, String xpath)
          throws Exception
   {
     InputSource in = new InputSource(is);
+    return getPathContent(in, xpath);
+  }
+  
+  /**
+   * Gets the conten of a path in an xml document(from Reader)
+   */
+  public static NodeList getPathContent(StringReader read, String xpath)
+                         throws Exception
+  {
+    InputSource in = new InputSource(read);
+    DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
+    dfactory.setNamespaceAware(false);
+    Document doc = dfactory.newDocumentBuilder().parse(in);
+
+    // Set up an identity transformer to use as serializer.
+    Transformer serializer = TransformerFactory.newInstance().newTransformer();
+    serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+
+    // Use the simple XPath API to select a nodeIterator.
+    NodeList nl = XPathAPI.selectNodeList(doc, xpath);
+    return nl;
+    //return getPathContent(in, xpath);
+  }
+  
+  private static NodeList getPathContent(InputSource in, String xpath)
+                          throws Exception
+  {
     DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
     dfactory.setNamespaceAware(false);
     Document doc = dfactory.newDocumentBuilder().parse(in);
@@ -416,7 +553,7 @@ public class EMLParser
           throw new EMLParserException("Error in config file.  All keys " +
                                        "must have a name, selector and field.");
         }
-
+        
         keys[i] = new Key(name, selector, field);
       }
 
@@ -462,7 +599,7 @@ public class EMLParser
           throw new EMLParserException("Error in config file.  All keys " +
                                        "must have a name, selector and field.");
         }
-
+      
         keyrefs[i] = new Keyref(name, refer, selector, field);
       }
     }
@@ -543,6 +680,7 @@ public class EMLParser
     }
     else if(args.length == 0)
     {
+      
       System.out.println("Usage: java org.ecoinformatics.eml.EMLParser [-q] [<config file>] <eml file>");
       System.out.println("  -q = quiet mode, little or no output");
       System.out.println("  <config file> = use an alternate config file.  The default is lib/config.xml");
@@ -555,6 +693,18 @@ public class EMLParser
       if(configfile.equals(""))
       {
         EMLParser parser = new EMLParser(new File(emlfile));
+        FileReader xmldoc = new FileReader(emlfile);
+        char [] ch = new char [4096];
+        StringWriter writer = new StringWriter();
+        int readNum = xmldoc.read(ch);
+        while (readNum != -1)
+        {
+          writer.write(ch, 0, readNum);
+          readNum = xmldoc.read(ch);
+        }
+        String str = writer.toString();
+        EMLParser readerParser = new EMLParser(str);
+        
       }
       else
       {
