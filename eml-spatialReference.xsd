@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" elementFormDefault="unqualified">
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" elementFormDefault="unqualified">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-10-01 23:13:22 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-10-01 23:20:57 $'
+      '$Revision: 1.22 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -79,10 +79,10 @@
     <xs:choice>
       <xs:sequence>
         <xs:choice>
-          <xs:element name="standardHorizontalCoordinateSystem" type="xs:string"/>
-          <xs:element name="customHorizontalCoordinateSystem" type="horizontalCoordinateSystemType"/>
+          <xs:element name="horizontalCoordSysName" type="xs:string"/>
+          <xs:element name="customHorizCoordSys" type="horizCoordSysType"/>
         </xs:choice>
-        <xs:element name="verticalCoordinateSystem" minOccurs="0">
+        <xs:element name="vertCoordSys" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Vertical Coordinate System Definition</doc:tooltip>
@@ -94,7 +94,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="altitudeSystemDefinition" minOccurs="0">
+              <xs:element name="altitudeSysDef" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Altitude System Definition</doc:tooltip>
@@ -158,7 +158,7 @@
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="depthSystemDefinition" minOccurs="0">
+              <xs:element name="depthSysDef" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Depth System Definition</doc:tooltip>
@@ -229,12 +229,12 @@
     <xs:attribute name="system" type="xs:string" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
-  <xs:element name="horizontalCoordinateSystem" type="horizontalCoordinateSystemType">
+  <xs:element name="horizCoordSys" type="horizCoordSysType">
     <xs:annotation>
       <xs:documentation>Comment describing your root element</xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name="geographicCoordinateSystemType">
+  <xs:complexType name="geogCoordSysType">
     <xs:sequence>
       <xs:element name="datum" type="xs:string"/>
       <xs:element name="spheroid">
@@ -271,13 +271,13 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="horizontalCoordinateSystemType">
+  <xs:complexType name="horizCoordSysType">
     <xs:choice>
-      <xs:element name="geographicCoordinateSystem" type="geographicCoordinateSystemType"/>
-      <xs:element name="projectedCoordinateSystem">
+      <xs:element name="geogCoordSystem" type="geogCoordSysType"/>
+      <xs:element name="projCoordSystem">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="geographicCoordinateSystem" type="geographicCoordinateSystemType"/>
+            <xs:element name="geogCoordSys" type="geogCoordSysType"/>
             <xs:element name="projection">
               <xs:complexType>
                 <xs:sequence>
@@ -335,7 +335,7 @@
   <xs:element name="projectionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="horizontalCoordinateSystemDescription" type="horizontalCoordinateSystemType" maxOccurs="unbounded"/>
+        <xs:element name="horizCoordSysDef" type="horizCoordSysType" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
