@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-23 09:00:43 $'
-      '$Revision: 1.15 $'
+          '$Date: 2002-05-24 18:57:53 $'
+      '$Revision: 1.16 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -453,126 +453,130 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="deliveryPoint" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+    <xs:choice>
+      <xs:element name="references" type="xs:string"/>
+      <xs:sequence>
+        <xs:element name="deliveryPoint" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Delivery point
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The location for postal deliveries. 
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The delivery point field is used for the physical address for
               postal communication.  This field is used to accomodate the many
               different international conventions  that are the equivalent 
               to a U.S. 'street address'.
             </doc:description>
-            <doc:example>
+              <doc:example>
               7209 Coast Drive, Building 44
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="city" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="city" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               City
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The name of the city for the contact.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The city field is used for the city name of the contact associated
               with a particular resource.
             </doc:description>
-            <doc:example>
+              <doc:example>
               San Francisco
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="administrativeArea" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="administrativeArea" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Administrative area
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The political area of a country.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The administrative area field is the equivalent of a 'state' in
               the U.S., or Province in Canada.  This field is intended to 
               accomodate the many types of international administrative areas.
             </doc:description>
-            <doc:example>
+              <doc:example>
               Colorado
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="postalCode" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="postalCode" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Postal code
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The postal code used for routing to an address.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The postal code is equivalent to a U.S. zip code, or the number
               used for routing to an international address.  The U.S. postal
               code should include the 5 digit code plus the 4 digit extension.
             </doc:description>
-            <doc:example>
+              <doc:example>
               93106-2231
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="country" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="country" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Country
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The name of the country for the contact's address.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The country field is used for the name of the contact's country.
             </doc:description>
-            <doc:example>
+              <doc:example>
              U.S.A
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
   <!-- Role code domain take from ISO -->
   <xs:simpleType name="RoleType">

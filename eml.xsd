@@ -12,8 +12,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-23 09:00:43 $'
-      '$Revision: 1.7 $'
+          '$Date: 2002-05-24 18:57:53 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -149,7 +149,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:choice>
+        <xs:choice maxOccurs="unbounded">
           <xs:element ref="ds:dataset"/>
           <xs:element ref="cit:citation"/>
           <xs:element ref="sw:software"/>
@@ -157,10 +157,10 @@
         <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="describes" type="xs:string" maxOccurs="unbounded"/>
               <xs:any processContents="lax"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID" use="optional"/>
-            <xs:attribute name="describes" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
@@ -174,7 +174,7 @@
       <xs:field xpath="."/>
     </xs:keyref>
     <xs:keyref name="describesReference" refer="identifierKey">
-      <xs:selector xpath=".//additionalMetadata"/>
+      <xs:selector xpath=".//additionalMetadata/describes"/>
       <xs:field xpath="@describes"/>
     </xs:keyref>
   </xs:element>
