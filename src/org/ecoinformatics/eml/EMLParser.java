@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-24 22:12:30 $'
- * '$Revision: 1.2 $'
+ *     '$Date: 2002-09-25 19:55:48 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.DocumentType;
 import org.apache.xerces.dom.DocumentTypeImpl;
+import org.apache.xpath.objects.XObject;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -161,7 +163,7 @@ public class EMLParser
           Object o = idHash.get(idval);
           if(o == null)
           {
-            idHash.put(new String(idval), new Integer(j));
+            idHash.put(new String(idval), new Integer(i));
             continue;  //continue on in the loop.
           }
           else
@@ -195,7 +197,6 @@ public class EMLParser
         for(int j=0; j<keyrefNL.getLength(); j++)
         {
           Node n = keyrefNL.item(j);
-          System.out.println("got n");
           Node id;
           if(keyrefs[i].field.equals("."))
           {
@@ -205,7 +206,7 @@ public class EMLParser
           {
             id = XPathAPI.selectSingleNode(n, keyrefs[i].field);
           }
-          System.out.println("got id: " + id.getNodeName());
+
           String idval;
 
           if(id == null)
@@ -221,13 +222,9 @@ public class EMLParser
           { //the field is an element
             idval = id.getFirstChild().getNodeValue();
           }
-          System.out.println("selector: " + keyrefs[i].selector);
-          System.out.println("field: " + keyrefs[i].field);
-          System.out.println("idval: " + idval);
 
           int keyindex;
           Object o = idHash.get(idval);
-
           if(o == null)
           { //check to make sure the referenced key exists
             throw new EMLParserException("Error in xml document. This EML " +
@@ -238,11 +235,9 @@ public class EMLParser
           {
             keyindex = ((Integer)o).intValue();
           }
-          System.out.println("keyindex: " + keyindex);
 
-/*
           //now make sure that what it is referring to is the right key
-          Key referencedKey = keys[keyindex.intValue()];
+          Key referencedKey = keys[keyindex];
           if(!referencedKey.name.equals(keyrefs[i].refer))
           {
             throw new EMLParserException("Error in xml document. This EML " +
@@ -255,16 +250,27 @@ public class EMLParser
           //for the keys' xpath expression and that it does not have
           //an id itself
 
+          //get the parent of the id node
           Node parent = id.getParentNode();
-          Node parentxpath = XPathAPI.selectSingleNode(parent,
+          //create a temporary document fragment
+          Document tempdoc = buildDocumentFromPath(reverseEngineerPath(parent));
+          //parse the fragment to see if the selector matches it
+          Node xpathparent = XPathAPI.selectSingleNode(tempdoc,
                                                        referencedKey.selector);
-          if(parentxpath == null)
+
+          if(xpathparent == null)
           {
             throw new EMLParserException("Error in xml document. This EML " +
-              "instance is invalid because this reference is nested in an " +
-              "invalid tag.  It should be nested in " + referencedKey.name);
+            "instance is invalid because the reference in " +
+            parent.getNodeName() + " is an " +
+            "invalid tag.  It should be included in one of the paths listed " +
+            "in the "+ referencedKey.name +
+            " if you want it to have references.");
           }
 
+
+
+/*
           Node parentid = XPathAPI.selectSingleNode(parent,
                                                     referencedKey.field);
           if(parentid != null)
@@ -280,6 +286,60 @@ public class EMLParser
         throw new EMLParserException("Error processing keyrefs: " +
                                      keyrefs[i].selector + " : " + e.getMessage());
       }
+    }
+  }
+
+  /**
+   * returns the absolute path of the node
+   */
+  private static String reverseEngineerPath(Node n)
+  {
+    String nodename = n.getNodeName();
+    String path = "";
+    while(!nodename.equals("#document"))
+    {
+      path = nodename + "/" + path;
+      n = n.getParentNode();
+      nodename = n.getNodeName();
+    }
+
+    return "/" + path;
+  }
+
+  /**
+   * builds a document from a path.  the document is returned empty.
+   * if you pass this /x/y/z you will get back a document of the form
+   * &lt;x&gt;&lt;y&gt;&lt;z&gt;&lt;/z&gt;&lt;/y&gt;&lt;/x&gt;
+   * @param path the path to parse
+   */
+  private Document buildDocumentFromPath(String path)
+  {
+    try
+    {
+      DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+      StringBuffer xml = new StringBuffer();
+      Stack s = new Stack();
+
+      StringTokenizer tokenizer = new StringTokenizer(path, "/");
+      while(tokenizer.hasMoreElements())
+      {
+        String node = tokenizer.nextToken();
+        xml.append("<").append(node).append(">");
+        s.push(node);
+      }
+
+      while(!s.empty())
+      {
+        String node = (String)s.pop();
+        xml.append("</").append(node).append(">");
+      }
+
+      return builder.parse(new InputSource(new StringReader(xml.toString())));
+    }
+    catch(Exception e)
+    {
+      throw new EMLParserException("Error building document fragment: " +
+                                   e.getMessage());
     }
   }
 
