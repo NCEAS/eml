@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-30 17:58:26 $'
-      '$Revision: 1.53 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-31 22:20:24 $'
+      '$Revision: 1.54 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -412,7 +412,7 @@
       <itemizedlist>
         <listitem>
           <para>
-          An ID required on the eml root element.
+          An ID is required on the eml root element.
           </para>
         </listitem>
         <listitem>
@@ -441,7 +441,7 @@
         </listitem>
         <listitem>
           <para>
-          &quot;Document scope&quot; is defined as identifiers unique only to a
+          &quot;Document&quot; scope is defined as identifiers unique only to a
           single instance document (if a document does not have a system
           attribute or if scope is set to 'document' then all IDs are defined
           as distinct content).
@@ -449,7 +449,7 @@
         </listitem>
         <listitem>
           <para>
-          System scope is defined as identifiers unique to an entire data
+          &quot;System&quot; scope is defined as identifiers unique to an entire data
           management system (if two documents share a system string, then
           any IDs in those two documents that are identical refer to the
           same object).
