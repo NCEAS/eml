@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:softwarePackage-2.0.0beta8"
-xmlns="eml:softwarePackage-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml:documentation-2.0.0beta8">
+<xs:schema targetNamespace="eml:software-2.0.0beta8"
+           xmlns="eml:software-2.0.0beta8" 
+           xmlns:res="eml:resource-2.0.0beta8"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:doc="eml:documentation-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8"
   schemaLocation="eml-documentation.xsd" />
   <xs:annotation>
@@ -22,8 +23,8 @@ xmlns:doc="eml:documentation-2.0.0beta8">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-30 23:17:30 $'
-      '$Revision: 1.10 $'
+          '$Date: 2002-05-31 17:31:53 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,7 +42,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleName>eml-software</doc:moduleName>
-      <doc:moduleDescription>The eml-softwarePackage module contains general
+      <doc:moduleDescription>The eml-software module contains general
       information that describes software resources.</doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
@@ -51,18 +52,18 @@ xmlns:doc="eml:documentation-2.0.0beta8">
   
   <xs:complexType name="Software">
     <xs:choice>
-      <xs:element name="content" type="SoftwarePackageType"/>
+      <xs:element name="content" type="SoftwareType"/>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
   
-  <xs:element name="softwarePackage" type="SoftwarePackageType">
+  <xs:element name="software" type="SoftwareType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Software Package</doc:tooltip>
         <doc:summary>Defines a software distribution and all of its dependent
         software.</doc:summary>
-        <doc:description>The 'softwarePackage' element contains general
+        <doc:description>The 'software' element contains general
         information about a software resource that is being documented. This
         field is intended to give information for software tools that are
         needed to interpret a dataset, software that was written to process a
@@ -73,8 +74,8 @@ xmlns:doc="eml:documentation-2.0.0beta8">
         and/or operating systems. See implementation element documentation
         for a more thorough explanation.</doc:description>
         <doc:example>Please see the examples for each subelement of the
-        'softwarePackage' type.</doc:example>
-        <doc:lineage>The softwarePackage Element was introduced in 2.0.0 beta
+        'software' type.</doc:example>
+        <doc:lineage>The software Element was introduced in 2.0.0 beta
         9. It replaces the software element. The 'software' element was
         introduced into EML 2.0, however it was derived from the eml-software
         module in EML 1.4.</doc:lineage>
@@ -82,7 +83,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     </xs:annotation>
   </xs:element>
   
-  <xs:complexType name="SoftwarePackageType">
+  <xs:complexType name="SoftwareType">
     <xs:attribute name="id" type="xs:ID" use="required" />
     <xs:attribute name="system" type="xs:string" use="optional" />
     <xs:attribute name="scope" use="optional" default="system">
@@ -289,7 +290,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
                 <doc:summary>Dependency describes the software packages that
                 the software package is dependent upon.</doc:summary>
                 <doc:description>The dependency element is recursive. It is a
-                sub-element of the SoftwarePackage Element but it also has as
+                sub-element of the Software Element but it also has as
                 a sub-element its parent element Software Package. Dependecy
                 has been made optional because to make it mandatory does not
                 allow the recursion to end. Dependency has also been made a
@@ -357,7 +358,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
         <doc:summary>Dependency describes the software package(s) that the
         software package is dependent upon.</doc:summary>
         <doc:description>The dependency element is recursive. It is a
-        sub-element of the SoftwarePackage Element but it also has as a
+        sub-element of the software Element but it also has as a
         sub-element its parent element Software Package. Dependecy has been
         made optional because to make it mandatory does not allow the
         recursion to end. Dependency has also been made a sub-element of
@@ -371,7 +372,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="action" type="Action" />
-        <xs:element ref="softwarePackage" />
+        <xs:element ref="software" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

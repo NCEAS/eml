@@ -25,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-31 17:31:53 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-05-31 17:33:28 $'
+      '$Revision: 1.22 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -253,7 +253,7 @@
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="software" type="soft:SoftwarePackageType" 
+                <xs:element name="software" type="soft:SoftwareType" 
                             minOccurs="0" maxOccurs="unbounded">
                   <xs:annotation>
                     <xs:appinfo>
