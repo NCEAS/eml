@@ -13,9 +13,9 @@
                  National Center for Ecological Analysis and Synthesis
         Authors: Chris Jones, Matt Jones, Jivka Bojilova
 
-       '$Author: cjones $'
-         '$Date: 2000-11-09 16:52:58 $'
-     '$Revision: 1.4 $'
+       '$Author: bojilova $'
+         '$Date: 2001-02-06 01:37:44 $'
+     '$Revision: 1.5 $'
       -->
     </xs:documentation>
   </xs:annotation>
@@ -25,57 +25,35 @@
  
   <xs:complexType name="ACL" content="elementOnly">
     <xs:sequence>
-      <xs:element name="target" type="xs:string"
-                  minOccurs="1" maxOccurs="1" />
-      <xs:element name="group" type="Group"
+      <xs:element name="resource" type="Resource"
                   minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
  
-  <xs:complexType name="Group" content="elementOnly">
+  <xs:complexType name="Resource" content="elementOnly">
     <xs:sequence>
-      <xs:element name="groupName" type="xs:string"
+      <xs:element name="resourceIdentifier" type="xs:string"
                   minOccurs="1" maxOccurs="unbounded" />
-      <xs:element name="user" type="User"
+      <xs:element name="allow" type="PermissionType"
                   minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="accessControl" type="AccessControl"
+      <xs:element name="deny" type="PermissionType"
+                  minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+ 
+  <xs:complexType name="PermissionType" content="elementOnly">
+    <xs:sequence>
+      <xs:element name="principal" type="xs:string"
+                  minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="permission" type="Permission"
+                  minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="duration" type="xs:timeDuration"
                   minOccurs="0" maxOccurs="1" />
-      <xs:element name="group" type="Group"
-                  minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
- 
-  <xs:complexType name="User" content="elementOnly">
-    <xs:sequence>
-      <xs:element name="userName" type="xs:string"
-                  minOccurs="1" maxOccurs="unbounded" />
-      <xs:element name="accessControl" type="AccessControl"
-                  minOccurs="1" maxOccurs="1" />
+      <xs:element name="ticketCount" type="xs:positiveInteger"
+                  minOccurs="0" maxOccurs="1" />
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="AccessControl" content="elementOnly">
-    <xs:sequence>
-      <xs:choice>
-        <xs:element name="allow" type="AccessType"
-                    minOccurs="0" maxOccurs="1" />
-        <xs:element name="deny" type="AccessType"
-                    minOccurs="0" maxOccurs="1" />
-      </xs:choice>
-    </xs:sequence>
-  </xs:complexType>
- 
-  <xs:complexType name="AccessType" content="elementOnly">
-    <xs:sequence>
-        <xs:element name="permission" type="Permission"
-                    minOccurs="0" maxOccurs="unbounded" />
-        <xs:element name="duration" type="xs:timeDuration"
-                    minOccurs="0" maxOccurs="unbounded" />
-        <xs:element name="count" type="xs:positiveInteger"
-                    minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
- 
   <xs:simpleType name="Permission" base="xs:string">
     <xs:enumeration value="read" /> 
     <xs:enumeration value="write" /> 
