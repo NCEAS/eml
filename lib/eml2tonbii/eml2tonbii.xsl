@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-04-07 22:37:59 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2003-04-24 00:01:21 $'
+  * '$Revision: 1.5 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,7 @@ version="1.0">
   
     <xsl:element name="metadata">
       <!-- only the 'idinfo' and 'metainfo' elements are required -->
+      <!-- start the 'idinfo' branch -->      
       <xsl:element name="idinfo">
         <xsl:element name="citation">
           <xsl:element name="citeinfo">
@@ -475,6 +476,113 @@ version="1.0">
       
         </xsl:element>
       </xsl:if>
+      
+<!-- start the 'eainfo' branch -->      
+<!-- create only if there is entity data in the eml2 document --> 
+   <!-- initially just consider datatable entities -->
+      <xsl:if test="/eml:eml/dataset/dataTable!=''">
+        <xsl:element name="eainfo">
+          <xsl:for-each select="/eml:eml/dataset/dataTable">
+            <xsl:element name="detailed">
+              <xsl:element name="enttyp">
+                <xsl:element name="enttypl">
+                  <xsl:value-of select="./entityName"/>
+                </xsl:element>
+                <xsl:choose>
+                  <xsl:when test="./entityDescription!=''">
+                    <xsl:element name="enttypd">
+                      <xsl:value-of select="./entityDescription"/>
+                    </xsl:element>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:element name="enttypd">
+                      <xsl:value-of select="'N/A'"/>
+                    </xsl:element>                  
+                  </xsl:otherwise>
+                </xsl:choose> 
+                <xsl:element name="enttypds">
+                  <xsl:value-of select="'N/A'"/>
+                </xsl:element>
+              </xsl:element>
+              <xsl:for-each select="./attributeList/attribute">
+                <xsl:element name="attr">
+                  <xsl:element name="attrlabl">
+                    <xsl:value-of select="concat(./attributeName,':::',./attributeLabel)"/>
+                  </xsl:element>
+                  <xsl:element name="attrdef">
+                    <xsl:value-of select="./attributeDefinition"/>
+                  </xsl:element>
+                  <xsl:element name="attrdefs">
+                    <xsl:value-of select="'N/A'"/>
+                  </xsl:element>
+                  <xsl:element name="attrdomv">
+                    <xsl:choose>
+                      <xsl:when test="./measurementScale//enumeratedDomain/codeDefinition!=''">
+                        <xsl:for-each select="./measurementScale//enumeratedDomain/codeDefinition">
+                          <xsl:element name="edom">
+                            <xsl:element name="edomv">
+                              <xsl:value-of select="./code"/>
+                            </xsl:element>
+                            <xsl:element name="edomvd">
+                              <xsl:value-of select="./definition"/>                            
+                            </xsl:element>
+                            <xsl:element name="edomvds">
+                              <xsl:choose>
+                                <xsl:when test="./source!=''">
+                                  <xsl:value-of select="./source"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:value-of select="N/A"/>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:for-each>
+                      </xsl:when>
+                      <xsl:when test="./measurementScale//textDomain!=''">
+                        <xsl:element name="udom">
+                          <xsl:value-of select="'free text'"/>
+                        </xsl:element>
+                      </xsl:when>
+                      <xsl:when test="./measurementScale//numericDomain!=''">
+                        <xsl:element name="rdom">
+                          <xsl:element name="rdommin">
+                            <xsl:choose>
+                              <xsl:when test="./measurementScale//numericDomain/bounds/minimum!=''">
+                                <xsl:value-of select="./measurementScale//numericDomain/bounds/minimum"/>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="N/A"/>
+                              </xsl:otherwise>
+                            </xsl:choose>    
+                          </xsl:element>
+                          <xsl:element name="rdommax">
+                            <xsl:choose>
+                              <xsl:when test="./measurementScale//numericDomain/bounds/maximum!=''">
+                                <xsl:value-of select="./measurementScale//numericDomain/bounds/maximum"/>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="N/A"/>
+                              </xsl:otherwise>
+                            </xsl:choose>    
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:when>
+                      <xsl:when test="./measurementScale/datetime!=''">
+                        <xsl:element name="udom">
+                          <xsl:value-of select="'free text'"/>
+                        </xsl:element>
+                      </xsl:when>
+                    </xsl:choose>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:for-each>  
+            </xsl:element>
+          </xsl:for-each>
+        </xsl:element>  
+      </xsl:if>
+      
+<!-- start the 'metainfo' branch -->      
       <xsl:element name="metainfo">
         <xsl:element name="metd">
           <xsl:value-of select="'N/A'"/>
