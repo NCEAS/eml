@@ -6,7 +6,6 @@
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
 
-  <!--this document should be valid -->
   <dataset>
     <title>Sample dataset Description</title>
     <creator id="23445" scope="document">
@@ -16,7 +15,7 @@
     </creator>
     <creator id="23446" scope="document">
       <individualName>
-        <surName>Smith</surName>
+        <surName>Meyer</surName>
       </individualName>
     </creator>
     <additionalInfo><para>My comments go here.</para></additionalInfo>
@@ -25,7 +24,7 @@
 
     <distribution>
       <online>
-      <connectionDefinition scope="document">
+      <connectionDefinition id="def.1" scope="document">
         <schemeName system="CAP">sde</schemeName>
         <description><para>The SDE scheme used at CAP LTER</para></description>
         <parameterDefinition>
@@ -45,14 +44,46 @@
       </connectionDefinition>
       </online>
     </distribution>
-
+    <distribution>
+      <online>
+        <connection>
+          <connectionDefinition id="def.2" scope="document">
+            <schemeName system="CAP">sde</schemeName>
+            <description><para>The SDE scheme used at CAP LTER</para></description>
+            <parameterDefinition>
+              <name>hostname</name>
+              <definition>The host</definition>
+              <defaultValue>mohave.asu.edu</defaultValue>
+            </parameterDefinition>
+            <parameterDefinition>
+              <name>databaseName</name>
+              <definition>The name of the database or catalog</definition>
+            </parameterDefinition>
+            <parameterDefinition>
+              <name>owner</name>
+              <definition>The owner catalog</definition>
+            <defaultValue>dbo</defaultValue>
+            </parameterDefinition>
+          </connectionDefinition>
+          <parameter>
+            <name>databaseName</name>
+            <value>landuse95</value>
+          </parameter>
+          <parameter>
+            <name>owner</name>
+            <value>sde</value>
+          </parameter>
+        </connection>
+      </online>
+    </distribution>
     <purpose><para>Provide data to the whole world.</para></purpose>
     <contact>
       <individualName>
         <surName>Johnson</surName>
       </individualName>
     </contact>
-    <contact>
+    <!--this contact is invalid because it has an id and it uses references-->
+    <contact id="522">
       <references>23445</references>
     </contact>
   </dataset>

@@ -6,7 +6,6 @@
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
 
-  <!--this document should be valid -->
   <dataset>
     <title>Sample dataset Description</title>
     <creator id="23445" scope="document">
@@ -16,7 +15,7 @@
     </creator>
     <creator id="23446" scope="document">
       <individualName>
-        <surName>Smith</surName>
+        <surName>Meyer</surName>
       </individualName>
     </creator>
     <additionalInfo><para>My comments go here.</para></additionalInfo>
@@ -45,7 +44,26 @@
       </connectionDefinition>
       </online>
     </distribution>
-
+    <distribution>
+      <online>
+        <connection>
+          <!--this field has a valid reference, but the reference is not 
+              setup correctly in the config.xml file so this file is invalid
+          -->
+          <connectionDefinition>
+            <references>23445</references>
+          </connectionDefinition>
+          <parameter>
+            <name>databaseName</name>
+            <value>landuse95</value>
+          </parameter>
+          <parameter>
+            <name>owner</name>
+            <value>sde</value>
+          </parameter>
+        </connection>
+      </online>
+    </distribution>
     <purpose><para>Provide data to the whole world.</para></purpose>
     <contact>
       <individualName>

@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-24 22:12:30 $'
- * '$Revision: 1.2 $'
+ *     '$Date: 2002-09-25 22:08:51 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,11 @@ import java.lang.*;
  */
 public class EMLParserTest extends TestCase
 {
-  private final static String FILE = "test/eml.xml";
+  private final static String VALID = "test/eml.xml";
+  private final static String ERROR1 = "test/eml-error1.xml";
+  private final static String ERROR2 = "test/eml-error2.xml";
+  private final static String ERROR3 = "test/eml-error3.xml";
+  private final static String ERROR4 = "test/eml-error4.xml";
 
   private EMLParser emlp;
 
@@ -61,15 +65,7 @@ public class EMLParserTest extends TestCase
   /** Establish a testing framework by initializing appropriate objects  */
   public void setUp()
   {
-    try
-    {
-      File f = new File(FILE);
-      emlp = new EMLParser(f);
-    }
-    catch(Exception e)
-    {
-      fail("Error initializing parser: " + e.getMessage());
-    }
+    
   }
 
   /** Release any objects after tests are complete  */
@@ -86,6 +82,7 @@ public class EMLParserTest extends TestCase
   {
     TestSuite suite = new TestSuite();
     suite.addTest(new EMLParserTest("initialize"));
+    suite.addTest(new EMLParserTest("testParse"));
     return suite;
   }
 
@@ -96,6 +93,80 @@ public class EMLParserTest extends TestCase
   public void initialize()
   {
     assertTrue(true);
+  }
+  
+  public void testParse()
+  {
+    try
+    {
+      File f = new File(VALID);
+      emlp = new EMLParser(f);
+    }
+    catch(Exception e)
+    {
+      fail("Error.  This file should have parsed correctly: " + e.getMessage());
+    }
+    
+    try
+    {
+      File f = new File(ERROR1);
+      emlp = new EMLParser(f);
+      fail("Error 1. An EMLParserException should have been thrown.");
+    }
+    catch(Exception e)
+    {
+      //System.out.println(e.getMessage());
+      assertTrue(e.getMessage().equals("Error running xpath expression: " + 
+        "//dataset/creator|//dataset/contact : Error in xml document.  " +
+        "This EML document is not valid because the id 23445 occurs more " +
+        "than once.  IDs must be unique."));
+    }
+    
+    try
+    {
+      File f = new File(ERROR2);
+      emlp = new EMLParser(f);
+      fail("Error 2. An EMLParserException should have been thrown.");
+    }
+    catch(Exception e)
+    {
+      //System.out.println(e.getMessage());
+      assertTrue(e.getMessage().equals("Error processing keyrefs: " +
+        "//references : Error in xml document. This EML instance is " +
+        "invalid because the reference in connectionDefinition is an " +
+        "invalid tag.  It should be included in one of the paths listed in " +
+        "the identifierKey if you want it to have references."));
+    }
+    
+    try
+    {
+      File f = new File(ERROR3);
+      emlp = new EMLParser(f);
+      fail("Error 3. An EMLParserException should have been thrown.");
+    }
+    catch(Exception e)
+    {
+      //System.out.println(e.getMessage());
+      assertTrue(e.getMessage().equals("Error processing keyrefs: " +
+        "//references : Error in xml document. This EML instance is " +
+        "invalid because referenced id 23447 does not exist in the " +
+        "given keys."));
+    }
+    
+    try
+    {
+      File f = new File(ERROR4);
+      emlp = new EMLParser(f);
+      fail("Error 3. An EMLParserException should have been thrown.");
+    }
+    catch(Exception e)
+    {
+      //System.out.println(e.getMessage());
+      assertTrue(e.getMessage().equals("Error processing keyrefs: " +
+        "//references : Error in xml document. This EML instance is invalid " +
+        "because this element has an id and it is being used in " +
+        "a keyref expression."));
+    }
   }
 }
 

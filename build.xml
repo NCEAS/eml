@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-24 18:33:31 $'
-      '$Revision: 1.39 $'
+          '$Date: 2002-09-25 22:08:51 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@
     <property name="ver.docs" value="${ver.dir}/docs"/>
     <property name="package.home" value="org/ecoinformatics" />
     <property name="configxml" value="lib/configxml.jar"/>
-    <property name="cpath" value="${xmlp}:${api}:${configxml}"/>
+    <property name="cpath" value="${xmlp}:${api}:${configxml}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
   </target>
@@ -218,44 +218,8 @@
       ************************************************
     </echo>
   </target>
-
-  <!-- use the ant "junit" task to run JUnit tests. -->
-  <target name="test" depends="init">
-     <!-- copy and compile the tests into a jar file -->
-     <mkdir dir="${build.tests}"/>
-     <mkdir dir="${build.dest}"/>
-     <copy todir="${build.tests}" filtering="yes">
-       <fileset dir="${testdir}">
-         <exclude name="**/CVS*"/>
-         <exclude name="**/.#*"/>
-       </fileset>
-     </copy>
-     <javac srcdir="${build.tests}"
-            destdir="${build.dest}"
-            classpath="${cpath}"
-            debug="on"/>
-
-     <jar jarfile="${build.dir}/${name}-test.jar" basedir="${build.dest}"
-          includes="${package.home}/${name}test/**" />
-
-     <!-- use the ant "junit" task to run JUnit tests. -->
-     <junit printsummary="yes" haltonfailure="no" fork="no"
-            haltonerror="no">
-       <classpath>
-         <pathelement path="${cpath}:${build.dir}/${name}-test.jar" />
-       </classpath>
-
-       <formatter type="plain" />
-
-       <batchtest fork="yes" todir="${build.dir}">
-         <fileset dir="${build.tests}">
-           <include name="**/*.java" />
-         </fileset>
-       </batchtest>
-    </junit>
-  </target>
-
-  <target name="emlparsertest" depends="init">
+  
+  <target name="compile" depends="init">
     <mkdir dir="${build.tests}"/>
      <mkdir dir="${build.dest}"/>
      <copy todir="${build.tests}" filtering="yes">
@@ -275,14 +239,58 @@
             destdir="${build.dest}"
             classpath="${cpath}"
             debug="on"/>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <jar jarfile="${build.dir}/${name}.jar" basedir="${build.dest}"
+          includes="${package.home}/**" />
+  </target>
+  
+  <target name="compile-test" depends="jar">
+     <!-- copy and compile the tests into a jar file -->
+     <mkdir dir="${build.tests}"/>
+     <mkdir dir="${build.dest}"/>
+     <copy todir="${build.tests}" filtering="yes">
+       <fileset dir="${testdir}">
+         <exclude name="**/CVS*"/>
+         <exclude name="**/.#*"/>
+       </fileset>
+     </copy>
+     <javac srcdir="${build.tests}"
+            destdir="${build.dest}"
+            classpath="${cpath}"
+            debug="on"/>
 
      <jar jarfile="${build.dir}/${name}-test.jar" basedir="${build.dest}"
-          includes="${package.home}/**" />
+          includes="${package.home}/${name}test/**" />
 
+  </target>
+
+  <!-- use the ant "junit" task to run JUnit tests. -->
+  <target name="test" depends="compile-test">
+
+     <!-- use the ant "junit" task to run JUnit tests. -->
      <junit printsummary="yes" haltonfailure="no" fork="no"
             haltonerror="no">
        <classpath>
-         <pathelement path="${cpath}:${build.dir}/${name}-test.jar" />
+         <pathelement path="${cpath}:${build.dir}/${name}-test.jar:${build.dir}/${name}.jar" />
+       </classpath>
+
+       <formatter type="plain" />
+
+       <batchtest fork="yes" todir="${build.dir}">
+         <fileset dir="${build.tests}">
+           <include name="**/*Test.java" />
+         </fileset>
+       </batchtest>
+    </junit>
+  </target>
+
+  <target name="emlparsertest" depends="jar">
+     <junit printsummary="yes" haltonfailure="no" fork="no"
+            haltonerror="no">
+       <classpath>
+         <pathelement path="${cpath}:${build.dir}/${name}-test.jar:${build.dir}/${name}.jar" />
        </classpath>
 
        <formatter type="plain" />

@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-25 19:55:48 $'
- * '$Revision: 1.3 $'
+ *     '$Date: 2002-09-25 22:08:51 $'
+ * '$Revision: 1.4 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,15 +123,14 @@ public class EMLParser
     }
 
     parseConfig();
-    getAllKeys();
-    getAllKeyrefs();
-    resolveKeys();
+    parseKeys();
+    parseKeyrefs();
   }
 
   /**
    * make sure all ids are unique and hash the keys
    */
-  private void getAllKeys()
+  private void parseKeys()
   {
     for(int i=0; i<keys.length; i++)
     {
@@ -186,7 +185,7 @@ public class EMLParser
   /**
    * get all the keyrefs and make sure they don't have an id
    */
-  private void getAllKeyrefs()
+  private void parseKeyrefs()
   {
     for(int i=0; i<keyrefs.length; i++)
     {
@@ -247,7 +246,7 @@ public class EMLParser
           }
 
           //now make sure that the references parent meets the criteria
-          //for the keys' xpath expression and that it does not have
+          //for the key's xpath expression and that it does not have
           //an id itself
 
           //get the parent of the id node
@@ -268,23 +267,25 @@ public class EMLParser
             " if you want it to have references.");
           }
 
-
-
-/*
-          Node parentid = XPathAPI.selectSingleNode(parent,
-                                                    referencedKey.field);
-          if(parentid != null)
+          NamedNodeMap parentAtts = parent.getAttributes();
+          //make sure that the reference doesn't have an id
+          for(int k=0; k<parentAtts.getLength(); k++)
           {
-            throw new EMLParserException("Error in xml document. This EML " +
-              "instance is invalid because this element may not have an id " +
-              "because it is being used in a keyref expression");
-          }*/
+            String parentAtt = parentAtts.item(k).getNodeName();
+            if(("@" + parentAtt).equals(referencedKey.field))
+            {
+              throw new EMLParserException("Error in xml document. This EML " +
+                "instance is invalid because this element has an id " +
+                "and it is being used in a keyref expression.");
+            }
+          }
         }
       }
       catch(Exception e)
       {
         throw new EMLParserException("Error processing keyrefs: " +
-                                     keyrefs[i].selector + " : " + e.getMessage());
+                                     keyrefs[i].selector + " : " + 
+                                     e.getMessage());
       }
     }
   }
