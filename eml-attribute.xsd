@@ -1,7 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="eml:attribute">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:attribute" xmlns="eml:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -10,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:43 $'
-      '$Revision: 1.12 $'
+          '$Date: 2001-07-10 16:43:22 $'
+      '$Revision: 1.13 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,7 +34,6 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
   <xs:element name="eml-attribute">
     <xs:annotation>
       <xs:appinfo>
@@ -50,8 +47,7 @@
            Eml-attribute element represents a list of all attributes in a 
            dataset.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The eml-attribute was introduced into EML 1.4 as eml-variable.
         </lineage>
@@ -59,8 +55,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "identifier" type = "xs:string"
-                    minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="identifier" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -78,9 +73,7 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </description>
-              <example>
-               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-              </example>
+              <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
               <lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -88,36 +81,38 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="system" use="optional" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <tooltip>
-                    Catalog system
-                  </tooltip>
-                  <summary>
-                    The catalog system in which this identifier is used.
-                  </summary>
-                  <description>
-                    This element gives the name of the catalog system in which
-                    this identifier is used.  It is useful to determine the
-                    scope of the identifier, and to determine the semantics
-                    of the various subparts of the identifier. Unresolved issue:
-                    can or should this be a URI/URL pointing to the catalog
-                    system, or just the name?
-                  </description>
-                  <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]>
-                  </example>
-                  <lineage>
-                    New to EML 2.0.
-                  </lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
+                        Catalog system
+                      </tooltip>
+                      <summary>
+                        The catalog system in which this identifier is used.
+                      </summary>
+                      <description>
+                       This element gives the name of the catalog system in which
+                        this identifier is used.  It is useful to determine the
+                        scope of the identifier, and to determine the semantics
+                        of the various subparts of the identifier. Unresolved issue:
+                        can or should this be a URI/URL pointing to the catalog
+                        system, or just the name?
+                      </description>
+                      <example><![CDATA[
+                        <identifier system="metacat">nceas.3.2</identifier>]]></example>
+                      <lineage>
+                        New to EML 2.0.
+                      </lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="attribute" minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="attribute" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -132,8 +127,7 @@
                 can contain information about the attribute's definition, 
                 format, storage type and data range, or missing value.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The attribute element was introduced into EML 1.4 as variable.
               </lineage>
@@ -141,8 +135,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="attributeName" type="xs:string"
-                                minOccurs="1" maxOccurs="1">
+              <xs:element name="attributeName" type="xs:string">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -156,17 +149,40 @@
                       in the dataset. This information is typically used as
                       a column header for the field/variable in a spreadsheet.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The attributeName was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="attributeDefinition" type="xs:string"
-                                minOccurs="1" maxOccurs="1">
+              <xs:element name="attributeLabel" type="xs:string" 
+                          minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
+                      Attribute label
+                    </tooltip>
+                    <summary>
+                      Label used to display this attribute
+                    </summary>
+                    <description>
+                      A short label used to displayt this attribute.  This
+                      is needed because attribute names are often shortened to
+                      8 characters or less to deal with analysis systems, and
+                      so the label is provided as a more understandable 
+                      representation of the attribute.
+                    </description>
+                    <example>
+                      "Species Density" is a label for attribute "spden"
+                    </example>
+                    <lineage>
+                      Introduced in EML 2.0
+                    </lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="attributeDefinition" type="xs:string">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -177,19 +193,18 @@
                     </summary>
                     <description>
                       This element gives a precise definition of attribute 
-                      in the dataset.
+                      in the dataset. It explains the contents of the attribute
+                      fully and possibly provides pointers to the methods 
+                      used to generate the attribute data.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The attributeDefinition was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="unit" type="xs:string"
-                                minOccurs="0" maxOccurs="1">
+              <xs:element name="unit" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -202,184 +217,198 @@
                       This element specifies unit of measurement for data 
                       in the field.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The unit was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="storageType" type="xs:string"
-                                minOccurs="0" maxOccurs="1">
+              <xs:element name="dataType" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
-                      Storage type
+                      Data type
                     </tooltip>
                     <summary>
-                      Description of storage type from data in the field
+                      Description of data type for this field
                     </summary>
                     <description>
-                      This element describes the storage type for data in the 
+                      This element describes the data type for data in the 
                       field like: integer, floating point, character, string.
                     </description>
                     <example>
                       integer, floating point, character, string
                     </example>
                     <lineage>
-                      The storageType was introduced into EML 1.4.
+                      From storageType, introduced in EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="codeDefinition"
-                                minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <tooltip>
+              <xs:element name="attributeDomain">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element name="enumeratedDomain" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <tooltip>
                       Code definition
                     </tooltip>
-                    <summary>
+                          <summary>
                       Description of any codes associated with the attribute
                     </summary>
-                    <description>
+                          <description>
                       This element describes a code associated with the 
                       attribute.
                     </description>
-                    <example>
-                    </example>
-                    <lineage>
+                          <example/>
+                          <lineage>
                       The codeDefinition was introduced into EML 1.4.
                     </lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="code" type="xs:string"
-                                minOccurs="1" maxOccurs="1">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="code" type="xs:string">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
                             Code
                           </tooltip>
-                          <summary>
+                                <summary>
                             Code associated with the attribute
                           </summary>
-                          <description>
+                                <description>
                             This element specifies a code associated with 
                             the attribute.
                           </description>
-                          <example>
-                          </example>
-                          <lineage>
+                                <example/>
+                                <lineage>
                             The code element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>        
-                    <xs:element name="definition" type="xs:string"
-                                minOccurs="1" maxOccurs="1">
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="definition" type="xs:string">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  Code definition
+                                </tooltip>
+                                <summary>
+                                  Description of the code associated with 
+                                  the attribute
+                                </summary>
+                                <description>
+                                  This element describes the code associated 
+                                  with the attribute.
+                                </description>
+                                <example/>
+                                <lineage>
+                                  The definition element is from EML 1.4.
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="source" type="xs:string" 
+                                      minOccurs="0">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  Source of code
+                                </tooltip>
+                                <summary>
+                                  The name of the source for this code and
+                                  its definition
+                                </summary>
+                                <description>
+                                  The name of the source from which this code
+                                  and its associated definition are drawn.
+                                  This is commonly used for identifying
+                                  standard coding systems, like the FIPS
+                                  standard for postal abbreviations for states
+                                  in the US.
+                                </description>
+                                <example>ISO country codes</example>
+                                <lineage>
+                                  Introduced in EML 2.0
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="rangeDomain" 
+                                minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <tooltip>
-                              Code definition
-                          </tooltip>
-                          <summary>
-                            Description of the code associated with 
-                            the attribute
-                          </summary>
-                          <description>
-                            This element describes the code associated 
-                            with the attribute.
-                          </description>
-                          <example>
-                          </example>
-                          <lineage>
-                            The definition element was introduced into EML 1.4.
-                          </lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            
-              <xs:element name="numericRange"
-                                minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <tooltip>
                       Numeric range
                     </tooltip>
-                    <summary>
+                          <summary>
                       Numeric range of attribute
                     </summary>
-                    <description>
+                          <description>
                       This element specifies the minimum and maximum value range
                       of numeric attribute.
                     </description>
-                    <example>
-                    </example>
-                    <lineage>
+                          <example/>
+                          <lineage>
                       The numericRange was introduced into EML 1.4.
                     </lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="minimum" type="xs:string"
-                                minOccurs="0" maxOccurs="1">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="minimum" type="xs:string" minOccurs="0">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
                               Minimum numeric range
                           </tooltip>
-                          <summary>
+                                <summary>
                                  Minimum numeric range of attribute
                           </summary>
-                          <description>
+                                <description>
                                This element specifies the minimum value range
                             of numeric attribute.
                           </description>
-                          <example>
-                          </example>
-                          <lineage>
+                                <example/>
+                                <lineage>
                             The minimum element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>        
-                    <xs:element name="maximum" type="xs:string"
-                                minOccurs="0" maxOccurs="1">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <tooltip>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="maximum" type="xs:string" minOccurs="0">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
                               Maximum numeric range
                           </tooltip>
-                          <summary>
+                                <summary>
                                  Maximum numeric range of attribute
                           </summary>
-                          <description>
+                                <description>
                                This element specifies the maximum value range
                             of numeric attribute.
                           </description>
-                          <example>
-                          </example>
-                          <lineage>
+                                <example/>
+                                <lineage>
                             The maximum element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
                     </xs:element>
-                  </xs:sequence>
+                  </xs:choice>
                 </xs:complexType>
               </xs:element>
-
-              <xs:element name="missingValueCode" type="xs:string"
-                                minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="missingValueCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -392,17 +421,14 @@
                       This element is to specify missing value in the data
                       of the field.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The missingValueCode was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="precision" type="xs:string"
-                                minOccurs="0" maxOccurs="1">
+              <xs:element name="precision" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -425,120 +451,6 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:choice>
-                <xs:element name="delimiter" type="xs:string"
-                            minOccurs="0" maxOccurs="1">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <tooltip>
-                          Attribute delimiter
-                      </tooltip>
-                      <summary>
-                        The end of the field is delimited by a 
-                        special character called a field delimiter.
-                      </summary>
-                      <description>
-                        Variable width format fields can vary in their 
-                        field length, thus the end of the field is 
-                        delimited by a special character called a 
-                        field delimiter (typically a comma or a space).
-
-                        Data sets are generally classified as fixedWidth
-                        format or variableWidth format, but we have
-                        determined that this is actually a per-field
-                        classification because one may encounter
-                        fixedWidth fields mixed together in the same
-                        data file with variableWidth fields.
-                        
-                        In our encoding scheme, the start of each field
-                        is assumed to be the column after the last column
-                        of the previous field, or the first column
-                        if this is the first field in the dataset.
-                        The end column for each field is classified
-                        using either a special character delimeter,
-                        or a fixed field length.  variableWidth fields
-                        can vary in their field length, and the end of
-                        the field is delimited by a special character
-                        called a field delimiter, usually a comma or
-                        a tab character.  fixedWidth fields have a set
-                        length, and so the end of the field can always
-                        be determined by adding the fieldWidth to the
-                        starting column number.  Here is an example:
-                        
-                        Assume we have the following data in a data set:
-
-                        May,100aaa,1.2,
-                        April,200aaa,3.4,
-                        June,300bbb,4.6,
-
-                        The metadata for the 4 fields would include the 
-                        following:
-
-                        <![CDATA[
-                        <attribute>
-                          <attributeName>month</attributeName>
-                          <delimiter>,</delimiter>
-                        </attribute>
-
-                        <attribute>
-                          <attributeName>sitecode</attributeName>
-                          <fieldWidth>3</fieldWidth>
-                        </attribute>
-                        
-                        <attribute>
-                          <attributeName>subsitecode</attributeName>
-                          <fieldWidth>3</fieldWidth>
-                        </attribute>
-                        
-                        <attribute>
-                          <attributeName>response</attributeName>
-                          <delimiter>,</delimiter>
-                        </attribute> 
-                        ]]>
-
-                      </description>
-                      <example>
-                        comma, tab, white space, etc.
-                      </example>
-                      <lineage>
-                        The delimiter element was introduced into 
-                        EML 1.4. Semantics changed to work identically to
-                        the NBII DTD.
-                      </lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="fieldWidth" type="xs:string"
-                            minOccurs="0" maxOccurs="1">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <tooltip>
-                        Field width
-                      </tooltip>
-                      <summary>
-                        FieldWidth specification for fixed field 
-                        length.
-                      </summary>
-                      <description>
-                        FixedWidth fields have a set length, thus 
-                        the end of the field can always be determined
-                        by adding the fieldWidth to the starting 
-                        column number.
-                      </description>
-                      <example>
-                        any positive integer, see example in "delimeter" 
-                        description
-                      </example>
-                      <lineage>
-                        The fieldWidth element was introduced into 
-                        EML 1.4. Semantics changed to work identically to
-                        the NBII DTD.
-                      </lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-              </xs:choice>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
