@@ -34,8 +34,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-23 15:07:16 $'
-      '$Revision: 1.64 $'
+          '$Date: 2002-09-23 17:37:58 $'
+      '$Revision: 1.65 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -82,11 +82,13 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
         attribute (e.g., attributeName,attributeDefinition,precision)The
         attribute element allows a user to document the characteristics that
         describe a 'field' or 'variable' in a data entity (e.g. dataTable).
-        Complete attribute descriptions are perhaps the most aspect to making
-        data understandable to others. An attribute element describes to a
-        single attribute. An attribute element can contain a reference to an
+        Complete attribute descriptions are perhaps the most important
+        aspect to making
+        data understandable to others. An attribute element describes a
+        single attribute or an attribute element can contain a reference to an
         attribute defined elsewhere. Using a reference means that the
-        referenced attribute is identical, not just in name but identical in
+        referenced attribute is (semantically) identical, not just in name but
+        identical in
         its complete description. For example, if attribute "measurement1" in
         dataTable "survey1" has a precision of 0.1 and you are documenting
         dataTable survey2 which has an attribute called "measurement1" but the
@@ -96,7 +98,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
         elements, look at the contents of its sub-elements for examples of what
         to enter.</doc:example>
         <doc:lineage>The attribute element was introduced into EML
-        1.4??</doc:lineage>
+        1.4</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -139,15 +141,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute name</doc:tooltip>
-              <doc:summary>This element specifies name of the attribute (field)
+              <doc:summary>The name of the attribute
               in the dataset.</doc:summary>
-              <doc:description>This element specifies name of the attribute
-              (field) in the dataset. This information is typically found as
-              the column header (first row) for the field/variable in a
-              spreadsheet. It is usually terse, without spaces, and can be used
-              to "name" a column in a table definition statement in a
-              RDBMS.</doc:description>
-              <doc:example>spden</doc:example>
+              <doc:description>Attribute name is the full logical name of the
+              attribute.  This is not the header at the top of a column
+              in a spreadsheet.  This should be what that header stands for.
+              To describe the header of a column, use attributeLabel.
+              </doc:description>
+              <doc:example>Spatial Density</doc:example>
               <doc:lineage>The attributeName was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>
@@ -158,16 +159,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute label</doc:tooltip>
-              <doc:summary>A label that better describes an attribute than its
-              name</doc:summary>
-              <doc:description>A brief label used to describe the attribute.
-              This is often needed because attribute names are usually very
-              terse: often shortened to 8 characters or less to fit the
-              requirements of analysis or other software systems. A label is
-              provided as a concise but more descriptive representation of the
-              attribute's name.</doc:description>
-              <doc:example>"Species Density" is a label for attribute with name
-              "spden"</doc:example>
+              <doc:summary>The label applied to an attribute in a data
+              table.</doc:summary>
+              <doc:description>This field should be what appears at the top
+              of a column header in a spreadsheet or data table.  It is usually
+              a terse abbreviation, but does not have to be.  To describe
+              the complete logical name of the attribute, use attributeName.
+              </doc:description>
+              <doc:example>spden</doc:example>
               <doc:lineage>Introduced in EML 2.0</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -229,7 +228,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="customUnit" type="xs:string">
+              <xs:element name="customUnit">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Custom Unit</doc:tooltip>
@@ -241,7 +240,6 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                     document where that definition is provided using the STMML
                     syntax. The customUnit definition will most likely be in
                     the additionalMetadata section.</doc:description>
-                    <doc:example>emergy</doc:example>
                     <doc:lineage>introduced in EML 2.0.0Beta9</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -271,7 +269,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
               field is repeatable so that the storageType can be indicated for
               multiple type systems (e.g., Oracle data types and Java data
               types).</doc:description>
-              <doc:example>integer</doc:example>
+              <doc:example>&lt;storageType&gt;integer&lt;/storageType&gt;
+              </doc:example>
+              <doc:example>
+              &lt;storageType typeSystem="java"&gt;int&lt;/storageType&gt;
+              </doc:example>
               <doc:lineage>From storageType, introduced in EML 1.4. Transformed
               to dataType in EML 2.0 Beta 1. Transformed to storageType in EML
               2.0.0.</doc:lineage>
@@ -298,6 +300,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       system.</doc:description>
                       <doc:example>
                       http://www.w3.org/2001/XMLSchema-datatypes</doc:example>
+                      <doc:example>java</doc:example>
                       <doc:lineage>As of EML 2.0.0</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -330,6 +333,17 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:simpleType>
         </xs:element>
         <xs:element name="attributeDomain" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>attribute domain</doc:tooltip>
+              <doc:summary></doc:summary>
+              <doc:description>The attributeDomain field describes the domain
+              of the attribute being documented.  It can describe three
+              different types of domains: enumerated, text and numeric.  This
+              is an important field for post processing and error checking
+              of the dataset.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:choice>
               <xs:element name="enumeratedDomain">
@@ -348,9 +362,6 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                     because this element is optional, if it is omitted, the
                     value of the attribute's domain is taken to be the regular
                     expression (.*) (any text).</doc:description>
-                    <doc:example>The format will typically be : "code" has
-                    "definition", e.g. "1" = "high", "2" = "medium", "3" =
-                    "low"</doc:example>
                     <doc:lineage>The codeDefinition was introduced into EML
                     1.4.</doc:lineage>
                   </xs:appinfo>
@@ -365,6 +376,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                           definitions</doc:summary>
                           <doc:description>The codeList element contains a list
                           of codes and their definitions.</doc:description>
+                          <doc:example>
+                          &lt;codeList&gt;
+                            &lt;code&gt;1&lt;/code&gt;
+                            &lt;definition&gt;high viscosity&lt;/definition&gt;
+                            &lt;code&gt;2&lt;/code&gt;
+                            &lt;definition&gt;low viscosity&lt;/definition&gt;
+                          &lt;/codeList&gt;
+                          </doc:example>
                           <doc:lineage>The code element was introduced into EML
                           1.4.</doc:lineage>
                         </xs:appinfo>
@@ -380,9 +399,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                                 <doc:description>The code element specifies a
                                 code associated with the
                                 attribute.</doc:description>
-                                <doc:example>"1" would be the code for "high"
-                                (where high is the description of the
-                                code)</doc:example>
+                                <doc:example>1</doc:example>
                                 <doc:lineage>The code element was introduced
                                 into EML 1.4.</doc:lineage>
                               </xs:appinfo>
@@ -397,8 +414,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                                 <doc:description>The definition describes the
                                 code associated with the
                                 attribute.</doc:description>
-                                <doc:example>"high" would be the definition for
-                                a code of "1"</doc:example>
+                                <doc:example>high viscosity</doc:example>
                                 <doc:lineage>The definition element is from EML
                                 1.4.</doc:lineage>
                               </xs:appinfo>
@@ -818,8 +834,31 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="coverage" type="cov:Coverage" minOccurs="0" />
-        <xs:element name="method" type="md:MethodsType" minOccurs="0" />
+        <xs:element name="coverage" type="cov:Coverage" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>attribute coverage</doc:tooltip>
+              <doc:summary>An explanation of the coverage of the attribute.
+              </doc:summary>
+              <doc:description>An explanation of the coverage of the attribute.
+              Please see the eml-coverage module for complete documentation.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="method" type="md:MethodsType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>attribute methods</doc:tooltip>
+              <doc:summary>An explanation of the methods involved in the
+              collection of this attribute.</doc:summary>
+              <doc:description>An explanation of the methods involved in the
+              collection of this attribute.
+              Please see the eml-methods module for complete documentation.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
@@ -872,7 +911,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   <doc:description>The attributeAccuracyValue element is an
                   estimate of the accuracy of the identification of the
                   entities and assignments of attribute values in the data set.
-                  ??</doc:description>
+                  </doc:description>
                   <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -895,7 +934,17 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="attributeList" type="AttributeListType" />
+  <xs:element name="attributeList" type="AttributeListType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>attribute list</doc:tooltip>
+        <doc:summary>attributeList root element</doc:summary>
+        <doc:description>This is the root element of the eml-attribute module.
+        It is mainly used for testing, but can also be used for creating
+        stand-alone eml-attribute modules.</doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
   <xs:simpleType name="unitDictionary">
     <xs:annotation>
       <xs:appinfo>
