@@ -4,8 +4,8 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-<xsl:param name="packageName" select="'jones.204.18'"/>
-<xsl:param name="packageDir" select="'./test'"/>
+<xsl:param name="packageName" select="'higgins.4109.2'"/>
+<xsl:param name="packageDir" select="'.'"/>
 
 <xsl:template match="/">
   <xsl:variable name="dsb6" select="document(concat($packageDir,'/',$packageName))"/>
@@ -30,7 +30,7 @@
     <xsl:with-param name="datasetId" select="$packageName"/>
     <xsl:with-param name="dsb6" select="$dsb6"/>
   </xsl:call-template>
-
+  
   </xsl:element> 
  
 </xsl:template>
@@ -83,6 +83,10 @@
         </xsl:element>
       </xsl:for-each>
     </xsl:element>
+    <xsl:call-template name="getProject">
+      <xsl:with-param name="dsb6" select="$dsb6"/>
+    </xsl:call-template>
+    
 </xsl:template>  
 
 <xsl:template name="getAttributeFor">
@@ -127,5 +131,13 @@
     <xsl:value-of select="$dsb6/dataset/triple[contains(./relationship,'provides access control rules for')]/subject[1]"/>
   </xsl:element>  
 </xsl:template>
+
+<xsl:template name="getProject">
+  <xsl:param name="dsb6"/>
+  <xsl:element name="project">
+    <xsl:value-of select="$dsb6/dataset/triple[contains(./relationship,'provides eml-project information for')]/subject[1]"/>
+  </xsl:element>  
+</xsl:template>
+
 
 </xsl:stylesheet>

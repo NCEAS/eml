@@ -8,11 +8,13 @@
 
   <xsl:variable name="pack" select="document('packageStructure.xml')"/>
 	<xsl:variable name="acb6" select="document(concat($packageDir,'/',$pack/package/acl))"/>
+<!-- 	<xsl:variable name="projectb6" select="document(concat($packageDir,'/',$pack/package/project))"/> -->
   
 	<xsl:variable name="dsb6" select="document(concat($packageDir,'/',$pack/package/@id))"/>
-<!--  <xsl:variable name="acb6" select="document('obfs.acb6')"/>  -->
   
   <xsl:include href="eml2entphy.xsl"/>
+  <xsl:include href="eml2project.xsl"/>
+
   <xsl:template match="/">
 
  	<!-- assign variables for input docs i.e. beta6 dataset and access -->
@@ -236,6 +238,16 @@
               <xsl:value-of select="$dsb6/dataset/pubPlace"/>
             </xsl:element>
           </xsl:if>
+          <!-- if beta6 has a project module, its information is inserted here in a 'method'
+               element followed by a 'project' element-->
+          <xsl:for-each select="$pack/package/project">
+            <xsl:call-template name="project">
+              <xsl:with-param name="projectID">
+                <xsl:value-of select="$pack/package/project"/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:for-each>
+          
           <access
             order="{$acb6/acl/@order}"
             authSystem="{$acb6/acl/@authSystem}" >
@@ -359,7 +371,7 @@
                 </xsl:if>
               
                 <xsl:if test="../onlineLink!=''">
-                  <xsl:element name="onLineUrl">
+                  <xsl:element name="onlineUrl">
                    <xsl:value-of select="../onlineLink"/>
                   </xsl:element>
                 </xsl:if>

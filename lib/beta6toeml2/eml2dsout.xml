@@ -1,159 +1,128 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.0.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml" xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd" system="knb" packageId="obfs.84.4">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.0.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml" xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd" system="knb" packageId="jones.204.18">
   <dataset>
-    <title>Sevilleta Meteorological Data</title>
+    <title>This is a test data set with taxonomic coverage</title>
     <creator>
-      <organizationName>(NM) Sevilleta Field Station</organizationName>
+      <individualName>
+        <givenName>Matthew</givenName>
+        <surName>Jones</surName>
+      </individualName>
     </creator>
-    <creator>
-      <organizationName>Organization of Biological Field Stations</organizationName>
-    </creator>
-    <metadataProvider>
-      <individualName>
-        <surName>Kristin Vanderbilt</surName>
-      </individualName>
-    </metadataProvider>
-    <associatedParty>
-      <individualName>
-        <givenName>James</givenName>
-        <surName>Gosz</surName>
-      </individualName>
-      <address>
-        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
-        <city>Albuquerque</city>
-        <administrativeArea>New Mexico</administrativeArea>
-        <postalCode>87131</postalCode>
-        <country>USA</country>
-      </address>
-      <phone>1-505-277-2265</phone>
-      <electronicMailAddress>jgosz@sevilleta.unm.edu</electronicMailAddress>
-      <role>Principal Investigator</role>
-    </associatedParty>
-    <associatedParty>
-      <individualName>
-        <givenName>Doug</givenName>
-        <surName>Moore</surName>
-      </individualName>
-      <address>
-        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
-        <city>Albuquerque</city>
-        <administrativeArea>New Mexico</administrativeArea>
-        <postalCode>87131</postalCode>
-        <country>U</country>
-      </address>
-      <phone>1-505-277-6328</phone>
-      <electronicMailAddress>dmoore@sevilleta.unm.edu</electronicMailAddress>
-      <role>Data Contact</role>
-    </associatedParty>
-    <associatedParty>
-      <individualName>
-        <givenName>Doug</givenName>
-        <surName>Moore</surName>
-      </individualName>
-      <role>Content Provider</role>
-    </associatedParty>
-    <abstract>
-      <para>These files contain hourly measurements of air temperature, relative humidity, windspeed, solar radiation, vapor pressure, and soil temperature and moisture for an array of automated weather stations at the Sevilleta National Wildlife Refuge and some satellite sites.</para>
-      <para>Paragraph 2</para>
-    </abstract>
     <keywordSet>
-      <keyword keywordType="theme">zooplankton</keyword>
-      <keyword keywordType="theme">Van Dorn sampling</keyword>
-      <keyword keywordType="theme">population survey</keyword>
-      <keyword keywordType="theme">fictitious sample data</keyword>
-      <keyword keywordType="place">Great Lakes</keyword>
-      <keywordThesaurus>obfs.84.4Sevilleta Meteorological DataJamesGoszDepartment of Biology, University of New MexicoAlbuquerqueNew Mexico87131USA1-505-277-2265jgosz@sevilleta.unm.eduPrincipal InvestigatorDougMooreDepartment of Biology, University of New MexicoAlbuquerqueNew Mexico87131U1-505-277-6328dmoore@sevilleta.unm.eduData ContactDougMooreContent ProviderKristin VanderbiltMetadata Provider(NM) Sevilleta Field StationOriginatorOrganization of Biological Field StationsOriginatorThese files contain hourly measurements of air temperature, relative humidity, windspeed, solar radiation, vapor pressure, and soil temperature and moisture for an array of automated weather stations at the Sevilleta National Wildlife Refuge and some satellite sites.Paragraph 2zooplanktonVan Dorn samplingpopulation surveyfictitious sample dataGreat LakesTest thesaurusobtain permission from originator(s)Select type of medium here.obfs.83.2describes access control rules forobfs.84.4obfs.83.2provides access control rules forobfs.83.223JUL198703Jan1991107.03106.5234.3834.22rnrvcommonrn1rv1common1</keywordThesaurus>
+      <keyword keywordType="theme">taxonomy</keyword>
+      <keyword keywordType="theme">synonyms</keyword>
     </keywordSet>
-    <intellectualRights>
-      <para>obtain permission from originator(s)</para>
-    </intellectualRights>
-    <distribution>
-      <offline>
-        <mediumName>Select type of medium here.</mediumName>
-      </offline>
-    </distribution>
     <coverage>
-      <geographicCoverage>
-        <geographicDescription>
-        *
-      </geographicDescription>
-        <boundingCoordinates>
-          <westBoundingCoordinate>107.03</westBoundingCoordinate>
-          <eastBoundingCoordinate>106.52</eastBoundingCoordinate>
-          <northBoundingCoordinate>34.38</northBoundingCoordinate>
-          <southBoundingCoordinate>34.22</southBoundingCoordinate>
-        </boundingCoordinates>
-      </geographicCoverage>
-      <temporalCoverage>
-        <rangeOfDates>
-          <beginDate>
-            <calendarDate>1987-07-23</calendarDate>
-          </beginDate>
-          <endDate>
-            <calendarDate>1991-01-03</calendarDate>
-          </endDate>
-        </rangeOfDates>
-      </temporalCoverage>
       <taxonomicCoverage>
         <taxonomicClassification>
-          <taxonRankName>rn</taxonRankName>
-          <taxonRankValue>rv</taxonRankValue>
-          <commonName>common</commonName>
-        </taxonomicClassification>
-        <taxonomicClassification>
-          <taxonRankName>rn1</taxonRankName>
-          <taxonRankValue>rv1</taxonRankValue>
-          <commonName>common1</commonName>
+          <taxonRankName>Genus</taxonRankName>
+          <taxonRankValue>Bison</taxonRankValue>
+          <commonName>bison</commonName>
         </taxonomicClassification>
       </taxonomicCoverage>
     </coverage>
     <contact>
       <individualName>
-        <givenName>Doug</givenName>
-        <surName>Moore</surName>
+        <givenName>Matthew</givenName>
+        <surName>Jones</surName>
       </individualName>
-      <address>
-        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
-        <city>Albuquerque</city>
-        <administrativeArea>New Mexico</administrativeArea>
-        <postalCode>87131</postalCode>
-        <country>U</country>
-      </address>
-      <phone>1-505-277-6328</phone>
-      <electronicMailAddress>dmoore@sevilleta.unm.edu</electronicMailAddress>
     </contact>
-    <access authSystem="ldap://ldap.ecoinformatics.org" order="denyFirst">
+    <methods>
+      <methodStep>
+        <description>
+          <para>All trees&gt;=10 mm dbh were tagged, measured, mapped and identified to species. The point of measurement (POM) was at 1.3 m, except for trees with buttresses or stilts, which were measured above the buttress or stilt starting with the 1985 census. In the 1982 and 1985 censuses, the diameters at breast height (dbh) were rounded to the lower 5mm for trees&lt;=5 cm dbh. The measurements from the last two censuses are accurate to the nearest millimeter for all trees. Please remember to take this into account when measuring growth rates between 82 or 85 versus 90 or 95. Trees were included in the dataset with no measurements in any census. These were mostly trees which were included in a first pass in the first census, but which were not found or died in a second pass in the first census. We decided to leave them in the dataset.</para>
+        </description>
+      </methodStep>
+      <sampling>
+        <studyExtent>
+          <description>
+            <para>Four complete censuses have been done, the first from 1981 to 1983, the second in 1985, the third in 1990, and the fourth in 1995.</para>
+          </description>
+        </studyExtent>
+        <samplingDescription>
+          <para>not available</para>
+        </samplingDescription>
+      </sampling>
+    </methods>
+    <project>
+      <title>Barro Colorado Island Tree Data</title>
+      <personnel>
+        <organizationName>Conservation International</organizationName>
+        <address>
+          <deliveryPoint>1919 M Street, NW Suite 600</deliveryPoint>
+          <city>Washington, DC</city>
+          <postalCode>20036</postalCode>
+          <country>U.S.A.</country>
+        </address>
+        <phone>(202) 912-1000</phone>
+        <onlineUrl>http://www.conservation.org</onlineUrl>
+        <role>unknown</role>
+      </personnel>
+      <studyAreaDescription>
+        <descriptor name="unknown" citableClassificationSystem="false">
+          <descriptorValue>This is where a description of the site would go.</descriptorValue>
+        </descriptor>
+        <citation>
+          <title>Citation title</title>
+          <creator>
+            <individualName>
+              <surName>Higgins</surName>
+            </individualName>
+          </creator>
+          <book>
+            <publisher>
+              <organizationName>unknown</organizationName>
+            </publisher>
+            <edition>asda</edition>
+            <totalPages>123</totalPages>
+          </book>
+        </citation>
+        <coverage>
+          <geographicCoverage>
+            <geographicDescription>BCI is located in Panama.  Coordinates 625754, 1011569 set as 0, 0 in plot.</geographicDescription>
+            <boundingCoordinates>
+              <westBoundingCoordinate>625754</westBoundingCoordinate>
+              <eastBoundingCoordinate>625754</eastBoundingCoordinate>
+              <northBoundingCoordinate>1011569</northBoundingCoordinate>
+              <southBoundingCoordinate>1011569</southBoundingCoordinate>
+            </boundingCoordinates>
+          </geographicCoverage>
+          <temporalCoverage>
+            <rangeOfDates>
+              <beginDate>
+                <calendarDate>1981-01-01</calendarDate>
+              </beginDate>
+              <endDate>
+                <calendarDate>1995-01-01</calendarDate>
+              </endDate>
+            </rangeOfDates>
+          </temporalCoverage>
+        </coverage>
+      </studyAreaDescription>
+      <designDescription>
+        <description>
+          <para>not available</para>
+        </description>
+      </designDescription>
+    </project>
+    <access authSystem="knb" order="allowFirst">
       <allow>
-        <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
+        <principal>uid=jones,o=NCEAS,dc=ecoinformatics,dc=org</principal>
         <permission>all</permission>
       </allow>
-      <deny>
-        <principal>public</principal>
-        <permission>read</permission>
-      </deny>
-      <deny>
-        <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
-        <permission>read</permission>
-      </deny>
       <allow>
         <principal>public</principal>
         <permission>read</permission>
       </allow>
     </access>
     <dataTable>
-      <entityName> ExampleData.txt</entityName>
-      <entityDescription>entityDescription</entityDescription>
+      <entityName> boglakes.dat</entityName>
       <physical>
-        <objectName>jscientist.6.1</objectName>
-        <size unit="bytes">1152</size>
-        <authentication>qqq</authentication>
-        <authentication>aaa</authentication>
-        <authentication>bbb</authentication>
-        <compressionMethod>qwerty</compressionMethod>
-        <encodingMethod>1</encodingMethod>
+        <objectName>jones.208.3</objectName>
+        <size unit="bytes">344</size>
         <dataFormat>
           <textFormat>
-            <numHeaderLines>1</numHeaderLines>
+            <numHeaderLines>0</numHeaderLines>
             <recordDelimiter>#x0A</recordDelimiter>
             <attributeOrientation>column</attributeOrientation>
             <simpleDelimited>
@@ -161,13 +130,192 @@
             </simpleDelimited>
           </textFormat>
         </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.205.3</url>
+          </online>
+        </distribution>
       </physical>
       <attributeList>
         <attribute>
-          <attributeName>Tag</attributeName>
-          <attributeLabel>Tag number</attributeLabel>
-          <attributeDefinition>Identification number of plant</attributeDefinition>
-          <storageType>Text</storageType>
+          <attributeName> Site</attributeName>
+          <attributeLabel> site</attributeLabel>
+          <attributeDefinition>Site code</attributeDefinition>
+          <storageType> Text</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>*</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> Lake</attributeName>
+          <attributeLabel> lake</attributeLabel>
+          <attributeDefinition>lake name</attributeDefinition>
+          <storageType> Text</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Pike</code>
+                    <definition>Pike</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Tannin</code>
+                    <definition>Tannin</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Minnow</code>
+                    <definition>Minnow</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Carp</code>
+                    <definition>Carp</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Rana</code>
+                    <definition>Rana</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Rano</code>
+                    <definition>Rano</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Minnow1</code>
+                    <definition>Minnow1</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Tadpole</code>
+                    <definition>Tadpole</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Mosquito</code>
+                    <definition>Mosquito</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> Year</attributeName>
+          <attributeLabel> year</attributeLabel>
+          <attributeDefinition>Year of data collection</attributeDefinition>
+          <storageType> Integers</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1901.0</minimum>
+                  <maximum exclusive="false">1999.0</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> Plankton count</attributeName>
+          <attributeLabel> plankton</attributeLabel>
+          <attributeDefinition>Plankton counted in a one liter van dorn sample</attributeDefinition>
+          <storageType> Integers</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">180.0</minimum>
+                  <maximum exclusive="false">1059.0</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>chloro</attributeName>
+          <attributeLabel>Chlorophyll</attributeLabel>
+          <attributeDefinition>Chlorophyll concentration</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>g/m^3</customUnit>
+              </unit>
+              <precision>0.01</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false"/>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>.</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <caseSensitive>no</caseSensitive>
+      <numberOfRecords>17</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName> boglakes.dat</entityName>
+      <physical>
+        <objectName>jones.217.1</objectName>
+        <size unit="bytes">344</size>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>0</numHeaderLines>
+            <recordDelimiter>#x0A</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.214.1</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName> Column 1</attributeName>
+          <attributeLabel> Column 1</attributeLabel>
+          <attributeDefinition>asddas</attributeDefinition>
+          <storageType> Text</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
@@ -179,10 +327,10 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>Species</attributeName>
-          <attributeLabel>Species Code</attributeLabel>
-          <attributeDefinition>This is a six-letter code. For thecomplete species name, please see file BCISP.txt.</attributeDefinition>
-          <storageType>Text</storageType>
+          <attributeName> Column 2</attributeName>
+          <attributeLabel> Column 2</attributeLabel>
+          <attributeDefinition>asdda</attributeDefinition>
+          <storageType> Text</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
@@ -194,1054 +342,440 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>X</attributeName>
-          <attributeLabel>X  coordinate</attributeLabel>
-          <attributeDefinition>X coordinate within the plot, numbers go from west to east</attributeDefinition>
-          <storageType>Floating Point</storageType>
+          <attributeName> Column 3</attributeName>
+          <attributeLabel> Column 3</attributeLabel>
+          <attributeDefinition>asdad</attributeDefinition>
+          <storageType> Integers</storageType>
           <measurementScale>
-            <interval>
+            <ratio>
               <unit>
-                <customUnit>xc</customUnit>
+                <customUnit/>
               </unit>
               <precision>0.0</precision>
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">-9.0</minimum>
-                  <maximum exclusive="false">999.9</maximum>
+                  <minimum exclusive="false">1901.0</minimum>
+                  <maximum exclusive="false">1999.0</maximum>
                 </bounds>
               </numericDomain>
-            </interval>
+            </ratio>
           </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
-          <attributeName>Y</attributeName>
-          <attributeLabel>Y coordinate</attributeLabel>
-          <attributeDefinition>Y coordinate within the plot, numbers go from south to north</attributeDefinition>
-          <storageType>Floating Point</storageType>
+          <attributeName> Column 4</attributeName>
+          <attributeLabel> Column 4</attributeLabel>
+          <attributeDefinition>asdad</attributeDefinition>
+          <storageType> Integers</storageType>
           <measurementScale>
-            <interval>
+            <ratio>
               <unit>
-                <standardUnit>centimeter</standardUnit>
+                <customUnit/>
               </unit>
               <precision>0.0</precision>
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">-9.0</minimum>
-                  <maximum exclusive="false">499.9</maximum>
+                  <minimum exclusive="false">180.0</minimum>
+                  <maximum exclusive="false">1059.0</maximum>
                 </bounds>
               </numericDomain>
-            </interval>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Dbh1</attributeName>
-          <attributeLabel>diameter at breast height 1</attributeLabel>
-          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
-          <storageType>Integers</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>indicates that the plant is dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>the plant has not yet entered the census</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Dbh2</attributeName>
-          <attributeLabel>diameter at breast height2</attributeLabel>
-          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
-          <storageType>Integers</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>indicates that the plant is dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>the plant has not yet entered the census</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>diameter at breast height3</attributeName>
-          <attributeLabel>Dbh3</attributeLabel>
-          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
-          <storageType>Integers</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>indicates that the plant is dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>the plant has not yet entered the census</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>diameter at breast height4</attributeName>
-          <attributeLabel>Dbh4</attributeLabel>
-          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
-          <storageType>Integers</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>indicates that the plant is dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>the plant has not yet entered the census</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Recr1</attributeName>
-          <attributeLabel>Recr1</attributeLabel>
-          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>A</code>
-                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>D</code>
-                    <definition>dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>P</code>
-                    <definition>not entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Recr2</attributeName>
-          <attributeLabel>Recr2</attributeLabel>
-          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>A</code>
-                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>D</code>
-                    <definition>dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>P</code>
-                    <definition>not entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>*</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Recr3</attributeName>
-          <attributeLabel>Recr3</attributeLabel>
-          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>A</code>
-                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>D</code>
-                    <definition>dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>P</code>
-                    <definition>not entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Recr4</attributeName>
-          <attributeLabel>Recr4</attributeLabel>
-          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>A</code>
-                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>D</code>
-                    <definition>dead</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>P</code>
-                    <definition>not entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Pom1</attributeName>
-          <attributeLabel>Point of measure1</attributeLabel>
-          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>1</code>
-                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>&gt;1</code>
-                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>0</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Pom2</attributeName>
-          <attributeLabel>Point of measure2</attributeLabel>
-          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>1</code>
-                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>&gt;1</code>
-                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>0</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Pom3</attributeName>
-          <attributeLabel>Point of measure 3</attributeLabel>
-          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>1</code>
-                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>&gt;1</code>
-                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>0</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Pom 4</attributeName>
-          <attributeLabel>Point of measure4</attributeLabel>
-          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>1</code>
-                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>&gt;1</code>
-                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>0</code>
-                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>0</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Codes1</attributeName>
-          <attributeLabel>Condition Codes1</attributeLabel>
-          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>*</code>
-                    <definition>*</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>L</code>
-                    <definition>L</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>F</code>
-                    <definition>F</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>G</code>
-                    <definition>G</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>D</code>
-                    <definition>D</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>S</code>
-                    <definition>S</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>X</code>
-                    <definition>X</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>R</code>
-                    <definition>R</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>N</code>
-                    <definition>N</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>P</code>
-                    <definition>P</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LG</code>
-                    <definition>LG</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RG</code>
-                    <definition>RG</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Codes2</attributeName>
-          <attributeLabel>Condition Codes2</attributeLabel>
-          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>Z</code>
-                    <definition>Z</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DMC</code>
-                    <definition>DMC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>*</code>
-                    <definition>*</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LV</code>
-                    <definition>LV</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DT</code>
-                    <definition>DT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DB</code>
-                    <definition>DB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DU</code>
-                    <definition>DU</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>IB</code>
-                    <definition>IB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>IO</code>
-                    <definition>IO</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>IT</code>
-                    <definition>IT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DF</code>
-                    <definition>DF</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>NMZ</code>
-                    <definition>NMZ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>Q</code>
-                    <definition>Q</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>PB</code>
-                    <definition>PB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>V</code>
-                    <definition>V</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LN</code>
-                    <definition>LN</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LT</code>
-                    <definition>LT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QIB</code>
-                    <definition>QIB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QIT</code>
-                    <definition>QIT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QIO</code>
-                    <definition>QIO</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>ITQ</code>
-                    <definition>ITQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>IOIT</code>
-                    <definition>IOIT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QV</code>
-                    <definition>QV</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>MC</code>
-                    <definition>MC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LNQ</code>
-                    <definition>LNQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DMF</code>
-                    <definition>DMF</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RP</code>
-                    <definition>RP</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>T</code>
-                    <definition>T</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>ITIB</code>
-                    <definition>ITIB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RTPN</code>
-                    <definition>RTPN</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>ITA</code>
-                    <definition>ITA</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LNIT</code>
-                    <definition>LNIT</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Codes3</attributeName>
-          <attributeLabel>Condition Codes3</attributeLabel>
-          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>DN</code>
-                    <definition>DN</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>*</code>
-                    <definition>*</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DT</code>
-                    <definition>DT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DC</code>
-                    <definition>DC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>M</code>
-                    <definition>M</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>B</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DS</code>
-                    <definition>DS</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>Q</code>
-                    <definition>Q</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LM</code>
-                    <definition>LM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>L</code>
-                    <definition>L</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QB</code>
-                    <definition>QB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>MB</code>
-                    <definition>MB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RM</code>
-                    <definition>RM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>R</code>
-                    <definition>R</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QM</code>
-                    <definition>QM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LBM</code>
-                    <definition>LBM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BM</code>
-                    <definition>BM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QLM</code>
-                    <definition>QLM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QL</code>
-                    <definition>QL</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RL</code>
-                    <definition>RL</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RLM</code>
-                    <definition>RLM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BL</code>
-                    <definition>BL</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>C</code>
-                    <definition>C</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LQB</code>
-                    <definition>LQB</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RQM</code>
-                    <definition>RQM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QMB</code>
-                    <definition>QMB</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Codes4</attributeName>
-          <attributeLabel>Condition Codes4</attributeLabel>
-          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>*</code>
-                    <definition>*</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DT</code>
-                    <definition>DT</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>B</code>
-                    <definition>B</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DC</code>
-                    <definition>DC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DS</code>
-                    <definition>DS</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BM</code>
-                    <definition>BM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>Q</code>
-                    <definition>Q</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BQ</code>
-                    <definition>BQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>MQ</code>
-                    <definition>MQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>M</code>
-                    <definition>M</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>L</code>
-                    <definition>L</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>DN</code>
-                    <definition>DN</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BN</code>
-                    <definition>BN</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BDS</code>
-                    <definition>BDS</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RM</code>
-                    <definition>RM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>MR</code>
-                    <definition>MR</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BLDC</code>
-                    <definition>BLDC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>2</code>
-                    <definition>2</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BQM</code>
-                    <definition>BQM</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BMQ</code>
-                    <definition>BMQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>LQ</code>
-                    <definition>LQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>RMQ</code>
-                    <definition>RMQ</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>QL</code>
-                    <definition>QL</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>ML</code>
-                    <definition>ML</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>R</code>
-                    <definition>R</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>C</code>
-                    <definition>C</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BC</code>
-                    <definition>BC</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>MQR</code>
-                    <definition>MQR</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BL</code>
-                    <definition>BL</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>BD</code>
-                    <definition>BD</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Mult 1</attributeName>
-          <attributeLabel>Number of Stems 1</attributeLabel>
-          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>tree not yet entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>tree has died</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Mult2</attributeName>
-          <attributeLabel>Number of Stems 2</attributeLabel>
-          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>tree not yet entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>tree has died</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Mult3</attributeName>
-          <attributeLabel>Number of Stems 3</attributeLabel>
-          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>tree not yet entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>tree has died</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Mult4</attributeName>
-          <attributeLabel>Number of Stems 4</attributeLabel>
-          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
-          <storageType>Codes</storageType>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>-2</code>
-                    <definition>tree not yet entered census yet</definition>
-                  </codeDefinition>
-                  <codeDefinition>
-                    <code>-1</code>
-                    <definition>tree has died</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-          <missingValueCode>
-            <code>-9</code>
-            <codeExplanation>not available</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>Date1</attributeName>
-          <attributeLabel>Date1</attributeLabel>
-          <attributeDefinition>Date tree was censused</attributeDefinition>
-          <storageType>Date</storageType>
-          <measurementScale>
-            <datetime>
-              <formatString>YYY-MM-DD</formatString>
-              <dateTimePrecision>unknown</dateTimePrecision>
-              <dateTimeDomain>
-                <bounds>
-                  <minimum exclusive="false">unknown</minimum>
-                  <maximum exclusive="false">unknown</maximum>
-                </bounds>
-              </dateTimeDomain>
-            </datetime>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Date2</attributeName>
-          <attributeLabel>Date2</attributeLabel>
-          <attributeDefinition>Date tree was censused</attributeDefinition>
-          <storageType>Date</storageType>
-          <measurementScale>
-            <datetime>
-              <formatString>YYY-MM-DD</formatString>
-              <dateTimePrecision>unknown</dateTimePrecision>
-              <dateTimeDomain>
-                <bounds>
-                  <minimum exclusive="false">unknown</minimum>
-                  <maximum exclusive="false">unknown</maximum>
-                </bounds>
-              </dateTimeDomain>
-            </datetime>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Date3</attributeName>
-          <attributeLabel>Date3</attributeLabel>
-          <attributeDefinition>Date tree was censused</attributeDefinition>
-          <storageType>Date</storageType>
-          <measurementScale>
-            <datetime>
-              <formatString>YYY-MM-DD</formatString>
-              <dateTimePrecision>unknown</dateTimePrecision>
-              <dateTimeDomain>
-                <bounds>
-                  <minimum exclusive="false">unknown</minimum>
-                  <maximum exclusive="false">unknown</maximum>
-                </bounds>
-              </dateTimeDomain>
-            </datetime>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>Date4</attributeName>
-          <attributeLabel>Date4</attributeLabel>
-          <attributeDefinition>Date tree was censused</attributeDefinition>
-          <storageType>Date</storageType>
-          <measurementScale>
-            <datetime>
-              <formatString>YYY-MM-DD</formatString>
-              <dateTimePrecision>unknown</dateTimePrecision>
-              <dateTimeDomain>
-                <bounds>
-                  <minimum exclusive="false">unknown</minimum>
-                  <maximum exclusive="false">unknown</maximum>
-                </bounds>
-              </dateTimeDomain>
-            </datetime>
+            </ratio>
           </measurementScale>
         </attribute>
       </attributeList>
       <caseSensitive>no</caseSensitive>
-      <numberOfRecords> 24</numberOfRecords>
+      <numberOfRecords> 15</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>
+      AF Site layout
+    </entityName>
+      <physical>
+        <objectName>jones.227.1</objectName>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>
+      gif
+    </formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.224.1</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>
+        pixel
+      </attributeName>
+          <attributeDefinition>
+        pixel
+      </attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">0.0</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <caseSensitive>yes</caseSensitive>
+    </dataTable>
+    <dataTable>
+      <entityName> boglakes.dat</entityName>
+      <entityDescription> holy wow</entityDescription>
+      <physical>
+        <objectName>jones.251.3</objectName>
+        <size unit="bytes">344</size>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>0</numHeaderLines>
+            <recordDelimiter>#x0A</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.248.3</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>tech</attributeName>
+          <attributeLabel>Technician</attributeLabel>
+          <attributeDefinition>Technician who collected the data.</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>not available</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>.</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> site</attributeName>
+          <attributeLabel> Site</attributeLabel>
+          <attributeDefinition>Site of data collection.</attributeDefinition>
+          <storageType> string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>AND</code>
+                    <definition>Andrews</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LAS</code>
+                    <definition>Lassiter</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BRV</code>
+                    <definition>Breverton</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SPH</code>
+                    <definition>Sphagnum</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> lake</attributeName>
+          <attributeLabel> Lake Name</attributeLabel>
+          <attributeDefinition>Name of lake.</attributeDefinition>
+          <storageType> string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>any text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> Year</attributeName>
+          <attributeLabel> Year</attributeLabel>
+          <attributeDefinition>Year of data collection.</attributeDefinition>
+          <storageType> dateTime</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1900.0</minimum>
+                  <maximum exclusive="false">1999.0</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName> plankton</attributeName>
+          <attributeLabel> Plankton Density</attributeLabel>
+          <attributeDefinition>Density of plankton.</attributeDefinition>
+          <storageType> float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit> #/m^3</customUnit>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">1059.0</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code/>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <caseSensitive>no</caseSensitive>
+      <numberOfRecords>17</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>
+      freedata.txt
+    </entityName>
+      <entityDescription>
+      free data
+    </entityDescription>
+      <physical>
+        <objectName>jones.259.3</objectName>
+        <dataFormat>
+          <textFormat>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.266.2</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>
+        x
+      </attributeName>
+          <attributeDefinition>
+        x value
+      </attributeDefinition>
+          <storageType/>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>
+        1
+      </precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">0.0</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>
+        .
+      </code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>z</attributeName>
+          <attributeLabel>Z</attributeLabel>
+          <attributeDefinition>Z stuff.</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">0.0</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>.</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>
+        y
+      </attributeName>
+          <attributeDefinition>
+        y value
+      </attributeDefinition>
+          <storageType/>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>
+        1
+      </precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">
+            0
+          </minimum>
+                  <maximum exclusive="false">
+            10
+          </maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>
+        .
+      </code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <caseSensitive>yes</caseSensitive>
+      <numberOfRecords>1</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>
+      tryme
+    </entityName>
+      <entityDescription>
+      tryme
+    </entityDescription>
+      <physical>
+        <objectName>jones.274.2</objectName>
+        <dataFormat>
+          <textFormat>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=jones.275.1</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>
+        site
+      </attributeName>
+          <attributeDefinition>
+        site
+      </attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">0.0</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>
+        xy
+      </attributeName>
+          <attributeDefinition>
+        XY
+      </attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision>0.0</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0</minimum>
+                  <maximum exclusive="false">0.0</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <caseSensitive>yes</caseSensitive>
+      <numberOfRecords>5</numberOfRecords>
     </dataTable>
   </dataset>
 </eml:eml>

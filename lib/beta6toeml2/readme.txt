@@ -26,7 +26,7 @@ The process starts with the beta6 dataset module. This XML document contains the
 </package>
 ------------------------------------------
 
-The stylesheet 'emlb6toeml2.xsl' is the top level stylesheet for using the information in the packageStructure document to create an eml2 document. This stylesheet 'includes' the 'eml2entphy.xsl', and 'eml2attr.xsl' stylesheets for handling entity, physical, and attribute information.         
+The stylesheet 'emlb6toeml2.xsl' is the top level stylesheet for using the information in the packageStructure document to create an eml2 document. This stylesheet 'includes' the 'eml2entphy.xsl', and 'eml2attr.xsl' stylesheets for handling entity, physical, and attribute information. It should be noted that all the metadata modules for a package are assumed to be in the same directory and named with their ID (e.g. 'higgins.233.2'). An easy way to create such a directory is to use Morpho to 'export' a data package.       
 
 The 'eml2attr.xsl' sheet includes checking units against the eml-unitDictionary. If a beta6 unit (or ist abbreviation) is found in the unit-Dictionary, a standard unit is created. Otherwise, a custom unit is defined. (Currently, a definition of the custom unit is not automatically created and added to the otherMetadata element.) [A copy of eml-unitDictionary needs to be in the same directory as the style sheets.]
 Also, the determination of measurementScale is rather arbitrary. All nonNUmerica and nonDate attribute information (i.e. text) is mapped to the 'nominal' measurementScale. (No 'ordinal' values are ever created.) Numeric information is mapped to 'ratio' if the minimum is greater than 0, or 'interval' if the minumum is negative. 

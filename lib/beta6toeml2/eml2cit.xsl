@@ -4,9 +4,10 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-<xsl:variable name="citb6" select="document('higgins.4557.1')"/>
+<!--<xsl:variable name="citb6" select="document('higgins.4557.1')"/> -->
 
-  <xsl:template match="/">
+  <xsl:template name="citTransform">
+    <xsl:param name="citb6"/>
     <citation>
    
         <xsl:if test="$citb6/citation/shortName!=''">
@@ -42,11 +43,8 @@
 
           <xsl:for-each select="$citb6/citation/originator/role">
           <xsl:if test="((.!='Metadata Provider')and(.!='Originator'))">
-            <xsl:element name="associatedParty">
+            <xsl:element name="creator">
               <xsl:call-template name="responsibleParty"/>
-              <xsl:element name="role">
-                <xsl:value-of select="."/>
-              </xsl:element>
             </xsl:element>
           </xsl:if>
           </xsl:for-each>
@@ -337,92 +335,6 @@
     </citation>
   </xsl:template>
   
-    <!--templates to be called from main template              -->
-  <xsl:template name="responsibleParty">
-              <xsl:if test="../individualName!=''">
-                <xsl:element name="individualName">
-                  <xsl:if test="../individualName/salutation!=''">
-                    <xsl:element name="salutation">
-                      <xsl:value-of select="../individualName/salutation"/>
-                    </xsl:element>
-                  </xsl:if>
-                  <xsl:if test="../individualName/givenName!=''">
-                    <xsl:element name="givenName">
-                      <xsl:value-of select="../individualName/givenName"/>
-                    </xsl:element>
-                  </xsl:if>
-                  <xsl:if test="../individualName/surName!=''">
-                    <xsl:element name="surName">
-                      <xsl:value-of select="../individualName/surName"/>
-                    </xsl:element>
-                  </xsl:if>
-                </xsl:element>
-              </xsl:if>
-                
-                <xsl:if test="../organizationName!=''">
-                  <xsl:element name="organizationName">
-                   <xsl:value-of select="../organizationName"/>
-                  </xsl:element>
-                </xsl:if>
-
-                <xsl:if test="../positionName!=''">
-                  <xsl:element name="positionName">
-                   <xsl:value-of select="../positionName"/>
-                  </xsl:element>
-                </xsl:if>
-
-                <xsl:if test="../address!=''">
-                  <xsl:element name="address">
-                    <xsl:if test="../address/deliveryPoint!=''">
-                      <xsl:element name="deliveryPoint">
-                        <xsl:value-of select="../address/deliveryPoint"/>
-                      </xsl:element>
-                    </xsl:if>
-
-                    <xsl:if test="../address/city!=''">
-                      <xsl:element name="city">
-                        <xsl:value-of select="../address/city"/>
-                      </xsl:element>
-                    </xsl:if>
-
-                    <xsl:if test="../address/administrativeArea!=''">
-                      <xsl:element name="administrativeArea">
-                        <xsl:value-of select="../address/administrativeArea"/>
-                      </xsl:element>
-                    </xsl:if>
-
-                    <xsl:if test="../address/postalCode!=''">
-                      <xsl:element name="postalCode">
-                        <xsl:value-of select="../address/postalCode"/>
-                      </xsl:element>
-                    </xsl:if>
-
-                    <xsl:if test="../address/country!=''">
-                      <xsl:element name="country">
-                        <xsl:value-of select="../address/country"/>
-                      </xsl:element>
-                    </xsl:if>
-                  </xsl:element>
-                </xsl:if>
-
-                <xsl:if test="../phone!=''">
-                  <xsl:element name="phone">
-                   <xsl:value-of select="../phone"/>
-                  </xsl:element>
-                </xsl:if>
-
-                <xsl:if test="../electronicMailAddress!=''">
-                  <xsl:element name="electronicMailAddress">
-                   <xsl:value-of select="../electronicMailAddress"/>
-                  </xsl:element>
-                </xsl:if>
-              
-                <xsl:if test="../onlineLink!=''">
-                  <xsl:element name="onLineUrl">
-                   <xsl:value-of select="../onlineLink"/>
-                  </xsl:element>
-                </xsl:if>
-  </xsl:template>
 
   
   
