@@ -8,8 +8,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-10-02 22:19:29 $'
- * '$Revision: 1.1 $'
+ *     '$Date: 2002-10-02 22:44:00 $'
+ * '$Revision: 1.2 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -120,11 +120,43 @@ public class EMLParserServlet extends HttpServlet
     String ctype = request.getContentType();
     InputStream fileToParse = null;
     File tempfile = null;
-    html.append("<html><head>");
-    html.append("<link type=\"text/css\" href=\"");
-    html.append("http://knb.ecoinformatics.org/default.css\" ");
-    html.append("rel=\"stylesheet\">");
-    html.append("</link></head><body>");
+
+    html.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD html 4.0//EN\">");
+    html.append("<html>");
+    html.append("<head>");
+    html.append("<title>EML ID and References Parser</title>");
+    html.append("<link rel=\"stylesheet\" type=\"text/css\" ");
+    html.append("href=\"http://knb.ecoinformatics.org/default.css\">");
+    html.append("</head>");
+    html.append("<body>");
+    html.append("<table class=\"tabledefault\" width=\"100%\">");
+    html.append("<tbody>");
+    html.append("<tr>");
+    html.append("<td rowspan=\"2\">");
+    html.append("<img src=\"http://knb.ecoinformatics.org/images/KNBLogo.gif\">");
+    html.append("</td>");
+    html.append("<td colspan=\"7\"><div class=\"title\">");
+    html.append("EML ID and References Parser</div></td>");
+    html.append("</tr>");
+    html.append("<tr>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/\" ");
+    html.append("class=\"toollink\"> KNB Home </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/data.html\" ");
+    html.append("class=\"toollink\"> Data </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/people.html\" ");
+    html.append("class=\"toollink\"> People </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/informatics\" ");
+    html.append("class=\"toollink\"> Informatics </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/biodiversity\" ");
+    html.append("class=\"toollink\"> Biocomplexity </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/education\" ");
+    html.append("class=\"toollink\"> Education </a></td>");
+    html.append("<td><a href=\"http://knb.ecoinformatics.org/software\" ");
+    html.append("class=\"toollink\"> Software </a></td>");
+    html.append("</tr>");
+    html.append("</tbody>");
+    html.append("</table>");
+    html.append("<hr>");
 
     HttpSession sess = request.getSession(true);
     String sess_id = "";

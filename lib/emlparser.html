@@ -1,10 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0//EN">
 <html>
 <head>
-<link type="text/css" href="http://knb.ecoinformatics.org/default.css" rel="stylesheet">
-<title>EML Parser</title>
+  <title>EML ID and References Parser</title>
+
+  <link rel="stylesheet" type="text/css" href="http://knb.ecoinformatics.org/default.css">
 </head>
+   <body>
+
+<table class="tabledefault" width="100%">
+ <tbody>
+ <tr>
+   <td rowspan="2"><img src="http://knb.ecoinformatics.org/images/KNBLogo.gif"></td>
+   <td colspan="7"><div class="title">EML ID and References Parser</div></td>
+ </tr>
+ <tr>
+   <td><a href="http://knb.ecoinformatics.org/" class="toollink"> KNB Home </a></td>
+   <td><a href="http://knb.ecoinformatics.org/data.html" class="toollink"> Data </a></td>
+   <td><a href="http://knb.ecoinformatics.org/people.html" class="toollink"> People </a></td>
+   <td><a href="http://knb.ecoinformatics.org/informatics" class="toollink"> Informatics </a></td>
+   <td><a href="http://knb.ecoinformatics.org/biodiversity" class="toollink"> Biocomplexity </a></td>
+   <td><a href="http://knb.ecoinformatics.org/education" class="toollink"> Education </a></td>
+   <td><a href="http://knb.ecoinformatics.org/software" class="toollink"> Software </a></td>
+ </tr>
+ </tbody>
+</table>
+<hr>
 <body>
-  <h2>EML Parser</h2>
+  <p>
+    This parser will validate that your EML instance file conforms to the rules
+    set forth in the EML spec.  Browse the file you would like to validate
+    in the space below and click 'submit'.  Note that this parser does <em>not</em>
+    do XML validation.
+  </p>
+  <br>
   <form enctype="multipart/form-data" method="post" action="/emlparser/servlet/emlparser">
     <input type="hidden" name="action" value="parse"></input>
     File Name:<input type="file" name="filename"></input><br><br>
