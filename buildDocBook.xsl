@@ -12,9 +12,22 @@
     <title>Guide to Ecological Metadata Language (EML)</title>
   </bookinfo>
   
-  <preface>
+  <toc>
+    <tocpart>
+      <tocchap>
+        <tocentry><link linkend="preface">Preface</link></tocentry>
+        <tocentry><link linkend="introduction">Introduction to EML</link></tocentry>
+        <tocentry><link linkend="purpose">Purpose of EML</link></tocentry>
+        <tocentry><link linkend="extensibility">EML's extensibility</link></tocentry>
+        <tocentry><link linkend="moduleDescriptions">Individual Module Descriptions (Non-normative)</link></tocentry>
+        <tocentry><link linkend="index">Alphabetical Index of Elements</link></tocentry>
+      </tocchap>
+    </tocpart>
+  </toc>
+  
+  <preface id="preface">
     <title>EML Overview &amp; History</title> 
-    <section>
+    <section id="introduction">
       <title>Introduction</title>
       <para>
        Ecological Metadata Language (EML) is a metadata standard developed by the 
@@ -28,7 +41,7 @@
       </para>
     </section>
     
-    <section>
+    <section id="purpose">
       <title>Purpose Statement</title>
       <para>
         To provide the ecological community with an extensible, flexible,
@@ -37,7 +50,7 @@
       </para>
     </section>
     
-    <section>
+    <section id="extensibility">
       <title>Extensibility</title>
       <para>
         Say something about extensibility here when we figure out the packaging
@@ -46,7 +59,6 @@
     </section>
   </preface>
   
-  
   <chapter id="moduleDescriptions">
     <title>Module Descriptions</title>
     <xsl:for-each select="//doc:module">
@@ -54,13 +66,14 @@
     </xsl:for-each>
   </chapter>
   
-  <index>
+  <index id="index">
     <title>Index</title>
       <indexdiv>
         <title>A</title>
         <xsl:for-each select="//doc:module">
           <xsl:for-each select="document(.)//xs:element">
-            <xsl:if test="starts-with(./@name, 'a')">
+            <xsl:sort select="@name" data-type="text"/>
+            <xsl:if test="starts-with(@name, 'a')">
               <xsl:apply-templates select="." mode="indexentry"/>
             </xsl:if>
           </xsl:for-each>
@@ -384,8 +397,7 @@
     <primaryie>
       <ulink>
         <xsl:attribute name="url">./<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
-        <xsl:value-of select="@name"/>
-      </ulink>
+        <xsl:value-of select="@name"/></ulink>-<xsl:value-of select="//doc:moduleName"/>
     </primaryie>
   </indexentry>
 </xsl:template>

@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-05-17 21:08:23 $'
-  *  '$Revision: 1.18 $'
+  *      '$Date: 2002-05-22 17:25:55 $'
+  *  '$Revision: 1.19 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -33,6 +33,7 @@
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
+    <property name="htmldocbook-style" value="/home/berkley/install/docbook/docbook-xsl-1.50.0/html/docbook.xsl"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
     <filter token="docrooturl" value=""/>
     <filter token="version" value="${version}"/>
@@ -113,12 +114,39 @@
   <target name="docbook" depends="docs">
     <mkdir dir="${build.docs}/user"/>
     <style basedir="." style="buildDocBook.xsl" 
-           in="eml.xsd" out="${build.docs}/user/eml-docbook.xml" processor="trax"/>
+           in="eml.xsd" out="${build.docs}/eml-docbook.xml" 
+           processor="trax"/>
     <echo>
       ***********************************************
         DocBook Created.  The DocBook documentation
         should now be in docs/user.
       ***********************************************
     </echo>
+  </target>
+  
+  <target name="docbookhtml" depends="docbook">
+    <echo>
+      ************************************************
+        Note that if this does not work for you,
+        you need to check the newest version of 
+        Xalan out from the Apache CVS server and 
+        put the new xalan.jar file in your classpath.
+        This will not work with Xalan 2.3.1!
+      ************************************************
+    </echo>
+    <style basedir="." style="${htmldocbook-style}" 
+           in="${build.docs}/eml-docbook.xml" 
+           out="${build.docs}/eml-docbook.html" 
+           processor="trax"/>
+    <echo>
+      ************************************************
+        Docbook html created.  The html docbook file
+        is docs/eml-docbook.html.
+      ************************************************
+    </echo>
+  </target>
+  
+  <target name="clean">
+    <delete dir="./docs"/>
   </target>
 </project>
