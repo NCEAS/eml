@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-04 16:52:12 $'
- *    '$Revision: 1.7 $'
+ *        '$Date: 2002-10-29 18:00:20 $'
+ *    '$Revision: 1.8 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -179,7 +179,13 @@ public class EMLParserServlet extends HttpServlet
                          ise.getMessage());
     }
 
-    tempfile = new File(".tmpfile." + sess_id);
+    File tempdir = new File("@tempdir@");
+    if(!tempdir.exists())
+    {
+      tempdir.mkdirs();
+    }
+
+    tempfile = new File("@tempdir@/.tmpfile." + sess_id);
 
     if (ctype != null && ctype.startsWith("multipart/form-data"))
     { //deal with multipart encoding of the package zip file

@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-28 20:46:53 $'
-      '$Revision: 1.57 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-29 18:00:20 $'
+      '$Revision: 1.58 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,6 +51,8 @@
               value="eml://ecoinformatics.org/eml-2.0.0rc2 ${server}/${servletdir}/schema/eml.xsd"/>
     <!-- the path from the tomcat/bin directory to the config.xml file -->
     <property name="servletconfigfile" value="../webapps/emlparser/lib/config.xml"/>
+    <property name="servlettempdir" value="/tmp/emlparser"/>
+    <filter token="tempdir" value="${servlettempdir}"/>
 
   </target>
 
@@ -93,7 +95,7 @@
     <filter token="servletconfigfile" value="${servletconfigfile}"/>
     <filter token="server" value="${server}"/>
     <filter token="servletdir" value="${servletdir}"/>
-    <filter token="servletpath" value="$servletpath}"/>
+    <filter token="servletpath" value="${servletpath}"/>
 
     <property name="dist.dir" value="./dist"/>
     <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
@@ -376,22 +378,22 @@
 
   <target name="servletinstall" depends="jar">
     <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
-    <copy file="lib/sample/eml-sample.xml" 
+    <copy file="lib/sample/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
     <copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml"/>
     <copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
-    <copy file="${configxml}" 
+    <copy file="${configxml}"
           tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
     <copy file="${cos}" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
-    <copy file="lib/eml.jar" 
+    <copy file="lib/eml.jar"
           tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
-    <copy file="${xalan}" 
+    <copy file="${xalan}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
-    <copy file="${xml-apis}" 
+    <copy file="${xml-apis}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
-    <copy file="${xmlp}" 
+    <copy file="${xmlp}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
-    <copy file="${api}" 
+    <copy file="${api}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
     <copy todir="${servlet.install.dir}/schema">
       <fileset dir=".">
