@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-02 22:04:48 $'
-      '$Revision: 1.45 $'
+          '$Date: 2002-10-02 22:19:29 $'
+      '$Revision: 1.46 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,6 +52,9 @@
     <!-- The location of the docbook XSL stylesheet-->
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
+    <!-- where to install the servlet -->
+    <property name="servlet.install.dir"
+              value="/usr/local/devtools/jakarta-tomcat/webapps/emlparser"/>
   </target>
 
   <target name="init" depends="config">
@@ -79,7 +82,10 @@
     <property name="ver.docs" value="${ver.dir}/docs"/>
     <property name="package.home" value="org/ecoinformatics" />
     <property name="configxml" value="lib/configxml.jar"/>
-    <property name="cpath" value="${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${build.dir}/${name}.jar"/>
+    <property name="cos" value="lib/cos.jar"/>
+    <property name="jnet" value="lib/jnet.jar"/>
+    <property name="servlet" value="lib/servlet.jar"/>
+    <property name="cpath" value="${servlet}:${cos}:${jnet}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
   </target>
@@ -316,11 +322,27 @@
     </junit>
   </target>
 
+  <target name="servletinstall" depends="jar">
+    <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
+    <copy file="lib/sample/eml-sample.xml" tofile="${servlet.install.dir}/eml-sample.xml"/>
+    <copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml"/>
+    <copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
+    <copy file="lib/configxml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
+    <copy file="lib/cos.jar" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
+    <copy file="lib/eml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
+    <copy file="lib/jnet.jar" tofile="${servlet.install.dir}/WEB-INF/lib/jnet.jar"/>
+    <copy file="${xalan}" tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
+    <copy file="${xml-apis}" tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
+    <copy file="${xmlp}" tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
+<copy file="${api}" tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
+  </target>
+
   <target name="clean">
     <delete dir="./build"/>
     <delete dir="./docs"/>
     <delete dir="./dist"/>
     <delete file="*.zip"/>
     <delete file="*.gz"/>
+    <delete file="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
   </target>
 </project>

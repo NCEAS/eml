@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-10-02 18:47:00 $'
- * '$Revision: 1.8 $'
+ *     '$Date: 2002-10-02 22:19:29 $'
+ * '$Revision: 1.9 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,6 +104,10 @@ public class EMLParser
   private Hashtable idrefHash = new Hashtable();
   private File xml;
 
+  /**
+   * parses an eml file
+   * @param xml the eml input stream to parse
+   */
   public EMLParser(File xml)
   {
     this(xml, new File("@config.file@"));
@@ -112,6 +116,7 @@ public class EMLParser
   /**
    * parses an eml file
    * @param xml the eml file to parse
+   * @param configFile the alternate config file to use
    */
   public EMLParser(File xml, File configFile)
          throws EMLParserException
