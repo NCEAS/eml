@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:resource" xmlns="eml:resource" xmlns:rp="eml:ResponsibleParty" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:resource" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns="eml:resource" elementFormDefault="unqualified" attributeFormDefault="unqualified">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -8,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-10 00:38:45 $'
-      '$Revision: 1.18 $'
+          '$Date: 2001-07-11 16:17:23 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -477,6 +477,44 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Paragraph
+                  </tooltip>
+                  <summary>
+                    The paragraph field for the additional text.
+                  </summary>
+                  <description>
+                    This field is intended for the text 
+                    that gives additional information about the resource.  
+                    There may be one or more paragraphs.
+                  </description>
+                  <example>
+                    Copyright 2001, Robert Warner
+                  </example>
+                  <lineage>
+                    This field was introduced into EML 2.0.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="rights" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <tooltip>Rights</tooltip>
+            <summary>Rights regarding usage and licensing of this resource.</summary>
+            <description>Typically, a Rights element will contain a rights management statement for the resource, or reference  a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights.  In the case of a data set, rights might incude requirements for use, requirements for attribution, or other requirements the owner would like to impose.</description>
+            <example>Copyright 2001 Regents of the University of California Santa Barbara.  Free for use by all individulas provided that the owners are acknowledged in any use or publication.</example>
+            <lineage>Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.</lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
