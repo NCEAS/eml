@@ -38,8 +38,8 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-23 15:07:16 $'
-      '$Revision: 1.12 $'
+          '$Date: 2002-09-23 18:19:25 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -104,7 +104,17 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
             <xs:extension base="ProcedureStepType">
               <xs:sequence>
                 <xs:element name="dataSource" type="ds:DatasetType"
-                minOccurs="0" maxOccurs="unbounded" />
+                minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>data source</doc:tooltip>
+                      <doc:summary>A source of data used by this
+                      methodStep.</doc:summary>
+                      <doc:description>A source of data used by this methodStep.
+                      </doc:description>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
               </xs:sequence>
             </xs:extension>
           </xs:complexContent>
@@ -117,7 +127,9 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
             <doc:summary>Description of sampling procedures including the
             geographic, temporal and taxonomic coverage of the
             study.</doc:summary>
-            <doc:description>See individual elements for more detailed
+            <doc:description>Description of sampling procedures including the
+            geographic, temporal and taxonomic coverage of the
+            study.  See individual elements for more detailed
             descriptions.</doc:description>
             <doc:lineage>Modification of the sampling element introduced into
             EML 1.4</doc:lineage>
@@ -147,7 +159,27 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
               </xs:annotation>
               <xs:complexType>
                 <xs:choice maxOccurs="unbounded">
-                  <xs:element name="coverage" type="cov:Coverage" />
+                  <xs:element name="coverage" type="cov:Coverage" >
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>coverage</doc:tooltip>
+                        <doc:summary>A description of the geographic area sampled
+                        (geographic coverage), the sampling frequency (temporal
+                        coverage), and living organisms sampled (taxonomic
+                        coverage.</doc:summary>
+                        <doc:description>The field studyExtent represents both a
+                        specific sampling area and the sampling frequency (temporal
+                        boundaries, frequency of occurrence). The geographic
+                        studyExtent is usually a surrogate (representative area of)
+                        for the larger area documented in the "studyAreaDescription".
+                        The studyExtent can be entered either in non-structured
+                        textual form or using the structure of the coverage
+                        element.  See eml-coverage for more
+                        information.</doc:description>
+                        <doc:lineage>New in EML 2.0.0</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
                   <xs:element name="description" type="txt:TextType">
                     <xs:annotation>
                       <xs:appinfo>
@@ -244,6 +276,8 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
                       <doc:tooltip>sampling unit location</doc:tooltip>
                       <doc:summary>Structured description of each sampling unit
                       location</doc:summary>
+                      <doc:description>Structured description of each sampling
+                      unit location</doc:description>
                     </xs:appinfo>
                   </xs:annotation>
                  </xs:element>
@@ -379,7 +413,18 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
         </xs:annotation>
       </xs:element>
       <xs:element name="subStep" type="ProcedureStepType" minOccurs="0"
-      maxOccurs="unbounded" />
+      maxOccurs="unbounded" >
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>substep</doc:tooltip>
+            <doc:summary></doc:summary>
+            <doc:description>This fields allows the nesting of additional method
+            steps within this step.  This is useful for heirarchical method
+            descriptions.</doc:description>
+            <doc:lineage>Introduced in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
