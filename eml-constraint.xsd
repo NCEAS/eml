@@ -18,8 +18,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: berkley $'
-          '$Date: 2002-06-10 23:27:10 $'
-      '$Revision: 1.20 $'
+          '$Date: 2002-06-11 19:38:48 $'
+      '$Revision: 1.21 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -326,9 +326,9 @@
                           <doc:tooltip>Relationship type: Identifying or non-identifying</doc:tooltip>
                           <doc:summary>Relationship type: Identifying or non-identifying</doc:summary>
                           <doc:description>Identifying relationships propagate the the parent entity's 
-		      primary key to the child's primary key. Non-identifying relationships propagate the 
-		      parent's primary key as a non-key attribute of the child entity. 
-		      </doc:description>
+          primary key to the child's primary key. Non-identifying relationships propagate the 
+          parent's primary key as a non-key attribute of the child entity. 
+          </doc:description>
                           <doc:example/>
                           <doc:lineage>New in EML 2.0</doc:lineage>
                         </xs:documentation>
@@ -345,16 +345,16 @@
                         <xs:documentation>
                           <doc:tooltip>Cardinality of the relationship between two entities. </doc:tooltip>
                           <doc:summary>Cardinality of the relationship between a parent entity and
-		                   a child entity.
-		      </doc:summary>
+                       a child entity.
+          </doc:summary>
                           <doc:description>Cardinality is a statement of the relationship between 
-		      parent and child entities. Cardinality is expressed as the ratio of 
-		      related parent and child entities. Cardinality 1 to N is a specific 
-		      form of cardinalty in which zero or one parent records are related 
-		      to a specified number of child records. The cardinality ratio for the 
-		      parent entity depends on whether the "existence" is mandatory (one or more) 
-		      or optional (zero to ...).                 
-		      </doc:description>
+          parent and child entities. Cardinality is expressed as the ratio of 
+          related parent and child entities. Cardinality 1 to N is a specific 
+          form of cardinalty in which zero or one parent records are related 
+          to a specified number of child records. The cardinality ratio for the 
+          parent entity depends on whether the "existence" is mandatory (one or more) 
+          or optional (zero to ...).                 
+          </doc:description>
                           <doc:example> One to many, One to 10, Zero or One to Many</doc:example>
                           <doc:lineage>New in EML 2.0</doc:lineage>
                         </xs:documentation>
@@ -366,12 +366,12 @@
                               <xs:documentation>
                                 <doc:tooltip>Parent portion of a 1 to exactly N cardinality </doc:tooltip>
                                 <doc:summary>Parent portion of a 1 to exactly N cardinality. 
-			    May have a value of either 0 or 1.</doc:summary>
+          May have a value of either 0 or 1.</doc:summary>
                                 <doc:description> >Parent portion of a 1 to exactly N cardinality. 
-			    May have a value of either 0 or 1. 
-			    Value of 0 implies that the "existence" of a child record is optional. 
-			    Value of 1 implies that the "existence" of a child record is mandatory.     
-			    </doc:description>
+          May have a value of either 0 or 1. 
+          Value of 0 implies that the "existence" of a child record is optional. 
+          Value of 1 implies that the "existence" of a child record is mandatory.     
+          </doc:description>
                                 <doc:example> One to 10, Zero or One to Many</doc:example>
                                 <doc:lineage>New in EML 2.0</doc:lineage>
                               </xs:documentation>
@@ -388,11 +388,11 @@
                               <xs:documentation>
                                 <doc:tooltip>Child portion of the cardinality expression </doc:tooltip>
                                 <doc:summary>Child portion of a cardinality expression 
-		     Allowed values are positive integers including zero
-		    or the string value "many".</doc:summary>
+         Allowed values are positive integers including zero
+        or the string value "many".</doc:summary>
                                 <doc:description> >Child portion of a cardinality expression 
-			 Allowed values are positive integers including zero
-		         or the string value "many"</doc:description>
+       Allowed values are positive integers including zero
+             or the string value "many"</doc:description>
                                 <doc:example> 2, 15, many </doc:example>
                                 <doc:lineage>New in EML 2.0</doc:lineage>
                               </xs:documentation>
@@ -492,11 +492,11 @@
       <xs:documentation>
         <doc:tooltip>Child portion of a cardinality expression </doc:tooltip>
         <doc:summary>Child portion of a cardinality expression 
-		     Allowed values are positive integers including zero
-		    or the string value "many".</doc:summary>
+         Allowed values are positive integers including zero
+        or the string value "many".</doc:summary>
         <doc:description>Child portion of a cardinality expression 
-			 Allowed values are positive integers including zero
-		         or the string value "many" </doc:description>
+       Allowed values are positive integers including zero
+             or the string value "many" </doc:description>
         <doc:example>0,1, 2, 15,many
 </doc:example>
         <doc:lineage>New in EML 2.0</doc:lineage>
