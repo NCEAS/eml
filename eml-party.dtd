@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-04-13 23:33:50 $'
-      '$Revision: 1.1 $'
+          '$Date: 2001-07-10 00:38:46 $'
+      '$Revision: 1.2 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,33 +22,27 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-
-<!ENTITY % responsibleParty "((individualName|organizationName|positionName)+,
+<!ENTITY % responsibleParty "((individualName|organizationName|positionName),
                              address*, phone*, electronicMailAddress*, 
                              onlineLink*, role+)">
-
 <!ELEMENT individualName (salutation*, givenName*, surName)>
 <!ELEMENT salutation (#PCDATA)>
 <!ELEMENT givenName (#PCDATA)>
 <!ELEMENT surName (#PCDATA)>
-
 <!ELEMENT organizationName (#PCDATA)>
 <!ELEMENT positionName (#PCDATA)>
-
-<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, 
-                   postalCode?, country?)>
+<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, postalCode?, country?)>
 <!ELEMENT deliveryPoint (#PCDATA)>
 <!ELEMENT city (#PCDATA)>
 <!ELEMENT administrativeArea (#PCDATA)>
 <!ELEMENT postalCode (#PCDATA)>
 <!ELEMENT country (#PCDATA)>
-
 <!ELEMENT phone (#PCDATA)>
-<!ATTLIST phone phonetype CDATA "voice">
+<!ATTLIST phone
+  phonetype CDATA "voice"
+>
 <!ELEMENT electronicMailAddress (#PCDATA)>
 <!ELEMENT onlineLink (#PCDATA)>
-
 <!-- Note that the domain for role is not expressed in the DTD -->
 <!ELEMENT role (#PCDATA)>
-
 <!-- EOF -->

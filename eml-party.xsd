@@ -1,7 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="eml:ResponsibleParty">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:ResponsibleParty" xmlns="eml:ResponsibleParty" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-party.xsd,v $'
@@ -10,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-13 23:33:50 $'
-      '$Revision: 1.1 $'
+          '$Date: 2001-07-10 00:38:46 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +26,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-          <moduleName>
+      <moduleName>
           eml-party
         </moduleName>
       <moduleDescription>
@@ -39,7 +37,6 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
   <xs:complexType name="ResponsibleParty">
     <xs:annotation>
       <xs:appinfo>
@@ -67,7 +64,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:choice>
         <xs:element name="individualName" type="Person">
           <xs:annotation>
             <xs:appinfo>
@@ -145,8 +142,7 @@
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:element name="address" type="Address" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="address" type="Address" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -171,8 +167,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="phone" type="xs:string" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -188,8 +183,7 @@
               to identify the type.
             </description>
             <example><![CDATA[
-              <phone phonetype="voice">805-892-2500</phone>]]>
-            </example>
+              <phone phonetype="voice">805-892-2500</phone>]]></example>
             <lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
@@ -197,35 +191,36 @@
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:attribute name="phonetype" use="optional" 
-                        type="xs:string" default="voice">
-            <xs:annotation>
-              <xs:appinfo>
-                <tooltip>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="phonetype" type="xs:string" use="optional" default="voice">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
                   Phone type
                 </tooltip>
-                <summary>
+                    <summary>
                   The type of the phone to which this number applies
                 </summary>
-                <description>
-                  This element gives the type of phone to which this 
+                    <description>
+                  This attribute gives the type of phone to which this 
                   number applies.  By default, this is assumped to be
                   of type "voice", but other possibilities include
                   "facsimile" and "tdd".
                 </description>
-                <example><![CDATA[
-                  <phone phonetype="voice">805-892-2500</phone>]]>
-                </example>
-                <lineage>
+                    <example><![CDATA[
+                  <phone phonetype="voice">805-892-2500</phone>]]></example>
+                    <lineage>
                   Derived from NBII and related standards.
                 </lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:attribute>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
         </xs:complexType>
       </xs:element>
-      <xs:element name="electronicMailAddress" type="xs:string" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="electronicMailAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -251,8 +246,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="onlineLink" type="xs:anyURI" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="onlineLink" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -278,8 +272,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="role" type="RoleType" 
-                  minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="role" type="RoleType" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -312,7 +305,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="Person">
     <xs:annotation>
       <xs:appinfo>
@@ -337,8 +329,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="salutation" type="xs:string" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="salutation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -361,8 +352,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="givenName" type="xs:string" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="givenName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -385,8 +375,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="surName" type="xs:string" 
-                  minOccurs="1" maxOccurs="1">
+      <xs:element name="surName" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -411,7 +400,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  
   <xs:complexType name="Address">
     <xs:annotation>
       <xs:appinfo>
@@ -436,8 +424,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="deliveryPoint" type="xs:string" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="deliveryPoint" type="xs:string" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -462,8 +449,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="city" type="xs:string" 
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="city" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -486,8 +472,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="administrativeArea" type="xs:string" 
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="administrativeArea" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -511,8 +496,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="postalCode" type="xs:string" 
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="postalCode" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -536,8 +520,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="country" type="xs:string" 
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="country" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -561,8 +544,7 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
-    <!-- Role code domain take from ISO -->
+  <!-- Role code domain take from ISO -->
   <xs:simpleType name="RoleType">
     <xs:annotation>
       <xs:appinfo>
@@ -593,22 +575,19 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value = "contentProvider" />
-      <xs:enumeration value = "custodianSteward" />
-      <xs:enumeration value = "owner" />
-      <xs:enumeration value = "user" />
-      <xs:enumeration value = "distributor" />
-      <xs:enumeration value = "metadataProvider" />
-      <xs:enumeration value = "originator" />
-      <xs:enumeration value = "pointOfContact" />
-      <xs:enumeration value = "principalInvestigator" />
-      <xs:enumeration value = "processor" />
-      <xs:enumeration value = "publisher" />
-      <!-- note that author and editor are not in the original ISO role 
-           code list -->
-      <xs:enumeration value = "author" />
-      <xs:enumeration value = "editor" />
+      <xs:enumeration value="contentProvider"/>
+      <xs:enumeration value="custodianSteward"/>
+      <xs:enumeration value="owner"/>
+      <xs:enumeration value="user"/>
+      <xs:enumeration value="distributor"/>
+      <xs:enumeration value="metadataProvider"/>
+      <xs:enumeration value="originator"/>
+      <xs:enumeration value="pointOfContact"/>
+      <xs:enumeration value="principalInvestigator"/>
+      <xs:enumeration value="processor"/>
+      <xs:enumeration value="publisher"/>
+      <xs:enumeration value="author"/>
+      <xs:enumeration value="editor"/>
     </xs:restriction>
   </xs:simpleType>
-  
 </xs:schema>

@@ -1,9 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:res="eml:resource"
-           xmlns:cov="eml:coverage"
-           targetNamespace="eml:dataset">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:dataset" xmlns="eml:dataset" xmlns:cov="eml:coverage" xmlns:res="eml:resource" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -12,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-16 17:42:11 $'
-      '$Revision: 1.2 $'
+          '$Date: 2001-07-10 00:38:46 $'
+      '$Revision: 1.3 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +26,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-     <moduleName>
+      <moduleName>
         eml-dataset
       </moduleName>
       <moduleDescription>
@@ -45,13 +41,10 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
- <!-- import the elements from eml-resource -->
+  <!-- import the elements from eml-resource -->
   <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
-
- <!-- import the elements from eml-coverage -->
+  <!-- import the elements from eml-coverage -->
   <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
- 
   <xs:element name="dataset">
     <xs:annotation>
       <xs:appinfo>
@@ -80,9 +73,7 @@
       <xs:complexContent>
         <xs:extension base="res:ResourceBase">
           <xs:sequence>
-
-            <xs:element name="temporalCov" type="cov:TemporalCoverage"
-                        minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -95,17 +86,14 @@
                     This element describes the temporal extent of the
                     resource expressed in a start date and a stop date.
                   </description>
-                  <example>
-                  </example>
+                  <example/>
                   <lineage>
                     The temporalCoverage element was introduced into EML 1.4.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-
-            <xs:element name="geographicCov" type="cov:GeographicCoverage"
-                        minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="geographicCov" type="cov:GeographicCoverage" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -120,17 +108,14 @@
                     collected in the entity: descriptive paragraph of text or
                     Cartesian coordinates of the area.
                   </description>
-                  <example>
-                  </example>
+                  <example/>
                   <lineage>
                     The geographicCoverage element was introduced into EML 1.4.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-
-            <xs:element name="taxonomicCov" type="cov:TaxonomicCoverage"
-                        minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="taxonomicCov" type="cov:TaxonomicCoverage" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -146,19 +131,16 @@
                     a group of species at a higher taxonomic rank (such
                     as genus or family).
                   </description>
-                  <example>
-                  </example>
+                  <example/>
                   <lineage>
                     The taxonomicCoverage element was introduced into EML 2.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-                                     
-          </xs:sequence>  
+          </xs:sequence>
         </xs:extension>
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-
 </xs:schema>
