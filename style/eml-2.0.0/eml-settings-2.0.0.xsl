@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-11-25 19:10:31 $'
-  * '$Revision: 1.11 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-12 17:23:53 $'
+  * '$Revision: 1.12 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -96,6 +96,13 @@
 
 <!--
     /**
+    *   To show any html links (emails and webpage).
+    */
+-->
+  <xsl:param name="withHTMLLinks">1</xsl:param>
+
+<!--
+    /**
     *   To show the Attributes table in the entity display.
     */
 -->
@@ -149,7 +156,7 @@
 <!-- the index of attribute in attribute list-->
     <xsl:param name="attributeindex"/>
 <!-- the index of additional metadata-->
-    <xsl:param name="additionalmetadataindex"/>
+    <xsl:param name="additionalmetadataindex">1</xsl:param>
 <!-- attribute set to get rid of cell spacing-->
     <xsl:attribute-set name="cellspacing">
       <xsl:attribute name="cellpadding">0</xsl:attribute>
@@ -205,7 +212,7 @@
 <!--    the style for major rows containing subsection titles etc. -->
   <xsl:param name="subHeaderStyle" select="'tablehead'"/>
 
-<!--    the style for major rows containing links, such as additional metadata, 
+<!--    the style for major rows containing links, such as additional metadata,
         original xml file etc. -->
   <xsl:param name="linkedHeaderStyle" select="'linkedHeaderStyle'"/>
 
