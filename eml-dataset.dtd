@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-04-17 21:59:50 $'
-      '$Revision: 1.16 $'
+          '$Date: 2002-04-17 22:03:12 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,9 +23,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 <!ENTITY % coverage SYSTEM "eml-coverage.dtd" >
-%geographicCov;
-%temporalCov;
-%taxonomicCov;
+%coverage;
 <!ELEMENT dataset ((identifier+, shortName?, title+, originator+, pubDate?, pubPlace?, series?, abstract?, keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*, triple*), (temporalCov*, geographicCov*, taxonomicCov*))>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
