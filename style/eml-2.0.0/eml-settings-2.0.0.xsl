@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-24 06:18:06 $'
-  * '$Revision: 1.8 $'
+  *     '$Date: 2003-11-24 06:44:55 $'
+  * '$Revision: 1.9 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -103,7 +103,7 @@
 
 
 <!--
-    /**
+   /**
     *   the path of the directory where the XSL and CSS files reside - starts
     *   with context name, eg: /myContextRoot/styleDirectory.
     *   (As found in "http://hostname:port/myContextRoot/styleDirectory").
@@ -114,8 +114,23 @@
     */
 -->
 
-<!--<xsl:param name="stylePath">@style-path@</xsl:param>-->
-    <xsl:param name="stylePath">@style-path@</xsl:param>
+    <xsl:param name="stylePath">@style-skins-path@</xsl:param>
+
+
+<!--
+   /*
+    *   the path of the directory where the common javascript and css files
+    *   reside - i.e the files that are not skin-specific. Starts
+    *   with context name, eg: /myContextRoot/styleCommonDirectory.
+    *   (As found in "http://hostname:port/myContextRoot/styleCommonDirectory").
+    *
+    *   EXAMPLE
+    *       <xsl:param name="styleCommonPath">/brooke/style/common</xsl:param>
+    */
+-->
+
+    <xsl:param name="styleCommonPath">@style-common-path@</xsl:param>
+
 
 <!--the docid of xml which is processed-->
     <xsl:param name="docid"/>
