@@ -1,5 +1,6 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cov="eml:coverage"
            targetNamespace="eml:entity">
 
   <xs:annotation>
@@ -9,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-03-28 19:49:28 $'
-      '$Revision: 1.14 $'
+        '$Author: jones $'
+          '$Date: 2001-04-16 20:58:20 $'
+      '$Revision: 1.15 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,110 +33,35 @@
         eml-entity
       </moduleName>
       <moduleDescription>
-        The EML Entity Module that defines the the structural
-        characteristics of every entity in the dataset.
+        The EML Entity Module defines the logical characteristics of every
+        entity in the dataset.  Entities are usually tables of data with a
+        fixed logical structure, but could also be other types of data such
+        as raster or vector image data.  The "table-entity" element is used
+        to describe all table entities, and the "other-entity" element would
+        be used to describe all other types of entities.  Specific details of
+        non-tabular entities are left to other standards (e.g., for remote
+        sensing data, one should include a spatial metadata module such as
+        the FGDC Content Standard for Digitial Geospatial Metadata [CSDGM]).
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
 
-  <xs:element name="eml-entity">
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          Entity descriptors
-        </tooltip>
-        <summary>
-          Container of entity descriptors of all entities in a dataset.
-        </summary>
-        <description>
-          Eml-entity element contains a list of all entities in a dataset.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The eml-entity was introduced into EML 1.4 as eml-file.
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name = "identifier" type = "xs:string"
-                    minOccurs="1" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Unique identifier
-              </tooltip>
-              <summary>
-                The unique identifier of this metadata file or object.
-              </summary>
-              <description>
-                The identifier field provides a unique identifier for this
-                metadata documentation.  It will most likely be part of a 
-                sequence of numbers or letters that are meaningful in a 
-                larger context, such as a metadata catalog. That larger
-                system can be identified in the "system" attribute. Multiple
-                identifiers can be listed corresponding to different catalog
-                systems.
-              </description>
-              <example>
-               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-              </example>
-              <lineage>
-                The 'identifier' field is derived from the eml-dataset 
-                meta_file_id filed in EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:attribute name="system" use="optional" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <tooltip>
-                    Catalog system
-                  </tooltip>
-                  <summary>
-                    The catalog system in which this identifier is used.
-                  </summary>
-                  <description>
-                    This element gives the name of the catalog system in which
-                    this identifier is used.  It is useful to determine the
-                    scope of the identifier, and to determine the semantics
-                    of the various subparts of the identifier. Unresolved issue:
-                    can or should this be a URI/URL pointing to the catalog
-                    system, or just the name?
-                  </description>
-                  <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]>
-                  </example>
-                  <lineage>
-                    New to EML 2.0.
-                  </lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>
-          </xs:complexType>
-        </xs:element>
-        <xs:element ref="entity" minOccurs="1" maxOccurs="1" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
 
-  <xs:element name="entity">
+  <xs:element name="table-entity">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
-          Entity descriptor
+          Table Entity descriptor
         </tooltip>
         <summary>
-          Descriptor of one entity in the dataset.
+          Descriptor of one table entity in the dataset.
         </summary>
         <description>
-          Entity element is a descriptor of one entity in the dataset
+          The table entity element is a descriptor of one entity in the dataset
           identified by its name. The entity element can contain information 
-          about the entity's size, format, orientation, header lines, 
-          case sensitiveness, geographic and temporal coverage,
-          authentication description and data problem.
+          about the entity's orientation, number of records,
+          case sensitiveness, and temporal, geographic and taxonomic coverage.
         </description>
         <example>
         </example>
@@ -145,443 +71,350 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
-      <xs:sequence>
-        <xs:element name="entityName" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Entity name
-              </tooltip>
-              <summary>
-                Entity name specifier
-              </summary>
-              <description>
-                The name identifies the entity in the dataset: file name, 
-                name of database table, etc.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The entityName was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      
-        <xs:element name="entitySize" type="xs:string"
-                          minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Entity size
-              </tooltip>
-              <summary>
-                Describes the physical size of the entity.
-              </summary>
-              <description>
-                This element contains information of the physical size 
-                of the entity, typically in bytes.
-              </description>
-              <example>
-                <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
-              </example>
-              <lineage>
-                The entitySize was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:attribute name="unit" use="required" default="bytes">
+      <xs:complexContent>
+        <xs:extension base="EntityBase">
+          <xs:sequence>
+
+            <xs:element name="orientation" nillable="true"
+                        minOccurs="0" maxOccurs="1">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
-                    Unit of measurement
+                    Entity's record orientation
                   </tooltip>
                   <summary>
-                    Unit of measurement for the entity size, typically bytes
+                    Specification of the entity's record orientation.
                   </summary>
                   <description>
-                    This element gives the unit of measurement for the 
-                    size of the entity, and is typically bytes.
-                  </description>
-                  <example>
-                    <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
-                  </example>
-                  <lineage>
-                    The unit was introduced into EML 1.4.
-                  </lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>        
-          </xs:complexType>
-        </xs:element>        
-
-        <xs:element name="entityFormat" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Entity format
-              </tooltip>
-              <summary>
-                Contains the name of the format for this entity.
-              </summary>
-              <description>
-                This element contains the name of the entity's format.
-                The entity's format is typically ASCII, Unicode, or some
-                well-known binary format.
-              </description>
-              <example>
-                <![CDATA[<entityFormat>ASCII</entityFormat>]]>
-              </example>
-              <lineage>
-                The format element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>   
-      
-        <xs:element name="compressionMethod" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                    Entity's compression method
-              </tooltip>
-              <summary>
-                  Name ofthe entity's compression method
-              </summary>
-              <description>
-                  This element describes any compression methods used to
-                  compress the entity, such as zip, compress, etc.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The compressed element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-    
-        <xs:element name="encodingMethod" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                    Encoding Method
-              </tooltip>
-              <summary>
-                  Method used for encoding the entity
-              </summary>
-              <description>
-                  This element describes the entity's encoded method, such as
-                  MIME base64 encoding or binhex encoding.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The encoded element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-    
-        <xs:element name="recordDelimiter" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                  Entity's record delimiter
-              </tooltip>
-              <summary>
-                  Character used to delimit records in the entity.
-              </summary>
-              <description>
-                This element specifies entity's record delimiter 
-                when the base file type is ASCII.  The record delimiter
-                is usually a newline (\n) on UNIX or a carriage return (\r)
-                on MacOS or both (\r\n) on Windows/DOS.
-              </description>
-              <example>
-                 <![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]>
-              </example>
-              <lineage>
-                The recordDelimiter element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>        
-
-        <xs:element name="quoteCharacter" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                  Quote character
-              </tooltip>
-              <summary>
-                  Character used to quote values for delimeter escaping
-              </summary>
-              <description>
-                This element specifies a character to be used in the entity
-                for quoting values so that field delimeters can be used within
-                the value.  This basically allows delimeter "escaping".  The
-                quoteChacter is typically a " or '.
-              </description>
-              <example>
-                 <![CDATA[<quoteCharacter>"</quoteCharacter>]]>
-              </example>
-              <lineage>
-                The quoteCharacter element was taken from the NBII standard.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>        
-    
-        <xs:element name="orientation" nillable="true"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Entity's record orientation
-              </tooltip>
-              <summary>
-                Specification of the entity's record orientation.
-              </summary>
-              <description>
-                This element contains specification of the entity's
-                record orientation by element's attribute "columnorrow".
-              </description>
-              <example>
-                The valid attribute values are "columnmajor" or "rowmajor".
-                If the attribute is not specified, "columnmajor" is used.
-              </example>
-              <lineage>
-                The orientation element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:attribute name="columnorrow" use="optional" 
-                          default="columnmajor">
-              <xs:annotation>
-                <xs:appinfo>
-                  <tooltip>
-                      Attribute of orientation element
-                  </tooltip>
-                  <summary>
-                      Specification of the entity's record orientation.
-                  </summary>
-                  <description>
-                      This attribute specifies the entity's
-                    record orientation.
+                    This element contains specification of the entity's
+                    record orientation by element's attribute "columnorrow".
                   </description>
                   <example>
                     The valid attribute values are "columnmajor" or "rowmajor".
                     If the attribute is not specified, "columnmajor" is used.
                   </example>
                   <lineage>
-                    The columnorrow attribute was introduced into EML 1.4.
+                    The orientation element was introduced into EML 1.4.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
-              <xs:simpleType>
-                <xs:restriction base="xs:string">
-                  <xs:enumeration value="columnmajor" />
-                  <xs:enumeration value="rowmajor" />
-                </xs:restriction>
-              </xs:simpleType>
-            </xs:attribute>
-          </xs:complexType>
-        </xs:element>
-
-        <xs:element name="numHeaderLines" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Header lines
-              </tooltip>
-              <summary>
-                Header lines in the entity
-              </summary>
-              <description>
-                Number of header lines or information that prepares data.
-              </description>
-              <example>
-                 <![CDATA[<numHeaderLines>3</numHeaderLines>]]>
-              </example>
-              <lineage>
-                The numHeaderLines element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      
-        <xs:element name="caseSensitive" nillable="true"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Data case sensitiveness
-              </tooltip>
-              <summary>
-                Specification of text case sensitiveness in the entity.
-              </summary>
-              <description>
-                This element contains specification of text
-                case sensitiveness of the data in the entity. It is 
-                specified from element's attribute "yesorno".
-              </description>
-              <example>
-                The valid attribute values are "yes" or "no".
-                If the attribute is not specified, "yes" is used.
-              </example>
-              <lineage>
-                The caseSensitive element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:attribute name="yesorno" use="optional" default="yes">
+              <xs:complexType>
+                <xs:attribute name="columnorrow" use="optional" 
+                              default="columnmajor">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
+                          Attribute of orientation element
+                      </tooltip>
+                      <summary>
+                          Specification of the entity's record orientation.
+                      </summary>
+                      <description>
+                          This attribute specifies the entity's
+                        record orientation.
+                      </description>
+                      <example>
+                        The valid attribute values are "columnmajor" or
+                        "rowmajor".  If the attribute is not specified,
+                        "columnmajor" is used.
+                      </example>
+                      <lineage>
+                        The columnorrow attribute was introduced into EML 1.4.
+                      </lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="columnmajor" />
+                      <xs:enumeration value="rowmajor" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>      
+     
+            <xs:element name="caseSensitive" nillable="true"
+                        minOccurs="0" maxOccurs="1">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
-                    Attribute of caseSensitive element
+                    Data case sensitiveness
                   </tooltip>
                   <summary>
                     Specification of text case sensitiveness in the entity.
                   </summary>
                   <description>
-                    This attribute specifies text case sensitiveness of 
-                    entity's data.
+                    This element contains specification of text
+                    case sensitiveness of the data in the entity. It is 
+                    specified from element's attribute "yesorno".
                   </description>
                   <example>
                     The valid attribute values are "yes" or "no".
                     If the attribute is not specified, "yes" is used.
                   </example>
                   <lineage>
-                    The yesorno attribute was introduced into EML 1.4.
+                    The caseSensitive element was introduced into EML 1.4.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
-              <xs:simpleType>
-                <xs:restriction base="xs:string">
-                  <xs:enumeration value="yes" /> 
-                  <xs:enumeration value="no" />
-                </xs:restriction>
-              </xs:simpleType>
-            </xs:attribute>
-          </xs:complexType>
-        </xs:element>
-               
-        <xs:element name="authentication" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                  Authentication
-              </tooltip>
-              <summary>
-                  Authentication descriptor
-              </summary>
-              <description>
-                  This element describes authentication procedures or 
-                  techniques, typically by giving a checksum method (e.g., MD5)
-                  and checksum value for the entity.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The authentication was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      
-        <xs:element name="dataProblem"
-                          minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Data problem
-              </tooltip>
-              <summary>
-                Description of any data problems in the entity.
-              </summary>
-              <description>
-                This element describes any data problems in the entity:
-                data anomalies or missing data.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The dataProblem element was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded" >
-                <xs:annotation>
-                  <xs:appinfo>
-                    <tooltip>
-                        Paragraph of text
-                    </tooltip>
-                    <summary>
-                        Paragraph of text describing any data problems
-                      in the entity.
-                    </summary>
-                    <description>
-                        This element describes any data problems
-                      in the entity: data anomalies or missing data.
-                    </description>
-                    <example>
-                    </example>
-                    <lineage>
-                      The paragraph element was introduced into EML 1.4.
-                    </lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>        
-            </xs:sequence>
-            <xs:attribute name="problemType" use="required" >
+              <xs:complexType>
+                <xs:attribute name="yesorno" use="optional" default="yes">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
+                        Attribute of caseSensitive element
+                      </tooltip>
+                      <summary>
+                        Specification of text case sensitiveness in the entity.
+                      </summary>
+                      <description>
+                        This attribute specifies text case sensitiveness of 
+                        entity's data.
+                      </description>
+                      <example>
+                        The valid attribute values are "yes" or "no".
+                        If the attribute is not specified, "yes" is used.
+                      </example>
+                      <lineage>
+                        The yesorno attribute was introduced into EML 1.4.
+                      </lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="yes" /> 
+                      <xs:enumeration value="no" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="numberOfRecords" type="xs:string"
+                        minOccurs="0" maxOccurs="1">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
-                      Attribute of dataProblem element
+                    Number of records
                   </tooltip>
                   <summary>
-                      Specification of data problem type.
+                    The integer count of the number of records inthe entity
                   </summary>
                   <description>
-                      This attribute specifies the type of data problem.
-                    The attribute assertion is required.
+                    This element contains a count of the number of records
+                    in the entity.  This is typically an integer value,
+                    and only includes records that represent observations.
+                    It would not include any details of physical formatting
+                    such as the number of header lines (see eml-physical
+                    for that information).
                   </description>
                   <example>
-                    The valid attribute values are "missing", "anomaly"
-                    or "error".
+                    <![CDATA[<numberOfRecords>975</numberOfRecords>]]>
                   </example>
                   <lineage>
-                    This attribute was introduced into EML 1.4.
+                    Introduced in EML 2
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
-              <xs:simpleType>
-                <xs:restriction base="xs:string">
-                  <xs:enumeration value="missing" />
-                  <xs:enumeration value="anomaly" />
-                  <xs:enumeration value="error" />
-                </xs:restriction>
-              </xs:simpleType>
-            </xs:attribute>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
+            </xs:element>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
+
+  <xs:element name="other-entity">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Other Entity descriptor
+        </tooltip>
+        <summary>
+          Descriptor of one one non-table entity in the dataset.
+        </summary>
+        <description>
+          The other entity element is a descriptor of one entity in the
+          dataset identified by its name. The element can contain information
+          about the entity's basic identity, its temporal, geographic and
+          taxonomic coverage, and its type.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The entity element was introduced into EML 1.4 as file.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="EntityBase">
+          <xs:sequence>
+            <xs:element name="entityType" type="xs:string"
+                        minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Entity type
+                  </tooltip>
+                  <summary>
+                    Contains the name of the type for this entity.
+                  </summary>
+                  <description>
+                    This element contains the name of the entity's type.
+                    The entity's type is typically the name of the data
+                    type represented in the entity, such as raster image,
+                    vector image, etc.
+                  </description>
+                  <example>
+                    <![CDATA[<entityType>Raster Image</entityType>]]>
+                  </example>
+                  <lineage>
+                    The entityType element was introduced into EML 1.4 as 
+                    entityFormat.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>   
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="EntityBase">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Base Entity descriptors
+        </tooltip>
+        <summary>
+          Basic information about an entity common to all entity types.
+        </summary>
+        <description>
+          Basic information about all entity types, including name and
+          coverage of the entity.  The term entity is used in the sense of
+          an entity in a relational model; it generally represents a table,
+          but can also represent an image or other
+          type of data.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The eml-entity was introduced into EML 1.4 as eml-file.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name = "identifier" type = "xs:string"
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <tooltip>
+              Unique identifier
+            </tooltip>
+            <summary>
+              The unique identifier of this metadata file or object.
+            </summary>
+            <description>
+              The identifier field provides a unique identifier for this
+              metadata documentation.  It will most likely be part of a 
+              sequence of numbers or letters that are meaningful in a 
+              larger context, such as a metadata catalog. That larger
+              system can be identified in the "system" attribute. Multiple
+              identifiers can be listed corresponding to different catalog
+              systems.
+            </description>
+            <example>
+             <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+            </example>
+            <lineage>
+              The 'identifier' field is derived from the eml-dataset 
+              meta_file_id filed in EML 1.4.
+            </lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="system" use="optional" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  Catalog system
+                </tooltip>
+                <summary>
+                  The catalog system in which this identifier is used.
+                </summary>
+                <description>
+                  This element gives the name of the catalog system in which
+                  this identifier is used.  It is useful to determine the
+                  scope of the identifier, and to determine the semantics
+                  of the various subparts of the identifier. Unresolved issue:
+                  can or should this be a URI/URL pointing to the catalog
+                  system, or just the name?
+                </description>
+                <example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]>
+                </example>
+                <lineage>
+                  New to EML 2.0.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+        
+      <xs:element name="entityName" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <tooltip>
+              Entity name
+            </tooltip>
+            <summary>
+              Entity name specifier
+            </summary>
+            <description>
+              The name identifies the entity in the dataset: file name, 
+              name of database table, etc.
+            </description>
+            <example>
+              SpeciesAbundance1996
+            </example>
+            <lineage>
+              The entityName was introduced into EML 1.4.
+            </lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="entityDescription" type="xs:string"
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <tooltip>
+              Entity description
+            </tooltip>
+            <summary>
+              General description of the entity and its contents
+            </summary>
+            <description>
+              A paragraph of text generally describing the entity, its type, and
+              relevant information about the data in the entity.
+            </description>
+            <example>
+              Species abundance data for 1996 at the VCR LTER
+            </example>
+            <lineage>
+              Introduced in EML 2
+            </lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element ref="cov:temporalCov"/>
+      <xs:element ref="cov:geographicCov"/>
+      <xs:element ref="cov:taxonomicCov"/>
+
+    </xs:sequence>
+  </xs:complexType>
 
 </xs:schema>
