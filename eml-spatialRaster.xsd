@@ -1,28 +1,12 @@
 <?xml version="1.0"?>
-<xs:schema 
-    targetNamespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc2" 
-    xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc2" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2" 
-    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
-    schemaLocation="eml-spatialReference.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2" 
-    schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2" 
-    schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
-    schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2" 
-    schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2" 
-    schemaLocation="eml-constraint.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc2" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2" xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.0.0rc2" schemaLocation="eml-spatialReference.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2" schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2" schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2" schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
     Copyright: 1997-2002 Regents of the University of California,
@@ -38,9 +22,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.35 $'
+        '$Author: mccartne $'
+          '$Date: 2002-10-07 16:18:08 $'
+      '$Revision: 1.36 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -104,8 +88,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Spatial Raster Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -123,8 +107,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="constraint" type="con:ConstraintType" 
-        minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Constraint</doc:tooltip>
@@ -136,13 +119,191 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="spatialReference" type="spref:SpatialReferenceType"/>
+        <xs:element name="spatialReference" type="spref:SpatialReferenceType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Spatial Reference</doc:tooltip>
+              <doc:summary>The means by which positional information in this entity is
+              related to points on the earth's surface.</doc:summary>
+              <doc:description>Spatial Referencing systems define the coordinates used to
+              describe horizonal and vertical locations. These are typically either geographic, projected
+              planar, or arbitrary planar.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="geoReference" minOccurs="0">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="cornerPoint" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Corner point</doc:tooltip>
+                    <doc:summary>Location of a corner on a rectified grid within the coordinate system.</doc:summary>
+                    <doc:description>Location of a corner on the coordinate system defined in
+                    the spatial reference module. Use this element when the rows and columns
+                     of the grid are aligned with the coordinate system. One or more corner 
+                     points are needed to locate a rectified grid.
+                          </doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="xCoordinate" type="xs:float">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>X coordinate</doc:tooltip>
+                          <doc:summary>X Location of the georeferencing point in the X diminsion of the 
+                       coordinate system.</doc:summary>
+                          <doc:description>Location of the georeferencing point expressed in units of the coordinate system
+                      defined in the spatial Reference module.</doc:description>
+                          <doc:example>455000</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="yCoordinate" type="xs:float">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Y coordinate</doc:tooltip>
+                          <doc:summary>Location of the georeferencing point in the Y dimension of the
+                       coordinate system.</doc:summary>
+                          <doc:description>Y Location of the georeferencing point expressed in units of the coordinate system
+                      defined in the spatial Reference module.</doc:description>
+                          <doc:example>3455000</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="pointInPixel">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Point in Pixel</doc:tooltip>
+                          <doc:summary>Location within the pixel of the georeferencing point.</doc:summary>
+                          <doc:description>Location within the pixel of the georeferencing point.</doc:description>
+                          <doc:example>upperLeft</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="upperLeft"/>
+                          <xs:enumeration value="upperRight"/>
+                          <xs:enumeration value="lowerRight"/>
+                          <xs:enumeration value="lowerLeft"/>
+                          <xs:enumeration value="center"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="corner" type="rasterOriginType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Corner</doc:tooltip>
+                    <doc:summary>Identification of the corner in the grid corresponding to the   
+                    coordinates provided.</doc:summary>
+                    <doc:description>Identification of the corner in the grid corresponding to the   
+                    coordinates provided. 
+              </doc:description>
+              <doc:example>Upper Left</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                    
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="georeferencePoint" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Georeference Point</doc:tooltip>
+                    <doc:summary>A point defined in both grid cell and georeferenced 
+                    coordinates that is used to position  the raster grid within the 
+                    coordinate system defined in the spatialReference modoule.</doc:summary>
+                    <doc:description>If the grid is rectified to the coordinate system, then
+                     a single point may be used to position the grid. Otherwise, a series of 
+                     points is necessary to fit the grid to the coordinate system. 
+              </doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="column" type="xs:int">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Column</doc:tooltip>
+                          <doc:summary>Column location of the georeferencing point in the grid.</doc:summary>
+                          <doc:description>Column location of the georeferencing point indicated as the nth column
+                      counting the cell indicated in rasterOrigin as column 1.</doc:description>
+                          <doc:example>1</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="row" type="xs:int">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Row</doc:tooltip>
+                          <doc:summary>Row location of the georeferencing point in the grid.</doc:summary>
+                          <doc:description>Row location of the georeferencing point indicated as the nth row
+                      counting the cell indicated in rasterOrigin as row 1.</doc:description>
+                          <doc:example>1</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="xCoordinate" type="xs:float">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>X coordinate</doc:tooltip>
+                          <doc:summary>X Location of the georeferencing point in the X diminsion of the 
+                       coordinate system.</doc:summary>
+                          <doc:description>Location of the georeferencing point expressed in units of the coordinate system
+                      defined in the spatial Reference module.</doc:description>
+                          <doc:example>455000</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="yCoordinate" type="xs:float">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Y coordinate</doc:tooltip>
+                          <doc:summary>Location of the georeferencing point in the Y dimension of the
+                       coordinate system.</doc:summary>
+                          <doc:description>Y Location of the georeferencing point expressed in units of the coordinate system
+                      defined in the spatial Reference module.</doc:description>
+                          <doc:example>3455000</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="pointInPixel">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Point in Pixel</doc:tooltip>
+                          <doc:summary>Location within the pixel of the georeferencing point.</doc:summary>
+                          <doc:description>Location within the pixel of the georeferencing point.</doc:description>
+                          <doc:example>upperLeft</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="upperLeft"/>
+                          <xs:enumeration value="upperRight"/>
+                          <xs:enumeration value="lowerRight"/>
+                          <xs:enumeration value="lowerLeft"/>
+                          <xs:enumeration value="center"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="horizontalAccuracy" type="DataQuality">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Horizontal Accuracy</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary>
+              The accuracy of horizontal locational measurements within the data.
+              </doc:summary>
+              <doc:description>Horizonal accuracy may be reported either as a quantitative estimate
+              expressed in the units of the coordinate system or as a text assessment.
+              </doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -150,8 +311,12 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Vertical Accuracy</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary>The accuracy of vertical locational measurements within the data.
+</doc:summary>
+              <doc:description>Vertical accuracy may be reported either as a quantitative estimate
+              expressed in the units of the height or depth measurment system or as a text
+              assessment.
+              </doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -159,17 +324,10 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Cell Size X Direction</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="cellSizeXUnits">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Cell Size X Units</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary>The width of the cell in the x direction.</doc:summary>
+              <doc:description>Cell sizes should be expressed in the units declared in the spatialReference module.
+              </doc:description>
+              <doc:example>28.5</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -177,17 +335,10 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Cell Size Y Direction</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="cellSizeYUnits">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Cell Size Y Units</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary>The width of the cell in the x direction.</doc:summary>
+              <doc:description>Cell sizes should be expressed in the units declared in the spatialReference module.
+              </doc:description>
+              <doc:example>28.5</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -195,8 +346,10 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Number Of Bands</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary>The number of bands in the image.</doc:summary>
+              <doc:description>Image data may have more than one sensor band represented for each pixel.
+               </doc:description>
+              <doc:example>7</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -208,9 +361,8 @@
               x and y values</doc:summary>
               <doc:description>Identification the corner of the grid where the
               first values for both the x and y axes begin in the
-              file.</doc:description>
+              file. </doc:description>
               <doc:example>Upper Left</doc:example>
-              <doc:lineage>ISO 19115.3</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -235,8 +387,6 @@
               (x) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               abscissa (x) axis</doc:description>
-              <doc:lineage>The spatial entity elements were introduced into EML
-              2.0 beta 7</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -248,8 +398,6 @@
               (z) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               vertical (z) axis.</doc:description>
-              <doc:lineage>The spatial entity elements were introduced into EML
-              2.0 beta 7</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -257,8 +405,8 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Cell Geometry</doc:tooltip>
-              <doc:summary></doc:summary>
-              <doc:description></doc:description>
+              <doc:summary/>
+              <doc:description/>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -319,8 +467,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="illuminationElevationAngle" type="xs:float" 
-              minOccurs="0">
+              <xs:element name="illuminationElevationAngle" type="xs:float" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Illumination Elevation Angle</doc:tooltip>
@@ -336,8 +483,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="illuminationAzimuthAngle" type="xs:float" 
-              minOccurs="0">
+              <xs:element name="illuminationAzimuthAngle" type="xs:float" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Illumination Azimuth Angle</doc:tooltip>
@@ -351,8 +497,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="imageOrientationAngle" type="xs:float" 
-              minOccurs="0">
+              <xs:element name="imageOrientationAngle" type="xs:float" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Image Orientation Angle</doc:tooltip>
@@ -364,8 +509,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="imagingCondition" type="ImagingConditionCode" 
-              minOccurs="0">
+              <xs:element name="imagingCondition" type="ImagingConditionCode" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Imaging Condition</doc:tooltip>
@@ -388,8 +532,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="cloudCoverPercentage" type="xs:float" 
-              minOccurs="0">
+              <xs:element name="cloudCoverPercentage" type="xs:float" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Cloud Cover Percentage</doc:tooltip>
@@ -403,8 +546,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="preProcessingTypeCode" type="xs:string" 
-              minOccurs="0">
+              <xs:element name="preProcessingTypeCode" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Preprocessing Type Code</doc:tooltip>
@@ -420,8 +562,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="compressionGenerationQuality" type="xs:integer" 
-              minOccurs="0">
+              <xs:element name="compressionGenerationQuality" type="xs:integer" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Compression Generation Quality</doc:tooltip>
@@ -433,8 +574,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="triangulationIndicator" type="xs:boolean" 
-              minOccurs="0">
+              <xs:element name="triangulationIndicator" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Triangulation Indicator</doc:tooltip>
@@ -448,8 +588,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="radiometricDataAvailability" type="xs:boolean" 
-              minOccurs="0">
+              <xs:element name="radiometricDataAvailability" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Radiometric Data Availability</doc:tooltip>
@@ -462,8 +601,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="cameraCalibrationInformationAvailability" 
-              type="xs:boolean" minOccurs="0">
+              <xs:element name="cameraCalibrationInformationAvailability" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Camera Calibration Information
@@ -478,8 +616,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="filmDistortionInformationAvailability" 
-              type="xs:boolean" minOccurs="0">
+              <xs:element name="filmDistortionInformationAvailability" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Film Distortion Information
@@ -493,8 +630,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="lensDistortionInformationAvailability" 
-              type="xs:boolean" minOccurs="0">
+              <xs:element name="lensDistortionInformationAvailability" type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Lens Distortion Information
@@ -509,8 +645,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="bandDescription" type="BandType" minOccurs="0" 
-              maxOccurs="unbounded">
+              <xs:element name="bandDescription" type="BandType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Band Description</doc:tooltip>
@@ -518,7 +653,6 @@
                     in.</doc:summary>
                     <doc:description>Set of wavelength that the sensor operates
                     in.</doc:description>
-                    <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -530,15 +664,14 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" 
-    default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="CellValueDomain">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Cell Value Domain Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
   </xs:complexType>
@@ -546,8 +679,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Band Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary>Complex type definition for band description.</doc:summary>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -587,7 +720,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="waveLengthUnits" type="xs:string" minOccurs="0">
+      <xs:element name="waveLengthUnits" type="spref:lengthUnits" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Wave Length Units</doc:tooltip>
@@ -595,8 +728,7 @@
             expressed.</doc:summary>
             <doc:description>Units of measure for the wavelength at which the
             sensor collected the data.</doc:description>
-            <doc:example>Microns</doc:example>
-            <doc:lineage>ISO 19115.3</doc:lineage>
+            <doc:example>microns</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -604,8 +736,8 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Peak Response</doc:tooltip>
-            <doc:summary></doc:summary>
-            <doc:description></doc:description>
+            <doc:summary>Wavelength at which the response is the highest.</doc:summary>
+            <doc:description/>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -615,8 +747,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Cell Value Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -633,8 +765,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Imaging Condition Code Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -655,8 +787,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Raster Origin Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -670,8 +802,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Cell Geometry Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -683,8 +815,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Data Quality Type</doc:tooltip>
-        <doc:summary></doc:summary>
-        <doc:description></doc:description>
+        <doc:summary/>
+        <doc:description/>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -692,18 +824,19 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Accuracy Report</doc:tooltip>
-            <doc:summary></doc:summary>
-            <doc:description></doc:description>
+            <doc:summary>A qualitative statement about the accuracy of the data.</doc:summary>
+            <doc:description>A text statement of the data quality, included the means by which it was determined.
+            </doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="quantitativeAccuracyReport" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="quantitativeAccuracyReport" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Quantitative Accuracy Report</doc:tooltip>
-            <doc:summary></doc:summary>
-            <doc:description></doc:description>
+            <doc:summary>A quantitative assessment of the data quality.</doc:summary>
+            <doc:description>A quantitative assessment of the data quality expressed as a value and 
+            the method of its determination.</doc:description>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -712,8 +845,10 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Value</doc:tooltip>
-                  <doc:summary></doc:summary>
-                  <doc:description></doc:description>
+                  <doc:summary>The value resulting from the accuracy test.</doc:summary>
+                  <doc:description>The value resulting from the accuracy test. Typically, this will be expressed
+                  in units corresponding to those declared for the parameter being assessed.</doc:description>
+                  <doc:example>4.5</doc:example>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -721,8 +856,10 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Method</doc:tooltip>
-                  <doc:summary></doc:summary>
-                  <doc:description></doc:description>
+                  <doc:summary>The method used to caclulate the accuracy value.</doc:summary>
+                  <doc:description>Identification and explanation of the method used to caclulate the quantitative 
+                  accuracy assessment.</doc:description>
+                  <doc:example>Error expressed as root mean square of 5 control points. </doc:example>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>

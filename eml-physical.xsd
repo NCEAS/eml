@@ -28,9 +28,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.55 $'
+        '$Author: mccartne $'
+          '$Date: 2002-10-07 16:18:24 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,9 +50,9 @@
       <doc:moduleDocs>
         <doc:moduleName>eml-physical</doc:moduleName>
         <doc:moduleDescription>
-        <section xmlns="">
-        <title>The eml-physical module - Physical file format</title>
-        <para>
+          <section xmlns="">
+            <title>The eml-physical module - Physical file format</title>
+            <para>
         The eml-physical module describes the external
         and internal physical characteristics of a data object as well as the
         information required for its distribution. Examples of the external
@@ -69,14 +69,14 @@
         can be either online (e.g., a URL or other connection information)
         or offline (e.g., a data object residing on an archival tape).
         </para>
-        <para>
+            <para>
           The eml-physical module, like other modules, may be
           &quot;referenced&quot; via the &lt;references&gt; tag.  This
           allows a physical document to be described once, and then
           used as a reference in other locations within the EML document
           via it's ID.
         </para>
-        </section>
+          </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>Any data object that is being desribed by EML
         needs this information so the entities and attributes that reside
@@ -277,8 +277,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="numHeaderLines" type="xs:int"
-                    minOccurs="0">
+                    <xs:element name="numHeaderLines" type="xs:int" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Number of header lines</doc:tooltip>
@@ -295,8 +294,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="numFooterLines" type="xs:int"
-                    minOccurs="0">
+                    <xs:element name="numFooterLines" type="xs:int" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Number of footer lines</doc:tooltip>
@@ -314,8 +312,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="recordDelimiter" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Record delimiter character</doc:tooltip>
@@ -338,8 +335,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="physicalLineDelimiter" minOccurs="0"
-                    maxOccurs="unbounded">
+                    <xs:element name="physicalLineDelimiter" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Physical line delimiter character
@@ -366,8 +362,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="numPhysicalLinesPerRecord"
-                    type="xs:unsignedInt" minOccurs="0">
+                    <xs:element name="numPhysicalLinesPerRecord" type="xs:unsignedInt" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Physical lines per record</doc:tooltip>
@@ -388,8 +383,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="maxRecordLength" type="xs:unsignedLong"
-                    minOccurs="0">
+                    <xs:element name="maxRecordLength" type="xs:unsignedLong" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Maximum record length</doc:tooltip>
@@ -407,7 +401,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="attributeOrientation" minOccurs="1">
+                    <xs:element name="attributeOrientation">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Orientation of attributes</doc:tooltip>
@@ -436,8 +430,8 @@
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:string">
-                          <xs:enumeration value="column" />
-                          <xs:enumeration value="row" />
+                          <xs:enumeration value="column"/>
+                          <xs:enumeration value="row"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -460,8 +454,7 @@
                         </xs:annotation>
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="xs:string"
-                            maxOccurs="unbounded">
+                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Field Delimiter character
@@ -498,8 +491,7 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-                            <xs:element name="quoteCharacter" type="xs:string"
-                            minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Quote character</doc:tooltip>
@@ -525,9 +517,7 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-                            <xs:element name="literalCharacter"
-                            type="xs:string" minOccurs="0"
-                            maxOccurs="unbounded">
+                            <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Literal character</doc:tooltip>
@@ -601,8 +591,7 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldWidth"
-                                  type="xs:unsignedLong">
+                                  <xs:element name="fieldWidth" type="xs:unsignedLong">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field width</doc:tooltip>
@@ -618,8 +607,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="lineNumber"
-                                  type="xs:unsignedLong" minOccurs="0">
+                                  <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Physical Line Number
@@ -645,8 +633,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="fieldStartColumn"
-                                  type="xs:long" minOccurs="0">
+                                  <xs:element name="fieldStartColumn" type="xs:long" minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Start column
@@ -696,8 +683,7 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldDelimiter"
-                                  type="xs:string">
+                                  <xs:element name="fieldDelimiter" type="xs:string">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field Delimiter character
@@ -739,8 +725,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="lineNumber"
-                                  type="xs:unsignedLong" minOccurs="0">
+                                  <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Physical Line Number
@@ -772,9 +757,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="quoteCharacter"
-                                  type="xs:string" minOccurs="0"
-                                  maxOccurs="unbounded">
+                                  <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Quote character
@@ -805,9 +788,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="literalCharacter"
-                                  type="xs:string" minOccurs="0"
-                                  maxOccurs="unbounded">
+                                  <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Literal character
@@ -877,8 +858,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="formatVersion" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="formatVersion" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Version</doc:tooltip>
@@ -890,8 +870,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="citation" type="lit:CitationType"
-                    minOccurs="0">
+                    <xs:element name="citation" type="lit:CitationType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format citation</doc:tooltip>
@@ -925,36 +904,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="nrows" type="xs:int">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Number of rows</doc:tooltip>
-                          <doc:summary>The number of rows in the image.
-                    </doc:summary>
-                          <doc:description>The number of rows in the image.
-                          Rows are parallel to the x-axis of the map coordinate
-                          system. There is no default.</doc:description>
-                          <doc:example>400</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="ncols" type="xs:int">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Number of columns</doc:tooltip>
-                          <doc:summary>The number of columns in the image.
-                    </doc:summary>
-                          <doc:description>The number of columns in the image.
-                          Columns are parallel to the y-axis of the map
-                          coordinate system. There is no
-                          default.</doc:description>
-                          <doc:example>600</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="rowColumnOrientation" minOccurs="1">
+                    <xs:element name="rowColumnOrientation">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Orientation for reading rows and columns
@@ -972,8 +922,8 @@
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:string">
-                          <xs:enumeration value="column" />
-                          <xs:enumeration value="row" />
+                          <xs:enumeration value="column"/>
+                          <xs:enumeration value="row"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -1078,68 +1028,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="ulxmap" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Upper left X map coordinate</doc:tooltip>
-                          <doc:summary>The x-axis map coordinate of the
-                          center of the upper-left pixel.</doc:summary>
-                          <doc:description>The x-axis map coordinate of the
-                          center of the upper-left pixel. If this parameter is
-                          specified, ulymap must also be set, otherwise a
-                          default value is used.</doc:description>
-                          <doc:example>340000</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="ulymap" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Upper left Y map coordinate</doc:tooltip>
-                          <doc:summary>The y-axis map coordinate of the
-                          center of the upper-left pixel.</doc:summary>
-                          <doc:description>The y-axis map coordinate of the
-                          center of the upper-left pixel. If you specify this
-                          parameter, set ulxmap, too, otherwise a default value
-                          is used.</doc:description>
-                          <doc:example>6486666</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="xdim" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>X dimension</doc:tooltip>
-                          <doc:summary>The x-dimension of a pixel in map
-                          units.</doc:summary>
-                          <doc:description>The x-dimension of a pixel in map
-                          units. If this parameter is specified, ydim must also
-                          be set, otherwise a default value is
-                          used.</doc:description>
-                          <doc:example>16.665</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="ydim" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Y dimension</doc:tooltip>
-                          <doc:summary>The y-dimension of a pixel in map
-                          units.</doc:summary>
-                          <doc:description>The y-dimension of a pixel in map
-                          units. If this parameter is specified, xdim must also
-                          be set, otherwise a default value is
-                          used.</doc:description>
-                          <doc:example>16.665</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="bandrowbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes per band per row</doc:tooltip>
@@ -1155,8 +1044,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="totalrowbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Total bytes of data per row</doc:tooltip>
@@ -1171,8 +1059,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bandgapbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes between bands</doc:tooltip>
@@ -1192,8 +1079,7 @@
             </xs:choice>
           </xs:complexType>
         </xs:element>
-        <xs:element name="distribution" type="PhysicalDistributionType"
-        minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="distribution" type="PhysicalDistributionType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Distribution Information</doc:tooltip>
@@ -1213,8 +1099,7 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="PhysicalDistributionType">
     <xs:choice>
@@ -1238,15 +1123,15 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-              <xs:choice>
-                <xs:element name="url">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Download site URL</doc:tooltip>
-                      <doc:summary>A URL (Uniform Resource Locator) from which
+            <xs:choice>
+              <xs:element name="url">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Download site URL</doc:tooltip>
+                    <doc:summary>A URL (Uniform Resource Locator) from which
                       this resource can be downloaded or information can be
                       obtained about downloading it.</doc:summary>
-                      <doc:description>A URL (Uniform Resource Locator) from
+                    <doc:description>A URL (Uniform Resource Locator) from
                       which this resource can be downloaded or additional
                       information can be obtained. If accessing the URL would
                       directly return the data stream, then the "function"
@@ -1261,29 +1146,28 @@
                       specific procedures beyond what can be described in the
                       simple URL, then the "connection" element should
                       be used instead of the URL element.</doc:description>
-                      <doc:example>
+                    <doc:example>
                       http://data.org/getdata?id=98332</doc:example>
-                      <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                       Metadata</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:simpleContent>
-                      <xs:extension base="xs:anyURI">
-                      <xs:attribute name="function" type="res:FunctionType"
-                      use="optional" default="download"/>
-                      </xs:extension>
-                    </xs:simpleContent>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="connection">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Connection</doc:tooltip>
-                      <doc:summary>A description of the information needed
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:anyURI">
+                      <xs:attribute name="function" type="res:FunctionType" use="optional" default="download"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="connection">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Connection</doc:tooltip>
+                    <doc:summary>A description of the information needed
                       to make an application connection to a data service.
                       </doc:summary>
-                      <doc:description>A description of the information needed
+                    <doc:description>A description of the information needed
                       to make an application connection to a data service.
                       The connection starts with a connectionDefinition which
                       lists all of the parameters needed for the connection
@@ -1300,101 +1184,98 @@
                       present in the connectionDefinition, possibly implicitly
                       by naming a connection schemeName that is well-known.
                       </doc:description>
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:choice>
-                      <xs:sequence>
-                      <xs:element name="connectionDefinition"
-                      type="res:ConnectionDefinitionType">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Connection Definition</doc:tooltip>
-                              <doc:summary>Definition of the connection protocol
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:sequence>
+                      <xs:element name="connectionDefinition" type="res:ConnectionDefinitionType">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Connection Definition</doc:tooltip>
+                            <doc:summary>Definition of the connection protocol
                               to be used for this connection.</doc:summary>
-                              <doc:description>Definition of the connection
+                            <doc:description>Definition of the connection
                               protocol to be used for this connection.  The
                               definition has a "scheme" which identifies the
                               protocol by name, and a detailed description of
                               the scheme and its required parameters.
                               </doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      <xs:element name="parameter" minOccurs="0"
-                      maxOccurs="unbounded">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Parameter</doc:tooltip>
-                              <doc:summary>A parameter to be used to make this
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Parameter</doc:tooltip>
+                            <doc:summary>A parameter to be used to make this
                               connection.</doc:summary>
-                              <doc:description>A parameter to be used to make
+                            <doc:description>A parameter to be used to make
                               this connection. This value overrides any
                               default value that may have been provided in the
                               connection definition.
                               </doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="name" type="xs:string">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Parameter Name</doc:tooltip>
-                                    <doc:summary>Name of the parameter to be
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Parameter Name</doc:tooltip>
+                                  <doc:summary>Name of the parameter to be
                                     used to make this connection.</doc:summary>
-                                    <doc:description>The name of the parameter
+                                  <doc:description>The name of the parameter
                                     to be used to make this connection.
                                     </doc:description>
-                                    <doc:example>hostname</doc:example>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                              <xs:element name="value" type="xs:string">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Parameter Value</doc:tooltip>
-                                    <doc:summary>The value of the parameter to
+                                  <doc:example>hostname</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="value" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Parameter Value</doc:tooltip>
+                                  <doc:summary>The value of the parameter to
                                     be used to make this connection.
                                     </doc:summary>
-                                    <doc:description>The value of the parameter
+                                  <doc:description>The value of the parameter
                                     to be used to make this connection. This
                                     value overrides any default value that may
                                     have been provided in the connection
                                     definition.</doc:description>
-                                    <doc:example>nceas.ucsb.edu</doc:example>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                            </xs:sequence>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                      <xs:element name="references" type="xs:string">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>References</doc:tooltip>
-                            <doc:summary>The id of another connection in this
+                                  <doc:example>nceas.ucsb.edu</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                    <xs:element name="references" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>References</doc:tooltip>
+                          <doc:summary>The id of another connection in this
                             EML document to be used to provide the connection
                             information.
                             </doc:summary>
-                            <doc:description>The id of another connection in
+                          <doc:description>The id of another connection in
                             this EML document to be used to provide the
                             connection information. This is used instead of
                             duplicating connection information when an identical
                             connection needs to be used multiple times in an
                             EML document.</doc:description>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                    </xs:choice>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:choice>
                   <xs:attribute name="id" type="res:IDType" use="optional"/>
                   <xs:attribute name="system" type="res:SystemType" use="optional"/>
-                  <xs:attribute name="scope" type="res:ScopeType"
-                  use="optional" default="document"/>
-                  </xs:complexType>
-                </xs:element>
-              </xs:choice>
+                  <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <xs:element name="offline">
@@ -1446,8 +1327,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumDensityUnits" type="xs:string"
-              minOccurs="0">
+              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>units of a numerical density</doc:tooltip>
@@ -1474,8 +1354,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
@@ -1516,7 +1395,6 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
 </xs:schema>
