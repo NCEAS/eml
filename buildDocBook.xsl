@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-13 22:18:34 $'
-      '$Revision: 1.36 $'
+          '$Date: 2002-09-13 22:19:12 $'
+      '$Revision: 1.37 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -732,7 +732,7 @@
           </para>
         </section>
         <section>
-          <title>Dependency Table</title>
+          <title>Dependency Chart</title>
           <para>
             The multiple modules in EML all depend on each other in complex
             ways.  To easily see these dependencies see the
