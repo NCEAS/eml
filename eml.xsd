@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:eml" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns="eml:eml" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: jones $'
+          '$Date: 2002-04-12 00:55:32 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleName>eml</doc:moduleName>
+      <doc:moduleDescription>
+        The eml module is a wrapper container that allows inclusion of
+        any metadata content in a single EML document.  In general,
+        dataset resources, literature resources, collection  resources, and
+        software resources, or another type that extends eml-resource
+        must lead off the collection in the eml 
+        element because these resources contain the "triple" element that
+        allows specification of the relationships among the various 
+        components of the data package.  
+      </doc:moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="eml">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Ecological Metadata
+        </doc:tooltip>
+        <doc:summary>
+          A collection of EML metadata documents linked using the eml-resource "triple" element.
+        </doc:summary>
+        <doc:description>
+          The "eml" element allows for the inclusion of arbitrary metadata documents as
+          child elements of a single document.  There is no validity constraint that 
+          restricts what metadata may be present, although it is recommended that one (and
+          only one) metadata document that derives from eml-resource be included in the set 
+          so that the "triple" element can be used to determine the appropriate relationships 
+          among the various documents.  This is accomplished by explicitly stating the 
+          relationships by referencing the "identifer" elements that are contained within 
+          each metadata element.  For example, one could indicate that several uniquely
+          identified data objects are a part of the data package, and which of the various
+          eml modules describe the entity, attribute, and constraints for each of those data 
+          objects.
+        </doc:description>
+        <doc:example>
+          Please see the individual eml modules for specific examples.
+        </doc:example>
+        <doc:lineage>
+          The 'eml' element was introduced into EML 2.0.0.
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="1" maxOccurs="unbounded" processContents="strict"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
