@@ -19,7 +19,7 @@
         <tocentry><link linkend="preface">Preface</link></tocentry>
         <tocentry><link linkend="introduction">Introduction to EML</link></tocentry>
         <tocentry><link linkend="purpose">Purpose of EML</link></tocentry>
-        <tocentry><link linkend="extensibility">EML's extensibility</link></tocentry>
+        <tocentry><link linkend="architecture">EML's Architecture</link></tocentry>
         <tocentry><link linkend="moduleDescriptions">Individual Module Descriptions (Non-normative)</link></tocentry>
         <tocentry><link linkend="index">Alphabetical Index of Elements</link></tocentry>
       </tocchap>
@@ -51,12 +51,78 @@
       </para>
     </section>
     
-    <section id="extensibility">
-      <title>Extensibility</title>
+    <section id="architecture">
+      <title>Architecture</title>
       <para>
-        Say something about extensibility here when we figure out the packaging
-        methods.
+        The architecture of EML was designed to serve the needs of the
+	ecological community, and has benefitted from previous work in other
+	related metadata languages. EML has adopted the strengths of many of
+	these languages, but also addresses a number of short-comings that
+	have proved to inhibit the automated processing iand integration of 
+	dataset resources via their metadata.
       </para>
+      <para>
+        The following list represents some of the features of EML:
+      </para>
+      <itemizedlist>
+        <listitem>
+	  Modularity: EML was designed as a collection of modules rather than
+	  one large standard to facilitate future growth of the language in both
+	  breadth and depth.  By implementing EML with an extensible
+	  architecture, groups may choose which of the core modules are
+	  pertinent to describing their data, literature, and software
+	  resources.  Also, if EML falls short in a particular area, it may be
+	  extended by creating a new module that describes the resource (e.g. a
+	  detailed soils metadata profile that extends eml-dataset).  The intent
+	  is to provide a common set of core modules for information exchange,
+	  but to allow for futute customizations of the language without the
+	  need of going through a lengthy 'approval' process.
+        </listitem>
+        <listitem>
+	  Detailed Structure: EML strives to balance the tradeoff of 'too much
+	  detail' with enough detail to enable advanced services in terms of
+	  processing data through the parsing of accompanied metadata.
+	  Therefore, a driving question throughout the design was: 'Will this
+	  particular piece of information be machine-processed, just human
+	  readable, or both?'  Information was then broken down into more highly
+	  structured elements when the answer involved machine processing.
+        </listitem>
+        <listitem>
+	  Compatibility: EML adopts much of it's syntax from the other metadata
+	  standards that have evolved from the expertise of groups in other
+	  disciplines.  Whenever possible, EML adopted entire trees of
+	  information in order to facilitate conversion of EML documents into
+	  other metadata languages.  EML was designed with with the following
+	  standards in mind: Dublin Core Metadata Initiative, the Content
+	  Standard for Digital Geospatial Metadata (CSDGM from the US geological
+	  Survey's Federal Geographic Data Committee (FGDC)), the Biological
+	  Profile of the CSDGM (from the National Biological Information
+	  Infrastructure), the International Standards Organization's Geographic
+	  Information Standard (ISO 19115), the ISO 8601 Date and Time Standard,
+	  the OpenGIS Consortiums's Geography Markup Language (GML), the
+	  Scientific, Technical, and Medical Markup Language (STMML), and the
+	  Extensible Scientific Interchange Language (XSIL).
+        </listitem>
+        <listitem>
+	  Strong Typing: EML is implemented in an Extensible Markup Language
+	  (XML) known as XML Schema, which is a language that defines the rules
+	  that govern the EML syntax.  XML Schema is an internet recommendation
+	  from the World Wide Web Consortium (http://www.w3.org), and so a
+	  metadata document that is said to comply with the syntax of EML will
+	  structurally meet the criteria defined in the XML Schema documents for
+	  EML.  Over and above the structure (what elements can be nested within
+	  others, how many, etc.), XML Schema provides the ability to use strong
+	  data typing within elements.  This allows for finer validation of the
+	  contents of the element, not just it's structure.  For instance, an
+	  element may be of type 'date', and so the value that is inserted in
+	  the field will be checked against XML Schema's definition of a date.
+	  Traditionally, XML documents have been validated against Document Type
+	  Definitions (DTDs), which do not provide a means to employ strong
+	  validation on field values through typing.  EML is also distributed
+	  with DTD's that are generated from the XML Schema documents to provide
+	  some backward compatability.
+        </listitem>
+      </itemizedlist>
     </section>
   </preface>
   
