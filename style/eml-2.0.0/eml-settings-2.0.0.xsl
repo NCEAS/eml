@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 22:31:20 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2003-11-24 05:27:28 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -158,7 +158,7 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=@default-style@&docid=]]></xsl:param>
+    <xsl:param name="tripleURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
 
     <!-- URL for xmlformat-->
     <xsl:param name="xmlURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=xml&docid=]]></xsl:param>
