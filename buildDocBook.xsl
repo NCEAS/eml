@@ -67,6 +67,7 @@
       </para>
       <itemizedlist>
         <listitem>
+        <para>
         Modularity: EML was designed as a collection of modules rather than
         one large standard to facilitate future growth of the language in both
         breadth and depth.  By implementing EML with an extensible
@@ -78,8 +79,10 @@
         is to provide a common set of core modules for information exchange,
         but to allow for futute customizations of the language without the
         need of going through a lengthy 'approval' process.
+        </para>
         </listitem>
         <listitem>
+        <para>
         Detailed Structure: EML strives to balance the tradeoff of 'too much
         detail' with enough detail to enable advanced services in terms of
         processing data through the parsing of accompanied metadata.
@@ -87,8 +90,10 @@
         particular piece of information be machine-processed, just human
         readable, or both?'  Information was then broken down into more highly
         structured elements when the answer involved machine processing.
+        </para>
         </listitem>
         <listitem>
+        <para>
         Compatibility: EML adopts much of it's syntax from the other metadata
         standards that have evolved from the expertise of groups in other
         disciplines.  Whenever possible, EML adopted entire trees of
@@ -103,8 +108,10 @@
         the OpenGIS Consortiums's Geography Markup Language (GML), the
         Scientific, Technical, and Medical Markup Language (STMML), and the
         Extensible Scientific Interchange Language (XSIL).
+        </para>
         </listitem>
         <listitem>
+        <para>
         Strong Typing: EML is implemented in an Extensible Markup Language
         (XML) known as XML Schema, which is a language that defines the rules
         that govern the EML syntax.  XML Schema is an internet recommendation
@@ -122,14 +129,17 @@
         validation on field values through typing.  EML is also distributed
         with DTD's that are generated from the XML Schema documents to provide
         some backward compatability.
+        </para>
         </listitem>
         <listitem>
+        <para>
         There is a distinction between the content model and the syntactic
         implementation of that model.  The normative sections below define
         the content model and the XML Schema documents distributed with EML
         define the syntactic implementation. For the forseeable future,
         XML Schema will be the syntactic specification, although it may
         change later.
+        </para>
         </listitem>
       </itemizedlist>
       <section>
@@ -184,45 +194,65 @@
       </para>
       <itemizedlist>
         <listitem>
+          <para>
           IDs are required on all modules that extend resource.
+          </para>
         </listitem>
         <listitem>
+          <para>
           IDs are optional on all other modules.
+          </para>
         </listitem>
         <listitem>
+          <para>
           If an ID is not provided, that content must be interpreted as
           representing a distinct object.
+          </para>
         </listitem>
         <listitem>
+          <para>
           If an ID is provided for content then that content is distinct from
           all other content except for that content that references its ID.
+          </para>
         </listitem>
         <listitem>
+          <para>
           If a user wants to reuse content to indicate the repetition of an
           object, a reference must be used.  you cannot have two identical
           ids in a document.
+          </para>
         </listitem>
         <listitem>
+          <para>
           &quot;Local scope&quot; is defined as identifiers unique only to a
           single instance document (if a document does not have a system or if
           scope is set to 'local' then all ids are defined as distinct content).
+          </para>
         </listitem>
         <listitem>
+          <para>
           System scope is defined as identifiers unique to an entire data
           management system (if two documents share a system string, then
           any IDs in those two documents that are identical refer to the
           same object).
+          </para>
         </listitem>
         <listitem>
+          <para>
           If an element references another element, it must not have an ID.
+          </para>
         </listitem>
         <listitem>
+          <para>
           All EML packages must have the 'eml' module as the root.
+          </para>
         </listitem>
         <listitem>
+          <para>
           The system and scope attribute are always optional except for at the
           'eml' module where the scope attribute is fixed as 'system'.  The scope
           attribute defaults to 'local' for all other modules.
+          </para>
         </listitem>
 
       </itemizedlist>
@@ -398,6 +428,7 @@
             </xsl:if>
           </xsl:for-each>
         </xsl:for-each>
+
       </indexdiv>
       <indexdiv>
         <title>N</title>
@@ -440,7 +471,6 @@
         </xsl:for-each>
       </indexdiv>
       <indexdiv>
-        <title>R</title>
         <xsl:for-each select="//doc:module">
           <xsl:for-each select="document(.)//xs:element">
             <xsl:if test="starts-with(./@name, 'r')">
@@ -528,6 +558,7 @@
             </xsl:if>
           </xsl:for-each>
         </xsl:for-each>
+        <indexentry><primaryie/></indexentry>
       </indexdiv>
   </index>
 </book>

@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: jones $'
- *     '$Date: 2002-08-27 20:33:19 $'
- * '$Revision: 1.1 $'
+ *   '$Author: berkley $'
+ *     '$Date: 2002-09-03 18:35:34 $'
+ * '$Revision: 1.2 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,10 +99,10 @@ public class SaxValidateTest extends TestCase
     {
         SAXValidate test = new SAXValidate(true);
         assertTrue(test != null);
-     
+
         File testDir = new File(TEST_DIR);
         Vector fileList = getXmlFiles(testDir);
-        
+
         for (int i=0; i<fileList.size(); i++) {
             File testFile = (File)fileList.elementAt(i);
             try {
@@ -111,10 +111,50 @@ public class SaxValidateTest extends TestCase
             } catch (Exception e) {
                 fail("Document NOT valid!\n\n" + e.getClass().getName() +
                     "(" + e.getMessage() + ")" );
-            }          
+            }
         }
     }
-   
+
+    /**
+     * do a test validation on the produced eml-docbook documentation
+     */
+    public void testDocbook()
+    {
+      SAXValidate test = new SAXValidate(false);
+      assertTrue(test != null);
+      System.err.println("Validating the docs/eml-docbook.xml file.");
+      File f = new File("docs/eml-docbook.xml");
+      if(!f.exists())
+      {
+        System.err.println("The file eml-docbook.xml is not in the docs " +
+             "directory.  You " +
+             "must run 'ant docbook' before running this test.");
+        fail("The file eml-docbook.xml is not in the docs directory.  You " +
+             "must run 'ant docbook' before running this test.");
+      }
+
+      try
+      {
+        test.runTest(new FileReader("docs/eml-docbook.xml"),
+                                    DEFAULT_PARSER);
+      }
+      catch(Exception e)
+      {
+        String msg = e.getMessage();
+        if(msg.equals("Attribute \"xmlns:doc\" must be declared for element " +
+                      "type \"book\"."))
+        {
+          //if its just this message. the file is valid.
+          System.err.println("eml-docbook.xsl is valid");
+        }
+        else
+        {
+          System.err.println("eml-docbook.xsl is NOT valid: " + msg);
+          fail("eml-docbook.xml NOT valid: " + msg);
+        }
+      }
+    }
+
     /**
      * Create a suite of tests to be run together
      *
@@ -125,20 +165,21 @@ public class SaxValidateTest extends TestCase
         TestSuite suite = new TestSuite();
         suite.addTest(new SaxValidateTest("initialize"));
         suite.addTest(new SaxValidateTest("testSchemaValid"));
+        suite.addTest(new SaxValidateTest("testDocbook"));
         return suite;
     }
 
     /**
      * Get the list of files in a directory.
-     * 
+     *
      * @param directory the directory to list
      * @return a vector of File objects in the directory
      */
-    private Vector getXmlFiles(File directory) 
+    private Vector getXmlFiles(File directory)
     {
         String[] files = directory.list();
         Vector fileList = new Vector();
-      
+
         for (int i=0;i<files.length;i++)
         {
             String filename = files[i];
@@ -156,7 +197,7 @@ public class SaxValidateTest extends TestCase
     private class SAXValidate extends DefaultHandler implements ErrorHandler
     {
         private boolean schemavalidate = false;
-        
+
         /**
          * Construct an instance of the handler class
          *
@@ -177,7 +218,7 @@ public class SaxValidateTest extends TestCase
         {
             throw exception;
         }
-          
+
         /**
          * Run the validation test.
          *
@@ -202,7 +243,8 @@ public class SaxValidateTest extends TestCase
             parser.setFeature("http://xml.org/sax/features/validation", true);
             if (schemavalidate) {
                 parser.setFeature(
-                    "http://apache.org/xml/features/validation/schema", true);
+                    "http://apache.org/xml/features/validation/schema",
+                    true);
             }
 
             // Parse the document
