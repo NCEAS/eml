@@ -22,9 +22,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: mccartne $'
-          '$Date: 2002-06-10 20:39:49 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2002-06-10 21:22:37 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -57,12 +57,6 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <xs:complexType name="SpatialVector">
-    <xs:choice>
-      <xs:element name="content" type="SpatialVectorType"/>
-      <xs:element name="references" type="xs:string"/>
-    </xs:choice>
-  </xs:complexType>
   <xs:element name="spatialVector" type="SpatialVectorType">
     <xs:annotation>
       <xs:appinfo>
@@ -79,58 +73,49 @@
     </xs:annotation>
   </xs:element>
   <xs:complexType name="SpatialVectorType">
-    <xs:complexContent>
-      <xs:extension base="ent:SpatialRepresentation">
-        <xs:sequence>
-          <xs:element name="geometry" type="GeometryType" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Geometry</doc:tooltip>
-                <doc:summary>Type of geometric feature(s) represented in the entity.</doc:summary>
-                <doc:description>Geometric feature classification is based on an enumeration of simple feature classes defined by the OpenGIS consortium and implemented in Geographic Markup Language as simple feature types.</doc:description>
-                <doc:example/>
-                <doc:lineage>GML2.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Geometric Object Count</doc:tooltip>
-                <doc:summary>Total number of the point or vector objects
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="ent:SpatialRepresentationGroup"/>
+        <xs:element name="geometry" type="GeometryType" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Geometry</doc:tooltip>
+              <doc:summary>Type of geometric feature(s) represented in the entity.</doc:summary>
+              <doc:description>Geometric feature classification is based on an enumeration of simple feature classes defined by the OpenGIS consortium and implemented in Geographic Markup Language as simple feature types.</doc:description>
+              <doc:example/>
+              <doc:lineage>GML2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Geometric Object Count</doc:tooltip>
+              <doc:summary>Total number of the point or vector objects
                   occurring in the dataset.</doc:summary>
-                <doc:description>Total number of the point or vector objects
+              <doc:description>Total number of the point or vector objects
                   occurring in the dataset.</doc:description>
-                <doc:example/>
-                <doc:lineage>ISO 19115.3</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Topology Level</doc:tooltip>
-                <doc:summary>Code which identifies the degree of
+              <doc:example/>
+              <doc:lineage>ISO 19115.3</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Topology Level</doc:tooltip>
+              <doc:summary>Code which identifies the degree of
                   complexity.</doc:summary>
-                <doc:description>This element describes the relative complexity of the geometric information in the data file.</doc:description>
-                <doc:example/>
-                <doc:lineage>ISO 19115.3</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-        <xs:attribute name="id" type="xs:ID" use="required"/>
-        <xs:attribute name="system" type="xs:string" use="optional"/>
-        <xs:attribute name="scope" use="optional" default="system">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="system"/>
-              <xs:enumeration value="document"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
-      </xs:extension>
-    </xs:complexContent>
+              <doc:description>This element describes the relative complexity of the geometric information in the data file.</doc:description>
+              <doc:example/>
+              <doc:lineage>ISO 19115.3</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
   <xs:simpleType name="GeometryType">
     <xs:restriction base="xs:string">

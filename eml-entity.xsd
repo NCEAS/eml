@@ -1,12 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:entity-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns:phys="eml:physical-2.0.0beta8"
-           xmlns:prot="eml:protocol-2.0.0beta8"
-           xmlns:att="eml:attribute-2.0.0beta8"
-           xmlns="eml:entity-2.0.0beta8">
+<xs:schema targetNamespace="eml:entity-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns="eml:entity-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd"/>
@@ -28,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: berkley $'
-          '$Date: 2002-06-10 17:56:10 $'
-      '$Revision: 1.43 $'
+        '$Author: jones $'
+          '$Date: 2002-06-10 21:22:37 $'
+      '$Revision: 1.44 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -87,14 +80,6 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  
-  <xs:complexType name="OtherEntity">
-    <xs:choice>
-      <xs:element name="content" type="OtherEntityType"/>
-      <xs:element name="references" type="xs:string"/>
-    </xs:choice>
-  </xs:complexType>
-  
   <xs:element name="otherEntity" type="OtherEntityType">
     <xs:annotation>
       <xs:appinfo>
@@ -119,32 +104,21 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-    
   <xs:complexType name="OtherEntityType">
-    <xs:attribute name="id" type="xs:ID" use="required" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" use="optional" default="system">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="system" />
-          <xs:enumeration value="document" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-    <xs:complexContent>
-      <xs:extension base="EntityBase">
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="EntityGroup"/>
         <xs:sequence>
-          <xs:sequence>
-            <xs:element name="entityType" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+          <xs:element name="entityType" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
                     Entity type
                   </doc:tooltip>
-                  <doc:summary>
+                <doc:summary>
                     Contains the name of the type for this entity.
                   </doc:summary>
-                  <doc:description>
+                <doc:description>
                     This element contains the name of the entity's type.
                     The entity's type is typically the name of the data
                     type represented in the entity, such as raster image,
@@ -152,27 +126,25 @@
                     is an 'other' entity and you want to specify what the
                     'other' entity is.
                   </doc:description>
-                  <doc:example><![CDATA[<entityType>Raster Image</entityType>]]></doc:example>
-                  <doc:lineage>
+                <doc:example><![CDATA[<entityType>Raster Image</entityType>]]></doc:example>
+                <doc:lineage>
                     The entityType element was introduced into EML 1.4 as 
                     entityFormat.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-          <xs:sequence>
-            <xs:element name="attributeList" type="att:Attribute"/>
-            <xs:element name="coverage" type="cov:Coverage"/>
-            <xs:element name="physical" type="phys:Physical"/>
-            <xs:element name="protocol" type="prot:Protocol"/>
-          </xs:sequence>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="attributeList" type="att:AttributeListType"/>
+          <xs:element name="coverage" type="cov:Coverage"/>
+          <xs:element name="physical" type="phys:PhysicalType"/>
+          <xs:element name="protocol" type="prot:ProtocolType"/>
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
   </xs:complexType>
-  
-  <xs:complexType name="EntityBase">
+  <xs:group name="EntityGroup">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>
@@ -197,63 +169,6 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="identifier" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Unique identifier
-            </doc:tooltip>
-            <doc:summary>
-              The unique identifier of this metadata file or object.
-            </doc:summary>
-            <doc:description>
-              The identifier field provides a unique identifier for this
-              metadata documentation.  It will most likely be part of a 
-              sequence of numbers or letters that are meaningful in a 
-              larger context, such as a metadata catalog. That larger
-              system can be identified in the "system" attribute. Multiple
-              identifiers can be listed corresponding to different catalog
-              systems.
-            </doc:description>
-            <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-            <doc:lineage>
-              The 'identifier' field is derived from the eml-dataset 
-              meta_file_id filed in EML 1.4.
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:simpleContent>
-            <xs:extension base="xs:string">
-              <xs:attribute name="system" type="xs:string" use="optional">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      Catalog system
-                    </doc:tooltip>
-                    <doc:summary>
-                      The catalog system in which this identifier is used.
-                    </doc:summary>
-                    <doc:description>
-                      This element gives the name of the catalog system in which
-                      this identifier is used.  It is useful to determine the
-                      scope of the identifier, and to determine the semantics
-                      of the various subparts of the identifier. Unresolved issue:
-                      can or should this be a URI/URL pointing to the catalog
-                      system, or just the name?
-                    </doc:description>
-                    <doc:example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-                    <doc:lineage>
-                  New to EML 2.0.
-                </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:attribute>
-            </xs:extension>
-          </xs:simpleContent>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="entityName" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -298,13 +213,9 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="temporalCoverage" type="cov:TemporalCoverage"/>
-      <xs:element name="geographicCoverage" type="cov:GeographicCoverage"/>
-      <xs:element name="taxonomicCoverage" type="cov:TaxonomicCoverage"/>
+      <xs:element name="coverage" type="cov:Coverage"/>
     </xs:sequence>
-  </xs:complexType>
-  
-  
+  </xs:group>
   <!--SHARED SPATIAL TYPES-->
   <xs:simpleType name="SpatialRepresentationType">
     <xs:restriction base="xs:string">
@@ -316,7 +227,6 @@
       <xs:enumeration value="TIN"/>
     </xs:restriction>
   </xs:simpleType>
-  
   <xs:simpleType name="LengthUnitCode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="millimetre"/>
@@ -332,8 +242,7 @@
       <xs:enumeration value="arcSecond"/>
     </xs:restriction>
   </xs:simpleType>
-  
-  <xs:complexType name="SpatialRepresentation">
+  <xs:group name="SpatialRepresentationGroup">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>
@@ -351,17 +260,13 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="EntityBase">
-        <xs:sequence>
-          <xs:element name="horizontalAccuracy" type="DataQuality"/>
-          <xs:element name="verticalAccuracy" type="DataQuality"/>
-          <xs:element name="spatialRepresentationType" type="SpatialRepresentationType"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  
+    <xs:sequence>
+      <xs:group ref="EntityGroup"/>
+      <xs:element name="horizontalAccuracy" type="DataQuality"/>
+      <xs:element name="verticalAccuracy" type="DataQuality"/>
+      <xs:element name="spatialRepresentationType" type="SpatialRepresentationType"/>
+    </xs:sequence>
+  </xs:group>
   <xs:complexType name="DataQuality">
     <xs:sequence>
       <xs:element name="accuracyReport" type="xs:string"/>

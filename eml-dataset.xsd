@@ -1,19 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:dataset-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:rp="eml:party-2.0.0beta8" 
-           xmlns:res="eml:resource-2.0.0beta8" 
-           xmlns:cov="eml:coverage-2.0.0beta8" xmlns="eml:dataset-2.0.0beta8"
-           xmlns:acc="eml:access-2.0.0beta8"
-           xmlns:dat="eml:dataTable-2.0.0beta8"
-           xmlns:proj="eml:project-2.0.0beta8"
-           xmlns:sr="eml:spatialRaster-2.0.0beta8"
-           xmlns:sref="eml:spatialReference-2.0.0beta8"
-           xmlns:sv="eml:spatialVector-2.0.0beta8"
-           xmlns:sp="eml:storedProcedure-2.0.0beta8"
-           xmlns:v="eml:view-2.0.0beta8">
-           
+<xs:schema targetNamespace="eml:dataset-2.0.0beta8" xmlns:v="eml:view-2.0.0beta8" xmlns:sp="eml:storedProcedure-2.0.0beta8" xmlns:sv="eml:spatialVector-2.0.0beta8" xmlns:sref="eml:spatialReference-2.0.0beta8" xmlns:sr="eml:spatialRaster-2.0.0beta8" xmlns:proj="eml:project-2.0.0beta8" xmlns:dat="eml:dataTable-2.0.0beta8" xmlns:acc="eml:access-2.0.0beta8" xmlns="eml:dataset-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8" xmlns:rp="eml:party-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
   <xs:import namespace="eml:party-2.0.0beta8" schemaLocation="eml-party.xsd"/>
@@ -26,7 +12,6 @@
   <xs:import namespace="eml:spatialVector-2.0.0beta8" schemaLocation="eml-spatialVector.xsd"/>
   <xs:import namespace="eml:storedProcedure-2.0.0beta8" schemaLocation="eml-storedProcedure.xsd"/>
   <xs:import namespace="eml:view-2.0.0beta8" schemaLocation="eml-view.xsd"/>
-  
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -43,9 +28,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-06-03 21:26:39 $'
-      '$Revision: 1.19 $'
+        '$Author: jones $'
+          '$Date: 2002-06-10 21:22:37 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -83,14 +68,6 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  
-  <xs:complexType name="Dataset">
-    <xs:choice>
-      <xs:element name="content" type="DatasetType"/>
-      <xs:element name="references" type="xs:string"/>
-    </xs:choice>
-  </xs:complexType>
-  
   <xs:element name="dataset" type="DatasetType">
     <xs:annotation>
       <xs:appinfo>
@@ -116,187 +93,176 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-    
   <xs:complexType name="DatasetType">
-    <xs:attribute name="id" type="xs:ID" use="required" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" use="optional" default="system">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="system" />
-          <xs:enumeration value="document" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-    <xs:complexContent>
-      <xs:extension base="res:ResourceBase">
-        <xs:sequence>
-          <xs:sequence>
-            <xs:element name="purpose" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="res:ResourceGroup"/>
+        <xs:element name="purpose" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                     Purpose
                   </doc:tooltip>
-                  <doc:summary>
+              <doc:summary>
                     A description of the purpose of this data resource.
                   </doc:summary>
-                  <doc:description>
+              <doc:description>
                     A description of the purpose of this data resource.
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage/>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+              <doc:example/>
+              <doc:lineage/>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                           Text paragraph
                         </doc:tooltip>
-                        <doc:summary>
+                    <doc:summary>
                           A paragraph of text.
                         </doc:summary>
-                        <doc:description>
+                    <doc:description>
                           A paragraph of text.
                         </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
+                    <doc:example/>
+                    <doc:lineage>
                           This field was introduced into EML 2.0, and was derived from
                           EML 1.3.
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="maintenance" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="maintenance" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                     Maintenance Description
                   </doc:tooltip>
-                  <doc:summary>
+              <doc:summary>
                     A description of the maintenance of this data resource.
                   </doc:summary>
-                  <doc:description>
+              <doc:description>
                     A description of the maintenance of this data resource.
                     This includes information about the frequency of
                     update, and whether there is ongoing data collection.
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage/>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+              <doc:example/>
+              <doc:lineage/>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                           Text paragraph
                         </doc:tooltip>
-                        <doc:summary>
+                    <doc:summary>
                           A paragraph of text.
                         </doc:summary>
-                        <doc:description>
+                    <doc:description>
                           A paragraph of text.
                         </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
+                    <doc:example/>
+                    <doc:lineage>
                           This field was introduced into EML 2.0, and was derived from
                           EML 1.3.
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                     Data Set Contact
                   </doc:tooltip>
-                  <doc:summary>
+              <doc:summary>
                     The contact for this data set
                   </doc:summary>
-                  <doc:description>
+              <doc:description>
                     The contact for this data set.  This is the person or
                     institution to contact with questions about the use,
                     interpretation of a data set.
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                     New in EML2.0.0.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                     Data Set Publisher
                   </doc:tooltip>
-                  <doc:summary>
+              <doc:summary>
                     The publisher of this data set
                   </doc:summary>
-                  <doc:description>
+              <doc:description>
                     The publisher of this data set.  At times this is a
                     traditional publishing house, but it may also simply be 
                     an institution that is making the data available in a
                     published (ie, citable) format.
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                     New in EML2.0.0.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="pubPlace" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="pubPlace" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                     Publication place
                   </doc:tooltip>
-                  <doc:summary>
+              <doc:summary>
                     The location that the resource was published.
                   </doc:summary>
-                  <doc:description>
+              <doc:description>
                     the 'pubPlace' field is the location where the resource was
                     published, which may be different from where the resource was
                     created.
                   </doc:description>
-                  <doc:example>
+              <doc:example>
                     San Francisco, CA, USA
                   </doc:example>
-                  <doc:lineage>
+              <doc:lineage>
                     This element was derived from elements described in the
                     FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-          <xs:sequence>
-            <xs:element name="access" type="acc:Access"/>
-            <xs:element name="coverage" type="cov:Coverage"/>
-            <xs:element name="dataTable" type="dat:DataTable"/>
-            <xs:element name="project" type="proj:Project"/>
-            <xs:element name="spatialRaster" type="sr:SpatialRaster"/>
-            <xs:element name="spatialReference" type="sref:SpatialReference"/>
-            <xs:element name="spatialVector" type="sv:SpatialVector"/>
-            <xs:element name="storedProcedure" type="sp:StoredProcedure"/>
-            <xs:element name="view" type="v:View"/>
-          </xs:sequence>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="project" type="proj:ResearchProjectType" minOccurs="0"/>
+        <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="dataTable" type="dat:DataTableType"/>
+          <xs:element name="spatialRaster" type="sr:SpatialRasterType"/>
+          <xs:element name="spatialReference" type="sref:SpatialReference"/>
+          <xs:element name="spatialVector" type="sv:SpatialVectorType"/>
+          <xs:element name="storedProcedure" type="sp:StoredProcedureType"/>
+          <xs:element name="view" type="v:ViewType"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="system"/>
   </xs:complexType>
 </xs:schema>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:access-2.0.0beta8" xmlns="eml:access-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:access-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns="eml:access-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -17,9 +17,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: berkley $'
-          '$Date: 2002-06-10 17:56:10 $'
-      '$Revision: 1.40 $'
+        '$Author: jones $'
+          '$Date: 2002-06-10 21:22:37 $'
+      '$Revision: 1.41 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -62,14 +62,6 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  
-  <xs:complexType name="Access">
-    <xs:choice>
-      <xs:element name="content" type="AccessType"/>
-      <xs:element name="references"/>
-    </xs:choice>
-  </xs:complexType>
-  
   <xs:element name="access" type="AccessType">
     <xs:annotation>
       <xs:appinfo>
@@ -96,7 +88,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
   <xs:complexType name="AccessType">
     <xs:annotation>
       <xs:appinfo>
@@ -119,51 +110,54 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:choice maxOccurs="unbounded">
-      <xs:element name="allow" type="AccessRule">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+    <xs:choice>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="allow" type="AccessRule">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Allow permission
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The permission that grants access to a permission type.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The allow element indicates that a particular user or group is
               able to execute the defined permission.
             </doc:description>
-            <doc:example>
+              <doc:example>
               allow
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               The deny element was introduced into EML 2.0 Proposed.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="deny" type="AccessRule">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="deny" type="AccessRule">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Deny permission
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The permission that denies access to a permission type.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The deny element indicates that a particular user or group is
               not able to execute the defined permission.
             </doc:description>
-            <doc:example>
+              <doc:example>
               deny
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               The deny element was introduced into EML 2.0 Proposed.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
     <xs:attribute name="id" type="xs:ID" use="optional"/>
     <xs:attribute name="order" use="required" default="allowFirst">
