@@ -24,8 +24,8 @@ xmlns="eml:constraint-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 15:45:40 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-06-14 16:00:33 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,12 +42,17 @@ xmlns="eml:constraint-2.0.0beta9">
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-constraint</doc:moduleName>
-      <doc:moduleDescription>This schema defines the integrity constraints
-      between entities (e.g., data tables) as would be maintained in a
-      relational database. These constraints include primary key constraints,
-      foreign key constraints, unique key constraints, check constraints, and
-      not null constraints, among potential others.</doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-constraint</doc:moduleName>
+        <doc:moduleDescription>This schema defines the integrity constraints
+        between entities (e.g., data tables) as would be maintained in a
+        relational database. These constraints include primary key constraints,
+        foreign key constraints, unique key constraints, check constraints, and
+        not null constraints, among potential others.</doc:moduleDescription>
+        <doc:recommendedUsage>All datasets where there are logical constraints
+        between entities</doc:recommendedUsage>
+        <doc:standAlone>no</doc:standAlone>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:complexType name="ConstraintType">

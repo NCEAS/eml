@@ -1,932 +1,467 @@
 <?xml version="1.0"?>
-
 <xs:schema targetNamespace="eml:project-2.0.0beta9" xmlns="eml:project-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9" xmlns:cit="eml:literature-2.0.0beta9" xmlns:cov="eml:coverage-2.0.0beta9" xmlns:rp="eml:party-2.0.0beta9" xmlns:pro="eml:protocol-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta9">
-
   <xs:import namespace="eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
-
   <xs:import namespace="eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
-
   <xs:annotation>
-
     <xs:documentation>
-
     '$RCSfile: eml-project.xsd,v $'
 
-
-
     Copyright: 1997-2002
-
     Regents of the University of California, University of New Mexico, and
-
     Arizona State University Sponsors: National Center for Ecological
-
     Analysis and Synthesis and Partnership for Interdisciplinary Studies of
-
     Coastal Oceans, University of California Santa Barbara Long-Term
-
     Ecological Research Network Office, University of New Mexico Center for
-
     Environmental Studies, Arizona State University Other funding: National
-
     Science Foundation (see README for details) The David and Lucile Packard
-
     Foundation For Details: http://knb.ecoinformatics.org/
 
-
-
-    '$Author: jones $'
-
-    '$Date: 2002-06-13 19:40:27 $'
-
-    '$Revision: 1.45 $'
-
-
+    '$Author: berkley $'
+    '$Date: 2002-06-14 16:00:33 $'
+    '$Revision: 1.46 $'
 
     This program is
-
     free software; you can redistribute it and/or modify it under the terms
-
     of the GNU General Public License as published by the Free Software
-
     Foundation; either version 2 of the License, or (at your option) any
-
     later version. This program is distributed in the hope that it will be
-
     useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-
     Public License for more details. You should have received a copy of the
-
     GNU General Public License along with this program; if not, write to the
-
     Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-
     02111-1307 USA</xs:documentation>
-
     <xs:appinfo>
-
       <doc:moduleName>eml-project</doc:moduleName>
-
       <doc:moduleDescription>The EML Project Module describes the research
-
       context in which the dataset was created, including description of
-
       over-all motivations and goals, funding, personnel, description of the
-
       study area etc. This is also the module to describe over-all sampling
-
       methods for the project.</doc:moduleDescription>
-
     </xs:appinfo>
-
   </xs:annotation>
-
   <xs:import namespace="eml:party-2.0.0beta9" schemaLocation="eml-party.xsd"/>
-
   <xs:import namespace="eml:coverage-2.0.0beta9" schemaLocation="eml-coverage.xsd"/>
-
   <xs:import namespace="eml:literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
-
   <xs:element name="researchProject" type="ResearchProjectType"/>
-
   <xs:complexType name="ResearchProjectType">
-
     <xs:annotation>
-
       <xs:appinfo>
-
         <doc:tooltip>Research project descriptor</doc:tooltip>
-
         <doc:summary>Descriptor of research project in which context the
-
         dataset was created. Container of all research projects in which
-
         context the dataset was created.</doc:summary>
-
         <doc:description>Research project element is a descriptor of various
-
         programmatic aspects within which researchers created this dataset.
-
         It can also include general research goals and motivations, data
-
         collection methods, equations, formulas. But see 'eml-protocol' for
-
         more areas to provide methodological detail. eml-project elements
-
         describe various aspects of the research project within which
-
         researchers created the associated dataset. The association of a
-
         dataset with this project metadata is established in
-
         eml-dataset</doc:description>
-
         <doc:example/>
-
         <doc:lineage>The researchProject element was introduced into EML 1.4.
-
         eml-project was introduced in EML 2.0. It replaces eml-research,
-
         which was introduced into EML 1.4 as replacement for
-
         eml-context.</doc:lineage>
-
       </xs:appinfo>
-
     </xs:annotation>
-
     <xs:choice>
-
       <xs:sequence>
-
         <xs:element name="title" type="xs:string" maxOccurs="unbounded">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Project Title</doc:tooltip>
-
               <doc:summary>Title of the project.</doc:summary>
-
               <doc:description>A descriptive title for the research
-
               project.</doc:description>
-
               <doc:example>Species diversity in Tennessee riparian
-
               habitats.</doc:example>
-
               <doc:lineage>Introduced into EML 1.4.</doc:lineage>
-
             </xs:appinfo>
-
           </xs:annotation>
-
         </xs:element>
-
         <xs:element name="personnel" maxOccurs="unbounded">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Personnel</doc:tooltip>
-
               <doc:summary>Contact and role information for people involved
-
               in the research project.</doc:summary>
-
               <doc:description>This element extends ResponsibleParty with
-
               role information. Roles can be drawn from an enumerated list
-
               taken from iso-party or the user can add their own
-
               roles.</doc:description>
-
               <doc:example>author, contentProvider, custodianSteward,
-
               distributor, editor, metadataProvider, originator,
-
               pointOfContact, principalInvestigator, processor, publisher, or
-
               user (ISO list). A user defined role might be somethng like:
-
               fieldStationManager or information manager</doc:example>
-
               <doc:lineage>This field was derived from the ISO 19115.3
-
               standard (iso-geo-md-2000June-draft), with the addition of a
-
               few new roleCode values.</doc:lineage>
-
             </xs:appinfo>
-
           </xs:annotation>
-
           <xs:complexType>
-
             <xs:complexContent>
-
               <xs:extension base="rp:ResponsibleParty">
-
                 <xs:sequence maxOccurs="unbounded">
-
                   <xs:element name="role" type="rp:RoleType"/>
-
                 </xs:sequence>
-
               </xs:extension>
-
             </xs:complexContent>
-
           </xs:complexType>
-
         </xs:element>
-
         <xs:element name="abstract" minOccurs="0">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Abstract</doc:tooltip>
-
               <doc:summary>Descriptive abstract.</doc:summary>
-
               <doc:description>Descriptive abstract in paragraph of
-
               text.</doc:description>
-
               <doc:example/>
-
               <doc:lineage>The abstract element was introduced into EML
-
               1.4.</doc:lineage>
-
             </xs:appinfo>
-
           </xs:annotation>
-
           <xs:complexType>
-
             <xs:sequence>
-
               <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
-
             </xs:sequence>
-
           </xs:complexType>
-
         </xs:element>
-
         <xs:element name="funding" minOccurs="0">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Funding</doc:tooltip>
-
               <doc:summary>Funding information.</doc:summary>
-
               <doc:description>Grant and contract numbers, names and
-
               addresses of funding sources described in paragraph of
-
               text.</doc:description>
-
               <doc:example/>
-
               <doc:lineage>The funding element was introduced into EML
-
               1.4.</doc:lineage>
-
             </xs:appinfo>
-
           </xs:annotation>
-
           <xs:complexType>
-
             <xs:sequence>
-
               <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
-
             </xs:sequence>
-
           </xs:complexType>
-
         </xs:element>
-
         <xs:element name="studyAreaDescription" minOccurs="0" maxOccurs="unbounded">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Description of the physical location of the
-
               research project.</doc:tooltip>
-
               <doc:summary>Description of the physical location of the
-
               research project. Can include coverage of the research
-
               location, and descriptions of climate, geology,
-
               distrubances.</doc:summary>
-
               <doc:description>Description of the physical location of the
-
               research project. Can include descriptions of the geographic,
-
               temporal, and taxonomic coverage of the research location and
-
               descriptions of domains (themes) of interest such as climate,
-
               geology, soils or distrubances or reference to citable
-
               biological or geophysical classification systems such as the
-
               "Bailey..." or the ... The descriptions may be either general
-
               descriptions in paragraph form or specific values for named
-
               theme attributes such as average rainfall. The "studyArea" is,
-
               in most cases, a larger geographical area than the coverage
-
               represented in the "designDescription", that is, studyArea
-
               represents the environmental context of the specific coverages
-
               described in "designDescription&gt;</doc:description>
-
               <doc:example/>
-
               <doc:lineage/>
-
             </xs:appinfo>
-
           </xs:annotation>
-
           <xs:complexType>
-
             <xs:choice maxOccurs="unbounded">
-
               <xs:element name="descriptor">
-
                 <xs:annotation>
-
                   <xs:appinfo>
-
                     <doc:tooltip>Description of non-coverage physical
-
                     characteristics of site</doc:tooltip>
-
                     <doc:summary>Description of non-coverage physical
-
                     characteristics of site such as climate, geology,
-
                     disturbances</doc:summary>
-
                     <doc:description>Descriptions of domains (themes) of
-
                     interest such as climate, geology, soils or distrubances
-
                     or references to citable biological or geophysical
-
                     classification systems such as the "Bailey..." or the ...
-
                     The descriptions may be either general descriptions in
-
                     paragraph form or specific values for named theme
-
                     attributes such as average rainfall.</doc:description>
-
                     <doc:example/>
-
                     <doc:lineage>New in EML 2.0.0</doc:lineage>
-
                   </xs:appinfo>
-
                 </xs:annotation>
-
                 <xs:complexType>
-
                   <xs:sequence maxOccurs="unbounded">
-
                     <xs:element name="descriptorValue" maxOccurs="unbounded">
-
                       <xs:annotation>
-
                         <xs:appinfo>
-
                           <doc:tooltip>The value of a
-
                           descriptor</doc:tooltip>
-
                           <doc:summary>The value of a descriptor
-
                           as</doc:summary>
-
                           <doc:description>The value of a descriptor. This
-
                           may either be a general description in paragraph
-
                           form or the value part of a "name/value" pair where
-
                           the name is entered in the attribute "name_or_id".
-
                           For example, if the value of the "name" attribute"
-
                           of the element "descriptor" is "climate", and the
-
                           value of the attribute "name_or_id" of the element
-
                           "descriptorValue" is "Annual Precipitation" then
-
                           the value of this element could be "12.5
-
                           inches".</doc:description>
-
                           <doc:example>12.5 inches,
-
                           tundra-forest</doc:example>
-
                           <doc:lineage>EML 2.0.0</doc:lineage>
-
                         </xs:appinfo>
-
                       </xs:annotation>
-
                       <xs:complexType>
-
                         <xs:simpleContent>
-
                           <xs:extension base="xs:string">
-
                             <xs:attribute name="name_or_id" type="xs:string" use="optional">
-
                               <xs:annotation>
-
                                 <xs:appinfo>
-
                                   <doc:tooltip>The name or ID of a descriptor
-
                                   value.</doc:tooltip>
-
                                   <doc:summary>The name part of a name/value
-
                                   pair of a descriptor or ID portion, if
-
                                   applicable of a
-
                                   classification.</doc:summary>
-
                                   <doc:description>The name part of a
-
                                   name/value pair of a descriptor or ID
-
                                   portion, if applicable of a classification.
-
                                   The values of biogeophysical classification
-
                                   systems, e.g. Bailey-Ecoregions, often take
-
                                   the form of an ID or Code along with a text
-
                                   representaiton. For example, the ID/Code
-
                                   M131 refers to the phrase "Open Woodland
-
                                   -Tundra". M131 is an unambiguous reference
-
                                   to a more detailed description. If one is
-
                                   using a published classification system
-
                                   then there should be a corresponding
-
                                   citation to the source, e.g., Bailey,R.G.,
-
                                   1996 "Ecosystem
-
                                   Geography".</doc:description>
-
                                   <doc:example>M131,Average
-
                                   Rainfall,</doc:example>
-
                                   <doc:lineage>New in EML 2.0.0</doc:lineage>
-
                                 </xs:appinfo>
-
                               </xs:annotation>
-
                             </xs:attribute>
-
                           </xs:extension>
-
                         </xs:simpleContent>
-
                       </xs:complexType>
-
                     </xs:element>
-
                     <xs:element name="citation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded"/>
-
                   </xs:sequence>
-
                   <xs:attribute name="name" type="xs:string" use="required"/>
-
                   <xs:attribute name="citableClassificationSystem" type="xs:boolean" use="required"/>
-
                 </xs:complexType>
-
               </xs:element>
-
               <xs:element name="citation" type="cit:CitationType" minOccurs="0"/>
-
               <xs:element name="coverage" type="cov:Coverage" minOccurs="0"/>
-
             </xs:choice>
-
           </xs:complexType>
-
         </xs:element>
-
         <xs:element name="designDescription" minOccurs="0" maxOccurs="unbounded">
-
           <xs:annotation>
-
             <xs:appinfo>
-
               <doc:tooltip>Description of Research Design</doc:tooltip>
-
               <doc:summary>A container element for descriptions of sampling
-
               methods, protocols or citations.</doc:summary>
-
               <doc:description>This element is a container element for either
-
               general paragraph descriptions of research design or more
-
               granular descriptions of protocols and/or sampling methods.
-
               Literature citations may also be used to describe the research
-
               design.</doc:description>
-
               <doc:example>x</doc:example>
-
               <doc:lineage>New in EML 2.0.0</doc:lineage>
-
             </xs:appinfo>
-
           </xs:annotation>
-
           <xs:complexType>
-
             <xs:choice maxOccurs="unbounded">
-
               <xs:element name="sampling">
-
                 <xs:annotation>
-
                   <xs:appinfo>
-
                     <doc:tooltip>Description of sampling
-
                     methods.</doc:tooltip>
-
                     <doc:summary>Description of sampling methods including
-
                     the "coverage" of the study, a description of the
-
                     sampling procedures, and the spatial sampling
-
                     units.</doc:summary>
-
                     <doc:description>See individual elements for more
-
                     detailed descriptions.</doc:description>
-
                     <doc:example/>
-
                     <doc:lineage>Modification of the sampling element
-
                     introduced into EML 1.4</doc:lineage>
-
                   </xs:appinfo>
-
                 </xs:annotation>
-
                 <xs:complexType>
-
                   <xs:sequence>
-
                     <xs:element name="studyExtent">
-
                       <xs:annotation>
-
                         <xs:appinfo>
-
                           <doc:tooltip>Geographic, temporal, taxonomic
-
                           coverage</doc:tooltip>
-
                           <doc:summary>A description of the specific areas
-
                           sampled (geographic coverage) and the sampling
-
                           frequency (temporal coverage).</doc:summary>
-
                           <doc:description>A "studyExtent" represents both a
-
                           specific sampling area and the sampling frequency
-
                           (temporal boundaries, frequency of occurrence). The
-
                           geographic "studyExtent" is usually a surrogate
-
                           (representative area of) for the larger area
-
                           documented in the "studyAreaDescription". The
-
                           "studyExtent" can be entered either in
-
                           non-structured paragraph form or using the
-
                           structure of the "coverage"
-
                           element.</doc:description>
-
                           <doc:example/>
-
                           <doc:lineage>New in EML 2.0.0</doc:lineage>
-
                         </xs:appinfo>
-
                       </xs:annotation>
-
                       <xs:complexType>
-
                         <xs:choice maxOccurs="unbounded">
-
                           <xs:element name="coverage"/>
-
                           <xs:element name="paragraph" type="xs:string"/>
-
                         </xs:choice>
-
                       </xs:complexType>
-
                     </xs:element>
-
                     <xs:element name="samplingDescription">
-
                       <xs:annotation>
-
                         <xs:appinfo>
-
                           <doc:tooltip>Sampling methods and
-
                           procedures</doc:tooltip>
-
                           <doc:summary>A description of sampling methods and
-
                           procedures</doc:summary>
-
                           <doc:description>This element allows for a
-
                           text-based/human readable description of the
-
                           sampling procedures used in the research project.
-
                           The content of this element would be similar to a
-
                           description of sampling procedures found in the
-
                           methods section of a journal
-
                           article.</doc:description>
-
                           <doc:example>x</doc:example>
-
                           <doc:lineage>x</doc:lineage>
-
                         </xs:appinfo>
-
                       </xs:annotation>
-
                       <xs:complexType>
-
                         <xs:sequence>
-
                           <xs:element name="paragraph" maxOccurs="unbounded"/>
-
                         </xs:sequence>
-
                       </xs:complexType>
-
                     </xs:element>
-
                     <xs:element name="spatialSamplingUnits" minOccurs="0">
-
                       <xs:annotation>
-
                         <xs:appinfo>
-
                           <doc:tooltip>Spatial sampling units</doc:tooltip>
-
                           <doc:summary>Spatial sampling units represent the
-
                           "plot" sampled.</doc:summary>
-
                           <doc:description>A spatial sampling unit describes
-
                           the specific geographic areas sampled. For example,
-
                           if a researcher places a single light source at a
-
                           specific point in a research location in order to
-
                           attract insects to derive an estimate of the insect
-
                           population, then the sampling unit is the area
-
                           illuminated by the light source (in actual practice
-
                           there might be multiple sampling unit in this case
-
                           since different species have different attraction
-
                           rates). A sampling unit may also be seen as the
-
                           bounding box of a specific 3-meter square "plot".
-
                           In the case of a study in which the measurements
-
                           from several disbursed "point collection" devices
-
                           are aggregated, then the sampling unit would be the
-
                           area of that aggregation. Spatial sampling units
-
                           can either be described by reference to a
-
                           "coverage" description or by reference to the
-
                           values in a data table (usually a GIS
-
                           layer)</doc:description>
-
                           <doc:example>x</doc:example>
-
                           <doc:lineage>New in EML 2.0.0</doc:lineage>
-
                         </xs:appinfo>
-
                       </xs:annotation>
-
                       <xs:complexType>
-
                         <xs:choice maxOccurs="unbounded">
-
                           <xs:element name="referencedEntityId">
-
                             <xs:annotation>
-
                               <xs:appinfo>
-
                                 <doc:tooltip>The identifier of a spatial
-
                                 sampling entity.</doc:tooltip>
-
                                 <doc:summary>The identifier of a entity
-
                                 described in the "entity" module. This is
-
                                 usually a GIS layer.</doc:summary>
-
                                 <doc:description>A value of a
-
                                 "referencedEntityId" element is reference to
-
                                 the identifier of the "entity" module that
-
                                 provides the metadata for a data table
-
                                 (RDBMS, GIS or "ascii" text) that has the
-
                                 actual spatial sampling unit values. The
-
                                 "referencedEntityId" is an indirect pointer
-
                                 to the actual values. The
-
                                 "referencedEntityId" can be thought of as a
-
                                 "foreign key" in a relational
-
                                 database.</doc:description>
-
                                 <doc:example>x</doc:example>
-
                                 <doc:lineage>New in EML 2.0.0</doc:lineage>
-
                               </xs:appinfo>
-
                             </xs:annotation>
-
                           </xs:element>
-
                           <xs:element name="coverage" type="cov:GeographicCoverage"/>
-
                         </xs:choice>
-
                       </xs:complexType>
-
                     </xs:element>
-
                     <xs:element name="citation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded"/>
-
                   </xs:sequence>
-
                 </xs:complexType>
-
               </xs:element>
-
               <xs:element name="paragraph" type="xs:string"/>
-
               <xs:element name="citation" type="cit:CitationType" minOccurs="0"/>
-
             </xs:choice>
-
           </xs:complexType>
-
         </xs:element>
-
       </xs:sequence>
-
       <xs:element name="references" type="xs:string"/>
-
     </xs:choice>
-
     <xs:attribute name="id" type="xs:ID" use="optional"/>
-
     <xs:attribute name="system" type="xs:string" use="optional"/>
-
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
-
   </xs:complexType>
-
   <xs:simpleType name="DescriptorType">
-
     <xs:annotation>
-
       <xs:appinfo>
-
         <doc:tooltip>Descriptor Theme Type</doc:tooltip>
-
         <doc:summary>The type of descriptor theme or the name of a
-
         classification system.</doc:summary>
-
         <doc:description>The descriptorType is used to represent either the
-
         name of a citable classification system/controlled vocabulary such as
-
         the "Bailey" classification of ... or a domain of physical
-
         descriptors such as climate or disturbances.</doc:description>
-
         <doc:example>climate, soils, hydrology, "bailey", biome, disturbance,
-
         geology</doc:example>
-
         <doc:lineage/>
-
       </xs:appinfo>
-
     </xs:annotation>
-
     <xs:union>
-
       <xs:simpleType>
-
         <xs:restriction base="xs:string">
-
           <xs:enumeration value="climate"/>
-
           <xs:enumeration value="hydrology"/>
-
           <xs:enumeration value="soils"/>
-
           <xs:enumeration value="geology"/>
-
           <xs:enumeration value="disturbance"/>
-
           <xs:enumeration value="bailey"/>
-
           <xs:enumeration value="biome"/>
-
         </xs:restriction>
-
       </xs:simpleType>
-
       <xs:simpleType>
-
         <xs:restriction base="xs:string"/>
-
       </xs:simpleType>
-
     </xs:union>
-
   </xs:simpleType>
-
 </xs:schema>
 
