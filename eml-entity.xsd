@@ -13,9 +13,9 @@
                  National Center for Ecological Analysis and Synthesis
         Authors: Matt Jones, Zheng Wang, and Noah Goldstein
 
-       '$Author: jones $'
-         '$Date: 2001-02-13 18:22:00 $'
-     '$Revision: 1.3 $'
+       '$Author: bojilova $'
+         '$Date: 2001-02-15 17:14:57 $'
+     '$Revision: 1.4 $'
       -->
     </xs:documentation>
     <xs:appInfo>
@@ -32,38 +32,72 @@
   <xs:element name="eml-entity" minOccurs="1" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+	  Entity descriptors
+        </tooltip>
+        <summary>
+	  Container of entity descriptors of all entities in a dataset.
+        </summary>
         <description>
-           Eml-entity element represents a list of all entities in a dataset.
+	  Eml-entity element contains a list of all entities in a dataset.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The eml-entity was introduced into EML 1.4 as eml-file.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="identifier" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <description>
-              File identifier of the metadata document
-            </description>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element ref="entity"
-                  minOccurs="1" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appInfo>
-            <description>
-              Entity element is a descriptor of an entity in the dataset
-              identified by its name. The entity element can contain information 
-              about the entity's size, format, orientation, header lines, 
-              case sensitiveness, geographic and temporal coverage,
-              authentication description and data problem.
-              orientation
-            </description>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	        File identifier
+              </tooltip>
+              <summary>
+	        File identifier of the metadata document.
+              </summary>
+              <description>
+                File identifier of the metadata document.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The identifier was introduced into EML 1.4 as meta_file_id.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="entity"
+                    minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	        Entity descriptor
+              </tooltip>
+              <summary>
+	        Descriptor of one entity in the dataset.
+              </summary>
+              <description>
+                Entity element is a descriptor of one entity in the dataset
+                identified by its name. The entity element can contain information 
+                about the entity's size, format, orientation, header lines, 
+                case sensitiveness, geographic and temporal coverage,
+                authentication description and data problem.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The entity element was introduced into EML 1.4 as file.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="entity">
@@ -94,6 +128,25 @@
   </xs:element>
 
   <xs:element name="entitySize">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity size
+        </tooltip>
+        <summary>
+	  Describes the physical size of the entity.
+        </summary>
+        <description>
+	  This element contains information of the physical size 
+          of the entity within amount and unit descriptors.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The entitySize was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="amount" type="xs:strint"
@@ -105,6 +158,25 @@
   </xs:element>
 	
   <xs:element name="format">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity's format
+        </tooltip>
+        <summary>
+	  Contains information of the entity's format.
+        </summary>
+        <description>
+	  This element contains information of the entity's format.
+        </description>
+        <example>
+          compressed, encoded, ASCII or binary
+        </example>
+        <lineage>
+          The format element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:choice minOccurs="1" maxOccurs="1">
         <xs:element name="compressed" type="xs:strint" />	
@@ -115,6 +187,26 @@
   </xs:element>
 
   <xs:element name="baseEntityType">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity's base format type
+        </tooltip>
+        <summary>
+	  Contains information of the entity's base format type.
+        </summary>
+        <description>
+	  This element contains information of the entity's base
+          format type.
+        </description>
+        <example>
+          ASCII or binary
+        </example>
+        <lineage>
+          The baseEntityType element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:choice minOccurs="1" maxOccurs="1">
         <xs:element ref="ascii" />	
@@ -124,6 +216,25 @@
   </xs:element>
 
   <xs:element name="ascii">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity's ASCII type
+        </tooltip>
+        <summary>
+	  Specification of the entity's ASCII format type.
+        </summary>
+        <description>
+	  This element contains information of the entity's ASCII
+          format type. It specifies the record delimiter in the file.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The ascii element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:element name="recordDelimiter" type="xs:string"
                   minOccurs="1" maxOccurs="1"/>	
@@ -131,6 +242,26 @@
   </xs:element>
 
   <xs:element name="orientation" nullable="true">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity's record orientation
+        </tooltip>
+        <summary>
+	  Specification of the entity's record orientation.
+        </summary>
+        <description>
+	  This element contains specification of the entity's
+          record orientation by element's attribute "columnorrow".
+        </description>
+        <example>
+          columnmajor or rowmajor
+        </example>
+        <lineage>
+          The orientation element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="columnorrow" use="default" value="columnmajor">
         <xs:simpleType>
@@ -142,6 +273,27 @@
   </xs:element>
 
   <xs:element name="caseSensitive" nullable="true">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Data case sensitiveness
+        </tooltip>
+        <summary>
+	  Specification of text case sensitiveness in the entity.
+        </summary>
+        <description>
+	  This element contains specification of text 
+          case sensitiveness in the entity. It is specified from 
+          element's attribute "yesorno".
+        </description>
+        <example>
+          yes or no
+        </example>
+        <lineage>
+          The caseSensitive element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="yesorno" use="default" value="yes">
         <xs:simpleType>
@@ -153,6 +305,27 @@
   </xs:element>
 
   <xs:element name="geographicCoverage">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Geographic coverage
+        </tooltip>
+        <summary>
+	  Description of the geographic area which data are collected
+          in the entity.
+        </summary>
+        <description>
+	  This element describes the geographic area which data are 
+          collected in the entity. It can specify the Cartesian 
+          coordinates of the area.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The geographicCoverage element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="paragraph" type="xs:strint"
@@ -164,6 +337,25 @@
   </xs:element>
 	
   <xs:element name="coordinates">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Cartesian coordinates
+        </tooltip>
+        <summary>
+	  Cartesian coordinates for the geographic area.
+        </summary>
+        <description>
+	  This element specifies the Cartesian coordinates: lattitude
+          and longitude of the geographic area covered by the entity. 
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The coordinates element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="lattitude" minOccurs="1" maxOccurs="1"/>	
@@ -173,6 +365,25 @@
   </xs:element>
 
   <xs:element name="lattitude" type="xs:string">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Lattitude coordinates
+        </tooltip>
+        <summary>
+	  Lattitude coordinates for the geographic area.
+        </summary>
+        <description>
+	  This element specifies the lattitude coordinates
+          of the geographic area covered by the entity. 
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The lattitude element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="direction" use="required">
         <xs:simpleType>
@@ -184,6 +395,25 @@
   </xs:element>
 
   <xs:element name="longitude" type="xs:string">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Longitude coordinates
+        </tooltip>
+        <summary>
+	  Longitude coordinates for the geographic area.
+        </summary>
+        <description>
+	  This element specifies the longitude coordinates
+          of the geographic area covered by the entity. 
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The longitude element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="direction" use="required">
         <xs:simpleType>
@@ -195,6 +425,25 @@
   </xs:element>
 
   <xs:complexType name="TemporalCoverage">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Temporal coverage
+        </tooltip>
+        <summary>
+	  Description of temporal coverage.
+        </summary>
+        <description>
+	  This element specifies temporal coverage by 
+          start and stop date.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The temporalCoverage element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="startDate"
                   minOccurs="1" maxOccurs="1"/>	
@@ -204,6 +453,25 @@
   </xs:complexType>
 
   <xs:element name="startDate">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Start date
+        </tooltip>
+        <summary>
+	  Start date of the temporal coverage.
+        </summary>
+        <description>
+	  This element specifies the start date of the temporal
+          coverage.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The startDate element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="dateTime" type="DateTime"
@@ -213,6 +481,25 @@
   </xs:element>
 
   <xs:element name="stopDate">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Stop date
+        </tooltip>
+        <summary>
+	  Stop date of the temporal coverage.
+        </summary>
+        <description>
+	  This element specifies the stop date of the temporal
+          coverage.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The stopDate element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="dateTime" type="DateTime"
@@ -222,6 +509,26 @@
   </xs:element>
 
   <xs:complexType name="DateTime">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Date and time
+        </tooltip>
+        <summary>
+	  Date and time as designated in ISO 8601
+        </summary>
+        <description>
+	  This element specifies date and time as 
+          designated in ISO 8601.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The DateTime complex type was introduced into EML 1.4, and is
+          based on the ISO 8601 time standard.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="year" type="xs:string"
                   minOccurs="0" maxOccurs="1"/>	
@@ -242,7 +549,26 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="DataProblem">
+  <xs:element name="dataProblem">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Data problem
+        </tooltip>
+        <summary>
+	  Description of any data problems in the entity.
+        </summary>
+        <description>
+	  This element describes any data problems in the entity:
+          data anomalies or missing data.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The dataProblem element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="paragraph" type="xs:string"

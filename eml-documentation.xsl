@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: cjones $'
-  *       '$Date: 2001-02-07 15:05:41 $'
-  *   '$Revision: 1.1 $'
+  *     '$Author: bojilova $'
+  *       '$Date: 2001-02-15 17:14:57 $'
+  *   '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -54,10 +54,11 @@
               <h3>Element Definitions:</h3>
 	    </td>
 	  </tr>
-          <xsl:for-each select ="//xs:element">
+          <xsl:for-each select="//xs:element[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
               <xsl:value-of select="./@name" />
+              <xsl:value-of select="./@ref" />
 	    </td>
 	  </tr>
 	  <tr>
@@ -83,7 +84,7 @@
               <h3>Complex Type Definitions:</h3>
 	    </td>
 	  </tr>
-          <xsl:for-each select ="//xs:complexType">
+          <xsl:for-each select ="//xs:complexType[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
               <xsl:value-of select="./@name" />
@@ -112,7 +113,7 @@
               <h3>Simple Type Definitions:</h3>
 	    </td>
 	  </tr>
-          <xsl:for-each select ="//xs:simpleType">
+          <xsl:for-each select ="//xs:simpleType[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
               <xsl:value-of select="./@name" />
@@ -134,7 +135,7 @@
               </blockquote>
 	    </td>
 	  </tr>
-           </xsl:for-each>
+          </xsl:for-each>
         </table>
         <p class="contact">
           Web Contact:

@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
            xmlns:tc="eml:TemporalCoverage"
 	   targetNamespace="eml:research">
@@ -14,9 +14,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Chris Jones, Chad Berkley, Jivka Bojilova
 
-     '$Author: jones $'
-       '$Date: 2001-02-13 18:22:00 $'
-   '$Revision: 1.2 $'
+     '$Author: bojilova $'
+       '$Date: 2001-02-15 17:14:58 $'
+   '$Revision: 1.3 $'
 
     </xs:documentation>
     <xs:appInfo>
@@ -74,7 +74,7 @@
       </xs:element>
     </xs:sequence>
   </xs:element>
-	
+
   <xs:element name="researchProject">
     <xs:complexType>
       <xs:sequence>
@@ -105,9 +105,9 @@
   <xs:element name="originator" type="rp:ResponsibleParty">
     <xs:annotation>
       <xs:appInfo>
-        <xs:description>
+        <description>
           The party who created the research project.
-        </xs:description>
+        </description>
         <lineage>
           FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
         </lineage>
@@ -116,14 +116,14 @@
   </xs:element>
 	
   <xs:element name="temporalDescription">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          General description of temporal coverage of the project
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            General description of temporal coverage of the project
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -145,14 +145,14 @@
   </xs:element>
 	
   <xs:element name = "objectives">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Scope and purpose of the research project
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Scope and purpose of the research project
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="1" maxOccurs="unbounded"/>
@@ -181,14 +181,14 @@
   </xs:element>
 	
   <xs:element name="siteDescription">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Site description
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Site description
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph" 
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -211,15 +211,15 @@
   </xs:element>
 
   <xs:element name="siteType">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Site type - description, e.g., short-grass prairie,
+          blackwater stream, etc.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Site type - description, e.g., short-grass prairie,
-            blackwater stream, etc.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="1" maxOccurs="unbounded"/>
@@ -228,14 +228,14 @@
   </xs:element>
 	
   <xs:element name = "geography">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Location and size.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Location and size.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="coordinates" 
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -248,14 +248,14 @@
   </xs:element>
 	
   <xs:element name = "coordinates">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Location and size.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Location and size.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="lattitude" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>
@@ -266,14 +266,14 @@
   </xs:element>
 	
   <xs:element name="citation">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Citation.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Citation.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="author" type="rp:ResponsibleParty"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -286,14 +286,14 @@
   </xs:element>
 	
   <xs:element name="sourceInformation">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Citation.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Citation.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="title" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>
@@ -320,14 +320,14 @@
   </xs:element>
 	
   <xs:element name="chapterTitle">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Chapter title.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Chapter title.
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="title" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>
@@ -336,14 +336,14 @@
   </xs:element>
 	
   <xs:element name="habitat">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Detailed characteristics of habitat sampled
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Detailed characteristics of habitat sampled
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -354,14 +354,14 @@
   </xs:element>
 	
   <xs:element name="geology">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Geology and Landform
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Geology and Landform
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -372,14 +372,14 @@
   </xs:element>
 	
   <xs:element name="hydrology">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Hydrology
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Hydrology
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -390,14 +390,14 @@
   </xs:element>
 
   <xs:element name="history">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Site history
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Site history
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -408,14 +408,14 @@
   </xs:element>
 	
   <xs:element name="climate">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Site climatic characteristics
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Site climatic characteristics
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -426,14 +426,14 @@
   </xs:element>
 	
   <xs:element name="designDescription">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Experimental or Sampling design
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Experimental or Sampling design
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="designMethod"
                     minOccurs="0" maxOccurs="1"/>
@@ -450,14 +450,14 @@
   </xs:element>
 	
   <xs:element name="designMethod">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Description of Statistical/sampling design
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Description of Statistical/sampling design
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -468,14 +468,14 @@
   </xs:element>
 
   <xs:element name="plots">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Permanent plot description
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Permanent plot description
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -486,14 +486,14 @@
   </xs:element>
 	
   <xs:element name="sampling">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Information necessary to understand temporal sampling regime
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Information necessary to understand temporal sampling regime
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -508,14 +508,14 @@
   </xs:element>
 	
   <xs:element name="methodsDescription">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Research Method description
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Research Method description
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="method"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -536,14 +536,14 @@
   </xs:element>
 	
   <xs:element name="method">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Description or reference to field/laboratory methods
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Description or reference to field/laboratory methods
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -554,14 +554,14 @@
   </xs:element>
 
   <xs:element name="instrument">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Description of Instruments used
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Description of Instruments used
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -572,14 +572,14 @@
   </xs:element>
 	
   <xs:element name="taxonomy">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Taxonomy information
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Taxonomy information
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="0" maxOccurs="unbounded"/>
@@ -590,14 +590,14 @@
   </xs:element>
 
   <xs:element name="permit">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          References to pertinent scientific and collecting permits
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            References to pertinent scientific and collecting permits
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="1" maxOccurs="unbounded"/>
@@ -606,14 +606,14 @@
   </xs:element>
 	
   <xs:element name="legalInformation">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+          Relevant laws, decision criteria, compliance standards
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
-      <xs:annotation>
-	<xs:appInfo>
-          <xs:description>
-            Relevant laws, decision criteria, compliance standards
-          </xs:description>
-        </xs:appInfo>
-      </xs:annotation>
       <xs:sequence>
         <xs:element ref="paragraph"
                     minOccurs="1" maxOccurs="unbounded"/>
@@ -624,9 +624,9 @@
   <xs:element name="staff" type="rp:ResponsibleParty">
     <xs:annotation>
       <xs:appInfo>
-        <xs:description>
+        <description>
           Project personell.
-        </xs:description>
+        </description>
         <lineage>
           FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
         </lineage>
