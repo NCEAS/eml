@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
@@ -12,11 +14,32 @@
       <xsl:element name="idinfo">
         <xsl:element name="citation">
           <xsl:element name="citeinfo">
-            <xsl:element name="origin">
-              1 to inf
-            </xsl:element>
+            <xsl:for-each select="/eml:eml/dataset/creator">
+              <xsl:element name="origin">
+              <!-- 'origin' should correspond to the name of the 'creator' RP in eml2 -->
+                <xsl:choose>
+                  <xsl:when test="./individualName/surName!=''">
+                    <xsl:value-of select="./individualName/surName"/>
+                  </xsl:when>
+                  <xsl:when test="./organizationName!=''">
+                    <xsl:value-of select="./organizationName"/>
+                  </xsl:when>
+                  <xsl:when test="./positionName!=''">
+                    <xsl:value-of select="./positionName"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:element>
+            </xsl:for-each>  
             <xsl:element name="pubdate">
-            
+            <!-- pubdate is optional in eml2 -->
+              <xsl:choose>
+                <xsl:when test="/eml:eml/dataset/pubDate!=''">
+                  <xsl:value-of select="/eml:eml/dataset/pubDate"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="'N/A'"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:element>
             <xsl:if test="$show_optional">
               <xsl:element name="pubtime">
@@ -24,7 +47,7 @@
               </xsl:element>
             </xsl:if>
             <xsl:element name="title">
-            
+              <xsl:value-of select="/eml:eml/dataset/title"/>
             </xsl:element>
              <xsl:if test="$show_optional">
               <xsl:element name="edition">
@@ -32,7 +55,17 @@
               </xsl:element>
             </xsl:if>
             <xsl:element name="geoform">
-            
+            <!-- Geospatial Data Presentation Form - the mode in which the 
+                       geospatial data are represented. -->
+            <!-- NEED TO LOOP OVER ALL ENTITIES IN EML2 HERE ??? -->           
+              <xsl:choose>
+                <xsl:when test="/eml:eml/dataset/dataTable!=''">
+                  <xsl:value-of select="'dataTable'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="'unknown'"/>
+                </xsl:otherwise>              
+              </xsl:choose>
             </xsl:element>
              <xsl:if test="$show_optional">
               <xsl:element name="serinfo">
@@ -73,10 +106,18 @@
         </xsl:element>
         <xsl:element name="descript">
           <xsl:element name="abstract">
-          
+            <xsl:choose>
+              <xsl:when test="/eml:eml/dataset/abstract!=''">
+                <xsl:value-of select="/eml:eml/dataset/abstract"/>
+                <!-- abstract can be complex element in eml2; this useage will simply concatenate text -->
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="'N/A'"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:element>
           <xsl:element name="purpose">
-          
+            <xsl:value-of select="'N/A'"/>
           </xsl:element>
           <xsl:if test="$show_optional">
             <xsl:element name="supplinf">
@@ -213,12 +254,25 @@
         </xsl:if>
         <xsl:element name="keywords">
           <xsl:element name="theme">
-            <xsl:element name="themekt">
+            <xsl:choose>
+              <xsl:when test="/eml:eml/dataset/keywordSet!=''">
+               <!-- ??? in eml2 keywordSet is repeatable!! -->
+                <xsl:element name="themekt">
           
-            </xsl:element>
-            <xsl:element name="themekey">
+                </xsl:element>
+                <xsl:element name="themekey">
           
-            </xsl:element>
+                </xsl:element>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:element name="themekt">
+                  <xsl:value-of select="'N/A'"/>
+                </xsl:element>
+                <xsl:element name="themekey">
+                  <xsl:value-of select="'N/A'"/>
+                </xsl:element>
+              </xsl:otherwise>
+            </xsl:choose>  
           </xsl:element>
         <xsl:if test="$show_optional">
           <xsl:element name="place">
