@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-03-27 02:25:18 $'
-  *   '$Revision: 1.15 $'
+  *       '$Date: 2001-03-27 19:41:56 $'
+  *   '$Revision: 1.16 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -126,7 +126,9 @@
                   <span class="boldtext">Type: </span>
                   <xsl:choose>
                     <xsl:when test='starts-with(string(./@type), "xs:")'>
-                      <xsl:value-of select="./@type"/>
+                      <span class="boldtext">
+                        <xsl:value-of select="./@type"/>
+                      </span>
                     </xsl:when>
                     <xsl:otherwise>
                       <a class="sitelink">
@@ -165,21 +167,38 @@
               <xsl:otherwise>
 
                 <!-- display a link to the base type for derivations -->
-                <xsl:if test="./@derivedBy|./xs:complexType/@derivedBy">
+                <xsl:if test="./xs:complexContent/xs:extension|./xs:complexContent/xs:restriction">
                   <xsl:variable name="baseval" 
-                            select="./@base|./xs:complexType/@base"/>
+                       select="./xs:complexContent/xs:extension/@base|./xs:complexContent/xs:restriction/@base"/>
                   <xsl:variable name="derival" 
-                            select="./@derivedBy|./xs:complexType/@derivedBy"/>
+                       select="name(./xs:complexContent/xs:extension)"/>
+                  <!-- this next line probably doesn't work :-) -->
+                  <xsl:if test="./xs:complexContent/xs:restriction">
+                    <xsl:variable name="derival" 
+                         select="name(./xs:complexContent/xs:restriction)"/>
+                  </xsl:if>
                   <tr>
                   <td colspan="3" valign="top" class="tablepanel">
-                    Derived from:
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>#</xsl:text>
+                    <p>
+                    <span class="boldtext">Derived from: </span>
+                    <xsl:choose>
+                      <xsl:when test='starts-with(string($baseval), "xs:")'>
+                        <span class="boldtext">
+                          <xsl:value-of select="$baseval"/>
+                        </span>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <a class="sitelink">
+                        <xsl:attribute name="href">
+                          <xsl:text>#</xsl:text>
+                          <xsl:value-of select="$baseval"/>
+                        </xsl:attribute>
                         <xsl:value-of select="$baseval"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="$baseval"/>
-                    </a> (by <xsl:value-of select="$derival"/>)
+                        </a> 
+                       </xsl:otherwise>
+                     </xsl:choose>
+                     (by <xsl:value-of select="$derival"/>)
+                     </p>
                   </td>
                   </tr>
                 </xsl:if>
@@ -204,7 +223,7 @@
                 </tr>
                 <!-- Now display the CM for the element children -->
                 <xsl:apply-templates 
-                     select="xs:complexType|xs:sequence|xs:choice|xs:element" 
+                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent" 
                      mode="contentmodel" />
     
                 <!-- display the attributes -->
@@ -293,7 +312,7 @@
             <xsl:if test="./@name"><xsl:value-of select="./@name"/></xsl:if>
             <xsl:if test="./@ref"><xsl:value-of select="./@ref"/></xsl:if>
           </xsl:attribute>
-          <!-- and display the name of the attribute-->
+          <!-- and display the name of the element -->
           <xsl:value-of select="./@name"/>
           <xsl:value-of select="./@ref"/>
         </a>
@@ -388,7 +407,7 @@
           <span class="plaintext">
             <xsl:choose>
               <xsl:when test='starts-with(string(./@type), "xs:")'>
-                <xsl:value-of select="./@type"/>
+                <span class="boldtext"><xsl:value-of select="./@type"/></span>
               </xsl:when>
               <xsl:otherwise>
                 <a class="sitelink">
@@ -428,8 +447,9 @@
   <!-- format the complexType content model -->
   <xsl:template match="xs:complexType" mode="contentmodel">
     <!-- Find all of the children of this complexType and list them -->
-    <xsl:apply-templates select="xs:sequence|xs:choice|xs:element" 
-                         mode="contentmodel" />
+    <xsl:apply-templates 
+         select="xs:sequence|xs:choice|xs:element|xs:complexContent" 
+         mode="contentmodel" />
   </xsl:template>
 
   <!-- step through the simpleTypes -->
@@ -447,9 +467,66 @@
       </td>
     </tr>
     <tr>
-      <td class="tablepanel"> </td>
+      <td class="tablepanel"> 
+        <xsl:apply-templates select="xs:extension|xs:restriction"
+                             mode="contentmodel"/>
+      </td>
       <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
     </tr>
+  </xsl:template>
+
+  <!-- format the complexContent content model -->
+  <xsl:template match="xs:complexContent" mode="contentmodel">
+    <!-- Find all of the children of this complexContent and list them -->
+    <xsl:apply-templates select="xs:extension|xs:restriction" 
+                         mode="contentmodel" />
+  </xsl:template>
+
+  <!-- format the extension and restriction content model -->
+  <xsl:template match="xs:extension|xs:restriction" mode="contentmodel">
+    <!-- display a link to the base type for derivations -->
+      <p>
+      <span class="boldtext">Derived from: </span>
+      <xsl:choose>
+        <xsl:when test='starts-with(string(./@base), "xs:")'>
+          <span class="boldtext">
+            <xsl:value-of select="./@base"/>
+          </span>
+        </xsl:when>
+        <xsl:otherwise>
+          <a class="sitelink">
+            <xsl:attribute name="href">
+              <xsl:text>#</xsl:text>
+              <xsl:value-of select="./@base"/>
+            </xsl:attribute>
+            <xsl:value-of select="./@base"/>
+          </a> 
+        </xsl:otherwise>
+      </xsl:choose>
+      (by <xsl:value-of select="name(.)"/>)
+      </p>
+
+    <!-- Find all of the children and list them -->
+    <xsl:choose>
+      <xsl:when test="name(..) = 'xs:simpleType'">
+        
+        <p>
+        <span class="boldtext">Allowed values: </span>
+        <ul>
+          <xsl:apply-templates select="xs:enumeration" mode="contentmodel" />
+        </ul>
+        </p>
+      </xsl:when> 
+      <xsl:otherwise>
+        <xsl:apply-templates select="xs:sequence|xs:choice" 
+                             mode="contentmodel" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- format the enumeration content model -->
+  <xsl:template match="xs:enumeration" mode="contentmodel">
+    <li><xsl:value-of select="./@value"/></li>
   </xsl:template>
 
   <!-- This template formats the various types of help information
