@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2004-07-12 21:31:44 $'
-      '$Revision: 1.70 $'
+        '$Author: jones $'
+          '$Date: 2004-08-06 23:08:51 $'
+      '$Revision: 1.71 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -161,7 +161,7 @@
     <mkdir dir="${ver.docs}"/>
     <mkdir dir="${ver.src}"/>
     <mkdir dir="${ver.tst}"/>
-    <!--<mkdir dir="${ver.dir}/style"/>-->
+    <mkdir dir="${ver.dir}/style"/>
     <copy file="./build.xml" todir="${ver.dir}"/>
     <copy file="./LICENSE" todir="${ver.dir}"/>
     <copy file="./README" todir="${ver.dir}"/>
@@ -180,14 +180,16 @@
       <fileset dir="./docs"/>
     </copy>
     <copy todir="${ver.src}" filtering="yes">
-      <fileset dir="./src"/>
+      <fileset dir="./src">
+         <exclude name="emlconversions/**"/>
+      </fileset>
     </copy>
     <copy todir="${ver.tst}" filtering="yes">
       <fileset dir="./test"/>
     </copy>
-    <!--<copy todir="${ver.dir}/style">
+    <copy todir="${ver.dir}/style">
       <fileset dir="${style.dir}"/>
-    </copy>-->
+    </copy>
 
     <delete file="./eml-${version}.zip"/>
     <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
@@ -195,6 +197,16 @@
     <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
     <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
     <delete file="./eml-${version}.tar"/>
+  </target>
+
+  <target name="zt" depends="init">
+    <delete dir="build/zt"/>
+    <mkdir dir="build/zt"/>
+    <copy todir="build/zt" filtering="yes">
+      <fileset dir="./src">
+         <exclude name="emlconversions/**"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="docbook" depends="init">
@@ -296,17 +308,16 @@
        <fileset dir="${testdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="**/emlconversions/*"/>
+         <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
      <copy todir="${build.tests}" filtering="yes">
        <fileset dir="${srcdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="**/emlconversions/*"/>
+         <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
-     <delete dir="${build.tests}/emlconversions"/>
      <copy file ="${config.file}" todir="${build.dest}" filtering="yes"/>
      <javac srcdir="${build.tests}"
             destdir="${build.dest}"
@@ -328,10 +339,9 @@
        <fileset dir="${testdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="**/emlconversions/*"/>
+         <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
-     <delete dir="${build.tests}/emlconversions"/>
      <javac srcdir="${build.tests}"
             destdir="${build.dest}"
             classpath="${cpath}"

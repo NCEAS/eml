@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2004-07-05 22:45:36 $'
-#      '$Revision: 1.31 $'
+#          '$Date: 2004-08-06 23:08:51 $'
+#      '$Revision: 1.32 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,7 +116,15 @@ HIGHLIGHTS IN THIS RELEASE
 --------------------------
 This is a bug fix and documentation release.  No changes were made that are
 incompatible with the earlier 2.0.0 release.  A new set of XSLT stylesheets
-has been included to show how EML can be transformed into an HTML display.
+has been included to show how EML can be transformed into an HTML display. 
+Significant changes were made to the definition of access control elements
+to substantially simplify the access control model and make it easier for
+systems storing EML to implement.  In addition, the precision field has 
+now been made optional to accomodate data sets that have varying precision
+across the records in a single attribute.  Finally, we fixed a bug in the 
+"inline" element that had prevented it from being used as intended as a
+place to store data inline in an EML document. The reminaing issues are 
+largely changes in documentation.
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
