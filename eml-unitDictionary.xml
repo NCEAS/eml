@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 21:16:08 $'
-      '$Revision: 1.16 $'
+          '$Date: 2002-10-04 22:04:06 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -533,7 +533,7 @@
   <unit id="degree" name="degree" unitType="angle" multiplierToSI="57.29578" abbreviation="deg">
     <description>radian</description>
   </unit>
-  <unit id="grad" name="grad" unitType="angle" multiplierToSI="63.66197832" abbreviation="grad">
+  <unit id="gradient" name="gradient" unitType="angle" multiplierToSI="63.661977" abbreviation="grad">
     <description>grad</description>
   </unit>
 
@@ -552,8 +552,8 @@
   </unit>
 
   <!--SI force -->
-  <unit id="newtom" name="newtom" unitType="force" multiplierToSI="1" abbreviation="N">
-    <description>newtom</description>
+  <unit id="newton" name="newton" unitType="force" multiplierToSI="1" abbreviation="N">
+    <description>newton</description>
   </unit>
 
   <!--energy-->
@@ -860,13 +860,13 @@
   <unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
     <description>An imperial measure of length</description>
   </unit>
-  <unit id="USfoot" name="USfoot" parentSI="meter" abbreviation="usft" multiplierToSI=".3048">
+  <unit id="Foot_US" name="Foot_US" parentSI="meter" abbreviation="usft" multiplierToSI=".3048">
     <description>12 inches</description>
   </unit>
   <unit id="foot" name="foot" parentSI="meter" abbreviation="ft" multiplierToSI=".3048">
     <description>12 inches</description>
   </unit>
-  <unit id="GoldCoastFoot" name="GoldCoastFoot" parentSI="meter" abbreviation="gcft" multiplierToSI=".3047997101815088">
+  <unit id="Foot_Gold_Coast" name="Foot_Gold_Coast" parentSI="meter" abbreviation="gcft" multiplierToSI=".3047997101815088">
     <description>12 inches</description>
   </unit>
   <unit id="fathom" name="fathom" parentSI="meter" multiplierToSI="1.8288">
@@ -878,13 +878,13 @@
   <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI=".9144">
     <description>3 feet</description>
   </unit>
-  <unit id="yardIndian" name="yardIndian" parentSI="meter" multiplierToSI=".914398530744440774">
+  <unit id="Yard_Indian" name="Yard_Indian" parentSI="meter" multiplierToSI=".914398530744440774">
     <description></description>
   </unit>
-  <unit id="linkClarke" name="linkClarke" parentSI="meter" multiplierToSI=".2011661949">
+  <unit id="Link_Clarke" name="Link_Clarke" parentSI="meter" multiplierToSI=".2011661949">
     <description></description>
   </unit>
-  <unit id="yardSears" name="yardSears" parentSI="meter" multiplierToSI=".91439841461602867">
+  <unit id="Yard_Sears" name="Yard_Sears" parentSI="meter" multiplierToSI=".91439841461602867">
     <description></description>
   </unit>
   <unit id="mile" name="mile" parentSI="meter" abbreviation="mile" multiplierToSI="1609.344">
