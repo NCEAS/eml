@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-30 16:15:20 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-10-30 19:26:43 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -381,6 +381,28 @@
 
   <unit id="cubicMeter" name="cubicMeter" unitType="volume" multiplierToSI="1" abbreviation="m³">
     <description>cubic meter</description>
+  </unit>
+
+  <!--nominal time-->
+  <!--all of these date/time fields are calculated to the nearest second, excluding
+  leap seconds and leap days except for nominalLeapYear.-->
+  <unit id="nominalMinute" name="nominalMinute" unitType="time" parentSI="second" multiplierToSI="60">
+    <description>one minute excluding leap seconds, 60 seconds</description>
+  </unit>
+  <unit id="nominalHour" name="nominalHour" unitType="time" parentSI="second" multiplierToSI="3600">
+    <description>one hour excluding leap seconds, 3600 seconds</description>
+  </unit>
+  <unit id="nominalDay" name="nominalDay" unitType="time" parentSI="second" multiplierToSI="86400">
+    <description>one day excluding leap seconds, 86400 seconds</description>
+  </unit>
+  <unit id="nominalWeek" name="nominalWeek" unitType="time" parentSI="second" multiplierToSI="604800">
+    <description>one day excluding leap seconds, 604800 seconds</description>
+  </unit>
+  <unit id="nominalYear" name="nominalYear" unitType="time" parentSI="second" multiplierToSI="31536000">
+    <description>one year excluding leap seconds and leap days, 31536000 seconds</description>
+  </unit>
+  <unit id="nominalLeapYear" name="nominalLeapYear" unitType="time" parentSI="second" multiplierToSI="31622400">
+    <description>one 366 day year excluding leap seconds, 31622400 seconds</description>
   </unit>
 
   <!--mass-->

@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: jones $'
- *     '$Date: 2002-10-07 17:00:24 $'
- * '$Revision: 1.7 $'
+ *   '$Author: berkley $'
+ *     '$Date: 2002-10-30 19:26:43 $'
+ * '$Revision: 1.8 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -139,7 +139,7 @@ public class SaxValidateTest extends TestCase
       File f = new File("docs/eml-@version@/eml-docbook.xml");
       if(!f.exists())
       {
-        System.err.println("The file eml-@version/eml-docbook.xml is not " +
+        System.err.println("The file eml-@version@/eml-docbook.xml is not " +
              "in the docs directory.  You " +
              "must run 'ant docbook' before running this test.");
         fail("The file eml-@version@/eml-docbook.xml is not in the " +
