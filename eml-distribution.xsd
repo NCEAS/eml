@@ -3,93 +3,643 @@
            xmlns:rp="iso:ResponsibleParty"
            targetNamespace="eml:distribution">
   
+  <xs:annotation>
+    <xs:documentation>
+      <!--         
+       $RCSfile: eml-distribution.xsd,v $'
+        Purpose: This schema defines how a resource is to be distributed outside
+        of it's home institution.
+      Copyright: 2000 Regents of the University of California and the
+                 National Center for Ecological Analysis and Synthesis
+        Authors: Chad Berkley
+
+       '$Author: berkley $'
+         '$Date: 2001-02-15 23:40:16 $'
+     '$Revision: 1.2 $'
+      -->
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-distribution
+      </moduleName>
+      <moduleDescription>
+        This schema defines how a resource is to be distributed outside
+        of it's home institution.
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+  
   <xs:import namespace="iso:ResponsibleParty" 
           schemaLocation = "./iso-party.xsd"/>
-
-  <!--the root element -->
-  <element name="eml-distribution" type="Eml-distribution"
-           minOccurs="1" maxOccurs="1"/>
   
-  <complexType name="Eml-distribution" content="elementOnly">
-    <sequence>
-      <element name="format" type="Format" 
-               minOccurs="1" maxOccurs="unbounded"/>
-      <element name="distributor" type="Distributor" 
-               minOccurs="0" maxOccurs="unbounded"/>
-      <element name="digitalTransfer" type="DigitalTransfer" 
-               minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-  </complexType>
   
-  <complexType name="Format" content="elementOnly">
-    <sequence>
-      <element name="formatName" type="xs:string" 
-               minOccurs="1" maxOccurs="unbounded"/>
-      <element name="formatVersion" type="xs:string" 
-               minOccurs="1" maxOccurs="unbounded"/>
-      <element name="amendmentNumber" type="xs:string" 
-               minOccurs="0" maxOccurs="unbounded"/>
-      <element name="formatSpec" type="xs:string" 
-               minOccurs="0" maxOccurs="unbounded"/>
-      <element name="compressionType" type="xs:string" 
-               minOccurs="0" maxOccurs="unbounded"/>
-      <element name="distributionFormat" type="xs:string" 
-               minOccurs="0" maxOccurs="unbounded"/>
-    </sequence>
-  </complexType>
+  <xs:element name="eml-distribution">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Resource Distribution Information
+        </tooltip>
+        <summary>
+          eml-distribution describes the methods by which a resource can be 
+          distributed from it's home institution.
+        </summary>
+        <description>
+          the distribution module contains fields to define the distributor
+          of the resource, the format that that the resource exists in, the
+          process by which another agency or individual can get the resource,
+          the digital transfer protocols needed to get the resource and the 
+          medium on which the resource is stored.
+        </description>
+        <example>
+        </example>
+        <lineage>
+           Derived from ISO.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="distributorFormat" ref="Format"
+                     minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                The format in which the resource is represented.
+              </tooltip>
+              <summary>
+                The format in which the resource is represented.
+              </summary>
+              <description>
+                This is the format of the resource in it's digital form.  
+                This includes information on what type of compression is used
+                and the encoding that is used.
+              </description>
+              <example>
+                zip, gzip, tar, sit, bin, binhex, text
+              </example>
+              <lineage>
+                derived from ISO
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Distributor">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Resource distributor
+              </tooltip>
+              <summary>
+                The person or group who is distributing this resource.
+              </summary>
+              <description>
+                The complete contact and location information for the person
+                or group who owns or who has permission to distribute this
+                resource.
+              </description>
+              <example>
+               Library of Congress
+              </example>
+              <lineage>
+                
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="contact" type="rp:ResponsibleParty"
+                          minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      contact information for distributor
+                    </tooltip>
+                    <summary>
+                      Complete name and address of the distributor of this 
+                      resource.
+                    </summary>
+                    <description>
+                      Complete contact information for the person or group
+                      that has permission to distribute this resource.
+                    </description>
+                    <example>
+                    </example>
+                    <lineage>
+                      EML
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="StandardOrderProcess">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      information on getting this resource from its distributor
+                    </tooltip>
+                    <summary>
+                      information on getting this resource from its distributor
+                    </summary>
+                    <description>
+                      The standard order process is the process by which a user
+                      can order the resource from its distributor.  This
+                      includes information on fees, availability and general
+                      instructions.
+                    </description>
+                    <example>
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="fees" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            fee payed to acquire this resource
+                          </tooltip>
+                          <summary>
+                            fee charged by the distributor to acquire this 
+                            resource
+                          </summary>
+                          <description>
+                            a fee may be charged by a distributor for media
+                            or access fees to this resource.  This field 
+                            contains that cost.
+                          </description>
+                          <example>
+                            US$10.00
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dateTimeAvailable" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appInfo>
+                        <tooltip>
+                          the time this resource is available
+                        </tooltip>
+                        <summary>
+                          the date and time at which this resource is available
+                        </summary>
+                        <description>
+                          date and time at which this resource becomes available
+                          for distribution.  This could be the open times for
+                          an institution or a release date.
+                        </description>
+                        <example>
+                          8:00 am to 5:00 pm PST Monday-Friday
+                        </example>
+                        <lineage>
+                          
+                        </lineage>
+                      </xs:appInfo>
+                    </xs:annotation>
+                  </xs:element>
+                    <xs:element name="orderingInstructions" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            instructions for ordering
+                          </tooltip>
+                          <summary>
+                            instructions for ordering this resource from the 
+                            distributor
+                          </summary>
+                          <description>
+                            instructions for ordering this resource from the 
+                            distributor.  This is a textual description of
+                            how to get this resource.  It could include any
+                            extra information that is not included in field
+                            data in this distribution module
+                          </description>
+                          <example>
+                            Send SASE to the distributor with check or money
+                            order made out to UC Board of Regents in the amount
+                            of US$10.00.
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="turnaround" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            time to get the resource
+                          </tooltip>
+                          <summary>
+                            time it takes to receive the resource from the time
+                            it is ordered.
+                          </summary>
+                          <description>
+                            time it takes to receive the resource from the time
+                            it is ordered.
+                          </description>
+                          <example>
+                            UPS Ground - 5 days
+                            Fedex Air - 2 days
+                            Fedex overnight - 1 day
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>      
+              </xs:element>
+              <xs:element name="distributorFormat" ref="Format"
+                          minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      resource format at the distributor
+                    </tooltip>
+                    <summary>
+                      the format of the resource as it exists at the distributor
+                    </summary>
+                    <description>
+                      the format of the resource as it exists at the
+                      distributor.  There may be many.
+                    </description>
+                    <example>
+                      zip, gzip, tar, bin, binhex, sit, doc, text, wps
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DigitalTransfer">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                digital transfer information
+              </tooltip>
+              <summary>
+                information needed to receive or send this resource digitally
+              </summary>
+              <description>
+                information needed to receive or send this resource digitally.
+                this includes the size of the transfer, the units of this size
+                the medium, the site address, etc.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="distributionUnits" type="xs:string"
+                          minOccurs="0" maxOccurs="1" />
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      units of the transfer size
+                    </tooltip>
+                    <summary>
+                      units of the transfer size
+                    </summary>
+                    <description>
+                      units in which the transfer size is represented
+                    </description>
+                    <example>
+                      Terrabytes, Gigabytes, Megabytes, Kilobytes, bytes, bits
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="transferSize" type="xs:string"
+                          minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      size of the transfer
+                    </tooltip>
+                    <summary>
+                      size of the resource in its digital tranfer format.
+                    </summary>
+                    <description>
+                      size of the resource in its digital tranfer format.
+                    </description>
+                    <example>
+                      256 KB, 1.2 MB
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="online" type="rp:OnlineResource"
+                          minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      download site information
+                    </tooltip>
+                    <summary>
+                      the site from which this resource can be downloaded
+                    </summary>
+                    <description>
+                      the site from which this resource can be downloaded.
+                      this includes any information needed to access this 
+                      site.
+                    </description>
+                    <example>
+                     
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Medium">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      medium of the resource
+                    </tooltip>
+                    <summary>
+                      the medium on which this resource is distributed digitally
+                    </summary>
+                    <description>
+                      the medium on which this resource is distributed digitally
+                    </description>
+                    <example>
+                      CD-ROM, 3.5 in. floppy disk, Zip disk
+                    </example>
+                    <lineage>
+                      
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="medDensity" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            density of the digital medium
+                          </tooltip>
+                          <summary>
+                            the density of the digital medium if this is 
+                            relevant.
+                          </summary>
+                          <description>
+                            the density of the digital medium if this is 
+                            relevant.  Used mainly for floppy disks or tape.
+                          </description>
+                          <example>
+                          </example>
+                          <lineage>
+                            High Density (HD), Double Density (DD)
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medDensityUnits" type="xs:string"
+                                minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            units of a numerical density
+                          </tooltip>
+                          <summary>
+                            a numerical density's units
+                          </summary>
+                          <description>
+                            if a density is given numerically, the units should
+                            be given here.  
+                          </description>
+                          <example>
+                            B/cm
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medVol" type="xs:string"
+                                minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            storage volume 
+                          </tooltip>
+                          <summary>
+                            total volume of the storage medium
+                          </summary>
+                          <description>
+                            the total volume of the storage medium on which
+                            this resource is shipped.
+                          </description>
+                          <example>
+                            650 MB
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medFormat" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            medium format
+                          </tooltip>
+                          <summary>
+                            format of the medium on which the resource is 
+                            shipped.
+                          </summary>
+                          <description>
+                            the file system format of the medium on which the
+                            resource is shipped
+                          </description>
+                          <example>
+                            NTFS, FAT32, EXT2, QIK80
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medNote" type="xs:string"
+                                minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            note about the media
+                          </tooltip>
+                          <summary>
+                            note about the media
+                          </summary>
+                          <description>
+                            any additional pertitant information about the
+                            media
+                          </description>
+                          <example>
+                          </example>
+                          <lineage>
+                            
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          <xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   
-  <complexType name="Distributor" content="elementOnly">
-    <sequence>
-      <element name="contact" type="rp:ResponsibleParty"
-               minOccurs="1" maxOccurs="unbounded" />
-      <element name="orderProcess" type="StandardOrderProcess"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="distributorFormat" type="Format"
-               minOccurs="0" maxOccurs="unbounded" />
-    </sequence>
-  </complexType>
-  
-  <complexType name="StandardOrderProcess" content="elementOnly">
-    <sequence>
-      <element name="fees" type="xs:string"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="dateTimeAvailable" type="xs:date"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="orderingInstructions" type="xs:string"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="turnaround" type="xs:string"
-               minOccurs="0" maxOccurs="unbounded" />
-    </sequence>
-  </complexType>
-  
-  <complexType name="DigitalTransfer" content="elementOnly">
-    <sequence>
-      <element name="distributionUnits" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-      <element name="transferSize" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-      <element name="online" type="rp:OnlineResource"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="ofLineResource" type="Medium"
-               minOccurs="0" maxOccurs="1" />
-    </sequence>
-  </complexType>
-  
-  <complexType name="Medium" content="elementOnly">
-    <sequence>
-      <element name="medNameCode" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-      <element name="medDensity" type="xs:string"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="medDensityUnits" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-      <element name="medVol" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-      <element name="medFormat" type="xs:string"
-               minOccurs="0" maxOccurs="unbounded" />
-      <element name="medNote" type="xs:string"
-               minOccurs="0" maxOccurs="1" />
-    </sequence>
-  </complexType>
+  <xs:element name="Format">
+    <xs:sequence>
+      <xs:element name="formatName" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              name of the format
+            </tooltip>
+            <summary>
+              name of the format
+            </summary>
+            <description>
+              the name of the format of the digital resource
+            </description>
+            <example>
+              Excel Spreadsheet, Oracle database export, XML
+            </example>
+            <lineage>
+              
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="formatVersion" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              format version
+            </tooltip>
+            <summary>
+              version of the format
+            </summary>
+            <description>
+              the version of the format used to store this resource digitally.
+            </description>
+            <example>
+              97, 1.2, 4.5.6.7
+            </example>
+            <lineage>
+              
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="formatSpec" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              specification of the format
+            </tooltip>
+            <summary>
+              specification of the format
+            </summary>
+            <description>
+              the formal description or specification of the format used.
+            </description>
+            <example>
+              http://www.w3.org/TR/REC-xml
+            </example>
+            <lineage>
+              
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="compressionType" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              type of compression
+            </tooltip>
+            <summary>
+              type of compression used
+            </summary>
+            <description>
+              type of compression used to compress this resource in its current
+              format.
+            </description>
+            <example>
+              zip, gzip
+            </example>
+            <lineage>
+              
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="distributionFormat" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              distribution format
+            </tooltip>
+            <summary>
+              format of the distributed version
+            </summary>
+            <description>
+              format of the distributed version if different from the stored
+              version
+            </description>
+            <example>
+              Access
+            </example>
+            <lineage>
+              
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:element>
   
 </xs:schema>
