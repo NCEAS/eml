@@ -4,7 +4,7 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-<xsl:param name="packageDir" select="'C:/work/eml/lib/beta6toeml2/test'"/>
+<xsl:param name="packageDir" select="'./test'"/>
 
   <xsl:variable name="pack" select="document('packageStructure.xml')"/>
 	<xsl:variable name="acb6" select="document(concat($packageDir,'/',$pack/package/acl))"/>
