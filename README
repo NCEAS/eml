@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-03-27 05:35:30 $'
-#   '$Revision: 1.6 $'
+#       '$Date: 2001-07-11 17:22:26 $'
+#   '$Revision: 1.7 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0 Beta 1 Release
+Version: 2.0 Beta 2 Release
 
 Feedback and bugs to: knb-software@nceas.ucsb.edu
 
@@ -33,6 +33,7 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Jivka Bojilova (bojilova@nceas.ucsb.edu)
               Dan Higgins (higgins@nceas.ucsb.edu)
               Chris Jones (cjones@lifesci.ucsb.edu)
+              Corinna Gries (corinna@asu.edu)
               Noah Goldstein
               Zheng Wang
 
@@ -49,20 +50,24 @@ its implementation, but Version 2 has been modified substantially after
 experience using the standard and from feedback from the ecological community.
 
 The files in this directory include both a Document Type Definition and 
-an XML Schema document for each of the following modules:
+an XML Schema document for each of the following modules, as well as a
+graphical summary of the structure (PNG format):
 
-eml-package.[dtd,xsd]
-eml-entity.[dtd,xsd]
-eml-attribute.[dtd,xsd]
-eml-constraint.[dtd,xsd]
-eml-distribution.[dtd,xsd]
-eml-research.[dtd,xsd]
-eml-qaqc.[dtd,xsd]
-eml-access.[dtd,xsd]
-eml-lineage.[dtd,xsd]
-eml-resource.[dtd,xsd] 
-    (w/ dataset, bibliography, software and collection sections.)
-iso-party.[dtd,xsd]
+Access control               eml-access.[xsd,dtd,png]
+Attribute (variable) info    eml-attribute.[xsd,dtd,png]
+Integrity constraints        eml-constraint.[xsd,dtd,png]
+Geographic, temporal and     eml-coverage.[xsd,dtd,png]
+  taxonomic coverage
+Data set info                eml-dataset.[xsd,dtd,png]
+Distribution info            eml-distribution.[xsd,dtd,png]
+Data entity (table) info     eml-entity.[xsd,dtd,png]
+Citation info                eml-literature.[xsd,dtd,png]
+People and organizations     eml-party.[xsd,dtd,png]
+Physical format info         eml-physical.[xsd,dtd,png]
+Research project info        eml-project.[xsd,dtd,png]
+Methods and QA/QC            eml-protocol.[xsd,dtd,png]
+Basic resource info          eml-resource.[xsd,dtd,png]
+Software info                eml-software.[xsd,dtd,png]
 
 Please see the docs/index.html directory for a detailed description of each of
 the modules.
