@@ -13,6 +13,7 @@
   <xsl:template name="dataSet">
     <xsl:param name="enb6ID"/>
     <xsl:param name="phb6ID"/>
+    <xsl:param name="datab6ID"/>
     <xsl:param name="attb6ID"/>
     <xsl:variable name="enb6" select="document(concat($packageDir,'/',$enb6ID))"/>
     <xsl:variable name="phb6" select="document(concat($packageDir,'/',$phb6ID))"/>
@@ -66,6 +67,16 @@
           <xsl:with-param name="enb6" select="$enb6"/>
           <xsl:with-param name="phb6" select="$phb6"/>
         </xsl:call-template>
+        
+        <xsl:if test="$datab6ID!=''">
+          <xsl:element name="distribution">
+            <xsl:element name="online">
+              <xsl:element name="url">
+                <xsl:value-of select="concat('http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=',$datab6ID)"/>
+              </xsl:element>
+            </xsl:element>
+          </xsl:element>
+        </xsl:if>
 
       </xsl:element>
         

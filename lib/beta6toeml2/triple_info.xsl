@@ -5,7 +5,7 @@
 <xsl:strip-space elements="*"/>
 
 <xsl:param name="packageName" select="'jones.204.18'"/>
-<xsl:param name="packageDir" select="'C:/work/eml/lib/beta6toeml2/test'"/>
+<xsl:param name="packageDir" select="'./test'"/>
 
 <xsl:template match="/">
   <xsl:variable name="dsb6" select="document(concat($packageDir,'/',$packageName))"/>

@@ -268,6 +268,7 @@
               <xsl:call-template name="dataSet">
                 <xsl:with-param name="enb6ID" select="./@id"/>
                 <xsl:with-param name="phb6ID" select="./physical"/>
+                <xsl:with-param name="datab6ID" select="./dataFile"/>
                 <xsl:with-param name="attb6ID" select="./attribute"/>
               </xsl:call-template>
             
