@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <eml-faq version="0.1">
   <faq-item id="0">
     <question>Why does it rain?</question>
@@ -53,8 +54,8 @@
    for spatial projections, etc., but is incredibly terse with respect
    to describing methods and non-standard data formats.  This is
    appropriate in the spatial world where there are few data
-   formats (< 100, many sensor derived streams), but not so good in
-   ecology where there is no standardization of data formats (>>>5000,
+   formats (&lt; 100, many sensor derived streams), but not so good in
+   ecology where there is no standardization of data formats (&gt;&gt;&gt;5000,
    very few sensor derived).</long-answer>
   </faq-item>
   <faq-item id="4">
@@ -154,7 +155,7 @@ NOTE: In each of the cases it may be necessary to add some additional
 metadata in order to produce EML compliant documents. Morpho will
 automatically create EML compliant metadata either by adding it for
 you or indicating that certain fields are mandatory.
-    <long-answer>
+    </long-answer>
   </faq-item>
   <faq-item id="11">
     <question> The challenge of getting my data into eml is not
@@ -237,7 +238,7 @@ can reference creator, but not vice versa).  This rule will actually
 be enforced by validating parsers.
   
 The key and keyref are defined in the eml.xsd module. A package is
-defined by all of the content included in the <eml> tag, including the
+defined by all of the content included in the &lt;eml&gt; tag, including the
 nested modules like attribute in entity.  The nature of the
 association is implied by the types of the document (ie,
 role/predicate/property/relationship is not specified directly).  The
@@ -312,4 +313,4 @@ whether it is referred to in a "references" element or in a
     my information?</question>
     <answer> Call or email Peter McCartney.</answer>
   </faq-item>
-</faq>
+</eml-faq>

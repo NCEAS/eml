@@ -6,9 +6,9 @@
   *              National Center for Ecological Analysis and Synthesis
   * For Details: http://knb.ecoinformatics.org/
   *
-  *    '$Author: berkley $'
-  *      '$Date: 2002-09-03 18:35:34 $'
-  *  '$Revision: 1.25 $'
+  *    '$Author: jones $'
+  *      '$Date: 2002-09-06 16:01:12 $'
+  *  '$Revision: 1.26 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -72,6 +72,8 @@
     <mkdir dir="${build.docs}"/>
     <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl"
            includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
+    <style basedir="." destdir="${build.docs}" style="eml-faq.xsl"
+           includes="eml-faq.xml" processor="trax"/>
     <copy todir="${build.docs}" filtering="no">
       <fileset dir=".">
         <include name="default.css"/>

@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-06-14 02:05:51 $'
-#      '$Revision: 1.20 $'
+#          '$Date: 2002-09-06 16:01:12 $'
+#      '$Revision: 1.21 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,9 +33,9 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.0beta9
+Version: 2.0.0rc1
 
-Feedback and bugs to: knb-software@nceas.ucsb.edu
+Feedback and bugs to: eml-dev@ecoinformatics.org
                       http://bugzilla.ecoinformatics.org
 
 Contributors: Matt Jones (jones@nceas.ucsb.edu)
@@ -61,7 +61,7 @@ an XML markup syntax for ecologically relevant metadata.  It was originally
 based on work done by the ESA Committee on the Future of Long-Term
 Ecological Data (http://esa.sdsc.edu/FLED/FLED.html) and on a related paper
 on ecological metadata by Michener et al. (see Michener, William K., et al., 
-1997. Ecological Appications, "Nongeospatial metadata for the ecological 
+1997. Ecological Applications, "Nongeospatial metadata for the ecological 
 sciences" Vol 7(1). pp. 330-342.).  Version 1.4 follows that paper closely in
 its implementation, but Version 2 has been modified substantially after
 experience using the standard and from feedback from the ecological community.
@@ -73,26 +73,27 @@ of each of the modules.
 
 FILES
 -----
-The files in this directory include both a Document Type Definition and 
-an XML Schema document for each of the modules that make up EML.
-Also included is a schema for supporting documentation.
+The files in this directory include a XML Schema document for 
+each of the modules that make up EML.  Also included is a schema 
+for supporting documentation, and an instance document defining 
+standard attribute units for EML.
 
-The files are a part of the proposed release of EML 2.0.  
-A number of issues still need to be worked out before the final
-version 2 release, but this version has now stabiized and we expect
-only minor modifications between this version and the final version 2
-release.  This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_BETA_9".  Previous versions of EML (such as 1.4) 
+The files are a part of the proposed release of EML 2.0.0.
+This is the first release candidate.  We expect no changes
+to these files for the final EML 2.0.0 release.  This release is 
+being made available for final testing and feedback before the final
+release is made.  Note that there have been 9 beta releases prior
+to this during which substantial/philosophical changes were introduced.
+This release of EML can be retrieved from CVS using the 
+tag "RELEASE_EML_2_0_0_RC_1".  Previous versions of EML (such as 1.4) 
 are available from this repository using the appropriate release tag 
 (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) Complete work on the XSLT stylesheets.  Most are done but there
-   are still a few missing.  Also need to figure out how to import
-   stylesheets so that templates are not rewritten for each 
-   module (bug 249).
-2) Resolve issues with eml-literature (bug 492)
+1) Complete work on the XSLT stylesheets.  Need to convert stylesheets
+   to the new structure (they currently work with the BETA6 release
+   (bug 249).
 
 ADDITIONS AND IMPROVEMENTS
 --------------------------
