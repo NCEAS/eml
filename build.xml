@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-02 22:19:29 $'
-      '$Revision: 1.46 $'
+        '$Author: jones $'
+          '$Date: 2002-10-03 01:40:13 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,6 +49,8 @@
         value="lib/xalan-j_2_4_0/xalan.jar"/>
     <property name="xml-apis"
         value="lib/xalan-j_2_4_0/xml-apis.jar"/>
+    <!--jdom jar files-->
+    <property name="jdom" value="lib/jdom.jar"/>
     <!-- The location of the docbook XSL stylesheet-->
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
@@ -85,7 +87,7 @@
     <property name="cos" value="lib/cos.jar"/>
     <property name="jnet" value="lib/jnet.jar"/>
     <property name="servlet" value="lib/servlet.jar"/>
-    <property name="cpath" value="${servlet}:${cos}:${jnet}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${build.dir}/${name}.jar"/>
+    <property name="cpath" value="${servlet}:${cos}:${jnet}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
   </target>
