@@ -33,4 +33,4 @@ Also, the determination of measurementScale is rather arbitrary. All nonNUmerica
 
 
 Currently Unimplemented:
-	Currently, actual data is not included in the eml2 document. Neither are modules other than access, dataset, entity, attribute, and physical.
+	Currently, modules other than access, dataset, entity, attribute, and physical are not included in the translated package. Data is not inserted 'in-line' but rather the 'online/url' element is set with the metacat url for downloading the data.
