@@ -1,0 +1,55 @@
+<!--         
+      '$RCSfile: iso-party.dtd,v $'
+      Purpose: This dtd mimics the content model found in 
+               iso-party.xsd.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Chad Berkley
+
+     '$Author: berkley $'
+       '$Date: 2000-07-14 15:15:47 $'
+   '$Revision: 1.1 $'
+-->
+
+<!ENTITY % responsibleParty "((individualName | organizationName | positionName),
+                             contactInfo*, roleCode+)">
+
+<!ELEMENT individualName (salutation, givenName, surName)>
+<!ELEMENT salutation (#PCDATA)>
+<!ELEMENT givenName (#PCDATA)>
+<!ELEMENT surName (#PCDATA)>
+
+<!ELEMENT organizationName (#PCDATA)>
+<!ELEMENT positionName (#PCDATA)>
+
+<!ELEMENT contactInfo (phone?, address?, onlineResource?, hoursOfService?,
+                       contactInstructions?)>
+<!ELEMENT phone ( (voice | facsimile | (other, otherType))+ )>
+<!ELEMENT voice (#PCDATA)>
+<!ELEMENT facsimile (#PCDATA)>
+<!ELEMENT other (#PCDATA)>
+<!ELEMENT otherType (#PCDATA)>
+<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, postalCode?, country?,
+                   electronicMailAddress*)>
+<!ELEMENT deliveryPoint (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT administrativeArea (#PCDATA)>
+<!ELEMENT postalCode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT electronicMailAddress (#PCDATA)>
+
+<!ELEMENT onlineResource (linkage, protocol?, applicationProfile?, name?, description?, 
+                          functionCode?)>
+<!ELEMENT linkage (URL)>
+<!ELEMENT URL (#PCDATA)> <!-- could restrict URL syntax here -->
+<!ELEMENT protocol (#PCDATA)>
+<!ELEMENT applicationProfile (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT functionCode (#PCDATA)>
+
+<!ELEMENT hoursOfService (#PCDATA)>
+<!ELEMENT contactInstructions (#PCDATA)>
+<!ELEMENT roleCode (#PCDATA)>
+
+<!-- EOF -->
