@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-31 21:26:27 $'
-      '$Revision: 1.90 $'
+          '$Date: 2002-10-31 22:05:39 $'
+      '$Revision: 1.91 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -168,7 +168,7 @@
               restrictions on the length of attribute names, and on the
               use of special characters like spaces in the name, so the
               attribute name is often not particularly useful for display
-              (use attributeLable for display).  The attributeName is
+              (use attributeLabel for display).  The attributeName is
               usually the name of the variable that is found in the header
               of a data file.
               </doc:description>
@@ -186,7 +186,7 @@
               <doc:tooltip>Attribute label</doc:tooltip>
               <doc:summary>A label for displaying an attribute name.
               </doc:summary>
-              <doc:description>A descriptive label that canbe used to display
+              <doc:description>A descriptive label that can be used to display
               the name of an attribute.  This is often a longer, possibly
               multiple word name for the attribute than the attributeName. It
               is not constrained by system limitations on length or special
@@ -216,7 +216,7 @@
               methods element as well.
               </doc:description>
               <doc:example>"spden" is the number of individuals of all
-              macroinvertebrate species found in the plot</doc:example>
+              macro invertebrate species found in the plot</doc:example>
 
             </xs:appinfo>
           </xs:annotation>
@@ -322,7 +322,7 @@
                     <doc:tooltip>Nominal scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
-                    nominal scale variable, which are varibales that are
+                    nominal scale variable, which are variables that are
                     categorical in nature.</doc:description>
                     <doc:example>Nominal is used when numbers have only been
                     assigned to a variable for the purpose of categorizing the
@@ -445,7 +445,7 @@
               observed values of an attribute all fall within the domain
               of the attribute (i.e., missing value codes should be parsed out
               of the data stream before examining the data for domain
-              violoations.</doc:description>
+              violations.</doc:description>
 
             </xs:appinfo>
           </xs:annotation>
@@ -643,7 +643,7 @@
         further information on STMML (http://www.xml-cml.org/stmml/) or
         see stmml.xsd which is included with the EML 2.0 distribution for
         details. If it is a date-time format, the format string must comply
-        withthe ISO 8601 specification.</doc:description>
+        with the ISO 8601 specification.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -747,7 +747,7 @@
             designator, and placing any of the components out of
             descending order is non-standard according to ISO.  Nevertheless,
             these formats can be described using the format string to
-            accomodate existing data.
+            accommodate existing data.
             </para>
             <para xmlns="">
             Precision for date-time values can be extended by indicating in
@@ -818,7 +818,7 @@
         values prescribed by the attributeDomain.  For example, if a
         numeric attribute has a domain with a minimum value of 7,
         there should be no values less that 7 in the data for
-        that attribute. However, note thatthe observed range of data
+        that attribute. However, note that the observed range of data
         values might be smaller than the domain (i.e., values that are
         possible in terms of the domain will not always be observed in
         the actual data).</doc:description>
@@ -935,7 +935,7 @@
                     than a codeList means that interpretation of the
                     data is dependent upon future users being able to
                     obtain the code definitions, so care should be taken
-                    to only use higly standardized external code sets that
+                    to only use highly standardized external code sets that
                     will be available for many years.  If at all possible,
                     it is preferable to define the codes inline using the
                     codeList element.</doc:description>
@@ -1203,7 +1203,7 @@
         minimum and maximum values of a numeric attribute. These
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
-        a given data set (descriptive). The informationin
+        a given data set (descriptive). The information in
         numericDomain and in precision together constitutes
         sufficient information to decide upon an appropriate
         system specific data type for representing a particular
@@ -1403,9 +1403,9 @@
         <doc:summary>The enumerated list of standard units, mainly
         SI</doc:summary>
         <doc:description>The unitDictionary element enumerates the standard set
-        of units that are included with the EML distribution, mailnly from the
+        of units that are included with the EML distribution, mainly from the
         SI standard. These unit names can be used in the standardUnit filed to
-        describe an attribute's units. The units are defined in the STMML
+        describe an attributer's units. The units are defined in the STMML
         language in a document that is shipped with each release of
         EML. See the accompanying STMML file eml-unitDictionary.xml for
         precise, quantitative definitions of each of these units and their
