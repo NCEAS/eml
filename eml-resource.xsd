@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0" 
-    xmlns="eml://ecoinformatics.org/resource-2.0.0" 
-    targetNamespace="eml://ecoinformatics.org/resource-2.0.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0" 
-  schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0" 
-  schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0" 
-  schemaLocation="eml-text.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" xmlns:txt="eml://ecoinformatics.org/text-2.0.0" xmlns:rp="eml://ecoinformatics.org/party-2.0.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0" xmlns="eml://ecoinformatics.org/resource-2.0.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0" schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -31,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-12-06 22:23:43 $'
-      '$Revision: 1.75 $'
+        '$Author: blankman $'
+          '$Date: 2003-09-09 20:10:50 $'
+      '$Revision: 1.76 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -96,7 +85,6 @@
         resources.</doc:description>
         <doc:example>Please see the individual sub-fields for specific
         examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -111,7 +99,6 @@
             from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -133,7 +120,6 @@
             appropriate place to store a filename associated with other storage
             systems.</doc:description>
             <doc:example>vernal-data-1999</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -152,7 +138,6 @@
             language if not English/en).</doc:description>
             <doc:example>Vernal pool amphibian density data, Isla Vista,
             1990-1996.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -169,7 +154,6 @@
             resource.</doc:description>
             <doc:example>For a book, the creators are its
             authors.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -184,7 +168,6 @@
             documentation for the resource.</doc:description>
             <doc:example>The scientist who collected the data, sometimes a data
             technician, or other individual.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -200,7 +183,6 @@
             roles in the creation or maintenance of the resource, and these
             roles should be indicated in the "role" element.</doc:description>
             <doc:example>The technician who collected the data.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -218,7 +200,6 @@
                       roles include technician, reviewer, principal
                       investigator, and many others.</doc:description>
                       <doc:example>principalInvestigator</doc:example>
-                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
@@ -238,7 +219,6 @@
             the full year, month, and day. Note that month and day are optional
             components. Formats must conform to ISO 8601.</doc:description>
             <doc:example>1999-10-26</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -252,7 +232,6 @@
             This can be a well-known language name, or one of the ISO language
             codes to be more precise.</doc:description>
             <doc:example>English</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -266,7 +245,6 @@
             journal may be part of a series of the journal for a particular
             year.</doc:description>
             <doc:example>Volume 20</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -278,7 +256,6 @@
             <doc:description>A brief overview of the resource that is being
             documented. The abstract should include basic information that
             summarizes the resource.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -296,7 +273,6 @@
             delimiters).</doc:description>
             <doc:example>Please see the examples for the subfields contained
             within this field.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -313,7 +289,6 @@
                   keyword (i.e., keywords should not be separated by commas or
                   other delimiters).</doc:description>
                   <doc:example>biodiversity</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -331,7 +306,6 @@
                           <doc:example>
                           "discipline","place","stratum","temporal","thematic",
                           or "taxonomic"</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:attribute>
@@ -349,7 +323,6 @@
                   keyword thesaurus from which keyword was derived. The keyword
                   thesauri are usually discipline specific.</doc:description>
                   <doc:example>IRIS keyword thesaurus</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -366,7 +339,6 @@
             characterized by the other resource metadata
             fields.</doc:description>
             <doc:example>Copyright 2001, Robert Warner</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -386,7 +358,6 @@
             <doc:example>Copyright 2001 Regents of the University of California
             Santa Barbara. Free for use by all individuals provided that the
             owners are acknowledged in any use or publication.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -400,7 +371,6 @@
             resource is distributed online and offline. Connections to online
             systems can be described as URLs and as a list of relevant
             connection parameters.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -415,7 +385,6 @@
             entire extent to which all of the data might
             apply.</doc:description>
             <doc:example>See the coverage module for examples.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -429,7 +398,6 @@
         <doc:description>This field provides a restricted list of categories
         that a keyword may fall under.</doc:description>
         <doc:example>place</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -448,7 +416,6 @@
         <doc:description>This type is the union of the built-in types for year
         and date.</doc:description>
         <doc:example>1999, or 2001-03-15</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="xs:gYear xs:date"/>
@@ -565,7 +532,6 @@
                     be used instead of the URL element.</doc:description>
                     <doc:example>
                     http://data.org/getdata?id=98332</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -688,7 +654,6 @@
                     protocol and its parameters, but not the actual values
                     to be used to make the connection (instead, see the
                     connection element).</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -705,7 +670,6 @@
               digitally, such as 3.5" floppy disk, or various tape media types,
               or 'hardcopy'</doc:description>
               <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -722,7 +686,6 @@
                     termed 'hardcopy'.</doc:description>
                     <doc:example>Tape, 3.5 inch Floppy Disk,
                     hardcopy</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -737,7 +700,6 @@
                     tape.</doc:description>
                     <doc:example>High Density (HD), Double Density
                     (DD)</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -749,7 +711,6 @@
                     <doc:description>if a density is given numerically, the
                     units should be given here.</doc:description>
                     <doc:example>B/cm</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -762,7 +723,6 @@
                     <doc:description>the total volume of the storage medium on
                     which this resource is shipped.</doc:description>
                     <doc:example>650 MB</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -775,7 +735,6 @@
                     <doc:description>the file system format of the medium on
                     which the resource is shipped</doc:description>
                     <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -786,38 +745,13 @@
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertinent information about
                     the media</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inline">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Inline distribution</doc:tooltip>
-              <doc:summary>Object data distributed inline in the metadata.
-              </doc:summary>
-              <doc:description>Object data distributed inline in the metadata.
-              Users have the option of including the data right inline in the
-              metadata by providing it inside of the "inline" element.  For
-              many text formats, the data can be simply included directly in
-              the element.  However, certain character sequences are invalid in
-              an XML document (e.g., &lt;), so care will need to be taken to 
-              either 1) wrap the data in a CDATA section if needed, or 
-              2) encode the data using a text encoding algorithm such as
-              base64, and then include that in a CDATA section.  The latter
-              will be necessary for binary formats.
-              </doc:description>
-              
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:any maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
+        <xs:element name="inline" type="InlineType">
         </xs:element>
       </xs:choice>
       <xs:group ref="ReferencesGroup"/>
@@ -842,7 +776,6 @@
         used by multiple connections (e.g., to download different files
         from the same database), but each connection must provide or
         reference a valid connection definition.</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -866,7 +799,6 @@
               EML to adopt a more comprehensive standard such as WSDL, but for
               now this simpler description is provided.</doc:description>
               <doc:example>metacat</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -886,7 +818,6 @@
                       </doc:description>
                       <doc:example>
                       http://knb.ecoinformatics.org/knb/</doc:example>
-                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -919,7 +850,6 @@
               desired object.  The response will either be an XML document
               or a multipart-form-encoded response containing data.
               </doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -935,7 +865,6 @@
               of information needed for the request.  Parameters may also set
               default values that are used if a connection does not provide a
               value for a parameter.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -949,7 +878,6 @@
                     <doc:description>The name of a parameter that is needed to
                     properly use this connection scheme.</doc:description>
                     <doc:example>hostname</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -966,7 +894,6 @@
                     <doc:example>The fully qualified name of the internet host
                     that is providing the metacat service, as would be returned
                     by a Domain Name System (DNS) query.</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -986,7 +913,6 @@
                     in the connection always override any default values
                     provided in the conneciton definition.</doc:description>
                     <doc:example>metacat.nceas.ucsb.edu</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1040,4 +966,31 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
+  <xs:complexType name="InlineType" mixed="true">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Inline distribution</doc:tooltip>
+        <doc:summary>Object data distributed inline in the metadata.
+              </doc:summary>
+        <doc:description>Object data distributed inline in the metadata.
+              Users have the option of including the data right inline in the
+              metadata by providing it inside of the "inline" element.  For
+              many text formats, the data can be simply included directly in
+              the element.  However, certain character sequences are invalid in
+              an XML document (e.g., &lt;), so care will need to be taken to 
+              either 1) wrap the data in a CDATA section if needed, or 
+              2) encode the data using a text encoding algorithm such as
+              base64, and then include that in a CDATA section.  The latter
+              will be necessary for binary formats.
+              </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="true">
+      <xs:restriction base="xs:anyType">
+        <xs:sequence>
+          <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
 </xs:schema>
