@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<phys:physical
+    xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="eml://ecoinformatics.org/physical-2.0.0rc1 eml-physical.xsd">
+
+  <dataObject>
+    <objectName>data.txt</objectName>
+    <size>22</size>
+  </dataObject>
+
+  <dataFormat>
+    <asciiDelimited>
+      <fieldDelimiter>,</fieldDelimiter>
+      <numHeaderLines>1</numHeaderLines>
+      <maxRecordLength>10</maxRecordLength>
+      <quoteCharacter>"</quoteCharacter>
+      <recordDelimiter>\n</recordDelimiter>
+      <literalCharacter>\</literalCharacter>
+    </asciiDelimited>
+  </dataFormat>
+
+  <distribution>
+    <online>
+      <url>http://www.somewhere.org/data.txt</url>
+    </online>
+  </distribution>
+</phys:physical>
