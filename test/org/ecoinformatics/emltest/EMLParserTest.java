@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-30 19:54:09 $'
- * '$Revision: 1.4 $'
+ *     '$Date: 2002-09-30 19:56:10 $'
+ * '$Revision: 1.5 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,6 @@ public class EMLParserTest extends TestCase
 {
   private final static String VALID = "test/eml.xml";
   private final static String ERROR1 = "test/eml-error1.xml";
-  private final static String ERROR2 = "test/eml-error2.xml";
   private final static String ERROR3 = "test/eml-error3.xml";
   private final static String ERROR4 = "test/eml-error4.xml";
 
