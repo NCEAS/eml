@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-31 16:05:33 $'
-      '$Revision: 1.60 $'
+          '$Date: 2002-10-31 20:48:39 $'
+      '$Revision: 1.61 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -231,7 +231,7 @@
     <echo>
       ************************************************
         Docbook html created.  The html docbook file
-        is docs/eml-{$version}/eml-docbook.html.
+        is docs/eml-${version}/eml-docbook.html.
       ************************************************
     </echo>
   </target>
@@ -253,12 +253,12 @@
     <echo>
       ************************************************
         FAQ rendered to HTML.  The html file
-        is docs/eml-{$version}/eml-faq.html.
+        is docs/eml-${version}/eml-faq.html.
       ************************************************
     </echo>
   </target>
 
-  <target name="tablehtml">
+  <target name="tablehtml" depends="init">
     <copy file="default.css" todir="${build.docs}"/>
     <style basedir="." style="buildDependencyTable.xsl"
            in="eml.xsd"
@@ -267,12 +267,12 @@
     <echo>
       ************************************************
         Dependency Table rendered to HTML.
-        The html file is docs/eml-{$version}/eml-dependencies.html.
+        The html file is docs/eml-${version}/eml-dependencies.html.
       ************************************************
     </echo>
   </target>
 
-  <target name="buildenumerations">
+  <target name="buildenumerations" depends="init">
     <style basedir="." style="getunits.xsl"
            in="eml-unitDictionary.xml"
            out="${build.docs}/eml-${version}/enumerations.xml"
@@ -280,7 +280,7 @@
     <echo>
       ************************************************
                     enumerations created.
-                  see docs/eml-{$version}/enumerations.xml
+                  see docs/eml-${version}/enumerations.xml
       ************************************************
     </echo>
   </target>

@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 21:16:08 $'
-      '$Revision: 1.2 $'
+          '$Date: 2002-10-31 20:48:39 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,26 +49,29 @@
     <xsl:for-each select="/stmml:unitList/unitType">
       <xsl:if test="count(./dimension) = 1">
         <xsl:if test="./dimension/@name = 'length'">
-          <!--the name of the unitType with only a length dimension-->
-          <xsl:variable name="unittypename">
-            <xsl:value-of select="./@name"/>
-          </xsl:variable>
-          <!--go through each unit looking for the base unit-->
-          <xsl:for-each select="//unit">
-            <xsl:if test="./@unitType = $unittypename">
-              <xsl:variable name="baseunit">
-                <xsl:value-of select="./@name"/>
-              </xsl:variable>
-              <!--list the base unit with dimension = length-->
-              <xsl:call-template name="unit"/>
-              <!--go through and get each unit derived from the base unit-->
-              <xsl:for-each select="//unit">
-                <xsl:if test="./@parentSI=$baseunit">
-                  <xsl:call-template name="unit"/>
-                </xsl:if>
-              </xsl:for-each>
-            </xsl:if>
-          </xsl:for-each>
+          <xsl:if test="not(boolean(./dimension/@power))">
+
+            <!--the name of the unitType with only a length dimension-->
+            <xsl:variable name="unittypename">
+              <xsl:value-of select="./@name"/>
+            </xsl:variable>
+            <!--go through each unit looking for the base unit-->
+            <xsl:for-each select="//unit">
+              <xsl:if test="./@unitType = $unittypename">
+                <xsl:variable name="baseunit">
+                  <xsl:value-of select="./@name"/>
+                </xsl:variable>
+                <!--list the base unit with dimension = length-->
+                <xsl:call-template name="unit"/>
+                <!--go through and get each unit derived from the base unit-->
+                <xsl:for-each select="//unit">
+                  <xsl:if test="./@parentSI=$baseunit">
+                    <xsl:call-template name="unit"/>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:if>
         </xsl:if>
       </xsl:if>
     </xsl:for-each>

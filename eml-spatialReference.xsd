@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" 
-    xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc3" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
-    targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc3" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3"
+    xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc3"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3"
+    targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc3"
     elementFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3"
   schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -26,9 +26,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-30 17:58:27 $'
-      '$Revision: 1.31 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-31 20:48:39 $'
+      '$Revision: 1.32 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,9 +53,9 @@
               Schema for validating spatial referencing descriptions.
             </title>
             <para>
-             This module defines both projected and uprojected coordinate systems for 
+             This module defines both projected and uprojected coordinate systems for
              referencing the spatial coordinates of a dataset to the earth. The schema is based on
-             that used by Environmental Systems Research Inc (ESRI) for its .prj file format. EML provides a library of 
+             that used by Environmental Systems Research Inc (ESRI) for its .prj file format. EML provides a library of
              pre-defined coordinate systems that may be referred to by name in the horizCoordSysName element. A
              custom projection may be defined using this schema for any projection that does not appear in this
              dictionary.
@@ -2266,7 +2266,7 @@
                           two adjacent depth values, expressed in Depth
                           Distance Units of measure.</doc:summary>
                           <doc:description/>
-                          
+
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2277,7 +2277,7 @@
                           <doc:summary>The units in which depths are
                           recorded.</doc:summary>
                           <doc:description/>
-                          
+
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2288,7 +2288,7 @@
                           <doc:summary>The means used to encode
                           depths.</doc:summary>
                           <doc:description/>
-                          
+
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2311,7 +2311,7 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Datum</doc:tooltip>
-            <doc:summary>The point on the earth representing the origin for the geographic 
+            <doc:summary>The point on the earth representing the origin for the geographic
             coordinates to which the coorinate system is related to.</doc:summary>
             <doc:description/>
             <doc:example>WGS_1984</doc:example>
@@ -2479,7 +2479,7 @@
                             <doc:tooltip>Parameter Description</doc:tooltip>
                             <doc:summary>A description of the Parameter.</doc:summary>
                             <doc:description/>
-                            <doc:example>An offset by which x origin has been adjusted, 
+                            <doc:example>An offset by which x origin has been adjusted,
                             expressed in projection units</doc:example>
                           </xs:appinfo>
                         </xs:annotation>
@@ -2525,7 +2525,7 @@
                       <doc:summary>The name of the projection method.</doc:summary>
                       <doc:description>EML does not attempt to document the details
                       of the particular projection algorithm. It is incumbent on metadata provider
-                      to ensure that the meaning of the names used to identify the method and its parameters will be 
+                      to ensure that the meaning of the names used to identify the method and its parameters will be
                       as clear as possible.</doc:description>
                       <doc:example>Transverse_Mercator</doc:example>
                     </xs:appinfo>
@@ -2558,37 +2558,38 @@
   <xs:element name="spatialReference" type="SpatialReferenceType"/>
   <xs:simpleType name="lengthUnits">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="meter"/>
-      <xs:enumeration value="nanometer"/>
-      <xs:enumeration value="micrometer"/>
-      <xs:enumeration value="micron"/>
-      <xs:enumeration value="millimeter"/>
-      <xs:enumeration value="centimeter"/>
-      <xs:enumeration value="decimeter"/>
-      <xs:enumeration value="dekameter"/>
-      <xs:enumeration value="hectometer"/>
-      <xs:enumeration value="kilometer"/>
-      <xs:enumeration value="megameter"/>
-      <xs:enumeration value="angstrom"/>
-      <xs:enumeration value="inch"/>
-      <xs:enumeration value="Foot_US"/>
-      <xs:enumeration value="foot"/>
-      <xs:enumeration value="Foot_Gold_Coast"/>
-      <xs:enumeration value="fathom"/>
-      <xs:enumeration value="nauticalMile"/>
-      <xs:enumeration value="yard"/>
-      <xs:enumeration value="Yard_Indian"/>
-      <xs:enumeration value="Link_Clarke"/>
-      <xs:enumeration value="Yard_Sears"/>
-      <xs:enumeration value="mile"/>
-      <xs:enumeration value="waveNumber"/>
+      <enumeration value="meter"/>
+      <enumeration value="nanometer"/>
+      <enumeration value="micrometer"/>
+      <enumeration value="micron"/>
+      <enumeration value="millimeter"/>
+      <enumeration value="centimeter"/>
+      <enumeration value="decimeter"/>
+      <enumeration value="dekameter"/>
+      <enumeration value="hectometer"/>
+      <enumeration value="kilometer"/>
+      <enumeration value="megameter"/>
+      <enumeration value="angstrom"/>
+      <enumeration value="inch"/>
+      <enumeration value="Foot_US"/>
+      <enumeration value="foot"/>
+      <enumeration value="Foot_Gold_Coast"/>
+      <enumeration value="fathom"/>
+      <enumeration value="nauticalMile"/>
+      <enumeration value="yard"/>
+      <enumeration value="Yard_Indian"/>
+      <enumeration value="Link_Clarke"/>
+      <enumeration value="Yard_Sears"/>
+      <enumeration value="mile"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="angleUnits">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="degree"/>
-      <xs:enumeration value="gradient"/>
-      <xs:enumeration value="radian"/>
+      <enumeration value="radian"/>
+      <enumeration value="degree"/>
+      <enumeration value="grad"/>
+      <enumeration value="degree"/>
+      <enumeration value="grad"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

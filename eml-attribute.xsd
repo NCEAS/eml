@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-31 17:49:27 $'
-      '$Revision: 1.88 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-31 20:48:39 $'
+      '$Revision: 1.89 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -301,8 +301,8 @@
               <doc:example>Interval is used for data which consist of
               equidistant points on a scale. The Celsius scale is an interval
               scale, since each degree is equal but there is no natural
-              zero point (so, 20 C is not twice as hot as 10 C). Date-time 
-              values are also interval scale values, and special fields for 
+              zero point (so, 20 C is not twice as hot as 10 C). Date-time
+              values are also interval scale values, and special fields for
               describing date-time formats and domains are provided.
               </doc:example>
               <doc:example>Ratio is used for data which consists not only of
@@ -390,9 +390,9 @@
                     <xs:element name="precision" type="PrecisionType"
                       minOccurs="1"/>
                     <xs:choice minOccurs="1">
-                      <xs:element name="numericDomain" 
+                      <xs:element name="numericDomain"
                         type="NumericDomainType"/>
-                      <xs:element name="dateTimeDomain" 
+                      <xs:element name="dateTimeDomain"
                         type="DateTimeDomainType"/>
                     </xs:choice>
                   </xs:sequence>
@@ -636,8 +636,8 @@
         field</doc:summary>
         <doc:description>This field identifies the unit of measurement
         for this attribute. It is a choice of either a standard SI unit,
-        a custom unit, or a date-time format. If it is a custom unit, 
-        the definition of the unit must be provided in the document using 
+        a custom unit, or a date-time format. If it is a custom unit,
+        the definition of the unit must be provided in the document using
         the STMML syntax, and the name provided in the customUnit element must
         reference the id of its associated STMML definition precisely. For
         further information on STMML (http://www.xml-cml.org/stmml/) or
@@ -693,7 +693,7 @@
             expressed in a format that conforms to the ISO 8601 standard.  This
             field allows one to specify the format string that should
             be used to decode the date or time value.  To describe the format
-            of an attribute containing date-time values, construct a string 
+            of an attribute containing date-time values, construct a string
             representation of the format using the following symbols:
             </para>
             <para xmlns="">
@@ -707,15 +707,15 @@
             T   time designator (demarcates date and time parts of date-time)
             Z   UTC designator, indicating value is in UTC time
             .   indicates a decimal fraction of a unit
-            +/- indicates a positive or negative number, 
+            +/- indicates a positive or negative number,
                 or a positive or negative time zone adjustment relative to UTC
             -   indicates a separator between date components
             A/P am or pm designator
             </literalLayout>
             </para>
             <para xmlns="">
-            Any other character in the format string is interpreted as a 
-            separator character.  Here are some examples of the format 
+            Any other character in the format string is interpreted as a
+            separator character.  Here are some examples of the format
             strings that can be constructed.
             </para>
             <para xmlns="">
@@ -738,21 +738,21 @@
             strict about the order of date components and the separators that
             are legal.  Best practice is to follow the ISO 8601 format
             precisely.  However, we recognize that existing data contain
-            non-standard dates, and existing equipment (e.g., sensors) may 
+            non-standard dates, and existing equipment (e.g., sensors) may
             still be producing non-standard dates.  Consequently, we have
             provided the formatting string with additional characters to
             describe the date formats. In particular note that the use of a
-            slash (/) to separate date components, a space to separate date 
-            and time components, using a twelve-hour time with am/pm 
+            slash (/) to separate date components, a space to separate date
+            and time components, using a twelve-hour time with am/pm
             designator, and placing any of the components out of
             descending order is non-standard according to ISO.  Nevertheless,
-            these formats can be described using the format string to 
+            these formats can be described using the format string to
             accomodate existing data.
             </para>
             <para xmlns="">
             Precision for date-time values can be extended by indicating in
             the format that additional decimals can be used.  Only the final
-            unit (e.g., seconds in a time value) can use the extended digits 
+            unit (e.g., seconds in a time value) can use the extended digits
             according to the ISO 8601 standard.
             </para>
             <para xmlns="">
@@ -767,8 +767,8 @@
             assuming that the conversion software has a detailed knowledge of
             the Gregorian calendar. Note that this field would not be used if
             one is recording time durations.  In that case, one should use a
-            standard unit such as seconds, nominalMinute or nominalDay, or a 
-            customUnit that defines the unit in terms of its relationship to 
+            standard unit such as seconds, nominalMinute or nominalDay, or a
+            customUnit that defines the unit in terms of its relationship to
             SI second.
             </para>
             </doc:description>
@@ -1413,177 +1413,199 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="undefined"/>
-      <xs:enumeration value="dimensionless"/>
-      <xs:enumeration value="second"/>
-      <xs:enumeration value="meter"/>
-      <xs:enumeration value="kilogram"/>
-      <xs:enumeration value="kelvin"/>
-      <xs:enumeration value="coulomb"/>
-      <xs:enumeration value="ampere"/>
-      <xs:enumeration value="mole"/>
-      <xs:enumeration value="candela"/>
-      <xs:enumeration value="number"/>
-      <xs:enumeration value="nanogram"/>
-      <xs:enumeration value="microgram"/>
-      <xs:enumeration value="milligram"/>
-      <xs:enumeration value="centigram"/>
-      <xs:enumeration value="decigram"/>
-      <xs:enumeration value="gram"/>
-      <xs:enumeration value="dekagram"/>
-      <xs:enumeration value="hectogram"/>
-      <xs:enumeration value="megagram"/>
-      <xs:enumeration value="Celsius"/>
-      <xs:enumeration value="nanometer"/>
-      <xs:enumeration value="micrometer"/>
-      <xs:enumeration value="micron"/>
-      <xs:enumeration value="millimeter"/>
-      <xs:enumeration value="centimeter"/>
-      <xs:enumeration value="decimeter"/>
-      <xs:enumeration value="dekameter"/>
-      <xs:enumeration value="hectometer"/>
-      <xs:enumeration value="kilometer"/>
-      <xs:enumeration value="megameter"/>
-      <xs:enumeration value="angstrom"/>
-      <xs:enumeration value="nanosecond"/>
-      <xs:enumeration value="microsecond"/>
-      <xs:enumeration value="millisecond"/>
-      <xs:enumeration value="centisecond"/>
-      <xs:enumeration value="decisecond"/>
-      <xs:enumeration value="dekasecond"/>
-      <xs:enumeration value="hectosecond"/>
-      <xs:enumeration value="kilosecond"/>
-      <xs:enumeration value="megasecond"/>
-      <xs:enumeration value="minute"/>
-      <xs:enumeration value="hour"/>
-      <xs:enumeration value="microliter"/>
-      <xs:enumeration value="milliliter"/>
-      <xs:enumeration value="liter"/>
-      <xs:enumeration value="gallon"/>
-      <xs:enumeration value="quart"/>
-      <xs:enumeration value="radian"/>
-      <xs:enumeration value="degree"/>
-      <xs:enumeration value="gradient"/>
-      <xs:enumeration value="megahertz"/>
-      <xs:enumeration value="kilohertz"/>
-      <xs:enumeration value="hertz"/>
-      <xs:enumeration value="millihertz"/>
-      <xs:enumeration value="newton"/>
-      <xs:enumeration value="joule"/>
-      <xs:enumeration value="calorie"/>
-      <xs:enumeration value="british thermal unit"/>
-      <xs:enumeration value="foot pound"/>
-      <xs:enumeration value="lumen"/>
-      <xs:enumeration value="lux"/>
-      <xs:enumeration value="becquerel"/>
-      <xs:enumeration value="gray"/>
-      <xs:enumeration value="sievert"/>
-      <xs:enumeration value="katal"/>
-      <xs:enumeration value="henry"/>
-      <xs:enumeration value="megawatt"/>
-      <xs:enumeration value="kilowatt"/>
-      <xs:enumeration value="watt"/>
-      <xs:enumeration value="milliwatt"/>
-      <xs:enumeration value="megavolt"/>
-      <xs:enumeration value="kilovolt"/>
-      <xs:enumeration value="volt"/>
-      <xs:enumeration value="millivolt"/>
-      <xs:enumeration value="farad"/>
-      <xs:enumeration value="ohm"/>
-      <xs:enumeration value="ohmMeters"/>
-      <xs:enumeration value="siemens"/>
-      <xs:enumeration value="weber"/>
-      <xs:enumeration value="tesla"/>
-      <xs:enumeration value="pascal"/>
-      <xs:enumeration value="megapascal"/>
-      <xs:enumeration value="kilopascal"/>
-      <xs:enumeration value="atmosphere"/>
-      <xs:enumeration value="bar"/>
-      <xs:enumeration value="millibar"/>
-      <xs:enumeration value="poundsPerSquareInch"/>
-      <xs:enumeration value="milliGramsPerMilliLiter"/>
-      <xs:enumeration value="gramsPerLiter"/>
-      <xs:enumeration value="kilogramsPerCubicMeter"/>
-      <xs:enumeration value="milligramsPerCubicMeter"/>
-      <xs:enumeration value="microgramsPerLiter"/>
-      <xs:enumeration value="milligramsPerLiter"/>
-      <xs:enumeration value="gramsPerCubitCentimeter"/>
-      <xs:enumeration value="gramsPerMilliliter"/>
-      <xs:enumeration value="gramsPerLiterPerDay"/>
-      <xs:enumeration value="litersPerSecond"/>
-      <xs:enumeration value="milligramsPerSquareMeter"/>
-      <xs:enumeration value="are"/>
-      <xs:enumeration value="hectare"/>
-      <xs:enumeration value="kilogramsPerHectare"/>
-      <xs:enumeration value="squareKilometers"/>
-      <xs:enumeration value="squareMillimeters"/>
-      <xs:enumeration value="squareCentimeters"/>
-      <xs:enumeration value="tonne"/>
-      <xs:enumeration value="tonnePerHectare"/>
-      <xs:enumeration value="bushel"/>
-      <xs:enumeration value="acre"/>
-      <xs:enumeration value="bushelsPerAcre"/>
-      <xs:enumeration value="litersPerHectare"/>
-      <xs:enumeration value="squareMeterPerKilogram"/>
-      <xs:enumeration value="squareMeter"/>
-      <xs:enumeration value="cubitMeter"/>
-      <xs:enumeration value="cubicMeter"/>
-      <xs:enumeration value="metersPerSecond"/>
-      <xs:enumeration value="metersPerSecondSquared"/>
-      <xs:enumeration value="waveNumber"/>
-      <xs:enumeration value="cubicMeterPerKilogram"/>
-      <xs:enumeration value="amperePerSquareMeter"/>
-      <xs:enumeration value="amperePerMeter"/>
-      <xs:enumeration value="molePerCubicMeter"/>
-      <xs:enumeration value="candelaPerSquareMeter"/>
-      <xs:enumeration value="molarity"/>
-      <xs:enumeration value="molality"/>
-      <xs:enumeration value="metersPerDay"/>
-      <xs:enumeration value="feetPerDay"/>
-      <xs:enumeration value="feetPerSecond"/>
-      <xs:enumeration value="feetPerHour"/>
-      <xs:enumeration value="yardsPerSecond"/>
-      <xs:enumeration value="milesPerHour"/>
-      <xs:enumeration value="milesPerSecond"/>
-      <xs:enumeration value="milesPerMinute"/>
-      <xs:enumeration value="cubicFeetPerSecond"/>
-      <xs:enumeration value="kilogramPerCubicMeter"/>
-      <xs:enumeration value="metersSquaredPerDay"/>
-      <xs:enumeration value="feetSquaredPerDay"/>
-      <xs:enumeration value="centimetersPerSecond"/>
-      <xs:enumeration value="millimetersPerSecond"/>
-      <xs:enumeration value="gramsPerCentimeterSquaredPerSecond"/>
-      <xs:enumeration value="gramsPerMeterSquaredPerYear"/>
-      <xs:enumeration value="kilogramsPerHectarePerYear"/>
-      <xs:enumeration value="kilogramsPerMeterSquaredPerYear"/>
-      <xs:enumeration value="centimeterPerYear"/>
-      <xs:enumeration value="molesPerGram"/>
-      <xs:enumeration value="millimolesPerGram"/>
-      <xs:enumeration value="amountOfSubstanceWeightFlux"/>
-      <xs:enumeration value="tonnesPerYear"/>
-      <xs:enumeration value="gramsPerYear"/>
-      <xs:enumeration value="numberPerMeterSquared"/>
-      <xs:enumeration value="numberPerKilometerSquared"/>
-      <xs:enumeration value="numberPerMeterCubed"/>
-      <xs:enumeration value="inch"/>
-      <xs:enumeration value="Foot_US"/>
-      <xs:enumeration value="foot"/>
-      <xs:enumeration value="Foot_Gold_Coast"/>
-      <xs:enumeration value="fathom"/>
-      <xs:enumeration value="nauticalMile"/>
-      <xs:enumeration value="yard"/>
-      <xs:enumeration value="Yard_Indian"/>
-      <xs:enumeration value="Link_Clarke"/>
-      <xs:enumeration value="Yard_Sears"/>
-      <xs:enumeration value="mile"/>
-      <xs:enumeration value="pint"/>
-      <xs:enumeration value="pound"/>
-      <xs:enumeration value="ton"/>
-      <xs:enumeration value="squareFoot"/>
-      <xs:enumeration value="squareYard"/>
-      <xs:enumeration value="squareMile"/>
-      <xs:enumeration value="cubicInch"/>
-      <xs:enumeration value="fahrenheit"/>
+      <enumeration value="dimensionless"/>
+      <enumeration value="second"/>
+      <enumeration value="meter"/>
+      <enumeration value="kilogram"/>
+      <enumeration value="kelvin"/>
+      <enumeration value="coulomb"/>
+      <enumeration value="ampere"/>
+      <enumeration value="mole"/>
+      <enumeration value="candela"/>
+      <enumeration value="number"/>
+      <enumeration value="cubicMeter"/>
+      <enumeration value="nominalMinute"/>
+      <enumeration value="nominalHour"/>
+      <enumeration value="nominalDay"/>
+      <enumeration value="nominalWeek"/>
+      <enumeration value="nominalYear"/>
+      <enumeration value="nominalLeapYear"/>
+      <enumeration value="nanogram"/>
+      <enumeration value="microgram"/>
+      <enumeration value="milligram"/>
+      <enumeration value="centigram"/>
+      <enumeration value="decigram"/>
+      <enumeration value="gram"/>
+      <enumeration value="dekagram"/>
+      <enumeration value="hectogram"/>
+      <enumeration value="megagram"/>
+      <enumeration value="tonne"/>
+      <enumeration value="pound"/>
+      <enumeration value="ton"/>
+      <enumeration value="celsius"/>
+      <enumeration value="fahrenheit"/>
+      <enumeration value="nanometer"/>
+      <enumeration value="micrometer"/>
+      <enumeration value="micron"/>
+      <enumeration value="millimeter"/>
+      <enumeration value="centimeter"/>
+      <enumeration value="decimeter"/>
+      <enumeration value="dekameter"/>
+      <enumeration value="hectometer"/>
+      <enumeration value="kilometer"/>
+      <enumeration value="megameter"/>
+      <enumeration value="angstrom"/>
+      <enumeration value="inch"/>
+      <enumeration value="Foot_US"/>
+      <enumeration value="foot"/>
+      <enumeration value="Foot_Gold_Coast"/>
+      <enumeration value="fathom"/>
+      <enumeration value="nauticalMile"/>
+      <enumeration value="yard"/>
+      <enumeration value="Yard_Indian"/>
+      <enumeration value="Link_Clarke"/>
+      <enumeration value="Yard_Sears"/>
+      <enumeration value="mile"/>
+      <enumeration value="nanosecond"/>
+      <enumeration value="microsecond"/>
+      <enumeration value="millisecond"/>
+      <enumeration value="centisecond"/>
+      <enumeration value="decisecond"/>
+      <enumeration value="dekasecond"/>
+      <enumeration value="hectosecond"/>
+      <enumeration value="kilosecond"/>
+      <enumeration value="megasecond"/>
+      <enumeration value="minute"/>
+      <enumeration value="hour"/>
+      <enumeration value="kiloliter"/>
+      <enumeration value="microliter"/>
+      <enumeration value="milliliter"/>
+      <enumeration value="liter"/>
+      <enumeration value="gallon"/>
+      <enumeration value="quart"/>
+      <enumeration value="bushel"/>
+      <enumeration value="cubicInch"/>
+      <enumeration value="pint"/>
+      <enumeration value="radian"/>
+      <enumeration value="degree"/>
+      <enumeration value="grad"/>
+      <enumeration value="megahertz"/>
+      <enumeration value="kilohertz"/>
+      <enumeration value="hertz"/>
+      <enumeration value="millihertz"/>
+      <enumeration value="newton"/>
+      <enumeration value="joule"/>
+      <enumeration value="calorie"/>
+      <enumeration value="britishThermalUnit"/>
+      <enumeration value="footPound"/>
+      <enumeration value="lumen"/>
+      <enumeration value="lux"/>
+      <enumeration value="becquerel"/>
+      <enumeration value="gray"/>
+      <enumeration value="sievert"/>
+      <enumeration value="katal"/>
+      <enumeration value="henry"/>
+      <enumeration value="megawatt"/>
+      <enumeration value="kilowatt"/>
+      <enumeration value="watt"/>
+      <enumeration value="milliwatt"/>
+      <enumeration value="megavolt"/>
+      <enumeration value="kilovolt"/>
+      <enumeration value="volt"/>
+      <enumeration value="millivolt"/>
+      <enumeration value="farad"/>
+      <enumeration value="ohm"/>
+      <enumeration value="ohmMeter"/>
+      <enumeration value="siemen"/>
+      <enumeration value="weber"/>
+      <enumeration value="tesla"/>
+      <enumeration value="pascal"/>
+      <enumeration value="megapascal"/>
+      <enumeration value="kilopascal"/>
+      <enumeration value="atmosphere"/>
+      <enumeration value="bar"/>
+      <enumeration value="millibar"/>
+      <enumeration value="kilogramsPerSquareMeter"/>
+      <enumeration value="gramsPerSquareMeter"/>
+      <enumeration value="milligramsPerSquareMeter"/>
+      <enumeration value="kilogramsPerHectare"/>
+      <enumeration value="tonnePerHectare"/>
+      <enumeration value="poundsPerSquareInch"/>
+      <enumeration value="kilogramPerCubicMeter"/>
+      <enumeration value="milliGramsPerMilliLiter"/>
+      <enumeration value="gramsPerLiter"/>
+      <enumeration value="milligramsPerCubicMeter"/>
+      <enumeration value="microgramsPerLiter"/>
+      <enumeration value="milligramsPerLiter"/>
+      <enumeration value="gramsPerCubicCentimeter"/>
+      <enumeration value="gramsPerMilliliter"/>
+      <enumeration value="gramsPerLiterPerDay"/>
+      <enumeration value="litersPerSecond"/>
+      <enumeration value="cubicMetersPerSecond"/>
+      <enumeration value="cubicFeetPerSecond"/>
+      <enumeration value="squareMeter"/>
+      <enumeration value="are"/>
+      <enumeration value="hectare"/>
+      <enumeration value="squareKilometers"/>
+      <enumeration value="squareMillimeters"/>
+      <enumeration value="squareCentimeters"/>
+      <enumeration value="acre"/>
+      <enumeration value="squareFoot"/>
+      <enumeration value="squareYard"/>
+      <enumeration value="squareMile"/>
+      <enumeration value="litersPerSquareMeter"/>
+      <enumeration value="bushelsPerAcre"/>
+      <enumeration value="litersPerHectare"/>
+      <enumeration value="squareMeterPerKilogram"/>
+      <enumeration value="metersPerSecond"/>
+      <enumeration value="metersPerDay"/>
+      <enumeration value="feetPerDay"/>
+      <enumeration value="feetPerSecond"/>
+      <enumeration value="feetPerHour"/>
+      <enumeration value="yardsPerSecond"/>
+      <enumeration value="milesPerHour"/>
+      <enumeration value="milesPerSecond"/>
+      <enumeration value="milesPerMinute"/>
+      <enumeration value="centimetersPerSecond"/>
+      <enumeration value="millimetersPerSecond"/>
+      <enumeration value="centimeterPerYear"/>
+      <enumeration value="knots"/>
+      <enumeration value="kilometersPerHour"/>
+      <enumeration value="metersPerSecondSquared"/>
+      <enumeration value="waveNumber"/>
+      <enumeration value="cubicMeterPerKilogram"/>
+      <enumeration value="cubicMicrometersPerGram"/>
+      <enumeration value="amperePerSquareMeter"/>
+      <enumeration value="amperePerMeter"/>
+      <enumeration value="molePerCubicMeter"/>
+      <enumeration value="molarity"/>
+      <enumeration value="molality"/>
+      <enumeration value="candelaPerSquareMeter"/>
+      <enumeration value="metersSquaredPerSecond"/>
+      <enumeration value="metersSquaredPerDay"/>
+      <enumeration value="feetSquaredPerDay"/>
+      <enumeration value="kilogramsPerMeterSquaredPerSecond"/>
+      <enumeration value="gramsPerCentimeterSquaredPerSecond"/>
+      <enumeration value="gramsPerMeterSquaredPerYear"/>
+      <enumeration value="gramsPerHectarePerDay"/>
+      <enumeration value="kilogramsPerHectarePerYear"/>
+      <enumeration value="kilogramsPerMeterSquaredPerYear"/>
+      <enumeration value="molesPerKilogram"/>
+      <enumeration value="molesPerGram"/>
+      <enumeration value="millimolesPerGram"/>
+      <enumeration value="molesPerKilogramPerSecond"/>
+      <enumeration value="nanomolesPerGramPerSecond"/>
+      <enumeration value="kilogramsPerSecond"/>
+      <enumeration value="tonnesPerYear"/>
+      <enumeration value="gramsPerYear"/>
+      <enumeration value="numberPerMeterSquared"/>
+      <enumeration value="numberPerKilometerSquared"/>
+      <enumeration value="numberPerMeterCubed"/>
+      <enumeration value="metersPerGram"/>
+      <enumeration value="numberPerGram"/>
+      <enumeration value="gramsPerGram"/>
+      <enumeration value="microgramsPerGram"/>
+      <enumeration value="cubicCentimetersPerCubicCentimeters"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
