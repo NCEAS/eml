@@ -1,10 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:rp="iso:ResponsibleParty"
-           xmlns:cov="eml:coverage"
-           xmlns:cit="eml:literature"
-           targetNamespace="eml:research">
-
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns:cov="eml:coverage" xmlns:cit="eml:literature" xmlns="eml:project" targetNamespace="eml:project">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-project.xsd,v $'
@@ -13,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-11 19:10:04 $'
-      '$Revision: 1.14 $'
+          '$Date: 2001-07-13 02:56:21 $'
+      '$Revision: 1.15 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,13 +33,10 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
-  <xs:import namespace="eml:coverage" 
-             schemaLocation = "./eml-coverage.xsd"/>
-  <xs:import namespace="eml:literature" 
-             schemaLocation = "./eml-literature.xsd"/>
-
-  <xs:element name="eml-research">
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
+  <xs:import namespace="eml:literature" schemaLocation="./eml-literature.xsd"/>
+  <xs:element name="eml-project">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
@@ -58,8 +50,7 @@
            Eml-research element represents the research project 
            employed by the researchers who created this dataset.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The eml-reasearch was introduced into EML 1.4 as eml-context.
         </lineage>
@@ -67,8 +58,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "identifier" type = "xs:string"
-                    minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="identifier" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -86,9 +76,7 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </description>
-              <example>
-               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-              </example>
+              <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
               <lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -96,16 +84,18 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="system" use="optional" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <tooltip>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" use="optional" type="xs:string">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
                     Catalog system
                   </tooltip>
-                  <summary>
+                      <summary>
                     The catalog system in which this identifier is used.
                   </summary>
-                  <description>
+                      <description>
                     This element gives the name of the catalog system in which
                     this identifier is used.  It is useful to determine the
                     scope of the identifier, and to determine the semantics
@@ -113,24 +103,22 @@
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
                   </description>
-                  <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]>
-                  </example>
-                  <lineage>
+                      <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]></example>
+                      <lineage>
                     New to EML 2.0.
                   </lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-
-        <xs:element ref="researchProject" minOccurs="1" maxOccurs="unbounded" />
-
+        <xs:element ref="researchProject" minOccurs="1" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
   <xs:element name="researchProject">
     <xs:annotation>
       <xs:appinfo>
@@ -147,8 +135,7 @@
           created this dataset. It can include research methods, 
           data collection methods, equations, formulas. 
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The researchProject element was introduced into EML 1.4.
         </lineage>
@@ -156,8 +143,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="title" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
+        <xs:element ref="title" type="xs:string" minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -169,17 +155,14 @@
               <description>
                 Title of the research project
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The title element was introduced into EML 1.4.
               </lineage>
             </xs:appinfo>
-          </xs:annotation> 
+          </xs:annotation>
         </xs:element>
-
-        <xs:element ref="originator" type="rp:ResponsibleParty"
-                    minOccurs="1" maxOccurs="unbounded">
+        <xs:element ref="originator" type="rp:ResponsibleParty" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -191,17 +174,14 @@
               <description>
                 The party who created the research project.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
               </lineage>
             </xs:appinfo>
-          </xs:annotation> 
+          </xs:annotation>
         </xs:element>
-
-        <xs:element name="temporalDescription"
-                    minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="temporalDescription" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -214,8 +194,7 @@
                 This element describes the temporal coverage of the project.
                 It specifies the duration, start and end date of the project.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The temporalDescription element was introduced into EML 1.4.
               </lineage>
@@ -223,8 +202,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="temporalCov" type="cov:TemporalCoverage"
-                          minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -237,21 +215,17 @@
                         This element specifies temporal coverage of the 
                       research project.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The temporalCoverage was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="objectives"
-                    minOccurs="0" maxOccurs="1">
+        <xs:element name="objectives" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -264,8 +238,7 @@
                 Description of scope and purpose of the research project
                 in paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The objectives element was introduced into EML 1.4.
               </lineage>
@@ -273,14 +246,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="abstract"
-                    minOccurs="0" maxOccurs="1">
+        <xs:element name="abstract" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -292,8 +262,7 @@
               <description>
                 Descriptive abstract in paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The abstract element was introduced into EML 1.4.
               </lineage>
@@ -301,14 +270,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="funding"
-                    minOccurs="0" maxOccurs="1">
+        <xs:element name="funding" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -321,8 +287,7 @@
                 Grant and contract numbers, names and addresses of
                 funding sources described in paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The funding element was introduced into EML 1.4.
               </lineage>
@@ -330,23 +295,14 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
-        <xs:element ref="siteDescription"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-
-        <xs:element ref="designDescription"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-
-        <xs:element ref="methodDescription"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-
-        <xs:element name="staff" type="rp:ResponsibleParty"
-                          minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="siteDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="designDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="methodDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="staff" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -362,13 +318,11 @@
                 FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
               </lineage>
             </xs:appinfo>
-          </xs:annotation> 
+          </xs:annotation>
         </xs:element>
-
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
   <xs:element name="siteDescription">
     <xs:annotation>
       <xs:appinfo>
@@ -384,8 +338,7 @@
           geological, hydrological, hystorical, meteorological
           information.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The siteDescription element was introduced into EML 1.4.
         </lineage>
@@ -393,8 +346,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="paragraph" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="siteType" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -408,8 +360,7 @@
                 Site type - description, e.g., short-grass prairie,
                 blackwater stream, etc. in paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The siteType element was introduced into EML 1.4.
               </lineage>
@@ -417,12 +368,10 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="geography" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -437,8 +386,7 @@
                 of the project in Cartesian coordinates, paragraph of text
                 or citation from some source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The geography element was introduced into EML 1.4.
               </lineage>
@@ -446,8 +394,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="geographicCov" type="cov:GeographicCoverage" 
-                          minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="geographicCov" type="cov:GeographicCoverage" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -460,23 +407,18 @@
                       This element is to specify the geographical coordinates
                       of the site of the project: latitude and longitude.
                     </description>
-                    <example>
-                    </example>
+                    <example/>
                     <lineage>
                       The geographicCoverage element was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-        
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="habitat" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -490,8 +432,7 @@
                 Detailed characteristics of habitat sampled in the site:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The habitat element was introduced into EML 1.4.
               </lineage>
@@ -499,14 +440,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="geology" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -520,8 +458,7 @@
                 Detailed characteristics of geology and landform of the site:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The geology element was introduced into EML 1.4.
               </lineage>
@@ -529,14 +466,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="hydrology" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -550,8 +484,7 @@
                 Hydrological description of the site:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The hydrology element was introduced into EML 1.4.
               </lineage>
@@ -559,14 +492,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
         <xs:element name="history" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -580,8 +510,7 @@
                 Historical description of the site:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The history element was introduced into EML 1.4.
               </lineage>
@@ -589,14 +518,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="climate" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -610,8 +536,7 @@
                 Climatic description of the site:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The climate element was introduced into EML 1.4.
               </lineage>
@@ -619,18 +544,14 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-              
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
   <xs:element name="chapterTitle">
     <xs:annotation>
       <xs:appinfo>
@@ -643,8 +564,7 @@
         <description>
           Chapter title of the source where the citation comes from.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The chapterTitle element was introduced into EML 1.4.
         </lineage>
@@ -652,12 +572,10 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="title" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>
+        <xs:element name="title" type="xs:string" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-        
   <xs:element name="designDescription">
     <xs:annotation>
       <xs:appinfo>
@@ -672,8 +590,7 @@
           samplings, descriptive paragraph of text or citation from 
           a source.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The designDescription element was introduced into EML 1.4.
         </lineage>
@@ -694,8 +611,7 @@
                 Description of Statistical/sampling design method:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The designMethod element was introduced into EML 1.4.
               </lineage>
@@ -703,14 +619,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
         <xs:element name="plots" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -724,8 +637,7 @@
                 Description of Permanent plot of design of the project:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The plots element was introduced into EML 1.4.
               </lineage>
@@ -733,14 +645,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="sampling" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -755,8 +664,7 @@
                 temporal boundaries, frequency of occurrence,
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The sampling element was introduced into EML 1.4.
               </lineage>
@@ -764,26 +672,18 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="temporalCov" type="cov:TemporalCoverage"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="frequency" type="xs:string"
-                          minOccurs="0" maxOccurs="1"/>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="frequency" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
-        <xs:element name="paragraph" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="cit:LitCitation"
-                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-        
   <xs:element name="methodsDescription">
     <xs:annotation>
       <xs:appinfo>
@@ -799,8 +699,7 @@
           legal information, 
           descriptive paragraph of text or citation from a source.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The methodsDecription element was introduced into EML 1.4.
         </lineage>
@@ -821,8 +720,7 @@
                 Description or reference to field/laboratory method:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The method element was introduced into EML 1.4.
               </lineage>
@@ -830,14 +728,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
         <xs:element name="instrument" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -851,8 +746,7 @@
                 Instruments used:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The instrument element was introduced into EML 1.4.
               </lineage>
@@ -860,14 +754,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="taxonomy" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -881,8 +772,7 @@
                 Taxonomy information:
                 descriptive paragraph of text or citation from a source.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The taxonomy element was introduced into EML 1.4.
               </lineage>
@@ -890,14 +780,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation"
-                          minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
         <xs:element name="permit" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -912,8 +799,7 @@
                 References to pertinent scientific and collecting permits
                 information: descriptive paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The permit element was introduced into EML 1.4.
               </lineage>
@@ -921,12 +807,10 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        
         <xs:element name="legalInformation" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -940,8 +824,7 @@
                 References to pertinent scientific and collecting permits
                 information: descriptive paragraph of text.
               </description>
-              <example>
-              </example>
+              <example/>
               <lineage>
                 The legalInformation element was introduced into EML 1.4.
               </lineage>
@@ -949,18 +832,13 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string"
-                          minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-              
-        <xs:element name="paragraph" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="cit:LitCitation"
-                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-        
 </xs:schema>
