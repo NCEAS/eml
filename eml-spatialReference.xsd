@@ -25,9 +25,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:42 $'
-      '$Revision: 1.25 $'
+        '$Author: mccartne $'
+          '$Date: 2002-10-03 17:55:20 $'
+      '$Revision: 1.26 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,25 +45,23 @@
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
-        <doc:moduleName>eml-spatialReferenceDictionary</doc:moduleName>
+        <doc:moduleName>eml-spatialReference</doc:moduleName>
         <doc:moduleDescription>
           <section xmlns="">
             <title>
               Schema for validating spatial referencing descriptions.
             </title>
             <para>
-             Content standards for spatial referening information are defined externally by
-             the FGDC constant standard for digital geospatial data and by ESRI's extended 
-             profile of the FGDC standard. This schema imports an XML Schema file that defines
-             the ESRI/FGDC specification to allow an xml file containing a list of pre-defined 
-             projection schemes to be validated. A predefined list of projection definitions is shipped
-             with the EML standard as eml-spatialReferenceDictionary.xml. XML files containing custom
-             projection descriptions may be created against this schema and included in an EML package
-             in the additionalMetadata element of eml.xsd.
+             This module defines both projected and uprojected coordinate systems for 
+             referencing the spatial coordinates of a dataset to the earth. The schema is based on
+             that used by Environmental Systems Research Inc (ESRI) for its .prj file format. EML provides a library of 
+             pre-defined coordinate systems that may be referred to by name in the horizCoordSysName element. A
+             custom projection may be defined using this schema for any projection that does not appear in this
+             dictionary.
             </para>
           </section>
         </doc:moduleDescription>
-        <doc:recommendedUsage>all datasets</doc:recommendedUsage>
+        <doc:recommendedUsage>all spatial entities</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
@@ -80,13 +78,21 @@
         identification of a reference datum, a spheroid definition, and
         projection algorithm. It also provides any constants required by that
         algorithm.</doc:description>
-        <doc:lineage>ISO 19115.3</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
         <xs:choice>
           <xs:element name="horizCoordSysName">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Horizonal Coordinate System Name</doc:tooltip>
+                <doc:summary>The name of a predefined coordinate system</doc:summary>
+                <doc:description>The name of a coordinate system for which a definition has been
+                provided in the eml-spatialReferenceDictionary.xsl file.</doc:description>
+                <doc:example>NAD_1927_StatePlane_Arizona_Central_FIPS_0202</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
             <xs:simpleType>
               <xs:restriction base="xs:string">
                 <xs:enumeration value="GCS_Abidjan_1987"/>
@@ -2145,7 +2151,16 @@
               </xs:restriction>
             </xs:simpleType>
           </xs:element>
-          <xs:element name="customHorizCoordSys" type="horizCoordSysType"/>
+          <xs:element name="horizCoordSysDef" type="horizCoordSysType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Horizonal Coordinate System Definition</doc:tooltip>
+                <doc:summary>The definition of a coordinate system</doc:summary>
+                <doc:description>Terms and parameters necessary to define a geographic or projected coordinate
+                system for horizonal distances.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
         </xs:choice>
         <xs:element name="vertCoordSys" minOccurs="0">
           <xs:annotation>
@@ -2154,7 +2169,6 @@
               <doc:summary>The reference frame or system from which vertical
               distances (altitudes or depths) are measured.</doc:summary>
               <doc:description/>
-              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -2169,7 +2183,6 @@
                     the common term "elevation" to conform to the terminology
                     in Federal Information Processing Standards 70-1 and
                     173.</doc:description>
-                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -2182,7 +2195,7 @@
                           taken as the surface of reference from which
                           altitudes are measured.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          <doc:example>WGS_datum</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2194,7 +2207,7 @@
                           two adjacent altitude values, expressed in Altitude
                           Distance Units of measure.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          <doc:example>1</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2205,7 +2218,7 @@
                           <doc:summary>Units in which altitude is
                           measured.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          <doc:example>1</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2216,7 +2229,6 @@
                           <doc:summary>The means used to encode the
                           altitudes.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2230,7 +2242,6 @@
                     <doc:summary>The reference frame or system from which
                     depths are measured.</doc:summary>
                     <doc:description/>
-                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -2243,7 +2254,6 @@
                           reference from which depths are
                           measured.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2294,29 +2304,75 @@
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
-  <xs:element name="horizCoordSys" type="horizCoordSysType">
-    <xs:annotation>
-      <xs:documentation>Comment describing your root element</xs:documentation>
-    </xs:annotation>
-  </xs:element>
   <xs:complexType name="geogCoordSysType">
     <xs:sequence>
       <xs:element name="datum">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Datum</doc:tooltip>
+            <doc:summary>The point on the earth representing the origin for the geographic 
+            coordinates to which the coorinate system is related to.</doc:summary>
+            <doc:description/>
+            <doc:example>WGS_1984</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:attribute name="name" type="xs:string"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="spheroid">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Spheroid</doc:tooltip>
+            <doc:summary>An ellipse that is used to model the earth's surface.</doc:summary>
+            <doc:description>An ellipse is used to define a idealized surface that ignores variation in elevation.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
-          <xs:attribute name="name" type="xs:string"/>
-          <xs:attribute name="semiAxisMajor" type="xs:float"/>
+          <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Spheroid name</doc:tooltip>
+                <doc:summary>The name of the spheroid.</doc:summary>
+                <doc:description/>
+                <doc:example>Bessel 1866</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="semiAxisMajor" type="xs:float">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Semi-axis Major</doc:tooltip>
+                <doc:summary>The larger of two orthogonal axes that define the ellipse</doc:summary>
+                <doc:description/>
+                <doc:example>Meter</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
           <xs:attribute name="denomFlatRatio" type="xs:float"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="primeMeridian">
         <xs:complexType>
-          <xs:attribute name="name" type="xs:string"/>
+          <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Prime Meridian Name</doc:tooltip>
+                <doc:summary>The name of the Prime Meridian</doc:summary>
+                <doc:description/>
+                <doc:example>Greenwich</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
           <xs:attribute name="longitude" use="required">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Longitude</doc:tooltip>
+                <doc:summary>The longitude of the Prime Meridian</doc:summary>
+                <doc:description/>
+                <doc:example>0.0</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
             <xs:simpleType>
               <xs:restriction base="xs:float">
                 <xs:minInclusive value="-180"/>
@@ -2327,9 +2383,35 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="unit">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Unit</doc:tooltip>
+            <doc:summary>The unit of angle by which coordinates are expressed.</doc:summary>
+            <doc:description/>
+            <doc:example>degrees</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
-          <xs:attribute name="name" type="xs:string" use="required"/>
-          <xs:attribute name="radiansPerUnit" type="xs:float" use="required"/>
+          <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Unit Name</doc:tooltip>
+                <doc:summary>The name of the unit of measure .</doc:summary>
+                <doc:description/>
+                <doc:example>Degrees</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="radiansPerUnit" type="xs:float" use="required">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Radians per Unit</doc:tooltip>
+                <doc:summary>The number of radians</doc:summary>
+                <doc:description/>
+                <doc:example>0.0174532925199432955</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
@@ -2337,29 +2419,138 @@
   </xs:complexType>
   <xs:complexType name="horizCoordSysType">
     <xs:choice>
-      <xs:element name="geogCoordSys" type="geogCoordSysType"/>
+      <xs:element name="geogCoordSys" type="geogCoordSysType">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Geographic Coordinate System</doc:tooltip>
+            <doc:summary>The coodinate system used to express the geographic
+                           coordinates.</doc:summary>
+            <doc:description/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="projCoordSys">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Projected Coordinate System</doc:tooltip>
+            <doc:summary>The coodinate system used to express planar coordinates.</doc:summary>
+            <doc:description/>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="geogCoordSys" type="geogCoordSysType"/>
+            <xs:element name="geogCoordSys" type="geogCoordSysType">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Geographic Coordinate System</doc:tooltip>
+                  <doc:summary>The coodinate system used to express the geographic
+                           coordinates.</doc:summary>
+                  <doc:description/>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
             <xs:element name="projection">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Projection</doc:tooltip>
+                  <doc:summary>The method used to tranform between geographic and planar coordinates.
+                  </doc:summary>
+                  <doc:description/>
+                </xs:appinfo>
+              </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="parameter" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Parameter</doc:tooltip>
+                        <doc:summary>A parameter required by the projection method.</doc:summary>
+                        <doc:description>Most projections require one or more parameters to control the
+                          orientation and positon of the projected coordinate plane.</doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
                     <xs:complexType>
-                      <xs:attribute name="name" type="xs:string" use="required"/>
-                      <xs:attribute name="description" type="xs:string" use="optional"/>
-                      <xs:attribute name="value" type="xs:anySimpleType" use="required"/>
+                      <xs:attribute name="name" type="xs:string" use="required">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Parameter Name</doc:tooltip>
+                            <doc:summary>The name of the parameter.</doc:summary>
+                            <doc:description>If the paramter corresponds to one that has been
+                            defined in the existing eml-SpatialReferenceDictionary, then that name should be
+                            used to enhance recogonizability.</doc:description>
+                            <doc:example>False_Easting</doc:example>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="description" type="xs:string" use="optional">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Parameter Description</doc:tooltip>
+                            <doc:summary>A description of the Parameter.</doc:summary>
+                            <doc:description/>
+                            <doc:example>An offset by which x origin has been adjusted, 
+                            expressed in projection units</doc:example>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="value" type="xs:anySimpleType" use="required">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Parameter Value</doc:tooltip>
+                            <doc:summary>The value supplied for the parameter</doc:summary>
+                            <doc:description/>
+                            <doc:example>500000</doc:example>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
                     </xs:complexType>
                   </xs:element>
                   <xs:element name="unit">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Projection Unit</doc:tooltip>
+                        <doc:summary>The unit of measure coordinates are expressed in.</doc:summary>
+                        <doc:description/>
+                      </xs:appinfo>
+                    </xs:annotation>
                     <xs:complexType>
-                      <xs:attribute name="name" type="xs:string" use="required"/>
-                      <xs:attribute name="metersPerUnit" type="xs:float" use="required"/>
+                      <xs:attribute name="name" type="xs:string" use="required">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Projection Unit Name</doc:tooltip>
+                            <doc:summary>The name of the unit of measure.</doc:summary>
+                            <doc:description/>
+                            <doc:example>Meter</doc:example>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="metersPerUnit" type="xs:float" use="required">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Meters per unit</doc:tooltip>
+                            <doc:summary>Number of meters per unit.</doc:summary>
+                            <doc:description>A multiplier to allow any unit ot be related to meters as a standard unit of
+                            measure.</doc:description>
+                            <doc:example>1.0</doc:example>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
                     </xs:complexType>
                   </xs:element>
                 </xs:sequence>
-                <xs:attribute name="name" type="xs:string"/>
+                <xs:attribute name="name" type="xs:string">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Projection Name</doc:tooltip>
+                      <doc:summary>The name of the projection method.</doc:summary>
+                      <doc:description>EML does not attempt to document the details
+                      of the particular projection algorithm. It is incumbent on metadata provider
+                      to ensure that the meaning of the names used to identify the method and its parameters will be 
+                      as clear as possible.</doc:description>
+                      <doc:example>Transverse_Mercator</doc:example>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
@@ -2371,7 +2562,19 @@
   <xs:element name="projectionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="horizCoordSysDef" type="horizCoordSysType" maxOccurs="unbounded"/>
+        <xs:element name="horizCoordSysDef" type="horizCoordSysType" maxOccurs="unbounded">
+                    <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Horizonal Coordinate System Definition</doc:tooltip>
+                <doc:summary>The definition of a coordinate system</doc:summary>
+                <doc:description>Terms and parameters necessary to define a geographic or projected coordinate
+                system for horizonal distances.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+
+        
+        
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
