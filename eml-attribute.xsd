@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-12-06 03:42:03 $'
-      '$Revision: 1.96 $'
+          '$Date: 2002-12-06 21:59:50 $'
+      '$Revision: 1.97 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@
             associated units. Much of Ecology is driven by measurement, and
             most measurements are inherently comparative. Good data description
             requires a representation of the basis for comparison, i.e., the
-            unit. In modelling the attribute element, the authors of EML drew
+            unit. In modeling the attribute element, the authors of EML drew
             inspiration from the
             <ulink url="http://physics.nist.gov/cuu/Units/introduction.html">
             NIST Reference on Constants, Units, and Uncertainty</ulink>.
@@ -193,7 +193,7 @@
         "measurement1" in dataTable "survey1" has a precision of 0.1 and
         you are documenting dataTable survey2 which has an attribute called
         "measurement1" but the survey2's measurement1 has a precision of
-        0.001 then these are different attributes and must be decribed
+        0.001 then these are different attributes and must be described
         separately.</doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -304,7 +304,7 @@
               often be a superset of the allowed domain defined in
               attributeDomain. Values for this field are by default drawn from
               the XML Schema Datatypes standard values, such as: integer,
-              double, string, etc. If the XML Schema datatypes are not used,
+              double, string, etc. If the XML Schema Datatypes are not used,
               the type system from which the values are derived should be
               listed in the 'typeSystem' attribute described below. This field
               represents a 'hint' to processing systems as to how the attribute
@@ -918,7 +918,7 @@
         such as "HIGH" and "LOW".  Text domains are used for attributes
         that allow more free-form text fields, but still permit some
         specification of the value-space through pattern matching.  A
-        text domain is ususally used for comment and notes attributes,
+        text domain is usually used for comment and notes attributes,
         and other character attributes that don't have a precise set of
         constrained values. This is an important field for post processing
         and error checking of the dataset. It represents a formal 
@@ -1120,7 +1120,7 @@
                           <doc:tooltip>Value Attribute
                           Reference</doc:tooltip>
                           <doc:summary>A reference to the id of the
-                          attrribute that contains the list of
+                          attribute that contains the list of
                           codes</doc:summary>
                           <doc:description>The valueAttributeReference
                           element is a reference to the id of the
@@ -1137,7 +1137,7 @@
                           <doc:tooltip>Definition Attribute
                           Reference</doc:tooltip>
                           <doc:summary>A reference to the id of the
-                          attrribute that contains the definition of
+                          attribute that contains the definition of
                           codes</doc:summary>
                           <doc:description>The
                           definitionAttributeReference element is a
@@ -1196,7 +1196,7 @@
               have a finite set of values.  Another use is for
               describing the domain of textual fields like comments
               that allow any legal string value.</doc:description>
-              <doc:example>Typically, a textdomain will have an empty
+              <doc:example>Typically, a text domain will have an empty
               pattern or one that constrains allowable values. For
               example, '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows for only
               numeric digits in the pattern of a US phone
@@ -1512,7 +1512,7 @@
         SI</doc:summary>
         <doc:description>The unitDictionary element enumerates the standard set
         of units that are included with the EML distribution, mainly from the
-        SI standard. These unit names can be used in the standardUnit filed to
+        SI standard. These unit names can be used in the standardUnit field to
         describe an attributer's units. The units are defined in the STMML
         language in a document that is shipped with each release of
         EML. See the accompanying STMML file eml-unitDictionary.xml for
