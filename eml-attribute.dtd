@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-08 20:36:47 $'
-      '$Revision: 1.16 $'
+          '$Date: 2002-05-10 16:21:56 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,57 +69,13 @@
 <!ELEMENT pattern (#PCDATA)>
 <!ELEMENT minimum (#PCDATA)>
 <!ELEMENT maximum (#PCDATA)>
-<!ELEMENT accuracy (%DataQuality;)>
+<!ELEMENT accuracy (%Accuracy;)>
 
 <!-- DataQuality entity that goes with the DataQuality type in eml-attribute.xsd -->
-<!ENTITY % DataQuality "(attributeAccuracy?, logicalConsistencyReport, completenessReport,
-                         positionalAccuracy?, lineage, cloudCover?)">
-<!ELEMENT attributeAccuracy (attributeAccuracyReport, 
-                             quantitativeAttributeAccuracyAssessment)>
+<!ENTITY % Accuracy "(attributeAccuracyReport, quantitativeAttributeAccuracyAssessment)">
 <!ELEMENT attributeAccuracyReport (#PCDATA)>
 <!ELEMENT quantitativeAttributeAccuracyAssessment (attributeAccuracyReport, 
                                                    attributeAccuracyExplanation)>
 <!ELEMENT attributeAccuracyReport (#PCDATA)>
 <!ELEMENT attributeAccuracyExplanation (#PCDATA)>
-<!ELEMENT logicalConsistencyReport (#PCDATA)>
-<!ELEMENT completenessReport (#PCDATA)>
-<!ELEMENT positionalAccuracy (horizontalPositionalAccuracy, verticalPositionalAccuracy)>
-<!ELEMENT horizontalPositionalAccuracy (horizontalPositionalAccuracyReport, 
-                                        quantitativeHorizontalAccuracyAssessment)>
-<!ELEMENT horizontalPositionalAccuracyReport (#PCDATA)>
-<!ELEMENT quantitativeHorizontalAccuracyAssessment (horizontalPositionalAccuracyValue, 
-                                                    horizontalPositionalAccuracyExplanation)>
-<!ELEMENT horizontalPositionalAccuracyValue (#PCDATA)>
-<!ELEMENT horizontalPositionalAccuracyExplanation (#PCDATA)>
-<!ELEMENT verticalPositionalAccuracy (verticalPositionalAccuracyReport, 
-                                      quantitativeVerticalAccuracyAssessment)>
-<!ELEMENT verticalPositionalAccuracyReport (#PCDATA)>
-<!ELEMENT quantitativeVerticalAccuracyAssessment (verticalPositionalAccuracyValue, 
-                                                  verticalPositionalAccuracyExplanation)>
-<!ELEMENT verticalPositionalAccuracyValue (#PCDATA)>
-<!ELEMENT verticalPositionalAccuracyExplanation (#PCDATA)>
-<!ELEMENT lineage (sourceInformation?, processStep)>
-<!ELEMENT sourceInformation (sourceCitation, sourceScaleDenominator?, typeOfSourceMedia, 
-                             sourceTimePeriodOfContent, sourceCitationAbbreviation,
-                             sourceContribution)>
-<!ELEMENT sourceCitation (%LitCitation;)>
-<!ELEMENT sourceScaleDenominator (#PCDATA)>
-<!ELEMENT typeOfSourceMedia (#PCDATA)>
-<!ELEMENT sourceTimePeriodOfContent (timePeriodInformation, sourceCurrentnessReference)>
-<!ELEMENT timePeriodInformation (%TemporalCoverage;)>
-<!ELEMENT sourceCurrentnessReference (#PCDATA)>
-<!ELEMENT sourceCitationAbbreviation (#PCDATA)>
-<!ELEMENT sourceContribution (#PCDATA)>
-<!ELEMENT processStep (processDescription, sourceUsedCitationAbbreviation*,
-                       processDate, processTime, sourceProducedCitationAbbreviation*,
-                       processContact)>
-<!ELEMENT processDescription (#PCDATA)>
-<!ELEMENT sourceUsedCitationAbbreviation (#PCDATA)>
-<!ELEMENT processDate (#PCDATA)>
-<!ELEMENT processTime (#PCDATA)>
-<!ELEMENT sourceProducedCitationAbbreviation (#PCDATA)>
-<!ELEMENT processContact (%ResponsibleParty;)>
-<!ELEMENT cloudCover (#PCDATA)>
-
-
 
