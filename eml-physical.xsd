@@ -19,9 +19,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: berkley $'
-          '$Date: 2004-06-14 17:10:18 $'
-      '$Revision: 1.67 $'
+        '$Author: jones $'
+          '$Date: 2004-07-01 22:09:09 $'
+      '$Revision: 1.68 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -445,7 +445,8 @@
                         </xs:annotation>
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded">
+                            <xs:element name="fieldDelimiter" type="xs:string" 
+                                        maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Field Delimiter character
@@ -482,34 +483,45 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-			    <xs:element name="consecutiveDelimitersAreSingle" minOccurs="0">
-			      <xs:annotation>
-			 	<xs:appinfo>
-				  <doc:tooltip>Treat consecutive delimiters as single</doc:tooltip>
-				  <doc:summary>Specification of how to handle consecutive delimiters
-              			  while parsing </doc:summary>
-				  <doc:description>The consecutiveDelimitersAreSingle element
-              			  specifies whether sequential delimiters should be treated as a single 
-              			  delimiter or multiple delimiters.  An example is when a space delimiter is used;
-				  often there may be several repeated spaces that should be treated as a 
-				  single delimiter, but not always. The valid values are yes or no. 
-				  If it is set to yes, then consecutive delimiters will be seen as single.  
-				  If set to no, then consecutive delimiters will be treated as seperate 
-				  delimiters. Default behaviour is no; hence, consecutive delimiters 
-				  will be treated as seperate delimiters, by default.
-              			  </doc:description>
-				  <doc:example>yes</doc:example>
-				  <doc:example>no</doc:example>
-				</xs:appinfo>
-			      </xs:annotation>
-			      <xs:simpleType>
-				<xs:restriction base="xs:string">
-			 	  <xs:enumeration value="yes"/>
-				  <xs:enumeration value="no"/>
-				</xs:restriction>
-			      </xs:simpleType>
-			    </xs:element>
-                            <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="collapseDelimiters" 
+                                        minOccurs="0">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Treat consecutive delimiters
+                                  as one</doc:tooltip>
+                                  <doc:summary>Specification of how to
+                                  handle consecutive delimiters while
+                                  parsing</doc:summary>
+                                  <doc:description>
+                                  The collapseDelimiters element
+                                  specifies whether sequential delimiters
+                                  should be treated as a single delimiter or
+                                  multiple delimiters.    An example is when
+                                  a space delimiter is used; often there may
+                                  be several repeated spaces that should be
+                                  treated as a single delimiter, but not
+                                  always. The valid values are yes or no.
+                                  If it is set to yes, then consecutive
+                                  delimiters will be collapsed to one.  If set
+                                  to no or absent, then consecutive delimiters 
+                                  will be treated as seperate delimiters. 
+                                  Default behaviour is no; hence, consecutive
+                                  delimiters will be treated as seperate
+                                  delimiters, by default.
+                                  </doc:description>
+                                  <doc:example>yes</doc:example>
+                                  <doc:example>no</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:enumeration value="yes"/>
+                                  <xs:enumeration value="no"/>
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="quoteCharacter" type="xs:string" 
+                                        minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Quote character</doc:tooltip>
@@ -535,7 +547,8 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-                            <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="literalCharacter" type="xs:string"
+                                        minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Literal character</doc:tooltip>
@@ -609,7 +622,8 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldWidth" type="xs:unsignedLong">
+                                  <xs:element name="fieldWidth" 
+                                              type="xs:unsignedLong">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field width</doc:tooltip>
@@ -625,7 +639,9 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
+                                  <xs:element name="lineNumber" 
+                                              type="xs:unsignedLong" 
+                                              minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Physical Line Number
@@ -651,7 +667,8 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="fieldStartColumn" type="xs:long" minOccurs="0">
+                                  <xs:element name="fieldStartColumn" 
+                                              type="xs:long" minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Start column
@@ -701,7 +718,8 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldDelimiter" type="xs:string">
+                                  <xs:element name="fieldDelimiter" 
+                                              type="xs:string">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field Delimiter character
@@ -743,7 +761,48 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
+                                  <xs:element name="collapseDelimiters" 
+                                              minOccurs="0">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Treat consecutive
+                                        delimiters as single</doc:tooltip>
+                                        <doc:summary>Specification of how
+                                        to handle consecutive delimiters
+                                        while parsing </doc:summary>
+                                        <doc:description>
+                                        The collapseDelimiters element
+                                        specifies whether sequential delimiters
+                                        should be treated as a single delimiter
+                                        or multiple delimiters.    An example
+                                        is when a space delimiter is used;
+                                        often there may be several repeated
+                                        spaces that should be treated as a
+                                        single delimiter, but not always. The
+                                        valid values are yes or no.  If it
+                                        is set to yes, then consecutive
+                                        delimiters will be collapsed
+                                        to one.  If set to no or absent,
+                                        then consecutive delimiters will
+                                        be treated as seperate delimiters.
+                                        Default behaviour is no; hence,
+                                        consecutive delimiters will be treated
+                                        as seperate delimiters, by default.
+                                        </doc:description>
+                                        <doc:example>yes</doc:example>
+                                        <doc:example>no</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:enumeration value="yes"/>
+                                        <xs:enumeration value="no"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="lineNumber" 
+                                              type="xs:unsignedLong" 
+                                              minOccurs="0">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Physical Line Number
@@ -762,7 +821,7 @@
                                         a data field must be indicated
                                         by both relative row and column
                                         number.
-                                        The lineNumber should never
+                                        The lineNumber should never be
                                         greater that the number of physical
                                         lines per record.  When parsing the
                                         first field on a physical line as
@@ -775,34 +834,9 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-				  <xs:element name="consecutiveDelimitersAreSingle" minOccurs="0">
-			      	    <xs:annotation>
-			 	      <xs:appinfo>
-				  	<doc:tooltip>Treat consecutive delimiters as single</doc:tooltip>
-				  	<doc:summary>Specification of how to handle consecutive delimiters
-              			  	while parsing </doc:summary>
-				  	<doc:description>The consecutiveDelimitersAreSingle element
-              			  	specifies whether sequential delimiters should be treated as a single 
-     	         			delimiter or multiple delimiters.  An example is when a space delimiter is used;
-					often there may be several repeated spaces that should be treated as a 
-					single delimiter, but not always. The valid values are yes or no. 
-					If it is set to yes, then consecutive delimiters will be seen as single.  
-				  	If set to no, then consecutive delimiters will be treated as seperate 
-				  	delimiters. Default behaviour is no; hence, consecutive delimiters 
-				  	will be treated as seperate delimiters, by default.
-              			  	</doc:description>
-				  	<doc:example>yes</doc:example>
-				  	<doc:example>no</doc:example>
-				      </xs:appinfo>
-			            </xs:annotation>
-			      	    <xs:simpleType>
-				      <xs:restriction base="xs:string">
-			 	  	<xs:enumeration value="yes"/>
-				  	<xs:enumeration value="no"/>
-				      </xs:restriction>
-			            </xs:simpleType>
-			          </xs:element>
-                                  <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:element name="quoteCharacter" 
+                                              type="xs:string" minOccurs="0" 
+                                              maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Quote character
@@ -833,7 +867,9 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:element name="literalCharacter" 
+                                              type="xs:string" minOccurs="0" 
+                                              maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Literal character
@@ -903,7 +939,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="formatVersion" type="xs:string" minOccurs="0">
+                    <xs:element name="formatVersion" type="xs:string" 
+                                minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Version</doc:tooltip>
@@ -915,7 +952,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="citation" type="cit:CitationType" minOccurs="0">
+                    <xs:element name="citation" type="cit:CitationType" 
+                                minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format citation</doc:tooltip>
@@ -1071,7 +1109,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="bandrowbytes" type="xs:string" 
+                                minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes per band per row</doc:tooltip>
@@ -1086,7 +1125,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="totalrowbytes" type="xs:string" 
+                                minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Total bytes of data per row</doc:tooltip>
@@ -1100,7 +1140,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="bandgapbytes" type="xs:string" 
+                                minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes between bands</doc:tooltip>
@@ -1119,7 +1160,8 @@
             </xs:choice>
           </xs:complexType>
         </xs:element>
-        <xs:element name="distribution" type="PhysicalDistributionType" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="distribution" type="PhysicalDistributionType" 
+                    minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Distribution Information</doc:tooltip>
@@ -1191,7 +1233,8 @@
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:anyURI">
-                      <xs:attribute name="function" type="res:FunctionType" use="optional" default="download"/>
+                      <xs:attribute name="function" type="res:FunctionType" 
+                                    use="optional" default="download"/>
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
@@ -1225,7 +1268,8 @@
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element name="connectionDefinition" type="res:ConnectionDefinitionType">
+                      <xs:element name="connectionDefinition" 
+                                  type="res:ConnectionDefinitionType">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Connection Definition</doc:tooltip>
@@ -1240,7 +1284,8 @@
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+                      <xs:element name="parameter" minOccurs="0" 
+                                  maxOccurs="unbounded">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Parameter</doc:tooltip>
@@ -1342,7 +1387,8 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
+              <xs:element name="mediumDensityUnits" type="xs:string" 
+                          minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Units of a numerical density</doc:tooltip>
@@ -1365,7 +1411,8 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" 
+                          minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Medium format</doc:tooltip>
