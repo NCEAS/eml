@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="eml:entity">
 
   <xs:annotation>
@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-26 20:23:18 $'
-      '$Revision: 1.10 $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
       <moduleName>
         eml-entity
       </moduleName>
@@ -35,12 +35,12 @@
         The EML Entity Module that defines the the structural
         characteristics of every entity in the dataset.
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
 
   <xs:element name="eml-entity" minOccurs="1" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Entity descriptors
         </tooltip>
@@ -55,14 +55,14 @@
         <lineage>
           The eml-entity was introduced into EML 1.4 as eml-file.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="identifier" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Unique identifier
               </tooltip>
@@ -78,7 +78,7 @@
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element ref="entity" minOccurs="1" maxOccurs="1" />
@@ -88,7 +88,7 @@
 
   <xs:element name="entity">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Entity descriptor
         </tooltip>
@@ -107,14 +107,14 @@
         <lineage>
           The entity element was introduced into EML 1.4 as file.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="entityName" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Entity name
               </tooltip>
@@ -130,14 +130,14 @@
               <lineage>
                 The entityName was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       
         <xs:element name="entitySize" type="xs:string"
                           minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Entity size
               </tooltip>
@@ -154,12 +154,12 @@
               <lineage>
                 The entitySize was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:attribute name="unit" use="required" value="bytes">
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <tooltip>
                     Unit of measurement
                   </tooltip>
@@ -176,7 +176,7 @@
                   <lineage>
                     The unit was introduced into EML 1.4.
                   </lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
             </xs:attribute>        
           </xs:complexType>
@@ -185,7 +185,7 @@
         <xs:element name="entityFormat" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Entity format
               </tooltip>
@@ -203,14 +203,14 @@
               <lineage>
                 The format element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>   
       
         <xs:element name="compressionMethod" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                     Entity's compression method
               </tooltip>
@@ -226,14 +226,14 @@
               <lineage>
                 The compressed element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
     
         <xs:element name="encodingMethod" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                     Encoding Method
               </tooltip>
@@ -249,14 +249,14 @@
               <lineage>
                 The encoded element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
     
         <xs:element name="recordDelimiter" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                   Entity's record delimiter
               </tooltip>
@@ -275,14 +275,14 @@
               <lineage>
                 The recordDelimiter element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>        
 
         <xs:element name="quoteCharacter" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                   Quote character
               </tooltip>
@@ -301,14 +301,14 @@
               <lineage>
                 The quoteCharacter element was taken from the NBII standard.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>        
     
         <xs:element name="orientation" nullable="true"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Entity's record orientation
               </tooltip>
@@ -326,12 +326,12 @@
               <lineage>
                 The orientation element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:attribute name="columnorrow" use="default" value="columnmajor">
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <tooltip>
                       Attribute of orientation element
                   </tooltip>
@@ -349,7 +349,7 @@
                   <lineage>
                     The columnorrow attribute was introduced into EML 1.4.
                   </lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
                 <xs:enumeration value="columnmajor" /> 
@@ -362,7 +362,7 @@
         <xs:element name="numHeaderLines" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Header lines
               </tooltip>
@@ -378,14 +378,14 @@
               <lineage>
                 The numHeaderLines element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       
         <xs:element name="caseSensitive" nullable="true"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Data case sensitiveness
               </tooltip>
@@ -404,12 +404,12 @@
               <lineage>
                 The caseSensitive element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:attribute name="yesorno" use="default" value="yes">
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <tooltip>
                       Attribute of caseSensitive element
                   </tooltip>
@@ -427,7 +427,7 @@
                   <lineage>
                     The yesorno attribute was introduced into EML 1.4.
                   </lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
                 <xs:enumeration value="yes" /> 
@@ -440,7 +440,7 @@
         <xs:element name="geographicCoverage"
                     minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Geographic coverage
               </tooltip>
@@ -458,14 +458,14 @@
               <lineage>
                 The geographicCoverage element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                         Paragraph of text
                     </tooltip>
@@ -482,14 +482,14 @@
                     <lineage>
                       The paragraph element was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>        
       
               <xs:element name="coordinates"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Cartesian coordinates
                     </tooltip>
@@ -506,7 +506,7 @@
                     <lineage>
                       The coordinates element was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
@@ -514,7 +514,7 @@
                     <xs:element name="latitude" type="xs:string"
                                       minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             latitude coordinates
                           </tooltip>
@@ -532,12 +532,12 @@
                           <lineage>
                             The latitude element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                       <xs:complexType>
                         <xs:attribute name="direction" use="required">
                           <xs:annotation>
-                            <xs:appInfo>
+                            <xs:appinfo>
                               <tooltip>
                                   Attribute of latitude element
                               </tooltip>
@@ -554,7 +554,7 @@
                               <lineage>
                                 This attribute was introduced into EML 1.4.
                               </lineage>
-                            </xs:appInfo>
+                            </xs:appinfo>
                           </xs:annotation>
                           <xs:simpleType>
                             <xs:enumeration value="north" /> 
@@ -567,7 +567,7 @@
                     <xs:element name="longitude" type="xs:string"
                                       minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             Longitude coordinates
                           </tooltip>
@@ -585,12 +585,12 @@
                           <lineage>
                             The longitude element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                       <xs:complexType>
                         <xs:attribute name="direction" use="required">
                           <xs:annotation>
-                            <xs:appInfo>
+                            <xs:appinfo>
                               <tooltip>
                                   Attribute of longitude element
                               </tooltip>
@@ -607,7 +607,7 @@
                               <lineage>
                                 This attribute was introduced into EML 1.4.
                               </lineage>
-                            </xs:appInfo>
+                            </xs:appinfo>
                           </xs:annotation>
                           <xs:simpleType>
                             <xs:enumeration value="east" /> 
@@ -626,7 +626,7 @@
         <xs:element name="temporalCoverage" type="TemporalCoverage"
                           minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                   Temporal coverage
               </tooltip>
@@ -642,14 +642,14 @@
               <lineage>
                 The temporalCoverage was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>    
                
         <xs:element name="authentication" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                   Authentication
               </tooltip>
@@ -666,14 +666,14 @@
               <lineage>
                 The authentication was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       
         <xs:element name="dataProblem"
                           minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Data problem
               </tooltip>
@@ -689,14 +689,14 @@
               <lineage>
                 The dataProblem element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="1" maxOccurs="unbounded" >
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                         Paragraph of text
                     </tooltip>
@@ -713,13 +713,13 @@
                     <lineage>
                       The paragraph element was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>        
             </xs:sequence>
             <xs:attribute name="problemType" use="required" >
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <tooltip>
                       Attribute of dataProblem element
                   </tooltip>
@@ -737,7 +737,7 @@
                   <lineage>
                     This attribute was introduced into EML 1.4.
                   </lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
                 <xs:enumeration value="missing" /> 
@@ -753,7 +753,7 @@
 
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
             Temporal coverage
         </tooltip>
@@ -770,13 +770,13 @@
           The TemporalCoverage complex type was introduced
           into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="startDate"
                       minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Start date
             </tooltip>
@@ -792,7 +792,7 @@
             <lineage>
               The startDate element was introduced into EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
@@ -805,7 +805,7 @@
       <xs:element name="stopDate"
                       minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Stop date
             </tooltip>
@@ -821,7 +821,7 @@
             <lineage>
               The stopDate element was introduced into EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
@@ -836,7 +836,7 @@
   <xs:element name="dateTime" type="DateTime"
                   minOccurs="1" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Date and time
         </tooltip>
@@ -854,13 +854,13 @@
           The DateTime complex type was introduced into EML 1.4, and is
           based on the ISO 8601 time standard.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
   </xs:element>
 
   <xs:complexType name="DateTime">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Date and time
         </tooltip>
@@ -878,7 +878,7 @@
           The DateTime complex type was introduced into EML 1.4, and is
           based on the ISO 8601 time standard.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="year" type="xs:string"

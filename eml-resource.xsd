@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
            targetNamespace="eml:resource">
 
@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-22 20:03:38 $'
-      '$Revision: 1.10 $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
      <moduleName>
         eml-resource
       </moduleName>
@@ -39,7 +39,7 @@
         about the resource, including title, abstract, keywords, contacts, and
         the links to associated metadata for the given resource.
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
 
  <!-- import the elements from responsible party for use
@@ -51,7 +51,7 @@
   <!-- resource is the root element. -->
   <xs:element name="resource" type="Resource">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Resource
         </tooltip>
@@ -69,14 +69,14 @@
         <lineage>
           The 'resource' element was introduced into EML 2.0 beta 1.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
   </xs:element>
    
   <!-- the type of Resource is the main choice in the document --> 
   <xs:complexType name="Resource" content="elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Resource type
         </tooltip>
@@ -95,13 +95,13 @@
         <lineage>
           The 'Resource' type was introduced into EML 2.0 beta 1.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
    
     <xs:choice minOccurs="1" maxOccurs="1">
       <xs:element name = "dataset" type = "Dataset">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Dataset
             </tooltip>
@@ -120,13 +120,13 @@
               The 'dataset' element was introduced into EML 2.0 beta 1., but is
               derived from the eml-dataset module from EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
    
       <xs:element name = "literature" type = "Literature">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Literature
             </tooltip>
@@ -145,13 +145,13 @@
             <lineage>
               The 'literature' element was introduced into EML 2.0 beta 1.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
    
       <xs:element name = "software" type = "Software">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Software
             </tooltip>
@@ -173,7 +173,7 @@
               The 'software' element was introduced into EML 2.0 beta 1, however
               it was derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -182,7 +182,7 @@
   <!-- this is the base type that the other types inherit -->
   <xs:complexType name = "ResourceBase" content="elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Resource Base
         </tooltip>
@@ -201,13 +201,13 @@
         <lineage>
           The 'ResourceBase' element was introduced into EML 2.0 beta 1.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "identifier" type = "xs:string"
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Identifier
             </tooltip>
@@ -227,14 +227,14 @@
               The 'identifier' field is derived from the eml-dataset module in
               EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "resourceIdentifier" type = "xs:string"
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Resource identifier
             </tooltip>
@@ -254,13 +254,13 @@
                The 'resourceIdentifier' field is derived from the eml-dataset 
                module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "title" type = "xs:string" 
                   minOccurs="1" maxOccurs="1" >
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Title
             </tooltip>
@@ -278,13 +278,13 @@
               This element was derived from elements described in the ISO 19115.3 standard
               (iso-geo-md-2000June-draft).
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "alternateTitle" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
             </tooltip>
             <summary>
@@ -301,13 +301,13 @@
               This element was derived from elements described in the ISO 19115.3 standard
               (iso-geo-md-2000June-draft).
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "originator" type = "rp:ResponsibleParty" 
                   minOccurs="1" maxOccurs="unbounded" >
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Originator
             </tooltip>
@@ -327,14 +327,14 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       
       <xs:element name = "pubDate" type = "xs:date" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Publication date
             </tooltip>
@@ -355,14 +355,14 @@
               The type 'xs:date' folllows the date standard described in ISO
               8601.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "pubPlace" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Publication place
             </tooltip>
@@ -381,14 +381,14 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "series" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Series
             </tooltip>
@@ -408,14 +408,14 @@
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
               and ISO 19115.3 standard (iso-geo-md-2000June-draft)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "abstract" type = "Abstract" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Abstract
             </tooltip>
@@ -434,14 +434,14 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "keywordInfo" type = "KeywordInfo" 
                   minOccurs="0" maxOccurs="unbounded" >
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Keyword information
             </tooltip>
@@ -460,14 +460,14 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "URL" type = "xs:string" 
                   minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Uniform resource locator
             </tooltip>
@@ -488,14 +488,14 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "additionalInfo" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Additional Information
             </tooltip>
@@ -513,7 +513,7 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -522,7 +522,7 @@
   <xs:complexType name = "Dataset" base = "ResourceBase" 
                   derivedBy = "extension" content = "elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Dataset type
         </tooltip>
@@ -542,13 +542,13 @@
           This complexType was introduced in EML 2.0 beta 1, and is derived from
           the eml-dataset module in EML 1.4.  
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "geoForm" type = "GeoForm" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Geospatial representation
             </tooltip>
@@ -573,7 +573,7 @@
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>  
@@ -582,7 +582,7 @@
   <xs:complexType name = "Software" base = "ResourceBase"
                   derivedBy = "extension" content = "elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Software type
         </tooltip>
@@ -604,13 +604,13 @@
           The Software complexType was introduced into EML 2.0 beta 1, and is
           derived from the eml-software module in EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "versionNumber" type = "xs:string"
                   minOccurs = "0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Version number
             </tooltip>
@@ -630,13 +630,13 @@
               This field was introduced into EML 2.0 beta 1, and is
               derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "sourceModule" type = "xs:string"
                   minOccurs = "0" maxOccurs = "unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Source module
             </tooltip>
@@ -654,13 +654,13 @@
               This field was introduced into EML 2.0 beta 1, and is
               derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "binaryFile" type = "xs:string"
                   minOccurs = "0" maxOccurs = "unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Binary file
             </tooltip>
@@ -678,13 +678,13 @@
               This field was introduced into EML 2.0 beta 1, and is
               derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "location" type = "xs:string"
                   minOccurs = "0" maxOccurs = "unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Software location
             </tooltip>
@@ -702,13 +702,13 @@
               This field was introduced into EML 2.0 beta 1, and is
               derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "programmingLanguage" type = "xs:string"
                   minOccurs = "0" maxOccurs = "unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Programming Language
             </tooltip>
@@ -726,7 +726,7 @@
               This field was introduced into EML 2.0 beta 1, and is
               derived from the eml-software module in EML 1.4.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -735,7 +735,7 @@
   <xs:complexType name = "Literature" base = "ResourceBase" 
                   derivedBy="extension" content = "elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Literature type
         </tooltip>
@@ -754,13 +754,13 @@
         <lineage>
           This field was introduced into EML 2.0 beta 1
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "ISBN" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               International Standard Book Number
             </tooltip>
@@ -779,14 +779,14 @@
               ISO 19115.3 standard (iso-geo-md-2000June-draft) and the ISO
               Standard 2108.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "ISSN" type = "xs:string" 
                   minOccurs="0" maxOccurs="1" >
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               International Standard Serial Number
             </tooltip>
@@ -805,14 +805,14 @@
               ISO 19115.3 standard (iso-geo-md-2000June-draft) and the ISO
               3297-1975; ANSI Z39.9-1979 standard.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "editor" type = "rp:Person" 
                   minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Editor
             </tooltip>
@@ -831,14 +831,14 @@
               This field was introduced into EML 2.0 beta 1, and was derived
               from the FGDC-STD-001.1-1999 standard(nbii-fgdc-std-001.1-1999)
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation> 
       </xs:element>
 
       <xs:element name = "edition" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Edition
             </tooltip>
@@ -857,14 +857,14 @@
               from the FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999) and
               ISO 19115.3 (iso-geo-md-2000June-draft) standards.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
 
       <xs:element name = "volume" type = "xs:string" 
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Volume
             </tooltip>
@@ -881,7 +881,7 @@
             <lineage>
               This field was introduced into EML 2.0 beta 1
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -889,7 +889,7 @@
 
   <xs:complexType name = "Abstract"  content="elementOnly">       
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Abstract type
         </tooltip>
@@ -907,13 +907,13 @@
           This field was introduced into EML 2.0 beta 1, and was derived from
           EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "paragraph" type = "xs:string"
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Abstract paragraph
             </tooltip>
@@ -941,7 +941,7 @@
               This field was introduced into EML 2.0 beta 1, and was derived from
               EML 1.3.
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -949,7 +949,7 @@
   
   <xs:complexType name = "KeywordInfo" content = "elementOnly">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Keyword Information
         </tooltip>
@@ -968,13 +968,13 @@
           This field was introduced into EML 2.0 beta 1, and was derived from
           EML 1.3.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "keyword" type = "xs:string" 
                   minOccurs="1" maxOccurs="1" >
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Keyword
             </tooltip>
@@ -992,13 +992,13 @@
               This field was introduced into EML 2.0 beta 1, and was derived from
               EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "keywordType" type = "KeyTypCode" 
                   minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Keyword type
             </tooltip>
@@ -1017,13 +1017,13 @@
               This field was introduced into EML 2.0 beta 1, and was derived from
               EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name = "keywordThesaurus" type = "xs:string" 
                   minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               Keyword thesaurus
             </tooltip>
@@ -1042,7 +1042,7 @@
               This field was introduced into EML 2.0 beta 1, and was derived from
               EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1052,7 +1052,7 @@
       taken directly from NBII -->
   <xs:simpleType name = "GeoForm" base = "xs:string" >
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Geospatial format type
         </tooltip>
@@ -1068,7 +1068,7 @@
         </example>
         <lineage>
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:enumeration value = "atlas" />
     <xs:enumeration value = "audio" />
@@ -1092,7 +1092,7 @@
   <!-- The keyword type domain take directly from ISO -->
   <xs:simpleType name = "KeyTypCode" base = "xs:string" >
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
 	  Keyword type codes
         </tooltip>
@@ -1108,7 +1108,7 @@
             </example>
         <lineage>
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:enumeration value = "discipline" />
     <xs:enumeration value = "place" />

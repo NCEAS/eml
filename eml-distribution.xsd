@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
            targetNamespace="eml:distribution">
   
@@ -10,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2001-02-21 20:49:00 $'
-      '$Revision: 1.7 $'
+        '$Author: jones $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
       <moduleName>
         eml-distribution
       </moduleName>
@@ -36,7 +36,7 @@
         This schema defines how a resource is to be distributed outside
         of it's home institution.
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
   
   <xs:import namespace="iso:ResponsibleParty" 
@@ -44,7 +44,7 @@
   
   <xs:element name="eml-distribution" minOccurs="1"  maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Resource Distribution Information
         </tooltip>
@@ -64,14 +64,14 @@
         <lineage>
            
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="distributorFormat" ref="Format"
                      minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 The format in which the resource is represented.
               </tooltip>
@@ -89,12 +89,12 @@
               <lineage>
                 ISO CD 19115.3, Geographic information - Metadata
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="distributor" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Resource distributor
               </tooltip>
@@ -112,14 +112,14 @@
               <lineage>
                 ISO CD 19115.3, Geographic information - Metadata
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="contact" type="rp:ResponsibleParty"
                           minOccurs="1" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       contact information for distributor
                     </tooltip>
@@ -136,13 +136,13 @@
                     <lineage>
                       EML
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="StandardOrderProcess" minOccurs="0" 
                           maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       information on getting this resource from its distributor
                     </tooltip>
@@ -160,14 +160,14 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="fees" type="xs:string"
                                 minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             fee payed to acquire this resource
                           </tooltip>
@@ -186,13 +186,13 @@
                           <lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="dateTimeAvailable" type="xs:string"
                                 minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
-                      <xs:appInfo>
+                      <xs:appinfo>
                         <tooltip>
                           the time this resource is available
                         </tooltip>
@@ -210,13 +210,13 @@
                         <lineage>
                           ISO CD 19115.3, Geographic information - Metadata
                         </lineage>
-                      </xs:appInfo>
+                      </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
                     <xs:element name="orderingInstructions" type="xs:string"
                                 minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             instructions for ordering
                           </tooltip>
@@ -239,13 +239,13 @@
                           <lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="turnaround" type="xs:string"
                                 minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             time to get the resource
                           </tooltip>
@@ -265,7 +265,7 @@
                           <lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
@@ -274,7 +274,7 @@
               <xs:element name="distributorFormat" ref="Format"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       resource format at the distributor
                     </tooltip>
@@ -291,7 +291,7 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
@@ -299,7 +299,7 @@
         </xs:element>
         <xs:element name="digitalTransfer" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 digital transfer information
               </tooltip>
@@ -316,14 +316,14 @@
               <lineage>
                 ISO CD 19115.3, Geographic information - Metadata
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="distributionUnits" type="xs:string"
                           minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       units of the transfer size
                     </tooltip>
@@ -339,13 +339,13 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="transferSize" type="xs:string"
                           minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       size of the transfer
                     </tooltip>
@@ -361,13 +361,13 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="online" type="rp:OnlineResource"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       download site information
                     </tooltip>
@@ -385,13 +385,13 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="offlineResource"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       offline storage information
                     </tooltip>
@@ -408,11 +408,11 @@
                     <lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
                 <xs:element name="medium" minOccurs="0" maxOccurs="unbounded">
                   <xs:annotation>
-                    <xs:appInfo>
+                    <xs:appinfo>
                       <tooltip>
                         medium of the resource
                       </tooltip>
@@ -428,14 +428,14 @@
                       <lineage>
                         ISO CD 19115.3, Geographic information - Metadata
                       </lineage>
-                    </xs:appInfo>
+                    </xs:appinfo>
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
                       <xs:element name="medName" type="xs:string"
                                   minOccurs="0" maxOccurs="1">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               Medium name
                             </tooltip>
@@ -451,13 +451,13 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="medDensity" type="xs:string"
                                   minOccurs="0" maxOccurs="1">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               density of the digital medium
                             </tooltip>
@@ -475,13 +475,13 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="medDensityUnits" type="xs:string"
                                   minOccurs="0" maxOccurs="1">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               units of a numerical density
                             </tooltip>
@@ -498,13 +498,13 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="medVol" type="xs:string"
                                   minOccurs="0" maxOccurs="1">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               storage volume 
                             </tooltip>
@@ -521,13 +521,13 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="medFormat" type="xs:string"
                                   minOccurs="0" maxOccurs="unbounded">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               medium format
                             </tooltip>
@@ -545,13 +545,13 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="medNote" type="xs:string"
                                   minOccurs="0" maxOccurs="1">
                         <xs:annotation>
-                          <xs:appInfo>
+                          <xs:appinfo>
                             <tooltip>
                               note about the media
                             </tooltip>
@@ -567,7 +567,7 @@
                             <lineage>
                               ISO CD 19115.3, Geographic information - Metadata
                             </lineage>
-                          </xs:appInfo>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                     </xs:sequence>
@@ -586,7 +586,7 @@
       <xs:element name="formatName" type="xs:string" 
                minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               name of the format
             </tooltip>
@@ -602,13 +602,13 @@
             <lineage>
               ISO CD 19115.3, Geographic information - Metadata
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="formatVersion" type="xs:string" 
                minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               format version
             </tooltip>
@@ -624,13 +624,13 @@
             <lineage>
               ISO CD 19115.3, Geographic information - Metadata
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="formatSpec" type="xs:string" 
                minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               specification of the format
             </tooltip>
@@ -646,13 +646,13 @@
             <lineage>
               ISO CD 19115.3, Geographic information - Metadata
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="compressionType" type="xs:string" 
                minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               type of compression
             </tooltip>
@@ -669,13 +669,13 @@
             <lineage>
               ISO CD 19115.3, Geographic information - Metadata
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="distributionFormat" type="xs:string" 
                minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <tooltip>
               distribution format
             </tooltip>
@@ -692,7 +692,7 @@
             <lineage>
               ISO CD 19115.3, Geographic information - Metadata
             </lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>

@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
            xmlns:tc="eml:TemporalCoverage"
            targetNamespace="eml:research">
@@ -11,9 +11,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-03-21 16:27:49 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
       <moduleName>
         eml-research
       </moduleName>
@@ -37,7 +37,7 @@
         The EML Research Module describes the research context 
         in which the dataset was created.
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
 
  <!-- import the elements from responsible party for use
@@ -52,7 +52,7 @@
 
   <xs:element name="eml-research" minOccurs="1" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Research protocol descriptors
         </tooltip>
@@ -69,14 +69,14 @@
         <lineage>
           The eml-reasearch was introduced into EML 1.4 as eml-context.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="identifier" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 File identifier
               </tooltip>
@@ -92,13 +92,13 @@
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element ref="researchProject"
                     minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Research project descriptor
               </tooltip>
@@ -117,7 +117,7 @@
               <lineage>
                 The researchProject element was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:sequence>
@@ -154,7 +154,7 @@
   <xs:element name="title" type="xs:string"
                     minOccurs="1" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Title
         </tooltip>
@@ -169,14 +169,14 @@
         <lineage>
           The title element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation> 
   </xs:element>
 
   <xs:element name="originator" type="rp:ResponsibleParty"
                     minOccurs="1" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Originator
         </tooltip>
@@ -191,14 +191,14 @@
         <lineage>
           FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation> 
   </xs:element>
         
   <xs:element name="temporalDescription"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Temporal description
         </tooltip>
@@ -214,14 +214,14 @@
         <lineage>
           The temporalDescription element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
                     minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                   Temporal coverage
               </tooltip>
@@ -237,7 +237,7 @@
               <lineage>
                 The temporalCoverage was introduced into EML 1.4.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element ref="duration" 
@@ -249,7 +249,7 @@
   <xs:element name="duration" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Duration
         </tooltip>
@@ -265,7 +265,7 @@
         <lineage>
           The duration element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -280,7 +280,7 @@
   <xs:element name="objectives"
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Objectives
         </tooltip>
@@ -296,7 +296,7 @@
         <lineage>
           The objectives element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -309,7 +309,7 @@
   <xs:element name="abstract"
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Abstract
         </tooltip>
@@ -324,7 +324,7 @@
         <lineage>
           The abstract element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -337,7 +337,7 @@
   <xs:element name="funding"
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Funding
         </tooltip>
@@ -353,7 +353,7 @@
         <lineage>
           The funding element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -366,7 +366,7 @@
   <xs:element name="siteDescription"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Site description
         </tooltip>
@@ -384,7 +384,7 @@
         <lineage>
           The siteDescription element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -411,7 +411,7 @@
   <xs:element name="siteType" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Site type description
         </tooltip>
@@ -427,7 +427,7 @@
         <lineage>
           The siteType element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -440,7 +440,7 @@
   <xs:element name="geography" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Geographical descriptor
         </tooltip>
@@ -457,7 +457,7 @@
         <lineage>
           The geography element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -474,7 +474,7 @@
   <xs:element name="coordinates" 
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Geographical coordinates
         </tooltip>
@@ -490,7 +490,7 @@
         <lineage>
           The coordinates element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -504,7 +504,7 @@
         
   <xs:complexType name="Citation">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Citation
         </tooltip>
@@ -520,7 +520,7 @@
         <lineage>
           The Citation complex type was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="author" type="rp:ResponsibleParty"
@@ -534,7 +534,7 @@
         
   <xs:complexType name="SourceInformation">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Source information
         </tooltip>
@@ -551,7 +551,7 @@
         <lineage>
           The SourceInformation type was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="title" type="xs:string"
@@ -579,7 +579,7 @@
         
   <xs:element name="chapterTitle">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Chapter title
         </tooltip>
@@ -594,7 +594,7 @@
         <lineage>
           The chapterTitle element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -607,7 +607,7 @@
   <xs:element name="habitat" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Habitat sampled descriptor
         </tooltip>
@@ -623,7 +623,7 @@
         <lineage>
           The habitat element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -638,7 +638,7 @@
   <xs:element name="geology" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Geological descriptor
         </tooltip>
@@ -654,7 +654,7 @@
         <lineage>
           The geology element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -669,7 +669,7 @@
   <xs:element name="hydrology" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Hydrological descriptor
         </tooltip>
@@ -685,7 +685,7 @@
         <lineage>
           The hydrology element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -700,7 +700,7 @@
   <xs:element name="history" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Historical descriptor
         </tooltip>
@@ -716,7 +716,7 @@
         <lineage>
           The history element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -731,7 +731,7 @@
   <xs:element name="climate" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Climatic descriptor
         </tooltip>
@@ -747,7 +747,7 @@
         <lineage>
           The climate element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -762,7 +762,7 @@
   <xs:element name="designDescription"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Experimental or Sampling design
         </tooltip>
@@ -779,7 +779,7 @@
         <lineage>
           The designDescription element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -800,7 +800,7 @@
   <xs:element name="designMethod" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Design method
         </tooltip>
@@ -816,7 +816,7 @@
         <lineage>
           The designMethod element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -831,7 +831,7 @@
   <xs:element name="plots" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Permanent plot
         </tooltip>
@@ -847,7 +847,7 @@
         <lineage>
           The plots element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -862,7 +862,7 @@
   <xs:element name="sampling" 
                     minOccurs="0" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Temporal sampling regime
         </tooltip>
@@ -879,7 +879,7 @@
         <lineage>
           The sampling element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -898,7 +898,7 @@
   <xs:element name="methodsDescription"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Research method 
         </tooltip>
@@ -916,7 +916,7 @@
         <lineage>
           The methodsDecription element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -941,7 +941,7 @@
   <xs:element name="method"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Research method 
         </tooltip>
@@ -957,7 +957,7 @@
         <lineage>
           The method element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -972,7 +972,7 @@
   <xs:element name="instrument"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Instrument used 
         </tooltip>
@@ -988,7 +988,7 @@
         <lineage>
           The instrument element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -1003,7 +1003,7 @@
   <xs:element name="taxonomy"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Taxonomy
         </tooltip>
@@ -1019,7 +1019,7 @@
         <lineage>
           The taxonomy element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -1034,7 +1034,7 @@
   <xs:element name="permit"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Permit
         </tooltip>
@@ -1051,7 +1051,7 @@
         <lineage>
           The permit element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -1064,7 +1064,7 @@
   <xs:element name="legalInformation"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Legal information
         </tooltip>
@@ -1080,7 +1080,7 @@
         <lineage>
           The legalInformation element was introduced into EML 1.4.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
@@ -1093,7 +1093,7 @@
   <xs:element name="staff" type="rp:ResponsibleParty"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Project personell
         </tooltip>
@@ -1106,7 +1106,7 @@
         <lineage>
           FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation> 
   </xs:element>
 

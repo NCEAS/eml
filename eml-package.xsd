@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:res="eml:resource"
            targetNamespace="eml:package" >
 
@@ -10,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-03-21 16:27:49 $'
-      '$Revision: 1.9 $'
+        '$Author: jones $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
       <moduleName>
         eml-package
       </moduleName>
@@ -36,7 +36,7 @@
         The EML Package Module describes the relationships between metadata and 
         data file(s).
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
 
   <xs:import namespace="eml:resource" 
@@ -45,7 +45,7 @@
   <xs:element ref="package"
               minOccurs="1"  maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Package descriptor 
         </tooltip>
@@ -64,7 +64,7 @@
         <lineage>
           The package element is derived from package.dtd, version 1.5
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
   </xs:element>
 
@@ -74,7 +74,7 @@
         <xs:element name="identifier" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Package Identifier
               </tooltip>
@@ -91,13 +91,13 @@
               <lineage>
                 new in EML 2.0
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="name" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Package name
               </tooltip>
@@ -112,13 +112,13 @@
               <lineage>
                 The package name element was introduced into EML 2.0 Proposed.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="resource" type="res:Resource"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Package contact information
               </tooltip>
@@ -137,13 +137,13 @@
               <lineage>
                 new to EML 2.0
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element ref="relation"
                     minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Relationship list 
               </tooltip>
@@ -161,7 +161,7 @@
               <lineage>
                 Relation element was introduce into EML 2.0 Proposed.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:sequence>
@@ -170,7 +170,7 @@
  
   <xs:element name="relation">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           relation between objects
         </tooltip>
@@ -193,14 +193,14 @@
         <lineage>
           new to EML 2.0
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="subject" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Subject element
               </tooltip>
@@ -217,13 +217,13 @@
               <lineage>
                 Subject element was introduce into EML 2.0 Proposed.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="relationship" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Relationship type
               </tooltip>
@@ -240,13 +240,13 @@
               <lineage>
                 Relationship element was introduce into EML 2.0 Proposed.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="object" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Object element
               </tooltip>
@@ -263,7 +263,7 @@
               <lineage>
                 Object element was introduce into EML 2.0 Proposed.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:sequence>

@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="eml:attribute">
 
   <xs:annotation>
@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-24 00:51:31 $'
-      '$Revision: 1.10 $'
+          '$Date: 2001-03-26 22:48:03 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,19 +27,19 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appInfo>
+    <xs:appinfo>
       <moduleName>
         eml-attribute
       </moduleName>
       <moduleDescription>
         The EML Attribute Module describes all attributes in a data file.
       </moduleDescription>
-    </xs:appInfo>
+    </xs:appinfo>
   </xs:annotation>
 
   <xs:element name="eml-attribute" minOccurs="1" maxOccurs="1">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <tooltip>
           Attribute descriptors
         </tooltip>
@@ -55,14 +55,14 @@
         <lineage>
           The eml-attribute was introduced into EML 1.4 as eml-variable.
         </lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="identifier" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 File identifier
               </tooltip>
@@ -78,12 +78,12 @@
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="attribute" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <tooltip>
                 Attribute descriptor
               </tooltip>
@@ -101,14 +101,14 @@
               <lineage>
                 The attribute element was introduced into EML 1.4 as variable.
               </lineage>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="attributeName" type="xs:string"
                                 minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Attribute name
                     </tooltip>
@@ -125,14 +125,14 @@
                     <lineage>
                       The attributeName was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
               <xs:element name="attributeDefinition" type="xs:string"
                                 minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Attribute definition
                     </tooltip>
@@ -148,14 +148,14 @@
                     <lineage>
                       The attributeDefinition was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
               <xs:element name="unit" type="xs:string"
                                 minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Unit of measurement
                     </tooltip>
@@ -171,14 +171,14 @@
                     <lineage>
                       The unit was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
               <xs:element name="storageType" type="xs:string"
                                 minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Storage type
                     </tooltip>
@@ -195,14 +195,14 @@
                     <lineage>
                       The storageType was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
               <xs:element name="codeDefinition"
                                 minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Code definition
                     </tooltip>
@@ -218,14 +218,14 @@
                     <lineage>
                       The codeDefinition was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="code" type="xs:string"
                                 minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                             Code
                           </tooltip>
@@ -241,13 +241,13 @@
                           <lineage>
                             The code element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>        
                     <xs:element name="definition" type="xs:string"
                                 minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                               Code definition
                           </tooltip>
@@ -264,7 +264,7 @@
                           <lineage>
                             The definition element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
@@ -274,7 +274,7 @@
               <xs:element name="numericRange"
                                 minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Numeric range
                     </tooltip>
@@ -290,14 +290,14 @@
                     <lineage>
                       The numericRange was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="minimum" type="xs:string"
                                 minOccurs="0" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                               Minimum numeric range
                           </tooltip>
@@ -313,13 +313,13 @@
                           <lineage>
                             The minimum element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>        
                     <xs:element name="maximum" type="xs:string"
                                 minOccurs="0" maxOccurs="1">
                       <xs:annotation>
-                        <xs:appInfo>
+                        <xs:appinfo>
                           <tooltip>
                               Maximum numeric range
                           </tooltip>
@@ -335,7 +335,7 @@
                           <lineage>
                             The maximum element was introduced into EML 1.4.
                           </lineage>
-                        </xs:appInfo>
+                        </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
@@ -345,7 +345,7 @@
               <xs:element name="missingValueCode" type="xs:string"
                                 minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Character for missing value
                     </tooltip>
@@ -361,14 +361,14 @@
                     <lineage>
                       The missingValueCode was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
               <xs:element name="precision" type="xs:string"
                                 minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                  <xs:appInfo>
+                  <xs:appinfo>
                     <tooltip>
                       Precision
                     </tooltip>
@@ -386,7 +386,7 @@
                     <lineage>
                       The precision element was introduced into EML 1.4.
                     </lineage>
-                  </xs:appInfo>
+                  </xs:appinfo>
                 </xs:annotation>
               </xs:element>
 
@@ -394,7 +394,7 @@
                 <xs:element name="delimiter" type="xs:string"
                             minOccurs="0" maxOccurs="1">
                   <xs:annotation>
-                    <xs:appInfo>
+                    <xs:appinfo>
                       <tooltip>
                           Attribute delimiter
                       </tooltip>
@@ -470,13 +470,13 @@
                         EML 1.4. Semantics changed to work identically to
                         the NBII DTD.
                       </lineage>
-                    </xs:appInfo>
+                    </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
                 <xs:element name="fieldWidth" type="xs:string"
                             minOccurs="0" maxOccurs="1">
                   <xs:annotation>
-                    <xs:appInfo>
+                    <xs:appinfo>
                       <tooltip>
                         Field width
                       </tooltip>
@@ -499,7 +499,7 @@
                         EML 1.4. Semantics changed to work identically to
                         the NBII DTD.
                       </lineage>
-                    </xs:appInfo>
+                    </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
               </xs:choice>
