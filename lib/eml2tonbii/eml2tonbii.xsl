@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-06-04 18:51:58 $'
-  * '$Revision: 1.16 $'
+  *     '$Date: 2003-06-09 16:34:27 $'
+  * '$Revision: 1.17 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -688,12 +688,23 @@ version="1.0">
         </xsl:element>
       </xsl:if>
       
-<!-- spatial reference information -->      
-      <xsl:if test="$show_optional">
-        <xsl:element name="spref">
+<!-- spatial reference information -->
+<!-- As in other places, fgdc here seems designed for use with a single entity.
+     EML2 allows multiple entities; for now, just handle the first one! -->
+     
+     <xsl:choose>
+       <xsl:when test="/eml:eml/dataset/spatialRaster/spatialReference!=''">
+       <!-- Note: spatialRefenence is required in spatialRaster, but NOT in spatialVector! -->
+         <xsl:element name="spref">
       
-        </xsl:element>
-      </xsl:if>
+         </xsl:element>
+       </xsl:when>
+         <xsl:when test="/eml:eml/dataset/spatialVector/spatialReference!=''">
+           <xsl:element name="spref">
+      
+           </xsl:element>
+         </xsl:when>
+     </xsl:choose>  
       
       
 <!-- start the 'eainfo' branch -->      
