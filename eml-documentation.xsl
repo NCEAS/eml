@@ -14,9 +14,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2002-10-07 16:48:25 $'
- *    '$Revision: 1.42 $'
+ *      '$Author: berkley $'
+ *        '$Date: 2002-10-07 17:01:11 $'
+ *    '$Revision: 1.43 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -61,10 +61,11 @@
         <a href="index.html" class="navlink">Back to EML Contents</a>
         </td></tr>
         </table>
-        <blockquote>
+        <!--<blockquote>
           <xsl:value-of
             select="//doc:moduleDescription"/>
-        </blockquote>
+        </blockquote>-->
+        <xsl:apply-templates select="//doc:moduleDescription" mode="docbook"/>
         <xsl:apply-templates select="//doc:moduleDocs" mode="detailtable" />
         <!--
         <img>
@@ -132,6 +133,31 @@
     </html>
   </xsl:template>
 
+  <xsl:template match="doc:moduleDescription" mode="docbook">
+    <xsl:apply-templates mode="docbook"/>
+  </xsl:template>
+
+  <xsl:template match="section" mode="docbook">
+    <xsl:apply-templates mode="docbook"/>
+  </xsl:template>
+
+  <xsl:template match="para" mode="docbook">
+    <p><xsl:value-of select="."/></p>
+  </xsl:template>
+
+  <xsl:template match="ulink" mode="docbook">
+    <a>
+      <xsl:attribute name="href">
+        <xsl:value-of select="./@url"/>
+      </xsl:attribute>
+      <xsl:value-of select="."/>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="title" mode="docbook">
+    <!-- do nothing -->
+  </xsl:template>
+
   <!-- Build the Detail Table after the Module documentation description -->
   <xsl:template match="doc:moduleDocs" mode="detailtable">
   <xsl:param name="importedBy"/>
@@ -142,7 +168,7 @@
     </xsl:attribute>
     <tr>
       <td class="tablepanel">
-      Recommended Usage: 
+      Recommended Usage:
       </td>
       <td class="tablepanel">
       <xsl:value-of select="normalize-space(./doc:recommendedUsage)"/>
@@ -150,7 +176,7 @@
     </tr>
     <tr>
       <td class="tablepanel">
-       Stand-alone: 
+       Stand-alone:
       </td>
       <td class="tablepanel">
        <xsl:value-of select="normalize-space(./doc:standAlone)"/>
