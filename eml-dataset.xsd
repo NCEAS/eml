@@ -2,7 +2,8 @@
 <xs:schema targetNamespace="eml:dataset-2.0.0beta8" 
            xmlns="eml:dataset-2.0.0beta8" 
            xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns:res="eml:resource-2.0.0beta8" 
+           xmlns:res="eml:resource-2.0.0beta8"
+           xmlns:rp="eml:party-2.0.0beta8"
            xmlns:doc="eml:documentation-2.0.0beta8" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
@@ -16,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-10 21:53:32 $'
-      '$Revision: 1.11 $'
+          '$Date: 2002-05-10 22:02:28 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,6 +51,9 @@
   <!-- import the elements from eml-resource -->
   <xs:import namespace="eml:resource-2.0.0beta8" 
              schemaLocation="eml-resource.xsd"/>
+  <!-- import the elements from responsible party -->
+  <xs:import namespace="eml:party-2.0.0beta8" 
+             schemaLocation="eml-party.xsd"/>
   <xs:element name="dataset">
     <xs:annotation>
       <xs:appinfo>
