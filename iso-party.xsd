@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:44 $'
-      '$Revision: 1.16 $'
+          '$Date: 2001-03-27 06:52:13 $'
+      '$Revision: 1.17 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -40,7 +40,32 @@
     </xs:appinfo>
   </xs:annotation>
 
-  <xs:complexType name="ResponsibleParty" content="elementOnly">
+  <xs:complexType name="ResponsibleParty">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Responsible party
+        </tooltip>
+        <summary>
+          The individual, organization, or role associated with a resource.
+        </summary>
+        <description>
+          The responsible party field contains multiple subfields that are used
+          to describe  the person, organization, or position within an
+          organization that is associated in some way with a resource.  It is
+          intended to be used to fully fully document contact information for
+          many types of associations, such as owner, manager, steward, curator,
+          etc.
+        </description>
+        <example>
+          Please see the examples for the particular subfields.
+        </example>
+        <lineage>
+          This field was derived from the ISO 19115.3 standard 
+          (iso-geo-md-2000June-draft).
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:choice minOccurs="1" maxOccurs="unbounded">
         <xs:element name="individualName" type="Person">
@@ -180,24 +205,24 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Person">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
-          Responsible party
+          Person
         </tooltip>
         <summary>
-          The individual, organization, or role associated with a resource.
+          The full name of the individual associated with the resource.
         </summary>
         <description>
-          The responsible party field contains multiple subfields that are used
-          to describe  the person, organization, or position within an
-          organization that is associated in some way with a resource.  It is
-          intended to be used to fully fully document contact information for
-          many types of associations, such as owner, manager, steward, curator,
-          etc.
+          The person field is used to enter the salutation, first name, and last
+          name of the individual associated with the resource.  It uses three
+          subfields in order to help parse the person's entire name.
         </description>
         <example>
-          Please see the examples for the particular subfields.
+          Please see the examples within each subfield.
         </example>
         <lineage>
           This field was derived from the ISO 19115.3 standard 
@@ -205,9 +230,6 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-  </xs:complexType>
-
-  <xs:complexType name="Person" content="elementOnly">
     <xs:sequence>
       <xs:element name="salutation" type="xs:string" 
                   minOccurs="0" maxOccurs="unbounded">
@@ -304,55 +326,35 @@
             </lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:attribute name="systemType" type="xs:string" use="required">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                System Type
-              </tooltip>
-              <summary>
-                The system type to which the user name authenticates.
-              </summary>
-              <description>
-                The system type to which the user name authenticates.  This
-                should not be a server name.  It should be more general.
-              </description>
-              <example>
-                LDAP, Metacat, MCAT
-              </example>
-              <lineage>
-                new to EML 2.0.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:attribute>
+        <xs:complexType>
+          <xs:attribute name="systemType" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  System Type
+                </tooltip>
+                <summary>
+                  The system type to which the user name authenticates.
+                </summary>
+                <description>
+                  The system type to which the user name authenticates.  This
+                  should not be a server name.  It should be more general.
+                </description>
+                <example>
+                  LDAP, Metacat, MCAT
+                </example>
+                <lineage>
+                  new to EML 2.0.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
       </xs:element>
     </xs:sequence>
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          Person
-        </tooltip>
-        <summary>
-          The full name of the individual associated with the resource.
-        </summary>
-        <description>
-          The person field is used to enter the salutation, first name, and last
-          name of the individual associated with the resource.  It uses three
-          subfields in order to help parse the person's entire name.
-        </description>
-        <example>
-          Please see the examples within each subfield.
-        </example>
-        <lineage>
-          This field was derived from the ISO 19115.3 standard 
-          (iso-geo-md-2000June-draft).
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
   </xs:complexType>
   
-  <xs:complexType name="Contact" content="elementOnly">
+  <xs:complexType name="Contact">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
@@ -507,7 +509,29 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="Telephone" content="elementOnly">
+  <xs:complexType name="Telephone">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Telephone information
+        </tooltip>
+        <summary>
+          The telephone field is intended to be used to provide the telephone
+          number for the contact.
+        </summary>
+        <description>
+          The telephone field contains a number of subfields that provide voice,
+          fax, or other (such as TTD/TTY) telephone numbers.
+        </description>
+        <example>
+          Please see the subfield examples.
+        </example>
+        <lineage>
+          This field was derived from the ISO 19115.3 standard 
+          (iso-geo-md-2000June-draft).
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="voice" type="xs:string" 
                   minOccurs="0" maxOccurs="unbounded">
@@ -611,21 +635,26 @@
         </xs:element>
       </xs:sequence>
     </xs:sequence>
+  </xs:complexType>
+  <!-- The constraint that "other" is required if voice or facsimile are
+       not provided has not been expressed in the Telephone type yet -->
+
+  <xs:complexType name="Address">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
-          Telephone information
+          Address
         </tooltip>
         <summary>
-          The telephone field is intended to be used to provide the telephone
-          number for the contact.
+          The full address of the resposible party.
         </summary>
         <description>
-          The telephone field contains a number of subfields that provide voice,
-          fax, or other (such as TTD/TTY) telephone numbers.
+          The address field is provides detailed information for communicating
+          with a party contact via electronic mail or postal mail, including the
+          physical delivery location.
         </description>
         <example>
-          Please see the subfield examples.
+          Please see the examples for each subfield
         </example>
         <lineage>
           This field was derived from the ISO 19115.3 standard 
@@ -633,11 +662,6 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-  </xs:complexType>
-  <!-- The constraint that "other" is required if voice or facsimile are
-       not provided has not been expressed in the Telephone type yet -->
-
-  <xs:complexType name="Address" content="elementOnly">
     <xs:sequence>
       <xs:element name="deliveryPoint" type="xs:string" 
                   minOccurs="0" maxOccurs="unbounded">
@@ -788,31 +812,31 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OnlineResource">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
-          Address
+          Online resource
         </tooltip>
         <summary>
-          The full address of the resposible party.
+          The full description of the online resource.
         </summary>
         <description>
-          The address field is provides detailed information for communicating
-          with a party contact via electronic mail or postal mail, including the
-          physical delivery location.
+          The online resource field provides detailed information on where to
+          access a resource on the Internet, what the function is provided by
+          the resource, and the means of accessing it.
         </description>
         <example>
-          Please see the examples for each subfield
+          Please see the examples in the subfields.
         </example>
         <lineage>
-          This field was derived from the ISO 19115.3 standard 
-          (iso-geo-md-2000June-draft).
+              This field was derived from the ISO 19115.3 standard 
+              (iso-geo-md-2000June-draft).
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-  </xs:complexType>
-
-  <xs:complexType name="OnlineResource" content="elementOnly">
     <xs:sequence>
       <xs:element name="linkage" type="URL" 
                   minOccurs="1" maxOccurs="1">
@@ -966,31 +990,9 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          Online resource
-        </tooltip>
-        <summary>
-          The full description of the online resource.
-        </summary>
-        <description>
-          The online resource field provides detailed information on where to
-          access a resource on the Internet, what the function is provided by
-          the resource, and the means of accessing it.
-        </description>
-        <example>
-          Please see the examples in the subfields.
-        </example>
-        <lineage>
-              This field was derived from the ISO 19115.3 standard 
-              (iso-geo-md-2000June-draft).
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
   </xs:complexType>
 
-  <xs:simpleType name="URL" base="xs:string"> 
+  <xs:simpleType name="URL"> 
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
@@ -1014,26 +1016,14 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
+    <xs:restriction base="xs:string">
+      <!-- Could add restrictions here to make it conform to URL syntax -->
+      <!-- but instead should switch to using the primitive "anyURI" type -->
+    </xs:restriction>
   </xs:simpleType>
-  <!-- Could add restrictions here to make it conform to URL syntax -->
   
     <!-- Role code domain take from ISO -->
-  <xs:simpleType name = "RoleCode" base = "xs:string">
-        <xs:enumeration value = "contentProvider" />
-        <xs:enumeration value = "custodianSteward" />
-        <xs:enumeration value = "owner" />
-        <xs:enumeration value = "user" />
-        <xs:enumeration value = "distributor" />
-        <xs:enumeration value = "metadataProvider" />
-        <xs:enumeration value = "originator" />
-        <xs:enumeration value = "pointOfContact" />
-        <xs:enumeration value = "principalInvestigator" />
-        <xs:enumeration value = "processor" />
-        <xs:enumeration value = "publisher" />
-        <!-- note that author and editor are not in the original ISO role 
-             code list -->
-        <xs:enumeration value = "author" />
-        <xs:enumeration value = "editor" />
+  <xs:simpleType name="RoleCode">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
@@ -1062,6 +1052,23 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value = "contentProvider" />
+      <xs:enumeration value = "custodianSteward" />
+      <xs:enumeration value = "owner" />
+      <xs:enumeration value = "user" />
+      <xs:enumeration value = "distributor" />
+      <xs:enumeration value = "metadataProvider" />
+      <xs:enumeration value = "originator" />
+      <xs:enumeration value = "pointOfContact" />
+      <xs:enumeration value = "principalInvestigator" />
+      <xs:enumeration value = "processor" />
+      <xs:enumeration value = "publisher" />
+      <!-- note that author and editor are not in the original ISO role 
+           code list -->
+      <xs:enumeration value = "author" />
+      <xs:enumeration value = "editor" />
+    </xs:restriction>
   </xs:simpleType>
   
 </xs:schema>

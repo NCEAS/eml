@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:44 $'
-      '$Revision: 1.12 $'
+          '$Date: 2001-03-27 06:52:13 $'
+      '$Revision: 1.13 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="unit" use="required" value="bytes">
+            <xs:attribute name="unit" use="required" default="bytes">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -340,7 +340,7 @@
           </xs:annotation>
         </xs:element>        
     
-        <xs:element name="orientation" nullable="true"
+        <xs:element name="orientation" nillable="true"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -364,7 +364,8 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="columnorrow" use="default" value="columnmajor">
+            <xs:attribute name="columnorrow" use="optional" 
+                          default="columnmajor">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -387,8 +388,10 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
-                <xs:enumeration value="columnmajor" /> 
-                <xs:enumeration value="rowmajor" />         
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="columnmajor" />
+                  <xs:enumeration value="rowmajor" />
+                </xs:restriction>
               </xs:simpleType>
             </xs:attribute>
           </xs:complexType>
@@ -417,7 +420,7 @@
           </xs:annotation>
         </xs:element>
       
-        <xs:element name="caseSensitive" nullable="true"
+        <xs:element name="caseSensitive" nillable="true"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -442,7 +445,7 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="yesorno" use="default" value="yes">
+            <xs:attribute name="yesorno" use="optional" default="yes">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -465,8 +468,10 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
-                <xs:enumeration value="yes" /> 
-                <xs:enumeration value="no" />         
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="yes" /> 
+                  <xs:enumeration value="no" />
+                </xs:restriction>
               </xs:simpleType>
             </xs:attribute>
           </xs:complexType>
@@ -594,8 +599,10 @@
                             </xs:appinfo>
                           </xs:annotation>
                           <xs:simpleType>
-                            <xs:enumeration value="north" /> 
-                            <xs:enumeration value="south" />         
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="north" />
+                              <xs:enumeration value="south" />
+                            </xs:restriction>
                           </xs:simpleType>
                         </xs:attribute>
                       </xs:complexType>
@@ -648,8 +655,10 @@
                             </xs:appinfo>
                           </xs:annotation>
                           <xs:simpleType>
-                            <xs:enumeration value="east" /> 
-                            <xs:enumeration value="west" />         
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="east" /> 
+                              <xs:enumeration value="west" />
+                            </xs:restriction>
                           </xs:simpleType>
                         </xs:attribute>
                       </xs:complexType>
@@ -778,9 +787,11 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
-                <xs:enumeration value="missing" /> 
-                <xs:enumeration value="anomaly" />         
-                <xs:enumeration value="error" />         
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="missing" />
+                  <xs:enumeration value="anomaly" />
+                  <xs:enumeration value="error" />
+                </xs:restriction>
               </xs:simpleType>
             </xs:attribute>
           </xs:complexType>

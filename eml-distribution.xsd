@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:44 $'
-      '$Revision: 1.9 $'
+          '$Date: 2001-03-27 06:52:13 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -125,7 +125,7 @@
             </xs:attribute>
           </xs:complexType>
         </xs:element>
-        <xs:element name="distributorFormat" ref="Format"
+        <xs:element name="distributorFormat" type="Format"
                      minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -467,172 +467,184 @@
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
-                <xs:element name="medium" minOccurs="0" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <tooltip>
-                        medium of the resource
-                      </tooltip>
-                      <summary>
-                        the medium on which this resource is distributed 
-                        digitally
-                      </summary>
-                      <description>
-                        the medium on which this resource is distributed 
-                        digitally, such as 3.5" floppy disk, or various tape
-                        media types
-                      </description>
-                      <example>
-                        CD-ROM, 3.5 in. floppy disk, Zip disk
-                      </example>
-                      <lineage>
-                        ISO CD 19115.3, Geographic information - Metadata
-                      </lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="medName" type="xs:string"
-                                  minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              Medium name
-                            </tooltip>
-                            <summary>
-                              Name of the medium
-                            </summary>
-                            <description>
-                              Name of the medium
-                            </description>
-                            <example>
-                              Tape, 3.5 inch Floppy Disk
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="medDensity" type="xs:string"
-                                  minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              density of the digital medium
-                            </tooltip>
-                            <summary>
-                              the density of the digital medium if this is 
-                              relevant.
-                            </summary>
-                            <description>
-                              the density of the digital medium if this is 
-                              relevant.  Used mainly for floppy disks or tape.
-                            </description>
-                            <example>
-                              High Density (HD), Double Density (DD)
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="medDensityUnits" type="xs:string"
-                                  minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              units of a numerical density
-                            </tooltip>
-                            <summary>
-                              a numerical density's units
-                            </summary>
-                            <description>
-                              if a density is given numerically, the units should
-                              be given here.  
-                            </description>
-                            <example>
-                              B/cm
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="medVol" type="xs:string"
-                                  minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              storage volume 
-                            </tooltip>
-                            <summary>
-                              total volume of the storage medium
-                            </summary>
-                            <description>
-                              the total volume of the storage medium on which
-                              this resource is shipped.
-                            </description>
-                            <example>
-                              650 MB
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="medFormat" type="xs:string"
-                                  minOccurs="0" maxOccurs="unbounded">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              medium format
-                            </tooltip>
-                            <summary>
-                              format of the medium on which the resource is 
-                              shipped.
-                            </summary>
-                            <description>
-                              the file system format of the medium on which the
-                              resource is shipped
-                            </description>
-                            <example>
-                              NTFS, FAT32, EXT2, QIK80
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="medNote" type="xs:string"
-                                  minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <tooltip>
-                              note about the media
-                            </tooltip>
-                            <summary>
-                              note about the media
-                            </summary>
-                            <description>
-                              any additional pertitant information about the
-                              media
-                            </description>
-                            <example>
-                            </example>
-                            <lineage>
-                              ISO CD 19115.3, Geographic information - Metadata
-                            </lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                    </xs:sequence>
-                  </xs:complexType>
-                </xs:element>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="medium" 
+                                minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <tooltip>
+                            medium of the resource
+                          </tooltip>
+                          <summary>
+                            the medium on which this resource is distributed 
+                            digitally
+                          </summary>
+                          <description>
+                            the medium on which this resource is distributed 
+                            digitally, such as 3.5" floppy disk, or various tape
+                            media types
+                          </description>
+                          <example>
+                            CD-ROM, 3.5 in. floppy disk, Zip disk
+                          </example>
+                          <lineage>
+                            ISO CD 19115.3, Geographic information - Metadata
+                          </lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="medName" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  Medium name
+                                </tooltip>
+                                <summary>
+                                  Name of the medium
+                                </summary>
+                                <description>
+                                  Name of the medium
+                                </description>
+                                <example>
+                                  Tape, 3.5 inch Floppy Disk
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="medDensity" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  density of the digital medium
+                                </tooltip>
+                                <summary>
+                                  the density of the digital medium if this is 
+                                  relevant.
+                                </summary>
+                                <description>
+                                  the density of the digital medium if this is 
+                                  relevant.  Used mainly for floppy disks 
+                                  or tape.
+                                </description>
+                                <example>
+                                  High Density (HD), Double Density (DD)
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="medDensityUnits" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  units of a numerical density
+                                </tooltip>
+                                <summary>
+                                  a numerical density's units
+                                </summary>
+                                <description>
+                                  if a density is given numerically, the units 
+                                  should be given here.  
+                                </description>
+                                <example>
+                                  B/cm
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="medVol" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  storage volume 
+                                </tooltip>
+                                <summary>
+                                  total volume of the storage medium
+                                </summary>
+                                <description>
+                                  the total volume of the storage medium on 
+                                  which this resource is shipped.
+                                </description>
+                                <example>
+                                  650 MB
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="medFormat" type="xs:string"
+                                      minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  medium format
+                                </tooltip>
+                                <summary>
+                                  format of the medium on which the resource is 
+                                  shipped.
+                                </summary>
+                                <description>
+                                  the file system format of the medium on 
+                                  which the resource is shipped
+                                </description>
+                                <example>
+                                  NTFS, FAT32, EXT2, QIK80
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="medNote" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <tooltip>
+                                  note about the media
+                                </tooltip>
+                                <summary>
+                                  note about the media
+                                </summary>
+                                <description>
+                                  any additional pertitant information about the
+                                  media
+                                </description>
+                                <example>
+                                </example>
+                                <lineage>
+                                  ISO CD 19115.3, 
+                                  Geographic information - Metadata
+                                </lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
@@ -641,7 +653,7 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:element name="Format">
+  <xs:complexType name="Format">
     <xs:sequence>
       <xs:element name="formatName" type="xs:string" 
                minOccurs="1" maxOccurs="unbounded">
@@ -756,6 +768,6 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-  </xs:element>
+  </xs:complexType>
   
 </xs:schema>
