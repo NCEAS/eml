@@ -244,7 +244,6 @@
           </para>
         </section>
       </section>
-      -->
     </section>
   </chapter>
 
