@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 19:47:21 $'
-      '$Revision: 1.55 $'
+          '$Date: 2002-10-07 21:39:47 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -156,6 +156,7 @@
     <mkdir dir="${ver.src}"/>
     <mkdir dir="${ver.tst}"/>
     <!--<mkdir dir="${ver.dir}/style"/>-->
+    <copy file="./build.xml" todir="${ver.dir}"/>
     <copy file="./LICENSE" todir="${ver.dir}"/>
     <copy file="./README" todir="${ver.dir}"/>
     <copy todir="${ver.dir}" filtering="no">
