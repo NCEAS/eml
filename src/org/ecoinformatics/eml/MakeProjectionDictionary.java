@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2002-12-06 22:23:44 $'
- *    '$Revision: 1.8 $'
+ *      '$Author: mccartne $'
+ *        '$Date: 2002-12-09 18:51:29 $'
+ *    '$Revision: 1.9 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -169,7 +169,6 @@ public class MakeProjectionDictionary {
                     if (tokens.nextToken().equalsIgnoreCase("UNIT")){
                         Element unit=new Element("unit");
                         String unitName = tokens.nextToken();
-			String unitMultiplier=tokens.nextToken();
                         for (i=0;i<unitNames.length/2;i++){
                             if (unitNames[i][0].equalsIgnoreCase(unitName)){
                                 unit.setAttribute("name",unitNames[i][1]);
@@ -193,15 +192,23 @@ public class MakeProjectionDictionary {
                     Element project = new Element("projection");
                     project.setAttribute("name",tokens.nextToken());
 
+/*dont need this if we just used the same names
+               for (i=0;i<projNames.length/2;i++){
+                    if (projNames[i][0]==projName){
+                        Element projElem= new Element(projNames[i][1]);
+                        i=projNames.length/2;
+                    }
+
+                }
+ */
                     while (tokens.nextToken().equalsIgnoreCase("PARAMETER")) {
                         Element param = new Element("parameter");
                         param.setAttribute("name",tokens.nextToken());
                         param.setAttribute("value",tokens.nextToken());
                         project.addContent(param);
                     }
-                        Element unit = new Element("unit");
-                         String unitName = tokens.nextToken();
-			String unitMultiplier=tokens.nextToken();
+                    Element unit = new Element("unit");
+                    String unitName = tokens.nextToken();
                         for (i=0;i<unitNames.length/2;i++){
                             if (unitNames[i][0].equalsIgnoreCase(unitName)){
                                 unit.setAttribute("name",unitNames[i][1]);
@@ -248,7 +255,6 @@ public class MakeProjectionDictionary {
                 if (tokens.nextToken().equalsIgnoreCase("UNIT")){
                     Element unit=new Element("unit");
                         String unitName = tokens.nextToken();
-			String unitMultiplier=tokens.nextToken();
                         for (i=0;i<unitNames.length/2;i++){
                             if (unitNames[i][0].equalsIgnoreCase(unitName)){
                                 unit.setAttribute("name",unitNames[i][1]);
