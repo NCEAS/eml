@@ -38,8 +38,8 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-23 17:37:58 $'
-      '$Revision: 1.61 $'
+          '$Date: 2002-09-23 20:03:46 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,7 +69,18 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="researchProject" type="ResearchProjectType" />
+  <xs:element name="researchProject" type="ResearchProjectType" >
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>research project</doc:tooltip>
+        <doc:summary>The root element of this module.</doc:summary>
+        <doc:description>The root element of this module.  This is used for
+        testing or if you want to instantiate a stand-alone project file.
+        </doc:description>
+        <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
   <xs:complexType name="ResearchProjectType">
     <xs:annotation>
       <xs:appinfo>
@@ -286,16 +297,66 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
                       </xs:complexType>
                     </xs:element>
                     <xs:element name="citation" type="cit:CitationType"
-                    minOccurs="0" maxOccurs="unbounded" />
+                    minOccurs="0" maxOccurs="unbounded" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>citation</doc:tooltip>
+                          <doc:summary>A citation for this
+                          descriptor.</doc:summary>
+                          <doc:description>A citation for this
+                          desciptor.</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:sequence>
-                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>name</doc:tooltip>
+                        <doc:summary>The name of the descriptor.</doc:summary>
+                        <doc:description>The name of the
+                        descriptor.</doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
                   <xs:attribute name="citableClassificationSystem"
-                  type="xs:boolean" use="required" />
+                  type="xs:boolean" use="required" >
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>citation classification
+                        system</doc:tooltip>
+                        <doc:summary>This boolean attribute defines
+                        whether this descriptor comes from a citable
+                        classification system or not.</doc:summary>
+                        <doc:description>This boolean attribute defines
+                        whether this descriptor comes from a citable
+                        classification system or not.</doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
                 </xs:complexType>
               </xs:element>
               <xs:element name="citation" type="cit:CitationType"
-              minOccurs="0" />
-              <xs:element name="coverage" type="cov:Coverage" minOccurs="0" />
+              minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>citation</doc:tooltip>
+                    <doc:summary>The citation for this descriptor.</doc:summary>
+                    <doc:description>The citation for this
+                    descriptor.</doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="coverage" type="cov:Coverage" minOccurs="0" >
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>coverage</doc:tooltip>
+                    <doc:summary>The coverage of this descriptor.</doc:summary>
+                    <doc:description>The coverage of this
+                    descriptor.</doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
             </xs:choice>
           </xs:complexType>
         </xs:element>
@@ -350,7 +411,19 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
           </xs:complexType>
         </xs:element>
         <xs:element name="relatedProject" type="ResearchProjectType"
-        minOccurs="0" maxOccurs="unbounded" />
+        minOccurs="0" maxOccurs="unbounded" >
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>related project</doc:tooltip>
+              <doc:summary>This field is a recursive link to another
+              project.</doc:summary>
+              <doc:description>This field is a recursive link to another
+              project.  This allows projects to be nested under one another
+              for the case where one project spawns another.</doc:description>
+              <doc:lineage>New in EML 2.0.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
