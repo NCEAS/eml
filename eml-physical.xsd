@@ -8,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-10 19:06:18 $'
-      '$Revision: 1.2 $'
+          '$Date: 2001-07-11 00:53:31 $'
+      '$Revision: 1.3 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,15 +42,9 @@
   <xs:element name="eml-physical">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
-          Entity descriptors
-        </tooltip>
-        <summary>
-          Container of physical descriptors of all entities in a dataset.
-        </summary>
-        <description>
-          Eml-physical element contains a list of all entities in a dataset.
-        </description>
+        <tooltip>Physical structure.        </tooltip>
+        <summary>Physical structure of an entity or entities.</summary>
+        <description>Physical structure of an entity or entities.  This generally is a detailed description of a text representation that shows how the columns and rows of a table are represented, or simply the name of a well-known binary or proprietary format (e.g., Microsoft Excel 2000).</description>
         <example/>
         <lineage>
           The eml-physical was introduced into EML 1.4 as eml-file.
@@ -116,7 +110,49 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="fileSize" minOccurs="0">
+        <xs:element name="format" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <tooltip>
+                File format
+              </tooltip>
+              <summary>
+                Contains the name of the format for this file.
+              </summary>
+              <description>
+                This element contains the name of the file's format.
+                The file's format is typically ASCII, Unicode, or some
+                well-known binary format (e.g., Microsoft Excel 2000).  
+                This could be a mime-type.
+              </description>
+              <example><![CDATA[<format>ASCII</format>]]></example>
+              <lineage>
+                The format element was introduced into EML 1.4.
+              </lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <tooltip>
+                Character Encoding
+              </tooltip>
+              <summary>
+                Contains the name of the chracter encoding used for the data.
+              </summary>
+              <description>
+                This element contains the name of the character encoding.
+                This is typically ASCII or UTF-8, or one of the other common encodings.
+              </description>
+              <example><![CDATA[<characterEncoding>UTF-8</characterEncoding>]]></example>
+              <lineage>
+                Introduced in EML 2.0
+              </lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="size" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -162,26 +198,50 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="fileFormat" type="xs:string">
+        <xs:element name="authentication" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
-                File format
+                  Authentication method
               </tooltip>
               <summary>
-                Contains the name of the format for this file.
+A value, typically a checksum, used to authenticate that the bitstream delivered to the user is identical to the original.
               </summary>
               <description>
-                This element contains the name of the file's format.
-                The file's format is typically ASCII, Unicode, or some
-                well-known binary format.  This could be a mime-type.
+                  This element describes authentication procedures or 
+                  techniques, typically by giving a checksum method (e.g., MD5) and checksum value for the bytestream.
               </description>
-              <example><![CDATA[<entityFormat>ASCII</entityFormat>]]></example>
+              <example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></example>
               <lineage>
-                The format element was introduced into EML 1.4.
+                The authentication element was introduced into EML 1.4.
               </lineage>
             </xs:appinfo>
           </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="method" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
+                  Authentication method
+              </tooltip>
+                      <summary>
+The method used to calculate an authentication checksum.
+              </summary>
+                      <description>
+                  This element names the method used to calculate and authentication checksum that can be used to validate a bytestream.  Typical checksum methods include MD5 and CRC.
+              </description>
+                      <example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></example>
+                      <lineage>
+                The authentication element was introduced into EML 1.4.
+              </lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
         </xs:element>
         <xs:element name="compressionMethod" type="xs:string" minOccurs="0">
           <xs:annotation>
@@ -223,6 +283,25 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
+        <xs:element name="numHeaderLines" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <tooltip>
+                Header lines
+              </tooltip>
+              <summary>
+                Header lines in the entity
+              </summary>
+              <description>
+                Number of header lines or information that prepares data.
+              </description>
+              <example><![CDATA[<numHeaderLines>3</numHeaderLines>]]></example>
+              <lineage>
+                The numHeaderLines element was introduced into EML 1.4.
+              </lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="recordDelimiter" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
@@ -245,6 +324,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
+        <xs:element name="maxRecordLength" type="xs:string" minOccurs="0"/>
         <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -267,58 +347,93 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="numHeaderLines" type="xs:string" minOccurs="0">
+        <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
-                Header lines
+                  Literal character
               </tooltip>
               <summary>
-                Header lines in the entity
+                  Character used to escape other characters
               </summary>
               <description>
-                Number of header lines or information that prepares data.
+                This element specifies a character to be used
+                for escaping character values so that the following character is treated as its literal
+                value.  This allows "escaping" for special characters like quotes, commas, and spaces when they aren't intended as a delimiter value.  The
+                literalChacter is typically a \.
               </description>
-              <example><![CDATA[<numHeaderLines>3</numHeaderLines>]]></example>
+              <example><![CDATA[<literalCharacter>\</literalCharacter>]]></example>
               <lineage>
-                The numHeaderLines element was introduced into EML 1.4.
+                Introduced in EML 2.0.
               </lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="authentication" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                  Authentication
-              </tooltip>
-              <summary>
-                  Authentication descriptor
-              </summary>
-              <description>
-                  This element describes authentication procedures or 
-                  techniques, typically by giving a checksum method (e.g., MD5)
-                  and checksum value for the entity.
-              </description>
-              <example/>
-              <lineage>
-                The authentication was introduced into EML 1.4.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:choice>
-          <xs:element name="delimiter" type="xs:string" minOccurs="0">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="fieldStartColumn" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
-                          Attribute delimiter
+                        Start column
                       </tooltip>
                 <summary>
+                        The starting column number for a fixed format attribute.         </summary>
+                <description>
+                        FixedWidth fields have a set length, thus 
+                        the end of the field can always be determined
+                        by adding the fieldWidth to the starting 
+                        column number.
+                      </description>
+                <example>
+                        any positive integer, see example in "delimeter" 
+                        description
+                      </example>
+                <lineage>
+                        Introduced into EML 2.0. 
+                      </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="fieldWidth" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                        Field width
+                      </tooltip>
+                  <summary>
+                        FieldWidth specification for fixed field 
+                        length.
+                      </summary>
+                  <description>
+                        FixedWidth fields have a set length, thus 
+                        the end of the field can always be determined
+                        by adding the fieldWidth to the starting 
+                        column number.
+                      </description>
+                  <example>
+                        any positive integer, see example in "delimeter" 
+                        description
+                      </example>
+                  <lineage>
+                        The fieldWidth element was introduced into 
+                        EML 1.4. Semantics changed to work identically to
+                        the NBII DTD.
+                      </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="fieldDelimiter" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                          Attribute delimiter
+                      </tooltip>
+                  <summary>
                         The end of the field is delimited by a 
                         special character called a field delimiter.
                       </summary>
-                <description>
+                  <description>
                         Variable width format fields can vary in their 
                         field length, thus the end of the field is 
                         delimited by a special character called a 
@@ -376,46 +491,19 @@
                           <delimiter>,</delimiter>
                         </attribute> 
                         ]]></description>
-                <example>
+                  <example>
                         comma, tab, white space, etc.
                       </example>
-                <lineage>
+                  <lineage>
                         The delimiter element was introduced into 
                         EML 1.4. Semantics changed to work identically to
                         the NBII DTD.
                       </lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="fieldWidth" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <tooltip>
-                        Field width
-                      </tooltip>
-                <summary>
-                        FieldWidth specification for fixed field 
-                        length.
-                      </summary>
-                <description>
-                        FixedWidth fields have a set length, thus 
-                        the end of the field can always be determined
-                        by adding the fieldWidth to the starting 
-                        column number.
-                      </description>
-                <example>
-                        any positive integer, see example in "delimeter" 
-                        description
-                      </example>
-                <lineage>
-                        The fieldWidth element was introduced into 
-                        EML 1.4. Semantics changed to work identically to
-                        the NBII DTD.
-                      </lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:choice>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
