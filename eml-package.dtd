@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2001-03-19 23:20:29 $'
-      '$Revision: 1.5 $'
+        '$Author: jones $'
+          '$Date: 2001-03-27 02:27:13 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,24 +28,22 @@
 
 <!ENTITY % resourceInfo SYSTEM "./eml-resource.dtd">
 %resourceInfo;
-<!-- The root element, which represents a list or relationships between 
-     metadata and data file(s). -->
-<!ELEMENT package (identifier, name?, %resource;, relation+) >
+<!-- The root element, which represents a data package and includes a
+     list of relationships between metadata and data file(s) that are
+     members of the package. -->
+<!ELEMENT eml-package (identifier, %resource;, triple*) >
 <!ELEMENT identifier (#PCDATA)>
 
-<!-- The name is used to identify the package. -->
-<!ELEMENT name (#PCDATA)>
+<!-- The triple element, which list all relationships in the package -->
+<!ELEMENT triple (subject, relationship, object) >
 
-<!-- The relation element, which list all relationships in the package -->
-<!ELEMENT relation (subject, relationship, object) >
-
-<!-- Subject is URL specifier of metadata file that is refered by other metadata
-     or data file specified in object element in the way of relationship. -->
+<!-- Subject is the identifier of the metadata or data file that is 
+     used to describe another object according the the relatinship. -->
 <!ELEMENT subject (#PCDATA) >
 
 <!-- The type of relationship of subject->object -->
 <!ELEMENT relationship (#PCDATA) >
 
-<!-- Object is URL specifier of metadata or data file that refers to the
-     metadata file specified in subject element in the way of relationship.-->
+<!-- Object is an identifier for the metadata or data file that 
+     is the subject of this relationship.-->
 <!ELEMENT object (#PCDATA) >

@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:44 $'
-      '$Revision: 1.11 $'
+          '$Date: 2001-03-27 02:27:14 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,8 +33,12 @@
         eml-package
       </moduleName>
       <moduleDescription>
-        The EML Package Module describes the relationships between metadata and 
-        data file(s).
+        The EML Package Module is a wrapper describing a set of data or 
+        metadata files and the relationships among those component objects.
+        The "data package" is the set of all metadata and data files referenced
+        in an eml-package descriptor.  "Data packages" are generally created
+        to group together files for some particular scientific, analytical,
+        or administrative purpose.
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
@@ -42,23 +46,24 @@
   <xs:import namespace="eml:resource" 
              schemaLocation = "./eml-resource.xsd"/>
   
-  <xs:element name="package">
+  <xs:element name="eml-package">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
           Package descriptor 
         </tooltip>
         <summary>
-          Package element represents a list of relationships between 
-          metadata and data file(s). 
+          The eml-package element describes and lists the components of
+          a data package
         </summary>
         <description>
-          Package element represents a list of relationships between metadata 
-          and data file(s). The relationships are in the form of:
+          The eml-package element represents a data package , which describes a
+          collection of metadata and data files and enumerates a list of 
+          relationships between the metadata and data file(s). 
+          The relationships are in the form of:
           <![CDATA[<subject> <relationship> <object>]]>
         </description>
         <example>
-          someMetadataFile.xml isMetadataFor someDataFile.dat
         </example>
         <lineage>
           The package element is derived from package.dtd, version 1.5
@@ -125,27 +130,6 @@
           </xs:complexType>
         </xs:element>
 
-        <xs:element name="name" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Package name
-              </tooltip>
-              <summary>
-                Decsriptor to identify the package 
-              </summary>
-              <description>
-                The name is used to identify the package.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The package name element was introduced into EML 2.0 Proposed.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
         <xs:element name="resource" type="res:Resource"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
@@ -171,135 +155,131 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="relation"
-                    minOccurs="1" maxOccurs="unbounded">
+
+        <xs:element name="triple">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
                 Relationship list 
               </tooltip>
               <summary>
-                Descriptor to list all relationships in the package
+                The definition of a relationship between component objects
+                in a package
               </summary>
               <description>
-                The relation element lists all relationships in the package.
+                The triple element lists all relationships in the package,
+                which effectively enumerates the components of the package.
                 The relationships are in the form of:
                 <![CDATA[<subject> <relationship> <object>]]>
+                A triple allows a user to define a relationship between two
+                objects.  This relationship can also be recursive so that an
+                object can point back to the package of which it is a part.
               </description>
               <example>
-                someMetadataFile.xml isMetadataFor someDataFile.dat
-              </example>
-              <lineage>
-                Relation element was introduce into EML 2.0 Proposed.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
- 
-  <xs:element name="relation">
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          relation between objects
-        </tooltip>
-        <summary>
-          The definition of a relationship between objects
-        </summary>
-        <description>
-          A relation allows a user to define a relationship between two
-          objects.  This relationship can also be recursive so that an
-          object can point back to the package of which it is a part.
-        </description>
-        <example>
-          Normal (nonrecursive):
-          &lt;subject&gt;knb.3.4&lt;/subject&gt; &lt;isFileMetadataFor&gt; &lt;object&gt;knb.5&lt;/object&gt;
-          Recursive:
-          &lt;subject&gt;lter.123&lt;/subject&gt; &lt;isPackageMember&gt; &lt;object&gt;lter.18&lt;/object&gt;
-          where object lter.18 is the package file in which this relationship
-          exisists.
-        </example>
-        <lineage>
-          new to EML 2.0
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="subject" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Subject element
-              </tooltip>
-              <summary>
-                Subject element of the relationship.
-              </summary>
-              <description>
-                Subject is URL specifier of metadata file that is refered by other metadata
-                or data file specified in object element in the way of relationship.
-              </description>
-              <example>
-                metacat://dev.nceas.ucsb.edu?docid=nceas.57
-              </example>
-              <lineage>
-                Subject element was introduce into EML 2.0 Proposed.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="relationship" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Relationship type
-              </tooltip>
-              <summary>
-                The type of relationship between metadata and data file.
-              </summary>
-              <description>
-                Relationship is any descriptive word(s) that specifies the 
-                relation of the subject to the object specifier.
-              </description>
-              <example>
-                isMetadataFor, isACLFileFor, isFileMetadataFor, etc.
-              </example>
-              <lineage>
-                Relationship element was introduce into EML 2.0 Proposed.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="object" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
-                Object element
-              </tooltip>
-              <summary>
-                Object element of the relationship.
-              </summary>
-              <description>
-                Object is URL specifier of metadata or data file that refers to the
-                metadata file specified in subject element in the way of relationship.
-              </description>
-              <example>
-                http://dev.nceas.ucsb.edu/berkley/testdata1.txt
-              </example>
-              <lineage>
-                Object element was introduce into EML 2.0 Proposed.
-              </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-           
-</xs:schema>
+                Normal (nonrecursive):
+                <![CDATA[
+                <subject>knb.3.4</subject> 
+                <relationship>isFileMetadataFor</relationship>
+                <object>knb.5</object>
 
+                Recursive:
+                <subject>lter.123</subject>
+                <relationship>isPackageMember</relationship>
+                <object>lter.18</object>
+                ]]>
+                where object lter.18 is the identifier of the package file 
+                in which this relationship exists.
+              </example>
+              <lineage>
+                Derived from the eml-dataset.dtd element called "relation" in
+                EML 1.4.
+              </lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="subject" type="xs:string"
+                          minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
+                      Subject element
+                    </tooltip>
+                    <summary>
+                      Subject element of the relationship.
+                    </summary>
+                    <description>
+                      Subject is the identifier of the metadata object or file 
+                      that is the actor in the triple.
+                    </description>
+                    <example>
+                      <![CDATA[ <subject>knb.3.4</subject> ]]>
+                    </example>
+                    <lineage>
+                      Subject element was introduce into EML 2.0 Proposed.
+                    </lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="relationship" type="xs:string"
+                          minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
+                      Relationship type
+                    </tooltip>
+                    <summary>
+                      The type of relationship between the subject and
+                      object of the triple
+                    </summary>
+                    <description>
+                      Relationship is a descriptive phrase that specifies the 
+                      how the subject of the triple is related to the object.  
+                      This is typically meant to label the type of descriptor 
+                      that a metadata file (the subject) represents for a data
+                      file (the object).  This allows one to express concepts
+                      such as "knb.32.3 lists access control rules for knb.2.2".
+                    </description>
+                    <example>
+                      <![CDATA[ 
+                      <relationship>is metadata describing</relationship> ]]>
+                    </example>
+                    <lineage>
+                      The relationship element was introduced in EML 2.0.
+                    </lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="object" type="xs:string"
+                          minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
+                      Object element
+                    </tooltip>
+                    <summary>
+                      The object element of the relationship.
+                    </summary>
+                    <description>
+                      Object is the identifier of the metadata or data object 
+                      that is acted upon according to the relationship in the
+                      triple.
+                    </description>
+                    <example>
+                      <![CDATA[ <subject>knb.8.4</subject> ]]>
+                    </example>
+                    <lineage>
+                      The object element was introduced in EML 2.0.
+                    </lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
