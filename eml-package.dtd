@@ -1,0 +1,19 @@
+<!--         
+      '$RCSfile: eml-package.dtd,v $'
+      Purpose: This dtd mimics the content model found in 
+               package.xsd
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Chad Berkley
+
+     '$Author: cjones $'
+     '$Date: 2001-02-08 06:35:17 $'
+     '$Revision: 1.1 $'
+-->
+
+<!ELEMENT package (name?, relation+) >
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT relation (subject, relationship, object) >
+<!ELEMENT subject (#PCDATA) >
+<!ELEMENT relationship (#PCDATA) >
+<!ELEMENT object (#PCDATA) >
