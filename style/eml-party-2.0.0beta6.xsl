@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-06-17 20:00:33 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-04-21 18:23:56 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -103,7 +103,7 @@
         Address:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
     <table width="100%">
     <xsl:for-each select="./deliveryPoint">
-    <tr><td><xsl:value-of select="../deliveryPoint"/><xsl:text>, </xsl:text></td></tr>
+    <tr><td><xsl:value-of select="."/><xsl:text>, </xsl:text></td></tr>
     </xsl:for-each>
     <!-- only include comma if city exists... -->
     <xsl:if test="normalize-space(./city)!=''">
