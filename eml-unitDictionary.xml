@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-12 22:51:48 $'
-      '$Revision: 1.10 $'
+          '$Date: 2002-09-13 02:37:12 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -232,7 +232,76 @@
     <dimension name="time" power="-4"/>
     <dimension name="charge" />
   </unitType>
-
+  
+  <unitType id="capacitance" name="capacitance">
+    <dimension name="mass" power="-1"/>
+    <dimension name="length" power="-2"/>
+    <dimension name="time" power="2"/>
+    <dimension name="charge" power="2"/>
+  </unitType>
+  
+  <unitType id="resistance" name="resistance">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-5"/>
+    <dimension name="charge" power="-2"/>
+  </unitType>
+  
+  <unitType id="conductance" name="conductance">
+    <dimension name="mass" power="-1"/>
+    <dimension name="length" power="-2"/>
+    <dimension name="time" power="5"/>
+    <dimension name="charge" power="2"/>
+  </unitType>
+  
+  <unitType id="magneticFlux" name="magneticFlux">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-1"/>
+    <dimension name="charge" power="-1"/>
+  </unitType>
+  
+  <unitType id="magneticFluxDensity" name="magneticFluxDensity">
+    <dimension name="mass"/>
+    <dimension name="time" power="-1"/>
+    <dimension name="charge" power="-1"/>
+  </unitType>
+  
+  <unitType id="inductance" name="inductance">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-5"/>
+    <dimension name="charge" power="-2"/>
+  </unitType>
+  
+  <unitType id="luminousFlux" name="luminousFlux">
+    <dimension name="luminosity"/>
+  </unitType>
+  
+  <unitType id="illuminance" name="illuminance">
+    <dimension name="luminosity"/>
+    <dimension name="length" power="-2"/>
+  </unitType>
+  
+  <unitType id="radionucleotideActivity" name="radionucleotideActivity">
+    <dimension name="time" power="-1"/>
+  </unitType>
+  
+  <unitType id="specificEnergy" name="specificEnergy">
+    <dimension name="time" power="-2"/>
+    <dimension name="length" power="2"/>
+  </unitType>
+  
+  <unitType id="doseEquivalent" name="doseEquivalent">
+    <dimension name="time" power="-2"/>
+    <dimension name="length" power="2"/>
+  </unitType>
+  
+  <unitType id="catalyticActivity" name="catalyticActivity">
+    <dimension name="time" power="-1"/>
+    <dimension name="amount"/>
+  </unitType>
+ 
   <unitType id="pressure" name="pressure">
     <dimension name="mass"/>
     <dimension name="time" power="-2"/>
@@ -424,6 +493,27 @@
   <unit id="footPound" name="foot pound" unitType="energy" multiplierToSI="1.355818" abbreviation="ft-lbs">
     <description>1 ft-lbs = 1.355818 J</description>
   </unit>
+  <unit id="lumen" name="lumen" unitType="luminosity" multiplierToSI="1" abbreviation="lm">
+    <description>lumen</description>
+  </unit>
+  <unit id="lux" name="lux" unitType="illuminance" multiplierToSI="1" abbreviation="lx">
+    <description>lux</description>
+  </unit>
+  <unit id="becquerel" name="becquerel" unitType="radionucleotideActivity" multiplierToSI="1" abbreviation="Bq">
+    <description>becquerel</description>
+  </unit>
+  <unit id="gray" name="gray" unitType="specificEnergy" multiplierToSI="1" abbreviation="Gy">
+    <description>gray</description>
+  </unit>
+  <unit id="sievert" name="sievert" unitType="doseEquivalent" multiplierToSI="1" abbreviation="Sv">
+    <description>sievert</description>
+  </unit>
+  <unit id="katal" name="katal" unitType="catalyticActivity" multiplierToSI="1" abbreviation="kat">
+    <description>katal</description>
+  </unit>
+  <unit id="henry" name="henry" unitType="inductance" multiplierToSI="1" abbreviation="H">
+    <description>henry</description>
+  </unit>
 
   <!--SI power-->
   <unit id="watt" name="watt" unitType="power" multiplierToSI="1" abbreviation="W">
@@ -431,6 +521,21 @@
   </unit>
   <unit id="volt" name="volt" unitType="potentialDifference" multiplierToSI="1" abbreviation="V">
     <description>volt</description>
+  </unit>
+  <unit id="farad" name="farad" unitType="capacitance" multiplierToSI="1" abbreviation="F">
+    <description>volt</description>
+  </unit>
+  <unit id="ohm" name="ohm" unitType="resistance" multiplierToSI="1" abbreviation="Omega">
+    <description>ohm</description>
+  </unit>
+  <unit id="siemens" name="siemens" unitType="conductance" multiplierToSI="1" abbreviation="S">
+    <description>siemens</description>
+  </unit>
+  <unit id="weber" name="weber" unitType="magneticFlux" multiplierToSI="1" abbreviation="Wb">
+    <description>weber</description>
+  </unit>
+  <unit id="tesla" name="tesla" unitType="magneticFluxDensity" multiplierToSI="1" abbreviation="T">
+    <description>tesla</description>
   </unit>
 
   <!--SI pressure-->
