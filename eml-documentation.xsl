@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: cjones $'
-  *       '$Date: 2001-03-23 07:42:53 $'
-  *   '$Revision: 1.9 $'
+  *       '$Date: 2001-03-23 07:48:08 $'
+  *   '$Revision: 1.10 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@
 
                 <!-- display a link to the base type for derivations -->
                 <xsl:if test="./@derivedBy">
-	        <tr>
+                <tr>
                 <td colspan="3" valign="top" class="tablepanel">
                   Derived from:
                   <a class="sitelink">
@@ -151,28 +151,28 @@
                     <!-- and display the name of the attribute-->
                     <xsl:value-of select="./@base"/>
                   </a> (by <xsl:value-of select="./@derivedBy"/>)
-		</td>
-		</tr>
+                </td>
+                </tr>
                 </xsl:if>
 
                 <!-- display the elements -->
-		<tr>
-		  <td valign="top" class="tablepanel">
+                <tr>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Allowable content:
                   </span>
-		  </td>
-		  <td valign="top" class="tablepanel">
+                  </td>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Required?:
                   </span>
-		  </td>
-		  <td valign="top" class="tablepanel">
+                  </td>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     How many:
                   </span>
-		  </td>
-		</tr>
+                  </td>
+                </tr>
                 <!-- change this into a table format -->
                 <!-- Element Name | Required? | How many -->
                 <xsl:apply-templates 
@@ -180,23 +180,23 @@
                      mode="contentmodel" />
     
                 <!-- display the attributes -->
-		<tr>
-		  <td valign="top" class="tablepanel">
+                <tr>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Allowable attributes:
                   </span>
-		  </td>
-		  <td valign="top" class="tablepanel">
+                  </td>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Required?:
                   </span>
-		  </td>
-		  <td valign="top" class="tablepanel">
+                  </td>
+                  <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Default Value:
                   </span>
-		  </td>
-		</tr>
+                  </td>
+                </tr>
                 <!-- change this into a table format -->
                 <!-- Attribute Name | Required? -->
                 <xsl:apply-templates 
@@ -258,8 +258,8 @@
   <xsl:template match="xs:element" mode="contentmodel">
         <!--give each element a link to its definition -->
         
-	<tr>
-	<td class="tablepanel">
+        <tr>
+        <td class="tablepanel">
         <a class="sitelink">
           <xsl:attribute name="href">
             <xsl:text>#</xsl:text>
@@ -270,19 +270,19 @@
           <xsl:value-of select="./@name"/>
           <xsl:value-of select="./@ref"/>
         </a>
-	</td>
-	<td class="tablepanel">
+        </td>
+        <td class="tablepanel">
         <xsl:choose>
           <xsl:when test="./@minOccurs &gt; '0'">Required</xsl:when>
           <xsl:otherwise>Optional</xsl:otherwise>
         </xsl:choose>
-	</td>
-	<td class="tablepanel">
+        </td>
+        <td class="tablepanel">
         <xsl:choose>
           <xsl:when test="./@maxOccurs = '1'">Once</xsl:when>
           <xsl:otherwise>Multiple Times</xsl:otherwise>
         </xsl:choose>
-	</td>
+        </td>
         </tr>
 
         <xsl:if test="name(..) = 'xs:choice' 
@@ -298,8 +298,8 @@
   <!-- step through the attributes -->
   <xsl:template match="xs:attribute" mode="contentmodel">
         <!--give each attribute link to its definition -->
-	<tr>
-	<td class="tablepanel">
+        <tr>
+        <td class="tablepanel">
         <a class="sitelink">
           <xsl:attribute name="href">
             <xsl:text>#</xsl:text>
@@ -310,26 +310,26 @@
           <xsl:value-of select="./@name"/>
           <xsl:value-of select="./@ref"/>
         </a>
-	</td>
+        </td>
 
         <!-- display the use -->
         <xsl:if test="./@use">
-	<td class="tablepanel">
+        <td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@use"/>
           </span> 
-	</td>
+        </td>
         </xsl:if>
 
         <!-- display the default value -->
         <xsl:if test="./@value">
-	<td class="tablepanel">
+        <td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@value"/>
           </span>
-	</td>
+        </td>
         </xsl:if>
-	</tr>
+        </tr>
   </xsl:template>
   
   <!-- step through the attributes -->
