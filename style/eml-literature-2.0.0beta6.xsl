@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2002-06-17 20:00:33 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2003-01-27 22:07:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@
     
     
 	<xsl:template match="citation">
-        <xsl:apply-templates select="./" mode="resource"/>
+        <xsl:apply-templates select="." mode="resource"/>
         <tr class="{$subHeaderStyle}"><td colspan="2">Author(s):</td></tr>
         <xsl:for-each select="originator">
             <xsl:apply-templates select="." mode="party"/>
@@ -203,22 +203,22 @@
       <xsl:template match="institution[1]">
         <tr class="{$subHeaderStyle}"><td colspan="2">
           <xsl:text>Institution:</xsl:text></td></tr>
-          <xsl:apply-templates select="./" mode="party"/>
+          <xsl:apply-templates select="." mode="party"/>
           </xsl:template>
         
       <xsl:template match="institution">
-          <xsl:apply-templates select="./" mode="party"/>
+          <xsl:apply-templates select="." mode="party"/>
       </xsl:template>       
        
        
       <xsl:template match="pubInfo[1]">
           <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
           <h4>Publication Info:</h4></td><td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr>
-          <xsl:apply-templates select="./" mode="party"/>
+          <xsl:apply-templates select="." mode="party"/>
           </xsl:template>
         
       <xsl:template match="pubInfo">
-          <xsl:apply-templates select="./" mode="party"/>
+          <xsl:apply-templates select="." mode="party"/>
       </xsl:template>
 
 
