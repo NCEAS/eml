@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" elementFormDefault="unqualified" attributeFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -17,9 +17,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-05 21:29:35 $'
-      '$Revision: 1.57 $'
+        '$Author: jones $'
+          '$Date: 2002-09-06 22:25:39 $'
+      '$Revision: 1.58 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,9 +50,9 @@
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
   <!-- import the elements from eml-coverage -->
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" schemaLocation="eml-coverage.xsd"/>
   <xs:group name="ResourceGroup">
     <xs:annotation>
       <xs:appinfo>

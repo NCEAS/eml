@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: jones $'
-  *      '$Date: 2002-09-06 16:01:12 $'
-  *  '$Revision: 1.26 $'
+  *      '$Date: 2002-09-06 22:25:39 $'
+  *  '$Revision: 1.27 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -44,7 +44,7 @@
 
   <target name="init" depends="config">
     <property name="name" value="eml"/>
-    <property name="version" value="2.0.0beta9"/>
+    <property name="version" value="2.0.0rc1"/>
     <property name="testdir" value="./test" />
     <property name="build.dir" value="build"/>
     <property name="build.tests" value="${build.dir}/tests"/>

@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: berkley $'
- *     '$Date: 2002-09-03 18:35:34 $'
- * '$Revision: 1.2 $'
+ *   '$Author: jones $'
+ *     '$Date: 2002-09-06 22:25:40 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -141,7 +141,7 @@ public class SaxValidateTest extends TestCase
       catch(Exception e)
       {
         String msg = e.getMessage();
-        if(msg.equals("Attribute \"xmlns:doc\" must be declared for element " +
+        if(msg.equals("Attribute \"xmlns:xs\" must be declared for element " +
                       "type \"book\"."))
         {
           //if its just this message. the file is valid.

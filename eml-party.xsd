@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/party-2.0.0beta9"
-xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns="eml://ecoinformatics.org/party-2.0.0beta9">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
+<xs:schema targetNamespace="eml://ecoinformatics.org/party-2.0.0rc1"
+xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/party-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
   schemaLocation="eml-resource.xsd" />
   <xs:annotation>
     <xs:documentation>
@@ -22,9 +22,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns="eml://ecoin
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-05 21:29:35 $'
-      '$Revision: 1.32 $'
+        '$Author: jones $'
+          '$Date: 2002-09-06 22:25:39 $'
+      '$Revision: 1.33 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/attribute-2.0.0beta9" xmlns="eml://ecoinformatics.org/attribute-2.0.0beta9" xmlns:md="eml://ecoinformatics.org/methods-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0beta9" schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/attribute-2.0.0rc1" xmlns="eml://ecoinformatics.org/attribute-2.0.0rc1" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -21,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-05 21:29:35 $'
-      '$Revision: 1.56 $'
+        '$Author: jones $'
+          '$Date: 2002-09-06 22:25:39 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -679,7 +679,7 @@
                     describe what is placed into a data grid if the value is
                     missing for some reason.</doc:description>
                     <doc:example>-9999, -1, N/A, MISSING, .</doc:example>
-                    <doc:lineage>Added in EML-2.0.0beta9</doc:lineage>
+                    <doc:lineage>Added in EML-2.0.0rc1</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -696,7 +696,7 @@
                     a sensor error and -1 represents a technician error this
                     should be noted.</doc:description>
                     <doc:example>Sensor down time.</doc:example>
-                    <doc:lineage>Added in eml-2.0.0beta9</doc:lineage>
+                    <doc:lineage>Added in eml-2.0.0rc1</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -734,7 +734,7 @@
               timePeriodInformation which either user XMLSchema types or use
               predefined EML types for these purposes.</doc:description>
               <doc:example/>
-              <doc:lineage>New in EML 2.0.0beta9</doc:lineage>
+              <doc:lineage>New in EML 2.0.0rc1</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
