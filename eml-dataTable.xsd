@@ -34,8 +34,8 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-02 18:25:07 $'
-      '$Revision: 1.33 $'
+          '$Date: 2002-10-04 17:01:22 $'
+      '$Revision: 1.34 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -128,44 +128,21 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc1">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="orientation" default="columnMajor" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>orientation of attributes</doc:tooltip>
-              <doc:summary>Orientation of attributes..</doc:summary>
-              <doc:description>The orientation field allows the user to 
-              specify whether the attributes of the dataTable are found in
-              columns or rows. The valid values are columnMajor or rowMajor.
-              In a columnMajor table the attributes are in columns. 
-              For example: 
-              DATE          PLOT           SPECIES
-              2002-01-15    hfr5           acer rubrum
-              2002-01-15    hfr5           acer xxxx
-              
-              The same data in a rowMajor table:
-              DATE   2002-01-15
-              PLOT   hfr5
-              SPECIES acer rubrum  acer xxxx</doc:description>
-              <doc:example>columnMajor</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="columnMajor" />
-              <xs:enumeration value="rowMajor" />
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
         <xs:element name="caseSensitive" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Case sensitivity</doc:tooltip>
               <doc:summary>Specification of text case sensitivity in the
               dataTable.</doc:summary>
-              <doc:description>The caseSensitive element contains
-              specification of text case sensitivity of the data in the
-              dataTable. The valid values are yes or no.</doc:description>
+              <doc:description>The caseSensitive element
+              specifies text case sensitivity of the data in the
+              dataTable. The valid values are yes or no. If it is set to
+              yes, then values of attributes that differ only in case (e.g.,
+              LOW, low) represent distinct values.  If set to no, then values 
+              of attributes that differ only in case represent the same value.
+              </doc:description>
               <doc:example>yes</doc:example>
+              <doc:example>no</doc:example>
               <doc:lineage>The caseSensitive element was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>

@@ -29,8 +29,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: jones $'
-          '$Date: 2002-10-04 15:59:34 $'
-      '$Revision: 1.51 $'
+          '$Date: 2002-10-04 17:01:21 $'
+      '$Revision: 1.52 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -394,6 +394,40 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
+                    <xs:element name="attributeOrientation" minOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Orientation of attributes</doc:tooltip>
+                          <doc:summary>Orientation of attributes.</doc:summary>
+                          <doc:description> Specifies whether the attributes
+                          described in the physical stream are found in
+                          columns or rows. The valid values are column or row.
+                          If set to 'column', then the attributes are in
+                          columns. If set to 'row', then the attributes
+                          are in rows.  Row orientation is rare,  but some
+                          systems such as Splus and R utilize it.
+                          
+                          For example, some data with column orientation: 
+                          DATE          PLOT           SPECIES
+                          2002-01-15    hfr5           acer rubrum
+                          2002-01-15    hfr5           acer xxxx
+                          
+                          The same data in a rowMajor table:
+                          DATE   2002-01-15
+                          PLOT   hfr5
+                          SPECIES acer rubrum  acer xxxx
+                          </doc:description>
+                          <doc:example>column</doc:example>
+                          <doc:example>row</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="column" />
+                          <xs:enumeration value="row" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>                    
                     <xs:choice>
                       <xs:element name="simpleDelimited">
                         <xs:annotation>
@@ -907,56 +941,29 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="orientation" nillable="true" 
-                    minOccurs="0">
+                    <xs:element name="rowColumnOrientation" minOccurs="1">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>Entity's record
-                          orientation</doc:tooltip>
-                          <doc:summary>Specification of the binary raster
-                          entity's record orientation.</doc:summary>
-                          <doc:description>This element contains specification
-                          of the binary raster entity's record orientation by
-                          defining the element's attribute "columnorrow". The
-                          binary raster will be column major if the raster is
-                          to be displayed column by column from the byte
-                          stream, or row major if it is to be displayed row by
-                          row from the byte stream.</doc:description>
-                          <doc:example>The valid attribute values are
-                          "columnmajor" or "rowmajor". If the attribute is not
-                          specified, "columnmajor" is used.</doc:example>
-                          <doc:lineage>The orientation element was introduced
-                          into EML 2.0</doc:lineage>
+                          <doc:tooltip>Orientation for reading rows and columns
+                          </doc:tooltip>
+                          <doc:summary>Orientation for reading rows and columns.
+                          </doc:summary>
+                          <doc:description> Specifies whether the data should
+                          be read across rows or down columns.  The valid
+                          values are column or row.  If set to 'column', then
+                          the data are read down columns. If set to 'row',
+                          then the data are read across rows.</doc:description>
+                          <doc:example>column</doc:example>
+                          <doc:example>row</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
-                      <xs:complexType>
-                        <xs:attribute name="columnOrRow" use="optional" 
-                        default="columnMajor">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Attribute of orientation
-                              element</doc:tooltip>
-                              <doc:summary>Specification of the entity's record
-                              orientation.</doc:summary>
-                              <doc:description>This attribute specifies the
-                              entity's record orientation.</doc:description>
-                              <doc:example>The valid attribute values are
-                              "columnmajor" or "rowmajor". If the attribute is
-                              not specified, "columnmajor" is
-                              used.</doc:example>
-                              <doc:lineage>The columnorrow attribute was
-                              introduced into EML 1.4.</doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                          <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                              <xs:enumeration value="columnMajor"/>
-                              <xs:enumeration value="rowMajor"/>
-                            </xs:restriction>
-                          </xs:simpleType>
-                        </xs:attribute>
-                      </xs:complexType>
-                    </xs:element>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="column" />
+                          <xs:enumeration value="row" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>                                        
                     <xs:element name="multiBand" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
