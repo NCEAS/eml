@@ -108,9 +108,15 @@
     <dimension name="mass" power="-1"/>
   </unitType>
 
-  <unitType id="simpleDensity" name="simple density">
+  <unitType id="simpleCubicDensity" name="simple density">
     <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="simpleSquareDensity" name="simple density">
+    <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
@@ -151,16 +157,15 @@
     <description>SI unit of luminosity</description>
   </unit>
 
+  <unit id="number" name="number" unitType="dimensionless">
+    <description>a number</description>
+  </unit>
+
 
 <!-- ======================================================================= -->
 <!-- ===================== derived SI units ================================ -->
 <!-- ======================================================================= -->
 
-  <unit id="newton" name="newton" unitType="force">
-    <description>The SI unit of force</description>
-  </unit>
-
-<!-- multiples of fundamental SI units -->
   <!--grams-->
   <unit id="microgram" name="microgram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000000001" abbreviation="microg">
     <description>0.000001 kg.</description>
@@ -217,11 +222,25 @@
   </unit>
 
   <!--combos of SI-->
-  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI=".001">
+  <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" multiplierToSI=".000001" abbreviation="mg/ml">
+    <description>grams per liter</description>
+  </unit>
+  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI=".001" abbreviation="g/l">
     <description>grams per liter</description>
   </unit>
   <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity" multiplierToSI="1">
     <description>Fundamental SI mass density</description>
+  </unit>
+
+  <!--numeric densities-->
+  <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="simpleSquareDensity" multiplierToSI="1" abbreviation="#/m^2">
+    <description>number per meter squared</description>
+  </unit>
+  <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="simpleSquareDensity" multiplierToSI="100" abbreviation="#/km^2">
+    <description>number pre kilometer squared</description>
+  </unit>
+  <unit id="numberPerMeterCubed" name="numberPerMeterCubed" unitType="simpleCubedDensity" multiplierToSI="1" abbreviation="#/m^3">
+    <description>number per meter cubed</description>
   </unit>
 
 <!-- fundamental non-SI units -->
@@ -241,5 +260,3 @@
     <description>An obsolescent unit of temperature still used in popular meteorology</description>
   </unit>
 </unitList>
-
-
