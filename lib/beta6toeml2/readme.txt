@@ -9,7 +9,10 @@ java -cp ./ EMLConvert <beta6 package document>
 
 where <beta6 package document> is the dataset document for the beta6 package (e.g. 'C:\work\higgins.204.2' on a Windows machine). Note that path can be included with the document name and the name is assumed to be the id. Other modules in the package are assumed to be in the same directory. The easiest way to create this directory is to use the 'Export' command in Morpho which will write all the modules in a package to directory with files names corresponding to the ids.  
 
-The transformation should write a file called 'eml2out.xml' to the current working directory.
+The transformation should write a file called 'eml2out.xml' to the current working directory.           
+
+The 'runnit.bat' file is a batch file the executes the java application discussed here using a simple set of metadata (in the 'metadata-jscientist.2.2' directory) that was exported from morpho.
+
 
 -------------------------------
 
