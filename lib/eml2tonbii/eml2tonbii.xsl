@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-06 17:37:06 $'
-  * '$Revision: 1.8 $'
+  *     '$Date: 2003-05-06 22:34:44 $'
+  * '$Revision: 1.9 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -504,6 +504,368 @@ version="1.0">
       
         </xsl:element>
       </xsl:if>
+      
+<!-- start of the 'distinfo' branch -->
+<!-- This must be created if entities exist in eml2 in order to capture the
+      eml-physical metadata -->      
+      <xsl:if test="/eml:eml/dataset/dataTable/physical!=''">
+        <xsl:element name="distinfo">
+          <!-- distribution contact info is required -->
+          <xsl:element name="distrib">
+            <xsl:element name="cntinfo">
+            <xsl:for-each select="/eml:eml/dataset/contact[1]">
+                <xsl:variable name="cc">
+                  <xsl:choose>
+                    <xsl:when test="./references!=''">
+                      <xsl:variable name="ref_id" select="./references"/>
+                      <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <!-- no references tag, thus use the current node -->
+                      <xsl:copy-of select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+          
+              <xsl:choose>
+                <xsl:when test="xalan:nodeset($cc)//individualName!=''">
+                  <xsl:element name="cntperp">
+                  <!-- there is only a single 'cntperp' in nbii;
+                   thus we only reproduce the first contact in eml2 -->
+                     <xsl:element name="cntper">
+                      <xsl:value-of select="xalan:nodeset($cc)//individualName"/>
+                    </xsl:element>
+                    <xsl:if test="$show_optional">
+                      <xsl:element name="cntorg">
+                  
+                      </xsl:element>
+                    </xsl:if>  
+                  </xsl:element>
+                </xsl:when>
+                <xsl:when test="xalan:nodeset($cc)//organizationName!=''">
+                  <xsl:element name="cntorgp">
+                    <xsl:element name="cntorg">
+                      <xsl:value-of select="xalan:nodeset($cc)//organizationName"/>
+                    </xsl:element>
+                    <xsl:if test="$show_optional">
+                      <xsl:element name="cntper">
+                  
+                      </xsl:element>
+                    </xsl:if>  
+                  </xsl:element>
+                </xsl:when>
+                <xsl:when test="xalan:nodeset($cc)//positionName!=''">
+                  <xsl:element name="cntorgp">
+                    <xsl:element name="cntorg">
+                      <xsl:value-of select="xalan:nodeset($cc)//positionName"/>
+                    </xsl:element>
+                    <xsl:if test="$show_optional">
+                      <xsl:element name="cntper">
+                  
+                      </xsl:element>
+                    </xsl:if>  
+                  </xsl:element>
+                </xsl:when>
+              </xsl:choose>
+              <xsl:if test="xalan:nodeset($cc)//positionName!=''">
+                <xsl:element name="cntpos">
+                  <xsl:value-of select="xalan:nodeset($cc)//positionName"/>
+                </xsl:element>
+              </xsl:if>
+              <xsl:element name="cntaddr">
+                 <xsl:element name="addrtype">
+                   <xsl:value-of select="'mailing'"/>
+                 </xsl:element>
+                 <xsl:choose>
+                   <xsl:when test="xalan:nodeset($cc)//address/deliveryPoint!=''">
+                     <xsl:element name="address">
+                       <xsl:value-of select="xalan:nodeset($cc)//address/deliveryPoint"/>
+                     </xsl:element>
+                   </xsl:when>
+                 </xsl:choose>
+               
+                 <xsl:choose>
+                   <xsl:when test="xalan:nodeset($cc)//address/city!=''">
+                     <xsl:element name="city">
+                       <xsl:value-of select="xalan:nodeset($cc)//address/city"/>
+                     </xsl:element>
+                   </xsl:when>
+                   <xsl:otherwise>
+                     <xsl:element name="city">
+                       <xsl:value-of select="'N/A'"/>
+                     </xsl:element>  
+                   </xsl:otherwise>
+                 </xsl:choose>
+               
+                 <xsl:choose>
+                   <xsl:when test="xalan:nodeset($cc)//address/administrativaArea!=''">
+                     <xsl:element name="state">
+                       <xsl:value-of select="xalan:nodeset($cc)//address/administrativaArea"/>
+                     </xsl:element>
+                   </xsl:when>
+                   <xsl:otherwise>
+                     <xsl:element name="state">
+                       <xsl:value-of select="'N/A'"/>
+                     </xsl:element>  
+                   </xsl:otherwise>
+                 </xsl:choose>
+               
+                 <xsl:choose>
+                   <xsl:when test="xalan:nodeset($cc)//address/postalCode!=''">
+                     <xsl:element name="postal">
+                       <xsl:value-of select="xalan:nodeset($cc)//address/postalCode"/>
+                     </xsl:element>
+                   </xsl:when>
+                   <xsl:otherwise>
+                     <xsl:element name="postal">
+                       <xsl:value-of select="'N/A'"/>
+                     </xsl:element>  
+                   </xsl:otherwise>
+                 </xsl:choose>
+               
+                 <xsl:choose>
+                   <xsl:when test="xalan:nodeset($cc)//address/country!=''">
+                     <xsl:element name="country">
+                       <xsl:value-of select="xalan:nodeset($cc)//address/country"/>
+                     </xsl:element>
+                   </xsl:when>
+                 </xsl:choose>
+               
+              </xsl:element>
+
+               <xsl:choose>
+                 <xsl:when test="xalan:nodeset($cc)//phone!=''">
+                   <xsl:element name="cntvoice">
+                     <xsl:value-of select="xalan:nodeset($cc)//phone"/>
+                   </xsl:element>
+                 </xsl:when>
+               </xsl:choose>
+               
+              <xsl:if test="$show_optional">
+                <xsl:element name="cnttdd">
+              
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="$show_optional">
+                <xsl:element name="cntfax">
+              
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="$show_optional">
+                <xsl:element name="cntemail">
+              
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="$show_optional">
+                <xsl:element name="hours">
+              
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="$show_optional">
+                <xsl:element name="cntinst">
+              
+                </xsl:element>
+              </xsl:if>
+          
+            </xsl:for-each>
+          </xsl:element> <!-- end cntinfo -->
+          <xsl:element name="resdesc">
+            <xsl:value-of select="/eml:eml/@packageId"/>
+          </xsl:element>
+          <xsl:element name="distliab">
+            <xsl:value-of select="'distribution liability information is not available'"/>
+          </xsl:element>
+          <xsl:element name="stdorder">
+           <xsl:for-each select="/eml:eml/dataset/dataTable/physical">
+           
+                <xsl:variable name="cc-phys">
+                    <xsl:choose>
+                      <xsl:when test="./references!=''">
+                          <xsl:variable name="ref_id" select="./references"/>
+                          <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                      </xsl:when>
+                    <xsl:otherwise>
+                      <!-- no references tag, thus use the current node -->
+                      <xsl:copy-of select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+           
+            <xsl:element name="digform">
+              <xsl:element name="digtinfo">
+                <xsl:element name="formname">
+                  <xsl:choose>
+                    <xsl:when test="xalan:nodeset($cc-phys)//textFormat!=''">
+                      <xsl:value-of select="'ASCII'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="'Unknown; NOT ASCII'"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:element>
+                <xsl:element name="asciistr">
+                  <xsl:element name="recdel">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-phys)//textFormat/recordDelimiter!=''">
+                        <xsl:value-of select="xalan:nodeset($cc-phys)//textFormat/recordDelimiter"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'N/A'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:element name="numheadl">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-phys)//textFormat/numHeaderLines!=''">
+                        <xsl:value-of select="xalan:nodeset($cc-phys)//textFormat/numHeaderLines"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'N/A'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:element name="orienta">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-phys)//textFormat/attributeOrientation='row'">
+                        <xsl:value-of select="'rowmajor'"/>                      
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'columnmajor'"/>                      
+                      </xsl:otherwise>
+                    </xsl:choose>
+                    
+                  </xsl:element>
+                  <xsl:element name="casesens">
+                    <xsl:value-of select="'Y'"/>
+                  </xsl:element>
+                  <xsl:element name="authent">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-phys)//authentication!=''">
+                        <xsl:value-of select="xalan:nodeset($cc-phys)//authentication"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'N/A'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:element name="quotech">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-phys)//dataFormat/textFormat/simpleDelimited/quoteCharacter!=''">
+                        <xsl:value-of select="xalan:nodeset($cc-phys)//dataFormat/textFormat/simpleDelimited/quoteCharacter"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'N/A'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:element name="datafiel">
+                    <xsl:element name="dfieldnm">
+                      <xsl:value-of select="'Field Name data is included as part of the Entity/Attribute element (eainfo).'"/>
+                    </xsl:element>
+                    <xsl:element name="dfwidthd">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc-phys)//dataFormat/textFormat/simpleDelimited/fieldDelimiter!=''">
+                          <xsl:value-of select="concat('Single delimter for all fields: ', xalan:nodeset($cc-phys)//dataFormat/textFormat/simpleDelimited/fieldDelimiter)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'N/A'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+                <xsl:element name="formcnt">
+                 <xsl:value-of select="'See Entity/Attribute element (eainfo)'"/>
+                </xsl:element>
+                <xsl:element name="filedec">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc-phys)//compressionMethod!=''">
+                          <xsl:value-of select="xalan:nodeset($cc-phys)//compressionMethod"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'No compression applied'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                </xsl:element>
+                <xsl:element name="transize">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc-phys)//size!=''">
+                          <xsl:choose>
+                           <xsl:when test="xalan:nodeset($cc-phys)//size/@unit!=''">
+                             <xsl:value-of select="concat(xalan:nodeset($cc-phys)//size, ' ', xalan:nodeset($cc-phys)//size/@unit)"/>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:value-of select="concat(xalan:nodeset($cc-phys)//size, ' bytes')"/>
+                           </xsl:otherwise>
+                          </xsl:choose>
+                          
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'N/A'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                </xsl:element>
+              </xsl:element>
+              <xsl:element name="digtopt">
+                <xsl:choose>
+                  <xsl:when test="xalan:nodeset($cc-phys)//distribution/online/url!=''">
+                    <xsl:element name="onlinopt">
+                      <xsl:element name="computer">
+                        <xsl:element name="networka">
+                          <xsl:element name="networkr">
+                            <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/online/url"/>
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:when>
+                  <xsl:when test="xalan:nodeset($cc-phys)//distribution/inline!=''">
+                    <xsl:element name="onlinopt">
+                      <xsl:element name="computer">
+                        <xsl:element name="networka">
+                          <xsl:element name="networkr">
+                            <xsl:value-of select="'data is inline (inside) eml2 document'"/>
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:when>
+                  <xsl:otherwise><!-- offline -->
+                    <xsl:element name="offoptn">
+                      <xsl:element name="offmedia">
+                        <xsl:choose>
+                          <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumName!=''">
+                            <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumName"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="'N/A'"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:element>
+                      <xsl:element name="reccap">
+                      
+                      </xsl:element>
+                      <xsl:element name="recfmt">
+                        <xsl:element name="recden">
+                        
+                        </xsl:element>
+                        <xsl:element name="recdenu">
+                        
+                        </xsl:element>
+                      </xsl:element>
+                      <xsl:element name="compat">
+                      
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:element>
+            </xsl:element>
+           </xsl:for-each>
+          </xsl:element>
+        </xsl:element><!-- end distrib --> 
+      </xsl:element><!-- end distinfo -->
+    </xsl:if>
       
 <!-- start the 'eainfo' branch -->      
 <!-- create only if there is entity data in the eml2 document --> 
