@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2003-11-01 01:17:17 $'
-#      '$Revision: 1.30 $'
+#          '$Date: 2004-07-05 22:45:36 $'
+#      '$Revision: 1.31 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,6 +54,7 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Scott Chapal (scott.chapal@jonesctr.org)
               Tim Bergsma (tbergsma@kbs.msu.edu)
               Ken Ramsey (kramsey@jornada.nmsu.edu)
+              Saurabh Garg (sgarg@nceas.ucsb.edu)
 
 Web site: http://knb.ecoinformatics.org/software/eml
 
@@ -107,7 +108,7 @@ of sample instance documents used for testing the schemas, and an application
 for checking document validity under JUnit (see http://junit.org).
 
 This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_0_1_RC1".  Previous versions of EML (such as 1.4) 
+tag "RELEASE_EML_2_0_1".  Previous versions of EML (such as 1.4) 
 are available from this repository using the appropriate release tag 
 (i.e. RELEASE_EML_1_4).
 
@@ -119,24 +120,31 @@ has been included to show how EML can be transformed into an HTML display.
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-None known at time of release.
+Some problems with unit dictionary remain and will be solved in 
+a backwards-incompatible release in the future.  See bug 1000 and 1605.
 
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
-1124: update precision field definition and cardinality
-1195: tracking bug for 2.0.1 release
  249: Update XSLT stylesheets for EML 2.0 modules
+ 939: spelling errors for 'its' in index
+ 960: parser not correctly parsing <describes> tag in additiona...
 1008: inline element doesn't support character child
 1017: documentation error in eml-methods
+1031: enumeratedDomain doesn't define value order for ordinals
 1035: Technical documentation on eml-methods has an error
+1124: update precision field definition and cardinality
 1129: Change temporalCoverage calendarDate type
+1132: fix access control rule ambiguities
+1136: kelvin conversion incorrect in unit dictionary
 1149: BoundsGroup bounds min & max have incorrect cardinality
 1150: documentation for KeyTypeCode is wrong
 1151: misspelled element name
 1153: dateTimeDomain element should be optional
 1155: Documentation incorrect for dateTimeDomainType bounds
- 939: spelling errors for 'its' in index
+1195: tracking bug for 2.0.1 release
+1233: dateTime formatString Documentation contains incorrect ex...
+1529: no tag to specify how to handle mutltiple, repeated delimimeters
 
 2.0.0 Changes- (numbers refer to the corresponding Bugzilla bug)
 670: DateTimeDomain id/reference validation
@@ -228,7 +236,7 @@ of California, University of New Mexico, and Arizona State University and
 licensed under the GNU GPL; see the 'LICENSE' file for details.
 
 This material is based upon work supported by the National Science Foundation
-under Grant No. DEB-9980154, DBI-9904777, DEB-0072909, DBI-9983132,
+under Grant No. 0225676, DEB-9980154, DBI-9904777, DEB-0072909, DBI-9983132,
 and DEB-9634135.  Any opinions, findings and conclusions or recommendations
 expressed in this material are those of the author(s) and do not necessarily
 reflect the views of the National Science Foundation (NSF).
