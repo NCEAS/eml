@@ -6,7 +6,7 @@
            xmlns="eml:resource" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified">
-  <xs:import namespace="eml:documentation" schemaLocation="/home/berkley/mdstandards/eml/eml-documentation.xsd"/>
+  <xs:import namespace="eml:documentation" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -14,9 +14,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2001-12-14 16:57:21 $'
-      '$Revision: 1.26 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:08 $'
+      '$Revision: 1.27 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@
   </xs:annotation>
   <!-- import the elements from responsible party for use in originator -->
   <xs:import namespace="eml:ResponsibleParty" 
-             schemaLocation="/home/berkley/mdstandards/eml/eml-party.xsd"/>
+             schemaLocation="eml-party.xsd"/>
   <!-- this is the base type that the other resource types extend -->
   <xs:complexType name="ResourceBase">
     <xs:annotation>
@@ -523,9 +523,22 @@
           <xs:appinfo>
             <doc:tooltip>Rights</doc:tooltip>
             <doc:summary>Rights regarding usage and licensing of this resource.</doc:summary>
-            <doc:description>Typically, a Rights element will contain a rights management statement for the resource, or reference  a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights.  In the case of a data set, rights might incude requirements for use, requirements for attribution, or other requirements the owner would like to impose.</doc:description>
-            <doc:example>Copyright 2001 Regents of the University of California Santa Barbara.  Free for use by all individulas provided that the owners are acknowledged in any use or publication.</doc:example>
-            <doc:lineage>Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.</doc:lineage>
+            <doc:description>
+              Typically, a Rights element will contain a rights management statement 
+              for the resource, or reference  a service providing such information. 
+              Rights information often encompasses Intellectual Property Rights (IPR), 
+              Copyright, and various Property Rights.  In the case of a data set, 
+              rights might incude requirements for use, requirements for attribution, 
+              or other requirements the owner would like to impose.
+            </doc:description>
+            <doc:example>
+              Copyright 2001 Regents of the University of California Santa Barbara.  
+              Free for use by all individulas provided that the owners are acknowledged 
+              in any use or publication.
+            </doc:example>
+            <doc:lineage>
+              Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -561,18 +574,20 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
-                      Download site URL
-                    </doc:tooltip>
+                Download site URL
+              </doc:tooltip>
               <doc:summary>
-                     A URL (Uniform Resource Locator) from which this resource can be downloaded
-                    </doc:summary>
+               A URL (Uniform Resource Locator) from which this resource can be downloaded
+              </doc:summary>
               <doc:description>
-                      A URL (Uniform Resource Locator) from which this resource can be downloaded.  This includes any information needed to access this site, such as connection information.
-                    </doc:description>
+                A URL (Uniform Resource Locator) from which this resource can be downloaded.  
+                This includes any information needed to access this site, such as 
+                connection information.
+              </doc:description>
               <doc:example>http://data.org/getdata?id=98332</doc:example>
               <doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
+                ISO CD 19115.3, Geographic information - Metadata
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -580,21 +595,21 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
-                            medium of the resource
-                          </doc:tooltip>
+                medium of the resource
+              </doc:tooltip>
               <doc:summary>
-                            the medium on which this resource is distributed, either digitally or as hardcopy
-                          </doc:summary>
+                the medium on which this resource is distributed, either digitally or as hardcopy
+              </doc:summary>
               <doc:description>
-                            the medium on which this resource is distributed 
-digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
-                          </doc:description>
+                the medium on which this resource is distributed digitally, such as 3.5" 
+                floppy disk, or various tape media types, or 'hardcopy'
+              </doc:description>
               <doc:example>
-                            CD-ROM, 3.5 in. floppy disk, Zip disk
-                          </doc:example>
+                CD-ROM, 3.5 in. floppy disk, Zip disk
+              </doc:example>
               <doc:lineage>
-                            ISO CD 19115.3, Geographic information - Metadata
-                          </doc:lineage>
+                ISO CD 19115.3, Geographic information - Metadata
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -603,21 +618,23 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  Medium name
-                                </doc:tooltip>
+                      Medium name
+                    </doc:tooltip>
                     <doc:summary>
-                                  Name of the medium that for this resource distribution
-                                </doc:summary>
+                      Name of the medium that for this resource distribution
+                    </doc:summary>
                     <doc:description>
-                                  Name of the medium on which this resource is distributed.  Can be various digital media such as tapes and disks, or printed media which can collectively be termed 'hardcopy'.
-                                </doc:description>
+                      Name of the medium on which this resource is distributed.  
+                      Can be various digital media such as tapes and disks, or 
+                      printed media which can collectively be termed 'hardcopy'.
+                    </doc:description>
                     <doc:example>
-                                  Tape, 3.5 inch Floppy Disk, hardcopy
-                                </doc:example>
+                      Tape, 3.5 inch Floppy Disk, hardcopy
+                    </doc:example>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -625,24 +642,24 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  density of the digital medium
-                                </doc:tooltip>
+                      density of the digital medium
+                    </doc:tooltip>
                     <doc:summary>
-                                  the density of the digital medium if this is 
-                                  relevant.
-                                </doc:summary>
+                      the density of the digital medium if this is 
+                      relevant.
+                    </doc:summary>
                     <doc:description>
-                                  the density of the digital medium if this is 
-                                  relevant.  Used mainly for floppy disks 
-                                  or tape.
-                                </doc:description>
+                      the density of the digital medium if this is 
+                      relevant.  Used mainly for floppy disks 
+                      or tape.
+                    </doc:description>
                     <doc:example>
-                                  High Density (HD), Double Density (DD)
-                                </doc:example>
+                      High Density (HD), Double Density (DD)
+                    </doc:example>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -650,22 +667,22 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  units of a numerical density
-                                </doc:tooltip>
+                      units of a numerical density
+                    </doc:tooltip>
                     <doc:summary>
-                                  a numerical density's units
-                                </doc:summary>
+                      a numerical density's units
+                    </doc:summary>
                     <doc:description>
-                                  if a density is given numerically, the units 
-                                  should be given here.  
-                                </doc:description>
+                      if a density is given numerically, the units 
+                      should be given here.  
+                    </doc:description>
                     <doc:example>
-                                  B/cm
-                                </doc:example>
+                      B/cm
+                    </doc:example>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -673,22 +690,22 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  storage volume 
-                                </doc:tooltip>
+                      storage volume 
+                    </doc:tooltip>
                     <doc:summary>
-                                  total volume of the storage medium
-                                </doc:summary>
+                      total volume of the storage medium
+                    </doc:summary>
                     <doc:description>
-                                  the total volume of the storage medium on 
-                                  which this resource is shipped.
-                                </doc:description>
+                      the total volume of the storage medium on 
+                      which this resource is shipped.
+                    </doc:description>
                     <doc:example>
-                                  650 MB
-                                </doc:example>
+                      650 MB
+                    </doc:example>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -696,23 +713,23 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  medium format
-                                </doc:tooltip>
+                      medium format
+                    </doc:tooltip>
                     <doc:summary>
-                                  format of the medium on which the resource is 
-                                  shipped.
-                                </doc:summary>
+                      format of the medium on which the resource is 
+                      shipped.
+                    </doc:summary>
                     <doc:description>
-                                  the file system format of the medium on 
-                                  which the resource is shipped
-                                </doc:description>
+                      the file system format of the medium on 
+                      which the resource is shipped
+                    </doc:description>
                     <doc:example>
-                                  NTFS, FAT32, EXT2, QIK80
-                                </doc:example>
+                      NTFS, FAT32, EXT2, QIK80
+                    </doc:example>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -720,20 +737,20 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
-                                  note about the media
-                                </doc:tooltip>
+                      note about the media
+                    </doc:tooltip>
                     <doc:summary>
-                                  note about the media
-                                </doc:summary>
+                      note about the media
+                    </doc:summary>
                     <doc:description>
-                                  any additional pertitant information about the
-                                  media
-                                </doc:description>
+                      any additional pertitant information about the
+                      media
+                    </doc:description>
                     <doc:example/>
                     <doc:lineage>
-                                  ISO CD 19115.3, 
-                                  Geographic information - Metadata
-                                </doc:lineage>
+                      ISO CD 19115.3, 
+                      Geographic information - Metadata
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>

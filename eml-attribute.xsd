@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns="eml:attribute">
-  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:attribute" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:doc="eml:documentation" 
+           xmlns="eml:attribute">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -8,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-12-11 04:17:42 $'
-      '$Revision: 1.19 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:07 $'
+      '$Revision: 1.20 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -76,7 +80,11 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:example>
+                <![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>
+                ]]>
+              </doc:example>
               <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml:literature" xmlns="eml:literature" xmlns:res="eml:resource" xmlns:rp="eml:ResponsibleParty" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:literature" 
+           xmlns="eml:literature" 
+           xmlns:res="eml:resource" 
+           xmlns:rp="eml:ResponsibleParty" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="eml:documentation" schemaLocation="eml-documentation.xsd"/>
+
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-literature.xsd,v $'
@@ -8,9 +15,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-08-08 16:33:23 $'
-      '$Revision: 1.9 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:08 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,7 +44,7 @@
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+  <xs:import namespace="eml:resource" schemaLocation="eml-resource.xsd"/>
   <!-- import the elements from responsible party -->
   <xs:element name="citation" type="LitCitation">
     <xs:annotation>
@@ -162,10 +169,15 @@
                 <xs:appinfo>
                   <doc:tooltip>Book</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Information for full citation of a book</doc:description>
+                  <doc:description>
+                    Information for full citation of a book
+                  </doc:description>
                   <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:lineage>
+                    This field was introduced into EML 2.0 beta 1, and was 
+                    derived from MARC/various software packages handling 
+                    literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -174,10 +186,14 @@
                 <xs:appinfo>
                   <doc:tooltip>Chapter within a book</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Information for full citation of a single chapter within an edited book</doc:description>
+                  <doc:description>
+                    Information for full citation of a single chapter within an edited book
+                  </doc:description>
                   <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:lineage>
+                    This field was introduced into EML 2.0 beta 1, and was 
+                    derived from MARC/various software packages handling literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -186,10 +202,14 @@
                 <xs:appinfo>
                   <doc:tooltip>unpublished manuscipt</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Information about an unpublished manuscript</doc:description>
+                  <doc:description>
+                    Information about an unpublished manuscript
+                  </doc:description>
                   <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:lineage>
+                    This field was introduced into EML 2.0 beta 1, and was 
+                    derived from MARC/various software packages handling literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -198,10 +218,15 @@
                 <xs:appinfo>
                   <doc:tooltip>Report</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Information about a report published by an institution for in-house purposes. They usually are available by request to the institution.</doc:description>
+                  <doc:description>
+                    Information about a report published by an institution for in-house 
+                    purposes. They usually are available by request to the institution.
+                  </doc:description>
                   <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:lineage>
+                    This field was introduced into EML 2.0 beta 1, and was 
+                    derived from MARC/various software packages handling literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -210,10 +235,16 @@
                 <xs:appinfo>
                   <doc:tooltip>Thesis as part of a degree</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Information about a thesis that has been written as part of a degree requirement and is frequently published in small numbers by the degree awarding institution.</doc:description>
+                  <doc:description>
+                    Information about a thesis that has been written as part of a 
+                    degree requirement and is frequently published in small numbers 
+                    by the degree awarding institution.
+                  </doc:description>
                   <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:lineage>
+                    This field was introduced into EML 2.0 beta 1, and was 
+                    derived from MARC/various software packages handling literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -231,8 +262,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -243,8 +276,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -255,8 +290,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -267,8 +304,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -283,8 +322,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -295,8 +336,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -307,8 +350,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -319,8 +364,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -331,8 +378,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -347,8 +396,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -357,11 +408,15 @@
           <xs:appinfo>
             <doc:tooltip>Name of book editor</doc:tooltip>
             <doc:summary/>
-            <doc:description>The editor may be a person
-                  or organization or a role within an organization.</doc:description>
+            <doc:description>
+              The editor may be a person
+              or organization or a role within an organization.
+            </doc:description>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -372,8 +427,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -384,8 +441,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -396,8 +455,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -408,8 +469,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -420,8 +483,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -436,8 +501,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -449,12 +516,16 @@
       <xs:element name="institution" type="rp:ResponsibleParty">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Responsible institution where report may be requested</doc:tooltip>
+            <doc:tooltip>
+              Responsible institution where report may be requested
+            </doc:tooltip>
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -465,8 +536,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -481,8 +554,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -493,8 +568,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -505,8 +582,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -517,8 +596,10 @@
             <doc:summary/>
             <doc:description/>
             <doc:example/>
-            <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>

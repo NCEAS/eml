@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:entity" xmlns="eml:entity" xmlns:cov="eml:coverage" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:entity" 
+           xmlns="eml:entity" 
+           xmlns:cov="eml:coverage" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+             schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -9,9 +13,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-13 17:35:36 $'
-      '$Revision: 1.18 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:08 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,7 +46,7 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="eml-coverage.xsd"/>
   <xs:element name="table-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -195,7 +199,9 @@
                     such as the number of header lines (see eml-physical
                     for that information).
                   </doc:description>
-                  <doc:example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></doc:example>
+                  <doc:example>
+                    <![CDATA[<numberOfRecords>975</numberOfRecords>]]>
+                  </doc:example>
                   <doc:lineage>
                     Introduced in EML 2
                   </doc:lineage>
@@ -247,7 +253,9 @@
                     type represented in the entity, such as raster image,
                     vector image, etc.
                   </doc:description>
-                  <doc:example><![CDATA[<entityType>Raster Image</entityType>]]></doc:example>
+                  <doc:example>
+                    <![CDATA[<entityType>Raster Image</entityType>]]>
+                  </doc:example>
                   <doc:lineage>
                     The entityType element was introduced into EML 1.4 as 
                     entityFormat.
@@ -301,7 +309,9 @@
               identifiers can be listed corresponding to different catalog
               systems.
             </doc:description>
-            <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+            <doc:example>
+              <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+            </doc:example>
             <doc:lineage>
               The 'identifier' field is derived from the eml-dataset 
               meta_file_id filed in EML 1.4.

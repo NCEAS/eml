@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:access" xmlns="eml:access" xmlns:cov="eml:coverage" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:access" 
+           xmlns="eml:access" 
+           xmlns:cov="eml:coverage" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+             schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -10,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: cjones $'
-          '$Date: 2001-07-31 18:24:51 $'
-      '$Revision: 1.25 $'
+          '$Date: 2001-12-14 20:26:07 $'
+      '$Revision: 1.26 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,7 +50,7 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="eml-coverage.xsd"/>
   <xs:element name="acl">
     <xs:annotation>
       <xs:appinfo>
@@ -92,7 +96,9 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:example>
+                <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+              </doc:example>
               <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -119,8 +125,11 @@
                         can or should this be a URI/URL pointing to the catalog
                         system, or just the name?
                       </doc:description>
-                      <doc:example><![CDATA[
-                        <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                      <doc:example>
+                        <![CDATA[
+                          <identifier system="metacat">nceas.3.2</identifier>
+                        ]]>
+                      </doc:example>
                       <doc:lineage>
                         New to EML 2.0.
                       </doc:lineage>

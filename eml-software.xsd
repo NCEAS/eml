@@ -5,7 +5,7 @@
            xmlns="eml:software"
            targetNamespace="eml:software">
   <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+             schemaLocation="eml-documentation.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -14,9 +14,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-13 17:35:37 $'
-      '$Revision: 1.3 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:08 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@
   </xs:annotation>
 
   <!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+  <xs:import namespace="eml:resource" schemaLocation="eml-resource.xsd"/>
 
   <xs:element name="software">
     <xs:annotation>

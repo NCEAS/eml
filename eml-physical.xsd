@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:physical" xmlns="eml:physical" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:physical" 
+           xmlns="eml:physical" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+             schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -9,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-31 16:24:36 $'
-      '$Revision: 1.7 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 20:26:08 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +51,12 @@
       <xs:appinfo>
         <doc:tooltip>Physical structure.        </doc:tooltip>
         <doc:summary>Physical structure of an entity or entities.</doc:summary>
-        <doc:description>Physical structure of an entity or entities.  This generally is a detailed description of a text representation that shows how the columns and rows of a table are represented, or simply the name of a well-known binary or proprietary format (e.g., Microsoft Excel 2000).</doc:description>
+        <doc:description>
+          Physical structure of an entity or entities.  This generally is a detailed 
+          description of a text representation that shows how the columns and rows 
+          of a table are represented, or simply the name of a well-known binary or 
+          proprietary format (e.g., Microsoft Excel 2000).
+        </doc:description>
         <doc:example/>
         <doc:lineage>
           The eml-physical was introduced into EML 1.4 as eml-file.
@@ -209,13 +217,19 @@
                   Authentication method
               </doc:tooltip>
               <doc:summary>
-A value, typically a checksum, used to authenticate that the bitstream delivered to the user is identical to the original.
+                A value, typically a checksum, used to authenticate that the bitstream 
+                delivered to the user is identical to the original.
               </doc:summary>
               <doc:description>
                   This element describes authentication procedures or 
-                  techniques, typically by giving a checksum method (e.g., MD5) and checksum value for the bytestream.
+                  techniques, typically by giving a checksum method (e.g., MD5) and 
+                  checksum value for the bytestream.
               </doc:description>
-              <doc:example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
+              <doc:example>
+                <![CDATA[
+                  <authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>
+                ]]>
+              </doc:example>
               <doc:lineage>
                 The authentication element was introduced into EML 1.4.
               </doc:lineage>
@@ -229,17 +243,23 @@ A value, typically a checksum, used to authenticate that the bitstream delivered
                     <xs:appinfo>
                       <doc:tooltip>
                   Authentication method
-              </doc:tooltip>
+                      </doc:tooltip>
                       <doc:summary>
-The method used to calculate an authentication checksum.
-              </doc:summary>
+                        The method used to calculate an authentication checksum.
+                      </doc:summary>
                       <doc:description>
-                  This element names the method used to calculate and authentication checksum that can be used to validate a bytestream.  Typical checksum methods include MD5 and CRC.
-              </doc:description>
-                      <doc:example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
+                        This element names the method used to calculate and 
+                        authentication checksum that can be used to validate a 
+                        bytestream.  Typical checksum methods include MD5 and CRC.
+                      </doc:description>
+                      <doc:example>
+                        <![CDATA[
+                          <authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>
+                        ]]>
+                      </doc:example>
                       <doc:lineage>
-                The authentication element was introduced into EML 1.4.
-              </doc:lineage>
+                        The authentication element was introduced into EML 1.4.
+                      </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -315,8 +335,14 @@ The method used to calculate an authentication checksum.
               <doc:summary>
                   Character used to delimit records.
               </doc:summary>
-              <doc:description>This element specifies the record delimiter character
-when the format is text. The record delimiter       is usually a newline (\n) on UNIX, a carriage return (\r) on MacOS, or both (\r\n) on Windows/DOS.  Multiline records are usually delimited with two line ending characters, for example on UNIX it would be two newline characters (\n\n).</doc:description>
+              <doc:description>
+                This element specifies the record delimiter character
+                when the format is text. The record delimiter is usually a 
+                newline (\n) on UNIX, a carriage return (\r) on MacOS, or 
+                both (\r\n) on Windows/DOS.  Multiline records are usually 
+                delimited with two line ending characters, for example on UNIX 
+                it would be two newline characters (\n\n).
+              </doc:description>
               <doc:example><![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]></doc:example>
               <doc:lineage>
                 The recordDelimiter element was introduced into EML 1.4.
@@ -357,9 +383,10 @@ when the format is text. The record delimiter       is usually a newline (\n) on
                   Character used to escape other characters
               </doc:summary>
               <doc:description>
-                This element specifies a character to be used
-                for escaping character values so that the following character is treated as its literal
-                value.  This allows "escaping" for special characters like quotes, commas, and spaces when they aren't intended as a delimiter value.  The
+                This element specifies a character to be used for escaping 
+                character values so that the following character is treated as its literal
+                value.  This allows "escaping" for special characters like quotes, commas, 
+                and spaces when they aren't intended as a delimiter value.  The
                 literalChacter is typically a \.
               </doc:description>
               <doc:example><![CDATA[<literalCharacter>\</literalCharacter>]]></doc:example>
@@ -374,23 +401,23 @@ when the format is text. The record delimiter       is usually a newline (\n) on
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>
-                        Start column
-                      </doc:tooltip>
+                  Start column
+                </doc:tooltip>
                 <doc:summary>
-                        The starting column number for a fixed format attribute.         </doc:summary>
+                  The starting column number for a fixed format attribute.
+                </doc:summary>
                 <doc:description>
-                        FixedWidth fields have a set length, thus 
-                        the end of the field can always be determined
-                        by adding the fieldWidth to the starting 
-                        column number.
-                      </doc:description>
+                  FixedWidth fields have a set length, thus 
+                  the end of the field can always be determined
+                  by adding the fieldWidth to the starting 
+                  column number.
+                </doc:description>
                 <doc:example>
-                        any positive integer, see example in "delimeter" 
-                        description
-                      </doc:example>
+                  any positive integer, see example in "delimeter" description
+                </doc:example>
                 <doc:lineage>
-                        Introduced into EML 2.0. 
-                      </doc:lineage>
+                  Introduced into EML 2.0. 
+                </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -399,27 +426,26 @@ when the format is text. The record delimiter       is usually a newline (\n) on
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
-                        Field width
-                      </doc:tooltip>
+                    Field width
+                  </doc:tooltip>
                   <doc:summary>
-                        FieldWidth specification for fixed field 
-                        length.
-                      </doc:summary>
+                    FieldWidth specification for fixed field length.
+                  </doc:summary>
                   <doc:description>
-                        FixedWidth fields have a set length, thus 
-                        the end of the field can always be determined
-                        by adding the fieldWidth to the starting 
-                        column number.
-                      </doc:description>
+                    FixedWidth fields have a set length, thus 
+                    the end of the field can always be determined
+                    by adding the fieldWidth to the starting 
+                    column number.
+                  </doc:description>
                   <doc:example>
-                        any positive integer, see example in "delimeter" 
-                        description
-                      </doc:example>
+                    any positive integer, see example in "delimeter" 
+                    description
+                  </doc:example>
                   <doc:lineage>
-                        The fieldWidth element was introduced into 
-                        EML 1.4. Semantics changed to work identically to
-                        the NBII DTD.
-                      </doc:lineage>
+                    The fieldWidth element was introduced into 
+                    EML 1.4. Semantics changed to work identically to
+                    the NBII DTD.
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
