@@ -21,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: mccartne $'
-          '$Date: 2002-09-05 16:58:37 $'
-      '$Revision: 1.55 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-05 21:29:35 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,9 +50,6 @@
         <doc:recommendedUsage>all datasets that use
         tableEntities</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
-        <doc:importedBy>eml-entity</doc:importedBy>
-        <doc:importedBy>eml-storedProcedure</doc:importedBy>
-        <doc:importedBy>eml-view</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
@@ -204,14 +201,14 @@
               <doc:summary>Description of storage type for this field
               </doc:summary>
               <doc:description>This element describes the storage type for data
-              in the field that might be used to represent the data in a 
+              in the field that might be used to represent the data in a
               database or other management system.  As many systems do not
               provide for fine-grained restrictions on types, this type will
-              often be a superset of the allowed domain defined in 
+              often be a superset of the allowed domain defined in
               attributeDomain.  Values for this field are
               by default drawn from the XML Schema Datatypes standard
               values, such as: integer, double, string, etc. If
-              the XML Schema datatypes are not used, the type system from 
+              the XML Schema datatypes are not used, the type system from
               which the values are derived should be listed in the
               'typeSystem' attribute described below. This field represents
               a 'hint' to processing systems as to how the attribute might
@@ -711,9 +708,9 @@
             <xs:appinfo>
               <doc:tooltip>Precision</doc:tooltip>
               <doc:summary>The precision of the measurement.</doc:summary>
-              <doc:description>The precision of the measurement, in the same 
+              <doc:description>The precision of the measurement, in the same
               unit as the measurement.   For example, for an attribute with
-              unit "meter", a precision of "0.1" would be interpreted as 
+              unit "meter", a precision of "0.1" would be interpreted as
               precise to the nearest 1/10th of a meter.</doc:description>
               <doc:example>0.1</doc:example>
               <doc:lineage>The precision element was introduced into EML
@@ -893,4 +890,4 @@
       <xs:enumeration value="kilogramsPerCubicMeter"/>
     </xs:restriction>
   </xs:simpleType>
-</xs:schema> 
+</xs:schema>

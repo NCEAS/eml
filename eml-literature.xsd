@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/literature-2.0.0beta9" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" 
-    xmlns:acc="eml://ecoinformatics.org/access-2.0.0beta9" 
-    xmlns:proj="eml://ecoinformatics.org/project-2.0.0beta9" 
+<xs:schema targetNamespace="eml://ecoinformatics.org/literature-2.0.0beta9"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9"
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9"
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9"
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.0beta9"
+    xmlns:proj="eml://ecoinformatics.org/project-2.0.0beta9"
     xmlns="eml://ecoinformatics.org/literature-2.0.0beta9">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
     schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9"
     schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9"
     schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9"
     schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0beta9"
     schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0beta9" 
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0beta9"
     schemaLocation="eml-project.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -36,9 +36,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-08-30 21:23:52 $'
-      '$Revision: 1.33 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-05 21:29:35 $'
+      '$Revision: 1.34 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,12 +66,6 @@
         <doc:recommendedUsage>All datasets with literary citations
         </doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
-        <doc:importedBy>eml-attribute</doc:importedBy>
-        <doc:importedBy>eml-coverage</doc:importedBy>
-        <doc:importedBy>eml-physical</doc:importedBy>
-        <doc:importedBy>eml-project</doc:importedBy>
-        <doc:importedBy>eml-protocol</doc:importedBy>
-        <doc:importedBy>eml</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
@@ -103,7 +97,7 @@
                 <doc:summary>Information for full citation of a journal article
                 or other periodical article.</doc:summary>
                 <doc:description>The article field provides sub-fields for a
-                full citation of an article in a journal or other periodical. 
+                full citation of an article in a journal or other periodical.
                 </doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 1, and
                 was derived from MARC/various software packages handling
@@ -134,7 +128,7 @@
                 <doc:description>The book chapter allows citation of a single
                 chapter or section of a book.  The "creator" for a book chapter
                 are the chapter's authors, while the "editor" is the book
-                editors. Likewise, "title" is the chapter title, while 
+                editors. Likewise, "title" is the chapter title, while
                 "bookTitle" is the title of the whole book.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
@@ -150,7 +144,7 @@
                 <doc:summary>Information for full citation of an edited
                 book</doc:summary>
                 <doc:description>The edited book represents a book which was
-                edited by one or more editors, but whose chapters were possibly 
+                edited by one or more editors, but whose chapters were possibly
                 authored by others.  The editors of an edited book should be
                 listed in the "creator" field.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
@@ -199,7 +193,7 @@
                 small numbers by the degree awarding institution.</doc:summary>
                 <doc:description>Information about a thesis that has been written
                 as part of a degree requirement and is frequently published in
-                small numbers by the degree awarding institution. 
+                small numbers by the degree awarding institution.
                 </doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 1, and
                 was derived from MARC/various software packages handling
@@ -244,7 +238,7 @@
                 <doc:tooltip>map</doc:tooltip>
                 <doc:summary>This element desribes the map that is being cited
                 or cataloged.</doc:summary>
-                <doc:description>This element desribes the map that is being 
+                <doc:description>This element desribes the map that is being
                 cited or cataloged, including its geographic coverage and scale.
                 </doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
@@ -277,8 +271,8 @@
                 <doc:tooltip>audio visual</doc:tooltip>
                 <doc:summary>This reference type is meant to cover all forms of
                 audio and visual media.</doc:summary>
-                <doc:description>This reference type is meant to cover all forms 
-                of audio and visual media, including film, video, broadcast, 
+                <doc:description>This reference type is meant to cover all forms
+                of audio and visual media, including film, video, broadcast,
                 other electronic media.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
@@ -295,7 +289,7 @@
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" 
+    <xs:attribute name="scope" type="res:ScopeType"
         use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="Article">
@@ -305,7 +299,7 @@
         <doc:summary>Information for full citation of a journal article
         or other periodical article.</doc:summary>
         <doc:description>The article field provides sub-fields for a
-        full citation of an article in a journal or other periodical. 
+        full citation of an article in a journal or other periodical.
         </doc:description>
         <doc:lineage>This field was introduced into EML 2.0 beta 1, and
         was derived from MARC/various software packages handling
@@ -590,7 +584,7 @@
         <doc:description>The book chapter allows citation of a single
         chapter or section of a book.  The "creator" for a book chapter
         are the chapter's authors, while the "editor" is the book
-        editors. Likewise, "title" is the chapter title, while 
+        editors. Likewise, "title" is the chapter title, while
         "bookTitle" is the title of the whole book.</doc:description>
         <doc:lineage>This field was introduced into EML 2.0 beta 9, and
         was derived from MARC/various software packages handling
@@ -607,17 +601,17 @@
                 <doc:tooltip>Chapter number</doc:tooltip>
                 <doc:summary>The chapter number of interest within a book
                 </doc:summary>
-                <doc:description>The chapter number of the chapter of a 
+                <doc:description>The chapter number of the chapter of a
                 book that is being described.</doc:description>
                 <doc:example>"7"</doc:example>
                 <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was 
+              This field was introduced into EML 2.0 beta 1, and was
               derived from MARC/various software packages handling literature
             </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="editor" type="rp:ResponsibleParty" 
+          <xs:element name="editor" type="rp:ResponsibleParty"
             maxOccurs="unbounded">
             <xs:annotation>
               <xs:appinfo>
@@ -626,7 +620,7 @@
               The name of the editor of the book.
             </doc:summary>
                 <doc:description>
-              The book editor field is used to document the name of the 
+              The book editor field is used to document the name of the
               editor of the book that is being described. The editor may be
               a person, organization, or a role within an organization.
             </doc:description>
@@ -635,7 +629,7 @@
               Manager"
             </doc:example>
                 <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was 
+              This field was introduced into EML 2.0 beta 1, and was
               derived from MARC/various software packages handling literature
             </doc:lineage>
               </xs:appinfo>
@@ -656,7 +650,7 @@
               "War and Peace"
             </doc:example>
                 <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was 
+              This field was introduced into EML 2.0 beta 1, and was
               derived from MARC/various software packages handling literature
             </doc:lineage>
               </xs:appinfo>
@@ -677,7 +671,7 @@
               "25-122"
             </doc:example>
                 <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was 
+              This field was introduced into EML 2.0 beta 1, and was
               derived from MARC/various software packages handling literature
             </doc:lineage>
               </xs:appinfo>
@@ -776,7 +770,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:group ref="res:ResourceGroup"/>
-      <xs:element name="institution" type="rp:ResponsibleParty" 
+      <xs:element name="institution" type="rp:ResponsibleParty"
         maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -959,7 +953,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="recipient" type="rp:ResponsibleParty" 
+      <xs:element name="recipient" type="rp:ResponsibleParty"
         minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -1022,7 +1016,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="geographicCoverage" type="cov:GeographicCoverage" 
+      <xs:element name="geographicCoverage" type="cov:GeographicCoverage"
         minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -1058,8 +1052,8 @@
         <doc:tooltip>audio visual</doc:tooltip>
         <doc:summary>This reference type is meant to cover all forms of
         audio and visual media.</doc:summary>
-        <doc:description>This reference type is meant to cover all forms 
-        of audio and visual media, including film, video, broadcast, 
+        <doc:description>This reference type is meant to cover all forms
+        of audio and visual media, including film, video, broadcast,
         other electronic media.</doc:description>
         <doc:lineage>This field was introduced into EML 2.0 beta 9, and
         was derived from MARC/various software packages handling
@@ -1085,7 +1079,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="publicationPlace" type="xs:string" 
+      <xs:element name="publicationPlace" type="xs:string"
         minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -1103,7 +1097,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="performer" type="rp:ResponsibleParty" 
+      <xs:element name="performer" type="rp:ResponsibleParty"
         minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -1364,7 +1358,7 @@
         </xs:element>
       </xs:choice>
     </xs:sequence>
-  </xs:complexType>  
+  </xs:complexType>
   <xs:complexType name="Thesis">
     <xs:annotation>
       <xs:appinfo>
@@ -1374,7 +1368,7 @@
         small numbers by the degree awarding institution.</doc:summary>
         <doc:description>Information about a thesis that has been written
         as part of a degree requirement and is frequently published in
-        small numbers by the degree awarding institution. 
+        small numbers by the degree awarding institution.
         </doc:description>
         <doc:lineage>This field was introduced into EML 2.0 beta 1, and
         was derived from MARC/various software packages handling

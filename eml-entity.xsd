@@ -23,9 +23,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: mccartne $'
-          '$Date: 2002-09-05 16:58:37 $'
-      '$Revision: 1.61 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-05 21:29:35 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -56,12 +56,6 @@
         [CSDGM]).</doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>only when 'otherEntity' is used</doc:standAlone>
-        <doc:importedBy>eml-dataset</doc:importedBy>
-        <doc:importedBy>eml-dataTable</doc:importedBy>
-        <doc:importedBy>eml-spatialRaster</doc:importedBy>
-        <doc:importedBy>eml-spatialVector</doc:importedBy>
-        <doc:importedBy>eml-storedProcedure</doc:importedBy>
-        <doc:importedBy>eml-view</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
@@ -139,7 +133,7 @@
             <doc:summary>A secondary identifier for this entity</doc:summary>
             <doc:description>An additional, secondary identifier for this
             entity.  The primary identifier belongs in the "id" attribute,
-            but additional identifiers that are used to label this entity, 
+            but additional identifiers that are used to label this entity,
             possibly from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
@@ -155,11 +149,11 @@
                     <doc:tooltip>Identifier System</doc:tooltip>
                     <doc:summary>The system in which this id is relevant
                     </doc:summary>
-                    <doc:description>The computing system within which this 
-                    identifier has relevance.  Generally, the identifier 
-                    would be unique within the "system" and would be 
+                    <doc:description>The computing system within which this
+                    identifier has relevance.  Generally, the identifier
+                    would be unique within the "system" and would be
                     sufficient to retrieve the entity from the system. The
-                    system is often a URL or URI that identifies the 
+                    system is often a URL or URI that identifies the
                     main entry point for the data management system.
                     </doc:description>
                     <doc:example>http://knb.ecoinformatics.org/knb/
@@ -241,4 +235,4 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
-</xs:schema> 
+</xs:schema>
