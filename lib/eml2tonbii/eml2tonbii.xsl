@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-03 00:19:51 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2003-05-05 17:46:39 $'
+  * '$Revision: 1.7 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -619,13 +619,28 @@ version="1.0">
         </xsl:if>  
         <xsl:element name="metc">
           <xsl:element name="cntinfo">
+          <xsl:for-each select="/eml:eml/dataset/contact[1]">
+              <xsl:variable name="cc">
+                <xsl:variable name="ref_id" select="./references"/>
+                <xsl:choose>
+                  <xsl:when test="./references!=''">
+                    <xsl:variable name="ref_id" select="./references"/>
+                    <xsl:copy-of select="//*[@id=$ref_id]"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <!-- no references tag, thus use the current node -->
+                    <xsl:copy-of select="."/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+          
             <xsl:choose>
-              <xsl:when test="/eml:eml/dataset/contact/individualName!=''">
+              <xsl:when test="xalan:nodeset($cc)//individualName!=''">
                 <xsl:element name="cntperp">
                 <!-- there is only a single 'cntperp' in nbii;
                  thus we only reproduce the first contact in eml2 -->
                   <xsl:element name="cntper">
-                    <xsl:value-of select="/eml:eml/dataset/contact/individualName"/>
+                    <xsl:value-of select="xalan:nodeset($cc)//individualName"/>
                   </xsl:element>
                   <xsl:if test="$show_optional">
                     <xsl:element name="cntorg">
@@ -634,10 +649,10 @@ version="1.0">
                   </xsl:if>  
                 </xsl:element>
               </xsl:when>
-              <xsl:when test="/eml:eml/dataset/contact/organizationName!=''">
+              <xsl:when test="xalan:nodeset($cc)//organizationName!=''">
                 <xsl:element name="cntorgp">
                   <xsl:element name="cntorg">
-                    <xsl:value-of select="/eml:eml/dataset/contact/organizationName"/>
+                    <xsl:value-of select="xalan:nodeset($cc)//organizationName"/>
                   </xsl:element>
                   <xsl:if test="$show_optional">
                     <xsl:element name="cntper">
@@ -646,10 +661,10 @@ version="1.0">
                   </xsl:if>  
                 </xsl:element>
               </xsl:when>
-              <xsl:when test="/eml:eml/dataset/contact/positionName!=''">
+              <xsl:when test="xalan:nodeset($cc)//positionName!=''">
                 <xsl:element name="cntorgp">
                   <xsl:element name="cntorg">
-                    <xsl:value-of select="/eml:eml/dataset/contact/positionName"/>
+                    <xsl:value-of select="xalan:nodeset($cc)//positionName"/>
                   </xsl:element>
                   <xsl:if test="$show_optional">
                     <xsl:element name="cntper">
@@ -659,9 +674,9 @@ version="1.0">
                 </xsl:element>
               </xsl:when>
             </xsl:choose>
-            <xsl:if test="/eml:eml/dataset/contact/positionName!=''">
+            <xsl:if test="xalan:nodeset($cc)//positionName!=''">
               <xsl:element name="cntpos">
-                <xsl:value-of select="/eml:eml/dataset/contact/positionName"/>
+                <xsl:value-of select="xalan:nodeset($cc)//positionName"/>
               </xsl:element>
             </xsl:if>
             <xsl:element name="cntaddr">
@@ -669,50 +684,56 @@ version="1.0">
                  <xsl:value-of select="'mailing'"/>
                </xsl:element>
                <xsl:choose>
-                 <xsl:when test="/eml:eml/dataset/contact/address/deliveryPoint!=''">
+                 <xsl:when test="xalan:nodeset($cc)//address/deliveryPoint!=''">
                    <xsl:element name="address">
-                     <xsl:value-of select="/eml:eml/dataset/contact/address/deliveryPoint"/>
+                     <xsl:value-of select="xalan:nodeset($cc)//address/deliveryPoint"/>
                    </xsl:element>
                  </xsl:when>
                </xsl:choose>
                
                <xsl:choose>
-                 <xsl:when test="/eml:eml/dataset/contact/address/city!=''">
+                 <xsl:when test="xalan:nodeset($cc)//address/city!=''">
                    <xsl:element name="city">
-                     <xsl:value-of select="/eml:eml/dataset/contact/address/city"/>
+                     <xsl:value-of select="xalan:nodeset($cc)//address/city"/>
                    </xsl:element>
                  </xsl:when>
                  <xsl:otherwise>
-                   <xsl:value-of select="'N/A'"/>
+                   <xsl:element name="city">
+                     <xsl:value-of select="'N/A'"/>
+                   </xsl:element>  
                  </xsl:otherwise>
                </xsl:choose>
                
                <xsl:choose>
-                 <xsl:when test="/eml:eml/dataset/contact/address/administrativaArea!=''">
+                 <xsl:when test="xalan:nodeset($cc)//address/administrativaArea!=''">
                    <xsl:element name="state">
-                     <xsl:value-of select="/eml:eml/dataset/contact/address/administrativaArea"/>
+                     <xsl:value-of select="xalan:nodeset($cc)//address/administrativaArea"/>
                    </xsl:element>
                  </xsl:when>
                  <xsl:otherwise>
-                   <xsl:value-of select="'N/A'"/>
+                   <xsl:element name="state">
+                     <xsl:value-of select="'N/A'"/>
+                   </xsl:element>  
                  </xsl:otherwise>
                </xsl:choose>
                
                <xsl:choose>
-                 <xsl:when test="/eml:eml/dataset/contact/address/postalCode!=''">
+                 <xsl:when test="xalan:nodeset($cc)//address/postalCode!=''">
                    <xsl:element name="postal">
-                     <xsl:value-of select="/eml:eml/dataset/contact/address/postalCode"/>
+                     <xsl:value-of select="xalan:nodeset($cc)//address/postalCode"/>
                    </xsl:element>
                  </xsl:when>
                  <xsl:otherwise>
-                   <xsl:value-of select="'N/A'"/>
+                   <xsl:element name="postal">
+                     <xsl:value-of select="'N/A'"/>
+                   </xsl:element>  
                  </xsl:otherwise>
                </xsl:choose>
                
                <xsl:choose>
-                 <xsl:when test="/eml:eml/dataset/contact/address/country!=''">
+                 <xsl:when test="xalan:nodeset($cc)//address/country!=''">
                    <xsl:element name="country">
-                     <xsl:value-of select="/eml:eml/dataset/contact/address/country"/>
+                     <xsl:value-of select="xalan:nodeset($cc)//address/country"/>
                    </xsl:element>
                  </xsl:when>
                </xsl:choose>
@@ -720,9 +741,9 @@ version="1.0">
             </xsl:element>
 
              <xsl:choose>
-               <xsl:when test="/eml:eml/dataset/contact/phone!=''">
+               <xsl:when test="xalan:nodeset($cc)//phone!=''">
                  <xsl:element name="cntvoice">
-                   <xsl:value-of select="/eml:eml/dataset/contact/phone"/>
+                   <xsl:value-of select="xalan:nodeset($cc)//phone"/>
                  </xsl:element>
                </xsl:when>
              </xsl:choose>
@@ -752,6 +773,8 @@ version="1.0">
               
               </xsl:element>
             </xsl:if>
+          
+          </xsl:for-each>
           </xsl:element>
         </xsl:element>
         <xsl:element name="metstdn">
