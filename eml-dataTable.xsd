@@ -4,10 +4,16 @@
            xmlns:doc="eml:documentation-2.0.0beta8" 
            xmlns:cov="eml:coverage-2.0.0beta8" 
            xmlns:ent="eml:entity-2.0.0beta8"
+           xmlns:prot="eml:protocol-2.0.0beta8"
+           xmlns:phys="eml:physical-2.0.0beta8"
+           xmlns:att="eml:attribute-2.0.0beta8"
            xmlns="eml:dataTable-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>  
   <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd"/>
+  <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd"/>
   <xs:annotation>
     <xs:documentation> 
        '$RCSfile: eml-dataTable.xsd,v $'
@@ -25,8 +31,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-31 17:31:53 $'
-      '$Revision: 1.6 $'
+          '$Date: 2002-05-31 22:19:35 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -113,115 +119,123 @@
     <xs:complexContent>
       <xs:extension base="ent:EntityBase">
         <xs:sequence>
-          <xs:element name="orientation" nillable="true" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Entity's record orientation
-                </doc:tooltip>
-                <doc:summary>
-                  Specification of the entity's record orientation.
-                </doc:summary>
-                <doc:description>
-                  This element contains specification of the entity's
-                  record orientation by element's attribute "columnorrow".
-                </doc:description>
-                <doc:example>
-                  The valid attribute values are "columnmajor" or "rowmajor".
-                  If the attribute is not specified, "columnmajor" is used.
-                </doc:example>
-                <doc:lineage>
-                  The orientation element was introduced into EML 1.4.
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:attribute name="columnOrRow" use="optional" default="columnMajor">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                        Attribute of orientation element
-                    </doc:tooltip>
-                    <doc:summary>
-                        Specification of the entity's record orientation.
-                    </doc:summary>
-                    <doc:description>
-                        This attribute specifies the entity's
-                      record orientation.
-                    </doc:description>
-                    <doc:example>
-                      The valid attribute values are "columnmajor" or
-                      "rowmajor".  If the attribute is not specified,
-                      "columnmajor" is used.
-                    </doc:example>
-                    <doc:lineage>
-                      The columnorrow attribute was introduced into EML 1.4.
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:enumeration value="columnMajor"/>
-                    <xs:enumeration value="rowMajor"/>
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:attribute>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="caseSensitive" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Data case sensitiveness
-                </doc:tooltip>
-                <doc:summary>
-                  Specification of text case sensitiveness in the entity.
-                </doc:summary>
-                <doc:description>
-                  This element contains specification of text
-                  case sensitiveness of the data in the entity. It is 
-                  specified from element's attribute "yesorno".
-                </doc:description>
-                <doc:example>
-                  The valid attribute values are "yes" or "no".
-                  If the attribute is not specified, "yes" is used.
-                </doc:example>
-                <doc:lineage>
-                  The caseSensitive element was introduced into EML 1.4.
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:simpleType>
-              <xs:restriction base="xs:string">
-                <xs:enumeration value="yes"/>
-                <xs:enumeration value="no"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:element>
-          <xs:element name="numberOfRecords" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Number of records
-                </doc:tooltip>
-                <doc:summary>
-                  The integer count of the number of records inthe entity
-                </doc:summary>
-                <doc:description>
-                  This element contains a count of the number of records
-                  in the entity.  This is typically an integer value,
-                  and only includes records that represent observations.
-                  It would not include any details of physical formatting
-                  such as the number of header lines (see eml-physical
-                  for that information).
-                </doc:description>
-                <doc:example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></doc:example>
-                <doc:lineage>
-                  Introduced in EML 2
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+          <xs:sequence>
+            <xs:element name="orientation" nillable="true" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
+                    Entity's record orientation
+                  </doc:tooltip>
+                  <doc:summary>
+                    Specification of the entity's record orientation.
+                  </doc:summary>
+                  <doc:description>
+                    This element contains specification of the entity's
+                    record orientation by element's attribute "columnorrow".
+                  </doc:description>
+                  <doc:example>
+                    The valid attribute values are "columnmajor" or "rowmajor".
+                    If the attribute is not specified, "columnmajor" is used.
+                  </doc:example>
+                  <doc:lineage>
+                    The orientation element was introduced into EML 1.4.
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="columnOrRow" use="optional" default="columnMajor">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>
+                          Attribute of orientation element
+                      </doc:tooltip>
+                      <doc:summary>
+                          Specification of the entity's record orientation.
+                      </doc:summary>
+                      <doc:description>
+                          This attribute specifies the entity's
+                        record orientation.
+                      </doc:description>
+                      <doc:example>
+                        The valid attribute values are "columnmajor" or
+                        "rowmajor".  If the attribute is not specified,
+                        "columnmajor" is used.
+                      </doc:example>
+                      <doc:lineage>
+                        The columnorrow attribute was introduced into EML 1.4.
+                      </doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="columnMajor"/>
+                      <xs:enumeration value="rowMajor"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="caseSensitive" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
+                    Data case sensitiveness
+                  </doc:tooltip>
+                  <doc:summary>
+                    Specification of text case sensitiveness in the entity.
+                  </doc:summary>
+                  <doc:description>
+                    This element contains specification of text
+                    case sensitiveness of the data in the entity. It is 
+                    specified from element's attribute "yesorno".
+                  </doc:description>
+                  <doc:example>
+                    The valid attribute values are "yes" or "no".
+                    If the attribute is not specified, "yes" is used.
+                  </doc:example>
+                  <doc:lineage>
+                    The caseSensitive element was introduced into EML 1.4.
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="yes"/>
+                  <xs:enumeration value="no"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="numberOfRecords" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
+                    Number of records
+                  </doc:tooltip>
+                  <doc:summary>
+                    The integer count of the number of records inthe entity
+                  </doc:summary>
+                  <doc:description>
+                    This element contains a count of the number of records
+                    in the entity.  This is typically an integer value,
+                    and only includes records that represent observations.
+                    It would not include any details of physical formatting
+                    such as the number of header lines (see eml-physical
+                    for that information).
+                  </doc:description>
+                  <doc:example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></doc:example>
+                  <doc:lineage>
+                    Introduced in EML 2
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element name="attributes" type="att:Attribute"/>
+            <xs:element name="coverage" type="cov:Coverage"/>
+            <xs:element name="physical" type="phys:Physical"/>
+            <xs:element name="protocol" type="prot:Protocol"/>
+          </xs:sequence>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

@@ -1,15 +1,21 @@
 <?xml version="1.0"?>
 <!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Peter McCartney (private) -->
-<xs:schema targetNamespace="eml:spatialGrid-2.0.0beta8"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8"
-xmlns:ent="eml:entity-2.0.0beta8" xmlns="eml:spatialGrid-2.0.0beta8">
-  <xs:import namespace="eml:documentation-2.0.0beta8"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml:coverage-2.0.0beta8"
-  schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml:entity-2.0.0beta8"
-  schemaLocation="eml-entity.xsd" />
+<xs:schema targetNamespace="eml:spatialRaster-2.0.0beta8"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:doc="eml:documentation-2.0.0beta8" 
+           xmlns:cov="eml:coverage-2.0.0beta8"
+           xmlns:ent="eml:entity-2.0.0beta8" 
+           xmlns:prot="eml:protocol-2.0.0beta8"
+           xmlns:att="eml:attribute-2.0.0beta8"
+           xmlns:phys="eml:physical-2.0.0beta8"
+           xmlns="eml:spatialRaster-2.0.0beta8">
+  
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd" />
+  <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd" />
+  <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd" />
+  <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd" />
+  <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd" />
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-spatialRaster.xsd,v $'
@@ -27,8 +33,8 @@ xmlns:ent="eml:entity-2.0.0beta8" xmlns="eml:spatialGrid-2.0.0beta8">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-30 23:17:30 $'
-      '$Revision: 1.2 $'
+          '$Date: 2002-05-31 22:19:35 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -91,327 +97,335 @@ xmlns:ent="eml:entity-2.0.0beta8" xmlns="eml:spatialGrid-2.0.0beta8">
     <xs:complexContent>
       <xs:extension base="ent:SpatialRepresentation">
         <xs:sequence>
-          <xs:element name="cellSizeXDirection" />
-          <xs:element name="cellSizeXUnits" />
-          <xs:element name="cellSizeYDirection" />
-          <xs:element name="cellSizeYUnits" />
-          <xs:element name="numberOfBands" />
-          <xs:element name="rasterOrigin" type="rasterOriginType">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Raster Origin</doc:tooltip>
-                <doc:summary>Location of pixel 1,1</doc:summary>
-                <doc:description>Identification the corner of the grid where
-                the first values for both the x and y axes begin in the
-                file.</doc:description>
-                <doc:example>NW Corner</doc:example>
-                <doc:lineage>ISO 19115.3</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="rows" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Rows</doc:tooltip>
-                <doc:summary>Maximum number of raster objects along the
-                ordinate (y) axis</doc:summary>
-                <doc:description>Maximum number of raster objects along the
-                ordinate (y) axis</doc:description>
-                <doc:example />
-                <doc:lineage>The spatial entity elements were introduced into
-                EML 2.0 beta 7</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="columns" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Maximum number of raster objects along the
-                abscissa (x) axis</doc:tooltip>
-                <doc:summary>Maximum number of raster objects along the
-                abscissa (x) axis</doc:summary>
-                <doc:description>Maximum number of raster objects along the
-                abscissa (x) axis</doc:description>
-                <doc:example />
-                <doc:lineage>The spatial entity elements were introduced into
-                EML 2.0 beta 7</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="verticals" />
-          <xs:element name="cellGeometry" type="CellGeometryType" />
-          <xs:element name="toneGradation" type="xs:integer" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Tone Gradation</doc:tooltip>
-                <doc:summary>Number of colors present in the
-                image.</doc:summary>
-                <doc:description>Number of colors present in the
-                image.</doc:description>
-                <doc:example>255</doc:example>
-                <doc:lineage>ISO 19115.5 239</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="scaleFactor" type="xs:string" minOccurs="0" />
-          <xs:element name="offset" type="xs:string" minOccurs="0" />
-          <xs:element name="imageDescription" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Image description</doc:tooltip>
-                <doc:summary>Detailed information for data derived from image
-                sensors.</doc:summary>
-                <doc:description>Provides information about the image's
-                suitability for use, sensor properties, and individual band
-                descriptions.</doc:description>
-                <doc:example />
-                <doc:lineage>ISO 19115.3</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="illuminationElevationAngle" type="xs:float"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Illumination elevation measured in degrees
-                      clockwise from the target plane at intersection of the
-                      optical line of sight with the earth's
-                      surface.</doc:tooltip>
-                      <doc:summary>Illumination elevation measured in degrees
-                      clockwise from the target plane at intersection of the
-                      optical line of sight with the earth's
-                      surface.</doc:summary>
-                      <doc:description>Illumination elevation measured in
-                      degrees clockwise from the target plane at intersection
-                      of the optical line of sight with the earth's
-                      surface.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="illuminationAzimuthAngle" type="xs:float"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Illumitation azimuth measured in degrees
-                      clockwise from true north at the time the image is
-                      taken.</doc:tooltip>
-                      <doc:summary>Illumitation azimuth measured in degrees
-                      clockwise from true north at the time the image is
-                      taken.</doc:summary>
-                      <doc:description>Illumitation azimuth measured in
-                      degrees clockwise from true north at the time the image
-                      is taken.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="imageOrientationAngle" type="xs:float"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Angle from the first row of the image to
-                      true north in degrees, clockwise.</doc:tooltip>
-                      <doc:summary>Angle from the first row of the image to
-                      true north in degrees, clockwise.</doc:summary>
-                      <doc:description>Angle from the first row of the image
-                      to true north in degrees, clockwise.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="imagingCondition"
-                type="ImagingConditionCode" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates conditions which
-                      affect the quality of the image.</doc:tooltip>
-                      <doc:summary>Code which indicates conditions which
-                      affect the quality of the image.</doc:summary>
-                      <doc:description>Code which indicates conditions which
-                      affect the quality of the image.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="imageQualityCode" type="xs:string"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Image Quality Code</doc:tooltip>
-                      <doc:summary>Specifies the image quality.</doc:summary>
-                      <doc:description>Specifies the image
-                      quality.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="cloudCoverPercentage" type="xs:float"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Area of the dataset obscured by clouds,
-                      expressed as a percentage of the spatial
-                      extent.</doc:tooltip>
-                      <doc:summary>Area of the dataset obscured by clouds,
-                      expressed as a percentage of the spatial
-                      extent.</doc:summary>
-                      <doc:description>Area of the dataset obscured by
-                      clouds, expressed as a percentage of the spatial
-                      extent.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="preProcessingTypeCode" type="xs:string"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Image distributor's code that idnetifies
-                      the level of radiometric and geometric proseccing
-                      applied against the image.</doc:tooltip>
-                      <doc:summary>Image distributor's code that idnetifies
-                      the level of radiometric and geometric proseccing
-                      applied against the image.</doc:summary>
-                      <doc:description>Image distributor's code that
-                      idnetifies the level of radiometric and geometric
-                      proseccing applied against the image.</doc:description>
-                      <doc:example>LEVELl1A, SPOTVIEWORTHO</doc:example>
-                      <doc:lineage>The spatial entity elements were
-                      introduced into EML 2.0 beta 7</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="compressionGenerationQuality"
-                type="xs:integer" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Counts the number of lossy compression
-                      cycles performed on the image.</doc:tooltip>
-                      <doc:summary>Counts the number of lossy compression
-                      cycles performed on the image.</doc:summary>
-                      <doc:description>Counts the number of lossy compression
-                      cycles performed on the image.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="triangulationIndicator" type="xs:boolean"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates whether or not
-                      triangulation has been performed upon the
-                      image.</doc:tooltip>
-                      <doc:summary>Code which indicates whether or not
-                      triangulation has been performed upon the
-                      image.</doc:summary>
-                      <doc:description>Code which indicates whether or not
-                      triangulation has been performed upon the
-                      image.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="radiometricDataAvailability"
-                type="xs:boolean" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates whether or not
-                      Standard Rdiometric Product data is
-                      available.</doc:tooltip>
-                      <doc:summary>Code which indicates whether or not
-                      Standard Rdiometric Product data is
-                      available.</doc:summary>
-                      <doc:description>Code which indicates whether or not
-                      Standard Rdiometric Product data is
-                      available.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="cameraCalibrationInformationAvailability"
-                type="xs:boolean" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates whether or not
-                      constants are available which allow for camera
-                      calibration corrections.</doc:tooltip>
-                      <doc:summary>Code which indicates whether or not
-                      constants are available which allow for camera
-                      calibration corrections.</doc:summary>
-                      <doc:description>Code which indicates whether or not
-                      constants are available which allow for camera
-                      calibration corrections.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="filmDistortionInformationAvailability"
-                type="xs:boolean" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates whether or not
-                      Calibration Reseau information is
-                      available</doc:tooltip>
-                      <doc:summary>Code which indicates whether or not
-                      Calibration Reseau information is
-                      available</doc:summary>
-                      <doc:description>Code which indicates whether or not
-                      Calibration Reseau information is
-                      available</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="lensDistortionInformationAvailability"
-                type="xs:boolean" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Code which indicates whether or not lens
-                      aberration correction information is
-                      available</doc:tooltip>
-                      <doc:summary>Code which indicates whether or not lens
-                      aberration correction information is
-                      available</doc:summary>
-                      <doc:description>Code which indicates whether or not
-                      lens aberration correction information is
-                      available</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="bandDescription" type="BandType"
-                minOccurs="0" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Set of wavelength that the sensor operates
-                      in.</doc:tooltip>
-                      <doc:summary>Set of wavelength that the sensor operates
-                      in.</doc:summary>
-                      <doc:description>Set of wavelength that the sensor
-                      operates in.</doc:description>
-                      <doc:example />
-                      <doc:lineage>ISO 19115.3</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
+          <xs:sequence>
+            <xs:element name="cellSizeXDirection" />
+            <xs:element name="cellSizeXUnits" />
+            <xs:element name="cellSizeYDirection" />
+            <xs:element name="cellSizeYUnits" />
+            <xs:element name="numberOfBands" />
+            <xs:element name="rasterOrigin" type="rasterOriginType">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Raster Origin</doc:tooltip>
+                  <doc:summary>Location of pixel 1,1</doc:summary>
+                  <doc:description>Identification the corner of the grid where
+                  the first values for both the x and y axes begin in the
+                  file.</doc:description>
+                  <doc:example>NW Corner</doc:example>
+                  <doc:lineage>ISO 19115.3</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="rows" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Rows</doc:tooltip>
+                  <doc:summary>Maximum number of raster objects along the
+                  ordinate (y) axis</doc:summary>
+                  <doc:description>Maximum number of raster objects along the
+                  ordinate (y) axis</doc:description>
+                  <doc:example />
+                  <doc:lineage>The spatial entity elements were introduced into
+                  EML 2.0 beta 7</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="columns" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Maximum number of raster objects along the
+                  abscissa (x) axis</doc:tooltip>
+                  <doc:summary>Maximum number of raster objects along the
+                  abscissa (x) axis</doc:summary>
+                  <doc:description>Maximum number of raster objects along the
+                  abscissa (x) axis</doc:description>
+                  <doc:example />
+                  <doc:lineage>The spatial entity elements were introduced into
+                  EML 2.0 beta 7</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="verticals" />
+            <xs:element name="cellGeometry" type="CellGeometryType" />
+            <xs:element name="toneGradation" type="xs:integer" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Tone Gradation</doc:tooltip>
+                  <doc:summary>Number of colors present in the
+                  image.</doc:summary>
+                  <doc:description>Number of colors present in the
+                  image.</doc:description>
+                  <doc:example>255</doc:example>
+                  <doc:lineage>ISO 19115.5 239</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="scaleFactor" type="xs:string" minOccurs="0" />
+            <xs:element name="offset" type="xs:string" minOccurs="0" />
+            <xs:element name="imageDescription" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Image description</doc:tooltip>
+                  <doc:summary>Detailed information for data derived from image
+                  sensors.</doc:summary>
+                  <doc:description>Provides information about the image's
+                  suitability for use, sensor properties, and individual band
+                  descriptions.</doc:description>
+                  <doc:example />
+                  <doc:lineage>ISO 19115.3</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="illuminationElevationAngle" type="xs:float"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Illumination elevation measured in degrees
+                        clockwise from the target plane at intersection of the
+                        optical line of sight with the earth's
+                        surface.</doc:tooltip>
+                        <doc:summary>Illumination elevation measured in degrees
+                        clockwise from the target plane at intersection of the
+                        optical line of sight with the earth's
+                        surface.</doc:summary>
+                        <doc:description>Illumination elevation measured in
+                        degrees clockwise from the target plane at intersection
+                        of the optical line of sight with the earth's
+                        surface.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="illuminationAzimuthAngle" type="xs:float"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Illumitation azimuth measured in degrees
+                        clockwise from true north at the time the image is
+                        taken.</doc:tooltip>
+                        <doc:summary>Illumitation azimuth measured in degrees
+                        clockwise from true north at the time the image is
+                        taken.</doc:summary>
+                        <doc:description>Illumitation azimuth measured in
+                        degrees clockwise from true north at the time the image
+                        is taken.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="imageOrientationAngle" type="xs:float"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Angle from the first row of the image to
+                        true north in degrees, clockwise.</doc:tooltip>
+                        <doc:summary>Angle from the first row of the image to
+                        true north in degrees, clockwise.</doc:summary>
+                        <doc:description>Angle from the first row of the image
+                        to true north in degrees, clockwise.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="imagingCondition"
+                  type="ImagingConditionCode" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates conditions which
+                        affect the quality of the image.</doc:tooltip>
+                        <doc:summary>Code which indicates conditions which
+                        affect the quality of the image.</doc:summary>
+                        <doc:description>Code which indicates conditions which
+                        affect the quality of the image.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="imageQualityCode" type="xs:string"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Image Quality Code</doc:tooltip>
+                        <doc:summary>Specifies the image quality.</doc:summary>
+                        <doc:description>Specifies the image
+                        quality.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="cloudCoverPercentage" type="xs:float"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Area of the dataset obscured by clouds,
+                        expressed as a percentage of the spatial
+                        extent.</doc:tooltip>
+                        <doc:summary>Area of the dataset obscured by clouds,
+                        expressed as a percentage of the spatial
+                        extent.</doc:summary>
+                        <doc:description>Area of the dataset obscured by
+                        clouds, expressed as a percentage of the spatial
+                        extent.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="preProcessingTypeCode" type="xs:string"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Image distributor's code that idnetifies
+                        the level of radiometric and geometric proseccing
+                        applied against the image.</doc:tooltip>
+                        <doc:summary>Image distributor's code that idnetifies
+                        the level of radiometric and geometric proseccing
+                        applied against the image.</doc:summary>
+                        <doc:description>Image distributor's code that
+                        idnetifies the level of radiometric and geometric
+                        proseccing applied against the image.</doc:description>
+                        <doc:example>LEVELl1A, SPOTVIEWORTHO</doc:example>
+                        <doc:lineage>The spatial entity elements were
+                        introduced into EML 2.0 beta 7</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="compressionGenerationQuality"
+                  type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Counts the number of lossy compression
+                        cycles performed on the image.</doc:tooltip>
+                        <doc:summary>Counts the number of lossy compression
+                        cycles performed on the image.</doc:summary>
+                        <doc:description>Counts the number of lossy compression
+                        cycles performed on the image.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="triangulationIndicator" type="xs:boolean"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates whether or not
+                        triangulation has been performed upon the
+                        image.</doc:tooltip>
+                        <doc:summary>Code which indicates whether or not
+                        triangulation has been performed upon the
+                        image.</doc:summary>
+                        <doc:description>Code which indicates whether or not
+                        triangulation has been performed upon the
+                        image.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="radiometricDataAvailability"
+                  type="xs:boolean" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates whether or not
+                        Standard Rdiometric Product data is
+                        available.</doc:tooltip>
+                        <doc:summary>Code which indicates whether or not
+                        Standard Rdiometric Product data is
+                        available.</doc:summary>
+                        <doc:description>Code which indicates whether or not
+                        Standard Rdiometric Product data is
+                        available.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="cameraCalibrationInformationAvailability"
+                  type="xs:boolean" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates whether or not
+                        constants are available which allow for camera
+                        calibration corrections.</doc:tooltip>
+                        <doc:summary>Code which indicates whether or not
+                        constants are available which allow for camera
+                        calibration corrections.</doc:summary>
+                        <doc:description>Code which indicates whether or not
+                        constants are available which allow for camera
+                        calibration corrections.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="filmDistortionInformationAvailability"
+                  type="xs:boolean" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates whether or not
+                        Calibration Reseau information is
+                        available</doc:tooltip>
+                        <doc:summary>Code which indicates whether or not
+                        Calibration Reseau information is
+                        available</doc:summary>
+                        <doc:description>Code which indicates whether or not
+                        Calibration Reseau information is
+                        available</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lensDistortionInformationAvailability"
+                  type="xs:boolean" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Code which indicates whether or not lens
+                        aberration correction information is
+                        available</doc:tooltip>
+                        <doc:summary>Code which indicates whether or not lens
+                        aberration correction information is
+                        available</doc:summary>
+                        <doc:description>Code which indicates whether or not
+                        lens aberration correction information is
+                        available</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="bandDescription" type="BandType"
+                  minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Set of wavelength that the sensor operates
+                        in.</doc:tooltip>
+                        <doc:summary>Set of wavelength that the sensor operates
+                        in.</doc:summary>
+                        <doc:description>Set of wavelength that the sensor
+                        operates in.</doc:description>
+                        <doc:example />
+                        <doc:lineage>ISO 19115.3</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element name="attribute" type="att:Attribute"/>
+            <xs:element name="coverage" type="cov:Coverage"/>
+            <xs:element name="physical" type="phys:Physical"/>
+            <xs:element name="protocol" type="prot:Protocol"/>
+          </xs:sequence>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID" use="required" />
         <xs:attribute name="system" type="xs:string" use="optional" />

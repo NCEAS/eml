@@ -3,9 +3,15 @@
            xmlns="eml:software-2.0.0beta8" 
            xmlns:res="eml:resource-2.0.0beta8"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:doc="eml:documentation-2.0.0beta8">
-  <xs:import namespace="eml:documentation-2.0.0beta8"
-  schemaLocation="eml-documentation.xsd" />
+           xmlns:doc="eml:documentation-2.0.0beta8"
+           xmlns:proj="eml:project-2.0.0beta8"
+           xmlns:acc="eml:access-2.0.0beta8">
+           
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd" />
+  <xs:import namespace="eml:access-2.0.0beta8" schemaLocation="eml-access.xsd" />
+  <xs:import namespace="eml:project-2.0.0beta8" schemaLocation="eml-project.xsd" />
+  
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-software.xsd,v $'
@@ -23,8 +29,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-31 17:31:53 $'
-      '$Revision: 1.11 $'
+          '$Date: 2002-05-31 22:19:35 $'
+      '$Revision: 1.12 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,10 +52,7 @@
       information that describes software resources.</doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-<!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource-2.0.0beta8"
-  schemaLocation="eml-resource.xsd" />
-  
+
   <xs:complexType name="Software">
     <xs:choice>
       <xs:element name="content" type="SoftwareType"/>
@@ -98,229 +101,235 @@
     <xs:complexContent>
       <xs:extension base="res:ResourceBase">
         <xs:sequence>
-          <xs:element name="implementation" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Implementation</doc:tooltip>
-                <doc:summary>Describes the hardware and/or operating system
-                requirementsfor one implementation of a
-                package.</doc:summary>
-                <doc:description>Implementation describes the hardware,
-                operating system resources a package runs on. Note, a package
-                can have multiple implementations. So for example, a package
-                may be written in java and the package may run on numerous
-                hardware and/or operating systems like Pentium/Linux,
-                Pentium/NT and so on... Hardware and Software descriptions
-                that have different requirements can be placed
-                here.</doc:description>
-                <doc:example>Please see the examples for each subelement of
-                the 'implementation' type.</doc:example>
-                <doc:lineage>The implementation Element was introduced in
-                2.0.0 beta 9.</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="distribution" type="xs:string"
-                maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                    <doc:tooltip>Distribution</doc:tooltip>
-                    <doc:summary>Currently under construction in resource
-                    module.</doc:summary>
-                    <doc:description />
-                    work in progress 
-                    <doc:example>filename.jar</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="size" type="xs:string" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Size</doc:tooltip>
-                      <doc:summary>Physical size of an implemetation in Kilo,
-                      Mega .... bytes.</doc:summary>
+          <xs:sequence>
+            <xs:element name="implementation" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Implementation</doc:tooltip>
+                  <doc:summary>Describes the hardware and/or operating system
+                  requirementsfor one implementation of a
+                  package.</doc:summary>
+                  <doc:description>Implementation describes the hardware,
+                  operating system resources a package runs on. Note, a package
+                  can have multiple implementations. So for example, a package
+                  may be written in java and the package may run on numerous
+                  hardware and/or operating systems like Pentium/Linux,
+                  Pentium/NT and so on... Hardware and Software descriptions
+                  that have different requirements can be placed
+                  here.</doc:description>
+                  <doc:example>Please see the examples for each subelement of
+                  the 'implementation' type.</doc:example>
+                  <doc:lineage>The implementation Element was introduced in
+                  2.0.0 beta 9.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="distribution" type="xs:string"
+                  maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                      <doc:tooltip>Distribution</doc:tooltip>
+                      <doc:summary>Currently under construction in resource
+                      module.</doc:summary>
                       <doc:description />
-                      <doc:example>100 Megabytes</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="language" minOccurs="0"
-                maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>International Language</doc:tooltip>
-                      <doc:summary>The International Language of the software
-                      implementation</doc:summary>
-                      <doc:description />
-                      <doc:example />
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="LanguageValue" type="xs:string">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Language Value</doc:tooltip>
-                            <doc:summary>The actual value for the language or
-                            code</doc:summary>
-                            <doc:description>The value could be just a text
-                            string like english or french or it could be an
-                            International Language code like ISO
-                            639-2.</doc:description>
-                            <doc:example>'english' or 'en'</doc:example>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="LanguageCodeStandard"
-                      type="xs:string" minOccurs="0">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Language Code Standard</doc:tooltip>
-                            <doc:summary>The International Language Code
-                            being used</doc:summary>
-                            <doc:description>See
-                            www.loc.gov/standards/iso639-2/</doc:description>
-                            <doc:example>'que' for Quechua, 'eng' for English
-                            and so on...</doc:example>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                    </xs:sequence>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="operatingSystem" type="xs:string"
-                minOccurs="0" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Operating System</doc:tooltip>
-                      <doc:summary>Operating System(s) an implementation runs
-                      on</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>Windows 95, Window NT, Windows XP, Sun
-                      Solaris 2.8</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="machineProcessor" type="xs:string"
-                minOccurs="0" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Machine Processor</doc:tooltip>
-                      <doc:summary>The Machine Processor required for
-                      implementation</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>Pentium II, Intel 486, SUN
-                      Sparc</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="virtualMachine" type="xs:string"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Virtual Machine</doc:tooltip>
-                      <doc:summary>Virtual Machine implementation
-                      requires</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>Java Virtual Machne 1.2</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="diskUsage" type="xs:string" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Disk Usage</doc:tooltip>
-                      <doc:summary>The minimum amount of Disk Space required
-                      to install an lmplementation in Kilo, Mega bytes
-                      etc...</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>220 Megabytes</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="runtimeMemoryUsage" type="xs:string"
-                minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Runtime Memory Usage</doc:tooltip>
-                      <doc:summary>The minimum amount of memory required to
-                      run an lmplementation in Kilo, Mega b ytes
-                      etc...</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>32 Megabytes</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="programmingLanguage" type="xs:string"
-                minOccurs="0" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Programming Language</doc:tooltip>
-                      <doc:summary>The Computer Programming Language the
-                      Software Package was programmed in.</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>C++, Java, C, C#, Perl, Cobol, Fortran,
-                      Lisp, Visual Basic, VBA, Bourne Shell Script
-                      etc....</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="checksum" type="xs:string" minOccurs="0">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Checksum</doc:tooltip>
-                      <doc:summary>The generated checksum value of a software
-                      package that is a self-contained module.</doc:summary>
-                      <doc:description>see summary</doc:description>
-                      <doc:example>$sum software.jar 27021
-                      22660</doc:example>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element ref="dependency" minOccurs="0"
-                maxOccurs="unbounded" />
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-          <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Dependency</doc:tooltip>
-                <doc:summary>Dependency describes the software packages that
-                the software package is dependent upon.</doc:summary>
-                <doc:description>The dependency element is recursive. It is a
-                sub-element of the Software Element but it also has as
-                a sub-element its parent element Software Package. Dependecy
-                has been made optional because to make it mandatory does not
-                allow the recursion to end. Dependency has also been made a
-                sub-element of implementation because there can be both
-                implementation and package level dependencies within a
-                package.</doc:description>
-                <doc:example />
-                <doc:lineage>The implementation Element was introduced in
-                2.0.0 beta 9.</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="licenseURL" type="xs:string" />
-            <xs:element name="license" type="xs:string" />
-          </xs:choice>
-          <xs:element name="version" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip />
-                <doc:summary>Version of the software being
-                packaged.</doc:summary>
-                <doc:description>String value corresponding to the major,
-                minor, custom, and build version.</doc:description>
-                <doc:example />
-                <doc:lineage>The Version element was introduced in 2.0.0 beta
-                9.</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+                      work in progress 
+                      <doc:example>filename.jar</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="size" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Size</doc:tooltip>
+                        <doc:summary>Physical size of an implemetation in Kilo,
+                        Mega .... bytes.</doc:summary>
+                        <doc:description />
+                        <doc:example>100 Megabytes</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="language" minOccurs="0"
+                  maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>International Language</doc:tooltip>
+                        <doc:summary>The International Language of the software
+                        implementation</doc:summary>
+                        <doc:description />
+                        <doc:example />
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="LanguageValue" type="xs:string">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Language Value</doc:tooltip>
+                              <doc:summary>The actual value for the language or
+                              code</doc:summary>
+                              <doc:description>The value could be just a text
+                              string like english or french or it could be an
+                              International Language code like ISO
+                              639-2.</doc:description>
+                              <doc:example>'english' or 'en'</doc:example>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LanguageCodeStandard"
+                        type="xs:string" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Language Code Standard</doc:tooltip>
+                              <doc:summary>The International Language Code
+                              being used</doc:summary>
+                              <doc:description>See
+                              www.loc.gov/standards/iso639-2/</doc:description>
+                              <doc:example>'que' for Quechua, 'eng' for English
+                              and so on...</doc:example>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="operatingSystem" type="xs:string"
+                  minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Operating System</doc:tooltip>
+                        <doc:summary>Operating System(s) an implementation runs
+                        on</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>Windows 95, Window NT, Windows XP, Sun
+                        Solaris 2.8</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="machineProcessor" type="xs:string"
+                  minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Machine Processor</doc:tooltip>
+                        <doc:summary>The Machine Processor required for
+                        implementation</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>Pentium II, Intel 486, SUN
+                        Sparc</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="virtualMachine" type="xs:string"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Virtual Machine</doc:tooltip>
+                        <doc:summary>Virtual Machine implementation
+                        requires</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>Java Virtual Machne 1.2</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="diskUsage" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Disk Usage</doc:tooltip>
+                        <doc:summary>The minimum amount of Disk Space required
+                        to install an lmplementation in Kilo, Mega bytes
+                        etc...</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>220 Megabytes</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="runtimeMemoryUsage" type="xs:string"
+                  minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Runtime Memory Usage</doc:tooltip>
+                        <doc:summary>The minimum amount of memory required to
+                        run an lmplementation in Kilo, Mega b ytes
+                        etc...</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>32 Megabytes</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="programmingLanguage" type="xs:string"
+                  minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Programming Language</doc:tooltip>
+                        <doc:summary>The Computer Programming Language the
+                        Software Package was programmed in.</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>C++, Java, C, C#, Perl, Cobol, Fortran,
+                        Lisp, Visual Basic, VBA, Bourne Shell Script
+                        etc....</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="checksum" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Checksum</doc:tooltip>
+                        <doc:summary>The generated checksum value of a software
+                        package that is a self-contained module.</doc:summary>
+                        <doc:description>see summary</doc:description>
+                        <doc:example>$sum software.jar 27021
+                        22660</doc:example>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="dependency" minOccurs="0"
+                  maxOccurs="unbounded" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Dependency</doc:tooltip>
+                  <doc:summary>Dependency describes the software packages that
+                  the software package is dependent upon.</doc:summary>
+                  <doc:description>The dependency element is recursive. It is a
+                  sub-element of the Software Element but it also has as
+                  a sub-element its parent element Software Package. Dependecy
+                  has been made optional because to make it mandatory does not
+                  allow the recursion to end. Dependency has also been made a
+                  sub-element of implementation because there can be both
+                  implementation and package level dependencies within a
+                  package.</doc:description>
+                  <doc:example />
+                  <doc:lineage>The implementation Element was introduced in
+                  2.0.0 beta 9.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="licenseURL" type="xs:string" />
+              <xs:element name="license" type="xs:string" />
+            </xs:choice>
+            <xs:element name="version" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip />
+                  <doc:summary>Version of the software being
+                  packaged.</doc:summary>
+                  <doc:description>String value corresponding to the major,
+                  minor, custom, and build version.</doc:description>
+                  <doc:example />
+                  <doc:lineage>The Version element was introduced in 2.0.0 beta
+                  9.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element name="access" type="acc:Access"/>
+            <xs:element name="project" type="proj:Project"/>
+          </xs:sequence>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

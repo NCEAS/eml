@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema targetNamespace="eml:view-2.0.0beta8"
-xmlns:doc="eml:documentation-2.0.0beta8"
-xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="eml:entity-2.0.0beta8"
-xmlns="eml:view-2.0.0beta8">
-  <xs:import namespace="eml:entity-2.0.0beta8"
-  schemaLocation="eml-entity.xsd" />
-  <xs:import namespace="eml:documentation-2.0.0beta8"
-  schemaLocation="eml-documentation.xsd" />
+           xmlns:doc="eml:documentation-2.0.0beta8"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:ent="eml:entity-2.0.0beta8"
+           xmlns:att="eml:attribute-2.0.0beta8"
+           xmlns:phys="eml:physical-2.0.0beta8"
+           xmlns:prot="eml:protocol-2.0.0beta8"
+           xmlns:cov="eml:coverage-2.0.0beta8"
+           xmlns="eml:view-2.0.0beta8">
+
+  <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd" />
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd" />
+  <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd" />
+  <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd" />
+  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd" />
+  
   <xs:annotation>
     <xs:documentation>
            '$RCSfile: eml-view.xsd,v $'
@@ -24,8 +33,8 @@ xmlns="eml:view-2.0.0beta8">
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: berkley $'
-          '$Date: 2002-05-30 23:17:30 $'
-      '$Revision: 1.6 $'
+          '$Date: 2002-05-31 22:19:35 $'
+      '$Revision: 1.7 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -80,21 +89,29 @@ xmlns="eml:view-2.0.0beta8">
     <xs:complexContent>
       <xs:extension base="ent:EntityBase">
         <xs:sequence>
-          <xs:element name="queryStatement" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Query Statement</doc:tooltip>
-                <doc:summary>Query syntax that produced the
-                view</doc:summary>
-                <doc:description>The native query statement that was stored
-                in the database may be entered here</doc:description>
-                <doc:example>Select site as SiteID,common_name as CommonName,
-                count as CountOfIndividuals from samples inner join taxonlist
-                on samples.speciesid=taxonlist.speciesid</doc:example>
-                <doc:lineage>EML 2.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+          <xs:sequence>
+            <xs:element name="queryStatement" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Query Statement</doc:tooltip>
+                  <doc:summary>Query syntax that produced the
+                  view</doc:summary>
+                  <doc:description>The native query statement that was stored
+                  in the database may be entered here</doc:description>
+                  <doc:example>Select site as SiteID,common_name as CommonName,
+                  count as CountOfIndividuals from samples inner join taxonlist
+                  on samples.speciesid=taxonlist.speciesid</doc:example>
+                  <doc:lineage>EML 2.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element name="attribute" type="att:Attribute"/>
+            <xs:element name="coverage" type="cov:Coverage"/>
+            <xs:element name="physical" type="phys:Physical"/>
+            <xs:element name="protocol" type="prot:Protocol"/>
+          </xs:sequence>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID" use="required" />
       </xs:extension>
