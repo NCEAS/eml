@@ -9,7 +9,7 @@
 <xsl:template match="/">
 <book>
   <bookinfo>
-    <title>Guide to EML</title>
+    <title>Guide to Ecological Metadata Language (EML)</title>
   </bookinfo>
   
   <preface>
@@ -29,7 +29,7 @@
     </section>
     
     <section>
-      <title>Purpose</title>
+      <title>Purpose Statement</title>
       <para>
         To provide the ecological community with an extensible, flexible,
         metadata standard for use in data analysis and archiving that will 
@@ -40,7 +40,8 @@
     <section>
       <title>Extensibility</title>
       <para>
-      
+        Say something about extensibility here when we figure out the packaging
+        methods.
       </para>
     </section>
   </preface>
@@ -52,6 +53,270 @@
       <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
     </xsl:for-each>
   </chapter>
+  
+  <index>
+    <title>Index</title>
+      <indexdiv>
+        <title>A</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'a')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>B</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'b')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>C</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'c')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>D</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'd')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>E</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'e')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>F</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'f')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>G</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'g')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>H</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'h')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>I</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'i')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>J</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'j')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>k</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'k')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>L</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'l')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>M</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'm')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>N</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'n')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>O</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'o')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>P</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'p')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>Q</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'q')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>R</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'r')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>S</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 's')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>T</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 't')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>U</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'u')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>V</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'v')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>W</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'w')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>X</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'x')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>Y</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'y')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+      <indexdiv>
+        <title>Z</title>
+        <xsl:for-each select="//doc:module">
+          <xsl:for-each select="document(.)//xs:element">
+            <xsl:if test="starts-with(./@name, 'z')">
+              <xsl:apply-templates select="." mode="indexentry"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </indexdiv>
+  </index>
 </book>
 </xsl:template>
 
@@ -112,5 +377,16 @@
       <xsl:value-of select="normalize-space(.)"/>
     </para>
   </listitem>
+</xsl:template>
+
+<xsl:template match="xs:element" mode="indexentry">
+  <indexentry>
+    <primaryie>
+      <ulink>
+        <xsl:attribute name="url">file://../<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
+        <xsl:value-of select="@name"/>
+      </ulink>
+    </primaryie>
+  </indexentry>
 </xsl:template>
 </xsl:stylesheet>
