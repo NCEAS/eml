@@ -19,9 +19,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: jones $'
-          '$Date: 2003-11-06 20:15:21 $'
-      '$Revision: 1.66 $'
+        '$Author: berkley $'
+          '$Date: 2004-06-14 17:10:18 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -482,6 +482,33 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
+			    <xs:element name="consecutiveDelimitersAreSingle" minOccurs="0">
+			      <xs:annotation>
+			 	<xs:appinfo>
+				  <doc:tooltip>Treat consecutive delimiters as single</doc:tooltip>
+				  <doc:summary>Specification of how to handle consecutive delimiters
+              			  while parsing </doc:summary>
+				  <doc:description>The consecutiveDelimitersAreSingle element
+              			  specifies whether sequential delimiters should be treated as a single 
+              			  delimiter or multiple delimiters.  An example is when a space delimiter is used;
+				  often there may be several repeated spaces that should be treated as a 
+				  single delimiter, but not always. The valid values are yes or no. 
+				  If it is set to yes, then consecutive delimiters will be seen as single.  
+				  If set to no, then consecutive delimiters will be treated as seperate 
+				  delimiters. Default behaviour is no; hence, consecutive delimiters 
+				  will be treated as seperate delimiters, by default.
+              			  </doc:description>
+				  <doc:example>yes</doc:example>
+				  <doc:example>no</doc:example>
+				</xs:appinfo>
+			      </xs:annotation>
+			      <xs:simpleType>
+				<xs:restriction base="xs:string">
+			 	  <xs:enumeration value="yes"/>
+				  <xs:enumeration value="no"/>
+				</xs:restriction>
+			      </xs:simpleType>
+			    </xs:element>
                             <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
@@ -748,6 +775,33 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
+				  <xs:element name="consecutiveDelimitersAreSingle" minOccurs="0">
+			      	    <xs:annotation>
+			 	      <xs:appinfo>
+				  	<doc:tooltip>Treat consecutive delimiters as single</doc:tooltip>
+				  	<doc:summary>Specification of how to handle consecutive delimiters
+              			  	while parsing </doc:summary>
+				  	<doc:description>The consecutiveDelimitersAreSingle element
+              			  	specifies whether sequential delimiters should be treated as a single 
+     	         			delimiter or multiple delimiters.  An example is when a space delimiter is used;
+					often there may be several repeated spaces that should be treated as a 
+					single delimiter, but not always. The valid values are yes or no. 
+					If it is set to yes, then consecutive delimiters will be seen as single.  
+				  	If set to no, then consecutive delimiters will be treated as seperate 
+				  	delimiters. Default behaviour is no; hence, consecutive delimiters 
+				  	will be treated as seperate delimiters, by default.
+              			  	</doc:description>
+				  	<doc:example>yes</doc:example>
+				  	<doc:example>no</doc:example>
+				      </xs:appinfo>
+			            </xs:annotation>
+			      	    <xs:simpleType>
+				      <xs:restriction base="xs:string">
+			 	  	<xs:enumeration value="yes"/>
+				  	<xs:enumeration value="no"/>
+				      </xs:restriction>
+			            </xs:simpleType>
+			          </xs:element>
                                   <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
