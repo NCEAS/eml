@@ -1,5 +1,6 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           xmlns:res="eml:resource"
            targetNamespace="eml:package" >
 
   <xs:annotation>
@@ -9,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.7 $'
+        '$Author: berkley $'
+          '$Date: 2001-03-19 23:20:29 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,6 +39,9 @@
     </xs:appInfo>
   </xs:annotation>
 
+  <xs:import namespace="eml:resource" 
+          schemaLocation = "./eml-resource.xsd"/>
+  
   <xs:element ref="package"
               minOccurs="1"  maxOccurs="1">
     <xs:annotation>
@@ -67,6 +71,29 @@
   <xs:element name="package">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="identifier" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Package Identifier
+              </tooltip>
+              <summary>
+                The accession number of the package 
+              </summary>
+              <description>
+                The unique accession number given to the package by a data
+                management system
+              </description>
+              <example>
+                knb.4.5
+              </example>
+              <lineage>
+                new in EML 2.0
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="name" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
@@ -84,6 +111,31 @@
               </example>
               <lineage>
                 The package name element was introduced into EML 2.0 Proposed.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="resource" type="res:Resource"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Package contact information
+              </tooltip>
+              <summary>
+                Contact information for the people or organization that manage/
+                own this package.
+              </summary>
+              <description>
+	              Contact information for the owners/managers/PIs of this package.
+                This should contain contact information for anyone who has
+                contributed to this package.
+              </description>
+              <example>
+                see examples in eml-resource.xsd
+              </example>
+              <lineage>
+                new to EML 2.0
               </lineage>
             </xs:appInfo>
           </xs:annotation>
@@ -117,6 +169,32 @@
   </xs:element>
  
   <xs:element name="relation">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          relation between objects
+        </tooltip>
+        <summary>
+          The definition of a relationship between objects
+        </summary>
+        <description>
+          A relation allows a user to define a relationship between two
+          objects.  This relationship can also be recursive so that an
+          object can point back to the package of which it is a part.
+        </description>
+        <example>
+          Normal (nonrecursive):
+          &lt;subject&gt;knb.3.4&lt;/subject&gt; &lt;isFileMetadataFor&gt; &lt;object&gt;knb.5&lt;/object&gt;
+          Recursive:
+          &lt;subject&gt;lter.123&lt;/subject&gt; &lt;isPackageMember&gt; &lt;object&gt;lter.18&lt;/object&gt;
+          where object lter.18 is the package file in which this relationship
+          exisists.
+        </example>
+        <lineage>
+          new to EML 2.0
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="subject" type="xs:string"

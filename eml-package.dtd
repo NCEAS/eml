@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.4 $'
+        '$Author: berkley $'
+          '$Date: 2001-03-19 23:20:29 $'
+      '$Revision: 1.5 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,9 +26,12 @@
      model used to create a symbolic link from metadata->metadata and
      metadata->data files which show a relationship between the data. -->
 
+<!ENTITY % resourceInfo SYSTEM "./eml-resource.dtd">
+%resourceInfo;
 <!-- The root element, which represents a list or relationships between 
      metadata and data file(s). -->
-<!ELEMENT package (name?, relation+) >
+<!ELEMENT package (identifier, name?, %resource;, relation+) >
+<!ELEMENT identifier (#PCDATA)>
 
 <!-- The name is used to identify the package. -->
 <!ELEMENT name (#PCDATA)>
