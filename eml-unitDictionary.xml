@@ -108,14 +108,14 @@
     <dimension name="mass" power="-1"/>
   </unitType>
 
-  <unitType id="simpleCubicDensity" name="simple density">
+  <unitType id="volumetricDensity" name="volumetric density">
     <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
 
-  <unitType id="simpleSquareDensity" name="simple density">
+  <unitType id="arealDensity" name="areal density">
     <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
@@ -233,13 +233,13 @@
   </unit>
 
   <!--numeric densities-->
-  <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="simpleSquareDensity" multiplierToSI="1" abbreviation="#/m^2">
+  <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="arealDensity" multiplierToSI="1" abbreviation="#/m^2">
     <description>number per meter squared</description>
   </unit>
-  <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="simpleSquareDensity" multiplierToSI="100" abbreviation="#/km^2">
-    <description>number pre kilometer squared</description>
+  <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="arealDensity" multiplierToSI="100" abbreviation="#/km^2">
+    <description>number per kilometer squared</description>
   </unit>
-  <unit id="numberPerMeterCubed" name="numberPerMeterCubed" unitType="simpleCubedDensity" multiplierToSI="1" abbreviation="#/m^3">
+  <unit id="numberPerMeterCubed" name="numberPerMeterCubed" unitType="volumetricDensity" multiplierToSI="1" abbreviation="#/m^3">
     <description>number per meter cubed</description>
   </unit>
 
