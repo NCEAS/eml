@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-06-23 21:38:42 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -334,6 +334,14 @@
             </xsl:apply-templates>
           </table>
         </td>
+        </tr>
+  </xsl:template>
+
+  <xsl:template match="consecutiveDelimitersAreSingle">
+        <xsl:param name="physicalfirstColStyle"/>
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Consecutive Delimiters are Single:</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
