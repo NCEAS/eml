@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-12-16 21:53:20 $'
-      '$Revision: 1.22 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-17 22:43:01 $'
+      '$Revision: 1.23 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -44,13 +44,35 @@
   </xs:annotation>
     
   <xs:element name="coverage">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element ref="geographicCov"/>
-          <xs:element ref="temporalCov"/>
-          <xs:element ref="taxonomicCov"/>
-        </xs:sequence>
-      </xs:complexType>
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Coverage information
+        </doc:tooltip>
+        <doc:summary>
+          The geographic, temporal, and taxonomic extents of the resource being
+          described.
+        </doc:summary>
+        <doc:description>
+          The coverage element provides a series of sub-fields that describe the
+          overall geographic, temporal, and taxomomic extents of the resource
+          being described, usually a dataset.
+        </doc:description>
+        <doc:example>
+          Please see the individual sub-fields for specific examples.
+        </doc:example>
+        <doc:lineage>
+          The coverage element is derived from the NBII standard.
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="geographicCov"/>
+        <xs:element ref="temporalCov"/>
+        <xs:element ref="taxonomicCov"/>
+      </xs:sequence>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="geographicCov" type="GeographicCoverage">
@@ -1096,7 +1118,7 @@
           Taxonomic coverage information.
         </doc:summary>
         <doc:description>
-          Taxonomic Coverage is a container for Taxonomic information about a
+          Taxonomic Coverage is a container for taxonomic information about a
           a project, a resource, or an entity within a resource.
         </doc:description>
         <doc:example>
@@ -1112,11 +1134,21 @@
       <xs:element name="keywtax" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip/>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
-            <doc:lineage/>
+            <doc:tooltip>
+              Taxonomic Keyword Information
+            </doc:tooltip>
+            <doc:summary>
+              Taxonomic Keywords and related taxonomic thesaurii.
+            </doc:summary>
+            <doc:description>
+              The taxonomic keyword fields provide locations for keywords and the
+              thesaurii from which they are formally defined that are specific to the
+              taxonomic extent of the dataset or resource.
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
+            <doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -1124,13 +1156,18 @@
             <xs:element name="taxonkt" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>Taxonomic keyword thesaurus </doc:tooltip>
-                  <doc:summary/>
+                  <doc:tooltip>Taxonomic keyword thesaurus</doc:tooltip>
+                  <doc:summary>
+                    Reference to eml-attribute.htmla formally registered thesaurus 
+                    or similar authoritative source of taxonomic keywords. 
+                  </doc:summary>
                   <doc:description>
                     Reference to a formally registered thesaurus or similar 
                     authoritative source of taxonomic keywords. 
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    BIOSIS Systematic Thesaurus 
+                  </doc:example>
                   <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -1138,13 +1175,17 @@
             <xs:element name="taxonkey" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>Taxonoimc keyword </doc:tooltip>
-                  <doc:summary/>
+                  <doc:tooltip>Taxonomic keyword</doc:tooltip>
+                  <doc:summary>
+                    Keywords or phrases describing the taxonomy of the dataset.
+                  </doc:summary>
                   <doc:description>
                     Common use words or phrases describing the taxonomy covered 
                     by the data set. 
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Mammalia
+                  </doc:example>
                   <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -1155,13 +1196,17 @@
       <xs:element name="taxonsys" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Taxonomic system </doc:tooltip>
-            <doc:summary/>
+            <doc:tooltip>Taxonomic system</doc:tooltip>
+            <doc:summary>
+              Documentation of taxonomic sources, procedures, and treatments.
+            </doc:summary>
             <doc:description>
               Documentation of taxonomic sources, procedures, and treatments. 
             </doc:description>
-            <doc:example/>
-            <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+            <doc:example>
+              
+            </doc:example>
+            <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -1169,14 +1214,19 @@
             <xs:element name="classsys" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>Classification system/authority </doc:tooltip>
-                  <doc:summary/>
+                  <doc:tooltip>Classification system/authority</doc:tooltip>
+                  <doc:summary>
+                    Information about the classification system or 
+                    authority used. 
+                  </doc:summary>
                   <doc:description>
                     Information about the classification system or 
                     authority used. 
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+                  <doc:example>
+                    Flora of North America
+                  </doc:example>
+                  <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -1370,15 +1420,19 @@
       <xs:element name="taxongen" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>General taxonomic coverage </doc:tooltip>
-            <doc:summary/>
+            <doc:tooltip>General taxonomic coverage</doc:tooltip>
+            <doc:summary>
+              A description of the range of taxa addressed in the data set or 
+              collection. 
+            </doc:summary>
+            </xs:appinfo>
             <doc:description>
               A description of the range of taxa addressed in the data set or 
               collection. 
             </doc:description>
             <doc:example> 
-              All vascular plants were identified to family or species, 
-              mosses and lichens were identified as moss or lichen. 
+              "All vascular plants were identified to family or species, 
+              mosses and lichens were identified as moss or lichen." 
             </doc:example>
             <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
           </xs:appinfo>
@@ -1407,7 +1461,7 @@
           to allow for an arbitrary depth of rank, down to species.
         </doc:description>
         <doc:example> 
-          The Taxonomic Classification fied consists of a sequence of 4 fields:
+          The Taxonomic Classification field consists of a sequence of 4 fields:
           taxonomic rank, taxonomic rank value, common name, and finally
           Taxonomic Classification (self-referencing).  Please see the
           sub-fields for specific examples.
