@@ -30,9 +30,9 @@ xmlns:res="eml:resource-2.0.0beta9" xmlns="eml:spatialRaster-2.0.0beta9">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-06-14 16:14:22 $'
-      '$Revision: 1.13 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-14 17:51:49 $'
+      '$Revision: 1.14 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,11 +61,7 @@ xmlns:res="eml:resource-2.0.0beta9" xmlns="eml:spatialRaster-2.0.0beta9">
         <doc:recommendedUsage>all spatial datasets that use spatial gridded
         data</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
-        <doc:relationship>
-          <doc:moduleName>eml-dataset</doc:moduleName>
-          <doc:relationshipType>has spatial grid information for raster
-          entities in</doc:relationshipType>
-        </doc:relationship>
+        <doc:importedBy>eml-dataset</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>

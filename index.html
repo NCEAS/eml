@@ -1,17 +1,17 @@
-<!-- 
+<!--
   *   '$RCSfile: index.html,v $'
   *     Purpose: web page describing eml
   *   Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *     Authors: Chad Berkley, Matt Jones
   *
-  *    '$Author: jones $'
-  *      '$Date: 2002-06-14 02:05:52 $'
-  *  '$Revision: 1.7 $'
+  *    '$Author: berkley $'
+  *      '$Date: 2002-06-14 17:51:49 $'
+  *  '$Revision: 1.8 $'
   *
   *
   -->
-  
+
 <html>
 
 <head>
@@ -37,7 +37,7 @@
 </tr>
 </table>
 <hr />
-  
+
   <table class="tabledefault" width="100%">
   <td class="tablehead" colspan="2"><p><b>EML Version @version@</b></p></td>
   <tr>
@@ -46,25 +46,29 @@
     Ecological Metadata Language (EML) is a metadata standard developed
     by the ecology discipline and for the ecology discipline.  It is based
     on prior work done by the Ecological Society of America and associated
-    efforts (Michener et al., 1997, Ecological Applications).  
+    efforts (Michener et al., 1997, Ecological Applications).
     EML is implemented as a series of XML document types that can
     by used in a modular and extensible manner to document ecological data.
     Each EML module is designed to describe one logical part of the total
-    metadata that should be included with any ecological dataset.  
+    metadata that should be included with any ecological dataset.
    </p>
    <p>
-    We are currently in the process of revising EML to create the 
+    We are currently in the process of revising EML to create the
     version 2.0 standard described below.  This is an ongoing process,
-    and the current draft is being released for public comment and 
-    input on the revisions. The current draft is the result of a 
+    and the current draft is being released for public comment and
+    input on the revisions. The current draft is the result of a
     two workshops in which a variety of information managers
-    gathered to review and revise EML. This draft represents the concensus 
+    gathered to review and revise EML. This draft represents the concensus
     view of an ecological metadata specification from those meetings.  We
-    expect that the current draft will be quite stable in terms of the 
+    expect that the current draft will be quite stable in terms of the
     structure of conforming instance documents, although minor changes
     may still be made before the final version 2 release is cut.
    </p>
    <p>
+    <i><b>Warning: this version is currently
+    being developed and therefore it will change as its form is
+    finalized by the KNB development group.  We'll release a final
+    version here when it is available.</b></i>
     Please continue to use version 1.4.1 in production
     environments until we have finalized the version 2.0 release.  Thanks.
    </p>
@@ -72,7 +76,7 @@
     Send any comments, errors, or suggestions to "eml-dev@ecoinformatics.org".
    </p>
   <p><a href="@server@/software/download.html">Download EML</a>
-    The dowload consists of the EML modules, described in the 
+    The dowload consists of the EML modules, described in the
     <a href="http://www.w3c.org/XML/Schema">XML Schema</a>
     language and in XML DTDs.  In addition, the full documentation on the
     modules is provided in HTML format.
@@ -81,51 +85,19 @@
   </td>
   </tr>
   </table>
-  
+
   <table class="tabledefault" width="100%">
   <td class="tablehead" colspan="2"><p>
-      <b>EML Version @version@ Modules</b>
+      <b>EML Version @version@ Documentation</b>
   </p></td>
   <tr>
   <td>
-    <p class="header"><a href="#version2">Version @version@</a> 
-       (Proposed, In development)</p>
-    <p>
-     Version 2 starts with version 1.4.1 as a base and impoves on the design
-     and content of each module based on testing and experience using
-     metadata marked up in EML.  <i><b>Warning: this module is currently
-     being developed and therefore it will change as its form is 
-     finalized by the KNB development group.  We'll release a final 
-     version here when it is available.</b></i>
-    </p>
-    <p class="header">EML @version@ Documentation</p>
-    <ul>
-    <li><a href="eml.html">eml</a> (ANY content module)</li>
-    <li><a href="eml-access.html">eml-access</a></li>
-    <li><a href="eml-attribute.html">eml-attribute</a></li>
-    <li><a href="eml-constraint.html">eml-constraint</a></li>
-    <li><a href="eml-coverage.html">eml-coverage</a></li>
-    <li><a href="eml-dataset.html">eml-dataset</a></li>
-    <li><a href="eml-dataTable.html">eml-data</a></li>
-    <li><a href="eml-entity.html">eml-entity</a></li>
-    <li><a href="eml-literature.html">eml-literature</a></li>
-    <li><a href="eml-party.html">eml-party</a></li>
-    <li><a href="eml-physical.html">eml-physical</a></li>
-    <li><a href="eml-project.html">eml-project</a></li>
-    <li><a href="eml-protocol.html">eml-protocol</a></li>
-    <li><a href="eml-resource.html">eml-resource</a></li>
-    <li><a href="eml-software.html">eml-software</a></li>
-    <li><a href="eml-spatialRaster.html">eml-spatialRaster</a></li>
-    <li><a href="eml-spatialReference.html">eml-spatialReference</a></li>
-    <li><a href="eml-spatialVector.html">eml-spatialVector</a></li>
-    <li><a href="eml-storedProcedure.html">eml-storedProcedure</a></li>
-    <li><a href="eml-view.html">eml-view</a></li>
-    </ul>
+    <p><a href="eml-docbook.html">EML 2.0 Specificication</a></p>
   </td>
   </tr>
   </table>
-  
+
   <br /><br />
-  
+
 </body>
 </html>

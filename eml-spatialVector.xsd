@@ -28,9 +28,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-06-14 16:14:22 $'
-      '$Revision: 1.16 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-14 17:51:49 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -56,11 +56,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
         <doc:recommendedUsage>all spatial datasets that contain spatial data
         entities represented as vector features.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
-        <doc:relationship>
-          <doc:moduleName>eml-dataset</doc:moduleName>
-          <doc:relationshipType>has spatial vector information
-          for</doc:relationshipType>
-        </doc:relationship>
+        <doc:importedBy>eml-dataset</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>

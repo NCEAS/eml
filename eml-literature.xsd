@@ -33,8 +33,8 @@ xmlns="eml:literature-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 16:34:13 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-06-14 17:51:48 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,6 +60,12 @@ xmlns="eml:literature-2.0.0beta9">
         <doc:recommendedUsage>All datasets with literary citations
         </doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
+        <doc:importedBy>eml-attribute</doc:importedBy>
+        <doc:importedBy>eml-coverage</doc:importedBy>
+        <doc:importedBy>eml-physical</doc:importedBy>
+        <doc:importedBy>eml-project</doc:importedBy>
+        <doc:importedBy>eml-protocol</doc:importedBy>
+        <doc:importedBy>eml</doc:importedBy>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
   *   '$RCSfile: build.xml,v $'
   *     Authors: Matt Jones
   *   Copyright: 2000 Regents of the University of California and the
   *              National Center for Ecological Analysis and Synthesis
   * For Details: http://knb.ecoinformatics.org/
   *
-  *    '$Author: jones $'
-  *      '$Date: 2002-06-13 19:50:22 $'
-  *  '$Revision: 1.22 $'
+  *    '$Author: berkley $'
+  *      '$Date: 2002-06-14 17:51:48 $'
+  *  '$Revision: 1.23 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -48,7 +48,7 @@
         your CLASSPATH in order for this to work -->
   <target name="docs" depends="init">
     <mkdir dir="${build.docs}"/>
-    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl" 
+    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl"
            includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
     <copy todir="${build.docs}" filtering="no">
       <fileset dir=".">
@@ -68,7 +68,7 @@
         your CLASSPATH in order for this to work -->
   <target name="stripdocs" depends="init">
     <mkdir dir="${build.stripped}"/>
-    <style basedir="." destdir="${build.stripped}" extension=".xsd" 
+    <style basedir="." destdir="${build.stripped}" extension=".xsd"
            style="removeAnnotation.xsl" includes="*.xsd" processor="trax"/>
     <echo>
 
@@ -79,27 +79,28 @@
            ******************************************
      </echo>
   </target>
-  
-  <target name="dist" depends="docs">
+
+  <target name="dist" depends="docbookhtml">
     <mkdir dir="${dist.dir}"/>
     <delete dir="${ver.dir}"/>
     <mkdir dir="${ver.dir}"/>
     <mkdir dir="${ver.docs}"/>
-    <mkdir dir="${ver.dir}/style"/>
+    <!--<mkdir dir="${ver.dir}/style"/>-->
     <copy file="./LICENSE" todir="${ver.dir}"/>
     <copy file="./README" todir="${ver.dir}"/>
     <copy todir="${ver.dir}" filtering="no">
       <fileset dir=".">
         <include name="*.xsd"/>
-        <include name="*.dtd"/>
+        <!--<include name="*.dtd"/>-->
+        <include name="eml-unitDictionary.xml"/>
       </fileset>
     </copy>
     <copy todir="${ver.docs}">
       <fileset dir="./docs"/>
     </copy>
-    <copy todir="${ver.dir}/style">
+    <!--<copy todir="${ver.dir}/style">
       <fileset dir="${style.dir}"/>
-    </copy>
+    </copy>-->
 
     <delete file="./eml-${version}.zip"/>
     <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
@@ -110,14 +111,14 @@
     <!--<delete dir="dist"/>-->
     <!--<delete dir="docs"/>-->
   </target>
-  
+
   <target name="docbook" depends="docs">
     <mkdir dir="${build.docs}/user"/>
-    <style basedir="." style="buildDocBook.xsl" 
-           in="eml.xsd" out="${build.docs}/eml-docbook-nosort.xml" 
+    <style basedir="." style="buildDocBook.xsl"
+           in="eml.xsd" out="${build.docs}/eml-docbook-nosort.xml"
            processor="trax"/>
-    <style basedir="." style="sortDocBook.xsl" 
-           in="${build.docs}/eml-docbook-nosort.xml" out="${build.docs}/eml-docbook.xml" 
+    <style basedir="." style="sortDocBook.xsl"
+           in="${build.docs}/eml-docbook-nosort.xml" out="${build.docs}/eml-docbook.xml"
            processor="trax"/>
     <echo>
       ***********************************************
@@ -126,20 +127,20 @@
       ***********************************************
     </echo>
   </target>
-  
+
   <target name="docbookhtml" depends="docbook">
     <echo>
       ************************************************
         Note that if this does not work for you,
-        you need to check the newest version of 
-        Xalan out from the Apache CVS server and 
+        you need to check the newest version of
+        Xalan out from the Apache CVS server and
         put the new xalan.jar file in your classpath.
         This will not work with Xalan 2.3.1!
       ************************************************
     </echo>
-    <style basedir="." style="${htmldocbook-style}" 
-           in="${build.docs}/eml-docbook.xml" 
-           out="${build.docs}/eml-docbook.html" 
+    <style basedir="." style="${htmldocbook-style}"
+           in="${build.docs}/eml-docbook.xml"
+           out="${build.docs}/eml-docbook.html"
            processor="trax"/>
     <echo>
       ************************************************
@@ -148,8 +149,11 @@
       ************************************************
     </echo>
   </target>
-  
+
   <target name="clean">
     <delete dir="./docs"/>
+    <delete dir="./dist"/>
+    <delete file="*.zip"/>
+    <delete file="*.gz"/>
   </target>
 </project>
