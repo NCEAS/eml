@@ -1,0 +1,386 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="eml:coverage">
+
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-coverage.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: jones $'
+          '$Date: 2001-04-13 23:30:14 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+     <moduleName>
+        eml-coverage
+      </moduleName>
+      <moduleDescription>
+        The eml-coverage module contains fields for describing the 
+        coverage of a resource in terms of time, space, and taxonomy. This
+        coverages (temporal, spatial, and taxonomic) represent the extent
+        of applicability of the resource in those domains.
+      </moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <xs:complexType name="TemporalCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+            Temporal coverage
+        </tooltip>
+        <summary>
+            Temporal coverage descriptor.
+        </summary>
+        <description>
+            This element specifies temporal coverage by 
+          start and stop date.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The TemporalCoverage complex type was introduced
+          into EML 1.4.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+
+
+
+  </xs:complexType>
+
+  <xs:complexType name="GeographicCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+            Geographic coverage
+        </tooltip>
+        <summary>
+            Geographic coverage information.
+        </summary>
+        <description>
+          Geographic Coverage is a container for spatial information about a
+          a project, a resource, or an entity within a resource.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The GeographicCoverage complex type was derived from the eml-entity
+          module in EML 1.4.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+
+  </xs:complexType>
+
+  <xs:complexType name="TaxonomicCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+            Taxonomic coverage
+        </tooltip>
+        <summary>
+            Taxonomic coverage information.
+        </summary>
+        <description>
+          Taxonomic Coverage is a container for Taxonomic information about a
+          a project, a resource, or an entity within a resource.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The TaxonomicCoverage complex type was introduced in EML 2 and 
+          derived from the NBII taxonomy element.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+
+  </xs:complexType>
+
+
+
+  <xsd:element name = "spdom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "descgeog"/>
+        <xsd:element ref = "bounding"/>
+        <xsd:element ref = "dsgpoly" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "descgeog" type = "xsd:string"/>
+  <xsd:element name = "bounding">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "westbc"/>
+        <xsd:element ref = "eastbc"/>
+        <xsd:element ref = "northbc"/>
+        <xsd:element ref = "southbc"/>
+        <xsd:element ref = "boundalt" minOccurs = "0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "westbc" type = "xsd:string"/>
+  <xsd:element name = "eastbc" type = "xsd:string"/>
+  <xsd:element name = "northbc" type = "xsd:string"/>
+  <xsd:element name = "southbc" type = "xsd:string"/>
+  <xsd:element name = "boundalt">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "altmin"/>
+        <xsd:element ref = "almax"/>
+        <xsd:element ref = "altunits"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "altmin" type = "xsd:string"/>
+  <xsd:element name = "almax" type = "xsd:string"/>
+  <xsd:element name = "altunits" type = "xsd:string"/>
+  <xsd:element name = "dsgpoly">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "dsgpolyo"/>
+        <xsd:element ref = "dsgpolyx" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "dsgpolyo">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin" maxOccurs = "unbounded"/>
+        </xsd:sequence>
+        <xsd:element ref = "gring"/>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "dsgpolyx">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin"/>
+          <xsd:element ref = "grngpoin" maxOccurs = "unbounded"/>
+        </xsd:sequence>
+        <xsd:element ref = "gring"/>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "grngpoin">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "gringlat"/>
+        <xsd:element ref = "gringlon"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "gringlat" type = "xsd:string"/>
+  <xsd:element name = "gringlon" type = "xsd:string"/>
+  <xsd:element name = "gring" type = "xsd:string"/>
+
+
+
+
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref = "sngdate"/>
+        <xsd:element ref = "mdattim"/>
+        <xsd:element ref = "rngdates"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name = "sngdate">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref = "caldate"/>
+          <xsd:element ref = "time" minOccurs = "0"/>
+        </xsd:sequence>
+        <xsd:element ref = "geolage"/>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "caldate" type = "xsd:string"/>
+  <xsd:element name = "time" type = "xsd:string"/>
+  <xsd:element name = "geolage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "geolscal"/>
+        <xsd:element ref = "geolest"/>
+        <xsd:element ref = "geolun" minOccurs = "0"/>
+        <xsd:element ref = "geolexpl" minOccurs = "0"/>
+        <xsd:element ref = "geolcit" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "geolscal" type = "xsd:string"/>
+  <xsd:element name = "geolest" type = "xsd:string"/>
+  <xsd:element name = "geolun" type = "xsd:string"/>
+  <xsd:element name = "geolexpl" type = "xsd:string"/>
+  <xsd:element name = "geolcit">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "citeinfo"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "beggeol">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "geolage"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "endgeol">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "geolage"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "mdattim">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "sngdate" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "rngdates">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref = "begdate"/>
+          <xsd:element ref = "begtime" minOccurs = "0"/>
+          <xsd:element ref = "enddate"/>
+          <xsd:element ref = "endtime" minOccurs = "0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref = "beggeol"/>
+          <xsd:element ref = "endgeol"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+
+
+
+
+  <xsd:element name = "taxonomy">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "keywtax" maxOccurs = "unbounded"/>
+        <xsd:element ref = "taxonsys" minOccurs = "0"/>
+        <xsd:element ref = "taxongen" minOccurs = "0"/>
+        <xsd:element ref = "taxoncl"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "keywtax">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "taxonkt"/>
+        <xsd:element ref = "taxonkey" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "taxonsys">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "classsys" maxOccurs = "unbounded"/>
+        <xsd:element ref = "idref" minOccurs = "0" maxOccurs = "unbounded"/>
+        <xsd:element ref = "ider" maxOccurs = "unbounded"/>
+        <xsd:element ref = "taxonpro"/>
+        <xsd:element ref = "taxoncom" minOccurs = "0"/>
+        <xsd:element ref = "vouchers" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "taxongen" type = "xsd:string"/>
+  <xsd:element name = "taxoncl">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "taxonrn"/>
+        <xsd:element ref = "taxonrv"/>
+        <xsd:element ref = "common" minOccurs = "0" maxOccurs = "unbounded"/>
+        <xsd:element ref = "taxoncl" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "taxonkt" type = "xsd:string"/>
+  <xsd:element name = "taxonkey" type = "xsd:string"/>
+  <xsd:element name = "classsys">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "classcit"/>
+        <xsd:element ref = "classmod" minOccurs = "0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "ider">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "cntinfo"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "taxonpro" type = "xsd:string"/>
+  <xsd:element name = "taxoncom" type = "xsd:string"/>
+  <xsd:element name = "vouchers">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "specimen"/>
+        <xsd:element ref = "reposit"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "classcit">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "citeinfo"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "classmod" type = "xsd:string"/>
+  <xsd:element name = "idref">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "citeinfo"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "specimen" type = "xsd:string"/>
+  <xsd:element name = "reposit">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref = "cntinfo"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name = "taxonrn" type = "xsd:string"/>
+  <xsd:element name = "taxonrv" type = "xsd:string"/>
+  <xsd:element name = "common" type = "xsd:string"/>
+
+</xs:schema>
