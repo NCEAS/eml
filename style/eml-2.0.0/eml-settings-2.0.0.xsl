@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-24 05:27:28 $'
-  * '$Revision: 1.7 $'
+  *     '$Date: 2003-11-24 06:18:06 $'
+  * '$Revision: 1.8 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -219,6 +219,13 @@
 
 <!-- the style for the inner odd col in attributes table -->
   <xsl:param name="innercoloddStyle" select="'innercolodd'"/>
+
+
+<!-- the default style for all the tables -->
+  <xsl:param name="mainTableAligmentStyle" select="'mainTableAligmentStyle'"/>
+
+<!-- the default style for all the tables -->
+  <xsl:param name="mainContainerTableStyle" select="'mainContainerTableStyle'"/>
 
 <!-- the default style for all the tables -->
   <xsl:param name="tabledefaultStyle" select="'tabledefault'"/>

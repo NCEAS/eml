@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 22:31:20 $'
-  * '$Revision: 1.7 $'
+  *     '$Date: 2003-11-24 06:18:06 $'
+  * '$Revision: 1.8 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -66,11 +66,24 @@
       <head>
         <link rel="stylesheet" type="text/css"
               href="{$stylePath}/{$qformat}/{$qformat}.css" />
+        <script language="Javascript" type="text/JavaScript"
+                src="{$stylePath}/{$qformat}/{$qformat}.js" />
+        <script language="Javascript"
+                type="text/JavaScript"
+                src="{$styleCommonPath}/branding.js" />
       </head>
       <body>
-        <table xsl:use-attribute-sets="cellspacing" width="100%">
-        <xsl:apply-templates select="*[local-name()='eml']"/>
-        </table>
+        
+        <div id="{$mainTableAligmentStyle}">
+          <script language="JavaScript">insertTemplateOpening();</script>
+        
+          <table xsl:use-attribute-sets="cellspacing" width="100%"
+                                        class="{$mainContainerTableStyle}">
+          <xsl:apply-templates select="*[local-name()='eml']"/>
+          </table>
+      
+          <script language="JavaScript">insertTemplateClosing();</script>
+        </div>
       </body>
     </html>
    </xsl:template>
