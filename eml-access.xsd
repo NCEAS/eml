@@ -1,5 +1,6 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           xmlns:res="eml:resource"
            targetNamespace="eml:access">
 
   <xs:annotation>
@@ -9,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: berkley $'
-          '$Date: 2001-03-22 22:41:12 $'
-      '$Revision: 1.13 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-25 00:02:15 $'
+      '$Revision: 1.14 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,8 +34,11 @@
       </moduleName>
       <moduleDescription>
         The EML Access Module describes the level of access that is to be
-        granted or denied to particular users or groups for a given resource
-        (e.g a dataset or document).
+        granted or denied to particular users or groups. A single eml-access
+        document may be used express access control mor many resources, or 
+        for a given resource (e.g a dataset or document). The relationship
+        between a resource and it's access control document is defined in the
+        eml-package module.
         The EML Access Module represents a list of resources to be controlled
         in the context of a particular authentication system. That is, the 
         authentication system determines the set of principals (users + groups) 
@@ -44,10 +48,42 @@
       </moduleDescription>
     </xs:appInfo>
   </xs:annotation>
+ 
+  <!-- import the eml-resource module to use the 'Identifier' type -->
+  <xs:import namespace="eml:resource" 
+             schemaLocation = "./eml-resource.xsd"/>
 
   <xs:element name="acl" minOccurs="1"  maxOccurs="1">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="identifier" type="res:Identifier"
+	            minOccurs="1" maxOccurs="unbounded">
+	<xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Identifier
+            </tooltip>
+            <summary>
+              The unique identifier of this access control list. 
+            </summary>
+            <description>
+              The identifier field provides a unique identifier for this
+              access control documentation.  It will most likely be part of 
+	      a sequence of numbers or letters that are meaningful in a 
+	      larger context, such as a metadata catalog.
+            </description>
+            <example>
+	      nceas.1.55
+            </example>
+            <lineage>
+              The 'identifier' field is derived from the eml-dataset module in
+              EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+
+        </xs:element>
+
         <xs:element name="allow" type="AccessRule"
                     minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
@@ -96,7 +132,7 @@
         </xs:element>
       </xs:sequence>
     </xs:complexType>
-    <xs:attribute name="order" type="Order" use="required" value="allowFirst">
+    <xs:attribute name="order" use="required" value="allowFirst">
       <xs:annotation>
         <xs:appInfo>
           <tooltip>
@@ -108,7 +144,7 @@
           <description>
             The order attribute defines which rule should be applied first to
             obtain the desired access control.  The acceptable values are
-            pre-defined in an enumerated list of allowFirst and denyFirst.
+            pre-defined in a list of 'allowFirst' and 'denyFirst'.
           </description>
           <example>
             allowFirst
@@ -118,29 +154,10 @@
           </lineage>
         </xs:appInfo>
       </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="public" type="YesOrNo" use="required" value="yes">
-      <xs:annotation>
-        <xs:appInfo>
-          <tooltip>
-            Makes a document publicly readable
-          </tooltip>
-          <summary>
-            Makes a document publicly readable.
-          </summary>
-          <description>
-            This attribute tells a data management system whether the
-            document is publicly readable or not.  If this is set to no
-            only the owner(s) of the document can read it.
-          </description>
-          <example>
-            yes
-          </example>
-          <lineage>
-            The order element was introduced into EML 2.0 Proposed.
-          </lineage>
-        </xs:appInfo>
-      </xs:annotation>
+      <xs:simpleType base="xs:string">
+        <xs:enumeration value="allowFirst"/> 
+        <xs:enumeration value="denyFirst"/> 
+      </xs:simpleType>
     </xs:attribute>
     <xs:attribute name="authSystem" type="xs:string" use="required">
       <xs:annotation>
@@ -198,6 +215,7 @@
  
   <xs:complexType name="AccessRule" content="elementOnly">
     <xs:sequence>
+
       <xs:element name="principal" type="xs:string"
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
@@ -223,7 +241,8 @@
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="permission" type="Permission"
+
+      <xs:element name="permission" 
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appInfo>
@@ -249,12 +268,18 @@
             </lineage>
           </xs:appInfo>
         </xs:annotation>
+	<xs:simpleType base="xs:string">
+          <xs:enumeration value="read" /> 
+          <xs:enumeration value="write" /> 
+          <xs:enumeration value="all" /> 
+        </xs:simpleType>
       </xs:element>
+
       <xs:element name="duration" type="xs:timeDuration"
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
-            For application developers, the duration element will need to used
+            For application developers, the duration element will need to be used
             in the context of a start date/time, and will need an intuitive
             interface to translate duration information into the ISO 8601
             format.
@@ -284,6 +309,7 @@
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
+
       <xs:element name="ticketCount" type="xs:positiveInteger"
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -307,6 +333,7 @@
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
+      
     </xs:sequence>
     <xs:annotation>
       <xs:appInfo>
@@ -331,80 +358,5 @@
       </xs:appInfo>
     </xs:annotation>
   </xs:complexType>
-
-  <xs:simpleType name="Permission" base="xs:string">
-    <xs:enumeration value="read" /> 
-    <xs:enumeration value="write" /> 
-    <xs:enumeration value="all" /> 
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Permission types
-        </tooltip>
-        <summary>
-          A list of permissions that define the level of access control. 
-        </summary>
-        <description>
-          The Permission type provides a list of permissions that define 
-          the level of access control on a given resource.   
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The Permission type was introduced into EML 2.0 Proposed.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:simpleType>
-
-  <xs:simpleType name="Order" base="xs:string">
-    <xs:enumeration value="allowFirst" /> 
-    <xs:enumeration value="denyFirst" /> 
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Allow or deny order
-        </tooltip>
-        <summary>
-          A list of values that indicate the order in which an allow/deny 
-          rule is applied. 
-        </summary>
-        <description>
-          The Order type provides a list of values that indicate the order in
-          which an allow/deny rule is applied. With both an allow rule and a
-          deny rule, the order that they are applied determines the outcome of
-          the access restrictions.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The Order type was introduced into EML 2.0 Proposed.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:simpleType>
-  
-  <xs:simpleType name="YesOrNo" base="xs:string">
-    <xs:enumeration value="Yes" /> 
-    <xs:enumeration value="No" /> 
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          The values "Yes" and "No".
-        </tooltip>
-        <summary>
-           The values "Yes" and "No".
-        </summary>
-        <description>
-          The values "Yes" and "No".
-        </description>
-        <example>
-        </example>
-        <lineage>
-          Introduced into EML 2.0 Proposed.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:simpleType>
 
 </xs:schema>
