@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 22:04:06 $'
-      '$Revision: 1.17 $'
+          '$Date: 2002-10-04 23:29:43 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml"
+          xmlns="http://www.xml-cml.org/schema/stmml"
           xmlns:sch="http://www.ascc.net/xml/schematron"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
@@ -205,6 +206,10 @@
     <dimension name="mass" power="-1"/>
   </unitType>
 
+  <unitType id="undefined" name="undefined">
+    <dimension name="dimensionless"/>
+  </unitType>
+
   <unitType id="volumetricDensity" name="volumetric density">
     <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
@@ -362,6 +367,14 @@
 <!-- ======================================================================= -->
 <!-- ====================== fundamental SI units =========================== -->
 <!-- ======================================================================= -->
+
+  <unit id="undefined" name="undefined" unitType="undefined">
+    <description>unit for fields with no unit</description>
+  </unit>
+
+  <unit id="dimensionless" name="dimensionless" unitType="undefined">
+    <description>unit for fields with no unit</description>
+  </unit>
 
   <unit id="second" name="second" unitType="time" abbreviation="sec">
     <description>The SI unit of time</description>
