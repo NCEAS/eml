@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-08-15 19:06:29 $'
-      '$Revision: 1.23 $'
+          '$Date: 2001-09-17 23:18:10 $'
+      '$Revision: 1.24 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -864,12 +864,10 @@ digitally, such as 3.5" floppy disk, or various tape media types, or 'hardcopy'
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="discipline"/>
       <xs:enumeration value="place"/>
       <xs:enumeration value="stratum"/>
       <xs:enumeration value="temporal"/>
-      <xs:enumeration value="thematic"/>
-      <xs:enumeration value="taxonomic"/>
+      <xs:enumeration value="theme"/>
     </xs:restriction>
     <!-- More types should be added here. -->
   </xs:simpleType>
