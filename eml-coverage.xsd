@@ -13,8 +13,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-12-17 23:05:45 $'
-      '$Revision: 1.25 $'
+          '$Date: 2001-12-18 04:59:49 $'
+      '$Revision: 1.26 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -931,7 +931,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="almax" type="xs:string">
+                  <xs:element name="altmax" type="xs:string">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Maximum altitude</doc:tooltip>
@@ -1011,12 +1011,7 @@
                </xs:annotation>
                <xs:complexType>
                  <xs:choice>
-                   <xs:sequence>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin" maxOccurs="unbounded"/>
-                   </xs:sequence>
+                   <xs:element ref="grngpoin" minOccurs="1" maxOccurs="unbounded"/>
                    <xs:element ref="gring"/>
                  </xs:choice>
                </xs:complexType>
@@ -1037,12 +1032,7 @@
                </xs:annotation>
                <xs:complexType>
                  <xs:choice>
-                   <xs:sequence>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin"/>
-                     <xs:element ref="grngpoin" maxOccurs="unbounded"/>
-                   </xs:sequence>
+                   <xs:element ref="grngpoin" minOccurs="1" maxOccurs="unbounded"/>
                    <xs:element ref="gring"/>
                  </xs:choice>
                </xs:complexType>
