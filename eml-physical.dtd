@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-05-20 20:40:19 $'
-      '$Revision: 1.6 $'
+        '$Author: higgins $'
+          '$Date: 2002-05-21 23:12:59 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,10 +22,9 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ELEMENT physical (identifier+, format, characterEncoding?, size?, authentication*, compressionMethod?, encodingMethod?, numHeaderLines?, recordDelimiter?, maxRecordLength?, quoteCharacter*, literalCharacter*, (fieldStartColumn?, (fieldWidth | fieldDelimiter))*)>
+<!ELEMENT eml-physical (identifier+, dataObject, dataFormat, connectionURL)>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
-<!ELEMENT format (#PCDATA)>
 <!ELEMENT characterEncoding (#PCDATA)>
 <!ELEMENT size (#PCDATA)>
 <!ATTLIST size unit CDATA #REQUIRED>
@@ -41,3 +40,26 @@
 <!ELEMENT fieldStartColumn (#PCDATA)>
 <!ELEMENT fieldWidth (#PCDATA)>
 <!ELEMENT fieldDelimiter (#PCDATA)>
+<!ELEMENT dataObject (objectName, size?, authentication*, compressionMethod?, encodingMethod?, characterEncoding?)>
+<!ELEMENT objectName (#PCDATA)>
+<!ELEMENT connectionURL (#PCDATA)>
+<!ELEMENT dataFormat (formatType,(asciiDelimited?|asciiFixed?|binaryRasterInfo?|genericBinary?)>
+<!ELEMENT asciiDelimited (fieldDelimiter, numHeaderLines?, maxRecordLength?,quoteCharacter*,recordDelimiter?,literalCharacter?)>
+<!ELEMENT asciiFixed (numHeaderLines?, fieldStartColumn?, fieldWidth)+)>
+<!ELEMENT binaryRasterInfo (nrows, ncols, nbands?, nbits?, byteorder?, layout?, skipbytes?, ulxmap?, ulymap?, xdim?, ydim?,bandrowbytes?, totalrowbytes?, bandgapbytes?)?>
+<!ELEMENT genericBinary (#PCDATA)>
+<!ELEMENT nrows (#PCDATA)>
+<!ELEMENT ncols (#PCDATA)>
+<!ELEMENT nbands (#PCDATA)>
+<!ELEMENT nbits (#PCDATA)>
+<!ELEMENT byteorder (#PCDATA)>
+<!ELEMENT layout (#PCDATA)>
+<!ELEMENT skipbytes (#PCDATA)>
+<!ELEMENT ulxmap (#PCDATA)>
+<!ELEMENT ulymap (#PCDATA)>
+<!ELEMENT xdim (#PCDATA)>
+<!ELEMENT xdim (#PCDATA)>
+<!ELEMENT bandrowbytes (#PCDATA)>
+<!ELEMENT totalrowbytes (#PCDATA)>
+<!ELEMENT bandgapbytes (#PCDATA)>
+
