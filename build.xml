@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-07 18:27:53 $'
-      '$Revision: 1.54 $'
+        '$Author: jones $'
+          '$Date: 2002-10-07 19:47:21 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
     <property name="servlet.install.dir"
               value="/usr/local/devtools/jakarta-tomcat/webapps/emlparser"/>
     <!-- the server the servlet will run on -->
-    <property name="server" value="http://trestles.nceas.ucsb.edu:8080"/>
+    <property name="server" value="http://knb.ecoinformatics.org"/>
     <!--the servlet context directory-->
     <property name="servletdir" value="emlparser"/>
     <!-- the path to the servlet from the servletdir -->
@@ -67,15 +67,20 @@
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
     <property name="config.file" value="lib/config.xml"/>
+
     <property name="xmlp"
-        value="lib/xerces-2_0_1/xercesImpl.jar"/>
+        value="lib/apache/xercesImpl.jar"/>
     <property name="api"
-        value="lib/xerces-2_0_1/xmlParserAPIs.jar"/>
+        value="lib/apache/xmlParserAPIs.jar"/>
     <property name="xalan"
-        value="lib/xalan-j_2_4_0/xalan.jar"/>
+        value="lib/apache/xalan.jar"/>
     <property name="xml-apis"
-        value="lib/xalan-j_2_4_0/xml-apis.jar"/>
+        value="lib/apache/xml-apis.jar"/>
     <property name="jdom" value="lib/jdom.jar"/>
+    <property name="cos" value="lib/cos.jar"/>
+    <property name="servlet" value="lib/apache/servlet.jar"/>
+    <property name="configxml" value="lib/configxml.jar"/>
+
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
@@ -92,11 +97,12 @@
 
     <property name="dist.dir" value="./dist"/>
     <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
+    <property name="ver.lib" value="${ver.dir}/lib"/>
     <property name="ver.docs" value="${ver.dir}/docs"/>
+    <property name="ver.src" value="${ver.dir}/src"/>
+    <property name="ver.tst" value="${ver.dir}/test"/>
     <property name="package.home" value="org/ecoinformatics" />
-    <property name="configxml" value="lib/configxml.jar"/>
-    <property name="cos" value="lib/cos.jar"/>
-    <property name="servlet" value="lib/servlet.jar"/>
+
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
@@ -145,7 +151,10 @@
     <mkdir dir="${dist.dir}"/>
     <delete dir="${ver.dir}"/>
     <mkdir dir="${ver.dir}"/>
+    <mkdir dir="${ver.lib}"/>
     <mkdir dir="${ver.docs}"/>
+    <mkdir dir="${ver.src}"/>
+    <mkdir dir="${ver.tst}"/>
     <!--<mkdir dir="${ver.dir}/style"/>-->
     <copy file="./LICENSE" todir="${ver.dir}"/>
     <copy file="./README" todir="${ver.dir}"/>
@@ -154,10 +163,20 @@
         <include name="*.xsd"/>
         <!--<include name="*.dtd"/>-->
         <include name="eml-unitDictionary.xml"/>
+        <include name="eml-spatialReferenceDictionary.xml"/>
       </fileset>
+    </copy>
+    <copy todir="${ver.lib}" filtering="no">
+      <fileset dir="./lib"/>
     </copy>
     <copy todir="${ver.docs}" filtering="no">
       <fileset dir="./docs"/>
+    </copy>
+    <copy todir="${ver.src}" filtering="yes">
+      <fileset dir="./src"/>
+    </copy>
+    <copy todir="${ver.tst}" filtering="yes">
+      <fileset dir="./test"/>
     </copy>
     <!--<copy todir="${ver.dir}/style">
       <fileset dir="${style.dir}"/>
@@ -356,16 +375,23 @@
 
   <target name="servletinstall" depends="jar">
     <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
-    <copy file="lib/sample/eml-sample.xml" tofile="${servlet.install.dir}/eml-sample.xml"/>
+    <copy file="lib/sample/eml-sample.xml" 
+          tofile="${servlet.install.dir}/eml-sample.xml"/>
     <copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml"/>
     <copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
-    <copy file="lib/configxml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
-    <copy file="lib/cos.jar" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
-    <copy file="lib/eml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
-    <copy file="${xalan}" tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
-    <copy file="${xml-apis}" tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
-    <copy file="${xmlp}" tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
-    <copy file="${api}" tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
+    <copy file="${configxml}" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
+    <copy file="${cos}" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
+    <copy file="lib/eml.jar" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
+    <copy file="${xalan}" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
+    <copy file="${xml-apis}" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
+    <copy file="${xmlp}" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
+    <copy file="${api}" 
+          tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
     <copy todir="${servlet.install.dir}/schema">
       <fileset dir=".">
         <include name="*.xsd"/>

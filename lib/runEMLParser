@@ -1,3 +1,3 @@
 # echo "usage: runEMLParser <emlfile>"
 # echo "where <emlfile> is the file you want to parse."
-java -cp ./eml.jar:./configxml.jar:./xerces-2_0_1/xercesImpl.jar:./xerces-2_0_1/xmlParserAPIs.jar:./xalan-j_2_4_0/xalan.jar:./xalan-j_2_4_0/xml-apis.jar org.ecoinformatics.eml.EMLParser -q ./config.xml $1
+java -cp ./eml.jar:./configxml.jar:./apache/xercesImpl.jar:./apache/xmlParserAPIs.jar:./apache/xalan.jar:./apache/xml-apis.jar org.ecoinformatics.eml.EMLParser -q ./config.xml $1
