@@ -31,8 +31,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.70 $'
+          '$Date: 2002-10-07 17:48:17 $'
+      '$Revision: 1.71 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -849,6 +849,26 @@
           </xs:complexType>
         </xs:element>
         <xs:element name="inline">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Inline distribution</doc:tooltip>
+              <doc:summary>Object data distributed inline in the metadata.
+              </doc:summary>
+              <doc:description>Object data distributed inline in the metadata.
+              Users have the option of including the data right inline in the
+              metadata by providing it inside of the "inline" element.  For
+              many text formats, the data can be simply included directly in
+              the element.  However, certain character sequences are invalid in
+              an XML document (e.g., &lt;), so care will need to be taken to 
+              either 1) wrap the data in a CDATA section if needed, or 
+              2) encode the data using a text encoding algorithm such as
+              base64, and then include that in a CDATA section.  The latter
+              will be necessary for binary formats.
+              </doc:description>
+              <doc:lineage>ISO CD 19115.3, Geographic information -
+              Metadata</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:any maxOccurs="unbounded"/>
