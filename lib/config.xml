@@ -1,18 +1,7 @@
 <?xml version="1.0"?>
 <config>
   <key name="identifierKey">
-    <selector xpath="//access|//attribute|//attributeList|//constraint|
-                     //coverage|//temporalCoverage|//geographicCoverage|
-                     //taxonomicCoverage|/dataset|/eml/dataset|//dataSource|
-                     //dataTable|//otherEntity|//citation|//address|
-                     //conferenceLocation|//party|//originator|
-                     //creator|//contact|//publisher|//editor|//recipient|
-                     //performer|//institution|//metadataProvider|
-                     //associatedParty|//personnel|//physical|
-                     //connectionDefinition|//distribution|//researchProject|
-                     //project|//relatedProject|//software|//spatialRaster|
-                     //spatialReference|//spatialVector|//storedProcedure|
-                     //view|//protocol|//additionalMetadata"/>
+    <selector xpath="//access|//attributeList|//constraint|//coverage|//temporalCoverage|//geographicCoverage|//taxonomicCoverage|/dataset|/eml/dataset|//dataSource|//dataTable|//otherEntity|//citation|//address|//conferenceLocation|//party|//originator|//creator|//contact|//publisher|//editor|//recipient|//performer|//institution|//metadataProvider|//associatedParty|//personnel|//physical|//connectionDefinition|//distribution|//researchProject|//project|//relatedProject|//software|//spatialRaster|//spatialReference|//spatialVector|//storedProcedure|//view|//protocol|//additionalMetadata"/>
     <field xpath="@id"/>
   </key>
   <key name="attributeIdentifierKey">
@@ -24,7 +13,7 @@
     <field xpath="@id"/>
   </key>
   <key name="unitIdentifierKey">
-    <selector xpath="//unitList/unit"/>
+    <selector xpath="//stmml:unitList/stmml:unit"/>
     <field xpath="@id"/>
   </key>
 

@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-02 16:21:10 $'
-      '$Revision: 1.43 $'
+          '$Date: 2002-10-02 17:35:55 $'
+      '$Revision: 1.44 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -437,7 +437,7 @@
       <itemizedlist>
         <listitem>
           <para>
-          IDs are required on the eml root element.
+          An ID required on the eml root element.
           </para>
         </listitem>
         <listitem>
@@ -460,15 +460,15 @@
         <listitem>
           <para>
           If a user wants to reuse content to indicate the repetition of an
-          object, a reference must be used.  you cannot have two identical
-          ids in a document.
+          object, a reference must be used.  Two identical
+          ids cannot exist in a single document.
           </para>
         </listitem>
         <listitem>
           <para>
           &quot;Document scope&quot; is defined as identifiers unique only to a
           single instance document (if a document does not have a system
-          attribute or if scope is set to 'document' then all ids are defined
+          attribute or if scope is set to 'document' then all IDs are defined
           as distinct content).
           </para>
         </listitem>
@@ -482,7 +482,8 @@
         </listitem>
         <listitem>
           <para>
-          If an element references another element, it must not have an ID.
+          If an element references another element, it must not have an
+          ID itself.
           </para>
         </listitem>
         <listitem>
@@ -501,6 +502,18 @@
       </itemizedlist>
 
       <section>
+      <section>
+        <title>EML Parser</title>
+        <para>
+        Because some of these rules cannot be enforced in XML-Schema, we have
+        written a parser which checks the validity of the references and IDs
+        used in your document.  This parser is included with the 2.0.0 release
+        of EML.  To run the parser, you must have Java 1.3.1 or higher.  To
+        execute it change into the lib directory of the release and run
+        the 'runEMLParser' script passing your EML instance file as a
+        parameter.
+        </para>
+      </section>
         <title>ID and Scope Examples</title>
         <section>
           <title>Example Documents</title>

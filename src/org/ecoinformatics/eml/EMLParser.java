@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-30 19:54:09 $'
- * '$Revision: 1.6 $'
+ *     '$Date: 2002-10-02 17:35:56 $'
+ * '$Revision: 1.7 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,6 +164,7 @@ public class EMLParser
 
            //try to get the id.  if it is already in the hash, throw exception
           Object o = idHash.get(idval);
+
           if(o == null)
           {
             idHash.put(new String(idval), new Integer(i));
@@ -490,36 +491,66 @@ public class EMLParser
    */
   public static void main(String[] args)
   {
-    System.out.println("EML Parser version 1.0");
-    System.out.println("Note that this parser DOES NOT VALIDATE your eml file ");
-    System.out.println("agains the schema.  It only validates the ids and ");
-    System.out.println("references. To validate your eml file against the ");
-    System.out.println("schema, use SAXValidate or another xml parser.");
-    System.out.println("Usage: java org.ecoinformatics.eml.EMLParser <eml file> [<config file>]");
-    System.out.println("-----------------------------------------------------------------------");
+    if(!args[0].equals("-q"))
+    {
+      System.out.println("EML Parser version 1.0");
+      System.out.println("Note that this parser DOES NOT VALIDATE your eml file ");
+      System.out.println("agains the schema.  It only validates the ids and ");
+      System.out.println("references. To validate your eml file against the ");
+      System.out.println("schema, use SAXValidate or another xml parser.");
+      System.out.println("Usage: java org.ecoinformatics.eml.EMLParser [-q] [<config file>] <eml file>");
+      System.out.println("-----------------------------------------------------------------------");
+    }
 
-    if(args.length > 2)
+    if(args.length > 3)
     {
       System.out.println("Invalid number of arguments.");
     }
 
     String configfile = "";
-    if(args.length == 2)
+    String emlfile = "";
+    if(args.length == 3)
     {
       configfile = args[1];
+      emlfile = args[2];
+      System.out.println("emlfile: " + emlfile + " configfile: " + configfile);
+    }
+    else if(args.length == 2)
+    {
+      if(args[0].equals("-q"))
+      {
+        emlfile = args[1];
+      }
+      else
+      {
+        configfile = args[0];
+        emlfile = args[1];
+      }
+    }
+    else if(args.length == 1)
+    {
+      emlfile = args[0];
+    }
+    else if(args.length == 0)
+    {
+      System.out.println("Usage: java org.ecoinformatics.eml.EMLParser [-q] [<config file>] <eml file>");
+      System.out.println("  -q = quiet mode, little or no output");
+      System.out.println("  <config file> = use an alternate config file.  The default is lib/config.xml");
+      System.out.println("  <eml file> = the EML file to parse");
+      System.exit(0);
     }
 
     try
     {
       if(configfile.equals(""))
       {
-        EMLParser parser = new EMLParser(new File(args[0]));
+        EMLParser parser = new EMLParser(new File(emlfile));
       }
       else
       {
-        EMLParser parser = new EMLParser(new File(args[0]), new File(configfile));
+        EMLParser parser = new EMLParser(new File(emlfile), new File(configfile));
       }
-      System.out.println(args[0] + " has valid ids and references.");
+      System.out.println(emlfile + " has valid ids and references.");
     }
     catch(Exception e)
     {
