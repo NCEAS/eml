@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2002-05-14 18:14:46 $'
-      '$Revision: 1.7 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-15 22:45:37 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,12 +31,45 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-dataObject</doc:moduleName>
-      <doc:moduleDescription>
-        The EML DataObject module defines a type which can be inlined into other 
-        eml modules for the purpose of encoding data files into the xml
-        metadata.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-dataObject</doc:moduleName>
+        <doc:moduleDescription>
+          The EML DataObject module defines a type which can be inlined into other 
+          eml modules for the purpose of encoding data files into the xml
+          metadata.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets that want to store data within an XML document for 
+          transport and/or storage
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-dataset
+          </doc:moduleName>
+          <doc:relationshipType>
+            has data access rules for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-literature
+          </doc:moduleName>
+          <doc:relationshipType>
+            has data access rules for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-software
+          </doc:moduleName>
+          <doc:relationshipType>
+            has data access rules for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   

@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2002-05-10 21:54:16 $'
-      '$Revision: 1.13 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-15 22:45:37 $'
+      '$Revision: 1.14 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,14 +31,37 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-party</doc:moduleName>
-      <doc:moduleDescription>
-        The eml-party module describes a responsible party (person 
-        or organization), and is typically used to name the originator 
-        of a resource or metadata document.  It contains
-        detailed contact information for the party, be it an individual person,
-        an organization, or a named position within an organization.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-party</doc:moduleName>
+        <doc:moduleDescription>
+          The eml-party module describes a responsible party (person 
+          or organization), and is typically used to name the originator 
+          of a resource or metadata document.  It contains
+          detailed contact information for the party, be it an individual person,
+          an organization, or a named position within an organization.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          no
+        </doc:standAlone>
+        <doc:importedBy>
+          eml-attribute
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-coverage
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-literature
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-project
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-resource
+        </doc:importedBy>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:complexType name="ResponsibleParty">

@@ -13,8 +13,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-04-21 22:45:30 $'
-      '$Revision: 1.11 $'
+          '$Date: 2002-05-15 22:45:37 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,19 +31,51 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-physical</doc:moduleName>
-      <doc:moduleDescription>
-        The eml-physical Module defines the structural
-        characteristics of data formats as delivered over the wire or
-        as found in a file system.  One physical object (which can be a
-        bytestream or an object in a file system) might contain multiple
-        entities (for example, this would be typical in a MS Access file
-        that contained multiple tables of data).  However, it is typically
-        used to describe a file or stream that is in some text-based 
-        format such as ASCII or UTF-8, and includes the information needed
-        to parse the data stream to extract the entity and its attributes
-        from the stream.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-physical</doc:moduleName>
+        <doc:moduleDescription>
+          The eml-physical Module defines the structural
+          characteristics of data formats as delivered over the wire or
+          as found in a file system.  One physical object (which can be a
+          bytestream or an object in a file system) might contain multiple
+          entities (for example, this would be typical in a MS Access file
+          that contained multiple tables of data).  However, it is typically
+          used to describe a file or stream that is in some text-based 
+          format such as ASCII or UTF-8, and includes the information needed
+          to parse the data stream to extract the entity and its attributes
+          from the stream.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-dataset
+          </doc:moduleName>
+          <doc:relationshipType>
+            has physical file format description for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-literature
+          </doc:moduleName>
+          <doc:relationshipType>
+            has physical file format description for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-software
+          </doc:moduleName>
+          <doc:relationshipType>
+            has physical file format description for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="eml-physical">

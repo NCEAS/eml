@@ -18,9 +18,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2002-05-10 04:27:22 $'
-      '$Revision: 1.37 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-15 22:45:37 $'
+      '$Revision: 1.38 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -37,13 +37,45 @@
       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-coverage</doc:moduleName>
-      <doc:moduleDescription>
-        The eml-coverage module contains fields for describing the 
-        coverage of a resource in terms of time, space, and taxonomy. These
-        coverages (temporal, spatial, and taxonomic) represent the extent
-        of applicability of the resource in those domains.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-coverage</doc:moduleName>
+        <doc:moduleDescription>
+          The eml-coverage module contains fields for describing the 
+          coverage of a resource in terms of time, space, and taxonomy. These
+          coverages (temporal, spatial, and taxonomic) represent the extent
+          of applicability of the resource in those domains.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets where spatial, temporal or taxonomic coverage is important
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          no
+        </doc:standAlone>
+        <doc:importedBy>
+          eml-attribute
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-dataset
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-dataTable
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-entity
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-project
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-spatialGrid
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-spatialImage
+        </doc:importedBy>
+        <doc:importedBy>
+          eml-spatialVector
+        </doc:importedBy>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
     
