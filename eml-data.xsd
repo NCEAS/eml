@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:attribute" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:doc="eml:documentation" 
+           xmlns="eml:attribute">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-data.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: berkley $'
+          '$Date: 2002-04-16 20:36:15 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleName>eml-data</doc:moduleName>
+      <doc:moduleDescription>
+        The EML Data module defines a type which can be inlined into other 
+        eml modules for the purpose of encoding data files into the xml
+        metadata.
+      </doc:moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+  
+  <xs:complexType name="Data">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Type for storing inline data.
+        </doc:tooltip>
+        <doc:summary>
+          This complex type can be used anywhere that data needs to be inlined
+          into to the xml.
+        </doc:summary>
+        <doc:description>
+          This complex type can be used anywhere that data needs to be inlined
+          into to the xml.  It can handle any ascii data stream or binary data
+          can be Base64 encoded and included.  The encoding is specified in the
+          'Encoding' attribute.  It must be either 'ASCII', 'Base64', or 
+          'Unicode'.
+        </doc:description>
+        <doc:example>
+         &lt;data encoding=&quot;ASCII&quot; name=&quot;bisondata&quot;&gt;
+1985	HILL	1	1	2.35	1.40	50.00	0.81	15.61	384.30	273.05	131.57
+1985	HILL	1	2	2.35	0.65	23.45	0.82	15.61	384.30	273.05	131.57
+1985	HILL	1	3	0.73	1.05	19.20	0.85	15.61	384.30	273.05	131.57
+1985	HILL	1	4	4.65	0.33	8.000	0.80	15.61	384.30	273.05	131.57
+1985	HILL	1	5	5.25	1.65	44.30	0.79	15.61	384.30	273.05	131.57
+              &lt;/data&gt;
+        </doc:example>
+        <doc:lineage>
+          Introduced in 2.0.0beta7
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="data">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Element for storing inline data.
+            </doc:tooltip>
+            <doc:summary>
+              This element can store data associated with this xml document.
+              The encoding must be specified in the 'encoding' attribute.
+            </doc:summary>
+            <doc:description>
+              This element can be used anywhere that data needs to be inlined
+              into to the xml.  It can handle any ascii data stream or binary data
+              can be Base64 encoded and included.  The encoding is specified in the
+              'encoding' attribute.  It must be either 'ASCII', 'Base64', or 
+              'Unicode'.
+            </doc:description>
+            <doc:example>
+              &lt;data encoding=&quot;ASCII&quot; name=&quot;bisondata&quot;&gt;
+1985	HILL	1	1	2.35	1.40	50.00	0.81	15.61	384.30	273.05	131.57
+1985	HILL	1	2	2.35	0.65	23.45	0.82	15.61	384.30	273.05	131.57
+1985	HILL	1	3	0.73	1.05	19.20	0.85	15.61	384.30	273.05	131.57
+1985	HILL	1	4	4.65	0.33	8.000	0.80	15.61	384.30	273.05	131.57
+1985	HILL	1	5	5.25	1.65	44.30	0.79	15.61	384.30	273.05	131.57
+              &lt;/data&gt;
+            </doc:example>
+            <doc:lineage>
+              Introduced in 2.0.0beta7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="encoding" type="Encoding" use="required"/>
+              <xs:attribute name="name" type="xs:string" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="Encoding">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Base64"/>
+      <xs:enumeration value="ASCII"/>
+      <xs:enumeration value="Unicode"/>
+    </xs:restriction> 
+  </xs:simpleType>
+</xs:schema>
