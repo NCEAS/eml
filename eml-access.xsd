@@ -1,6 +1,6 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:rs="eml:resource"
+           xmlns:cov="eml:coverage"
            targetNamespace="eml:access">
   <xs:annotation>
     <xs:documentation>
@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: berkley $'
-          '$Date: 2001-03-28 18:47:17 $'
-      '$Revision: 1.18 $'
+        '$Author: jones $'
+          '$Date: 2001-04-16 17:42:11 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,8 +48,7 @@
     </xs:appinfo>
   </xs:annotation>
   
-  <xs:import namespace="eml:resource" 
-          schemaLocation="./eml-resource.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
  
   <xs:element name="acl">
     <xs:annotation>
@@ -331,7 +330,7 @@
         </xs:simpleType>
       </xs:element>
 
-      <xs:element name="duration" type="rs:TemporalCoverage"
+      <xs:element name="duration" type="cov:TemporalCoverage"
                   minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>

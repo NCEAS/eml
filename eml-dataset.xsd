@@ -12,8 +12,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-13 23:31:21 $'
-      '$Revision: 1.1 $'
+          '$Date: 2001-04-16 17:42:11 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@
         <xs:extension base="res:ResourceBase">
           <xs:sequence>
 
-            <xs:element name="temporalCoverage" type="cov:TemporalCoverage"
+            <xs:element name="temporalCov" type="cov:TemporalCoverage"
                         minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
@@ -104,7 +104,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="geographicCoverage" type="cov:GeographicCoverage"
+            <xs:element name="geographicCov" type="cov:GeographicCoverage"
                         minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
@@ -129,7 +129,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="taxonomicCoverage" type="cov:TaxonomicCoverage"
+            <xs:element name="taxonomicCov" type="cov:TaxonomicCoverage"
                         minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
