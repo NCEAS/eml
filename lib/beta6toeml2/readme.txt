@@ -1,4 +1,4 @@
-Feb 28, 2003
+March 11, 2003
 
 Converting eml beta6 packages to eml2
 
@@ -26,11 +26,14 @@ The process starts with the beta6 dataset module. This XML document contains the
 </package>
 ------------------------------------------
 
-The stylesheet 'emlb6toeml2.xsl' is the top level stylesheet for using the information in the packageStructure document to create an eml2 document. This stylesheet 'includes' the 'eml2entphy.xsl', and 'eml2attr.xsl' stylesheets for handling entity, physical, and attribute information. It should be noted that all the metadata modules for a package are assumed to be in the same directory and named with their ID (e.g. 'higgins.233.2'). An easy way to create such a directory is to use Morpho to 'export' a data package.       
+The stylesheet 'emlb6toeml2.xsl' is the top level stylesheet for using the information in the packageStructure document to create an eml2 document. This stylesheet 'includes' the 'eml2entphy.xsl', and 'eml2attr.xsl' stylesheets for handling entity, physical, and attribute information. The xsl docs 'eml2cit.xsl' and 'eml2project.xsl' also now exist for handling citation and project translations. It should be noted that all the metadata modules for a package are assumed to be in the same directory and named with their ID (e.g. 'higgins.233.2'). An easy way to create such a directory is to use Morpho to 'export' a data package.       
 
 The 'eml2attr.xsl' sheet includes checking units against the eml-unitDictionary. If a beta6 unit (or ist abbreviation) is found in the unit-Dictionary, a standard unit is created. Otherwise, a custom unit is defined. (Currently, a definition of the custom unit is not automatically created and added to the otherMetadata element.) [A copy of eml-unitDictionary needs to be in the same directory as the style sheets.]
 Also, the determination of measurementScale is rather arbitrary. All nonNUmerica and nonDate attribute information (i.e. text) is mapped to the 'nominal' measurementScale. (No 'ordinal' values are ever created.) Numeric information is mapped to 'ratio' if the minimum is greater than 0, or 'interval' if the minumum is negative. 
 
 
 Currently Unimplemented:
-	Currently, modules other than access, dataset, entity, attribute, and physical are not included in the translated package. Data is not inserted 'in-line' but rather the 'online/url' element is set with the metacat url for downloading the data.
+	Currently, modules other than access, dataset, entity, attribute, physical, project, and citation  are not included in the translated package. Data is not inserted 'in-line' but rather the 'online/url' element is set with the metacat url for downloading the data.
+
+Problem Areas:
+	The systemID part of the DOCTYPE declarations created in modules by Morpho are not always meaningful outside of Morpho (which only uses the PublicID). This may cause a problem in executing the transformations because XML parsers try to read the DTD files even when not validating. The DOCTYPE tags can be removed or edited to point to existing systemIDs to correct the problem.
