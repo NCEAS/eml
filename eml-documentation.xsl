@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-17 18:04:42 $'
- *    '$Revision: 1.33 $'
+ *        '$Date: 2002-09-17 19:00:36 $'
+ *    '$Revision: 1.34 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@
         </xsl:choose>
         <xsl:choose>
           <xsl:when test="./@default">And has a default value of 
-          <xsl:value-of select="./@default"/></xsl:when>
+          '<xsl:value-of select="./@default"/>'</xsl:when>
           <xsl:otherwise>and has no default value</xsl:otherwise>
         </xsl:choose>
         </td>
