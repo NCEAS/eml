@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-03-20 21:27:13 $'
-      '$Revision: 1.23 $'
+          '$Date: 2002-03-20 21:35:00 $'
+      '$Revision: 1.24 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1203,7 +1203,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="cellType" type="RasterCellType">
+      <xs:element name="cellType" type="RasterCellType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1227,7 +1227,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="cellOrigin" type="xs:string">
+      <xs:element name="cellOrigin" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1290,7 +1290,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="verticals" type="xs:string">
+      <xs:element name="verticals" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1311,7 +1311,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="scanResolution" type="ScanResolution">
+      <xs:element name="scanResolution" type="ScanResolution" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1332,7 +1332,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="groundSpacing" type="GroundSpacingResolution">
+      <xs:element name="groundSpacing" type="GroundSpacingResolution" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1353,7 +1353,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="cellDomain" type="CellValueDomain">
+      <xs:element name="cellDomain" type="CellValueDomain" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1766,7 +1766,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="geometricObjectType" type="GeometricObjectType">
+      <xs:element name="geometricObjectType" type="GeometricObjectType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1790,7 +1790,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="geometricObjectCount" type="xs:string">
+      <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1814,7 +1814,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="topologyLevel" type="TopologyLevel">
+      <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
