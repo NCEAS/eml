@@ -1,0 +1,58 @@
+<!--         
+       '$RCSfile: eml-spatialGrid.dtd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: berkley $'
+          '$Date: 2002-05-09 20:54:23 $'
+      '$Revision: 1.1 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+
+<!ENTITY % entity SYSTEM "eml-entity.dtd">
+%entity;
+
+<!ENTITY % coverage SYSTEM "eml-coverage.dtd">
+%coverage;
+<!ENTITY % TemporalCoverage "((singleDateTime | multipleDatesTimes | rangeOfDates))">
+
+<!ELEMENT spatialGrid ((%SpatialRepresentation;), cellType?, cellOrigin?, rows,
+                       columns, verticals?, scanResolution?, groundSpacing?,
+                       cellDomain?)>
+<!ELEMENT cellType (#PCDATA)>
+<!ELEMENT cellOrigin (#PCDATA)>
+<!ELEMENT rows (#PCDATA)>
+<!ELEMENT columns (#PCDATA)>
+<!ELEMENT verticals (#PCDATA)>
+<!ELEMENT scanResolution (%ScanResolution;)>
+<!ENTITY % ScanResolution "(xResolution, yResolution, zResolution)">
+<!ELEMENT xResolution (%PixelResolution;)>
+<!ELEMENT yResolution (%PixelResolution;)>
+<!ELEMENT zResolution (%PixelResolution;)>
+<!ENTITY % PixelResolution "(pixelsPerUnit, unit)">
+<!ELEMENT pixelsPerUnit (#PCDATA)>
+<!ELEMENT unit (#PCDATA)>
+<!ELEMENT groundSpacing (xSpacing, ySpacing, zSpacing)>
+<!ELEMENT xSpacing (#PCDATA)>
+<!ELEMENT ySpacing (#PCDATA)>
+<!ELEMENT zSpacing (#PCDATA)>
+<!ELEMENT cellDomain (toneGradiation?, bitsPerBand?, cellAttributeDescription, cellUnit)>
+<!ELEMENT toneGradiation (#PCDATA)>
+<!ELEMENT bitsPerBand (#PCDATA)>
+<!ELEMENT cellAttributeDescription (#PCDATA)>
+<!ELEMENT cellUnit (#PCDATA)>
+
