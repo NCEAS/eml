@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: berkley $'
-  *       '$Date: 2002-04-21 23:26:57 $'
-  *   '$Revision: 1.21 $'
+  *       '$Date: 2002-05-21 21:39:29 $'
+  *   '$Revision: 1.22 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -548,10 +548,10 @@
         <td colspan="1" class="tablepanel" valign="top">
           <!-- display the help fields for each element-->
           <blockquote>
-            <br><span class="boldtext">Tooltip: </span></br>
+            <!--<br><span class="boldtext">Tooltip: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:tooltip"/>
             <br><span class="boldtext">Summary: </span></br>
-            <xsl:value-of select="./xs:appinfo/doc:summary"/>
+            <xsl:value-of select="./xs:appinfo/doc:summary"/>-->
             <br><span class="boldtext">Description: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:description"/>
             <br><span class="boldtext">Example: </span></br>
