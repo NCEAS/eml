@@ -21,21 +21,23 @@ import org.jdom.output.XMLOutputter;
 
 public class makeProjectionDictionary {
     
-    public static Element root = new Element("projectionList");
+
+    public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0rc1"));
     public static Document XMLDoc = new Document(root);
     
     
     public static void main(String args[]) throws IOException {
         
+        root.setAttribute("schemaLocation","eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
         if (args.length==1){
             processPrjFiles(args[0]);
             
-        //       processPrjFiles("c:\\ESRI\\arcGIS\\arcexe82\\coordinate systems");
-        
-        File outFilePath= new File(args[0].concat("\\eml-spatialReferenceDictionary.xml"));
-        FileWriter writer = new FileWriter(outFilePath);
-        XMLOutputter outputter = new XMLOutputter("  ", true);
-        outputter.output(XMLDoc, writer);
+            //       processPrjFiles("c:\\ESRI\\arcGIS\\arcexe82\\coordinate systems");
+            
+            File outFilePath= new File(args[0].concat("\\eml-spatialReferenceDictionary.xml"));
+            FileWriter writer = new FileWriter(outFilePath);
+            XMLOutputter outputter = new XMLOutputter("  ", true);
+            outputter.output(XMLDoc, writer);
         }else{
             System.out.print("usage: java makeProjectionDictionary path\n");
         }
@@ -151,13 +153,11 @@ public class makeProjectionDictionary {
                         param.setAttribute("value",tokens.nextToken());
                         project.addContent(param);
                     }
-                    if (tokens.nextToken().equalsIgnoreCase("UNIT")) {
                         Element unit = new Element("unit");
                         unit.setAttribute("name",tokens.nextToken());
                         unit.setAttribute("metersPerUnit",tokens.nextToken());
-                        
-                    }
-                    
+                        project.addContent(unit);
+                     
                     projcs.addContent(project);
                     
                 }
