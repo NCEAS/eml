@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.9 $'
+        '$Author: cjones $'
+          '$Date: 2001-02-19 02:56:06 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -219,28 +219,6 @@
         </xs:appInfo>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="public" type="Public">
-      <xs:annotation>
-        <xs:appInfo>
-          <tooltip>
-            public access
-          </tooltip>
-          <summary>
-	    The public read access to the object
-          </summary>
-          <description>
-	    The public attribute defines whether or not the resource is publicly 
-	    readable by default.
-          </description>
-          <example>
-	    yes
-          </example>
-          <lineage>
-            The public element was introduced into EML 2.0 Proposed.
-          </lineage>
-        </xs:appInfo>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
  
   <xs:complexType name="PermissionType" content="elementOnly">
@@ -409,28 +387,4 @@
     </xs:annotation>
   </xs:simpleType>
 
-  <xs:simpleType name="Public" base="xs:string">
-    <xs:enumeration value="yes" /> 
-    <xs:enumeration value="no" /> 
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-	  Public Access Flag
-        </tooltip>
-        <summary>
-	  A list of values that define whether a resource is publicly readable.
-        </summary>
-        <description>
-	  The Public type provides a list of values that define whether a
-	  resource is publicly readable with no authentication requirements.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The Public type was introduced into EML 2.0 Proposed.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:simpleType>
- 
 </xs:schema>
