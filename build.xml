@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-04-20 04:03:22 $'
-  *  '$Revision: 1.13 $'
+  *      '$Date: 2002-04-21 22:47:53 $'
+  *  '$Revision: 1.14 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -29,7 +29,7 @@
 -->
 <project name="eml" default="docs" basedir=".">
   <target name="init">
-    <property name="version" value="2.0.0beta7"/>
+    <property name="version" value="2.0.0beta8"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
