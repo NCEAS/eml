@@ -17,9 +17,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.23 $'
+        '$Author: schild $'
+          '$Date: 2001-12-16 18:39:39 $'
+      '$Revision: 1.24 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,10 @@
       <doc:moduleName>eml-project</doc:moduleName>
       <doc:moduleDescription>
         The EML Project Module describes the research context 
-        in which the dataset was created.
+        in which the dataset was created, including description
+        of over-all motivations and goals, funding, personnel, etc.
+        This is also the module to describe over-all sampling methods
+        for the project. 
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
@@ -58,12 +61,15 @@
           dataset was created.
         </doc:summary>
         <doc:description>
-           Eml-research element represents the research project 
-           employed by the researchers who created this dataset.
+           eml-project elements describe various aspects of the
+           research project within which researchers created the associated dataset.
+           The association of a dataset with this project metadata is established
+           in eml-dataset
         </doc:description>
         <doc:example/>
         <doc:lineage>
-          The eml-reasearch was introduced into EML 1.4 as eml-context.
+          eml-project was introduced in EML 2.0. It replaces eml-research, which was
+          introduced into EML 1.4 as replacement for eml-context.
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -141,9 +147,10 @@
         </doc:summary>
         <doc:description>
           Research project element is a descriptor of
-          the research methods employed by the researchers who 
-          created this dataset. It can include research methods, 
-          data collection methods, equations, formulas. 
+          various programmatic aspects within which researchers  
+          created this dataset. It can also include general research goals
+          and motivations, data collection methods, equations, formulas. 
+          But see 'eml-protocol' for more areas to provide methodological detail.
         </doc:description>
         <doc:example/>
         <doc:lineage>
