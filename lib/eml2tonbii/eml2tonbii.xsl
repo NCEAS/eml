@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-22 17:37:45 $'
-  * '$Revision: 1.13 $'
+  *     '$Date: 2003-05-30 17:04:24 $'
+  * '$Revision: 1.14 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -498,6 +498,11 @@ version="1.0">
                         </xsl:otherwise>
                       </xsl:choose>  
                     </xsl:element>
+                    <xsl:if test="xalan:nodeset($cc_taxon)//taxonomicClassification!=''">
+                      <xsl:call-template name="taxonClTemplate">
+                        <xsl:with-param name="cur_tc" select="xalan:nodeset($cc_taxon)//taxonomicClassification"/>
+                      </xsl:call-template>
+                    </xsl:if>
                     
                   </xsl:element>
                 </xsl:for-each>  
@@ -1352,5 +1357,48 @@ version="1.0">
   
   </xsl:template>
 
+<!-- this named template is needed to handle the recursive taxonimicClassification element-->  
+  <xsl:template name="taxonClTemplate">
+  <xsl:param name="cur_tc"/>
+    <xsl:element name="taxoncl">
+      <xsl:element name="taxonrn">
+        <xsl:choose>
+          <xsl:when test="$cur_tc//taxonRankName!=''">
+             <xsl:value-of select="$cur_tc//taxonRankName"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'N/A'"/>
+           </xsl:otherwise>
+        </xsl:choose>  
+      </xsl:element>
+      <xsl:element name="taxonrv">
+        <xsl:choose>
+          <xsl:when test="$cur_tc//taxonRankValue!=''">
+            <xsl:value-of select="$cur_tc//taxonRankValue"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'N/A'"/>
+          </xsl:otherwise>
+        </xsl:choose>  
+      </xsl:element>
+      <xsl:element name="common">
+        <xsl:choose>
+          <xsl:when test="$cur_tc//commonName!=''">
+            <xsl:value-of select="$cur_tc//commonName"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'N/A'"/>
+          </xsl:otherwise>
+        </xsl:choose>  
+      </xsl:element>
+      <xsl:choose>
+        <xsl:when test="$cur_tc//taxonomicClassification!=''">
+          <xsl:call-template name="taxonClTemplate">
+            <xsl:with-param name="cur_tc" select="$cur_tc//taxonomicClassification"/>
+          </xsl:call-template>
+        </xsl:when>
+      </xsl:choose>  
+    </xsl:element>
+  </xsl:template>
   
 </xsl:stylesheet>
