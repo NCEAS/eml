@@ -7,8 +7,8 @@
       Authors: Chad Berkley
 
      '$Author: berkley $'
-     '$Date: 2000-09-21 17:00:30 $'
-     '$Revision: 1.3 $'
+     '$Date: 2000-09-27 20:55:18 $'
+     '$Revision: 1.4 $'
 -->
 
 <!-- The root element -->
@@ -45,6 +45,7 @@
 
 <!-- The dataset branch -->
 <!ELEMENT dataset ((%resbase;), geoForm)>
+<!ELEMENT geoForm (#PCDATA)>
 
 <!-- The literature branch -->
 <!ELEMENT literature ((%resbase;), ISBN?, ISSN?, editor*, 
