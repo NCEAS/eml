@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-04-24 00:01:21 $'
-  * '$Revision: 1.5 $'
+  *     '$Date: 2003-05-03 00:19:51 $'
+  * '$Revision: 1.6 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+xmlns:xalan="http://xml.apache.org/xalan"
 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output encoding="ISO-8859-1"/>
@@ -45,19 +46,40 @@ version="1.0">
         <xsl:element name="citation">
           <xsl:element name="citeinfo">
             <xsl:for-each select="/eml:eml/dataset/creator">
+            <!-- This is a loop over all the dataset 'creator' elements
+             Note that dataset itself might be 'referenced' rather
+             than exist 'in-place'. More likely, however, is that
+             the creator element may have a 'references' child rather
+             than inline children! -->
+              <xsl:variable name="cc">
+                <xsl:variable name="ref_id" select="./references"/>
+                <xsl:choose>
+                  <xsl:when test="./references!=''">
+                    <xsl:variable name="ref_id" select="./references"/>
+                    <!-- current element just references its contents 
+                    There should only be a single node with an id attribute
+                    which matches the value of the references element -->
+                    <xsl:copy-of select="//*[@id=$ref_id]"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <!-- no references tag, thus use the current node -->
+                    <xsl:copy-of select="."/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
               <xsl:element name="origin">
               <!-- 'origin' should correspond to the name of the 'creator' RP in eml2 -->
-                <xsl:choose>
-                  <xsl:when test="./individualName/surName!=''">
-                    <xsl:value-of select="./individualName/surName"/>
-                  </xsl:when>
-                  <xsl:when test="./organizationName!=''">
-                    <xsl:value-of select="./organizationName"/>
-                  </xsl:when>
-                  <xsl:when test="./positionName!=''">
-                    <xsl:value-of select="./positionName"/>
-                  </xsl:when>
-                </xsl:choose>
+                  <xsl:choose>
+                    <xsl:when test="xalan:nodeset($cc)//individualName/surName!=''">
+                      <xsl:value-of select="xalan:nodeset($cc)//individualName/surName"/>
+                    </xsl:when>
+                    <xsl:when test="xalan:nodeset($cc)//organizationName!=''">
+                      <xsl:value-of select="xalan:nodeset($cc)//organizationName"/>
+                    </xsl:when>
+                    <xsl:when test="xalan:nodeset($cc)//positionName!=''">
+                      <xsl:value-of select="xalan:nodeset($cc)//positionName"/>
+                    </xsl:when>
+                  </xsl:choose>
               </xsl:element>
             </xsl:for-each>  
             <xsl:element name="pubdate">
@@ -600,6 +622,8 @@ version="1.0">
             <xsl:choose>
               <xsl:when test="/eml:eml/dataset/contact/individualName!=''">
                 <xsl:element name="cntperp">
+                <!-- there is only a single 'cntperp' in nbii;
+                 thus we only reproduce the first contact in eml2 -->
                   <xsl:element name="cntper">
                     <xsl:value-of select="/eml:eml/dataset/contact/individualName"/>
                   </xsl:element>
