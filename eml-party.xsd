@@ -17,9 +17,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.18 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-30 23:17:30 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -342,7 +342,17 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="id" type="xs:ID" use="required" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" use="optional" default="system">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+    
+          <xs:enumeration value="document" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Person">
     <xs:annotation>

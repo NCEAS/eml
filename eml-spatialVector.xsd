@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:spatialVector-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns:ent="eml:entity-2.0.0beta8"
-           xmlns="eml:spatialVector-2.0.0beta8">
-  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>  
-  <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>
+<xs:schema targetNamespace="eml:spatialVector-2.0.0beta8"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8"
+xmlns:ent="eml:entity-2.0.0beta8" xmlns="eml:spatialVector-2.0.0beta8">
+  <xs:import namespace="eml:documentation-2.0.0beta8"
+  schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:coverage-2.0.0beta8"
+  schemaLocation="eml-coverage.xsd" />
+  <xs:import namespace="eml:entity-2.0.0beta8"
+  schemaLocation="eml-entity.xsd" />
   <xs:annotation>
-    <xs:documentation>
-       '$RCSfile: eml-spatialVector.xsd,v $'
+    <xs:documentation> 
+           '$RCSfile: eml-spatialVector.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
                             Arizona State University
@@ -25,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: berkley $'
-          '$Date: 2002-05-29 22:30:21 $'
-      '$Revision: 1.4 $'
+          '$Date: 2002-05-30 23:17:30 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,122 +46,104 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-spatialVector</doc:moduleName>
-        <doc:moduleDescription>
-          The eml-spatialVector module allows for the description of 
-          spatial vectors in a GIS system.  Specific attributes of a 
-          spatial vector can be documented here including the vector's 
-          geometric object type and topology layer.
-        </doc:moduleDescription>
-        <doc:recommendedUsage>
-          all spatial datasets that use spatial vectors
-        </doc:recommendedUsage>
-        <doc:standAlone>
-          yes
-        </doc:standAlone>
+        <doc:moduleDescription>The eml-spatialVector module allows for the
+        description of spatial vectors in a GIS system. Specific attributes
+        of a spatial vector can be documented here including the vector's
+        geometric object type and topology layer.</doc:moduleDescription>
+        <doc:recommendedUsage>all spatial datasets that use spatial
+        vectors</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
         <doc:relationship>
-          <doc:moduleName>
-            eml-dataset
-          </doc:moduleName>
-          <doc:relationshipType>
-            has spatial vector information for
-          </doc:relationshipType>
+          <doc:moduleName>eml-dataset</doc:moduleName>
+          <doc:relationshipType>has spatial vector information
+          for</doc:relationshipType>
         </doc:relationship>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  
-  <xs:complexType name="spatialVectorContainer">
+  <xs:complexType name="SpatialVector">
     <xs:choice>
-      <xs:element ref="spatialVector"/>
-      <xs:element name="references" type="xs:string"/>
+      <xs:element name="content" type="SpatialVectorType" />
+      <xs:element name="references" type="xs:string" />
     </xs:choice>
   </xs:complexType>
-  
-  <xs:element name="spatialVector" type="SpatialVector">
+  <xs:element name="spatialVector" type="SpatialVectorType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>
-          Description of an image layer created from a sensor or scanner
-        </doc:tooltip>
-        <doc:summary>
-          Description of an image layer created from a sensor or scanner
-        </doc:summary>
-        <doc:description>
-          Description of an image layer created from a sensor or scanner
-        </doc:description>
-        <doc:example/>
-        <doc:lineage>
-          The spatial entity elements were introduced into EML 2.0 beta 7
-        </doc:lineage>
+        <doc:tooltip>Description of an image layer created from a sensor or
+        scanner</doc:tooltip>
+        <doc:summary>Description of an image layer created from a sensor or
+        scanner</doc:summary>
+        <doc:description>Description of an image layer created from a sensor
+        or scanner</doc:description>
+        <doc:example />
+        <doc:lineage>The spatial entity elements were introduced into EML 2.0
+        beta 7</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
-  <xs:complexType name="SpatialVector">
-    <xs:attribute name="id" type="xs:ID" use="required"/>
+  <xs:complexType name="SpatialVectorType">
+    <xs:attribute name="id" type="xs:ID" use="required" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" use="optional" default="system">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+          <xs:enumeration value="document" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
     <xs:complexContent>
       <xs:extension base="ent:SpatialRepresentation">
         <xs:sequence>
-          <xs:element name="geometricObjectType" type="GeometricObjectType" minOccurs="0">
+          <xs:element name="geometricObjectType" type="GeometricObjectType"
+          minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
-                <doc:tooltip>
-                  Name of point and vector spatial objects used to locate zero-, 
-                  one-, and two-dimensional spatial locations in the dataset.
-                </doc:tooltip>
-                <doc:summary>
-                  Name of point and vector spatial objects used to locate zero-, 
-                  one-, and two-dimensional spatial locations in the dataset.
-                </doc:summary>
-                <doc:description>
-              Name of point and vector spatial objects used to locate zero-, 
-              one-, and two-dimensional spatial locations in the dataset.
-            </doc:description>
-                <doc:example/>
-                <doc:lineage>
-                  The spatial entity elements were introduced into EML 2.0 beta 7
-                </doc:lineage>
+                <doc:tooltip>Name of point and vector spatial objects used to
+                locate zero-, one-, and two-dimensional spatial locations in
+                the dataset.</doc:tooltip>
+                <doc:summary>Name of point and vector spatial objects used to
+                locate zero-, one-, and two-dimensional spatial locations in
+                the dataset.</doc:summary>
+                <doc:description>Name of point and vector spatial objects
+                used to locate zero-, one-, and two-dimensional spatial
+                locations in the dataset.</doc:description>
+                <doc:example />
+                <doc:lineage>The spatial entity elements were introduced into
+                EML 2.0 beta 7</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
+          <xs:element name="geometricObjectCount" type="xs:string"
+          minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
-                <doc:tooltip>
-                  Total number of the point or vector object type occurring in the 
-                  dataset.
-                </doc:tooltip>
-                <doc:summary>
-                  Total number of the point or vector object type occurring in the 
-                  dataset.
-                </doc:summary>
-                <doc:description>
-                  Total number of the point or vector object type occurring in the 
-                  dataset.
-                </doc:description>
-                <doc:example/>
-                <doc:lineage>
-                  The spatial entity elements were introduced into EML 2.0 beta 7
-                </doc:lineage>
+                <doc:tooltip>Total number of the point or vector object type
+                occurring in the dataset.</doc:tooltip>
+                <doc:summary>Total number of the point or vector object type
+                occurring in the dataset.</doc:summary>
+                <doc:description>Total number of the point or vector object
+                type occurring in the dataset.</doc:description>
+                <doc:example />
+                <doc:lineage>The spatial entity elements were introduced into
+                EML 2.0 beta 7</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
+          <xs:element name="topologyLevel" type="TopologyLevel"
+          minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
-                <doc:tooltip>
-                  Code which identifies the degree of complexity.
-                </doc:tooltip>
-                <doc:summary>
-                  Code which identifies the degree of complexity.
-                </doc:summary>
-                <doc:description>
-                  Code which identifies the degree of complexity.
-                </doc:description>
-                <doc:example/>
-                <doc:lineage>
-                  The spatial entity elements were introduced into EML 2.0 beta 7
-                </doc:lineage>
+                <doc:tooltip>Code which identifies the degree of
+                complexity.</doc:tooltip>
+                <doc:summary>Code which identifies the degree of
+                complexity.</doc:summary>
+                <doc:description>Code which identifies the degree of
+                complexity.</doc:description>
+                <doc:example />
+                <doc:lineage>The spatial entity elements were introduced into
+                EML 2.0 beta 7</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -168,27 +151,25 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  
   <xs:simpleType name="GeometricObjectType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="points"/>
-      <xs:enumeration value="curves"/>
-      <xs:enumeration value="surfaces"/>
-      <xs:enumeration value="solids"/>
-      <xs:enumeration value="composites"/>
-      <xs:enumeration value="complexes"/>
+      <xs:enumeration value="points" />
+      <xs:enumeration value="curves" />
+      <xs:enumeration value="surfaces" />
+      <xs:enumeration value="solids" />
+      <xs:enumeration value="composites" />
+      <xs:enumeration value="complexes" />
     </xs:restriction>
   </xs:simpleType>
-  
   <xs:simpleType name="TopologyLevel">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="geometryOnly"/>
-      <xs:enumeration value="nonPlanarGraph"/>
-      <xs:enumeration value="planarLineGraph"/>
-      <xs:enumeration value="fullPlanarGraph"/>
-      <xs:enumeration value="surfaceGraph"/>
-      <xs:enumeration value="fullTopology3D"/>
+      <xs:enumeration value="geometryOnly" />
+      <xs:enumeration value="nonPlanarGraph" />
+      <xs:enumeration value="planarLineGraph" />
+      <xs:enumeration value="fullPlanarGraph" />
+      <xs:enumeration value="surfaceGraph" />
+      <xs:enumeration value="fullTopology3D" />
     </xs:restriction>
   </xs:simpleType>
-  
 </xs:schema>
+

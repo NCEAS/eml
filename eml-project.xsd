@@ -22,8 +22,8 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     Foundation For Details: http://knb.ecoinformatics.org/ 
     
     '$Author: berkley $' 
-    '$Date: 2002-05-29 22:30:21 $' 
-    '$Revision: 1.35 $' 
+    '$Date: 2002-05-30 23:17:30 $' 
+    '$Revision: 1.36 $' 
     
     This program is
     free software; you can redistribute it and/or modify it under the terms
@@ -54,9 +54,9 @@ xmlns:doc="eml:documentation-2.0.0beta8">
   <xs:import namespace="eml:protocol-2.0.0beta8"
   schemaLocation="eml-protocol.xsd" />
   
-  <xs:complexType name="ProjectContainer">
+  <xs:complexType name="Project">
     <xs:choice>
-      <xs:element ref="researchProject"/>
+      <xs:element name="content" type="ResearchProjectType/>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
@@ -458,7 +458,17 @@ xmlns:doc="eml:documentation-2.0.0beta8">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:ID" use="required" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" use="optional" default="system">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+    
+          <xs:enumeration value="document" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="DescriptorType">
     <xs:annotation>

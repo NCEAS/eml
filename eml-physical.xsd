@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-29 22:30:21 $'
-      '$Revision: 1.19 $'
+          '$Date: 2002-05-30 23:17:30 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,12 +51,13 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:complexType name="physicalContainer">
+  <xs:complexType name="Physical">
     <xs:choice>
-      <xs:element ref="physical"/>
+      <xs:element name="content" type="PhysicalType"/>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
+  
   <xs:element name="physical" type="PhysicalType">
     <xs:annotation>
       <xs:appinfo>
@@ -75,6 +76,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+  
   <xs:complexType name="PhysicalType">
     <xs:annotation>
       <xs:appinfo/>
@@ -1090,6 +1092,16 @@
         </xs:complexType>
       </xs:element>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="id" type="xs:ID" use="required" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" use="optional" default="system">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="system" />
+    
+          <xs:enumeration value="document" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 </xs:schema>
