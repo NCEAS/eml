@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-04-21 22:45:30 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-05-15 22:57:54 $'
+      '$Revision: 1.28 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,14 +37,46 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-project</doc:moduleName>
-      <doc:moduleDescription>
-        The EML Project Module describes the research context 
-        in which the dataset was created, including description
-        of over-all motivations and goals, funding, personnel, etc.
-        This is also the module to describe over-all sampling methods
-        for the project. 
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-project</doc:moduleName>
+        <doc:moduleDescription>
+          The EML Project Module describes the research context 
+          in which the dataset was created, including description
+          of over-all motivations and goals, funding, personnel, etc.
+          This is also the module to describe over-all sampling methods
+          for the project. 
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-dataset
+          </doc:moduleName>
+          <doc:relationshipType>
+            has project description for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-literature
+          </doc:moduleName>
+          <doc:relationshipType>
+            has project description for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-software
+          </doc:moduleName>
+          <doc:relationshipType>
+            has project description for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml:party-2.0.0beta8" 

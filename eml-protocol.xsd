@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-04-21 22:45:30 $'
-      '$Revision: 1.14 $'
+          '$Date: 2002-05-15 22:57:54 $'
+      '$Revision: 1.15 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,12 +33,44 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-protocol</doc:moduleName>
-      <doc:moduleDescription>
-        The EML Protocol Module is used to describe methods and identify the 
-        proccesses that have been used to define / improve the quality of a data
-        file, also used to identify potential problems with the data file.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-protocol</doc:moduleName>
+        <doc:moduleDescription>
+          The EML Protocol Module is used to describe methods and identify the 
+          proccesses that have been used to define / improve the quality of a data
+          file, also used to identify potential problems with the data file.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-dataset
+          </doc:moduleName>
+          <doc:relationshipType>
+            has research protocol rules for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-literature
+          </doc:moduleName>
+          <doc:relationshipType>
+            has research protocol rules for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-software
+          </doc:moduleName>
+          <doc:relationshipType>
+            has research protocol rules for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml:literature-2.0.0beta8" 
