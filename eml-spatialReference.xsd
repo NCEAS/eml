@@ -27,8 +27,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-31 20:48:39 $'
-      '$Revision: 1.32 $'
+          '$Date: 2002-10-31 21:26:27 $'
+      '$Revision: 1.33 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -2558,38 +2558,38 @@
   <xs:element name="spatialReference" type="SpatialReferenceType"/>
   <xs:simpleType name="lengthUnits">
     <xs:restriction base="xs:string">
-      <enumeration value="meter"/>
-      <enumeration value="nanometer"/>
-      <enumeration value="micrometer"/>
-      <enumeration value="micron"/>
-      <enumeration value="millimeter"/>
-      <enumeration value="centimeter"/>
-      <enumeration value="decimeter"/>
-      <enumeration value="dekameter"/>
-      <enumeration value="hectometer"/>
-      <enumeration value="kilometer"/>
-      <enumeration value="megameter"/>
-      <enumeration value="angstrom"/>
-      <enumeration value="inch"/>
-      <enumeration value="Foot_US"/>
-      <enumeration value="foot"/>
-      <enumeration value="Foot_Gold_Coast"/>
-      <enumeration value="fathom"/>
-      <enumeration value="nauticalMile"/>
-      <enumeration value="yard"/>
-      <enumeration value="Yard_Indian"/>
-      <enumeration value="Link_Clarke"/>
-      <enumeration value="Yard_Sears"/>
-      <enumeration value="mile"/>
+      <xs:enumeration value="meter"/>
+      <xs:enumeration value="nanometer"/>
+      <xs:enumeration value="micrometer"/>
+      <xs:enumeration value="micron"/>
+      <xs:enumeration value="millimeter"/>
+      <xs:enumeration value="centimeter"/>
+      <xs:enumeration value="decimeter"/>
+      <xs:enumeration value="dekameter"/>
+      <xs:enumeration value="hectometer"/>
+      <xs:enumeration value="kilometer"/>
+      <xs:enumeration value="megameter"/>
+      <xs:enumeration value="angstrom"/>
+      <xs:enumeration value="inch"/>
+      <xs:enumeration value="Foot_US"/>
+      <xs:enumeration value="foot"/>
+      <xs:enumeration value="Foot_Gold_Coast"/>
+      <xs:enumeration value="fathom"/>
+      <xs:enumeration value="nauticalMile"/>
+      <xs:enumeration value="yard"/>
+      <xs:enumeration value="Yard_Indian"/>
+      <xs:enumeration value="Link_Clarke"/>
+      <xs:enumeration value="Yard_Sears"/>
+      <xs:enumeration value="mile"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="angleUnits">
     <xs:restriction base="xs:string">
-      <enumeration value="radian"/>
-      <enumeration value="degree"/>
-      <enumeration value="grad"/>
-      <enumeration value="degree"/>
-      <enumeration value="grad"/>
+      <xs:enumeration value="radian"/>
+      <xs:enumeration value="degree"/>
+      <xs:enumeration value="grad"/>
+      <xs:enumeration value="degree"/>
+      <xs:enumeration value="grad"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
