@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2002-04-19 21:23:14 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2002-04-19 22:01:52 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@
   </xsl:template>
   
   <xsl:template match="researchProject">
-    <table>
+    <table border="1">
       <tr>
       <td class="highlight"><h3>Personnel</h3></td>
       <td><xsl:apply-templates select="personnel"/></td>
@@ -82,14 +82,73 @@
       <td><xsl:apply-templates select="designDescription"/></td>
       </tr>
       <tr>
-      <td>Additional Projects</td>
+      <td class="highlight"><h3>Additional Projects</h3></td>
       <td><xsl:apply-templates select="researchProject"/></td>
       </tr>
       </table>
   </xsl:template>
   
+  <xsl:template match="designDescription">
+    <table>
+      <tr>
+        <td>Protocol</td>
+        <td><xsl:apply-templates select="protocol"/></td>
+      </tr>
+      <tr>
+        <td>Sampling</td>
+        <td><xsl:apply-templates select="sampling"/></td>
+      </tr>
+      <tr>
+        <td>Additional Info</td>
+        <td><xsl:apply-templates select="paragraph"/></td>
+      </tr>
+      <tr>
+        <td>Citation</td>
+        <td><xsl:apply-templates select="citation"/></td>
+      </tr>
+    </table>
+  </xsl:template>
+  
+  <xsl:template match="sampling">
+    <table border="1">
+      <tr>
+        <td>Temporal Coverage</td>
+        <td><xsl:apply-templates select="temporalCov"/></td>
+      </tr>
+      <tr>
+        <td>Frequency</td>
+        <td><xsl:apply-templates select="frequency"/></td>
+      </tr>
+      <tr>
+        <td>Additional Information</td>
+        <td><xsl:apply-templates select="paragraph"/></td>
+      </tr>
+      <tr>
+        <td>Citation</td>
+        <td><xsl:apply-templates select="citation"/></td>
+      </tr>
+    </table>
+  </xsl:template>
+  
+  <xsl:template match="protocol">
+    <table border="1">
+      <tr>
+        <td>Method</td>
+        <td><xsl:apply-templates select="method"/></td>
+      </tr>
+      <tr>
+        <td>Processing Step</td>
+        <td><xsl:apply-templates select="processingStep"/></td>
+      </tr>
+      <tr>
+        <td>Quality Control</td>
+        <td><xsl:apply-templates select="qualityControl"/></td>
+      </tr>
+    </table>
+  </xsl:template>
+  
   <xsl:template match="funding">
-    
+    <xsl:apply-templates/>
   </xsl:template>
   
   <xsl:template match="identifier">
@@ -109,41 +168,24 @@
   </xsl:template>
 
   <xsl:template match="personnel">
-    <table>
+    <table width="100%">
       <tr>
-        <td>Name: </td>
-        <td><xsl:apply-templates select="individualName"/>
+        <td width="30%"><xsl:apply-templates select="individualName"/>
+        </td>
+        <td>
+          <table>
+          <tr><td>Organization: <xsl:value-of select="organizationName"/></td></tr>
+          <tr><td>Position: <xsl:value-of select="positionName"/></td></tr>
+          <tr><td>Address: <xsl:apply-templates select="address"/></td></tr>
+          <tr><td>Phone: <xsl:value-of select="phone"/></td></tr>
+          <tr><td>Email Address: <xsl:value-of select="electronicMailAddress"/></td></tr>
+          <tr><td>Web Address: <xsl:value-of select="onlineLink"/></td></tr>
+          <tr><td>Role: <xsl:value-of select="role"/></td></tr>
+          </table>
         </td>
       </tr>
-      <tr>
-        <td>Organization: </td>
-        <td><xsl:value-of select="organizationName"/></td>
-      </tr>
-      <tr>
-        <td>Position: </td>
-        <td><xsl:value-of select="positionName"/></td>
-      </tr>
-      <tr>
-        <td>Address: </td>
-        <td><xsl:apply-templates select="address"/></td>
-      </tr>
-      <tr>
-        <td>Phone: </td>
-        <td><xsl:value-of select="phone"/></td>
-      </tr>
-      <tr>
-        <td>Email Address: </td>
-        <td><xsl:value-of select="electronicMailAddress"/></td>
-      </tr>
-      <tr>
-        <td>Web Address: </td>
-        <td><xsl:value-of select="onlineLink"/></td>
-      </tr>
-      <tr>
-        <td>Role: </td>
-        <td><xsl:value-of select="role"/></td>
-      </tr>
     </table>
+    <br/>
   </xsl:template>
 
   <xsl:template match="individualName">
@@ -198,25 +240,14 @@
   </xsl:template>
 
   <xsl:template match="abstract">
-    <table width="100%">
-    <tr>
-    <td class="highlight"><b><xsl:text>Abstract:</xsl:text></b></td>
-    </tr>
-    <tr>
-    <td><xsl:apply-templates select="paragraph"/></td>
-    </tr></table>
+    <xsl:apply-templates select="paragraph"/>
   </xsl:template>
   
   
   
   
   <xsl:template match="temporalCov">
-    <table>
-    <tr>
-      <td><b><xsl:text>Temporal Coverage:</xsl:text></b></td>
-      <td><xsl:apply-templates/></td>
-    </tr>
-    </table>
+    <xsl:apply-templates/>
   </xsl:template>
   
   
@@ -248,11 +279,7 @@
   </xsl:template>
 
   <xsl:template match="geographicCov">
-    <table width="100%">
-    <tr>
-    <td><b><xsl:text>Geographic Coverage:</xsl:text></b></td>
-    <td><xsl:apply-templates/></td></tr>
-    </table>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="geographicDescription">
@@ -304,7 +331,7 @@
     <table>
     <tr>
       <td>
-        <xsl:text>Bounding Altitudes </xsl:text>
+        <xsl:text>Bounding Altitudes: </xsl:text>
       </td>
       <td>
         <xsl:text>Minimum: </xsl:text>
