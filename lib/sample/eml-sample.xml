@@ -4,6 +4,7 @@
     xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xmlns:stmml="http://www.xml-cml.org/schema/stmml"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
 
 <dataset>
@@ -201,17 +202,19 @@
   </dataTable>
 </dataset>
 <additionalMetadata>
-  <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml">
-    <unitType name="massdensity">
-      <dimension name="mass"/>
-      <dimension name="length" power="-2"/>
-    </unitType>
-    <unitType name="speciesdensity">
-      <dimension name="dimensionless"/>
-      <dimension name="length" power="-2"/>
-    </unitType>
-    <unit name="gramsPerSquareMeter" unitType="massdensity" id="gramsPerSquareMeter"/>
-    <unit name="speciesPerSquareMeter" unitType="speciesdensity" id="speciesPerSquareMeter"/>
+  <describes>units</describes>
+  <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml"
+    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
+    <stmml:unitType name="massdensity" id="massdensity">
+      <stmml:dimension name="mass"/>
+      <stmml:dimension name="length" power="-2"/>
+    </stmml:unitType>
+    <stmml:unitType name="speciesdensity" id="speciesdensity">
+      <stmml:dimension name="dimensionless"/>
+      <stmml:dimension name="length" power="-2"/>
+    </stmml:unitType>
+    <stmml:unit name="gramsPerSquareMeter" unitType="massdensity" id="gramsPerSquareMeter"/>
+    <stmml:unit name="speciesPerSquareMeter" unitType="speciesdensity" id="speciesPerSquareMeter"/>
   </stmml:unitList>
 </additionalMetadata>
 </eml:eml>
