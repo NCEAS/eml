@@ -71,6 +71,8 @@
                     code_definition* , numeric_range* , missing_value_code*,
                     precision?, field_format?)>
 <!ATTLIST variable description CDATA #FIXED "Variable information">
+<!ELEMENT unit (#PCDATA) >
+<!ATTLIST unit description CDATA #FIXED "Unit">
 
 <!-- Class 4.B.1 -->
 <!ELEMENT variable_name (#PCDATA) >

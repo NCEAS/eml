@@ -171,14 +171,16 @@
 
 <!ELEMENT citation ( (author|editor)*, source_information*)>
 <!ATTLIST citation description CDATA #FIXED "Citation">
-<!ELEMENT author (person)>
+<!ELEMENT author (party)>
 <!ATTLIST author description CDATA #FIXED "Author">
-<!ELEMENT editor (person)>
+<!ELEMENT editor (party)>
 <!ATTLIST editor description CDATA #FIXED "Editor">
 <!ELEMENT source_information    (title, vol?, no?, issueid?, pubdate?,
                         publisher?, edition?, series?, chapter_title?,
                         pages?, resource_url*)>
 <!ATTLIST source_information description CDATA #FIXED "Source information">
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title description CDATA #FIXED "Title">
 <!ELEMENT vol (#PCDATA)>
 <!ATTLIST vol description CDATA #FIXED "Volume">
 <!ELEMENT no (#PCDATA)>
@@ -187,7 +189,7 @@
 <!ATTLIST issueid description CDATA #FIXED "Issue id">
 <!ELEMENT pubdate (datetime)>
 <!ATTLIST pubdate description CDATA #FIXED "Date of publication">
-<!ELEMENT publisher (institute, location?, resource_url?)>
+<!ELEMENT publisher (party, resource_url?)>
 <!ATTLIST publisher description CDATA #FIXED "Publisher">
 <!ELEMENT edition (#PCDATA)>
 <!ATTLIST edition description CDATA #FIXED "Edition">

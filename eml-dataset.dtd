@@ -151,7 +151,8 @@
 <!ELEMENT relations EMPTY>
 <!ATTLIST relations 
         object ENTITY #REQUIRED
-	relation  CDATA "is-metadata-for"
+	    relation  CDATA "is-metadata-for"
         target CDATA #REQUIRED
+>
 
 <!-- End of file -->

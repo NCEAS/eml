@@ -57,7 +57,7 @@
 
 <!-- SOFTWARE -->
 <!ELEMENT eml-software (meta_file_id, title, abstract, version_number, developer, source_module*, binary_file*, software_location+, programming_language+, operating_system+, system_requirements*)>
-<!ATTLIST code description CDATA #FIXED "Code diagnostics">
+<!ATTLIST eml-software description CDATA #FIXED "Software module - not in FLED Metadata report">
 
 <!ELEMENT meta_file_id (#PCDATA)>
 <!ATTLIST meta_file_id description CDATA #FIXED "Unique identifier of this metadata record">
@@ -136,6 +136,8 @@
 
 <!ELEMENT software_location (meta_address|url)>
 <!ATTLIST software_location description CDATA #FIXED "Location of version">
+<!ELEMENT url (#PCDATA)>
+<!ATTLIST url description CDATA #FIXED "URL">
 
 <!ELEMENT programming_language (#PCDATA)>
 <!ATTLIST programming_language description CDATA #FIXED "Language of code">
