@@ -1,0 +1,95 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+           xmlns:rp="iso:ResponsibleParty"
+           targetNamespace="eml:distribution">
+  
+  <xs:import namespace="iso:ResponsibleParty" 
+          schemaLocation = "./iso-party.xsd"/>
+
+  <!--the root element -->
+  <element name="eml-distribution" type="Eml-distribution"
+           minOccurs="1" maxOccurs="1"/>
+  
+  <complexType name="Eml-distribution" content="elementOnly">
+    <sequence>
+      <element name="format" type="Format" 
+               minOccurs="1" maxOccurs="unbounded"/>
+      <element name="distributor" type="Distributor" 
+               minOccurs="0" maxOccurs="unbounded"/>
+      <element name="digitalTransfer" type="DigitalTransfer" 
+               minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  
+  <complexType name="Format" content="elementOnly">
+    <sequence>
+      <element name="formatName" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded"/>
+      <element name="formatVersion" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded"/>
+      <element name="amendmentNumber" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded"/>
+      <element name="formatSpec" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded"/>
+      <element name="compressionType" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded"/>
+      <element name="distributionFormat" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  
+  <complexType name="Distributor" content="elementOnly">
+    <sequence>
+      <element name="contact" type="rp:ResponsibleParty"
+               minOccurs="1" maxOccurs="unbounded" />
+      <element name="orderProcess" type="StandardOrderProcess"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="distributorFormat" type="Format"
+               minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="StandardOrderProcess" content="elementOnly">
+    <sequence>
+      <element name="fees" type="xs:string"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="dateTimeAvailable" type="xs:date"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="orderingInstructions" type="xs:string"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="turnaround" type="xs:string"
+               minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="DigitalTransfer" content="elementOnly">
+    <sequence>
+      <element name="distributionUnits" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+      <element name="transferSize" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+      <element name="online" type="rp:OnlineResource"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="ofLineResource" type="Medium"
+               minOccurs="0" maxOccurs="1" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="Medium" content="elementOnly">
+    <sequence>
+      <element name="medNameCode" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+      <element name="medDensity" type="xs:string"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="medDensityUnits" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+      <element name="medVol" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+      <element name="medFormat" type="xs:string"
+               minOccurs="0" maxOccurs="unbounded" />
+      <element name="medNote" type="xs:string"
+               minOccurs="0" maxOccurs="1" />
+    </sequence>
+  </complexType>
+  
+</xs:schema>

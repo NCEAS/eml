@@ -1,0 +1,42 @@
+<!ENTITY % resParty SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/iso-party.dtd">
+%resParty;
+
+<!ELEMENT eml-distribution (format+, distributor*, digitalTransfer*)>
+
+<!ELEMENT format (formatName+, formatVersion+, amendmentNumber*, formatSpec*,
+                      compressionType*, distributionFormat*)>
+<!ELEMENT formatName (#PCDATA)>
+<!ELEMENT formatVersion (#PCDATA)>
+<!ELEMENT amendmentNumber (#PCDATA)>
+<!ELEMENT formatSpec (#PCDATA)>
+<!ELEMENT compressionType (#PCDATA)>
+<!ELEMENT distributionFormat (distributor)>
+
+<!ELEMENT distributor (contact+, orderProcess*, distributorFormat*)>
+<!ELEMENT contact ((%responsibleParty;))>
+<!ELEMENT orderProcess (standardOrderProcess)>
+<!ELEMENT distributorFormat (format)>
+
+
+<!ELEMENT standardOrderProcess (fees*, dateTimeAvailable*, 
+                                orderingInstructions*, turnaround*)>
+<!ELEMENT fees (#PCDATA)>
+<!ELEMENT dateTimeAvailable (#PCDATA)> <!-- date/time -->
+<!ELEMENT orderingInstructions (#PCDATA)>
+<!ELEMENT turnaround (#PCDATA)>
+
+<!ELEMENT digitalTransfer (distributionUnits?, transferSize?, onLine*, 
+                           offLineResource?)>
+<!ELEMENT distributionUnits (#PCDATA)>
+<!ELEMENT transferSize (#PCDATA)>
+<!ELEMENT onLine (onlineResource)> <!-- from iso-party.dtd -->
+<!ELEMENT offLineResource (medium)>
+
+<!ELEMENT medium (medNameCode?, medDensity*, medDensityUnits?, medVol?, medFormat*,
+                  medNote?)>
+<!ELEMENT medNameCode (#PCDATA)>
+<!ELEMENT medDensity (#PCDATA)>
+<!ELEMENT medDensityUnits (#PCDATA)>
+<!ELEMENT medVol (#PCDATA)>
+<!ELEMENT medFormat (#PCDATA)> <!-- code list from B.6.23 -->
+<!ELEMENT medNote (#PCDATA)>
