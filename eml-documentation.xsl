@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-03-26 20:22:40 $'
-  *   '$Revision: 1.11 $'
+  *       '$Date: 2001-03-26 20:57:23 $'
+  *   '$Revision: 1.12 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -120,21 +120,43 @@
                  or one with an explicit content model, act accordingly -->
             <xsl:choose>
               <xsl:when test="./@type">
-              <tr>
-              <td valign="top" class="tablepanel">
-                <!--give each attribute link to its definition -->
-                <span class="boldtext">Type:</span>
-                <xsl:text> </xsl:text>
-                <a class="sitelink">
-                  <xsl:attribute name="href">
-                    <xsl:text>#</xsl:text>
+                <tr>
+                <td valign="top" class="tablepanel">
+                  <!--give each attribute link to its definition -->
+                  <span class="boldtext">Type:</span>
+                  <xsl:text> </xsl:text>
+                  <a class="sitelink">
+                    <xsl:attribute name="href">
+                      <xsl:text>#</xsl:text>
+                      <xsl:value-of select="./@type"/>
+                    </xsl:attribute>
+                    <!-- and display the name of the attribute-->
                     <xsl:value-of select="./@type"/>
-                  </xsl:attribute>
-                  <!-- and display the name of the attribute-->
-                  <xsl:value-of select="./@type"/>
-                </a>
-              </td>
-              </tr>
+                  </a>
+                </td>
+                </tr>
+                <!-- display the attributes -->
+                <tr>
+                  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Attributes:
+                  </span>
+                  </td>
+                  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Required?:
+                  </span>
+                  </td>
+                  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Default Value:
+                  </span>
+                  </td>
+                </tr>
+                <!-- Now process the CM for the attribute children -->
+                <xsl:apply-templates 
+                     select="xs:attribute|xs:complexType/xs:attribute" 
+                     mode="contentmodel" />
               </xsl:when>
               <xsl:otherwise>
 
@@ -148,7 +170,6 @@
                       <xsl:text>#</xsl:text>
                       <xsl:value-of select="./@base"/>
                     </xsl:attribute>
-                    <!-- and display the name of the attribute-->
                     <xsl:value-of select="./@base"/>
                   </a> (by <xsl:value-of select="./@derivedBy"/>)
                 </td>
@@ -173,8 +194,7 @@
                   </span>
                   </td>
                 </tr>
-                <!-- change this into a table format -->
-                <!-- Element Name | Required? | How many -->
+                <!-- Now display the CM for the element children -->
                 <xsl:apply-templates 
                      select="xs:complexType|xs:sequence|xs:choice|xs:element" 
                      mode="contentmodel" />
@@ -197,8 +217,7 @@
                   </span>
                   </td>
                 </tr>
-                <!-- change this into a table format -->
-                <!-- Attribute Name | Required? -->
+                <!-- Now display the CM for the attribute children -->
                 <xsl:apply-templates 
                      select="xs:attribute|xs:complexType/xs:attribute" 
                      mode="contentmodel" />
