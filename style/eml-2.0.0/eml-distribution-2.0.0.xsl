@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-02 21:15:57 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
   <xsl:output method="html" encoding="iso-8859-1"
               doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
               doctype-system="http://www.w3.org/TR/html4/loose.dtd"
-              indent="yes" />  
+              indent="yes" />
 
 
 <!-- This module is for distribution and it is self-contained-->
@@ -125,11 +125,16 @@
         <xsl:text>&#160;</xsl:text>
       </td>
       <td width="{$secondColWidth}" class="{$secondColStyle}">
-         <a>
+         <xsl:if test="$withHTMLLinks='1'">
+          <a>
           <xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute>
           <xsl:attribute name="target">_blank</xsl:attribute>
           <xsl:value-of select="."/>
-        </a>
+          </a>
+         </xsl:if>
+         <xsl:if test="$withHTMLLinks='0'">
+            <xsl:value-of select="."/>
+         </xsl:if>
        </td>
     </tr>
   </xsl:template>
@@ -331,12 +336,22 @@
       <td width="{$secondColWidth}" class="{$secondColStyle}">
       <!-- for top top distribution-->
       <xsl:if test="$level='toplevel'">
-        <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/></xsl:attribute>
-        <b>Inline Data</b></a>
-      </xsl:if>
+         <xsl:if test="$withHTMLLinks='1'">
+          <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/></xsl:attribute>
+          <b>Inline Data</b></a>
+        </xsl:if>
+         <xsl:if test="$withHTMLLinks='0'">
+          <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/>
+         </xsl:if>
+       </xsl:if>
       <xsl:if test="$level='entitylevel'">
+        <xsl:if test="$withHTMLLinks='1'">
         <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;physicalindex=<xsl:value-of select="$physicalindex"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/></xsl:attribute>
         <b>Inline Data</b></a>
+        </xsl:if>
+         <xsl:if test="$withHTMLLinks='0'">
+     	  <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;physicalindex=<xsl:value-of select="$physicalindex"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/>
+         </xsl:if>
       </xsl:if>
      </td></tr>
   </xsl:template>
