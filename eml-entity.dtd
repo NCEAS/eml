@@ -7,11 +7,11 @@
         Authors: Matt Jones, Zheng Wang, and Noah Goldstein
 
      '$Author: bojilova $'
-     '$Date: 2001-02-10 00:59:08 $'
-     '$Revision: 1.1 $'
+     '$Date: 2001-02-12 22:37:40 $'
+     '$Revision: 1.2 $'
   
 -->
-<!-- This a EML DTD document that defines the structural
+<!-- EML DTD document that defines the structural
      characteristics of every entity in a dataset. -->
 
 <!-- The root element, which represents a list of entities in a dataset -->
@@ -67,7 +67,7 @@
 <!ATTLIST longitude direction (east|west) #REQUIRED>
 
 <!-- Temporal coverage -->
-<!ELEMENT temporalCoverage (startDate,stopDate?)>
+<!ENTITY % temporalCoverage "(startDate,stopDate?)">
 <!-- Date data collection commenced -->
 <!ELEMENT startDate (dateTime)>
 <!-- Date and time as designated in ISO 8601 -->

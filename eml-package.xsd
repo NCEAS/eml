@@ -14,8 +14,8 @@
          Authors: Chad Berkley
 
         '$Author: bojilova $'
-          '$Date: 2001-02-08 21:02:27 $'
-      '$Revision: 1.4 $'
+          '$Date: 2001-02-12 22:37:40 $'
+      '$Revision: 1.5 $'
        -->
     </xs:documentation>
     <xs:appInfo>
@@ -29,7 +29,7 @@
     </xs:appInfo>
   </xs:annotation>
 
-  <xs:element name="package" type="eml:Package"
+  <xs:element name="package" type="Package"
               minOccurs="1"  maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
@@ -55,7 +55,7 @@
     </xs:annotation>
   </xs:element>
  
-  <xs:complexType name = "eml:Package" content="elementOnly">
+  <xs:complexType name = "Package" content="elementOnly">
     <xs:sequence>
       <xs:element name="name" type="xs:string"
                   minOccurs="0" maxOccurs="1">
@@ -78,7 +78,7 @@
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="relation" type="eml:Relation"
+      <xs:element ref="relation"
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appInfo>
@@ -105,79 +105,81 @@
     </xs:sequence>
   </xs:complexType>
  
-  <xs:complexType name="eml:Relation" content="elementOnly">
-    <xs:sequence>
-      <xs:element name="subject" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-              Subject element
-            </tooltip>
-            <summary>
-              Subject element of the relationship.
-            </summary>
-            <description>
-              Subject is URL specifier of metadata file that is refered by other metadata
-              or data file specified in object element in the way of relationship.
-            </description>
-            <example>
-              metacat://dev.nceas.ucsb.edu?docid=nceas.57
-            </example>
-            <lineage>
-              Subject element was introduce into EML 2.0 Proposed.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="relationship" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-              Relationship type
-            </tooltip>
-            <summary>
-              The type of relationship between metadata and data file.
-            </summary>
-            <description>
-              Relationship is any descriptive word(s) that specifies the 
-              relation of the subject to the object specifier.
-            </description>
-            <example>
-              isMetadataFor, isACLFileFor, isFileMetadataFor, etc.
-            </example>
-            <lineage>
-              Relationship element was introduce into EML 2.0 Proposed.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="object" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-              Object element
-            </tooltip>
-            <summary>
-              Object element of the relationship.
-            </summary>
-            <description>
-              Object is URL specifier of metadata or data file that refers to the
-              metadata file specified in subject element in the way of relationship.
-            </description>
-            <example>
-              http://dev.nceas.ucsb.edu/berkley/testdata1.txt
-            </example>
-            <lineage>
-              Object element was introduce into EML 2.0 Proposed.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:elemeny
-    </xs:sequence>
-  </xs:complexType>
+  <xs:element name="relation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="subject" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Subject element
+              </tooltip>
+              <summary>
+                Subject element of the relationship.
+              </summary>
+              <description>
+                Subject is URL specifier of metadata file that is refered by other metadata
+                or data file specified in object element in the way of relationship.
+              </description>
+              <example>
+                metacat://dev.nceas.ucsb.edu?docid=nceas.57
+              </example>
+              <lineage>
+                Subject element was introduce into EML 2.0 Proposed.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="relationship" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Relationship type
+              </tooltip>
+              <summary>
+                The type of relationship between metadata and data file.
+              </summary>
+              <description>
+                Relationship is any descriptive word(s) that specifies the 
+                relation of the subject to the object specifier.
+              </description>
+              <example>
+                isMetadataFor, isACLFileFor, isFileMetadataFor, etc.
+              </example>
+              <lineage>
+                Relationship element was introduce into EML 2.0 Proposed.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="object" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Object element
+              </tooltip>
+              <summary>
+                Object element of the relationship.
+              </summary>
+              <description>
+                Object is URL specifier of metadata or data file that refers to the
+                metadata file specified in subject element in the way of relationship.
+              </description>
+              <example>
+                http://dev.nceas.ucsb.edu/berkley/testdata1.txt
+              </example>
+              <lineage>
+                Object element was introduce into EML 2.0 Proposed.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
              
 </xs:schema>
 

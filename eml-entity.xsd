@@ -14,8 +14,8 @@
         Authors: Matt Jones, Zheng Wang, and Noah Goldstein
 
        '$Author: bojilova $'
-         '$Date: 2001-02-10 00:59:08 $'
-     '$Revision: 1.1 $'
+         '$Date: 2001-02-12 22:37:40 $'
+     '$Revision: 1.2 $'
       -->
     </xs:documentation>
     <xs:appInfo>
@@ -83,7 +83,7 @@
                     minOccurs="0" maxOccurs="1"/>
         <xs:element ref="geographicCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element ref="temporalCoverage"
+        <xs:element name="temporalCoverage" type="TemporalCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>	
         <xs:element name="authentication" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded"/>	
@@ -194,16 +194,14 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="temporalCoverage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="startDate"
-                    minOccurs="1" maxOccurs="1"/>	
-        <xs:element ref="stopDate"
-                    minOccurs="0" maxOccurs="1"/>	
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="TemporalCoverage">
+    <xs:sequence>
+      <xs:element ref="startDate"
+                  minOccurs="1" maxOccurs="1"/>	
+      <xs:element ref="stopDate"
+                  minOccurs="0" maxOccurs="1"/>	
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:element name="startDate">
     <xs:complexType>
