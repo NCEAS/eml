@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-05-08 19:55:05 $'
-  *  '$Revision: 1.15 $'
+  *      '$Date: 2002-05-15 21:08:11 $'
+  *  '$Revision: 1.16 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -48,7 +48,7 @@
   <target name="docs" depends="init">
     <mkdir dir="${build.docs}"/>
     <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl" 
-           includes="*.xsd" excludes="eml-documentation.xsd" processor="xalan"/>
+           includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
     <copy todir="${build.docs}" filtering="no">
       <fileset dir=".">
         <include name="default.css"/>
