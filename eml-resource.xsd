@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:resource" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns="eml:resource" elementFormDefault="unqualified" attributeFormDefault="unqualified">
-  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:resource" 
+           xmlns:doc="eml:documentation" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:rp="eml:ResponsibleParty" 
+           xmlns="eml:resource" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation" schemaLocation="/home/berkley/mdstandards/eml/eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -8,9 +14,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-11-30 01:40:08 $'
-      '$Revision: 1.25 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-14 16:57:21 $'
+      '$Revision: 1.26 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,7 +44,8 @@
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+  <xs:import namespace="eml:ResponsibleParty" 
+             schemaLocation="/home/berkley/mdstandards/eml/eml-party.xsd"/>
   <!-- this is the base type that the other resource types extend -->
   <xs:complexType name="ResourceBase">
     <xs:annotation>
@@ -82,7 +89,7 @@
               identifiers can be listed corresponding to different catalog
               systems.
             </doc:description>
-            <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+            
             <doc:lineage>
               The 'identifier' field is derived from the eml-dataset 
               meta_file_id filed in EML 1.4.
@@ -110,8 +117,8 @@
                   can or should this be a URI/URL pointing to the catalog
                   system, or just the name?
                 </doc:description>
-                    <doc:example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                    <doc:example>
+                    </doc:example>
                     <doc:lineage>
                   New to EML 2.0.
                 </doc:lineage>

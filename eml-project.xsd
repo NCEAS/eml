@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xs:schema targetNamespace="eml:project" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pro="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns:cov="eml:coverage" xmlns:cit="eml:literature" xmlns="eml:project">
-  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+  <xs:import namespace="eml:documentation" schemaLocation="/home/berkley/mdstandards/eml/eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-project.xsd,v $'
@@ -8,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-31 21:57:39 $'
-      '$Revision: 1.21 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-14 16:57:21 $'
+      '$Revision: 1.22 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,10 +34,10 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
-  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
-  <xs:import namespace="eml:literature" schemaLocation="./eml-literature.xsd"/>
-  <xs:import namespace="eml:protocol" schemaLocation="./eml-protocol.xsd"/>
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="/home/berkley/mdstandards/eml/eml-party.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="/home/berkley/mdstandards/eml/eml-coverage.xsd"/>
+  <xs:import namespace="eml:literature" schemaLocation="/home/berkley/mdstandards/eml/eml-literature.xsd"/>
+  <xs:import namespace="eml:protocol" schemaLocation="/home/berkley/mdstandards/eml/eml-protocol.xsd"/>
   <xs:element name="eml-project">
     <xs:annotation>
       <xs:appinfo>

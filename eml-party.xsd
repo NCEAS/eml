@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xs:schema targetNamespace="eml:ResponsibleParty" xmlns="eml:ResponsibleParty" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+             schemaLocation="/home/berkley/mdstandards/eml/eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-party.xsd,v $'
@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-31 16:24:36 $'
-      '$Revision: 1.5 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-14 16:57:21 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -209,8 +209,7 @@
                   of type "voice", but other possibilities include
                   "facsimile" and "tdd".
                 </doc:description>
-                    <doc:example><![CDATA[
-                  <phone phonetype="voice">805-892-2500</phone>]]></doc:example>
+                    <doc:example></doc:example>
                     <doc:lineage>
                   Derived from NBII and related standards.
                 </doc:lineage>

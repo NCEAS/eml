@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-13 08:16:35 $'
-      '$Revision: 1.19 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-14 16:57:21 $'
+      '$Revision: 1.20 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -1254,7 +1254,20 @@
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="cntinfo"/>
+                  <xs:element name="cntinfo">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Identifier </doc:tooltip>
+                        <doc:summary/>
+                        <doc:description>
+                          Information about the individual(s) responsible for the 
+                          identification(s) of the specimens or sightings, etc. 
+                        </doc:description>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1344,7 +1357,7 @@
                     </xs:annotation>
                     <xs:complexType>
                       <xs:sequence>
-                        <xs:element name="cntinfo"/>
+                        <xs:element name="cntinfo"></xs:element>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -1477,7 +1490,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="taxoncl" minOccurs="0" maxOccurs="unbounded"/>
+        <!--<xs:element ref="taxoncl" minOccurs="0" maxOccurs="unbounded"/>-->
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,67 +1,22 @@
-<!--
-       '$RCSfile: eml-attribute.dtd,v $'
-       Copyright: 2000 Regents of the University of California and the
-                  National Center for Ecological Analysis and Synthesis
-     For Details: http://knb.ecoinformatics.org/
-
-        '$Author: jones $'
-          '$Date: 2001-12-11 04:17:42 $'
-      '$Revision: 1.11 $'
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
--->
-<!-- EML DTD document that defines the
-     characteristics of all attributes in a dataset. -->
-<!-- The root element, which represents a list of attributes in a dataset -->
-<!ELEMENT eml-attribute (identifier, attribute+)>
-<!-- File identifier of the metadata document -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT eml-attribute (identifier+, attribute+)>
 <!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier
-  system CDATA #IMPLIED
->
-<!-- Attribute element is a descriptor of an attribute in the dataset
-     identified by its name. -->
-<!ELEMENT attribute (attributeName, attributeLabel*, attributeDefinition, unit?,
-                     dataType?, attributeDomain, missingValueCode*, precision?)>
-<!-- Attribute name -->
+<!ATTLIST identifier system CDATA #IMPLIED>
+<!ELEMENT attribute (attributeName, attributeLabel*, attributeDefinition, unit?, dataType?, attributeDomain, missingValueCode*, precision?)>
 <!ELEMENT attributeName (#PCDATA)>
-<!-- Attribute label -->
 <!ELEMENT attributeLabel (#PCDATA)>
-<!-- Precise definition of attributes in data set -->
 <!ELEMENT attributeDefinition (#PCDATA)>
-<!-- Unit -->
 <!ELEMENT unit (#PCDATA)>
-<!-- data type; Integer, floating point, character, string -->
 <!ELEMENT dataType (#PCDATA)>
-<!-- Domain of the attribute -->
-<!ELEMENT attributeDomain ((enumeratedDomain | textDomain)+ | numericDomain+ )>
-<!-- Description of any codes associated with attributes -->
+<!ELEMENT attributeDomain ((enumeratedDomain | textDomain)+ | numericDomain+)>
+<!ELEMENT missingValueCode (#PCDATA)>
+<!ELEMENT precision (#PCDATA)>
 <!ELEMENT enumeratedDomain (code, definition, source?)>
-<!ELEMENT code (#PCDATA)>
-<!-- List and definition of attribute codes -->
-<!ELEMENT definition (#PCDATA)>
-<!-- Source of attribute codes -->
-<!ELEMENT source (#PCDATA)>
 <!ELEMENT textDomain (definition, pattern*, source?)>
-<!ELEMENT pattern (#PCDATA)>
-<!-- Range for numeric values -->
 <!ELEMENT numericDomain (minimum?, maximum?)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT definition (#PCDATA)>
+<!ELEMENT source (#PCDATA)>
+<!ELEMENT pattern (#PCDATA)>
 <!ELEMENT minimum (#PCDATA)>
 <!ELEMENT maximum (#PCDATA)>
-<!-- Character used to represent missing data -->
-<!ELEMENT missingValueCode (#PCDATA)>
-<!-- Precision; number of significant digits -->
-<!ELEMENT precision (#PCDATA)>
-<!-- End of file -->
