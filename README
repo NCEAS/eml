@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-07-23 07:47:48 $'
-#   '$Revision: 1.8 $'
+#       '$Date: 2001-07-23 08:01:36 $'
+#   '$Revision: 1.9 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,8 +69,11 @@ Methods and QA/QC            eml-protocol.[xsd,dtd]
 Basic resource info          eml-resource.[xsd,dtd]
 Software info                eml-software.[xsd,dtd]
 
-Please see the docs/index.html directory for a detailed description of each of
-the modules.
+Please see the docs/index.html directory for a detailed description 
+of each of the modules.
+
+Also included is a schema for supporting documentation:
+Schema documentation info    eml-documentation.xsd
 
 The above files are a part of the proposed release of EML 2.0.  
 This release of EML can be retrieved from CVS using the 
@@ -78,3 +81,14 @@ tag "RELEASE_EML_2_BETA_3".  Previous versions of EML (such as 1.4)
 are available from this repository using the
 appropriate release tag (i.e. RELEASE_EML_1_4).
 
+KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
+-----------------------------------------------------------
+1) eml-distribution needs to be revisited and the DTD does not 
+   match the schema docs.
+2) Multiline records supported sufficiently in eml-physical?
+3) Less granularity in eml-project (nix climate, hydrology, etc)?
+4) Check if eml-coverage uses eml-literature rather than citeinfo?
+5) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
+6) Overlap between eml-physical and eml-distribution (eg, compression)
+   Possibly eliminate eml-distribution (Bug 174)
+7) Should eml-project extend ResourceBase? several fields overlap...
