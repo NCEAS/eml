@@ -34,8 +34,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 18:33:45 $'
-      '$Revision: 1.69 $'
+          '$Date: 2002-10-04 18:36:09 $'
+      '$Revision: 1.70 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,6 +71,13 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             and
             2) 'attributeList' is used to define a discreet list of attributes.
           </para>
+          <para>
+              The eml-attribute module, like other modules, may be
+              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              allows an attribute document to be described once, and then
+              used as a reference in other locations within the EML document
+              via it's ID.
+            </para>
         </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>any dataset that uses dataTable, spatialRaster,
