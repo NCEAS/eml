@@ -3,9 +3,9 @@
 #               National Center for Ecological Analysis and Synthesis
 #  For Details: http://knb.ecoinformatics.org/
 #
-#     '$Author: cjones $'
-#       '$Date: 2002-01-31 06:26:41 $'
-#   '$Revision: 1.13 $'
+#     '$Author: berkley $'
+#       '$Date: 2002-04-20 03:47:44 $'
+#   '$Revision: 1.14 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.0beta6
+Version: 2.0.0beta7
 
 Feedback and bugs to: knb-software@nceas.ucsb.edu
                       http://bugzilla.ecoinformatics.org
@@ -38,6 +38,7 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Peter McCartney (peter.mccartney@asu.edu)
               Mark Schildhauer (schild@nceas.ucsb.edu)
               John Harris (harris@nceas.ucsb.edu)
+              Matthew Brooke (brooke@nceas.ucsb.edu)
               Noah Goldstein
               Zheng Wang
 
@@ -87,18 +88,29 @@ A number of issues still need to be worked out before the final
 version 2 release, but this version has now stabiized and we expect
 only minor modifications between this version and the final version 2
 release.  This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_BETA_6".  Previous versions of EML (such as 1.4) 
+tag "RELEASE_EML_2_BETA_7".  Previous versions of EML (such as 1.4) 
 are available from this repository using the appropriate release tag 
 (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) Multiline records supported sufficiently in eml-physical?
-2) Check if eml-coverage uses eml-literature rather than citeinfo?
-3) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
-4) Should eml-project extend ResourceBase? several fields overlap...
-5) The "identifier" element may need to be decomposed into finer grains
-6) Need to resolve complete semantics of "triple" elements in eml-resource
+1) Need to add support for semantic metadata (bug 277)
+2) Need formal definitions for responsible party roles (bug 336)
+3) Need to find a way to store nominal, ordinal, interval and ratio
+   attributes in a meaningful way (bug 337)
+4) Complete work on the XSLT stylesheets.  Most are done but there
+   are still a few missing.  Also need to figure out how to import
+   stylesheets so that templates are not rewritten for each 
+   module (bug 249)
+5) need lineage and versioning standard (bug 144)
+
+ADDITIONS AND IMPROVEMENTS
+--------------------------
+1) Added a 'style' subdirectory with a style sheet for most modules
+   to translate the metadata to HTML
+2) Changed names of coverage elements to be human readable
+3) Updated the namespaces to reflect the current version number of EML
+4) Numerous bug fixes (see bugzilla.ecoinformatics.org)
 
 Legalese
 --------
