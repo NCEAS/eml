@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-28 19:28:05 $'
-      '$Revision: 1.77 $'
+          '$Date: 2002-10-29 17:34:43 $'
+      '$Revision: 1.78 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -215,62 +215,6 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="unit">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Unit of measurement</doc:tooltip>
-              <doc:summary>Unit of measurement for data in the
-              field</doc:summary>
-              <doc:description>This field identifies the unit of measurement
-              for this attribute. It is a choice of either a standard SI unit,
-              or a custom unit. If it is a custom unit, the definition of the
-              unit must be provided in the document using the STMML syntax, and
-              the name provided in the customUnit element must reference the id
-              of its associated STMML definition precisely. For further
-              information on STMML (http://www.xml-cml.org/stmml/) or see
-              stmml.xsd which is included with the EML 2.0 distribution for
-              details.</doc:description>
-
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:choice>
-              <xs:element name="standardUnit" type="unitDictionary" default="undefined">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Standard Unit</doc:tooltip>
-                    <doc:summary>The name of a standard unit used to make this
-                    measurement</doc:summary>
-                    <doc:description>The standardUnit element is the name of
-                    the standard unit used in making this measurement. The name
-                    must be one of the values defined in the unitDictionary.
-                    These are the major SI units and some commonly used units
-                    outside of SI. See the STMML definition of each unit that
-                    ships with EML for more information.</doc:description>
-                    <doc:example>meter</doc:example>
-
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="customUnit">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Custom Unit</doc:tooltip>
-                    <doc:summary>The name of a custom unit that is not part of
-                    the standard list provided with EML.</doc:summary>
-                    <doc:description>An entry in the customUnit element is the
-                    name of a custom unit that is not part of the standard list
-                    provided with EML. The unit must correspond to an id in the
-                    document where that definition is provided using the STMML
-                    syntax. The customUnit definition will most likely be in
-                    the additionalMetadata section.</doc:description>
-
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:choice>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="storageType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -337,508 +281,124 @@
               <doc:description>The measurementScale element indicates the
               type of scale from which values are drawn for the
               attribute. This provides information about the scale in
-              which the data was collected. The allowed values are 'ratio',
-              'ordinal', 'nominal' and 'interval'. For example, most character
-              strings would be nominal.</doc:description>
-              <doc:example>nominal</doc:example>
-              <doc:example>ratio</doc:example>
-              <doc:example>ordinal</doc:example>
-              <doc:example>interval</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="ratio"/>
-              <xs:enumeration value="nominal"/>
-              <xs:enumeration value="ordinal"/>
-              <xs:enumeration value="interval"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-        <xs:element name="attributeDomain" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>attribute domain</doc:tooltip>
-              <doc:summary/>
-              <doc:description>The attributeDomain field describes the domain
-              of the attribute being documented.  It can describe three
-              different types of domains: enumerated, text and numeric.  This
-              is an important field for post processing and error checking
-              of the dataset. It represents a formal specification of the
-              value space for the attribute, and so there should never be
-              a value for the attribute that falls outside of the set of
-              values prescribed by the attributeDomain.  For example, if a
-              numeric attribute has a domain with a minimum value of 7,
-              there should be no values less that 7 in the data for
-              that attribute. However, note thatthe observed range of data
-              values might be smaller than the domain (i.e., values that are
-              possible in terms of the domain will not always be observed in
-              the actual data).</doc:description>
+              which the data was collected.</doc:description>
+              <doc:example>nominal is used when numbers have only been assigned
+              to a variable for the purpose of categorizing the
+              variable.  An example of a nominal scale is assigning the
+              number 1 for male and 2 for female.</doc:example>
+              <doc:example>ordinal is used when the categories have a logical
+              or ordered relationship to each other. These types of scale
+              permit the measurement of degrees of difference, but not the
+              specific amount of difference. An example of an ordinal
+              scale is a categorical survey where you rank a variable
+              1=good, 2=fair, 3=poor.</doc:example>
+              <doc:example>interval is used for data which consist of
+              equidistant points on a scale. The Fahrenheit scale is an interval
+              scale, since each degree is equal but there is no absolute
+              zero point.</doc:example>
+              <doc:example>ratio is used for data which consists not only of
+              equidistant points but also has a meaningful zero
+              point. An example of a ratio scale would be for age categories
+              like 0-10, 11-20, 21-30, etc.</doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:choice>
-              <xs:choice>
-                <xs:element name="enumeratedDomain">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Enumerated domain</doc:tooltip>
-                      <doc:summary>Description of any coded values associated
-                      with the attribute.</doc:summary>
-                      <doc:description>The enumeratedDomain element describes
-                      any code that is used as a value of an attribute. These
-                      codes can be defined here in the metadata as a list with
-                      definitions (preferred), can be referenced by pointing to
-                      an external citation or URL where the codes are defined,
-                      or can be referenced by pointing at an entity that contains
-                      the code value and code definition as two attributes. For
-                      example, data might have a variable named 'site' with
-                      values 'A', 'B', and 'C', and the enumeratedDomain would
-                      explain how to interpret those codes.
-                      </doc:description>
+              <xs:element name="nominal">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>nominal scale</doc:tooltip>
+                    <doc:description>This field is used for defining the
+                    characteristics of this variable if it is a
+                    nominal scale variable.</doc:description>
+                    <doc:example>nominal is used when numbers have only been
+                    assigned to a variable for the purpose of categorizing the
+                    variable.  An example of a nominal scale is assigning the
+                    number 1 for male and 2 for female.</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"
+                      minOccurs="1" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
 
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:choice>
-                      <xs:element name="codeList">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Code List</doc:tooltip>
-                            <doc:summary>A list of codes and their
-                            definitions</doc:summary>
-                            <doc:description>The codeList element contains a list
-                            of codes and their definitions.</doc:description>
-                            <doc:example>
-                            &lt;codeList&gt;
-                              &lt;code&gt;1&lt;/code&gt;
-                              &lt;definition&gt;high viscosity&lt;/definition&gt;
-                              &lt;code&gt;2&lt;/code&gt;
-                              &lt;definition&gt;low viscosity&lt;/definition&gt;
-                            &lt;/codeList&gt;
-                            </doc:example>
+              <xs:element name="ordinal">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>ordinal scale</doc:tooltip>
+                    <doc:description>This field is used for defining the
+                    characteristics of this variable if it is an
+                    ordinal scale variable.</doc:description>
+                    <doc:example>nominal is used when numbers have only been
+                    assigned to a variable for the purpose of categorizing the
+                    variable.  An example of a nominal scale is assigning the
+                    number 1 for male and 2 for female.</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"
+                      minOccurs="1" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
 
-                          </xs:appinfo>
-                        </xs:annotation>
-                        <xs:complexType>
-                          <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="code" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Code</doc:tooltip>
-                                  <doc:summary>Code associated with the
-                                  attribute</doc:summary>
-                                  <doc:description>The code element specifies a
-                                  code associated with the
-                                  attribute.</doc:description>
-                                  <doc:example>1</doc:example>
+              <xs:element name="interval">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>interval scale</doc:tooltip>
+                    <doc:description>This field is used for defining the
+                    characteristics of this variable if it is an
+                    interval scale variable.</doc:description>
+                    <doc:example>interval is used for data which consist of
+                    equidistant points on a scale. The Fahrenheit scale
+                    is an interval scale, since each degree is equal but
+                    there is no absolute zero point.</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="unit" type="UnitType" minOccurs="1"/>
+                    <xs:element name="precision" type="PrecisionType"
+                      minOccurs="1"/>
+                    <xs:element name="numericDomain" type="NumericDomainType"
+                      minOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
 
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:element name="definition" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Code definition</doc:tooltip>
-                                  <doc:summary>Description of the code associated
-                                  with the attribute.</doc:summary>
-                                  <doc:description>The definition describes the
-                                  code associated with the
-                                  attribute.</doc:description>
-                                  <doc:example>high viscosity</doc:example>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:element name="source" type="xs:string" minOccurs="0">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Source of code</doc:tooltip>
-                                  <doc:summary>The name of the source for this
-                                  code and its definition</doc:summary>
-                                  <doc:description>The source element is the name
-                                  of the source from which this code and its
-                                  associated definition are drawn. This is
-                                  commonly used for identifying standard coding
-                                  systems, like the FIPS standard for postal
-                                  abbreviations for states in the US. In other
-                                  cases, the coding may be the researcher's
-                                  customized way of recording and classifying
-                                  their data, and no external "source" would
-                                  exist.</doc:description>
-                                  <doc:example>ISO country codes</doc:example>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                          </xs:sequence>
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="externalCodeSet">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>External code set</doc:tooltip>
-                            <doc:summary>A reference to an externally defined set
-                            of codes used in this attribute</doc:summary>
-                            <doc:description>The externalCodeSet element is a
-                            reference to an externally defined set of codes used
-                            in this attribute. This can either be a citation
-                            (using the eml-citation module) or a
-                            URL. Using an externally defined codeset (rather
-                            than a codeList means that interpretation of the
-                            data is dependent upon future users being able to
-                            obtain the code definitions, so care should be taken
-                            to only use higly standardized external code sets that
-                            will be available for many years.  If at all possible,
-                            it is preferable to define the codes inline using the
-                            codeList element.</doc:description>
-
-                          </xs:appinfo>
-                        </xs:annotation>
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="codesetName" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Code Set Name</doc:tooltip>
-                                  <doc:summary>The name of an externally defined
-                                  code set</doc:summary>
-                                  <doc:description>The codesetName element is the
-                                  name of an externally defined code
-                                  set.</doc:description>
-                                  <doc:example>FIPS State Abbreviation
-                                  Codes</doc:example>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:choice maxOccurs="unbounded">
-                              <xs:element name="citation" type="cit:CitationType">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Citation</doc:tooltip>
-                                    <doc:summary>A citation for the code set
-                                    reference</doc:summary>
-                                    <doc:description>The citation element is a
-                                    citation for the code set
-                                    reference</doc:description>
-
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                              <xs:element name="codesetURL" type="xs:anyURI">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Code set URL</doc:tooltip>
-                                    <doc:summary>A URL for the code set
-                                    reference</doc:summary>
-                                    <doc:description>The codesetURL element is a
-                                    URL for the code set
-                                    reference.</doc:description>
-
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                            </xs:choice>
-                          </xs:sequence>
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="entityCodeList">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Entity Code List</doc:tooltip>
-                            <doc:summary>A code list that is defined in a data
-                            table</doc:summary>
-                            <doc:description>The entityCodeList is a list of
-                            codes and their definitions in a data
-                            entity.</doc:description>
-
-                          </xs:appinfo>
-                        </xs:annotation>
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="entityReference" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Entity Reference</doc:tooltip>
-                                  <doc:summary>A reference to the id of the
-                                  entity in which the code list has been
-                                  defined</doc:summary>
-                                  <doc:description>The entityReference element is
-                                  a reference to the id of the entity in which
-                                  the code list has been defined. This entity
-                                  must have been defined elsewhere in the
-                                  metadata and have an id that matches the value
-                                  of this element.</doc:description>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:element name="valueAttributeReference" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Value Attribute
-                                  Reference</doc:tooltip>
-                                  <doc:summary>A reference to the id of the
-                                  attrribute that contains the list of
-                                  codes</doc:summary>
-                                  <doc:description>The valueAttributeReference
-                                  element is a reference to the id of the
-                                  attribute that contains the list of codes. This
-                                  attribute must have been defined elsewhere in
-                                  the metadata and have an id that matches the
-                                  value of this element.</doc:description>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:element name="definitionAttributeReference" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Definition Attribute
-                                  Reference</doc:tooltip>
-                                  <doc:summary>A reference to the id of the
-                                  attrribute that contains the definition of
-                                  codes</doc:summary>
-                                  <doc:description>The
-                                  definitionAttributeReference element is a
-                                  reference to the id of the attribute that
-                                  contains the definition of codes. This
-                                  attribute must have been defined elsewhere in
-                                  the metadata and have an id that matches the
-                                  value of this element.</doc:description>
-
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                          </xs:sequence>
-                        </xs:complexType>
-                      </xs:element>
-                    </xs:choice>
-                    <xs:attribute name="enforced" default="yes">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Enforced Domain</doc:tooltip>
-                          <doc:summary>Indicates whether the enumerated
-                          domain values enforced.</doc:summary>
-                          <doc:description>Indicates whether the enumerated
-                          domain values are the only allowable values for
-                          the domain.  In some exceedingly rare cases, users may
-                          wish to present a list of value codes in
-                          enumeratedDomain but not formally restrict the value
-                          space for the attribute to those values.  If so, they
-                          can indicate this by setting the enforced attribute
-                          to the value no.  Acceptable values are yes and no, and
-                          the default value is yes.
-                          </doc:description>
-
-                        </xs:appinfo>
-                      </xs:annotation>
-                      <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                          <xs:enumeration value="yes"/>
-                          <xs:enumeration value="no"/>
-                        </xs:restriction>
-                      </xs:simpleType>
-                    </xs:attribute>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="textDomain">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Text domain</doc:tooltip>
-                      <doc:summary>Description of a free-text domain pattern for
-                      the attribute</doc:summary>
-                      <doc:description>The textDomain element describes a free
-                      text domain for the attribute. By default, if a pattern is
-                      missing or empty, then any text is allowed. If a pattern is
-                      present, then it is interpreted as a regular expression
-                      constraining the allowable character sequences for the
-                      attribute. This domain type is most useful for describing
-                      extensive text domains that match a pattern but do not
-                      have a finite set of values.  Another use is for
-                      describing the domain of textual fields like comments
-                      that allow any legal string value.</doc:description>
-                      <doc:example>Typically, a textdomain will have an empty
-                      pattern or one that constrains allowable values. For
-                      example, '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows for only
-                      numeric digits in the pattern of a US phone
-                      number.</doc:example>
-
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="definition" type="xs:string">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Text domain definition</doc:tooltip>
-                            <doc:summary>Definition of what this text domain
-                            represents</doc:summary>
-                            <doc:description>The element definition provides the
-                            text domain definition, that is, what kinds of text
-                            expressions are allowed for this attribute. If there
-                            is a pattern supplied, the definition element
-                            expresses the meaning of the pattern, For example, a
-                            particular pattern may be meant to represent phone
-                            numbers in the US phone system format. A definition
-                            element may also be used to extend an enumerated
-                            domain.</doc:description>
-                            <doc:example>US telephone numbers in the format
-                            "(999) 888-7777"</doc:example>
-
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="pattern" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Text pattern</doc:tooltip>
-                            <doc:summary>Regular expression pattern constraining
-                            the attribute</doc:summary>
-                            <doc:description>The pattern element specifies a
-                            regular expression pattern that constrains the set of
-                            allowable values for the attribute. This is commonly
-                            used to define template patterns for data such as
-                            phone numbers where the attribute is text but the
-                            values are not drawn from an enumeration. If the
-                            pattern field is empty or missing, it defaults to
-                            '.*', which matches any string, including the empty
-                            string. Repeated pattern elements are combined using
-                            logical OR. The regular expression syntax is the same
-                            as that used in the XML Schema Datatypes
-                            Recommendation from the W3C.</doc:description>
-                            <doc:example>'[0-9a-zA-Z]' matches simple
-                            alphanumeric strings and '(\d\d\d) \d\d\d-\d\d\d\d'
-                            represents telephone strings in the US of the form
-                            '(704) 876-1734'</doc:example>
-
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:element name="source" type="xs:string" minOccurs="0">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Source of text domain</doc:tooltip>
-                            <doc:summary>The name of the source for this text
-                            domain.</doc:summary>
-                            <doc:description>The source element is the name of
-                            the source from which this text domain and its
-                            associated definition are drawn. This is commonly
-                            used for identifying standard coding systems, like
-                            the FIPS standard for postal abbreviations for states
-                            in the US. In other cases, the coding may be a
-                            researcher's custom way of recording and classifying
-                            their data, and no external "source" would
-                            exist.</doc:description>
-                            <doc:example>ISO country codes</doc:example>
-
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                    </xs:sequence>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="numericDomain" maxOccurs="unbounded">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Numeric Domain</doc:tooltip>
-                      <doc:summary>Numeric domain of attribute specifying allowed
-                      values.</doc:summary>
-                      <doc:description>The numericDomain element specifies the
-                      minimum and maximum values of a numeric attribute. These
-                      are theoretical or permitted values (ie. prescriptive), and
-                      not necessarily the actual minimum and maximum observed in
-                      a given data set (descriptive). The informationin
-                      numericDomain and in precision together constitutes
-                      sufficient information to decide upon an appropriate
-                      system specific data type for representing a particular
-                      attribute. For example, an attribute with a numeric domain
-                      from 0-50,000 and a precision of 1 could be represented in
-                      the C language using a 'long' value, but if the precision is
-                      changed to '0.5' then a 'float' type would be needed.
-                      </doc:description>
-
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="numberType" type="NumberType">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>number type</doc:tooltip>
-                            <doc:documentation>The type of number recorded in
-                            this attribute.  Values can be 'whole', 'natural',
-                            'integer' or 'real'.</doc:documentation>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
-                      <xs:choice minOccurs="0" maxOccurs="1">
-                        <xs:element name="minimum" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Minimum numeric range</doc:tooltip>
-                              <doc:summary>Minimum numeric range of
-                              attribute</doc:summary>
-                              <doc:description>The minimum element specifies the
-                              minimum value range of numeric
-                              attribute.</doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="minimumExclusive" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Exclusive Minimum numeric range
-                              </doc:tooltip>
-                              <doc:summary>Exclusive Minimum numeric range of
-                              attribute</doc:summary>
-                              <doc:description>The minimumExclusive element
-                              specifies the minimum value range of numeric
-                              attribute excluding the given value.
-                              </doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:choice>
-                      <xs:choice minOccurs="0" maxOccurs="1">
-                        <xs:element name="maximum" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Maximum numeric range</doc:tooltip>
-                              <doc:summary>Maximum numeric range of
-                              attribute</doc:summary>
-                              <doc:description>The maximum element specifies the
-                              maximum value range of a numeric
-                              attribute.</doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="maximumExclusive" type="xs:string" >
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Maximum exclusive numeric
-                              range</doc:tooltip>
-                              <doc:summary>Maximum exclusive numeric range of
-                              attribute</doc:summary>
-                              <doc:description>The maximumExclusive element
-                              specifies the maximum value range of a numeric
-                              attribute excluding the given
-                              value.</doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:choice>
-                    </xs:sequence>
-                  </xs:complexType>
-                </xs:element>
-              </xs:choice>
-
-              <xs:element name="references" type="xs:string"/>
+              <xs:element name="ratio">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>ratio scale</doc:tooltip>
+                    <doc:description>This field is used for defining the
+                    characteristics of this variable if it is a
+                    ratio scale variable.</doc:description>
+                    <doc:example>ratio is used for data which consists not
+                    only of equidistant points but also has a meaningful zero
+                    point. An example of a ratio scale would be for age
+                    categories like 0-10, 11-20, 21-30, etc.</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="unit" type="UnitType" minOccurs="1"/>
+                    <xs:element name="precision" type="PrecisionType"
+                      minOccurs="1"/>
+                    <xs:element name="numericDomain" type="NumericDomainType"
+                      minOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
             </xs:choice>
-            <xs:attribute name="id" type="res:IDType" use="optional"/>
           </xs:complexType>
         </xs:element>
+
+
+
         <xs:element name="missingValueCode" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -898,23 +458,6 @@
               </xs:element>
             </xs:sequence>
           </xs:complexType>
-        </xs:element>
-        <xs:element name="precision" type="xs:float" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Precision</doc:tooltip>
-              <doc:summary>The precision of the measurement.</doc:summary>
-              <doc:description>The precision element represents the precision
-              of the measurement, in the same unit as the measurement. For
-              example, for an attribute with unit "meter", a precision of "0.1"
-              would be interpreted as precise to the nearest 1/10th of a
-              meter.</doc:description>
-              <doc:example>0.1</doc:example>
-              <doc:example>0.5</doc:example>
-              <doc:example>1</doc:example>
-
-            </xs:appinfo>
-          </xs:annotation>
         </xs:element>
         <xs:element name="accuracy" type="Accuracy" minOccurs="0">
           <xs:annotation>
@@ -1051,6 +594,565 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+
+  <xs:complexType name="UnitType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Unit of measurement</doc:tooltip>
+        <doc:summary>Unit of measurement for data in the
+        field</doc:summary>
+        <doc:description>This field identifies the unit of measurement
+        for this attribute. It is a choice of either a standard SI unit,
+        or a custom unit. If it is a custom unit, the definition of the
+        unit must be provided in the document using the STMML syntax, and
+        the name provided in the customUnit element must reference the id
+        of its associated STMML definition precisely. For further
+        information on STMML (http://www.xml-cml.org/stmml/) or see
+        stmml.xsd which is included with the EML 2.0 distribution for
+        details.</doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="standardUnit" type="unitDictionary" default="undefined">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Standard Unit</doc:tooltip>
+            <doc:summary>The name of a standard unit used to make this
+            measurement</doc:summary>
+            <doc:description>The standardUnit element is the name of
+            the standard unit used in making this measurement. The name
+            must be one of the values defined in the unitDictionary.
+            These are the major SI units and some commonly used units
+            outside of SI. See the STMML definition of each unit that
+            ships with EML for more information.</doc:description>
+            <doc:example>meter</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="customUnit">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Custom Unit</doc:tooltip>
+            <doc:summary>The name of a custom unit that is not part of
+            the standard list provided with EML.</doc:summary>
+            <doc:description>An entry in the customUnit element is the
+            name of a custom unit that is not part of the standard list
+            provided with EML. The unit must correspond to an id in the
+            document where that definition is provided using the STMML
+            syntax. The customUnit definition will most likely be in
+            the additionalMetadata section.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="PrecisionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Precision</doc:tooltip>
+            <doc:summary>The precision of the measurement.</doc:summary>
+            <doc:description>The precision element represents the precision
+            of the measurement, in the same unit as the measurement. For
+            example, for an attribute with unit "meter", a precision of "0.1"
+            would be interpreted as precise to the nearest 1/10th of a
+            meter.</doc:description>
+            <doc:example>0.1</doc:example>
+            <doc:example>0.5</doc:example>
+            <doc:example>1</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="NonNumericDomainType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>attribute domain</doc:tooltip>
+        <doc:summary/>
+        <doc:description>The attributeDomain field describes the domain
+        of the attribute being documented.  It can describe three
+        different types of domains: enumerated, text and numeric.  This
+        is an important field for post processing and error checking
+        of the dataset. It represents a formal specification of the
+        value space for the attribute, and so there should never be
+        a value for the attribute that falls outside of the set of
+        values prescribed by the attributeDomain.  For example, if a
+        numeric attribute has a domain with a minimum value of 7,
+        there should be no values less that 7 in the data for
+        that attribute. However, note thatthe observed range of data
+        values might be smaller than the domain (i.e., values that are
+        possible in terms of the domain will not always be observed in
+        the actual data).</doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:choice>
+        <xs:element name="enumeratedDomain">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Enumerated domain</doc:tooltip>
+              <doc:summary>Description of any coded values associated
+              with the attribute.</doc:summary>
+              <doc:description>The enumeratedDomain element describes
+              any code that is used as a value of an attribute. These
+              codes can be defined here in the metadata as a list with
+              definitions (preferred), can be referenced by pointing to
+              an external citation or URL where the codes are defined,
+              or can be referenced by pointing at an entity that contains
+              the code value and code definition as two attributes. For
+              example, data might have a variable named 'site' with
+              values 'A', 'B', and 'C', and the enumeratedDomain would
+              explain how to interpret those codes.
+              </doc:description>
+
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="codeDefinition" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Code List</doc:tooltip>
+                    <doc:summary>A list of codes and their
+                    definitions</doc:summary>
+                    <doc:description>The codeList element contains a list
+                    of codes and their definitions.</doc:description>
+                    <doc:example>
+                    &lt;codeList&gt;
+                      &lt;code&gt;1&lt;/code&gt;
+                      &lt;definition&gt;high viscosity&lt;/definition&gt;
+                      &lt;code&gt;2&lt;/code&gt;
+                      &lt;definition&gt;low viscosity&lt;/definition&gt;
+                    &lt;/codeList&gt;
+                    </doc:example>
+
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="code" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Code</doc:tooltip>
+                          <doc:summary>Code associated with the
+                          attribute</doc:summary>
+                          <doc:description>The code element specifies a
+                          code associated with the
+                          attribute.</doc:description>
+                          <doc:example>1</doc:example>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="definition" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Code definition</doc:tooltip>
+                          <doc:summary>Description of the code associated
+                          with the attribute.</doc:summary>
+                          <doc:description>The definition describes the
+                          code associated with the
+                          attribute.</doc:description>
+                          <doc:example>high viscosity</doc:example>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="source" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Source of code</doc:tooltip>
+                          <doc:summary>The name of the source for this
+                          code and its definition</doc:summary>
+                          <doc:description>The source element is the name
+                          of the source from which this code and its
+                          associated definition are drawn. This is
+                          commonly used for identifying standard coding
+                          systems, like the FIPS standard for postal
+                          abbreviations for states in the US. In other
+                          cases, the coding may be the researcher's
+                          customized way of recording and classifying
+                          their data, and no external "source" would
+                          exist.</doc:description>
+                          <doc:example>ISO country codes</doc:example>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="externalCodeSet">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>External code set</doc:tooltip>
+                    <doc:summary>A reference to an externally defined set
+                    of codes used in this attribute</doc:summary>
+                    <doc:description>The externalCodeSet element is a
+                    reference to an externally defined set of codes used
+                    in this attribute. This can either be a citation
+                    (using the eml-citation module) or a
+                    URL. Using an externally defined codeset (rather
+                    than a codeList means that interpretation of the
+                    data is dependent upon future users being able to
+                    obtain the code definitions, so care should be taken
+                    to only use higly standardized external code sets that
+                    will be available for many years.  If at all possible,
+                    it is preferable to define the codes inline using the
+                    codeList element.</doc:description>
+
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="codesetName" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Code Set Name</doc:tooltip>
+                          <doc:summary>The name of an externally defined
+                          code set</doc:summary>
+                          <doc:description>The codesetName element is the
+                          name of an externally defined code
+                          set.</doc:description>
+                          <doc:example>FIPS State Abbreviation
+                          Codes</doc:example>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="citation" type="cit:CitationType">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Citation</doc:tooltip>
+                            <doc:summary>A citation for the code set
+                            reference</doc:summary>
+                            <doc:description>The citation element is a
+                            citation for the code set
+                            reference</doc:description>
+
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="codesetURL" type="xs:anyURI">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Code set URL</doc:tooltip>
+                            <doc:summary>A URL for the code set
+                            reference</doc:summary>
+                            <doc:description>The codesetURL element is a
+                            URL for the code set
+                            reference.</doc:description>
+
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="entityCodeList">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Entity Code List</doc:tooltip>
+                    <doc:summary>A code list that is defined in a data
+                    table</doc:summary>
+                    <doc:description>The entityCodeList is a list of
+                    codes and their definitions in a data
+                    entity.</doc:description>
+
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="entityReference" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Entity Reference</doc:tooltip>
+                          <doc:summary>A reference to the id of the
+                          entity in which the code list has been
+                          defined</doc:summary>
+                          <doc:description>The entityReference element is
+                          a reference to the id of the entity in which
+                          the code list has been defined. This entity
+                          must have been defined elsewhere in the
+                          metadata and have an id that matches the value
+                          of this element.</doc:description>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="valueAttributeReference" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Value Attribute
+                          Reference</doc:tooltip>
+                          <doc:summary>A reference to the id of the
+                          attrribute that contains the list of
+                          codes</doc:summary>
+                          <doc:description>The valueAttributeReference
+                          element is a reference to the id of the
+                          attribute that contains the list of codes. This
+                          attribute must have been defined elsewhere in
+                          the metadata and have an id that matches the
+                          value of this element.</doc:description>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="definitionAttributeReference" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Definition Attribute
+                          Reference</doc:tooltip>
+                          <doc:summary>A reference to the id of the
+                          attrribute that contains the definition of
+                          codes</doc:summary>
+                          <doc:description>The
+                          definitionAttributeReference element is a
+                          reference to the id of the attribute that
+                          contains the definition of codes. This
+                          attribute must have been defined elsewhere in
+                          the metadata and have an id that matches the
+                          value of this element.</doc:description>
+
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+            <xs:attribute name="enforced" default="yes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Enforced Domain</doc:tooltip>
+                  <doc:summary>Indicates whether the enumerated
+                  domain values enforced.</doc:summary>
+                  <doc:description>Indicates whether the enumerated
+                  domain values are the only allowable values for
+                  the domain.  In some exceedingly rare cases, users may
+                  wish to present a list of value codes in
+                  enumeratedDomain but not formally restrict the value
+                  space for the attribute to those values.  If so, they
+                  can indicate this by setting the enforced attribute
+                  to the value no.  Acceptable values are yes and no, and
+                  the default value is yes.
+                  </doc:description>
+
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="yes"/>
+                  <xs:enumeration value="no"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="textDomain">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Text domain</doc:tooltip>
+              <doc:summary>Description of a free-text domain pattern for
+              the attribute</doc:summary>
+              <doc:description>The textDomain element describes a free
+              text domain for the attribute. By default, if a pattern is
+              missing or empty, then any text is allowed. If a pattern is
+              present, then it is interpreted as a regular expression
+              constraining the allowable character sequences for the
+              attribute. This domain type is most useful for describing
+              extensive text domains that match a pattern but do not
+              have a finite set of values.  Another use is for
+              describing the domain of textual fields like comments
+              that allow any legal string value.</doc:description>
+              <doc:example>Typically, a textdomain will have an empty
+              pattern or one that constrains allowable values. For
+              example, '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows for only
+              numeric digits in the pattern of a US phone
+              number.</doc:example>
+
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="definition" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Text domain definition</doc:tooltip>
+                    <doc:summary>Definition of what this text domain
+                    represents</doc:summary>
+                    <doc:description>The element definition provides the
+                    text domain definition, that is, what kinds of text
+                    expressions are allowed for this attribute. If there
+                    is a pattern supplied, the definition element
+                    expresses the meaning of the pattern, For example, a
+                    particular pattern may be meant to represent phone
+                    numbers in the US phone system format. A definition
+                    element may also be used to extend an enumerated
+                    domain.</doc:description>
+                    <doc:example>US telephone numbers in the format
+                    "(999) 888-7777"</doc:example>
+
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="pattern" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Text pattern</doc:tooltip>
+                    <doc:summary>Regular expression pattern constraining
+                    the attribute</doc:summary>
+                    <doc:description>The pattern element specifies a
+                    regular expression pattern that constrains the set of
+                    allowable values for the attribute. This is commonly
+                    used to define template patterns for data such as
+                    phone numbers where the attribute is text but the
+                    values are not drawn from an enumeration. If the
+                    pattern field is empty or missing, it defaults to
+                    '.*', which matches any string, including the empty
+                    string. Repeated pattern elements are combined using
+                    logical OR. The regular expression syntax is the same
+                    as that used in the XML Schema Datatypes
+                    Recommendation from the W3C.</doc:description>
+                    <doc:example>'[0-9a-zA-Z]' matches simple
+                    alphanumeric strings and '(\d\d\d) \d\d\d-\d\d\d\d'
+                    represents telephone strings in the US of the form
+                    '(704) 876-1734'</doc:example>
+
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="source" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Source of text domain</doc:tooltip>
+                    <doc:summary>The name of the source for this text
+                    domain.</doc:summary>
+                    <doc:description>The source element is the name of
+                    the source from which this text domain and its
+                    associated definition are drawn. This is commonly
+                    used for identifying standard coding systems, like
+                    the FIPS standard for postal abbreviations for states
+                    in the US. In other cases, the coding may be a
+                    researcher's custom way of recording and classifying
+                    their data, and no external "source" would
+                    exist.</doc:description>
+                    <doc:example>ISO country codes</doc:example>
+
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="NumericDomainType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Numeric Domain</doc:tooltip>
+        <doc:summary>Numeric domain of attribute specifying allowed
+        values.</doc:summary>
+        <doc:description>The numericDomain element specifies the
+        minimum and maximum values of a numeric attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). The informationin
+        numericDomain and in precision together constitutes
+        sufficient information to decide upon an appropriate
+        system specific data type for representing a particular
+        attribute. For example, an attribute with a numeric domain
+        from 0-50,000 and a precision of 1 could be represented in
+        the C language using a 'long' value, but if the precision is
+        changed to '0.5' then a 'float' type would be needed.
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="numberType" type="NumberType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>number type</doc:tooltip>
+              <doc:documentation>The type of number recorded in
+              this attribute.  Values can be 'whole', 'natural',
+              'integer' or 'real'.</doc:documentation>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="minimum" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Minimum numeric range</doc:tooltip>
+                <doc:summary>Minimum numeric range of
+                attribute</doc:summary>
+                <doc:description>The minimum element specifies the
+                minimum value range of numeric
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="minimumExclusive" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Exclusive Minimum numeric range
+                </doc:tooltip>
+                <doc:summary>Exclusive Minimum numeric range of
+                attribute</doc:summary>
+                <doc:description>The minimumExclusive element
+                specifies the minimum value range of numeric
+                attribute excluding the given value.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="maximum" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum numeric range</doc:tooltip>
+                <doc:summary>Maximum numeric range of
+                attribute</doc:summary>
+                <doc:description>The maximum element specifies the
+                maximum value range of a numeric
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="maximumExclusive" type="xs:string" >
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum exclusive numeric
+                range</doc:tooltip>
+                <doc:summary>Maximum exclusive numeric range of
+                attribute</doc:summary>
+                <doc:description>The maximumExclusive element
+                specifies the maximum value range of a numeric
+                attribute excluding the given
+                value.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+  </xs:complexType>
+
   <xs:simpleType name="NumberType">
     <xs:annotation>
       <xs:appinfo>
