@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/project-2.0.0rc1"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
+<xs:schema targetNamespace="eml://ecoinformatics.org/project-2.0.0rc2"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1"
-xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc1"
-xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
-xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
-xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-xmlns="eml://ecoinformatics.org/project-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
+xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2"
+xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc2"
+xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2"
+xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2"
+xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc2"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
+xmlns="eml://ecoinformatics.org/project-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
   schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2"
   schemaLocation="eml-party.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2"
   schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc2"
   schemaLocation="eml-literature.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2"
   schemaLocation="eml-text.xsd" />
   <xs:annotation>
     <xs:documentation>'$RCSfile: eml-project.xsd,v $'
@@ -36,9 +36,9 @@ xmlns="eml://ecoinformatics.org/project-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-04 19:05:23 $'
-      '$Revision: 1.70 $'
+        '$Author: jones $'
+          '$Date: 2002-10-05 00:02:23 $'
+      '$Revision: 1.71 $'
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>

@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-13 22:18:34 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2002-10-05 00:02:23 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
                 version="1.0">
 <xsl:output method="html" indent="yes"/>
 

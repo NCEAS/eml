@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-09-13 23:10:25 $'
-#      '$Revision: 1.23 $'
+#          '$Date: 2002-10-05 00:02:23 $'
+#      '$Revision: 1.24 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.0rc1
+Version: 2.0.0rc2
 
 Feedback and bugs to: eml-dev@ecoinformatics.org
                       http://bugzilla.ecoinformatics.org
@@ -52,6 +52,8 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               John Harris (harris@nceas.ucsb.edu)
               Matthew Brooke (brooke@nceas.ucsb.edu)
               Scott Chapal (scott.chapal@jonesctr.org)
+              Tim Bergsma (tbergsma@kbs.msu.edu)
+              Ken Ramsey (kramsey@jornada.nmsu.edu)
 
 Web site: http://knb.ecoinformatics.org/software/eml
 
@@ -70,6 +72,17 @@ DOCUMENTATION
 Please see the docs/index.html directory for a detailed description 
 of each of the modules, and for a link to the full EML specification.
 
+HIGHLIGHTS IN THIS RELEASE
+--------------------------
+1) Massive documentation improvements.  Thanks to everyone who helped write 
+   some of the documentation.
+2) New EML Validity Parser created.  It checks both EML rules and the schema
+   rules to be sure an XML document is a valid EML document.  It is included 
+   with the release, and provided as an online service. See docs/index.html.
+3) Much easier to use system for spatial reference that is derived from ESRI's
+   .prj format for named projections. Over 2000 predefined projections
+   shipped with this EML release.
+   
 FILES
 -----
 The files in this directory include a XML Schema document for 
@@ -78,37 +91,42 @@ for supporting documentation, and an instance document defining
 standard attribute units for EML.
 
 The files are a part of the proposed release of EML 2.0.0.
-This is the first release candidate.  We expect no changes
-to these schemas for the final EML 2.0.0 release, although we
-do expect to substantially improve the documentation for the EML
-specification and EML field definitions.  This release is 
-being made available for final testing and feedback before the final
-release is made.  Note that there have been 9 beta releases prior
+This is the second release candidate.  We expect no changes
+to EML between now and the final EML 2.0.0 release; this release is
+being made available for a 3 week public review as a final sanity
+check before EML 2.0.0 is officially released. Note that there have 
+been 9 beta releases and one prior release candidate prior
 to this during which substantial/philosophical changes were introduced.
 This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_0_0_RC_1".  Previous versions of EML (such as 1.4) 
+tag "RELEASE_EML_2_0_0_RC_2".  Previous versions of EML (such as 1.4) 
 are available from this repository using the appropriate release tag 
 (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) Some documentation is inadequate and/or out-of-date.  This will be
-   changed before the final 2.0.0 release.
-2) Complete work on the XSLT stylesheets.  Need to convert stylesheets
+1) Complete work on the XSLT stylesheets.  Need to convert stylesheets
    to the new structure (they currently work with the BETA6 release
    (bug 249).
-3) The use of XML Schema key and keyref constructs is not working and 
-   will likeley require some schema changes in order to resolve key 
-   validation problems. See bug 586 for more details.
-4) eml-coverage may use element references instead of ComplexTypes, and
-   thus may require the use of namespace prefixes for those global
-   elements.  This would be bad, and needs to be tested and possibly
-   fixed.  There would be no changes to the schemas, but it would change
-   the instance documents by eliminating namespace prefixes. See bug 589.
 
 
 ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
 -------------------------------------------------------------------------
+RC2 Changes- (numbers refer to the correspnding Bugzilla bug)
+568: accomodate of stateful connection information   
+586: resolve validation problem with missing keys     
+588: Remove lineage tags in documentation stylesheets     
+589: eml-coverage: convert element references to types     
+592: fix validation error with xs:anyType
+594: change cardinality for designDescription and studyAreaDes...     
+596: Proposal: make attribute optional in OtherEntityType.     
+597: In eml-dataTable caseSensitive and orientation are modele...     
+598: literature namespace references are inconsistent     
+599: storageType is repeatable in eml-attribute     
+600: eml-storedProcedure - problems & proposal     
+601: element names in spatial modules do not follow guidelines     
+602: eml-physical fixed textFormat to allow mixed fixed/delimited
+608: release preparation tasks for EML2.0.0rc2
+
 RC1 Changes- (numbers refer to the correspnding Bugzilla bug)
 471: created an EML specification overview document
 495: created FAQ for EML

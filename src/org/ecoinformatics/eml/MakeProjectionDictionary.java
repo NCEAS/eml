@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2002-10-03 21:36:17 $'
- *    '$Revision: 1.2 $'
+ *      '$Author: jones $'
+ *        '$Date: 2002-10-05 00:02:24 $'
+ *    '$Revision: 1.3 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,13 +53,13 @@ import org.jdom.output.XMLOutputter;
 public class MakeProjectionDictionary {
 
 
-    public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0rc1"));
+    public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0rc2"));
     public static Document XMLDoc = new Document(root);
 
 
     public static void main(String args[]) throws IOException {
 
-        root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0rc1 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
+        root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0rc2 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
         if (args.length==1){
             processPrjFiles(args[0]);
 

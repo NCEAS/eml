@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/view-2.0.0rc1"
-xmlns="eml://ecoinformatics.org/view-2.0.0rc1"
-xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
-xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc1"
-xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc1"
-xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc1"
-xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+<xs:schema targetNamespace="eml://ecoinformatics.org/view-2.0.0rc2"
+xmlns="eml://ecoinformatics.org/view-2.0.0rc2"
+xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2"
+xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc2"
+xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc2"
+xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2"
+xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc1"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1"
+xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2"
   schemaLocation="eml-entity.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2"
   schemaLocation="eml-attribute.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc2"
   schemaLocation="eml-protocol.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc2"
   schemaLocation="eml-physical.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2"
   schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
   schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2"
   schemaLocation="eml-constraint.xsd" />
   <xs:annotation>
     <xs:documentation>
@@ -42,9 +42,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-04 19:05:24 $'
-      '$Revision: 1.32 $'
+        '$Author: jones $'
+          '$Date: 2002-10-05 00:02:23 $'
+      '$Revision: 1.33 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
         <doc:description>The View element is a container for documenting a
         view. The structure of the view element is defined by the
         ViewType.</doc:description>
-        <doc:lineage>Introduced into eml-2.0.0rc1</doc:lineage>
+        <doc:lineage>Introduced into eml-2.0.0rc2</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
