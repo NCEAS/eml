@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-25 22:08:51 $'
- * '$Revision: 1.4 $'
+ *     '$Date: 2002-09-25 22:56:20 $'
+ * '$Revision: 1.5 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,18 +104,22 @@ public class EMLParser
   private Hashtable idrefHash = new Hashtable();
   private File xml;
 
-
+  public EMLParser(File xml)
+  {
+    this(xml, new File("@config.file@"));
+  }
+  
   /**
    * parses an eml file
    * @param xml the eml file to parse
    */
-  public EMLParser(File xml)
+  public EMLParser(File xml, File configFile)
          throws EMLParserException
   {
     this.xml = xml;
     try
     {
-      config = new ConfigXML("@config.file@");
+      config = new ConfigXML(configFile.getAbsolutePath());
     }
     catch(Exception e)
     {
@@ -493,6 +497,48 @@ public class EMLParser
     {
       String s = "name: " + name + " selector: " + selector + " field: " + field;
       return s;
+    }
+  }
+  
+  /**
+   * provides a command line interface.
+   */
+  public static void main(String[] args)
+  {
+    System.out.println("EML Parser version 1.0");
+    System.out.println("Note that this parser DOES NOT VALIDATE your eml file ");
+    System.out.println("agains the schema.  It only validates the ids and ");
+    System.out.println("references. To validate your eml file against the ");
+    System.out.println("schema, use SAXValidate or another xml parser.");
+    System.out.println("Usage: java org.ecoinformatics.eml.EMLParser <eml file> [<config file>]");
+    System.out.println("-----------------------------------------------------------------------");
+    
+    if(args.length > 2)
+    {
+      System.out.println("Invalid number of arguments.");
+    }
+    
+    String configfile = "";
+    if(args.length == 2)
+    {
+      configfile = args[1];
+    }
+    
+    try
+    {
+      if(configfile.equals(""))
+      {
+        EMLParser parser = new EMLParser(new File(args[0]));
+      }
+      else
+      {
+        EMLParser parser = new EMLParser(new File(args[0]), new File(configfile));
+      }
+      System.out.println(args[0] + " has valid ids and references.");
+    }
+    catch(Exception e)
+    {
+      System.out.println("Error: " + e.getMessage());
     }
   }
 
