@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2004-06-14 17:35:33 $'
-      '$Revision: 1.106 $'
+        '$Author: jones $'
+          '$Date: 2004-07-01 22:06:12 $'
+      '$Revision: 1.107 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -148,7 +148,7 @@
             databases might use different types for columns, even though the
             domain of the attribute is the same regardless of which database
             is used).</para>
-              <para>Attributes representing dates, times, or combinations thereof
+            <para>Attributes representing dates, times, or combinations thereof
             (hereafter "dateTime") were the most difficult to model in EML. Is
             dateTime of type interval or ordinal? Does it have units or not?
             Strong cases can be made on each side of the issue. The confusion
@@ -452,7 +452,7 @@
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
                     <xs:element name="precision" type="PrecisionType" 
-                                maxOccurs="unbounded"/>
+                                minOccurs="0"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -480,7 +480,7 @@
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
                     <xs:element name="precision" type="PrecisionType"
-                                maxOccurs="unbounded"/>
+                                minOccurs="0"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -493,12 +493,12 @@
                     time attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this attribute if it contains
-                    date and time values. Datetime is used when the values fall on
-                    the Gregorian calendar system.  Datetime values are special
-                    because the have properties of interval values (most
-                    of the time it is legitimate to treat them as interval 
-                    values by converting them to a duration from a fixed
-                    point) but they sometimes only behave as ordinals
+                    date and time values. Datetime is used when the values
+                    fall on the Gregorian calendar system.  Datetime values
+                    are special because the have properties of interval
+                    values (most of the time it is legitimate to treat them
+                    as interval values by converting them to a duration from
+                    a fixed point) but they sometimes only behave as ordinals
                     (because the calendar is not predetermined, for some
                     datetime values one can only find out the order of
                     the points and not the magnitude of the duration 
@@ -515,19 +515,23 @@
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Date/Time Format</doc:tooltip>
-                          <doc:summary>A format string that describes the format for a 
-              date-time value from the Gregorian calendar.</doc:summary>
+                          <doc:summary>A format string that describes the
+                          format for a date-time value from the Gregorian
+                          calendar.</doc:summary>
                           <doc:description>
-                            <para xmlns="">A format string that describes the format for a 
-              date-time value from the Gregorian calendar.  Datetime values
-              should be expressed in a format that conforms to the ISO 8601
-              standard.  This field allows one to specify the format string
-              that should be used to decode the date or time value.  To describe
-              the format of an attribute containing date-time values, construct
-              a string representation of the format using the following symbols:
-              </para>
+                            <para xmlns="">A format string that describes
+                            the format for a date-time value from the
+                            Gregorian calendar.  Datetime values should be
+                            expressed in a format that conforms to the ISO
+                            8601 standard.  This field allows one to specify
+                            the format string that should be used to decode
+                            the date or time value.  To describe the format
+                            of an attribute containing date-time values,
+                            construct a string representation of the format
+                            using the following symbols:
+                            </para>
                             <para xmlns="">
-                              <literalLayout>
+              <literalLayout>
               Y   year
               M   month
               W   month abbreviation (e.g., JAN)
@@ -543,14 +547,14 @@
               -   indicates a separator between date components
               A/P am or pm designator
               </literalLayout>
-                            </para>
-                            <para xmlns="">
+              </para>
+              <para xmlns="">
               Any other character in the format string is interpreted as a
               separator character.  Here are some examples of the format
               strings that can be constructed.
               </para>
-                            <para xmlns="">
-                              <literalLayout>
+              <para xmlns="">
+              <literalLayout>
                                  Format string          Example value
                                  -------------------    ------------------
                   ISO Date       YYYY-MM-DD             2002-10-14
@@ -565,8 +569,8 @@
                   Non-standard   YYYYWWWDD              2002OCT14
                   Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
               </literalLayout>
-                            </para>
-                            <para xmlns="">
+              </para>
+              <para xmlns="">
               Some notes about these examples.  First, the ISO 8601 standard is
               strict about the order of date components and the separators that
               are legal.  Best practice is to follow the ISO 8601 format
@@ -582,17 +586,18 @@
               these formats can be described using the format string to
               accommodate existing data.
               </para>
-                            <para xmlns="">
+              <para xmlns="">
               Decimal date-time values can be extended by indicating in
               the format that additional decimals can be used.  Only the final
               unit (e.g., seconds in a time value) can use the extended digits
-              according to the ISO 8601 standard.  For example, to show indicate
-              that seconds are represented to the nearest 1/1000 of a second, the 
-              format string would be "hh:mm:ss.sss".  Note that this only indicates
-              the number of decimals used to record the value, and not the 
-              precision of the measurement (see dateTimePrecision for that).
+              according to the ISO 8601 standard.  For example, to show
+              indicate that seconds are represented to the nearest 1/1000
+              of a second, the format string would be "hh:mm:ss.sss".
+              Note that this only indicates the number of decimals used to
+              record the value, and not the precision of the measurement
+              (see dateTimePrecision for that).
               </para>
-                            <para xmlns="">
+              <para xmlns="">
               Date/time values are from an interval scale, but it is extremely
               complex because of the vagaries of the calendar (e.g., leap
               years, and leap seconds).  The duration between date-time values
@@ -617,21 +622,23 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="dateTimePrecision" type="xs:string">
+                    <xs:element name="dateTimePrecision" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>DateTime Precision</doc:tooltip>
-                          <doc:summary>An indication of the precision of a date or
-                          time value</doc:summary>
-                          <doc:description>A quantitative indication of the precision
-                          of a date or time measurement.  The precision should be 
-                          interpreted in the smallest units represented by the datetime
-                          format.  For example, if a datetime value has a format of
-                          "hh:mm:ss.sss", then "seconds" are the smallest unit and the
-                          precision should be expressed in seconds.  Thus, a precision
-                          value of "0.01" would mean that measurements were precise to
-                          the nearest hundredth of a second, even though the format 
-                          string might indicate that values were written down with 3
+                          <doc:summary>An indication of the precision of a
+                          date or time value</doc:summary>
+                          <doc:description>A quantitative indication of
+                          the precision of a date or time measurement.
+                          The precision should be interpreted in the
+                          smallest units represented by the datetime format.
+                          For example, if a datetime value has a format of
+                          "hh:mm:ss.sss", then "seconds" are the smallest unit
+                          and the precision should be expressed in seconds.
+                          Thus, a precision value of "0.01" would mean that
+                          measurements were precise to the nearest hundredth
+                          of a second, even though the format string might
+                          indicate that values were written down with 3
                           decimal places.</doc:description>
                           <doc:example>0.1</doc:example>
                           <doc:example>0.01</doc:example>
@@ -757,7 +764,8 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" 
+                  default="document"/>
   </xs:complexType>
   <xs:complexType name="Accuracy">
     <xs:sequence>
@@ -776,7 +784,8 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" 
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Quantitative Attribute Accuracy
@@ -1031,8 +1040,9 @@
 			be</doc:summary>
 			<doc:description>Ordinal scale measurements have a discrete list 
 			of values with a specific ordering of those values. This attributes 
-			specifies that order. For example, for LOW, MEDIUM, HIGH, the 
-			order attribute might be "LOW=1, MEDIUM=2and HIGH=3
+			specifies that order from low to high. For example, for LOW, 
+            MEDIUM, HIGH, the order attribute might be "LOW=1, MEDIUM=2 and 
+            HIGH=3".
                   	</doc:description>
 		      </xs:appinfo>
 		    </xs:annotation>
@@ -1114,8 +1124,8 @@
                     codes and their definitions in a data
                     entity that is present in this dataset. The fields
                     specify exactly which entity it is, and which 
-                    attributes of that entity contain the codes and their
-                    definitions.</doc:description>
+                    attributes of that entity contain the codes, their
+                    definitions, and the order of the values.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -1153,7 +1163,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="definitionAttributeReference" type="xs:string">
+                    <xs:element name="definitionAttributeReference" 
+                                type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Definition Attribute
@@ -1168,6 +1179,25 @@
                           attribute must have been defined elsewhere in
                           the metadata and have an id that matches the
                           value of this element.</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="orderAttributeReference" type="xs:string"
+                                minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Order Attribute
+                          Reference</doc:tooltip>
+                          <doc:summary>A reference to the id of the
+                          attribute that contains the order of
+                          codes</doc:summary>
+                          <doc:description>The orderAttributeReference element
+                          is a reference to the id of the attribute that
+                          contains the order of codes. The values in this
+                          attribute are integers indicating increasing values
+                          of the categories.  This attribute must have been
+                          defined elsewhere in the metadata and have an id that
+                          matches the value of this element.</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
