@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-28 17:46:01 $'
-      '$Revision: 1.22 $'
+          '$Date: 2002-10-29 18:53:32 $'
+      '$Revision: 1.23 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -893,6 +893,9 @@
   <unit id="kilometersPerHour" name="kilometersPerHour" unitType="speed" parentSI="metersPerSecond" multiplierToSI=".277777">
     <description>km/hr</description>
   </unit>
+  <unit id="metersPerDay" name="metersPerDay" unitType="speed" parentSI="metersPerSecond" multiplierToSI=".0000115741">
+    <description>meters per day</description>
+  </unit>
 
   <!--acceleration-->
   <unit id="metersPerSecondSquared" name="metersPerSecondSquared" unitType="acceleration" multiplierToSI="1">
@@ -935,11 +938,6 @@
   <!--luminance-->
   <unit id="candelaPerSquareMeter" name="candelaPerSquareMeter" unitType="luminance" multiplierToSI="1">
     <description>candela Per Square Meter</description>
-  </unit>
-
-  <!--hydraulicConductivity-->
-  <unit id="metersPerDay" name="metersPerDay" unitType="hydraulicConductivity" multiplierToSI="1">
-    <description>meters per day</description>
   </unit>
 
   <!--transmissivity-->
