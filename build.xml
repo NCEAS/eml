@@ -6,9 +6,9 @@
   *              National Center for Ecological Analysis and Synthesis
   * For Details: http://knb.ecoinformatics.org/
   *
-  *    '$Author: berkley $'
-  *      '$Date: 2002-05-23 17:49:42 $'
-  *  '$Revision: 1.21 $'
+  *    '$Author: jones $'
+  *      '$Date: 2002-06-13 19:50:22 $'
+  *  '$Revision: 1.22 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -29,7 +29,7 @@
 -->
 <project name="eml" default="docs" basedir=".">
   <target name="init">
-    <property name="version" value="2.0.0beta8"/>
+    <property name="version" value="2.0.0beta9"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
