@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2001-03-27 02:27:13 $'
-      '$Revision: 1.6 $'
+        '$Author: berkley $'
+          '$Date: 2001-03-27 20:05:08 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 <!-- The root element, which represents a data package and includes a
      list of relationships between metadata and data file(s) that are
      members of the package. -->
-<!ELEMENT eml-package (identifier, %resource;, triple*) >
+<!ELEMENT eml-package (identifier, resource, triple*) >
 <!ELEMENT identifier (#PCDATA)>
 
 <!-- The triple element, which list all relationships in the package -->
