@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:access-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
+<xs:schema targetNamespace="eml:access-2.0.0beta8"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:doc="eml:documentation-2.0.0beta8"
+           xmlns:res="eml:resource-2.0.0beta8"
            xmlns="eml:access-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -19,21 +21,21 @@
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
-   
+
         '$Author: berkley $'
-          '$Date: 2002-06-11 21:23:51 $'
-      '$Revision: 1.45 $'
-    
+          '$Date: 2002-06-11 22:20:04 $'
+      '$Revision: 1.46 $'
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-   
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-   
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -45,13 +47,13 @@
           The EML Access Module describes the level of access that is to be
           granted or denied to a resource for a particular user or group of
           users. A single eml-access
-          document may be used express access control for many resources, or 
+          document may be used express access control for many resources, or
           for a given resource (e.g., a dataset or document). The relationship
           between a resource and it's access control document is defined in the
           eml-resource module.
           The EML Access Module represents a list of resources to be controlled
-          in the context of a particular authentication system. That is, the 
-          authentication system determines the set of principals (users + groups) 
+          in the context of a particular authentication system. That is, the
+          authentication system determines the set of principals (users + groups)
           that can be used, and the membership of users in groups.  The rules
           set in this module will determine the level of access to a resource for
           the defined users and groups.
@@ -72,7 +74,7 @@
           Access control list
         </doc:tooltip>
         <doc:summary>
-          The rules defined in this element will determine the level of 
+          The rules defined in this element will determine the level of
           access to a resource for the defined users and groups.
         </doc:summary>
         <doc:description>
@@ -98,7 +100,7 @@
           Access control list
         </doc:tooltip>
         <doc:summary>
-          The rules defined in this element will determine the level of 
+          The rules defined in this element will determine the level of
           access to a resource for the defined users and groups.
         </doc:summary>
         <doc:description>
@@ -205,13 +207,13 @@
              to whom the ACL allows or denies access.
            </doc:summary>
           <doc:description>
-              The authentication system determines the set of principals 
+              The authentication system determines the set of principals
               (users + groups) that can be used in the access control list,
-              and the membership of users in groups. This element is intended 
-              to provide a reference to the authentication system in order to 
-              verify the user or group.  This reference is typically in the 
-              form of a URI, which includes the  connection protocol, internet 
-              host, and path to the authentication mechanism. 
+              and the membership of users in groups. This element is intended
+              to provide a reference to the authentication system in order to
+              verify the user or group.  This reference is typically in the
+              form of a URI, which includes the  connection protocol, internet
+              host, and path to the authentication mechanism.
            </doc:description>
           <doc:example>
              ldap://directory.nceas.ucsb.edu:389/o=NCEAS,c=US
@@ -257,9 +259,9 @@
               applies.
             </doc:summary>
             <doc:description>
-              The principal element defines the user or group to which the 
-              access control list applies.  The users and groups must be 
-              defined in the authentication system described in the 
+              The principal element defines the user or group to which the
+              access control list applies.  The users and groups must be
+              defined in the authentication system described in the
               authSystem element.
             </doc:description>
             <doc:example>
@@ -283,8 +285,8 @@
             <doc:description>
               The permission that is being granted or denied to a particular
               user or group for a given resource.  The list of permissions come
-              from a predetermined list, and include 'read' (allow/deny viewing 
-              of the resource), 'write' (allow/deny modification of the 
+              from a predetermined list, and include 'read' (allow/deny viewing
+              of the resource), 'write' (allow/deny modification of the
               resource), and 'all' (allow read/write, and the ability to modify
               access restrictions as well.)
             </doc:description>

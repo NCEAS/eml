@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:entity-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns="eml:entity-2.0.0beta8">
+<xs:schema targetNamespace="eml:entity-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml:resource-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns="eml:entity-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd"/>
   <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd"/>
   <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
+
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -20,21 +22,21 @@
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
-   
+
         '$Author: berkley $'
-          '$Date: 2002-06-11 21:23:51 $'
-      '$Revision: 1.48 $'
-    
+          '$Date: 2002-06-11 22:20:04 $'
+      '$Revision: 1.49 $'
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-   
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-   
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -96,7 +98,7 @@
           taxonomic coverage, and its type.
         </doc:description>
         <doc:example>
-           Photograph of rocky intertidal plot 12 from Santa Cruz Island 
+           Photograph of rocky intertidal plot 12 from Santa Cruz Island
         </doc:example>
         <doc:lineage>
           The entity element was introduced into EML 1.4 as file.
@@ -128,16 +130,13 @@
                   </doc:description>
                 <doc:example><![CDATA[<entityType>Raster Image</entityType>]]></doc:example>
                 <doc:lineage>
-                    The entityType element was introduced into EML 1.4 as 
+                    The entityType element was introduced into EML 1.4 as
                     entityFormat.
                   </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element name="attributeList" type="att:AttributeListType"/>
-          <xs:element name="coverage" type="cov:Coverage"  minOccurs="0"/>
-          <xs:element name="physical" type="phys:PhysicalType" minOccurs="0"/>
-          <xs:element name="protocol" type="prot:ProtocolType" minOccurs="0"/>
         </xs:sequence>
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
@@ -181,7 +180,7 @@
               Entity name specifier
             </doc:summary>
             <doc:description>
-              The name identifies the entity in the dataset: file name, 
+              The name identifies the entity in the dataset: file name,
               name of database table, etc.
             </doc:description>
             <doc:example>
@@ -215,7 +214,9 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="coverage" type="cov:Coverage"/>
+      <xs:element name="coverage" type="cov:Coverage"  minOccurs="0"/>
+      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0"/>
+      <xs:element name="protocol" type="prot:ProtocolType" minOccurs="0"/>
     </xs:sequence>
   </xs:group>
   <!--SHARED SPATIAL TYPES-->
