@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
 	<xs:annotation>
 		<xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-22 23:45:36 $'
-      '$Revision: 1.9 $'
+          '$Date: 2001-07-23 02:07:54 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,101 +28,101 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
 		<xs:appinfo>
-			<moduleName>eml-coverage</moduleName>
-			<moduleDescription>
+			<doc:moduleName>eml-coverage</doc:moduleName>
+			<doc:moduleDescription>
         The eml-coverage module contains fields for describing the 
         coverage of a resource in terms of time, space, and taxonomy. This
         coverages (temporal, spatial, and taxonomic) represent the extent
         of applicability of the resource in those domains.
-      </moduleDescription>
+      </doc:moduleDescription>
 		</xs:appinfo>
 	</xs:annotation>
 	<xs:element name="temporalCov" type="TemporalCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Temporal coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Temporal coverage descriptor.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
             This element specifies temporal coverage, and allows coverages
             to be a single point in time, multiple points in time, or a
             range of dates.  Dates can be expressed in tems of both 
             calander dates and geologic dating systems.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4.
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="geographicCov" type="GeographicCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Geographic coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Geographic coverage information.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
           Geographic Coverage is a container for spatial information about a
           a project, a resource, or an entity within a resource.  It allows
           a bounding box for the overall coverage (in lat long), and also
           allows descriptin of arbitrary polygons with exclusions.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The geographicCov element is derived from the NBII standard.
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="taxonomicCov" type="TaxonomicCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Taxonomic coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Taxonomic coverage information.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource. It includes 
           a list of species names (or higher level ranks) from one or more
           classification systems.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="TemporalCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Temporal coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Temporal coverage descriptor.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
             This element specifies temporal coverage by 
           start and stop date.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4. From  FGDC-STD-001.1-1999
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:choice>
@@ -132,11 +134,11 @@
 	<xs:element name="sngdate">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Single Date/Time </tooltip>
-				<summary>Means of encoding a single date and time </summary>
-				<description/>
-				<example/>
-				<lineage> FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>Single Date/Time </doc:tooltip>
+				<doc:summary>Means of encoding a single date and time </doc:summary>
+				<doc:description/>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -145,22 +147,22 @@
 					<xs:element name="caldate" type="xs:date">
 						<xs:annotation>
 							<xs:appinfo>
-								<tooltip>Calendar date </tooltip>
-								<summary/>
-								<description>  Year, month and day</description>
-								<example/>
-								<lineage> FGDC-STD-001-1998</lineage>
+								<doc:tooltip>Calendar date </doc:tooltip>
+								<doc:summary/>
+								<doc:description>  Year, month and day</doc:description>
+								<doc:example/>
+								<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="time" type="xs:time" minOccurs="0">
 						<xs:annotation>
 							<xs:appinfo>
-								<tooltip> Time of day</tooltip>
-								<summary/>
-								<description>Hour (and optionally minute, or minute and second) of the day </description>
-								<example/>
-								<lineage>FGDC-STD-001-1998 </lineage>
+								<doc:tooltip> Time of day</doc:tooltip>
+								<doc:summary/>
+								<doc:description>Hour (and optionally minute, or minute and second) of the day </doc:description>
+								<doc:example/>
+								<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
@@ -172,55 +174,55 @@
 	<xs:element name="begdate" type="xs:date">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Beginning date </tooltip>
-				<summary/>
-				<description>The first year, month, and day of the event. </description>
-				<example/>
-				<lineage> FGDC-STD-001-1998</lineage>
+				<doc:tooltip>Beginning date </doc:tooltip>
+				<doc:summary/>
+				<doc:description>The first year, month, and day of the event. </doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="begtime" type="xs:time">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Beginning time of day </tooltip>
-				<summary/>
-				<description>The first hour (and optionally minute, or minute and second) of the day for the event </description>
-				<example/>
-				<lineage>FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>Beginning time of day </doc:tooltip>
+				<doc:summary/>
+				<doc:description>The first hour (and optionally minute, or minute and second) of the day for the event </doc:description>
+				<doc:example/>
+				<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="enddate" type="xs:date">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip> Ending date</tooltip>
-				<summary/>
-				<description>  The last year, month and day for the event</description>
-				<example/>
-				<lineage> FGDC-STD-001-1998</lineage>
+				<doc:tooltip> Ending date</doc:tooltip>
+				<doc:summary/>
+				<doc:description>  The last year, month and day for the event</doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="endtime" type="xs:time">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Ending time of day </tooltip>
-				<summary/>
-				<description> The last hour (and optionally minute, or minute and second) of the day for the event.</description>
-				<example/>
-				<lineage>FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>Ending time of day </doc:tooltip>
+				<doc:summary/>
+				<doc:description> The last hour (and optionally minute, or minute and second) of the day for the event.</doc:description>
+				<doc:example/>
+				<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="geolage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Geologic age </tooltip>
-				<summary/>
-				<description>A name, code, or date describing an event or period in geologic time, expressed either as an absolute date calculated using a named dating method, or as a relative date that is drawn from stratigraphy or biostratigraphy. </description>
-				<example/>
-				<lineage> FGDC-STD-001.1-1999 </lineage>
+				<doc:tooltip>Geologic age </doc:tooltip>
+				<doc:summary/>
+				<doc:description>A name, code, or date describing an event or period in geologic time, expressed either as an absolute date calculated using a named dating method, or as a relative date that is drawn from stratigraphy or biostratigraphy. </doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -228,55 +230,55 @@
 				<xs:element name="geolscal" type="xs:string">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Geologic time scale </tooltip>
-							<summary/>
-							<description> Name of a recognized geologic time scale.  This includes “Absolute” as the name of the time scale for measuring geologic dates before the present and names of geologic dating systems that are arrangements of symbols or names in order of relative geologic time. </description>
-							<example/>
-							<lineage>FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Geologic time scale </doc:tooltip>
+							<doc:summary/>
+							<doc:description> Name of a recognized geologic time scale.  This includes “Absolute” as the name of the time scale for measuring geologic dates before the present and names of geologic dating systems that are arrangements of symbols or names in order of relative geologic time. </doc:description>
+							<doc:example/>
+							<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="geolest" type="xs:string">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Geologic age estimate </tooltip>
-							<summary/>
-							<description>Either an absolute geologic date or a relative geologic age name describing an event or period in geologic time based on the Geologic Time Scale.  </description>
-							<example/>
-							<lineage> FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Geologic age estimate </doc:tooltip>
+							<doc:summary/>
+							<doc:description>Either an absolute geologic date or a relative geologic age name describing an event or period in geologic time based on the Geologic Time Scale.  </doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="geolun" type="xs:string" minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Geologic age uncertainty </tooltip>
-							<summary/>
-							<description>The error estimate for the geologic time.  This should include the units of measure, a description of what the error estimate represents and how it was calculated.</description>
-							<example/>
-							<lineage> FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Geologic age uncertainty </doc:tooltip>
+							<doc:summary/>
+							<doc:description>The error estimate for the geologic time.  This should include the units of measure, a description of what the error estimate represents and how it was calculated.</doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="geolexpl" type="xs:string" minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Geologic age explanation </tooltip>
-							<summary/>
-							<description>The name and/or description of the method used to calculate the Geologic age estimate. </description>
-							<example/>
-							<lineage> FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Geologic age explanation </doc:tooltip>
+							<doc:summary/>
+							<doc:description>The name and/or description of the method used to calculate the Geologic age estimate. </doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="geolcit" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Geologic citation </tooltip>
-							<summary/>
-							<description> Citation for works providing detailed information about any element of the Geologic age. </description>
-							<example/>
-							<lineage> FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Geologic citation </doc:tooltip>
+							<doc:summary/>
+							<doc:description> Citation for works providing detailed information about any element of the Geologic age. </doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -291,11 +293,11 @@
 	<xs:element name="beggeol">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Beginning geologic age </tooltip>
-				<summary/>
-				<description>A name, code, or date for the beginning of an event or period in geologic time. </description>
-				<example/>
-				<lineage>FGDC-STD-001.1-1999 </lineage>
+				<doc:tooltip>Beginning geologic age </doc:tooltip>
+				<doc:summary/>
+				<doc:description>A name, code, or date for the beginning of an event or period in geologic time. </doc:description>
+				<doc:example/>
+				<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -307,11 +309,11 @@
 	<xs:element name="endgeol">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Ending geologic age </tooltip>
-				<summary/>
-				<description>A name, code, or date for the end of an event or period in geologic time. </description>
-				<example/>
-				<lineage>FGDC-STD-001.1-1999 </lineage>
+				<doc:tooltip>Ending geologic age </doc:tooltip>
+				<doc:summary/>
+				<doc:description>A name, code, or date for the end of an event or period in geologic time. </doc:description>
+				<doc:example/>
+				<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -323,11 +325,11 @@
 	<xs:element name="mdattim">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Multiple dates/times </tooltip>
-				<summary/>
-				<description>Means of encoding multiple individual dates and times. </description>
-				<example/>
-				<lineage> FGDC-STD-001-1998</lineage>
+				<doc:tooltip>Multiple dates/times </doc:tooltip>
+				<doc:summary/>
+				<doc:description>Means of encoding multiple individual dates and times. </doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -339,11 +341,11 @@
 	<xs:element name="rngdates">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Range of dates/times </tooltip>
-				<summary/>
-				<description>Means of encoding a range of dates and times. </description>
-				<example/>
-				<lineage> FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>Range of dates/times </doc:tooltip>
+				<doc:summary/>
+				<doc:description>Means of encoding a range of dates and times. </doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -364,43 +366,43 @@
 	<xs:complexType name="GeographicCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Geographic coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Geographic coverage information.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
           Geographic Coverage is a container for spatial information about a
           a project, a resource, or an entity within a resource.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The GeographicCoverage complex type was derived from the eml-entity
           module in EML 1.4.
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="descgeog" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip>Description geographic location </tooltip>
-						<summary/>
-						<description>Short description of the geographic areal domain of the data set. </description>
-						<example/>
-						<lineage>FGDC-STD-001.1-1999  </lineage>
+						<doc:tooltip>Description geographic location </doc:tooltip>
+						<doc:summary/>
+						<doc:description>Short description of the geographic areal domain of the data set. </doc:description>
+						<doc:example/>
+						<doc:lineage>FGDC-STD-001.1-1999  </doc:lineage>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="bounding">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip>Bounding coordinates </tooltip>
-						<summary/>
-						<description>The limits of coverage of a data set expressed by latitude and longitude values in the order western-most, eastern-most, northern-most, and southern-most.  For data sets that include a complete band of latitude around the earth, the West Bounding Coordinate shall be assigned the value -180.0, and the East Bounding Coordinate shall be assigned the value 180.0 </description>
-						<example/>
-						<lineage>FGDC-STD-001-1998 </lineage>
+						<doc:tooltip>Bounding coordinates </doc:tooltip>
+						<doc:summary/>
+						<doc:description>The limits of coverage of a data set expressed by latitude and longitude values in the order western-most, eastern-most, northern-most, and southern-most.  For data sets that include a complete band of latitude around the earth, the West Bounding Coordinate shall be assigned the value -180.0, and the East Bounding Coordinate shall be assigned the value 180.0 </doc:description>
+						<doc:example/>
+						<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -408,55 +410,55 @@
 						<xs:element name="westbc" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>West bounding coordinate </tooltip>
-									<summary/>
-									<description>Western-most coordinate of the limit of coverage expressed in longitude </description>
-									<example/>
-									<lineage> FGDC-STD-001-1998</lineage>
+									<doc:tooltip>West bounding coordinate </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Western-most coordinate of the limit of coverage expressed in longitude </doc:description>
+									<doc:example/>
+									<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="eastbc" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>East bounding coordinate </tooltip>
-									<summary/>
-									<description> Eastern-most coordinate of the limit of coverage expressed in longitude</description>
-									<example/>
-									<lineage>FGDC-STD-001-1998 </lineage>
+									<doc:tooltip>East bounding coordinate </doc:tooltip>
+									<doc:summary/>
+									<doc:description> Eastern-most coordinate of the limit of coverage expressed in longitude</doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="northbc" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>North bounding coordinate </tooltip>
-									<summary/>
-									<description>Northern-most coordinate of the limit of coverage expressed in longitude </description>
-									<example/>
-									<lineage> FGDC-STD-001-1998</lineage>
+									<doc:tooltip>North bounding coordinate </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Northern-most coordinate of the limit of coverage expressed in longitude </doc:description>
+									<doc:example/>
+									<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="southbc" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>South bounding coordinate </tooltip>
-									<summary/>
-									<description>Southern-most coordinate of the limit of coverage expressed in longitude </description>
-									<example/>
-									<lineage>FGDC-STD-001-1998 </lineage>
+									<doc:tooltip>South bounding coordinate </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Southern-most coordinate of the limit of coverage expressed in longitude </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="boundalt" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Altitudinal limits </tooltip>
-									<summary/>
-									<description>The limits of coverage of a data set expressed by altitude.  </description>
-									<example/>
-									<lineage>FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Altitudinal limits </doc:tooltip>
+									<doc:summary/>
+									<doc:description>The limits of coverage of a data set expressed by altitude.  </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -464,33 +466,33 @@
 									<xs:element name="altmin" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Minimum altitude </tooltip>
-												<summary/>
-												<description>The minimum altitude extent of coverage. </description>
-												<example/>
-												<lineage>FGDC-STD-001.1-1999  </lineage>
+												<doc:tooltip>Minimum altitude </doc:tooltip>
+												<doc:summary/>
+												<doc:description>The minimum altitude extent of coverage. </doc:description>
+												<doc:example/>
+												<doc:lineage>FGDC-STD-001.1-1999  </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="almax" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Maximum altitude </tooltip>
-												<summary/>
-												<description> The maximum altitude extent of coverage. </description>
-												<example/>
-												<lineage>FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Maximum altitude </doc:tooltip>
+												<doc:summary/>
+												<doc:description> The maximum altitude extent of coverage. </doc:description>
+												<doc:example/>
+												<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="altunits" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Units of altitude </tooltip>
-												<summary/>
-												<description>Units in which altitude is measured. </description>
-												<example/>
-												<lineage> FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Units of altitude </doc:tooltip>
+												<doc:summary/>
+												<doc:description>Units in which altitude is measured. </doc:description>
+												<doc:example/>
+												<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -503,11 +505,11 @@
 			<xs:element name="dsgpoly" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip>Polygon data </tooltip>
-						<summary/>
-						<description>Data Set G-Polygon coordinates defining the outline of an area covered by a data set. </description>
-						<example/>
-						<lineage> FGDC-STD-001-1998</lineage>
+						<doc:tooltip>Polygon data </doc:tooltip>
+						<doc:summary/>
+						<doc:description>Data Set G-Polygon coordinates defining the outline of an area covered by a data set. </doc:description>
+						<doc:example/>
+						<doc:lineage> FGDC-STD-001-1998</doc:lineage>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -515,11 +517,11 @@
 						<xs:element name="dsgpolyo">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Outer polygon </tooltip>
-									<summary/>
-									<description>Data Set G-Polygon Outer G-Ring, the closed nonintersecting boundary of an interior area. </description>
-									<example/>
-									<lineage> FGDC-STD-001-1998 </lineage>
+									<doc:tooltip>Outer polygon </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Data Set G-Polygon Outer G-Ring, the closed nonintersecting boundary of an interior area. </doc:description>
+									<doc:example/>
+									<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -537,11 +539,11 @@
 						<xs:element name="dsgpolyx" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Exclusion polygon </tooltip>
-									<summary/>
-									<description> Data Set G-Polygon Exclusion G-Ring, the closed nonintersecting boundary of a void area (or hole in an interior area). </description>
-									<example/>
-									<lineage> FGDC-STD-001-1998 </lineage>
+									<doc:tooltip>Exclusion polygon </doc:tooltip>
+									<doc:summary/>
+									<doc:description> Data Set G-Polygon Exclusion G-Ring, the closed nonintersecting boundary of a void area (or hole in an interior area). </doc:description>
+									<doc:example/>
+									<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -564,11 +566,11 @@
 	<xs:element name="grngpoin">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>G-Ring point </tooltip>
-				<summary/>
-				<description>A single geographic location. </description>
-				<example/>
-				<lineage> FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>G-Ring point </doc:tooltip>
+				<doc:summary/>
+				<doc:description>A single geographic location. </doc:description>
+				<doc:example/>
+				<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -576,22 +578,22 @@
 				<xs:element name="gringlat" type="xs:string">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Latitude </tooltip>
-							<summary/>
-							<description> The latitude of a point of the g-ring. </description>
-							<example/>
-							<lineage>  FGDC-STD-001-1998</lineage>
+							<doc:tooltip>Latitude </doc:tooltip>
+							<doc:summary/>
+							<doc:description> The latitude of a point of the g-ring. </doc:description>
+							<doc:example/>
+							<doc:lineage>  FGDC-STD-001-1998</doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="gringlon" type="xs:string">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip> Longitude </tooltip>
-							<summary/>
-							<description> The longitude of a point of the g-ring. </description>
-							<example/>
-							<lineage> FGDC-STD-001-1998 </lineage>
+							<doc:tooltip> Longitude </doc:tooltip>
+							<doc:summary/>
+							<doc:description> The longitude of a point of the g-ring. </doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001-1998 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -601,43 +603,43 @@
 	<xs:element name="gring" type="xs:string">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>G-Ring </tooltip>
-				<summary/>
-				<description>A set of ordered pairs of floating-point numbers, separated by commas, in which the first number in each pair is the longitude of a point and the second is the latitude of the point.  Longitude and latitude are specified in decimal degrees with north latitudes positive and south negative, east longitude positive and west negative </description>
-				<example/>
-				<lineage>FGDC-STD-001-1998 </lineage>
+				<doc:tooltip>G-Ring </doc:tooltip>
+				<doc:summary/>
+				<doc:description>A set of ordered pairs of floating-point numbers, separated by commas, in which the first number in each pair is the longitude of a point and the second is the latitude of the point.  Longitude and latitude are specified in decimal degrees with north latitudes positive and south negative, east longitude positive and west negative </doc:description>
+				<doc:example/>
+				<doc:lineage>FGDC-STD-001-1998 </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="TaxonomicCoverage">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>
+				<doc:tooltip>
             Taxonomic coverage
-        </tooltip>
-				<summary>
+        </doc:tooltip>
+				<doc:summary>
             Taxonomic coverage information.
-        </summary>
-				<description>
+        </doc:summary>
+				<doc:description>
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource.
-        </description>
-				<example/>
-				<lineage>
+        </doc:description>
+				<doc:example/>
+				<doc:lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
-        </lineage>
+        </doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="keywtax" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip/>
-						<summary/>
-						<description/>
-						<example/>
-						<lineage/>
+						<doc:tooltip/>
+						<doc:summary/>
+						<doc:description/>
+						<doc:example/>
+						<doc:lineage/>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -645,22 +647,22 @@
 						<xs:element name="taxonkt" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Taxonomic keyword thesaurus </tooltip>
-									<summary/>
-									<description>Reference to a formally registered thesaurus or similar authoritative source of taxonomic keywords. </description>
-									<example/>
-									<lineage>FGDC-STD-001.1-1999</lineage>
+									<doc:tooltip>Taxonomic keyword thesaurus </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Reference to a formally registered thesaurus or similar authoritative source of taxonomic keywords. </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="taxonkey" type="xs:string" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Taxonoimc keyword </tooltip>
-									<summary/>
-									<description>Common use words or phrases describing the taxonomy covered by the data set. </description>
-									<example/>
-									<lineage>FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Taxonoimc keyword </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Common use words or phrases describing the taxonomy covered by the data set. </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -670,11 +672,11 @@
 			<xs:element name="taxonsys" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip>Taxonomic system </tooltip>
-						<summary/>
-						<description>Documentation of taxonomic sources, procedures, and treatments. </description>
-						<example/>
-						<lineage>FGDC-STD-001.1-1999 </lineage>
+						<doc:tooltip>Taxonomic system </doc:tooltip>
+						<doc:summary/>
+						<doc:description>Documentation of taxonomic sources, procedures, and treatments. </doc:description>
+						<doc:example/>
+						<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -682,11 +684,11 @@
 						<xs:element name="classsys" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Classification system/authority </tooltip>
-									<summary/>
-									<description> Information about the classification system or authority used. </description>
-									<example/>
-									<lineage>FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Classification system/authority </doc:tooltip>
+									<doc:summary/>
+									<doc:description> Information about the classification system or authority used. </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -694,11 +696,11 @@
 									<xs:element name="classcit">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Taxonomic citation </tooltip>
-												<summary/>
-												<description>Relevant literature for documenting the used classification system. </description>
-												<example/>
-												<lineage>FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Taxonomic citation </doc:tooltip>
+												<doc:summary/>
+												<doc:description>Relevant literature for documenting the used classification system. </doc:description>
+												<doc:example/>
+												<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -710,11 +712,11 @@
 									<xs:element name="classmod" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Classification system modification </tooltip>
-												<summary/>
-												<description>A description of any modifications or exceptions made to the classification system or authority used. </description>
-												<example/>
-												<lineage>FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Classification system modification </doc:tooltip>
+												<doc:summary/>
+												<doc:description>A description of any modifications or exceptions made to the classification system or authority used. </doc:description>
+												<doc:example/>
+												<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -724,11 +726,11 @@
 						<xs:element name="idref" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Non-authoritative citation</tooltip>
-									<summary/>
-									<description> Information on any nonauthoritative materials (e.g. field guides) useful for reconstructing the actual identification process. </description>
-									<example/>
-									<lineage/>
+									<doc:tooltip>Non-authoritative citation</doc:tooltip>
+									<doc:summary/>
+									<doc:description> Information on any nonauthoritative materials (e.g. field guides) useful for reconstructing the actual identification process. </doc:description>
+									<doc:example/>
+									<doc:lineage/>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -740,11 +742,11 @@
 						<xs:element name="ider" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Identifier </tooltip>
-									<summary/>
-									<description>Information about the individual(s) responsible for the identification(s) of the specimens or sightings, etc. </description>
-									<example/>
-									<lineage>FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Identifier </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Information about the individual(s) responsible for the identification(s) of the specimens or sightings, etc. </doc:description>
+									<doc:example/>
+									<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -756,34 +758,34 @@
 						<xs:element name="taxonpro" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Taxonomic procedure </tooltip>
-									<summary/>
-									<description>Description of the methods used for the taxonomic identification.  </description>
-									<example>specimen processing, comparison with museum materials, keys and key characters, chemical or genetic analyses</example>
-									<lineage> FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Taxonomic procedure </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Description of the methods used for the taxonomic identification.  </doc:description>
+									<doc:example>specimen processing, comparison with museum materials, keys and key characters, chemical or genetic analyses</doc:example>
+									<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="taxoncom" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Taxonomic completeness </tooltip>
-									<summary/>
-									<description>Information concerning the proportions and treatment of unidentified materials ; estimates of the importance, and identities of misidentifications, uncertain determinations, synonyms or other incorrect usages; taxa not well treated or requiring further work; and expertise of field workers.</description>
-									<example>materials sent to experts, and not yet determined </example>
-									<lineage> FGDC-STD-001.1-1999 </lineage>
+									<doc:tooltip>Taxonomic completeness </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Information concerning the proportions and treatment of unidentified materials ; estimates of the importance, and identities of misidentifications, uncertain determinations, synonyms or other incorrect usages; taxa not well treated or requiring further work; and expertise of field workers.</doc:description>
+									<doc:example>materials sent to experts, and not yet determined </doc:example>
+									<doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="vouchers" minOccurs="0" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:appinfo>
-									<tooltip>Specimen information </tooltip>
-									<summary/>
-									<description>Information on the types of specimen, the repository, and the individuals who identified the vouchers. </description>
-									<example/>
-									<lineage> FGDC-STD-001.1-1999
- </lineage>
+									<doc:tooltip>Specimen information </doc:tooltip>
+									<doc:summary/>
+									<doc:description>Information on the types of specimen, the repository, and the individuals who identified the vouchers. </doc:description>
+									<doc:example/>
+									<doc:lineage> FGDC-STD-001.1-1999
+ </doc:lineage>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -791,22 +793,22 @@
 									<xs:element name="specimen" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Specimen type </tooltip>
-												<summary/>
-												<description>A word or phrase describing the type of specimen collected. </description>
-												<example>herbarium specimens, blood samples, photographs, individuals, or batches</example>
-												<lineage>FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Specimen type </doc:tooltip>
+												<doc:summary/>
+												<doc:description>A word or phrase describing the type of specimen collected. </doc:description>
+												<doc:example>herbarium specimens, blood samples, photographs, individuals, or batches</doc:example>
+												<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="reposit">
 										<xs:annotation>
 											<xs:appinfo>
-												<tooltip>Storage location of specimen </tooltip>
-												<summary/>
-												<description> Information about the curator or contact person and/or agency responsible for the specimens. </description>
-												<example/>
-												<lineage>FGDC-STD-001.1-1999 </lineage>
+												<doc:tooltip>Storage location of specimen </doc:tooltip>
+												<doc:summary/>
+												<doc:description> Information about the curator or contact person and/or agency responsible for the specimens. </doc:description>
+												<doc:example/>
+												<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -824,11 +826,11 @@
 			<xs:element name="taxongen" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<tooltip>General taxonomic coverage </tooltip>
-						<summary/>
-						<description>A description of the range of taxa addressed in the data set or collection. </description>
-						<example> All vascular plants were identified to family or species, mosses and lichens were identified as moss or lichen. </example>
-						<lineage>FGDC-STD-001.1-1999 </lineage>
+						<doc:tooltip>General taxonomic coverage </doc:tooltip>
+						<doc:summary/>
+						<doc:description>A description of the range of taxa addressed in the data set or collection. </doc:description>
+						<doc:example> All vascular plants were identified to family or species, mosses and lichens were identified as moss or lichen. </doc:example>
+						<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -838,11 +840,11 @@
 	<xs:element name="taxoncl">
 		<xs:annotation>
 			<xs:appinfo>
-				<tooltip>Taxonomic classification </tooltip>
-				<summary/>
-				<description>Information about the range of taxa addressed in the data set or collection.  It is recommended that one provide information starting from the taxonomic rank of kingdom, to a level which reflects the data set or collection being documented.  The levels of Kingdom, Division/Phylum, Class, Order, Family, Genus, and Species should be included as ranks as appropriate. </description>
-				<example> Kingdom, Division/Phylum, Class, Order, Family, Genus, and Species</example>
-				<lineage> FGDC-STD-001.1-1999</lineage>
+				<doc:tooltip>Taxonomic classification </doc:tooltip>
+				<doc:summary/>
+				<doc:description>Information about the range of taxa addressed in the data set or collection.  It is recommended that one provide information starting from the taxonomic rank of kingdom, to a level which reflects the data set or collection being documented.  The levels of Kingdom, Division/Phylum, Class, Order, Family, Genus, and Species should be included as ranks as appropriate. </doc:description>
+				<doc:example> Kingdom, Division/Phylum, Class, Order, Family, Genus, and Species</doc:example>
+				<doc:lineage> FGDC-STD-001.1-1999</doc:lineage>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -850,33 +852,33 @@
 				<xs:element name="taxonrn" type="xs:string" minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Taxon rank name </tooltip>
-							<summary/>
-							<description>The name of the taxonomic rank for which the Taxon rank value is provided. </description>
-							<example/>
-							<lineage> FGDC-STD-001.1-1999</lineage>
+							<doc:tooltip>Taxon rank name </doc:tooltip>
+							<doc:summary/>
+							<doc:description>The name of the taxonomic rank for which the Taxon rank value is provided. </doc:description>
+							<doc:example/>
+							<doc:lineage> FGDC-STD-001.1-1999</doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="taxonrv" type="xs:string" minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Taxon rank value </tooltip>
-							<summary/>
-							<description>The name representing the taxonomic rank of the taxon being described.</description>
-							<example/>
-							<lineage>FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Taxon rank value </doc:tooltip>
+							<doc:summary/>
+							<doc:description>The name representing the taxonomic rank of the taxon being described.</doc:description>
+							<doc:example/>
+							<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="common" type="xs:string" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:appinfo>
-							<tooltip>Common name </tooltip>
-							<summary/>
-							<description>Specification of applicable common names.  These common names may be general descriptions of a group of organisms if appropriate.</description>
-							<example>insects, vertebrate, grasses, waterfowl, vascular plants</example>
-							<lineage>FGDC-STD-001.1-1999 </lineage>
+							<doc:tooltip>Common name </doc:tooltip>
+							<doc:summary/>
+							<doc:description>Specification of applicable common names.  These common names may be general descriptions of a group of organisms if appropriate.</doc:description>
+							<doc:example>insects, vertebrate, grasses, waterfowl, vascular plants</doc:example>
+							<doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>

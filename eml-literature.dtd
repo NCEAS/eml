@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-07-13 02:44:25 $'
-      '$Revision: 1.2 $'
+          '$Date: 2001-07-23 02:07:54 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,13 +23,35 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 <!-- entity referring to the base resource fields -->
-<!ENTITY % ResourceBase SYSTEM "./eml-resource.dtd">
-%ResourceBase;
+<!ENTITY % resource SYSTEM "./eml-resource.dtd">
+%resource;
 <!-- The literature branch -->
-<!ELEMENT citation ((%resbase;), ISBN?, ISSN?, editor*, edition?, volume?)>
+<!ENTITY % LitCitation "(%ResourceBase;, ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))">
+<!ELEMENT citation (%LitCitation;)>
 <!ELEMENT ISBN (#PCDATA)>
 <!ELEMENT ISSN (#PCDATA)>
-<!ELEMENT editor (#PCDATA)>
-<!ELEMENT edition (#PCDATA)>
+<!ELEMENT article (jounal, volume, issue?, pageRange)>
+<!ELEMENT book (edition?, totalPages?, totalFigures?, totalTables?, volume?)>
+<!ELEMENT chapter (chapterNumber?, bookEditor, bookTitle, publisher, pageRange?, edition?, volume?)>
+<!ELEMENT manuscript (pubInfo, Location)>
+<!ELEMENT report (institution, reportNumber)>
+<!ELEMENT thesis (degree, pubInfo, totalPages, degreeInstitution)>
+<!ELEMENT jounal (#PCDATA)>
 <!ELEMENT volume (#PCDATA)>
+<!ELEMENT issue (#PCDATA)>
+<!ELEMENT pageRange (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT totalPages (#PCDATA)>
+<!ELEMENT totalFigures (#PCDATA)>
+<!ELEMENT totalTables (#PCDATA)>
+<!ELEMENT chapterNumber (#PCDATA)>
+<!ELEMENT bookEditor (#PCDATA)>
+<!ELEMENT bookTitle (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT pubInfo (%ResponsibleParty;)>
+<!ELEMENT Location (#PCDATA)>
+<!ELEMENT institution (%ResponsibleParty;)>
+<!ELEMENT reportNumber (#PCDATA)>
+<!ELEMENT degree (#PCDATA)>
+<!ELEMENT degreeInstitution (#PCDATA)>
 <!-- EOF -->

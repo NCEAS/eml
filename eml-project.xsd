@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns:cov="eml:coverage" xmlns:cit="eml:literature" xmlns="eml:project" targetNamespace="eml:project">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:project" xmlns="eml:project" xmlns:cit="eml:literature" xmlns:cov="eml:coverage" xmlns:rp="eml:ResponsibleParty" xmlns:pro="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation">
+  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-project.xsd,v $'
@@ -10,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-13 17:35:37 $'
-      '$Revision: 1.16 $'
+          '$Date: 2001-07-23 02:07:54 $'
+      '$Revision: 1.17 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,9 +27,9 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-research</doc:moduleName>
+      <doc:moduleName>eml-project</doc:moduleName>
       <doc:moduleDescription>
-        The EML Research Module describes the research context 
+        The EML Project Module describes the research context 
         in which the dataset was created.
       </doc:moduleDescription>
     </xs:appinfo>
@@ -38,6 +37,7 @@
   <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
   <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
   <xs:import namespace="eml:literature" schemaLocation="./eml-literature.xsd"/>
+  <xs:import namespace="eml:protocol" schemaLocation="./eml-protocol.xsd"/>
   <xs:element name="eml-project">
     <xs:annotation>
       <xs:appinfo>
@@ -60,7 +60,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="identifier" minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="identifier" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -88,7 +88,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute name="system" use="optional" type="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>
@@ -117,7 +117,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element ref="researchProject" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element ref="researchProject" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -145,26 +145,18 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="title" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:element name="title" type="xs:string" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>
-                Title
-              </doc:tooltip>
-              <doc:summary>
-                Title of the research project
-              </doc:summary>
-              <doc:description>
-                Title of the research project
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The title element was introduced into EML 1.4.
-              </doc:lineage>
+              <doc:tooltip>Project Title</doc:tooltip>
+              <doc:summary>Title of the project.</doc:summary>
+              <doc:description>A descriptive title for the research project.</doc:description>
+              <doc:example>Species diversity in Tennessee riparian habitats.</doc:example>
+              <doc:lineage>Introduced into EML 1.4.        </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="originator" type="rp:ResponsibleParty" minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -183,51 +175,8 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="temporalDescription" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Temporal description
-              </doc:tooltip>
-              <doc:summary>
-                Descriptor of temporal boudaries of the project.
-              </doc:summary>
-              <doc:description>
-                This element describes the temporal coverage of the project.
-                It specifies the duration, start and end date of the project.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The temporalDescription element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                        Temporal coverage
-                    </doc:tooltip>
-                    <doc:summary>
-                        Temporal coverage descriptor
-                    </doc:summary>
-                    <doc:description>
-                        This element specifies temporal coverage of the 
-                      research project.
-                    </doc:description>
-                    <doc:example/>
-                    <doc:lineage>
-                      The temporalCoverage was introduced into EML 1.4.
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="objectives" minOccurs="0" maxOccurs="1">
+        <xs:element ref="cov:temporalCov" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="objectives" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -248,11 +197,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="abstract" minOccurs="0" maxOccurs="1">
+        <xs:element name="abstract" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -272,11 +221,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="funding" minOccurs="0" maxOccurs="1">
+        <xs:element name="funding" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -297,13 +246,13 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element ref="siteDescription" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element ref="designDescription" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="methodDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="pro:eml-protocol" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="staff" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -322,6 +271,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
+        <xs:element ref="researchProject" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -349,7 +299,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="siteType" minOccurs="0" maxOccurs="1">
+        <xs:element name="siteType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -370,11 +320,11 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="geography" minOccurs="0" maxOccurs="1">
+        <xs:element name="geography" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -417,11 +367,11 @@
                 </xs:annotation>
               </xs:element>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="habitat" minOccurs="0" maxOccurs="1">
+        <xs:element name="habitat" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -443,11 +393,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="geology" minOccurs="0" maxOccurs="1">
+        <xs:element name="geology" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -469,11 +419,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="hydrology" minOccurs="0" maxOccurs="1">
+        <xs:element name="hydrology" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -495,11 +445,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="history" minOccurs="0" maxOccurs="1">
+        <xs:element name="history" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -521,11 +471,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="climate" minOccurs="0" maxOccurs="1">
+        <xs:element name="climate" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -547,34 +497,10 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="chapterTitle">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>
-          Chapter title
-        </doc:tooltip>
-        <doc:summary>
-          Chapter title.
-        </doc:summary>
-        <doc:description>
-          Chapter title of the source where the citation comes from.
-        </doc:description>
-        <doc:example/>
-        <doc:lineage>
-          The chapterTitle element was introduced into EML 1.4.
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="title" type="xs:string" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -600,7 +526,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="designMethod" minOccurs="0" maxOccurs="1">
+        <xs:element name="designMethod" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -622,11 +548,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="plots" minOccurs="0" maxOccurs="1">
+        <xs:element name="plots" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -648,11 +574,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sampling" minOccurs="0" maxOccurs="1">
+        <xs:element name="sampling" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>
@@ -675,171 +601,14 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="frequency" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="frequency" type="xs:string" minOccurs="0"/>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="methodsDescription">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>
-          Research method 
-        </doc:tooltip>
-        <doc:summary>
-          Research method descriptor
-        </doc:summary>
-        <doc:description>
-          Description of research method of the project:
-          the method itself, instruments used, taxonomy, permit, 
-          legal information, 
-          descriptive paragraph of text or citation from a source.
-        </doc:description>
-        <doc:example/>
-        <doc:lineage>
-          The methodsDecription element was introduced into EML 1.4.
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="method" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Research method 
-              </doc:tooltip>
-              <doc:summary>
-                Research method descriptor
-              </doc:summary>
-              <doc:description>
-                Description or reference to field/laboratory method:
-                descriptive paragraph of text or citation from a source.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The method element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="instrument" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Instrument used 
-              </doc:tooltip>
-              <doc:summary>
-                Instrument used
-              </doc:summary>
-              <doc:description>
-                Instruments used:
-                descriptive paragraph of text or citation from a source.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The instrument element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="taxonomy" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Taxonomy
-              </doc:tooltip>
-              <doc:summary>
-                Taxonomy information
-              </doc:summary>
-              <doc:description>
-                Taxonomy information:
-                descriptive paragraph of text or citation from a source.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The taxonomy element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="permit" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Permit
-              </doc:tooltip>
-              <doc:summary>
-                References to pertinent scientific and collecting permits
-                information
-              </doc:summary>
-              <doc:description>
-                References to pertinent scientific and collecting permits
-                information: descriptive paragraph of text.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The permit element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="legalInformation" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Legal information
-              </doc:tooltip>
-              <doc:summary>
-                Legal information
-              </doc:summary>
-              <doc:description>
-                References to pertinent scientific and collecting permits
-                information: descriptive paragraph of text.
-              </doc:description>
-              <doc:example/>
-              <doc:lineage>
-                The legalInformation element was introduced into EML 1.4.
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="cit:LitCitation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
