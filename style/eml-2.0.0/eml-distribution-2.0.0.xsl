@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-02 21:15:57 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2004-07-14 22:23:39 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -120,6 +120,7 @@
 
   <xsl:template match="url">
     <xsl:param name="disfirstColStyle"/>
+    <xsl:variable name="URL" select="."/>
     <tr>
       <td width="{$firstColWidth}" class="{$disfirstColStyle}">
         <xsl:text>&#160;</xsl:text>
@@ -127,7 +128,16 @@
       <td width="{$secondColWidth}" class="{$secondColStyle}">
          <xsl:if test="$withHTMLLinks='1'">
           <a>
-          <xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute>
+          <xsl:choose>
+           <xsl:when test="starts-with($URL,'ecogrid')">
+		<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
+		<xsl:variable name="docID" select="substring-after($URL1, '/')"/>
+		<xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docID"/></xsl:attribute>
+           </xsl:when>
+           <xsl:otherwise>
+		<xsl:attribute name="href"><xsl:value-of select="$URL"/></xsl:attribute>
+           </xsl:otherwise>
+          </xsl:choose>
           <xsl:attribute name="target">_blank</xsl:attribute>
           <xsl:value-of select="."/>
           </a>
