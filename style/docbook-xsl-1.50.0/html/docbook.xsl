@@ -9,7 +9,7 @@
             indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl,v 1.1 2002-09-07 02:09:02 berkley Exp $
+     $Id: docbook.xsl,v 1.2 2002-09-09 17:07:25 berkley Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -234,6 +234,7 @@ body { background-image: url("</xsl:text>
     <xsl:call-template name="user.head.content">
       <xsl:with-param name="node" select="$doc"/>
     </xsl:call-template>
+    <link rel="stylesheet" type="text/css" href="default.css"/>
   </head>
   <body>
     <xsl:call-template name="body.attributes"/>
