@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: higgins $'
-          '$Date: 2002-05-28 17:52:18 $'
-      '$Revision: 1.17 $'
+          '$Date: 2002-05-28 18:22:59 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -80,10 +80,10 @@
               </doc:summary>
             <doc:description>
                 The connectionURL is a URL description that lets the user
-								connect to and download the document decribed by this
-								eml-physical metadata document. The simplest example is
-								probably a http web url ad used in standard web browsers.
-								Less common URL types may also be used
+                connect to and download the document decribed by this
+                eml-physical metadata document. The simplest example is
+                probably a http web url ad used in standard web browsers.
+                Less common URL types may also be used
               </doc:description>
             <doc:example/>
             <doc:lineage>
@@ -155,8 +155,8 @@
               <doc:summary/>
               <doc:description>
                	The dataObject element is a container for several items
-								which identify the physical object described by this metadata
-								document
+                which identify the physical object described by this metadata
+                document
                </doc:description>
               <doc:example/>
               <doc:lineage>
@@ -176,9 +176,9 @@
                     </doc:summary>
                   <doc:description>
                       The objectName is the a name (i.e. identifier) for the object
-											being considered. In many cases, it may just be the file name
-											on the file system where it is stored. Or if the object is a
-											table in a RDB it may be the table name.							
+                      being considered. In many cases, it may just be the file name
+                      on the file system where it is stored. Or if the object is a
+                      table in a RDB it may be the table name.							
                     </doc:description>
                   <doc:example/>
                   <doc:lineage>
@@ -660,12 +660,12 @@
                        contains binary raster data header parameters       
                     </doc:summary>
                       <doc:description>
-											The binaryRasterInfo element is a container for various
-											parameters used to described the contents of binary raster
-											image files. In this case, it is based on a white paper on 
-											the ESRI site that describes the header information used 
-											for BIP and BIL files ("Extendable Image Formats for 
-											ArcView GIS 3.1 and 3.2").
+                      The binaryRasterInfo element is a container for various
+                      parameters used to described the contents of binary raster
+                      image files. In this case, it is based on a white paper on 
+                      the ESRI site that describes the header information used 
+                      for BIP and BIL files ("Extendable Image Formats for 
+                      ArcView GIS 3.1 and 3.2").
                     </doc:description>
                       <doc:example/>
                       <doc:lineage>
@@ -715,13 +715,13 @@
                           <doc:tooltip/>
                           <doc:summary/>
                           <doc:description>
-													  The number of bits per pixel per band. Acceptable values are
-														1, 4, 8, 16, and 32. The default value is eight bits per pixel
-														per band. For a true color image with three bands (R, G, B) 
-														stored using eight bits for each pixel in each band, nbits 
-														equals eight and nbands equals three, for a total of twenty-four
+                          The number of bits per pixel per band. Acceptable values are
+                            1, 4, 8, 16, and 32. The default value is eight bits per pixel
+                            per band. For a true color image with three bands (R, G, B) 
+                            stored using eight bits for each pixel in each band, nbits 
+                            equals eight and nbands equals three, for a total of twenty-four
                             bits per pixel. For an image with nbits equal to one, nbands 
-														must also equal one. 
+                            must also equal one. 
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -734,13 +734,13 @@
                           <doc:description>
                             The byte order in which image pixel values are stored. The byte
                             order is important for sixteen-bit images, with two bytes per 
-														pixel. Acceptable values are
-	                          I - Intel byte order (Silicon Graphics, DEC Alpha, PC) 
-														   Also known as littleendian.
-	                          M - Motorola byte order (Sun, HP, etc.) 
-														   Also known as big-endian.
-	                          The default byte order is the same as that of the host machine 
-														executing the software.
+                            pixel. Acceptable values are
+                            I - Intel byte order (Silicon Graphics, DEC Alpha, PC) 
+                            Also known as littleendian.
+                            M - Motorola byte order (Sun, HP, etc.) 
+                            Also known as big-endian.
+                            The default byte order is the same as that of the host machine 
+                            executing the software.
                          </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -752,7 +752,7 @@
                           <doc:summary/>
                           <doc:description>
                           The organization of the bands in the image file. Acceptable 
-													values are bil - Band interleaved by line.
+                          values are bil - Band interleaved by line.
 	                                   bip - Band interleaved by pixel.
 	                                   bsq - Band sequential.
 	                        The default layout is bil.
@@ -767,9 +767,9 @@
                           <doc:summary/>
                           <doc:description>
                             The number of bytes of data in the image file to skip 
-														in order to reach the start of the image data. This 
-														keyword allows you to bypass any existing image header
-														information in the file. The default value is zero bytes.
+                            in order to reach the start of the image data. This 
+                            keyword allows you to bypass any existing image header
+                            information in the file. The default value is zero bytes.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -781,8 +781,8 @@
                           <doc:summary/>
                           <doc:description>
                             The x-axis map coordinate of the center of the upper-left
-														pixel. If you specify this parameter, set ulymap, too, 
-														otherwise a default value is used.
+                            pixel. If you specify this parameter, set ulymap, too, 
+                            otherwise a default value is used.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -794,8 +794,8 @@
                           <doc:summary/>
                           <doc:description>
                             The y-axis map coordinate of the center of the 
-														upper-left pixel. If this parameter is specified, 
-														ulxmap must also be set, otherwise a default value
+                            upper-left pixel. If this parameter is specified, 
+                            ulxmap must also be set, otherwise a default value
                             is used.
                           </doc:description>
                           <doc:example/>
@@ -808,9 +808,9 @@
                           <doc:summary/>
                           <doc:description>
                             The x-dimension of a pixel in map units. 
-														If this parameter is specified,
+                            If this parameter is specified,
                             ydim must also be set, otherwise a default 
-														value is used.
+                            value is used.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -822,8 +822,8 @@
                           <doc:summary/>
                           <doc:description>
                             The y-dimension of a pixel in map units. 
-														If this parameter is specified, xdim must 
-														also be set, otherwise a default value is used.
+                            If this parameter is specified, xdim must 
+                            also be set, otherwise a default value is used.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -835,8 +835,8 @@
                           <doc:summary/>
                           <doc:description>
                             The number of bytes per band per row. This must 
-														be an integer. This keyword is used only with BIL 
-														files when there are extra bits at the end of
+                            be an integer. This keyword is used only with BIL 
+                            files when there are extra bits at the end of
                             each band within a row that must be skipped.
                           </doc:description>
                           <doc:example/>
@@ -849,8 +849,8 @@
                           <doc:summary/>
                           <doc:description>
                             The total number of bytes of data per row. 
-														Use totalrowbytes when there are extra trailing
-														bits at the end of each row.
+                            Use totalrowbytes when there are extra trailing
+                            bits at the end of each row.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
@@ -862,7 +862,7 @@
                           <doc:summary/>
                           <doc:description>
                             The number of bytes between bands in a BSQ format 
-														image. The default is zero.
+                            image. The default is zero.
                           </doc:description>
                           <doc:example/>
                           <doc:lineage>
