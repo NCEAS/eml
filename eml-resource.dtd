@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-08-15 19:06:29 $'
-      '$Revision: 1.21 $'
+          '$Date: 2001-07-23 02:07:55 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 <!-- entity to conglomerate these fields into one name -->
 <!ENTITY % ResourceBase "(identifier+, shortName?, title+,
                      originator+, pubDate?, pubPlace?, series?, abstract?, 
-                     keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*,  triple*)">
+                     keywordSet*, additionalInfo*, rights*, triple*)">
 <!-- common fields -->
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier
@@ -50,14 +50,6 @@
 <!ELEMENT additionalInfo (paragraph+)>
 <!ELEMENT paragraph (#PCDATA)>
 <!ELEMENT rights (paragraph+)>
-<!ELEMENT onlineURL (#PCDATA)>
-<!ELEMENT offlineMedium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*, medNote?)>
-<!ELEMENT medName (#PCDATA)>
-<!ELEMENT medDensity (#PCDATA)>
-<!ELEMENT medDensityUnits (#PCDATA)>
-<!ELEMENT medVol (#PCDATA)>
-<!ELEMENT medFormat (#PCDATA)>
-<!ELEMENT medNote (#PCDATA)>
 <!ELEMENT triple (subject, relationship, object)>
 <!ELEMENT subject (#PCDATA)>
 <!ELEMENT relationship (#PCDATA)>

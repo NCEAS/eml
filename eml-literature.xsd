@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml:literature" xmlns="eml:literature" xmlns:res="eml:resource" xmlns:rp="eml:ResponsibleParty" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:literature" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns:rp="eml:ResponsibleParty" xmlns:res="eml:resource" xmlns="eml:literature">
   <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-08-08 16:33:23 $'
-      '$Revision: 1.9 $'
+          '$Date: 2001-07-31 16:24:36 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-literature</doc:moduleName>
+      <doc:moduleName>eml-resource</doc:moduleName>
       <doc:moduleDescription>
         The eml-literature module contains information that describes
         literature resources. It is intended to provide overview information
