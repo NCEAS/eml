@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.2 $'
+        '$Author: berkley $'
+          '$Date: 2001-02-21 20:49:08 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,20 +26,18 @@
 <!ENTITY % resParty SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/iso-party.dtd">
 %resParty;
 
-<!ELEMENT eml-distribution (format+, distributor*, digitalTransfer*)>
+<!ELEMENT eml-distribution (distributorFormat+, distributor*, digitalTransfer*)>
 
-<!ELEMENT format (formatName+, formatVersion+, amendmentNumber*, formatSpec*,
+<!ELEMENT distributorFormat (formatName+, formatVersion+, formatSpec*,
                       compressionType*, distributionFormat*)>
 <!ELEMENT formatName (#PCDATA)>
 <!ELEMENT formatVersion (#PCDATA)>
-<!ELEMENT amendmentNumber (#PCDATA)>
 <!ELEMENT formatSpec (#PCDATA)>
 <!ELEMENT compressionType (#PCDATA)>
-<!ELEMENT distributionFormat (distributor)>
+<!ELEMENT distributionFormat (#PCDATA)>
 
-<!ELEMENT distributor (contact+, orderProcess*, distributorFormat*)>
+<!ELEMENT distributor (contact+, standardOrderProcess*, distributorFormat*)>
 <!ELEMENT contact ((%responsibleParty;))>
-<!ELEMENT orderProcess (standardOrderProcess)>
 <!ELEMENT distributorFormat (format)>
 
 
@@ -51,15 +49,15 @@
 <!ELEMENT turnaround (#PCDATA)>
 
 <!ELEMENT digitalTransfer (distributionUnits?, transferSize?, onLine*, 
-                           offLineResource?)>
+                           offLineResource*)>
 <!ELEMENT distributionUnits (#PCDATA)>
 <!ELEMENT transferSize (#PCDATA)>
 <!ELEMENT onLine (onlineResource)> <!-- from iso-party.dtd -->
-<!ELEMENT offLineResource (medium)>
+<!ELEMENT offLineResource (medium+)>
 
-<!ELEMENT medium (medNameCode?, medDensity*, medDensityUnits?, medVol?, medFormat*,
+<!ELEMENT medium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*,
                   medNote?)>
-<!ELEMENT medNameCode (#PCDATA)>
+<!ELEMENT medName (#PCDATA)>
 <!ELEMENT medDensity (#PCDATA)>
 <!ELEMENT medDensityUnits (#PCDATA)>
 <!ELEMENT medVol (#PCDATA)>
