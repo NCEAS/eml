@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-04-19 16:20:08 $'
-      '$Revision: 1.12 $'
+          '$Date: 2002-05-07 20:19:09 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 <!ATTLIST identifier system CDATA #IMPLIED >
 <!ELEMENT geographicCov (geographicDescription, boundingCoordinates, datasetGPolygon*)>
 <!ELEMENT temporalCov (singleDateTime | multipleDatesTimes | rangeOfDates)>
-<!ELEMENT taxonomicCov (keywordsTaxon+, taxonomicSystem?, generalTaxonomicCoverage?, taxonomicClassification+)>
+<!ELEMENT taxonomicCov (taxonomicSystem?, generalTaxonomicCoverage?, taxonomicClassification+)>
 
 <!-- Geographic Coverage elements -->
 <!ELEMENT geographicDescription (#PCDATA)>
@@ -74,9 +74,6 @@
 <!ELEMENT geologicCitation (citation)>
 
 <!-- Taxonomic Coverage elements -->
-<!ELEMENT keywordsTaxon (taxonomicKeywordThesaurus, taxomomicKeywords+)>
-<!ELEMENT taxonomicKeywordThesaurus (#PCDATA)>
-<!ELEMENT taxomomicKeywords (#PCDATA)>
 <!ELEMENT taxonomicSystem (classificationSystem+, identificationReference*, identifierName+, taxonomicProcedures, taxonomicCompleteness?, vouchers*)>
 <!ELEMENT classificationSystem (classificationSystemCitation, classificationSystemModifications?)>
 <!ELEMENT classificationSystemCitation (citation)>

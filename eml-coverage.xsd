@@ -18,9 +18,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-04-21 22:45:30 $'
-      '$Revision: 1.32 $'
+        '$Author: cjones $'
+          '$Date: 2002-05-07 20:19:09 $'
+      '$Revision: 1.33 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -1302,81 +1302,6 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="keywordsTaxon" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Taxonomic Keyword Information
-            </doc:tooltip>
-            <doc:summary>
-              Taxonomic Keywords and related taxonomic thesaurii.
-            </doc:summary>
-            <doc:description>
-              The taxonomic keyword fields provide locations for keywords and 
-              the thesaurii from which they are formally defined that are 
-              specific to the taxonomic extent of the dataset or resource.
-            </doc:description>
-            <doc:example>
-              Please see the individual sub-fields for specific examples.
-            </doc:example>
-            <doc:lineage>
-              FGDC-STD-001.1-1999: 
-                /metadata/identification_information/taxonomy/keywords_taxon
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="taxonomicKeywordThesaurus" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Taxonomic keyword thesaurus</doc:tooltip>
-                  <doc:summary>
-                    Reference to eml-attribute.htmla formally registered 
-                    thesaurus or similar authoritative source of taxonomic 
-                    keywords. 
-                  </doc:summary>
-                  <doc:description>
-                    Reference to a formally registered thesaurus or similar 
-                    authoritative source of taxonomic keywords. 
-                  </doc:description>
-                  <doc:example>
-                    BIOSIS Systematic Thesaurus 
-                  </doc:example>
-                  <doc:lineage>
-                    FGDC-STD-001.1-1999: 
-                      /metadata/identification_information/taxonomy/
-                      keywords_taxon/taxonomic_keyword_thesuarus
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="taxomomicKeywords" type="xs:string" 
-                        maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Taxonomic keyword</doc:tooltip>
-                  <doc:summary>
-                    Keywords or phrases describing the taxonomy of the dataset.
-                  </doc:summary>
-                  <doc:description>
-                    Common use words or phrases describing the taxonomy covered 
-                    by the data set. 
-                  </doc:description>
-                  <doc:example>
-                    Mammalia
-                  </doc:example>
-                  <doc:lineage>
-                    FGDC-STD-001.1-1999: 
-                      /metadata/identification_information/taxonomy/
-                      keywords_taxon/taxonomic_keywords
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="taxonomicSystem" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
