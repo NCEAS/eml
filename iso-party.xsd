@@ -14,19 +14,19 @@
       Authors: Matt Jones
 
      '$Author: cjones $'
-       '$Date: 2000-07-14 18:29:04 $'
-   '$Revision: 1.5 $'
+       '$Date: 2000-07-14 19:47:18 $'
+   '$Revision: 1.6 $'
     </documentation>
   </annotation>
 
-  <complexType name="responsibleParty" content="elementOnly">
+  <complexType name="ResponsibleParty" content="elementOnly">
     <sequence>
       <choice minOccurs="1" maxOccurs="unbounded">
         <element name="individualName" type="Person" />
         <element name="organizationName" type="string" />
         <element name="positionName" type="string" />
       </choice>
-      <element name="contactinfo" 
+      <element name="contactInfo" 
                type="Contact" minOccurs="0" maxOccurs="unbounded" />
       <element name="roleCode" 
                type="RoleCode" minOccurs="1" maxOccurs="unbounded" />
@@ -36,7 +36,7 @@
   <complexType name="Person" content="elementOnly">
     <sequence>
       <element name="salutation" 
-               type="string" minOccurs="0" maxOccurs="unbounded" />
+               type="string" minOccurs="0" maxOccurs="unbounded" /> 
       <element name="givenname" 
                type="string" minOccurs="1" maxOccurs="unbounded" />
       <element name="surname" 
@@ -124,6 +124,8 @@
 	<xs:enumeration value = "principalInvestigator" />
 	<xs:enumeration value = "processor" />
 	<xs:enumeration value = "publisher" />
+	<xs:enumeration value = "author" />
+	<xs:enumeration value = "editor" />
   </xs:simpleType>
   
 </xs:schema>
