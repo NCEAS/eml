@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:46:59 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
    <xsl:param name="docid"/>
    <xsl:param name="entitytype"/>
    <xsl:param name="entityindex"/>
-  
+
    <table xsl:use-attribute-sets="cellspacing" class="tableattribute" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
@@ -70,7 +70,7 @@
 
 
   <!-- First row for attribute name-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Attribute Names</th>
+  <tr><th colspan="1" class="bordered">Attribute Names</th>
   <xsl:for-each select="attribute">
     <xsl:choose>
          <xsl:when test="references!=''">
@@ -86,9 +86,9 @@
      </xsl:choose>
   </xsl:for-each>
   </tr>
-  
+
   <!-- Second row for attribute label-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}" class="bordered" >Label(s) of the Column</th>
+  <tr><th colspan="1" class="bordered" >Label(s) of the Column</th>
    <xsl:for-each select="attribute">
     <xsl:variable name="stripes">
               <xsl:choose>
@@ -138,9 +138,9 @@
      </xsl:choose>
    </xsl:for-each>
   </tr>
-  
+
   <!-- Third row for attribute defination-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}" class="bordered">Meaning</th>
+  <tr><th colspan="1" class="bordered">Meaning</th>
     <xsl:for-each select="attribute">
       <xsl:variable name="stripes">
               <xsl:choose>
@@ -163,12 +163,12 @@
              <xsl:value-of select="attributeDefinition"/>
           </td>
         </xsl:otherwise>
-     </xsl:choose>    
+     </xsl:choose>
    </xsl:for-each>
   </tr>
-  
+
   <!-- The fourth row for attribute storage type-->
-   <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Type of Value</th>
+   <tr><th colspan="1" class="bordered">Type of Value</th>
      <xsl:for-each select="attribute">
       <xsl:variable name="stripes">
               <xsl:choose>
@@ -218,9 +218,9 @@
      </xsl:choose>
    </xsl:for-each>
   </tr>
-  
+
   <!-- The fifth row for meaturement type-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Measurement Type</th>
+  <tr><th colspan="1" class="bordered">Measurement Type</th>
    <xsl:for-each select="attribute">
     <xsl:variable name="stripes">
               <xsl:choose>
@@ -250,9 +250,9 @@
      </xsl:choose>
    </xsl:for-each>
   </tr>
-  
+
   <!-- The sixth row for meaturement domain-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Measurement Domain</th>
+  <tr><th colspan="1" class="bordered">Measurement Domain</th>
    <xsl:for-each select="attribute">
     <xsl:variable name="stripes">
               <xsl:choose>
@@ -301,9 +301,9 @@
    </xsl:for-each>
   </tr>
 
- 
+
   <!-- The seventh row for missing value code-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Missing Value Code</th>
+  <tr><th colspan="1" class="bordered">Missing Value Code</th>
     <xsl:for-each select="attribute">
       <xsl:variable name="stripes">
               <xsl:choose>
@@ -337,7 +337,7 @@
                  </td>
               </xsl:when>
               <xsl:otherwise>
-                <td colspan="1" width="{$firstColWidth}" class="{$stripes}">
+                <td colspan="1" class="{$stripes}">
                    &#160;
                 </td>
               </xsl:otherwise>
@@ -369,10 +369,10 @@
      </xsl:choose>
    </xsl:for-each>
   </tr>
- 
- 
+
+
   <!-- The eighth row for accuracy report-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Accuracy Report</th>
+  <tr><th colspan="1" class="bordered">Accuracy Report</th>
      <xsl:for-each select="attribute">
      <xsl:variable name="stripes">
          <xsl:choose>
@@ -395,7 +395,7 @@
               </xsl:when>
               <xsl:otherwise>
                 <td colspan="1" align="center" class="{$stripes}">
-                  &#160;   
+                  &#160;
                 </td>
               </xsl:otherwise>
             </xsl:choose>
@@ -412,7 +412,7 @@
               </xsl:when>
               <xsl:otherwise>
                 <td colspan="1" align="center" class="{$stripes}">
-                  &#160;   
+                  &#160;
                 </td>
               </xsl:otherwise>
             </xsl:choose>
@@ -420,9 +420,9 @@
      </xsl:choose>
   </xsl:for-each>
   </tr>
-  
+
   <!-- The nineth row for quality accuracy accessment -->
-  <tr><th colspan="1" width="{$attributefirstColWidth}" class="bordered">Accuracy Assessment</th>
+  <tr><th colspan="1" class="bordered">Accuracy Assessment</th>
      <xsl:for-each select="attribute">
      <xsl:variable name="stripes">
          <xsl:choose>
@@ -494,9 +494,9 @@
      </xsl:choose>
   </xsl:for-each>
   </tr>
-  
+
    <!-- The tenth row for coverage-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Coverage</th>
+  <tr><th colspan="1" class="bordered">Coverage</th>
    <xsl:for-each select="attribute">
     <xsl:variable name="index" select="position()"/>
     <xsl:variable name="stripes">
@@ -555,10 +555,10 @@
      </xsl:choose>
    </xsl:for-each>
   </tr>
-  
+
 
    <!-- The eleventh row for method-->
-  <tr><th colspan="1" width="{$attributefirstColWidth}"  class="bordered">Method</th>
+  <tr><th colspan="1" class="bordered">Method</th>
    <xsl:for-each select="attribute">
     <xsl:variable name="index" select="position()"/>
     <xsl:variable name="stripes">
@@ -618,7 +618,7 @@
    </xsl:for-each>
   </tr>
  </xsl:template>
- 
+
  <xsl:template name="measurementscale">
    <xsl:param name="stripes"/>
    <xsl:param name="docid"/>
@@ -661,7 +661,7 @@
     </xsl:for-each>
    </table>
  </xsl:template>
- 
+
  <xsl:template name="attributenonnumericdomain">
    <xsl:param name="stripes"/>
    <xsl:param name="docid"/>
@@ -695,14 +695,14 @@
      </xsl:choose>
    </xsl:for-each>
  </xsl:template>
- 
+
  <xsl:template name="attributenonnumericdomaincommon">
     <xsl:param name="stripes"/>
     <xsl:param name="docid"/>
     <xsl:param name="entitytype"/>
     <xsl:param name="entityindex"/>
     <xsl:param name="attributeindex"/>
-    <!-- if numericdomain only has one test domain, 
+    <!-- if numericdomain only has one test domain,
         it will be displayed inline otherwith will be show a link-->
     <xsl:choose>
       <xsl:when test="count(textDomain)=1 and not(enumeratedDomain)">
@@ -731,7 +731,7 @@
       </xsl:otherwise>
     </xsl:choose>
  </xsl:template>
- 
+
  <xsl:template name="intervalratio">
     <xsl:param name="stripes"/>
     <xsl:if test="unit/standardUnit">
@@ -758,8 +758,8 @@
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
-  
-  
+
+
  <xsl:template name="numericDomain">
      <xsl:param name="stripes"/>
        <xsl:choose>
@@ -813,23 +813,23 @@
         </xsl:otherwise>
       </xsl:choose>
   </xsl:template>
- 
+
  <xsl:template name="datetime">
     <xsl:param name="stripes"/>
     <tr><td width="{$firstColWidth}" class="{$stripes}"><b>Format</b></td>
          <td width="{$secondColWidth}" class="{$stripes}">
-            <xsl:value-of select="formatString"/>      
+            <xsl:value-of select="formatString"/>
          </td>
     </tr>
      <tr><td width="{$firstColWidth}" class="{$stripes}"><b>Precision</b></td>
          <td width="{$secondColWidth}" class="{$stripes}">
-            <xsl:value-of select="dateTimePrecision"/>        
+            <xsl:value-of select="dateTimePrecision"/>
          </td>
     </tr>
-    <xsl:call-template name="timedomain"/>     
+    <xsl:call-template name="timedomain"/>
  </xsl:template>
- 
- 
+
+
  <xsl:template name="timedomain">
     <xsl:param name="stripes"/>
       <xsl:choose>
@@ -875,7 +875,7 @@
         </xsl:otherwise>
       </xsl:choose>
   </xsl:template>
- 
+
  <xsl:template name="attributecoverage">
     <xsl:param name="docid"/>
     <xsl:param name="entitytype"/>
@@ -884,7 +884,7 @@
      <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=attributecoverage&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;attributeindex=<xsl:value-of select="$attributeindex"/></xsl:attribute>
            <b>Coverage Info</b></a>
  </xsl:template>
- 
+
  <xsl:template name="attributemethod">
     <xsl:param name="docid"/>
     <xsl:param name="entitytype"/>

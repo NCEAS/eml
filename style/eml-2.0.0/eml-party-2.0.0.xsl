@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:47:00 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@
           <td width="{$secondColWidth}">
              <table xsl:use-attribute-sets="cellspacing" class="tableparty" width="100%">
                <tr><td width="100%" class="{$secondColStyle}">
-                     <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                     <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
                      <xsl:value-of select="."/></a>
                     </td>
                </tr>

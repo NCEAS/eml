@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:46:59 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -56,15 +56,15 @@
   <xsl:import href="eml-storedprocedure-2.0.0.xsl"/>
   <xsl:import href="eml-text-2.0.0.xsl"/>
   <xsl:import href="eml-view-2.0.0.xsl"/>
-  
+
   <xsl:output method="html" encoding="iso-8859-1"/>
   <!-- global variables to store id node set in case to be referenced-->
   <xsl:variable name="ids" select="//*[@id!='']"/>
-  
+
   <xsl:template match="/">
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" 
+        <link rel="stylesheet" type="text/css"
               href="{$stylePath}/{$qformat}.css" />
       </head>
       <body>
@@ -78,40 +78,40 @@
           </tr>
           <tr>
             <td><a href="@web-base-url@" class="toollink"> KNB </a></td>
-            <td><a href="@web-base-url@/data.html" class="toollink"> 
+            <td><a href="@web-base-url@/data.html" class="toollink">
                 Data </a></td>
-            <td><a href="@web-base-url@/people.html" class="toollink"> 
+            <td><a href="@web-base-url@/people.html" class="toollink">
                 People </a></td>
-            <td><a href="@web-base-url@/informatics" class="toollink"> 
+            <td><a href="@web-base-url@/informatics" class="toollink">
                 Informatics </a></td>
-            <td><a href="@web-base-url@/biodiversity" class="toollink"> 
+            <td><a href="@web-base-url@/biodiversity" class="toollink">
                 Biodiversity </a></td>
-            <td><a href="@web-base-url@/education" class="toollink"> 
+            <td><a href="@web-base-url@/education" class="toollink">
                 Education </a></td>
-            <td><a href="@web-base-url@/software" class="toollink"> 
+            <td><a href="@web-base-url@/software" class="toollink">
                 Software </a></td>
          </tr>
          <tr>
           <td align="right" valign="top" colspan="7">
             <form action="@html-path@/servlet/metacat" method="POST">
              Data Search: <input type="text" name="anyfield" size="10" />
-             <input type="hidden" name="action" value="query" />   
+             <input type="hidden" name="action" value="query" />
              <input type="hidden" name="qformat" value="knb" />
              <input type="hidden" name="operator" value="UNION" />
-             
+
              <input type="hidden" name="returnfield"
               value="creator/individualName/surName" />
              <input type="hidden" name="returnfield"
               value="creator/organizationName" />
-             <input type="hidden" name="returnfield" 
+             <input type="hidden" name="returnfield"
               value="originator/individualName/surName" />
-             <input type="hidden" name="returnfield" 
+             <input type="hidden" name="returnfield"
               value="originator/individualName/givenName" />
-             <input type="hidden" name="returnfield" 
+             <input type="hidden" name="returnfield"
               value="originator/organizationName" />
-             <input type="hidden" name="returnfield" 
+             <input type="hidden" name="returnfield"
               value="title" />
-             <input type="hidden" name="returnfield" 
+             <input type="hidden" name="returnfield"
               value="keyword" />
              <input type="hidden" name="returndoctype"
               value="eml://ecoinformatics.org/eml-2.0.0" />
@@ -127,7 +127,7 @@
               value="-//ecoinformatics.org//eml-dataset-2.0.0beta4//EN" />
            </form>
           </td>
-        </tr>  
+        </tr>
        </table>
        </td>
        </tr>
@@ -136,7 +136,7 @@
       </body>
     </html>
    </xsl:template>
-   
+
    <xsl:template match="*[local-name()='eml']">
      <tr><td>
        <xsl:for-each select="dataset">
@@ -152,11 +152,11 @@
          <xsl:call-template name="emlprotocol"/>
        </xsl:for-each>
      </td></tr>
-     
+
        <!-- Additinal metadata-->
        <xsl:choose>
                <xsl:when test="$displaymodule='additionalmetadata'">
-                   <xsl:for-each select="additionalMetadata"> 
+                   <xsl:for-each select="additionalMetadata">
                      <xsl:if test="$additionalmetadataindex=position()">
                         <tr><td>
                             <xsl:call-template name="additionalmetadata"/>
@@ -179,19 +179,19 @@
      <!-- xml format-->
      <xsl:if test="$displaymodule='dataset'">
        <tr><td>
-          <xsl:call-template name="xml"/> 
-        </td></tr>             
+          <xsl:call-template name="xml"/>
+        </td></tr>
      </xsl:if>
    </xsl:template>
-   
+
    <!--********************************************************
                              dataset part
        ********************************************************-->
-   
+
    <xsl:template name="emldataset">
       <table xsl:use-attribute-sets="cellspacing"  class="tabledefault" width="100%">
           <xsl:if test="$displaymodule='dataset'">
-             <xsl:call-template name="datasetpart"/>  
+             <xsl:call-template name="datasetpart"/>
           </xsl:if>
           <xsl:if test="$displaymodule='entity'">
              <xsl:call-template name="entitypart"/>
@@ -213,10 +213,10 @@
           </xsl:if>
       </table>
    </xsl:template>
-   
+
    <!--*************** Data set diaplay *************-->
    <xsl:template name="datasetpart">
-      <tr><td colspan="2" width="100%">
+      <tr><td colspan="2">
          <right>
             <h3>Data Set Description</h3>
          </right>
@@ -226,12 +226,12 @@
                 <xsl:with-param name="system" select="../@system"/>
       </xsl:call-template>
       <tr>
-           <td colspan="2" width="100%">
+           <td colspan="2">
               <xsl:apply-templates select="." mode="dataset"/>
            </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
+
    <!--************ Entity diplay *****************-->
    <xsl:template name="entitypart">
        <xsl:choose>
@@ -247,10 +247,10 @@
               </xsl:otherwise>
          </xsl:choose>
     </xsl:template>
-   
-   
+
+
     <xsl:template name="entitypartcommon">
-      <tr><td colspan="2" width="100%" >
+      <tr><td colspan="2">
          <right>
             <h3>Entity Description</h3>
           </right>
@@ -260,13 +260,13 @@
                 <xsl:with-param name="system" select="../@system"/>
       </xsl:call-template>
       <tr>
-           <td width="100%" colspan="2">
+           <td colspan="2">
               <!-- find the subtree to process -->
              <xsl:call-template name="chooseentity"/>
            </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
+
    <!--************ Attribute display *****************-->
     <xsl:template name="attributepart">
       <tr><td width="100%">
@@ -291,9 +291,9 @@
               </xsl:for-each>
             </xsl:if>
           </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
+
    <!--************************Attribute Domain display module************************-->
    <xsl:template name="datasetattributedomain">
       <tr><td>
@@ -306,10 +306,10 @@
              <!-- find the subtree to process -->
              <xsl:call-template name="chooseentity"/>
           </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
-   
+
+
    <!--************************Attribute Method display module************************-->
    <xsl:template name="datasetattributemethod">
       <tr><td>
@@ -322,10 +322,10 @@
              <!-- find the subtree to process -->
              <xsl:call-template name="chooseentity"/>
           </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
-   
+
+
    <!--************************Attribute Coverage display module************************-->
    <xsl:template name="datasetattributecoverage">
      <tr><td>
@@ -338,10 +338,10 @@
              <!-- find the subtree to process -->
              <xsl:call-template name="chooseentity"/>
           </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
-   
+
+
    <xsl:template name="chooseentity">
            <xsl:if test="$entitytype='dataTable'">
               <xsl:for-each select="dataTable">
@@ -355,7 +355,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="dataTable">
                                               <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -372,7 +372,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="dataTable">
                                               <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -381,7 +381,7 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
@@ -399,7 +399,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="spatialRaster">
                                               <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -416,7 +416,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="spatialRaster">
                                               <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -425,7 +425,7 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
@@ -443,7 +443,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="spatialVector">
                                              <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -460,7 +460,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="spatialVector">
                                               <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
-                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>
                                               <xsl:with-param name="docid" select="$docid"/>
                                               <xsl:with-param name="entitytype" select="$entitytype"/>
                                               <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -469,7 +469,7 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
@@ -487,7 +487,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="storedProcedure">
                                              <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -504,7 +504,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="storedProcedure">
                                              <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -513,7 +513,7 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
@@ -531,7 +531,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="view">
                                              <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -548,7 +548,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="view">
                                              <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -557,7 +557,7 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
@@ -575,7 +575,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="otherEntity">
                                              <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -592,7 +592,7 @@
                                        <xsl:when test="$displaymodule='entity'">
                                           <xsl:call-template name="otherEntity">
                                              <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
-                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>
                                              <xsl:with-param name="docid" select="$docid"/>
                                              <xsl:with-param name="entitytype" select="$entitytype"/>
                                              <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -601,14 +601,14 @@
                                        <xsl:otherwise>
                                           <xsl:call-template name="chooseattributelist"/>
                                        </xsl:otherwise>
-                             </xsl:choose>   
+                             </xsl:choose>
                          </xsl:otherwise>
                       </xsl:choose>
                   </xsl:if>
               </xsl:for-each>
             </xsl:if>
    </xsl:template>
-   
+
    <xsl:template name="chooseattributelist">
        <xsl:for-each select="attributeList">
           <xsl:choose>
@@ -625,7 +625,7 @@
          </xsl:choose>
       </xsl:for-each>
    </xsl:template>
-   
+
    <xsl:template name="chooseattribute">
        <xsl:for-each select="attribute">
           <xsl:if test="position()=$attributeindex">
@@ -653,9 +653,9 @@
          </xsl:if>
        </xsl:for-each>
    </xsl:template>
-   
-   
-   
+
+
+
    <!--*************************Distribution Inline Data display module*****************-->
    <xsl:template name="emlinlinedata">
       <tr><td>
@@ -798,9 +798,9 @@
               </xsl:if>
             </xsl:if>
           </td>
-      </tr>  
+      </tr>
    </xsl:template>
-   
+
    <xsl:template name="choosephysical">
       <xsl:for-each select="physical">
          <xsl:if test="position()=$physicalindex">
@@ -819,7 +819,7 @@
         </xsl:if>
       </xsl:for-each>
    </xsl:template>
-   
+
    <xsl:template name="choosedistribution">
       <xsl:for-each select="distribution">
          <xsl:if test="$distributionindex=position()">
@@ -842,8 +842,8 @@
         </xsl:if>
       </xsl:for-each>
    </xsl:template>
-   
-   
+
+
      <!--********************************************************
                      Citation part
        ********************************************************-->
@@ -852,10 +852,10 @@
        <xsl:when test="$displaymodule='inlinedata'">
           <xsl:call-template name="emlinlinedata"/>
        </xsl:when>
-       <xsl:otherwise>  
+       <xsl:otherwise>
         <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
         <tr>
-          <td width="100%" colspan="2">
+          <td colspan="2">
              <right>
                <h3>Citation Description</h3>
              </right>
@@ -866,7 +866,7 @@
               <xsl:with-param name="system" select="../@system"/>
         </xsl:call-template>
         <tr>
-          <td width="100%" colspan="2">
+          <td colspan="2">
             <xsl:call-template name="citation">
                <xsl:with-param name="citationfirstColStyle" select="$firstColStyle"/>
                <xsl:with-param name="citationsubHeaderStyle" select="$subHeaderStyle"/>
@@ -877,13 +877,13 @@
      </xsl:otherwise>
     </xsl:choose>
    </xsl:template>
-   
-   
-      
+
+
+
      <!--********************************************************
                     Software part
        ********************************************************-->
-   
+
    <xsl:template name="emlsoftware">
      <xsl:choose>
        <xsl:when test="$displaymodule='inlinedata'">
@@ -892,7 +892,7 @@
        <xsl:otherwise>
           <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
           <tr>
-            <td width="100%" colspan="2">
+            <td colspan="2">
              <right>
                <h3>Software Description</h3>
              </right>
@@ -903,7 +903,7 @@
               <xsl:with-param name="system" select="../@system"/>
           </xsl:call-template>
           <tr>
-           <td width="100%" colspan="2">
+           <td colspan="2">
             <xsl:call-template name="software">
                <xsl:with-param name="softwarefirstColStyle" select="$firstColStyle"/>
                <xsl:with-param name="softwaresubHeaderStyle" select="$subHeaderStyle"/>
@@ -914,12 +914,12 @@
       </xsl:otherwise>
      </xsl:choose>
    </xsl:template>
-   
-     
+
+
      <!--********************************************************
                     Protocal part
        ********************************************************-->
-   
+
    <xsl:template name="emlprotocol">
     <xsl:choose>
        <xsl:when test="$displaymodule='inlinedata'">
@@ -928,7 +928,7 @@
        <xsl:otherwise>
         <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
          <tr>
-          <td width="100%" colspan="2">
+          <td colspan="2">
              <right>
                <h3>Protocal Description</h3>
              </right>
@@ -939,7 +939,7 @@
               <xsl:with-param name="system" select="../@system"/>
          </xsl:call-template>
          <tr>
-          <td width="100%" colspan="2">
+          <td colspan="2">
             <xsl:call-template name="protocol">
                <xsl:with-param name="protocolfirstColStyle" select="$firstColStyle"/>
                <xsl:with-param name="protocolsubHeaderStyle" select="$subHeaderStyle"/>
@@ -950,7 +950,7 @@
       </xsl:otherwise>
     </xsl:choose>
    </xsl:template>
-   
+
       <!--********************************************************
                    additionalmetadata part
        ********************************************************-->

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:47:00 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -31,9 +31,9 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    
+
   <xsl:output method="html" encoding="iso-8859-1"/>
-  
+
   <xsl:template match="dataset" mode="dataset">
     <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
       <xsl:choose>
@@ -65,14 +65,14 @@
              <xsl:call-template name="datasetproject"/>
              <xsl:call-template name="datasetentity"/>
        </xsl:otherwise>
-      </xsl:choose>  
+      </xsl:choose>
     </table>
-    
+
   </xsl:template>
-  
+
   <xsl:template name="datasetresource">
      <tr>
-        <td colspan="2" width="100%">
+        <td colspan="2">
           <xsl:call-template name="resource">
             <xsl:with-param name="resfirstColStyle" select="$firstColStyle"/>
             <xsl:with-param name="ressubHeaderStyle" select="$subHeaderStyle"/>
@@ -80,9 +80,9 @@
        </td>
      </tr>
   </xsl:template>
-  
- 
-  
+
+
+
   <xsl:template name="datasetpurpose">
     <xsl:for-each select="purpose">
       <tr><td class="{$subHeaderStyle}" colspan="2">
@@ -101,7 +101,7 @@
        </tr>
      </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="datasetmaintenance">
     <xsl:for-each select="maintenance">
       <tr><td class="{$subHeaderStyle}" colspan="2">
@@ -119,7 +119,7 @@
      <xsl:call-template name="datasetchangehistory"/>
    </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="mantenancedescription">
    <xsl:for-each select="description">
      <tr>
@@ -134,7 +134,7 @@
      </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
    <xsl:template name="datasetchangehistory">
    <xsl:if test="changeHistory">
      <tr>
@@ -151,7 +151,7 @@
      </tr>
      </xsl:if>
    </xsl:template>
-   
+
    <xsl:template name="historydetails">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             scope:</td>
@@ -175,7 +175,7 @@
           </td></tr>
         </xsl:if>
   </xsl:template>
-  
+
   <xsl:template name="datasetcontact">
     <tr><td class="{$subHeaderStyle}" colspan="2">
         <xsl:text>Contact:</xsl:text>
@@ -188,7 +188,7 @@
      </td></tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="datasetpublisher">
    <xsl:for-each select="publisher">
      <tr><td class="{$subHeaderStyle}" colspan="2">
@@ -201,7 +201,7 @@
      </td></tr>
    </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="datasetpubplace">
     <xsl:for-each select="pubPlace">
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
@@ -212,14 +212,14 @@
       </tr>
    </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="datasetmethod">
      <xsl:for-each select="methods">
      <tr><td class="{$subHeaderStyle}" colspan="2">
         <xsl:text>Methods Info:</xsl:text>
      </td></tr>
       <tr>
-        <td colspan="2" width="100%">
+        <td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$firstColStyle"/>
         </xsl:call-template>
@@ -227,14 +227,14 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-   
+
    <xsl:template name="datasetproject">
     <xsl:for-each select="project">
      <tr><td class="{$subHeaderStyle}" colspan="2">
         <xsl:text>Project Info:</xsl:text>
      </td></tr>
       <tr>
-        <td colspan="2" width="100%">
+        <td colspan="2">
         <xsl:call-template name="project">
           <xsl:with-param name="projectfirstColStyle" select="$firstColStyle"/>
         </xsl:call-template>
@@ -242,11 +242,11 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
    <xsl:template name="datasetaccess">
     <xsl:for-each select="access">
       <tr>
-        <td colspan="2" width="100%">
+        <td colspan="2">
         <xsl:call-template name="access">
           <xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
           <xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
@@ -255,10 +255,10 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-  
-  
-  
-  <xsl:template name="datasetentity" > 
+
+
+
+  <xsl:template name="datasetentity" >
    <xsl:if test="dataTable or spatialRaster or spatialVector or storedProcedures or view or otherEntity">
       <tr><td class="{$subHeaderStyle}" colspan="2">
         <xsl:text>Data Tables, Images, and Other Entities:</xsl:text>
@@ -307,7 +307,7 @@
       </xsl:call-template>
    </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="entityurl">
      <xsl:param name="showtype"/>
      <xsl:param name="type"/>
@@ -324,7 +324,7 @@
               <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>
              <b><xsl:value-of select="./entityName"/> (<xsl:value-of select="$showtype"/>)</b></a>
             </td>
-         </tr> 
+         </tr>
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
@@ -339,7 +339,7 @@
        </xsl:otherwise>
      </xsl:choose>
   </xsl:template>
-  
+
   <xsl:template match="text()" mode="dataset" />
   <xsl:template match="text()" mode="resource" />
 

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:47:00 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
   <xsl:import href="eml-distribution-2.0.0.xsl"/>
   <xsl:import href="eml-coverage-2.0.0.xsl"/>-->
   <xsl:output method="html" encoding="iso-8859-1"/>
-  
+
   <!-- This module is for resouce and it is self-contained (it is table)-->
   <xsl:template name="resource">
     <xsl:param name="resfirstColStyle"/>
@@ -46,38 +46,38 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="shortName">
         <xsl:call-template name="resourceshortName">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
          </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="title">
         <xsl:call-template name="resourcetitle">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
        <xsl:for-each select="pubDate">
         <xsl:call-template name="resourcepubDate" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
          </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="language">
         <xsl:call-template name="resourcelanguage" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
          </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="series">
         <xsl:call-template name="resourceseries" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:if test="creator">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
         <xsl:value-of select="$creator"/>
@@ -88,7 +88,7 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:if test="metadataProvider">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
         <xsl:text>Metadata Provider(s):</xsl:text>
@@ -99,7 +99,7 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:if test="associatedParty">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
              <xsl:text>Associate Party:</xsl:text>
@@ -110,14 +110,14 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-           
+
       <xsl:for-each select="abstract">
         <xsl:call-template name="resourceabstract" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:if test="keywordSet">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
              <xsl:text>Keywords:</xsl:text></td></tr>
@@ -127,21 +127,21 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="additionalInfo">
         <xsl:call-template name="resourceadditionalInfo" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="intellectualRights">
         <xsl:call-template name="resourceintellectualRights" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
         </xsl:call-template>
       </xsl:for-each>
-      
+
       <xsl:for-each select="distribution">
         <xsl:call-template name="resourcedistribution">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
@@ -151,16 +151,16 @@
         </xsl:call-template>
       </xsl:for-each>
     </table>
-    
+
     <xsl:for-each select="coverage">
       <xsl:call-template name="resourcecoverage">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
       </xsl:call-template>
     </xsl:for-each>
-    
+
   </xsl:template>
-  
+
   <xsl:template name="resourcealternateIdentifier" >
       <xsl:param name="resfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
@@ -169,7 +169,7 @@
         <xsl:value-of select="."/></td></tr>
       </xsl:if>
   </xsl:template>
-  
+
 
   <xsl:template name="resourceshortName">
       <xsl:param name="resfirstColStyle"/>
@@ -180,7 +180,7 @@
       </xsl:if>
   </xsl:template>
 
-  
+
   <xsl:template name="resourcetitle" >
       <xsl:param name="resfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
@@ -189,8 +189,8 @@
         <b><xsl:value-of select="."/></b></td></tr>
       </xsl:if>
   </xsl:template>
-  
- 
+
+
   <!--<xsl:template match="creator[1]" mode="resource">
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="resfirstColStyle"/>
@@ -214,8 +214,8 @@
               <xsl:with-param name="partyfirstColStyle" select="$resfirstColStyle"/>
        </xsl:call-template>
       </td></tr>
-   </xsl:template> 
-    
+   </xsl:template>
+
   <!--<xsl:template match="metadataProvider[1]" mode="resource">
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="resfirstColStyle"/>
@@ -237,9 +237,9 @@
             <xsl:with-param name="partyfirstColStyle" select="$resfirstColStyle"/>
       </xsl:call-template>
       </td></tr>
-  </xsl:template>  
-  
-  
+  </xsl:template>
+
+
   <!--<xsl:template match="associateParty[1]" mode="resource">
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="resfirstColStyle"/>
@@ -263,9 +263,9 @@
           <xsl:with-param name="partyfirstColStyle" select="$resfirstColStyle"/>
       </xsl:call-template>
       </td></tr>
-  </xsl:template>  
+  </xsl:template>
 
- 
+
   <xsl:template name="resourcepubDate">
       <xsl:param name="resfirstColStyle"/>
       <xsl:if test="normalize-space(../pubDate)!=''">
@@ -273,9 +273,9 @@
         Publication Date:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="../pubDate"/></td></tr>
       </xsl:if>
-  </xsl:template> 
+  </xsl:template>
 
- 
+
   <xsl:template name="resourcelanguage">
       <xsl:param name="resfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
@@ -283,9 +283,9 @@
         Language:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="."/></td></tr>
       </xsl:if>
-  </xsl:template>  
+  </xsl:template>
 
-  
+
   <xsl:template name="resourceseries">
       <xsl:param name="resfirstColStyle"/>
       <xsl:if test="normalize-space(../series)!=''">
@@ -303,7 +303,7 @@
         <xsl:text>Abstract:</xsl:text>
      </td></tr>
      <tr><td width="{$firstColWidth}" class="{$resfirstColStyle}">&#160;</td>
-         <td width="{$secondColWidth}">  
+         <td width="{$secondColWidth}">
            <xsl:call-template name="text">
              <xsl:with-param name="textfirstColStyle" select="$resfirstColStyle"/>
            </xsl:call-template>
@@ -311,7 +311,7 @@
      </tr>
   </xsl:template>
 
- 
+
   <!--<xsl:template match="keywordSet[1]" mode="resource">
         <xsl:param name="ressubHeaderStyle"/>
         <xsl:param name="resfirstColStyle"/>
@@ -323,7 +323,7 @@
   </xsl:template>-->
 
   <xsl:template name="resourcekeywordSet">
-        <xsl:param name="resfirstColStyle"/> 
+        <xsl:param name="resfirstColStyle"/>
         <xsl:call-template name="renderKeywordSet">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
         </xsl:call-template>
@@ -354,7 +354,7 @@
     </td></tr>
   </xsl:template>
 
-     
+
    <xsl:template name="resourceadditionalInfo">
      <xsl:param name="ressubHeaderStyle"/>
      <xsl:param name="resfirstColStyle"/>
@@ -362,7 +362,7 @@
         <xsl:text>Additional Information:</xsl:text>
      </td></tr>
      <tr><td width="{$firstColWidth}" class="{$resfirstColStyle}">&#160;</td>
-         <td width="{$secondColWidth}">  
+         <td width="{$secondColWidth}">
            <xsl:call-template name="text">
              <xsl:with-param name="textfirstColStyle" select="$resfirstColStyle"/>
            </xsl:call-template>
@@ -370,7 +370,7 @@
      </tr>
   </xsl:template>
 
-   
+
    <xsl:template name="resourceintellectualRights">
      <xsl:param name="ressubHeaderStyle"/>
      <xsl:param name="resfirstColStyle"/>
@@ -378,20 +378,20 @@
         <xsl:text>License and Usage Rights:</xsl:text>
      </td></tr>
      <tr><td width="{$firstColWidth}" class="{$resfirstColStyle}">&#160;</td>
-         <td width="{$secondColWidth}">  
+         <td width="{$secondColWidth}">
            <xsl:call-template name="text">
              <xsl:with-param name="textfirstColStyle" select="$resfirstColStyle"/>
            </xsl:call-template>
          </td>
      </tr>
   </xsl:template>
-  
+
    <xsl:template name="resourcedistribution">
      <xsl:param name="ressubHeaderStyle"/>
      <xsl:param name="resfirstColStyle"/>
      <xsl:param name="index"/>
      <xsl:param name="docid"/>
-     <tr><td colspan="2" width="100%">    
+     <tr><td colspan="2">
         <xsl:call-template name="distribution">
           <xsl:with-param name="disfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="dissubHeaderStyle" select="$ressubHeaderStyle"/>
@@ -399,16 +399,16 @@
           <xsl:with-param name="distributionindex" select="$index"/>
           <xsl:with-param name="docid" select="$docid"/>
         </xsl:call-template>
-     </td></tr>  
+     </td></tr>
   </xsl:template>
-  
+
   <xsl:template name="resourcecoverage">
      <xsl:param name="ressubHeaderStyle"/>
      <xsl:param name="resfirstColStyle"/>
-     <tr><td colspan="2" width="100%">    
+     <tr><td colspan="2">
         <xsl:call-template name="coverage">
         </xsl:call-template>
-     </td></tr>  
+     </td></tr>
   </xsl:template>
 
 

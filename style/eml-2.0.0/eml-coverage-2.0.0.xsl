@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:42:35 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-13 19:47:00 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
   <xsl:import href="eml-literature-2.0.0.xsl"/>
   <xsl:output method="html" encoding="iso-8859-1"/>
 
-  <!-- This module is for coverage and it is self contained(It is a table 
+  <!-- This module is for coverage and it is self contained(It is a table
        and will handle reference by it self)-->
   <xsl:template name="coverage">
     <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
@@ -174,14 +174,14 @@
 
 
   <xsl:template match="boundingAltitudes">
-    
+
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         Mimimum Altitude:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:apply-templates select="altitudeMinimum"/></td></tr>
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         Maximum Altitude:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:apply-templates select="altitudeMaximum"/></td></tr>
- 
+
   </xsl:template>
 
   <xsl:template match="altitudeMinimum">
@@ -232,7 +232,7 @@
 <!-- ********************************************************************* -->
 <!-- ****************  T E M P O R A L   C O V E R A G E  **************** -->
 <!-- ********************************************************************* -->
-  
+
   <xsl:template name="temporalCoverage">
     <xsl:choose>
       <xsl:when test="references!=''">
@@ -256,7 +256,7 @@
       <xsl:apply-templates select="singleDateTime"/>
       <xsl:apply-templates select="rangeOfDates"/>
   </xsl:template>
-  
+
   <xsl:template match="singleDateTime">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Date:
@@ -266,7 +266,7 @@
          </td>
      </tr>
    </xsl:template>
-  
+
   <xsl:template match="rangeOfDates">
      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Begin:
@@ -293,12 +293,12 @@
   <xsl:template match="endDate">
       <xsl:call-template name="singleDateType"/>
   </xsl:template>
-  
+
   <xsl:template name="singleDateType">
     <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
      <xsl:if test="calendarDate">
       <tr>
-       <td width="100%" colspan="2" class="{$secondColStyle}">
+       <td colspan="2" class="{$secondColStyle}">
           <xsl:value-of select="calendarDate"/>
           <xsl:if test="./time and normalize-space(./time)!=''">
             <xsl:text>&#160; at &#160;</xsl:text><xsl:apply-templates select="time"/>
@@ -312,9 +312,9 @@
     </table>
   </xsl:template>
 
- 
+
   <xsl:template match="alternativeTimeScale">
-   
+
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Timescale:</td><td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="timeScaleName"/></td></tr>
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
@@ -333,7 +333,7 @@
             <xsl:apply-templates select="timeScaleCitation"/>
         </td></tr>
         </xsl:if>
-  
+
   </xsl:template>
 
   <xsl:template match="timeScaleCitation">
@@ -361,8 +361,8 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
-  
+
+
   <xsl:template name="taxonomicCovCommon">
       <tr class="{$subHeaderStyle}"><td class="{$subHeaderStyle}" colspan="2">
       <xsl:text>Taxonomic Coverage:</xsl:text></td></tr>
@@ -372,8 +372,8 @@
           <xsl:apply-templates select="."/>
       </xsl:for-each>
   </xsl:template>
-  
-  
+
+
  <xsl:template match="taxonomicSystem">
      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Taxonomic System:</xsl:text></td>
@@ -384,7 +384,7 @@
         </td>
      </tr>
   </xsl:template>
-  
+
 
   <xsl:template match="classificationSystem">
      <xsl:for-each select="classificationSystemCitation">
@@ -406,7 +406,7 @@
      </xsl:if>
   </xsl:template>
 
-  
+
   <xsl:template match="identificationReference">
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">ID Reference:</td>
           <td width="{$secondColWidth}">
@@ -477,7 +477,7 @@
           </td>
       </tr>
   </xsl:template>
- 
+
 
   <xsl:template match="taxonomicClassification">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
@@ -507,7 +507,7 @@
           </td>
       </tr>
   </xsl:template>
-  
+
   <xsl:template match="taxonomicClassification" mode="nest">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
           <xsl:text>Classification:</xsl:text>
@@ -519,5 +519,5 @@
         </td>
      </tr>
   </xsl:template>
-  
+
 </xsl:stylesheet>
