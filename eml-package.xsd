@@ -1,45 +1,183 @@
-<!--         
-      '$RCSfile: eml-package.xsd,v $'
-      Purpose: This specifies a schema for structured metadata used to create
-               a symbolic link from metadata->metadata and 
-               metadata->data files which show a relationship between the data.
-    Copyright: 2000 Regents of the University of California and the
-               National Center for Ecological Analysis and Synthesis
-      Authors: Chad Berkley
-
-     '$Author: berkley $'
-       '$Date: 2000-09-21 17:00:30 $'
-   '$Revision: 1.3 $'
--->
-
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
-           xmlns:eml="./package.xsd"
-           targetNamespace="eml" >
+           targetNamespace="eml:package" >
 
- <xs:element name="package" type="eml:Package"
-             minOccurs="1"  maxOccurs="1" />
+  <xs:annotation>
+    <xs:documentation>
+      <!--         
+       '$RCSfile: eml-package.xsd,v $'
+         Purpose: This a XML Schema document that defines the structured metadata
+                  model used to create a symbolic link from metadata->metadata and
+                  metadata->data files which show a relationship between the data.
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+         Authors: Chad Berkley
+
+        '$Author: bojilova $'
+          '$Date: 2001-02-08 21:02:27 $'
+      '$Revision: 1.4 $'
+       -->
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-package
+      </moduleName>
+      <moduleDescription>
+        The EML Package Module describes the relationships between metadata and 
+        data file(s).
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+
+  <xs:element name="package" type="eml:Package"
+              minOccurs="1"  maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Package descriptor 
+        </tooltip>
+        <summary>
+          Package element represents a list of relationships between metadata and 
+          data file(s). 
+        </summary>
+        <description>
+          Package element represents a list of relationships between metadata and 
+          data file(s). The relationships are in the form of:
+          &lt;subject&gt; &lt;relationship&gt; &lt;object&gt;
+        </description>
+        <example>
+          someMetadataFile.xml isMetadataFor someDataFile.dat
+        </example>
+        <lineage>
+          The package element is derived from package.dtd, version 1.5
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
  
   <xs:complexType name = "eml:Package" content="elementOnly">
     <xs:sequence>
       <xs:element name="name" type="xs:string"
-                  minOccurs="0" maxOccurs="1" />
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Package name
+            </tooltip>
+            <summary>
+              Decsriptor to identify the package 
+            </summary>
+            <description>
+	      The name is used to identify the package.
+            </description>
+            <example>
+            </example>
+            <lineage>
+              The package name element was introduced into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="relation" type="eml:Relation"
-                  minOccurs="1" maxOccurs="unbounded" />
-   </xs:sequence>
- </xs:complexType>
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Relationship list 
+            </tooltip>
+            <summary>
+              Descriptor to list all relationships in the package
+            </summary>
+            <description>
+              The relation element lists all relationships in the package.
+              The relationships are in the form of:
+              &lt;subject&gt; &lt;relationship&gt; &lt;object&gt;
+            </description>
+            <example>
+              someMetadataFile.xml isMetadataFor someDataFile.dat
+            </example>
+            <lineage>
+              Relation element was introduce into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
  
- <xs:complexType name="eml:Relation" content="elementOnly">
-   <xs:sequence>
-     <xs:element name="subject" type="xs:string"
-                 minOccurs="1" maxOccurs="1" />
-     <xs:element name="relationship" type="xs:string"
-                 minOccurs="1" maxOccurs="1" />
-     <xs:element name="object" type="xs:string"
-                 minOccurs="1" maxOccurs="1" />
-   </xs:sequence>
- </xs:complexType>
- 
+  <xs:complexType name="eml:Relation" content="elementOnly">
+    <xs:sequence>
+      <xs:element name="subject" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Subject element
+            </tooltip>
+            <summary>
+              Subject element of the relationship.
+            </summary>
+            <description>
+              Subject is URL specifier of metadata file that is refered by other metadata
+              or data file specified in object element in the way of relationship.
+            </description>
+            <example>
+              metacat://dev.nceas.ucsb.edu?docid=nceas.57
+            </example>
+            <lineage>
+              Subject element was introduce into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="relationship" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Relationship type
+            </tooltip>
+            <summary>
+              The type of relationship between metadata and data file.
+            </summary>
+            <description>
+              Relationship is any descriptive word(s) that specifies the 
+              relation of the subject to the object specifier.
+            </description>
+            <example>
+              isMetadataFor, isACLFileFor, isFileMetadataFor, etc.
+            </example>
+            <lineage>
+              Relationship element was introduce into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="object" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Object element
+            </tooltip>
+            <summary>
+              Object element of the relationship.
+            </summary>
+            <description>
+              Object is URL specifier of metadata or data file that refers to the
+              metadata file specified in subject element in the way of relationship.
+            </description>
+            <example>
+              http://dev.nceas.ucsb.edu/berkley/testdata1.txt
+            </example>
+            <lineage>
+              Object element was introduce into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:elemeny
+    </xs:sequence>
+  </xs:complexType>
              
 </xs:schema>
 

@@ -1,19 +1,36 @@
 <!--         
-      '$RCSfile: eml-package.dtd,v $'
+    '$RCSfile: eml-package.dtd,v $'
       Purpose: This dtd mimics the content model found in 
-               package.xsd
+               eml-package.xsd
     Copyright: 2000 Regents of the University of California and the
                National Center for Ecological Analysis and Synthesis
       Authors: Chad Berkley
 
-     '$Author: cjones $'
-     '$Date: 2001-02-08 06:35:17 $'
-     '$Revision: 1.1 $'
+     '$Author: bojilova $'
+     '$Date: 2001-02-08 21:02:27 $'
+     '$Revision: 1.2 $'
 -->
+<!-- This a DTD document that defines the structured metadata
+     model used to create a symbolic link from metadata->metadata and
+     metadata->data files which show a relationship between the data. -->
 
+<!-- The root element, which represents a list or relationships between 
+     metadata and data file(s). -->
 <!ELEMENT package (name?, relation+) >
+
+<!-- The name is used to identify the package. -->
 <!ELEMENT name (#PCDATA)>
+
+<!-- The relation element, which list all relationships in the package -->
 <!ELEMENT relation (subject, relationship, object) >
+
+<!-- Subject is URL specifier of metadata file that is refered by other metadata
+     or data file specified in object element in the way of relationship. -->
 <!ELEMENT subject (#PCDATA) >
+
+<!-- The type of relationship of subject->object -->
 <!ELEMENT relationship (#PCDATA) >
+
+<!-- Object is URL specifier of metadata or data file that refers to the
+     metadata file specified in subject element in the way of relationship.-->
 <!ELEMENT object (#PCDATA) >
