@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2001-12-14 23:32:58 $'
-      '$Revision: 1.8 $'
+        '$Author: schild $'
+          '$Date: 2001-12-16 19:21:18 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -222,7 +222,7 @@
               to identify the type.
             </doc:description>
             <doc:example><![CDATA[
-              <phone phonetype="voice">805-892-2500</phone>]]></doc:example>
+              <phone phonetype="voice">805-555-2500</phone>]]></doc:example>
             <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
@@ -243,11 +243,12 @@
                 </doc:summary>
                     <doc:description>
                   This attribute gives the type of phone to which this 
-                  number applies.  By default, this is assumped to be
+                  number applies.  By default, this is assumed to be
                   of type "voice", but other possibilities include
                   "facsimile" and "tdd".
                 </doc:description>
-                    <doc:example></doc:example>
+                    <doc:example>
+                    </doc:example>
                     <doc:lineage>
                   Derived from NBII and related standards.
                 </doc:lineage>
@@ -275,7 +276,7 @@
               Other address types are allowable.
             </doc:description>
             <doc:example>
-              knb-software@nceas.ucsb.edu
+              my-email@mydomain.edu
             </doc:example>
             <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
@@ -301,7 +302,7 @@
               site or other related online information about the party.
             </doc:description>
             <doc:example>
-              http://www.nceas.ucsb.edu/~brunt
+              http://www.yourdomain.edu/~doe
             </doc:example>
             <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
@@ -404,7 +405,7 @@
               associated with the resource.
             </doc:description>
             <doc:example>
-              Corinna
+              Jane
             </doc:example>
             <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
@@ -427,7 +428,7 @@
               associated with the resource.
             </doc:description>
             <doc:example>
-              Gries
+              Doe
             </doc:example>
             <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
