@@ -7,6 +7,7 @@
 
 	<!-- assign variables for input doc i.e. beta6 attribute module -->
 	<xsl:variable name="attb6" select="document('att1.atb6')"/>
+	<xsl:variable name="unitDict" select="document('eml-unitDictionary.xml')"/>
 
   <xsl:template name="attrTransform">
 
@@ -108,9 +109,11 @@
               <xsl:if test="((./attributeDomain/numericDomain/minimum!='')and((./attributeDomain/numericDomain/minimum)&gt;=0.0))">
                 <xsl:element name="ratio">
                   <xsl:element name="unit">
-                    <xsl:element name="customUnit"> <!-- maybe a standard unit? -->
-                      <xsl:value-of select="./unit"/>
-                    </xsl:element>
+                      <xsl:call-template name="getUnit">
+                        <xsl:with-param name="string" select="./unit"/>
+                      </xsl:call-template>  
+
+              <!--        <xsl:value-of select="./unit"/>  -->
                   </xsl:element>
                   <xsl:element name="precision">
                   <!-- Note: 'precision' sometimes is filled out in beta6 for nonnumeric data! -->
@@ -140,9 +143,11 @@
               <xsl:if test="((./attributeDomain/numericDomain/minimum!='')and((./attributeDomain/numericDomain/minimum)&lt;0.0))">
                 <xsl:element name="interval">
                   <xsl:element name="unit">
-                    <xsl:element name="customUnit"> <!-- maybe a standard unit? -->
-                      <xsl:value-of select="./unit"/>
-                    </xsl:element>
+                      <xsl:call-template name="getUnit">
+                        <xsl:with-param name="string" select="./unit"/>
+                      </xsl:call-template>  
+
+              <!--        <xsl:value-of select="./unit"/>  -->
                   </xsl:element>
                   <xsl:element name="precision">
                   <!-- Note: 'precision' sometimes is filled out in beta6 for nonnumeric data! -->
@@ -185,6 +190,28 @@
       </xsl:for-each>
     </attributeList>
   
+  </xsl:template>
+  
+  <!-- template to return unit id if name is in unit Dictionary -->
+  <xsl:template name="getUnit">
+    <xsl:param name="string"/>
+    <xsl:choose>
+      <xsl:when test="$unitDict/unitList/unit/@id=$string">
+        <xsl:element name="standardUnit">
+          <xsl:value-of select="$unitDict/unitList/unit/@id"/>
+        </xsl:element>  
+      </xsl:when>
+      <xsl:when test="$unitDict/unitList/unit/@abbreviation=$string">
+        <xsl:element name="standardUnit">
+          <xsl:value-of select="$unitDict/unitList/unit[./@abbreviation=$string]/@id"/>
+        </xsl:element>
+          </xsl:when>
+      <xsl:otherwise>
+        <xsl:element name="customUnit">
+          <xsl:value-of select="$string"/>
+        </xsl:element>  
+      </xsl:otherwise>
+    </xsl:choose>  
   </xsl:template>
   
 </xsl:stylesheet>  
