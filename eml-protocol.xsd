@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!-- edited with XML Spy v4.0 NT beta 2 build Jul 26 2001 (http://www.xmlspy.com) by cjones (ucsb) -->
-<xs:schema targetNamespace="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns:lit="eml:literature" elementFormDefault="unqualified" attributeFormDefault="unqualified">
-	<xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
-	<xs:annotation>
-		<xs:documentation>
+<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
        '$RCSfile: eml-protocol.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-07-31 16:24:56 $'
-      '$Revision: 1.6 $'
+          '$Date: 2001-07-31 16:54:23 $'
+      '$Revision: 1.7 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,83 +27,83 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-		<xs:appinfo>
-			<doc:moduleName>eml-protocol</doc:moduleName>
-			<doc:moduleDescription>
+    <xs:appinfo>
+      <doc:moduleName>eml-protocol</doc:moduleName>
+      <doc:moduleDescription>
         The EML Protocol Module is used to describe methods and identify the proccesses that have been
 	used to define / improve the quality of a data file, also used to
 	identify potential problems with the data file.
       </doc:moduleDescription>
-		</xs:appinfo>
-	</xs:annotation>
-	<xs:import namespace="eml:literature" schemaLocation="eml-literature.xsd"/>
-	<xs:element name="eml-protocol">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="identifier" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:attribute name="system" type="xs:string" use="optional"/>
-					</xs:complexType>
-				</xs:element>
-				<xs:element ref="protocol" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:complexType name="protocolType">
-		<xs:sequence>
-			<xs:element name="method" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip/>
-						<doc:summary/>
-						<doc:description> 
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:import namespace="eml:literature" schemaLocation="eml-literature.xsd"/>
+  <xs:element name="eml-protocol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="system" type="xs:string" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="protocol" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ProtocolType">
+    <xs:sequence>
+      <xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip/>
+            <doc:summary/>
+            <doc:description> 
 							  A description of the problems that might be associated 
 	                                          with the implementation of this quality control / assurance procedure
 	                                        </doc:description>
-						<doc:example/>
-						<doc:lineage/>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="processingStep" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip/>
-						<doc:summary/>
-						<doc:description>Step defines the quality control / assurance procedures 
+            <doc:example/>
+            <doc:lineage/>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processingStep" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip/>
+            <doc:summary/>
+            <doc:description>Step defines the quality control / assurance procedures 
 	      that were applied to the corresponding data file.  For example, 
 	      a shell-script that 'greps' for an alpha-character within a 
 	      datafile that is supposed to contain only numeric characters
 	      </doc:description>
-						<doc:example/>
-						<doc:lineage/>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="qualityControl" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:element name="protocol" type="protocolType"/>
-	<xs:element name="paragraph">
-		<xs:complexType/>
-	</xs:element>
+            <doc:example/>
+            <doc:lineage/>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="qualityControl" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="lit:citation" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="protocol" type="ProtocolType"/>
+  <xs:element name="paragraph">
+    <xs:complexType/>
+  </xs:element>
 </xs:schema>
