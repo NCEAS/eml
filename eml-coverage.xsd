@@ -20,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-12 20:44:34 $'
-      '$Revision: 1.61 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 18:17:33 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -91,7 +91,8 @@
             <xs:complexContent>
               <xs:extension base="TemporalCoverage">
                 <xs:attribute name="system" type="xs:string" use="optional"/>
-                <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+                <xs:attribute name="scope" type="res:ScopeType" use="optional"
+                              default="document"/>
               </xs:extension>
             </xs:complexContent>
           </xs:complexType>
@@ -115,7 +116,8 @@
             <xs:complexContent>
               <xs:extension base="TaxonomicCoverage">
                 <xs:attribute name="system" type="xs:string" use="optional"/>
-                <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+                <xs:attribute name="scope" type="res:ScopeType" use="optional"
+                              default="document"/>
               </xs:extension>
             </xs:complexContent>
           </xs:complexType>
@@ -125,7 +127,8 @@
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
+                  default="document"/>
   </xs:complexType>
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
@@ -144,8 +147,25 @@
     </xs:annotation>
     <xs:choice>
       <xs:choice>
-        <xs:element name="singleDateTime" type="SingleDateTimeType" 
-        maxOccurs="unbounded"/>
+        <xs:element name="singleDateTime" type="SingleDateTimeType"
+                    maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Single Date/Time</doc:tooltip>
+              <doc:summary>Means of encoding a single date and
+              time</doc:summary>
+              <doc:description>The singleDateTime field is intended to
+              describe a
+              single date and time for an event. There is a choice between two
+              options: a calendar date with a time, or a geologic
+              age.</doc:description>
+              <doc:example>Please see the individual sub-elements for
+              example.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
+              /metadata/time_period_information/sngdate</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element ref="rangeOfDates" maxOccurs="unbounded"/>
       </xs:choice>
       <xs:element name="references" type="xs:string"/>
@@ -224,13 +244,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternative Time Scale</doc:tooltip>
-            <doc:summary>A name, code, or date describing an event or period 
+            <doc:summary>A name, code, or date describing an event or period
             in an alternative time scale, such as one of the geologic time
             scales.</doc:summary>
-            <doc:description>A name, code, or date describing an event or 
-            period in an alternative time scale, for instance as an absolute 
-            date calculated using a named dating method, or as a relative 
-            date that is drawn from stratigraphy or biostratigraphy. 
+            <doc:description>A name, code, or date describing an event or
+            period in an alternative time scale, for instance as an absolute
+            date calculated using a named dating method, or as a relative
+            date that is drawn from stratigraphy or biostratigraphy.
             Calendar dates as provided in the ISO
             8601 dating system used in the standard CSDGM are not adequate to
             describe geologic time periods. Absolute geologic time is usually
@@ -241,10 +261,10 @@
             dating systems used in geologic studies often tie relative times
             measured through stratigraphy or biostratigraphy to a particular
             absolute time using radioisotope dating techniques, among others. As
-            these methods for absolute dating have improved, the estimates of 
-            the dates for strata have changed, consequently, it would be 
-            inaccurate to record absolute dates in situations where relative 
-            dates were measured.  This structure is provided as an optional 
+            these methods for absolute dating have improved, the estimates of
+            the dates for strata have changed, consequently, it would be
+            inaccurate to record absolute dates in situations where relative
+            dates were measured.  This structure is provided as an optional
             alternative to the standard calendar dates provided by ISO 8601.
             </doc:description>
             <doc:example>Please see the individual sub-fields for specific
@@ -263,8 +283,8 @@
                   scale.</doc:summary>
                   <doc:description>Name of a recognized alternative time scale.
                   This includes 'Absolute' as the name of the time scale for
-                  measuring geologic dates before the present and names of 
-                  geologic dating systems that are arrangements of symbols or 
+                  measuring geologic dates before the present and names of
+                  geologic dating systems that are arrangements of symbols or
                   names in order of relative geologic time.</doc:description>
                   <doc:example>'Absolute', 'Geomagnetic Polarity Time Scale',
                   'International Geological Time Scale',
@@ -280,22 +300,22 @@
                 <xs:appinfo>
                   <doc:tooltip>Time scale age estimate</doc:tooltip>
                   <doc:summary/>
-                  <doc:description>Either an absolute date or a relative age 
-                  name describing an event or period in an alternative time 
+                  <doc:description>Either an absolute date or a relative age
+                  name describing an event or period in an alternative time
                   scale such as the Geologic Time Scale.</doc:description>
                   <doc:example>For example, '300 Ma' (300 million years before
                   present) is a Geologic_Age_Estimate based on the Absolute
-                  Geologic_Time_Scale, 'C28r' is a chron name from the 
-                  Geomagnetic Polarity Time Scale, and 'Maastrichtian' and 
-                  'Jurassic' are names from the International Geological Time 
-                  Scale. Since different relative geologic time scales are 
-                  often not aligned, multiple geologic dates may need to be 
-                  specified. For example, the Geomagnetic Polarity Time Scale 
-                  chron 'C29r', at the K/T boundary lies in both the 
+                  Geologic_Time_Scale, 'C28r' is a chron name from the
+                  Geomagnetic Polarity Time Scale, and 'Maastrichtian' and
+                  'Jurassic' are names from the International Geological Time
+                  Scale. Since different relative geologic time scales are
+                  often not aligned, multiple geologic dates may need to be
+                  specified. For example, the Geomagnetic Polarity Time Scale
+                  chron 'C29r', at the K/T boundary lies in both the
                   'Maastrichtian' and the 'Danian' stages from the
-                  International Geological Time Scale, thus if you were 
-                  documenting this event using the International Geological 
-                  Time Scale, both 'Maastrichtian' and 'Danian' should be 
+                  International Geological Time Scale, thus if you were
+                  documenting this event using the International Geological
+                  Time Scale, both 'Maastrichtian' and 'Danian' should be
                   included here.</doc:example>
                   <doc:lineage>NBII FGDC-STD-001.1-1999:
                   /metadata/time_period_information/sngdate/geolage/geolest
@@ -303,7 +323,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="timeScaleAgeUncertainty" type="xs:string" 
+            <xs:element name="timeScaleAgeUncertainty" type="xs:string"
             minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
@@ -311,7 +331,7 @@
                   <doc:summary>The error estimate for the alternative time
                   scale.</doc:summary>
                   <doc:description>The error estimate for the alternative time.
-                  This should include the units of measure, a description of 
+                  This should include the units of measure, a description of
                   what the error estimate represents and how it was
                   calculated.</doc:description>
                   <doc:example>+/- 5 Ma (Million Years)</doc:example>
@@ -321,16 +341,16 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="timeScaleAgeExplanation" type="xs:string" 
+            <xs:element name="timeScaleAgeExplanation" type="xs:string"
             minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Time scale age explanation</doc:tooltip>
                   <doc:summary>The name and/or description of the method used to
                   calculate the time scale age estimate.</doc:summary>
-                  <doc:description>The name and/or description of the method 
-                  used to calculate the age estimate. Detailed information 
-                  about the method may be provided through references 
+                  <doc:description>The name and/or description of the method
+                  used to calculate the age estimate. Detailed information
+                  about the method may be provided through references
                   contained in the Time Scale Citation field.</doc:description>
                   <doc:lineage>NBII FGDC-STD-001.1-1999:
                   /metadata/time_period_information/sngdate/geolage/geolexpl
@@ -382,8 +402,40 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="beginDate" type="SingleDateTimeType"/>
-        <xs:element name="endDate" type="SingleDateTimeType"/>
+        <xs:element name="beginDate" type="SingleDateTimeType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Begin Date</doc:tooltip>
+              <doc:summary>A single time stamp signifying the beginning of
+              some time period</doc:summary>
+              <doc:description>A single time stamp signifying the beginning of
+              some time period.  There is a choice between two
+              options: a calendar date with a time, or a geologic
+              age.</doc:description>
+              <doc:example>Please see the individual sub-elements for
+              example.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
+              /metadata/time_period_information/sngdate</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="endDate" type="SingleDateTimeType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>End Date</doc:tooltip>
+              <doc:summary>A single time stamp signifying the end of
+              some time period</doc:summary>
+              <doc:description>A single time stamp signifying the end of
+              some time period.  There is a choice between two
+              options: a calendar date with a time, or a geologic
+              age.</doc:description>
+              <doc:example>Please see the individual sub-elements for
+              example.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
+              /metadata/time_period_information/sngdate</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -582,7 +634,7 @@
                     <doc:summary>Southern-most coordinate of the limit of
                     coverage expressed in latitude.</doc:summary>
                     <doc:description>The south bounding coordinate field
-                    defines the northern-most point of the bounding box that is
+                    defines the southern-most point of the bounding box that is
                     being described. This latitude coordinate should be
                     expressed in decimal fractions of degrees. Whole degrees of
                     latitude shall be represented by a two-digit decimal number
@@ -697,10 +749,15 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Polygon data set</doc:tooltip>
-              <doc:summary>Data Set G-Polygon coordinates defining the outline
-              of an area covered by a data set.</doc:summary>
-              <doc:description>Data Set G-Polygon coordinates defining the
-              outline of an area covered by a data set.</doc:description>
+              <doc:summary>This construct creates a spatial ring with a
+              hollow center.</doc:summary>
+              <doc:description>This construct creates a spatial ring with a
+              hollow center.  This doughnut shape is specified by the outer
+              ring (datasetGPolygonOuterRing) and the inner exclusion zone
+              (datasetGPolygonExclusionGRing) which can be thought of as the
+              hole in the center of a doughnut.  This is useful for defining
+              areas such as the shores of a pond where you only want to specify
+              the shore excluding the pond itself.</doc:description>
               <doc:example>Please see the individual sub-fields for specific
               examples.</doc:example>
               <doc:lineage>FGDC-STD-001-1998:
@@ -714,37 +771,49 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Outer polygon</doc:tooltip>
-                    <doc:summary/>
-                    <doc:description>Data Set G-Polygon Outer G-Ring, the
-                    closed nonintersecting boundary of an interior
-                    area.</doc:description>
+                    <doc:summary>
+                      The outer containment loop of a datasetGPolygon.
+                    </doc:summary>
+                    <doc:description>The outer containment loop of a
+                    datasetGPolygon.  This is the outer part of the doughnut
+                    shape that encompasses the broadest area of coverage
+                    </doc:description>
                     <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
-                    dataset_g_polygon/dataset_g_polygon_outer_g_ring</doc:lineage>
+                    dataset_g_polygon/dataset_g_polygon_outer_g_ring
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element ref="gRingPoint" minOccurs="3" maxOccurs="unbounded"/>
+                      <xs:element ref="gRingPoint" minOccurs="3"
+                                  maxOccurs="unbounded"/>
                     </xs:sequence>
                     <xs:element ref="gRing"/>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0"
+                          maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Exclusion polygon</doc:tooltip>
-                    <doc:summary/>
+                    <doc:summary>
+                    Data Set G-Polygon Exclusion G-Ring, the
+                    closed nonintersecting boundary of a void area (or hole in
+                    an interior area).
+                    </doc:summary>
                     <doc:description>Data Set G-Polygon Exclusion G-Ring, the
                     closed nonintersecting boundary of a void area (or hole in
-                    an interior area).</doc:description>
+                    an interior area).  This is the center of the doughnut
+                    shape created by the datasetGPolygon.</doc:description>
                     <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
-                    dataset_g_polygon/dataset_g_polygon_exclusion_g_ring</doc:lineage>
+                    dataset_g_polygon/dataset_g_polygon_exclusion_g_ring
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -762,14 +831,19 @@
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
+                  default="document"/>
   </xs:complexType>
   <xs:element name="gRingPoint">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring point</doc:tooltip>
-        <doc:summary/>
-        <doc:description>A single geographic location.</doc:description>
+        <doc:summary>
+        A single geographic location.
+        </doc:summary>
+        <doc:description>A single geographic location.  This is useful if you
+        register your datasets by a single geospatial point, such as the
+        lat/long of your research station.</doc:description>
         <doc:example/>
         <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
@@ -822,7 +896,11 @@
         Longitude and latitude are specified in decimal degrees with north
         latitudes positive and south negative, east longitude positive and west
         negative</doc:description>
-        <doc:example/>
+        <doc:example>
+        12.453,15.0
+        5,101
+        -111,45
+        </doc:example>
         <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
         dataset_g_polygon/g_ring</doc:lineage>
@@ -855,7 +933,8 @@
               and treatments.</doc:description>
               <doc:example/>
               <doc:lineage>FGDC-STD-001.1-1999:
-              /metadata/identification_information/taxonomy/taxonomic_system</doc:lineage>
+              /metadata/identification_information/taxonomy/taxonomic_system
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -871,12 +950,13 @@
                     <doc:example>Flora of North America</doc:example>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/classification_system_authority</doc:lineage>
+                    taxonomic_system/classification_system_authority
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="classificationSystemCitation" 
+                    <xs:element name="classificationSystemCitation"
                     type="cit:CitationType">
                       <xs:annotation>
                         <xs:appinfo>
@@ -892,7 +972,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="classificationSystemModifications" type="xs:string" minOccurs="0">
+                    <xs:element name="classificationSystemModifications"
+                                type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Classification system
@@ -944,7 +1025,8 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+                    <xs:element name="originator" type="rp:ResponsibleParty"
+                                maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Originator</doc:tooltip>
@@ -984,7 +1066,8 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="taxonomicCompleteness" type="xs:string" minOccurs="0">
+              <xs:element name="taxonomicCompleteness" type="xs:string"
+                          minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Taxonomic completeness</doc:tooltip>
@@ -1051,7 +1134,9 @@
                       </xs:annotation>
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+                          <xs:element name="originator"
+                                      type="rp:ResponsibleParty"
+                                      maxOccurs="unbounded">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Originator</doc:tooltip>
@@ -1084,7 +1169,8 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="generalTaxonomicCoverage" type="xs:string" minOccurs="0">
+        <xs:element name="generalTaxonomicCoverage" type="xs:string"
+                    minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>General taxonomic coverage</doc:tooltip>
@@ -1174,7 +1260,8 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="commonName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="commonName" type="xs:string" minOccurs="0"
+                    maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Common name</doc:tooltip>
@@ -1191,7 +1278,8 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="taxonomicClassification" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="taxonomicClassification" minOccurs="0"
+                    maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
