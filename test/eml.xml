@@ -1,23 +1,22 @@
 <?xml version="1.0"?>
-<eml:eml
-    packageId="eml.1.1" system="knb"
+<eml:eml packageId="eml.1.1" system="knb"
     xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
-
-  <dataset>
+    
+  <dataset id="a1">
     <title>Sample datset Description</title>
-    <creator id="23445" scope="document">
+    <creator id="23455" scope="document">
       <individualName>
         <surName>Smith</surName>
       </individualName>
     </creator>
+<!--
     <additionalInfo><para>My comments go here.</para></additionalInfo>
     <intellectualRights><section><para>Anyone can use it.</para></section>
     </intellectualRights>
-
-    <distribution>
+    <distribution id="b">
       <online>
       <connectionDefinition id="def.1" scope="document">
         <schemeName system="CAP">sde</schemeName>
@@ -34,36 +33,36 @@
         <parameterDefinition>
           <name>owner</name>
           <definition>The owner catalog</definition>
-        <defaultValue>dbo</defaultValue>
+	      <defaultValue>dbo</defaultValue>
         </parameterDefinition>
       </connectionDefinition>
       </online>
     </distribution>
-    <distribution>
+    <distribution id="c">
       <online>
-        <connection>
-        <connectionDefinition><references>def.1</references>
+        <connection id="d">
+        <connectionDefinition id="e"><references>def.1</references>
         </connectionDefinition>
           <parameter>
             <name>databaseName</name>
             <value>landuse95</value>
-          </parameter>
+          </parameter>      
           <parameter>
             <name>owner</name>
             <value>sde</value>
-          </parameter>
+          </parameter>      
         </connection>
       </online>
     </distribution>
     <purpose><para>Provide data to the whole world.</para></purpose>
-    <contact>
+    -->
+    <contact id="f">
       <individualName>
         <surName>Johnson</surName>
       </individualName>
     </contact>
-    <contact>
-      <references>23445</references>
+    <contact id="f">
+      <references>x23445</references>
     </contact>
   </dataset>
 </eml:eml>
-
