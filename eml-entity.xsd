@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-26 22:48:03 $'
-      '$Revision: 1.11 $'
+          '$Date: 2001-03-27 00:04:44 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@
     </xs:appinfo>
   </xs:annotation>
 
-  <xs:element name="eml-entity" minOccurs="1" maxOccurs="1">
+  <xs:element name="eml-entity">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
@@ -59,27 +59,62 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="identifier" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
+        <xs:element name = "identifier" type = "xs:string"
+                    minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
                 Unique identifier
               </tooltip>
               <summary>
-                Unique identifier of this metadata document.
+                The unique identifier of this metadata file or object.
               </summary>
               <description>
-                Unique identifier of this metadata document.
+                The identifier field provides a unique identifier for this
+                metadata documentation.  It will most likely be part of a 
+                sequence of numbers or letters that are meaningful in a 
+                larger context, such as a metadata catalog. That larger
+                system can be identified in the "system" attribute. Multiple
+                identifiers can be listed corresponding to different catalog
+                systems.
               </description>
               <example>
-                nceas.155.1
+               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
               </example>
               <lineage>
-                The identifier was introduced into EML 1.4 as meta_file_id.
+                The 'identifier' field is derived from the eml-dataset 
+                meta_file_id filed in EML 1.4.
               </lineage>
             </xs:appinfo>
           </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="system" use="optional" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Catalog system
+                  </tooltip>
+                  <summary>
+                    The catalog system in which this identifier is used.
+                  </summary>
+                  <description>
+                    This element gives the name of the catalog system in which
+                    this identifier is used.  It is useful to determine the
+                    scope of the identifier, and to determine the semantics
+                    of the various subparts of the identifier. Unresolved issue:
+                    can or should this be a URI/URL pointing to the catalog
+                    system, or just the name?
+                  </description>
+                  <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]>
+                  </example>
+                  <lineage>
+                    New to EML 2.0.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
         </xs:element>
         <xs:element ref="entity" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
@@ -411,14 +446,14 @@
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
-                      Attribute of caseSensitive element
+                    Attribute of caseSensitive element
                   </tooltip>
                   <summary>
-                      Specification of text case sensitiveness in the entity.
+                    Specification of text case sensitiveness in the entity.
                   </summary>
                   <description>
-                      This attribute specifies text case sensitiveness of entity's
-                    data.
+                    This attribute specifies text case sensitiveness of 
+                    entity's data.
                   </description>
                   <example>
                     The valid attribute values are "yes" or "no".
@@ -467,14 +502,14 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
-                        Paragraph of text
+                      Paragraph of text
                     </tooltip>
                     <summary>
-                        Paragraph of text describing the geographic area
+                      Paragraph of text describing the geographic area
                       which data are collected in the entity.
                     </summary>
                     <description>
-                        This element describes the geographic area which data are 
+                      This element describes the geographic area which data are 
                       collected in the entity.
                     </description>
                     <example>
@@ -545,11 +580,13 @@
                                   Specification of latitude direction.
                               </summary>
                               <description>
-                                  This attribute specifies latitude direction of 
-                                the collected data. The attribute assertion is required.
+                                This attribute specifies latitude direction of 
+                                the collected data. The attribute assertion is 
+                                required.
                               </description>
                               <example>
-                                The valid attribute values are "north" or "south".
+                                The valid attribute values are "north" 
+                                and "south".
                               </example>
                               <lineage>
                                 This attribute was introduced into EML 1.4.
@@ -598,8 +635,9 @@
                                   Specification of longitude direction.
                               </summary>
                               <description>
-                                  This attribute specifies longitude direction of 
-                                the collected data. The attribute assertion is required.
+                                This attribute specifies longitude direction of 
+                                the collected data. The attribute assertion 
+                                is required.
                               </description>
                               <example>
                                 The valid attribute values are "east" or "west".
@@ -833,8 +871,7 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="dateTime" type="DateTime"
-                  minOccurs="1" maxOccurs="1">
+  <xs:element name="dateTime" type="DateTime">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>

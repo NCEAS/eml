@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-26 22:48:03 $'
-      '$Revision: 1.10 $'
+          '$Date: 2001-03-27 00:04:44 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -40,22 +40,21 @@
   </xs:annotation>
 
   <xs:import namespace="eml:resource" 
-          schemaLocation = "./eml-resource.xsd"/>
+             schemaLocation = "./eml-resource.xsd"/>
   
-  <xs:element ref="package"
-              minOccurs="1"  maxOccurs="1">
+  <xs:element name="package">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
           Package descriptor 
         </tooltip>
         <summary>
-          Package element represents a list of relationships between metadata and 
-          data file(s). 
+          Package element represents a list of relationships between 
+          metadata and data file(s). 
         </summary>
         <description>
-          Package element represents a list of relationships between metadata and 
-          data file(s). The relationships are in the form of:
+          Package element represents a list of relationships between metadata 
+          and data file(s). The relationships are in the form of:
           <![CDATA[<subject> <relationship> <object>]]>
         </description>
         <example>
@@ -66,34 +65,66 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-  </xs:element>
-
-  <xs:element name="package">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="identifier" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
+        <xs:element name = "identifier" type = "xs:string"
+                    minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
-                Package Identifier
+                Unique identifier
               </tooltip>
               <summary>
-                The accession number of the package 
+                The unique identifier of this metadata file or object.
               </summary>
               <description>
-                The unique accession number given to the package by a data
-                management system
+                The identifier field provides a unique identifier for this
+                metadata documentation.  It will most likely be part of a 
+                sequence of numbers or letters that are meaningful in a 
+                larger context, such as a metadata catalog. That larger
+                system can be identified in the "system" attribute. Multiple
+                identifiers can be listed corresponding to different catalog
+                systems.
               </description>
               <example>
-                knb.4.5
+               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
               </example>
               <lineage>
-                new in EML 2.0
+                The 'identifier' field is derived from the eml-dataset 
+                meta_file_id filed in EML 1.4.
               </lineage>
             </xs:appinfo>
           </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="system" use="optional" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Catalog system
+                  </tooltip>
+                  <summary>
+                    The catalog system in which this identifier is used.
+                  </summary>
+                  <description>
+                    This element gives the name of the catalog system in which
+                    this identifier is used.  It is useful to determine the
+                    scope of the identifier, and to determine the semantics
+                    of the various subparts of the identifier. Unresolved issue:
+                    can or should this be a URI/URL pointing to the catalog
+                    system, or just the name?
+                  </description>
+                  <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]>
+                  </example>
+                  <lineage>
+                    New to EML 2.0.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
         </xs:element>
+
         <xs:element name="name" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
@@ -127,7 +158,7 @@
                 own this package.
               </summary>
               <description>
-                      Contact information for the owners/managers/PIs of this package.
+                Contact information for the owners/managers/PIs of this package.
                 This should contain contact information for anyone who has
                 contributed to this package.
               </description>

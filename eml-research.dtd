@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: bojilova $'
-          '$Date: 2001-02-21 00:12:19 $'
-      '$Revision: 1.3 $'
+        '$Author: jones $'
+          '$Date: 2001-03-27 00:04:44 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -80,10 +80,10 @@
 <!ELEMENT geography (coordinates*,paragraph*, citation*)>
 
 <!-- Cartesian Coordinates -->
-<!ELEMENT coordinates (lattitude, longitude) >
+<!ELEMENT coordinates (latitude, longitude) >
 
 <!-- Lattitude coordinates -->
-<!ELEMENT lattitude (#PCDATA)>
+<!ELEMENT latitude (#PCDATA)>
 
 <!-- Longitude coordinates -->
 <!ELEMENT longitude (#PCDATA)>

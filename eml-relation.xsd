@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-26 22:48:03 $'
-      '$Revision: 1.4 $'
+          '$Date: 2001-03-27 00:04:44 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,7 +33,9 @@
       </moduleName>
       <moduleDescription>
         This schema defines the integrity constraints between entities as
-        owuld be maintained in a relational database.
+        would be maintained in a relational database. These constraints include
+        primary key constraints, foreign key constraints, unique key
+        constraints, and candidate key constraints, among potential others.
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
@@ -107,8 +109,8 @@
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
                   </description>
-                  <example>
-                   <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+                  <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]>
                   </example>
                   <lineage>
                     New to EML 2.0.

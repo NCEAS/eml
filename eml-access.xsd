@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: jones $'
-          '$Date: 2001-03-26 22:48:02 $'
-      '$Revision: 1.15 $'
+          '$Date: 2001-03-27 00:04:43 $'
+      '$Revision: 1.16 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,39 +48,65 @@
     </xs:appinfo>
   </xs:annotation>
  
-  <!-- import the eml-resource module to use the 'Identifier' type -->
-  <xs:import namespace="eml:resource" 
-             schemaLocation = "./eml-resource.xsd"/>
-
-  <xs:element name="acl" minOccurs="1"  maxOccurs="1">
+  <xs:element name="acl">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="identifier" type="res:Identifier"
-	            minOccurs="1" maxOccurs="unbounded">
-	<xs:annotation>
-          <xs:appinfo>
-            <tooltip>
-              Identifier
-            </tooltip>
-            <summary>
-              The unique identifier of this access control list. 
-            </summary>
-            <description>
-              The identifier field provides a unique identifier for this
-              access control documentation.  It will most likely be part of 
-	      a sequence of numbers or letters that are meaningful in a 
-	      larger context, such as a metadata catalog.
-            </description>
-            <example>
-	      nceas.1.55
-            </example>
-            <lineage>
-              The 'identifier' field is derived from the eml-dataset module in
-              EML 1.4.
-            </lineage>
-          </xs:appinfo>
-        </xs:annotation>
-
+        <xs:element name = "identifier" type = "xs:string"
+                    minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <tooltip>
+                Unique identifier
+              </tooltip>
+              <summary>
+                The unique identifier of this metadata file or object.
+              </summary>
+              <description>
+                The identifier field provides a unique identifier for this
+                metadata documentation.  It will most likely be part of a 
+                sequence of numbers or letters that are meaningful in a 
+                larger context, such as a metadata catalog. That larger
+                system can be identified in the "system" attribute. Multiple
+                identifiers can be listed corresponding to different catalog
+                systems.
+              </description>
+              <example>
+               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+              </example>
+              <lineage>
+                The 'identifier' field is derived from the eml-dataset 
+                meta_file_id filed in EML 1.4.
+              </lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="system" use="optional" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Catalog system
+                  </tooltip>
+                  <summary>
+                    The catalog system in which this identifier is used.
+                  </summary>
+                  <description>
+                    This element gives the name of the catalog system in which
+                    this identifier is used.  It is useful to determine the
+                    scope of the identifier, and to determine the semantics
+                    of the various subparts of the identifier. Unresolved issue:
+                    can or should this be a URI/URL pointing to the catalog
+                    system, or just the name?
+                  </description>
+                  <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]>
+                  </example>
+                  <lineage>
+                    New to EML 2.0.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
         </xs:element>
 
         <xs:element name="allow" type="AccessRule"

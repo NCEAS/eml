@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-26 22:48:03 $'
-      '$Revision: 1.11 $'
+          '$Date: 2001-03-27 00:04:44 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -205,58 +205,63 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name = "identifier" type = "xs:string"
-                  minOccurs="0" maxOccurs="1">
+                  minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
-              Identifier
+              Unique identifier
             </tooltip>
             <summary>
-              The unique identifier of the metadata file.
+              The unique identifier of this metadata file or object.
             </summary>
             <description>
               The identifier field provides a unique identifier for this
-              resource documentation.  It will most likely be part of a sequence
-              of numbers or letters that are meaningful in a larger context,
-              such as a metadata catalog.
+              metadata documentation.  It will most likely be part of a 
+              sequence of numbers or letters that are meaningful in a 
+              larger context, such as a metadata catalog. That larger
+              system can be identified in the "system" attribute. Multiple
+              identifiers can be listed corresponding to different catalog
+              systems.
             </description>
             <example>
-              metacat://dev.nceas.ucsb.edu/metacatServlet?docid="NCEAS22"
+             <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
             </example>
             <lineage>
-              The 'identifier' field is derived from the eml-dataset module in
-              EML 1.4.
+              The 'identifier' field is derived from the eml-dataset 
+              meta_file_id filed in EML 1.4.
             </lineage>
           </xs:appinfo>
         </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="system" use="optional" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  Catalog system
+                </tooltip>
+                <summary>
+                  The catalog system in which this identifier is used.
+                </summary>
+                <description>
+                  This element gives the name of the catalog system in which
+                  this identifier is used.  It is useful to determine the
+                  scope of the identifier, and to determine the semantics
+                  of the various subparts of the identifier. Unresolved issue:
+                  can or should this be a URI/URL pointing to the catalog
+                  system, or just the name?
+                </description>
+                <example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]>
+                </example>
+                <lineage>
+                  New to EML 2.0.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
       </xs:element>
 
-      <xs:element name = "resourceIdentifier" type = "xs:string"
-                  minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:appinfo>
-            <tooltip>
-              Resource identifier
-            </tooltip>
-            <summary>
-              The unique identifier of the resource that this file describes.
-            </summary>
-            <description>
-              The 'resourceIdentifier' field provides a unique file identifier
-              for the resource that is being described.  the reference will most
-              likely be a sequence of numbers or letters that are meaningful in
-              a larger context, such as a metadata catalog or database system.
-            </description>
-            <example>
-               http://data.nceas.ucsb.edu/datafile.txt
-            </example>
-            <lineage>
-               The 'resourceIdentifier' field is derived from the eml-dataset 
-               module in EML 1.4.
-            </lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
       <xs:element name = "title" type = "xs:string" 
                   minOccurs="1" maxOccurs="1" >
         <xs:annotation>
