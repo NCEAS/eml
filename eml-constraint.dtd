@@ -1,12 +1,12 @@
-<!--         
+<!--
        '$RCSfile: eml-constraint.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-20 20:40:19 $'
-      '$Revision: 1.9 $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.10 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,17 +22,28 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ELEMENT constraint (identifier+, constraint+)>
-<!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED>
-<!ELEMENT constraint (constraintType, constraintName?, constraintDescription?, entityId?, key?, referencedEntityId?, referencedKey?, cardinality?, checkCondition?)>
-<!ELEMENT constraintType (#PCDATA)>
+<!ELEMENT ConstraintType (primaryKey, uniqueKey, checkConstraint, foreignKey,
+                          joinCondition, notNullConstraint)>
+<!ELEMENT primaryKey (constraintName, constraintDescription?, key)>
 <!ELEMENT constraintName (#PCDATA)>
 <!ELEMENT constraintDescription (#PCDATA)>
-<!ELEMENT entityId (#PCDATA)>
-<!ELEMENT key (attributeName+)>
-<!ELEMENT referencedEntityId (#PCDATA)>
-<!ELEMENT referencedKey (attributeName+)>
-<!ELEMENT cardinality (#PCDATA)>
+<!ELEMENT key (attributeReference+)>
+<!ELEMENT attributeReference (#PCDATA)>
+<!ELEMENT uniqueKey (constraintName, constraintDescription?, key)>
+<!ELEMENT checkConstraint (constraintName, constraintDescription?, checkCondition)>
 <!ELEMENT checkCondition (#PCDATA)>
-<!ELEMENT attributeName (#PCDATA)>
+<!ELEMENT foreignKey (constraintName, constraintDescription?, key, entityReference,
+                      relationshipType?, cardinality?)>
+<!ELEMENT entityReference (#PCDATA)>
+<!ELEMENT relationshipType (#PCDATA)>
+<!ELEMENT cardinality (parentOccurances, childOccurances)>
+<!ELEMENT parentOccurances (#PCDATA)>
+<!ELEMENT childOccurances (#PCDATA)>
+<!ELEMENT joinCondition (constraintName, constraintDescription?, key, entityReference,
+                      relationshipType?, cardinality?, referencedKey)>
+<!ELEMENT referencedKey (attributeReference)>
+<!ELEMENT notNullConstraint (constraintName, constraintDescription?, key)>
+
+<!ATTLIST ConstraintType id CDATA #IMPLIED>
+<!ATTLIST ConstraintType system CDATA #IMPLIED>
+<!ATTLIST ConstraintType scope CDATA "document">

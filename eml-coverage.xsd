@@ -1,16 +1,9 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:coverage-2.0.0beta9"
-xmlns="eml:coverage-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9"
-xmlns:doc="eml:documentation-2.0.0beta9" xmlns:rp="eml:party-2.0.0beta9"
-xmlns:cit="eml:literature-2.0.0beta9"
-xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:literature-2.0.0beta9"
-  schemaLocation="eml-literature.xsd" />
-  <xs:import namespace="eml:documentation-2.0.0beta9"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml:party-2.0.0beta9" schemaLocation="eml-party.xsd" />
-  <xs:import namespace="eml:resource-2.0.0beta9"
-  schemaLocation="eml-resource.xsd" />
+<xs:schema targetNamespace="eml:coverage-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cit="eml:literature-2.0.0beta9" xmlns:rp="eml:party-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9" xmlns="eml:coverage-2.0.0beta9">
+  <xs:import namespace="eml:literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml:party-2.0.0beta9" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-coverage.xsd,v $'
@@ -28,8 +21,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 17:51:48 $'
-      '$Revision: 1.53 $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.54 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -87,7 +80,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="temporalCoverage" type="TemporalCoverage">
+        <xs:element name="temporalCoverage">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Temporal coverage</doc:tooltip>
@@ -102,8 +95,16 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
               into EML 1.4.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="TemporalCoverage">
+                <xs:attribute name="system" type="xs:string" use="optional"/>
+                <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
         </xs:element>
-        <xs:element name="taxonomicCoverage" type="TaxonomicCoverage">
+        <xs:element name="taxonomicCoverage">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Taxonomic coverage</doc:tooltip>
@@ -118,11 +119,21 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
               EML 2 and derived from the NBII taxonomy element.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="TaxonomicCoverage">
+                <xs:attribute name="system" type="xs:string" use="optional"/>
+                <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
         </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
@@ -141,12 +152,12 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     </xs:annotation>
     <xs:choice>
       <xs:choice>
-        <xs:element ref="singleDateTime" maxOccurs="unbounded" />
-        <xs:element ref="rangeOfDates" maxOccurs="unbounded" />
+        <xs:element ref="singleDateTime" maxOccurs="unbounded"/>
+        <xs:element ref="rangeOfDates" maxOccurs="unbounded"/>
       </xs:choice>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
   <xs:element name="singleDateTime">
     <xs:annotation>
@@ -217,7 +228,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <xs:element ref="alternativeTimeScale" />
+        <xs:element ref="alternativeTimeScale"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -240,8 +251,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="singleDateTime" />
-        <xs:element ref="singleDateTime" />
+        <xs:element ref="singleDateTime"/>
+        <xs:element ref="singleDateTime"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -301,7 +312,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Time scale age estimate</doc:tooltip>
-              <doc:summary />
+              <doc:summary/>
               <doc:description>Either an absolute date or a relative age name
               describing an event or period in an alternative time scale such
               as the Geologic Time Scale.</doc:description>
@@ -323,8 +334,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="timeScaleAgeUncertainty" type="xs:string"
-        minOccurs="0">
+        <xs:element name="timeScaleAgeUncertainty" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Time scale age uncertainty</doc:tooltip>
@@ -340,8 +350,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="timeScaleAgeExplanation" type="xs:string"
-        minOccurs="0">
+        <xs:element name="timeScaleAgeExplanation" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Time scale age explanation</doc:tooltip>
@@ -351,14 +360,13 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
               to calculate the age estimate. Detailed information about the
               method may be provided through references contained in the Time
               Scale Citation field.</doc:description>
-              <doc:example />
+              <doc:example/>
               <doc:lineage>NBII FGDC-STD-001.1-1999:
               /metadata/time_period_information/sngdate/geolage/geolexpl</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="timeScaleCitation" minOccurs="0"
-        maxOccurs="unbounded">
+        <xs:element name="timeScaleCitation" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Time Scale citation</doc:tooltip>
@@ -377,7 +385,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="cit:citation" minOccurs="0" />
+              <xs:element ref="cit:citation" minOccurs="0"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -711,11 +719,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Outer polygon</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Data Set G-Polygon Outer G-Ring, the
                     closed nonintersecting boundary of an interior
                     area.</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
                     dataset_g_polygon/dataset_g_polygon_outer_g_ring</doc:lineage>
@@ -724,23 +732,21 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element ref="gRingPoint" minOccurs="3"
-                      maxOccurs="unbounded" />
+                      <xs:element ref="gRingPoint" minOccurs="3" maxOccurs="unbounded"/>
                     </xs:sequence>
-                    <xs:element ref="gRing" />
+                    <xs:element ref="gRing"/>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Exclusion polygon</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Data Set G-Polygon Exclusion G-Ring, the
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
                     dataset_g_polygon/dataset_g_polygon_exclusion_g_ring</doc:lineage>
@@ -748,8 +754,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:annotation>
                 <xs:complexType>
                   <xs:choice>
-                    <xs:element ref="gRingPoint" maxOccurs="unbounded" />
-                    <xs:element ref="gRing" />
+                    <xs:element ref="gRingPoint" maxOccurs="unbounded"/>
+                    <xs:element ref="gRing"/>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
@@ -757,20 +763,19 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:element name="gRingPoint">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring point</doc:tooltip>
-        <doc:summary />
+        <doc:summary/>
         <doc:description>A single geographic location.</doc:description>
-        <doc:example />
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
         dataset_g_polygon/g_ring_point</doc:lineage>
@@ -782,10 +787,10 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>G-Ring Latitude</doc:tooltip>
-              <doc:summary />
+              <doc:summary/>
               <doc:description>The latitude of a point of the
               g-ring.</doc:description>
-              <doc:example />
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
@@ -797,10 +802,10 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>G-Ring Longitude</doc:tooltip>
-              <doc:summary />
+              <doc:summary/>
               <doc:description>The longitude of a point of the
               g-ring.</doc:description>
-              <doc:example />
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
@@ -815,14 +820,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring</doc:tooltip>
-        <doc:summary />
+        <doc:summary/>
         <doc:description>A set of ordered pairs of floating-point numbers,
         separated by commas, in which the first number in each pair is the
         longitude of a point and the second is the latitude of the point.
         Longitude and latitude are specified in decimal degrees with north
         latitudes positive and south negative, east longitude positive and west
         negative</doc:description>
-        <doc:example />
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
         dataset_g_polygon/g_ring</doc:lineage>
@@ -853,7 +858,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
               treatments.</doc:summary>
               <doc:description>Documentation of taxonomic sources, procedures,
               and treatments.</doc:description>
-              <doc:example />
+              <doc:example/>
               <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/taxonomic_system</doc:lineage>
             </xs:appinfo>
@@ -880,10 +885,10 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Taxonomic citation</doc:tooltip>
-                          <doc:summary />
+                          <doc:summary/>
                           <doc:description>Relevant literature for documenting
                           the used classification system.</doc:description>
-                          <doc:example />
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
@@ -892,21 +897,20 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       </xs:annotation>
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element ref="cit:citation" minOccurs="0" />
+                          <xs:element ref="cit:citation" minOccurs="0"/>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="classificationSystemModifications"
-                    type="xs:string" minOccurs="0">
+                    <xs:element name="classificationSystemModifications" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Classification system
                           modification</doc:tooltip>
-                          <doc:summary />
+                          <doc:summary/>
                           <doc:description>A description of any modifications
                           or exceptions made to the classification system or
                           authority used.</doc:description>
-                          <doc:example />
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
@@ -917,16 +921,15 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="identificationReference" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="identificationReference" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Non-authoritative citation</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Information on any nonauthoritative
                     materials (e.g. field guides) useful for reconstructing the
                     actual identification process.</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/identification_reference</doc:lineage>
@@ -934,7 +937,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element ref="cit:citation" minOccurs="0" />
+                    <xs:element ref="cit:citation" minOccurs="0"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -942,11 +945,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Identifier's Name</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Information about the individual(s)
                     responsible for the identification(s) of the specimens or
                     sightings, etc.</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/identifier</doc:lineage>
@@ -954,8 +957,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="originator" type="rp:ResponsibleParty"
-                    maxOccurs="unbounded">
+                    <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Originator</doc:tooltip>
@@ -983,7 +985,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Taxonomic procedures</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Description of the methods used for the
                     taxonomic identification.</doc:description>
                     <doc:example>specimen processing, comparison with museum
@@ -995,12 +997,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="taxonomicCompleteness" type="xs:string"
-              minOccurs="0">
+              <xs:element name="taxonomicCompleteness" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Taxonomic completeness</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Information concerning the proportions and
                     treatment of unidentified materials ; estimates of the
                     importance, and identities of misidentifications, uncertain
@@ -1019,11 +1020,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Specimen information</doc:tooltip>
-                    <doc:summary />
+                    <doc:summary/>
                     <doc:description>Information on the types of specimen, the
                     repository, and the individuals who identified the
                     vouchers.</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/vouchers</doc:lineage>
@@ -1035,7 +1036,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Specimen type</doc:tooltip>
-                          <doc:summary />
+                          <doc:summary/>
                           <doc:description>A word or phrase describing the type
                           of specimen collected.</doc:description>
                           <doc:example>herbarium specimens, blood samples,
@@ -1051,11 +1052,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                         <xs:appinfo>
                           <doc:tooltip>Storage location of
                           specimen</doc:tooltip>
-                          <doc:summary />
+                          <doc:summary/>
                           <doc:description>Information about the curator or
                           contact person and/or agency responsible for the
                           specimens.</doc:description>
-                          <doc:example />
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/vouchers/repository</doc:lineage>
@@ -1063,8 +1064,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       </xs:annotation>
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="originator"
-                          type="rp:ResponsibleParty" maxOccurs="unbounded">
+                          <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Originator</doc:tooltip>
@@ -1097,8 +1097,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="generalTaxonomicCoverage" type="xs:string"
-        minOccurs="0">
+        <xs:element name="generalTaxonomicCoverage" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>General taxonomic coverage</doc:tooltip>
@@ -1115,11 +1114,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="taxonomicClassification" maxOccurs="unbounded" />
+        <xs:element ref="taxonomicClassification" maxOccurs="unbounded"/>
       </xs:sequence>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
   <xs:element name="taxonomicClassification">
     <xs:annotation>
@@ -1188,8 +1187,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="commonName" type="xs:string" minOccurs="0"
-        maxOccurs="unbounded">
+        <xs:element name="commonName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Common name</doc:tooltip>
@@ -1206,10 +1204,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="taxonomicClassification" minOccurs="0"
-        maxOccurs="unbounded" />
+        <xs:element ref="taxonomicClassification" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
-

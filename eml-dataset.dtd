@@ -1,12 +1,12 @@
-<!--         
+<!--
        '$RCSfile: eml-dataset.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-05-10 22:38:43 $'
-      '$Revision: 1.19 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,11 +25,77 @@
 <!ENTITY % emlResource SYSTEM "eml-resource.dtd" >
 %emlResource;
 
-<!ELEMENT dataset ((%ResourceBase;), purpose?, maintenance?, 
-                   contact+, publisher?, pubPlace?)>
-<!ELEMENT purpose (paragraph+)>
+<!ENTITY % Coverage SYSTEM "eml-coverage.dtd" >
+%Coverage;
+
+<!ENTITY % Project SYSTEM "eml-project.dtd" >
+%Project;
+
+<!ENTITY % Access SYSTEM "eml-access.dtd" >
+%Access;
+
+<!ENTITY % dataTable SYSTEM "eml-dataTable.dtd" >
+%dataTable;
+
+<!ENTITY % spatialRaster SYSTEM "eml-spatialRaster.dtd" >
+%spatialRaster;
+
+<!ENTITY % spatialVector SYSTEM "eml-spatialVector.dtd" >
+%spatialVector;
+
+<!ENTITY % view SYSTEM "eml-view.dtd" >
+%view;
+
+<!ENTITY % otherEntity SYSTEM "eml-entity.dtd" >
+%otherEntity;
+
+<!ELEMENT dataset ((alternateIdentifier*, shortName, title+, creator+, metadataProvider*,
+                   associateParty*, pubDate?, language?, series?, abstract?,
+                   keywordSet*, additionalInfo*, intellectualRights?,
+                   distribution*, coverage?, purpose?, maintenance?, contact+,
+                   publisher?, pubPlace?, project?, access?, (dataTable |
+                   spatialRaster | spatialVector | storedProcedure | view | otherEntity)*)
+                   | references)>
+<!ELEMENT alternateIdentifier (#PCDATA)>
+<!ELEMENT shortName (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT creator (%ResponsibleParty;)>
+<!ELEMENT metadataProvider (%ResponsibleParty;)>
+<!ELEMENT associatedParty (%ResponsibleParty;)>
+<!ELEMENT pubDate (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
+<!ELEMENT series (#PCDATA)>
+<!ELEMENT abstract (paragraph+)>
 <!ELEMENT paragraph (#PCDATA)>
+<!ELEMENT keywordSet (keyword+, keywordThesaurus?)>
+<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT keywordThesaurus (#PCDATA)>
+<!ELEMENT additionalInfo (paragraph+)>
+<!ELEMENT intellectualRights (paragraph+)>
+<!ELEMENT distribution (online, offline)>
+<!ELEMENT online (url, connectionNotes?)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT connectionNotes (#PCDATA)>
+<!ELEMENT offline (mediumName?, mediumDensity?, mediumDensityUnits?, mediumVolume?,
+                   mediumFormat*, mediumNotes)>
+<!ELEMENT mediumName (#PCDATA)>
+<!ELEMENT mediumDensity (#PCDATA)>
+<!ELEMENT mediumDensityUnits (#PCDATA)>
+<!ELEMENT mediumVolume (#PCDATA)>
+<!ELEMENT mediumFormat (#PCDATA)>
+<!ELEMENT mediumNotes (#PCDATA)>
+<!ELEMENT coverage (%Coverage;);
+<!ELEMENT purpose (paragraph+)>
 <!ELEMENT maintenance (paragraph+)>
 <!ELEMENT contact (%ResponsibleParty;)>
 <!ELEMENT publisher (%ResponsibleParty;)>
 <!ELEMENT pubPlace (#PCDATA)>
+<!ELEMENT project (%Project;)>
+<!ELEMENT access (%Access;)>
+<!ELEMENT dataTable (%DataTable;)>
+<!ELEMENT dataTable (%spatialRaster;)>
+<!ELEMENT dataTable (%spatialVector;)>
+<!ELEMENT dataTable (%storedProcedure;)>
+<!ELEMENT dataTable (%view;)>
+<!ELEMENT dataTable (%otherEntity;)>
+<!ELEMENT references (#PCDATA)>

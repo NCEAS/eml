@@ -1,12 +1,12 @@
-<!--         
+<!--
        '$RCSfile: eml-entity.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-09 20:54:23 $'
-      '$Revision: 1.22 $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.23 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,24 +25,28 @@
 <!ENTITY % coverage SYSTEM "eml-coverage.dtd">
 %coverage;
 
-<!ENTITY % entityBase "(identifier+, entityName, entityDescription?, temporalCov, 
-                       geographicCov, taxonomicCov)">
-<!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED >
+<!ENTITY % attributeList SYSTEM "eml-attribute.dtd">
+%attributeList;
+
+<!ENTITY % Constraint SYSTEM "eml-constraint.dtd">
+%Constraint;
+
+<!ENTITY % Physical SYSTEM "eml-physical.dtd">
+%Physical;
+
+<!ENTITY % Protocol SYSTEM "eml-protocol.dtd">
+%Protocol;
+
+<!ELEMENT otherEntity ((entityName, entityDescription?, attributeList,
+                        constraint*, physical?, coverage?, protocol?, entityType)
+                        | references)>
 <!ELEMENT entityName (#PCDATA)>
 <!ELEMENT entityDescription (#PCDATA)>
-
-<!ELEMENT spatialRepresentationType (#PCDATA)>
-<!ELEMENT lengthUnitCode (#PCDATA)>
-<!ENTITY % SpatialRepresentation "((%entityBase;), horizontalAccuracy, verticalAccuracy, 
-                                 spatialRepresentationType)">
-<!ELEMENT horizontalAccuracy (%DataQuality;)>
-<!ELEMENT verticalAccuracy (%DataQuality;)>
-
-<!ENTITY % DataQuality "(accuracyReport, quantitativeAccuracyReport)">
-<!ELEMENT accuracyReport (#PCDATA)>
-<!ELEMENT quantitativeAccuracyReport (quantitativeAccuracyValue, quantitativeAccuracyMethod)>
-<!ELEMENT quantitativeAccuracyValue (#PCDATA)>
-<!ELEMENT quantitativeAccuracyMethod (#PCDATA)>
-
+<!ELEMENT attributeList (%attributeList;)>
+<!ELEMENT constraint (%Constraint;)>
+<!ELEMENT physical (%Physical;)>
+<!ELEMENT coverage (%Coverage;)>
+<!ELEMENT protocol (%Protocol;)>
+<!ELEMENT entityType (#PCDATA)>
+<!ELEMENT references (#PCDATA)>
 

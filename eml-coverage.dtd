@@ -1,12 +1,12 @@
-<!--         
+<!--
        '$RCSfile: eml-coverage.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-05-08 02:21:53 $'
-      '$Revision: 1.15 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.16 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,64 +24,81 @@
 -->
 <!-- entity referring to the eml-literature fields -->
 <!-- literature also imports party, so it is used in here too -->
-<!ENTITY % literature SYSTEM "eml-literature.dtd">
-%literature;
+<!ENTITY % citation SYSTEM "eml-literature.dtd">
+%citation;
 
-<!ELEMENT coverage (geographicCov, temporalCov, taxonomicCov)>
-<!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED >
-<!ELEMENT geographicCov (geographicDescription, boundingCoordinates, datasetGPolygon*)>
-<!ELEMENT temporalCov (singleDateTime* | rangeOfDates*)>
-<!ELEMENT taxonomicCov (taxonomicSystem?, generalTaxonomicCoverage?, taxonomicClassification+)>
+<!ENTITY % citation SYSTEM "eml-party.dtd">
+%ResponsibleParty;
 
-<!-- Geographic Coverage elements -->
+<!ELEMENT Coverage ((geographicCoverage, temporalCoverage, taxonomicCoverage)+ |
+                    references)>
+<!ELEMENT geographicCoverage ((geographicDescription, boundingCoordinates,
+                              datasetGPolygon*) | references)>
 <!ELEMENT geographicDescription (#PCDATA)>
-<!ELEMENT boundingCoordinates (westBoundingCoordinate?, eastBoundingCoordinate, northBoundingCoordinate, southBoundingCoordinate?, boundingAltitudes?)>
-<!ELEMENT westBoundingCoordinate (#PCDATA)>
-<!ELEMENT eastBoundingCoordinate (#PCDATA)>
-<!ELEMENT northBoundingCoordinate (#PCDATA)>
-<!ELEMENT southBoundingCoordinate (#PCDATA)>
+<!ELEMENT boundingCoordinates (westBoundingCoordinate, eastBoundingCoordinate,
+                               northBoundingCoordinate, southBoundingCoordinate,
+                               boundingAltitudes?)>
 <!ELEMENT boundingAltitudes (altitudeMinimum, altitudeMaximum, altitudeUnits)>
-<!ELEMENT altitudeMinimum (#PCDATA)>
-<!ELEMENT altitudeMaximum (#PCDATA)>
-<!ELEMENT altitudeUnits (#PCDATA)>
-
-<!ELEMENT datasetGPolygon (datasetGPolygonOuterGRing, datasetGPolygonExclusionGRing*)>
-<!ELEMENT datasetGPolygonOuterGRing (gRingPoint+ | gRing)>
-<!ELEMENT datasetGPolygonExclusionGRing (gRingPoint+ | gRing)>
+<!ELEMENT datasetGPolygon (datasetPolygonOutgerGRing, datasetGPolygonExclusionGRing)>
+<!ELEMENT datasetPolygonOuterGRing (gRingPoint | gRing)>
 <!ELEMENT gRingPoint (gRingLatitude, gRingLongitude)>
 <!ELEMENT gRingLatitude (#PCDATA)>
 <!ELEMENT gRingLongitude (#PCDATA)>
 <!ELEMENT gRing (#PCDATA)>
+<!ELEMENT datasetGPolygonExclusionGRing (gRingPoint | gRing)>
+<!ELEMENT references (#PCDATA)>
 
-<!-- Temporal Coverage elements -->
-<!ELEMENT singleDateTime ((calendarDate, time?) | geologicAge)>
+<!ELEMENT temporalCoverage ((singleDateTime+ | rangeOfDates+) | references)>
+<!ELEMENT singleDateTime ((calendarDate, time?) | alternativeTimeScale)>
 <!ELEMENT calendarDate (#PCDATA)>
 <!ELEMENT time (#PCDATA)>
-<!ELEMENT rangeOfDates (singleDateTime,singleDateTime)>
-<!ELEMENT geologicAge (geologicTimeScale, geologicAgeEstimate, geologicAgeUncertainty?, geologicAgeExplanation?, geologicCitation*)>
-<!ELEMENT geologicTimeScale (#PCDATA)>
-<!ELEMENT geologicAgeEstimate (#PCDATA)>
-<!ELEMENT geologicAgeUncertainty (#PCDATA)>
-<!ELEMENT geologicAgeExplanation (#PCDATA)>
-<!ELEMENT geologicCitation (citation)>
+<!ELEMENT alternativeTimeScale (timeScaleName, timeScaleAgeEstimate,
+                                timeScaleAgeUncertainty?, timeScaleAgeExplanation?,
+                                timeScaleCitation*)>
+<!ELEMENT timeScaleName (#PCDATA)>
+<!ELEMENT timeScaleAgeEstimate (#PCDATA)>
+<!ELEMENT timeScaleAgeUncertainty (#PCDATA)>
+<!ELEMENT timeScaleAgeExplanation (#PCDATA)>
+<!ELEMENT timeScaleCitation (%citation;)>
+<!ELEMENT rangeOfDates (singleDateTime, singleDateTime)>
+<!ELEMENT singleDateTime ((calendarDate, time) | alternativeTimeScale)>
 
-<!-- Taxonomic Coverage elements -->
-<!ELEMENT taxonomicSystem (classificationSystem+, identificationReference*, identifierName+, taxonomicProcedures, taxonomicCompleteness?, vouchers*)>
+<!ELEMENT taxonomicCoverage ((taxonomicSystem?, generalTaxonomicCoverage?,
+                             taxonomicClassification+) | references)>
+<!ELEMENT taxonomicSystem (classificationSystem+, identificationReference*,
+                           identifierName+, taxonomicProcedures, taxonomicCompleteness,
+                           vouchers*)>
 <!ELEMENT classificationSystem (classificationSystemCitation, classificationSystemModifications?)>
-<!ELEMENT classificationSystemCitation (citation)>
+<!ELEMENT classificationSystemCitation (%citation;)>
 <!ELEMENT classificationSystemModifications (#PCDATA)>
-<!ELEMENT identificationReference (citation)>
-<!ELEMENT identifierName (originator+)>
-<!ELEMENT originator ((%ResponsibleParty;))>
-<!ELEMENT taxonomicProcedures (#PCDATA)>
+<!ELEMENT identificationReference (%citation;)>
+<!ELEMENT identifierName (originator)>
+<!ELEMENT originator (%ResponsibleParty;)>
+<!ELEMENT taxonomicProcedure (#PCDATA)>
 <!ELEMENT taxonomicCompleteness (#PCDATA)>
 <!ELEMENT vouchers (specimen, repository)>
 <!ELEMENT specimen (#PCDATA)>
-<!ELEMENT repository (originator+)>
+<!ELEMENT repository (originator)>
 <!ELEMENT generalTaxonomicCoverage (#PCDATA)>
-<!ELEMENT taxonomicClassification (taxonRankName?, taxonRankValue?, commonName*, taxonomicClassification*)>
-<!ELEMENT taxonRankName (#PCDATA)>
+<!ELEMENT taxonomicClassification (taxonRankName?, taxonRankValue?, commonName*,
+                                   taxonomicClassification*)>
+<!ELEMENT taonRankName (#PCDATA)>
 <!ELEMENT taxonRankValue (#PCDATA)>
 <!ELEMENT commonName (#PCDATA)>
+
+<!ATTLIST Coverage id CDATA #IMPLIED>
+<!ATTLIST Coverage system CDATA #IMPLIED>
+<!ATTLIST Coverage scope CDATA "document">
+
+<!ATTLIST geographicCoverage id CDATA #IMPLIED>
+<!ATTLIST geographicCoverage system CDATA #IMPLIED>
+<!ATTLIST geographicCoverage scope CDATA "document">
+
+<!ATTLIST temporalCoverage id CDATA #IMPLIED>
+<!ATTLIST temporalCoverage system CDATA #IMPLIED>
+<!ATTLIST temporalCoverage scope CDATA "document">
+
+<!ATTLIST taxonomicCoverage id CDATA #IMPLIED>
+<!ATTLIST taxonomicCoverage system CDATA #IMPLIED>
+<!ATTLIST taxonomicCoverage scope CDATA "document">
 

@@ -1,12 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:constraint-2.0.0beta9"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml:documentation-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9"
-xmlns="eml:constraint-2.0.0beta9">
-  <xs:import namespace="eml:documentation-2.0.0beta9"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml:resource-2.0.0beta9"
-  schemaLocation="eml-resource.xsd" />
+<xs:schema targetNamespace="eml:constraint-2.0.0beta9" xmlns="eml:constraint-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-constraint.xsd,v $'
@@ -24,8 +19,8 @@ xmlns="eml:constraint-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 17:51:48 $'
-      '$Revision: 1.29 $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -70,7 +65,7 @@ xmlns="eml:constraint-2.0.0beta9">
         linked into a dataset using the "triple" element, and all of the
         entities that are referenced in the constraints should be accessible
         within that same package.</doc:description>
-        <doc:example />
+        <doc:example/>
         <doc:lineage>New in EML 2.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -82,13 +77,13 @@ xmlns="eml:constraint-2.0.0beta9">
             <doc:summary>The primary key in the entity</doc:summary>
             <doc:description>The primary key in the entity to which this
             constraint document relates.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:group ref="ConstraintBaseGroup" />
+            <xs:group ref="ConstraintBaseGroup"/>
             <xs:element name="key">
               <xs:annotation>
                 <xs:appinfo>
@@ -102,14 +97,13 @@ xmlns="eml:constraint-2.0.0beta9">
                   referenced entity. For a not null constraint, the key
                   indicates the attribute which should not be
                   null.</doc:description>
-                  <doc:example />
+                  <doc:example/>
                   <doc:lineage>New in EML 2.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="attributeReference" type="xs:string"
-                  maxOccurs="unbounded">
+                  <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Attribute Name</doc:tooltip>
@@ -120,7 +114,7 @@ xmlns="eml:constraint-2.0.0beta9">
                         within an entity and specifies that the attribute
                         participates in the key that is being
                         defined.</doc:description>
-                        <doc:example />
+                        <doc:example/>
                         <doc:lineage>New in EML 2.0</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
@@ -141,13 +135,13 @@ xmlns="eml:constraint-2.0.0beta9">
             it does not form any implicit foriegn key relationships to other
             entities, however it is required to be unique within the entity.
             </doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:group ref="ConstraintBaseGroup" />
+            <xs:group ref="ConstraintBaseGroup"/>
             <xs:element name="key">
               <xs:annotation>
                 <xs:appinfo>
@@ -161,14 +155,13 @@ xmlns="eml:constraint-2.0.0beta9">
                   referenced entity. For a not null constraint, the key
                   indicates the attribute which should not be
                   null.</doc:description>
-                  <doc:example />
+                  <doc:example/>
                   <doc:lineage>New in EML 2.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="attributeReference" type="xs:string"
-                  maxOccurs="unbounded">
+                  <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Attribute Name</doc:tooltip>
@@ -179,7 +172,7 @@ xmlns="eml:constraint-2.0.0beta9">
                         within an entity and specifies that the attribute
                         participates in the key that is being
                         defined.</doc:description>
-                        <doc:example />
+                        <doc:example/>
                         <doc:lineage>New in EML 2.0</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
@@ -198,13 +191,13 @@ xmlns="eml:constraint-2.0.0beta9">
             within an entity.</doc:summary>
             <doc:description>A constraint which checks a conditional clause
             within an entity.</doc:description>
-            <doc:example></doc:example>
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:group ref="ConstraintBaseGroup" />
+            <xs:group ref="ConstraintBaseGroup"/>
             <xs:element name="checkCondition" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
@@ -233,28 +226,28 @@ xmlns="eml:constraint-2.0.0beta9">
             <doc:description>A foreign key relationship among entities which
             relates this entity to another's primary key.
             </doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:group ref="ForeignKeyGroup" />
+          <xs:group ref="ForeignKeyGroup"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="joinCondition">
         <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Join Condition</doc:tooltip>
-              <doc:summary>A non primary/foreign key join</doc:summary>
-              <doc:description>This describes any join of two tables that is
+          <xs:appinfo>
+            <doc:tooltip>Join Condition</doc:tooltip>
+            <doc:summary>A non primary/foreign key join</doc:summary>
+            <doc:description>This describes any join of two tables that is
               not done with a primary/foreign key relationship.</doc:description>
-              <doc:example />
-              <doc:lineage>New in EML 2.0</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
+            <doc:example/>
+            <doc:lineage>New in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:group ref="ForeignKeyGroup" />
+            <xs:group ref="ForeignKeyGroup"/>
             <xs:element name="referencedKey">
               <xs:annotation>
                 <xs:appinfo>
@@ -266,14 +259,13 @@ xmlns="eml:constraint-2.0.0beta9">
                   the referenced entity, then the "referencedKey" is optional.
                   For a foreign key, the set of attributes must match an
                   identifying key in the referenced entity.</doc:description>
-                  <doc:example />
+                  <doc:example/>
                   <doc:lineage>New in EML 2.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="attributeReference" type="xs:string"
-                  maxOccurs="unbounded">
+                  <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Attribute Name</doc:tooltip>
@@ -284,7 +276,7 @@ xmlns="eml:constraint-2.0.0beta9">
                         within an entity and specifies that the attribute
                         participates in the key that is being
                         defined.</doc:description>
-                        <doc:example />
+                        <doc:example/>
                         <doc:lineage>New in EML 2.0</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
@@ -303,13 +295,13 @@ xmlns="eml:constraint-2.0.0beta9">
             should be present for an attribute.</doc:summary>
             <doc:description>A constraint that indicates that no null values
             should be present for an attribute in this entity.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:group ref="ConstraintBaseGroup" />
+            <xs:group ref="ConstraintBaseGroup"/>
             <xs:element name="key">
               <xs:annotation>
                 <xs:appinfo>
@@ -323,14 +315,13 @@ xmlns="eml:constraint-2.0.0beta9">
                   referenced entity. For a not null constraint, the key
                   indicates the attribute which should not be
                   null.</doc:description>
-                  <doc:example />
+                  <doc:example/>
                   <doc:lineage>New in EML 2.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="attributeReference" type="xs:string"
-                  maxOccurs="unbounded">
+                  <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Attribute Name</doc:tooltip>
@@ -341,7 +332,7 @@ xmlns="eml:constraint-2.0.0beta9">
                         within an entity and specifies that the attribute
                         participates in the key that is being
                         defined.</doc:description>
-                        <doc:example />
+                        <doc:example/>
                         <doc:lineage>New in EML 2.0</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
@@ -353,10 +344,9 @@ xmlns="eml:constraint-2.0.0beta9">
         </xs:complexType>
       </xs:element>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:simpleType name="CardinalityChildOccurancesType">
     <xs:annotation>
@@ -375,7 +365,7 @@ xmlns="eml:constraint-2.0.0beta9">
     <xs:union memberTypes="xs:integer">
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="many" />
+          <xs:enumeration value="many"/>
         </xs:restriction>
       </xs:simpleType>
     </xs:union>
@@ -417,7 +407,7 @@ xmlns="eml:constraint-2.0.0beta9">
   </xs:group>
   <xs:group name="ForeignKeyGroup">
     <xs:sequence>
-      <xs:group ref="ConstraintBaseGroup" />
+      <xs:group ref="ConstraintBaseGroup"/>
       <xs:element name="key">
         <xs:annotation>
           <xs:appinfo>
@@ -430,14 +420,13 @@ xmlns="eml:constraint-2.0.0beta9">
             match an identifying key in the referenced entity. For a not null
             constraint, the key indicates the attribute which should not be
             null.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="attributeReference" type="xs:string"
-            maxOccurs="unbounded">
+            <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Attribute Name</doc:tooltip>
@@ -447,7 +436,7 @@ xmlns="eml:constraint-2.0.0beta9">
                   the identified entity. This name will be unique within an
                   entity and specifies that the attribute participates in the
                   key that is being defined.</doc:description>
-                  <doc:example />
+                  <doc:example/>
                   <doc:lineage>New in EML 2.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -483,14 +472,14 @@ xmlns="eml:constraint-2.0.0beta9">
             entity's primary key to the child's primary key. Non-identifying
             relationships propagate the parent's primary key as a non-key
             attribute of the child entity.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:enumeration value="identifying" />
-            <xs:enumeration value="non-identifying" />
+            <xs:enumeration value="identifying"/>
+            <xs:enumeration value="non-identifying"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -534,13 +523,12 @@ xmlns="eml:constraint-2.0.0beta9">
               </xs:annotation>
               <xs:simpleType>
                 <xs:restriction base="xs:integer">
-                  <xs:enumeration value="0" />
-                  <xs:enumeration value="1" />
+                  <xs:enumeration value="0"/>
+                  <xs:enumeration value="1"/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
-            <xs:element name="childOccurances"
-            type="CardinalityChildOccurancesType">
+            <xs:element name="childOccurances" type="CardinalityChildOccurancesType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Child portion of the cardinality
@@ -562,4 +550,3 @@ xmlns="eml:constraint-2.0.0beta9">
     </xs:sequence>
   </xs:group>
 </xs:schema>
-

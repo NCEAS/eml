@@ -1,12 +1,12 @@
-<!--         
+<!--
        '$RCSfile: eml-dataTable.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-09 18:39:08 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-06-25 19:43:07 $'
+      '$Revision: 1.2 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,10 +26,12 @@
 <!ENTITY % entity SYSTEM "eml-entity.dtd">
 %entity;
 
-<!ELEMENT dataTable (%DataTable;)>
-
-<!ENTITY % DataTable "(%entityBase;, orientation?, caseSensitive?, numberOfRecords?)">
-<!ELEMENT orientation EMPTY>
-<!ATTLIST orientation columnOrRow (columnMajor | rowMajor) "columnMajor">
+<!ELEMENT dataTable ((entityName, entityDescription?, attributeList, constraint*,
+                     physical?, coverage?, protocol?, orientation?, caseSensitive?
+                     numberOfRecords?) | references)>
+<!ELEMENT orientation (#PCDATA)>
 <!ELEMENT caseSensitive (#PCDATA)>
 <!ELEMENT numberOfRecords (#PCDATA)>
+<!ELEMENT references (#PCDATA)>
+
+
