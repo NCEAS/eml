@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-29 22:30:20 $'
-      '$Revision: 1.33 $'
+          '$Date: 2002-05-30 15:23:32 $'
+      '$Revision: 1.34 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,14 +69,7 @@
   <xs:complexType name="AttributeContainer">
     <xs:choice>
       <xs:element name="attribute" type="AttributeType"/>
-      <xs:element name="references"/>
-    </xs:choice>
-  </xs:complexType>
-
-  <xs:complexType name="AttributeListContainer">
-    <xs:choice>
       <xs:element name="attributeList" type="AttributeListType"/>
-      <xs:element name="references"/>
     </xs:choice>
   </xs:complexType>
 
@@ -102,9 +95,10 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:sequence>
+    <xs:choice>
       <xs:element name="attribute" type="AttributeType" maxOccurs="unbounded"/>
-    </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
     <xs:attribute name="id" type="xs:ID" use="required"/>
     <xs:attribute name="system" type="xs:string" use="required"/>
     <xs:attribute name="scope" use="optional" default="system">
@@ -135,6 +129,7 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
+    <xs:choice>
     <xs:sequence>
       <xs:element name="attributeName" type="xs:string">
         <xs:annotation>
@@ -772,8 +767,10 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:ID" use="required"/>
-    <xs:attribute name="system" type="xs:string" use="required"/>
+    <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
     <xs:attribute name="scope" use="optional" default="system">
       <xs:simpleType>
         <xs:restriction base="xs:string">
