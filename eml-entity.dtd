@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--         
        '$RCSfile: eml-entity.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: higgins $'
-          '$Date: 2002-01-02 17:01:41 $'
-      '$Revision: 1.14 $'
+        '$Author: berkley $'
+          '$Date: 2002-03-20 21:50:14 $'
+      '$Revision: 1.15 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 <!ELEMENT beggeol (geolage)>
 <!ELEMENT begtime (#PCDATA)>
 <!ELEMENT citeinfo ANY>
+<!ELEMENT coverage (geographicCov, temporalCov, taxonomicCov)>
 <!ELEMENT enddate (#PCDATA)>
 <!ELEMENT endgeol (geolage)>
 <!ELEMENT endtime (#PCDATA)>
@@ -39,7 +41,16 @@
 <!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
 <!ELEMENT taxonomicCov (keywtax+, taxonsys?, taxongen?, taxoncl+)>
 <!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
-<!ELEMENT table-entity ((identifier+, entityName, entityDescription?, temporalCov?, geographicCov?, taxonomicCov?), (orientation?, caseSensitive?, numberOfRecords?))>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT example (#PCDATA)>
+<!ELEMENT lineage (#PCDATA)>
+<!ELEMENT moduleDescription (#PCDATA)>
+<!ELEMENT moduleName (#PCDATA)>
+<!ELEMENT summary (#PCDATA)>
+<!ELEMENT tooltip (#PCDATA)>
+<!ELEMENT other-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (entityType))>
+<!ELEMENT spatial-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (spatialImage* | spatialGrid* | spatialVector*))>
+<!ELEMENT table-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (orientation?, caseSensitive?, numberOfRecords?))>
 <!ELEMENT descgeog (#PCDATA)>
 <!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
 <!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
@@ -62,6 +73,10 @@
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT entityName (#PCDATA)>
 <!ELEMENT entityDescription (#PCDATA)>
+<!ELEMENT entityType (#PCDATA)>
+<!ELEMENT spatialImage (spatialRepresentationType, imageIdentifier?, imageType, meanGroundSampleDistance?, groundToImageCoefficient?, imageSuitability?, params?)>
+<!ELEMENT spatialGrid (spatialRepresentationType, cellType?, cellOrigin?, rows, columns, verticals?, scanResolution?, groundSpacing?, cellDomain?)>
+<!ELEMENT spatialVector (spatialRepresentationType, geometricObjectType?, geometricObjectCount?, topologyLevel?)>
 <!ELEMENT orientation EMPTY>
 <!ATTLIST orientation columnorrow (columnmajor | rowmajor) #IMPLIED>
 <!ELEMENT caseSensitive EMPTY>
@@ -71,7 +86,7 @@
 <!ELEMENT eastbc (#PCDATA)>
 <!ELEMENT northbc (#PCDATA)>
 <!ELEMENT southbc (#PCDATA)>
-<!ELEMENT boundalt (altmin, almax, altunits)>
+<!ELEMENT boundalt (altmin, altmax, altunits)>
 <!ELEMENT dsgpolyo (grngpoin+ | gring)>
 <!ELEMENT dsgpolyx (grngpoin+ | gring)>
 <!ELEMENT taxonkt (#PCDATA)>
@@ -82,11 +97,70 @@
 <!ELEMENT taxonpro (#PCDATA)>
 <!ELEMENT taxoncom (#PCDATA)>
 <!ELEMENT vouchers (specimen, reposit)>
+<!ELEMENT spatialRepresentationType (#PCDATA)>
+<!ELEMENT imageIdentifier (#PCDATA)>
+<!ELEMENT imageType (#PCDATA)>
+<!ELEMENT meanGroundSampleDistance (spacing, unit)>
+<!ELEMENT groundToImageCoefficient (#PCDATA)>
+<!ELEMENT imageSuitability (illuminationElevationAngle?, illuminationAzimuthAngle?, imageOrientationAngle?, imagingCondition?, ImageQualityRatingSystem?, imageQualityCode?, cloudCoverPercentage?, preProcessingTypeCode?, compressionGenerationQuality?, triangulationIndicator?, radiometricDataAvailability?, ESDAvailability?)>
+<!ELEMENT params (focalLength?, obliquityAngle?, imageSensorTime?, sensorCategory?, sensorMode?, spectralProperties?, fieldOfView?, orientationOnPlatform?, operationMode?, band*)>
+<!ELEMENT cellType (#PCDATA)>
+<!ELEMENT cellOrigin (#PCDATA)>
+<!ELEMENT rows (#PCDATA)>
+<!ELEMENT columns (#PCDATA)>
+<!ELEMENT verticals (#PCDATA)>
+<!ELEMENT scanResolution (xResolution, yResolution, zResolution)>
+<!ELEMENT groundSpacing (xSpacing, ySpacing, zSpacing)>
+<!ELEMENT cellDomain (toneGradation?, bitsPerBand?, cellAttributeDescription, cellUnit)>
+<!ELEMENT geometricObjectType (#PCDATA)>
+<!ELEMENT geometricObjectCount (#PCDATA)>
+<!ELEMENT topologyLevel (#PCDATA)>
 <!ELEMENT altmin (#PCDATA)>
-<!ELEMENT almax (#PCDATA)>
+<!ELEMENT altmax (#PCDATA)>
 <!ELEMENT altunits (#PCDATA)>
 <!ELEMENT classcit (citeinfo)>
 <!ELEMENT classmod (#PCDATA)>
 <!ELEMENT cntinfo ANY>
 <!ELEMENT specimen (#PCDATA)>
 <!ELEMENT reposit (cntinfo)>
+<!ELEMENT spacing (#PCDATA)>
+<!ELEMENT unit (#PCDATA)>
+<!ELEMENT illuminationElevationAngle (#PCDATA)>
+<!ELEMENT illuminationAzimuthAngle (#PCDATA)>
+<!ELEMENT imageOrientationAngle (#PCDATA)>
+<!ELEMENT imagingCondition (#PCDATA)>
+<!ELEMENT ImageQualityRatingSystem (#PCDATA)>
+<!ELEMENT imageQualityCode (#PCDATA)>
+<!ELEMENT cloudCoverPercentage (#PCDATA)>
+<!ELEMENT preProcessingTypeCode (#PCDATA)>
+<!ELEMENT compressionGenerationQuality (#PCDATA)>
+<!ELEMENT triangulationIndicator (#PCDATA)>
+<!ELEMENT radiometricDataAvailability (#PCDATA)>
+<!ELEMENT ESDAvailability (#PCDATA)>
+<!ELEMENT focalLength (#PCDATA)>
+<!ELEMENT obliquityAngle (#PCDATA)>
+<!ELEMENT imageSensorTime (#PCDATA)>
+<!ELEMENT sensorCategory (#PCDATA)>
+<!ELEMENT sensorMode (#PCDATA)>
+<!ELEMENT spectralProperties (#PCDATA)>
+<!ELEMENT fieldOfView (#PCDATA)>
+<!ELEMENT orientationOnPlatform (#PCDATA)>
+<!ELEMENT operationMode (#PCDATA)>
+<!ELEMENT band (sequenceIdentifier?, highWavelength?, lowWaveLength?, cameraCalibration?, filmDistortion?, lensDistortion?)>
+<!ELEMENT xResolution (pixelsPerUnit, unit)>
+<!ELEMENT yResolution (pixelsPerUnit, unit)>
+<!ELEMENT zResolution (pixelsPerUnit, unit)>
+<!ELEMENT xSpacing (#PCDATA)>
+<!ELEMENT ySpacing (#PCDATA)>
+<!ELEMENT zSpacing (#PCDATA)>
+<!ELEMENT toneGradation (#PCDATA)>
+<!ELEMENT bitsPerBand (#PCDATA)>
+<!ELEMENT cellAttributeDescription (#PCDATA)>
+<!ELEMENT cellUnit (#PCDATA)>
+<!ELEMENT sequenceIdentifier (#PCDATA)>
+<!ELEMENT highWavelength (#PCDATA)>
+<!ELEMENT lowWaveLength (#PCDATA)>
+<!ELEMENT cameraCalibration (#PCDATA)>
+<!ELEMENT filmDistortion (#PCDATA)>
+<!ELEMENT lensDistortion (#PCDATA)>
+<!ELEMENT pixelsPerUnit (#PCDATA)>
