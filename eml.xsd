@@ -5,20 +5,20 @@ xmlns:cit="eml:literature-2.0.0beta9" xmlns:ds="eml:dataset-2.0.0beta9"
 xmlns:pro="eml:protocol-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9"
 xmlns:eml="eml:eml-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9"
 xmlns="eml:eml-2.0.0beta9">
-    <xs:import namespace="eml:documentation-2.0.0beta9"
-    schemaLocation="eml-documentation.xsd" />
-    <xs:import namespace="eml:dataset-2.0.0beta9"
-    schemaLocation="eml-dataset.xsd" />
-    <xs:import namespace="eml:literature-2.0.0beta9"
-    schemaLocation="eml-literature.xsd" />
-    <xs:import namespace="eml:software-2.0.0beta9"
-    schemaLocation="eml-software.xsd" />
-    <xs:import namespace="eml:protocol-2.0.0beta9"
-    schemaLocation="eml-protocol.xsd" />
-    <xs:import namespace="eml:resource-2.0.0beta9"
-    schemaLocation="eml-resource.xsd" />
-    <xs:annotation>
-        <xs:documentation>
+  <xs:import namespace="eml:documentation-2.0.0beta9"
+  schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:dataset-2.0.0beta9"
+  schemaLocation="eml-dataset.xsd" />
+  <xs:import namespace="eml:literature-2.0.0beta9"
+  schemaLocation="eml-literature.xsd" />
+  <xs:import namespace="eml:software-2.0.0beta9"
+  schemaLocation="eml-software.xsd" />
+  <xs:import namespace="eml:protocol-2.0.0beta9"
+  schemaLocation="eml-protocol.xsd" />
+  <xs:import namespace="eml:resource-2.0.0beta9"
+  schemaLocation="eml-resource.xsd" />
+  <xs:annotation>
+    <xs:documentation>
                        '$RCSfile: eml.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
@@ -34,8 +34,8 @@ xmlns="eml:eml-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: jones $'
-          '$Date: 2002-06-13 19:38:58 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-06-13 22:14:26 $'
+      '$Revision: 1.22 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,132 +50,131 @@ xmlns="eml:eml-2.0.0beta9">
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-        </xs:documentation>
-        <xs:appinfo>
-            <doc:moduleDocs>
-                <doc:moduleName>eml</doc:moduleName>
-                <doc:moduleDescription>The eml module is a wrapper container
-                that allows inclusion of any metadata content in a single EML
-                document. In general, dataset resources, literature resources,
-                collection resources, and software resources, or another type
-                that extends eml-resource must lead off the collection in the
-                eml element because these resources contain the "triple"
-                element that allows specification of the relationships among
-                the various components of the data
-                package.</doc:moduleDescription>
-                <doc:recommendedUsage>all datasets</doc:recommendedUsage>
-                <doc:standAlone>yes</doc:standAlone>
-                <doc:module>eml-access.xsd</doc:module>
-                <doc:module>eml-attribute.xsd</doc:module>
-                <doc:module>eml-constraint.xsd</doc:module>
-                <doc:module>eml-coverage.xsd</doc:module>
-                <doc:module>eml-dataset.xsd</doc:module>
-                <doc:module>eml-dataTable.xsd</doc:module>
-                <doc:module>eml.xsd</doc:module>
-                <doc:module>eml-entity.xsd</doc:module>
-                <doc:module>eml-literature.xsd</doc:module>
-                <doc:module>eml-party.xsd</doc:module>
-                <doc:module>eml-physical.xsd</doc:module>
-                <doc:module>eml-project.xsd</doc:module>
-                <doc:module>eml-protocol.xsd</doc:module>
-                <doc:module>eml-resource.xsd</doc:module>
-                <doc:module>eml-software.xsd</doc:module>
-                <doc:module>eml-spatialRaster.xsd</doc:module>
-                <doc:module>eml-spatialReference.xsd</doc:module>
-                <doc:module>eml-spatialVector.xsd</doc:module>
-                <doc:module>eml-storedProcedure.xsd</doc:module>
-                <doc:module>eml-view.xsd</doc:module>
-            </doc:moduleDocs>
-        </xs:appinfo>
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml</doc:moduleName>
+        <doc:moduleDescription>The eml module is a wrapper container that
+        allows inclusion of any metadata content in a single EML document. In
+        general, dataset resources, literature resources, collection resources,
+        and software resources, or another type that extends eml-resource must
+        lead off the collection in the eml element because these resources
+        contain the "triple" element that allows specification of the
+        relationships among the various components of the data
+        package.</doc:moduleDescription>
+        <doc:recommendedUsage>all datasets</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
+        <doc:module>eml-access.xsd</doc:module>
+        <doc:module>eml-attribute.xsd</doc:module>
+        <doc:module>eml-constraint.xsd</doc:module>
+        <doc:module>eml-coverage.xsd</doc:module>
+        <doc:module>eml-dataset.xsd</doc:module>
+        <doc:module>eml-dataTable.xsd</doc:module>
+        <doc:module>eml.xsd</doc:module>
+        <doc:module>eml-entity.xsd</doc:module>
+        <doc:module>eml-literature.xsd</doc:module>
+        <doc:module>eml-party.xsd</doc:module>
+        <doc:module>eml-physical.xsd</doc:module>
+        <doc:module>eml-project.xsd</doc:module>
+        <doc:module>eml-protocol.xsd</doc:module>
+        <doc:module>eml-resource.xsd</doc:module>
+        <doc:module>eml-software.xsd</doc:module>
+        <doc:module>eml-spatialRaster.xsd</doc:module>
+        <doc:module>eml-spatialReference.xsd</doc:module>
+        <doc:module>eml-spatialVector.xsd</doc:module>
+        <doc:module>eml-storedProcedure.xsd</doc:module>
+        <doc:module>eml-view.xsd</doc:module>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="eml">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Ecological Metadata</doc:tooltip>
+        <doc:summary>A collection of EML metadata documents linked using the
+        eml-resource "triple" element.</doc:summary>
+        <doc:description>The "eml" element allows for the inclusion of
+        arbitrary metadata documents as child elements of a single document.
+        There is no validity constraint that restricts what metadata may be
+        present, although it is recommended that one (and only one) metadata
+        document that derives from eml-resource be included in the set so that
+        the "triple" element can be used to determine the appropriate
+        relationships among the various documents. This is accomplished by
+        explicitly stating the relationships by referencing the "identifer"
+        elements that are contained within each metadata element. For example,
+        one could indicate that several uniquely identified data objects are a
+        part of the data package, and which of the various eml modules describe
+        the entity, attribute, and constraints for each of those data
+        objects.</doc:description>
+        <doc:example>Please see the individual eml modules for specific
+        examples.</doc:example>
+        <doc:lineage>The 'eml' element was introduced into EML
+        2.0.0.</doc:lineage>
+      </xs:appinfo>
     </xs:annotation>
-    <xs:element name="eml">
-        <xs:annotation>
-            <xs:appinfo>
-                <doc:tooltip>Ecological Metadata</doc:tooltip>
-                <doc:summary>A collection of EML metadata documents linked
-                using the eml-resource "triple" element.</doc:summary>
-                <doc:description>The "eml" element allows for the inclusion of
-                arbitrary metadata documents as child elements of a single
-                document. There is no validity constraint that restricts what
-                metadata may be present, although it is recommended that one
-                (and only one) metadata document that derives from eml-resource
-                be included in the set so that the "triple" element can be used
-                to determine the appropriate relationships among the various
-                documents. This is accomplished by explicitly stating the
-                relationships by referencing the "identifer" elements that are
-                contained within each metadata element. For example, one could
-                indicate that several uniquely identified data objects are a
-                part of the data package, and which of the various eml modules
-                describe the entity, attribute, and constraints for each of
-                those data objects.</doc:description>
-                <doc:example>Please see the individual eml modules for specific
-                examples.</doc:example>
-                <doc:lineage>The 'eml' element was introduced into EML
-                2.0.0.</doc:lineage>
-            </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="ds:dataset" />
+          <xs:element ref="cit:citation" />
+          <xs:element ref="sw:software" />
+          <xs:element ref="pro:protocol" />
+        </xs:choice>
+        <xs:element name="additionalMetadata" minOccurs="0"
+        maxOccurs="unbounded">
+          <xs:complexType>
             <xs:sequence>
-                <xs:choice>
-                    <xs:element ref="ds:dataset" />
-                    <xs:element ref="cit:citation" />
-                    <xs:element ref="sw:software" />
-                    <xs:element ref="pro:protocol" />
-                </xs:choice>
-                <xs:element name="additionalMetadata" minOccurs="0"
-                maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="describes" type="xs:string"
-                            maxOccurs="unbounded"/>
-                            <xs:any processContents="lax" />
-                        </xs:sequence>
-                        <xs:attribute name="id" type="xs:ID" use="optional" />
-                    </xs:complexType>
-                </xs:element>
+              <xs:element name="describes" type="xs:string"
+              maxOccurs="unbounded" />
+              <xs:any processContents="lax" />
             </xs:sequence>
-            <xs:attribute name="packageId" type="xs:ID" use="required" />
-            <xs:attribute name="system" type="xs:string" use="required" />
-            <xs:attribute name="scope" type="res:ScopeType" fixed="system" />
-        </xs:complexType>
-        <xs:key name="identifierKey">
-            <xs:selector
-            xpath=".//ds:dataset/* | .//pro:protocol/* | cit:citation/* | .//sw:software/* | .//.//additionalMetadata/*" />
-            <xs:field xpath="@id" />
-        </xs:key>
-        <xs:keyref name="replacementReference" refer="identifierKey">
-            <xs:selector xpath=".//references" />
-            <xs:field xpath="." />
-        </xs:keyref>
-        <xs:keyref name="describesReference" refer="identifierKey">
-            <xs:selector xpath=".//additionalMetadata/describes" />
-            <xs:field xpath="." />
-        </xs:keyref>
-        <xs:keyref name="entityReference" refer="entityIdentifierKey">
-            <xs:selector xpath=".//entityReference" />
-            <xs:field xpath="." />
-        </xs:keyref>
-        <xs:keyref name="attributeReference" refer="attributeIdentifierKey">
-            <xs:selector xpath=".//attributeReference" />
-            <xs:field xpath="." />
-        </xs:keyref>
-        <xs:key name="attributeIdentifierKey">
-            <xs:selector xpath=".//attribute" />
-            <xs:field xpath="@id" />
-        </xs:key>
-        <xs:key name="entityIdentifierKey">
-            <xs:selector
-            xpath=".//dataTable | .//spatialRaster | .//spatialVector | .//storedProcedure | .//view" />
-            <xs:field xpath="@id" />
-        </xs:key>
-        <xs:key name="unitIdentifierKey">
-            <xs:selector xpath=".//unitList/unit" />
-            <xs:field xpath="@id" />
-        </xs:key>
-                <xs:keyref name="unitReference" refer="unitIdentifierKey">
-            <xs:selector xpath=".//unit/customUnit" />
-            <xs:field xpath="." />
-        </xs:keyref>
-    </xs:element>
+            <xs:attribute name="id" type="xs:ID" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="packageId" type="xs:ID" use="required" />
+      <xs:attribute name="system" type="xs:string" use="required" />
+      <xs:attribute name="scope" type="res:ScopeType" fixed="system" />
+    </xs:complexType>
+    <xs:key name="identifierKey">
+      <xs:selector
+      xpath=".//ds:dataset/* | .//pro:protocol/* | cit:citation/* | .//sw:software/* | .//.//additionalMetadata/*" />
+      <xs:field xpath="@id" />
+    </xs:key>
+    <xs:keyref name="replacementReference" refer="identifierKey">
+      <xs:selector xpath=".//references" />
+      <xs:field xpath="." />
+    </xs:keyref>
+    <xs:keyref name="describesReference" refer="identifierKey">
+      <xs:selector xpath=".//additionalMetadata/describes" />
+      <xs:field xpath="." />
+    </xs:keyref>
+    <xs:keyref name="entityReference" refer="entityIdentifierKey">
+      <xs:selector xpath=".//entityReference" />
+      <xs:field xpath="." />
+    </xs:keyref>
+    <xs:keyref name="attributeReference" refer="attributeIdentifierKey">
+      <xs:selector
+      xpath=".//attributeReference | .//valueAttributeReference | .//definitionAttributeReference" />
+      <xs:field xpath="." />
+    </xs:keyref>
+    <xs:key name="attributeIdentifierKey">
+      <xs:selector xpath=".//attribute" />
+      <xs:field xpath="@id" />
+    </xs:key>
+    <xs:key name="entityIdentifierKey">
+      <xs:selector
+      xpath=".//dataTable | .//spatialRaster | .//spatialVector | .//storedProcedure | .//view" />
+      <xs:field xpath="@id" />
+    </xs:key>
+    <xs:key name="unitIdentifierKey">
+      <xs:selector xpath=".//unitList/unit" />
+      <xs:field xpath="@id" />
+    </xs:key>
+    <xs:keyref name="unitReference" refer="unitIdentifierKey">
+      <xs:selector xpath=".//unit/customUnit" />
+      <xs:field xpath="." />
+    </xs:keyref>
+  </xs:element>
 </xs:schema>
 
