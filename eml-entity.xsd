@@ -43,8 +43,8 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-23 15:07:16 $'
-      '$Revision: 1.66 $'
+          '$Date: 2002-09-23 18:07:22 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -219,12 +219,65 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="attributeList" type="att:AttributeListType" />
+      <xs:element name="attributeList" type="att:AttributeListType">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>attribute list</doc:tooltip>
+            <doc:summary>The list of attributes associated with this
+            entity.</doc:summary>
+            <doc:description>The list of attributes associated with this
+            entity.  For more information see the eml-attribute
+            module.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
-      maxOccurs="unbounded" />
-      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" />
-      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" />
-      <xs:element name="method" type="md:MethodsType" minOccurs="0" />
+      maxOccurs="unbounded" >
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>constraints</doc:tooltip>
+            <doc:summary></doc:summary>
+            <doc:description>Description of any relational constraints on this
+            entity.  For more information see the eml-constraint
+            module.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" >
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>physical descriptors</doc:tooltip>
+            <doc:summary>Information on the physical storage of this entity.</doc:summary>
+            <doc:description>Information on the physical storage of this entity.
+            This also includes connection and distribution information.
+            For more information see the eml-physical module.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" >
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>coverage descriptors</doc:tooltip>
+            <doc:summary>Information on the geographic, spatial and temporal
+            coverages used in this entity.</doc:summary>
+            <doc:description>Information on the geographic, spatial and temporal
+            coverages used in this entity.  Please see the eml-coverage module
+            for more information.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="method" type="md:MethodsType" minOccurs="0" >
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>method descriptions</doc:tooltip>
+            <doc:summary></doc:summary>
+            <doc:description>Information on the specific methods used to collect
+            information in this entity.  Please see the eml-methods module for
+            more information.</doc:description>
+            <doc:example></doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0"
       maxOccurs="unbounded">
         <xs:annotation>
