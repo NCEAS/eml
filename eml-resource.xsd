@@ -14,8 +14,8 @@
       Authors: Chris Jones, Chad Berkley
 
      '$Author: berkley $'
-       '$Date: 2000-10-13 17:46:30 $'
-   '$Revision: 1.6 $'
+       '$Date: 2000-11-02 17:12:04 $'
+   '$Revision: 1.7 $'
 
 
 	** This annotation should be removed after draft review and/or acceptance.**
@@ -68,10 +68,12 @@
     <choice minOccurs="1" maxOccurs="1">
       <xs:element name = "dataset" type = "Dataset" />
       <xs:element name = "literature" type = "Literature" />
+      <xs:element name = "software" type = "Software" />
     </choice>
   </xs:complexType>
        
-  <xs:complexType name = "Resource" content="elementOnly">
+  <!-- this is the base type that the other types inherit -->
+  <xs:complexType name = "ResourceBase" content="elementOnly">
       <xs:sequence>
         <xs:element name = "identifier" type = "xs:string"
                     minOccurs="0" maxOccurs="1">
@@ -209,7 +211,7 @@
 	</xs:sequence>
   </xs:complexType>
   
-  <xs:complexType name = "Dataset" base = "Resource" 
+  <xs:complexType name = "Dataset" base = "ResourceBase" 
                   derivedBy = "extension" content = "elementOnly">
   	<xs:sequence>
 	   <xs:element name = "geoForm" type = "GeoForm" 
@@ -225,8 +227,24 @@
       </xs:element>
     </xs:sequence>  
   </xs:complexType>
+  
+  <xs:complexType name = "Software" base = "ResourceBase"
+                  derivedBy = "extension" content = "elementOnly">
+    <xs:sequence>
+      <xs:element name = "versionNumber" type = "xs:string"
+                  minOccurs = "0" maxOccurs="unbounded" />
+      <xs:element name = "source_module" type = "xs:string"
+                  minOccurs = "0" maxOccurs = "unbounded" />
+      <xs:element name = "binaryFile" type = "xs:string"
+                  minOccurs = "0" maxOccurs = "unbounded" />
+      <xs:element name = "location" type = "xs:string"
+                  minOccurs = "0" maxOccurs = "unbounded" />
+      <xs:element name = "programmingLanguage" type = "xs:string"
+                  minOccurs = "0" maxOccurs = "unbounded" />
+    </xs:sequence>
+  </xs:complexType>
 
-  <xs:complexType name = "Literature" base = "Resource" 
+  <xs:complexType name = "Literature" base = "ResourceBase" 
                   derivedBy="extension" content = "elementOnly">
       <xs:sequence>
 	   <xs:element name = "ISBN" type = "xs:string" 
