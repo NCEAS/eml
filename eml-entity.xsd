@@ -6,8 +6,6 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
              schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="iso:spatialRepresentation" 
-             schemaLocation="isoSpatialRepresentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -16,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-03-20 20:59:37 $'
-      '$Revision: 1.22 $'
+          '$Date: 2002-03-20 21:27:13 $'
+      '$Revision: 1.23 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -300,7 +298,7 @@
       <xs:complexContent>
         <xs:extension base="EntityBase">
           <xs:choice>
-            <xs:element name="spatialImage" type="ImageSpatialRepresentatin" minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="spatialImage" type="ImageSpatialRepresentation" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
@@ -1183,198 +1181,200 @@
 	</xs:complexType>
   
   <xs:complexType name="RasterSpatialRepresentation">
-    <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            The type of the spatial representation taken from the enumeration.
-          </doc:tooltip>
-          <doc:summary>
-            The type of the spatial representation taken from the enumeration.
-          </doc:summary>
-          <doc:description>
-            The type of the spatial representation taken from the enumeration.
-          </doc:description>
-          <doc:example>
-             raster, vector, image, text, matrix, TIN
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="cellType" type="RasterCellType">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Raster spatial objects used to locate zero-, two-, or 
-            three-dimensional locations in the dataset
-          </doc:tooltip>
-          <doc:summary>
-            Raster spatial objects used to locate zero-, two-, or 
-            three-dimensional locations in the dataset
-          </doc:summary>
-          <doc:description>
-            Raster spatial objects used to locate zero-, two-, or 
-            three-dimensional locations in the dataset
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="cellOrigin" type="xs:string">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Location of pixel 1,1
-          </doc:tooltip>
-          <doc:summary>
-            Location of pixel 1,1
-          </doc:summary>
-          <doc:description>
-            Location of pixel 1,1
-          </doc:description>
-          <doc:example>
-             NW Corner
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="rows" type="xs:string">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Maximum number of raster objects along the ordinate (y) axis
-          </doc:tooltip>
-          <doc:summary>
-            Maximum number of raster objects along the ordinate (y) axis
-          </doc:summary>
-          <doc:description>
-            Maximum number of raster objects along the ordinate (y) axis
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="columns" type="xs:string">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Maximum number of raster objects along the abscissa (x) axis
-          </doc:tooltip>
-          <doc:summary>
-            Maximum number of raster objects along the abscissa (x) axis
-          </doc:summary>
-          <doc:description>
-            Maximum number of raster objects along the abscissa (x) axis
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="verticals" type="xs:string">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Maximum number of raster objects along the vertical (z) axis
-          </doc:tooltip>
-          <doc:summary>
-            Maximum number of raster objects along the vertical (z) axis
-          </doc:summary>
-          <doc:description>
-            Maximum number of raster objects along the vertical (z) axis
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="scanResolution" type="ScanResolution">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Units used to express data density along the axes.
-          </doc:tooltip>
-          <doc:summary>
-            Units used to express data density along the axes.
-          </doc:summary>
-          <doc:description>
-            Units used to express data density along the axes.
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="groundSpacing" type="GroundSpacingResolution">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Unit of measurement used to describe the distance.
-          </doc:tooltip>
-          <doc:summary>
-            Unit of measurement used to describe the distance.
-          </doc:summary>
-          <doc:description>
-            Unit of measurement used to describe the distance.
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="cellDomain" type="CellValueDomain">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Provides information about the domain of a raster cell.
-          </doc:tooltip>
-          <doc:summary>
-            Provides information about the domain of a raster cell.
-          </doc:summary>
-          <doc:description>
-            Provides information about the domain of a raster cell.
-          </doc:description>
-          <doc:example>
-             
-          </doc:example>
-          <doc:lineage>
-            The spatial entity elements were introduced into EML 2.0 beta 7
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
+    <xs:sequence>
+      <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              The type of the spatial representation taken from the enumeration.
+            </doc:tooltip>
+            <doc:summary>
+              The type of the spatial representation taken from the enumeration.
+            </doc:summary>
+            <doc:description>
+              The type of the spatial representation taken from the enumeration.
+            </doc:description>
+            <doc:example>
+               raster, vector, image, text, matrix, TIN
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cellType" type="RasterCellType">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Raster spatial objects used to locate zero-, two-, or 
+              three-dimensional locations in the dataset
+            </doc:tooltip>
+            <doc:summary>
+              Raster spatial objects used to locate zero-, two-, or 
+              three-dimensional locations in the dataset
+            </doc:summary>
+            <doc:description>
+              Raster spatial objects used to locate zero-, two-, or 
+              three-dimensional locations in the dataset
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cellOrigin" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Location of pixel 1,1
+            </doc:tooltip>
+            <doc:summary>
+              Location of pixel 1,1
+            </doc:summary>
+            <doc:description>
+              Location of pixel 1,1
+            </doc:description>
+            <doc:example>
+               NW Corner
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="rows" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Maximum number of raster objects along the ordinate (y) axis
+            </doc:tooltip>
+            <doc:summary>
+              Maximum number of raster objects along the ordinate (y) axis
+            </doc:summary>
+            <doc:description>
+              Maximum number of raster objects along the ordinate (y) axis
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="columns" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Maximum number of raster objects along the abscissa (x) axis
+            </doc:tooltip>
+            <doc:summary>
+              Maximum number of raster objects along the abscissa (x) axis
+            </doc:summary>
+            <doc:description>
+              Maximum number of raster objects along the abscissa (x) axis
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="verticals" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Maximum number of raster objects along the vertical (z) axis
+            </doc:tooltip>
+            <doc:summary>
+              Maximum number of raster objects along the vertical (z) axis
+            </doc:summary>
+            <doc:description>
+              Maximum number of raster objects along the vertical (z) axis
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="scanResolution" type="ScanResolution">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units used to express data density along the axes.
+            </doc:tooltip>
+            <doc:summary>
+              Units used to express data density along the axes.
+            </doc:summary>
+            <doc:description>
+              Units used to express data density along the axes.
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groundSpacing" type="GroundSpacingResolution">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Unit of measurement used to describe the distance.
+            </doc:tooltip>
+            <doc:summary>
+              Unit of measurement used to describe the distance.
+            </doc:summary>
+            <doc:description>
+              Unit of measurement used to describe the distance.
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cellDomain" type="CellValueDomain">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Provides information about the domain of a raster cell.
+            </doc:tooltip>
+            <doc:summary>
+              Provides information about the domain of a raster cell.
+            </doc:summary>
+            <doc:description>
+              Provides information about the domain of a raster cell.
+            </doc:description>
+            <doc:example>
+               
+            </doc:example>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name="GroundSpacing">
@@ -1766,7 +1766,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="geometricObjectType" type="GoemetricObjectType">
+      <xs:element name="geometricObjectType" type="GeometricObjectType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
