@@ -13,8 +13,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-12-12 06:06:19 $'
-      '$Revision: 1.15 $'
+          '$Date: 2001-12-12 08:36:50 $'
+      '$Revision: 1.16 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -582,7 +582,7 @@
         <xs:element name="beggeol">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Beginning geologic age </doc:tooltip>
+              <doc:tooltip>Beginning geologic age</doc:tooltip>
               <doc:summary/>
               <doc:description>
                 A name, code, or date for the beginning of an event or period in 
@@ -601,14 +601,14 @@
         <xs:element name="endgeol">
           <xs:annotation>
              <xs:appinfo>
-               <doc:tooltip>Ending geologic age </doc:tooltip>
+               <doc:tooltip>Ending geologic age</doc:tooltip>
                <doc:summary/>
                <doc:description>
                  A name, code, or date for the end of an event or period in 
                  geologic time. 
                </doc:description>
                <doc:example/>
-               <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+               <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
              </xs:appinfo>
            </xs:annotation>
            <xs:complexType>
@@ -630,7 +630,9 @@
                Geographic Coverage is a container for spatial information about a
                a project, a resource, or an entity within a resource.
              </doc:description>
-             <doc:example/>
+             <doc:example>
+               Please see the individual sub-elements for specific examples.
+             </doc:example>
              <doc:lineage>
                The GeographicCoverage complex type was derived from the eml-entity
                module in EML 1.4.
@@ -654,7 +656,7 @@
            <xs:element name="bounding">
              <xs:annotation>
                <xs:appinfo>
-                 <doc:tooltip>Bounding coordinates </doc:tooltip>
+                 <doc:tooltip>Bounding coordinates</doc:tooltip>
                  <doc:summary/>
                  <doc:description>
                    The limits of coverage of a data set expressed by latitude 
@@ -673,21 +675,21 @@
                  <xs:element name="westbc" type="xs:string">
                    <xs:annotation>
                      <xs:appinfo>
-                       <doc:tooltip>West bounding coordinate </doc:tooltip>
+                       <doc:tooltip>West bounding coordinate</doc:tooltip>
                        <doc:summary/>
                        <doc:description>
                          Western-most coordinate of the limit of coverage 
                          expressed in latitude 
                        </doc:description>
                        <doc:example/>
-                       <doc:lineage> FGDC-STD-001-1998</doc:lineage>
+                       <doc:lineage>FGDC-STD-001-1998</doc:lineage>
                      </xs:appinfo>
                    </xs:annotation>
                  </xs:element>
                  <xs:element name="eastbc" type="xs:string">
                    <xs:annotation>
                      <xs:appinfo>
-                       <doc:tooltip>East bounding coordinate </doc:tooltip>
+                       <doc:tooltip>East bounding coordinate</doc:tooltip>
                        <doc:summary/>
                        <doc:description> 
                          Eastern-most coordinate of the limit of coverage 
@@ -924,7 +926,9 @@
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource.
         </doc:description>
-        <doc:example/>
+        <doc:example>
+          Please see the individual sub-fields for specific examples.
+        </doc:example>
         <doc:lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
@@ -1190,7 +1194,7 @@
               All vascular plants were identified to family or species, 
               mosses and lichens were identified as moss or lichen. 
             </doc:example>
-            <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+            <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -1200,18 +1204,27 @@
   <xs:element name="taxoncl">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Taxonomic classification </doc:tooltip>
-        <doc:summary/>
+        <doc:tooltip>Taxonomic classification</doc:tooltip>
+        <doc:summary>
+          Information about the range of taxa addressed in the data set or 
+          collection.
+        </doc:summary>
         <doc:description>
           Information about the range of taxa addressed in the data set or 
           collection.  It is recommended that one provide information starting 
           from the taxonomic rank of kingdom, to a level which reflects the 
           data set or collection being documented.  The levels of Kingdom, 
           Division/Phylum, Class, Order, Family, Genus, and Species should be 
-          included as ranks as appropriate. 
+          included as ranks as appropriate. Because the taxonomic ranks are
+          hierarchical, the Taxonomic Classification field is self-referencing
+          to allow for an arbitrary depth of rank, down to species.
         </doc:description>
         <doc:example> 
-          Kingdom, Division/Phylum, Class, Order, Family, Genus, and Species
+          The Taxonomic Classification fied consists of a sequence of 4 fields:
+          taxonomic rank, taxonomic rank value, common name, and finally
+          Taxonomic Classification (self-referencing).  Please see the
+          sub-fields for specific examples.
+          
         </doc:example>
         <doc:lineage> FGDC-STD-001.1-1999</doc:lineage>
       </xs:appinfo>
@@ -1221,28 +1234,49 @@
         <xs:element name="taxonrn" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Taxon rank name </doc:tooltip>
-              <doc:summary/>
+              <doc:tooltip>Taxon rank name</doc:tooltip>
+              <doc:summary>
+                The name of the taxonomic rank for which the Taxon rank value 
+                is provided.
+              </doc:summary>
               <doc:description>
                 The name of the taxonomic rank for which the Taxon rank value 
-                is provided. 
+                is provided.  This field allows for the name one of the accepted 
+                levels of Taxa.
               </doc:description>
-              <doc:example/>
-              <doc:lineage> FGDC-STD-001.1-1999</doc:lineage>
+              <doc:example>
+                'Kingdom', 'Division/Phylum', 'Class', 'Order', 
+                'Family', 'Genus', and 'Species'
+              </doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="taxonrv" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Taxon rank value </doc:tooltip>
-              <doc:summary/>
-              <doc:description>
+              <doc:tooltip>Taxon rank value</doc:tooltip>
+              <doc:summary>
                 The name representing the taxonomic rank of the taxon 
                 being described.
+              </doc:summary>
+              <doc:description>
+                The name representing the taxonomic rank of the taxon 
+                being described. The values included may be referenced from an
+                authoritative source such as the Integrated Taxonomic
+                Information Sytem (ITIS)in the U.S. (http://www/itis.usda.gov) 
+                and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget).  Also, 
+                Species2000 is another source of taxonomic information, found at
+                (http://www.sp2000.org)
               </doc:description>
-              <doc:example/>
-              <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+              <doc:example>
+                Acer would be an example of a genus rank value, and rubrum would 
+                be an example of a species rank value, together indicating the
+                common name of red maple. It is recommended to start with
+                Kingdom and include ranks down to the most detailed level
+                possible.
+              </doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1252,15 +1286,18 @@
                     maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Common name </doc:tooltip>
-              <doc:summary/>
+              <doc:tooltip>Common name</doc:tooltip>
+              <doc:summary>
+                Specification of applicable common names.
+              </doc:summary>
               <doc:description>
                 Specification of applicable common names.  These common names 
                 may be general descriptions of a group of organisms if 
                 appropriate.
               </doc:description>
               <doc:example>
-	        insects, vertebrate, grasses, waterfowl, vascular plants
+	        insects, vertebrate, grasses, waterfowl, vascular plants, red
+                maple.
 	      </doc:example>
               <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
             </xs:appinfo>
