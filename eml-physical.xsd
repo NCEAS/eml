@@ -1,17 +1,8 @@
 <?xml version="1.0"?>
-<xs:schema 
-    targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1" 
-    xmlns="eml://ecoinformatics.org/physical-2.0.0rc1" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" 
-    schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1" xmlns="eml://ecoinformatics.org/physical-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -28,9 +19,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.49 $'
+        '$Author: jones $'
+          '$Date: 2002-10-03 00:34:36 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -94,166 +85,124 @@
   <xs:complexType name="PhysicalType">
     <xs:choice>
       <xs:sequence>
-        <xs:element name="dataObject">
+        <xs:element name="objectName" type="xs:string"/>
+        <xs:element name="size" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Data Object.</doc:tooltip>
-              <doc:summary>External characteristics of a data object
-		</doc:summary>
-              <doc:description>The dataObject element is the parent element for
-              several elements (e.g. objectName, size, authentication, 
-              compressionMethod,
-	          encodingMethod, characterEncoding) which describe the external 
-	          characteristics of the data object.
-              </doc:description>
-              <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+              <doc:tooltip>Data object size</doc:tooltip>
+              <doc:summary>Describes the physical size of the
+                    data object.</doc:summary>
+              <doc:description>This element contains information of the
+                    physical size of the entity, typically in
+                    bytes.</doc:description>
+              <doc:example>134</doc:example>
+              <doc:lineage>The entitySize was introduced into EML
+                    1.4.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:sequence>
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Object name</doc:tooltip>
-                  <doc:summary>A name for the physical object.</doc:summary>
-                  <doc:description>The objectName is the a name (i.e.
-                  identifier) for the object being considered. In many cases,
-                  it may just be the file name on the file system where it is
-                  stored. Or if the object is a table in a RDBMS it may be the
-                  table name.</doc:description>
-                  <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:element name="objectName" type="xs:string"/>
-              <xs:element name="size" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Data object size</doc:tooltip>
-                    <doc:summary>Describes the physical size of the
-                    data object.</doc:summary>
-                    <doc:description>This element contains information of the
-                    physical size of the entity, typically in
-                    bytes.</doc:description>
-                    <doc:example><![CDATA[<entitySize unit="bytes">13
-                    </entitySize>]]></doc:example>
-                    <doc:lineage>The entitySize was introduced into EML
-                    1.4.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="unit" use="optional" default="bytes">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Unit of measurement</doc:tooltip>
-                            <doc:summary>Unit of measurement for the entity
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="unit" use="optional" default="byte">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Unit of measurement</doc:tooltip>
+                      <doc:summary>Unit of measurement for the entity
                             size, typically bytes</doc:summary>
-                            <doc:description>This element gives the unit of
+                      <doc:description>This element gives the unit of
                             measurement for the size of the entity, and is
-                            typically bytes.</doc:description>
-                            <doc:example><![CDATA[<entitySize unit="bytes">13
-                            </entitySize>]]></doc:example>
-                            <doc:lineage>The unit was introduced into EML
+                            typically a byte.</doc:description>
+                      <doc:example>byte</doc:example>
+                      <doc:lineage>The unit was introduced into EML
                             1.4.</doc:lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:attribute>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="authentication" minOccurs="0" 
-              maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Authentication method</doc:tooltip>
-                    <doc:summary>A value, typically a checksum, used to
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="authentication" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Authentication method</doc:tooltip>
+              <doc:summary>A value, typically a checksum, used to
                     authenticate that the bitstream delivered to the user is
                     identical to the original.</doc:summary>
-                    <doc:description>This element describes authentication
+              <doc:description>This element describes authentication
                     procedures or techniques, typically by giving a checksum
                     method (e.g., MD5) and checksum value for the
                     bytestream.</doc:description>
-                    <doc:example><![CDATA[<authentication method="MD5">
-                    f5b2177ea03aea73de12da81f896fe40</authentication>]]>
-                    </doc:example>
-                    <doc:lineage>The authentication element was introduced into
+              <doc:example>f5b2177ea03aea73de12da81f896fe40
+              </doc:example>
+              <doc:lineage>The authentication element was introduced into
                     EML 1.4.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="method" type="xs:string" 
-                      use="optional">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Authentication method</doc:tooltip>
-                            <doc:summary>The method used to calculate an
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="method" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Authentication method</doc:tooltip>
+                      <doc:summary>The method used to calculate an
                             authentication checksum.</doc:summary>
-                            <doc:description>This element names the method used
+                      <doc:description>This element names the method used
                             to calculate and authentication checksum that can
                             be used to validate a bytestream. Typical checksum
                             methods include MD5 and CRC.</doc:description>
-                            <doc:example><![CDATA[<authentication method="MD5">
-                            f5b2177ea03aea73de12da81f896fe40</authentication>]]>
-                            </doc:example>
-                            <doc:lineage>The authentication element was
+                      <doc:example>MD5</doc:example>
+                      <doc:lineage>The authentication element was
                             introduced into EML 1.4.</doc:lineage>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:attribute>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="compressionMethod" type="xs:string" 
-              minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Entity's compression method</doc:tooltip>
-                    <doc:summary>Name of the entity's compression
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="compressionMethod" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Entity's compression method</doc:tooltip>
+              <doc:summary>Name of the entity's compression
                     method</doc:summary>
-                    <doc:description>This element describes any compression
+              <doc:description>This element describes any compression
                     methods used to compress the entity, such as zip, compress,
                     etc.</doc:description>
-                    <doc:lineage>The compressed element was introduced into EML
+              <doc:lineage>The compressed element was introduced into EML
                     1.4.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="encodingMethod" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Encoding Method</doc:tooltip>
-                    <doc:summary>Method used for encoding the
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="encodingMethod" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Encoding Method</doc:tooltip>
+              <doc:summary>Method used for encoding the
                     entity</doc:summary>
-                    <doc:description>This element describes the entity's
+              <doc:description>This element describes the entity's
                     encoded method, such as MIME base64 encoding or binhex
                     encoding.</doc:description>
-                    <doc:lineage>The encoded element was introduced into EML
+              <doc:lineage>The encoded element was introduced into EML
                     1.4.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="characterEncoding" type="xs:string" 
-              minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Character Encoding</doc:tooltip>
-                    <doc:summary>Contains the name of the chracter encoding
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Character Encoding</doc:tooltip>
+              <doc:summary>Contains the name of the chracter encoding
                     used for the data.</doc:summary>
-                    <doc:description>This element contains the name of the
+              <doc:description>This element contains the name of the
                     character encoding. This is typically ASCII or UTF-8, or
                     one of the other common encodings.</doc:description>
-                    <doc:example><![CDATA[<characterEncoding>UTF-8
-                    </characterEncoding>]]></doc:example>
-                    <doc:lineage>Introduced in EML 2.0</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
+              <doc:example>UTF-8</doc:example>
+              <doc:lineage>Introduced in EML 2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
         </xs:element>
         <xs:element name="dataFormat">
           <xs:annotation>
@@ -288,8 +237,29 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="numHeaderLines" minOccurs="0"/>
-                    <xs:element name="numPhysicalLines" type="xs:unsignedInt" 
-                    minOccurs="0">
+                    <xs:element name="numFooterLines" minOccurs="0"/>
+                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Record delimiter character</doc:tooltip>
+                          <doc:summary>Character used to delimit
+                          records.</doc:summary>
+                          <doc:description>This element specifies the record
+                          delimiter character when the format is text. The
+                          record delimiter is usually a newline (\n) on UNIX, a
+                          carriage return (\r) on MacOS, or both (\r\n) on
+                          Windows/DOS. Multiline records are usually delimited
+                          with two line ending characters, for example on UNIX
+                          it would be two newline characters
+                          (\n\n).</doc:description>
+                          <doc:example>\n\r</doc:example>
+                          <doc:lineage>The recordDelimiter element was
+                          introduced into EML 1.4.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="physicalLineDelimiter" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="numPhysicalLinesPerRecord" type="xs:unsignedInt" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Number of physical lines</doc:tooltip>
@@ -307,94 +277,122 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
+                    <xs:element name="maxRecordLength" type="xs:unsignedLong" minOccurs="0"/>
                     <xs:choice>
                       <xs:element name="simpleDelimited">
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="xs:string" 
-                            maxOccurs="unbounded"/>
-                          </xs:sequence>
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="complex" maxOccurs="unbounded">
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="lineNumber" type="xs:unsignedLong"
-                            minOccurs="0">
+                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded"/>
+                            <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
-                                  <doc:tooltip>Physical Line Number
-                                  </doc:tooltip>
-                                  <doc:summary>The line on which the data field
-                                  is found, when the data record is written over
-                                  more than one physical line in the
-                                  file.</doc:summary>
-                                  <doc:description>A single logical data record
-                                  may be written over several physical lines in
-                                  a file, with no special marker to indicate the
-                                  end of a record. In such cases, the relative
-                                  location of a data field must be indicated by
-                                  both relative row and column
-                                  number.</doc:description>
-                                  <doc:example>3</doc:example>
-                                  <doc:lineage>Introduced into EML
-                                2.0.</doc:lineage>
+                                  <doc:tooltip>Quote character</doc:tooltip>
+                                  <doc:summary>Character used to quote values for
+                          delimiter escaping</doc:summary>
+                                  <doc:description>This element specifies a character
+                          to be used in the entity for quoting values so that
+                          field delimeters can be used within the value. This
+                          basically allows delimeter "escaping". The
+                          quoteChacter is typically a " or '.</doc:description>
+                                  <doc:example>"</doc:example>
+                                  <doc:lineage>The quoteCharacter element was taken
+                          from the NBII standard.</doc:lineage>
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
+                            <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Literal character</doc:tooltip>
+                                  <doc:summary>Character used to escape other
+                          characters</doc:summary>
+                                  <doc:description>This element specifies a character
+                          to be used for escaping character values so that the
+                          following character is treated as its literal value.
+                          This allows "escaping" for special characters like
+                          quotes, commas, and spaces when they aren't intended
+                          as a delimiter value. The literalCharacter is 
+			  typicallya \.</doc:description>
+                                  <doc:example>\</doc:example>
+                                  <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="complex">
+                        <xs:complexType>
+                          <xs:sequence>
                             <xs:choice maxOccurs="unbounded">
                               <xs:element name="textFixed">
                                 <xs:annotation>
                                   <xs:appinfo>
-                                    <doc:tooltip>ASCII fixed delimited
-                                    </doc:tooltip>
-                                    <doc:summary>Describes physical format of 
-                                    entities and attributes delimited by 
-                                    special characters like commas and spaces.
-                                    </doc:summary>
-                                    <doc:description>Describes physical format 
-                                    of entities and attributes delimited by 
-                                    special characters like commas and spaces.
-                                    </doc:description>
-                                    <doc:lineage>Introduced in EML 2.0.
-                                    </doc:lineage>
+                                    <doc:tooltip>ASCII fixed delimited</doc:tooltip>
+                                    <doc:summary>Describes physical format of entities 
+		  and attributes delimitedby special characters like commas
+		  and spaces.</doc:summary>
+                                    <doc:description>Describes physical format of entities 
+		  and attributes delimitedby special characters like commas
+		  and spaces.</doc:description>
+                                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                                   </xs:appinfo>
                                 </xs:annotation>
                                 <xs:complexType>
                                   <xs:sequence>
-                                    <xs:element name="fieldStartColumn" 
-                                    type="xs:long" minOccurs="0">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Start column
-                                          </doc:tooltip>
-                                          <doc:summary>The starting column 
-                                          number for a fixed format attribute.
-                                          </doc:summary>
-                                          <doc:description>FixedWidth fields 
-                                          have a set length, thus the end of 
-                                          the field can always be determined by 
-                                          adding the fieldWidth to the
-                                          starting column number.
-                                          </doc:description>
-                                          <doc:example>13</doc:example>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="fieldWidth" 
-                                    type="xs:unsignedLong">
+                                    <xs:element name="fieldWidth" type="xs:unsignedLong">
                                       <xs:annotation>
                                         <xs:appinfo>
                                           <doc:tooltip>Field width</doc:tooltip>
-                                          <doc:summary>FieldWidth specification 
-                                          for fixed field length.</doc:summary>
-                                          <doc:description>FixedWidth fields 
-                                          have a set length, thus the end of 
-                                          the field can always be determined 
-                                          by adding the fieldWidth to the 
-                                          starting column number.
-                                          </doc:description>
-                                          <doc:example>8</doc:example>
+                                          <doc:summary>FieldWidth specification for fixed
+                                field length.</doc:summary>
+                                          <doc:description>FixedWidth fields have a set
+                                length, thus the end of the field can always be
+                                determined by adding the fieldWidth to the
+                                starting column number.</doc:description>
+                                          <doc:example>any positive integer, see example
+                                in "delimeter" description</doc:example>
+                                          <doc:lineage>The fieldWidth element was
+                                introduced into EML 1.4. Semantics changed to
+                                work identically to the NBII DTD.</doc:lineage>
+                                        </xs:appinfo>
+                                      </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
+                                      <xs:annotation>
+                                        <xs:appinfo>
+                                          <doc:tooltip>Physical Line Number</doc:tooltip>
+                                          <doc:summary>The line on which the data field
+                                is found, when the data record is written over
+                                more than one physical line in the
+                                file.</doc:summary>
+                                          <doc:description>A single logical data record
+                                may be written over several physical lines in a
+                                file, with no special marker to indicate the
+                                end of a record. In such cases, the relative
+                                location of a data field must be indicated by
+                                both relative row and column
+                                number.</doc:description>
+                                          <doc:example>3</doc:example>
+                                          <doc:lineage>Introduced into EML
+                                2.0.</doc:lineage>
+                                        </xs:appinfo>
+                                      </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="fieldStartColumn" type="xs:long" minOccurs="0">
+                                      <xs:annotation>
+                                        <xs:appinfo>
+                                          <doc:tooltip>Start column</doc:tooltip>
+                                          <doc:summary>The starting column number for a
+                                fixed format attribute.</doc:summary>
+                                          <doc:description>FixedWidth fields have a set
+                                length, thus the end of the field can always be
+                                determined by adding the fieldWidth to the
+                                starting column number.</doc:description>
+                                          <doc:example>any positive integer, see example
+                                in "delimiter" description</doc:example>
+                                          <doc:lineage>Introduced into EML
+                                2.0.</doc:lineage>
                                         </xs:appinfo>
                                       </xs:annotation>
                                     </xs:element>
@@ -422,141 +420,121 @@
                                     type="xs:string">
                                       <xs:annotation>
                                         <xs:appinfo>
-                                          <doc:tooltip>Attribute delimiter
-                                          </doc:tooltip>
-                                          <doc:summary>The end of the
-                                          attribute (field) is delimited
-                                          by a special character called a
-                                          field delimiter.</doc:summary>
-                                          <doc:description>Variable width
-                                          format fields (attributes) can vary
-                                          in their field length, thus the
-                                          end of the field is delimited by a
-                                          special character called a field
-                                          delimiter (typically a comma or
-                                          a space).  Data sets are generally
-                                          classified as fixedWidth format or
-                                          variableWidth format, but we have
-                                          determined that this is actually
-                                          a per-field classification because
-                                          one may encounter fixedWidth fields
-                                          mixed together in the same data
-                                          file with variableWidth fields.
-                                          In our encoding scheme, the start
-                                          of each field is assumed to be the
-                                          column after the last column of
-                                          the previous field, or the first
-                                          column if this is the first field
-                                          in the dataset, unless the starting
-                                          column is explicity enumerated using
-                                          the "fieldStartColumn" element.
-                                          The end column for each field is
-                                          classified using either a special
-                                          character delimeter indicated
-                                          using the filedDelimiter element,
-                                          or a fixed field length indicated
-                                          by using the "fieldWidth" element.
-                                          The delimiter for the last field
-                                          in the data set can be omitted.
-                                          variableWidth fields can vary in
-                                          their field length, and the end of
-                                          the field is delimited by a special
-                                          character called a field delimiter,
-                                          usually a comma or a tab character.
-                                          fixedWidth fields have a set length,
-                                          and so the end of the field can
-                                          always be determined by adding
-                                          the fieldWidth to the starting
-                                          column number.  Here is an example:
-
-                                          Assume we have the following data
-                                          in a data set:
-                                          May,100aaaa,1.2,
-                                          April,200aaaa,3.4,
-                                          June,300bbbb,4.6,
-                                          The metadata indicating the physical 
-                                          layout of the 4 fields would include 
-                                          the following:
-                                          <![CDATA[
-                                          <delimiter>,</delimiter>
-                                          <fieldWidth>3</fieldWidth>
-                                          <fieldWidth>3</fieldWidth>
-                                          <delimiter>,</delimiter>
-                                          ]]>
-                                          In a strictly fixed format file, 
-                                          the metadata would
-                                          be slightly different:
-                                          May100aaaa1.2
-                                          Apr200aaaa3.4
-                                          Jun300bbbb4.6
-                                          <![CDATA[
-                                            <fieldWidth>3</fieldWidth>
-                                            <fieldWidth>3</fieldWidth>
-                                            <fieldWidth>4</fieldWidth>
-                                            <fieldWidth>3</fieldWidth>
-                                          ]]>
+                                          <doc:tooltip>Attribute delimiter</doc:tooltip>
+                                          <doc:summary>The end of the attribute (field) is
+                          delimited by a special character called a field
+                          delimiter.</doc:summary>
+                                          <doc:description>
+                          Variable width format fields (attributes) can vary
+                          in their
+                          field length, thus the end of the field is
+                          delimited by a special character called a
+                          field delimiter (typically a comma or a space).
+                          Data sets are generally classified as fixedWidth
+                          format or variableWidth format, but we have
+                          determined that this is actually a per-field
+                          classification because one may encounter
+                          fixedWidth fields mixed together in the same
+                          data file with variableWidth fields.
+                          In our encoding scheme, the start of each field
+                          is assumed to be the column after the last column
+                          of the previous field, or the first column
+                          if this is the first field in the dataset, unless
+                          the starting column is explicity enumerated using the
+                          "fieldStartColumn" element.
+                          The end column for each field is classified
+                          using either a special character delimeter indicated
+                          using the filedDelimiter element,
+                          or a fixed field length indicated by using the
+                          "fieldWidth"
+                          element.  The delimiter for the last field in the
+                          data set can be omitted.
+                          variableWidth fields can vary in their field length,
+                          and the end of
+                          the field is delimited by a special character
+                          called a field delimiter, usually a comma or
+                          a tab character.  fixedWidth fields have a set
+                          length, and so the end of the field can always
+                          be determined by adding the fieldWidth to the
+                          starting column number.  Here is an example:
+                          Assume we have the following data in a data set:
+                          May,100aaaa,1.2,
+                          April,200aaaa,3.4,
+                          June,300bbbb,4.6,
+                          The metadata indicating the physical layout of the
+                          4 fields would include the
+                          following:
+                          <![CDATA[
+                          <delimiter>,</delimiter>
+                          <fieldWidth>3</fieldWidth>
+                          <fieldWidth>3</fieldWidth>
+                          <delimiter>,</delimiter>
+                          ]]>
+                          In a strictly fixed format file, the metadata would
+                          be slightly different:
+                          May100aaaa1.2
+                          Apr200aaaa3.4
+                          Jun300bbbb4.6
+                          <![CDATA[
+                            <fieldWidth>3</fieldWidth>
+                            <fieldWidth>3</fieldWidth>
+                            <fieldWidth>4</fieldWidth>
+                            <fieldWidth>3</fieldWidth>
+                          ]]>
                                           or, one could explicitly describe 
                                           the starting columns:
-                                          <![CDATA[
-                                          <fieldStartColumn>1</fieldStartColumn>
-                                          <fieldWidth>3</fieldWidth>
-                                          <fieldStartColumn>4</fieldStartColumn>
-                                          <fieldWidth>3</fieldWidth>
-                                          <fieldStartColumn>7</fieldStartColumn>
-                                          <fieldWidth>4</fieldWidth>
-                                          <fieldStartColumn>11</fieldStartColumn>
-                                          <fieldWidth>3</fieldWidth>
-                                          ]]></doc:description>
+                          <![CDATA[
+                            <fieldStartColumn>1</fieldStartColumn>
+                            <fieldWidth>3</fieldWidth>
+                            <fieldStartColumn>4</fieldStartColumn>
+                            <fieldWidth>3</fieldWidth>
+                            <fieldStartColumn>7</fieldStartColumn>
+                            <fieldWidth>4</fieldWidth>
+                            <fieldStartColumn>11</fieldStartColumn>
+                            <fieldWidth>3</fieldWidth>
+                          ]]></doc:description>
+                          
                                           <doc:example>,</doc:example>
                                           <doc:example>|</doc:example>
                                           <doc:example> </doc:example>
                                         </xs:appinfo>
                                       </xs:annotation>
                                     </xs:element>
-                                    <xs:element name="maxRecordLength" 
-                                    type="xs:unsignedLong" minOccurs="0"/>
-                                    <xs:element name="quoteCharacter" 
-                                    type="xs:string" minOccurs="0" 
-                                    maxOccurs="unbounded">
+                                    <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
                                       <xs:annotation>
                                         <xs:appinfo>
-                                          <doc:tooltip>Quote character
-                                          </doc:tooltip>
-                                          <doc:summary>Character used
-                                          to quote values for delimiter
-                                          escaping</doc:summary>
-                                          <doc:description>This element
-                                          specifies a character to be used in
-                                          the entity for quoting values so
-                                          that field delimeters can be used
-                                          within the value. This basically
-                                          allows delimeter "escaping". The
-                                          quoteChacter is typically a " or
-                                          '.</doc:description>
-                                          <doc:example>"</doc:example>
+                                          <doc:tooltip>Physical Line Number</doc:tooltip>
+                                          <doc:summary>The line on which the data field
+                                is found, when the data record is written over
+                                more than one physical line in the
+                                file.</doc:summary>
+                                          <doc:description>A single logical data record
+                                may be written over several physical lines in a
+                                file, with no special marker to indicate the
+                                end of a record. In such cases, the relative
+                                location of a data field must be indicated by
+                                both relative row and column
+                                number.</doc:description>
+                                          <doc:example>3</doc:example>
+                                          <doc:lineage>Introduced into EML
+                                2.0.</doc:lineage>
                                         </xs:appinfo>
                                       </xs:annotation>
                                     </xs:element>
-                                    <xs:element name="recordDelimiter" 
-                                    type="xs:string" minOccurs="0">
+                                    <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                                       <xs:annotation>
                                         <xs:appinfo>
-                                          <doc:tooltip>Record delimiter 
-                                          character</doc:tooltip>
-                                          <doc:summary>Character used to 
-                                          delimit records.</doc:summary>
-                                          <doc:description>This element
-                                          specifies the record delimiter
-                                          character when the format is
-                                          text. The record delimiter is usually
-                                          a newline (\n) on UNIX, a carriage
-                                          return (\r) on MacOS, or both (\r\n)
-                                          on Windows/DOS. Multiline records
-                                          are usually delimited with two line
-                                          ending characters, for example
-                                          on UNIX it would be two newline
-                                          characters (\n\n).</doc:description>
-                                          <doc:example><![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]></doc:example>
+                                          <doc:tooltip>Quote character</doc:tooltip>
+                                          <doc:summary>Character used to quote values for
+                          delimiter escaping</doc:summary>
+                                          <doc:description>This element specifies a character
+                          to be used in the entity for quoting values so that
+                          field delimeters can be used within the value. This
+                          basically allows delimeter "escaping". The
+                          quoteChacter is typically a " or '.</doc:description>
+                                          <doc:example>"</doc:example>
+                                          <doc:lineage>The quoteCharacter element was taken
+                          from the NBII standard.</doc:lineage>
                                         </xs:appinfo>
                                       </xs:annotation>
                                     </xs:element>
@@ -579,7 +557,7 @@
                                           spaces when they aren't intended as a
                                           delimiter value. The literalCharacter
                                           is typically a \.</doc:description>
-                                          <doc:example><![CDATA[<literalCharacter>\</literalCharacter>]]></doc:example>
+                                          <doc:example>\</doc:example>
                                         </xs:appinfo>
                                       </xs:annotation>
                                     </xs:element>
@@ -615,7 +593,7 @@
                         <xs:appinfo>
                           <doc:tooltip>Format Version</doc:tooltip>
                           <doc:summary>Version of the internal format of the
-			              data object</doc:summary>
+			  data object</doc:summary>
                           <doc:description>Version of the internal format of 
                           the data object</doc:description>
                           <doc:example>2000 (9.0.2720)</doc:example>
@@ -631,7 +609,7 @@
                           document.</doc:summary>
                           <doc:description>Data object conforms to the EML
                           standard for citation as defined in the XML schema
-                          for eml-literature.</doc:description>
+			  for eml-literature.</doc:description>
                           <doc:example>eml-literature.xml</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
@@ -662,7 +640,7 @@
                         <xs:appinfo>
                           <doc:tooltip>Number of rows</doc:tooltip>
                           <doc:summary>The number of rows in the image.
-			              </doc:summary>
+			  </doc:summary>
                           <doc:description>The number of rows in the image.
                           Rows are parallel to the x-axis of the map coordinate
                           system. There is no default.</doc:description>
@@ -676,7 +654,7 @@
                         <xs:appinfo>
                           <doc:tooltip>Number of columns</doc:tooltip>
                           <doc:summary>The number of columns in the image.
-			              </doc:summary>
+			  </doc:summary>
                           <doc:description>The number of columns in the image.
                           Columns are parallel to the y-axis of the map
                           coordinate system. There is no
@@ -982,163 +960,163 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:choice>
-              <xs:element name="url">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Download site URL</doc:tooltip>
-                    <doc:summary>A URL (Uniform Resource Locator) from which
-                    this resource can be downloaded or information can be
-                    obtained about downloading it.</doc:summary>
-                    <doc:description>A URL (Uniform Resource Locator) from
-                    which this resource can be downloaded or additional
-                    information can be obtained. If accessing the URL would
-                    directly return the data stream, then the "function"
-                    attribute should be set to "download".  If the URL
-                    provides further information about downloading the
-                    object but does not directly return the data stream, then
-                    the "function" attribute should be set to "information".
-                    If the "function" attribute is omitted, then "download"
-                    is implied for the URL function.
-                    In more complex cases where a non-standard connection
-                    must be established that complies with application
-                    specific procedures beyond what can be described in the
-                    simple URL, then the "connection" element should
-                    be used instead of the URL element.</doc:description>
-                    <doc:example>
-                    http://data.org/getdata?id=98332</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:anyURI">
+              <xs:choice>
+                <xs:element name="url">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Download site URL</doc:tooltip>
+                      <doc:summary>A URL (Uniform Resource Locator) from which
+                      this resource can be downloaded or information can be
+                      obtained about downloading it.</doc:summary>
+                      <doc:description>A URL (Uniform Resource Locator) from
+                      which this resource can be downloaded or additional
+                      information can be obtained. If accessing the URL would
+                      directly return the data stream, then the "function"
+                      attribute should be set to "download".  If the URL
+                      provides further information about downloading the
+                      object but does not directly return the data stream, then
+                      the "function" attribute should be set to "information".
+                      If the "function" attribute is omitted, then "download"
+                      is implied for the URL function.
+                      In more complex cases where a non-standard connection
+                      must be established that complies with application
+                      specific procedures beyond what can be described in the
+                      simple URL, then the "connection" element should
+                      be used instead of the URL element.</doc:description>
+                      <doc:example>
+                      http://data.org/getdata?id=98332</doc:example>
+                      <doc:lineage>ISO CD 19115.3, Geographic information -
+                      Metadata</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:anyURI">
                       <xs:attribute name="function" type="res:FunctionType" 
                       use="optional" default="download"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="connection">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Connection</doc:tooltip>
-                    <doc:summary>A description of the information needed
-                    to make an application connection to a data service.
-                    </doc:summary>
-                    <doc:description>A description of the information needed
-                    to make an application connection to a data service.
-                    The connection starts with a connectionDefinition which
-                    lists all of the parameters needed for the connection
-                    and possible default values for each.  It then includes a
-                    list of parameter values, one for each parameter, that
-                    override the defaults for this particular connection.
-                    One parameter element should exist for every
-                    parameterDefinition that is present in the
-                    connectionDefinition, except that parameters that were
-                    defined with a defaultValue in their parameterDefinition
-                    can be ommitted from the connection and the default
-                    will be used. All information about how to use the
-                    parameters to establish a session and extract data is
-                    present in the connectionDefinition, possibly implicitly
-                    by naming a connection schemeName that is well-known.
-                    </doc:description>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:choice>
-                    <xs:sequence>
+                      </xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="connection">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Connection</doc:tooltip>
+                      <doc:summary>A description of the information needed
+                      to make an application connection to a data service.
+                      </doc:summary>
+                      <doc:description>A description of the information needed
+                      to make an application connection to a data service.
+                      The connection starts with a connectionDefinition which
+                      lists all of the parameters needed for the connection
+                      and possible default values for each.  It then includes a
+                      list of parameter values, one for each parameter, that
+                      override the defaults for this particular connection.
+                      One parameter element should exist for every
+                      parameterDefinition that is present in the
+                      connectionDefinition, except that parameters that were
+                      defined with a defaultValue in their parameterDefinition
+                      can be ommitted from the connection and the default
+                      will be used. All information about how to use the
+                      parameters to establish a session and extract data is
+                      present in the connectionDefinition, possibly implicitly
+                      by naming a connection schemeName that is well-known.
+                      </doc:description>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:choice>
+                      <xs:sequence>
                       <xs:element name="connectionDefinition" 
                       type="res:ConnectionDefinitionType">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Connection Definition</doc:tooltip>
-                            <doc:summary>Definition of the connection protocol
-                            to be used for this connection.</doc:summary>
-                            <doc:description>Definition of the connection
-                            protocol to be used for this connection.  The
-                            definition has a "scheme" which identifies the
-                            protocol by name, and a detailed description of
-                            the scheme and its required parameters.
-                            </doc:description>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:element>
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Connection Definition</doc:tooltip>
+                              <doc:summary>Definition of the connection protocol
+                              to be used for this connection.</doc:summary>
+                              <doc:description>Definition of the connection
+                              protocol to be used for this connection.  The
+                              definition has a "scheme" which identifies the
+                              protocol by name, and a detailed description of
+                              the scheme and its required parameters.
+                              </doc:description>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
                       <xs:element name="parameter" minOccurs="0" 
                       maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Parameter</doc:tooltip>
+                              <doc:summary>A parameter to be used to make this
+                              connection.</doc:summary>
+                              <doc:description>A parameter to be used to make
+                              this connection. This value overrides any
+                              default value that may have been provided in the
+                              connection definition.
+                              </doc:description>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                  <xs:appinfo>
+                                    <doc:tooltip>Parameter Name</doc:tooltip>
+                                    <doc:summary>Name of the parameter to be
+                                    used to make this connection.</doc:summary>
+                                    <doc:description>The name of the parameter
+                                    to be used to make this connection.
+                                    </doc:description>
+                                    <doc:example>hostname</doc:example>
+                                  </xs:appinfo>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="value" type="xs:string">
+                                <xs:annotation>
+                                  <xs:appinfo>
+                                    <doc:tooltip>Parameter Value</doc:tooltip>
+                                    <doc:summary>The value of the parameter to
+                                    be used to make this connection.
+                                    </doc:summary>
+                                    <doc:description>The value of the parameter
+                                    to be used to make this connection. This
+                                    value overrides any default value that may
+                                    have been provided in the connection
+                                    definition.</doc:description>
+                                    <doc:example>nceas.ucsb.edu</doc:example>
+                                  </xs:appinfo>
+                                </xs:annotation>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:element name="references" type="xs:string">
                         <xs:annotation>
                           <xs:appinfo>
-                            <doc:tooltip>Parameter</doc:tooltip>
-                            <doc:summary>A parameter to be used to make this
-                            connection.</doc:summary>
-                            <doc:description>A parameter to be used to make
-                            this connection. This value overrides any
-                            default value that may have been provided in the
-                            connection definition.
-                            </doc:description>
+                            <doc:tooltip>References</doc:tooltip>
+                            <doc:summary>The id of another connection in this
+                            EML document to be used to provide the connection
+                            information.
+                            </doc:summary>
+                            <doc:description>The id of another connection in
+                            this EML document to be used to provide the
+                            connection information. This is used instead of
+                            duplicating connection information when an identical
+                            connection needs to be used multiple times in an
+                            EML document.</doc:description>
                           </xs:appinfo>
                         </xs:annotation>
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="name" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Parameter Name</doc:tooltip>
-                                  <doc:summary>Name of the parameter to be
-                                  used to make this connection.</doc:summary>
-                                  <doc:description>The name of the parameter
-                                  to be used to make this connection.
-                                  </doc:description>
-                                  <doc:example>hostname</doc:example>
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                            <xs:element name="value" type="xs:string">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Parameter Value</doc:tooltip>
-                                  <doc:summary>The value of the parameter to
-                                  be used to make this connection.
-                                  </doc:summary>
-                                  <doc:description>The value of the parameter
-                                  to be used to make this connection. This
-                                  value overrides any default value that may
-                                  have been provided in the connection
-                                  definition.</doc:description>
-                                  <doc:example>nceas.ucsb.edu</doc:example>
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:element>
-                          </xs:sequence>
-                        </xs:complexType>
                       </xs:element>
-                    </xs:sequence>
-                    <xs:element name="references" type="xs:string">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>References</doc:tooltip>
-                          <doc:summary>The id of another connection in this
-                          EML document to be used to provide the connection
-                          information.
-                          </doc:summary>
-                          <doc:description>The id of another connection in
-                          this EML document to be used to provide the
-                          connection information. This is used instead of
-                          duplicating connection information when an identical
-                          connection needs to be used multiple times in an
-                          EML document.</doc:description>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                  </xs:choice>
+                    </xs:choice>
                   <xs:attribute name="id" type="res:IDType" use="optional"/>
                   <xs:attribute name="system" type="res:SystemType" use="optional"/>
                   <xs:attribute name="scope" type="res:ScopeType" 
                   use="optional" default="document"/>
-                </xs:complexType>
-              </xs:element>
-            </xs:choice>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
           </xs:complexType>
         </xs:element>
         <xs:element name="offline">
