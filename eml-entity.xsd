@@ -13,9 +13,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.19 $'
+        '$Author: schild $'
+          '$Date: 2001-12-16 17:27:14 $'
+      '$Revision: 1.20 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -220,14 +220,16 @@
           Other Entity descriptor
         </doc:tooltip>
         <doc:summary>
-          Descriptor of one one non-table entity in the dataset.
+          Descriptor of single non-table entity in the dataset.
         </doc:summary>
         <doc:description>
-          The other entity element is a descriptor of one entity in the
-          dataset identified by its name. The element can contain information
+          The other entity element is a descriptor of one non-tabular entity in the
+          dataset, identified by its name. The element can contain information
           about the entity's basic identity, its temporal, geographic and
           taxonomic coverage, and its type.
         </doc:description>
+        <doc:example>
+           Photograph of rocky intertidal plot 12 from Santa Cruz Island 
         <doc:example/>
         <doc:lineage>
           The entity element was introduced into EML 1.4 as file.
@@ -284,7 +286,9 @@
           but can also represent an image or other
           type of data.
         </doc:description>
-        <doc:example/>
+        <doc:example>
+        See 'eml-coverage' for descriptions of the coverage elements
+        </doc:example>
         <doc:lineage>
           The eml-entity was introduced into EML 1.4 as eml-file.
         </doc:lineage>
