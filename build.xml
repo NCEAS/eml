@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-09 17:07:25 $'
-      '$Revision: 1.31 $'
+          '$Date: 2002-09-09 18:06:45 $'
+      '$Revision: 1.32 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,10 +39,10 @@
          on your system. -->
 
     <!-- The location of the Xerces 2 jar file -->
-    <property name="xmlp" 
+    <property name="xmlp"
         value="/usr/local/devtools/xerces-2_0_1/xercesImpl.jar"/>
     <!-- The location of the Xerces XML API jar file -->
-    <property name="api" 
+    <property name="api"
         value="/usr/local/devtools/xerces-2_0_1/xmlParserAPIs.jar"/>
     <!-- The location of the docbook XSL stylesheet-->
     <property name="htmldocbook-style"
@@ -180,7 +180,7 @@
       ************************************************
     </echo>
   </target>
-  
+
   <target name="faqhtml" depends="docbookhtml">
     <echo>
       ************************************************
