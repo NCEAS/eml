@@ -1,4 +1,14 @@
-<?xml version="1.0"?><xs:schema targetNamespace="eml://ecoinformatics.org/text-2.0.0beta9" xmlns="eml://ecoinformatics.org/text-2.0.0beta9" xmlns:txt="eml://ecoinformatics.org/text-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema">  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>  <xs:annotation>    <xs:documentation>
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml://ecoinformatics.org/text-2.0.0beta9"
+           xmlns="eml://ecoinformatics.org/text-2.0.0beta9"
+           xmlns:txt="eml://ecoinformatics.org/text-2.0.0beta9"
+           xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
+             schemaLocation="eml-documentation.xsd" />
+
+  <xs:annotation>
+    <xs:documentation>
        '$RCSfile: eml-text.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
@@ -14,8 +24,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-08-27 04:45:28 $'
-      '$Revision: 1.3 $'
+          '$Date: 2002-08-27 18:33:59 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,19 +39,83 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    </xs:documentation>    <xs:appinfo>      <doc:moduleDocs>        <doc:moduleName>eml-text</doc:moduleName>        <doc:moduleDescription>The eml text module is a wrapper container that
-        allows general text descriptions to be used within the various
-        modules of eml.  It can include either structured or unstructured
-        text blocks. It isn't really appropriate to use this module outside
-        of the context of a parent module, because the parent module determines
-        the appropriate context to which this text description applies.
-        </doc:moduleDescription>        <doc:recommendedUsage>any module</doc:recommendedUsage>        <doc:standAlone>no</doc:standAlone>        <doc:module>eml.xsd</doc:module>      </doc:moduleDocs>    </xs:appinfo>  </xs:annotation>  <xs:element name="text" type="TextType">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Text</doc:tooltip>        <doc:summary>A simple text desription.</doc:summary>        <doc:description>The "text" element allows for both formatted and
-        unformatted text blocks to be included in EML.  It can contain a
-        number of relevant subsections that allow the use of titles, 
-        sections, and paragraphs in the text block.
-        </doc:description>        <doc:lineage>As of EML 2.0.0</doc:lineage>      </xs:appinfo>    </xs:annotation>  </xs:element>  <xs:complexType name="TextType">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Text</doc:tooltip>        <doc:summary>A simple text desription.</doc:summary>        <doc:description>The "text" element allows for both formatted and
-        unformatted text blocks to be included in EML.  It can contain a
-        number of relevant subsections that allow the use of titles, 
-        sections, and paragraphs in the text block.
-        </doc:description>        <doc:lineage>As of EML 2.0.0</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:choice maxOccurs="unbounded">      <xs:element name="section" type="SectionType"/>      <xs:element name="para" type="ParagraphType"/>    </xs:choice>  </xs:complexType>  <xs:complexType name="ParagraphType" mixed="true">    <xs:choice minOccurs="0" maxOccurs="unbounded">      <xs:element name="itemizedlist">        <xs:complexType>          <xs:sequence>            <xs:element name="listitem" type="xs:string" maxOccurs="unbounded"/>          </xs:sequence>        </xs:complexType>      </xs:element>      <xs:element name="orderedlist">        <xs:complexType>          <xs:sequence>            <xs:element name="listitem" type="xs:string" maxOccurs="unbounded"/>          </xs:sequence>        </xs:complexType>      </xs:element>      <xs:element name="emphasis" type="xs:string"/>    </xs:choice>  </xs:complexType>  <xs:complexType name="SectionType">    <xs:sequence>      <xs:element name="title" type="xs:string" minOccurs="0"/>      <xs:choice maxOccurs="unbounded">        <xs:element name="para" type="ParagraphType"/>        <xs:element name="section" type="SectionType"/>      </xs:choice>    </xs:sequence>  </xs:complexType></xs:schema>
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
+    </xs:documentation>
+
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-text</doc:moduleName>
+        <doc:moduleDescription>The eml text module is a wrapper container that
+        allows general text descriptions to be used within the various modules
+        of eml. It can include either structured or unstructured text blocks.
+        It isn't really appropriate to use this module outside of the context
+        of a parent module, because the parent module determines the
+        appropriate context to which this text description
+        applies.</doc:moduleDescription>
+        <doc:recommendedUsage>any module</doc:recommendedUsage>
+        <doc:standAlone>no</doc:standAlone>
+        <doc:module>eml.xsd</doc:module>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="text" type="TextType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Text</doc:tooltip>
+        <doc:summary>A simple text desription.</doc:summary>
+        <doc:description>The "text" element allows for both formatted and
+        unformatted text blocks to be included in EML. It can contain a number
+        of relevant subsections that allow the use of titles, sections, and
+        paragraphs in the text block.</doc:description>
+        <doc:lineage>As of EML 2.0.0</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="TextType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Text</doc:tooltip>
+        <doc:summary>A simple text desription.</doc:summary>
+        <doc:description>The "text" element allows for both formatted and
+        unformatted text blocks to be included in EML. It can contain a number
+        of relevant subsections that allow the use of titles, sections, and
+        paragraphs in the text block.</doc:description>
+        <doc:lineage>As of EML 2.0.0</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="section" type="SectionType" />
+      <xs:element name="paragraph" type="ParagraphType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ParagraphType" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="itemizedlist">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="listitem" type="xs:string"
+            maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="orderedlist">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="listitem" type="xs:string"
+            maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="emphasis" type="xs:string" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SectionType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string" minOccurs="0" />
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="paragraph" type="ParagraphType" />
+        <xs:element name="section" type="SectionType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
