@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:entity-2.0.0beta7" 
-           xmlns="eml:entity-2.0.0beta7" 
-           xmlns:cov="eml:coverage-2.0.0beta7" 
-           xmlns:doc="eml:documentation-2.0.0beta7" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation-2.0.0beta7" 
-             schemaLocation="eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:entity-2.0.0beta7" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta7" xmlns:cov="eml:coverage-2.0.0beta7" xmlns="eml:entity-2.0.0beta7">
+  <xs:import namespace="eml:documentation-2.0.0beta7" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -13,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-04-17 17:53:18 $'
-      '$Revision: 1.30 $'
+        '$Author: jones $'
+          '$Date: 2002-04-21 17:15:46 $'
+      '$Revision: 1.31 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,8 +41,18 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:import namespace="eml:coverage-2.0.0beta7" 
-             schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml:coverage-2.0.0beta7" schemaLocation="eml-coverage.xsd"/>
+  <xs:element name="entity">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="table-entity"/>
+        <xs:element ref="other-entity"/>
+        <xs:element ref="spatialImage"/>
+        <xs:element ref="spatialGrid"/>
+        <xs:element ref="spatialVector"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="table-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -200,9 +205,7 @@
                     such as the number of header lines (see eml-physical
                     for that information).
                   </doc:description>
-                  <doc:example>
-                    <![CDATA[<numberOfRecords>975</numberOfRecords>]]>
-                  </doc:example>
+                  <doc:example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></doc:example>
                   <doc:lineage>
                     Introduced in EML 2
                   </doc:lineage>
@@ -214,7 +217,6 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-  
   <xs:element name="other-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -259,9 +261,7 @@
                     is an 'other' entity and you want to specify what the
                     'other' entity is.
                   </doc:description>
-                  <doc:example>
-                    <![CDATA[<entityType>Raster Image</entityType>]]>
-                  </doc:example>
+                  <doc:example><![CDATA[<entityType>Raster Image</entityType>]]></doc:example>
                   <doc:lineage>
                     The entityType element was introduced into EML 1.4 as 
                     entityFormat.
@@ -274,8 +274,6 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-  
-  
   <xs:element name="spatialImage" type="ImageSpatialRepresentation">
     <xs:annotation>
       <xs:appinfo>
@@ -297,18 +295,7 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="EntityBase">
-          <xs:sequence>
-            <xs:element name="horizAccuracy" type="DataQuality"/>
-            <xs:element name="vertAccuracy" type="DataQuality"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
   </xs:element>
-  
   <xs:element name="spatialGrid" type="RasterSpatialRepresentation">
     <xs:annotation>
       <xs:appinfo>
@@ -324,26 +311,13 @@
           locate zero-, two-, or three-dimensional locations in the 
           dataset
         </doc:description>
-        <doc:example>
-           
-        </doc:example>
+        <doc:example/>
         <doc:lineage>
           The spatial entity elements were introduced into EML 2.0 beta 7
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="EntityBase">
-          <xs:sequence>
-            <xs:element name="horizAccuracy" type="DataQuality"/>
-            <xs:element name="vertAccuracy" type="DataQuality"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
   </xs:element>
-  
   <xs:element name="spatialVector" type="SpatialVector">
     <xs:annotation>
       <xs:appinfo>
@@ -356,201 +330,207 @@
         <doc:description>
           Description of an image layer created from a sensor or scanner
         </doc:description>
-        <doc:example>
-           
-        </doc:example>
+        <doc:example/>
         <doc:lineage>
           The spatial entity elements were introduced into EML 2.0 beta 7
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="EntityBase">
-          <xs:sequence>
-            <xs:element name="horizAccuracy" type="DataQuality"/>
-            <xs:element name="vertAccuracy" type="DataQuality"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
   </xs:element>
-         
+  <xs:complexType name="SpatialRepresentation">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Description of an image layer created from a sensor or scanner
+        </doc:tooltip>
+        <doc:summary>
+          Description of an image layer created from a sensor or scanner
+        </doc:summary>
+        <doc:description>
+          Description of an image layer created from a sensor or scanner
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
+          The spatial entity elements were introduced into EML 2.0 beta 7
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="EntityBase">
+        <xs:sequence>
+          <xs:element name="horizAccuracy" type="DataQuality"/>
+          <xs:element name="vertAccuracy" type="DataQuality"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="DataQuality">
-		<xs:sequence>
-			<xs:element name="accuracyReport" type="xs:string"/>
-			<xs:element name="quantAccReport" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="quantAccVal" type="xs:string"/>
-						<xs:element name="quantAccMethod" type="xs:string"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:complexType name="ImageSpatialRepresentation">
     <xs:sequence>
-      <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              The type of the spatial representation taken from the enumeration.
-            </doc:tooltip>
-            <doc:summary>
-              The type of the spatial representation taken from the enumeration.
-            </doc:summary>
-            <doc:description>
-              The type of the spatial representation taken from the enumeration.
-            </doc:description>
-            <doc:example>
-               raster, vector, image, text, matrix, TIN
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="imageIdentifier" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Unique discriptor for an image within a dataset series.
-            </doc:tooltip>
-            <doc:summary>
-              Unique discriptor for an image within a dataset series.
-            </doc:summary>
-            <doc:description>
-              Unique discriptor for an image within a dataset series.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="imageType" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Identifies the general kind of image represented by the data
-            </doc:tooltip>
-            <doc:summary>
-              Identifies the general kind of image represented by the data
-            </doc:summary>
-            <doc:description>
-              Identifies the general kind of image represented by the data
-            </doc:description>
-            <doc:example>
-               visible, hyperspectral, multispectral, infrared, thermal infrared, radar
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="meanGroundSampleDistance" type="GroundSpacing" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Geometric mean of the across and along scan centre-to-centre 
-              distance between continuous ground spamples in metres.
-            </doc:tooltip>
-            <doc:summary>
-              Geometric mean of the across and along scan centre-to-centre 
-              distance between continuous ground spamples in metres.
-            </doc:summary>
-            <doc:description>
-              Geometric mean of the across and along scan centre-to-centre 
-              distance between continuous ground spamples in metres.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="groundToImageCoefficient" type="xs:boolean" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Code which indicates whether or not Ground-to-Image coefficients 
-              are availabel and contained within the product data.
-            </doc:tooltip>
-            <doc:summary>
-              Code which indicates whether or not Ground-to-Image coefficients 
-              are availabel and contained within the product data.
-            </doc:summary>
-            <doc:description>
-              Code which indicates whether or not Ground-to-Image coefficients 
-              are availabel and contained within the product data.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="imageSuitability" type="ImageSuitability" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Provides information about the image's suitability for use.
-            </doc:tooltip>
-            <doc:summary>
-              Provides information about the image's suitability for use.
-            </doc:summary>
-            <doc:description>
-              Provides information about the image's suitability for use.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="params" type="SensorParameters" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Provides the parameters defining the sensor that captured the image.
-            </doc:tooltip>
-            <doc:summary>
-              Provides the parameters defining the sensor that captured the image.
-            </doc:summary>
-            <doc:description>
-              Provides the parameters defining the sensor that captured the image.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
+      <xs:element name="accuracyReport" type="xs:string"/>
+      <xs:element name="quantAccReport" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="quantAccVal" type="xs:string"/>
+            <xs:element name="quantAccMethod" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
       </xs:element>
     </xs:sequence>
-	</xs:complexType>
-  
+  </xs:complexType>
+  <xs:complexType name="ImageSpatialRepresentation">
+    <xs:complexContent>
+      <xs:extension base="SpatialRepresentation">
+        <xs:sequence>
+          <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              The type of the spatial representation taken from the enumeration.
+            </doc:tooltip>
+                <doc:summary>
+              The type of the spatial representation taken from the enumeration.
+            </doc:summary>
+                <doc:description>
+              The type of the spatial representation taken from the enumeration.
+            </doc:description>
+                <doc:example>
+               raster, vector, image, text, matrix, TIN
+            </doc:example>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="imageIdentifier" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Unique discriptor for an image within a dataset series.
+            </doc:tooltip>
+                <doc:summary>
+              Unique discriptor for an image within a dataset series.
+            </doc:summary>
+                <doc:description>
+              Unique discriptor for an image within a dataset series.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="imageType" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Identifies the general kind of image represented by the data
+            </doc:tooltip>
+                <doc:summary>
+              Identifies the general kind of image represented by the data
+            </doc:summary>
+                <doc:description>
+              Identifies the general kind of image represented by the data
+            </doc:description>
+                <doc:example>
+               visible, hyperspectral, multispectral, infrared, thermal infrared, radar
+            </doc:example>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="meanGroundSampleDistance" type="GroundSpacing" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Geometric mean of the across and along scan centre-to-centre 
+              distance between continuous ground spamples in metres.
+            </doc:tooltip>
+                <doc:summary>
+              Geometric mean of the across and along scan centre-to-centre 
+              distance between continuous ground spamples in metres.
+            </doc:summary>
+                <doc:description>
+              Geometric mean of the across and along scan centre-to-centre 
+              distance between continuous ground spamples in metres.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="groundToImageCoefficient" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Code which indicates whether or not Ground-to-Image coefficients 
+              are availabel and contained within the product data.
+            </doc:tooltip>
+                <doc:summary>
+              Code which indicates whether or not Ground-to-Image coefficients 
+              are availabel and contained within the product data.
+            </doc:summary>
+                <doc:description>
+              Code which indicates whether or not Ground-to-Image coefficients 
+              are availabel and contained within the product data.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="imageSuitability" type="ImageSuitability" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Provides information about the image's suitability for use.
+            </doc:tooltip>
+                <doc:summary>
+              Provides information about the image's suitability for use.
+            </doc:summary>
+                <doc:description>
+              Provides information about the image's suitability for use.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="params" type="SensorParameters" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Provides the parameters defining the sensor that captured the image.
+            </doc:tooltip>
+                <doc:summary>
+              Provides the parameters defining the sensor that captured the image.
+            </doc:summary>
+                <doc:description>
+              Provides the parameters defining the sensor that captured the image.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="SensorParameters">
-		<xs:sequence>
-			<xs:element name="focalLength" type="xs:float" minOccurs="0">
+    <xs:sequence>
+      <xs:element name="focalLength" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -570,8 +550,8 @@
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="obliquityAngle" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="obliquityAngle" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -583,16 +563,14 @@
             <doc:description>
               Angle off vertical of image in degrees.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="imageSensorTime" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="imageSensorTime" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -607,16 +585,14 @@
               The precise time at which the image was captured in the 
               sensor's time system.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="sensorCategory" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="sensorCategory" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -628,16 +604,14 @@
             <doc:description>
               Identifies the specific category of imagery.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="sensorMode" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="sensorMode" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -649,16 +623,14 @@
             <doc:description>
               Identifies the sensor mode used in capturing the image.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="spectralProperties" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="spectralProperties" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -670,16 +642,14 @@
             <doc:description>
               Electromagnetic spetrum sensitivity of sensor.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="fieldOfView" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="fieldOfView" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -691,16 +661,14 @@
             <doc:description>
               Area of measurement of sensor.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="orientationOnPlatform" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="orientationOnPlatform" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -712,16 +680,14 @@
             <doc:description>
               Orientation of instrument relative to platform.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="operationMode" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="operationMode" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -733,16 +699,14 @@
             <doc:description>
               Sensor status.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="band" type="SensorBand" minOccurs="0" maxOccurs="unbounded">
+      </xs:element>
+      <xs:element name="band" type="SensorBand" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -754,21 +718,18 @@
             <doc:description>
               Set of wavelength that the sensor operates in.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="SensorBand">
-		<xs:sequence>
-			<xs:element name="sequenceIdentifier" type="xs:string" minOccurs="0">
+    <xs:sequence>
+      <xs:element name="sequenceIdentifier" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -783,16 +744,14 @@
               Number that uniquely identifies instances of bands of wavelengths 
               on which a sensor operates.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="highWavelength" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="highWavelength" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -807,16 +766,14 @@
               Highest wavelength that the sensor is capable of collecting 
               within a designated band in metres.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="lowWaveLength" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="lowWaveLength" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -831,16 +788,14 @@
               Lowest wavelength that the sensor is capable of collecting within 
               a designated band in metres.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="cameraCalibration" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="cameraCalibration" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -855,16 +810,14 @@
               Code which indicates whether or not constants are available which 
               allow for camera calibration corrections.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="filmDistortion" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="filmDistortion" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -879,16 +832,14 @@
               Code which indicates whether or not Calibration Reseau information 
               is available
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="lensDistortion" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="lensDistortion" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -903,21 +854,18 @@
               Code which indicates whether or not lens aberration correction 
               information is available
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="ImageSuitability">
-		<xs:sequence>
-			<xs:element name="illuminationElevationAngle" type="xs:float" minOccurs="0">
+    <xs:sequence>
+      <xs:element name="illuminationElevationAngle" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -935,16 +883,14 @@
               target plane at intersection of the optical line of sight with 
               the earth's surface. 
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="illuminationAzimuthAngle" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="illuminationAzimuthAngle" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -959,16 +905,14 @@
               Illumitation azimuth measured in degrees clockwise from true 
               north at the time the image is taken.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="imageOrientationAngle" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="imageOrientationAngle" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -983,16 +927,14 @@
               Angle from the first row of the image to true north in degrees, 
               clockwise.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="imagingCondition" type="ImagingConditionCode" minOccurs="0">
+      </xs:element>
+      <xs:element name="imagingCondition" type="ImagingConditionCode" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1004,16 +946,14 @@
             <doc:description>
               Code which indicates conditions which affect the quality of the image.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="ImageQualityRatingSystem" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="ImageQualityRatingSystem" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1025,16 +965,14 @@
             <doc:description>
               Rating system on which the image quality code is based.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="imageQualityCode" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="imageQualityCode" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1046,16 +984,14 @@
             <doc:description>
               Specifies the image quality.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="cloudCoverPercentage" type="xs:float" minOccurs="0">
+      </xs:element>
+      <xs:element name="cloudCoverPercentage" type="xs:float" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1070,16 +1006,14 @@
               Area of the dataset obscured by clouds, expressed as a percentage
               of the spatial extent.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="preProcessingTypeCode" type="xs:string" minOccurs="0">
+      </xs:element>
+      <xs:element name="preProcessingTypeCode" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1102,8 +1036,8 @@
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="compressionGenerationQuality" type="xs:integer" minOccurs="0">
+      </xs:element>
+      <xs:element name="compressionGenerationQuality" type="xs:integer" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1115,16 +1049,14 @@
             <doc:description>
               Counts the number of lossy compression cycles performed on the image.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="triangulationIndicator" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="triangulationIndicator" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1139,16 +1071,14 @@
               Code which indicates whether or not triangulation has been 
               performed upon the image.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="radiometricDataAvailability" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="radiometricDataAvailability" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1163,16 +1093,14 @@
               Code which indicates whether or not Standard Rdiometric Product 
               data is available.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-			<xs:element name="ESDAvailability" type="xs:boolean" minOccurs="0">
+      </xs:element>
+      <xs:element name="ESDAvailability" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1187,667 +1115,235 @@
               Indicates whether or not Image Exploitation Support Data (ESD) is 
               available such as position and attitude information
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="RasterSpatialRepresentation">
-    <xs:sequence>
-      <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+    <xs:complexContent>
+      <xs:extension base="SpatialRepresentation">
+        <xs:sequence>
+          <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               The type of the spatial representation taken from the enumeration.
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               The type of the spatial representation taken from the enumeration.
             </doc:summary>
-            <doc:description>
+                <doc:description>
               The type of the spatial representation taken from the enumeration.
             </doc:description>
-            <doc:example>
+                <doc:example>
                raster, vector, image, text, matrix, TIN
             </doc:example>
-            <doc:lineage>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="cellType" type="RasterCellType" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cellType" type="RasterCellType" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Raster spatial objects used to locate zero-, two-, or 
               three-dimensional locations in the dataset
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Raster spatial objects used to locate zero-, two-, or 
               three-dimensional locations in the dataset
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Raster spatial objects used to locate zero-, two-, or 
               three-dimensional locations in the dataset
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="cellOrigin" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cellOrigin" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Location of pixel 1,1
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Location of pixel 1,1
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Location of pixel 1,1
             </doc:description>
-            <doc:example>
+                <doc:example>
                NW Corner
             </doc:example>
-            <doc:lineage>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="rows" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="rows" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Maximum number of raster objects along the ordinate (y) axis
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Maximum number of raster objects along the ordinate (y) axis
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Maximum number of raster objects along the ordinate (y) axis
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="columns" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="columns" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Maximum number of raster objects along the abscissa (x) axis
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Maximum number of raster objects along the abscissa (x) axis
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Maximum number of raster objects along the abscissa (x) axis
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="verticals" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="verticals" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Maximum number of raster objects along the vertical (z) axis
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Maximum number of raster objects along the vertical (z) axis
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Maximum number of raster objects along the vertical (z) axis
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="scanResolution" type="ScanResolution" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="scanResolution" type="ScanResolution" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Units used to express data density along the axes.
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Units used to express data density along the axes.
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Units used to express data density along the axes.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="groundSpacing" type="GroundSpacingResolution" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="groundSpacing" type="GroundSpacingResolution" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Unit of measurement used to describe the distance.
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Unit of measurement used to describe the distance.
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Unit of measurement used to describe the distance.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="cellDomain" type="CellValueDomain" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cellDomain" type="CellValueDomain" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
               Provides information about the domain of a raster cell.
             </doc:tooltip>
-            <doc:summary>
+                <doc:summary>
               Provides information about the domain of a raster cell.
             </doc:summary>
-            <doc:description>
+                <doc:description>
               Provides information about the domain of a raster cell.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
+                <doc:example/>
+                <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  
   <xs:complexType name="GroundSpacing">
-		<xs:sequence>
-			<xs:element name="spacing" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Center to center distance between continuous samples.
-            </doc:tooltip>
-            <doc:summary>
-              Center to center distance between continuous samples.
-            </doc:summary>
-            <doc:description>
-              Center to center distance between continuous samples.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="unit" type="LengthUnitCode">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units of measure used to describe pixels per unit.
-            </doc:tooltip>
-            <doc:summary>
-              Units of measure used to describe pixels per unit.
-            </doc:summary>
-            <doc:description>
-              Units of measure used to describe pixels per unit.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:complexType name="CellValueDomain">
-		<xs:sequence>
-			<xs:element name="toneGradation" type="xs:integer" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Number of colors present in the image.
-            </doc:tooltip>
-            <doc:summary>
-              Number of colors present in the image.
-            </doc:summary>
-            <doc:description>
-              Number of colors present in the image.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="bitsPerBand" type="xs:integer" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Maximum number of significant bits for the value in each band of 
-              each pixel without compression.
-            </doc:tooltip>
-            <doc:summary>
-              Maximum number of significant bits for the value in each band of 
-              each pixel without compression.
-            </doc:summary>
-            <doc:description>
-              Maximum number of significant bits for the value in each band of 
-              each pixel without compression.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="cellAttributeDescription" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Description of teh attribute described by teh measurement value.
-            </doc:tooltip>
-            <doc:summary>
-              Description of teh attribute described by teh measurement value.
-            </doc:summary>
-            <doc:description>
-              Description of teh attribute described by teh measurement value.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="cellUnit" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units of the cell attribute.
-            </doc:tooltip>
-            <doc:summary>
-              Units of the cell attribute.
-            </doc:summary>
-            <doc:description>
-              Units of the cell attribute.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:complexType name="GroundSpacingResolution">
-		<xs:sequence>
-			<xs:element name="xSpacing" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              The distance represented by a pixel in the x direction on the ground.
-            </doc:tooltip>
-            <doc:summary>
-              The distance represented by a pixel in the x direction on the ground.
-            </doc:summary>
-            <doc:description>
-              The distance represented by a pixel in the x direction on the ground.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="ySpacing" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              The distance represented by a pixel in the y direction on the ground.
-            </doc:tooltip>
-            <doc:summary>
-              The distance represented by a pixel in the y direction on the ground.
-            </doc:summary>
-            <doc:description>
-              The distance represented by a pixel in the y direction on the ground.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="zSpacing" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              The distance represented by a pixel in the z direction on the ground.
-            </doc:tooltip>
-            <doc:summary>
-              The distance represented by a pixel in the z direction on the ground.
-            </doc:summary>
-            <doc:description>
-              The distance represented by a pixel in the z direction on the ground.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:complexType name="ScanResolution">
-		<xs:sequence>
-			<xs:element name="xResolution" type="PixelResolution">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units used to express data density along the x axis.
-            </doc:tooltip>
-            <doc:summary>
-              Units used to express data density along the x axis.
-            </doc:summary>
-            <doc:description>
-              Units used to express data density along the x axis.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="yResolution" type="PixelResolution">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units used to express data density along the y axis.
-            </doc:tooltip>
-            <doc:summary>
-              Units used to express data density along the y axis.
-            </doc:summary>
-            <doc:description>
-              Units used to express data density along the y axis.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="zResolution" type="PixelResolution">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units used to express data density along the z axis.
-            </doc:tooltip>
-            <doc:summary>
-              Units used to express data density along the z axis.
-            </doc:summary>
-            <doc:description>
-              Units used to express data density along the z axis.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:complexType name="PixelResolution">
-		<xs:sequence>
-			<xs:element name="pixelsPerUnit" type="xs:integer">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Number of pixels contained in one unit of measurement.
-            </doc:tooltip>
-            <doc:summary>
-              Number of pixels contained in one unit of measurement.
-            </doc:summary>
-            <doc:description>
-              Number of pixels contained in one unit of measurement.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-			<xs:element name="unit" type="LengthUnitCode">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Units of measure used to describe pixels per unit.
-            </doc:tooltip>
-            <doc:summary>
-              Units of measure used to describe pixels per unit.
-            </doc:summary>
-            <doc:description>
-              Units of measure used to describe pixels per unit.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-  
-  <xs:simpleType name="ImagingConditionCode">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="blurredimage"/>
-			<xs:enumeration value="cloud"/>
-			<xs:enumeration value="degradingObliquity"/>
-			<xs:enumeration value="fog"/>
-			<xs:enumeration value="heavySmokeorDust"/>
-			<xs:enumeration value="night"/>
-			<xs:enumeration value="rain"/>
-			<xs:enumeration value="semiDarkness"/>
-			<xs:enumeration value="shadow"/>
-			<xs:enumeration value="snow"/>
-			<xs:enumeration value="terrainMasking"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
-  <xs:simpleType name="LengthUnitCode">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="millimetre"/>
-			<xs:enumeration value="centimetre"/>
-			<xs:enumeration value="metre"/>
-			<xs:enumeration value="kilometre"/>
-			<xs:enumeration value="internationalInch"/>
-			<xs:enumeration value="internationalFoot"/>
-			<xs:enumeration value="internatinalMile"/>
-			<xs:enumeration value="nauticalMile"/>
-			<xs:enumeration value="degree"/>
-			<xs:enumeration value="arcMinute"/>
-			<xs:enumeration value="arcSecond"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
-  <xs:simpleType name="RasterCellType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="matrixValues"/>
-			<xs:enumeration value="matrixCoded"/>
-			<xs:enumeration value="pixelRGB"/>
-			<xs:enumeration value="pixelCodes"/>
-			<xs:enumeration value="pixelHIS"/>
-			<xs:enumeration value="pixelHLS"/>
-			<xs:enumeration value="TekHVC"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
-  <xs:complexType name="SpatialVector">
     <xs:sequence>
-      <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
+      <xs:element name="spacing" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
-              
+              Center to center distance between continuous samples.
             </doc:tooltip>
             <doc:summary>
-              
+              Center to center distance between continuous samples.
             </doc:summary>
             <doc:description>
-              
+              Center to center distance between continuous samples.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="geometricObjectType" type="GeometricObjectType" minOccurs="0">
+      <xs:element name="unit" type="LengthUnitCode">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
-              Name of point and vector spatial objects used to locate zero-, 
-              one-, and two-dimensional spatial locations in the dataset.
+              Units of measure used to describe pixels per unit.
             </doc:tooltip>
             <doc:summary>
-              Name of point and vector spatial objects used to locate zero-, 
-              one-, and two-dimensional spatial locations in the dataset.
+              Units of measure used to describe pixels per unit.
             </doc:summary>
             <doc:description>
-              Name of point and vector spatial objects used to locate zero-, 
-              one-, and two-dimensional spatial locations in the dataset.
+              Units of measure used to describe pixels per unit.
             </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Total number of the point or vector object type occurring in the 
-              dataset.
-            </doc:tooltip>
-            <doc:summary>
-              Total number of the point or vector object type occurring in the 
-              dataset.
-            </doc:summary>
-            <doc:description>
-              Total number of the point or vector object type occurring in the 
-              dataset.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
-            <doc:lineage>
-              The spatial entity elements were introduced into EML 2.0 beta 7
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Code which identifies the degree of complexity.
-            </doc:tooltip>
-            <doc:summary>
-              Code which identifies the degree of complexity.
-            </doc:summary>
-            <doc:description>
-              Code which identifies the degree of complexity.
-            </doc:description>
-            <doc:example>
-               
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               The spatial entity elements were introduced into EML 2.0 beta 7
             </doc:lineage>
@@ -1856,40 +1352,408 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  
+  <xs:complexType name="CellValueDomain">
+    <xs:sequence>
+      <xs:element name="toneGradation" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Number of colors present in the image.
+            </doc:tooltip>
+            <doc:summary>
+              Number of colors present in the image.
+            </doc:summary>
+            <doc:description>
+              Number of colors present in the image.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bitsPerBand" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Maximum number of significant bits for the value in each band of 
+              each pixel without compression.
+            </doc:tooltip>
+            <doc:summary>
+              Maximum number of significant bits for the value in each band of 
+              each pixel without compression.
+            </doc:summary>
+            <doc:description>
+              Maximum number of significant bits for the value in each band of 
+              each pixel without compression.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cellAttributeDescription" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Description of teh attribute described by teh measurement value.
+            </doc:tooltip>
+            <doc:summary>
+              Description of teh attribute described by teh measurement value.
+            </doc:summary>
+            <doc:description>
+              Description of teh attribute described by teh measurement value.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cellUnit" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units of the cell attribute.
+            </doc:tooltip>
+            <doc:summary>
+              Units of the cell attribute.
+            </doc:summary>
+            <doc:description>
+              Units of the cell attribute.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GroundSpacingResolution">
+    <xs:sequence>
+      <xs:element name="xSpacing" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              The distance represented by a pixel in the x direction on the ground.
+            </doc:tooltip>
+            <doc:summary>
+              The distance represented by a pixel in the x direction on the ground.
+            </doc:summary>
+            <doc:description>
+              The distance represented by a pixel in the x direction on the ground.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ySpacing" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              The distance represented by a pixel in the y direction on the ground.
+            </doc:tooltip>
+            <doc:summary>
+              The distance represented by a pixel in the y direction on the ground.
+            </doc:summary>
+            <doc:description>
+              The distance represented by a pixel in the y direction on the ground.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="zSpacing" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              The distance represented by a pixel in the z direction on the ground.
+            </doc:tooltip>
+            <doc:summary>
+              The distance represented by a pixel in the z direction on the ground.
+            </doc:summary>
+            <doc:description>
+              The distance represented by a pixel in the z direction on the ground.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScanResolution">
+    <xs:sequence>
+      <xs:element name="xResolution" type="PixelResolution">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units used to express data density along the x axis.
+            </doc:tooltip>
+            <doc:summary>
+              Units used to express data density along the x axis.
+            </doc:summary>
+            <doc:description>
+              Units used to express data density along the x axis.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="yResolution" type="PixelResolution">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units used to express data density along the y axis.
+            </doc:tooltip>
+            <doc:summary>
+              Units used to express data density along the y axis.
+            </doc:summary>
+            <doc:description>
+              Units used to express data density along the y axis.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="zResolution" type="PixelResolution">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units used to express data density along the z axis.
+            </doc:tooltip>
+            <doc:summary>
+              Units used to express data density along the z axis.
+            </doc:summary>
+            <doc:description>
+              Units used to express data density along the z axis.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PixelResolution">
+    <xs:sequence>
+      <xs:element name="pixelsPerUnit" type="xs:integer">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Number of pixels contained in one unit of measurement.
+            </doc:tooltip>
+            <doc:summary>
+              Number of pixels contained in one unit of measurement.
+            </doc:summary>
+            <doc:description>
+              Number of pixels contained in one unit of measurement.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="unit" type="LengthUnitCode">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Units of measure used to describe pixels per unit.
+            </doc:tooltip>
+            <doc:summary>
+              Units of measure used to describe pixels per unit.
+            </doc:summary>
+            <doc:description>
+              Units of measure used to describe pixels per unit.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ImagingConditionCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="blurredimage"/>
+      <xs:enumeration value="cloud"/>
+      <xs:enumeration value="degradingObliquity"/>
+      <xs:enumeration value="fog"/>
+      <xs:enumeration value="heavySmokeorDust"/>
+      <xs:enumeration value="night"/>
+      <xs:enumeration value="rain"/>
+      <xs:enumeration value="semiDarkness"/>
+      <xs:enumeration value="shadow"/>
+      <xs:enumeration value="snow"/>
+      <xs:enumeration value="terrainMasking"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LengthUnitCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="millimetre"/>
+      <xs:enumeration value="centimetre"/>
+      <xs:enumeration value="metre"/>
+      <xs:enumeration value="kilometre"/>
+      <xs:enumeration value="internationalInch"/>
+      <xs:enumeration value="internationalFoot"/>
+      <xs:enumeration value="internatinalMile"/>
+      <xs:enumeration value="nauticalMile"/>
+      <xs:enumeration value="degree"/>
+      <xs:enumeration value="arcMinute"/>
+      <xs:enumeration value="arcSecond"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RasterCellType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="matrixValues"/>
+      <xs:enumeration value="matrixCoded"/>
+      <xs:enumeration value="pixelRGB"/>
+      <xs:enumeration value="pixelCodes"/>
+      <xs:enumeration value="pixelHIS"/>
+      <xs:enumeration value="pixelHLS"/>
+      <xs:enumeration value="TekHVC"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SpatialVector">
+    <xs:complexContent>
+      <xs:extension base="SpatialRepresentation">
+        <xs:sequence>
+          <xs:element name="spatialRepresentationType" type="SpatialRepresentationType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip/>
+                <doc:summary/>
+                <doc:description/>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="geometricObjectType" type="GeometricObjectType" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Name of point and vector spatial objects used to locate zero-, 
+              one-, and two-dimensional spatial locations in the dataset.
+            </doc:tooltip>
+                <doc:summary>
+              Name of point and vector spatial objects used to locate zero-, 
+              one-, and two-dimensional spatial locations in the dataset.
+            </doc:summary>
+                <doc:description>
+              Name of point and vector spatial objects used to locate zero-, 
+              one-, and two-dimensional spatial locations in the dataset.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Total number of the point or vector object type occurring in the 
+              dataset.
+            </doc:tooltip>
+                <doc:summary>
+              Total number of the point or vector object type occurring in the 
+              dataset.
+            </doc:summary>
+                <doc:description>
+              Total number of the point or vector object type occurring in the 
+              dataset.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
+              Code which identifies the degree of complexity.
+            </doc:tooltip>
+                <doc:summary>
+              Code which identifies the degree of complexity.
+            </doc:summary>
+                <doc:description>
+              Code which identifies the degree of complexity.
+            </doc:description>
+                <doc:example/>
+                <doc:lineage>
+              The spatial entity elements were introduced into EML 2.0 beta 7
+            </doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:simpleType name="TopologyLevel">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="geometryOnly"/>
-			<xs:enumeration value="nonPlanarGraph"/>
-			<xs:enumeration value="planarLineGraph"/>
-			<xs:enumeration value="fullPlanarGraph"/>
-			<xs:enumeration value="surfaceGraph"/>
-			<xs:enumeration value="fullTopology3D"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="geometryOnly"/>
+      <xs:enumeration value="nonPlanarGraph"/>
+      <xs:enumeration value="planarLineGraph"/>
+      <xs:enumeration value="fullPlanarGraph"/>
+      <xs:enumeration value="surfaceGraph"/>
+      <xs:enumeration value="fullTopology3D"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="SpatialRepresentationType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="raster"/>
-			<xs:enumeration value="vector"/>
-			<xs:enumeration value="image"/>
-			<xs:enumeration value="text"/>
-			<xs:enumeration value="matrix"/>
-			<xs:enumeration value="TIN"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="raster"/>
+      <xs:enumeration value="vector"/>
+      <xs:enumeration value="image"/>
+      <xs:enumeration value="text"/>
+      <xs:enumeration value="matrix"/>
+      <xs:enumeration value="TIN"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="GeometricObjectType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="points"/>
-			<xs:enumeration value="curves"/>
-			<xs:enumeration value="surfaces"/>
-			<xs:enumeration value="solids"/>
-			<xs:enumeration value="composites"/>
-			<xs:enumeration value="complexes"/>
-		</xs:restriction>
-	</xs:simpleType>
-  
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="points"/>
+      <xs:enumeration value="curves"/>
+      <xs:enumeration value="surfaces"/>
+      <xs:enumeration value="solids"/>
+      <xs:enumeration value="composites"/>
+      <xs:enumeration value="complexes"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="EntityBase">
     <xs:annotation>
       <xs:appinfo>
@@ -1933,9 +1797,7 @@
               identifiers can be listed corresponding to different catalog
               systems.
             </doc:description>
-            <doc:example>
-              <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-            </doc:example>
+            <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
             <doc:lineage>
               The 'identifier' field is derived from the eml-dataset 
               meta_file_id filed in EML 1.4.
@@ -1962,10 +1824,9 @@
                   can or should this be a URI/URL pointing to the catalog
                   system, or just the name?
                 </doc:description>
-                <doc:example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]>
-                </doc:example>
-                <doc:lineage>
+                    <doc:example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                    <doc:lineage>
                   New to EML 2.0.
                 </doc:lineage>
                   </xs:appinfo>
