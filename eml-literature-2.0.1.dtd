@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: higgins $'
-          '$Date: 2001-10-03 22:00:53 $'
-      '$Revision: 1.1 $'
+          '$Date: 2001-10-10 18:15:39 $'
+      '$Revision: 1.2 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -77,11 +77,10 @@
 
 
 <!-- The literature branch -->
-<!ENTITY % LitCitation "(identifier+, shortName?, title+,
+<!ELEMENT citation (identifier+, shortName?, title+,
                      originator+, pubdate?, pubplace?, series?, abstract?, 
                      keywordSet*, additionalInfo?, rights*, triple*,
- ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))">
-<!ELEMENT citation (%LitCitation;)>
+ ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))>
 <!ELEMENT ISBN (#PCDATA)>
 <!ELEMENT ISSN (#PCDATA)>
 <!ELEMENT article (jounal, volume, issue?, pageRange)>
@@ -102,9 +101,13 @@
 <!ELEMENT bookEditor (#PCDATA)>
 <!ELEMENT bookTitle (#PCDATA)>
 <!ELEMENT publisher (#PCDATA)>
-<!ELEMENT pubInfo (%ResponsibleParty;)>
+<!ELEMENT pubInfo ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
 <!ELEMENT Location (#PCDATA)>
-<!ELEMENT institution (%ResponsibleParty;)>
+<!ELEMENT institution ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
 <!ELEMENT reportNumber (#PCDATA)>
 <!ELEMENT degree (#PCDATA)>
 <!ELEMENT degreeInstitution (#PCDATA)>

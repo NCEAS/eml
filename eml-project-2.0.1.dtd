@@ -1,53 +1,85 @@
+<!--         
+       '$RCSfile: eml-project-2.0.1.dtd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
 
+        '$Author: higgins $'
+          '$Date: 2001-10-10 18:15:39 $'
+      '$Revision: 1.2 $'
 
-<!--eml-coverage-->
-<!ELEMENT geographicCov (descgeog, bounding, dsgpoly*)>
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+
+<!--eml-coverage--> 
+<!--
+<!ELEMENT temporalCov (#PCDATA)>
+-->
 <!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
+<!ELEMENT sngdate ((caldate, time?) | geolage)>
+<!ELEMENT geolage (geolscal, geolest, geolun?, geolexpl?, geolcit*)>
+<!ELEMENT caldate (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
 <!ELEMENT begdate (#PCDATA)>
 <!ELEMENT beggeol (geolage)>
 <!ELEMENT begtime (#PCDATA)>
-<!ELEMENT citeinfo (#PCDATA)>
 <!ELEMENT enddate (#PCDATA)>
 <!ELEMENT endgeol (geolage)>
 <!ELEMENT endtime (#PCDATA)>
-<!ELEMENT geolage (geolscal, geolest, geolun?, geolexpl?, geolcit*)>
-<!ELEMENT gring (#PCDATA)>
-<!ELEMENT grngpoin (gringlat, gringlon)>
 <!ELEMENT mdattim (sngdate+)>
 <!ELEMENT rngdates ((begdate, begtime?, enddate, endtime?) | (beggeol, endgeol))>
-<!ELEMENT sngdate ((caldate, time?) | geolage)>
-<!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
-<!ELEMENT descgeog (#PCDATA)>
-<!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
-<!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
 <!ELEMENT geolscal (#PCDATA)>
 <!ELEMENT geolest (#PCDATA)>
 <!ELEMENT geolun (#PCDATA)>
 <!ELEMENT geolexpl (#PCDATA)>
 <!ELEMENT geolcit (citeinfo)>
+<!ELEMENT citeinfo (#PCDATA)> 
+
+
+
+<!ELEMENT geographicCov (descgeog, bounding, dsgpoly*)>
+<!ELEMENT descgeog (#PCDATA)>
+<!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
+<!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
+<!ELEMENT gring (#PCDATA)>
+<!ELEMENT grngpoin (gringlat, gringlon)>
 <!ELEMENT gringlat (#PCDATA)>
 <!ELEMENT gringlon (#PCDATA)>
-<!ELEMENT caldate (#PCDATA)>
-<!ELEMENT time (#PCDATA)>
 <!ELEMENT westbc (#PCDATA)>
 <!ELEMENT eastbc (#PCDATA)>
 <!ELEMENT northbc (#PCDATA)>
 <!ELEMENT southbc (#PCDATA)>
 <!ELEMENT boundalt (altmin, almax, altunits)>
 <!ELEMENT dsgpolyo (grngpoin+ | gring)>
-<!ELEMENT dsgpolyx (grngpoin+ | gring)>
+<!ELEMENT dsgpolyx (grngpoin+ | gring)>  
 
 <!ELEMENT altmin (#PCDATA)>
 <!ELEMENT almax (#PCDATA)>
 <!ELEMENT altunits (#PCDATA)>
 
+
 <!--end eml-coverage-->
 
 <!--eml-party-->
+
 <!ELEMENT individualName (salutation*, givenName*, surName)>
 <!ELEMENT salutation (#PCDATA)>
 <!ELEMENT givenName (#PCDATA)>
-<!ELEMENT surName (#PCDATA)>
+<!ELEMENT surName (#PCDATA)> 
+
+
 <!ELEMENT organizationName (#PCDATA)>
 <!ELEMENT positionName (#PCDATA)>
 <!ELEMENT address (deliveryPoint*, city?, administrativeArea?, postalCode?, country?)>
@@ -63,7 +95,8 @@
 <!ELEMENT electronicMailAddress (#PCDATA)>
 <!ELEMENT onlineLink (#PCDATA)>
 
-<!ELEMENT role (#PCDATA)>
+<!ELEMENT role (#PCDATA)>      
+
 <!--end eml-party-->
 
 <!--eml-protocol-->
@@ -75,6 +108,10 @@
 <!--end eml-protocol-->
 
 <!--eml-literature-->
+<!--
+<!ELEMENT citation (#PCDATA)> 
+-->
+
 <!ELEMENT citation ((individualName|organizationName|positionName),
                              address*, phone*, electronicMailAddress*, 
                              onlineLink*, role+, ISBN?, ISSN?, 
@@ -109,7 +146,8 @@
                              onlineLink*, role+)>
 <!ELEMENT reportNumber (#PCDATA)>
 <!ELEMENT degree (#PCDATA)>
-<!ELEMENT degreeInstitution (#PCDATA)>
+<!ELEMENT degreeInstitution (#PCDATA)> 
+
 <!--end eml-literature-->
 
 <!-- The root element, which represents the research project 
@@ -118,14 +156,13 @@
 <!-- Research project descriptor -->
 <!ELEMENT researchProject (title+, originator+, temporalCov*, objectives?, 
           abstract?, funding?, siteDescription*, designDescription*, 
-          eml-protocol*, staff*, researchProject*)>
+          protocol*, staff*, researchProject*)>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT originator ((individualName|organizationName|positionName)+,
                              address*, phone*, electronicMailAddress*, 
                              onlineLink*, role+)>
 <!ELEMENT identifier (#PCDATA)>
 <!ELEMENT abstract (#PCDATA)>
-<!ELEMENT eml-protocol (#PCDATA)>
 <!-- Scope and purpose of the research project -->
 <!ELEMENT objectives (paragraph+)>
 <!-- Grant and contract numbers, names and addresses of funding sources -->
