@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-17 22:18:44 $'
-      '$Revision: 1.14 $'
+          '$Date: 2002-10-28 20:18:30 $'
+      '$Revision: 1.15 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -417,15 +417,11 @@
       </question>
 
       <answer>
-        <para>With
-        <ulink
-        url="http://www.w3.org/TR/xmlschema-0/#specifying%20Keys&amp;theirRefs">
-        key and keyref</ulink>
-
-        attributes in each module. Certain modules within EML allow you to
-        identify specific subtrees with a unique identifier. This identifier
-        can then be used in place of content in other parts of the EML
-        document.</para>
+        <para>With "id" attributes and "references" elements
+        in each module. Certain modules within EML allow you to
+        identify specific subtrees with a unique identifier (id). This 
+        identifier can then be used in place of content in other parts 
+        of the EML document by placing it in a "references" element.</para>
       </answer>
 
       <answer>
@@ -433,23 +429,27 @@
         when we wanted a particular block to be reusable. This concept was
         extended for linking modules together by adding an optional attribute
         named "id" of type "xs:string" for each ComplexType. This allows us to
-        uniquely address each block defined by a CT, and any XML 1.0 parser
-        will validate that all of the "id" values are in fact locally unique.
+        uniquely address each block defined by a CT.
         For the "ResourceBase" CT, this id element replaces the "identifier"
         element and acts as the overall identifier for the package. The content
         model for each CT is a choice between the existing content model and a
         new element named "references" of type "xs:string". This element is
         used to hold a reference to an existing subtree identified by its id.
-        We use this element instead of an IDREF to surmount validation issues.
         This relationship between the "references" element and the "id"
-        identifiers is enforced by defining an XML Schema "key" for the "id"
-        elements and a "keyref" for the "references" elements. Thus, any XML
-        parser that supports XML Schema validation will be able to validate the
-        correspondence between each "id" and "references" field (e.g.,
-        <ulink url="http://xml.apache.org/xerces2-j/index.html">Xerces</ulink>
-
-        2.0 supports this). Here's a fragemnt of an example xml doc to
-        illustrate:
+        identifiers is enforced by defining a "key" for the "id"
+        elements and a "keyref" for the "references" elements. This use of
+        a key and keyref differs slightly from the XML Schema case because
+        in XML Schema, keys can not be null, whereas we want people to be
+        able to optionally omit the "id" attribute.  Consequently, we have
+        incorporated the rules about the correspondence between keys and
+        keyrefs into the EML specification, but not into the schemas directly.
+        Thus, in order to validate that an EML document is valid EML, you must
+        use a parser that understands the referencing system in EML and can
+        check that it is used correctly.  An example system that handles this
+        key validation is shipped with the EML distribution (see the
+        "EML Parser").
+        
+        Here's a fragemnt of an example xml doc to illustrate:
         <programlisting>
         <![CDATA[
             ...
@@ -470,18 +470,8 @@
 
         <para>This even works for types that extend other types as long as the
         subclass is the one that does the referencing (e.g., associatedParty
-        can reference creator, but not vice versa). This rule will actually be
-        enforced by validating parsers. The key and keyref are defined in the
-        eml.xsd module. A package is defined by all of the content included in
-        the &lt;eml&gt; tag, including the nested modules like attribute in
-        entity. The nature of the association is implied by the types of the
-        document (ie, role/predicate/property/relationship is not specified
-        directly). The reference/id linkage is enforced by defining another
-        "keyref" constraint. This lets us add arbitrary metadata documents and
-        point them at existing ids in the tree. Thus, the id serves as both
-        ends of the link (subject and object in RDF terms) depending on whether
-        it is referred to in a "references" element or in a "describes"
-        attribute.</para>
+        can reference creator, but not vice versa). 
+        </para>
       </answer>
     </qandaentry>
 
@@ -533,7 +523,10 @@
         the EML release. Only
         <ulink url="http://www.w3.org/XML/Schema">XML Schemas</ulink>
 
-        will be released.</para>
+        will be released. Even then, there are some EML rules which are not
+        expressible in XML Schema and for which you must use a specialized
+        validator, such as the "EML Parser" that ships with the distribution.
+        </para>
       </answer>
     </qandaentry>
 
