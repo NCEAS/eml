@@ -1,0 +1,207 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           xmlns:rp="iso:ResponsibleParty"
+           targetNamespace="eml:distribution">
+  
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-relation.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: berkley $'
+          '$Date: 2001-02-21 21:38:42 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-relation
+      </moduleName>
+      <moduleDescription>
+        This schema defines the integrity constraints between entities in 
+        a relational database.
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+  
+  <xs:element name="eml-relation" minOccurs="1"  maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          relational integrity descriptors
+        </tooltip>
+        <summary>
+          Describes the relational integrity constraints of a relational 
+          database.
+        </summary>
+        <description>
+          Describes the relational integrity constraints of a relational 
+          database.  This includes primary keys, foreign keys, unique keys, etc.
+        </description>
+        <example>
+        </example>
+        <lineage>
+           New in EML 2.0
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="constraint"
+                     minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                constraint information
+              </tooltip>
+              <summary>
+                information about the constraint being defined
+              </summary>
+              <description>
+                complete information needed to reconstruct this relation into
+                another database system.  
+              </description>
+              <example>
+                
+              </example>
+              <lineage>
+                New in EML 2.0
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:element name="name" type="xs:string"
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  name of the constraint
+                </tooltip>
+                <summary>
+                  name of the field that this constraint is tied to
+                </summary>
+                <description>
+                 name of the field that this constraint is tied to.  This could
+                 also be the name of an independent constraint such as a 
+                 trigger or an autonumber generator.
+                </description>
+                <example>
+                  LocationID, TABLE1_NUMBER_GEN1
+                </example>
+                <lineage>
+                  New in EML 2.0
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="tableName" type="xs:string"
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  table to which this constraint is tied
+                </tooltip>
+                <summary>
+                  table to which this constraint is tied
+                </summary>
+                <description>
+                  table to which this constraint is tied.  In the instance
+                  of a key, it is the name of the table in which it is defined.
+                </description>
+                <example>
+                  
+                </example>
+                <lineage>
+                  New in EML 2.0
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="type" type="xs:string"
+                      minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  type of constraint
+                </tooltip>
+                <summary>
+                  the type of constraint being defined
+                </summary>
+                <description>
+                  the type of constraint being defined.  This is 
+                  what kind of constraint this is.
+                </description>
+                <example>
+                  primary key, foreign key, unique key
+                </example>
+                <lineage>
+                  New in EML 2.0
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="relatedTable" type="xs:string"
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  table to which this constraint links its table
+                </tooltip>
+                <summary>
+                  table to which this constraint links its table
+                </summary>
+                <description>
+                  table to which this constraint links its table.  This should
+                  be used for all foreign keys.
+                </description>
+                <example>
+                  
+                </example>
+                <lineage>
+                  New in EML 2.0
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="description" type="xs:string"
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  constraint description
+                </tooltip>
+                <summary>
+                  discription of the constraint
+                </summary>
+                <description>
+                  discription of the constraint.  Any additional information 
+                  that may be needed.
+                </description>
+                <example>
+                  
+                </example>
+                <lineage>
+                  New in EML 2.0
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
