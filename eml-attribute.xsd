@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-06 15:04:31 $'
-      '$Revision: 1.25 $'
+          '$Date: 2002-05-10 16:17:36 $'
+      '$Revision: 1.26 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -750,7 +750,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="accuracy" type="DataQuality">
+              <xs:element name="accuracy" type="Accuracy">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
@@ -785,22 +785,53 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:complexType name="DataQuality">
+  <xs:complexType name="Accuracy">
     <xs:sequence>
-      <xs:element name="attributeAccuracy" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
+      <xs:element name="attributeAccuracyReport" type="xs:string">
+         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
-              an assessment of the accuracy of the identification of entities 
-              and assignment of attribute values in the data set.
+              an explanation of the accuracy of the identification of the 
+              entities and assignments of values in the data set and a 
+              description of the tests used.
             </doc:tooltip>
             <doc:summary>
-              an assessment of the accuracy of the identification of entities 
-              and assignment of attribute values in the data set.
+              an explanation of the accuracy of the identification of the 
+              entities and assignments of values in the data set and a 
+              description of the tests used.
             </doc:summary>
             <doc:description>
-              an assessment of the accuracy of the identification of entities 
-              and assignment of attribute values in the data set.
+              an explanation of the accuracy of the identification of the 
+              entities and assignments of values in the data set and a 
+              description of the tests used.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>
+              FGDC-STD-001-1998 section 2
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
+         <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              a value assigned to summarize the accuracy of the 
+              identification of the entities and assignments of values 
+              in the data set and the identification of the test that 
+              yielded the value.
+            </doc:tooltip>
+            <doc:summary>
+              a value assigned to summarize the accuracy of the 
+              identification of the entities and assignments of values 
+              in the data set and the identification of the test that 
+              yielded the value.
+            </doc:summary>
+            <doc:description>
+              a value assigned to summarize the accuracy of the 
+              identification of the entities and assignments of values 
+              in the data set and the identification of the test that 
+              yielded the value.
             </doc:description>
             <doc:example/>
             <doc:lineage>
@@ -810,23 +841,23 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="attributeAccuracyReport" type="xs:string">
-               <xs:annotation>
+            <xs:element name="attributeAccuracyValue" type="xs:string">
+              <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
-                    an explanation of the accuracy of the identification of the 
-                    entities and assignments of values in the data set and a 
-                    description of the tests used.
+                    an estimate of the accuracy of the identification of 
+                    the entities and assignments of attribute values 
+                    in the data set.
                   </doc:tooltip>
                   <doc:summary>
-                    an explanation of the accuracy of the identification of the 
-                    entities and assignments of values in the data set and a 
-                    description of the tests used.
+                    an estimate of the accuracy of the identification of 
+                    the entities and assignments of attribute values 
+                    in the data set.
                   </doc:summary>
                   <doc:description>
-                    an explanation of the accuracy of the identification of the 
-                    entities and assignments of values in the data set and a 
-                    description of the tests used.
+                    an estimate of the accuracy of the identification of 
+                    the entities and assignments of attribute values 
+                    in the data set.
                   </doc:description>
                   <doc:example/>
                   <doc:lineage>
@@ -835,26 +866,20 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
-               <xs:annotation>
+            <xs:element name="attributeAccuracyExplanation" type="xs:string">
+              <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
-                    a value assigned to summarize the accuracy of the 
-                    identification of the entities and assignments of values 
-                    in the data set and the identification of the test that 
-                    yielded the value.
+                    the identification of the test that yielded the 
+                    Attribute Accuracy Value.
                   </doc:tooltip>
                   <doc:summary>
-                    a value assigned to summarize the accuracy of the 
-                    identification of the entities and assignments of values 
-                    in the data set and the identification of the test that 
-                    yielded the value.
+                    the identification of the test that yielded the 
+                    Attribute Accuracy Value.
                   </doc:summary>
                   <doc:description>
-                    a value assigned to summarize the accuracy of the 
-                    identification of the entities and assignments of values 
-                    in the data set and the identification of the test that 
-                    yielded the value.
+                    the identification of the test that yielded the 
+                    Attribute Accuracy Value.
                   </doc:description>
                   <doc:example/>
                   <doc:lineage>
@@ -862,799 +887,9 @@
                   </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="attributeAccuracyValue" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          an estimate of the accuracy of the identification of 
-                          the entities and assignments of attribute values 
-                          in the data set.
-                        </doc:tooltip>
-                        <doc:summary>
-                          an estimate of the accuracy of the identification of 
-                          the entities and assignments of attribute values 
-                          in the data set.
-                        </doc:summary>
-                        <doc:description>
-                          an estimate of the accuracy of the identification of 
-                          the entities and assignments of attribute values 
-                          in the data set.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="attributeAccuracyExplanation" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the identification of the test that yielded the 
-                          Attribute Accuracy Value.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the identification of the test that yielded the 
-                          Attribute Accuracy Value.
-                        </doc:summary>
-                        <doc:description>
-                          the identification of the test that yielded the 
-                          Attribute Accuracy Value.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
             </xs:element>
           </xs:sequence>
         </xs:complexType>
-      </xs:element>
-      <xs:element name="logicalConsistencyReport" type="xs:string">
-        <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            an explanation of the fidelity of relationships in the data set and 
-            tests used.
-          </doc:tooltip>
-          <doc:summary>
-            an explanation of the fidelity of relationships in the data set and 
-            tests used.
-          </doc:summary>
-          <doc:description>
-            an explanation of the fidelity of relationships in the data set and 
-            tests used.
-          </doc:description>
-          <doc:example/>
-          <doc:lineage>
-            FGDC-STD-001-1998 section 2
-          </doc:lineage>
-        </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="completenessReport" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              information about omissions, selection criteria, generalization, 
-              definitions used, and other rules used to derive the data set.
-            </doc:tooltip>
-            <doc:summary>
-              information about omissions, selection criteria, generalization, 
-              definitions used, and other rules used to derive the data set.
-            </doc:summary>
-            <doc:description>
-              information about omissions, selection criteria, generalization, 
-              definitions used, and other rules used to derive the data set.
-            </doc:description>
-            <doc:example/>
-            <doc:lineage>
-              FGDC-STD-001-1998 section 2
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="positionalAccuracy" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              an assessment of the accuracy of the positions of spatial objects.
-            </doc:tooltip>
-            <doc:summary>
-              an assessment of the accuracy of the positions of spatial objects.
-            </doc:summary>
-            <doc:description>
-              an assessment of the accuracy of the positions of spatial objects.
-            </doc:description>
-            <doc:example/>
-            <doc:lineage>
-              FGDC-STD-001-1998 section 2
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="horizontalPositionalAccuracy" minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    an estimate of accuracy of the horizontal positions of the 
-                    spatial objects.
-                  </doc:tooltip>
-                  <doc:summary>
-                    an estimate of accuracy of the horizontal positions of the 
-                    spatial objects.
-                  </doc:summary>
-                  <doc:description>
-                    an estimate of accuracy of the horizontal positions of the 
-                    spatial objects.
-                  </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                    FGDC-STD-001-1998 section 2
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="horizontalPositionalAccuracyReport" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          an explanation of the accuracy of the horizontal 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:tooltip>
-                        <doc:summary>
-                          an explanation of the accuracy of the horizontal 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:summary>
-                        <doc:description>
-                          an explanation of the accuracy of the horizontal 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="quantitativeHorizontalPositionalAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          numeric value assigned to summarize the accuracy of 
-                          the horizontal coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:tooltip>
-                        <doc:summary>
-                          numeric value assigned to summarize the accuracy of 
-                          the horizontal coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:summary>
-                        <doc:description>
-                          numeric value assigned to summarize the accuracy of 
-                          the horizontal coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="horizontalPositionalAccuracyValue" type="xs:float">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                an estimate of the accuracy of the horizontal 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:tooltip>
-                              <doc:summary>
-                                an estimate of the accuracy of the horizontal 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:summary>
-                              <doc:description>
-                                an estimate of the accuracy of the horizontal 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                FGDC-STD-001-1998 section 2
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="horizontalPositionalAccuracyExplanation" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                 the identification of the test that yielded the 
-                                 Horizontal Positional Accuracy Value.
-                              </doc:tooltip>
-                              <doc:summary>
-                                the identification of the test that yielded the 
-                                 Horizontal Positional Accuracy Value.
-                              </doc:summary>
-                              <doc:description>
-                                the identification of the test that yielded the 
-                                 Horizontal Positional Accuracy Value.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                FGDC-STD-001-1998 section 2
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="verticalPositionalAccuracy" minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    an estimate of accuracy of the vertical positions in the 
-                    data set.
-                  </doc:tooltip>
-                  <doc:summary>
-                    an estimate of accuracy of the vertical positions in the 
-                    data set.
-                  </doc:summary>
-                  <doc:description>
-                    an estimate of accuracy of the vertical positions in the 
-                    data set.
-                  </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                    FGDC-STD-001-1998 section 2
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="verticalPositionalAccuracyReport" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          an explanation of the accuracy of the vertical 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:tooltip>
-                        <doc:summary>
-                          an explanation of the accuracy of the vertical 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:summary>
-                        <doc:description>
-                          an explanation of the accuracy of the vertical 
-                          coordinate measurements and a description of the 
-                          tests used.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="quantitativeVerticalPositionalAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          numeric value assigned to summarize the accuracy of 
-                          vertical coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:tooltip>
-                        <doc:summary>
-                          numeric value assigned to summarize the accuracy of 
-                          vertical coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:summary>
-                        <doc:description>
-                          numeric value assigned to summarize the accuracy of 
-                          vertical coordinate measurements and the 
-                          identification of the test that yielded the value.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="verticalPositionalAccuracyValue" type="xs:float">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                an estimate of the accuracy of the vertical 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:tooltip>
-                              <doc:summary>
-                                an estimate of the accuracy of the vertical 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:summary>
-                              <doc:description>
-                                an estimate of the accuracy of the vertical 
-                                coordinate measurements in the data set 
-                                expressed in (ground) meters.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                FGDC-STD-001-1998 section 2
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="verticalPositionalAccuracyExplanation" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                the identification of the test that yielded 
-                                the Vertical Positional Accuracy Value.
-                              </doc:tooltip>
-                              <doc:summary>
-                                the identification of the test that yielded 
-                                the Vertical Positional Accuracy Value.
-                              </doc:summary>
-                              <doc:description>
-                                the identification of the test that yielded 
-                                the Vertical Positional Accuracy Value.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                FGDC-STD-001-1998 section 2
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="lineage">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              information about the events, parameters, and source data which 
-              constructed the data set, and information about the responsible 
-              parties.
-            </doc:tooltip>
-            <doc:summary>
-              information about the events, parameters, and source data which 
-              constructed the data set, and information about the responsible 
-              parties.
-            </doc:summary>
-            <doc:description>
-              information about the events, parameters, and source data which 
-              constructed the data set, and information about the responsible 
-              parties.
-            </doc:description>
-            <doc:example/>
-            <doc:lineage>
-              FGDC-STD-001-1998 section 2
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="sourceInformation" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    list of sources and a short discussion of the information 
-                    contributed by each.
-                  </doc:tooltip>
-                  <doc:summary>
-                    list of sources and a short discussion of the information 
-                    contributed by each.
-                  </doc:summary>
-                  <doc:description>
-                    list of sources and a short discussion of the information 
-                    contributed by each.
-                  </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                    FGDC-STD-001-1998 section 2
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="sourceCitation" type="lit:LitCitation">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                           reference for a source data set.
-                        </doc:tooltip>
-                        <doc:summary>
-                           reference for a source data set.
-                        </doc:summary>
-                        <doc:description>
-                           reference for a source data set.  Note that the 
-                           model of this element does NOT match exactly with
-                           FGDC.  The model comes from eml-literature instead.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="sourceScaleDenominator" minOccurs="0" maxOccurs="1" type="xs:integer">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the denominator of the representative fraction on a 
-                          map (for example, on a 1:24,000-scale map, the Source 
-                          Scale Denominator is 24000).
-                        </doc:tooltip>
-                        <doc:summary>
-                          the denominator of the representative fraction on a 
-                          map (for example, on a 1:24,000-scale map, the Source 
-                          Scale Denominator is 24000).
-                        </doc:summary>
-                        <doc:description>
-                          the denominator of the representative fraction on a 
-                          map (for example, on a 1:24,000-scale map, the Source 
-                          Scale Denominator is 24000).
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="typeOfSourceMedia" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the medium of the source data set.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the medium of the source data set.
-                        </doc:summary>
-                        <doc:description>
-                          the medium of the source data set.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="sourceTimePeriodOfContent">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          time period(s) for which the source data set 
-                          corresponds to the ground.
-                        </doc:tooltip>
-                        <doc:summary>
-                          time period(s) for which the source data set 
-                          corresponds to the ground.
-                        </doc:summary>
-                        <doc:description>
-                          time period(s) for which the source data set 
-                          corresponds to the ground.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="timePeriodInformation" type="cov:TemporalCoverage">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                temporal coverage information for this attribute
-                              </doc:tooltip>
-                              <doc:summary>
-                                temporal coverage information for this attribute
-                              </doc:summary>
-                              <doc:description>
-                                temporal coverage information for this attribute.
-                                Note that the content of the this element does
-                                not match FGDC.  It implements eml-coverage's 
-                                temporalCoverage type instead.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                root element comes fro, FGDC-STD-001-1998 
-                                section 2 but content comes from eml-coverage.
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="sourceCurrentnessReference" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
-                                the basis on which the source time period of 
-                                content information of the source data set is 
-                                determined.
-                              </doc:tooltip>
-                              <doc:summary>
-                                the basis on which the source time period of 
-                                content information of the source data set is 
-                                determined.
-                              </doc:summary>
-                              <doc:description>
-                                the basis on which the source time period of 
-                                content information of the source data set is 
-                                determined.
-                              </doc:description>
-                              <doc:example/>
-                              <doc:lineage>
-                                FGDC-STD-001-1998 section 2
-                              </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="sourceCitationAbbreviation" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          short-form alias for the source citation.
-                        </doc:tooltip>
-                        <doc:summary>
-                          short-form alias for the source citation.
-                        </doc:summary>
-                        <doc:description>
-                          short-form alias for the source citation.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="sourceContribution" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          brief statement identifying the information 
-                          contributed by the source to the data set.
-                        </doc:tooltip>
-                        <doc:summary>
-                          brief statement identifying the information 
-                          contributed by the source to the data set.
-                        </doc:summary>
-                        <doc:description>
-                          brief statement identifying the information 
-                          contributed by the source to the data set.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="processStep" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    information about a single event.
-                  </doc:tooltip>
-                  <doc:summary>
-                    information about a single event.
-                  </doc:summary>
-                  <doc:description>
-                    information about a single event.
-                  </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                    FGDC-STD-001-1998 section 2
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="processDescription" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          an explanation of the event and related parameters or 
-                          tolerances.
-                        </doc:tooltip>
-                        <doc:summary>
-                          an explanation of the event and related parameters or 
-                          tolerances.
-                        </doc:summary>
-                        <doc:description>
-                          an explanation of the event and related parameters or 
-                          tolerances.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="sourceUsedCitationAbbreviation" minOccurs="0" maxOccurs="unbounded" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the Source Citation Abbreviation of a data set used 
-                          in the processing step.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the Source Citation Abbreviation of a data set used 
-                          in the processing step.
-                        </doc:summary>
-                        <doc:description>
-                          the Source Citation Abbreviation of a data set used 
-                          in the processing step.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="processDate" type="xs:date">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the date when the event was completed.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the date when the event was completed.
-                        </doc:summary>
-                        <doc:description>
-                          the date when the event was completed.  Note that
-                          this uses the XMLSchema date type instead of the
-                          FGDC date construct.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="processTime" type="xs:time">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the time when the event was completed.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the time when the event was completed.
-                        </doc:summary>
-                        <doc:description>
-                          the time when the event was completed.  Note that
-                          this uses the XMLSchema time type instead of the FGDC
-                          time construct.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="sourceProducedCitationAbbreviation" minOccurs="0" maxOccurs="unbounded" type="xs:string">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the Source Citation Abbreviation of an intermediate 
-                          data set that (1) is significant in the opinion of 
-                          the data producer, (2) is generated in the processing 
-                          step, and (3) is used in later processing steps.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the Source Citation Abbreviation of an intermediate 
-                          data set that (1) is significant in the opinion of 
-                          the data producer, (2) is generated in the processing 
-                          step, and (3) is used in later processing steps.
-                        </doc:summary>
-                        <doc:description>
-                          the Source Citation Abbreviation of an intermediate 
-                          data set that (1) is significant in the opinion of 
-                          the data producer, (2) is generated in the processing 
-                          step, and (3) is used in later processing steps.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="processContact" type="rp:ResponsibleParty" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
-                          the party responsible for the processing step 
-                          information.
-                        </doc:tooltip>
-                        <doc:summary>
-                          the party responsible for the processing step 
-                          information.
-                        </doc:summary>
-                        <doc:description>
-                          the party responsible for the processing step 
-                          information.  Note that this uses the eml-party
-                          ResponsibleParty type instead of the FGDC 
-                          Contact_Information construct.
-                        </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
-                          FGDC-STD-001-1998 section 2
-                        </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="cloudCover" type="xs:float" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-               area of a data set obstructed by clouds, expressed as a 
-               percentage of the spatial extent.
-            </doc:tooltip>
-            <doc:summary>
-              area of a data set obstructed by clouds, expressed as a 
-              percentage of the spatial extent.
-            </doc:summary>
-            <doc:description>
-              area of a data set obstructed by clouds, expressed as a 
-              percentage of the spatial extent.
-            </doc:description>
-            <doc:example/>
-            <doc:lineage>
-              FGDC-STD-001-1998 section 2
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
