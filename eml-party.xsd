@@ -1,646 +1,1292 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:party-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml:resource-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns="eml:party-2.0.0beta8">
-  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
+
+<xs:schema targetNamespace="eml:party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml:resource-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
+
+  <xs:import namespace="eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
+
+  <xs:import namespace="eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
+
   <xs:annotation>
+
     <xs:documentation>
+
        '$RCSfile: eml-party.xsd,v $'
+
        Copyright: 1997-2002 Regents of the University of California,
+
                             University of New Mexico, and
+
                             Arizona State University
+
         Sponsors: National Center for Ecological Analysis and Synthesis and
+
                   Partnership for Interdisciplinary Studies of Coastal Oceans,
+
                      University of California Santa Barbara
+
                   Long-Term Ecological Research Network Office,
+
                      University of New Mexico
+
                   Center for Environmental Studies, Arizona State University
+
    Other funding: National Science Foundation (see README for details)
+
                   The David and Lucile Packard Foundation
+
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-06-11 22:20:04 $'
-      '$Revision: 1.24 $'
+
+
+        '$Author: jones $'
+
+          '$Date: 2002-06-13 19:40:27 $'
+
+      '$Revision: 1.25 $'
+
+
 
     This program is free software; you can redistribute it and/or modify
+
     it under the terms of the GNU General Public License as published by
+
     the Free Software Foundation; either version 2 of the License, or
+
     (at your option) any later version.
 
+
+
     This program is distributed in the hope that it will be useful,
+
     but WITHOUT ANY WARRANTY; without even the implied warranty of
+
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
     GNU General Public License for more details.
 
+
+
     You should have received a copy of the GNU General Public License
+
     along with this program; if not, write to the Free Software
+
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
     </xs:documentation>
+
     <xs:appinfo>
+
       <doc:moduleDocs>
+
         <doc:moduleName>eml-party</doc:moduleName>
+
         <doc:moduleDescription>
+
           The eml-party module describes a responsible party (person
+
           or organization), and is typically used to name the originator
+
           of a resource or metadata document.  It contains
+
           detailed contact information for the party, be it an individual person,
+
           an organization, or a named position within an organization.
+
         </doc:moduleDescription>
+
         <doc:recommendedUsage>
+
           all datasets
+
         </doc:recommendedUsage>
+
         <doc:standAlone>
+
           no
+
         </doc:standAlone>
+
         <doc:importedBy>
+
           eml-attribute
+
         </doc:importedBy>
+
         <doc:importedBy>
+
           eml-coverage
+
         </doc:importedBy>
+
         <doc:importedBy>
+
           eml-literature
+
         </doc:importedBy>
+
         <doc:importedBy>
+
           eml-project
+
         </doc:importedBy>
+
         <doc:importedBy>
+
           eml-resource
+
         </doc:importedBy>
+
       </doc:moduleDocs>
+
     </xs:appinfo>
+
   </xs:annotation>
+
   <xs:complexType name="ResponsibleParty">
+
     <xs:annotation>
+
       <xs:appinfo>
+
         <doc:tooltip>
+
           Responsible party
+
         </doc:tooltip>
+
         <doc:summary>
+
           The individual, organization, or role associated with a resource.
+
         </doc:summary>
+
         <doc:description>
+
           The responsible party field contains multiple subfields that are used
+
           to describe  the person, organization, or position within an
+
           organization that is associated in some way with a resource.  It is
+
           intended to be used to fully fully document contact information for
+
           many types of associations, such as owner, manager, steward, curator,
+
           etc.
+
         </doc:description>
+
         <doc:example>
+
           Please see the examples for the particular subfields.
+
         </doc:example>
+
         <doc:lineage>
+
           This field was derived from the ISO 19115.3 standard
+
           (iso-geo-md-2000June-draft).
+
         </doc:lineage>
+
       </xs:appinfo>
+
     </xs:annotation>
+
     <xs:choice>
+
       <xs:sequence>
+
         <xs:choice maxOccurs="unbounded">
+
           <xs:element name="individualName" type="Person">
+
             <xs:annotation>
+
               <xs:appinfo>
+
                 <doc:tooltip>
+
                 Individual Name
+
               </doc:tooltip>
+
                 <doc:summary>
+
                 The full name of the person being described
+
               </doc:summary>
+
                 <doc:description>
+
                 The responsible party field contains the full name of the person
+
                 that is associated with the resource.  This field contains
+
                 subfields that break the persons name down into first and last
+
                 name, and the values are entered into those field containers.
+
                 Note that this field, used in conjunction with 'organizationName'
+
                 and 'positionName' make up a single logical originator.  Because
+
                 of this, an originator with only the individualName of 'Joe Smith'
+
                 is NOT the same as an originator with the name of 'Joe Smith' and
+
                 the organizationName of 'NSF'.  Also, the positionName should not
+
                 be used in conjunction with individualName unless only that
+
                 individual at that position would be considered an originator
+
                 for the data package.  If a positionName is used in conjunction
+
                 with an organizationName, then that
+
                 implies that any person who currently occupies said positionName
+
                 at organizationName is the originator of the data package.
+
               </doc:description>
+
                 <doc:example>
+
                 Because this is an 'elementOnly' field, please look at the
+
                 examples for the subfields 'givenName' and 'surName'.
+
               </doc:example>
+
                 <doc:lineage>
+
                 This field was derived from the ISO 19115.3 standard
+
                 (iso-geo-md-2000June-draft).
+
               </doc:lineage>
+
               </xs:appinfo>
+
             </xs:annotation>
+
           </xs:element>
+
           <xs:element name="organizationName" type="xs:string">
+
             <xs:annotation>
+
               <xs:appinfo>
+
                 <doc:tooltip>
+
                 Organization name
+
               </doc:tooltip>
+
                 <doc:summary>
+
                 The full name of the organization being described
+
               </doc:summary>
+
                 <doc:description>
+
                 The responsible party field contains the full name of the
+
                 organization that is associated with the resource.  This field
+
                 is intended to describe which institution or overall
+
                 organization is associated with the resource being described.
 
+
+
                 Note that this field, used in conjunction with 'individualName'
+
                 and 'positionName' make up a single logical originator.  Because
+
                 of this, an originator with only the individualName of 'Joe Smith'
+
                 is NOT the same as an originator with the name of 'Joe Smith' and
+
                 the organizationName of 'NSF'.  Also, the positionName should not
+
                 be used in conjunction with individualName unless only that
+
                 individual at that position would be considered an originator
+
                 for the data package.  If a positionName is used in conjunction
+
                 with an organizationName, then that
+
                 implies that any person who currently occupies said positionName
+
                 at organizationName is the originator of the data package.
+
               </doc:description>
+
                 <doc:example>
+
                 National Center for Ecological Analysis and Synthesis
+
               </doc:example>
+
                 <doc:lineage>
+
                 This field was derived from the ISO 19115.3 standard
+
                 (iso-geo-md-2000June-draft).
+
               </doc:lineage>
+
               </xs:appinfo>
+
             </xs:annotation>
+
           </xs:element>
+
           <xs:element name="positionName" type="xs:string">
+
             <xs:annotation>
+
               <xs:appinfo>
+
                 <doc:tooltip>
+
                 Position Name
+
               </doc:tooltip>
+
                 <doc:summary>
+
                 The name of the title or position associated with the resource.
+
               </doc:summary>
+
                 <doc:description>
+
                 This field is intended to be used instead of a particular person
+
                 or full organization name.  If the associated person that holds
+
                 the role changes frequently, then Position Name would be used
+
                 for consistency.
 
+
+
                 Note that this field, used in conjunction with 'organizationName'
+
                 and 'individualName' make up a single logical originator.  Because
+
                 of this, an originator with only the individualName of 'Joe Smith'
+
                 is NOT the same as an originator with the name of 'Joe Smith' and
+
                 the organizationName of 'NSF'.  Also, the positionName should not
+
                 be used in conjunction with individualName unless only that
+
                 individual at that position would be considered an originator
+
                 for the data package.  If a positionName is used in conjunction
+
                 with an organizationName, then that
+
                 implies that any person who currently occupies said positionName
+
                 at organizationName is the originator of the data package.
+
               </doc:description>
+
                 <doc:example>
+
                 Niwot Ridge Data Manager
+
               </doc:example>
+
                 <doc:lineage>
+
                 This field was derived from the ISO 19115.3 standard
+
                 (iso-geo-md-2000June-draft).
+
               </doc:lineage>
+
               </xs:appinfo>
+
             </xs:annotation>
+
           </xs:element>
+
         </xs:choice>
+
         <xs:element name="address" type="Address" minOccurs="0" maxOccurs="unbounded">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Contact address
+
             </doc:tooltip>
+
               <doc:summary>
+
               The full address information for a given responsible
+
               party entry.
+
             </doc:summary>
+
               <doc:description>
+
               The address field is a container for multiple subfields that
+
               describe the physical or electronic address of the
+
               responsible party for a resource.
+
             </doc:description>
+
               <doc:example>
+
               Please see the subfield examples.
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Phone
+
             </doc:tooltip>
+
               <doc:summary>
+
               Information about the contact's telephone
+
             </doc:summary>
+
               <doc:description>
+
               The phone field describes information about the responsible
+
               party's telephone, be it a voice phone, fax, or TTD/TTY
+
               type telephone.  This field contains an attribute used
+
               to identify the type.
+
             </doc:description>
+
               <doc:example><![CDATA[
+
               <phone phonetype="voice">805-555-2500</phone>]]></doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
           <xs:complexType>
+
             <xs:simpleContent>
+
               <xs:extension base="xs:string">
+
                 <xs:attribute name="phonetype" type="xs:string" use="optional" default="voice">
+
                   <xs:annotation>
+
                     <xs:appinfo>
+
                       <doc:tooltip>
+
                   Phone type
+
                 </doc:tooltip>
+
                       <doc:summary>
+
                   The type of the phone to which this number applies
+
                 </doc:summary>
+
                       <doc:description>
+
                   This attribute gives the type of phone to which this
+
                   number applies.  By default, this is assumed to be
+
                   of type "voice", but other possibilities include
+
                   "facsimile" and "tdd".
+
                 </doc:description>
+
                       <doc:example/>
+
                       <doc:lineage>
+
                   Derived from NBII and related standards.
+
                 </doc:lineage>
+
                     </xs:appinfo>
+
                   </xs:annotation>
+
                 </xs:attribute>
+
               </xs:extension>
+
             </xs:simpleContent>
+
           </xs:complexType>
+
         </xs:element>
+
         <xs:element name="electronicMailAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Email address
+
             </doc:tooltip>
+
               <doc:summary>
+
               The email address of the contact.
+
             </doc:summary>
+
               <doc:description>
+
               The electronic mail address is the email address for the
+
               party.  It is intended to be an Internet SMTP email
+
               address, which should consist of a username folowed by the
+
               @ symbol, followd by the email server domain name address.
+
               Other address types are allowable.
+
             </doc:description>
+
               <doc:example>
+
               my-email@mydomain.edu
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="onlineUrl" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Online Link
+
             </doc:tooltip>
+
               <doc:summary>
+
               A link to associated online information, usually a web site.
+
             </doc:summary>
+
               <doc:description>
+
               A link to associated online information, usually a web site.
+
               When the party represents an organization, this is the URL
+
               to a website or other online information about the organization.
+
               If the party is an individual, it might be their personal web
+
               site or other related online information about the party.
+
             </doc:description>
+
               <doc:example>
+
               http://www.yourdomain.edu/~doe
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
       </xs:sequence>
+
       <xs:element name="references" type="xs:string"/>
+
     </xs:choice>
+
     <xs:attribute name="id" type="xs:ID" use="optional"/>
+
   </xs:complexType>
+
   <xs:complexType name="Person">
+
     <xs:annotation>
+
       <xs:appinfo>
+
         <doc:tooltip>
+
           Person
+
         </doc:tooltip>
+
         <doc:summary>
+
           The full name of the individual associated with the resource.
+
         </doc:summary>
+
         <doc:description>
+
           The person field is used to enter the salutation, first name, and last
+
           name of the individual associated with the resource.  It uses three
+
           subfields in order to help parse the person's entire name.
+
         </doc:description>
+
         <doc:example>
+
           Please see the examples within each subfield.
+
         </doc:example>
+
         <doc:lineage>
+
           This field was derived from the ISO 19115.3 standard
+
           (iso-geo-md-2000June-draft).
+
         </doc:lineage>
+
       </xs:appinfo>
+
     </xs:annotation>
+
     <xs:sequence>
+
       <xs:element name="salutation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+
         <xs:annotation>
+
           <xs:appinfo>
+
             <doc:tooltip>
+
               Salutation
+
             </doc:tooltip>
+
             <doc:summary>
+
               The salutation used to address an individual
+
             </doc:summary>
+
             <doc:description>
+
               The salutation field is used in addressing an individual with a
+
               particular title, such as Dr., Ms., Mrs., Mr., etc.
+
             </doc:description>
+
             <doc:example>
+
               Dr.
+
             </doc:example>
+
             <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
           </xs:appinfo>
+
         </xs:annotation>
+
       </xs:element>
+
       <xs:element name="givenName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+
         <xs:annotation>
+
           <xs:appinfo>
+
             <doc:tooltip>
+
               Given name
+
             </doc:tooltip>
+
             <doc:summary>
+
               The given name of the individual.
+
             </doc:summary>
+
             <doc:description>
+
               The given name field is used for the first name of the individual
+
               associated with the resource.
+
             </doc:description>
+
             <doc:example>
+
               Jane
+
             </doc:example>
+
             <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
           </xs:appinfo>
+
         </xs:annotation>
+
       </xs:element>
+
       <xs:element name="surName" type="xs:string">
+
         <xs:annotation>
+
           <xs:appinfo>
+
             <doc:tooltip>
+
               Last name
+
             </doc:tooltip>
+
             <doc:summary>
+
               The last name of the individual.
+
             </doc:summary>
+
             <doc:description>
+
               The surname field is used for the last name of the individual
+
               associated with the resource.
+
             </doc:description>
+
             <doc:example>
+
               Doe
+
             </doc:example>
+
             <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
           </xs:appinfo>
+
         </xs:annotation>
+
       </xs:element>
+
     </xs:sequence>
+
   </xs:complexType>
+
   <xs:complexType name="Address">
+
     <xs:annotation>
+
       <xs:appinfo>
+
         <doc:tooltip>
+
           Address
+
         </doc:tooltip>
+
         <doc:summary>
+
           The full address of the resposible party.
+
         </doc:summary>
+
         <doc:description>
+
           The address field is provides detailed information for communicating
+
           with a party contact via electronic mail or postal mail, including the
+
           physical delivery location.
+
         </doc:description>
+
         <doc:example>
+
           Please see the examples for each subfield
+
         </doc:example>
+
         <doc:lineage>
+
           This field was derived from the ISO 19115.3 standard
+
           (iso-geo-md-2000June-draft).
+
         </doc:lineage>
+
       </xs:appinfo>
+
     </xs:annotation>
+
     <xs:choice>
+
       <xs:sequence>
+
         <xs:element name="deliveryPoint" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Delivery point
+
             </doc:tooltip>
+
               <doc:summary>
+
               The location for postal deliveries.
+
             </doc:summary>
+
               <doc:description>
+
               The delivery point field is used for the physical address for
+
               postal communication.  This field is used to accomodate the many
+
               different international conventions  that are the equivalent
+
               to a U.S. 'street address'.
+
             </doc:description>
+
               <doc:example>
+
               7209 Coast Drive, Building 44
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="city" type="xs:string" minOccurs="0">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               City
+
             </doc:tooltip>
+
               <doc:summary>
+
               The name of the city for the contact.
+
             </doc:summary>
+
               <doc:description>
+
               The city field is used for the city name of the contact associated
+
               with a particular resource.
+
             </doc:description>
+
               <doc:example>
+
               San Francisco
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="administrativeArea" type="xs:string" minOccurs="0">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Administrative area
+
             </doc:tooltip>
+
               <doc:summary>
+
               The political area of a country.
+
             </doc:summary>
+
               <doc:description>
+
               The administrative area field is the equivalent of a 'state' in
+
               the U.S., or Province in Canada.  This field is intended to
+
               accomodate the many types of international administrative areas.
+
             </doc:description>
+
               <doc:example>
+
               Colorado
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="postalCode" type="xs:string" minOccurs="0">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Postal code
+
             </doc:tooltip>
+
               <doc:summary>
+
               The postal code used for routing to an address.
+
             </doc:summary>
+
               <doc:description>
+
               The postal code is equivalent to a U.S. zip code, or the number
+
               used for routing to an international address.  The U.S. postal
+
               code should include the 5 digit code plus the 4 digit extension.
+
             </doc:description>
+
               <doc:example>
+
               93106-2231
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
         <xs:element name="country" type="xs:string" minOccurs="0">
+
           <xs:annotation>
+
             <xs:appinfo>
+
               <doc:tooltip>
+
               Country
+
             </doc:tooltip>
+
               <doc:summary>
+
               The name of the country for the contact's address.
+
             </doc:summary>
+
               <doc:description>
+
               The country field is used for the name of the contact's country.
+
             </doc:description>
+
               <doc:example>
+
              U.S.A
+
             </doc:example>
+
               <doc:lineage>
+
               This field was derived from the ISO 19115.3 standard
+
               (iso-geo-md-2000June-draft).
+
             </doc:lineage>
+
             </xs:appinfo>
+
           </xs:annotation>
+
         </xs:element>
+
       </xs:sequence>
+
       <xs:element name="references" type="xs:string"/>
+
     </xs:choice>
+
     <xs:attribute name="id" type="xs:ID" use="optional"/>
+
     <xs:attribute name="system" type="xs:string" use="optional"/>
+
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+
   </xs:complexType>
+
   <!-- Role code domain take from ISO -->
+
   <xs:simpleType name="RoleType">
+
     <xs:annotation>
+
       <xs:appinfo>
+
         <doc:tooltip>
+
           Role
+
         </doc:tooltip>
+
         <doc:summary>
+
           The classification of the associated person or organization.
+
         </doc:summary>
+
         <doc:description>
+
           The role code field provides information on how a person or
+
           organization is related to a resource.  There may be many people
+
           associated, including an 'originator' of a dataset, an 'author',
+
           'editor', or 'publisher' of a literature resource, or an organization
+
           that is a 'distributor'.  the full list of choices is included in the
+
           example.
+
         </doc:description>
+
         <doc:example>
+
           author, contentProvider, custodianSteward, distributor, editor,
+
           metadataProvider, originator, pointOfContact, principalInvestigator,
+
           processor, publisher, or user.
+
         </doc:example>
+
         <doc:lineage>
+
           This field was derived from the ISO 19115.3 standard
+
           (iso-geo-md-2000June-draft), with the addition of a few new roleCode
+
           values.
+
         </doc:lineage>
+
       </xs:appinfo>
+
     </xs:annotation>
+
     <xs:union>
+
       <xs:simpleType>
+
         <xs:restriction base="xs:string">
+
           <xs:enumeration value="contentProvider"/>
+
           <xs:enumeration value="custodianSteward"/>
+
           <xs:enumeration value="owner"/>
+
           <xs:enumeration value="user"/>
+
           <xs:enumeration value="distributor"/>
+
           <xs:enumeration value="metadataProvider"/>
+
           <xs:enumeration value="originator"/>
+
           <xs:enumeration value="pointOfContact"/>
+
           <xs:enumeration value="principalInvestigator"/>
+
           <xs:enumeration value="processor"/>
+
           <xs:enumeration value="publisher"/>
+
           <xs:enumeration value="author"/>
+
           <xs:enumeration value="editor"/>
+
         </xs:restriction>
+
       </xs:simpleType>
+
       <xs:simpleType>
+
         <xs:restriction base="xs:string"/>
+
       </xs:simpleType>
+
     </xs:union>
+
   </xs:simpleType>
+
 </xs:schema>
+
