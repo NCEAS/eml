@@ -1,13 +1,13 @@
 <!-- FGDC Biological Data Profile Metadata DTD                            -->
-<!-- '$Id: nbii-fgdc-std-001.1-1999.dtd,v 1.5 2000-02-29 17:58:09 jones Exp $' -->
+<!-- '$Id: nbii-fgdc-std-001.1-1999.dtd,v 1.6 2000-06-10 01:25:54 jones Exp $' -->
 <!--                                                                      -->
 <!-- This is the Document Type Declaration (DTD) for metadata conforming  -->
 <!-- to the Biological Data Profile of the Content Standards for Digital  -->
 <!-- Geospatial Metadata. This DTD corresponds to the October, 1999       -->
 <!-- version of the standard, FGDC-STD-001.1-1999, which can be retrieved -->
 <!-- at "http://www.fgdc.gov".  It was derived from the DTD               -->
-<!-- "FGDC Metadata DTD 3.0.1 19990611", and contains any errors          -->
-<!-- in that document in regards to compliance with FGDC-STD-001-1998.    -->
+<!-- "FGDC Metadata DTD 3.0.1 19990611", and assumes that the original    -->
+<!-- document s correct in regards to compliance with FGDC-STD-001-1998.  -->
 <!-- Authors:                                                             -->
 <!--     Matthew B. Jones (National Center for Ecological Analysis and    -->
 <!--     Synthesis, http://www.nceas.ucsb.edu) with the original DTD      -->
@@ -16,6 +16,11 @@
 <!--     Peter N. Schweitzer (U.S. Geological Survey, Reston, VA 20192)   -->
 <!--     with assistance from Doug Nebert (USGS), Eric Miller (OCLC),     -->
 <!--     Quinn Hart (CERES), Jim Frew (UCSB), and Archie Warnock (AWWW).  -->
+<!--                                                                      -->
+<!-- Revisions:                                                           -->
+<!--     2000-June-09: Changed content model of element "taxonsys"        -->
+<!--                   to appropriately reflect optionality of the        -->
+<!--                    "ider" element                                    -->
 <!--                                                                      -->
 <!-- Comments and header information from the ORIGINAL CSDGM DTD          -->
 <!-- ("FGDC Metadata DTD 3.0.1 19990611") are included here for the       -->
@@ -57,6 +62,7 @@
 <!--======================================================================-->
 <!--======================================================================-->
 <!-- Maybe this is the right entity reference for XML -->
+<!-- But it is commented out because it doesn't seem to work here -->
 <!--
 <!ENTITY % HTMLlat1 PUBLIC
 	"-//W3C//ENTITIES Full Latin 1//EN//HTML"
@@ -760,7 +766,7 @@
 
 <!ELEMENT keywtax  (taxonkt , taxonkey+ )>
 
-<!ELEMENT taxonsys  (classsys+ , idref* , ider+ , taxonpro , taxoncom? , vouchers* )>
+<!ELEMENT taxonsys  (classsys+ , idref* , ider* , taxonpro , taxoncom? , vouchers* )>
 
 <!ELEMENT taxongen  (#PCDATA )>
 
