@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2002-05-08 02:04:12 $'
-      '$Revision: 1.34 $'
+          '$Date: 2002-05-08 02:21:53 $'
+      '$Revision: 1.35 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -290,13 +290,13 @@
         <doc:description>
           The 'rangeOfDates' field is intended to be used for describing a
           range of dates and/or times.  It may be used multiple times to 
-	  document multiple date ranges.  It allows for two 'singleDateTime'
-	  fields, the first to be used as the beginning dateTime, and the second
-	  to be used as the ending dateTime of the range.
+          document multiple date ranges.  It allows for two 'singleDateTime'
+          fields, the first to be used as the beginning dateTime, and the second
+          to be used as the ending dateTime of the range.
         </doc:description>
         <doc:example>
           Please see the examples from the 'singleDateTime'ime' field for 
-	  specific examples.
+          specific examples.
         </doc:example>
         <doc:lineage>
           FGDC-STD-001-1998:
@@ -1221,7 +1221,7 @@
                   <doc:summary/>
                   <doc:description>
                     Description of the methods used for the taxonomic 
-		    identification.  
+                    identification.  
                   </doc:description>
                   <doc:example>
                     specimen processing, comparison with museum materials, 
@@ -1236,7 +1236,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="taxonomicCompleteness" type="xs:string" 
-	                minOccurs="0">
+                        minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Taxonomic completeness</doc:tooltip>
@@ -1323,7 +1323,7 @@
                     <xs:complexType>
                       <xs:sequence>
                         <xs:element name="originator" type="rp:ResponsibleParty"
-			            maxOccurs="unbounded">
+                                    maxOccurs="unbounded">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>
@@ -1331,25 +1331,25 @@
                               </doc:tooltip>
                               <doc:summary>
                                 A person or organization asociated with this 
-				resource.
+                                resource.
                               </doc:summary>
                               <doc:description>
                                 The 'originator' element provides the full name 
-				of the person, organization, or position 
-				associated with the resource.  Typically, the 
-				originator role is set to "owner" to indicate 
-				the list of parties who "own" the resource, but 
-				other roles such as "principal investigator", 
-				"author", and "editor" are provided.
+                                of the person, organization, or position 
+                                associated with the resource.  Typically, the 
+                                originator role is set to "owner" to indicate 
+                                the list of parties who "own" the resource, but 
+                                other roles such as "principal investigator", 
+                                "author", and "editor" are provided.
                               </doc:description>
                               <doc:example>
                                 Please see the examples within the sub fields 
-				for the responsible party.
+                                for the responsible party.
                               </doc:example>
                               <doc:lineage>
                                 This element was derived from elements described
-				in the FGDC-STD-001.1-1999 standard 
-				(nbii-fgdc-std-001.1-1999)
+                                in the FGDC-STD-001.1-1999 standard 
+                                (nbii-fgdc-std-001.1-1999)
                               </doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1512,7 +1512,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element ref="taxonomicClassification" minOccurs="0" 
-	            maxOccurs="unbounded"/>
+                    maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
