@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-04-16 18:02:07 $'
-      '$Revision: 1.16 $'
+          '$Date: 2001-05-18 23:49:16 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,5 +48,9 @@
 <!ELEMENT keywordThesaurus (#PCDATA)>
 <!ELEMENT additionalInfo (paragraph+)>
 <!ELEMENT paragraph (#PCDATA)>
+<!ELEMENT triple (subject, relationship, object)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT relationship (#PCDATA)>
+<!ELEMENT object (#PCDATA)>
 
 <!-- EOF -->
