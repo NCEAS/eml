@@ -1,24 +1,28 @@
 <?xml version="1.0"?>
 <xs:schema targetNamespace="eml://ecoinformatics.org/entity-2.0.0beta9"
-xmlns="eml://ecoinformatics.org/entity-2.0.0beta9" xmlns:att="eml://ecoinformatics.org/attribute-2.0.0beta9"
-xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0beta9" xmlns:phys="eml://ecoinformatics.org/physical-2.0.0beta9"
-xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:con="eml://ecoinformatics.org/constraint-2.0.0beta9"
-xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    xmlns="eml://ecoinformatics.org/entity-2.0.0beta9" 
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0beta9"
+    xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0beta9" 
+    xmlns:phys="eml://ecoinformatics.org/physical-2.0.0beta9"
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" 
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0beta9"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
-  schemaLocation="eml-documentation.xsd" />
+    schemaLocation="eml-documentation.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9"
-  schemaLocation="eml-coverage.xsd" />
+    schemaLocation="eml-coverage.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0beta9"
-  schemaLocation="eml-physical.xsd" />
+    schemaLocation="eml-physical.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0beta9"
-  schemaLocation="eml-protocol.xsd" />
+    schemaLocation="eml-protocol.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0beta9"
-  schemaLocation="eml-attribute.xsd" />
+    schemaLocation="eml-attribute.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9"
-  schemaLocation="eml-resource.xsd" />
+    schemaLocation="eml-resource.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0beta9"
-  schemaLocation="eml-constraint.xsd" />
+    schemaLocation="eml-constraint.xsd" />
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -35,9 +39,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-08-22 21:45:48 $'
-      '$Revision: 1.59 $'
+        '$Author: jones $'
+          '$Date: 2002-09-02 16:13:46 $'
+      '$Revision: 1.60 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -145,6 +149,47 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
+      <xs:element name="alternateIdentifier" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Alternate Identifier</doc:tooltip>
+            <doc:summary>A secondary identifier for this entity</doc:summary>
+            <doc:description>An additional, secondary identifier for this
+            entity.  The primary identifier belongs in the "id" attribute,
+            but additional identifiers that are used to label this entity, 
+            possibly from different data management systems, can be listed
+            here.</doc:description>
+            <doc:example>VCR3465</doc:example>
+            <doc:lineage>As of EML 2.0.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="system" type="xs:string" use="optional">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Identifier System</doc:tooltip>
+                    <doc:summary>The system in which this id is relevant
+                    </doc:summary>
+                    <doc:description>The computing system within which this 
+                    identifier has relevance.  Generally, the identifier 
+                    would be unique within the "system" and would be 
+                    sufficient to retrieve the entity from the system. The
+                    system is often a URL or URI that identifies the 
+                    main entry point for the data management system.
+                    </doc:description>
+                    <doc:example>http://knb.ecoinformatics.org/knb/
+                    </doc:example>
+                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="entityName" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -175,10 +220,45 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:element>
       <xs:element name="attributeList" type="att:AttributeListType" />
       <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
-      maxOccurs="unbounded" />
+        maxOccurs="unbounded" />
       <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" />
       <xs:element name="coverage" type="cov:Coverage" minOccurs="0" />
       <xs:element name="protocol" type="prot:ProtocolType" minOccurs="0" />
+      <xs:element name="additionalInfo" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Additional Information</doc:tooltip>
+            <doc:summary>Any extra information pertitent to the
+            entity.</doc:summary>
+            <doc:description>This field provides any information that is not
+            characterized by the other entity metadata
+            fields.</doc:description>
+            <doc:example>Multiple sampling events represented</doc:example>
+            <doc:lineage>This element was derived from elements described in
+            the FGDC-STD-001.1-1999 standard
+            (nbii-fgdc-std-001.1-1999)</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="paragraph" type="xs:string"
+            maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Paragraph</doc:tooltip>
+                  <doc:summary>The paragraph field for the additional
+                  text.</doc:summary>
+                  <doc:description>This field is intended for the text that
+                  gives additional information about the entity. There may be
+                  one or more paragraphs.</doc:description>
+                  <doc:example>Multiple samples included</doc:example>
+                  <doc:lineage>As of EML 2.0.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:group>
 </xs:schema>

@@ -22,9 +22,9 @@ attributeFormDefault="unqualified">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-08-22 21:45:48 $'
-      '$Revision: 1.54 $'
+        '$Author: jones $'
+          '$Date: 2002-09-02 16:13:46 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -96,11 +96,42 @@ attributeFormDefault="unqualified">
     </xs:annotation>
     <xs:sequence>
       <xs:element name="alternateIdentifier" minOccurs="0"
-      maxOccurs="unbounded">
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Alternate Identifier</doc:tooltip>
+            <doc:summary>A secondary identifier for this entity</doc:summary>
+            <doc:description>An additional, secondary identifier for this
+            entity.  The primary identifier belongs in the "id" attribute,
+            but additional identifiers that are used to label this entity, 
+            possibly from different data management systems, can be listed
+            here.</doc:description>
+            <doc:example>VCR3465</doc:example>
+            <doc:lineage>As of EML 2.0.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:simpleContent>
             <xs:extension base="xs:string">
-              <xs:attribute name="system" type="xs:string" use="optional" />
+              <xs:attribute name="system" type="xs:string" use="optional">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Identifier System</doc:tooltip>
+                    <doc:summary>The system in which this id is relevant
+                    </doc:summary>
+                    <doc:description>The computing system within which this 
+                    identifier has relevance.  Generally, the identifier 
+                    would be unique within the "system" and would be 
+                    sufficient to retrieve the entity from the system. The
+                    system is often a URL or URI that identifies the 
+                    main entry point for the data management system.
+                    </doc:description>
+                    <doc:example>http://knb.ecoinformatics.org/knb/
+                    </doc:example>
+                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:attribute>
             </xs:extension>
           </xs:simpleContent>
         </xs:complexType>
