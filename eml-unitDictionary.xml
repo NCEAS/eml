@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2004-07-02 23:00:22 $'
-      '$Revision: 1.39 $'
+          '$Date: 2004-07-03 00:13:55 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -916,7 +916,7 @@
     <description>cubic meters per kilogram</description>
   </unit>
 
-  <unit id="cubicMicrometersPerGram" name="cubicMicrometersPerGram" unitType="specificVolume" multiplierToSI="1" abbreviation="μm³/kg">
+  <unit id="cubicMicrometersPerGram" name="cubicMicrometersPerGram" unitType="specificVolume" parentSI="cubicMeterPerKilogram" multiplierToSI="0.000000000000001" abbreviation="μm³/kg">
     <description>cubic micrometers per gram</description>
   </unit>
 
