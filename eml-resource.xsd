@@ -13,9 +13,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Chris Jones, Chad Berkley
 
-     '$Author: cjones $'
-       '$Date: 2000-09-21 16:12:24 $'
-   '$Revision: 1.4 $'
+     '$Author: berkley $'
+       '$Date: 2000-09-21 17:00:30 $'
+   '$Revision: 1.5 $'
 
 
 	** This annotation should be removed after draft review and/or acceptance.**
@@ -60,41 +60,55 @@
   <xs:import namespace="iso:ResponsibleParty" 
           schemaLocation = "./iso-party.xsd"/>
  
-  <!-- resource is the base type (which should never be
-       instantiated) from which Dataset and Literature
-       are derived.  Dataset and Literature inherit
-       all of the fields contained within Resource because
-       of their "base" and "derivedBy" attributes. 
-   -->
-
-  <xs:element name = "dataset" type = "Dataset" />
-  <xs:element name = "literature" type = "Literature" />
+  <!-- resource is the root element. -->
+  <xs:element name="resource" type="Resource" />
+   
+  <!-- the type of Resource is the main choice in the document --> 
+  <xs:complexType name=Resource content="elementOnly">
+    <choice minOccurs="1" maxOccurs="1">
+      <xs:element name = "dataset" type = "Dataset" />
+      <xs:element name = "literature" type = "Literature" />
+    </choice>
+  </xs:complexType>
        
   <xs:complexType name = "Resource" content="elementOnly">
       <xs:sequence>
-        <xs:element name = "identifier" type = "string"
-                    minOccurs="0" maxOccurs="1" />
-	   <!-- <xs:annotation>
+        <xs:element name = "identifier" type = "xs:string"
+                    minOccurs="0" maxOccurs="1">
+	         <xs:annotation>
               <xs:documentation>
   	          The unique identifier of the metadata file.
               </xs:documentation>
               <xs:documentation>
                  eml-dataset
               </xs:documentation>
-           </xs:annotation> -->
-        <xs:element name = "title" type = "string" 
-                    minOccurs="1" maxOccurs="1" />
-             <!-- <xs:annotation>
+           </xs:annotation> 
+        </xs:element>
+        <xs:element name = "datasetid" type = "xs:string"
+                    minOccurs="0" maxOccurs="1">
+	         <xs:annotation>
+              <xs:documentation>
+  	          The unique identifier of the dataset that this file describes.
+              </xs:documentation>
+              <xs:documentation>
+                 eml-dataset
+              </xs:documentation>
+           </xs:annotation> 
+        </xs:element>
+        <xs:element name = "title" type = "xs:string" 
+                    minOccurs="1" maxOccurs="1" >
+             <xs:annotation>
                 <xs:documentation>
                     Name by which the cited resource is known.
                 </xs:documentation>
                 <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-             </xs:annotation> -->
-        <xs:element name = "alternateTitle" type = "string" 
-                    minOccurs="0" maxOccurs="1" />
-             <!-- <xs:annotation>
+             </xs:annotation> 
+        </xs:element>
+        <xs:element name = "alternateTitle" type = "xs:string" 
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                   <xs:documentation>Short name or other language name
                       by which the cited resource is known.
                   </xs:documentation>
@@ -102,49 +116,43 @@
                         ISO 19115.3 (iso-geo-md-2000June-draft)
                   </xs:documentation>
                </xs:annotation> -->
+        </xs:element>
         <xs:element name = "originator" type = "rp:ResponsibleParty" 
-                    minOccurs="1" maxOccurs="unbounded" />
-	     <!-- <xs:annotation>
+                    minOccurs="1" maxOccurs="unbounded" >
+	     <xs:annotation>
                 <xs:documentation>
                     The party from which the resource came.
                 </xs:documentation>
                 <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
-	  <xs:element name = "publisher" type = "rp:ResponsibleParty" 
-			minOccurs="0" maxOccurs="unbounded" />
-             <!-- <xs:annotation>
-                <xs:documentation>
-                    The publisher of the resource.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation> -->
-	  <!--xs:element name = "pubDate" type = "Date" 
-                    minOccurs="0" maxOccurs="1" /-->
-             <!-- <xs:annotation>
+             </xs:annotation> 
+    </xs:element>
+	  <xs:element name = "pubDate" type = "xs:date" 
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                 <xs:documentation>
                    The publication date of the resource.
                 </xs:documentation>
                 <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
-	  <xs:element name = "pubPlace" type = "string" 
-                    minOccurs="0" maxOccurs="1" />
-             <!-- <xs:annotation>
+             </xs:annotation> 
+    </xs:element>
+	  <xs:element name = "pubPlace" type = "xs:string" 
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                 <xs:documentation>
                     The publication place of the resource.
                 </xs:documentation>
                 <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
-  	  <xs:element name = "series" type = "string" 
-                    minOccurs="0" maxOccurs="1" />
-             <!-- <xs:annotation>
+             </xs:annotation> 
+      </xs:element>
+  	  <xs:element name = "series" type = "xs:string" 
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                  <xs:documentation>
                      The series from which the resource came.
 		 </xs:documentation>
@@ -152,47 +160,52 @@
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-             </xs:annotation> -->
+             </xs:annotation> 
+    </xs:element>
 	  <xs:element name = "abstract" type = "Abstract" 
-                    minOccurs="0" maxOccurs="1" />
-             <!-- <xs:annotation>
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                 <xs:documentation>
                    A brief overview of the resource.
                 </xs:documentation>
                 <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
+             </xs:annotation> 
+    </xs:element>
 	  <xs:element name = "keywordInfo" type = "KeywordInfo" 
-                    minOccurs="0" maxOccurs="unbounded" />
-             <!-- <xs:annotation>
+                    minOccurs="0" maxOccurs="unbounded" >
+             <xs:annotation>
                 <xs:documentation>
                    Keywords describing the resource.
                 </xs:documentation>
                 <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-             </xs:annotation> -->
-	  <xs:element name = "URL" type = "string" 
-                    minOccurs="0" maxOccurs="unbounded" />
-             <!-- <xs:annotation>
+             </xs:annotation>
+    </xs:element>
+	  <xs:element name = "URL" type = "xs:string" 
+                    minOccurs="0" maxOccurs="unbounded">
+             <xs:annotation>
                 <xs:documentation>The Universal Resource Locator referring to the
                     resource.
                 </xs:documentation>
                 <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
-	  <xs:element name = "additionalInfo" type = "string" 
-                    minOccurs="0" maxOccurs="1" />
-             <!-- <xs:annotation>
+             </xs:annotation>
+    </xs:element>
+	  <xs:element name = "additionalInfo" type = "xs:string" 
+                    minOccurs="0" maxOccurs="1">
+             <xs:annotation>
                 <xs:documentation>Any extra information pertitent to the 
-		   resource.
-	        </xs:documentation>
-	        <xs:documentation>
+		                resource.
+	              </xs:documentation>
+	              <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-             </xs:annotation> -->
+             </xs:annotation>
+    </xs:element>
 	</xs:sequence>
   </xs:complexType>
   
@@ -200,127 +213,136 @@
                   derivedBy = "extension" content = "elementOnly">
   	<xs:sequence>
 	   <xs:element name = "geoForm" type = "GeoForm" 
-                    minOccurs="0" maxOccurs="1" />
-              <!-- <xs:annotation>
+                    minOccurs="0" maxOccurs="1">
+              <xs:annotation>
                  <xs:documentation>the mode in which the geospatial data 
                      are represented.
                  </xs:documentation>
                  <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 </xs:documentation>
-              </xs:annotation> -->
-      </xs:sequence>  
+              </xs:annotation> 
+      </xs:element>
+    </xs:sequence>  
   </xs:complexType>
 
   <xs:complexType name = "Literature" base = "Resource" 
                   derivedBy="extension" content = "elementOnly">
       <xs:sequence>
-	   <xs:element name = "ISBN" type = "string" 
-                     minOccurs="0" maxOccurs="1" />
-              <!-- <xs:annotation>
-		 <xs:documentation>International Standard Book Number for
+	   <xs:element name = "ISBN" type = "xs:string" 
+                     minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+		             <xs:documentation>International Standard Book Number for
                       the resource.
                  </xs:documentation>
                  <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-              </xs:annotation> -->
-	   <xs:element name = "ISSN" type = "string" 
-                     minOccurs="0" maxOccurs="1" />
-              <!-- <xs:annotation>
+              </xs:annotation> 
+     </xs:element>
+	   <xs:element name = "ISSN" type = "xs:string" 
+                     minOccurs="0" maxOccurs="1" >
+              <xs:annotation>
                  <xs:documentation>International Standard Serial Number 
 		     for the resource.
-		 </xs:documentation>
-		 <xs:documentation>
+		            </xs:documentation>
+		            <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-              </xs:annotation> -->
+              </xs:annotation> 
+     </xs:element>
 	   <xs:element name = "editor" type = "rp:Person" 
-                     minOccurs="0" maxOccurs="unbounded" />
-              <!-- <xs:annotation>
+                     minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
                  <xs:documentation>
                     The editor of the resource.
-		 </xs:documentation>
-		 <xs:documentation>
+		             </xs:documentation>
+		             <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                  </xs:documentation>
-              </xs:annotation> -->
-	   <xs:element name = "edition" type = "string" 
-                     minOccurs="0" maxOccurs="1" />
-              <!-- <xs:annotation>
+              </xs:annotation> 
+     </xs:element>
+	   <xs:element name = "edition" type = "xs:string" 
+                     minOccurs="0" maxOccurs="1">
+              <xs:annotation>
                  <xs:documentation>
                     The edition of the resource.
-		 </xs:documentation>
-		 <xs:documentation>
+		            </xs:documentation>
+		            <xs:documentation>
                 	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                  </xs:documentation>
-              </xs:annotation> -->
-	   <xs:element name = "volume" type = "string" 
-                     minOccurs="0" maxOccurs="1" />
-              <!-- <xs:annotation>
+              </xs:annotation> 
+     </xs:element>
+	   <xs:element name = "volume" type = "xs:string" 
+                     minOccurs="0" maxOccurs="1">
+              <xs:annotation>
                  <xs:documentation>
                  	The volume from which the resource came.
-		 </xs:documentation>
-		 <xs:documentation>
+		            </xs:documentation>
+		            <xs:documentation>
                 	none
                 </xs:documentation>
-              </xs:annotation> -->
-      </xs:sequence>
+              </xs:annotation>
+     </xs:element>
+    </xs:sequence>
   </xs:complexType>	
 
   <xs:complexType name = "Abstract"  content="elementOnly">       
         <xs:sequence>
-            <xs:element name = "paragraph" type = "string"
-                        minOccurs="1" maxOccurs="unbounded" />
-            <!-- <xs:annotation>
-                     <xs:documentation>
+            <xs:element name = "paragraph" type = "xs:string"
+                        minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>
                        A reusable free text paragraph.
-	             </xs:documentation>
-	             <xs:documentation>
+	              </xs:documentation>
+	              <xs:documentation>
                        Taken directly from EML v1.3
-                     </xs:documentation>
-                 </xs:annotation>
-            -->
+                </xs:documentation>
+             </xs:annotation>
+           </xs:element>
         </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name = "KeywordInfo" content = "elementOnly">
 	<xs:sequence>
-	   <xs:element name = "keyword" type = "string" 
-                     minOccurs="1" maxOccurs="1" />
-              <!-- <xs:annotation>
+	   <xs:element name = "keyword" type = "xs:string" 
+                     minOccurs="1" maxOccurs="1" >
+              <xs:annotation>
                  <xs:documentation>Keywords that refer to the resource..
-		 </xs:documentation>
-		 <xs:documentation>
+		             </xs:documentation>
+		             <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                  </xs:documentation>
-              </xs:annotation> -->    
-           <xs:element name = "keyType" type = "KeyTypCode" 
-                     minOccurs="1" maxOccurs="1" />
-             <!-- <xs:annotation>
+              </xs:annotation>    
+           </xs:element>
+           <xs:element name = "keywordType" type = "KeyTypCode" 
+                     minOccurs="1" maxOccurs="1">
+             <xs:annotation>
                 <xs:documentation>The type of each keyword.
-		</xs:documentation>
-		<xs:documentation>
+		            </xs:documentation>
+		            <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-             </xs:annotation> -->
-           <xs:element name = "thesaName" type = "string" 
-                     minOccurs="0" maxOccurs="unbounded" />
-            <!-- <xs:annotation>
+             </xs:annotation> 
+           </xs:element>
+           <xs:element name = "keywordThesaurus" type = "xs:string" 
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
                 <xs:documentation>The name of a thesaurus from which
                     the keyword is derived.
-		</xs:documentation>
-		<xs:documentation>
+		            </xs:documentation>
+		            <xs:documentation>
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
-             </xs:annotation> -->
+             </xs:annotation>
+           </xs:element>
       </xs:sequence>
   </xs:complexType>
 
   <!-- The geospatial representation form domain 
       taken directly from NBII -->
-  <xs:simpleType name = "GeoForm" base = "string" >
+  <xs:simpleType name = "GeoForm" base = "xs:string" >
 	   <xs:enumeration value = "atlas" />
 	   <xs:enumeration value = "audio" />
 	   <xs:enumeration value = "diagram" />
@@ -342,7 +364,7 @@
 
   <!-- The keyword type domain take directly from 
        ISO -->
-  <xs:simpleType name = "KeyTypCode" base = "string" >
+  <xs:simpleType name = "KeyTypCode" base = "xs:string" >
         <xs:enumeration value = "discipline" />
         <xs:enumeration value = "place" />
 	<xs:enumeration value = "stratum" />
