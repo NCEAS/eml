@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2003-07-17 17:23:11 $'
- *    '$Revision: 1.13 $'
+ *        '$Date: 2003-12-18 21:16:23 $'
+ *    '$Revision: 1.14 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -273,7 +273,7 @@ public class EMLParser
         idval + " occurs " +
         "more than once.  IDs must be unique.");
       }
-    }//for
+    }
   }
 
 
@@ -616,7 +616,7 @@ public class EMLParser
    */
   public static void main(String[] args)
   {
-    if(!args[0].equals("-q"))
+    if(args.length > 0 && !args[0].equals("-q"))
     {
       System.out.println("EML Parser version 1.0");
       System.out.println("Note that this parser DOES NOT VALIDATE your eml file ");
