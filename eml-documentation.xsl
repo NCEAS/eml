@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: cjones $'
-  *       '$Date: 2001-02-16 07:50:21 $'
-  *   '$Revision: 1.4 $'
+  *     '$Author: bojilova $'
+  *       '$Date: 2001-02-16 18:09:53 $'
+  *   '$Revision: 1.5 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -194,7 +194,7 @@
               <h2>Complex Type Definitions:</h2>
             </td>
           </tr>
-          <xsl:for-each select ="//xs:complexType">
+          <xsl:for-each select ="//xs:complexType[xs:annotation]">
           <tr>
             <td colspan="5" class="tablehead">
               <h3>
