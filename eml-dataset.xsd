@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:dataset-2.0.0beta8" 
-           xmlns="eml:dataset-2.0.0beta8" 
-           xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns:res="eml:resource-2.0.0beta8"
-           xmlns:rp="eml:party-2.0.0beta8"
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-  <xs:import namespace="eml:documentation-2.0.0beta8" 
-             schemaLocation="eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:dataset-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:rp="eml:party-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns="eml:dataset-2.0.0beta8">
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -16,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-05-15 22:45:37 $'
-      '$Revision: 1.13 $'
+        '$Author: jones $'
+          '$Date: 2002-05-23 09:00:43 $'
+      '$Revision: 1.14 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -57,11 +49,9 @@
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource-2.0.0beta8" 
-             schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
   <!-- import the elements from responsible party -->
-  <xs:import namespace="eml:party-2.0.0beta8" 
-             schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml:party-2.0.0beta8" schemaLocation="eml-party.xsd"/>
   <xs:element name="dataset">
     <xs:annotation>
       <xs:appinfo>
@@ -102,10 +92,8 @@
                   <doc:description>
                     A description of the purpose of this data resource.
                   </doc:description>
-                  <doc:example>
-                  </doc:example>
-                  <doc:lineage>
-                  </doc:lineage>
+                  <doc:example/>
+                  <doc:lineage/>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -122,8 +110,7 @@
                         <doc:description>
                           A paragraph of text.
                         </doc:description>
-                        <doc:example>
-                        </doc:example>
+                        <doc:example/>
                         <doc:lineage>
                           This field was introduced into EML 2.0, and was derived from
                           EML 1.3.
@@ -148,10 +135,8 @@
                     This includes information about the frequency of
                     update, and whether there is ongoing data collection.
                   </doc:description>
-                  <doc:example>
-                  </doc:example>
-                  <doc:lineage>
-                  </doc:lineage>
+                  <doc:example/>
+                  <doc:lineage/>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -168,8 +153,7 @@
                         <doc:description>
                           A paragraph of text.
                         </doc:description>
-                        <doc:example>
-                        </doc:example>
+                        <doc:example/>
                         <doc:lineage>
                           This field was introduced into EML 2.0, and was derived from
                           EML 1.3.
@@ -180,8 +164,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="contact" type="rp:ResponsibleParty"
-                        minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
@@ -195,16 +178,14 @@
                     institution to contact with questions about the use,
                     interpretation of a data set.
                   </doc:description>
-                  <doc:example>
-                  </doc:example>
+                  <doc:example/>
                   <doc:lineage>
                     New in EML2.0.0.
                   </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="publisher" type="rp:ResponsibleParty"
-                        minOccurs="0">
+            <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
@@ -219,8 +200,7 @@
                     an institution that is making the data available in a
                     published (ie, citable) format.
                   </doc:description>
-                  <doc:example>
-                  </doc:example>
+                  <doc:example/>
                   <doc:lineage>
                     New in EML2.0.0.
                   </doc:lineage>

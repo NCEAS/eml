@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:party-2.0.0beta8" 
-           xmlns="eml:party-2.0.0beta8" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation-2.0.0beta8" 
-             schemaLocation="eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:party-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns="eml:party-2.0.0beta8">
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-party.xsd,v $'
@@ -12,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-05-15 22:45:37 $'
-      '$Revision: 1.14 $'
+        '$Author: jones $'
+          '$Date: 2002-05-23 09:00:43 $'
+      '$Revision: 1.15 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -90,18 +86,20 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice minOccurs="1" maxOccurs="unbounded">
-        <xs:element name="individualName" type="Person">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
+    <xs:choice>
+      <xs:element name="references" type="xs:string"/>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="individualName" type="Person">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
                 Individual Name
               </doc:tooltip>
-              <doc:summary>
+                <doc:summary>
                 The full name of the person being described
               </doc:summary>
-              <doc:description>
+                <doc:description>
                 The responsible party field contains the full name of the person
                 that is associated with the resource.  This field contains
                 subfields that break the persons name down into first and last
@@ -118,27 +116,27 @@
                 implies that any person who currently occupies said positionName 
                 at organizationName is the originator of the data package.
               </doc:description>
-              <doc:example>
+                <doc:example>
                 Because this is an 'elementOnly' field, please look at the
                 examples for the subfields 'givenName' and 'surName'.
               </doc:example>
-              <doc:lineage>
+                <doc:lineage>
                 This field was derived from the ISO 19115.3 standard 
                 (iso-geo-md-2000June-draft).
               </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="organizationName" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="organizationName" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
                 Organization name
               </doc:tooltip>
-              <doc:summary>
+                <doc:summary>
                 The full name of the organization being described
               </doc:summary>
-              <doc:description>
+                <doc:description>
                 The responsible party field contains the full name of the
                 organization that is associated with the resource.  This field
                 is intended to describe which institution or overall
@@ -156,26 +154,26 @@
                 implies that any person who currently occupies said positionName 
                 at organizationName is the originator of the data package.
               </doc:description>
-              <doc:example>
+                <doc:example>
                 National Center for Ecological Analysis and Synthesis
               </doc:example>
-              <doc:lineage>
+                <doc:lineage>
                 This field was derived from the ISO 19115.3 standard 
                 (iso-geo-md-2000June-draft).
               </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="positionName" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="positionName" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
                 Position Name
               </doc:tooltip>
-              <doc:summary>
+                <doc:summary>
                 The name of the title or position associated with the resource.
               </doc:summary>
-              <doc:description>
+                <doc:description>
                 This field is intended to be used instead of a particular person
                 or full organization name.  If the associated person that holds
                 the role changes frequently, then Position Name would be used
@@ -193,148 +191,149 @@
                 implies that any person who currently occupies said positionName 
                 at organizationName is the originator of the data package.
               </doc:description>
-              <doc:example>
+                <doc:example>
                 Niwot Ridge Data Manager
               </doc:example>
-              <doc:lineage>
+                <doc:lineage>
                 This field was derived from the ISO 19115.3 standard 
                 (iso-geo-md-2000June-draft).
               </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-      <xs:element name="address" type="Address" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:element name="address" type="Address" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Contact address
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The full address information for a given responsible 
               party entry.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The address field is a container for multiple subfields that
               describe the physical or electronic address of the 
               responsible party for a resource. 
             </doc:description>
-            <doc:example>
+              <doc:example>
               Please see the subfield examples.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Phone
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               Information about the contact's telephone
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The phone field describes information about the responsible
               party's telephone, be it a voice phone, fax, or TTD/TTY 
               type telephone.  This field contains an attribute used
               to identify the type.
             </doc:description>
-            <doc:example><![CDATA[
+              <doc:example><![CDATA[
               <phone phonetype="voice">805-555-2500</phone>]]></doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:simpleContent>
-            <xs:extension base="xs:string">
-              <xs:attribute name="phonetype" type="xs:string" use="optional" default="voice">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="phonetype" type="xs:string" use="optional" default="voice">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>
                   Phone type
                 </doc:tooltip>
-                    <doc:summary>
+                      <doc:summary>
                   The type of the phone to which this number applies
                 </doc:summary>
-                    <doc:description>
+                      <doc:description>
                   This attribute gives the type of phone to which this 
                   number applies.  By default, this is assumed to be
                   of type "voice", but other possibilities include
                   "facsimile" and "tdd".
                 </doc:description>
-                    <doc:example>
-                    </doc:example>
-                    <doc:lineage>
+                      <doc:example/>
+                      <doc:lineage>
                   Derived from NBII and related standards.
                 </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:attribute>
-            </xs:extension>
-          </xs:simpleContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="electronicMailAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="electronicMailAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Email address
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The email address of the contact.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The electronic mail address is the email address for the 
               party.  It is intended to be an Internet SMTP email
               address, which should consist of a username folowed by the 
               @ symbol, followd by the email server domain name address.
               Other address types are allowable.
             </doc:description>
-            <doc:example>
+              <doc:example>
               my-email@mydomain.edu
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="onlineLink" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="onlineUrl" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Online Link
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               A link to associated online information, usually a web site.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               A link to associated online information, usually a web site.
               When the party represents an organization, this is the URL
               to a website or other online information about the organization.
               If the party is an individual, it might be their personal web
               site or other related online information about the party.
             </doc:description>
-            <doc:example>
+              <doc:example>
               http://www.yourdomain.edu/~doe
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This field was derived from the ISO 19115.3 standard 
               (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
   <xs:complexType name="Person">
     <xs:annotation>
@@ -575,7 +574,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  
   <!-- Role code domain take from ISO -->
   <xs:simpleType name="RoleType">
     <xs:annotation>
@@ -606,27 +604,27 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-      <xs:union>
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="contentProvider"/>
-            <xs:enumeration value="custodianSteward"/>
-            <xs:enumeration value="owner"/>
-            <xs:enumeration value="user"/>
-            <xs:enumeration value="distributor"/>
-            <xs:enumeration value="metadataProvider"/>
-            <xs:enumeration value="originator"/>
-            <xs:enumeration value="pointOfContact"/>
-            <xs:enumeration value="principalInvestigator"/>
-            <xs:enumeration value="processor"/>
-            <xs:enumeration value="publisher"/>
-            <xs:enumeration value="author"/>
-            <xs:enumeration value="editor"/>
-          </xs:restriction>
-        </xs:simpleType>
-        <xs:simpleType>
-          <xs:restriction base="xs:string"/>
-        </xs:simpleType>
-      </xs:union>
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="contentProvider"/>
+          <xs:enumeration value="custodianSteward"/>
+          <xs:enumeration value="owner"/>
+          <xs:enumeration value="user"/>
+          <xs:enumeration value="distributor"/>
+          <xs:enumeration value="metadataProvider"/>
+          <xs:enumeration value="originator"/>
+          <xs:enumeration value="pointOfContact"/>
+          <xs:enumeration value="principalInvestigator"/>
+          <xs:enumeration value="processor"/>
+          <xs:enumeration value="publisher"/>
+          <xs:enumeration value="author"/>
+          <xs:enumeration value="editor"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+    </xs:union>
   </xs:simpleType>
 </xs:schema>

@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:resource-2.0.0beta8" 
-           xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:rp="eml:party-2.0.0beta8"
-           xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns="eml:resource-2.0.0beta8" 
-           elementFormDefault="unqualified" 
-           attributeFormDefault="unqualified">
-  <xs:import namespace="eml:documentation-2.0.0beta8" 
-             schemaLocation="eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:resource-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:party-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns="eml:resource-2.0.0beta8" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -16,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-05-15 22:57:54 $'
-      '$Revision: 1.36 $'
+        '$Author: jones $'
+          '$Date: 2002-05-23 09:00:43 $'
+      '$Revision: 1.37 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,12 +55,9 @@
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml:party-2.0.0beta8" 
-             schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml:party-2.0.0beta8" schemaLocation="eml-party.xsd"/>
   <!-- import the elements from eml-coverage -->
-  <xs:import namespace="eml:coverage-2.0.0beta8" 
-             schemaLocation="eml-coverage.xsd"/>
-             
+  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>
   <!-- this is the base type that the other resource types extend -->
   <xs:complexType name="ResourceBase">
     <xs:annotation>
@@ -93,66 +82,6 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="identifier" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Unique identifier
-            </doc:tooltip>
-            <doc:summary>
-              The unique identifier of this metadata file or object.
-            </doc:summary>
-            <doc:description>
-              The identifier field provides a unique identifier for this
-              metadata documentation.  It will most likely be part of a 
-              sequence of numbers or letters that are meaningful in a 
-              larger context, such as a metadata catalog. That larger
-              system can be identified in the "system" attribute. Multiple
-              identifiers can be listed corresponding to different catalog
-              systems.
-            </doc:description>
-            <doc:example>
-              knb.24.8
-            </doc:example>
-            <doc:lineage>
-              The 'identifier' field is derived from the eml-dataset 
-              meta_file_id filed in EML 1.4.
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:simpleContent>
-            <xs:extension base="xs:string">
-              <xs:attribute name="system" type="xs:string" use="optional">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                  Catalog system
-                </doc:tooltip>
-                    <doc:summary>
-                  The catalog system in which this identifier is used.
-                </doc:summary>
-                    <doc:description>
-                  This element gives the name of the catalog system in which
-                  this identifier is used.  It is useful to determine the
-                  scope of the identifier, and to determine the semantics
-                  of the various subparts of the identifier. 
-                  Unresolved issue:
-                  can or should this be a URI/URL pointing to the catalog
-                  system, or just the name?
-                </doc:description>
-                    <doc:example>
-                    </doc:example>
-                    <doc:lineage>
-                  New to EML 2.0.
-                </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:attribute>
-            </xs:extension>
-          </xs:simpleContent>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="shortName" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -207,8 +136,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="creator" type="rp:ResponsibleParty" 
-                  maxOccurs="unbounded">
+      <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -234,8 +162,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="metadataProvider" type="rp:ResponsibleParty" 
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -260,8 +187,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="associatedParty"
-                  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="associatedParty" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -305,9 +231,7 @@
                         include technician, reviewer, principal investigator,
                         and many others.
                       </doc:description>
-                      <doc:example>
-                        <![CDATA[<role>principalInvestigator</role>]]>
-                      </doc:example>
+                      <doc:example><![CDATA[<role>principalInvestigator</role>]]></doc:example>
                       <doc:lineage>
                         From ISO.
                       </doc:lineage>
@@ -549,8 +473,7 @@
                 </xs:simpleContent>
               </xs:complexType>
             </xs:element>
-            <xs:element name="keywordThesaurus" type="xs:string" 
-                        minOccurs="0" maxOccurs="1">
+            <xs:element name="keywordThesaurus" type="xs:string" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
@@ -696,15 +619,14 @@
               systems can be described as URLs and as a list of relevant
               connection parameters.
             </doc:description>
-            <doc:example>
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               Derived from distribution elements in the FGDC standard.
             </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:choice minOccurs="1" maxOccurs="unbounded">
+          <xs:choice maxOccurs="unbounded">
             <xs:element name="connection">
               <xs:annotation>
                 <xs:appinfo>
@@ -718,46 +640,43 @@
                     represented either as a URL or as a series of named
                     parameters that are needed in order to connect.
                   </doc:description>
-                  <doc:example>
-                  </doc:example>
-                  <doc:lineage>
-                  </doc:lineage>
+                  <doc:example/>
+                  <doc:lineage/>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:choice>
-                    <xs:element name="onlineURL" type="xs:string">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
+                  <xs:element name="onlineURL" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
                             Download site URL
                           </doc:tooltip>
-                          <doc:summary>
+                        <doc:summary>
                            A URL (Uniform Resource Locator) from which this resource can be downloaded
                           </doc:summary>
-                          <doc:description>
+                        <doc:description>
                             A URL (Uniform Resource Locator) from which this resource can be downloaded.  
                             This includes any information needed to access this site, such as 
                             connection information.
                           </doc:description>
-                          <doc:example>http://data.org/getdata?id=98332</doc:example>
-                          <doc:lineage>
+                        <doc:example>http://data.org/getdata?id=98332</doc:example>
+                        <doc:lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="parameter" minOccurs="1" 
-                                maxOccurs="unbounded">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Parameter Value
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="parameter" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Parameter Value
                           </doc:tooltip>
-                          <doc:summary>
+                        <doc:summary>
                             A value of one of the parameters needed to
                             connect using this connection.
                           </doc:summary>
-                          <doc:description>
+                        <doc:description>
                             A value of one of the parameters needed to
                             connect using this connection.  In general, if a URL
                             scheme exists for this type of connection, it
@@ -766,43 +685,38 @@
                             parameters such as host names and ports, paths,
                             UNC names, CGI parameters, etc.
                           </doc:description>
-                          <doc:example>
-                            <![CDATA[<parameter name="port">8081</parameter>parameter>]]>
-                          </doc:example>
-                          <doc:lineage>
+                        <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
+                        <doc:lineage>
                             New in EML 2.0.0
                           </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string">
-                            <xs:attribute name="name" type="xs:string" 
-                                          use="required">
-                              <xs:annotation>
-                                <xs:appinfo>
-                                  <doc:tooltip>Paramter Name
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                          <xs:attribute name="name" type="xs:string" use="required">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Paramter Name
                                   </doc:tooltip>
-                                  <doc:summary>
+                                <doc:summary>
                                     The name of the parameter
                                   </doc:summary>
-                                  <doc:description>
+                                <doc:description>
                                     The name of one of the paramters needed
                                     to connect using this connection.
                                   </doc:description>
-                                  <doc:example>
-                                    <![CDATA[<parameter name="port">8081</parameter>parameter>]]>
-                                  </doc:example>
-                                  <doc:lineage>
+                                <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
+                                <doc:lineage>
                                     New in EML 2.0.0
                                   </doc:lineage>
-                                </xs:appinfo>
-                              </xs:annotation>
-                            </xs:attribute>
-                          </xs:extension>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:attribute>
+                        </xs:extension>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
                 </xs:choice>
                 <xs:attribute name="name" type="xs:string" use="optional">
                   <xs:annotation>
@@ -1018,10 +932,7 @@
           </xs:choice>
         </xs:complexType>
       </xs:element>
-      <xs:element name="coverage" 
-                        type="cov:Coverage" 
-                        minOccurs="0" 
-                        maxOccurs="unbounded">
+      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
@@ -1046,166 +957,60 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="triple" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Component list 
-            </doc:tooltip>
-            <doc:summary>
-              The definition of a relationship between component objects
-              in a resource package
-            </doc:summary>
-            <doc:description>
-              The triple element lists all relationships in the resource,
-              which effectively enumerates the components of the resource.
-              The relationships are in the form of:
-              <![CDATA[<subject> <relationship> <object>]]>
-              A triple allows a user to define a relationship between two
-              objects.  This relationship can also be recursive so that an
-              object can point back to the package of which it is a part.
-              
-              In order for a package to make sense, the use of triples must be
-              somewhat contrained.  The following guidelines should be used
-              when constructing a package if you wish your package to be usable
-              with other ecoinformatics.org software.
-              
-              subject            relationship                  object
-              -------            ------------                  ------
-              attribute_instance isAttributeInformationFor     entity_instance
-              DATAFILE           isDataFileFor(DATAFILE_name)  dataset_instance
-              entity_instance    isEntityInformationFor        DATAFILE (or 
-                                                               dataset_instance 
-                                                               if no data file 
-                                                               is present)
-              physical_instance  isPhysicalInformationFor      entity_instance
-              access_instance    isAccessControlFor            any module that 
-                                                               these access 
-                                                               controls should
-                                                               apply to. note 
-                                                               that the 
-                                                               access_instance
-                                                               should be at 
-                                                               least associated
-                                                               with the dataset_
-                                                               instance.
-              project_instance    isProjectInformationFor      dataset_instance
-              protocol_instance   isProtocolInformationFor     dataset_instance
-              constraint_instance isConstraintFor              entity_instance
-                                                               note that 
-                                                               constraint 
-                                                               contains an 
-                                                               internal mechanism
-                                                               for showing 
-                                                               the relationship
-                                                               between two entities
-                                                               if it is required
-                                                               i.e. for a 
-                                                               foreign key 
-                                                               constraint
-              
-              Note that triple relationships can also be created from
-              within eml-literature and eml-software since both of these
-              modules implement the eml-resource/resourceBase complexType.
-              Software and literature modules can also be linked into
-              an eml-dataset based package by linking them directly to the 
-              eml-dataset.
-              
-            </doc:description>
-            <doc:example>
-              Normal (nonrecursive):
-              <![CDATA[
-              <subject>knb.3.4</subject> 
-              <relationship>isFileMetadataFor</relationship>
-              <object>knb.5</object>
-
-              Recursive:
-              <subject>lter.123</subject>
-              <relationship>isPackageMember</relationship>
-              <object>lter.18</object>
-              ]]>
-              where object lter.18 is the identifier of the resource
-              in which this relationship exists.
-            </doc:example>
-            <doc:lineage>
-              Derived from the eml-dataset.dtd element called "relation" in
-              EML 1.4.
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="subject" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    Subject element
-                  </doc:tooltip>
-                  <doc:summary>
-                    Subject element of the relationship.
-                  </doc:summary>
-                  <doc:description>
-                    Subject is the identifier of the metadata object or file 
-                    that is the actor in the triple.
-                  </doc:description>
-                  <doc:example><![CDATA[ <subject>knb.3.4</subject> ]]></doc:example>
-                  <doc:lineage>
-                    Subject element was introduce into EML 2.0 Proposed.
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="relationship" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    Relationship type
-                  </doc:tooltip>
-                  <doc:summary>
-                    The type of relationship between the subject and
-                    object of the triple
-                  </doc:summary>
-                  <doc:description>
-                    Relationship is a descriptive phrase that specifies the 
-                    how the subject of the triple is related to the object.  
-                    This is typically meant to label the type of descriptor 
-                    that a metadata file (the subject) represents for a data
-                    file (the object).  This allows one to express concepts
-                    such as "knb.32.3 lists access control rules for knb.2.2".
-                  </doc:description>
-                  <doc:example><![CDATA[ 
-                    <relationship>is metadata describing</relationship> ]]></doc:example>
-                  <doc:lineage>
-                    The relationship element was introduced in EML 2.0.
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="object" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    Object element
-                  </doc:tooltip>
-                  <doc:summary>
-                    The object element of the relationship.
-                  </doc:summary>
-                  <doc:description>
-                    Object is the identifier of the metadata or data object 
-                    that is acted upon according to the relationship in the
-                    triple.
-                  </doc:description>
-                  <doc:example><![CDATA[ <subject>knb.8.4</subject> ]]></doc:example>
-                  <doc:lineage>
-                    The object element was introduced in EML 2.0.
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
     </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="optional">
+      <xs:annotation>
+        <xs:appinfo>
+          <doc:tooltip>
+              Unique identifier
+            </doc:tooltip>
+          <doc:summary>
+              The unique identifier of this metadata file or object.
+            </doc:summary>
+          <doc:description>
+              The identifier field provides a unique identifier for this
+              metadata documentation.  It will most likely be part of a 
+              sequence of numbers or letters that are meaningful in a 
+              larger context, such as a metadata catalog. That larger
+              system can be identified in the "system" attribute. Multiple
+              identifiers can be listed corresponding to different catalog
+              systems.
+            </doc:description>
+          <doc:example>
+              knb.24.8
+            </doc:example>
+          <doc:lineage>
+              The 'identifier' field is derived from the eml-dataset 
+              meta_file_id filed in EML 1.4.
+            </doc:lineage>
+        </xs:appinfo>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="system" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:appinfo>
+          <doc:tooltip>
+                  Catalog system
+                </doc:tooltip>
+          <doc:summary>
+                  The catalog system in which this identifier is used.
+                </doc:summary>
+          <doc:description>
+                  This element gives the name of the catalog system in which
+                  this identifier is used.  It is useful to determine the
+                  scope of the identifier, and to determine the semantics
+                  of the various subparts of the identifier. 
+                  Unresolved issue:
+                  can or should this be a URI/URL pointing to the catalog
+                  system, or just the name?
+                </doc:description>
+          <doc:example/>
+          <doc:lineage>
+                  New to EML 2.0.
+                </doc:lineage>
+        </xs:appinfo>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <!-- The keyword type domain take directly from ISO -->
   <xs:simpleType name="KeyTypCode">
@@ -1251,13 +1056,6 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:gYear"/>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction base="xs:date"/>
-      </xs:simpleType>
-    </xs:union>
+    <xs:union memberTypes="xs:gYear xs:date"/>
   </xs:simpleType>
 </xs:schema>
