@@ -20,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: blankman $'
-          '$Date: 2003-09-09 20:10:50 $'
-      '$Revision: 1.76 $'
+        '$Author: jones $'
+          '$Date: 2003-10-28 22:38:54 $'
+      '$Revision: 1.77 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -294,7 +294,8 @@
               <xs:complexType>
                 <xs:simpleContent>
                   <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
+                    <xs:attribute name="keywordType" type="KeyTypeCode" 
+                                  use="optional">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Keyword type</doc:tooltip>
@@ -304,7 +305,7 @@
                           categories. The possible types are listed in the
                           example.</doc:description>
                           <doc:example>
-                          "discipline","place","stratum","temporal","thematic",
+                          "place","stratum","temporal","theme",
                           or "taxonomic"</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
@@ -390,7 +391,7 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
-  <xs:simpleType name="KeyTypCode">
+  <xs:simpleType name="KeyTypeCode">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Keyword type codes</doc:tooltip>
@@ -401,11 +402,58 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="place"/>
-      <xs:enumeration value="stratum"/>
-      <xs:enumeration value="temporal"/>
-      <xs:enumeration value="theme"/>
-      <xs:enumeration value="taxonomic"/>
+      <xs:enumeration value="place">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Place Keywords</doc:tooltip>
+            <doc:summary>Keywords pertaining to a spatial location</doc:summary>
+            <doc:description>Keywords naming geographic locations associated 
+            with the data set.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="stratum">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Stratum Keywords</doc:tooltip>
+            <doc:summary>Keywords pertaining to a vertical stratum</doc:summary>
+            <doc:description>Keywords naming vertical strata associated 
+            with the data set (e.g., soil horizons).</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="temporal">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Temporal Keywords</doc:tooltip>
+            <doc:summary>Keywords pertaining to temporal data</doc:summary>
+            <doc:description>Keywords listing time periods associated 
+            with the data set.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="theme">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Thematic Keywords</doc:tooltip>
+            <doc:summary>Keywords pertaining to thematic subject</doc:summary>
+            <doc:description>Keywords naming thematics subjects associated 
+            with the data set.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="taxonomic">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Taxonomic Keywords</doc:tooltip>
+            <doc:summary>Keywords pertaining to taxon information</doc:summary>
+            <doc:description>Keywords listing taxonomic terms associated 
+            with the data set.  Note that lists of species names or other taxon
+            lists should be presented in the taxonomicCoverage element.
+            </doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="yearDate">
