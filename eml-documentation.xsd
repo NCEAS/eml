@@ -18,9 +18,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.7 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-10 17:56:10 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,14 +45,6 @@
         <xs:element name="recommendedUsage" type="xs:string"/>
         <xs:element name="standAlone" type="xs:string"/>
         <xs:element name="importedBy" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="relationship" minOccurs="0" maxOccurs="unbounded">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="moduleName" type="xs:string"/>
-              <xs:element name="relationshipType" type="xs:string"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

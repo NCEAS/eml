@@ -607,16 +607,6 @@
       <itemizedlist><xsl:apply-templates select="./doc:importedBy"/></itemizedlist>
     </listitem>
     </xsl:if>
-    <xsl:if test="count(./doc:relationship) > 0">
-    <listitem>
-      <para>Relates To:</para>
-      <segmentedlist>
-        <segtitle>related module</segtitle>
-        <segtitle>relationship</segtitle>
-        <xsl:apply-templates select="./doc:relationship"/>
-      </segmentedlist>
-    </listitem>
-    </xsl:if>
     <listitem>
       <para>
         <ulink>
@@ -630,13 +620,6 @@
     <xsl:value-of select="./doc:moduleDescription"/>
   </para>
 </section>
-</xsl:template>
-
-<xsl:template match="doc:relationship">
-  <seglistitem>
-    <seg><xsl:value-of select="normalize-space(./doc:moduleName)"/></seg>
-    <seg><xsl:value-of select="normalize-space(./doc:relationshipType)"/></seg>
-  </seglistitem>
 </xsl:template>
 
 <xsl:template match="doc:importedBy">
