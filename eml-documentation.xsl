@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-03-26 20:57:23 $'
-  *   '$Revision: 1.12 $'
+  *       '$Date: 2001-03-26 21:26:34 $'
+  *   '$Revision: 1.13 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -123,16 +123,20 @@
                 <tr>
                 <td valign="top" class="tablepanel">
                   <!--give each attribute link to its definition -->
-                  <span class="boldtext">Type:</span>
-                  <xsl:text> </xsl:text>
-                  <a class="sitelink">
-                    <xsl:attribute name="href">
-                      <xsl:text>#</xsl:text>
+                  <span class="boldtext">Type: </span>
+                  <xsl:choose>
+                    <xsl:when test='starts-with(string(./@type), "xs:")'>
                       <xsl:value-of select="./@type"/>
-                    </xsl:attribute>
-                    <!-- and display the name of the attribute-->
-                    <xsl:value-of select="./@type"/>
-                  </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <a class="sitelink">
+                        <xsl:attribute name="href">
+                          <xsl:text>#</xsl:text><xsl:value-of select="./@type"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="./@type"/>
+                      </a>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </td>
                 </tr>
                 <!-- display the attributes -->
@@ -375,20 +379,30 @@
       <td class="tablepanel">
         <!-- display the type -->
         <xsl:if test="./@type">
-          <p>Type:
+          <p>
+          <span class="boldtext">Type: </span>
           <span class="plaintext">
-            <a>
-              <xsl:attribute name="href">
-                <xsl:text>#</xsl:text><xsl:value-of select="./@type"/>
-              </xsl:attribute>
-              <xsl:value-of select="./@type"/>
-            </a>
-          </span></p>
+            <xsl:choose>
+              <xsl:when test='starts-with(string(./@type), "xs:")'>
+                <xsl:value-of select="./@type"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <a class="sitelink">
+                  <xsl:attribute name="href">
+                    <xsl:text>#</xsl:text><xsl:value-of select="./@type"/>
+                  </xsl:attribute>
+                  <xsl:value-of select="./@type"/>
+                </a>
+              </xsl:otherwise>
+            </xsl:choose>
+          </span>
+          </p>
         </xsl:if>
 
         <!-- display the use -->
         <xsl:if test="./@use">
-          <p>Use:
+          <p>
+          <span class="boldtext">Use: </span>
           <span class="plaintext">
             <xsl:value-of select="./@use"/>
           </span></p>
@@ -396,7 +410,8 @@
 
         <!-- display the default value -->
         <xsl:if test="./@value">
-          <p>Default value:
+          <p>
+          <span class="boldtext">Default value: </span>
           <span class="plaintext">
             <xsl:value-of select="./@value"/>
           </span></p>
