@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-07 15:29:14 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-05-16 16:54:32 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,12 +32,29 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-entity</doc:moduleName>
-      <doc:moduleDescription>
-        The StoredProcedure modules is meant to capture information on 
-        procedures stored in the context of an RDBMS.  It should describe
-        each stored procedure with a name, a sequence and a datatype.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-storedProcedure</doc:moduleName>
+        <doc:moduleDescription>
+          The StoredProcedure modules is meant to capture information on 
+          procedures stored in the context of an RDBMS.  It should describe
+          each stored procedure with a name, a sequence and a datatype.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets that use storedProcedures for analysis or archive
+          retrieval
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-dataset
+          </doc:moduleName>
+          <doc:relationshipType>
+            has stored procedure information for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   

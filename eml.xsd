@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-04-21 22:45:30 $'
-      '$Revision: 1.4 $'
+          '$Date: 2002-05-16 16:54:32 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,17 +33,25 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml</doc:moduleName>
-      <doc:moduleDescription>
-        The eml module is a wrapper container that allows inclusion of
-        any metadata content in a single EML document.  In general,
-        dataset resources, literature resources, collection  resources, and
-        software resources, or another type that extends eml-resource
-        must lead off the collection in the eml 
-        element because these resources contain the "triple" element that
-        allows specification of the relationships among the various 
-        components of the data package.  
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml</doc:moduleName>
+        <doc:moduleDescription>
+          The eml module is a wrapper container that allows inclusion of
+          any metadata content in a single EML document.  In general,
+          dataset resources, literature resources, collection  resources, and
+          software resources, or another type that extends eml-resource
+          must lead off the collection in the eml 
+          element because these resources contain the "triple" element that
+          allows specification of the relationships among the various 
+          components of the data package.  
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all datasets
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="eml">
