@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-17 17:57:03 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2003-11-17 18:06:18 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -69,70 +69,8 @@
       </head>
       <body>
         <table xsl:use-attribute-sets="cellspacing" width="100%">
-         <tr><td>
-          <table xsl:use-attribute-sets="cellspacing" width="100%" >
-          <tr>
-            <td rowspan="2"><img src="@web-base-url@/images/KNBLogo.gif"/></td>
-            <td colspan="7"><div class="title">Biocomplexity Data Search</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="@web-base-url@" class="toollink"> KNB </a></td>
-            <td><a href="@web-base-url@/data.html" class="toollink">
-                Data </a></td>
-            <td><a href="@web-base-url@/people.html" class="toollink">
-                People </a></td>
-            <td><a href="@web-base-url@/informatics" class="toollink">
-                Informatics </a></td>
-            <td><a href="@web-base-url@/biodiversity" class="toollink">
-                Biodiversity </a></td>
-            <td><a href="@web-base-url@/education" class="toollink">
-                Education </a></td>
-            <td><a href="@web-base-url@/software" class="toollink">
-                Software </a></td>
-         </tr>
-         <tr>
-          <td align="right" valign="top" colspan="7">
-            <form action="@html-path@/servlet/metacat" method="POST">
-             Data Search: <input type="text" name="anyfield" size="10" />
-             <input type="hidden" name="action" value="query" />
-             <input type="hidden" name="qformat" value="knb" />
-             <input type="hidden" name="operator" value="UNION" />
-
-             <input type="hidden" name="returnfield"
-              value="creator/individualName/surName" />
-             <input type="hidden" name="returnfield"
-              value="creator/organizationName" />
-             <input type="hidden" name="returnfield"
-              value="originator/individualName/surName" />
-             <input type="hidden" name="returnfield"
-              value="originator/individualName/givenName" />
-             <input type="hidden" name="returnfield"
-              value="originator/organizationName" />
-             <input type="hidden" name="returnfield"
-              value="title" />
-             <input type="hidden" name="returnfield"
-              value="keyword" />
-             <input type="hidden" name="returndoctype"
-              value="eml://ecoinformatics.org/eml-2.0.0" />
-             <input type="hidden" name="returndoctype"
-              value="-//NCEAS//eml-dataset-2.0//EN" />
-             <input type="hidden" name="returndoctype"
-              value="-//NCEAS//resource//EN" />
-             <input type="hidden" name="returndoctype"
-              value="-//NCEAS//eml-dataset//EN" />
-              <input type="hidden" name="returndoctype"
-              value="-//ecoinformatics.org//eml-dataset-2.0.0beta6//EN" />
-              <input type="hidden" name="returndoctype"
-              value="-//ecoinformatics.org//eml-dataset-2.0.0beta4//EN" />
-           </form>
-          </td>
-        </tr>
-       </table>
-       </td>
-       </tr>
         <xsl:apply-templates select="*[local-name()='eml']"/>
-      </table>
+        </table>
       </body>
     </html>
    </xsl:template>
