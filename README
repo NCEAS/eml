@@ -1,8 +1,9 @@
-The Ecological Metadata Language consists of a number of modules that define a
-standard markup syntax.  The files in this directory include both a Document
+The Ecological Metadata Language consists of a number of modules that define
+a standard markup syntax.  The files in this directory include both a Document
 Type Definition and an XML Schema document for each named module:
 
-eml-resource.[dtd,xsd] (w/ dataset, bibliography, software and collection sections.)
+eml-resource.[dtd,xsd] 
+    (w/ dataset, bibliography, software and collection sections.)
 iso-party.[dtd,xsd]
 eml-entity.[dtd,xsd]
 eml-attribute.[dtd,xsd]
@@ -14,16 +15,16 @@ eml-access.[dtd,xsd]
 eml-package.[dtd,xsd]
 eml-lineage.[dtd,xsd]
 
-There are also a few other files in the directory that are used as utilities to
-process the eml module files:
+There are also a few other files in the directory that are used as utilities
+to process the eml module files:
 
 eml-documentation.xsl (a transformation stylesheet for use with an XSLT engine
-                       that converts documentation that is embedded in the
+		       that converts documentation that is embedded in the
 		       schema documents into formatted html pages.)
 default.css (the cascading stylesheet that defines the layout for the generated
              html pages.)
 build.xml (an XML configuration file used with the Ant build system to
-           automatically  call the XSLT processor and apply the above stylesheets
+           automatically call the XSLT processor and apply the above stylesheets
 	   for the documentation.  A 'docs' directory is created with the 
 	   resultant html pages.)
 
