@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--         
        '$RCSfile: eml-entity.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
@@ -6,8 +7,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-04-17 21:34:22 $'
-      '$Revision: 1.16 $'
+          '$Date: 2002-04-17 21:54:20 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +25,9 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
-<!ENTITY % coverage SYSTEM "eml-coverage.dtd" >
+
+
+<!ENTITY % coverage SYSTEM "eml-coverage.dtd">
 <!ELEMENT other-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (entityType))>
 <!ELEMENT spatial-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (spatialImage* | spatialGrid* | spatialVector*))>
 <!ELEMENT table-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (orientation?, caseSensitive?, numberOfRecords?))>
