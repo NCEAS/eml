@@ -1,1 +1,493 @@
-<?xml version="1.0"?><xs:schema targetNamespace="eml:constraint-2.0.0beta8" xmlns="eml:constraint-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>  <xs:annotation>    <xs:documentation>       '$RCSfile: eml-constraint.xsd,v $'       Copyright: 1997-2002 Regents of the University of California,                            University of New Mexico, and                            Arizona State University        Sponsors: National Center for Ecological Analysis and Synthesis and                  Partnership for Interdisciplinary Studies of Coastal Oceans,                     University of California Santa Barbara                  Long-Term Ecological Research Network Office,                     University of New Mexico                  Center for Environmental Studies, Arizona State University   Other funding: National Science Foundation (see README for details)                  The David and Lucile Packard Foundation     For Details: http://knb.ecoinformatics.org/           '$Author: jones $'          '$Date: 2002-06-11 21:11:41 $'      '$Revision: 1.22 $'        This program is free software; you can redistribute it and/or modify    it under the terms of the GNU General Public License as published by    the Free Software Foundation; either version 2 of the License, or    (at your option) any later version.       This program is distributed in the hope that it will be useful,    but WITHOUT ANY WARRANTY; without even the implied warranty of    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the    GNU General Public License for more details.       You should have received a copy of the GNU General Public License    along with this program; if not, write to the Free Software    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    </xs:documentation>    <xs:appinfo>      <doc:moduleName>eml-constraint</doc:moduleName>      <doc:moduleDescription>        This schema defines the integrity constraints between entities         (e.g., data tables) as would be maintained in a relational database.         These constraints include        primary key constraints, foreign key constraints, unique key        constraints, check constraints, and not null constraints,         among potential others.      </doc:moduleDescription>    </xs:appinfo>  </xs:annotation>  <xs:complexType name="ConstraintType">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>          Relational integrity constraint descriptors        </doc:tooltip>        <doc:summary>          Describes the relational integrity constraints of a relational           database.        </doc:summary>        <doc:description>          Describes the relational integrity constraints of a relational           database.  This includes primary keys, foreign keys, unique keys, etc.          When an eml-constraint module is created, it should be linked into          a dataset using the "triple" element, and all of the entities that          are referenced in the constraints should be accessible within that           same package.        </doc:description>        <doc:example/>        <doc:lineage>           New in EML 2.0        </doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:choice>      <xs:element name="primaryKey">        <xs:complexType>          <xs:complexContent>            <xs:extension base="ConstraintDefinitionBase">              <xs:sequence>                <xs:element name="key" minOccurs="0">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Key</doc:tooltip>                      <doc:summary>                      The set of attributes to which this constraint applies.                    </doc:summary>                      <doc:description>                      The set of attributes to which this constraint applies.                        For a primary key or a unique key, the set of attributes                      must be identifying.  For a foreign key, the set of                      attributes must match an identifying key in the referenced                      entity.  For a not null constraint, the key indicates the                      attribute which should not be null.                    </doc:description>                      <doc:example/>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:appinfo>                  </xs:annotation>                  <xs:complexType>                    <xs:sequence>                      <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">                        <xs:annotation>                          <xs:appinfo>                            <doc:tooltip>Attribute Name</doc:tooltip>                            <doc:summary>                      Name of an attribute found in the identified entity                      </doc:summary>                            <doc:description>                      Name of an attribute that can be found in the identified                      entity.  This name will be unique within an entity and                      specifies that the attribute participates in the key that                      is being defined.                      </doc:description>                            <doc:example/>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:appinfo>                        </xs:annotation>                      </xs:element>                    </xs:sequence>                  </xs:complexType>                </xs:element>              </xs:sequence>            </xs:extension>          </xs:complexContent>        </xs:complexType>      </xs:element>      <xs:element name="uniqueKey">        <xs:complexType>          <xs:complexContent>            <xs:extension base="ConstraintDefinitionBase">              <xs:sequence>                <xs:element name="key" minOccurs="0">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Key</doc:tooltip>                      <doc:summary>                      The set of attributes to which this constraint applies.                    </doc:summary>                      <doc:description>                      The set of attributes to which this constraint applies.                        For a primary key or a unique key, the set of attributes must be                       identifying.  For a foreign key, the set of attributes must match                       an identifying key in the referenced entity.  For a not null                       constraint, the key indicates the attribute which should not                       be null.                    </doc:description>                      <doc:example/>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:appinfo>                  </xs:annotation>                  <xs:complexType>                    <xs:sequence>                      <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">                        <xs:annotation>                          <xs:appinfo>                            <doc:tooltip>Attribute Name</doc:tooltip>                            <doc:summary>                      Name of an attribute found in the identified entity                      </doc:summary>                            <doc:description>                      Name of an attribute that can be found in the identified                      entity.  This name will be unique within an entity and                      specifies that the attribute participates in the key that                      is being defined.                      </doc:description>                            <doc:example/>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:appinfo>                        </xs:annotation>                      </xs:element>                    </xs:sequence>                  </xs:complexType>                </xs:element>              </xs:sequence>            </xs:extension>          </xs:complexContent>        </xs:complexType>      </xs:element>      <xs:element name="checkConstraint">        <xs:complexType>          <xs:complexContent>            <xs:extension base="ConstraintDefinitionBase">              <xs:sequence>                <xs:element name="checkCondition" type="xs:string">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Check Condition</doc:tooltip>                      <doc:summary>                      An SQL statement or other language implementation of                      the condition for a check constraint.                    </doc:summary>                      <doc:description>                      A SQL statement or other language implementation of                       the condition for a check constraint.                        Generally this provides a means for constraining the                       values within  and among entities.                    </doc:description>                      <doc:example><![CDATA[(year > 1900 and year < 1990)]]></doc:example>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:appinfo>                  </xs:annotation>                </xs:element>              </xs:sequence>            </xs:extension>          </xs:complexContent>        </xs:complexType>      </xs:element>      <xs:element name="foreignKey">        <xs:complexType>          <xs:complexContent>            <xs:extension base="ConstraintDefinitionBase">              <xs:sequence>                <xs:element name="key">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Key</doc:tooltip>                      <doc:summary>                      The set of attributes to which this constraint applies.                    </doc:summary>                      <doc:description>                      The set of attributes to which this constraint applies.                        For a primary key or a unique key, the set of attributes must be                       identifying.  For a foreign key, the set of attributes must match                       an identifying key in the referenced entity.  For a not null                       constraint, the key indicates the attribute which should not                       be null.                    </doc:description>                      <doc:example/>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:appinfo>                  </xs:annotation>                  <xs:complexType>                    <xs:sequence>                      <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">                        <xs:annotation>                          <xs:appinfo>                            <doc:tooltip>Attribute Name</doc:tooltip>                            <doc:summary>                      Name of an attribute found in the identified entity                      </doc:summary>                            <doc:description>                      Name of an attribute that can be found in the identified                      entity.  This name will be unique within an entity and                      specifies that the attribute participates in the key that                      is being defined.                      </doc:description>                            <doc:example/>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:appinfo>                        </xs:annotation>                      </xs:element>                    </xs:sequence>                  </xs:complexType>                </xs:element>                <xs:element name="entityReference" type="xs:string">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Referenced Entity ID</doc:tooltip>                      <doc:summary>                      The id of the parent-entity in a foreign key constraint.                    </doc:summary>                      <doc:description>                       This field contains the id of the entity to which a foreign key                        refers, otherwise known as the parent-entity or parent-table.                       This should be an identifer that matches one of the "identifier"                        elements for an entity that is linked into the package                       with a triple.  The constraint document itself should be                       linked into the package as a member.                    </doc:description>                      <doc:example>                      knb.79.4                     </doc:example>                      <doc:lineage>                      New in EML 2.0                    </doc:lineage>                    </xs:appinfo>                  </xs:annotation>                </xs:element>                <xs:element name="referencedKey" minOccurs="0">                  <xs:annotation>                    <xs:appinfo>                      <doc:tooltip>Key</doc:tooltip>                      <doc:summary>                      The set of attributes to which a foreign key constraint refers.                    </doc:summary>                      <doc:description>                      The set of attributes to which a foreign key constraint refers.                        If the key refers to the primary key in the referenced entity,                       then the "referencedKey" is optional.  For a foreign key, the                       set of attributes must match an identifying key in the                       referenced entity.                    </doc:description>                      <doc:example/>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:appinfo>                  </xs:annotation>                  <xs:complexType>                    <xs:sequence>                      <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">                        <xs:annotation>                          <xs:appinfo>                            <doc:tooltip>Attribute Name</doc:tooltip>                            <doc:summary>                      Name of an attribute found in the identified entity                      </doc:summary>                            <doc:description>                      Name of an attribute that can be found in the identified                      entity.  This name will be unique within an entity and                      specifies that the attribute participates in the key that                      is being defined.                      </doc:description>                            <doc:example/>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:appinfo>                        </xs:annotation>                      </xs:element>                    </xs:sequence>                  </xs:complexType>                </xs:element>                <xs:element name="relationshipType" minOccurs="0">                  <xs:annotation>                    <xs:documentation>                      <doc:tooltip>Relationship type: Identifying or non-identifying</doc:tooltip>                      <doc:summary>Relationship type: Identifying or non-identifying</doc:summary>                      <doc:description>Identifying relationships propagate the the parent entity's           primary key to the child's primary key. Non-identifying relationships propagate the           parent's primary key as a non-key attribute of the child entity.           </doc:description>                      <doc:example/>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:documentation>                  </xs:annotation>                  <xs:simpleType>                    <xs:restriction base="xs:string">                      <xs:enumeration value="identifying"/>                      <xs:enumeration value="non-identifying"/>                    </xs:restriction>                  </xs:simpleType>                </xs:element>                <xs:element name="cardinality" minOccurs="0">                  <xs:annotation>                    <xs:documentation>                      <doc:tooltip>Cardinality of the relationship between two entities. </doc:tooltip>                      <doc:summary>Cardinality of the relationship between a parent entity and                       a child entity.          </doc:summary>                      <doc:description>Cardinality is a statement of the relationship between           parent and child entities. Cardinality is expressed as the ratio of           related parent and child entities. Cardinality 1 to N is a specific           form of cardinalty in which zero or one parent records are related           to a specified number of child records. The cardinality ratio for the           parent entity depends on whether the "existence" is mandatory (one or more)           or optional (zero to ...).                           </doc:description>                      <doc:example> One to many, One to 10, Zero or One to Many</doc:example>                      <doc:lineage>New in EML 2.0</doc:lineage>                    </xs:documentation>                  </xs:annotation>                  <xs:complexType>                    <xs:sequence>                      <xs:element name="parentOccurances">                        <xs:annotation>                          <xs:documentation>                            <doc:tooltip>Parent portion of a 1 to exactly N cardinality </doc:tooltip>                            <doc:summary>Parent portion of a 1 to exactly N cardinality.           May have a value of either 0 or 1.</doc:summary>                            <doc:description> >Parent portion of a 1 to exactly N cardinality.           May have a value of either 0 or 1.           Value of 0 implies that the "existence" of a child record is optional.           Value of 1 implies that the "existence" of a child record is mandatory.               </doc:description>                            <doc:example> One to 10, Zero or One to Many</doc:example>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:documentation>                        </xs:annotation>                        <xs:simpleType>                          <xs:restriction base="xs:integer">                            <xs:enumeration value="0"/>                            <xs:enumeration value="1"/>                          </xs:restriction>                        </xs:simpleType>                      </xs:element>                      <xs:element name="childOccurances" type="CardinalityChildOccurancesType">                        <xs:annotation>                          <xs:documentation>                            <doc:tooltip>Child portion of the cardinality expression </doc:tooltip>                            <doc:summary>Child portion of a cardinality expression          Allowed values are positive integers including zero        or the string value "many".</doc:summary>                            <doc:description> >Child portion of a cardinality expression        Allowed values are positive integers including zero             or the string value "many"</doc:description>                            <doc:example> 2, 15, many </doc:example>                            <doc:lineage>New in EML 2.0</doc:lineage>                          </xs:documentation>                        </xs:annotation>                      </xs:element>                    </xs:sequence>                  </xs:complexType>                </xs:element>              </xs:sequence>            </xs:extension>          </xs:complexContent>        </xs:complexType>      </xs:element>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>    <xs:attribute name="system" type="xs:string" use="optional"/>    <xs:attribute name="scope" type="res:FunctionType" use="optional" default="document"/>  </xs:complexType>  <xs:complexType name="ConstraintDefinitionBase">    <xs:sequence>      <xs:annotation>        <xs:appinfo>          <doc:tooltip>              Name of the constraint            </doc:tooltip>          <doc:summary>              A meaningfull name of the constraint.            </doc:summary>          <doc:description>              The constraint name represents a human readible and meaningful name for the constraint.            </doc:description>          <doc:example>             PrimaryKey_birdSurvey             </doc:example>          <doc:lineage>              New in EML 2.0.0.            </doc:lineage>        </xs:appinfo>      </xs:annotation>      <xs:element name="constraintName" type="xs:string"/>      <xs:element name="constraintDescription" minOccurs="0">        <xs:annotation>          <xs:appinfo>            <doc:tooltip>              Description  of the constraint            </doc:tooltip>            <doc:summary>             Descibes the purpose of the constraint.            </doc:summary>            <doc:description>              The constraint description element describes the nature of the               constraint. It might be a description of a check condition, or a              statement about the composition of a primary key or the nature               of the relationship between two database tables or two ascii files.                         </doc:description>            <doc:example>             1.Must be greater than 0 but less than 100              2. "The primary key of the table BIRD_SURVEY is composed of              two attributes:speciesCode and observationDate              3. The species name associated with the species code in survey.txt              can be found in the file speciesList.txt            </doc:example>            <doc:lineage>              New in EML 2.0.0.            </doc:lineage>          </xs:appinfo>        </xs:annotation>      </xs:element>    </xs:sequence>  </xs:complexType>  <xs:simpleType name="CardinalityChildOccurancesType">    <xs:annotation>      <xs:documentation>        <doc:tooltip>Child portion of a cardinality expression </doc:tooltip>        <doc:summary>Child portion of a cardinality expression          Allowed values are positive integers including zero        or the string value "many".</doc:summary>        <doc:description>Child portion of a cardinality expression        Allowed values are positive integers including zero             or the string value "many" </doc:description>        <doc:example>0,1, 2, 15,many</doc:example>        <doc:lineage>New in EML 2.0</doc:lineage>      </xs:documentation>    </xs:annotation>    <xs:union memberTypes="xs:integer">      <xs:simpleType>        <xs:restriction base="xs:string">          <xs:enumeration value="many"/>        </xs:restriction>      </xs:simpleType>    </xs:union>  </xs:simpleType></xs:schema>
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:constraint-2.0.0beta8"
+xmlns="eml:constraint-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8"
+xmlns:doc="eml:documentation-2.0.0beta8"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="eml:documentation-2.0.0beta8"
+    schemaLocation="eml-documentation.xsd" />
+    <xs:import namespace="eml:resource-2.0.0beta8"
+    schemaLocation="eml-resource.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+               '$RCSfile: eml-constraint.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+   
+        '$Author: jones $'
+          '$Date: 2002-06-12 20:23:58 $'
+      '$Revision: 1.23 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+   
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+   
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+        </xs:documentation>
+        <xs:appinfo>
+            <doc:moduleName>eml-constraint</doc:moduleName>
+            <doc:moduleDescription>This schema defines the integrity
+            constraints between entities (e.g., data tables) as would be
+            maintained in a relational database. These constraints include
+            primary key constraints, foreign key constraints, unique key
+            constraints, check constraints, and not null constraints, among
+            potential others.</doc:moduleDescription>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType name="ConstraintType">
+        <xs:annotation>
+            <xs:appinfo>
+                <doc:tooltip>Relational integrity constraint
+                descriptors</doc:tooltip>
+                <doc:summary>Describes the relational integrity constraints of
+                a relational database.</doc:summary>
+                <doc:description>Describes the relational integrity constraints
+                of a relational database. This includes primary keys, foreign
+                keys, unique keys, etc. When an eml-constraint module is
+                created, it should be linked into a dataset using the "triple"
+                element, and all of the entities that are referenced in the
+                constraints should be accessible within that same
+                package.</doc:description>
+                <doc:example />
+                <doc:lineage>New in EML 2.0</doc:lineage>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="primaryKey">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="ConstraintBaseGroup" />
+                        <xs:element name="key" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <doc:tooltip>Key</doc:tooltip>
+                                    <doc:summary>The set of attributes to which
+                                    this constraint applies.</doc:summary>
+                                    <doc:description>The set of attributes to
+                                    which this constraint applies. For a
+                                    primary key or a unique key, the set of
+                                    attributes must be identifying. For a
+                                    foreign key, the set of attributes must
+                                    match an identifying key in the referenced
+                                    entity. For a not null constraint, the key
+                                    indicates the attribute which should not be
+                                    null.</doc:description>
+                                    <doc:example />
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="attributeReference"
+                                    type="xs:string" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <doc:tooltip>Attribute
+                                                Name</doc:tooltip>
+                                                <doc:summary>Name of an
+                                                attribute found in the
+                                                identified entity</doc:summary>
+                                                <doc:description>Name of an
+                                                attribute that can be found in
+                                                the identified entity. This
+                                                name will be unique within an
+                                                entity and specifies that the
+                                                attribute participates in the
+                                                key that is being
+                                                defined.</doc:description>
+                                                <doc:example />
+                                                <doc:lineage>New in EML
+                                                2.0</doc:lineage>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="uniqueKey">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="ConstraintBaseGroup" />
+                        <xs:element name="key" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <doc:tooltip>Key</doc:tooltip>
+                                    <doc:summary>The set of attributes to which
+                                    this constraint applies.</doc:summary>
+                                    <doc:description>The set of attributes to
+                                    which this constraint applies. For a
+                                    primary key or a unique key, the set of
+                                    attributes must be identifying. For a
+                                    foreign key, the set of attributes must
+                                    match an identifying key in the referenced
+                                    entity. For a not null constraint, the key
+                                    indicates the attribute which should not be
+                                    null.</doc:description>
+                                    <doc:example />
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="attributeReference"
+                                    type="xs:string" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <doc:tooltip>Attribute
+                                                Name</doc:tooltip>
+                                                <doc:summary>Name of an
+                                                attribute found in the
+                                                identified entity</doc:summary>
+                                                <doc:description>Name of an
+                                                attribute that can be found in
+                                                the identified entity. This
+                                                name will be unique within an
+                                                entity and specifies that the
+                                                attribute participates in the
+                                                key that is being
+                                                defined.</doc:description>
+                                                <doc:example />
+                                                <doc:lineage>New in EML
+                                                2.0</doc:lineage>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="checkConstraint">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="ConstraintBaseGroup" />
+                        <xs:element name="checkCondition" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <doc:tooltip>Check Condition</doc:tooltip>
+                                    <doc:summary>An SQL statement or other
+                                    language implementation of the condition
+                                    for a check constraint.</doc:summary>
+                                    <doc:description>A SQL statement or other
+                                    language implementation of the condition
+                                    for a check constraint. Generally this
+                                    provides a means for constraining the
+                                    values within and among
+                                    entities.</doc:description>
+                                    <doc:example>(year &gt; 1900 and year &lt;
+                                    1990)</doc:example>
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="foreignKey">
+                <xs:complexType>
+                    <xs:group ref="ForeignKeyGroup" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="joinCondition">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="ForeignKeyGroup" />
+                        <xs:element name="referencedKey">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <doc:tooltip>Key</doc:tooltip>
+                                    <doc:summary>The set of attributes to which
+                                    a foreign key constraint
+                                    refers.</doc:summary>
+                                    <doc:description>The set of attributes to
+                                    which a foreign key constraint refers. If
+                                    the key refers to the primary key in the
+                                    referenced entity, then the "referencedKey"
+                                    is optional. For a foreign key, the set of
+                                    attributes must match an identifying key in
+                                    the referenced entity.</doc:description>
+                                    <doc:example />
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="attributeReference"
+                                    type="xs:string" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <doc:tooltip>Attribute
+                                                Name</doc:tooltip>
+                                                <doc:summary>Name of an
+                                                attribute found in the
+                                                identified entity</doc:summary>
+                                                <doc:description>Name of an
+                                                attribute that can be found in
+                                                the identified entity. This
+                                                name will be unique within an
+                                                entity and specifies that the
+                                                attribute participates in the
+                                                key that is being
+                                                defined.</doc:description>
+                                                <doc:example />
+                                                <doc:lineage>New in EML
+                                                2.0</doc:lineage>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="id" type="xs:ID" use="optional" />
+        <xs:attribute name="system" type="xs:string" use="optional" />
+        <xs:attribute name="scope" type="res:FunctionType" use="optional"
+        default="document" />
+    </xs:complexType>
+    <xs:simpleType name="CardinalityChildOccurancesType">
+        <xs:annotation>
+            <xs:documentation>
+                <doc:tooltip>Child portion of a cardinality
+                expression</doc:tooltip>
+                <doc:summary>Child portion of a cardinality expression Allowed
+                values are positive integers including zero or the string value
+                "many".</doc:summary>
+                <doc:description>Child portion of a cardinality expression
+                Allowed values are positive integers including zero or the
+                string value "many"</doc:description>
+                <doc:example>0,1, 2, 15,many</doc:example>
+                <doc:lineage>New in EML 2.0</doc:lineage>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="xs:integer">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="many" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    <xs:group name="ConstraintBaseGroup">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:appinfo>
+                    <doc:tooltip>Name of the constraint</doc:tooltip>
+                    <doc:summary>A meaningfull name of the
+                    constraint.</doc:summary>
+                    <doc:description>The constraint name represents a human
+                    readible and meaningful name for the
+                    constraint.</doc:description>
+                    <doc:example>PrimaryKey_birdSurvey</doc:example>
+                    <doc:lineage>New in EML 2.0.0.</doc:lineage>
+                </xs:appinfo>
+            </xs:annotation>
+            <xs:element name="constraintName" type="xs:string" />
+            <xs:element name="constraintDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Description of the
+                        constraint</doc:tooltip>
+                        <doc:summary>Descibes the purpose of the
+                        constraint.</doc:summary>
+                        <doc:description>The constraint description element
+                        describes the nature of the constraint. It might be a
+                        description of a check condition, or a statement about
+                        the composition of a primary key or the nature of the
+                        relationship between two database tables or two ascii
+                        files.</doc:description>
+                        <doc:example>1.Must be greater than 0 but less than 100
+                        2. "The primary key of the table BIRD_SURVEY is
+                        composed of two attributes:speciesCode and
+                        observationDate 3. The species name associated with the
+                        species code in survey.txt can be found in the file
+                        speciesList.txt</doc:example>
+                        <doc:lineage>New in EML 2.0.0.</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    <xs:group name="ForeignKeyGroup">
+        <xs:sequence>
+            <xs:group ref="ConstraintBaseGroup" />
+            <xs:element name="key">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Key</doc:tooltip>
+                        <doc:summary>The set of attributes to which this
+                        constraint applies.</doc:summary>
+                        <doc:description>The set of attributes to which this
+                        constraint applies. For a primary key or a unique key,
+                        the set of attributes must be identifying. For a
+                        foreign key, the set of attributes must match an
+                        identifying key in the referenced entity. For a not
+                        null constraint, the key indicates the attribute which
+                        should not be null.</doc:description>
+                        <doc:example />
+                        <doc:lineage>New in EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="attributeReference" type="xs:string"
+                        maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <doc:tooltip>Attribute Name</doc:tooltip>
+                                    <doc:summary>Name of an attribute found in
+                                    the identified entity</doc:summary>
+                                    <doc:description>Name of an attribute that
+                                    can be found in the identified entity. This
+                                    name will be unique within an entity and
+                                    specifies that the attribute participates
+                                    in the key that is being
+                                    defined.</doc:description>
+                                    <doc:example />
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="entityReference" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Referenced Entity ID</doc:tooltip>
+                        <doc:summary>The id of the parent-entity in a foreign
+                        key constraint.</doc:summary>
+                        <doc:description>This field contains the id of the
+                        entity to which a foreign key refers, otherwise known
+                        as the parent-entity or parent-table. This should be an
+                        identifer that matches one of the "identifier" elements
+                        for an entity that is linked into the package with a
+                        triple. The constraint document itself should be linked
+                        into the package as a member.</doc:description>
+                        <doc:example>knb.79.4</doc:example>
+                        <doc:lineage>New in EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="relationshipType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <doc:tooltip>Relationship type: Identifying or
+                        non-identifying</doc:tooltip>
+                        <doc:summary>Relationship type: Identifying or
+                        non-identifying</doc:summary>
+                        <doc:description>Identifying relationships propagate
+                        the the parent entity's primary key to the child's
+                        primary key. Non-identifying relationships propagate
+                        the parent's primary key as a non-key attribute of the
+                        child entity.</doc:description>
+                        <doc:example />
+                        <doc:lineage>New in EML 2.0</doc:lineage>
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="identifying" />
+                        <xs:enumeration value="non-identifying" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="cardinality" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <doc:tooltip>Cardinality of the relationship between
+                        two entities.</doc:tooltip>
+                        <doc:summary>Cardinality of the relationship between a
+                        parent entity and a child entity.</doc:summary>
+                        <doc:description>Cardinality is a statement of the
+                        relationship between parent and child entities.
+                        Cardinality is expressed as the ratio of related parent
+                        and child entities. Cardinality 1 to N is a specific
+                        form of cardinalty in which zero or one parent records
+                        are related to a specified number of child records. The
+                        cardinality ratio for the parent entity depends on
+                        whether the "existence" is mandatory (one or more) or
+                        optional (zero to ...).</doc:description>
+                        <doc:example>One to many, One to 10, Zero or One to
+                        Many</doc:example>
+                        <doc:lineage>New in EML 2.0</doc:lineage>
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="parentOccurances">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    <doc:tooltip>Parent portion of a 1 to
+                                    exactly N cardinality</doc:tooltip>
+                                    <doc:summary>Parent portion of a 1 to
+                                    exactly N cardinality. May have a value of
+                                    either 0 or 1.</doc:summary>
+                                    <doc:description>&gt;Parent portion of a 1
+                                    to exactly N cardinality. May have a value
+                                    of either 0 or 1. Value of 0 implies that
+                                    the "existence" of a child record is
+                                    optional. Value of 1 implies that the
+                                    "existence" of a child record is
+                                    mandatory.</doc:description>
+                                    <doc:example>One to 10, Zero or One to
+                                    Many</doc:example>
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:enumeration value="0" />
+                                    <xs:enumeration value="1" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="childOccurances"
+                        type="CardinalityChildOccurancesType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    <doc:tooltip>Child portion of the
+                                    cardinality expression</doc:tooltip>
+                                    <doc:summary>Child portion of a cardinality
+                                    expression Allowed values are positive
+                                    integers including zero or the string value
+                                    "many".</doc:summary>
+                                    <doc:description>&gt;Child portion of a
+                                    cardinality expression Allowed values are
+                                    positive integers including zero or the
+                                    string value "many"</doc:description>
+                                    <doc:example>2, 15, many</doc:example>
+                                    <doc:lineage>New in EML 2.0</doc:lineage>
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+</xs:schema>
+
