@@ -1,3 +1,4 @@
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Daniel F Higgins (private) -->
 <!--         
        '$RCSfile: eml-physical.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
@@ -5,8 +6,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: higgins $'
-          '$Date: 2002-05-21 23:12:59 $'
-      '$Revision: 1.7 $'
+          '$Date: 2002-05-22 16:10:31 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,14 +23,23 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
+<!ENTITY % literature SYSTEM "eml-literature.dtd" >
+%literature;
+
 <!ELEMENT eml-physical (identifier+, dataObject, dataFormat, connectionURL)>
 <!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED>
+<!ATTLIST identifier
+	system CDATA #IMPLIED
+>
 <!ELEMENT characterEncoding (#PCDATA)>
 <!ELEMENT size (#PCDATA)>
-<!ATTLIST size unit CDATA #REQUIRED>
+<!ATTLIST size
+	unit CDATA #REQUIRED
+>
 <!ELEMENT authentication (#PCDATA)>
-<!ATTLIST authentication method CDATA #IMPLIED>
+<!ATTLIST authentication
+	method CDATA #IMPLIED
+>
 <!ELEMENT compressionMethod (#PCDATA)>
 <!ELEMENT encodingMethod (#PCDATA)>
 <!ELEMENT numHeaderLines (#PCDATA)>
@@ -43,10 +53,11 @@
 <!ELEMENT dataObject (objectName, size?, authentication*, compressionMethod?, encodingMethod?, characterEncoding?)>
 <!ELEMENT objectName (#PCDATA)>
 <!ELEMENT connectionURL (#PCDATA)>
-<!ELEMENT dataFormat (formatType,(asciiDelimited?|asciiFixed?|binaryRasterInfo?|genericBinary?)>
-<!ELEMENT asciiDelimited (fieldDelimiter, numHeaderLines?, maxRecordLength?,quoteCharacter*,recordDelimiter?,literalCharacter?)>
-<!ELEMENT asciiFixed (numHeaderLines?, fieldStartColumn?, fieldWidth)+)>
-<!ELEMENT binaryRasterInfo (nrows, ncols, nbands?, nbits?, byteorder?, layout?, skipbytes?, ulxmap?, ulymap?, xdim?, ydim?,bandrowbytes?, totalrowbytes?, bandgapbytes?)?>
+<!ELEMENT dataFormat (formatType, (asciiDelimited? | asciiFixed? | binaryRasterInfo? | genericBinary?))>
+<!ELEMENT formatType (formatName, formatVersion?, citation*)>
+<!ELEMENT asciiDelimited (fieldDelimiter, numHeaderLines?, maxRecordLength?, quoteCharacter*, recordDelimiter?, literalCharacter?)>
+<!ELEMENT asciiFixed (numHeaderLines?, fieldStartColumn?, fieldWidth)+>
+<!ELEMENT binaryRasterInfo (nrows, ncols, nbands?, nbits?, byteorder?, layout?, skipbytes?, ulxmap?, ulymap?, xdim?, ydim?, bandrowbytes?, totalrowbytes?, bandgapbytes?)?>
 <!ELEMENT genericBinary (#PCDATA)>
 <!ELEMENT nrows (#PCDATA)>
 <!ELEMENT ncols (#PCDATA)>
@@ -58,8 +69,7 @@
 <!ELEMENT ulxmap (#PCDATA)>
 <!ELEMENT ulymap (#PCDATA)>
 <!ELEMENT xdim (#PCDATA)>
-<!ELEMENT xdim (#PCDATA)>
+<!ELEMENT ydim (#PCDATA)>
 <!ELEMENT bandrowbytes (#PCDATA)>
 <!ELEMENT totalrowbytes (#PCDATA)>
 <!ELEMENT bandgapbytes (#PCDATA)>
-
