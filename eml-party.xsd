@@ -18,8 +18,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: berkley $'
-          '$Date: 2002-06-10 23:27:10 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-06-11 21:17:11 $'
+      '$Revision: 1.22 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -586,6 +586,8 @@
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
     <xs:attribute name="id" type="xs:ID" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="system"/>
   </xs:complexType>
   <!-- Role code domain take from ISO -->
   <xs:simpleType name="RoleType">
