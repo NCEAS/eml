@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-16 22:04:47 $'
- *    '$Revision: 1.32 $'
+ *        '$Date: 2002-09-17 18:04:42 $'
+ *    '$Revision: 1.33 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -66,10 +66,16 @@
             select="//doc:moduleDescription"/>
         </blockquote>
 
+        View an image of the
+        <a>
+          <xsl:attribute name="href">
+          <xsl:value-of select="//doc:moduleName"/>.png</xsl:attribute>
+          schema</a>
+        <!--
         <img>
           <xsl:attribute name="src"><xsl:value-of
             select="//doc:moduleName"/>.png</xsl:attribute>
-        </img>
+        </img>-->
 
         <table border="0" class="tabledefault">
           <tr>
@@ -114,16 +120,37 @@
     <!-- MBJ: this should be all elements -->
     <xsl:if test="./@name">
       <tr>
-        <td colspan="2" class="tablehead">
+        <td colspan="1" class="tablehead">
           <!--give each element an anchor name-->
           <a class="sitelink">
             <xsl:attribute name="name">
               <xsl:value-of select="./@name"/>
             </xsl:attribute>
             <!-- and display the name of the element-->
-            <xsl:value-of select="./@name"/>
+            <xsl:value-of select="./@name"/>&#160;
           </a>
         </td>
+        <xsl:choose>
+        <xsl:when test="name(.)='xs:element'">
+        <td colspan="1" class="tablehead">
+        Element is
+        <xsl:choose>
+          <xsl:when test="./@minOccurs=0">OPTIONAL </xsl:when>
+          <xsl:otherwise>REQUIRED </xsl:otherwise>
+        </xsl:choose>
+        <xsl:choose>
+          <xsl:when test="./@default">And has a default value of 
+          <xsl:value-of select="./@default"/></xsl:when>
+          <xsl:otherwise>and has no default value</xsl:otherwise>
+        </xsl:choose>
+        </td>
+        </xsl:when>
+        <xsl:otherwise>
+          <td colspan="1" class="tablehead"><xsl:text>
+              </xsl:text>
+          </td>
+        </xsl:otherwise>
+        </xsl:choose>
       </tr>
       <tr>
         <td class="tablepanel" width="40%">
@@ -163,6 +190,7 @@
                 </td>
                 </tr>
                 <!-- display the attributes -->
+                <xsl:if test="count(xs:attribute|xs:complexType/xs:attribute) &gt; 0">
                 <tr>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
@@ -171,15 +199,17 @@
                   </td>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
-                    Required?:
+                    Use:
                   </span>
                   </td>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Default Value:
                   </span>
+                  <xsl:value-of select="./@default"/>
                   </td>
                 </tr>
+                </xsl:if>
                 <!-- Now process the CM for the attribute children -->
                 <xsl:apply-templates
                      select="xs:attribute|xs:complexType/xs:attribute"
@@ -225,6 +255,8 @@
                 </xsl:if>
 
                 <!-- display the elements -->
+                <xsl:if test="count(xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent) &gt; 0">
+                <xsl:if test="count(xs:complexType/xs:simpleContent/xs:extension/xs:attribute) = 0">
                 <tr>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
@@ -233,7 +265,7 @@
                   </td>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
-                    Required?:
+                    Use:
                   </span>
                   </td>
                   <td valign="top" class="tablepanel">
@@ -242,12 +274,16 @@
                   </span>
                   </td>
                 </tr>
+                
                 <!-- Now display the CM for the element children -->
                 <xsl:apply-templates
-                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent"
+                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent"
                      mode="contentmodel" />
-
+                     
+                </xsl:if>
+                </xsl:if>
                 <!-- display the attributes -->
+                <xsl:if test="count(xs:attribute|xs:complexType/xs:attribute|xs:complexType/xs:simpleContent/xs:extension/xs:attribute) &gt; 0">
                 <tr>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
@@ -256,18 +292,20 @@
                   </td>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
-                    Required?:
+                    Use:
                   </span>
                   </td>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
                     Default Value:
                   </span>
+                  <xsl:value-of select="./@default"/>
                   </td>
                 </tr>
+                </xsl:if>
                 <!-- Now display the CM for the attribute children -->
                 <xsl:apply-templates
-                     select="xs:attribute|xs:complexType/xs:attribute"
+                     select="xs:attribute|xs:complexType/xs:attribute|xs:complexType/xs:simpleContent/xs:extension/xs:attribute"
                      mode="contentmodel" />
               </xsl:otherwise>
             </xsl:choose>
@@ -275,7 +313,9 @@
             <!-- end the inner content model table -->
           </td>
         <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
+        <xsl:apply-templates select="xs:simpleType" mode="embedded"/>
       </tr>
+      
     </xsl:if>
   </xsl:template>
 
@@ -340,14 +380,15 @@
         </td>
         <td class="tablepanel">
         <xsl:choose>
-          <xsl:when test="./@minOccurs &gt; '0'">Required</xsl:when>
-          <xsl:otherwise>Optional</xsl:otherwise>
+          <xsl:when test="./@minOccurs = '0'">optional</xsl:when>
+          <xsl:otherwise>required</xsl:otherwise>
         </xsl:choose>
         </td>
         <td class="tablepanel">
         <xsl:choose>
-          <xsl:when test="./@maxOccurs = '1'">Once</xsl:when>
-          <xsl:otherwise>Multiple Times</xsl:otherwise>
+          <xsl:when test="./@maxOccurs = '1'">once</xsl:when>
+          <xsl:when test="./@maxOccurs='unbounded'">unbounded</xsl:when>
+          <xsl:otherwise><xsl:value-of select="./@maxOccurs"/></xsl:otherwise>
         </xsl:choose>
         </td>
         </tr>
@@ -393,6 +434,14 @@
         <td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@value"/>
+          </span>
+        </td>
+        </xsl:if>
+        
+        <xsl:if test="./@default">
+        <td class="tablepanel">
+          <span class="plaintext">
+            <xsl:value-of select="./@default"/>
           </span>
         </td>
         </xsl:if>
@@ -460,7 +509,16 @@
             <xsl:value-of select="./@value"/>
           </span></p>
         </xsl:if>
+        
+        <xsl:if test="./@default">
+          <p>
+          <span class="boldtext">Default value: </span>
+          <span class="plaintext">
+            <xsl:value-of select="./@default"/>
+          </span></p>
+        </xsl:if>
       </td>
+      <xsl:apply-templates select="xs:simpleType" mode="embedded"/>
       <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
     </tr>
   </xsl:template>
@@ -469,12 +527,36 @@
   <xsl:template match="xs:complexType" mode="contentmodel">
     <!-- Find all of the children of this complexType and list them -->
     <xsl:apply-templates
-         select="xs:sequence|xs:choice|xs:element|xs:complexContent"
+         select="xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent"
          mode="contentmodel" />
   </xsl:template>
 
   <!-- step through the simpleTypes -->
   <xsl:template match="xs:simpleType" mode="documentation">
+    <xsl:if test="./@name">
+    <tr>
+      <td colspan="2" class="tablehead">
+        <h3>
+          <a class="sitelink">
+            <xsl:attribute name="name">
+              <xsl:value-of select="./@name"/>
+            </xsl:attribute>
+            <xsl:value-of select="./@name"/>
+          </a>
+        </h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="tablepanel">
+        <xsl:apply-templates select="xs:extension|xs:restriction"
+                             mode="contentmodel"/>
+      </td>
+      <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
+    </tr>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="xs:simpleType" mode="embedded">
     <tr>
       <td colspan="2" class="tablehead">
         <h3>
@@ -498,6 +580,12 @@
 
   <!-- format the complexContent content model -->
   <xsl:template match="xs:complexContent" mode="contentmodel">
+    <!-- Find all of the children of this complexContent and list them -->
+    <xsl:apply-templates select="xs:extension|xs:restriction"
+                         mode="contentmodel" />
+  </xsl:template>
+  
+  <xsl:template match="xs:simpleContent" mode="contentmodel">
     <!-- Find all of the children of this complexContent and list them -->
     <xsl:apply-templates select="xs:extension|xs:restriction"
                          mode="contentmodel" />
@@ -539,7 +627,7 @@
         </p>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="xs:sequence|xs:choice"
+        <xsl:apply-templates select="xs:sequence|xs:choice|xs:attribute"
                              mode="contentmodel" />
       </xsl:otherwise>
     </xsl:choose>
