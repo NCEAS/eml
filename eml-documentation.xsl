@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: berkley $'
-  *       '$Date: 2002-05-21 21:39:29 $'
-  *   '$Revision: 1.22 $'
+  *       '$Date: 2002-05-21 22:15:15 $'
+  *   '$Revision: 1.23 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
       <head>
         <title>
           <xsl:value-of 
-               select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/> 
+               select="//doc:moduleName"/> 
           Documentation
         </title>
         <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -47,7 +47,7 @@
         <div class="title">
           Module Documentation: 
           <xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>
+            select="//doc:moduleName"/>
         </div>
         </td><td>
         <a href="index.html" class="navlink">Back to EML Contents</a>
@@ -55,12 +55,12 @@
         </table>
         <blockquote>
           <xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDescription"/>
+            select="//doc:moduleDescription"/>
         </blockquote>
 
         <img>
           <xsl:attribute name="src"><xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>.png</xsl:attribute>
+            select="//doc:moduleName"/>.png</xsl:attribute>
         </img>
 
         <table border="0" class="tabledefault">

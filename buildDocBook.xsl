@@ -47,7 +47,7 @@
   </preface>
   
   
-  <chapter label="Module Descriptions" id="moduleDescriptions">
+  <chapter id="moduleDescriptions">
     <title>Module Descriptions</title>
     <xsl:for-each select="//doc:module">
       <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
