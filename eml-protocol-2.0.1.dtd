@@ -1,0 +1,118 @@
+<!--         
+       '$RCSfile: eml-protocol-2.0.1.dtd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: higgins $'
+          '$Date: 2001-10-03 22:00:52 $'
+      '$Revision: 1.1 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+
+<!ELEMENT eml-protocol (identifier+, protocol+)>
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier system CDATA #IMPLIED>
+<!ELEMENT protocol (method*, processingStep*, qualityControl*)>
+<!ELEMENT method (paragraph*, citation*)>
+<!ELEMENT processingStep (paragraph*, citation*)>
+<!ELEMENT qualityControl (paragraph*, citation*)> 
+<!ELEMENT paragraph (#PCDATA)> 
+
+<!ELEMENT individualName (salutation*, givenName*, surName)>
+<!ELEMENT salutation (#PCDATA)>
+<!ELEMENT givenName (#PCDATA)>
+<!ELEMENT surName (#PCDATA)>
+
+<!ELEMENT organizationName (#PCDATA)>
+<!ELEMENT positionName (#PCDATA)>
+
+<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, 
+                   postalCode?, country?)>
+<!ELEMENT deliveryPoint (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT administrativeArea (#PCDATA)>
+<!ELEMENT postalCode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+
+<!ELEMENT phone (#PCDATA)>
+<!ATTLIST phone phonetype CDATA "voice">
+<!ELEMENT electronicMailAddress (#PCDATA)>
+<!ELEMENT onlineLink (#PCDATA)>
+
+<!-- Note that the domain for role is not expressed in the DTD -->
+<!ELEMENT role (#PCDATA)>
+
+
+<!-- entity to conglomerate these fields into one name -->
+<!ELEMENT role (#PCDATA)>
+
+<!-- common fields -->
+<!ELEMENT shortName (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT originator ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!ELEMENT pubdate (#PCDATA)>
+<!ELEMENT pubplace (#PCDATA)>
+<!ELEMENT series (#PCDATA)>
+<!ELEMENT abstract (paragraph+)>
+<!ELEMENT keywordSet (keyword+, keywordThesaurus*)>
+<!ELEMENT keyword (#PCDATA)>
+<!ATTLIST keyword keywordType CDATA "">
+<!ELEMENT keywordThesaurus (#PCDATA)>
+<!ELEMENT additionalInfo (paragraph+)>
+<!ELEMENT paragraph (#PCDATA)>
+<!ELEMENT rights (paragraph+)>
+<!ELEMENT triple (subject, relationship, object)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT relationship (#PCDATA)>
+<!ELEMENT object (#PCDATA)>
+
+<!-- The literature branch -->
+
+<!ELEMENT citation (identifier+, shortName?, title+,
+                     originator+, pubdate?, pubplace?, series?, abstract?, 
+                     keywordSet*, additionalInfo?, rights*, triple*,
+ ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))>
+<!ELEMENT ISBN (#PCDATA)>
+<!ELEMENT ISSN (#PCDATA)>
+<!ELEMENT article (jounal, volume, issue?, pageRange)>
+<!ELEMENT book (edition?, totalPages?, totalFigures?, totalTables?, volume?)>
+<!ELEMENT chapter (chapterNumber?, bookEditor, bookTitle, publisher, pageRange?, edition?, volume?)>
+<!ELEMENT manuscript (pubInfo, Location)>
+<!ELEMENT report (institution, reportNumber)>
+<!ELEMENT thesis (degree, pubInfo, totalPages, degreeInstitution)>
+<!ELEMENT jounal (#PCDATA)>
+<!ELEMENT volume (#PCDATA)>
+<!ELEMENT issue (#PCDATA)>
+<!ELEMENT pageRange (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT totalPages (#PCDATA)>
+<!ELEMENT totalFigures (#PCDATA)>
+<!ELEMENT totalTables (#PCDATA)>
+<!ELEMENT chapterNumber (#PCDATA)>
+<!ELEMENT bookEditor (#PCDATA)>
+<!ELEMENT bookTitle (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT pubInfo (#PCDATA)>
+<!ELEMENT Location (#PCDATA)>
+<!ELEMENT institution (#PCDATA)>
+<!ELEMENT reportNumber (#PCDATA)>
+<!ELEMENT degree (#PCDATA)>
+<!ELEMENT degreeInstitution (#PCDATA)>
+
+<!-- EOF -->

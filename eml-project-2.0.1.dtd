@@ -1,0 +1,162 @@
+
+
+<!--eml-coverage-->
+<!ELEMENT geographicCov (descgeog, bounding, dsgpoly*)>
+<!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
+<!ELEMENT begdate (#PCDATA)>
+<!ELEMENT beggeol (geolage)>
+<!ELEMENT begtime (#PCDATA)>
+<!ELEMENT citeinfo (#PCDATA)>
+<!ELEMENT enddate (#PCDATA)>
+<!ELEMENT endgeol (geolage)>
+<!ELEMENT endtime (#PCDATA)>
+<!ELEMENT geolage (geolscal, geolest, geolun?, geolexpl?, geolcit*)>
+<!ELEMENT gring (#PCDATA)>
+<!ELEMENT grngpoin (gringlat, gringlon)>
+<!ELEMENT mdattim (sngdate+)>
+<!ELEMENT rngdates ((begdate, begtime?, enddate, endtime?) | (beggeol, endgeol))>
+<!ELEMENT sngdate ((caldate, time?) | geolage)>
+<!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
+<!ELEMENT descgeog (#PCDATA)>
+<!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
+<!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
+<!ELEMENT geolscal (#PCDATA)>
+<!ELEMENT geolest (#PCDATA)>
+<!ELEMENT geolun (#PCDATA)>
+<!ELEMENT geolexpl (#PCDATA)>
+<!ELEMENT geolcit (citeinfo)>
+<!ELEMENT gringlat (#PCDATA)>
+<!ELEMENT gringlon (#PCDATA)>
+<!ELEMENT caldate (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
+<!ELEMENT westbc (#PCDATA)>
+<!ELEMENT eastbc (#PCDATA)>
+<!ELEMENT northbc (#PCDATA)>
+<!ELEMENT southbc (#PCDATA)>
+<!ELEMENT boundalt (altmin, almax, altunits)>
+<!ELEMENT dsgpolyo (grngpoin+ | gring)>
+<!ELEMENT dsgpolyx (grngpoin+ | gring)>
+
+<!ELEMENT altmin (#PCDATA)>
+<!ELEMENT almax (#PCDATA)>
+<!ELEMENT altunits (#PCDATA)>
+
+<!--end eml-coverage-->
+
+<!--eml-party-->
+<!ELEMENT individualName (salutation*, givenName*, surName)>
+<!ELEMENT salutation (#PCDATA)>
+<!ELEMENT givenName (#PCDATA)>
+<!ELEMENT surName (#PCDATA)>
+<!ELEMENT organizationName (#PCDATA)>
+<!ELEMENT positionName (#PCDATA)>
+<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, postalCode?, country?)>
+<!ELEMENT deliveryPoint (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT administrativeArea (#PCDATA)>
+<!ELEMENT postalCode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ATTLIST phone
+  phonetype CDATA "voice"
+>
+<!ELEMENT electronicMailAddress (#PCDATA)>
+<!ELEMENT onlineLink (#PCDATA)>
+
+<!ELEMENT role (#PCDATA)>
+<!--end eml-party-->
+
+<!--eml-protocol-->
+<!ELEMENT protocol (method*, processingStep*, qualityControl*)>
+<!ELEMENT method (paragraph*, citation*)>
+<!ELEMENT processingStep (paragraph*, citation*)>
+<!ELEMENT qualityControl (paragraph*, citation*)>
+<!ELEMENT paragraph (#PCDATA)>
+<!--end eml-protocol-->
+
+<!--eml-literature-->
+<!ELEMENT citation ((individualName|organizationName|positionName),
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+, ISBN?, ISSN?, 
+                             (article | book | chapter | manuscript | report | thesis))>
+<!ELEMENT ISBN (#PCDATA)>
+<!ELEMENT ISSN (#PCDATA)>
+<!ELEMENT article (jounal, volume, issue?, pageRange)>
+<!ELEMENT book (edition?, totalPages?, totalFigures?, totalTables?, volume?)>
+<!ELEMENT chapter (chapterNumber?, bookEditor, bookTitle, publisher, pageRange?, 
+                   edition?, volume?)>
+<!ELEMENT manuscript (pubInfo, Location)>
+<!ELEMENT report (institution, reportNumber)>
+<!ELEMENT thesis (degree, pubInfo, totalPages, degreeInstitution)>
+<!ELEMENT jounal (#PCDATA)>
+<!ELEMENT volume (#PCDATA)>
+<!ELEMENT issue (#PCDATA)>
+<!ELEMENT pageRange (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT totalPages (#PCDATA)>
+<!ELEMENT totalFigures (#PCDATA)>
+<!ELEMENT totalTables (#PCDATA)>
+<!ELEMENT chapterNumber (#PCDATA)>
+<!ELEMENT bookEditor (#PCDATA)>
+<!ELEMENT bookTitle (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT pubInfo ((individualName|organizationName|positionName),
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!ELEMENT Location (#PCDATA)>
+<!ELEMENT institution ((individualName|organizationName|positionName),
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!ELEMENT reportNumber (#PCDATA)>
+<!ELEMENT degree (#PCDATA)>
+<!ELEMENT degreeInstitution (#PCDATA)>
+<!--end eml-literature-->
+
+<!-- The root element, which represents the research project 
+     employed by the researchers who created this dataset -->
+<!ELEMENT eml-project (identifier, researchProject+)>
+<!-- Research project descriptor -->
+<!ELEMENT researchProject (title+, originator+, temporalCov*, objectives?, 
+          abstract?, funding?, siteDescription*, designDescription*, 
+          eml-protocol*, staff*, researchProject*)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT originator ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!ELEMENT identifier (#PCDATA)>
+<!ELEMENT abstract (#PCDATA)>
+<!ELEMENT eml-protocol (#PCDATA)>
+<!-- Scope and purpose of the research project -->
+<!ELEMENT objectives (paragraph+)>
+<!-- Grant and contract numbers, names and addresses of funding sources -->
+<!ELEMENT funding (paragraph+)>
+<!-- Site description -->
+<!ELEMENT siteDescription (paragraph*, siteType?, geography?, habitat?, geology?, 
+          hydrology?, history?, climate?)>
+<!-- Site type - description, e.g., short-grass prairie, blackwater stream, etc. -->
+<!ELEMENT siteType (paragraph+)>
+<!-- Location and size -->
+<!ELEMENT geography (geographicCov*, paragraph*, citation*)>
+<!-- Detailed characteristics of habitat sampled -->
+<!ELEMENT habitat (paragraph*, citation*)>
+<!-- Geology and Landform -->
+<!ELEMENT geology (paragraph*, citation*)>
+<!-- Hydrology -->
+<!ELEMENT hydrology (paragraph*, citation*)>
+<!-- Site history -->
+<!ELEMENT history (paragraph*, citation*)>
+<!-- Site climatic characteristics -->
+<!ELEMENT climate (paragraph*, citation*)>
+<!-- Experimental or Sampling design -->
+<!ELEMENT designDescription (protocol*, sampling*, paragraph*, citation*)>
+
+
+<!-- Information necessary to understand temporal sampling regime -->
+<!ELEMENT sampling (temporalCov*, frequency?, paragraph*, citation*)>
+<!-- Frequency or period of data collection -->
+<!ELEMENT frequency (#PCDATA)>
+<!-- Project Personell -->
+<!ELEMENT staff ((individualName|organizationName|positionName),
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!-- End of file -->
