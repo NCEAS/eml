@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-05-17 21:05:48 $'
-  *  '$Revision: 1.17 $'
+  *      '$Date: 2002-05-17 21:08:23 $'
+  *  '$Revision: 1.18 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -114,5 +114,11 @@
     <mkdir dir="${build.docs}/user"/>
     <style basedir="." style="buildDocBook.xsl" 
            in="eml.xsd" out="${build.docs}/user/eml-docbook.xml" processor="trax"/>
+    <echo>
+      ***********************************************
+        DocBook Created.  The DocBook documentation
+        should now be in docs/user.
+      ***********************************************
+    </echo>
   </target>
 </project>
