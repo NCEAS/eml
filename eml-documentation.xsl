@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: jones $'
- *        '$Date: 2002-10-30 17:58:26 $'
- *    '$Revision: 1.44 $'
+ *        '$Date: 2002-10-31 17:49:27 $'
+ *    '$Revision: 1.45 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -142,7 +142,11 @@
   </xsl:template>
 
   <xsl:template match="para" mode="docbook">
-    <p><xsl:value-of select="."/></p>
+    <p><xsl:apply-templates mode="docbook"/></p>
+  </xsl:template>
+
+  <xsl:template match="literalLayout" mode="docbook">
+    <pre><xsl:value-of select="."/></pre>
   </xsl:template>
 
   <xsl:template match="ulink" mode="docbook">
@@ -152,6 +156,10 @@
       </xsl:attribute>
       <xsl:value-of select="."/>
     </a>
+  </xsl:template>
+
+  <xsl:template match="doc:description" mode="docbook">
+    <xsl:apply-templates mode="docbook"/>
   </xsl:template>
 
   <xsl:template match="title" mode="docbook">
@@ -759,7 +767,9 @@
             <br><span class="boldtext">Summary: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:summary"/>-->
             <!--<br><span class="boldtext">Description: </span></br>-->
-            <xsl:value-of select="./xs:appinfo/doc:description"/>
+            <!--<xsl:value-of select="./xs:appinfo/doc:description"/>-->
+            <xsl:apply-templates select="./xs:appinfo/doc:description"
+                 mode="docbook" />
             <xsl:if test="./xs:appinfo/doc:example">
               <br><span class="boldtext">Example(s): </span></br>
               <xsl:for-each select="./xs:appinfo/doc:example">

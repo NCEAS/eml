@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-31 15:48:58 $'
-      '$Revision: 1.87 $'
+          '$Date: 2002-10-31 17:49:27 $'
+      '$Revision: 1.88 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -688,7 +688,7 @@
             <doc:summary>A unit that describes the format for a date-time
             value from the Gregorian calendar.</doc:summary>
             <doc:description>
-            <para>A unit that describes the format for a date-time
+            <para xmlns="">A unit that describes the format for a date-time
             value from the Gregorian calendar.  Datetime values should be
             expressed in a format that conforms to the ISO 8601 standard.  This
             field allows one to specify the format string that should
@@ -696,7 +696,8 @@
             of an attribute containing date-time values, construct a string 
             representation of the format using the following symbols:
             </para>
-            <para>
+            <para xmlns="">
+            <literalLayout>
             Y   year
             M   month
             D   day
@@ -710,13 +711,15 @@
                 or a positive or negative time zone adjustment relative to UTC
             -   indicates a separator between date components
             A/P am or pm designator
+            </literalLayout>
             </para>
-            <para>
+            <para xmlns="">
             Any other character in the format string is interpreted as a 
             separator character.  Here are some examples of the format 
             strings that can be constructed.
             </para>
-            <para>
+            <para xmlns="">
+            <literalLayout>
                                Format string          Example value
                                -------------------    ------------------
                 ISO Date       YYYY-MM-DD             2002-10-14
@@ -728,8 +731,9 @@
                 Non-standard   MM/DD/YYYY             10/14/2002
                 Non-standard   MM/DD/YY               10/14/02
                 Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
+            </literalLayout>
             </para>
-            <para>
+            <para xmlns="">
             Some notes about these examples.  First, the ISO 8601 standard is
             strict about the order of date components and the separators that
             are legal.  Best practice is to follow the ISO 8601 format
@@ -745,13 +749,13 @@
             these formats can be described using the format string to 
             accomodate existing data.
             </para>
-            <para>
+            <para xmlns="">
             Precision for date-time values can be extended by indicating in
             the format that additional decimals can be used.  Only the final
             unit (e.g., seconds in a time value) can use the extended digits 
             according to the ISO 8601 standard.
             </para>
-            <para>
+            <para xmlns="">
             Date/time values are from an interval scale, but it is extremely
             complex because of the vagaries of the calendar (e.g., leap
             years, and leap seconds).  The duration between date-time values
