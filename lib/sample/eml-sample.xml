@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<eml:eml
+    packageId="eml.1.1" system="knb"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
+
+<dataset>
+  <title>Data from Cedar Creek LTER on productivity and species richness
+  for use in a workshop titled "An Analysis of the Relationship between
+  Productivity and Diversity using Experimental Results from the Long-Term
+  Ecological Research Network" held at NCEAS in September 1996.</title>
+  <creator id="clarence.lehman">
+    <individualName>
+      <salutation>Mr.</salutation>
+      <givenName>Clarence</givenName>
+      <surName>Lehman</surName>
+    </individualName>
+    <address>
+      <deliveryPoint>Department of Ecology Evolution and Behavior</deliveryPoint>
+      <deliveryPoint>100 Ecology Bldg</deliveryPoint>
+      <deliveryPoint>1987 Upper Buford Circle</deliveryPoint>
+      <city>St. Paul</city>
+      <administrativeArea>MN</administrativeArea>
+      <postalCode>55108-6097</postalCode>
+      <country>USA</country>
+    </address>
+    <phone>612-624-6731</phone>
+    <electronicMailAddress>lehman@lter.umn.edu</electronicMailAddress>
+  </creator>
+  <creator id="richard.inouye">
+    <individualName>
+      <salutation>Mr.</salutation>
+      <givenName>Richard</givenName>
+      <surName>Inouye</surName>
+    </individualName>
+    <address>
+      <deliveryPoint>Department of Biological Science</deliveryPoint>
+      <deliveryPoint>Idaho State University</deliveryPoint>
+      <deliveryPoint>Campus Box 8007</deliveryPoint>
+      <city>Pocatello</city>
+      <administrativeArea>ID</administrativeArea>
+      <postalCode>83209-8007</postalCode>
+      <country>USA</country>
+    </address>
+    <phone>208-236-2933</phone>
+    <electronicMailAddress>inouye@lter.umn.edu</electronicMailAddress>
+  </creator>
+  <keywordSet>
+    <keyword>Old field grassland</keyword>
+    <keyword>biomass</keyword>
+    <keyword>productivity</keyword>
+    <keyword>species-area</keyword>
+    <keyword>species richness</keyword>
+  </keywordSet>
+  <contact>
+    <references>clarence.lehman</references>
+  </contact>
+  <contact>
+    <references>richard.inouye</references>
+  </contact>
+  <dataTable>
+    <entityName>CDR LTER-patterns among communities.txt</entityName>
+    <entityDescription>patterns amoung communities at CDR</entityDescription>
+    <attributeList>
+      <attribute>
+        <attributeName>Field</attributeName>
+        <attributeLabel>Fld</attributeLabel>
+        <attributeDefinition>Field where the data was collected</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>integer</storageType>
+        <measurementScale>nominal</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Year</attributeName>
+        <attributeLabel>Yr</attributeLabel>
+        <attributeDefinition>The year the data was collected</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>integer</storageType>
+        <measurementScale>interval</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Species Richness</attributeName>
+        <attributeLabel>SR</attributeLabel>
+        <attributeDefinition>Species richness for CDR</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>integer</storageType>
+        <measurementScale>interval</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>percent cover</attributeName>
+        <attributeLabel>%cover</attributeLabel>
+        <attributeDefinition>The percent ground cover on the field</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1991</attributeName>
+        <attributeLabel>avesr91</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1991</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1992</attributeName>
+        <attributeLabel>avesr92</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1992</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1993</attributeName>
+        <attributeLabel>avesr93</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1993</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1994</attributeName>
+        <attributeLabel>avesr94</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1994</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1995</attributeName>
+        <attributeLabel>avesr95</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1995</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Average Species Richness for 1996</attributeName>
+        <attributeLabel>avesr96</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1996</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>mean species richness</attributeName>
+        <attributeLabel>MeanSR</attributeLabel>
+        <attributeDefinition>the mean species richness from 1991 to 1996</attributeDefinition>
+        <unit>
+          <standardUnit>dimensionless</standardUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Biomass</attributeName>
+        <attributeLabel>Biomass (g/m2)</attributeLabel>
+        <attributeDefinition>The total biomass measured in this field</attributeDefinition>
+        <unit>
+          <customUnit>gramsPerSquareMeter</customUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Species Per Square Meter</attributeName>
+        <attributeLabel>Spp/m2 (calc)</attributeLabel>
+        <attributeDefinition>Calculated species per square meter</attributeDefinition>
+        <unit>
+          <customUnit>speciesPerSquareMeter</customUnit>
+        </unit>
+        <storageType>float</storageType>
+        <measurementScale>ratio</measurementScale>
+      </attribute>
+    </attributeList>
+    <orientation columnOrRow="columnMajor"/>
+    <caseSensitive>no</caseSensitive>
+    <numberOfRecords>22</numberOfRecords>
+  </dataTable>
+</dataset>
+<additionalMetadata>
+  <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml">
+    <unitType name="massdensity">
+      <dimension name="mass"/>
+      <dimension name="length" power="-2"/>
+    </unitType>
+    <unitType name="speciesdensity">
+      <dimension name="dimensionless"/>
+      <dimension name="length" power="-2"/>
+    </unitType>
+    <unit name="gramsPerSquareMeter" unitType="massdensity" id="gramsPerSquareMeter"/>
+    <unit name="speciesPerSquareMeter" unitType="speciesdensity" id="speciesPerSquareMeter"/>
+  </stmml:unitList>
+</additionalMetadata>
+</eml:eml>
