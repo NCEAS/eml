@@ -1,0 +1,102 @@
+<!--
+      '$RCSfile: eml-entity.dtd,v $'
+        Purpose: This dtd mimics the content model found in 
+                 eml-entity.xsd.
+      Copyright: 2000 Regents of the University of California and the
+                 National Center for Ecological Analysis and Synthesis
+        Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+
+     '$Author: bojilova $'
+     '$Date: 2001-02-10 00:59:08 $'
+     '$Revision: 1.1 $'
+  
+-->
+<!-- This a EML DTD document that defines the structural
+     characteristics of every entity in a dataset. -->
+
+<!-- The root element, which represents a list of entities in a dataset -->
+<!ELEMENT eml-entity (identifier, entity*)>
+
+<!-- File identifier of the metadata document -->
+<!ELEMENT identifier (#PCDATA)>
+
+<!-- Entity element is a descriptor of an entity in the dataset
+     identified by its name. -->
+<!ELEMENT entity (entityName, entitySize?, format, orientation?, headerLines?,
+                  caseSensitive?, geographicCoverage*, temporalCoverage*,
+                  authentication*, dataProblem*)>
+
+<!-- Entity name-->
+<!ELEMENT entityName (#PCDATA) >
+
+<!-- Entity size -->
+<!ELEMENT entitySize (amount, unit) >
+<!ELEMENT amount (#PCDATA) >
+<!ELEMENT unit (#PCDATA) >
+
+<!-- Entity type and compression schemes employed -->
+<!ELEMENT format (compressed|encoded|baseEntityType)>
+<!-- Method of compression -->
+<!ELEMENT compressed (#PCDATA)>
+<!-- Method of encoding -->
+<!ELEMENT encoded (#PCDATA)>
+<!-- Base entity type: ASCII or binary -->
+<!ELEMENT baseEntityType (ascii|binary)>
+<!ELEMENT ascii (recordDelimiter)>
+<!ELEMENT recordDelimiter (#PCDATA)>
+<!ELEMENT binary EMPTY>
+
+<!-- Is entity column major or row major? -->
+<!ELEMENT orientation EMPTY >
+<!ATTLIST orientation columnorrow (columnmajor|rowmajor) "columnmajor">
+
+<!-- Number of header lines or information that prepares data -->
+<!ELEMENT headerLines (#PCDATA) >
+
+<!-- Case sensitivity of field -->
+<!ELEMENT caseSensitive EMPTY >
+<!ATTLIST caseSensitive yesorno (yes|no) "no">
+ 
+<!-- Geographic coverage -->
+<!ELEMENT geographicCoverage (paragraph*, coordinates*)>
+<!-- Cartesian Coordinates -->
+<!ELEMENT coordinates (lattitude, longitude) >
+<!ELEMENT lattitude (#PCDATA)>
+<!ATTLIST lattitude direction (north|south) #REQUIRED>
+<!ELEMENT longitude (#PCDATA)>
+<!ATTLIST longitude direction (east|west) #REQUIRED>
+
+<!-- Temporal coverage -->
+<!ELEMENT temporalCoverage (startDate,stopDate?)>
+<!-- Date data collection commenced -->
+<!ELEMENT startDate (dateTime)>
+<!-- Date and time as designated in ISO 8601 -->
+<!ELEMENT dateTime (year?, month?, day?, hour?, minute?, second?, second_fraction?, time_zone_designator?)>
+<!-- Year in YYYY format -->
+<!ELEMENT year (#PCDATA)>
+<!-- Month in MM format -->
+<!ELEMENT month (#PCDATA)>
+<!-- Day of month in DD format -->
+<!ELEMENT day (#PCDATA)>
+<!-- Hour in hh -->
+<!ELEMENT hour (#PCDATA)>
+<!-- Minute in mm -->
+<!ELEMENT minute (#PCDATA)>
+<!-- Seconds in ss -->
+<!ELEMENT second (#PCDATA)>
+<!-- One or more digits representing a decimal fraction of a second -->
+<!ELEMENT secondFraction (#PCDATA)>
+<!-- Time zone designato -->
+<!ELEMENT timeZoneDesignator (#PCDATA)>
+<!-- Date data collection terminated -->
+<!ELEMENT stopDate  (dateTime)>
+
+<!-- Authentication procedures or techniques -->
+<!ELEMENT authentication (#PCDATA) >
+
+<!-- Data anomalies; description of missing data -->
+<!ELEMENT dataProblem (paragraph+)>
+<!ATTLIST dataProblem problemType (missing|anomaly|error) #REQUIRED>
+<!ELEMENT paragraph (#PCDATA)>
+
+<!-- End of file -->

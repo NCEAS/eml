@@ -1,0 +1,263 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           targetNamespace="eml:entity">
+
+  <xs:annotation>
+    <xs:documentation>
+      <!--         
+       $RCSfile: eml-entity.xsd,v $'
+        Purpose: This is an XML Schema document that defines the 
+                 model for the Ecological Metadata Language.
+                 It is a work in progress, as is the standard itself.
+      Copyright: 2000 Regents of the University of California and the
+                 National Center for Ecological Analysis and Synthesis
+        Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+
+       '$Author: bojilova $'
+         '$Date: 2001-02-10 00:59:08 $'
+     '$Revision: 1.1 $'
+      -->
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-entity
+      </moduleName>
+      <moduleDescription>
+        The EML Entity Module that defines the the structural
+        characteristics of every entity in the dataset.
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+
+  <xs:element name="eml-entity" minOccurs="1" maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+           Eml-entity element represents a list of all entities in a dataset.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="identifier" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              File identifier of the metadata document
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="entity"
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              Entity element is a descriptor of an entity in the dataset
+              identified by its name. The entity element can contain information 
+              about the entity's size, format, orientation, header lines, 
+              case sensitiveness, geographic and temporal coverage,
+              authentication description and data problem.
+              orientation
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:element>
+
+  <xs:element name="entity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="entityName" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="entitySize"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element ref="format"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="orientation"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="headerLines" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element ref="caseSensitive"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="geographicCoverage"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="temporalCoverage"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element name="authentication" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="dataProblem"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="entitySize">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="amount" type="xs:strint"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element name="unit" type="xs:strint"
+                    minOccurs="1" maxOccurs="1"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="format">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="compressed" type="xs:strint" />	
+        <xs:element name="encoded" type="xs:strint" />	
+        <xs:element ref="baseEntityType" />	
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="baseEntityType">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element ref="ascii" />	
+        <xs:element name="binary" nullable=true />	
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ascii">
+    <xs:complexType>
+      <xs:element name="recordDelimiter" type="xs:string"
+                  minOccurs="1" maxOccurs="1"/>	
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="orientation" nullable="true">
+    <xs:complexType>
+      <xs:attribute name="columnorrow" use="default" value="columnmajor">
+        <xs:simpleType>
+          <xs:enumeration value="columnmajor" /> 
+          <xs:enumeration value="rowmajor" />         
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="caseSensitive" nullable="true">
+    <xs:complexType>
+      <xs:attribute name="yesorno" use="default" value="yes">
+        <xs:simpleType>
+          <xs:enumeration value="yes" /> 
+          <xs:enumeration value="no" />         
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="geographicCoverage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="paragraph" type="xs:strint"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="coordinates"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="coordinates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="lattitude" minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="longitude" minOccurs="1" maxOccurs="1"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="lattitude" type="xs:string">
+    <xs:complexType>
+      <xs:attribute name="direction" use="required">
+        <xs:simpleType>
+          <xs:enumeration value="north" /> 
+          <xs:enumeration value="south" />         
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="longitude" type="xs:string">
+    <xs:complexType>
+      <xs:attribute name="direction" use="required">
+        <xs:simpleType>
+          <xs:enumeration value="east" /> 
+          <xs:enumeration value="west" />         
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="temporalCoverage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="startDate"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="stopDate"
+                    minOccurs="0" maxOccurs="1"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="startDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dateTime" type="DateTime"
+                    minOccurs="1" maxOccurs="1"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="stopDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dateTime" type="DateTime"
+                    minOccurs="1" maxOccurs="1"/>	
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="DateTime">
+    <xs:sequence>
+      <xs:element name="year" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="month" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="day" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="hour" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="minute" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="second" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="secondFraction" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+      <xs:element name="timeZoneDesignator" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>	
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="DataProblem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="paragraph" type="xs:string"
+                    minOccurs="1" maxOccurs="unbounded"/>	
+      </xs:sequence>
+      <xs:attribute name="problemType" use="required">
+        <xs:simpleType>
+          <xs:enumeration value="missing" /> 
+          <xs:enumeration value="anomaly" />         
+          <xs:enumeration value="error" />         
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,133 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           targetNamespace="eml:attribute">
+
+  <xs:annotation>
+    <xs:documentation>
+      <!--         
+       $RCSfile: eml-attribute.xsd,v $'
+        Purpose: This is an XML Schema document that defines the 
+                 model for the Ecological Metadata Language.
+                 It is a work in progress, as is the standard itself.
+      Copyright: 2000 Regents of the University of California and the
+                 National Center for Ecological Analysis and Synthesis
+        Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+
+       '$Author: bojilova $'
+         '$Date: 2001-02-10 00:59:08 $'
+     '$Revision: 1.1 $'
+      -->
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-attribute
+      </moduleName>
+      <moduleDescription>
+        The EML Attribute Module describes all attributes in a dataset.
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+
+  <xs:element name="eml-attribute" minOccurs="1" maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+           Eml-attribute element represents a list of all attributes in a dataset.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="identifier" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              File identifier of the metadata document
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="attribute"
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              Attribute element is a descriptor of an attribute in the dataset
+              identified by its name. The attribute element can contain information 
+              about the attribute's definition, format, orientation, header lines, 
+              case sensitiveness, geographic and temporal coverage,
+              authentication description and data problem.
+              orientation
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:element>
+
+  <xs:element name="attribute">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="attributeName" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element name="attributeDefinition" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element type="unit" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element name="storageType" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="codeDefinition"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="numericRange"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="missingValueCode" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element name="precision" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element ref="fieldFormat"
+                    minOccurs="0" maxOccurs="1"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="codeDefinition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="code" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element name="definition" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="numericRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="minimum" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element name="maximum" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="fieldFormat">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element ref="attributeWidth" />	
+        <xs:element name="fixedWidth" type="xs:strint" />	
+      </xs:choice>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="attributeWith">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="delimiter" type="xs:string"
+                    minOccurs="1" maxOccurs="unbounded"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+	
+</xs:schema>
