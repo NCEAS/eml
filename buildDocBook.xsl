@@ -352,7 +352,7 @@
     <listitem>
       <para>
         <ulink>
-          <xsl:attribute name="url">file://../<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
+          <xsl:attribute name="url">./<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
           Technical Specifications
         </ulink>
       </para>
@@ -383,7 +383,7 @@
   <indexentry>
     <primaryie>
       <ulink>
-        <xsl:attribute name="url">file://../<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
+        <xsl:attribute name="url">./<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
         <xsl:value-of select="@name"/>
       </ulink>
     </primaryie>
