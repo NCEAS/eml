@@ -24,8 +24,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-08-27 18:33:59 $'
-      '$Revision: 1.4 $'
+          '$Date: 2002-08-27 22:54:38 $'
+      '$Revision: 1.5 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -85,37 +85,44 @@
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
       <xs:element name="section" type="SectionType" />
-      <xs:element name="paragraph" type="ParagraphType" />
+      <xs:element name="para" type="ParagraphType" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="ParagraphType" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
-      <xs:element name="itemizedlist">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="listitem" type="xs:string"
-            maxOccurs="unbounded" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="orderedlist">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="listitem" type="xs:string"
-            maxOccurs="unbounded" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:element name="itemizedlist" type="ListType" />
+      <xs:element name="orderedlist" type="ListType" />
       <xs:element name="emphasis" type="xs:string" />
+      <xs:element name="subscript" type="SubSuperScriptType" />
+      <xs:element name="superscript" type="SubSuperScriptType" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="SectionType">
     <xs:sequence>
       <xs:element name="title" type="xs:string" minOccurs="0" />
       <xs:choice maxOccurs="unbounded">
-        <xs:element name="paragraph" type="ParagraphType" />
+        <xs:element name="para" type="ParagraphType" />
         <xs:element name="section" type="SectionType" />
       </xs:choice>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ListType">
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="listitem">
+          <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+              <xs:element name="para" type="ParagraphType" />
+              <xs:element name="itemizedlist" type="ListType" />
+              <xs:element name="orderedlist" type="ListType" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SubSuperScriptType" mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="subscript" type="SubSuperScriptType" />
+        <xs:element name="superscript" type="SubSuperScriptType" />
+      </xs:choice>
   </xs:complexType>
 </xs:schema>
