@@ -27,9 +27,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-23 18:32:25 $'
-      '$Revision: 1.46 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-24 06:10:38 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,17 +48,45 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-physical</doc:moduleName>
-        <doc:moduleDescription>The eml-physical Module defines the structural
-        characteristics of data formats as delivered over the wire or as found
-        in a file system. One physical object (which can be a bytestream or an
-        object in a file system) might contain multiple entities (for example,
-        this would be typical in a MS Access file that contained multiple
-        tables of data). However, it is typically used to describe a file or
-        stream that is in some text-based format such as ASCII or UTF-8, and
-        includes the information needed to parse the data stream to extract the
-        entity and its attributes from the stream.</doc:moduleDescription>
-        <doc:recommendedUsage>All packages that contain
-        data</doc:recommendedUsage>
+        <doc:moduleDescription>
+        <section xmlns="">
+          <title>
+            The physical module - Online and offline distribution of resources
+          </title>
+          <para>
+            The eml-physical module defines the structural characteristics of
+            data formats as delivered over the wire or as found in a file
+            system. One physical object (which can be a bytestream or an
+            object in a file system) might contain multiple entities (for
+            example, this would be typical in a MS Access file that contained
+            multiple tables of data). However, it is typically used to
+            describe a file or stream that is in some text-based format such
+            as ASCII or UTF-8, and includes the information needed to parse
+            the data stream to extract the entity and its attributes from the
+            stream.  The eml-physical module defines three distinct distribution
+            types: 1) online - defined as either a URL, a &quot;connection&quot;            comprised of a connection definition and a parameter list, or just
+            a connection definition, 2) offline - which contains a number of
+            fields to document data distribution on media such as CDROM, digital
+            tape, etc., or 3) inline - where the data are directly included in
+            the eml-physical metadata document, perhaps in an XML syntax itself.
+            The eml-physical module is used in 2 ways: 1) at the resource level
+            where one may define a general means of getting to the entire
+            dataset using one of the 3 options above, and 2) in the eml-entity
+            module, where each entity (.e.g. each table in a database) is
+            defined as either a specific URL or a specific connection (which may
+            use the connection definition that is defined at the resource level.
+          </para>
+          <para>
+            The eml-physical module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
+            a physical distribution to be described once, and then used as a
+            reference in other locations within the EML document via it's ID.
+          </para>
+        </section>
+        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          All packages that contain data
+        </doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
@@ -1177,4 +1205,3 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     default="document" />
   </xs:complexType>
 </xs:schema>
-

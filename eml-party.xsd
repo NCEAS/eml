@@ -25,9 +25,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:48 $'
-      '$Revision: 1.35 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-24 06:10:38 $'
+      '$Revision: 1.36 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,12 +46,28 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-party</doc:moduleName>
-        <doc:moduleDescription>The eml-party module describes a responsible
-        party (person or organization), and is typically used to name the
-        originator of a resource or metadata document. It contains detailed
-        contact information for the party, be it an individual person, an
-        organization, or a named position within an
-        organization.</doc:moduleDescription>
+        <doc:moduleDescription>
+        <section xmlns="">
+          <title>
+            The party module - People and organization information
+          </title>
+          <para>
+            The eml-party module describes a responsible party (person or
+            organization), and is typically used to name the originator of a
+            resource or metadata document. It contains detailed contact
+            information for the party, be it an individual person, an
+            organization, or a named position within an organization. The
+            eml-party module is used throughout the other EML modules where
+            detailed contact information is needed.
+          </para>
+          <para>
+            The eml-party module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
+            a party to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.
+          </para>
+        </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>

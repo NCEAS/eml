@@ -20,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:48 $'
-      '$Revision: 1.65 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-24 06:10:38 $'
+      '$Revision: 1.66 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,12 +41,33 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-resource</doc:moduleName>
-        <doc:moduleDescription>The eml-resource module contains general
-        information that describes dataset resources, literature resources,
-        collection resources, and software resources. It is intended to provide
-        overview information about the resource, including title, abstract,
-        keywords, contacts, and the links to associated metadata and data for
-        the given resource.</doc:moduleDescription>
+        <doc:moduleDescription>
+          <section xmlns="">
+            <title>
+              The resource module - Base information for
+              all resources
+            </title>
+            <para>
+              The eml-resource module contains general information that
+              describes dataset resources, literature resources, protocol
+              resources, and software resources. Each of the above four types of
+              resources share a common set of information, but also have
+              information that is unique to that particular resource type.  Each
+              resource type uses the eml-resource module to document the
+              information common to all resources, but then extend
+              eml-resource with modules that are specific to that particular
+              resource type.  For instance, all resources have creators,
+              titles, and perhaps keywords, but only the dataset resource would
+              have a &quot;data table&quot; within it.  Likewise, a literature
+              resource may have an &quot;ISBN&quot; number associated with it,
+              whereas the other resource types would not.
+            </para>
+            <para>
+              The eml-resource module is exclusively used by other modules, and is
+              therefore not a stand-alone module.
+            </para>
+          </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>no</doc:standAlone>
       </doc:moduleDocs>

@@ -37,9 +37,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-23 20:03:46 $'
-      '$Revision: 1.62 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-24 06:10:38 $'
+      '$Revision: 1.63 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,11 +58,28 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-project</doc:moduleName>
-        <doc:moduleDescription>The EML Project Module describes a research
-        context for a dataset or for another project, including description of
-        over-all motivations and goals, funding, personnel, description of the
-        study area and study design. Project information may be shared by
-        multiple datasets and projects.</doc:moduleDescription>
+        <doc:moduleDescription>
+        <section xmlns="">
+          <title>
+            The project module - Research context information for resources
+          </title>
+          <para>
+            The eml-project module describes the research context in which the
+            dataset was created, including descriptions of over-all motivations
+            and goals, funding, personnel, description of the study area etc.
+            This is also the module to describe the design of the project: the
+            scientific questions being asked, the architecture of the design,
+            etc.  This module is used to place the dataset that is being
+            documented into it's larger research context.
+          </para>
+          <para>
+            The eml-project module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
+            a research project to be described once, and then used as a
+            reference in other locations within the EML document via it's ID.
+          </para>
+        </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>Use eml-project to document the research context
         of any dataset or project.</doc:recommendedUsage>
         <doc:standAlone>no</doc:standAlone>
@@ -469,4 +486,3 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
     </xs:union>
   </xs:simpleType>
 </xs:schema>
-

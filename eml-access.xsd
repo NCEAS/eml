@@ -23,9 +23,9 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:47 $'
-      '$Revision: 1.56 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-24 06:10:38 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -44,18 +44,51 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-access</doc:moduleName>
-        <doc:moduleDescription>The EML Access Module describes the level of
-        access that is to be granted or denied to a resource for a particular
-        user or group of users. A single eml-access document may be used to
-        express access control for many resources, or for a given resource
-        (e.g., a dataset or document). The relationship between a resource and
-        it's access control document is defined in the eml-resource module. The
-        EML Access Module represents a list of resources to be controlled in
-        the context of a particular authentication system. That is, the
-        authentication system determines the set of principals (users + groups)
-        that can be used, and the membership of users in groups. The rules set
-        in this module will determine the level of access to a resource for the
-        defined users and groups.</doc:moduleDescription>
+        <doc:moduleDescription>
+          <section xmlns="">
+            <title>
+              The access module - Access control rules for resources
+            </title>
+            <para>
+              The eml-access module describes the level of access that is to be
+              granted or denied to a resource or a subset of a resource for a
+              particular user or group of users. A single eml-access document
+              may be used to express access control for many resources, or
+              for a given resource (e.g., a dataset or citation ).  The
+              eml-access module represents a list of resources to be controlled
+              in the context of a particular authentication system. That is, the
+              authentication system determines the set of principals (users +
+              groups) that can be used, and the membership of users in groups.
+              The rules set in this module will determine the level of access to
+              a resource for the defined users and groups.  In EML, there are
+              two mechanisms for including access control information via the
+              eml-access module. 1)  Each top-level resource module
+              (eml-dataset, eml-literature, eml-software, and eml-protocol)
+              include an optional &lt;access&gt; element directly inline in the
+              document.  This is used to define access control at the resource
+              level scope.  2) Finer grained access control may be applied to a
+              subset of a resource via the &lt;addtionalMetadata&gt; element in
+              the eml module.  An access control document may be defined, or
+              referenced, from this location, and the &lt;describes&gt; element
+              is used to point to the subset of the resource that is to be
+              controlled via its &quot;id&quot; attribute.  Applications that
+              process EML documents must implement the access control rules from
+              both mechanisms.  Note that, although access control may be bound
+              to any element with an &quot;id&quot; attribute, the processing
+              involved may be very costly.  For instance, it would not be
+              recommended to apply access control to a column of a data file
+              (eml-attribute), since every read/write operation on that column
+              may not proceed until access is verified.
+            </para>
+            <para>
+              The eml-access module, like other modules, may be 
+              &quot;referenced&quot; via the &lt;references&gt; tag.  This 
+              allows an access control document to be described once, and then 
+              used as a reference in other locations within the EML document 
+              via it's ID.
+            </para>
+          </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>all data where controlling user access to the
         dataset is an issue</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
