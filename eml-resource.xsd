@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0beta9"
-xmlns="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9"
-xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" elementFormDefault="unqualified"
-attributeFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
-  schemaLocation="eml-documentation.xsd" />
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -22,9 +17,9 @@ attributeFormDefault="unqualified">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-02 16:13:46 $'
-      '$Revision: 1.55 $'
+        '$Author: mccartne $'
+          '$Date: 2002-09-05 16:58:37 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,11 +68,10 @@ attributeFormDefault="unqualified">
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-<!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" schemaLocation="eml-party.xsd" />
-<!-- import the elements from eml-coverage -->
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9"
-  schemaLocation="eml-coverage.xsd" />
+  <!-- import the elements from responsible party for use in originator -->
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" schemaLocation="eml-party.xsd"/>
+  <!-- import the elements from eml-coverage -->
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9" schemaLocation="eml-coverage.xsd"/>
   <xs:group name="ResourceGroup">
     <xs:annotation>
       <xs:appinfo>
@@ -95,8 +89,7 @@ attributeFormDefault="unqualified">
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0"
-        maxOccurs="unbounded">
+      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternate Identifier</doc:tooltip>
@@ -172,8 +165,7 @@ attributeFormDefault="unqualified">
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="creator" type="rp:ResponsibleParty"
-      maxOccurs="unbounded">
+      <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Creator</doc:tooltip>
@@ -193,8 +185,7 @@ attributeFormDefault="unqualified">
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="metadataProvider" type="rp:ResponsibleParty"
-      minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Metadata Provider</doc:tooltip>
@@ -313,8 +304,7 @@ attributeFormDefault="unqualified">
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="paragraph" type="xs:string"
-            maxOccurs="unbounded">
+            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Abstract paragraph</doc:tooltip>
@@ -385,8 +375,7 @@ attributeFormDefault="unqualified">
               <xs:complexType>
                 <xs:simpleContent>
                   <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypCode"
-                    use="optional">
+                    <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Keyword type</doc:tooltip>
@@ -444,8 +433,7 @@ attributeFormDefault="unqualified">
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="paragraph" type="xs:string"
-            maxOccurs="unbounded">
+            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Paragraph</doc:tooltip>
@@ -485,8 +473,7 @@ attributeFormDefault="unqualified">
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="paragraph" type="xs:string"
-            maxOccurs="unbounded">
+            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Paragraph</doc:tooltip>
@@ -501,8 +488,7 @@ attributeFormDefault="unqualified">
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="distribution" type="DistributionType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="distribution" type="DistributionType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Distribution Information</doc:tooltip>
@@ -512,7 +498,7 @@ attributeFormDefault="unqualified">
             resource is distributed online and offline. Connections to online
             systems can be described as URLs and as a list of relevant
             connection parameters.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>Derived from distribution elements in the FGDC
             standard.</doc:lineage>
           </xs:appinfo>
@@ -544,15 +530,15 @@ attributeFormDefault="unqualified">
         <doc:description>This field provides a restricted list of categories
         that a keyword may fall under.</doc:description>
         <doc:example>place</doc:example>
-        <doc:lineage />
+        <doc:lineage/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="place" />
-      <xs:enumeration value="stratum" />
-      <xs:enumeration value="temporal" />
-      <xs:enumeration value="theme" />
-      <xs:enumeration value="taxonomic" />
+      <xs:enumeration value="place"/>
+      <xs:enumeration value="stratum"/>
+      <xs:enumeration value="temporal"/>
+      <xs:enumeration value="theme"/>
+      <xs:enumeration value="taxonomic"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="yearDate">
@@ -566,188 +552,193 @@ attributeFormDefault="unqualified">
         <doc:lineage>New in EML 2.0.0.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:union memberTypes="xs:gYear xs:date" />
+    <xs:union memberTypes="xs:gYear xs:date"/>
   </xs:simpleType>
   <xs:simpleType name="ScopeType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="system" />
-      <xs:enumeration value="document" />
+      <xs:enumeration value="system"/>
+      <xs:enumeration value="document"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="FunctionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="download" />
-      <xs:enumeration value="information" />
+      <xs:enumeration value="download"/>
+      <xs:enumeration value="information"/>
+      <xs:enumeration value="connection"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="DistributionType">
-    <xs:choice maxOccurs="unbounded">
-      <xs:element name="online">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>Connection Information</doc:tooltip>
-            <doc:summary>Connection information for accessing the resource
+    <xs:choice>
+      <xs:choice>
+        <xs:element name="online">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Connection Information</doc:tooltip>
+              <doc:summary>Connection information for accessing the resource
             online</doc:summary>
-            <doc:description>Connection information for accessing the resource
+              <doc:description>Connection information for accessing the resource
             online, represented either as a URL or as a series of named
             parameters that are needed in order to connect.</doc:description>
-            <doc:example />
-            <doc:lineage />
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="url">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Download site URL</doc:tooltip>
-                  <doc:summary>A URL (Uniform Resource Locator) from which this
+              <doc:example/>
+              <doc:lineage/>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="url">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Download site URL</doc:tooltip>
+                    <doc:summary>A URL (Uniform Resource Locator) from which this
                   resource can be downloaded</doc:summary>
-                  <doc:description>A URL (Uniform Resource Locator) from which
+                    <doc:description>A URL (Uniform Resource Locator) from which
                   this resource can be downloaded. This includes any
                   information needed to access this site, such as connection
                   information.</doc:description>
-                  <doc:example>http://data.org/getdata?id=98332</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:example>http://data.org/getdata?id=98332</doc:example>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="xs:string">
-                    <xs:attribute name="function" type="FunctionType"
-                    use="optional" default="download" />
-                  </xs:extension>
-                </xs:simpleContent>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="connectionNotes" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Connection Notes</doc:tooltip>
-                  <doc:summary>General notes about the connection</doc:summary>
-                  <doc:description>General notes about the
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
+                      <xs:attribute name="schemaInformation" type="xs:anyURI" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="connectionNotes" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Connection Notes</doc:tooltip>
+                    <doc:summary>General notes about the connection</doc:summary>
+                    <doc:description>General notes about the
                   connection.</doc:description>
-                  <doc:lineage>New in EML 2.0.0</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="xs:string" />
-                </xs:simpleContent>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="offline">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>medium of the resource</doc:tooltip>
-            <doc:summary>the medium on which this resource is distributed,
+                    <doc:lineage>New in EML 2.0.0</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string"/>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="offline">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>medium of the resource</doc:tooltip>
+              <doc:summary>the medium on which this resource is distributed,
             either digitally or as hardcopy</doc:summary>
-            <doc:description>the medium on which this resource is distributed
+              <doc:description>the medium on which this resource is distributed
             digitally, such as 3.5" floppy disk, or various tape media types,
             or 'hardcopy'</doc:description>
-            <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
-            <doc:lineage>ISO CD 19115.3, Geographic information -
+              <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
+              <doc:lineage>ISO CD 19115.3, Geographic information -
             Metadata</doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="mediumName" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Medium name</doc:tooltip>
-                  <doc:summary>Name of the medium that for this resource
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mediumName" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Medium name</doc:tooltip>
+                    <doc:summary>Name of the medium that for this resource
                   distribution</doc:summary>
-                  <doc:description>Name of the medium on which this resource is
+                    <doc:description>Name of the medium on which this resource is
                   distributed. Can be various digital media such as tapes and
                   disks, or printed media which can collectively be termed
                   'hardcopy'.</doc:description>
-                  <doc:example>Tape, 3.5 inch Floppy Disk,
+                    <doc:example>Tape, 3.5 inch Floppy Disk,
                   hardcopy</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>density of the digital medium</doc:tooltip>
-                  <doc:summary>the density of the digital medium if this is
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>density of the digital medium</doc:tooltip>
+                    <doc:summary>the density of the digital medium if this is
                   relevant.</doc:summary>
-                  <doc:description>the density of the digital medium if this is
+                    <doc:description>the density of the digital medium if this is
                   relevant. Used mainly for floppy disks or
                   tape.</doc:description>
-                  <doc:example>High Density (HD), Double Density
+                    <doc:example>High Density (HD), Double Density
                   (DD)</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="mediumDensityUnits" type="xs:string"
-            minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>units of a numerical density</doc:tooltip>
-                  <doc:summary>a numerical density's units</doc:summary>
-                  <doc:description>if a density is given numerically, the units
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>units of a numerical density</doc:tooltip>
+                    <doc:summary>a numerical density's units</doc:summary>
+                    <doc:description>if a density is given numerically, the units
                   should be given here.</doc:description>
-                  <doc:example>B/cm</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:example>B/cm</doc:example>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>storage volume</doc:tooltip>
-                  <doc:summary>total volume of the storage medium</doc:summary>
-                  <doc:description>the total volume of the storage medium on
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>storage volume</doc:tooltip>
+                    <doc:summary>total volume of the storage medium</doc:summary>
+                    <doc:description>the total volume of the storage medium on
                   which this resource is shipped.</doc:description>
-                  <doc:example>650 MB</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:example>650 MB</doc:example>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="mediumFormat" type="xs:string" minOccurs="0"
-            maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>medium format</doc:tooltip>
-                  <doc:summary>format of the medium on which the resource is
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>medium format</doc:tooltip>
+                    <doc:summary>format of the medium on which the resource is
                   shipped.</doc:summary>
-                  <doc:description>the file system format of the medium on
+                    <doc:description>the file system format of the medium on
                   which the resource is shipped</doc:description>
-                  <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="mediumNote" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>note about the media</doc:tooltip>
-                  <doc:summary>note about the media</doc:summary>
-                  <doc:description>any additional pertitant information about
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mediumNote" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>note about the media</doc:tooltip>
+                    <doc:summary>note about the media</doc:summary>
+                    <doc:description>any additional pertitant information about
                   the media</doc:description>
-                  <doc:example />
-                  <doc:lineage>ISO CD 19115.3, Geographic information -
+                    <doc:example/>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
                   Metadata</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="inline" type="xs:anyType"/>
+      </xs:choice>
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional"/>
   </xs:complexType>
-</xs:schema>
-
+</xs:schema> 
