@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="ecoinformatics.org:eml:dataTable-2.0.0beta9"
-xmlns="ecoinformatics.org:eml:dataTable-2.0.0beta9" xmlns:ent="ecoinformatics.org:eml:entity-2.0.0beta9"
-xmlns:res="ecoinformatics.org:eml:resource-2.0.0beta9" xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9"
+<xs:schema targetNamespace="eml://ecoinformatics.org/dataTable-2.0.0beta9"
+xmlns="eml://ecoinformatics.org/dataTable-2.0.0beta9" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0beta9"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
 xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="ecoinformatics.org:eml:documentation-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:resource-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9"
   schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:entity-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0beta9"
   schemaLocation="eml-entity.xsd" />
   <xs:annotation>
     <xs:documentation>
@@ -26,8 +26,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-08-22 21:04:35 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-08-22 21:45:48 $'
+      '$Revision: 1.22 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

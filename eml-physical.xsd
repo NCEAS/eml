@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="ecoinformatics.org:eml:physical-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="ecoinformatics.org:eml:resource-2.0.0beta9" xmlns:lit="ecoinformatics.org:eml:literature-2.0.0beta9" xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9" xmlns="ecoinformatics.org:eml:physical-2.0.0beta9">
-  <xs:import namespace="ecoinformatics.org:eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="ecoinformatics.org:eml:literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="ecoinformatics.org:eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns="eml://ecoinformatics.org/physical-2.0.0beta9">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -19,8 +19,8 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
         '$Author: berkley $'
-          '$Date: 2002-08-22 21:04:35 $'
-      '$Revision: 1.33 $'
+          '$Date: 2002-08-22 21:45:48 $'
+      '$Revision: 1.34 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or

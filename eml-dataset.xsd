@@ -1,32 +1,32 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="ecoinformatics.org:eml:dataset-2.0.0beta9"
-xmlns:v="ecoinformatics.org:eml:view-2.0.0beta9" xmlns:sp="ecoinformatics.org:eml:storedProcedure-2.0.0beta9"
-xmlns:sv="ecoinformatics.org:eml:spatialVector-2.0.0beta9" xmlns:sr="ecoinformatics.org:eml:spatialRaster-2.0.0beta9"
-xmlns:proj="ecoinformatics.org:eml:project-2.0.0beta9" xmlns:dat="ecoinformatics.org:eml:dataTable-2.0.0beta9"
-xmlns:ent="ecoinformatics.org:eml:entity-2.0.0beta9" xmlns:acc="ecoinformatics.org:eml:access-2.0.0beta9"
-xmlns="ecoinformatics.org:eml:dataset-2.0.0beta9" xmlns:res="ecoinformatics.org:eml:resource-2.0.0beta9"
-xmlns:rp="ecoinformatics.org:eml:party-2.0.0beta9" xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9"
+<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0beta9"
+xmlns:v="eml://ecoinformatics.org/view-2.0.0beta9" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0beta9"
+xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0beta9" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0beta9"
+xmlns:proj="eml://ecoinformatics.org/project-2.0.0beta9" xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0beta9"
+xmlns:ent="eml://ecoinformatics.org/entity-2.0.0beta9" xmlns:acc="eml://ecoinformatics.org/access-2.0.0beta9"
+xmlns="eml://ecoinformatics.org/dataset-2.0.0beta9" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9"
+xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9"
 xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="ecoinformatics.org:eml:documentation-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:resource-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9"
   schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:party-2.0.0beta9" schemaLocation="eml-party.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:access-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" schemaLocation="eml-party.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0beta9"
   schemaLocation="eml-access.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:entity-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0beta9"
   schemaLocation="eml-entity.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:dataTable-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0beta9"
   schemaLocation="eml-dataTable.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:project-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0beta9"
   schemaLocation="eml-project.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:spatialRaster-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0beta9"
   schemaLocation="eml-spatialRaster.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:spatialVector-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0beta9"
   schemaLocation="eml-spatialVector.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:storedProcedure-2.0.0beta9"
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0beta9"
   schemaLocation="eml-storedProcedure.xsd" />
-  <xs:import namespace="ecoinformatics.org:eml:view-2.0.0beta9" schemaLocation="eml-view.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0beta9" schemaLocation="eml-view.xsd" />
   <xs:annotation>
     <xs:documentation>
     </xs:documentation>
