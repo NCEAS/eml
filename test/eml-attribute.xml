@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<att:attribute id="knb.345.1" scope="document" 
-    system="http://knb.ecoinformatics.org"
-    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="eml://ecoinformatics.org/attribute-2.0.0rc2 
+<att:attributeList id="knb.345.1"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="eml://ecoinformatics.org/attribute-2.0.0rc2
     eml-attribute.xsd">
-    <attributeName>rain</attributeName>
-    <attributeLabel>Surface Rainfall</attributeLabel>
-    <attributeDefinition>The amount of rainfall on the sampling unit.
-    </attributeDefinition>
-    <unit><standardUnit>millimeter</standardUnit></unit>
-    <storageType>float</storageType>
-    <storageType typeSystem="http://java.sun.com/docs/books/jls/second_edition/html">double</storageType>
-    <measurementScale>interval</measurementScale>
-    <attributeDomain>
-        <numericDomain><minimum>0</minimum></numericDomain>
-    </attributeDomain>
-    <precision>0.5</precision>
-</att:attribute>
+    <attribute>
+      <attributeName>rain</attributeName>
+      <attributeLabel>Surface Rainfall</attributeLabel>
+      <attributeDefinition>The amount of rainfall on the sampling unit.
+      </attributeDefinition>
+      <unit><standardUnit>millimeter</standardUnit></unit>
+      <storageType>float</storageType>
+      <storageType typeSystem="http://java.sun.com/docs/books/jls/second_edition/html">double</storageType>
+      <measurementScale>interval</measurementScale>
+      <attributeDomain id="ad.1">
+          <numericDomain>
+            <numberType>real</numberType>
+            <minimum>0</minimum>
+          </numericDomain>
+      </attributeDomain>
+      <precision>0.5</precision>
+    </attribute>
+    <attribute>
+      <attributeName>dirt</attributeName>
+      <attributeLabel>dirt</attributeLabel>
+      <attributeDefinition>The amount of top soil on the sampling unit.
+      </attributeDefinition>
+      <unit><standardUnit>meter</standardUnit></unit>
+      <storageType>float</storageType>
+      <storageType typeSystem="http://java.sun.com/docs/books/jls/second_edition/html">double</storageType>
+      <measurementScale>interval</measurementScale>
+      <attributeDomain>
+          <references>ad.1</references>
+      </attributeDomain>
+      <precision>0.5</precision>
+    </attribute>
+</att:attributeList>

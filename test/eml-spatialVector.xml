@@ -19,8 +19,11 @@
       <storageType typeSystem="http://java.sun.com/docs/books/jls/second_edition/html">double</storageType>
       <measurementScale>interval</measurementScale>
       <attributeDomain>
-          <numericDomain><minimum>0</minimum></numericDomain>
-      </attributeDomain>
+          <numericDomain>
+            <numberType>real</numberType>
+            <minimum>0</minimum>
+          </numericDomain>
+        </attributeDomain>
       <precision>0.5</precision>
     </attribute>
   </attributeList>
