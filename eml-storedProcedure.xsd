@@ -43,8 +43,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-10-03 21:14:58 $'
-      '$Revision: 1.31 $'
+          '$Date: 2002-10-04 09:17:01 $'
+      '$Revision: 1.32 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,16 +66,16 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
         <doc:moduleDescription>
         <section xmlns="">
           <title>
-            The eml-storedProcedure module - information on datat tables
+            The eml-storedProcedure module - information on data tables
             resulting from procedures stored in a database
           </title>
           <para>
-            The StoredProcedure module is meant to capture information on procedures 
-            that produce data output in the form of a data table. In an RDBMS one 
-            can code complex queries and transactions into stored procedures and 
-            then invoke them directly from front-end applications. It allows the 
-            optional description of any parameters that are expected to be passed to 
-            the procedure when it is called.
+            The StoredProcedure module is meant to capture information on 
+            procedures that produce data output in the form of a data table. 
+            In an RDBMS one can code complex queries and transactions into 
+            stored procedures and then invoke them directly from front-end 
+            applications. It allows the optional description of any parameters 
+            that are expected to be passed to the procedure when it is called.
           </para>
         </section>
         </doc:moduleDescription>

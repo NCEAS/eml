@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-03 21:36:17 $'
-      '$Revision: 1.46 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-04 09:17:01 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -509,7 +509,7 @@
         <section>
           <title>Example Documents</title>
             <example>
-              <title>1</title>
+              <title>Invalid EML due to duplicate identifiers</title>
               <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
@@ -543,7 +543,7 @@
             </section>
           </example>
           <example>
-            <title>2</title>
+            <title>Invalid EML due to a non-existent reference</title>
             <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
@@ -579,7 +579,8 @@
             </section>
           </example>
           <example>
-            <title>3</title>
+            <title>Invalid EML due to a conflicting id attribute and a 
+            &lt;references&gt; element</title>
             <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
@@ -616,7 +617,7 @@
             </section>
           </example>
           <example>
-            <title>4</title>
+            <title>A valid EML document</title>
             <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
@@ -971,8 +972,12 @@
   <xsl:attribute name="id">
     <xsl:value-of select="./doc:moduleName"/>
   </xsl:attribute>
-  <title><xsl:value-of select="./doc:moduleName"/></title>
-  <itemizedlist>
+          <ulink>
+            <xsl:attribute name="url">./<xsl:value-of 
+              select="./doc:moduleName"/>.html</xsl:attribute>
+  <xsl:value-of select="./doc:moduleName"/>
+          </ulink>
+  <!--itemizedlist>
     <listitem>
       <para>Recommended Usage: <xsl:value-of select="normalize-space(./doc:recommendedUsage)"/></para>
     </listitem>
@@ -1006,10 +1011,10 @@
         </ulink>
       </para>
     </listitem>
-  </itemizedlist>
-  <para>
+  </itemizedlist -->
+  <!--para>
     <xsl:value-of select="./doc:moduleDescription"/>
-  </para>
+  </para-->
 </section>
 </xsl:template>
 

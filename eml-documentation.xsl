@@ -14,9 +14,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2002-10-02 16:21:10 $'
- *    '$Revision: 1.39 $'
+ *      '$Author: cjones $'
+ *        '$Date: 2002-10-04 09:17:01 $'
+ *    '$Revision: 1.40 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -65,12 +65,7 @@
           <xsl:value-of
             select="//doc:moduleDescription"/>
         </blockquote>
-
-        View an image of the
-        <a>
-          <xsl:attribute name="href">
-          <xsl:value-of select="//doc:moduleName"/>.png</xsl:attribute>
-          schema</a>
+        <xsl:apply-templates select="//doc:moduleDocs" mode="detailtable" />
         <!--
         <img>
           <xsl:attribute name="src"><xsl:value-of
@@ -135,6 +130,68 @@
         </p>
       </body>
     </html>
+  </xsl:template>
+
+  <!-- Build the Detail Table after the Module documentation description -->
+  <xsl:template match="doc:moduleDocs" mode="detailtable">
+  <xsl:param name="importedBy"/>
+    <div class="title">Module details</div>
+  <table class="tabledefault" border="0">
+    <xsl:attribute name="id">
+      <xsl:value-of select="./doc:moduleName"/>
+    </xsl:attribute>
+    <tr>
+      <td class="tablepanel">
+      Recommended Usage: 
+      </td>
+      <td class="tablepanel">
+      <xsl:value-of select="normalize-space(./doc:recommendedUsage)"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tablepanel">
+       Stand-alone: 
+      </td>
+      <td class="tablepanel">
+       <xsl:value-of select="normalize-space(./doc:standAlone)"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tablepanel">
+        Imports:
+      </td>
+      <td class="tablepanel">
+          <xsl:variable name="importedItem">
+            <xsl:for-each select="/xs:schema/xs:import">
+                <xsl:value-of select="substring(normalize-space(@schemaLocation), 0,
+                  string-length(normalize-space(@schemaLocation))-3)"/>
+              <xsl:text>, </xsl:text>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:value-of select="substring($importedItem, 0, string-length($importedItem) - 1)"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tablepanel">
+        Imported By:
+      </td>
+      <td class="tablepanel">
+        <xsl:value-of select="substring($importedBy, 0, string-length($importedBy) - 1)"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tablepanel">
+        View an image of the schema:
+      </td>
+      <td class="tablepanel">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:value-of select="//doc:moduleName"/>.png</xsl:attribute>
+          <xsl:attribute name="target">offline</xsl:attribute>
+          <xsl:value-of select="//doc:moduleName"/> image</a>
+      </td>
+    </tr>
+  </table>
   </xsl:template>
 
   <!-- step through the elements -->
