@@ -9,8 +9,8 @@
   *     Authors: Matt Jones
   *
   *    '$Author: brooke $'
-  *      '$Date: 2003-11-24 07:43:20 $'
-  *  '$Revision: 1.23 $'
+  *      '$Date: 2003-11-25 19:15:57 $'
+  *  '$Revision: 1.24 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -142,10 +142,11 @@ p.contact {
 .tablehead {
     background-color: #B2D2FE;
     color: #0040A1; 
-    text-align: center;
     font-size: 14px; 
     font-weight: bold; 
-    padding: 0px;
+    padding-left: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .roweven {
@@ -176,7 +177,7 @@ p.contact {
 .linkedHeaderStyle {
     background: #B2D2FE;
     border-top: solid #ffffff 5px;
-    padding-left: 100px;
+    padding-left: 15%;
     text-align: left;
     font-weight: bold; 
 }
