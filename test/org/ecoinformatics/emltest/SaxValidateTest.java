@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: berkley $'
- *     '$Date: 2002-10-03 15:17:04 $'
- * '$Revision: 1.6 $'
+ *   '$Author: jones $'
+ *     '$Date: 2002-10-07 17:00:24 $'
+ * '$Revision: 1.7 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -134,20 +134,22 @@ public class SaxValidateTest extends TestCase
     {
       SAXValidate test = new SAXValidate(false);
       assertTrue(test != null);
-      System.err.println("Validating the docs/eml-docbook.xml file.");
-      File f = new File("docs/eml-docbook.xml");
+      System.err.println("Validating the docs/eml-@version@/eml-docbook.xml " +
+              "file.");
+      File f = new File("docs/eml-@version@/eml-docbook.xml");
       if(!f.exists())
       {
-        System.err.println("The file eml-docbook.xml is not in the docs " +
-             "directory.  You " +
+        System.err.println("The file eml-@version/eml-docbook.xml is not " +
+             "in the docs directory.  You " +
              "must run 'ant docbook' before running this test.");
-        fail("The file eml-docbook.xml is not in the docs directory.  You " +
-             "must run 'ant docbook' before running this test.");
+        fail("The file eml-@version@/eml-docbook.xml is not in the " +
+             "docs directory.  You must run 'ant docbook' before running " +
+             "this test.");
       }
 
       try
       {
-        test.runTest(new FileReader("docs/eml-docbook.xml"),
+        test.runTest(new FileReader("docs/eml-@version@/eml-docbook.xml"),
                                     DEFAULT_PARSER);
       }
       catch(Exception e)
