@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-09-13 07:55:59 $'
-#      '$Revision: 1.22 $'
+#          '$Date: 2002-09-13 23:10:25 $'
+#      '$Revision: 1.23 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -97,6 +97,14 @@ KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 2) Complete work on the XSLT stylesheets.  Need to convert stylesheets
    to the new structure (they currently work with the BETA6 release
    (bug 249).
+3) The use of XML Schema key and keyref constructs is not working and 
+   will likeley require some schema changes in order to resolve key 
+   validation problems. See bug 586 for more details.
+4) eml-coverage may use element references instead of ComplexTypes, and
+   thus may require the use of namespace prefixes for those global
+   elements.  This would be bad, and needs to be tested and possibly
+   fixed.  There would be no changes to the schemas, but it would change
+   the instance documents by eliminating namespace prefixes. See bug 589.
 
 
 ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
@@ -104,8 +112,7 @@ ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
 RC1 Changes- (numbers refer to the correspnding Bugzilla bug)
 471: created an EML specification overview document
 495: created FAQ for EML
-586: resolved key validation problems
-588: removed lineage tags from documentation
+588: removed lineage tags from documentation stylesheet
 484: eml-attribute changes to unit and attributeDomain
 579: fixed eml-docbook validation problems
 491: eml-coverage changed to correctly import types and to fix
