@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
            targetNamespace="eml:distribution">
   
@@ -10,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.4 $'
+        '$Author: berkley $'
+          '$Date: 2001-02-20 23:42:21 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,8 +42,7 @@
   <xs:import namespace="iso:ResponsibleParty" 
           schemaLocation = "./iso-party.xsd"/>
   
-  
-  <xs:element name="eml-distribution">
+  <xs:element name="eml-distribution" minOccurs="1"  maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -63,7 +62,7 @@
         <example>
         </example>
         <lineage>
-           Derived from ISO.
+           
         </lineage>
       </xs:appInfo>
     </xs:annotation>
@@ -88,7 +87,7 @@
                 zip, gzip, tar, sit, bin, binhex, text
               </example>
               <lineage>
-                derived from ISO
+                ISO CD 19115.3, Geographic information - Metadata
               </lineage>
             </xs:appInfo>
           </xs:annotation>
@@ -111,7 +110,7 @@
                Library of Congress
               </example>
               <lineage>
-                
+                ISO CD 19115.3, Geographic information - Metadata
               </lineage>
             </xs:appInfo>
           </xs:annotation>
@@ -158,7 +157,7 @@
                     <example>
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -184,7 +183,7 @@
                             US$10.00
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -208,7 +207,7 @@
                           8:00 am to 5:00 pm PST Monday-Friday
                         </example>
                         <lineage>
-                          
+                          ISO CD 19115.3, Geographic information - Metadata
                         </lineage>
                       </xs:appInfo>
                     </xs:annotation>
@@ -237,7 +236,7 @@
                             of US$10.00.
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -263,7 +262,7 @@
                             Fedex overnight - 1 day
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -289,7 +288,7 @@
                       zip, gzip, tar, bin, binhex, sit, doc, text, wps
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -314,7 +313,7 @@
               <example>
               </example>
               <lineage>
-                
+                ISO CD 19115.3, Geographic information - Metadata
               </lineage>
             </xs:appInfo>
           </xs:annotation>
@@ -337,7 +336,7 @@
                       Terrabytes, Gigabytes, Megabytes, Kilobytes, bytes, bits
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -359,7 +358,7 @@
                       256 KB, 1.2 MB
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -383,7 +382,7 @@
                      
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -404,7 +403,7 @@
                       CD-ROM, 3.5 in. floppy disk, Zip disk
                     </example>
                     <lineage>
-                      
+                      ISO CD 19115.3, Geographic information - Metadata
                     </lineage>
                   </xs:appInfo>
                 </xs:annotation>
@@ -451,7 +450,7 @@
                             B/cm
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -474,7 +473,7 @@
                             650 MB
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -498,7 +497,7 @@
                             NTFS, FAT32, EXT2, QIK80
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -520,7 +519,7 @@
                           <example>
                           </example>
                           <lineage>
-                            
+                            ISO CD 19115.3, Geographic information - Metadata
                           </lineage>
                         </xs:appInfo>
                       </xs:annotation>
@@ -554,7 +553,7 @@
               Excel Spreadsheet, Oracle database export, XML
             </example>
             <lineage>
-              
+              ISO CD 19115.3, Geographic information - Metadata
             </lineage>
           </xs:appInfo>
         </xs:annotation>
@@ -576,7 +575,7 @@
               97, 1.2, 4.5.6.7
             </example>
             <lineage>
-              
+              ISO CD 19115.3, Geographic information - Metadata
             </lineage>
           </xs:appInfo>
         </xs:annotation>
@@ -598,7 +597,7 @@
               http://www.w3.org/TR/REC-xml
             </example>
             <lineage>
-              
+              ISO CD 19115.3, Geographic information - Metadata
             </lineage>
           </xs:appInfo>
         </xs:annotation>
@@ -621,7 +620,7 @@
               zip, gzip
             </example>
             <lineage>
-              
+              ISO CD 19115.3, Geographic information - Metadata
             </lineage>
           </xs:appInfo>
         </xs:annotation>
@@ -644,7 +643,7 @@
               Access
             </example>
             <lineage>
-              
+              ISO CD 19115.3, Geographic information - Metadata
             </lineage>
           </xs:appInfo>
         </xs:annotation>
