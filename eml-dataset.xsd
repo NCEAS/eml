@@ -1,45 +1,45 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" 
-  xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" 
-  xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
-  xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
-  xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
-  xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
-  xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" 
-  xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
-  xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" 
-  xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" 
-  xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
-  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1"
+  xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1"
+  xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1"
+  xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
+  xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1"
+  xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1"
+  xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1"
+  xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1"
+  xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1"
+  xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1"
+  xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1"
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
+  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1"
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
     schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
     schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1"
     schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1"
     schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1"
     schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1"
     schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1"
     schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1"
     schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1"
     schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
     schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1"
     schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1"
     schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" 
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1"
     schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -57,9 +57,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.43 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 19:05:23 $'
+      '$Revision: 1.44 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@
         <doc:moduleDescription>
           <section xmlns="">
             <title>
-              The dataset module - Dataset specific
+              The eml-dataset module - Dataset specific
               information
             </title>
             <para>
@@ -89,22 +89,22 @@
               dataset resources. It is intended to provide overview information
               about the dataset: broad information such as the title, abstract,
               keywords, contacts, maintenance history, purpose, and distribution
-              of the data themselves. The eml-dataset module also imports many 
-              other modules that are used to describe the dataset in fine 
-              detail.  Specifically, it uses the eml-methods module to 
-              describe methodology used in collecting or processing the 
-              dataset, the eml-project module to describe the overarching 
-              research context and experimental design, the eml-access module 
-              to define access control rules for the data and metadata, and 
-              the eml-entity module to provide detailed information about the 
-              logical structure of the dataset. A dataset can be (and often is) 
-              composed of a series of data entities (tables) that are linked 
+              of the data themselves. The eml-dataset module also imports many
+              other modules that are used to describe the dataset in fine
+              detail.  Specifically, it uses the eml-methods module to
+              describe methodology used in collecting or processing the
+              dataset, the eml-project module to describe the overarching
+              research context and experimental design, the eml-access module
+              to define access control rules for the data and metadata, and
+              the eml-entity module to provide detailed information about the
+              logical structure of the dataset. A dataset can be (and often is)
+              composed of a series of data entities (tables) that are linked
               together by particular integrity constraints.
             </para>
             <para>
               The eml-dataset module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This 
-              allows a dataset to be described once, and then used as a 
+              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              allows a dataset to be described once, and then used as a
               reference in other locations within the EML document via it's ID.
             </para>
           </section>
@@ -123,9 +123,9 @@
         <doc:description>The dataset field encompasses all information about
         a single dataset.  A dataset is defined as all of the
         information describing a data collection event.  This event may take
-        place over some period of time and include many actual collections (a 
+        place over some period of time and include many actual collections (a
         time series or remote sensing application)
-        or it could be just one actual collection 
+        or it could be just one actual collection
         (a day in the field).</doc:description>
         <doc:lineage>This element was introduced in EML 2.0, and is derived
         from the eml-dataset module in EML 1.4.</doc:lineage>
@@ -136,15 +136,15 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Dataset</doc:tooltip>
-        <doc:summary>DatasetType is the base type for the dataset 
+        <doc:summary>DatasetType is the base type for the dataset
         element.</doc:summary>
         <doc:description>DatasetType is the base type for the dataset element.
         The dataset field encompasses all information about
         a single dataset.  A dataset is defined as all of the
         information describing a data collection event.  This event may take
-        place over some period of time and include many actual collections (a 
+        place over some period of time and include many actual collections (a
         time series or remote sensing application)
-        or it could be just one actual collection 
+        or it could be just one actual collection
         (a day in the field).</doc:description>
         <doc:lineage>This element was introduced in EML 2.0, and is derived
         from the eml-dataset module in EML 1.4.</doc:lineage>
@@ -157,10 +157,10 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Purpose</doc:tooltip>
-              <doc:summary>A description of the purpose of this 
+              <doc:summary>A description of the purpose of this
               dataset.</doc:summary>
               <doc:description>A description of the purpose of this
-              dataset.  Note that this element requires DocBook style 
+              dataset.  Note that this element requires DocBook style
               formatting.  See eml-text for more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -231,7 +231,7 @@
               used in the collection of this dataset.</doc:summary>
               <doc:description>The methods field documents scientific methods
               used in the collection of this dataset.  It includes information
-              on items such as tools, instrument calibration and 
+              on items such as tools, instrument calibration and
               software.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -241,11 +241,11 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>project</doc:tooltip>
-              <doc:summary>The project field contains information on 
+              <doc:summary>The project field contains information on
               the project in which this dataset was collected.</doc:summary>
-              <doc:description>The project field contains information on 
+              <doc:description>The project field contains information on
               the project in which this dataset was collected.  It includes
-              information such as project personell, funding, study area, 
+              information such as project personell, funding, study area,
               project design and related projects.  The project description
               can also contain documentation on subprojects.</doc:description>
             </xs:appinfo>
@@ -283,9 +283,9 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>spatial raster</doc:tooltip>
-                <doc:summary>The spatialRaster field describes any 
+                <doc:summary>The spatialRaster field describes any
                 spatial raster images included in this dataset.</doc:summary>
-                <doc:description>The spatialRaster field describes any 
+                <doc:description>The spatialRaster field describes any
                 spatial raster images included in this dataset.</doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -294,9 +294,9 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>spatial vector</doc:tooltip>
-                <doc:summary>The spatialVector field describes any 
+                <doc:summary>The spatialVector field describes any
                 spatial vectors included in this dataset.</doc:summary>
-                <doc:description>The spatialVector field describes any 
+                <doc:description>The spatialVector field describes any
                 spatial vectors included in this dataset.</doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -306,7 +306,7 @@
               <xs:appinfo>
                 <doc:tooltip>stored procedure</doc:tooltip>
                 <doc:summary>The storedProcedure field contains information
-                about any stored procedures included with this 
+                about any stored procedures included with this
                 dataset.</doc:summary>
                 <doc:description>The storedProcedure field contains information
                 about any stored procedures included with this dataset.
@@ -321,7 +321,7 @@
               <xs:appinfo>
                 <doc:tooltip>view</doc:tooltip>
                 <doc:summary>The view field contains information
-                about any views included with this 
+                about any views included with this
                 dataset.</doc:summary>
                 <doc:description>The view field contains information
                 about any view included with this dataset.
@@ -335,15 +335,15 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>other entity</doc:tooltip>
-                <doc:summary>The otherEntity field contains information 
-                about any entity in the dataset that is not any of the 
+                <doc:summary>The otherEntity field contains information
+                about any entity in the dataset that is not any of the
                 preceding entities.</doc:summary>
-                <doc:description>The otherEntity field contains information 
-                about any entity in the dataset that is not any of the 
+                <doc:description>The otherEntity field contains information
+                about any entity in the dataset that is not any of the
                 preceding entities.  (i.e. it is not a table, spatialRaster,
                 spatialVector, storedProcedure or view.)  OtherEntity allows
-                the documentation of basic entity fields as well as 
-                a plain text field to allow you to type your 
+                the documentation of basic entity fields as well as
+                a plain text field to allow you to type your
                 entity.</doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -361,10 +361,10 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Maintenance Type</doc:tooltip>
-        <doc:summary>The maintenance type defines the fields for the 
-        maintenance element.  It encompasses all information related to 
+        <doc:summary>The maintenance type defines the fields for the
+        maintenance element.  It encompasses all information related to
         the maintenance and upkeep of this dataset.</doc:summary>
-        <doc:description>The maintenance type defines the fields for the 
+        <doc:description>The maintenance type defines the fields for the
         maintenance element.</doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -387,10 +387,10 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Maintenance Update Frequency</doc:tooltip>
-            <doc:summary>Frequency with which changes and additions are made 
+            <doc:summary>Frequency with which changes and additions are made
             to the datset
             after the initial dataset is completed.</doc:summary>
-            <doc:description>Frequency with which changes and additions are made 
+            <doc:description>Frequency with which changes and additions are made
             to the datset
             after the initial dataset is completed.  The values for this
             field must come from the enumeration MaintUpFreqType.</doc:description>
@@ -443,7 +443,7 @@
                 <xs:appinfo>
                   <doc:tooltip>Change Date</doc:tooltip>
                   <doc:summary>The date the changes were applied.</doc:summary>
-                  <doc:description>The date the changes were 
+                  <doc:description>The date the changes were
                   applied.</doc:description>
                   <doc:lineage>EML 2.0</doc:lineage>
                 </xs:appinfo>

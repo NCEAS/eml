@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 18:33:45 $'
-      '$Revision: 1.50 $'
+          '$Date: 2002-10-04 19:05:23 $'
+      '$Revision: 1.51 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -184,7 +184,7 @@
     </section>
     <section>
       <title>
-        Root-level resources
+        Root-level structure
       </title>
       <!-- Get the eml module description from the xsd file -->
       <xsl:apply-templates
@@ -228,7 +228,7 @@
     </section>
     <section>
         <title>
-          Adding detail to top-level resources
+          Supporting Modules - Adding detail to top-level resources
         </title>
           <para>
             The following six modules are used to qualify the resources being
@@ -314,7 +314,7 @@
     </section>
     <section>
         <title>
-          Entity types - detailed information for discipline specific entities
+          Entity types - Detailed information for discipline specific entities
         </title>
           <para>
              The following six modules are used to describe a number of common
@@ -353,7 +353,7 @@
     </section>
     <section>
         <title>
-          Utility modules - information used to enhance metadata documentation
+          Utility modules - Metadata documentation enhancements
         </title>
           <para>
             The following modules are used to highlight the information being
@@ -362,26 +362,9 @@
             of text-based constructs to enhance a document (including sections,
             paragraphs, lists, subscript, superscript, emphasis, etc.)
           </para>
-        <section>
-          <title>
-            The eml-text module - Text field formatting
-          </title>
-          <para>
-            The eml text module is a wrapper container that allows general
-            text descriptions to be used within the various modules of eml.
-            It can include either structured or unstructured text blocks.
-            It isn't really appropriate to use this module outside of the
-            context of a parent module, because the parent module determines
-            the appropriate context to which this text description applies.
-            The eml-text module allows one to provide structure to a text
-            description in order to convey concepts such as sections
-            (paragraphs), hierarchy (ordered and unordered lists), emphasis
-            (bold, superscript, subscript) etc.  The structured elements
-            are a subset of <ulink url="http://www.docbook.org">DocBook</ulink>
-            so the predefined DocBook stylesheets can be used to style
-            EML fields that implement this module.
-          </para>
-        </section>
+      <xsl:apply-templates
+           select="document('eml-text.xsd')//doc:moduleDescription/*"
+           mode="copy"/>
       <section>
           <title>Dependency Chart</title>
           <para>

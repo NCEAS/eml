@@ -23,9 +23,9 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.58 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 19:05:23 $'
+      '$Revision: 1.59 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
         <doc:moduleDescription>
           <section xmlns="">
             <title>
-              The access module - Access control rules for resources
+              The eml-access module - Access control rules for resources
             </title>
             <para>
               The eml-access module describes the level of access that is to be
@@ -81,10 +81,10 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
               may not proceed until access is verified.
             </para>
             <para>
-              The eml-access module, like other modules, may be 
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This 
-              allows an access control document to be described once, and then 
-              used as a reference in other locations within the EML document 
+              The eml-access module, like other modules, may be
+              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              allows an access control document to be described once, and then
+              used as a reference in other locations within the EML document
               via it's ID.
             </para>
           </section>
