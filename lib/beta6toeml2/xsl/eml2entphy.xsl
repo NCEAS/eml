@@ -140,25 +140,32 @@
               </xsl:choose>
             </xsl:element>
             
-            <xsl:if test="$phb6/eml-physical/fieldDelimiter!=''">
-              <xsl:element name="simpleDelimited">
-                <xsl:element name="fieldDelimiter">
-                  <xsl:value-of select="$phb6/eml-physical/fieldDelimiter"/>
+            <xsl:choose>
+              <xsl:when test="$phb6/eml-physical/fieldDelimiter!=''">
+                <xsl:element name="simpleDelimited">
+                  <xsl:element name="fieldDelimiter">
+                    <xsl:value-of select="$phb6/eml-physical/fieldDelimiter"/>
+                  </xsl:element>
+                  <xsl:if test="$phb6/eml-physical/quoteCharacter!=''">
+                    <xsl:element name="quoteCharacter">
+                      <xsl:value-of select="$phb6/eml-physical/quoteCharacter"/>
+                    </xsl:element>
+                  </xsl:if>
+                  <xsl:if test="$phb6/eml-physical/literalCharacter!=''">
+                    <xsl:element name="literalCharacter">
+                      <xsl:value-of select="$phb6/eml-physical/literalCharacter"/>
+                    </xsl:element>
+                  </xsl:if>
                 </xsl:element>
-                <xsl:if test="$phb6/eml-physical/quoteCharacter!=''">
-                  <xsl:element name="quoteCharacter">
-                    <xsl:value-of select="$phb6/eml-physical/quoteCharacter"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:element name="simpleDelimited">
+                  <xsl:element name="fieldDelimiter">
+                    <xsl:value-of select="'N/A'"/>
                   </xsl:element>
-                </xsl:if>
-                <xsl:if test="$phb6/eml-physical/literalCharacter!=''">
-                  <xsl:element name="literalCharacter">
-                    <xsl:value-of select="$phb6/eml-physical/literalCharacter"/>
-                  </xsl:element>
-                </xsl:if>
-                
-              </xsl:element>
-            </xsl:if>
-
+                </xsl:element>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:element>
         </xsl:element>
       </xsl:when>

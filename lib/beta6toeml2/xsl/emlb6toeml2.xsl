@@ -300,6 +300,8 @@
   
   <!--templates to be called from main template              -->
   <xsl:template name="responsibleParty">
+    <xsl:choose>
+      <xsl:when test="../individualName!='' or ../organizationName!='' or ../positionName!=''">
               <xsl:if test="../individualName!=''">
                 <xsl:element name="individualName">
                   <xsl:if test="../individualName/salutation!=''">
@@ -331,6 +333,13 @@
                    <xsl:value-of select="../positionName"/>
                   </xsl:element>
                 </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+                  <xsl:element name="organizationName">
+                   <xsl:value-of select="'N/A'"/>
+                  </xsl:element>
+      </xsl:otherwise>       
+    </xsl:choose>
 
                 <xsl:if test="../address!=''">
                   <xsl:element name="address">
