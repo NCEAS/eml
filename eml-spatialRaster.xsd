@@ -30,9 +30,9 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-06 22:25:39 $'
-      '$Revision: 1.19 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-13 18:27:42 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,11 +71,14 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
         pixels.</doc:tooltip>
         <doc:summary>Description of a gis layer composed of raster
         pixels.</doc:summary>
-        <doc:description>Description of a gis layer composed of raster pixels.
-        This is a raster grid of pixels. Raster spatial objects used to locate
-        zero-, two-, or three-dimensional locations in the
+        <doc:description>Description of a gis layer composed of raster pixels
+				comprising a regular-pattern grid.  Generally, a raster object may be
+				thought of as a pattern of closely spaced rows of dots that collectively
+				form an image.  Raster spatial objects are used to locate zero-, two-, 
+				or three-dimensional locations in the
         dataset</doc:description>
-        <doc:example />
+        <doc:example>An interpolated grid of irregularly spaced data is an
+				example of this element.</doc:example> 
         <doc:lineage>EML 2.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -95,11 +98,12 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Raster Origin</doc:tooltip>
-              <doc:summary>Location of pixel 1,1</doc:summary>
+              <doc:summary>The corner location of the pixel having the 
+							minimum x and y values</doc:summary>
               <doc:description>Identification the corner of the grid where the
               first values for both the x and y axes begin in the
               file.</doc:description>
-              <doc:example>NW Corner</doc:example>
+              <doc:example>Upper Left</doc:example>
               <doc:lineage>ISO 19115.3</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -139,7 +143,7 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
               <doc:summary>Maximum number of raster objects along the vertical
               (z) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
-              vertical (z) axis</doc:description>
+              vertical (z) axis.</doc:description>
               <doc:example />
               <doc:lineage>The spatial entity elements were introduced into EML
               2.0 beta 7</doc:lineage>
@@ -160,7 +164,32 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
           </xs:annotation>
         </xs:element>
         <xs:element name="scaleFactor" type="xs:string" minOccurs="0" />
+				<xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Scale Factor</doc:tooltip>
+              <doc:summary>The value used for scaling the source raster.</doc:summary>
+              <doc:description>The scale factor is used for raster-rescaling
+							operations, where the following operation is applied to each pixel
+							in the data in the source: rescaled=(source*scaleFactor)+offset.
+							</doc:description>
+              <doc:example>2</doc:example>
+              <doc:lineage></doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
         <xs:element name="offset" type="xs:string" minOccurs="0" />
+				<xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Scaling Offset</doc:tooltip>
+              <doc:summary>The offset value used for scaling the source raster.
+							</doc:summary>
+              <doc:description>The offset is used for raster-rescaling
+							operations, where the following operation is applied to each pixel
+							in the data in the source: rescaled=(source*scaleFactor)+offset.
+							</doc:description>
+              <doc:example>20</doc:example>
+              <doc:lineage></doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
         <xs:element name="imageDescription" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
@@ -333,11 +362,11 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Code which indicates whether or not Standard
-                    Rdiometric Product data is available.</doc:tooltip>
+                    Radiometric Product data is available.</doc:tooltip>
                     <doc:summary>Code which indicates whether or not Standard
-                    Rdiometric Product data is available.</doc:summary>
+                    Radiometric Product data is available.</doc:summary>
                     <doc:description>Code which indicates whether or not
-                    Standard Rdiometric Product data is
+                    Standard Radiometric Product data is
                     available.</doc:description>
                     <doc:example />
                     <doc:lineage>ISO 19115.3</doc:lineage>
@@ -468,6 +497,16 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
         </xs:annotation>
       </xs:element>
       <xs:element name="waveLengthUnits" type="xs:string" minOccurs="0" />
+			 <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Sensor Wave Length Units</doc:tooltip>
+            <doc:summary>Units in which the sensor wavelegths are expressed.</doc:summary>
+            <doc:description>Units of measure for the wavelength at which the 
+						sensor collected the data.</doc:description>
+            <doc:example>Microns</doc:example>
+            <doc:lineage>ISO 19115.3</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
       <xs:element name="peakResponse" minOccurs="0" />
     </xs:sequence>
   </xs:complexType>

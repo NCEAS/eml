@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: jones $'
- *     '$Date: 2002-09-12 20:25:30 $'
- * '$Revision: 1.4 $'
+ *   '$Author: berkley $'
+ *     '$Date: 2002-09-13 18:27:42 $'
+ * '$Revision: 1.5 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,9 +90,9 @@ public class SaxValidateTest extends TestCase
     public void initialize()
     {
         assertTrue(true);
-        org.apache.xerces.impl.Version version = 
-            new org.apache.xerces.impl.Version();
-        System.out.println("Using Xerces: " + version.getVersion());
+        //org.apache.xerces.impl.Version version =
+        //    new org.apache.xerces.impl.Version();
+        //System.out.println("Using Xerces: " + version.getVersion());
     }
 
     /**
