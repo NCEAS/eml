@@ -249,7 +249,7 @@
 
   <chapter id="moduleDescriptions">
     <title>Module Descriptions (Normative)</title>
-    <itemizedlist>
+    <!--<itemizedlist>
       <xsl:for-each select="//doc:module">
         <listitem>
           <link>
@@ -260,7 +260,7 @@
           </link>
         </listitem>
       </xsl:for-each>
-    </itemizedlist>
+    </itemizedlist>-->
     <xsl:for-each select="//doc:module">
       <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
     </xsl:for-each>
