@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: cjones $'
-  *       '$Date: 2001-03-23 07:48:08 $'
-  *   '$Revision: 1.10 $'
+  *     '$Author: jones $'
+  *       '$Date: 2001-03-26 20:22:40 $'
+  *   '$Revision: 1.11 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -106,10 +106,10 @@
       </tr>
       <tr>
         <td class="tablepanel" width="40%">
-            Rules for this field:
+            Content of this field:
         </td>
         <td class="tablepanel">
-            Help for this field:
+            Description of this field:
         </td>
       </tr>
       <tr>
@@ -159,7 +159,7 @@
                 <tr>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
-                    Allowable content:
+                    Elements:
                   </span>
                   </td>
                   <td valign="top" class="tablepanel">
@@ -183,7 +183,7 @@
                 <tr>
                   <td valign="top" class="tablepanel">
                   <span class="boldtext">
-                    Allowable attributes:
+                    Attributes:
                   </span>
                   </td>
                   <td valign="top" class="tablepanel">
@@ -417,7 +417,7 @@
   <!-- This template formats the various types of help information
        that are provided in the xsd file -->
   <xsl:template match="xs:annotation" mode="helpinfo">
-        <td colspan="1" class="tablepanel">
+        <td colspan="1" class="tablepanel" valign="top">
           <!-- display the help fields for each element-->
           <blockquote>
             <br><span class="boldtext">Tooltip: </span></br>
