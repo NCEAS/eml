@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-09-07 00:19:18 $'
-      '$Revision: 1.54 $'
+          '$Date: 2002-09-07 00:27:59 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -142,8 +142,8 @@
             <xs:appinfo>
               <doc:tooltip>Abstract</doc:tooltip>
               <doc:summary>Descriptive abstract.</doc:summary>
-              <doc:description>Descriptive abstract in paragraph of
-              text.</doc:description>
+              <doc:description>Descriptive abstract that summarizes information
+              about the research project.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -153,8 +153,7 @@
               <doc:tooltip>Funding</doc:tooltip>
               <doc:summary>Funding information.</doc:summary>
               <doc:description>Grant and contract numbers, names and addresses
-              of funding sources described in paragraphs or sections of
-              text.</doc:description>
+              of funding sources.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -174,7 +173,7 @@
               geology, soils or distrubances or reference to citable biological
               or geophysical classification systems such as the "Bailey..." or
               the ... The descriptions may be either general descriptions in
-              paragraph form or specific values for named theme attributes such
+              textual form or specific values for named theme attributes such
               as average rainfall. The "studyArea" is, in most cases, a larger
               geographical area than the coverage represented in the
               "designDescription", that is, studyArea represents the
@@ -197,7 +196,7 @@
                     references to citable biological or geophysical
                     classification systems such as the "Bailey..." or the ...
                     The descriptions may be either general descriptions in
-                    paragraph form or specific values for named theme
+                    textual form or specific values for named theme
                     attributes such as average rainfall.</doc:description>
                     <doc:example />
                     <doc:lineage>New in EML 2.0.0</doc:lineage>
@@ -212,7 +211,7 @@
                           <doc:summary>The value of a descriptor
                           as</doc:summary>
                           <doc:description>The value of a descriptor. This may
-                          either be a general description in paragraph form or
+                          either be a general description in textual form or
                           the value part of a "name/value" pair where the name
                           is entered in the attribute "name_or_id". For
                           example, if the value of the "name" attribute" of the
@@ -283,7 +282,7 @@
               <doc:summary>A container element for descriptions of sampling
               methods, protocols or citations.</doc:summary>
               <doc:description>This element is a container element for either
-              general paragraph descriptions of research design or more
+              general textual descriptions of research design or more
               granular descriptions of protocols and/or sampling methods.
               Literature citations may also be used to describe the research
               design.</doc:description>
