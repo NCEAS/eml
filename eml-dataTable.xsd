@@ -1,1 +1,202 @@
-<?xml version="1.0"?><xs:schema targetNamespace="eml:dataTable-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8" xmlns:con="eml:constraint-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:ent="eml:entity-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns="eml:dataTable-2.0.0beta8">  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>  <xs:import namespace="eml:constraint-2.0.0beta8" schemaLocation="eml-constraint.xsd"/>  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>  <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>  <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd"/>  <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd"/>  <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd"/>  <xs:annotation>    <xs:documentation>       '$RCSfile: eml-dataTable.xsd,v $'       Copyright: 1997-2002 Regents of the University of California,                            University of New Mexico, and                            Arizona State University        Sponsors: National Center for Ecological Analysis and Synthesis and                  Partnership for Interdisciplinary Studies of Coastal Oceans,                     University of California Santa Barbara                  Long-Term Ecological Research Network Office,                     University of New Mexico                  Center for Environmental Studies, Arizona State University   Other funding: National Science Foundation (see README for details)                  The David and Lucile Packard Foundation     For Details: http://knb.ecoinformatics.org/        '$Author: berkley $'          '$Date: 2002-06-11 22:20:04 $'      '$Revision: 1.15 $'    This program is free software; you can redistribute it and/or modify    it under the terms of the GNU General Public License as published by    the Free Software Foundation; either version 2 of the License, or    (at your option) any later version.    This program is distributed in the hope that it will be useful,    but WITHOUT ANY WARRANTY; without even the implied warranty of    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the    GNU General Public License for more details.    You should have received a copy of the GNU General Public License    along with this program; if not, write to the Free Software    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    </xs:documentation>    <xs:appinfo>      <doc:moduleDocs>        <doc:moduleName>eml-dataTable</doc:moduleName>        <doc:moduleDescription>          The EML dataTable Module defines the logical characteristics of every          dataTable in the dataset.  Each attribute of the table is described          in eml-attribute.  This module is for basic table information only.        </doc:moduleDescription>        <doc:recommendedUsage>          all datasets with one or more data tables.        </doc:recommendedUsage>        <doc:standAlone>          yes        </doc:standAlone>      </doc:moduleDocs>    </xs:appinfo>  </xs:annotation>  <xs:element name="dataTable" type="DataTableType">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>          Table Entity descriptor        </doc:tooltip>        <doc:summary>          Descriptor of one table entity in the dataset.        </doc:summary>        <doc:description>          The table entity element is a descriptor of one entity in the dataset          identified by its name. The entity element can contain information          about the entity's orientation, number of records,          case sensitiveness, and temporal, geographic and taxonomic coverage.        </doc:description>        <doc:example/>        <doc:lineage>          The entity element was introduced into EML 1.4 as file.        </doc:lineage>      </xs:appinfo>    </xs:annotation>  </xs:element>  <xs:complexType name="DataTableType">    <xs:choice>      <xs:sequence>        <xs:group ref="ent:EntityGroup"/>        <xs:sequence>          <xs:element name="orientation" nillable="true" minOccurs="0">            <xs:annotation>              <xs:appinfo>                <doc:tooltip>                    Entity's record orientation                  </doc:tooltip>                <doc:summary>                    Specification of the entity's record orientation.                  </doc:summary>                <doc:description>                    This element contains specification of the entity's                    record orientation by element's attribute "columnorrow".                  </doc:description>                <doc:example>                    The valid attribute values are "columnmajor" or "rowmajor".                    If the attribute is not specified, "columnmajor" is used.                  </doc:example>                <doc:lineage>                    The orientation element was introduced into EML 1.4.                  </doc:lineage>              </xs:appinfo>            </xs:annotation>            <xs:complexType>              <xs:attribute name="columnOrRow" use="optional" default="columnMajor">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>                          Attribute of orientation element                      </doc:tooltip>                    <doc:summary>                          Specification of the entity's record orientation.                      </doc:summary>                    <doc:description>                          This attribute specifies the entity's                        record orientation.                      </doc:description>                    <doc:example>                        The valid attribute values are "columnmajor" or                        "rowmajor".  If the attribute is not specified,                        "columnmajor" is used.                      </doc:example>                    <doc:lineage>                        The columnorrow attribute was introduced into EML 1.4.                      </doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:simpleType>                  <xs:restriction base="xs:string">                    <xs:enumeration value="columnMajor"/>                    <xs:enumeration value="rowMajor"/>                  </xs:restriction>                </xs:simpleType>              </xs:attribute>            </xs:complexType>          </xs:element>          <xs:element name="caseSensitive" minOccurs="0">            <xs:annotation>              <xs:appinfo>                <doc:tooltip>                    Data case sensitiveness                  </doc:tooltip>                <doc:summary>                    Specification of text case sensitiveness in the entity.                  </doc:summary>                <doc:description>                    This element contains specification of text                    case sensitiveness of the data in the entity. It is                    specified from element's attribute "yesorno".                  </doc:description>                <doc:example>                    The valid attribute values are "yes" or "no".                    If the attribute is not specified, "yes" is used.                  </doc:example>                <doc:lineage>                    The caseSensitive element was introduced into EML 1.4.                  </doc:lineage>              </xs:appinfo>            </xs:annotation>            <xs:simpleType>              <xs:restriction base="xs:string">                <xs:enumeration value="yes"/>                <xs:enumeration value="no"/>              </xs:restriction>            </xs:simpleType>          </xs:element>          <xs:element name="numberOfRecords" type="xs:string" minOccurs="0">            <xs:annotation>              <xs:appinfo>                <doc:tooltip>                    Number of records                  </doc:tooltip>                <doc:summary>                    The integer count of the number of records inthe entity                  </doc:summary>                <doc:description>                    This element contains a count of the number of records                    in the entity.  This is typically an integer value,                    and only includes records that represent observations.                    It would not include any details of physical formatting                    such as the number of header lines (see eml-physical                    for that information).                  </doc:description>                <doc:example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></doc:example>                <doc:lineage>                    Introduced in EML 2                  </doc:lineage>              </xs:appinfo>            </xs:annotation>          </xs:element>          <xs:element name="attributeList" type="att:AttributeListType"/>          <xs:element name="constraint" type="con:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>        </xs:sequence>      </xs:sequence>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>    <xs:attribute name="system" type="xs:string" use="optional"/>    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>  </xs:complexType></xs:schema>
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:dataTable-2.0.0beta8"
+xmlns="eml:dataTable-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8"
+xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8"
+xmlns:ent="eml:entity-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8"
+xmlns:con="eml:constraint-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8"
+xmlns:doc="eml:documentation-2.0.0beta8"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="eml:documentation-2.0.0beta8"
+    schemaLocation="eml-documentation.xsd" />
+    <xs:import namespace="eml:coverage-2.0.0beta8"
+    schemaLocation="eml-coverage.xsd" />
+    <xs:import namespace="eml:constraint-2.0.0beta8"
+    schemaLocation="eml-constraint.xsd" />
+    <xs:import namespace="eml:resource-2.0.0beta8"
+    schemaLocation="eml-resource.xsd" />
+    <xs:import namespace="eml:entity-2.0.0beta8"
+    schemaLocation="eml-entity.xsd" />
+    <xs:import namespace="eml:protocol-2.0.0beta8"
+    schemaLocation="eml-protocol.xsd" />
+    <xs:import namespace="eml:physical-2.0.0beta8"
+    schemaLocation="eml-physical.xsd" />
+    <xs:import namespace="eml:attribute-2.0.0beta8"
+    schemaLocation="eml-attribute.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+       '$RCSfile: eml-dataTable.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: jones $'
+          '$Date: 2002-06-13 18:04:22 $'
+      '$Revision: 1.16 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+        </xs:documentation>
+        <xs:appinfo>
+            <doc:moduleDocs>
+                <doc:moduleName>eml-dataTable</doc:moduleName>
+                <doc:moduleDescription>The EML dataTable Module defines the
+                logical characteristics of every dataTable in the dataset. Each
+                attribute of the table is described in eml-attribute. This
+                module is for basic table information
+                only.</doc:moduleDescription>
+                <doc:recommendedUsage>all datasets with one or more data
+                tables.</doc:recommendedUsage>
+                <doc:standAlone>yes</doc:standAlone>
+            </doc:moduleDocs>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="dataTable" type="DataTableType">
+        <xs:annotation>
+            <xs:appinfo>
+                <doc:tooltip>Table Entity descriptor</doc:tooltip>
+                <doc:summary>Descriptor of one table entity in the
+                dataset.</doc:summary>
+                <doc:description>The table entity element is a descriptor of
+                one entity in the dataset identified by its name. The entity
+                element can contain information about the entity's orientation,
+                number of records, case sensitiveness, and temporal, geographic
+                and taxonomic coverage.</doc:description>
+                <doc:example />
+                <doc:lineage>The entity element was introduced into EML 1.4 as
+                file.</doc:lineage>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="DataTableType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:group ref="ent:EntityGroup" />
+                <xs:sequence>
+                    <xs:element name="orientation" nillable="true"
+                    minOccurs="0">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <doc:tooltip>Entity's record
+                                orientation</doc:tooltip>
+                                <doc:summary>Specification of the entity's
+                                record orientation.</doc:summary>
+                                <doc:description>This element contains
+                                specification of the entity's record
+                                orientation by element's attribute
+                                "columnorrow".</doc:description>
+                                <doc:example>The valid attribute values are
+                                "columnmajor" or "rowmajor". If the attribute
+                                is not specified, "columnmajor" is
+                                used.</doc:example>
+                                <doc:lineage>The orientation element was
+                                introduced into EML 1.4.</doc:lineage>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:attribute name="columnOrRow" use="optional"
+                            default="columnMajor">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <doc:tooltip>Attribute of orientation
+                                        element</doc:tooltip>
+                                        <doc:summary>Specification of the
+                                        entity's record
+                                        orientation.</doc:summary>
+                                        <doc:description>This attribute
+                                        specifies the entity's record
+                                        orientation.</doc:description>
+                                        <doc:example>The valid attribute values
+                                        are "columnmajor" or "rowmajor". If the
+                                        attribute is not specified,
+                                        "columnmajor" is used.</doc:example>
+                                        <doc:lineage>The columnorrow attribute
+                                        was introduced into EML
+                                        1.4.</doc:lineage>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="columnMajor" />
+                                        <xs:enumeration value="rowMajor" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="caseSensitive" minOccurs="0">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <doc:tooltip>Data case
+                                sensitiveness</doc:tooltip>
+                                <doc:summary>Specification of text case
+                                sensitiveness in the entity.</doc:summary>
+                                <doc:description>This element contains
+                                specification of text case sensitiveness of the
+                                data in the entity. It is specified from
+                                element's attribute
+                                "yesorno".</doc:description>
+                                <doc:example>The valid attribute values are
+                                "yes" or "no". If the attribute is not
+                                specified, "yes" is used.</doc:example>
+                                <doc:lineage>The caseSensitive element was
+                                introduced into EML 1.4.</doc:lineage>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="yes" />
+                                <xs:enumeration value="no" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="numberOfRecords" type="xs:string"
+                    minOccurs="0">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <doc:tooltip>Number of records</doc:tooltip>
+                                <doc:summary>The integer count of the number of
+                                records inthe entity</doc:summary>
+                                <doc:description>This element contains a count
+                                of the number of records in the entity. This is
+                                typically an integer value, and only includes
+                                records that represent observations. It would
+                                not include any details of physical formatting
+                                such as the number of header lines (see
+                                eml-physical for that
+                                information).</doc:description>
+                                <doc:example>975</doc:example>
+                                <doc:lineage>Introduced in EML 2</doc:lineage>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+            <xs:element name="references" type="xs:string" />
+        </xs:choice>
+        <xs:attribute name="id" type="xs:ID" use="optional" />
+        <xs:attribute name="system" type="xs:string" use="optional" />
+        <xs:attribute name="scope" type="res:ScopeType" use="optional"
+        default="document" />
+    </xs:complexType>
+</xs:schema>
+

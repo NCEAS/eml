@@ -1,15 +1,29 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:storedProcedure-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:con="eml:constraint-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8" xmlns:ent="eml:entity-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns="eml:storedProcedure-2.0.0beta8">
-  <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml:attribute-2.0.0beta8" schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml:protocol-2.0.0beta8" schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml:physical-2.0.0beta8" schemaLocation="eml-physical.xsd"/>
-  <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml:resource-2.0.0beta8" schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml:constraint-2.0.0beta8" schemaLocation="eml-constraint.xsd"/>
-  <xs:annotation>
-    <xs:documentation>
+<xs:schema targetNamespace="eml:storedProcedure-2.0.0beta8"
+xmlns="eml:storedProcedure-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8"
+xmlns:prot="eml:protocol-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8"
+xmlns:att="eml:attribute-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8"
+xmlns:ent="eml:entity-2.0.0beta8" xmlns:res="eml:resource-2.0.0beta8"
+xmlns:con="eml:constraint-2.0.0beta8"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="eml:entity-2.0.0beta8"
+    schemaLocation="eml-entity.xsd" />
+    <xs:import namespace="eml:documentation-2.0.0beta8"
+    schemaLocation="eml-documentation.xsd" />
+    <xs:import namespace="eml:attribute-2.0.0beta8"
+    schemaLocation="eml-attribute.xsd" />
+    <xs:import namespace="eml:protocol-2.0.0beta8"
+    schemaLocation="eml-protocol.xsd" />
+    <xs:import namespace="eml:physical-2.0.0beta8"
+    schemaLocation="eml-physical.xsd" />
+    <xs:import namespace="eml:coverage-2.0.0beta8"
+    schemaLocation="eml-coverage.xsd" />
+    <xs:import namespace="eml:resource-2.0.0beta8"
+    schemaLocation="eml-resource.xsd" />
+    <xs:import namespace="eml:constraint-2.0.0beta8"
+    schemaLocation="eml-constraint.xsd" />
+    <xs:annotation>
+        <xs:documentation>
        '$RCSfile: eml-storedProcedure.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
@@ -24,9 +38,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-06-12 15:42:57 $'
-      '$Revision: 1.17 $'
+        '$Author: jones $'
+          '$Date: 2002-06-13 18:04:22 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,148 +55,109 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    </xs:documentation>
-    <xs:appinfo>
-      <doc:moduleDocs>
-        <doc:moduleName>eml-storedProcedure</doc:moduleName>
-        <doc:moduleDescription>
-          The StoredProcedure module is meant to capture information on
-          procedures that produce data output in the form of a data matrix.  It
-          allows the optional describtion of any parameters that are expected to
-          be passed to the procedure when it is called.
-        </doc:moduleDescription>
-        <doc:recommendedUsage>
-          all datasets that use storedProcedures to retrieve archived data
-        </doc:recommendedUsage>
-        <doc:standAlone>
-          yes
-        </doc:standAlone>
-      </doc:moduleDocs>
-    </xs:appinfo>
-  </xs:annotation>
-  <xs:element name="storedProcedure" type="StoredProcedureType">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip/>
-        <doc:summary/>
-        <doc:description/>
-        <doc:example/>
-        <doc:lineage>
-          Introduced into eml-2.0.0beta9
-        </doc:lineage>
-      </xs:appinfo>
+        </xs:documentation>
+        <xs:appinfo>
+            <doc:moduleDocs>
+                <doc:moduleName>eml-storedProcedure</doc:moduleName>
+                <doc:moduleDescription>The StoredProcedure module is meant to
+                capture information on procedures that produce data output in
+                the form of a data matrix. It allows the optional describtion
+                of any parameters that are expected to be passed to the
+                procedure when it is called.</doc:moduleDescription>
+                <doc:recommendedUsage>all datasets that use storedProcedures to
+                retrieve archived data</doc:recommendedUsage>
+                <doc:standAlone>yes</doc:standAlone>
+            </doc:moduleDocs>
+        </xs:appinfo>
     </xs:annotation>
-  </xs:element>
-  <xs:complexType name="StoredProcedureType">
-    <xs:choice>
-      <xs:sequence>
-        <xs:group ref="ent:EntityGroup"/>
+    <xs:element name="storedProcedure" type="StoredProcedureType">
+        <xs:annotation>
+            <xs:appinfo>
+                <doc:tooltip />
+                <doc:summary />
+                <doc:description />
+                <doc:example />
+                <doc:lineage>Introduced into eml-2.0.0beta9</doc:lineage>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="StoredProcedureType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:group ref="ent:EntityGroup" />
+                <xs:sequence>
+                    <xs:element name="parameter" type="ParameterType"
+                    minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <doc:tooltip>Parameter</doc:tooltip>
+                                <doc:summary>A parameter that is required as
+                                input to the stored procedure.</doc:summary>
+                                <doc:description />
+                                <doc:example />
+                                <doc:lineage>EML 2.0</doc:lineage>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+            <xs:element name="references" type="xs:string" />
+        </xs:choice>
+        <xs:attribute name="id" type="xs:ID" use="optional" />
+        <xs:attribute name="system" type="xs:string" use="optional" />
+        <xs:attribute name="scope" type="res:ScopeType" use="optional"
+        default="document" />
+    </xs:complexType>
+    <xs:complexType name="ParameterType">
         <xs:sequence>
-          <xs:element name="parameter" type="ParameterType" minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Parameter
-                  </doc:tooltip>
-                <doc:summary>
-                      A parameter that is required as input to the stored procedure.
-                    </doc:summary>
-                <doc:description/>
-                <doc:example/>
-                <doc:lineage>
-                  EML 2.0
-                  </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="attributeList" type="att:AttributeListType" minOccurs="0"/>
-          <xs:element name="constraint" type="con:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Parameter Name</doc:tooltip>
+                        <doc:summary>The name of the parameter.</doc:summary>
+                        <doc:description />
+                        <doc:example>SiteID</doc:example>
+                        <doc:lineage>EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datatype" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Data type</doc:tooltip>
+                        <doc:summary>The data type for the parameter
+                        value.</doc:summary>
+                        <doc:description />
+                        <doc:example>string</doc:example>
+                        <doc:lineage>EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="required" type="xs:boolean">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Required</doc:tooltip>
+                        <doc:summary>Whether or not the parameter is
+                        required.</doc:summary>
+                        <doc:description />
+                        <doc:example>true</doc:example>
+                        <doc:lineage>EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="repeats" type="xs:boolean">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Repeats</doc:tooltip>
+                        <doc:summary>Whether or not the parameter
+                        repeats.</doc:summary>
+                        <doc:description />
+                        <doc:example>true</doc:example>
+                        <doc:lineage>EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
-      </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
-    </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="required"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
-  </xs:complexType>
-  <xs:complexType name="ParameterType">
-    <xs:sequence>
-      <xs:element name="name" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-        Parameter Name
-        </doc:tooltip>
-            <doc:summary>
-        The name of the parameter.
-        </doc:summary>
-            <doc:description/>
-            <doc:example>
-        SiteID
-        </doc:example>
-            <doc:lineage>
-          EML 2.0
-        </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="datatype" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-       Data type
-        </doc:tooltip>
-            <doc:summary>
-        The data type for the parameter value.
-        </doc:summary>
-            <doc:description/>
-            <doc:example>
-        string
-        </doc:example>
-            <doc:lineage>
-          EML 2.0
-        </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="required" type="xs:boolean">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-        Required
-        </doc:tooltip>
-            <doc:summary>
-        Whether or not the parameter is required.
-        </doc:summary>
-            <doc:description/>
-            <doc:example>
-        true
-        </doc:example>
-            <doc:lineage>
-          EML 2.0
-        </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="repeats" type="xs:boolean">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-        Repeats
-        </doc:tooltip>
-            <doc:summary>
-        Whether or not  the parameter repeats.
-        </doc:summary>
-            <doc:description/>
-            <doc:example>
-        true
-        </doc:example>
-            <doc:lineage>
-          EML 2.0
-        </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
+    </xs:complexType>
 </xs:schema>
+
