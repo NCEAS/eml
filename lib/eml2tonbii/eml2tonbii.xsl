@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-07-14 20:49:05 $'
-  * '$Revision: 1.19 $'
+  *     '$Date: 2003-07-29 22:01:13 $'
+  * '$Revision: 1.20 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -131,6 +131,12 @@ version="1.0">
               <xsl:choose>
                 <xsl:when test="/eml:eml/dataset/dataTable!=''">
                   <xsl:value-of select="'dataTable'"/>
+                </xsl:when>
+                <xsl:when test="/eml:eml/dataset/spatialRaster!=''">
+                  <xsl:value-of select="'spatialRaster'"/>
+                </xsl:when>
+                <xsl:when test="/eml:eml/dataset/spatialVector!=''">
+                  <xsl:value-of select="'spatialVector'"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="'unknown'"/>
@@ -340,32 +346,62 @@ version="1.0">
         <!-- need to handle possible 'references' element here
              Also, geographicCoverage is repeatable in eml2, but is NOT repeatable in fgdc;
              This implementation just insert data from the first instance -->
-        <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage!=''">
-          <xsl:element name="spdom">
-            <xsl:element name="descgeog">
-              <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/geographicDescription"/>
-            </xsl:element>
-            <xsl:element name="bounding">
-              <xsl:element name="westbc">
-                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate"/>
+        <xsl:choose>
+          <!-- first use geocoverage if it is part of the first entitiy -->
+          <xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage!=''">
+            <xsl:element name="spdom">
+              <xsl:element name="descgeog">
+                <xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/geographicDescription"/>
               </xsl:element>
-              <xsl:element name="eastbc">
-                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate"/>
-              </xsl:element>
-              <xsl:element name="northbc">
-                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate"/>
-              </xsl:element>
-              <xsl:element name="southbc">
-                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate"/>
-              </xsl:element>
-              <!-- The dsgpoly (datasetGPolygon) element is quite complex; it is optional, so skip for now
-              <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/datasetGPolygon!=''">
+              <xsl:element name="bounding">
+                <xsl:element name="westbc">
+                  <xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="eastbc">
+                  <xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="northbc">
+                  <xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="southbc">
+                  <xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate"/>
+                </xsl:element>
+                <!-- The dsgpoly (datasetGPolygon) element is quite complex; it is optional, so skip for now
+                <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/datasetGPolygon!=''">
                 
-              </xsl:if>
-              -->
+                </xsl:if>
+                -->
+              </xsl:element>
             </xsl:element>
-          </xsl:element>
-        </xsl:if>
+          </xsl:when>
+          <!-- this 'when' test catches the top level geographic coverage element -->
+          <xsl:when test="/eml:eml/dataset/coverage/geographicCoverage!=''">
+            <xsl:element name="spdom">
+              <xsl:element name="descgeog">
+                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/geographicDescription"/>
+              </xsl:element>
+              <xsl:element name="bounding">
+                <xsl:element name="westbc">
+                  <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="eastbc">
+                  <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="northbc">
+                  <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate"/>
+                </xsl:element>
+                <xsl:element name="southbc">
+                  <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate"/>
+                </xsl:element>
+                <!-- The dsgpoly (datasetGPolygon) element is quite complex; it is optional, so skip for now
+                <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/datasetGPolygon!=''">
+                
+                </xsl:if>
+                -->
+              </xsl:element>
+            </xsl:element>
+          </xsl:when>
+        </xsl:choose>
         
         <xsl:element name="keywords">
           <xsl:choose>
@@ -892,7 +928,7 @@ version="1.0">
 <!-- start of the 'distinfo' branch -->
 <!-- This must be created if entities exist in eml2 in order to capture the
       eml-physical metadata -->      
-      <xsl:if test="/eml:eml/dataset/dataTable/physical!=''">
+      <xsl:if test="/eml:eml/dataset/*/physical!=''">
         <xsl:element name="distinfo">
           <!-- distribution contact info is required -->
           <xsl:element name="distrib">
@@ -1063,7 +1099,7 @@ version="1.0">
             <xsl:value-of select="'distribution liability information is not available'"/>
           </xsl:element>
           <xsl:element name="stdorder">
-           <xsl:for-each select="/eml:eml/dataset/dataTable/physical">
+           <xsl:for-each select="/eml:eml/dataset/*/physical">
            
                 <xsl:variable name="cc-phys">
                     <xsl:choose>
