@@ -6,9 +6,9 @@
   *              National Center for Ecological Analysis and Synthesis
   * For Details: http://knb.ecoinformatics.org/
   *
-  *    '$Author: jones $'
-  *      '$Date: 2002-09-06 22:25:39 $'
-  *  '$Revision: 1.27 $'
+  *    '$Author: berkley $'
+  *      '$Date: 2002-09-06 23:41:48 $'
+  *  '$Revision: 1.28 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -34,12 +34,12 @@
          on your system. -->
 
     <!-- The location of the Xerces 2 jar file -->
-    <property name="xmlp" value="../morpho/lib/xercesImpl.jar"/>
+    <property name="xmlp" value="/usr/local/devtools/xerces-2_0_1/xercesImpl.jar"/>
     <!-- The location of the Xerces XML API jar file -->
-    <property name="api" value="../morpho/lib/xmlParserAPIs.jar"/>
+    <property name="api" value="/usr/local/devtools/xerces-2_0_1/xmlParserAPIs.jar"/>
     <!-- The location of the docbook XSL stylesheet-->
     <property name="htmldocbook-style"
-    value="/home/berkley/install/docbook/docbook-xsl-1.50.0/xhtml/docbook.xsl"/>
+    value="/usr/local/devtools/docbook-xsl-1.50.0/xhtml/docbook.xsl"/>
   </target>
 
   <target name="init" depends="config">
@@ -72,8 +72,8 @@
     <mkdir dir="${build.docs}"/>
     <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl"
            includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
-    <style basedir="." destdir="${build.docs}" style="eml-faq.xsl"
-           includes="eml-faq.xml" processor="trax"/>
+    <!--<style basedir="." destdir="${build.docs}" style="eml-faq.xsl"
+           includes="eml-faq.xml" processor="trax"/>-->
     <copy todir="${build.docs}" filtering="no">
       <fileset dir=".">
         <include name="default.css"/>
@@ -170,6 +170,28 @@
       ************************************************
         Docbook html created.  The html docbook file
         is docs/eml-docbook.html.
+      ************************************************
+    </echo>
+  </target>
+  
+  <target name="faqhtml" depends="docbookhtml">
+    <echo>
+      ************************************************
+        Note that if this does not work for you,
+        you need to check the newest version of
+        Xalan out from the Apache CVS server and
+        put the new xalan.jar file in your classpath.
+        This will not work with Xalan 2.3.1!
+      ************************************************
+    </echo>
+    <style basedir="." style="${htmldocbook-style}"
+           in="eml-faq.xml"
+           out="${build.docs}/eml-faq.html"
+           processor="trax"/>
+    <echo>
+      ************************************************
+        FAQ rendered to HTML.  The html file
+        is docs/eml-faq.html.
       ************************************************
     </echo>
   </target>

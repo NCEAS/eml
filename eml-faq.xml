@@ -1,22 +1,26 @@
 <?xml version="1.0"?>
-<eml-faq version="0.1">
-  <faq-item id="0">
-    <question>Why does it rain?</question>
-    <answer>Because it is wet.</answer>
-    <long-answer>Because of accummulation of moisture in the
-    atmosphere. Gravity overcomes levity.</long-answer>
-  </faq-item>
-  <faq-item id="1">
-    <question>What is EML?</question> 
-    <answer>EML stands for
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+          "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article class="faq">
+<title>EML FAQ</title>
+<qandaset>
+  <qandaentry id="id.0">
+    <question><para>Why does it rain?</para></question>
+    <answer><para>Because it is wet.</para></answer>
+    <answer><para>Because of accummulation of moisture in the
+    atmosphere. Gravity overcomes levity.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.1">
+    <question><para>What is EML?</para></question>
+    <answer><para>EML stands for
     Ecological Metadata Language. It exists as a set of XML Schema
     documents that allow for the structural expression of metadata
     necessary to document a typical data set in the ecological
-    sciences.</answer>
-  </faq-item>
-  <faq-item id="2">
-    <question> Who is responsible for EML?</question> 
-    <answer> The first two released versions of EML, EML 1.0 and EML 1.4.1
+    sciences.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.2">
+    <question><para> Who is responsible for EML?</para></question> 
+    <answer><para> The first two released versions of EML, EML 1.0 and EML 1.4.1
     were developed at the National Center for Ecological Analysis and
     Synthesis (NCEAS), University of California at Santa Barbara, in
     Santa Barbara, California USA. EML 2.0 beta 9 and the EML 2.0
@@ -25,13 +29,13 @@
     organizations. While the bulk of the work still comes from NCEAS,
     the Long Term Ecological Research Program sites, and individuals
     from a number of other research projects have had significant
-    input into EML.</answer>
-  </faq-item>
-  <faq-item id="3">
-    <question> Why would I want to use EML when FGDC now supports
-   biological data through the CSDGM?</question> <answer> EML is
-   modular and extensible.</answer> 
-   <long-answer> The Content Standard
+    input into EML.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.3">
+    <question><para> Why would I want to use EML when FGDC now supports
+   biological data through the CSDGM?</para></question> <answer><para> EML is
+   modular and extensible.</para></answer> 
+   <answer><para> The Content Standard
    for Digital Geospatial Metadata (CSDGM) developed by the Federal
    Geographic Data Committee (FGDC) is a monolithic standard, and so
    it is difficult to mix and match parts of it with other standards
@@ -56,20 +60,20 @@
    appropriate in the spatial world where there are few data
    formats (&lt; 100, many sensor derived streams), but not so good in
    ecology where there is no standardization of data formats (&gt;&gt;&gt;5000,
-   very few sensor derived).</long-answer>
-  </faq-item>
-  <faq-item id="4">
-    <question> Is there documentation for EML in English?</question>
-    <answer>Yes, there is a formal specification of EML describing its
+   very few sensor derived).</para></answer>
+  </qandaentry>
+  <qandaentry id="id.4">
+    <question><para> Is there documentation for EML in English?</para></question>
+    <answer><para>Yes, there is a formal specification of EML describing its
   development history, architecture, and modules. The intent of each
   module is described in narrative and there is a technical
   description of each module in XML notation. Included as part of the
   technical description is an element-by-element description of the
-  module. We will eventually provide examples on usage.</answer>
-  </faq-item>
-  <faq-item id="5">
-    <question> Why is EML such an important development?</question>
-    <answer> The last decade has witnessed a tremendous explosion of
+  module. We will eventually provide examples on usage.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.5">
+    <question><para> Why is EML such an important development?</para></question>
+    <answer><para> The last decade has witnessed a tremendous explosion of
     ecological and environmental data, catalyzed by societal concerns
     and facilitated by advancing technologies. These data have the
     potential to greatly enhance understanding of the complexity of
@@ -80,33 +84,33 @@
     content standard designed specifically to address these issues for
     ecological data. Wide adoption and use of EML will create exciting
     new opportunities for data discovery, access, integration and
-    synthesis.</answer>
-  </faq-item>
-  <faq-item id="6">
-    <question> How do I get EML?</question> 
-    <answer> All the documents
+    synthesis.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.6">
+    <question><para> How do I get EML?</para></question> 
+    <answer><para> All the documents
     associated with the EML development effort are available via the
     project web server at www.ecoinformatics.org. These projects are
     licensed under the GPL (Gnu Public License) agreement and can be
-    freely distributed and modified.  </answer>
-  </faq-item>
-  <faq-item id="7">
-    <question> The EML Schema documents are quite complex. An average
+    freely distributed and modified.  </para></answer>
+  </qandaentry>
+  <qandaentry id="id.7">
+    <question><para> The EML Schema documents are quite complex. An average
 ecologist probably cannot and more likely does not want to mark up
 content in an XML editor. How then do you get content into
-EML?</question> 
-    <answer>The Knowledge Network for Biocomplexity
+EML?</para></question> 
+    <answer><para>The Knowledge Network for Biocomplexity
 project has developed a software client specifically to address this
 need. Morpho (after the butterfly genus) is written in java (making
 portable across computer platforms) combines an easy to use interface
 to EML with a number of tools to make it easier for ecologists to
 document data. These include a reverse-engineering wizard.  Morpho is
-available from www.ecoinformatics.org.  </answer>
-  </faq-item>
-  <faq-item id="8">
-    <question> EML contains provisions for communication. Is it
-possible to document in EML dynamic online data resources?</question>
-<answer>Yes, there are provisions in the eml-physical module for
+available from www.ecoinformatics.org.  </para></answer>
+  </qandaentry>
+  <qandaentry id="id.8">
+    <question><para> EML contains provisions for communication. Is it
+possible to document in EML dynamic online data resources?</para></question>
+<answer><para>Yes, there are provisions in the eml-physical module for
 descriptions of online data resources.. The eml-physical module
 describes the structural characteristics of data formats as delivered
 over the wire or as found in a file system. One physical object (which
@@ -118,19 +122,19 @@ such as ASCII or UTF-8, and includes the information needed to parse
 the data stream to extract the entity and its attributes from the
 stream. There are 3 distribution types, online, offline, and
 inline. To describe an online dataset in EML you would populate the
-online element with the distribution information.  </answer>
-  </faq-item>
-  <faq-item id="9">
-    <question> Do I need to download special client software to use
-EML?</question> 
-    <answer>No, but there is software available to work with EML. See FAQ 7.</answer>
-  </faq-item>
-  <faq-item id="10">
-    <question> How can I get my existing metadata into EML?</question>
-    <answer>There are several approaches that can be used to convert
+online element with the distribution information.  </para></answer>
+  </qandaentry>
+  <qandaentry id="id.9">
+    <question><para> Do I need to download special client software to use
+EML?</para></question> 
+    <answer><para>No, but there is software available to work with EML. See FAQ 7.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.10">
+    <question><para> How can I get my existing metadata into EML?</para></question>
+    <answer><para>There are several approaches that can be used to convert
     existing metadata into EML depending on what form your existing
-    metadata take.</answer>
-    <long-answer>
+    metadata take.</para></answer>
+    <answer><para>
 CASE 1: Metadata is currently in a text format (not stored in a database).
 CONVERSION METHODS:
              1. Write a script (PERL, PHP, JAVA,etc.) to convert the text into EML compliant XML.
@@ -155,16 +159,16 @@ NOTE: In each of the cases it may be necessary to add some additional
 metadata in order to produce EML compliant documents. Morpho will
 automatically create EML compliant metadata either by adding it for
 you or indicating that certain fields are mandatory.
-    </long-answer>
-  </faq-item>
-  <faq-item id="11">
-    <question> The challenge of getting my data into eml is not
+    </para></answer>
+  </qandaentry>
+  <qandaentry id="id.11">
+    <question><para> The challenge of getting my data into eml is not
 insurmountable.  My question is what do I do with it when I get it
 there? If I am storing all my metadata in text-based eml files, how am
-I supposed to query them or use them for data management?</question>
-<answer> EML is an exchange standard for communication of metadata but
-it can be used as the framework for a data management system </answer>
-<long-answer> For a site that has no current electronic data management
+I supposed to query them or use them for data management?</para></question>
+<answer><para> EML is an exchange standard for communication of metadata but
+it can be used as the framework for a data management system </para></answer>
+<answer><para> For a site that has no current electronic data management
 system and has no immediate intention of developing one, then there
 are a number of solutions including the morpho-metacat software. If
 you store your metadata in a relational database management system or
@@ -175,12 +179,12 @@ hooks and style sheets to retrieve and format data. Xanthoria is
 smaller code and the XSLT stylesheets for EML 2.0 have already been
 written. This solution lets a site stick with the rdbms system that
 they probably have integrated with their site management activities,
-yet also have their metadata exposed via EML.</long-answer>
-  </faq-item>
-  <faq-item id="12">
-    <question> Does the modularity of EML mean that one description
-    can be shared by many documents?</question> 
-    <answer> In a previous version, EML packages (via rdf style triples)
+yet also have their metadata exposed via EML.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.12">
+    <question><para> Does the modularity of EML mean that one description
+    can be shared by many documents?</para></question> 
+    <answer><para> In a previous version, EML packages (via rdf style triples)
     supported linking across packages, so you could re-use the same
     document in multiple packages. In EML 2.0 release candidate 1 we
     redesigned the packaging structure to only allow linking within a
@@ -191,12 +195,12 @@ yet also have their metadata exposed via EML.</long-answer>
     metadata and data in a single document for transport -- while
     still not limiting ourselves to a monolithinc structure. This has
     benefits (akin to db normalization) and costs (access control,
-    ownership, and multiple update problems abound).</answer>
-  </faq-item>
-  <faq-item id="13">
-    <question>How are EML modules linked together?</question> <answer>
-    With ref and ref:id attributes in each module.</answer>
-    <long-answer> Our general approach in EML has been to create
+    ownership, and multiple update problems abound).</para></answer>
+  </qandaentry>
+  <qandaentry id="id.13">
+    <question><para>How are EML modules linked together?</para></question> <answer><para>
+    With ref and ref:id attributes in each module.</para></answer>
+    <answer><para> Our general approach in EML has been to create
     ComplexTypes (CT) when we wanted a particular block to be
     reusable. This concept was extended for linking modules together
     by adding an optional attribute named "id" of type "xs:ID" for
@@ -217,10 +221,10 @@ Thus, any XML parser that supports XML Schema validation will be able
 to validate the correspondence between each "id" and "references"
 field (e.g., Xerces 2.0 supports this).  Here's a fragemnt of an
 example xml doc to illustrate:
-
-
+<programlisting>
+<![CDATA[
     ... 
-    <creator id="p1"> 
+    <creator id="id.p1"> 
       <individualName><surName>Jones</surName></individualName> 
     </creator> 
     <associatedParty> 
@@ -231,7 +235,8 @@ example xml doc to illustrate:
       <references>p1</references> 
     </contact> 
     ... 
-
+]]>
+</programlisting>
 This even works for types that extend other types as long as the
 subclass is the one that does the referencing (e.g., associatedParty
 can reference creator, but not vice versa).  This rule will actually
@@ -247,11 +252,11 @@ constraint.  So, this lets us add arbitrary metadata documents and
 point them at existing ids in the tree. Thus, the id serves as both
 ends of the link (subject and object in RDF terms) depending on
 whether it is referred to in a "references" element or in a
-"describes" attribute.</long-answer>
-  </faq-item>
-  <faq-item id="14">
-    <question> Can I put data into EML as well as metadata?</question>
-    <answer> Yes, there are provisions in the eml-physical module for
+"describes" attribute.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.14">
+    <question><para> Can I put data into EML as well as metadata?</para></question>
+    <answer><para> Yes, there are provisions in the eml-physical module for
     inclusion of data. The module describes the structural
     characteristics of data formats as delivered over the wire or as
     found in a file system. One physical object (which can be a
@@ -264,18 +269,18 @@ whether it is referred to in a "references" element or in a
     from the stream. There are 3 distribution types, online, offline,
     and inline. To include data in EML you would populate the inline
     element with the data file described in the data format
-    element.</answer>
-  </faq-item>
-  <faq-item id="15">
-    <question> What can I do with my EML structured metadata?</question>
-    <answer> be very proud that you are limiting data entropy
-    worldwide.</answer>
-  </faq-item>
-  <faq-item id="16">
-    <question> Can I validate my EML documents against the
-    DTD?</question> 
-    <answer> Yes and No </answer>
-    <long-answer>EML is implemented in an Extensible Markup Language (XML)
+    element.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.15">
+    <question><para> What can I do with my EML structured metadata?</para></question>
+    <answer><para> be very proud that you are limiting data entropy
+    worldwide.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.16">
+    <question><para> Can I validate my EML documents against the
+    DTD?</para></question> 
+    <answer><para> Yes and No </para></answer>
+    <answer><para>EML is implemented in an Extensible Markup Language (XML)
     known as XML Schema, which is a language that defines the rules
     that govern the EML syntax. XML Schema is an internet
     recommendation from the World Wide Web Consortium
@@ -292,11 +297,11 @@ whether it is referred to in a "references" element or in a
     Document Type Definitions (DTDs), which do not provide a means to
     employ strong validation on field values through typing. EML is
     also distributed with DTD's that are generated from the XML Schema
-    documents to provide some backward compatability.</long-answer>
-  </faq-item>
-  <faq-item id="17">
-    <question> Are there required elements in EML?</question>
-    <answer>Yes, although we've made every attempt to limit required
+    documents to provide some backward compatability.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.17">
+    <question><para> Are there required elements in EML?</para></question>
+    <answer><para>Yes, although we've made every attempt to limit required
     elements in the cause of flexibility there are a number of pieces
     of information required to make sense of the metadata document. To
     make the metadata more useful we do have recommended usages on the
@@ -305,12 +310,13 @@ whether it is referred to in a "references" element or in a
     information such that if you want your data and metadata to be
     useful in a particular analytical context you will be provided
     with those elements of EML that are required for that
-    purpose.</answer>
-  </faq-item>
-  <faq-item id="18">
-    <question> There appear to be multiple places to put some types of metadata
+    purpose.</para></answer>
+  </qandaentry>
+  <qandaentry id="id.18">
+    <question><para> There appear to be multiple places to put some types of metadata
     in EML. How do I know which of these places is the right place for
-    my information?</question>
-    <answer> Call or email Peter McCartney.</answer>
-  </faq-item>
-</eml-faq>
+    my information?</para></question>
+    <answer><para> Call or email Peter McCartney.</para></answer>
+  </qandaentry>
+</qandaset>
+</article>
