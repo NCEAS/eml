@@ -103,27 +103,29 @@
           </xsl:if>
 
           <xsl:if test="$dsb6/dataset/keywordSet!=''">
-            <xsl:element name="keywordSet">
-              <xsl:for-each select="$dsb6/dataset/keywordSet/keyword">
-               <xsl:choose>
-               <xsl:when test="./@keywordType!=''">
-                <keyword keywordType="{./@keywordType}">
-                  <xsl:value-of select="."/>
-                </keyword> 
-               </xsl:when>
-               <xsl:otherwise>
-                <keyword keywordType="theme">
-                  <xsl:value-of select="."/>
-                </keyword> 
-               </xsl:otherwise>
-               </xsl:choose>
-              </xsl:for-each>
-              <xsl:if test="$dsb6/dataset/keywordSet/keywordThesaurus!=''">
-                <xsl:element name="keywordThesaurus">
-                  <xsl:value-of select="$dsb6/dataset/keywordSet/keywordThesaurus"/>
-                </xsl:element>
-              </xsl:if>
-            </xsl:element>
+            <xsl:for-each select="$dsb6/dataset/keywordSet">
+              <xsl:element name="keywordSet">
+                <xsl:for-each select="./keyword">
+                  <xsl:choose>
+                  <xsl:when test="./@keywordType!=''">
+                   <keyword keywordType="{./@keywordType}">
+                     <xsl:value-of select="."/>
+                   </keyword> 
+                  </xsl:when>
+                  <xsl:otherwise>
+                   <keyword keywordType="theme">
+                     <xsl:value-of select="."/>
+                   </keyword> 
+                  </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:for-each>
+                <xsl:if test="./keywordThesaurus!=''">
+                  <xsl:element name="keywordThesaurus">
+                    <xsl:value-of select="./keywordThesaurus"/>
+                  </xsl:element>
+                </xsl:if>
+              </xsl:element> 
+            </xsl:for-each>
           </xsl:if>
 
 
