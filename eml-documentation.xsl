@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-27 17:38:36 $'
- *    '$Revision: 1.37 $'
+ *        '$Date: 2002-09-27 20:23:17 $'
+ *    '$Revision: 1.38 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -77,7 +77,9 @@
             select="//doc:moduleName"/>.png</xsl:attribute>
         </img>-->
 
+
         <table border="0" class="tabledefault">
+          <xsl:if test="count(//xs:element) > 0">
           <tr>
             <td colspan="2">
               <!-- display the documentation for each defined element -->
@@ -85,6 +87,9 @@
             </td>
           </tr>
           <xsl:apply-templates select="//xs:element" mode="documentation"/>
+          </xsl:if>
+
+          <xsl:if test="count(//xs:attribute) > 0">
           <tr>
             <td colspan="2">
               <!-- display the documentation for each defined attribute -->
@@ -92,6 +97,9 @@
             </td>
           </tr>
           <xsl:apply-templates select="//xs:attribute" mode="documentation"/>
+          </xsl:if>
+
+          <xsl:if test="count(//xs:complexType) > 0">
           <tr>
             <td colspan="2">
               <!-- display the documentation for each defined complex type -->
@@ -99,6 +107,9 @@
             </td>
           </tr>
           <xsl:apply-templates select="//xs:complexType" mode="documentation" />
+          </xsl:if>
+
+          <xsl:if test="count(//xs:simpleType) > 0">
           <tr>
             <td colspan="2">
               <!-- display the documentation for each defined simple type -->
@@ -106,6 +117,17 @@
             </td>
           </tr>
           <xsl:apply-templates select="//xs:simpleType" mode="documentation"/>
+          </xsl:if>
+
+          <xsl:if test="count(//xs:group) > 0">
+          <tr>
+            <td colspan="2">
+              <!-- display the documentation for each defined simple type -->
+              <h2>Group Definitions:</h2>
+            </td>
+          </tr>
+          <xsl:apply-templates select="//xs:group" mode="documentation"/>
+          </xsl:if>
         </table>
         <p class="contact">
           Web Contact:
@@ -116,7 +138,7 @@
   </xsl:template>
 
   <!-- step through the elements -->
-  <xsl:template match="xs:element|xs:complexType" mode="documentation">
+  <xsl:template match="xs:element|xs:complexType|xs:group" mode="documentation">
     <!-- MBJ: this should be all elements -->
     <xsl:if test="./@name">
       <tr>
@@ -179,146 +201,9 @@
                       </span>
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:variable name="namespaceprefix">
-                        <xsl:value-of select="substring-before(./@type, ':')"/>
-                      </xsl:variable>
-
-                      <xsl:choose>
-                        <xsl:when test="$namespaceprefix = 'md'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>em-methods.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'cov'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-coverage.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'cit'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-literature.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'res'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-resource.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'ent'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-entity.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'txt'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-text.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'con'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-constraint.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'phys'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-physical.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'att'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-attribute.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'rp'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-party.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'acc'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-access.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'spref'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-spatialReference.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'prot'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-protocol.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:when test="$namespaceprefix = 'proj'">
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>eml-project.html#</xsl:text>
-                              <xsl:value-of select="substring-after(./@type, ':')"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <a class="sitelink">
-                            <xsl:attribute name="href">
-                              <xsl:text>#</xsl:text><xsl:value-of select="./@type"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="./@type"/>
-                          </a>
-                        </xsl:otherwise>
-                      </xsl:choose>
+                      <xsl:call-template name="externalNamespaceLink">
+                        <xsl:with-param name="typename" select="./@type"/>
+                      </xsl:call-template>
                     </xsl:otherwise>
                   </xsl:choose>
                 </td>
@@ -411,7 +296,7 @@
 
                 <!-- Now display the CM for the element children -->
                 <xsl:apply-templates
-                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent"
+                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent|xs:group"
                      mode="contentmodel" />
 
                 </xsl:if>
@@ -461,7 +346,7 @@
     </tr>
     <!-- Find all of the children of this sequence and list them -->
     <xsl:apply-templates
-         select="xs:element|xs:complexType|xs:sequence|xs:choice"
+         select="xs:element|xs:complexType|xs:sequence|xs:choice|xs:group"
          mode="contentmodel" />
     <tr>
     <td colspan="3" class="tablepanel">
@@ -487,12 +372,28 @@
     </tr>
     <!-- Find all of the children of this choice and list them -->
     <xsl:apply-templates
-         select="xs:element|xs:complexType|xs:sequence|xs:choice"
+         select="xs:element|xs:complexType|xs:sequence|xs:choice|xs:group"
          mode="contentmodel" />
     <tr>
     <td colspan="3" class="tablepanel">
     <xsl:text>)</xsl:text>
     </td>
+    </tr>
+  </xsl:template>
+
+  <xsl:template match="xs:group" mode="contentmodel">
+    <tr>
+        <td class="tablepanel">
+          <xsl:call-template name="externalNamespaceLink">
+            <xsl:with-param name="typename" select="./@ref"/>
+          </xsl:call-template>
+        </td>
+        <td class="tablepanel">
+          <xsl:text>&#160;</xsl:text>
+        </td>
+        <td class="tablepanel">
+          <xsl:text>&#160;</xsl:text>
+        </td>
     </tr>
   </xsl:template>
 
@@ -614,146 +515,9 @@
                 <span class="boldtext"><xsl:value-of select="./@type"/></span>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:variable name="namespaceprefix">
-                  <xsl:value-of select="substring-before(./@type, ':')"/>
-                </xsl:variable>
-
-                <xsl:choose>
-                  <xsl:when test="$namespaceprefix = 'md'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>em-methods.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'cov'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-coverage.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'cit'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-literature.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'res'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-resource.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'ent'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-entity.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'txt'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-text.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'con'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-constraint.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'phys'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-physical.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'att'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-attribute.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'rp'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-party.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'acc'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-access.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'spref'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-spatialReference.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'prot'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-protocol.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:when test="$namespaceprefix = 'proj'">
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>eml-project.html#</xsl:text>
-                        <xsl:value-of select="substring-after(./@type, ':')"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <a class="sitelink">
-                      <xsl:attribute name="href">
-                        <xsl:text>#</xsl:text><xsl:value-of select="./@type"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="./@type"/>
-                    </a>
-                  </xsl:otherwise>
-                </xsl:choose>
+                <xsl:call-template name="externalNamespaceLink">
+                  <xsl:with-param name="typename" select="./@type"/>
+                </xsl:call-template>
               </xsl:otherwise>
             </xsl:choose>
           </span>
@@ -930,6 +694,160 @@
             -->
           </blockquote>
         </td>
+  </xsl:template>
+
+  <xsl:template name="externalNamespaceLink">
+    <xsl:param name="typename"/>
+
+    <xsl:variable name="namespaceprefix">
+      <xsl:value-of select="substring-before($typename, ':')"/>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="$namespaceprefix = 'md'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-methods.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'dat'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-dataTable.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'cov'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-coverage.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'cit'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-literature.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'res'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-resource.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'ent'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-entity.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'txt'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-text.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'con'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-constraint.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'phys'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-physical.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'att'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-attribute.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'rp'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-party.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'acc'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-access.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'spref'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-spatialReference.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'prot'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-protocol.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'proj'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-project.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>#</xsl:text><xsl:value-of select="$typename"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
