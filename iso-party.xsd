@@ -13,9 +13,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Matt Jones
 
-     '$Author: cjones $'
-       '$Date: 2000-07-14 19:47:18 $'
-   '$Revision: 1.6 $'
+     '$Author: jones $'
+       '$Date: 2000-08-02 18:32:24 $'
+   '$Revision: 1.7 $'
     </documentation>
   </annotation>
 
@@ -37,9 +37,9 @@
     <sequence>
       <element name="salutation" 
                type="string" minOccurs="0" maxOccurs="unbounded" /> 
-      <element name="givenname" 
-               type="string" minOccurs="1" maxOccurs="unbounded" />
-      <element name="surname" 
+      <element name="givenName" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+      <element name="surName" 
                type="string" minOccurs="1" maxOccurs="1" />
     </sequence>
   </complexType>
