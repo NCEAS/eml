@@ -22,21 +22,21 @@ xmlns="eml:constraint-2.0.0beta9">
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
-   
-        '$Author: jones $'
-          '$Date: 2002-06-13 22:28:16 $'
-      '$Revision: 1.25 $'
-    
+
+        '$Author: berkley $'
+          '$Date: 2002-06-14 15:13:16 $'
+      '$Revision: 1.26 $'
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-   
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-   
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -236,9 +236,9 @@ xmlns="eml:constraint-2.0.0beta9">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Not Null Constraint</doc:tooltip>
-            <doc:summary>A constraint that indicates that no null values 
+            <doc:summary>A constraint that indicates that no null values
             should be present for an attribute.</doc:summary>
-            <doc:description>A constraint that indicates that no null values 
+            <doc:description>A constraint that indicates that no null values
             should be present for an attribute in this entity.</doc:description>
             <doc:example />
             <doc:lineage>New in EML 2.0</doc:lineage>
@@ -297,7 +297,7 @@ xmlns="eml:constraint-2.0.0beta9">
   </xs:complexType>
   <xs:simpleType name="CardinalityChildOccurancesType">
     <xs:annotation>
-      <xs:documentation>
+      <xs:appInfo>
         <doc:tooltip>Child portion of a cardinality expression</doc:tooltip>
         <doc:summary>Child portion of a cardinality expression Allowed values
         are positive integers including zero or the string value
@@ -307,7 +307,7 @@ xmlns="eml:constraint-2.0.0beta9">
         "many"</doc:description>
         <doc:example>0,1, 2, 15,many</doc:example>
         <doc:lineage>New in EML 2.0</doc:lineage>
-      </xs:documentation>
+      </xs:appInfo>
     </xs:annotation>
     <xs:union memberTypes="xs:integer">
       <xs:simpleType>
@@ -410,7 +410,7 @@ xmlns="eml:constraint-2.0.0beta9">
       </xs:element>
       <xs:element name="relationshipType" minOccurs="0">
         <xs:annotation>
-          <xs:documentation>
+          <xs:appInfo>
             <doc:tooltip>Relationship type: Identifying or
             non-identifying</doc:tooltip>
             <doc:summary>Relationship type: Identifying or
@@ -421,7 +421,7 @@ xmlns="eml:constraint-2.0.0beta9">
             attribute of the child entity.</doc:description>
             <doc:example />
             <doc:lineage>New in EML 2.0</doc:lineage>
-          </xs:documentation>
+          </xs:appInfo>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -432,7 +432,7 @@ xmlns="eml:constraint-2.0.0beta9">
       </xs:element>
       <xs:element name="cardinality" minOccurs="0">
         <xs:annotation>
-          <xs:documentation>
+          <xs:appInfo>
             <doc:tooltip>Cardinality of the relationship between two
             entities.</doc:tooltip>
             <doc:summary>Cardinality of the relationship between a parent
@@ -448,13 +448,13 @@ xmlns="eml:constraint-2.0.0beta9">
             <doc:example>One to many, One to 10, Zero or One to
             Many</doc:example>
             <doc:lineage>New in EML 2.0</doc:lineage>
-          </xs:documentation>
+          </xs:appInfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="parentOccurances">
               <xs:annotation>
-                <xs:documentation>
+                <xs:appInfo>
                   <doc:tooltip>Parent portion of a 1 to exactly N
                   cardinality</doc:tooltip>
                   <doc:summary>Parent portion of a 1 to exactly N cardinality.
@@ -466,7 +466,7 @@ xmlns="eml:constraint-2.0.0beta9">
                   mandatory.</doc:description>
                   <doc:example>One to 10, Zero or One to Many</doc:example>
                   <doc:lineage>New in EML 2.0</doc:lineage>
-                </xs:documentation>
+                </xs:appInfo>
               </xs:annotation>
               <xs:simpleType>
                 <xs:restriction base="xs:integer">
@@ -478,7 +478,7 @@ xmlns="eml:constraint-2.0.0beta9">
             <xs:element name="childOccurances"
             type="CardinalityChildOccurancesType">
               <xs:annotation>
-                <xs:documentation>
+                <xs:appInfo>
                   <doc:tooltip>Child portion of the cardinality
                   expression</doc:tooltip>
                   <doc:summary>Child portion of a cardinality expression
@@ -489,7 +489,7 @@ xmlns="eml:constraint-2.0.0beta9">
                   zero or the string value "many"</doc:description>
                   <doc:example>2, 15, many</doc:example>
                   <doc:lineage>New in EML 2.0</doc:lineage>
-                </xs:documentation>
+                </xs:appInfo>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
