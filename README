@@ -1,6 +1,53 @@
+#    '$RCSfile: README,v $'
+#    Copyright: 2000 Regents of the University of California and the
+#               National Center for Ecological Analysis and Synthesis
+#  For Details: http://knb.ecoinformatics.org/
+#
+#     '$Author: jones $'
+#       '$Date: 2001-02-16 17:03:20 $'
+#   '$Revision: 1.4 $'
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+EML: Ecological Metadata Language
+---------------------------------
+
+Version: 2.0 Beta 1 Release
+
+Feedback and bugs to: knb-software@nceas.ucsb.edu
+
+Contributors: Matt Jones (jones@nceas.ucsb.edu)
+              Chad Berkley (berkley@nceas.ucsb.edu)
+              Jivka Bojilova (bojilova@nceas.ucsb.edu)
+              Dan Higgins (higgins@nceas.ucsb.edu)
+              Chris Jones (cjones@lifesci.ucsb.edu)
+              Noah Goldstein
+              Zheng Wang
+
 The Ecological Metadata Language consists of a number of modules that define
-a standard markup syntax.  The files in this directory include both a Document
-Type Definition and an XML Schema document for each named module:
+an XML markup syntax for ecologically relevant metadata.  It was originally
+based on work done by the ESA Committee on the Future of Long-Term
+Ecoloigical Data (http://esa.sdsc.edu/FLED/FLED.html) and on a related paper
+on ecological metadata by Michener et al. (see Michener, William K., et al., 
+1997. Ecological Appications, "Nongeospatial metadata for the ecological 
+sciences" Vol 7(1). pp. 330-342.).  Version 1.4 follows that paper closely in
+its implementation, but Version 2 has been modified substantially after
+experience using the standard and from feedback from the ecological community.
+
+The files in this directory include both a Document Type Definition and 
+an XML Schema document for each of the following modules:
 
 eml-resource.[dtd,xsd] 
     (w/ dataset, bibliography, software and collection sections.)
@@ -14,6 +61,9 @@ eml-qaqc.[dtd,xsd]
 eml-access.[dtd,xsd]
 eml-package.[dtd,xsd]
 eml-lineage.[dtd,xsd]
+
+Please see the docs/index.html directory for a detailed description of each of
+the modules.
 
 There are also a few other files in the directory that are used as utilities
 to process the eml module files:
@@ -31,3 +81,4 @@ build.xml (an XML configuration file used with the Ant build system to
 The above files are a part of the proposed release of EML 2.0.  Previous
 versions of EML (such as 1.4) are available from this repository using the
 appropriate release tag (i.e. RELEASE_EML_1_4).
+
