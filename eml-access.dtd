@@ -1,0 +1,214 @@
+<!--
+  * Ecological Metadata Language (EML) - Access control descriptors
+  *
+  *      Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+  * Organization: National Center for Ecological Analysis and Synthesis
+  *  For Details: http://www.nceas.ucsb.edu/
+  *      Created: 1997 August 19
+  *     Modified: 1998 August 27
+  *      Version: 1.3
+  *
+  * Ecological Metadata Language is a general purpose metadata content
+  * specification for documenting ecological data.  The specification 
+  * consists of a series of modular document type definitions (DTD) that 
+  * provide metadata content descriptors. It describes the owner and  
+  * contents of the dataset  (eml-dataset.dtd), the research context in 
+  * which it was created (eml-context.dtd), the structural 
+  * characteristics of data files (eml-file.dtd), the 
+  * characteristics of variables in a file (eml-variable.dtd), current 
+  * status of data and metadata files (eml-status.dtd), access control 
+  * rules regarding the data  and metadata (eml-access.dtd), software 
+  * information (eml-software) and a variety of miscellaneous 
+  * supplemental descriptors (eml-supplement.dtd).
+  * 
+  * Files generated under the structural constraints of eml are
+  * plain-text files and therefore are editable in ordinary
+  * text-processors.  However, these DTDs are intended for use within 
+  * general purpose metadata editors, and within a more specific 
+  * metadata editor being developed at NCEAS for the ecological 
+  * community.  This metadata editor will provide facilities for 
+  * version control and efficient metadata entry.  
+  * The purpose of this specification was to formalize the 
+  * Michener et al. work in a structured language to examine its 
+  * application to ecological data in a controlled manner.
+  *
+  * This specification was based on the work of the Ecological Society 
+  * of America's Committee on the Future of Long Term Data, and more
+  * specifically on a related paper, Michener et al., 1997. See:
+  * Michener, William K., et al., 1997. Ecological Appications,
+  * "Nongeospatial metadata for the ecological sciences"
+  * Vol 7(1). pp. 330-342.
+  *
+  * Where appropriate, we have used elements of the ISO/TC 211 draft 
+  * standard - the ISO Geographic information/Geomatics standard, 
+  * which includes xml code, as well as ISO 8601 schema. Some elements 
+  * in the ISO/TC 211 were expanded to allow for greater 
+  * resolution.
+  *
+  * For an explanation of the classes of metadata and elements defined 
+  * below, see Michener et al. 1997. In particular, the numbered comment 
+  * labels found below refer to Table 1 (pp. 336-337) of Michener 
+  * et al. 1997. In addition, each of the principal elements in the 
+  * specification is accompanied by a FIXED attribute called "description"
+  * that provides a brief description of the content of the element. These
+  * descriptions are derived from Michener et al. 1997.
+  *
+-->
+
+<!--    *      *      *      *
+        CLASS III B - DATA SET ACCESSIBILITY
+        *      *      *      *
+        -->
+
+<!-- Class 3.B -->
+<!ELEMENT eml-access (meta_file_id, storage_location* , contact*, copyright?, access, standard_citation?, disclaimer? , fees?)>
+<!ATTLIST eml-access description CDATA #FIXED "Data set accesability">
+<!ELEMENT meta_file_id (#PCDATA)>
+<!ATTLIST meta_file_id description CDATA #FIXED "Unique identifier of this metadata record">
+
+<!-- Class 3.B.1 -->
+<!ELEMENT storage_location ((meta_address|resource_url)+,medium*)>
+<!ATTLIST storage_location description CDATA #FIXED "Storage loation and medium, including pointers to sites">
+<!ELEMENT meta_address (address*, city?, admin_area*, postal_code?, country, resource_url*, email*, phone*, fax*, tdd_phone*)>
+<!ATTLIST meta_address description CDATA #FIXED "Contact information"
+                      meta_address_status (current|notcurrent) #REQUIRED
+                      meta_address_purpose (mail|institution|homeresidence) #REQUIRED>
+<!ELEMENT address (#PCDATA)>
+<!ATTLIST address description CDATA #FIXED "Street address">
+<!ELEMENT city (#PCDATA)>
+<!ATTLIST city description CDATA #FIXED "City">
+<!ELEMENT admin_area (#PCDATA)>
+<!ATTLIST admin_area description CDATA #FIXED "Administrative area (state, province, territory)">
+<!ELEMENT postal_code (#PCDATA)>
+<!ATTLIST postal_code description CDATA #FIXED "Postal code">
+<!ELEMENT country (#PCDATA)>
+<!ATTLIST country description CDATA #FIXED "Country">
+<!ELEMENT resource_url (#PCDATA)>
+<!ATTLIST resource_url description CDATA #FIXED "URL">
+<!ELEMENT email (#PCDATA)>
+<!ATTLIST email description CDATA #FIXED "Email address">
+<!ELEMENT phone (country_code?,area_code?,local_code, extension?)>
+<!ATTLIST phone description CDATA #FIXED "Phone number">
+<!ELEMENT fax (country_code?,area_code?,local_code)>
+<!ATTLIST fax description CDATA #FIXED "Facimilie telephone">
+<!ELEMENT tdd_phone (country_code?,area_code?,local_code)>
+<!ATTLIST tdd_phone description CDATA #FIXED "TDD/TTY telephone">
+<!ELEMENT country_code (#PCDATA)>
+<!ATTLIST country_code description CDATA #FIXED "Countrycode">
+<!ELEMENT area_code (#PCDATA)>
+<!ATTLIST area_code description CDATA #FIXED "Area code">
+<!ELEMENT local_code (#PCDATA)>
+<!ATTLIST local_code description CDATA #FIXED "Local phone code">
+<!ELEMENT extension (#PCDATA)>
+<!ATTLIST extension description CDATA #FIXED "Phone extension code">
+
+<!ELEMENT medium (#PCDATA)>
+<!ATTLIST medium description CDATA #FIXED "Medium of data storage">
+
+<!-- Class 3.B.2 -->
+<!ELEMENT contact (party)>
+<!ATTLIST contact description CDATA #FIXED "Contact person information">
+<!ELEMENT party ((party_individual | party_org), meta_address)>
+<!ATTLIST party description CDATA #FIXED "Responsible party information">
+<!ELEMENT party_individual (salutation*, given_name+, surname, jobtitle*)>
+<!ATTLIST party_individual description CDATA #FIXED "Full name of individual">
+<!ELEMENT salutation (#PCDATA)>
+<!ATTLIST salutation description CDATA #FIXED "Salutation">
+<!ELEMENT given_name (#PCDATA)>
+<!ATTLIST given_name description CDATA #FIXED "First name">
+<!ELEMENT surname (#PCDATA)>
+<!ATTLIST surname description CDATA #FIXED "Last Name">
+<!ELEMENT jobtitle (#PCDATA)>
+<!ATTLIST jobtitle description CDATA #FIXED "Job title">
+<!ELEMENT party_org (#PCDATA)>
+<!ATTLIST party_org description CDATA #FIXED "Name of organization">
+
+
+<!-- Class 3.B.3 -->
+<!ELEMENT copyright (paragraph+)>
+<!ATTLIST copyright description CDATA #FIXED "Copyright restrictions of data set">
+<!ELEMENT paragraph (#PCDATA)>
+<!ATTLIST paragraph description CDATA #FIXED "Paragraph of text">
+
+<!-- Class 3.B.4.a -->
+<!ELEMENT access (public|(limited+)|private)>
+<!ATTLIST access description CDATA #FIXED "Usage access of data">
+<!ELEMENT public (avail_time)>
+<!ATTLIST public description CDATA #FIXED "Data open to all users">
+<!ELEMENT avail_time (datetime)>
+<!ATTLIST avail_time description CDATA #FIXED "Date and time when the dataset will become public">
+<!ELEMENT datetime (year?, month?, day?, hour?, minute?, second?, second_fraction?, time_zone_designator?)>
+<!ATTLIST datetime description CDATA #FIXED "Date and time as designated in ISO
+8601">
+
+<!ELEMENT year (#PCDATA)>
+<!ATTLIST year description CDATA #FIXED "Year in YYYY format">
+<!ELEMENT month (#PCDATA)>
+<!ATTLIST month description CDATA #FIXED "Month in MM format">
+<!ELEMENT day (#PCDATA)>
+<!ATTLIST day description CDATA #FIXED "Day of month in DD format">
+<!ELEMENT hour (#PCDATA)>
+<!ATTLIST hour description CDATA #FIXED "Hour in hh">
+<!ELEMENT minute (#PCDATA)>
+<!ATTLIST minute description CDATA #FIXED "Minute in mm">
+<!ELEMENT second (#PCDATA)>
+<!ATTLIST second description CDATA #FIXED "Seconds in ss">
+<!ELEMENT second_fraction (#PCDATA)>
+<!ATTLIST second_fraction description CDATA #FIXED "One or more digits representing a decimal fraction of a second">
+<!ELEMENT time_zone_designator (#PCDATA)>
+<!ATTLIST time_zone_designator description CDATA #FIXED "Time zone designator">
+
+<!ELEMENT limited (party+, avail_time)>
+<!ATTLIST limited description CDATA #FIXED "Alowable users until date, when data is open">
+<!ELEMENT private EMPTY> 
+<!ATTLIST private description CDATA #FIXED "Data closed to all users">
+
+
+<!-- Class 3.B.4.b -->
+<!ELEMENT standard_citation (citation+)>
+<!ATTLIST standard_citation description CDATA #FIXED "How data should be appropriately cited">
+
+
+<!ELEMENT citation ( (author|editor)*, source_information*)>
+<!ATTLIST citation description CDATA #FIXED "Citation">
+<!ELEMENT author (person)>
+<!ATTLIST author description CDATA #FIXED "Author">
+<!ELEMENT editor (person)>
+<!ATTLIST editor description CDATA #FIXED "Editor">
+<!ELEMENT source_information    (title, vol?, no?, issueid?, pubdate?,
+                        publisher?, edition?, series?, chapter_title?,
+                        pages?, resource_url*)>
+<!ATTLIST source_information description CDATA #FIXED "Source information">
+<!ELEMENT vol (#PCDATA)>
+<!ATTLIST vol description CDATA #FIXED "Volume">
+<!ELEMENT no (#PCDATA)>
+<!ATTLIST no description CDATA #FIXED "Number">
+<!ELEMENT issueid (#PCDATA)>
+<!ATTLIST issueid description CDATA #FIXED "Issue id">
+<!ELEMENT pubdate (datetime)>
+<!ATTLIST pubdate description CDATA #FIXED "Date of publication">
+<!ELEMENT publisher (institute, location?, resource_url?)>
+<!ATTLIST publisher description CDATA #FIXED "Publisher">
+<!ELEMENT edition (#PCDATA)>
+<!ATTLIST edition description CDATA #FIXED "Edition">
+<!ELEMENT series  (#PCDATA)>
+<!ATTLIST series description CDATA #FIXED "Series">
+<!ELEMENT chapter_title (title)>
+<!ATTLIST chapter_title description CDATA #FIXED "Chapter title">
+<!ELEMENT pages (#PCDATA)>
+<!ATTLIST pages description CDATA #FIXED "Pages">
+
+<!-- Class 3.B.4.c -->
+<!ELEMENT disclaimer (paragraph+)>
+<!ATTLIST disclaimer description CDATA #FIXED "Any disclamers that should be acknowledged by secondary users">
+
+<!-- Class 3.B.5 -->
+<!ELEMENT fees (amount,unit,paragraph*)>
+<!ATTLIST fees description CDATA #FIXED "Costs associated with acquiring data">
+
+<!ELEMENT amount (#PCDATA) >
+<!ATTLIST amount description CDATA #FIXED "Amount">
+<!ELEMENT unit (#PCDATA) >
+<!ATTLIST unit description CDATA #FIXED "Unit">
+
+<!-- End of file -->

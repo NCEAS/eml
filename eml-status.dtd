@@ -1,0 +1,106 @@
+<!--
+  * Ecological Metadata Language (EML) - Status descriptors
+  *
+  *      Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+  * Organization: National Center for Ecological Analysis and Synthesis
+  *  For Details: http://www.nceas.ucsb.edu/
+  *      Created: 1997 August 19
+  *     Modified: 1998 August 27
+  *      Version: 1.3
+  *
+  * Ecological Metadata Language is a general purpose metadata content
+  * specification for documenting ecological data.  The specification 
+  * consists of a series of modular document type definitions (DTD) that 
+  * provide metadata content descriptors. It describes the owner and  
+  * contents of the dataset  (eml-dataset.dtd), the research context in 
+  * which it was created (eml-context.dtd), the structural 
+  * characteristics of data files (eml-file.dtd), the 
+  * characteristics of variables in a file (eml-variable.dtd), current 
+  * status of data and metadata files (eml-status.dtd), access control 
+  * rules regarding the data  and metadata (eml-access.dtd), software 
+  * information (eml-software) and a variety of miscellaneous 
+  * supplemental descriptors (eml-supplement.dtd).
+  * 
+  * Files generated under the structural constraints of eml are
+  * plain-text files and therefore are editable in ordinary
+  * text-processors.  However, these DTDs are intended for use within 
+  * general purpose metadata editors, and within a more specific 
+  * metadata editor being developed at NCEAS for the ecological 
+  * community.  This metadata editor will provide facilities for 
+  * version control and efficient metadata entry.  
+  * The purpose of this specification was to formalize the 
+  * Michener et al. work in a structured language to examine its 
+  * application to ecological data in a controlled manner.
+  *
+  * This specification was based on the work of the Ecological Society 
+  * of America's Committee on the Future of Long Term Data, and more
+  * specifically on a related paper, Michener et al., 1997. See:
+  * Michener, William K., et al., 1997. Ecological Appications,
+  * "Nongeospatial metadata for the ecological sciences"
+  * Vol 7(1). pp. 330-342.
+  *
+  * Where appropriate, we have used elements of the ISO/TC 211 draft 
+  * standard - the ISO Geographic information/Geomatics standard, 
+  * which includes xml code, as well as ISO 8601 schema. Some elements 
+  * in the ISO/TC 211 were expanded to allow for greater 
+  * resolution.
+  *
+  * For an explanation of the classes of metadata and elements defined 
+  * below, see Michener et al. 1997. In particular, the numbered comment 
+  * labels found below refer to Table 1 (pp. 336-337) of Michener 
+  * et al. 1997. In addition, each of the principal elements in the 
+  * specification is accompanied by a FIXED attribute called "description"
+  * that provides a brief description of the content of the element. These
+  * descriptions are derived from Michener et al. 1997.
+  *
+-->
+
+<!--    *      *      *      *
+        CLASS III A - DATA SET STATUS
+        *      *      *      *
+        -->
+
+<!-- Class 3.A -->
+<!ELEMENT eml-status (meta_file_id, data_update_date?, data_archive_date?, metadata_update_date?, qa_qc_status?)>
+<!ATTLIST eml-status description CDATA #FIXED "Data set status">
+<!ELEMENT meta_file_id (#PCDATA)>
+<!ATTLIST meta_file_id description CDATA #FIXED "Unique identifier of this metadata record">
+ 
+<!-- Class 3.A.1 -->
+<!ELEMENT data_update_date (datetime)>
+<!ATTLIST data_update_date description CDATA #FIXED "Date of modification of data set">
+<!ELEMENT datetime (year?, month?, day?, hour?, minute?, second?, second_fraction?, time_zone_designator?)>
+<!ATTLIST datetime description CDATA #FIXED "Date and time as designated in ISO 8601">
+<!ELEMENT year (#PCDATA)>
+<!ATTLIST year description CDATA #FIXED "Year in YYYY format">
+<!ELEMENT month (#PCDATA)>
+<!ATTLIST month description CDATA #FIXED "Month in MM format">
+<!ELEMENT day (#PCDATA)>
+<!ATTLIST day description CDATA #FIXED "Day of month in DD format">
+<!ELEMENT hour (#PCDATA)>
+<!ATTLIST hour description CDATA #FIXED "Hour in hh">
+<!ELEMENT minute (#PCDATA)>
+<!ATTLIST minute description CDATA #FIXED "Minute in mm">
+<!ELEMENT second (#PCDATA)>
+<!ATTLIST second description CDATA #FIXED "Seconds in ss">
+<!ELEMENT second_fraction (#PCDATA)>
+<!ATTLIST second_fraction description CDATA #FIXED "One or more digits representing a decimal fraction of a second">
+<!ELEMENT time_zone_designator (#PCDATA)>
+<!ATTLIST time_zone_designator description CDATA #FIXED "Time zone designator">
+
+
+<!-- Class 3.A.2 -->
+<!ELEMENT data_archive_date (datetime)>
+<!ATTLIST data_archive_date description CDATA #FIXED "Date of last data set archival">
+
+<!-- Class 3.A.3 -->
+<!ELEMENT metadata_update_date (datetime)>
+<!ATTLIST metadata_update_date description CDATA #FIXED "Date of last metadata update and current status">
+
+<!-- Class 3.A.4 -->
+<!ELEMENT qa_qc_status (paragraph+)>
+<!ATTLIST qa_qc_status description CDATA #FIXED "Status of data quality assurance checking">
+<!ELEMENT paragraph (#PCDATA)>
+<!ATTLIST paragraph description CDATA #FIXED "Paragraph of text">
+
+<!-- End of file -->
