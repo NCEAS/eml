@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-29 17:34:43 $'
-      '$Revision: 1.78 $'
+        '$Author: jones $'
+          '$Date: 2002-10-29 19:04:47 $'
+      '$Revision: 1.79 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -282,24 +282,31 @@
               type of scale from which values are drawn for the
               attribute. This provides information about the scale in
               which the data was collected.</doc:description>
-              <doc:example>nominal is used when numbers have only been assigned
+              <doc:example>Nominal is used when numbers have only been assigned
               to a variable for the purpose of categorizing the
               variable.  An example of a nominal scale is assigning the
               number 1 for male and 2 for female.</doc:example>
-              <doc:example>ordinal is used when the categories have a logical
+              <doc:example>Ordinal is used when the categories have a logical
               or ordered relationship to each other. These types of scale
-              permit the measurement of degrees of difference, but not the
-              specific amount of difference. An example of an ordinal
-              scale is a categorical survey where you rank a variable
-              1=good, 2=fair, 3=poor.</doc:example>
-              <doc:example>interval is used for data which consist of
-              equidistant points on a scale. The Fahrenheit scale is an interval
-              scale, since each degree is equal but there is no absolute
-              zero point.</doc:example>
-              <doc:example>ratio is used for data which consists not only of
+              allow one to distinguish the order of values, but not the
+              magnitude of the difference between values. An example of an 
+              ordinal scale is a categorical survey where you rank a variable
+              1=good, 2=fair, 3=poor. Date values on the Gregorian calendar
+              are also ordinal, as the relative order of the values is
+              prescribed, but the magnitude of the difference between 
+              the values is not (due to leap years, leap seconds, and various
+              other peculiarities).</doc:example>
+              <doc:example>Interval is used for data which consist of
+              equidistant points on a scale. The Celsius scale is an interval
+              scale, since each degree is equal but there is no natural
+              zero point (so, 20 C is not twice as hot as 10 C).</doc:example>
+              <doc:example>Ratio is used for data which consists not only of
               equidistant points but also has a meaningful zero
-              point. An example of a ratio scale would be for age categories
-              like 0-10, 11-20, 21-30, etc.</doc:example>
+              point, which allows ratios to have meaning. An example of a 
+              ratio scale would be the Kelvin temperature scale (200K is 
+              half as hot as 400K), and length in
+              meters (e.g., 10 meters is twice as long as 5 meters).
+              </doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -307,11 +314,12 @@
               <xs:element name="nominal">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>nominal scale</doc:tooltip>
+                    <doc:tooltip>Nominal scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
-                    nominal scale variable.</doc:description>
-                    <doc:example>nominal is used when numbers have only been
+                    nominal scale variable, which are varibales that are 
+                    categorical in nature.</doc:description>
+                    <doc:example>Nominal is used when numbers have only been
                     assigned to a variable for the purpose of categorizing the
                     variable.  An example of a nominal scale is assigning the
                     number 1 for male and 2 for female.</doc:example>
@@ -319,8 +327,9 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"
-                      minOccurs="1" maxOccurs="unbounded"/>
+                    <xs:element name="nonNumericDomain" 
+                    type="NonNumericDomainType"
+                    minOccurs="1" maxOccurs="unbounded"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -328,14 +337,23 @@
               <xs:element name="ordinal">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>ordinal scale</doc:tooltip>
+                    <doc:tooltip>Ordinal scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
-                    ordinal scale variable.</doc:description>
-                    <doc:example>nominal is used when numbers have only been
-                    assigned to a variable for the purpose of categorizing the
-                    variable.  An example of a nominal scale is assigning the
-                    number 1 for male and 2 for female.</doc:example>
+                    ordinal scale variable, which specify ordered values
+                    without specifying the magnitude of the difference between 
+                    values.</doc:description>
+                    <doc:example>Ordinal is used when the categories have
+                    a logical or ordered relationship to each other. These
+                    types of scale allow one to distinguish the order
+                    of values, but not the magnitude of the difference
+                    between values. An example of an ordinal scale is a
+                    categorical survey where you rank a variable 1=good,
+                    2=fair, 3=poor. Date values on the Gregorian calendar
+                    are also ordinal, as the relative order of the values is
+                    prescribed, but the magnitude of the difference between
+                    the values is not (due to leap years, leap seconds,
+                    and various other peculiarities).</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -349,14 +367,17 @@
               <xs:element name="interval">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>interval scale</doc:tooltip>
+                    <doc:tooltip>Interval scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
-                    interval scale variable.</doc:description>
-                    <doc:example>interval is used for data which consist of
-                    equidistant points on a scale. The Fahrenheit scale
-                    is an interval scale, since each degree is equal but
-                    there is no absolute zero point.</doc:example>
+                    interval scale variable, which specifies both the order
+                    and magnitude of values, but has no natural zero point.
+                    </doc:description>
+                    <doc:example>Interval is used for data which consist of
+                    equidistant points on a scale. The Celsius scale is an
+                    interval scale, since each degree is equal but there is
+                    no natural zero point (so, 20 C is not twice as hot as
+                    10 C).</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -373,14 +394,18 @@
               <xs:element name="ratio">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>ratio scale</doc:tooltip>
+                    <doc:tooltip>Ratio scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
-                    ratio scale variable.</doc:description>
-                    <doc:example>ratio is used for data which consists not
+                    ratio scale variable, which specifies the order and
+                    magnitude of values and has a natural zero point, allowing
+                    for ratio comparisons to be valid.</doc:description>
+                    <doc:example>Ratio is used for data which consists not
                     only of equidistant points but also has a meaningful zero
-                    point. An example of a ratio scale would be for age
-                    categories like 0-10, 11-20, 21-30, etc.</doc:example>
+                    point, which allows ratios to have meaning. An example
+                    of a ratio scale would be the Kelvin temperature scale
+                    (200K is half as hot as 400K), and length in meters (e.g.,
+                    10 meters is twice as long as 5 meters).</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -648,22 +673,22 @@
   </xs:complexType>
 
   <xs:complexType name="PrecisionType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Precision</doc:tooltip>
+        <doc:summary>The precision of the measurement.</doc:summary>
+        <doc:description>The precision element represents the precision
+        of the measurement, in the same unit as the measurement. For
+        example, for an attribute with unit "meter", a precision of "0.1"
+        would be interpreted as precise to the nearest 1/10th of a
+        meter.</doc:description>
+        <doc:example>0.1</doc:example>
+        <doc:example>0.5</doc:example>
+        <doc:example>1</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:simpleContent>
       <xs:extension base="xs:float">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>Precision</doc:tooltip>
-            <doc:summary>The precision of the measurement.</doc:summary>
-            <doc:description>The precision element represents the precision
-            of the measurement, in the same unit as the measurement. For
-            example, for an attribute with unit "meter", a precision of "0.1"
-            would be interpreted as precise to the nearest 1/10th of a
-            meter.</doc:description>
-            <doc:example>0.1</doc:example>
-            <doc:example>0.5</doc:example>
-            <doc:example>1</doc:example>
-          </xs:appinfo>
-        </xs:annotation>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
