@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-30 21:08:28 $'
-      '$Revision: 1.39 $'
+          '$Date: 2002-09-30 21:20:10 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -530,7 +530,7 @@
         <section>
           <title>Example Documents</title>
             <example>
-              <title>Example 1</title>
+              <title>1</title>
               <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
@@ -558,15 +558,71 @@
 &lt;/eml:eml&gt;
             </literalLayout>
           </example>
-          <section>
-            <title>Example 2</title>
-          </section>
-          <section>
-            <title>Example 3</title>
-          </section>
-          <section>
-            <title>Example 4</title>
-          </section>
+          <example>
+            <title>2</title>
+            <literalLayout>
+&lt;?xml version="1.0"?&gt;
+&lt;eml:eml
+    packageId="eml.1.1" system="knb"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
+
+  &lt;dataset&gt;
+    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+    &lt;creator id="23445" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Smith&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    &lt;creator id="23446" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Myer&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    ...
+    &lt;contact&gt;
+      &lt;references&gt;23447&lt;/references&gt;
+    &lt;/contact&gt;
+  &lt;/dataset&gt;
+&lt;/eml:eml&gt;
+            </literalLayout>
+          </example>
+          <example>
+            <title>3</title>
+            <literalLayout>
+&lt;?xml version="1.0"?&gt;
+&lt;eml:eml
+    packageId="eml.1.1" system="knb"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
+
+  &lt;dataset&gt;
+    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+    &lt;creator id="23445" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Smith&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    &lt;creator id="23446" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Meyer&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    ...
+    &lt;contact id="522"&gt;
+      &lt;references&gt;23445&lt;/references&gt;
+    &lt;/contact&gt;
+  &lt;/dataset&gt;
+&lt;/eml:eml&gt;
+            </literalLayout>
+          </example>
+          <example>
+            <title>4</title>
+          </example>
         </section>
         <section>
           <title>Explanation</title>
