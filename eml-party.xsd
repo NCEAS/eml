@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.7 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-14 23:32:58 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:choice>
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
         <xs:element name="individualName" type="Person">
           <xs:annotation>
             <xs:appinfo>
@@ -83,6 +83,17 @@
                 that is associated with the resource.  This field contains
                 subfields that break the persons name down into first and last
                 name, and the values are entered into those field containers.
+                Note that this field, used in conjunction with 'organizationName'
+                and 'positionName' make up a single logical originator.  Because 
+                of this, an originator with only the individualName of 'Joe Smith'
+                is NOT the same as an originator with the name of 'Joe Smith' and 
+                the organizationName of 'NSF'.  Also, the positionName should not
+                be used in conjunction with individualName unless only that 
+                individual at that position would be considered an originator
+                for the data package.  If a positionName is used in conjunction 
+                with an organizationName, then that
+                implies that any person who currently occupies said positionName 
+                at organizationName is the originator of the data package.
               </doc:description>
               <doc:example>
                 Because this is an 'elementOnly' field, please look at the
@@ -109,6 +120,18 @@
                 organization that is associated with the resource.  This field
                 is intended to describe which institution or overall
                 organization is associated with the resource being described.
+                
+                Note that this field, used in conjunction with 'individualName'
+                and 'positionName' make up a single logical originator.  Because 
+                of this, an originator with only the individualName of 'Joe Smith'
+                is NOT the same as an originator with the name of 'Joe Smith' and 
+                the organizationName of 'NSF'.  Also, the positionName should not
+                be used in conjunction with individualName unless only that 
+                individual at that position would be considered an originator
+                for the data package.  If a positionName is used in conjunction 
+                with an organizationName, then that
+                implies that any person who currently occupies said positionName 
+                at organizationName is the originator of the data package.
               </doc:description>
               <doc:example>
                 National Center for Ecological Analysis and Synthesis
@@ -134,6 +157,18 @@
                 or full organization name.  If the associated person that holds
                 the role changes frequently, then Position Name would be used
                 for consistency.
+                
+                Note that this field, used in conjunction with 'organizationName'
+                and 'individualName' make up a single logical originator.  Because 
+                of this, an originator with only the individualName of 'Joe Smith'
+                is NOT the same as an originator with the name of 'Joe Smith' and 
+                the organizationName of 'NSF'.  Also, the positionName should not
+                be used in conjunction with individualName unless only that 
+                individual at that position would be considered an originator
+                for the data package.  If a positionName is used in conjunction 
+                with an organizationName, then that
+                implies that any person who currently occupies said positionName 
+                at organizationName is the originator of the data package.
               </doc:description>
               <doc:example>
                 Niwot Ridge Data Manager
