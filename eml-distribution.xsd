@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:distribution" xmlns="eml:distribution" xmlns:rp="eml:ResponsibleParty" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
-	<xs:annotation>
-		<xs:documentation>
+<xs:schema targetNamespace="eml:distribution" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns:rp="eml:ResponsibleParty" xmlns="eml:distribution">
+  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
        '$RCSfile: eml-distribution.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-23 02:07:54 $'
-      '$Revision: 1.14 $'
+          '$Date: 2001-07-31 17:10:05 $'
+      '$Revision: 1.15 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,48 +26,44 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-		<xs:appinfo>
-			<doc:moduleName>eml-distribution</doc:moduleName>
-			<doc:moduleDescription>
+    <xs:appinfo>
+      <doc:moduleName>eml-distribution</doc:moduleName>
+      <doc:moduleDescription>
         This schema defines how a resource is to be distributed outside
         of it's home institution.
       </doc:moduleDescription>
-		</xs:appinfo>
-	</xs:annotation>
-	<xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
-	<xs:element name="eml-distribution">
-		<xs:annotation>
-			<xs:appinfo>
-				<doc:tooltip>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+  <xs:element name="eml-distribution">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
           Resource Distribution Information
         </doc:tooltip>
-				<doc:summary>
+        <doc:summary>
           eml-distribution describes the methods by which a resource can be 
           distributed from it's home institution.
         </doc:summary>
-				<doc:description>
-          the distribution module contains fields to define the distributor
-          of the resource, the format that that the resource exists in, the
-          process by which another agency or individual can get the resource,
-          the digital transfer protocols needed to get the resource and the 
-          medium on which the resource is stored.
+        <doc:description>
+          the distribution module contains fields to define the online and offline transfer information for a resource.  The online transfer is just a URL, and the offline transfer describes media information for reading the file.
         </doc:description>
-				<doc:example/>
-				<doc:lineage/>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="identifier" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+        <doc:example/>
+        <doc:lineage>From NBII.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Unique identifier
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 The unique identifier of this metadata file or object.
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 The identifier field provides a unique identifier for this
                 metadata documentation.  It will most likely be part of a 
                 sequence of numbers or letters that are meaningful in a 
@@ -77,26 +72,26 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-							<doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-							<doc:lineage>
+              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:simpleContent>
-							<xs:extension base="xs:string">
-								<xs:attribute name="system" type="xs:string" use="optional">
-									<xs:annotation>
-										<xs:appinfo>
-											<doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>
                         Catalog system
                       </doc:tooltip>
-											<doc:summary>
+                      <doc:summary>
                         The catalog system in which this identifier is used.
                       </doc:summary>
-											<doc:description>
+                      <doc:description>
                        This element gives the name of the catalog system in which
                         this identifier is used.  It is useful to determine the
                         scope of the identifier, and to determine the semantics
@@ -104,629 +99,226 @@
                         can or should this be a URI/URL pointing to the catalog
                         system, or just the name?
                       </doc:description>
-											<doc:example><![CDATA[
+                      <doc:example><![CDATA[
                         <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-											<doc:lineage>
+                      <doc:lineage>
                         New to EML 2.0.
                       </doc:lineage>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:attribute>
-							</xs:extension>
-						</xs:simpleContent>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="distributorFormat" type="Format" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
-                The format in which the resource is represented.
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="digitalTransfer" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
+                Digital Transfer Information
               </doc:tooltip>
-							<doc:summary>
-                The format in which the resource is represented.
+              <doc:summary>
+                Information needed to receive or send this resource digitally, either online or offline.
               </doc:summary>
-							<doc:description>
-                This is the format of the resource in it's digital form.  
-                This includes information on what type of compression is used
-                and the encoding that is used.
+              <doc:description>
+                Information needed to receive or send this resource digitally.  This includes the URL for online resources, and a description of the media for offline resources.  The resource's originator with a ole of dataContact should be used as the address to obtain an offline resource.
               </doc:description>
-							<doc:example>
-                zip, gzip, tar, sit, bin, binhex, text
-              </doc:example>
-							<doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                 ISO CD 19115.3, Geographic information - Metadata
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="distributor" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
-                Resource distributor
-              </doc:tooltip>
-							<doc:summary>
-                The person or group who is distributing this resource.
-              </doc:summary>
-							<doc:description>
-                The complete contact and location information for the person
-                or group who owns or who has permission to distribute this
-                resource.
-              </doc:description>
-							<doc:example>
-               Library of Congress
-              </doc:example>
-							<doc:lineage>
-                ISO CD 19115.3, Geographic information - Metadata
-              </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      contact information for distributor
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="onlineURL" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+                      Download site URL
                     </doc:tooltip>
-										<doc:summary>
-                      Complete name and address of the distributor of this 
-                      resource.
+                    <doc:summary>
+                     A URL (Uniform Resource Locator) from which this resource can be downloaded
                     </doc:summary>
-										<doc:description>
-                      Complete contact information for the person or group
-                      that has permission to distribute this resource.
+                    <doc:description>
+                      A URL (Uniform Resource Locator) from which this resource can be downloaded.  This includes any nformation needed to access this site, such as connection information.
                     </doc:description>
-										<doc:example/>
-										<doc:lineage>
-                      EML
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="StandardOrderProcess" minOccurs="0" maxOccurs="unbounded">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      information on getting this resource from its distributor
-                    </doc:tooltip>
-										<doc:summary>
-                      information on getting this resource from its distributor
-                    </doc:summary>
-										<doc:description>
-                      The standard order process is the process by which a user
-                      can order the resource from its distributor.  This
-                      includes information on fees, availability and general
-                      instructions.
-                    </doc:description>
-										<doc:example/>
-										<doc:lineage>
+                    <doc:example>http://data.org/getdata?id=98332</doc:example>
+                    <doc:lineage>
                       ISO CD 19115.3, Geographic information - Metadata
                     </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="fees" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-											<xs:annotation>
-												<xs:appinfo>
-													<doc:tooltip>
-                            fee payed to acquire this resource
-                          </doc:tooltip>
-													<doc:summary>
-                            fee charged by the distributor to acquire this 
-                            resource
-                          </doc:summary>
-													<doc:description>
-                            a fee may be charged by a distributor for media
-                            or access fees to this resource.  This field 
-                            contains that cost.
-                          </doc:description>
-													<doc:example>
-                            US$10.00
-                          </doc:example>
-													<doc:lineage>
-                            ISO CD 19115.3, Geographic information - Metadata
-                          </doc:lineage>
-												</xs:appinfo>
-											</xs:annotation>
-										</xs:element>
-										<xs:element name="dateTimeAvailable" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-											<xs:annotation>
-												<xs:appinfo>
-													<doc:tooltip>
-                          the time this resource is available
-                        </doc:tooltip>
-													<doc:summary>
-                          the date and time at which this resource is available
-                        </doc:summary>
-													<doc:description>
-                          date and time at which this resource becomes available
-                          for distribution.  This could be the open times for
-                          an institution or a release date.
-                        </doc:description>
-													<doc:example>
-                          8:00 am to 5:00 pm PST Monday-Friday
-                        </doc:example>
-													<doc:lineage>
-                          ISO CD 19115.3, Geographic information - Metadata
-                        </doc:lineage>
-												</xs:appinfo>
-											</xs:annotation>
-										</xs:element>
-										<xs:element name="orderingInstructions" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-											<xs:annotation>
-												<xs:appinfo>
-													<doc:tooltip>
-                            instructions for ordering
-                          </doc:tooltip>
-													<doc:summary>
-                            instructions for ordering this resource from the 
-                            distributor
-                          </doc:summary>
-													<doc:description>
-                            instructions for ordering this resource from the 
-                            distributor.  This is a textual description of
-                            how to get this resource.  It could include any
-                            extra information that is not included in field
-                            data in this distribution module
-                          </doc:description>
-													<doc:example>
-                            Send SASE to the distributor with check or money
-                            order made out to UC Board of Regents in the amount
-                            of US$10.00.
-                          </doc:example>
-													<doc:lineage>
-                            ISO CD 19115.3, Geographic information - Metadata
-                          </doc:lineage>
-												</xs:appinfo>
-											</xs:annotation>
-										</xs:element>
-										<xs:element name="turnaround" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-											<xs:annotation>
-												<xs:appinfo>
-													<doc:tooltip>
-                            time to get the resource
-                          </doc:tooltip>
-													<doc:summary>
-                            time it takes to receive the resource from the time
-                            it is ordered.
-                          </doc:summary>
-													<doc:description>
-                            time it takes to receive the resource from the time
-                            it is ordered.
-                          </doc:description>
-													<doc:example>
-                            UPS Ground - 5 days
-                            Fedex Air - 2 days
-                            Fedex overnight - 1 day
-                          </doc:example>
-													<doc:lineage>
-                            ISO CD 19115.3, Geographic information - Metadata
-                          </doc:lineage>
-												</xs:appinfo>
-											</xs:annotation>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="Format" minOccurs="0" maxOccurs="unbounded">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      resource format at the distributor
-                    </doc:tooltip>
-										<doc:summary>
-                      the format of the resource as it exists at the distributor
-                    </doc:summary>
-										<doc:description>
-                      the format of the resource as it exists at the
-                      distributor.  There may be many.
-                    </doc:description>
-										<doc:example>
-                      zip, gzip, tar, bin, binhex, sit, doc, text, wps
-                    </doc:example>
-										<doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="digitalTransfer" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
-                digital transfer information
-              </doc:tooltip>
-							<doc:summary>
-                information needed to receive or send this resource digitally
-              </doc:summary>
-							<doc:description>
-                information needed to receive or send this resource digitally.
-                this includes the size of the transfer, the units of this size
-                the medium, the site address, etc.
-              </doc:description>
-							<doc:example/>
-							<doc:lineage>
-                ISO CD 19115.3, Geographic information - Metadata
-              </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="distributionUnits" type="xs:string" minOccurs="0">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      units of the transfer size
-                    </doc:tooltip>
-										<doc:summary>
-                      units of the transfer size
-                    </doc:summary>
-										<doc:description>
-                      units in which the transfer size is represented
-                    </doc:description>
-										<doc:example>
-                      Terrabytes, Gigabytes, Megabytes, Kilobytes, bytes, bits
-                    </doc:example>
-										<doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="transferSize" type="xs:string" minOccurs="0">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      size of the transfer
-                    </doc:tooltip>
-										<doc:summary>
-                      size of the resource in its digital tranfer format.
-                    </doc:summary>
-										<doc:description>
-                      size of the resource in its digital tranfer format.
-                    </doc:description>
-										<doc:example>
-                      256 KB, 1.2 MB
-                    </doc:example>
-										<doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="online" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      download site information
-                    </doc:tooltip>
-										<doc:summary>
-                      the site from which this resource can be downloaded
-                    </doc:summary>
-										<doc:description>
-                      the site from which this resource can be downloaded.
-                      this includes any information needed to access this 
-                      site.
-                    </doc:description>
-										<doc:example/>
-										<doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="offlineResource" minOccurs="0" maxOccurs="unbounded">
-								<xs:annotation>
-									<xs:appinfo>
-										<doc:tooltip>
-                      offline storage information
-                    </doc:tooltip>
-										<doc:summary>
-                      offline storage information for non network based media
-                    </doc:summary>
-										<doc:description>
-                      describes the non-online media on which this resource
-                      can be distributed. 
-                    </doc:description>
-										<doc:example>
-                      tape, disk
-                    </doc:example>
-										<doc:lineage>
-                      ISO CD 19115.3, Geographic information - Metadata
-                    </doc:lineage>
-									</xs:appinfo>
-								</xs:annotation>
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="medium" minOccurs="0" maxOccurs="unbounded">
-											<xs:annotation>
-												<xs:appinfo>
-													<doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="offlineMedium">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                             medium of the resource
                           </doc:tooltip>
-													<doc:summary>
+                    <doc:summary>
                             the medium on which this resource is distributed 
-                            digitally
+digitally
                           </doc:summary>
-													<doc:description>
+                    <doc:description>
                             the medium on which this resource is distributed 
-                            digitally, such as 3.5" floppy disk, or various tape
-                            media types
+digitally, such as 3.5" floppy disk, or various tape media types
                           </doc:description>
-													<doc:example>
+                    <doc:example>
                             CD-ROM, 3.5 in. floppy disk, Zip disk
                           </doc:example>
-													<doc:lineage>
+                    <doc:lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </doc:lineage>
-												</xs:appinfo>
-											</xs:annotation>
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="medName" type="xs:string" minOccurs="0">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="medName" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   Medium name
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   Name of the medium
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   Name of the medium
                                 </doc:description>
-																<doc:example>
+                          <doc:example>
                                   Tape, 3.5 inch Floppy Disk
                                 </doc:example>
-																<doc:lineage>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="medDensity" type="xs:string" minOccurs="0">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medDensity" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   density of the digital medium
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   the density of the digital medium if this is 
                                   relevant.
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   the density of the digital medium if this is 
                                   relevant.  Used mainly for floppy disks 
                                   or tape.
                                 </doc:description>
-																<doc:example>
+                          <doc:example>
                                   High Density (HD), Double Density (DD)
                                 </doc:example>
-																<doc:lineage>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="medDensityUnits" type="xs:string" minOccurs="0">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medDensityUnits" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   units of a numerical density
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   a numerical density's units
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   if a density is given numerically, the units 
                                   should be given here.  
                                 </doc:description>
-																<doc:example>
+                          <doc:example>
                                   B/cm
                                 </doc:example>
-																<doc:lineage>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="medVol" type="xs:string" minOccurs="0">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medVol" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   storage volume 
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   total volume of the storage medium
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   the total volume of the storage medium on 
                                   which this resource is shipped.
                                 </doc:description>
-																<doc:example>
+                          <doc:example>
                                   650 MB
                                 </doc:example>
-																<doc:lineage>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="medFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   medium format
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   format of the medium on which the resource is 
                                   shipped.
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   the file system format of the medium on 
                                   which the resource is shipped
                                 </doc:description>
-																<doc:example>
+                          <doc:example>
                                   NTFS, FAT32, EXT2, QIK80
                                 </doc:example>
-																<doc:lineage>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="medNote" type="xs:string" minOccurs="0">
-														<xs:annotation>
-															<xs:appinfo>
-																<doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="medNote" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                                   note about the media
                                 </doc:tooltip>
-																<doc:summary>
+                          <doc:summary>
                                   note about the media
                                 </doc:summary>
-																<doc:description>
+                          <doc:description>
                                   any additional pertitant information about the
                                   media
                                 </doc:description>
-																<doc:example/>
-																<doc:lineage>
+                          <doc:example/>
+                          <doc:lineage>
                                   ISO CD 19115.3, 
                                   Geographic information - Metadata
                                 </doc:lineage>
-															</xs:appinfo>
-														</xs:annotation>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:complexType name="Format">
-		<xs:sequence>
-			<xs:element name="formatName" type="xs:string" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip>
-              name of the format
-            </doc:tooltip>
-						<doc:summary>
-              name of the format
-            </doc:summary>
-						<doc:description>
-              the name of the format of the digital resource
-            </doc:description>
-						<doc:example>
-              Excel Spreadsheet, Oracle database export, XML
-            </doc:example>
-						<doc:lineage>
-              ISO CD 19115.3, Geographic information - Metadata
-            </doc:lineage>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="formatVersion" type="xs:string" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip>
-              format version
-            </doc:tooltip>
-						<doc:summary>
-              version of the format
-            </doc:summary>
-						<doc:description>
-              the version of the format used to store this resource digitally.
-            </doc:description>
-						<doc:example>
-              97, 1.2, 4.5.6.7
-            </doc:example>
-						<doc:lineage>
-              ISO CD 19115.3, Geographic information - Metadata
-            </doc:lineage>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="formatSpec" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip>
-              specification of the format
-            </doc:tooltip>
-						<doc:summary>
-              specification of the format
-            </doc:summary>
-						<doc:description>
-              the formal description or specification of the format used.
-            </doc:description>
-						<doc:example>
-              http://www.w3.org/TR/REC-xml
-            </doc:example>
-						<doc:lineage>
-              ISO CD 19115.3, Geographic information - Metadata
-            </doc:lineage>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="compressionType" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip>
-              type of compression
-            </doc:tooltip>
-						<doc:summary>
-              type of compression used
-            </doc:summary>
-						<doc:description>
-              type of compression used to compress this resource in its current
-              format.
-            </doc:description>
-						<doc:example>
-              zip, gzip
-            </doc:example>
-						<doc:lineage>
-              ISO CD 19115.3, Geographic information - Metadata
-            </doc:lineage>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="distributionFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<doc:tooltip>
-              distribution format
-            </doc:tooltip>
-						<doc:summary>
-              format of the distributed version
-            </doc:summary>
-						<doc:description>
-              format of the distributed version if different from the stored
-              version
-            </doc:description>
-						<doc:example>
-              Access
-            </doc:example>
-						<doc:lineage>
-              ISO CD 19115.3, Geographic information - Metadata
-            </doc:lineage>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

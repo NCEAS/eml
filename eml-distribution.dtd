@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-07-23 02:07:54 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-07-31 17:10:05 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,37 +24,18 @@
 -->
 <!ENTITY % resParty SYSTEM "eml-party.dtd">
 %resParty;
-<!ELEMENT eml-distribution (identifier, distributorFormat+, distributor*, digitalTransfer*)>
-<!-- File identifier of the metadata document -->
+<!ELEMENT eml-distribution (identifier+, digitalTransfer+)>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier
   system CDATA #IMPLIED
 >
-<!ELEMENT distributorFormat (formatName+, formatVersion+, formatSpec*, compressionType*, distributionFormat*)>
-<!ELEMENT formatName (#PCDATA)>
-<!ELEMENT formatVersion (#PCDATA)>
-<!ELEMENT formatSpec (#PCDATA)>
-<!ELEMENT compressionType (#PCDATA)>
-<!ELEMENT distributionFormat (#PCDATA)>
-<!ELEMENT distributor (contact+, standardOrderProcess*, distributorFormat*)>
-<!ELEMENT contact ((%responsibleParty;))>
-<!ELEMENT standardOrderProcess (fees*, dateTimeAvailable*, orderingInstructions*, turnaround*)>
-<!ELEMENT fees (#PCDATA)>
-<!ELEMENT dateTimeAvailable (#PCDATA)>
-<!-- date/time -->
-<!ELEMENT orderingInstructions (#PCDATA)>
-<!ELEMENT turnaround (#PCDATA)>
-<!ELEMENT digitalTransfer (distributionUnits?, transferSize?, onLine*, offLineResource*)>
-<!ELEMENT distributionUnits (#PCDATA)>
-<!ELEMENT transferSize (#PCDATA)>
-<!ELEMENT onLine (#PCDATA)>
-<!-- from iso-party.dtd -->
-<!ELEMENT offLineResource (medium+)>
-<!ELEMENT medium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*, medNote?)>
+<!ELEMENT digitalTransfer (onlineURL | offlineMedium)>
+<!ELEMENT onlineURL (#PCDATA)>
+<!ELEMENT offlineMedium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*, medNote?)>
 <!ELEMENT medName (#PCDATA)>
 <!ELEMENT medDensity (#PCDATA)>
 <!ELEMENT medDensityUnits (#PCDATA)>
 <!ELEMENT medVol (#PCDATA)>
 <!ELEMENT medFormat (#PCDATA)>
-<!-- code list from B.6.23 -->
 <!ELEMENT medNote (#PCDATA)>
+<!-- EOF -->
