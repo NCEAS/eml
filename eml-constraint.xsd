@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: schild $'
-          '$Date: 2001-12-16 17:41:13 $'
-      '$Revision: 1.12 $'
+        '$Author: jones $'
+          '$Date: 2002-04-16 23:26:43 $'
+      '$Revision: 1.13 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -55,6 +55,10 @@
         <doc:description>
           Describes the relational integrity constraints of a relational 
           database.  This includes primary keys, foreign keys, unique keys, etc.
+          When an eml-constraint module is created, it should be linked into
+          a dataset using the "triple" element, and all of the entities that
+          are referenced in the constraints should be accessible within that 
+          same package.
         </doc:description>
         <doc:example/>
         <doc:lineage>
@@ -175,6 +179,7 @@
                     <xs:enumeration value="ForeignKey"/>
                     <xs:enumeration value="NotNull"/>
                     <xs:enumeration value="Check"/>
+                    <xs:enumeration value="OtherConstraint"/>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -185,15 +190,14 @@
                       constraint name
                     </doc:tooltip>
                     <doc:summary>
-                      name of the field that this constraint is tied to
+                      Name of the constraint
                     </doc:summary>
                     <doc:description>
-                     name of the field that this constraint is tied to.  This 
-                     could also be the name of an independent constraint such 
-                     as a trigger or an autonumber generator.
+                     Name of the constraint.  This is typically an informative
+                     name that can be used to refer to the constraint itself.
                     </doc:description>
                     <doc:example>
-                      LocationID, TABLE1_NUMBER_GEN1
+                      party_name_fk_1
                     </doc:example>
                     <doc:lineage>
                       New in EML 2.0
@@ -225,22 +229,22 @@
               <xs:element name="entityId" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>
-                      table to which this constraint is tied
-                    </doc:tooltip>
+                    <doc:tooltip>Constrained Entity</doc:tooltip>
                     <doc:summary>
-                      table to which this constraint is tied
+                      Entity to which this constraint applies
                     </doc:summary>
                     <doc:description>
-                      table to which this constraint is tied.  In the instance
-                      of a key, it is the name of the table in which it is 
-                      defined.
+                       Entity to which this constraint applies.  This should be
+                       an identifer that matches one of the "identifier" 
+                       elements for an entity that is linked into the package
+                       with a triple.  The constraint document itself should be
+                       linked into the package as a member.
                     </doc:description>
                     <doc:example>
-                      site_properties 
+                       knb.78.3
                     </doc:example>
                     <doc:lineage>
-                      New in EML 2.0
+                      New in EML 2.0.0
                     </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -266,7 +270,24 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="attributeName" type="xs:string" maxOccurs="unbounded"/>
+                    <xs:element name="attributeName" type="xs:string" maxOccurs="unbounded">
+                      <xs:annotation>
+                      <xs:appinfo>
+                      <doc:tooltip>Attribute Name</doc:tooltip>
+                      <doc:summary>
+                      Name of an attribute found in the identified entity
+                      </doc:summary>
+                      <doc:description>
+                      Name of an attribute that can be found in the identified
+                      entity.  This name will be unique within an entity and
+                      specifies that the attribute participates in the key that
+                      is being defined.
+                      </doc:description>
+                      <doc:example/>
+                      <doc:lineage>New in EML 2.0</doc:lineage>
+                      </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -278,11 +299,15 @@
                       The id of the parent-entity in a foreign key constraint.
                     </doc:summary>
                     <doc:description>
-                      This field contains the id of the entity to which a foreign key 
-                      refers, otherwise known as the parent-entity or parent-table.
+                       This field contains the id of the entity to which a foreign key 
+                       refers, otherwise known as the parent-entity or parent-table.
+                       This should be an identifer that matches one of the "identifier" 
+                       elements for an entity that is linked into the package
+                       with a triple.  The constraint document itself should be
+                       linked into the package as a member.
                     </doc:description>
                     <doc:example>
-                      site_properties 
+                      knb.79.4 
                     </doc:example>
                     <doc:lineage>
                       New in EML 2.0
@@ -310,14 +335,31 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="attributeName" type="xs:string" maxOccurs="unbounded"/>
+                    <xs:element name="attributeName" type="xs:string" maxOccurs="unbounded">
+                      <xs:annotation>
+                      <xs:appinfo>
+                      <doc:tooltip>Attribute Name</doc:tooltip>
+                      <doc:summary>
+                      Name of an attribute found in the identified entity
+                      </doc:summary>
+                      <doc:description>
+                      Name of an attribute that can be found in the identified
+                      entity.  This name will be unique within an entity and
+                      specifies that the attribute participates in the key that
+                      is being defined.
+                      </doc:description>
+                      <doc:example/>
+                      <doc:lineage>New in EML 2.0</doc:lineage>
+                      </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element name="cardinality" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Constrint Cardinality               </doc:tooltip>
+                    <doc:tooltip>Constraint Cardinality</doc:tooltip>
                     <doc:summary>The cardinality of a foreign key constraint.</doc:summary>
                     <doc:description>
                       Indicates the cardinality (zero, one, many) of a foreign key constraint.
@@ -337,14 +379,16 @@
               <xs:element name="checkCondition" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Check Condition                </doc:tooltip>
+                    <doc:tooltip>Check Condition</doc:tooltip>
                     <doc:summary>
-                      An SQL statement to be used as the condition for a check constraint.
+                      An SQL statement or other language implementation of
+                      the condition for a check constraint.
                     </doc:summary>
                     <doc:description>
-                      A SQL statement to be used as the condition for a check constraint.  
-                      Generally this provides a means for constraining the values within 
-                      and among entities.
+                      A SQL statement or other language implementation of 
+                      the condition for a check constraint.  
+                      Generally this provides a means for constraining the 
+                      values within  and among entities.
                     </doc:description>
                     <doc:example><![CDATA[(year > 1900 and year < 1990)]]></doc:example>
                     <doc:lineage>New in EML 2.0</doc:lineage>
