@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 19:55:27 $'
-      '$Revision: 1.84 $'
+          '$Date: 2002-10-30 20:18:52 $'
+      '$Revision: 1.85 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -665,7 +665,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="customUnit">
+      <xs:element name="customUnit" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Custom Unit</doc:tooltip>
@@ -681,7 +681,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="formattedDateTimeUnit">
+      <xs:element name="formattedDateTimeUnit" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Date/Time Format</doc:tooltip>
