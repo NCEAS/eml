@@ -26,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2003-11-06 20:15:20 $'
-      '$Revision: 1.46 $'
+          '$Date: 2004-08-10 21:21:04 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -122,16 +122,15 @@
                   <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Attribute Name</doc:tooltip>
-                        <doc:summary>Name of an attribute found in the
-                        identified entity</doc:summary>
+                        <doc:tooltip>Attribute Reference</doc:tooltip>
+                        <doc:summary>The identifier of an attribute found
+                        in the identified entity</doc:summary>
                         <doc:description>The attributeReference element is the
-                        name of an attribute that can be found in the identified
-                        entity. This name will be unique within an entity and
-                        specifies that the attribute participates in the key
-                        that is being defined.</doc:description>
+                        identifier of an attribute that can be found in the
+                        identified entity. This id will be unique within an
+                        entity and specifies that the attribute participates
+                        in the key that is being defined.</doc:description>
                         <doc:example>site</doc:example>
-                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -180,16 +179,15 @@
                   <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Attribute Name</doc:tooltip>
-                        <doc:summary>Name of an attribute found in the
-                        identified entity</doc:summary>
-                        <doc:description>The attributeReference element contains
-                        the name of an attribute that can be found in the
-                        identified entity. This name will be unique within an
-                        entity and specifies that the attribute participates in
-                        the key that is being defined.</doc:description>
+                        <doc:tooltip>Attribute Reference</doc:tooltip>
+                        <doc:summary>The identifier of an attribute found
+                        in the identified entity</doc:summary>
+                        <doc:description>The attributeReference element is the
+                        identifier of an attribute that can be found in the
+                        identified entity. This id will be unique within an
+                        entity and specifies that the attribute participates
+                        in the key that is being defined.</doc:description>
                         <doc:example>site</doc:example>
-                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -306,15 +304,15 @@
                   <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Attribute Name</doc:tooltip>
-                        <doc:summary>Name of an attribute found in the
-                        identified entity</doc:summary>
+                        <doc:tooltip>Attribute Reference</doc:tooltip>
+                        <doc:summary>The identifier of an attribute found
+                        in the identified entity</doc:summary>
                         <doc:description>The attributeReference element is the
-                        name of an attribute that can be found in the identified
-                        entity. This name will be unique within an entity and
-                        specifies that the attribute participates in the key
-                        that is being defined.</doc:description>
-                        
+                        identifier of an attribute that can be found in the
+                        identified entity. This id will be unique within an
+                        entity and specifies that the attribute participates
+                        in the key that is being defined.</doc:description>
+                        <doc:example>site</doc:example>
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -360,15 +358,15 @@
                   <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Attribute Name</doc:tooltip>
-                        <doc:summary>Name of an attribute found in the
-                        identified entity</doc:summary>
+                        <doc:tooltip>Attribute Reference</doc:tooltip>
+                        <doc:summary>The identifier of an attribute found
+                        in the identified entity</doc:summary>
                         <doc:description>The attributeReference element is the
-                        name of an attribute that can be found in the identified
-                        entity. This name will be unique within an entity and
-                        specifies that the attribute participates in the key
-                        that is being defined.</doc:description>
-                        
+                        identifier of an attribute that can be found in the
+                        identified entity. This id will be unique within an
+                        entity and specifies that the attribute participates
+                        in the key that is being defined.</doc:description>
+                        <doc:example>site</doc:example>
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -464,15 +462,15 @@
             <xs:element name="attributeReference" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>Attribute Name</doc:tooltip>
-                  <doc:summary>Name of an attribute found in the identified
-                  entity</doc:summary>
-                  <doc:description>The attributeReference element is the name of
-                  an attribute that can be found in the identified entity. This
-                  name will be unique within an entity and specifies that the
-                  attribute participates in the key that is being
-                  defined.</doc:description>
-                  
+                  <doc:tooltip>Attribute Reference</doc:tooltip>
+                  <doc:summary>The identifier of an attribute found
+                  in the identified entity</doc:summary>
+                  <doc:description>The attributeReference element is the
+                  identifier of an attribute that can be found in the
+                  identified entity. This id will be unique within an
+                  entity and specifies that the attribute participates
+                  in the key that is being defined.</doc:description>
+                  <doc:example>site</doc:example>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
