@@ -1,47 +1,18 @@
 <?xml version="1.0"?>
-<xs:schema 
-    targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" 
-    xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" 
-    xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
-    xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
-    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
-    xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
-    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" 
-    xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" 
-    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" 
-    xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
-    schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" 
-    schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" 
-    schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
-    schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" 
-    schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" 
-    schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
-    schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
-    schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
-    schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
-    schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" 
-    schemaLocation="eml-view.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" schemaLocation="eml-dataTable.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" schemaLocation="eml-spatialRaster.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" schemaLocation="eml-spatialVector.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" schemaLocation="eml-storedProcedure.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -58,9 +29,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-09 09:12:53 $'
-      '$Revision: 1.36 $'
+        '$Author: mccartne $'
+          '$Date: 2002-09-09 14:30:42 $'
+      '$Revision: 1.37 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -137,19 +108,17 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="maintenance" type="txt:TextType" minOccurs="0">
+        <xs:element name="maintenance" type="MaintenanceBase" minOccurs="0">
           <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Maintenance Description</doc:tooltip>
-              <doc:summary>A description of the maintenance of this data
+            <xs:appinfo><doc:tooltip>Maintenance</doc:tooltip>
+<doc:summary>A description of the maintenance of this data
               resource.</doc:summary>
-              <doc:description>A description of the maintenance of this data
+<doc:description>A description of the maintenance of this data
               resource. This includes information about the frequency of
               update, and whether there is ongoing data
               collection.</doc:description>
-              <doc:example/>
-              <doc:lineage/>
-            </xs:appinfo>
+<doc:example/>
+<doc:lineage>ISO CD 19115.2</lineage></xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
@@ -212,5 +181,84 @@
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:complexType name="MaintenanceBase">
+    <xs:sequence>
+      <xs:element name="description" type="txt:TextType">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Maintenance Description</doc:tooltip>
+<doc:summary>A text description of the maintenance of this data
+              resource.</doc:summary>
+<doc:description>A text description of the maintenance of this data
+              resource.</doc:description>
+<doc:example/>
+<doc:lineage>ISO CD 19115.2</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maintenanceUpdateFrequency" type="MaintUpFreqType" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Maintenance Update Frequency</doc:tooltip>
+<doc:summary>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:summary>
+<doc:description>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:description>
+<doc:example/>
+<doc:lineage>SO/CD 19115.2</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="changeHistory" type="ChangeHistoryBase" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Change History</doc:tooltip>
+<doc:summary>A description of changes made to the data since its release.</doc:summary>
+<doc:description>A description of changes made to the data since its release.</doc:description>
+<doc:example/>
+<doc:lineage>EML 2.0</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MaintUpFreqType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="annually"/>
+      <xs:enumeration value="asNeeded"/>
+      <xs:enumeration value="biannually"/>
+      <xs:enumeration value="continually"/>
+      <xs:enumeration value="daily"/>
+      <xs:enumeration value="irregular"/>
+      <xs:enumeration value="monthly"/>
+      <xs:enumeration value="notPlanned"/>
+      <xs:enumeration value="weekly"/>
+      <xs:enumeration value="unkown"/>
+      <xs:enumeration value="otherMaintenancePeriod"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ChangeHistoryBase">
+    <xs:sequence>
+      <xs:element name="changeScope" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Change Scope</doc:tooltip>
+<doc:summary>An expression describing the scope to which the documented change was applied.</doc:summary>
+<doc:description>The expression should unambigously identify the entity(s) and attribute(s) that were changed.</doc:description>
+<doc:example/>
+<doc:lineage>EML 2.0</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="oldValue" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Old Value</doc:tooltip>
+<doc:summary>The previous value of the data prior to the change.</doc:summary>
+<doc:description>The previous value or an expression that describes the previous value of the data.</doc:description>
+<doc:example/>
+<doc:lineage>EML 2.0</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="changeDate" type="xs:date">
+        <xs:annotation>
+          <xs:appinfo><doc:tooltip>Change Date</doc:tooltip>
+<doc:summary>The date the changes were applied.</doc:summary>
+<doc:description></doc:description>
+<doc:example/>
+<doc:lineage>EML 2.0</lineage></xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
 </xs:schema>
