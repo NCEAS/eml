@@ -108,13 +108,12 @@
         </attributeDefinition>
         <storageType>gYear</storageType>
         <measurementScale>
-          <interval>
-            <unit><formattedDateTimeUnit>YYYY</formattedDateTimeUnit></unit>
-            <precision>1</precision>
+          <ordinal>
             <dateTimeDomain id="dd.2">
+              <formatString>YYYY</formatString>
               <minimum>1944</minimum>
             </dateTimeDomain>
-          </interval>
+          </ordinal>
         </measurementScale>
       </attribute>
       <attribute  id="att.3">
@@ -284,6 +283,22 @@
               <minimum>0</minimum>
             </numericDomain>
           </ratio>
+        </measurementScale>
+      </attribute>
+      <attribute id="att.14">
+        <attributeName>time</attributeName>
+        <attributeLabel>Time</attributeLabel>
+        <attributeDefinition>The time of day for this observation, 24 hour clock
+        </attributeDefinition>
+        <storageType>time</storageType>
+        <measurementScale>
+          <ordinal>
+            <dateTimeDomain id="dd.3">
+              <formatString>hh:mm:ss.s</formatString>
+              <minimum>15:00:00.0</minimum>
+              <maximum>19:00:00.0</maximum>
+            </dateTimeDomain>
+          </ordinal>
         </measurementScale>
       </attribute>
     </attributeList>
