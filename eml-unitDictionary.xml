@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-13 20:28:14 $'
-      '$Revision: 1.7 $'
+          '$Date: 2002-06-13 21:21:39 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -118,11 +118,6 @@
     <dimension name="length"/>
   </unitType>
 
-  <unitType id="magneticFieldStrength" name="magnetic field strength">
-    <dimension name="charge" />
-    <dimension name="length" power="-1"/>
-  </unitType>
-
   <unitType id="amountOfSubstanceConcentration" name="amount of substance concentration">
     <dimension name="amount" />
     <dimension name="length" power="-1"/>
@@ -158,7 +153,7 @@
 <!-- ====================== fundamental SI units =========================== -->
 <!-- ======================================================================= -->
 
-  <unit id="second" name="second" unitType="time">
+  <unit id="second" name="second" unitType="time" abbreviation="sec">
     <description>The SI unit of time</description>
   </unit>
 
@@ -200,14 +195,32 @@
 <!-- ======================================================================= -->
 
   <!--grams-->
+  <unit id="nanogram" name="nanogram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000000000001" abbreviation="ng">
+    <description>0.000000000001 kg.</description>
+  </unit>
   <unit id="microgram" name="microgram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000000001" abbreviation="microg">
-    <description>0.000001 kg.</description>
+    <description>0.000000001 kg.</description>
   </unit>
   <unit id="milligram" name="milligram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000001" abbreviation="mg">
     <description>0.000001 kg.</description>
   </unit>
+  <unit id="centigram" name="centigram" unitType="mass" parentSI="kilogram" multiplierToSI="0.00001" abbreviation="cg">
+    <description>0.00001 kg.</description>
+  </unit>
+   <unit id="decigram" name="decigram" unitType="mass" parentSI="kilogram" multiplierToSI="0.0001" abbreviation="dg">
+    <description>0.0001 kg.</description>
+  </unit>
   <unit id="gram" name="gram" unitType="mass" parentSI="kilogram" multiplierToSI="0.001" abbreviation="g">
     <description>0.001 kg.</description>
+  </unit>
+   <unit id="dekagram" name="dekagram" unitType="mass" parentSI="kilogram" multiplierToSI="0.01" abbreviation="dag">
+    <description>.01 kg.</description>
+  </unit>
+   <unit id="hectogram" name="hectogram" unitType="mass" parentSI="kilogram" multiplierToSI="0.1" abbreviation="hg">
+    <description>.1 kg.</description>
+  </unit>
+   <unit id="megagram" name="megagram" unitType="mass" parentSI="kilogram" multiplierToSI="100" abbreviation="Mg">
+    <description>100 kg</description>
   </unit>
 
   <!--temp-->
@@ -228,13 +241,49 @@
   <unit id="centimeter" name="centimeter" parentSI="meter" multiplierToSI=".01" abbreviation="cm">
     <description>.01 meters</description>
   </unit>
+  <unit id="decimeter" name="decimeter" parentSI="meter" multiplierToSI=".1" abbreviation="dm">
+    <description>.1 meters</description>
+  </unit>
+  <unit id="dekameter" name="dekameter" parentSI="meter" multiplierToSI="10" abbreviation="dam">
+    <description>10 meters</description>
+  </unit>
+  <unit id="hectometer" name="hectometer" parentSI="meter" multiplierToSI="100" abbreviation="hm">
+    <description>100 meters</description>
+  </unit>
   <unit id="kilometer" name="kilometer" parentSI="meter" multiplierToSI="1000" abbreviation="km">
     <description>1000 meters</description>
   </unit>
+  <unit id="megameter" name="megameter" parentSI="meter" multiplierToSI="1000000" abbreviation="Mm">
+    <description>1000000 meters</description>
+  </unit>
 
   <!--seconds-->
-  <unit id="millisecond" name="millisecond" parentSI="second" multiplierToSI=".001" abbreviation="millisec">
+  <unit id="nanosecond" name="nanosecond" parentSI="second" multiplierToSI=".000000001" abbreviation="nsec">
+    <description>1/1000000 of a second</description>
+  </unit>
+  <unit id="microsecond" name="microsecond" parentSI="second" multiplierToSI=".000001" abbreviation="microsec">
+    <description>1/100000 of a second</description>
+  </unit>
+  <unit id="millisecond" name="millisecond" parentSI="second" multiplierToSI=".001" abbreviation="msec">
     <description>1/1000 of a second</description>
+  </unit>
+  <unit id="centisecond" name="centisecond" parentSI="second" multiplierToSI=".01" abbreviation="csec">
+    <description>1/100 of a second</description>
+  </unit>
+  <unit id="decisecond" name="decisecond" parentSI="second" multiplierToSI=".1" abbreviation="dsec">
+    <description>1/10 of a second</description>
+  </unit>
+  <unit id="dekasecond" name="dekasecond" parentSI="second" multiplierToSI="10" abbreviation="dasec">
+    <description>10 seconds</description>
+  </unit>
+  <unit id="hectosecond" name="hectosecond" parentSI="second" multiplierToSI="100" abbreviation="hsec">
+    <description>100 seconds</description>
+  </unit>
+  <unit id="kilosecond" name="kilosecond" parentSI="second" multiplierToSI="1000" abbreviation="hsec">
+    <description>1000 seconds</description>
+  </unit>
+  <unit id="megasecond" name="megasecond" parentSI="second" multiplierToSI="1000000" abbreviation="dasec">
+    <description>1000000 seconds</description>
   </unit>
   <unit id="minute" name="minute" parentSI="second" multiplierToSI="60" abbreviation="min">
     <description>60 seconds</description>
@@ -255,10 +304,10 @@
   </unit>
 
   <!--combos of SI-->
-  <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" multiplierToSI=".000001" abbreviation="mg/ml">
+  <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" multiplierToSI="1" abbreviation="mg/ml">
     <description>grams per liter</description>
   </unit>
-  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI=".001" abbreviation="g/l">
+  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI="1" abbreviation="g/l">
     <description>grams per liter</description>
   </unit>
   <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity" multiplierToSI="1">
@@ -269,7 +318,7 @@
   <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="arealDensity" multiplierToSI="1" abbreviation="#/m^2">
     <description>number per meter squared</description>
   </unit>
-  <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="arealDensity" multiplierToSI="100" abbreviation="#/km^2">
+  <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="arealDensity" multiplierToSI="100000000" abbreviation="#/km^2">
     <description>number per kilometer squared</description>
   </unit>
   <unit id="numberPerMeterCubed" name="numberPerMeterCubed" unitType="volumetricDensity" multiplierToSI="1" abbreviation="#/m^3">
