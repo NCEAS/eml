@@ -14,9 +14,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  * 
- *      '$Author: jones $'
- *        '$Date: 2002-09-06 22:25:39 $'
- *    '$Revision: 1.28 $'
+ *      '$Author: chapal $'
+ *        '$Date: 2002-09-12 12:48:21 $'
+ *    '$Revision: 1.29 $'
  * 
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -562,8 +562,10 @@
             <xsl:value-of select="./xs:appinfo/doc:summary"/>-->
             <br><span class="boldtext">Description: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:description"/>
-            <br><span class="boldtext">Example: </span></br>
-            <xsl:value-of select="./xs:appinfo/doc:example"/>
+            <xsl:if test="./xs:appinfo/doc:example">
+              <br><span class="boldtext">Example: </span></br>
+              <xsl:value-of select="./xs:appinfo/doc:example"/>
+            </xsl:if>
             <br><span class="boldtext">Lineage: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:lineage"/>
           </blockquote>
