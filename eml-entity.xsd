@@ -1,8 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:cov="eml:coverage"
-           targetNamespace="eml:entity">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:entity" xmlns="eml:entity" xmlns:cov="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -11,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-16 20:58:20 $'
-      '$Revision: 1.15 $'
+          '$Date: 2001-07-10 17:14:44 $'
+      '$Revision: 1.16 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,9 +42,7 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
   <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
-
   <xs:element name="table-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -63,8 +58,7 @@
           about the entity's orientation, number of records,
           case sensitiveness, and temporal, geographic and taxonomic coverage.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The entity element was introduced into EML 1.4 as file.
         </lineage>
@@ -74,9 +68,7 @@
       <xs:complexContent>
         <xs:extension base="EntityBase">
           <xs:sequence>
-
-            <xs:element name="orientation" nillable="true"
-                        minOccurs="0" maxOccurs="1">
+            <xs:element name="orientation" nillable="true" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -99,8 +91,7 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
-                <xs:attribute name="columnorrow" use="optional" 
-                              default="columnmajor">
+                <xs:attribute name="columnorrow" use="optional" default="columnmajor">
                   <xs:annotation>
                     <xs:appinfo>
                       <tooltip>
@@ -125,16 +116,14 @@
                   </xs:annotation>
                   <xs:simpleType>
                     <xs:restriction base="xs:string">
-                      <xs:enumeration value="columnmajor" />
-                      <xs:enumeration value="rowmajor" />
+                      <xs:enumeration value="columnmajor"/>
+                      <xs:enumeration value="rowmajor"/>
                     </xs:restriction>
                   </xs:simpleType>
                 </xs:attribute>
               </xs:complexType>
-            </xs:element>      
-     
-            <xs:element name="caseSensitive" nillable="true"
-                        minOccurs="0" maxOccurs="1">
+            </xs:element>
+            <xs:element name="caseSensitive" nillable="true" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -182,15 +171,14 @@
                   </xs:annotation>
                   <xs:simpleType>
                     <xs:restriction base="xs:string">
-                      <xs:enumeration value="yes" /> 
-                      <xs:enumeration value="no" />
+                      <xs:enumeration value="yes"/>
+                      <xs:enumeration value="no"/>
                     </xs:restriction>
                   </xs:simpleType>
                 </xs:attribute>
               </xs:complexType>
             </xs:element>
-            <xs:element name="numberOfRecords" type="xs:string"
-                        minOccurs="0" maxOccurs="1">
+            <xs:element name="numberOfRecords" type="xs:string" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -207,9 +195,7 @@
                     such as the number of header lines (see eml-physical
                     for that information).
                   </description>
-                  <example>
-                    <![CDATA[<numberOfRecords>975</numberOfRecords>]]>
-                  </example>
+                  <example><![CDATA[<numberOfRecords>975</numberOfRecords>]]></example>
                   <lineage>
                     Introduced in EML 2
                   </lineage>
@@ -221,7 +207,6 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-
   <xs:element name="other-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -237,8 +222,7 @@
           about the entity's basic identity, its temporal, geographic and
           taxonomic coverage, and its type.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The entity element was introduced into EML 1.4 as file.
         </lineage>
@@ -248,8 +232,7 @@
       <xs:complexContent>
         <xs:extension base="EntityBase">
           <xs:sequence>
-            <xs:element name="entityType" type="xs:string"
-                        minOccurs="1" maxOccurs="1">
+            <xs:element name="entityType" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
                   <tooltip>
@@ -264,22 +247,19 @@
                     type represented in the entity, such as raster image,
                     vector image, etc.
                   </description>
-                  <example>
-                    <![CDATA[<entityType>Raster Image</entityType>]]>
-                  </example>
+                  <example><![CDATA[<entityType>Raster Image</entityType>]]></example>
                   <lineage>
                     The entityType element was introduced into EML 1.4 as 
                     entityFormat.
                   </lineage>
                 </xs:appinfo>
               </xs:annotation>
-            </xs:element>   
+            </xs:element>
           </xs:sequence>
         </xs:extension>
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-
   <xs:complexType name="EntityBase">
     <xs:annotation>
       <xs:appinfo>
@@ -296,17 +276,14 @@
           but can also represent an image or other
           type of data.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The eml-entity was introduced into EML 1.4 as eml-file.
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-
     <xs:sequence>
-      <xs:element name = "identifier" type = "xs:string"
-                  minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="identifier" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -324,9 +301,7 @@
               identifiers can be listed corresponding to different catalog
               systems.
             </description>
-            <example>
-             <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-            </example>
+            <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
             <lineage>
               The 'identifier' field is derived from the eml-dataset 
               meta_file_id filed in EML 1.4.
@@ -334,16 +309,18 @@
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:attribute name="system" use="optional" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <tooltip>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="system" type="xs:string" use="optional">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip>
                   Catalog system
                 </tooltip>
-                <summary>
+                    <summary>
                   The catalog system in which this identifier is used.
                 </summary>
-                <description>
+                    <description>
                   This element gives the name of the catalog system in which
                   this identifier is used.  It is useful to determine the
                   scope of the identifier, and to determine the semantics
@@ -351,20 +328,19 @@
                   can or should this be a URI/URL pointing to the catalog
                   system, or just the name?
                 </description>
-                <example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]>
-                </example>
-                <lineage>
+                    <example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]></example>
+                    <lineage>
                   New to EML 2.0.
                 </lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:attribute>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
         </xs:complexType>
       </xs:element>
-        
-      <xs:element name="entityName" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
+      <xs:element name="entityName" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -386,8 +362,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="entityDescription" type="xs:string"
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="entityDescription" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -409,12 +384,9 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
       <xs:element ref="cov:temporalCov"/>
       <xs:element ref="cov:geographicCov"/>
       <xs:element ref="cov:taxonomicCov"/>
-
     </xs:sequence>
   </xs:complexType>
-
 </xs:schema>
