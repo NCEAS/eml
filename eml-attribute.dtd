@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-03-23 01:58:48 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-03-24 00:51:31 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
      identified by its name. -->
 <!ELEMENT attribute (attributeName, attributeDefinition, unit?, storageType?,
                     codeDefinition* , numericRange* , missingValueCode*,
-                    precision?, fieldFormat?)>
+                    precision?, (delimeter|fieldWidth)?)>
 <!-- Attribute name -->
 <!ELEMENT attributeName (#PCDATA) >
 
@@ -65,9 +65,6 @@
 <!-- Precision; number of significant digits -->
 <!ELEMENT precision   (#PCDATA) >
 
-<!-- Data format -->
-<!ELEMENT fieldFormat (variableWidth|fieldWidth)>
-
 <!--
 Data sets are generally classified as fixedWidth format or
 variableWidth format, but we have determined that this is actually a
@@ -77,12 +74,10 @@ mixed together in the same data file with variableWidth fields.
 In our encoding scheme, the start of each field is assumed to be the
 column after the last column of the previous field, or the first column
 if this is the first field in the dataset.  The end column for each
-field is classified using a field format and some information specific to
-each field format type that indicates in which column the field ends. The
-two types of field formats are variableWidth and fixedWidth. 
-variableWidth fields can vary in their field length, and the end of the
-field is delimited by a special character called a field delimiter,
-usually a comma or a tab character.  fixedWidth fields have a set
+field is classified using either a special character delimeter, or a
+fixed field length.  variableWidth fields can vary in their field length, 
+and the end of the field is delimited by a special character called a field 
+delimiter, usually a comma or a tab character.  fixedWidth fields have a set
 length, and so the end of the field can always be determined by adding
 the fieldWidth to the starting column number.  Here is an example:
 
@@ -93,30 +88,18 @@ April,200aaa,3.4,
 June,300bbb,4.6,
 
 The metadata for the 4 fields would include the following:
-<attribute><name>month</name>
-<fieldFormat><variableWidth><delimiter>,</delimiter>
-</variableWidth></fieldFormat></attribute>
+<attribute><name>month</name><delimiter>,</delimiter></attribute>
 
-<attribute><name>sitecode</name>
-<fieldFormat><fixedWidth><fieldWidth>3</fieldWidth>
-</fixedWidth></fieldFormat></attribute>
+<attribute><name>sitecode</name><fieldWidth>3</fieldWidth></attribute>
 
-<attribute><name>subsitecode</name>
-<fieldFormat><fixedWidth><fieldWidth>3</fieldWidth>
-</fixedWidth></fieldFormat></attribute>
+<attribute><name>subsitecode</name><fieldWidth>3</fieldWidth></attribute>
 
-<attribute><name>response</name>
-<fieldFormat><variableWidth><delimiter>,</delimiter>
-</variableWidth></fieldFormat></attribute>
+<attribute><name>response</name><delimiter>,</delimiter></attribute>
 
 -->
 
-<!-- Attribute variable width -->
-<!ELEMENT variableWidth (delimiter+)>
 <!-- Character used to delimit end of field -->
 <!ELEMENT delimiter (#PCDATA)>
-<!-- Attribute fixed width -->
-<!ELEMENT fixedWidth (fieldWidth)>
 <!-- Width of field in characters -->
 <!ELEMENT fieldWidth (#PCDATA)>
 
