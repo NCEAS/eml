@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2003-10-28 18:02:21 $'
-      '$Revision: 1.101 $'
+          '$Date: 2003-10-28 20:33:53 $'
+      '$Revision: 1.102 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -638,7 +638,8 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="dateTimeDomain" type="DateTimeDomainType"/>
+                    <xs:element name="dateTimeDomain" type="DateTimeDomainType"
+                                minOccurs="0"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -1345,7 +1346,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="BoundsGroup"/>
+        <xs:group ref="BoundsDateGroup"/>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
@@ -1355,8 +1356,8 @@
     <xs:sequence>
     <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
       <xs:complexType>
-        <xs:sequence>
-          <xs:element name="minimum" minOccurs="0" maxOccurs="unbounded">
+        <xs:choice>
+          <xs:element name="minimum" minOccurs="1" maxOccurs="1">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Minimum numeric bound</doc:tooltip>
@@ -1369,7 +1370,7 @@
             </xs:annotation>
             <xs:complexType>
               <xs:simpleContent>
-                <xs:extension base="xs:string">
+                <xs:extension base="xs:decimal">
                   <xs:attribute name="exclusive" type="xs:boolean" 
                   use="required">
                     <xs:annotation>
@@ -1389,7 +1390,6 @@
                         than or equal to 5, but if exclusive is true than
                         all values must be greater than 5 (not including
                         5.0 itself).
-
                         </doc:description>
                       </xs:appinfo>
                     </xs:annotation>
@@ -1398,7 +1398,7 @@
               </xs:simpleContent>
             </xs:complexType>
           </xs:element>
-          <xs:element name="maximum" minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="maximum" minOccurs="1" maxOccurs="1">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Maximum numeric bound</doc:tooltip>
@@ -1406,6 +1406,142 @@
                 attribute</doc:summary>
                 <doc:description>The maximum element specifies the
                 maximum permitted value of a numeric
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:decimal">
+                  <xs:attribute name="exclusive" type="xs:boolean" 
+                  use="required">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Exclusive
+                        </doc:tooltip>
+                        <doc:summary>Exclusive bounds flag
+                        </doc:summary>
+                        <doc:description>If exclusive is set to true, then
+                        the value specifies a lower bound not including
+                        the value itself.  Setting exclusive to true is
+                        the equivalent of using a less-than or greater-than
+                        operator, while setting it to false is the same as
+                        using a less-than-or-equals or greater-than-or-equals
+                        operator. For example, if the minimum is "5" and
+                        exclusive is false, then all values must be greater
+                        than or equal to 5, but if exclusive is true than
+                        all values must be greater than 5 (not including
+                        5.0 itself).
+                        </doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+
+          <xs:sequence>
+            <xs:element name="minimum" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Minimum numeric bound</doc:tooltip>
+                  <doc:summary>Minimum numeric bound of
+                  attribute</doc:summary>
+                  <doc:description>The minimum element specifies the
+                  minimum permitted value of a numeric
+                  attribute.</doc:description>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:decimal">
+                    <xs:attribute name="exclusive" type="xs:boolean" 
+                    use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
+                          </doc:tooltip>
+                          <doc:summary>Exclusive bounds flag
+                          </doc:summary>
+                          <doc:description>If exclusive is set to true, then
+                          the value specifies a lower bound not including
+                          the value itself.  Setting exclusive to true is
+                          the equivalent of using a less-than or greater-than
+                          operator, while setting it to false is the same as
+                          using a less-than-or-equals or greater-than-or-equals
+                          operator. For example, if the minimum is "5" and
+                          exclusive is false, then all values must be greater
+                          than or equal to 5, but if exclusive is true than
+                          all values must be greater than 5 (not including
+                          5.0 itself).
+                          </doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="maximum" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Maximum numeric bound</doc:tooltip>
+                  <doc:summary>Maximum numeric bound of
+                  attribute</doc:summary>
+                  <doc:description>The maximum element specifies the
+                  maximum permitted value of a numeric
+                  attribute.</doc:description>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:decimal">
+                    <xs:attribute name="exclusive" type="xs:boolean" 
+                    use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
+                          </doc:tooltip>
+                          <doc:summary>Exclusive bounds flag
+                          </doc:summary>
+                          <doc:description>If exclusive is set to true, then
+                          the value specifies a lower bound not including
+                          the value itself.  Setting exclusive to true is
+                          the equivalent of using a less-than or greater-than
+                          operator, while setting it to false is the same as
+                          using a less-than-or-equals or greater-than-or-equals
+                          operator. For example, if the minimum is "5" and
+                          exclusive is false, then all values must be greater
+                          than or equal to 5, but if exclusive is true than
+                          all values must be greater than 5 (not including
+                          5.0 itself).
+                          </doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="BoundsDateGroup">
+    <xs:sequence>
+    <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+      <xs:complexType>
+        <xs:choice>
+          <xs:element name="minimum" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Minimum date bound</doc:tooltip>
+                <doc:summary>Minimum date bound of
+                attribute</doc:summary>
+                <doc:description>The minimum element specifies the
+                minimum permitted value of a date
                 attribute.</doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -1431,7 +1567,6 @@
                         than or equal to 5, but if exclusive is true than
                         all values must be greater than 5 (not including
                         5.0 itself).
-
                         </doc:description>
                       </xs:appinfo>
                     </xs:annotation>
@@ -1440,7 +1575,133 @@
               </xs:simpleContent>
             </xs:complexType>
           </xs:element>
-        </xs:sequence>
+          <xs:element name="maximum" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum date bound</doc:tooltip>
+                <doc:summary>Maximum date bound of
+                attribute</doc:summary>
+                <doc:description>The maximum element specifies the
+                maximum permitted value of a date
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="exclusive" type="xs:boolean" 
+                  use="required">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Exclusive
+                        </doc:tooltip>
+                        <doc:summary>Exclusive bounds flag
+                        </doc:summary>
+                        <doc:description>If exclusive is set to true, then
+                        the value specifies a lower bound not including
+                        the value itself.  Setting exclusive to true is
+                        the equivalent of using a less-than or greater-than
+                        operator, while setting it to false is the same as
+                        using a less-than-or-equals or greater-than-or-equals
+                        operator. For example, if the minimum is "5" and
+                        exclusive is false, then all values must be greater
+                        than or equal to 5, but if exclusive is true than
+                        all values must be greater than 5 (not including
+                        5.0 itself).
+                        </doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+
+          <xs:sequence>
+            <xs:element name="minimum" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Minimum date bound</doc:tooltip>
+                  <doc:summary>Minimum date bound of
+                  attribute</doc:summary>
+                  <doc:description>The minimum element specifies the
+                  minimum permitted value of a date
+                  attribute.</doc:description>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="exclusive" type="xs:boolean" 
+                    use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
+                          </doc:tooltip>
+                          <doc:summary>Exclusive bounds flag
+                          </doc:summary>
+                          <doc:description>If exclusive is set to true, then
+                          the value specifies a lower bound not including
+                          the value itself.  Setting exclusive to true is
+                          the equivalent of using a less-than or greater-than
+                          operator, while setting it to false is the same as
+                          using a less-than-or-equals or greater-than-or-equals
+                          operator. For example, if the minimum is "5" and
+                          exclusive is false, then all values must be greater
+                          than or equal to 5, but if exclusive is true than
+                          all values must be greater than 5 (not including
+                          5.0 itself).
+                          </doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="maximum" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Maximum date bound</doc:tooltip>
+                  <doc:summary>Maximum date bound of
+                  attribute</doc:summary>
+                  <doc:description>The maximum element specifies the
+                  maximum permitted value of a date
+                  attribute.</doc:description>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="exclusive" type="xs:boolean" 
+                    use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
+                          </doc:tooltip>
+                          <doc:summary>Exclusive bounds flag
+                          </doc:summary>
+                          <doc:description>If exclusive is set to true, then
+                          the value specifies a lower bound not including
+                          the value itself.  Setting exclusive to true is
+                          the equivalent of using a less-than or greater-than
+                          operator, while setting it to false is the same as
+                          using a less-than-or-equals or greater-than-or-equals
+                          operator. For example, if the minimum is "5" and
+                          exclusive is false, then all values must be greater
+                          than or equal to 5, but if exclusive is true than
+                          all values must be greater than 5 (not including
+                          5.0 itself).
+                          </doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:choice>
       </xs:complexType>
     </xs:element>
     </xs:sequence>
