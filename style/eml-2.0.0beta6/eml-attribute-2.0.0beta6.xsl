@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-17 17:49:08 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-20 21:56:07 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -37,10 +37,16 @@
   <xsl:template match="/">
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" 
-              href="{$stylePath}/{$qformat}/{$qformat}.css" />
+        <link rel="stylesheet" type="text/css"
+                href="{$stylePath}/{$qformat}/{$qformat}.css" />
+        <script language="Javascript" type="text/JavaScript"
+                src="{$stylePath}/{$qformat}/{$qformat}.js" />
+        <script language="Javascript" type="text/JavaScript"
+                src="{$styleCommonPath}/branding.js" />      
       </head>
       <body>
+
+        <script language="JavaScript">insertTemplateOpening();</script> 
         <center>
           <h1>Attribute structure description</h1>
           <h3>Ecological Metadata Language</h3>
@@ -99,6 +105,9 @@
         </td>
         </tr>
         </table>
+        
+        <script language="JavaScript">insertTemplateClosing();</script>
+        
       </body>
     </html>
   </xsl:template>

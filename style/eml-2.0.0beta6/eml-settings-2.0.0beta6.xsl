@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:36:14 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-20 21:56:07 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -71,9 +71,24 @@
     */
 -->
 
-<xsl:param name="stylePath">@style-path@</xsl:param>
+<xsl:param name="stylePath">@style-skins-path@</xsl:param>
 
-  
+
+<!--
+    /**
+    *   the path of the directory where the common javascript and css files 
+    *   reside - i.e the files that are not skin-specific. Starts
+    *   with context name, eg: /myContextRoot/styleCommonDirectory.
+    *   (As found in "http://hostname:port/myContextRoot/styleCommonDirectory").
+    *   Needs leading slash but not trailing slash
+    *
+    *   EXAMPLE:
+    *       <xsl:param name="styleCommonPath">/brooke/style/common</xsl:param>
+    */
+-->
+
+<xsl:param name="styleCommonPath">@style-common-path@</xsl:param>     
+    
 <!-- 
     /**
     *   The base URI to be used for the href link to each document in a 

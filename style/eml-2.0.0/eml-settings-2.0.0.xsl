@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 20:14:18 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2003-11-20 21:56:07 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@
 -->
 
 <!--<xsl:param name="stylePath">@style-path@</xsl:param>-->
-    <xsl:param name="stylePath">@style-path@</xsl:param> 
+    <xsl:param name="stylePath">@style-skins-path@</xsl:param> 
 
 <!--
     /**
@@ -99,7 +99,7 @@
     */
 -->
 
-    <xsl:param name="styleCommonPath">/knb/style/common</xsl:param>     
+    <xsl:param name="styleCommonPath">@style-common-path@</xsl:param>     
     
     
 
