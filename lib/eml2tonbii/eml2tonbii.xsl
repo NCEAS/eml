@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-07 17:06:10 $'
-  * '$Revision: 1.10 $'
+  *     '$Date: 2003-05-07 22:30:39 $'
+  * '$Revision: 1.11 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -875,7 +875,14 @@ version="1.0">
                     
                   </xsl:element>
                   <xsl:element name="casesens">
-                    <xsl:value-of select="'Y'"/>
+                    <xsl:choose>
+                      <xsl:when test="//caseSensitive!=''">
+                        <xsl:value-of select="//caseSensitive"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'N/A'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </xsl:element>
                   <xsl:element name="authent">
                     <xsl:choose>
