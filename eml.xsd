@@ -34,8 +34,8 @@ xmlns="eml:eml-2.0.0beta8">
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: jones $'
-          '$Date: 2002-06-12 20:23:58 $'
-      '$Revision: 1.19 $'
+          '$Date: 2002-06-12 22:13:28 $'
+      '$Revision: 1.20 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -168,6 +168,14 @@ xmlns="eml:eml-2.0.0beta8">
             xpath=".//dataTable | .//spatialRaster | .//spatialVector | .//storedProcedure | .//view" />
             <xs:field xpath="@id" />
         </xs:key>
+        <xs:key name="unitIdentifierKey">
+            <xs:selector xpath=".//unitList/unit" />
+            <xs:field xpath="@id" />
+        </xs:key>
+                <xs:keyref name="unitReference" refer="unitIdentifierKey">
+            <xs:selector xpath=".//unit/customUnit" />
+            <xs:field xpath="." />
+        </xs:keyref>
     </xs:element>
 </xs:schema>
 
