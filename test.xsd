@@ -28,16 +28,30 @@
       <xs:sequence>
         <xs:element name="contact" type="person" maxOccurs="unbounded"/>
         <xs:element name="party" type="person" maxOccurs="unbounded"/>
+        <xs:element name="group">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="contact" type="person" maxOccurs="unbounded"/>
+              <xs:element name="group2">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="contact" type="person" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
 
     <xs:key name="identifierKey">
-      <xs:selector xpath="./contact"/>
+      <xs:selector xpath=".//contact"/>
       <xs:field xpath="@id"/>
     </xs:key>
-    <!--<xs:keyref name="replacementReference" refer="identifierKey">
+    <xs:keyref name="replacementReference" refer="identifierKey">
       <xs:selector xpath=".//references"/>
       <xs:field xpath="."/>
-    </xs:keyref>-->
+    </xs:keyref>
   </xs:element>
 </xs:schema>
