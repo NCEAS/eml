@@ -16,9 +16,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-13 19:51:01 $'
-      '$Revision: 1.6 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-13 21:23:49 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,15 +66,15 @@
         an open source, community oriented project
         dedicated to providing a high-quality metadata specification
         for describing data relevant to the ecological discipline.
-        The project is completely comprised of 
-        <ulink url="members.html">voluntary project members</ulink> who donate 
+        The project is completely comprised of
+        <ulink url="members.html">voluntary project members</ulink> who donate
         their time and experience in order to advance
         information management for ecology. Project decisions are made by
-        concensus according to the voting procedures described in the <ulink 
+        concensus according to the voting procedures described in the <ulink
         url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
         Charter</ulink>.  Significant contributions for these recent releases
         have come from individuals at NCEAS, the Long Term Ecological
-        Research Program (CAP, NET, KBS, JOR), and the Joseph W. Jones 
+        Research Program (CAP, NET, KBS, JOR), and the Joseph W. Jones
         Ecological Research Center in Newton, GA.
         </para>
       </answer>
@@ -161,7 +161,7 @@
 
       <answer>
         <para>All the documents associated with the EML development effort are
-        available via the project web server at 
+        available via the project web server at
         <ulink url="http://knb.ecoinformatics.org/software/eml/">
         http://knb.ecoinformatics.org/software/eml/</ulink>.
 
@@ -179,13 +179,13 @@
 
       <answer>
         <para>The Knowledge Network for Biocomplexity project has developed a
-        software client specifically to address this need. 
+        software client specifically to address this need.
         <ulink url="http://knb.ecoinformatics.org/software/">Morpho</ulink>
 
         (after the butterfly genus) is written in java (making portable across
         computer platforms) combines an easy to use interface to EML with a
         number of tools to make it easier for ecologists to document data.
-        These include a reverse-engineering wizard. Morpho is available from 
+        These include a reverse-engineering wizard. Morpho is available from
         <ulink url="http://knb.ecoinformatics.org/software">
         http://knb.ecoinformatics.org/software</ulink>.  Morpho currently
         supports the EML 2.0.0beta6 release, although the Morpho developers
@@ -230,7 +230,7 @@
       </question>
 
       <answer>
-        <para>No, but there is software available to work with EML. See 
+        <para>No, but there is software available to work with EML. See
         <link linkend="id.7">FAQ 7</link>
 
         .</para>
@@ -249,11 +249,10 @@
 
         <itemizedlist>
           <listitem>
-            <para>CASE 1: Metadata is currently in a text format (not stored in
-            a database). 
-            <orderedlist>
-              <title>CONVERSION METHODS:</title>
+            <para >Case 1: If your metadata is currently in a text format
+            (not stored in a database) use the following conversion methods.
 
+            <orderedlist>
               <listitem>
                 <para>Write a script (PERL, PHP, JAVA, etc.) to convert the
                 text into EML compliant XML.</para>
@@ -266,11 +265,11 @@
               </listitem>
 
               <listitem>
-                <para>Use an special purpose XML editor that generates EML ( 
+                <para>Use an special purpose XML editor that generates EML (
                 <ulink url="http://knb.ecoinformatics.org/software">
                 Morpho</ulink>
 
-                or 
+                or
                 <ulink url="http://ces.asu.edu/bdi/subjects/xylographa">
                 Xylographa</ulink>
 
@@ -298,10 +297,9 @@
           </listitem>
 
           <listitem>
-            <para>CASE 2: Metadata is stored in a relational database 
+            <para>Case 2: If your metadata is stored in a relational database
+            use the following conversion methods.
             <orderedlist>
-              <title>CONVERSION METHODS:</title>
-
               <listitem>
                 <para>Both Microsoft SQL Server and Oracle have utilities to
                 generate XML from their database. If you use a tool like that,
@@ -310,7 +308,7 @@
               </listitem>
 
               <listitem>
-                <para>Use a vendor neutral Database-to-XML generator such as 
+                <para>Use a vendor neutral Database-to-XML generator such as
                 <ulink url="http://xml.apache.org/cocoon/">Cocoon</ulink>
 
                 (an Apache open source free tool). Cocoon can query the
@@ -320,7 +318,7 @@
               </listitem>
 
               <listitem>
-                <para>Use a specialized tool such as 
+                <para>Use a specialized tool such as
                 <ulink url="http://ces.asu.edu/bdi/subjects/xanthoria/">
                 Xanthoria</ulink>
 
@@ -340,11 +338,9 @@
           </listitem>
 
           <listitem>
-            <para>CASE 3: Metadata is already in XML but in some other form
-            such as NBII or FGDC 
+            <para>Case 3: If your metadata is already in XML but in some other
+            form such as NBII or FGDC use the following conversion method.
             <orderedlist>
-              <title>CONVERSION METHOD:</title>
-
               <listitem>
                 <para>Write an XSLT script to convert from the current format
                 to EML (e.g. FGDC to EML).</para>
@@ -355,7 +351,7 @@
         </itemizedlist>
 
         <para>NOTE: In each of the cases it may be necessary to add some
-        additional metadata in order to produce EML compliant documents. 
+        additional metadata in order to produce EML compliant documents.
         <ulink url="http://knb.ecoinformatics.org/software">Morpho</ulink>
 
         will automatically create EML compliant metadata either by adding it
@@ -372,15 +368,15 @@
 
       <answer>
         <para>EML is an exchange standard for communication of metadata but it
-        can be used as the framework for a data management system. 
+        can be used as the framework for a data management system.
         <ulink url="http://knb.ecoinformatics.org/software">Metacat</ulink>
 
         is a multipurpose XML metadata and data repository that is optimized
         for use with EML. If you store your metadata in a relational database
-        management system or plan to then there are also solutions. 
+        management system or plan to then there are also solutions.
         <ulink url="http://xml.apache.org/cocoon/">Cocooon</ulink>
 
-        and 
+        and
         <ulink url="http://ces.asu.edu/bdi/subjects/xanthoria/">
         Xanthoria</ulink>
 
@@ -421,7 +417,7 @@
       </question>
 
       <answer>
-        <para>With 
+        <para>With
         <ulink
         url="http://www.w3.org/TR/xmlschema-0/#specifying%20Keys&amp;theirRefs">
         key and keyref</ulink>
@@ -449,25 +445,25 @@
         identifiers is enforced by defining an XML Schema "key" for the "id"
         elements and a "keyref" for the "references" elements. Thus, any XML
         parser that supports XML Schema validation will be able to validate the
-        correspondence between each "id" and "references" field (e.g., 
+        correspondence between each "id" and "references" field (e.g.,
         <ulink url="http://xml.apache.org/xerces2-j/index.html">Xerces</ulink>
 
         2.0 supports this). Here's a fragemnt of an example xml doc to
-        illustrate: 
+        illustrate:
         <programlisting>
         <![CDATA[
-            ... 
-            <creator id="id.p1"> 
-              <individualName><surName>Jones</surName></individualName> 
-            </creator> 
-            <associatedParty> 
-              <references>id.p1</references> 
-              <role>lackey</role> 
-            </associatedParty> 
-            <contact> 
-              <references>id.p1</references> 
-            </contact> 
-            ... 
+            ...
+            <creator id="id.p1">
+              <individualName><surName>Jones</surName></individualName>
+            </creator>
+            <associatedParty>
+              <references>id.p1</references>
+              <role>lackey</role>
+            </associatedParty>
+            <contact>
+              <references>id.p1</references>
+            </contact>
+            ...
         ]]>
         </programlisting>
         </para>
@@ -507,7 +503,7 @@
         its attributes from the stream. There are 3 distribution types, online,
         offline, and inline. To include data in EML you would populate the
         inline element with the data file described in the data format element.
-        The data that is in the inline element should conform to the 
+        The data that is in the inline element should conform to the
         description provided by the eml-physical module.
         Binary data files can be included using Base64 encoding.</para>
       </answer>
@@ -534,7 +530,7 @@
 
       <answer>
         <para>No. As of EML 2.0.0rc1 we are no longer creating DTDs as part of
-        the EML release. Only 
+        the EML release. Only
         <ulink url="http://www.w3.org/XML/Schema">XML Schemas</ulink>
 
         will be released.</para>
@@ -599,11 +595,11 @@
         development of the EML schemas, writing documentation, and helping
         with maintenance, among others.
         </para>
-        <para>You can contact the 
+        <para>You can contact the
         <ulink url="mailto:eml-dev@ecoinformatics.org">eml-dev mailing
         list</ulink>
         if you would like to make a contribution in person-hours to this
-        project and would like to discuss how that might occur.  In general, 
+        project and would like to discuss how that might occur.  In general,
         we want all of the help we can get!</para>
       </answer>
     </qandaentry>
@@ -614,11 +610,11 @@
       </question>
 
       <answer>
-        <para>You can download archived releases from 
+        <para>You can download archived releases from
         <ulink url="http://knb.ecoinformatics.org/software/eml/">
         http://knb.ecoinformatics.org/software/eml/</ulink>
 
-        or you can check out the latest development version from our 
+        or you can check out the latest development version from our
         <ulink url="http://cvs.ecoinformatics.org">CVS</ulink>
 
         server.</para>
