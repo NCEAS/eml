@@ -61,8 +61,8 @@
         -->
 
 <!-- Class 4 B -->
-<!ELEMENT eml-structure (meta_file_id, variable*)>
-<!ATTLIST eml-structure description CDATA #FIXED "Variable description for a file">
+<!ELEMENT eml-variable (meta_file_id, variable*)>
+<!ATTLIST eml-variable description CDATA #FIXED "Variable description for a file">
 
 <!ELEMENT meta_file_id (#PCDATA)>
 <!ATTLIST meta_file_id description CDATA #FIXED "Unique identifier of this metadata record">
