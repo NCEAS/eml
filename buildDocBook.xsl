@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.42 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-02 16:21:10 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -429,7 +429,7 @@
       <title>Reusable Content</title>
       <para>
         EML allows the reuse of previously defined structured content (DOM
-        sub-trees) through the use of ID/IDREF type references.  In order
+        sub-trees) through the use of key/keyRef type references.  In order
         for an EML package to remain cohesive and to allow for the cross
         platform compatability of packages, the following rules with respect
         to packaging must be followed.

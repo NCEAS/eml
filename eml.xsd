@@ -4,7 +4,7 @@
     xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
     xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
     xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0rc1"
+    xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc1"
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1"
     xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc1"
@@ -37,9 +37,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:42 $'
-      '$Revision: 1.38 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-02 16:21:10 $'
+      '$Revision: 1.39 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -222,7 +222,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="protocol" type="pro:ProtocolType">
+          <xs:element name="protocol" type="prot:ProtocolType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Protocol Resource</doc:tooltip>
@@ -351,52 +351,5 @@
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
-    <!--
-    <xs:key name="identifierKey">
-      <xs:selector xpath="./dataset/creator|./dataset/contact"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-    -->
-      <!--
-      <xs:selector xpath=".//dataset|.//creator|.//contact"/>
-      <xs:selector xpath=".//access|.//attribute|.//attributeList|.//constraint|.//coverage|.//temporalCoverage|.//geographicCoverage|.//taxonomicCoverage|.//dataset/*|.//dataSource|.//dataTable|.//otherEntity|.//citation|.//address|.//conferenceLocation|.//party|.//originator|.//creator/*|.//contact/*|.//publisher|.//editor|.//recipient|.//performer|.//institution|.//metadataProvider|.//associatedParty|.//personnel|.//physical|.//connectionDefinition|.//distribution|.//researchProject|.//project|.//relatedProject|.//software|.//spatialRaster|.//spatialReference|.//spatialVector|.//storedProcedure|.//view|.//protocol|.//additionalMetadata"/>
-      <xs:selector xpath=".//access|.//attribute|.//attributeList|.//constraint|.//coverage|.//temporalCoverage|.//geographicCoverage|.//taxonomicCoverage|.//dataset|.//dataSource|.//dataTable|.//otherEntity|.//citation|.//address|.//conferenceLocation|.//party|.//originator|.//creator|.//contact|.//publisher|.//editor|.//recipient|.//performer|.//institution|.//metadataProvider|.//associatedParty|.//personnel|.//physical|.//connectionDefinition|.//distribution|.//researchProject|.//project|.//relatedProject|.//software|.//spatialRaster|.//spatialReference|.//spatialVector|.//storedProcedure|.//view|.//protocol|.//additionalMetadata"/>
-      <xs:selector xpath="."/>
-      <xs:selector xpath=".//dataset//*|./protocol//*|./citation//*|./software//*|./additionalMetadata//*"/>
-      -->
-      <!--
-    <xs:keyref name="replacementReference" refer="identifierKey">
-      <xs:selector xpath=".//references"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-    <xs:keyref name="describesReference" refer="identifierKey">
-      <xs:selector xpath=".//additionalMetadata/describes"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-    <xs:keyref name="entityReference" refer="entityIdentifierKey">
-      <xs:selector xpath=".//entityReference"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-    <xs:keyref name="attributeReference" refer="attributeIdentifierKey">
-      <xs:selector xpath=".//attributeReference|.//valueAttributeReference|.//definitionAttributeReference"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-    <xs:key name="attributeIdentifierKey">
-      <xs:selector xpath=".//attribute"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-    <xs:key name="entityIdentifierKey">
-      <xs:selector xpath=".//dataTable|.//spatialRaster|.//spatialVector|.//storedProcedure|.//view"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-    <xs:key name="unitIdentifierKey">
-      <xs:selector xpath=".//unitList/unit"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-    <xs:keyref name="unitReference" refer="unitIdentifierKey">
-      <xs:selector xpath=".//unit/customUnit"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-    -->
   </xs:element>
 </xs:schema>

@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-27 20:23:17 $'
- *    '$Revision: 1.38 $'
+ *        '$Date: 2002-10-02 16:21:10 $'
+ *    '$Revision: 1.39 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -155,15 +155,10 @@
         <xsl:choose>
         <xsl:when test="name(.)='xs:element'">
         <td colspan="1" class="tablehead">
-        Element is
         <xsl:choose>
-          <xsl:when test="./@minOccurs=0">OPTIONAL </xsl:when>
-          <xsl:otherwise>REQUIRED </xsl:otherwise>
-        </xsl:choose>
-        <xsl:choose>
-          <xsl:when test="./@default">And has a default value of
+          <xsl:when test="./@default">This element has a default value of
           '<xsl:value-of select="./@default"/>'</xsl:when>
-          <xsl:otherwise>and has no default value</xsl:otherwise>
+          <xsl:otherwise>This element has no default value.</xsl:otherwise>
         </xsl:choose>
         </td>
         </xsl:when>
@@ -704,6 +699,24 @@
     </xsl:variable>
 
     <xsl:choose>
+      <xsl:when test="$namespaceprefix = 'ds'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-dataset.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'sw'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-software.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
       <xsl:when test="$namespaceprefix = 'md'">
         <a class="sitelink">
           <xsl:attribute name="href">
