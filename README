@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-10-28 20:46:53 $'
-#      '$Revision: 1.27 $'
+#          '$Date: 2002-10-30 16:41:39 $'
+#      '$Revision: 1.28 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.0
+Version: 2.0.0rc3
 
 Feedback and bugs to: eml-dev@ecoinformatics.org
                       http://bugzilla.ecoinformatics.org
@@ -93,21 +93,27 @@ each of the modules that make up EML.  Also included is a schema
 for supporting documentation, and an instance document defining 
 standard attribute units for EML.
 
-Note that there have been 9 beta releases and two prior release candidates
-prior to this release during which substantial/philosophical changes were
-introduced.  This release of EML can be retrieved from CVS using the tag
-"RELEASE_EML_2_0_0".  Previous versions of EML (such as 1.4) are available
-from this repository using the appropriate release tag (i.e. RELEASE_EML_1_4).
+The files are a part of the proposed release of EML 2.0.0.
+This is the third release candidate.  We expect no changes
+to EML between now and the final EML 2.0.0 release; this release is
+being made available for a 1 week public review as a final sanity
+check before EML 2.0.0 is officially released. Note that there have 
+been 9 beta releases and two prior release candidates prior
+to this during which substantial/philosophical changes were introduced.
+This release of EML can be retrieved from CVS using the 
+tag "RELEASE_EML_2_0_0_RC_3".  Previous versions of EML (such as 1.4) 
+are available from this repository using the appropriate release tag 
+(i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
 1) Complete work on the XSLT stylesheets.  Need to convert stylesheets
-   to the new structure (they currently work with the BETA6 release
+   to the new structure (they currently work with the BETA6 release)
    (bug 249).
 
 
-ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
--------------------------------------------------------------------------
+BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
+--------------------------------------------------------------------------
 2.0.0 Changes- (numbers refer to the correspnding Bugzilla bug)
 471: eml spec overview document     
 624: eml-methods/methodsType needs clarification on choice/seq...     
@@ -122,6 +128,7 @@ ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
 628: eml-physical has lit: rather than cit: references     
 632: broken link in faq
 634: Documentation of reference elements in the schemas
+656: physical should be repeatable
 
 RC2 Changes- (numbers refer to the correspnding Bugzilla bug)
 568: accomodate of stateful connection information   
