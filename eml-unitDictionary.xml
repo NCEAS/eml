@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-30 19:26:43 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-10-30 19:30:25 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -99,8 +99,7 @@
   </unitType>
 
   <unitType id="area" name="area"> <!--squareMeters-->
-    <dimension name="length"/>
-    <dimension name="length"/>
+    <dimension name="length" power="2"/>
   </unitType>
 
   <unitType id="lengthReciprocal" name="lengthReciprocal"> <!--waveNumber-->
@@ -112,17 +111,12 @@
   </unitType>
 
   <unitType id="volume" name="volume"> <!--cubicMeter-->
-    <dimension name="length"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
+    <dimension name="length" power="3"/>
   </unitType>
 
   <unitType id="volumetricArea" name="volumetricArea"> <!--litersPerSquareMeter-->
-    <dimension name="length"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="3"/>
+    <dimension name="length" power="-2"/>
   </unitType>
 
   <unitType id="speed" name="speed"> <!--metersPerSecond-->
@@ -132,23 +126,17 @@
 
   <unitType id="massDensity" name="massDensity"> <!--kilogramPerCubicMeter-->
     <dimension name="mass"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-3"/>
   </unitType>
 
   <unitType id="volumetricRate" name="volumetricRate"> <!--litersPerSecond-->
-    <dimension name="length"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
+    <dimension name="length" power="3"/>
     <dimension name="time" power="-1"/>
   </unitType>
 
   <unitType id="volumetricMassDensityRate" name="volumetricMassDensityRate"> <!--gramsPerLiterPerDay-->
     <dimension name="mass"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-3"/>
     <dimension name="time" power="-1"/>
   </unitType>
 
@@ -160,16 +148,12 @@
 
   <unitType id="specificVolume" name="specificVolume"> <!--cubicMeterPerKilogram-->
     <dimension name="mass" power="-1"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
+    <dimension name="length" power="3"/>
   </unitType>
 
   <unitType id="amountOfSubstanceConcentration" name="amountOfSubstanceConcentration"> <!--molePerCubicMeter-->
     <dimension name="amount"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-3"/>
   </unitType>
 
   <unitType id="amountOfSubstanceWeight" name="amountOfSubstanceWeight"> <!--molesPerKilogram-->
@@ -190,21 +174,17 @@
 
   <unitType id="luminance" name="luminance"> <!--candelaPerSquareMeter-->
     <dimension name="luminosity"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-2"/>
   </unitType>
 
   <unitType id="volumetricDensity" name="volumetricDensity"> <!--numberPerMeterCubed-->
     <dimension name="dimensionless"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-3"/>
   </unitType>
 
   <unitType id="arealDensity" name="arealDensity"> <!--numberPerMeterSquared-->
     <dimension name="dimensionless"/>
-    <dimension name="length" power="-1"/>
-    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-2"/>
   </unitType>
 
   <unitType id="arealMassDensity" name="arealMassDensity"> <!--kilogramsPerSquareMeter-->
@@ -214,8 +194,7 @@
 
   <unitType id="specificArea" name="specificArea"> <!--squareMeterPerKilogram-->
     <dimension name="mass" power="-1"/>
-    <dimension name="length"/>
-    <dimension name="length"/>
+    <dimension name="length" power="2"/>
   </unitType>
 
   <unitType id="force" name="force"> <!--newton-->
