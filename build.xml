@@ -7,8 +7,8 @@
   * For Details: http://www.nceas.ucsb.edu/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-02-13 18:01:30 $'
-  *  '$Revision: 1.3 $'
+  *      '$Date: 2001-02-13 18:20:58 $'
+  *  '$Revision: 1.4 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -41,12 +41,12 @@
      <mkdir dir="${build.docs}"/>
      <style basedir="." destdir="${build.docs}"
             style="eml-documentation.xsl" 
-            includes="eml-access.xsd"
+            includes="*.xsd"
             processor="xalan"> 
      </style> 
      <copy todir="${build.docs}" filtering="no">
        <fileset dir=".">
-         <include name="eml-documentation.css"/>
+         <include name="default.css"/>
        </fileset>
      </copy>
    </target>
