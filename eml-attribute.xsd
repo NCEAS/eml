@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 17:58:26 $'
-      '$Revision: 1.83 $'
+          '$Date: 2002-10-30 19:55:27 $'
+      '$Revision: 1.84 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -297,15 +297,14 @@
               allow one to distinguish the order of values, but not the
               magnitude of the difference between values. An example of an
               ordinal scale is a categorical survey where you rank a variable
-              1=good, 2=fair, 3=poor. Date values on the Gregorian calendar
-              are also ordinal, as the relative order of the values is
-              prescribed, but the magnitude of the difference between
-              the values is not (due to leap years, leap seconds, and various
-              other peculiarities).</doc:example>
+              1=good, 2=fair, 3=poor.</doc:example>
               <doc:example>Interval is used for data which consist of
               equidistant points on a scale. The Celsius scale is an interval
               scale, since each degree is equal but there is no natural
-              zero point (so, 20 C is not twice as hot as 10 C).</doc:example>
+              zero point (so, 20 C is not twice as hot as 10 C). Date-time 
+              values are also interval scale values, and special fields for 
+              describing date-time formats and domains are provided.
+              </doc:example>
               <doc:example>Ratio is used for data which consists not only of
               equidistant points but also has a meaningful zero
               point, which allows ratios to have meaning. An example of a
@@ -355,11 +354,7 @@
                     of values, but not the magnitude of the difference
                     between values. An example of an ordinal scale is a
                     categorical survey where you rank a variable 1=good,
-                    2=fair, 3=poor. Date values on the Gregorian calendar
-                    are also ordinal, as the relative order of the values is
-                    prescribed, but the magnitude of the difference between
-                    the values is not (due to leap years, leap seconds,
-                    and various other peculiarities).</doc:example>
+                    2=fair, 3=poor.</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -383,7 +378,10 @@
                     equidistant points on a scale. The Celsius scale is an
                     interval scale, since each degree is equal but there is
                     no natural zero point (so, 20 C is not twice as hot as
-                    10 C).</doc:example>
+                    10 C).  zero point (so, 20 C is not twice as hot as 10
+                    C). Date-time values are also interval scale values,
+                    and special fields for describing date-time formats and
+                    domains are provided.</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -391,8 +389,12 @@
                     <xs:element name="unit" type="UnitType" minOccurs="1"/>
                     <xs:element name="precision" type="PrecisionType"
                       minOccurs="1"/>
-                    <xs:element name="numericDomain" type="NumericDomainType"
-                      minOccurs="1"/>
+                    <xs:choice minOccurs="1">
+                      <xs:element name="numericDomain" 
+                        type="NumericDomainType"/>
+                      <xs:element name="dateTimeDomain" 
+                        type="DateTimeDomainType"/>
+                    </xs:choice>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -634,13 +636,14 @@
         field</doc:summary>
         <doc:description>This field identifies the unit of measurement
         for this attribute. It is a choice of either a standard SI unit,
-        or a custom unit. If it is a custom unit, the definition of the
-        unit must be provided in the document using the STMML syntax, and
-        the name provided in the customUnit element must reference the id
-        of its associated STMML definition precisely. For further
-        information on STMML (http://www.xml-cml.org/stmml/) or see
-        stmml.xsd which is included with the EML 2.0 distribution for
-        details.</doc:description>
+        a custom unit, or a date-time format. If it is a custom unit, 
+        the definition of the unit must be provided in the document using 
+        the STMML syntax, and the name provided in the customUnit element must
+        reference the id of its associated STMML definition precisely. For
+        further information on STMML (http://www.xml-cml.org/stmml/) or
+        see stmml.xsd which is included with the EML 2.0 distribution for
+        details. If it is a date-time format, the format string must comply
+        withthe ISO 8601 specification.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -657,6 +660,8 @@
             outside of SI. See the STMML definition of each unit that
             ships with EML for more information.</doc:description>
             <doc:example>meter</doc:example>
+            <doc:example>second</doc:example>
+            <doc:example>joule</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -672,6 +677,40 @@
             document where that definition is provided using the STMML
             syntax. The customUnit definition will most likely be in
             the additionalMetadata section.</doc:description>
+            <doc:example>gramsPerOneThirdMeter</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="formattedDateTimeUnit">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Date/Time Format</doc:tooltip>
+            <doc:summary>A unit that describes the format for a date-time
+            value from the Gregorian calendar.</doc:summary>
+            <doc:description>A unit that describes the format for a date-time
+            value from the Gregorian calendar.  Datetime values should be
+            expressed in a format that conforms to the ISO 8601 standard.  This
+            field allows one to specify the ISO 8601 format string that should
+            be used to decode the date or time value.  Date/time values are
+            from an interval scale, but it is extremely complex because of the
+            vagaries of the calendar (e.g., leap years, and leap seconds).
+            The duration between date-time values in the future is not even 
+            deterministic because leap seconds are based on current 
+            measurements of the earth's orbit. Consequently, date-time 
+            values are unlike any other measured values.  The
+            format string for date-time values allows one to accurately 
+            calculate the duration in SI second units between two measured 
+            date-time values, assuming that the conversion software has a 
+            detailed knowledge of the Gregorian calendar. Note that this field
+            would not be used if one is recording time durations.  In that
+            case, one should use a standard unit such as nominalMinute or
+            nominalDay, or a customUnit that defines the unit in terms of its
+            relationship to SI second.
+            </doc:description>
+            <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
+            <doc:example>YYYY-MM-DD</doc:example>
+            <doc:example>YYYY</doc:example>
+            <doc:example>HH:MM:SS</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -1174,6 +1213,100 @@
                 specifies the maximum value range of a numeric
                 attribute excluding the given
                 value.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="DateTimeDomainType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Date-Time Domain</doc:tooltip>
+        <doc:summary>Date-Time domain of attribute specifying allowed
+        values.</doc:summary>
+        <doc:description>The date-time domain specifies the
+        minimum and maximum values of a date-time attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). The domain expressions should
+        be in the same date-time format as is used in the "unit"
+        description for the attribute.  For example, if the format
+        string in unit is "YYYY-MM-DD", then a valid minimum in the domain
+        would be "2001-05-29".
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="minimum" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Minimum date-time range</doc:tooltip>
+                <doc:summary>Minimum date-time range of
+                attribute</doc:summary>
+                <doc:description>The minimum element specifies the
+                minimum value range of date-time attribute. The value
+                should be in the same date-time format that is indicated
+                in the "unit" element.</doc:description>
+                <doc:example>2001-03-14</doc:example>
+                <doc:example>2001-03-14T14:22:13</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="minimumExclusive" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Exclusive Minimum date-time range
+                </doc:tooltip>
+                <doc:summary>Exclusive Minimum date-time range of
+                attribute</doc:summary>
+                <doc:description>The minimumExclusive element
+                specifies the minimum value range of date-time
+                attribute excluding the given value. The value
+                should be in the same date-time format that is indicated
+                in the "unit" element.</doc:description>
+                <doc:example>2001-03-14</doc:example>
+                <doc:example>2001-03-14T14:22:13</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="maximum" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum date-time range</doc:tooltip>
+                <doc:summary>Maximum date-time range of
+                attribute</doc:summary>
+                <doc:description>The maximum element specifies the
+                maximum value range of a date-time attribute. The value
+                should be in the same date-time format that is indicated
+                in the "unit" element.</doc:description>
+                <doc:example>2001-03-14</doc:example>
+                <doc:example>2001-03-14T14:22:13</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="maximumExclusive" type="xs:string" >
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum exclusive date-time
+                range</doc:tooltip>
+                <doc:summary>Maximum exclusive date-time range of
+                attribute</doc:summary>
+                <doc:description>The maximumExclusive element
+                specifies the maximum value range of a date-time
+                attribute excluding the given value. The value
+                should be in the same date-time format that is indicated
+                in the "unit" element.</doc:description>
+                <doc:example>2001-03-14</doc:example>
+                <doc:example>2001-03-14T14:22:13</doc:example>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>

@@ -19,7 +19,8 @@
       <surName>Lehman</surName>
     </individualName>
     <address>
-      <deliveryPoint>Department of Ecology Evolution and Behavior</deliveryPoint>
+      <deliveryPoint>Department of Ecology Evolution and Behavior
+      </deliveryPoint>
       <deliveryPoint>100 Ecology Bldg</deliveryPoint>
       <deliveryPoint>1987 Upper Buford Circle</deliveryPoint>
       <city>St. Paul</city>
@@ -85,9 +86,10 @@
     </physical>
     <attributeList>
       <attribute id="att.1">
-        <attributeName>Field</attributeName>
-        <attributeLabel>Fld</attributeLabel>
-        <attributeDefinition>Field where the data was collected</attributeDefinition>
+        <attributeName>fld</attributeName>
+        <attributeLabel>Field</attributeLabel>
+        <attributeDefinition>Field where the data was collected
+        </attributeDefinition>
         <storageType>string</storageType>
         <measurementScale>
           <nominal>
@@ -100,24 +102,24 @@
         </measurementScale>
       </attribute>
       <attribute id="att.2">
-        <attributeName>Year</attributeName>
-        <attributeLabel>Yr</attributeLabel>
-        <attributeDefinition>The year the data was collected</attributeDefinition>
+        <attributeName>year</attributeName>
+        <attributeLabel>year</attributeLabel>
+        <attributeDefinition>The year the data was collected
+        </attributeDefinition>
         <storageType>gYear</storageType>
         <measurementScale>
           <interval>
-            <unit><standardUnit>second</standardUnit></unit>
+            <unit><formattedDateTimeUnit>YYYY</formattedDateTimeUnit></unit>
             <precision>1</precision>
-            <numericDomain id="nd.2">
-              <numberType>integer</numberType>
-              <minimum>1900</minimum>
-            </numericDomain>
+            <dateTimeDomain id="dd.2">
+              <minimum>1944</minimum>
+            </dateTimeDomain>
           </interval>
         </measurementScale>
       </attribute>
       <attribute  id="att.3">
-        <attributeName>Species Richness</attributeName>
-        <attributeLabel>SR</attributeLabel>
+        <attributeName>sr</attributeName>
+        <attributeLabel>Species Richness</attributeLabel>
         <attributeDefinition>Species richness for CDR</attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
@@ -132,9 +134,10 @@
         </measurementScale>
       </attribute>
       <attribute  id="att.4">
-        <attributeName>percent cover</attributeName>
-        <attributeLabel>%cover</attributeLabel>
-        <attributeDefinition>The percent ground cover on the field</attributeDefinition>
+        <attributeName>pctcov</attributeName>
+        <attributeLabel>percent cover</attributeLabel>
+        <attributeDefinition>The percent ground cover on the field
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -149,9 +152,10 @@
         </measurementScale>
       </attribute>
       <attribute  id="att.5">
-        <attributeName>Average Species Richness for 1991</attributeName>
-        <attributeLabel>avesr91</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1991</attributeDefinition>
+        <attributeName>avesr91</attributeName>
+        <attributeLabel>Average Species Richness for 1991</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1991
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -165,9 +169,10 @@
         </measurementScale>
       </attribute>
       <attribute  id="att.6">
-        <attributeName>Average Species Richness for 1992</attributeName>
-        <attributeLabel>avesr92</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1992</attributeDefinition>
+        <attributeName>avesr92</attributeName>
+        <attributeLabel>Average Species Richness for 1992</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1992
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -178,9 +183,10 @@
         </measurementScale>
       </attribute>
       <attribute  id="att.7">
-        <attributeName>Average Species Richness for 1993</attributeName>
-        <attributeLabel>avesr93</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1993</attributeDefinition>
+        <attributeName>avesr93</attributeName>
+        <attributeLabel>Average Species Richness for 1993</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1993
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -191,9 +197,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.8">
-        <attributeName>Average Species Richness for 1994</attributeName>
-        <attributeLabel>avesr94</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1994</attributeDefinition>
+        <attributeName>avesr94</attributeName>
+        <attributeLabel>Average Species Richness for 1994</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1994
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -204,9 +211,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.9">
-        <attributeName>Average Species Richness for 1995</attributeName>
-        <attributeLabel>avesr95</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1995</attributeDefinition>
+        <attributeName>avesr95</attributeName>
+        <attributeLabel>Average Species Richness for 1995</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1995
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -217,9 +225,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.10">
-        <attributeName>Average Species Richness for 1996</attributeName>
-        <attributeLabel>avesr96</attributeLabel>
-        <attributeDefinition>The average species richness for the field in 1996</attributeDefinition>
+        <attributeName>avesr96</attributeName>
+        <attributeLabel>Average Species Richness for 1996</attributeLabel>
+        <attributeDefinition>The average species richness for the field in 1996
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -230,9 +239,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.11">
-        <attributeName>mean species richness</attributeName>
-        <attributeLabel>MeanSR</attributeLabel>
-        <attributeDefinition>the mean species richness from 1991 to 1996</attributeDefinition>
+        <attributeName>MeanSR</attributeName>
+        <attributeLabel>mean species richness</attributeLabel>
+        <attributeDefinition>the mean species richness from 1991 to 1996
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -243,9 +253,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.12">
-        <attributeName>Biomass</attributeName>
-        <attributeLabel>Biomass (g/m2)</attributeLabel>
-        <attributeDefinition>The total biomass measured in this field</attributeDefinition>
+        <attributeName>biomass</attributeName>
+        <attributeLabel>Biomass</attributeLabel>
+        <attributeDefinition>The total biomass measured in this field
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
@@ -259,9 +270,10 @@
         </measurementScale>
       </attribute>
       <attribute id="att.13">
-        <attributeName>Species Per Square Meter</attributeName>
-        <attributeLabel>Spp/m2 (calc)</attributeLabel>
-        <attributeDefinition>Calculated species per square meter</attributeDefinition>
+        <attributeName>sppm2</attributeName>
+        <attributeLabel>Species Per Square Meter</attributeLabel>
+        <attributeDefinition>Calculated species per square meter
+        </attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
