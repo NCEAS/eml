@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-03 17:54:30 $'
-      '$Revision: 1.24 $'
+          '$Date: 2002-05-06 15:04:31 $'
+      '$Revision: 1.25 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -254,7 +254,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="storageType" type="xs:string" minOccurs="0">
+              <xs:element name="storageType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
@@ -281,33 +281,39 @@
                     </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
-                <xs:attribute name="unitSystem" type="xs:string" use="required" default="STMML">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>
-                        The system used to define the storage types
-                      </doc:tooltip>
-                      <doc:summary>
-                        The system used to define the storage types.  This should 
-                        an identifier of a well known and published typing system.
-                      </doc:summary>
-                      <doc:description>
-                        The system used to define the storage types.  This should 
-                        an identifier of a well known and published typing system.
-                        It is recommended to use the STMML method for extensible
-                        storage typing (see http://www.xml-cml.org/stmml for 
-                        details).  Other systems that could be used include 
-                        programming language (such as C or Java) data types.
-                        The default value for this attribute is 'STMML'.
-                      </doc:description>
-                      <doc:example><![CDATA[
-                        <storageType unitSystem="STMML">xs:integer</storageType]]></doc:example>
-                      <doc:lineage>
-                        New to EML 2.0.
-                      </doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:attribute>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="unitSystem" type="xs:string" use="optional" default="STMML">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>
+                              The system used to define the storage types
+                            </doc:tooltip>
+                            <doc:summary>
+                              The system used to define the storage types.  This should 
+                              an identifier of a well known and published typing system.
+                            </doc:summary>
+                            <doc:description>
+                              The system used to define the storage types.  This should 
+                              an identifier of a well known and published typing system.
+                              It is recommended to use the STMML method for extensible
+                              storage typing (see http://www.xml-cml.org/stmml for 
+                              details).  Other systems that could be used include 
+                              programming language (such as C or Java) data types.
+                              The default value for this attribute is 'STMML'.
+                            </doc:description>
+                            <doc:example><![CDATA[
+                              <storageType unitSystem="STMML">xs:integer</storageType]]></doc:example>
+                            <doc:lineage>
+                              New to EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
               <xs:element name="measurementScale">
                 <xs:annotation>
@@ -365,14 +371,6 @@
                           </doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
-                      <xs:attribute name="enforced" default="yes">
-                        <xs:simpleType>
-                          <xs:restriction base="xs:string">
-                            <xs:enumeration value="yes"/>
-                            <xs:enumeration value="no"/>
-                          </xs:restriction>
-                        </xs:simpleType>
-                      </xs:attribute>
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="code" type="xs:string">
@@ -449,6 +447,15 @@
                             </xs:annotation>
                           </xs:element>
                         </xs:sequence>
+                        <xs:attribute name="enforced" default="yes">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="yes"/>
+                              <xs:enumeration value="no"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+
                       </xs:complexType>
                     </xs:element>
                     <xs:element name="textDomain">
@@ -646,7 +653,7 @@
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="missingValueCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="missingValueCode" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>
@@ -1368,7 +1375,7 @@
                     </xs:annotation>
                     <xs:complexType>
                       <xs:sequence>
-                        <xs:element name="timePeriodInformation" type="cov:temporalCoverage">
+                        <xs:element name="timePeriodInformation" type="cov:TemporalCoverage">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>
