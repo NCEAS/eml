@@ -25,9 +25,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2003-11-06 20:15:20 $'
-      '$Revision: 1.66 $'
+        '$Author: berkley $'
+          '$Date: 2004-06-25 17:27:15 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@
               granted or denied to a resource or a subset of a resource for a
               particular user or group of users. A single eml-access document
               may be used to express access control for many resources, or
-              for a given resource (e.g., a dataset or citation ).  The
+              for a given resource (e.g., a distribution).  The
               eml-access module represents a list of resources to be controlled
               in the context of a particular authentication system. That is, the
               authentication system determines the set of principals (users +
@@ -64,18 +64,39 @@
               The rules set in this module will determine the level of access to
               a resource for the defined users and groups.  In EML, there are
               two mechanisms for including access control information via the
-              eml-access module. 1)  Each top-level resource module
-              (eml-dataset, eml-literature, eml-software, and eml-protocol)
-              include an optional &lt;access&gt; element directly inline in the
+              eml-access module. 1)  eml-dataset module includes an 
+              optional &lt;access&gt; element directly inline in the
               document.  This is used to define access control at the resource
               level scope.  2) Finer grained access control may be applied to a
               subset of a resource via the &lt;addtionalMetadata&gt; element in
               the eml module.  An access control document may be defined, or
               referenced, from this location, and the &lt;describes&gt; element
               is used to point to the subset of the resource that is to be
-              controlled via its "id" attribute.  Applications that
-              process EML documents must implement the access control rules from
-              both mechanisms.  Note that, although access control may be bound
+              controlled via its "id" attribute. For example, define a 
+              reference id in the &lt;distribution&gt; for which you want 
+              to define the access control. 
+	    <literalLayout> 
+              &lt;distribution id="xxyyzz"&gt;
+                .
+                .
+              &lt;/distribution&gt;
+	    </literalLayout>
+              To define the access rule for the above distribution, use
+              //eml/additionalMetadata in the following way:
+            <literalLayout>
+              &lt;additionalMetadata&gt;
+                &lt;describes&gt;
+                  xxyyzz
+                &lt;/describes&gt;
+                &lt;access&gt;
+                  .
+                  .
+                &lt;/access&gt;
+              &lt;/additionalMetadata&gt;
+            </literalLayout>
+              Applications that process EML documents must implement the 
+              access control rules from both mechanisms. Note that, 
+              although access control may be bound
               to any element with an "id" attribute, the processing
               involved may be very costly.  For instance, it would not be
               recommended to apply access control to a column of a data file
