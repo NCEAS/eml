@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2002-06-17 20:00:33 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: higgins $'
+  *     '$Date: 2003-05-28 03:48:24 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -353,13 +353,13 @@
   <xsl:template match="taxonpro">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Procedures:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:apply-templates select="."/></td></tr>
+        </td></tr>
   </xsl:template>
   
   <xsl:template match="taxoncom">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Completeness:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:apply-templates select="."/></td></tr>
+        </td></tr>
   </xsl:template>
   
   <xsl:template match="vouchers">
