@@ -37,9 +37,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-12 18:01:12 $'
-      '$Revision: 1.33 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-12 18:43:26 $'
+      '$Revision: 1.34 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -141,9 +141,13 @@
       <xs:attribute name="scope" type="res:ScopeType" fixed="system"/>
     </xs:complexType>
     <xs:key name="identifierKey">
-      <xs:selector xpath=".//contact"/>
+      <xs:selector xpath="./dataset/contact"/>
       <xs:field xpath="@id"/>
     </xs:key>
+    <xs:keyref name="replacementReference" refer="identifierKey">
+      <xs:selector xpath=".//references"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
       <!--
       <xs:selector xpath=".//dataset|.//creator|.//contact"/>
       <xs:selector xpath=".//access|.//attribute|.//attributeList|.//constraint|.//coverage|.//temporalCoverage|.//geographicCoverage|.//taxonomicCoverage|.//dataset/*|.//dataSource|.//dataTable|.//otherEntity|.//citation|.//address|.//conferenceLocation|.//party|.//originator|.//creator/*|.//contact/*|.//publisher|.//editor|.//recipient|.//performer|.//institution|.//metadataProvider|.//associatedParty|.//personnel|.//physical|.//connectionDefinition|.//distribution|.//researchProject|.//project|.//relatedProject|.//software|.//spatialRaster|.//spatialReference|.//spatialVector|.//storedProcedure|.//view|.//protocol|.//additionalMetadata"/>
