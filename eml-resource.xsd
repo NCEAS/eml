@@ -1,7 +1,7 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
-	   targetNamespace="eml:resource">
+           targetNamespace="eml:resource">
 
   <xs:annotation>
     <xs:documentation>
@@ -10,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:21 $'
-      '$Revision: 1.8 $'
+        '$Author: cjones $'
+          '$Date: 2001-02-22 22:32:54 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,379 +27,1096 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	** This annotation should be removed after draft review and/or acceptance.**
-	 Issues with this document:
-	1)We need to revisit the definition of "edition", "version" and "series".
-	  Does a dataset only have a version? can it be part of a series? If it
-          is edited, is it a new dataset or a new edition of the same dataset?
-        2)Can a dataset have an ISSN?
-        3)We need to add the following types to "resource":
-          a) software
-          b) collection
-          c) image?
-          d) any others?
-	 4)What kind of subfields do we want in the "date" type (i.e. for geological
-          time, epoch, era, etc...)?
-
-   
-   
-   
-	   NAMING CONVENTIONS:
-	   1) Withing this schema, the name of any TYPE starts with a capital
-	   letter and uses the Java type naming convention after that.  The
-	   name of an ELEMENT starts with a lower case letter and then uses
-	   the Java naming convention.  For example KeywordInfo is a type
-	   but keywordInfo is the name of an element.  The distinction is 
-	   important due to the fact that some elements have the same name 
-	   as their type except for the differing first letter.
-	   
-	   2) Each element is followed by an annotation tag.  Within this tag
-	   are two documentation tags.  The first describes the purpose of 
-	   the element above it.  The second documentation tag describes the 
-	   lineage of the element.
-	   For example the field geoForm was taken from the NBII-FGDC-std-001.1-1999 
-	   standard.  
-	</xs:documentation>
+    </xs:documentation>
+    <xs:appInfo>
+     <moduleName>
+        eml-resource
+      </moduleName>
+      <moduleDescription>
+        The eml-resource module contains general information that describes
+        dataset resources, literature resources, collection  resources, and
+        software resources.  It is intended to provide overview information
+        about the resource, including title, abstract, keywords, contacts, and
+        the links to associated metadata for the given resource.
+      </moduleDescription>
+    </xs:appInfo>
   </xs:annotation>
 
  <!-- import the elements from responsible party for use
        is resource/originator 
    -->
-   
   <xs:import namespace="iso:ResponsibleParty" 
           schemaLocation = "./iso-party.xsd"/>
  
   <!-- resource is the root element. -->
-  <xs:element name="resource" type="Resource" />
+  <xs:element name="resource" type="Resource">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Resource
+        </tooltip>
+        <summary>
+          Information about the resource being described.
+        </summary>
+        <description>
+          The resource element is a container for all of the detailed sub
+          elements that describe the resource object in question.  it is of type
+          Resource, which is a generic class used to describe all resources.
+        </description>
+        <example>
+          Please see the examples within the sub-elements of resource.
+        </example>
+        <lineage>
+          The 'resource' element was introduced into EML 2.0 beta 1.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
    
   <!-- the type of Resource is the main choice in the document --> 
   <xs:complexType name="Resource" content="elementOnly">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Resource type
+        </tooltip>
+        <summary>
+          The class of resource being documented.
+        </summary>
+        <description>
+          The 'Resource' complexType is the generic class for a 'resource'
+          element. A user may choose to document a resource according to one of
+          the following subtypes, which are presented as a choice: dataset, 
+          literature, collection, or software. 
+        </description>
+        <example>
+          Please see the examples for each subelement of the 'Resource' type.
+        </example>
+        <lineage>
+          The 'Resource' type was introduced into EML 2.0 beta 1.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+   
     <choice minOccurs="1" maxOccurs="1">
-      <xs:element name = "dataset" type = "Dataset" />
-      <xs:element name = "literature" type = "Literature" />
-      <xs:element name = "software" type = "Software" />
+      <xs:element name = "dataset" type = "Dataset">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Dataset
+            </tooltip>
+            <summary>
+              General information about the dataset being documented.
+            </summary>
+            <description>
+              The 'dataset' element contains sub-elements that are specific to a
+              dataset resource, aside from the base information provided in the
+              'resource' element.
+            </description>
+            <example>
+              Please see the examples for each subelement of the 'Dataset' type.
+            </example>
+            <lineage>
+              The 'dataset' element was introduced into EML 2.0 beta 1., but is
+              derived from the eml-dataset module from EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+   
+      <xs:element name = "literature" type = "Literature">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Literature
+            </tooltip>
+            <summary>
+              General information about a literature resource.
+            </summary>
+            <description>
+              The 'literature' element contains general information about a
+              literature resource that is being documented, or a piece of
+              literature that is being cited in support of a given resource,
+              such as a dateset.
+            </description>
+            <example>
+              Please see the examples for each subelement of the 'Literature' type.
+            </example>
+            <lineage>
+              The 'literature' element was introduced into EML 2.0 beta 1.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+   
+      <xs:element name = "software" type = "Software">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Software
+            </tooltip>
+            <summary>
+              General information about a software resource.
+            </summary>
+            <description>
+              the 'software' element contains general information about a
+              software resource that is being documented.  This is field is
+              intended to give information for software tools that are needed to
+              interpret a dataset, software that was written to process a
+              resource, or software as a resource in itself.
+            </description>
+            <example>
+              Please see the examples for each subelement of the 'Software'
+              type.
+            </example>
+            <lineage>
+              The 'software' element was introduced into EML 2.0 beta 1, however
+              it was derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </choice>
   </xs:complexType>
        
   <!-- this is the base type that the other types inherit -->
   <xs:complexType name = "ResourceBase" content="elementOnly">
-      <xs:sequence>
-        <xs:element name = "identifier" type = "xs:string"
-                    minOccurs="0" maxOccurs="1">
-	         <xs:annotation>
-              <xs:documentation>
-  	          The unique identifier of the metadata file.
-              </xs:documentation>
-              <xs:documentation>
-                 eml-dataset
-              </xs:documentation>
-           </xs:annotation> 
-        </xs:element>
-        <xs:element name = "datasetid" type = "xs:string"
-                    minOccurs="0" maxOccurs="1">
-	         <xs:annotation>
-              <xs:documentation>
-  	          The unique identifier of the dataset that this file describes.
-              </xs:documentation>
-              <xs:documentation>
-                 eml-dataset
-              </xs:documentation>
-           </xs:annotation> 
-        </xs:element>
-        <xs:element name = "title" type = "xs:string" 
-                    minOccurs="1" maxOccurs="1" >
-             <xs:annotation>
-                <xs:documentation>
-                    Name by which the cited resource is known.
-                </xs:documentation>
-                <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-             </xs:annotation> 
-        </xs:element>
-        <xs:element name = "alternateTitle" type = "xs:string" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                  <xs:documentation>Short name or other language name
-                      by which the cited resource is known.
-                  </xs:documentation>
-                  <xs:documentation>
-                        ISO 19115.3 (iso-geo-md-2000June-draft)
-                  </xs:documentation>
-               </xs:annotation> -->
-        </xs:element>
-        <xs:element name = "originator" type = "rp:ResponsibleParty" 
-                    minOccurs="1" maxOccurs="unbounded" >
-	     <xs:annotation>
-                <xs:documentation>
-                    The party from which the resource came.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation> 
-    </xs:element>
-	  <xs:element name = "pubDate" type = "xs:date" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                <xs:documentation>
-                   The publication date of the resource.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation> 
-    </xs:element>
-	  <xs:element name = "pubPlace" type = "xs:string" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                <xs:documentation>
-                    The publication place of the resource.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation> 
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Resource Base
+        </tooltip>
+        <summary>
+          Generic information about every resource that is being described.  
+        </summary>
+        <description>
+          The 'ResourceBase' complexType contains information that is inherited
+          by each resource type that is being documented.  The subelements with
+          the resource base are common to al resources.
+        </description>
+        <example>
+          Please see the examples within the sub-elements of the 'ResourceBase'
+          complexType.
+        </example>
+        <lineage>
+          The 'ResourceBase' element was introduced into EML 2.0 beta 1.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name = "identifier" type = "xs:string"
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Identifier
+            </tooltip>
+            <summary>
+              The unique identifier of the metadata file.
+            </summary>
+            <description>
+              The identifier field provides a unique identifier for this
+              resource documentation.  It will most likely be part of a sequence
+              of numbers or letters that are meaningful in a larger context,
+              such as a metadata catalog.
+            </description>
+            <example>
+              metacat://dev.nceas.ucsb.edu/metacatServlet?docid="NCEAS22"
+            </example>
+            <lineage>
+              The 'identifier' field is derived from the eml-dataset module in
+              EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
       </xs:element>
-  	  <xs:element name = "series" type = "xs:string" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                 <xs:documentation>
-                     The series from which the resource came.
-		 </xs:documentation>
-		 <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-             </xs:annotation> 
-    </xs:element>
-	  <xs:element name = "abstract" type = "Abstract" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                <xs:documentation>
-                   A brief overview of the resource.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation> 
-    </xs:element>
-	  <xs:element name = "keywordInfo" type = "KeywordInfo" 
-                    minOccurs="0" maxOccurs="unbounded" >
-             <xs:annotation>
-                <xs:documentation>
-                   Keywords describing the resource.
-                </xs:documentation>
-                <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-             </xs:annotation>
-    </xs:element>
-	  <xs:element name = "URL" type = "xs:string" 
-                    minOccurs="0" maxOccurs="unbounded">
-             <xs:annotation>
-                <xs:documentation>The Universal Resource Locator referring to the
-                    resource.
-                </xs:documentation>
-                <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation>
-    </xs:element>
-	  <xs:element name = "additionalInfo" type = "xs:string" 
-                    minOccurs="0" maxOccurs="1">
-             <xs:annotation>
-                <xs:documentation>Any extra information pertitent to the 
-		                resource.
-	              </xs:documentation>
-	              <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-             </xs:annotation>
-    </xs:element>
-	</xs:sequence>
+
+      <xs:element name = "resourceIdentifier" type = "xs:string"
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Resource identifier
+            </tooltip>
+            <summary>
+              The unique identifier of the resource that this file describes.
+            </summary>
+            <description>
+              The 'resourceIdentifier' field provides a unique file identifier
+              for the resource that is being described.  the reference will most
+              likely be a sequence of numbers or letters that are meaningful in
+              a larger context, such as a metadata catalog or database system.
+            </description>
+            <example>
+               http://data.nceas.ucsb.edu/datafile.txt
+            </example>
+            <lineage>
+               The 'resourceIdentifier' field is derived from the eml-dataset 
+               module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "title" type = "xs:string" 
+                  minOccurs="1" maxOccurs="1" >
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Title
+            </tooltip>
+            <summary>
+              A short name that describes the resource.
+            </summary>
+            <description>
+              The 'title' field provides a concise name that describes the
+              resource that is being documented. 
+            </description>
+            <example>
+              Vernal pool ecosystems of Isla Vista
+            </example>
+            <lineage>
+              This element was derived from elements described in the ISO 19115.3 standard
+              (iso-geo-md-2000June-draft).
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "alternateTitle" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+            <summary>
+              A secondary short name that describes the resource.
+            </summary>
+            <description>
+              The 'alternateTitle' field provides a concise name or other language name
+              that describes the resource that is being documented. 
+            </description>
+            <example>
+              They're not just mud puddles: fragile ecosystems in Isla Vista
+            </example>
+            <lineage>
+              This element was derived from elements described in the ISO 19115.3 standard
+              (iso-geo-md-2000June-draft).
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "originator" type = "rp:ResponsibleParty" 
+                  minOccurs="1" maxOccurs="unbounded" >
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Originator
+            </tooltip>
+            <summary>
+              The party from which the resource was created.
+            </summary>
+            <description>
+              The 'originator' element provides the full name of the the person,
+              organization, or role that created the resource.  This may be
+              different than the owner of the resource.
+            </description>
+            <example>
+              Please see the examples within the sub fields for the responsible
+              party.
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      
+      <xs:element name = "pubDate" type = "xs:date" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Publication date
+            </tooltip>
+            <summary>
+              The publication date of the resource.
+            </summary>
+            <description>
+              The 'pubDate' field represents the date that the resource was
+              published.  The format should be represented as: CCYY-MM-DD, which
+              denotes the full year, month, and day.
+            </description>
+            <example>
+              1999-10-26
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+              The type 'xs:date' folllows the date standard described in ISO
+              8601.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "pubPlace" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Publication place
+            </tooltip>
+            <summary>
+              The location that the resource was published.
+            </summary>
+            <description>
+              the 'pubPlace' field is the location where the resource was
+              published, which may be different from where the resource was
+              created.
+            </description>
+            <example>
+              San Francisco, CA, USA
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "series" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Series
+            </tooltip>
+            <summary>
+              The series from which the resource came.
+            </summary>
+            <description>
+              This field describes the series of resources that include the
+              resource being described.  For example, a volume of a journal may
+              be part of a series of the journal for a particular year.
+            </description>
+            <example>
+              Volume 20
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+              and ISO 19115.3 standard (iso-geo-md-2000June-draft)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "abstract" type = "Abstract" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Abstract
+            </tooltip>
+            <summary>
+              A brief overview of the resource.
+            </summary>
+            <description>
+              This field provides a  container for one or more paragraph  fields
+              that give a brief overview of the resource that is being documented. 
+            </description>
+            <example>
+              Please see the examples for the subfields contained within this
+              field.
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "keywordInfo" type = "KeywordInfo" 
+                  minOccurs="0" maxOccurs="unbounded" >
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Keyword information
+            </tooltip>
+            <summary>
+               Keyword information that describes the resource.
+            </summary>
+            <description>
+              The 'keywordInfo' element is a container for the 'keyword' and
+              'keywordThesaurus' fields.  
+            </description>
+            <example>
+              Please see the examples for the subfields contained within this
+              field.
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "URL" type = "xs:string" 
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Uniform resource locator
+            </tooltip>
+            <summary>
+              The Uniform Resource Locator referring to the resource.
+            </summary>
+            <description>
+              The 'URL' field provides the Internet address that references an
+              particular resource.  It should conform to standard URL syntax,
+              giving the connection protocol, followed by '://', followed by the
+              name of the machine to connect to, followed by the resource
+              location on the machine.
+            </description>
+            <example>
+               http://data.nceas.ucsb.edu/datafile.txt
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "additionalInfo" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Additional Information
+            </tooltip>
+            <summary>
+              Any extra information pertitent to the resource.
+            </summary>
+            <description>
+              This field provides any information that is not characterized by
+              the other resource metadata fields.
+            </description>
+            <example>
+              Copyright 2001, Robert Warner
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name = "Dataset" base = "ResourceBase" 
                   derivedBy = "extension" content = "elementOnly">
-  	<xs:sequence>
-	   <xs:element name = "geoForm" type = "GeoForm" 
-                    minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                 <xs:documentation>the mode in which the geospatial data 
-                     are represented.
-                 </xs:documentation>
-                 <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                </xs:documentation>
-              </xs:annotation> 
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Dataset type
+        </tooltip>
+        <summary>
+          The container for fields describing a dataset resource.
+        </summary>
+        <description>
+          This complexType defines elements that extend the Resource complexType
+          in order to provide information that is specific to a dataset resource
+          only.  therefore, dataset elements that are of this type will not only
+          gain general resource elements, but also specific dataset elements.
+        </description>
+        <example>
+          Please see the examples for each subelement of the 'Dataset' type.
+        </example>
+        <lineage>
+          This complexType was introduced in EML 2.0 beta 1, and is derived from
+          the eml-dataset module in EML 1.4.  
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name = "geoForm" type = "GeoForm" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Geospatial representation
+            </tooltip>
+            <summary>
+               The mode in which the geospatial data are represented.
+            </summary>
+            <description>
+              This field provides the 'geospatial representation format' 
+              of the resource being described.  The possible values are 
+              derived from a list that include such formats as 'atlas', 'map', 
+              and 'globe'.  The list has also been extended to include other 
+              datatype formats such as 'spreadsheet', 'document', or 'video'.  
+              The complete list of values are provided in the example.
+            </description>
+            <example>
+              Possible values include: "atlas", "audio", "diagram", "document", 
+              "globe", "map", "model", "multimediaPresentation", "profile", 
+              "rasterDigitalData", "remoteSensingImage", "section", "spreadsheet", 
+              "tabularDigitalData", "vectorDigitalData", "video", and "view".
+            </example>
+            <lineage>
+              This element was derived from elements described in the
+              FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
       </xs:element>
     </xs:sequence>  
   </xs:complexType>
   
   <xs:complexType name = "Software" base = "ResourceBase"
                   derivedBy = "extension" content = "elementOnly">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Software type
+        </tooltip>
+        <summary>
+          Information describing a software resource.
+        </summary>
+        <description>
+          This complexType contains elements that describe the details of a
+          software resource.  It includes the version, the programming language,
+          and the location of the software, along with the source code
+          information or binary file information.  The information provided in
+          the subelements are specific to software resources and extend the 
+          Resource type.
+        </description>
+        <example>
+          Please see the examples within the subelements for this type.
+        </example>
+        <lineage>
+          The Software complexType was introduced into EML 2.0 beta 1, and is
+          derived from the eml-software module in EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name = "versionNumber" type = "xs:string"
-                  minOccurs = "0" maxOccurs="unbounded" />
-      <xs:element name = "source_module" type = "xs:string"
-                  minOccurs = "0" maxOccurs = "unbounded" />
+                  minOccurs = "0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Version number
+            </tooltip>
+            <summary>
+              The version number of the software resource.
+            </summary>
+            <description>
+              This field provides the version number of the software that is
+              being documented.  The version number may be a vendor-assigned
+              number, or it may be a version tag from a software versioning
+              system such as CVS (Concurrent Versioning System).
+            </description>
+            <example>
+              8.2.1 or WEBSITE_2_BETA_1
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and is
+              derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "sourceModule" type = "xs:string"
+                  minOccurs = "0" maxOccurs = "unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Source module
+            </tooltip>
+            <summary>
+              The name of the source code module.
+            </summary>
+            <description>
+              This field provides the name of the source code module that
+              contains the non-binary source.
+            </description>
+            <example>
+              eml-2.0b1.tgz
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and is
+              derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name = "binaryFile" type = "xs:string"
-                  minOccurs = "0" maxOccurs = "unbounded" />
+                  minOccurs = "0" maxOccurs = "unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Binary file
+            </tooltip>
+            <summary>
+              The name of the binary file for the software.
+            </summary>
+            <description>
+              This field provides the name of the compiled binary file for the
+              software distribution.  
+            </description>
+            <example>
+              morpho-macintosh-1.2.bin
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and is
+              derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name = "location" type = "xs:string"
-                  minOccurs = "0" maxOccurs = "unbounded" />
+                  minOccurs = "0" maxOccurs = "unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Software location
+            </tooltip>
+            <summary>
+              The Internet location of the software resource.
+            </summary>
+            <description>
+              This field provides the Uniform Resource Locator of where the
+              software resource is available on the Internet.
+            </description>
+            <example>
+              http://knb.ecoinformatics.org/software/metacat-1.2b2.tgz
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and is
+              derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name = "programmingLanguage" type = "xs:string"
-                  minOccurs = "0" maxOccurs = "unbounded" />
+                  minOccurs = "0" maxOccurs = "unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Programming Language
+            </tooltip>
+            <summary>
+              The programming language for the software resource.
+            </summary>
+            <description>
+              This field provides the name and version of the programming
+              language in which the software resource was written.
+            </description>
+            <example>
+              PERL version 5.005_03
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and is
+              derived from the eml-software module in EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name = "Literature" base = "ResourceBase" 
                   derivedBy="extension" content = "elementOnly">
-      <xs:sequence>
-	   <xs:element name = "ISBN" type = "xs:string" 
-                     minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-		             <xs:documentation>International Standard Book Number for
-                      the resource.
-                 </xs:documentation>
-                 <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-              </xs:annotation> 
-     </xs:element>
-	   <xs:element name = "ISSN" type = "xs:string" 
-                     minOccurs="0" maxOccurs="1" >
-              <xs:annotation>
-                 <xs:documentation>International Standard Serial Number 
-		     for the resource.
-		            </xs:documentation>
-		            <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-              </xs:annotation> 
-     </xs:element>
-	   <xs:element name = "editor" type = "rp:Person" 
-                     minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                 <xs:documentation>
-                    The editor of the resource.
-		             </xs:documentation>
-		             <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                 </xs:documentation>
-              </xs:annotation> 
-     </xs:element>
-	   <xs:element name = "edition" type = "xs:string" 
-                     minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                 <xs:documentation>
-                    The edition of the resource.
-		            </xs:documentation>
-		            <xs:documentation>
-                	FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                 </xs:documentation>
-              </xs:annotation> 
-     </xs:element>
-	   <xs:element name = "volume" type = "xs:string" 
-                     minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                 <xs:documentation>
-                 	The volume from which the resource came.
-		            </xs:documentation>
-		            <xs:documentation>
-                	none
-                </xs:documentation>
-              </xs:annotation>
-     </xs:element>
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Literature type
+        </tooltip>
+        <summary>
+          Information describing a literature resource.
+        </summary>
+        <description>
+          This complexType contains subelements that are specific to a
+          literature resource such as a book, a journal article, a thesis, etc.
+          It extends the generic resource elements with literature specific
+          fields.
+        </description>
+        <example>
+          Please see the examples within the subelements for this type.
+        </example>
+        <lineage>
+          This field was introduced into EML 2.0 beta 1
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name = "ISBN" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              International Standard Book Number
+            </tooltip>
+            <summary>
+              The unique Internation Standard Book Number
+            </summary>
+            <description>
+              This field names the ISBN, or International Standard Book Number
+              that has been assigned to this literature resource.
+            </description>
+            <example>
+              ISBN 1-861003-11-0
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1 and was derived from the 
+              ISO 19115.3 standard (iso-geo-md-2000June-draft) and the ISO
+              Standard 2108.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "ISSN" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1" >
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              International Standard Serial Number
+            </tooltip>
+            <summary>
+              The unique Internation Standard Serial Number
+            </summary>
+            <description>
+              This field names the ISSN, or International Standard Serial Number
+              that has been assigned to this literature resource.
+            </description>
+            <example>
+              ISSN 1234-5679
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1 and was derived from the 
+              ISO 19115.3 standard (iso-geo-md-2000June-draft) and the ISO
+              3297-1975; ANSI Z39.9-1979 standard.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "editor" type = "rp:Person" 
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Editor
+            </tooltip>
+            <summary>
+              The name of the editor of the literature resource.
+            </summary>
+            <description>
+              THis field provides a container for the information that describes
+              the editor of the literature resource.  The editor may be a person
+              or organization or a role within an organization.
+            </description>
+            <example>
+              Please see the examples within the subelements for this type.
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived
+              from the FGDC-STD-001.1-1999 standard(nbii-fgdc-std-001.1-1999)
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation> 
+      </xs:element>
+
+      <xs:element name = "edition" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Edition
+            </tooltip>
+            <summary>
+              The edition of the literature resource.
+            </summary>
+            <description>
+              This field names the edition that has been assigned to a literature 
+              resource by its publisher.
+            </description>
+            <example>
+              2nd Edition
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived
+              from the FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999) and
+              ISO 19115.3 (iso-geo-md-2000June-draft) standards.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name = "volume" type = "xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Volume
+            </tooltip>
+            <summary>
+              The volume number of the resource.
+            </summary>
+            <description>
+              This field names the volume number that has been assigned to a
+              resource by its publisher.
+            </description>
+            <example>
+              Volume 7
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
-  </xs:complexType>	
+  </xs:complexType>        
 
   <xs:complexType name = "Abstract"  content="elementOnly">       
-        <xs:sequence>
-            <xs:element name = "paragraph" type = "xs:string"
-                        minOccurs="1" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:documentation>
-                       A reusable free text paragraph.
-	              </xs:documentation>
-	              <xs:documentation>
-                       Taken directly from EML v1.3
-                </xs:documentation>
-             </xs:annotation>
-           </xs:element>
-        </xs:sequence>
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Abstract type
+        </tooltip>
+        <summary>
+          Information that provides an overview of the resource.
+        </summary>
+        <description>
+          The 'Abstract' type provides paragraph containers that are used to
+          give a brief overview of the resource in abstract format.
+        </description>
+        <example>
+          Please see the examples within the sub elements of this type.
+        </example>
+        <lineage>
+          This field was introduced into EML 2.0 beta 1, and was derived from
+          EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name = "paragraph" type = "xs:string"
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Abstract paragraph
+            </tooltip>
+            <summary>
+              The paragraph field for the text in an abstract.
+            </summary>
+            <description>
+              This field is intended for the text of an abstract that gives a
+              brief overview of the resource.  there may be multiple paragragh
+              field within the abstract.
+            </description>
+            <example>
+            The major unanswered question in marine ecology is the degree of
+            connectedness between local populations. Put another way, what
+            proportion of young arriving into a local population are products 
+            of local production? What is the source of recruits for any local population, 
+            and where do the young produced in a local population go? The answers 
+            to these questions are unknown for any widespread species with a pelagic 
+            dispersal phase. Proper marine management depends on knowledge in this 
+            area: the efficacy of any reserve design, for example, is highly dependent 
+            on the degree to which it is dependent on other populations for 
+            recruitment, and the degree to which it supplies other areas.
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived from
+              EML 1.3.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name = "KeywordInfo" content = "elementOnly">
-	<xs:sequence>
-	   <xs:element name = "keyword" type = "xs:string" 
-                     minOccurs="1" maxOccurs="1" >
-              <xs:annotation>
-                 <xs:documentation>Keywords that refer to the resource..
-		             </xs:documentation>
-		             <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                 </xs:documentation>
-              </xs:annotation>    
-           </xs:element>
-           <xs:element name = "keywordType" type = "KeyTypCode" 
-                     minOccurs="1" maxOccurs="1">
-             <xs:annotation>
-                <xs:documentation>The type of each keyword.
-		            </xs:documentation>
-		            <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-             </xs:annotation> 
-           </xs:element>
-           <xs:element name = "keywordThesaurus" type = "xs:string" 
-                     minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-                <xs:documentation>The name of a thesaurus from which
-                    the keyword is derived.
-		            </xs:documentation>
-		            <xs:documentation>
-                	ISO 19115.3 (iso-geo-md-2000June-draft)
-                </xs:documentation>
-             </xs:annotation>
-           </xs:element>
-      </xs:sequence>
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Keyword Information
+        </tooltip>
+        <summary>
+          Keyword information that describes a resource.
+        </summary>
+        <description>
+          The 'KeywordInfo' type provides a container for information relating
+          to keywords, including the type of the keyword and the thesaurus from
+          which the keyword was derived.
+        </description>
+        <example>
+          Please see the examples within the sub elements of this type.
+        </example>
+        <lineage>
+          This field was introduced into EML 2.0 beta 1, and was derived from
+          EML 1.3.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name = "keyword" type = "xs:string" 
+                  minOccurs="1" maxOccurs="1" >
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Keyword
+            </tooltip>
+            <summary>
+              A keyword that describes the resource.
+            </summary>
+            <description>
+              This field names a keyword or keyphrase that concisely describes
+              the resource or is related to the resource.
+            </description>
+            <example>
+              biodiversity
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived from
+              EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "keywordType" type = "KeyTypCode" 
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Keyword type
+            </tooltip>
+            <summary>
+              The type of each keyword.
+            </summary>
+            <description>
+              This field classifies the keyword that has been provided from a
+              list of pre-determined categories. The possible types are listed
+              in the example.
+            </description>
+            <example>
+              "discipline","place","stratum","temporal","thematic", or "taxonomic"
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived from
+              EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name = "keywordThesaurus" type = "xs:string" 
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Keyword thesaurus
+            </tooltip>
+            <summary>
+              The name of a thesaurus from which the keyword is derived.
+            </summary>
+            <description>
+              this field provides the name of the official keyword thesaurus
+              from which keyword was derived.  The keyword thesauri are usually
+              discipline specific.
+            </description>
+            <example>
+              IRIS keyword thesaurus
+            </example>
+            <lineage>
+              This field was introduced into EML 2.0 beta 1, and was derived from
+              EML 1.3. and the  ISO 19115.3 standard(iso-geo-md-2000June-draft).
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
 
   <!-- The geospatial representation form domain 
       taken directly from NBII -->
   <xs:simpleType name = "GeoForm" base = "xs:string" >
-	   <xs:enumeration value = "atlas" />
-	   <xs:enumeration value = "audio" />
-	   <xs:enumeration value = "diagram" />
-	   <xs:enumeration value = "document" />
-	   <xs:enumeration value = "globe" />
-	   <xs:enumeration value = "map" />
-	   <xs:enumeration value = "model" />
-	   <xs:enumeration value = "multimediaPresentation" />
-	   <xs:enumeration value = "profile" />
-	   <xs:enumeration value = "rasterDigitalData" />
-	   <xs:enumeration value = "remoteSensingImage" />
-	   <xs:enumeration value = "section" />
-	   <xs:enumeration value = "spreadsheet" />
-	   <xs:enumeration value = "tabularDigitalData" />
-	   <xs:enumeration value = "vectorDigitalData" />
-	   <xs:enumeration value = "video" />
-	   <xs:enumeration value = "view" />
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Geospatial format type
+        </tooltip>
+        <summary>
+          The list of geospatial representation formats
+        </summary>
+        <description>
+          This field provides a restricted list of resource formats that
+          describe a dataset.
+        </description>
+        <example>
+          atlas
+        </example>
+        <lineage>
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:enumeration value = "atlas" />
+    <xs:enumeration value = "audio" />
+    <xs:enumeration value = "diagram" />
+    <xs:enumeration value = "document" />
+    <xs:enumeration value = "globe" />
+    <xs:enumeration value = "map" />
+    <xs:enumeration value = "model" />
+    <xs:enumeration value = "multimediaPresentation" />
+    <xs:enumeration value = "profile" />
+    <xs:enumeration value = "rasterDigitalData" />
+    <xs:enumeration value = "remoteSensingImage" />
+    <xs:enumeration value = "section" />
+    <xs:enumeration value = "spreadsheet" />
+    <xs:enumeration value = "tabularDigitalData" />
+    <xs:enumeration value = "vectorDigitalData" />
+    <xs:enumeration value = "video" />
+    <xs:enumeration value = "view" />
   </xs:simpleType>
 
-  <!-- The keyword type domain take directly from 
-       ISO -->
+  <!-- The keyword type domain take directly from ISO -->
   <xs:simpleType name = "KeyTypCode" base = "xs:string" >
-        <xs:enumeration value = "discipline" />
-        <xs:enumeration value = "place" />
-	<xs:enumeration value = "stratum" />
-	<xs:enumeration value = "temporal" />
-	<xs:enumeration value = "thematic" />
-  	<xs:enumeration value = "taxonomic" />
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Keyword type codes
+        </tooltip>
+        <summary>
+	  The list of keyword categories
+        </summary>
+        <description>
+	  This field provides a restricted list of categories that a keyword may
+	  fall under.
+        </description>
+            <example>
+	      place
+            </example>
+        <lineage>
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:enumeration value = "discipline" />
+    <xs:enumeration value = "place" />
+    <xs:enumeration value = "stratum" />
+    <xs:enumeration value = "temporal" />
+    <xs:enumeration value = "thematic" />
+    <xs:enumeration value = "taxonomic" />
       <!-- More types should be added here. -->
   </xs:simpleType>
-	
+        
 </xs:schema>
