@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-09-09 09:46:42 $'
-      '$Revision: 1.5 $'
+          '$Date: 2002-09-13 19:51:01 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,7 +35,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 <article class="faq">
-  <title>EML FAQ</title>
+  <title>EML Frequently Asked Questions</title>
+  <para><ulink url="./index.html">Back to EML Contents</ulink></para>
 
   <qandaset>
     <qandaentry id="id.1">
@@ -60,12 +61,22 @@
         <para>The first two released versions of EML, EML 1.0 and EML 1.4.1
         were developed at the National Center for Ecological Analysis and
         Synthesis (NCEAS), University of California at Santa Barbara, in Santa
-        Barbara, California USA. EML 2.0 beta 9 and the EML 2.0 release
-        candidate 1 were developed through community efforts that involved a
-        number of ecological research projects and organizations. While the
-        bulk of the work still comes from NCEAS, the Long Term Ecological
-        Research Program sites, and individuals from a number of other research
-        projects have had significant input into EML.</para>
+        Barbara, California USA. The effort to produce EML 2.0.0 (and all of
+        the beta releases preceding it) is organized through the EML Project,
+        an open source, community oriented project
+        dedicated to providing a high-quality metadata specification
+        for describing data relevant to the ecological discipline.
+        The project is completely comprised of 
+        <ulink url="members.html">voluntary project members</ulink> who donate 
+        their time and experience in order to advance
+        information management for ecology. Project decisions are made by
+        concensus according to the voting procedures described in the <ulink 
+        url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+        Charter</ulink>.  Significant contributions for these recent releases
+        have come from individuals at NCEAS, the Long Term Ecological
+        Research Program (CAP, NET, KBS, JOR), and the Joseph W. Jones 
+        Ecological Research Center in Newton, GA.
+        </para>
       </answer>
     </qandaentry>
 
@@ -113,12 +124,13 @@
       </question>
 
       <answer>
-        <para>Yes, there is a formal specification of EML describing its
-        development history, architecture, and modules. The intent of each
-        module is described in narrative and there is a technical description
-        of each module in XML notation. Included as part of the technical
-        description is an element-by-element description of the module. We will
-        eventually provide examples on usage.</para>
+        <para>Yes, there is a <ulink url="eml-docbook.html">formal
+        specification</ulink> of EML describing its development history,
+        architecture, and modules.  The intent of each module is described
+        in narrative and there is a technical description of each module
+        in XML notation. Included as part of the technical description is
+        an element-by-element description of the module. We will eventually
+        provide examples on usage.</para>
       </answer>
     </qandaentry>
 
@@ -150,8 +162,8 @@
       <answer>
         <para>All the documents associated with the EML development effort are
         available via the project web server at 
-        <ulink url="http://www.ecoinformatics.org">
-        http://www.ecoinformatics.org.</ulink>
+        <ulink url="http://knb.ecoinformatics.org/software/eml/">
+        http://knb.ecoinformatics.org/software/eml/</ulink>.
 
         These projects are licensed under the GPL (Gnu Public License)
         agreement and can be freely distributed and modified.</para>
@@ -175,9 +187,17 @@
         number of tools to make it easier for ecologists to document data.
         These include a reverse-engineering wizard. Morpho is available from 
         <ulink url="http://knb.ecoinformatics.org/software">
-        http://knb.ecoinformatics.org.</ulink>
-
-        .</para>
+        http://knb.ecoinformatics.org/software</ulink>.  Morpho currently
+        supports the EML 2.0.0beta6 release, although the Morpho developers
+        will update it to support the EML 2.0.0 release as soon as it has
+        stabilized.</para>
+        <para>In addition, the <ulink
+        url="http://ces.asu.edu/bdi/subjects/xylographa/">Xylographa</ulink>
+        and <ulink
+        url="http://ces.asu.edu/bdi/subjects/Xanthoria/index.htm">Xanthoria
+        systems</ulink> are designed to assist in editing EML documents and
+        in producing EML-compliant metadata from existing database systems.
+        </para>
       </answer>
     </qandaentry>
 
@@ -383,14 +403,14 @@
       <answer>
         <para>In a previous version, EML packages (via RDF like triples)
         supported linking across packages, so you could re-use the same
-        document in multiple packages. In EML 2.0 release candidate we
+        document in multiple packages. In EML 2.0.0 Release Candidate 1 we
         redesigned the packaging structure to only allow linking within a
         single package. Thus, one could re-use a party description or attribute
         list within a package, but not across several. This is a compromise
         that keeps some reusability but has fewer management problems. Along
         with this change is an ability to put all metadata and data in a single
         document for transport -- while still not limiting ourselves to a
-        monolithinc structure. This has benefits (akin to db normalization) and
+        monolithic structure. This has benefits (akin to db normalization) and
         costs (access control, ownership, and multiple update problems).</para>
       </answer>
     </qandaentry>
@@ -487,6 +507,8 @@
         its attributes from the stream. There are 3 distribution types, online,
         offline, and inline. To include data in EML you would populate the
         inline element with the data file described in the data format element.
+        The data that is in the inline element should conform to the 
+        description provided by the eml-physical module.
         Binary data files can be included using Base64 encoding.</para>
       </answer>
     </qandaentry>
@@ -511,7 +533,7 @@
       </question>
 
       <answer>
-        <para>No. As of EML 2.0.0 RC1 we are no longer creating DTDs as part of
+        <para>No. As of EML 2.0.0rc1 we are no longer creating DTDs as part of
         the EML release. Only 
         <ulink url="http://www.w3.org/XML/Schema">XML Schemas</ulink>
 
@@ -545,16 +567,16 @@
       </question>
 
       <answer>
-        <para>EML ships with a DocBook manual which describes each element in a
-        detailed normative manner. EML is heirarchical so where you use
-        different elements is very important. For instance, if you use a
-        TemporalCoverage element and reference it to a dataset element, you are
-        saying that that entire dataset took place during that time. If,
-        instead, you reference it to a DataTable, you are saying that only that
-        table was covered by that time period. You must gauge exactly what you
-        are trying to describe in the structure that you are using. Questions
-        about possible bugs in the definitions of elements can be posed via
-        email to the 
+        <para>The <ulink url="eml-docbook.html">EML Specification</ulink>
+        describes each element in a detailed normative manner. EML is
+        heirarchical so where you use different elements is very important. For
+        instance, if you use a TemporalCoverage element and reference it to a
+        dataset element, you are saying that that entire dataset took place
+        during that time. If, instead, you reference it to a DataTable, you
+        are saying that only that table was covered by that time period. You
+        must gauge exactly what you are trying to describe in the structure
+        that you are using. Questions about possible bugs in the definitions
+        of elements can be posed via email to the
         <ulink url="mailto:eml-dev@ecoinformatics.org">eml-dev mailing
         list</ulink>
         </para>
@@ -567,16 +589,22 @@
       </question>
 
       <answer>
-        <para>Yes. You can contact the 
+        <para>We welcome contributions to this work in any form.
+        Individuals who invest substantial amounts of time and make valuable
+        contributions to the development and maintenance of EML (in the
+        opinion of current project members) will be invited to become EML
+        project members according to the rules set forth in the <ulink
+        url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+        Charter</ulink>. Contributions can take many forms, including the
+        development of the EML schemas, writing documentation, and helping
+        with maintenance, among others.
+        </para>
+        <para>You can contact the 
         <ulink url="mailto:eml-dev@ecoinformatics.org">eml-dev mailing
         list</ulink>
-
         if you would like to make a contribution in person-hours to this
-        project. We have a specific set of 
-        <ulink url="http://www.ecoinformatics.org/charter.html">by-laws</ulink>
-
-        which governs membership to this collaboration. In general, we want all
-        of the help we can get!</para>
+        project and would like to discuss how that might occur.  In general, 
+        we want all of the help we can get!</para>
       </answer>
     </qandaentry>
 
@@ -587,8 +615,8 @@
 
       <answer>
         <para>You can download archived releases from 
-        <ulink url="http://knb.ecoinformatics.org/software">
-        knb.ecoinformatics.org</ulink>
+        <ulink url="http://knb.ecoinformatics.org/software/eml/">
+        http://knb.ecoinformatics.org/software/eml/</ulink>
 
         or you can check out the latest development version from our 
         <ulink url="http://cvs.ecoinformatics.org">CVS</ulink>
