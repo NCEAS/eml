@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:attribute" xmlns="eml:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml:attribute">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -8,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-10 16:43:22 $'
-      '$Revision: 1.13 $'
+          '$Date: 2001-07-10 16:59:21 $'
+      '$Revision: 1.14 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -156,8 +156,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="attributeLabel" type="xs:string" 
-                          minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="attributeLabel" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
@@ -249,7 +248,7 @@
               <xs:element name="attributeDomain">
                 <xs:complexType>
                   <xs:choice>
-                    <xs:element name="enumeratedDomain" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="enumeratedDomain" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <tooltip>
@@ -311,8 +310,7 @@
                               </xs:appinfo>
                             </xs:annotation>
                           </xs:element>
-                          <xs:element name="source" type="xs:string" 
-                                      minOccurs="0">
+                          <xs:element name="source" type="xs:string" minOccurs="0">
                             <xs:annotation>
                               <xs:appinfo>
                                 <tooltip>
@@ -340,8 +338,7 @@
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="rangeDomain" 
-                                minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="rangeDomain" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <tooltip>

@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2001-03-28 17:18:16 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2001-07-10 16:59:21 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,85 +24,41 @@
 -->
 <!-- EML DTD document that defines the
      characteristics of all attributes in a dataset. -->
-
 <!-- The root element, which represents a list of attributes in a dataset -->
-<!ELEMENT eml-attribute (identifier, attribute*)>
-
+<!ELEMENT eml-attribute (identifier, attribute+)>
 <!-- File identifier of the metadata document -->
 <!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA>
-
+<!ATTLIST identifier
+  system CDATA #IMPLIED
+>
 <!-- Attribute element is a descriptor of an attribute in the dataset
      identified by its name. -->
-<!ELEMENT attribute (attributeName, attributeDefinition, unit?, storageType?,
-                    codeDefinition* , numericRange* , missingValueCode*,
-                    precision?, (delimeter|fieldWidth)?)>
+<!ELEMENT attribute (attributeName, attributeLabel*, attributeDefinition, unit?, dataType?, attributeDomain, missingValueCode*, precision?)>
 <!-- Attribute name -->
-<!ELEMENT attributeName (#PCDATA) >
-
+<!ELEMENT attributeName (#PCDATA)>
+<!-- Attribute label -->
+<!ELEMENT attributeLabel (#PCDATA)>
 <!-- Precise definition of attributes in data set -->
 <!ELEMENT attributeDefinition (#PCDATA)>
-
 <!-- Unit -->
-<!ELEMENT unit (#PCDATA) >
-
-<!-- Storage type; Integer, floating point, character, string -->
-<!ELEMENT storageType (#PCDATA) >
-
+<!ELEMENT unit (#PCDATA)>
+<!-- data type; Integer, floating point, character, string -->
+<!ELEMENT dataType (#PCDATA)>
+<!-- Domain of the attribute -->
+<!ELEMENT attributeDomain (enumeratedDomain+ | rangeDomain+)>
 <!-- Description of any codes associated with attributes -->
-<!ELEMENT codeDefinition (code, definition) >
-<!ELEMENT code (#PCDATA) >
+<!ELEMENT enumeratedDomain (code, definition, source?)>
+<!ELEMENT code (#PCDATA)>
 <!-- List and definition of attribute codes -->
-<!ELEMENT definition (#PCDATA) >
-
+<!ELEMENT definition (#PCDATA)>
+<!-- Source of attribute codes -->
+<!ELEMENT source (#PCDATA)>
 <!-- Range for numeric values -->
-<!ELEMENT numericRange  (minimum?,maximum?) >
-<!ELEMENT minimum (#PCDATA) >
-<!ELEMENT maximum (#PCDATA) >
-
+<!ELEMENT rangeDomain (minimum?, maximum?)>
+<!ELEMENT minimum (#PCDATA)>
+<!ELEMENT maximum (#PCDATA)>
 <!-- Character used to represent missing data -->
-<!ELEMENT missingValueCode  (#PCDATA) >
-
+<!ELEMENT missingValueCode (#PCDATA)>
 <!-- Precision; number of significant digits -->
-<!ELEMENT precision   (#PCDATA) >
-
-<!--
-Data sets are generally classified as fixedWidth format or
-variableWidth format, but we have determined that this is actually a
-per-field classification because one may encounter fixedWidth fields
-mixed together in the same data file with variableWidth fields.
-
-In our encoding scheme, the start of each field is assumed to be the
-column after the last column of the previous field, or the first column
-if this is the first field in the dataset.  The end column for each
-field is classified using either a special character delimeter, or a
-fixed field length.  variableWidth fields can vary in their field length, 
-and the end of the field is delimited by a special character called a field 
-delimiter, usually a comma or a tab character.  fixedWidth fields have a set
-length, and so the end of the field can always be determined by adding
-the fieldWidth to the starting column number.  Here is an example:
-
-Assume we have the following data in a data set:
-
-May,100aaa,1.2,
-April,200aaa,3.4,
-June,300bbb,4.6,
-
-The metadata for the 4 fields would include the following:
-<attribute><name>month</name><delimiter>,</delimiter></attribute>
-
-<attribute><name>sitecode</name><fieldWidth>3</fieldWidth></attribute>
-
-<attribute><name>subsitecode</name><fieldWidth>3</fieldWidth></attribute>
-
-<attribute><name>response</name><delimiter>,</delimiter></attribute>
-
--->
-
-<!-- Character used to delimit end of field -->
-<!ELEMENT delimiter (#PCDATA)>
-<!-- Width of field in characters -->
-<!ELEMENT fieldWidth (#PCDATA)>
-
+<!ELEMENT precision (#PCDATA)>
 <!-- End of file -->
-
