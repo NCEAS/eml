@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-04-20 03:36:23 $'
-  *  '$Revision: 1.12 $'
+  *      '$Date: 2002-04-20 04:03:22 $'
+  *  '$Revision: 1.13 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -32,6 +32,7 @@
     <property name="version" value="2.0.0beta7"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
+    <property name="style.dir" value="./style"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
     <filter token="docrooturl" value=""/>
     <filter token="version" value="${version}"/>
@@ -80,6 +81,7 @@
     <delete dir="${ver.dir}"/>
     <mkdir dir="${ver.dir}"/>
     <mkdir dir="${ver.docs}"/>
+    <mkdir dir="${ver.dir}/style"/>
     <copy file="./LICENSE" todir="${ver.dir}"/>
     <copy file="./README" todir="${ver.dir}"/>
     <copy todir="${ver.dir}" filtering="no">
@@ -91,6 +93,9 @@
     <copy todir="${ver.docs}">
       <fileset dir="./docs"/>
     </copy>
+    <copy todir="${ver.dir}/style">
+      <fileset dir="${style.dir}"/>
+    </copy>
 
     <delete file="./eml-${version}.zip"/>
     <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
@@ -98,7 +103,7 @@
     <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
     <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
     <delete file="./eml-${version}.tar"/>
-    <delete dir="dist"/>
-    <delete dir="docs"/>
+    <!--<delete dir="dist"/>-->
+    <!--<delete dir="docs"/>-->
   </target>
 </project>

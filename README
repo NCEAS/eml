@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: berkley $'
-#       '$Date: 2002-04-20 03:47:44 $'
-#   '$Revision: 1.14 $'
+#       '$Date: 2002-04-20 04:03:22 $'
+#   '$Revision: 1.15 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -110,7 +110,10 @@ ADDITIONS AND IMPROVEMENTS
    to translate the metadata to HTML
 2) Changed names of coverage elements to be human readable
 3) Updated the namespaces to reflect the current version number of EML
-4) Numerous bug fixes (see bugzilla.ecoinformatics.org)
+4) Added an eml-data module for the in-lining of data.
+5) Added the eml module for creating packages all in one file.  It is a single
+   node with a model of ANY so any of the eml modules can be put into it.
+6) Numerous bug fixes (see bugzilla.ecoinformatics.org)
 
 Legalese
 --------
