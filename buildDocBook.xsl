@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-10 17:47:28 $'
-      '$Revision: 1.32 $'
+          '$Date: 2002-09-10 17:50:09 $'
+      '$Revision: 1.33 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -291,7 +291,7 @@
           </para>
           <para>
             The eml-literature module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -312,7 +312,7 @@
           </para>
           <para>
             The eml-software module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -343,7 +343,7 @@
           </para>
           <para>
             The eml-protocol module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -372,7 +372,7 @@
           </para>
           <para>
             The eml-access module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -386,7 +386,7 @@
           </para>
           <para>
             The eml-physical module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -400,7 +400,7 @@
           </para>
           <para>
             The eml-party module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -414,7 +414,7 @@
           </para>
           <para>
             The eml-coverage module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -428,7 +428,7 @@
           </para>
           <para>
             The eml-project module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
@@ -442,7 +442,7 @@
           </para>
           <para>
             The eml-methods module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
