@@ -22,9 +22,9 @@ xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-06-14 17:51:48 $'
-      '$Revision: 1.27 $'
+        '$Author: jones $'
+          '$Date: 2002-08-21 20:51:36 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -259,6 +259,48 @@ xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
+        <xs:element name="userId" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>User Identifier</doc:tooltip>
+              <doc:summary>An identifier that links this party to a
+              directory of personnel</doc:summary>
+              <doc:description>An identifier that links this party to a 
+              directory of personnell.  Although specific contact information
+              for a party might change, the underlying correspondence to a 
+              real individual does not.  This identifer provides a pointer
+              within a personnell directory that may contain further, and possibly
+              more current, information about the party.
+              </doc:description>
+              <doc:example>uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</doc:example>
+              <doc:lineage>As of EML 2.0.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="directory" type="xs:string" use="required">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Directory</doc:tooltip>
+                      <doc:summary>The directory system within which the 
+                      directoryId can be retrieved.</doc:summary>
+                      <doc:description>This attribute names the directory system
+                      to which this userId applies. This will generally
+                      be a URL that shows how to look up information, for 
+                      example an LDAP url. However, it could also be a
+                      non-parseable description of the directory system if
+                      that is all that is available.</doc:description>
+                      <doc:example>
+                        ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org
+                      </doc:example>
+                      <doc:lineage>As of EML 2.0.0</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
