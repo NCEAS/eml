@@ -1,21 +1,17 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:coverage" 
-    xmlns="eml:coverage" 
-    xmlns:doc="eml:documentation" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
              schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
-      <xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-12-12 09:26:02 $'
-      '$Revision: 1.17 $'
+          '$Date: 2001-12-13 08:00:23 $'
+      '$Revision: 1.18 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -31,18 +27,17 @@
       along with this program; if not, write to the Free Software
       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-      </xs:documentation>
-      <xs:appinfo>
-        <doc:moduleName>
-          eml-coverage
-        </doc:moduleName>
-        <doc:moduleDescription>
+    <xs:appinfo>
+      <doc:moduleName>
+        eml-coverage
+      </doc:moduleName>
+      <doc:moduleDescription>
         The eml-coverage module contains fields for describing the 
         coverage of a resource in terms of time, space, and taxonomy. These
         coverages (temporal, spatial, and taxonomic) represent the extent
         of applicability of the resource in those domains.
-        </doc:moduleDescription>
-      </xs:appinfo>
+      </doc:moduleDescription>
+    </xs:appinfo>
   </xs:annotation>
     
   <xs:element name="coverage">
@@ -631,246 +626,405 @@
   </xs:element>
         
   <xs:complexType name="GeographicCoverage">
-          <xs:annotation>
-            <xs:appinfo>
-             <doc:tooltip>
-               Geographic coverage
-             </doc:tooltip>
-             <doc:summary>
-               Geographic coverage information.
-             </doc:summary>
-             <doc:description>
-               Geographic Coverage is a container for spatial information about a
-               a project, a resource, or an entity within a resource.
-             </doc:description>
-             <doc:example>
-               Please see the individual sub-elements for specific examples.
-             </doc:example>
-             <doc:lineage>
-               The GeographicCoverage complex type was derived from the eml-entity
-               module in EML 1.4.
-             </doc:lineage>
-           </xs:appinfo>
-         </xs:annotation>
-         <xs:sequence>
-           <xs:element name="descgeog" type="xs:string">
-             <xs:annotation>
-               <xs:appinfo>
-                 <doc:tooltip>Description geographic location </doc:tooltip>
-                 <doc:summary/>
-                 <doc:description>
-                   Short description of the geographic areal domain of the data set. 
-                 </doc:description>
-                 <doc:example/>
-                 <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
-               </xs:appinfo>
-             </xs:annotation>
-           </xs:element>
-           <xs:element name="bounding">
-             <xs:annotation>
-               <xs:appinfo>
-                 <doc:tooltip>Bounding coordinates</doc:tooltip>
-                 <doc:summary/>
-                 <doc:description>
-                   The limits of coverage of a data set expressed by latitude 
-                   and longitude values in the order western-most, eastern-most, 
-                   northern-most, and southern-most.  For data sets that include 
-                   a complete band of latitude around the earth, the West 
-                   Bounding Coordinate shall be assigned the value -180.0, and 
-                   the East Bounding Coordinate shall be assigned the value 180.0 
-                 </doc:description>
-                 <doc:example/>
-                 <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
-               </xs:appinfo>
-             </xs:annotation>
-             <xs:complexType>
-               <xs:sequence>
-                 <xs:element name="westbc" type="xs:string">
-                   <xs:annotation>
-                     <xs:appinfo>
-                       <doc:tooltip>West bounding coordinate</doc:tooltip>
-                       <doc:summary/>
-                       <doc:description>
-                         Western-most coordinate of the limit of coverage 
-                         expressed in latitude 
-                       </doc:description>
-                       <doc:example/>
-                       <doc:lineage>FGDC-STD-001-1998</doc:lineage>
-                     </xs:appinfo>
-                   </xs:annotation>
-                 </xs:element>
-                 <xs:element name="eastbc" type="xs:string">
-                   <xs:annotation>
-                     <xs:appinfo>
-                       <doc:tooltip>East bounding coordinate</doc:tooltip>
-                       <doc:summary/>
-                       <doc:description> 
-                         Eastern-most coordinate of the limit of coverage 
-                         expressed in latitude
-                       </doc:description>
-                       <doc:example/>
-                       <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
-                     </xs:appinfo>
-                   </xs:annotation>
-                 </xs:element>
-                 <xs:element name="northbc" type="xs:string">
-                   <xs:annotation>
-                     <xs:appinfo>
-                       <doc:tooltip>North bounding coordinate </doc:tooltip>
-                       <doc:summary/>
-                       <doc:description>
-                         Northern-most coordinate of the limit of coverage expressed 
-                         in longitude 
-                       </doc:description>
-                       <doc:example/>
-                       <doc:lineage> FGDC-STD-001-1998</doc:lineage>
-                     </xs:appinfo>
-                   </xs:annotation>
-                 </xs:element>
-                 
-                 <xs:element name="southbc" type="xs:string">
-                   <xs:annotation>
-                     <xs:appinfo>
-                       <doc:tooltip>South bounding coordinate </doc:tooltip>
-                       <doc:summary/>
-                       <doc:description>
-                         Southern-most coordinate of the limit of coverage expressed in longitude 
-                       </doc:description>
-                       <doc:example/>
-                       <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
-                     </xs:appinfo>
-                   </xs:annotation>
-                 </xs:element>
-                 
-                 <xs:element name="boundalt" minOccurs="0">
-                   <xs:annotation>
-                     <xs:appinfo>
-                       <doc:tooltip>Altitudinal limits </doc:tooltip>
-                       <doc:summary/>
-                       <doc:description>
-                         The limits of coverage of a data set expressed by altitude.  
-                       </doc:description>
-                       <doc:example/>
-                       <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
-                     </xs:appinfo>
-                   </xs:annotation>
-                   <xs:complexType>
-                     <xs:sequence>
-                       <xs:element name="altmin" type="xs:string">
-                         <xs:annotation>
-                           <xs:appinfo>
-                             <doc:tooltip>Minimum altitude </doc:tooltip>
-                             <doc:summary/>
-                             <doc:description>
-                               The minimum altitude extent of coverage. 
-                             </doc:description>
-                             <doc:example/>
-                             <doc:lineage>FGDC-STD-001.1-1999  </doc:lineage>
-                           </xs:appinfo>
-                         </xs:annotation>
-                       </xs:element>
-                       <xs:element name="almax" type="xs:string">
-                         <xs:annotation>
-                           <xs:appinfo>
-                             <doc:tooltip>Maximum altitude </doc:tooltip>
-                             <doc:summary/>
-                             <doc:description>
-                               The maximum altitude extent of coverage. 
-                             </doc:description>
-                             <doc:example/>
-                             <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
-                           </xs:appinfo>
-                         </xs:annotation>
-                       </xs:element>
-                       <xs:element name="altunits" type="xs:string">
-                         <xs:annotation>
-                           <xs:appinfo>
-                             <doc:tooltip>Units of altitude </doc:tooltip>
-                             <doc:summary/>
-                             <doc:description>
-                               Units in which altitude is measured. 
-                             </doc:description>
-                             <doc:example/>
-                             <doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
-                           </xs:appinfo>
-                         </xs:annotation>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="dsgpoly" minOccurs="0" maxOccurs="unbounded">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Geographic coverage
+        </doc:tooltip>
+        <doc:summary>
+          Geographic coverage information.
+        </doc:summary>
+        <doc:description>
+          Geographic Coverage is a container for spatial information about a
+          a project, a resource, or an entity within a resource.
+        </doc:description>
+        <doc:example>
+          Please see the individual sub-elements for specific examples.
+        </doc:example>
+        <doc:lineage>
+          The GeographicCoverage complex type was derived from the eml-entity
+          module in EML 1.4.
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="descgeog" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Description of geographic extent</doc:tooltip>
+            <doc:summary>
+              Short description of the geographic areal domain of the data set.
+            </doc:summary>
+            <doc:description>
+               A geographic extent description is especially important when the 
+               extent of the data set is not well described by the 
+               "Bounding_Rectangle_Coordinates", or in the case of data which 
+               are not specifically geospatial, to provide a geographic setting 
+               for the item being documented. Assuming the 
+               "Bounding_Rectangle_Coordinates" do not adequately describe the 
+               extent of the data set, the discrepancy can be identified and 
+               described in this data element. If the item being documented is 
+               not specifically geospatial, the "Bounding_Rectangle_Coordinates"
+               can define a general polygon, such as a rectangle around a 
+               country, with this "Description_of_Geographic_Extent" element 
+               containing a disclaimer concerning the 
+               "Bounding_Rectangle_Coordinates" and/or further detail concerning
+               the geographic area of concern for the item being documented. For
+               example, a study of the diseases of salmon may not have a 
+               specific geographic extent associated with it, but the salmon 
+               involved in the study were collected in Washington and Oregon 
+               states, thus the "Bounding_Rectangle_Coordinates" might form a 
+               general rectangle around the states of Washington and Oregon, but
+               the "Description_of_Geographic_Extent" might describe the fact 
+               that the extent within Washington and Oregon included only 
+               certain rivers within those states. This data element differs 
+               from the standard data element "Place_Keyword" in that it allows 
+               a free text description of the geographic extent, rather than 
+               just a list of words or phrases useful as an index of location 
+               names associated with the data set.
+            </doc:description>
+            <doc:example>
+              Examples include, "Manistee River watershed", "extent of 7 1/2 
+              minute quads containing any property belonging to Yellowstone 
+              National Park", or "ponds and reservoirs larger than 2 acres in 
+              Jefferson County, Colorado". This is especially important when the
+              extent of the data set is not well described by the 
+              "Bounding_Rectangle_Coordinates".
+            </doc:example>
+            <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bounding">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Bounding coordinates</doc:tooltip>
+            <doc:summary>
+              The 4 points (latitude and longitude pairs) that define a 
+              bounding box on the earth's surface.
+            </doc:summary>
+            <doc:description>
+              The limits of coverage of a data set expressed by latitude 
+              and longitude values in the order western-most, eastern-most, 
+              northern-most, and southern-most.  For data sets that include 
+              a complete band of latitude around the earth, the West 
+              Bounding Coordinate shall be assigned the value -180.0, and 
+              the East Bounding Coordinate shall be assigned the value 180.0 
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
+            <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="westbc" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>Polygon data </doc:tooltip>
-                  <doc:summary/>
+                  <doc:tooltip>West bounding coordinate</doc:tooltip>
+                  <doc:summary>
+                    Western-most coordinate of the limit of coverage for a
+                    bounding box, expressed in degrees of longitude.
+                  </doc:summary>
                   <doc:description>
-                    Data Set G-Polygon coordinates defining the outline of an 
-                    area covered by a data set. 
+                    The west bounding coordinate field defines the western-most
+                    point of the bounding box that is being described.
+                    This longitude coordinate should be expressed in decimal 
+                    fractions of degrees. Whole degrees of longitude shall be 
+                    represented by a three-digit decimal number ranging from 0 
+                    through 180. When a decimal fraction of a degree is 
+                    specified, it should be separated from the whole number of 
+                    degrees by a decimal point. Decimal fractions of a degree 
+                    may be expressed to the precision desired.  Longitudes east 
+                    of the prime meridian shall be specified by a plus sign (+),
+                    or by the absence of a minus sign (-), preceding the three 
+                    digits designating degrees of longitude. Longitudes west of 
+                    the meridian shall be designated by minus sign (-) preceding
+                    the three digits designating degrees. A point on the prime 
+                    meridian shall be assigned to the Eastern Hemisphere. A 
+                    point on the 180th meridian shall be assigned to the Western
+                    Hemisphere. One exception to this last convention is 
+                    permitted. For the special condition of describing a band of
+                    latitude around the earth, the East Bounding Coordinate data
+                    element shall be assigned the value +180 (180) degrees.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    '-118.25', '+25', '45.247'
+                  </doc:example>
+                  <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="eastbc" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>East bounding coordinate</doc:tooltip>
+                  <doc:summary>
+                    Eastern-most coordinate of the limit of coverage of a
+                    bounding box, expressed in degrees of longitude.
+                  </doc:summary>
+                  <doc:description> 
+                    The east bounding coordinate field defines the eastern-most
+                    point of the bounding box that is being described.
+                    This longitude coordinate should be expressed in decimal 
+                    fractions of degrees. Whole degrees of longitude shall be 
+                    represented by a three-digit decimal number ranging from 0 
+                    through 180. When a decimal fraction of a degree is 
+                    specified, it should be separated from the whole number of 
+                    degrees by a decimal point. Decimal fractions of a degree 
+                    may be expressed to the precision desired.  Longitudes east 
+                    of the prime meridian shall be specified by a plus sign (+),
+                    or by the absence of a minus sign (-), preceding the three 
+                    digits designating degrees of longitude. Longitudes west of 
+                    the meridian shall be designated by minus sign (-) preceding
+                    the three digits designating degrees. A point on the prime 
+                    meridian shall be assigned to the Eastern Hemisphere. A 
+                    point on the 180th meridian shall be assigned to the Western
+                    Hemisphere. One exception to this last convention is 
+                    permitted. For the special condition of describing a band of
+                    latitude around the earth, the East Bounding Coordinate data
+                    element shall be assigned the value +180 (180) degrees.
+                  </doc:description>
+                  <doc:example>
+                    '-118.25', '+25', '45.247'
+                  </doc:example>
+                  <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="northbc" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>North bounding coordinate</doc:tooltip>
+                  <doc:summary>
+                    Northern-most coordinate of the limit of coverage expressed 
+                    in latitude. 
+                  </doc:summary>
+                  <doc:description>
+                    The north bounding coordinate field defines the northern-most
+                    point of the bounding box that is being described.
+                    This latitude coordinate should be expressed in decimal 
+                    fractions of degrees. Whole degrees of latitude shall be 
+                    represented by a two-digit decimal number ranging from 0 
+                    through 90.  When a decimal fraction of a degree is 
+                    specified, it shall be separated from the whole number of 
+                    degrees by a decimal point. Decimal fractions of a degree 
+                    may be expressed to the precision desired.  Latitudes north 
+                    of the equator shall be specified by a plus sign (+), or by 
+                    the absence of a minus sign (-), preceding the two digits 
+                    designating degrees. Latitudes south of the Equator shall be
+                    designated by a minus sign (-) preceding the two digits 
+                    designating degrees. A point on the Equator shall be 
+                    assigned to the Northern Hemisphere.  Any spatial address 
+                    with a latitude of +90 (90) or -90 degrees will specify the 
+                    position at the North or South Pole, respectively.
+                  </doc:description>
+                  <doc:example>
+                    '-18.44', '+44.35', '86'
+                  </doc:example>
                   <doc:lineage> FGDC-STD-001-1998</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element> 
+            <xs:element name="southbc" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>South bounding coordinate</doc:tooltip>
+                  <doc:summary>
+                    Southern-most coordinate of the limit of coverage expressed 
+                    in latitude.
+                  </doc:summary>
+                  <doc:description>
+                    The south bounding coordinate field defines the northern-most
+                    point of the bounding box that is being described.
+                    This latitude coordinate should be expressed in decimal 
+                    fractions of degrees. Whole degrees of latitude shall be 
+                    represented by a two-digit decimal number ranging from 0 
+                    through 90.  When a decimal fraction of a degree is 
+                    specified, it shall be separated from the whole number of 
+                    degrees by a decimal point. Decimal fractions of a degree 
+                    may be expressed to the precision desired.  Latitudes north 
+                    of the equator shall be specified by a plus sign (+), or by 
+                    the absence of a minus sign (-), preceding the two digits 
+                    designating degrees. Latitudes south of the Equator shall be
+                    designated by a minus sign (-) preceding the two digits 
+                    designating degrees. A point on the Equator shall be 
+                    assigned to the Northern Hemisphere.  Any spatial address 
+                    with a latitude of +90 (90) or -90 degrees will specify the 
+                    position at the North or South Pole, respectively.
+                  </doc:description>
+                  <doc:example>
+                     '-18.44', '+44.35', '86'
+                  </doc:example>
+                  <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="boundalt" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Altitudinal limits</doc:tooltip>
+                  <doc:summary>
+                    The limits of coverage of a data set expressed by altitude.
+                  </doc:summary>
+                  <doc:description>
+                    The bounding altitude field is intended to contain
+                    altitudinal (elevation) measurements in relation to the
+                    bounding box being described.  It allows for minimum and
+                    maximum altitude fields, as well as a field for the units of
+                    measure.  The combination of these fields provide the
+                    vertical extent information for the bounding box.  The units
+                    should refer to an accepted datum as the baseline.
+                  </doc:description>
+                  <doc:example>
+                    Please see the individual sub-fields for specific examples.
+                  </doc:example>
+                  <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="dsgpolyo">
+                  <xs:element name="altmin" type="xs:string">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Outer polygon </doc:tooltip>
-                        <doc:summary/>
+                        <doc:tooltip>Minimum altitude</doc:tooltip>
+                        <doc:summary>
+                          The minimum altitude extent of coverage. 
+                        </doc:summary>
                         <doc:description>
-                          Data Set G-Polygon Outer G-Ring, the closed 
-                          nonintersecting boundary of an interior area. 
+                          The minimum altitude extent of coverage for the 
+                          bounding box that is being described.  The minimum
+                          altitude should be in reference to a known datum,
+                          which should be described in the altitude units field.
                         </doc:description>
-                        <doc:example/>
-                        <doc:lineage> FGDC-STD-001-1998 </doc:lineage>
+                        <doc:example>
+                          '12', '100.6' (e.g meters above Mean Lowest Low Water)
+                        </doc:example>
+                        <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
-                    <xs:complexType>
-                      <xs:choice>
-                        <xs:sequence>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin" maxOccurs="unbounded"/>
-                        </xs:sequence>
-                        <xs:element ref="gring"/>
-                      </xs:choice>
-                    </xs:complexType>
                   </xs:element>
-                  <xs:element name="dsgpolyx" minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="almax" type="xs:string">
                     <xs:annotation>
                       <xs:appinfo>
-                        <doc:tooltip>Exclusion polygon </doc:tooltip>
-                        <doc:summary/>
+                        <doc:tooltip>Maximum altitude</doc:tooltip>
+                        <doc:summary>
+                          The maximum altitude extent of coverage. 
+                        </doc:summary>
                         <doc:description>
-                          Data Set G-Polygon Exclusion G-Ring, the closed 
-                          nonintersecting boundary of a void area (or hole in an 
-                          interior area). 
+                          The maximum altitude extent of coverage for the 
+                          bounding box that is being described.  The maximum
+                          altitude should be in reference to a known datum,
+                          which should be described in the altitude units field.. 
                         </doc:description>
-                        <doc:example/>
-                        <doc:lineage> FGDC-STD-001-1998 </doc:lineage>
+                        <doc:example>
+                          '12', '100.6' (e.g meters above Mean Lowest Low Water)
+                        </doc:example>
+                        <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
-                    <xs:complexType>
-                      <xs:choice>
-                        <xs:sequence>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin"/>
-                          <xs:element ref="grngpoin" maxOccurs="unbounded"/>
-                        </xs:sequence>
-                        <xs:element ref="gring"/>
-                      </xs:choice>
-                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="altunits" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Units of altitude</doc:tooltip>
+                        <doc:summary>
+                          Units in which altitude is measured.
+                        </doc:summary>
+                        <doc:description>
+                          Units in which altitude is measured. This field should
+                          be in relation to a known datum which is described in
+                          the units.
+                        </doc:description>
+                        <doc:example>
+                          Meters (above Mean Lowest Low Water)
+                        </doc:example>
+                        <doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
                   </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dsgpoly" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Polygon data set</doc:tooltip>
+            <doc:summary>
+              Data Set G-Polygon coordinates defining the outline of an 
+              area covered by a data set.
+            </doc:summary>
+            <doc:description>
+              Data Set G-Polygon coordinates defining the outline of an 
+              area covered by a data set. 
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
+            <doc:lineage> FGDC-STD-001-1998</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="dsgpolyo">
+               <xs:annotation>
+                 <xs:appinfo>
+                   <doc:tooltip>Outer polygon </doc:tooltip>
+                   <doc:summary/>
+                   <doc:description>
+                     Data Set G-Polygon Outer G-Ring, the closed 
+                     nonintersecting boundary of an interior area. 
+                   </doc:description>
+                   <doc:example/>
+                   <doc:lineage> FGDC-STD-001-1998 </doc:lineage>
+                 </xs:appinfo>
+               </xs:annotation>
+               <xs:complexType>
+                 <xs:choice>
+                   <xs:sequence>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin" maxOccurs="unbounded"/>
+                   </xs:sequence>
+                   <xs:element ref="gring"/>
+                 </xs:choice>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="dsgpolyx" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                 <xs:appinfo>
+                   <doc:tooltip>Exclusion polygon </doc:tooltip>
+                   <doc:summary/>
+                   <doc:description>
+                     Data Set G-Polygon Exclusion G-Ring, the closed 
+                     nonintersecting boundary of a void area (or hole in an 
+                     interior area). 
+                   </doc:description>
+                   <doc:example/>
+                   <doc:lineage> FGDC-STD-001-1998 </doc:lineage>
+                 </xs:appinfo>
+               </xs:annotation>
+               <xs:complexType>
+                 <xs:choice>
+                   <xs:sequence>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin"/>
+                     <xs:element ref="grngpoin" maxOccurs="unbounded"/>
+                   </xs:sequence>
+                   <xs:element ref="gring"/>
+                 </xs:choice>
+               </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
         
   <xs:element name="grngpoin">
@@ -888,9 +1042,9 @@
         <xs:element name="gringlat" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Latitude </doc:tooltip>
+              <doc:tooltip>Latitude</doc:tooltip>
               <doc:summary/>
-              <doc:description> The latitude of a point of the g-ring. </doc:description>
+              <doc:description>The latitude of a point of the g-ring.</doc:description>
               <doc:example/>
               <doc:lineage>  FGDC-STD-001-1998</doc:lineage>
             </xs:appinfo>
@@ -913,7 +1067,7 @@
   <xs:element name="gring" type="xs:string">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>G-Ring </doc:tooltip>
+        <doc:tooltip>G-Ring</doc:tooltip>
         <doc:summary/>
         <doc:description>
           A set of ordered pairs of floating-point numbers, separated by commas,
