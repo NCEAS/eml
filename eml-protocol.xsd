@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="eml://ecoinformatics.org/protocol-2.0.0"
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0"
-    xmlns:md="eml://ecoinformatics.org/methods-2.0.0"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0"
-    xmlns:acc="eml://ecoinformatics.org/access-2.0.0"
-    targetNamespace="eml://ecoinformatics.org/protocol-2.0.0"
+    xmlns="eml://ecoinformatics.org/protocol-2.0.1"
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.1"
+    xmlns:md="eml://ecoinformatics.org/methods-2.0.1"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.1"
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.1"
+    targetNamespace="eml://ecoinformatics.org/protocol-2.0.1"
     elementFormDefault="unqualified"
     attributeFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.1"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0"
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.1"
   schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.1"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0"
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.1"
   schemaLocation="eml-access.xsd"/>
 
   <xs:annotation>
@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-12-11 22:03:55 $'
-      '$Revision: 1.54 $'
+        '$Author: jones $'
+          '$Date: 2003-11-06 20:15:21 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

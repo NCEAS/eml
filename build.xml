@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2003-11-01 01:17:17 $'
-      '$Revision: 1.65 $'
+          '$Date: 2003-11-06 20:15:20 $'
+      '$Revision: 1.66 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
     <property name="servletpath" value="servlet/emlparser"/>
     <!-- namespaces that the servlet should auto resolve -->
     <property name="namespaces"
-              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml.xsd"/>
+              value="eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml.xsd"/>
     <!-- the path from the tomcat/bin directory to the config.xml file -->
     <property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
     <property name="servlettempdir" value="/tmp/emlparser"/>
@@ -58,7 +58,7 @@
 
   <target name="init" depends="config">
     <property name="name" value="eml"/>
-    <property name="version" value="2.0.0"/>
+    <property name="version" value="2.0.1"/>
     <property name="eml-version" value="eml-${version}"/>
     <property name="testdir" value="./test" />
     <property name="srcdir" value="./src" />

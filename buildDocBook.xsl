@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-12-06 22:23:42 $'
-      '$Revision: 1.55 $'
+          '$Date: 2003-11-06 20:15:20 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.1"
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
@@ -482,7 +482,7 @@
         <para>
         Because some of these rules cannot be enforced in XML-Schema, we have
         written a parser which checks the validity of the references and IDs
-        used in your document.  This parser is included with the 2.0.0 release
+        used in your document.  This parser is included with the 2.0.1 release
         of EML.  To run the parser, you must have Java 1.3.1 or higher.  To
         execute it change into the lib directory of the release and run
         the 'runEMLParser' script passing your EML instance file as a
@@ -501,10 +501,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -535,10 +534,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -572,10 +570,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -609,10 +606,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;

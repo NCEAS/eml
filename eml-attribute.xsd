@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-  targetNamespace="eml://ecoinformatics.org/attribute-2.0.0" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" 
-  xmlns:cit="eml://ecoinformatics.org/literature-2.0.0" 
-  xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0" 
-  xmlns:md="eml://ecoinformatics.org/methods-2.0.0" 
-  xmlns="eml://ecoinformatics.org/attribute-2.0.0" 
+  targetNamespace="eml://ecoinformatics.org/attribute-2.0.1" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.1" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.1" 
+  xmlns:cit="eml://ecoinformatics.org/literature-2.0.1" 
+  xmlns:cov="eml://ecoinformatics.org/coverage-2.0.1" 
+  xmlns:md="eml://ecoinformatics.org/methods-2.0.1" 
+  xmlns="eml://ecoinformatics.org/attribute-2.0.1" 
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.1" 
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0" 
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.1" 
   schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0" 
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.1" 
   schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0" 
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.1" 
   schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.1" 
   schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2003-11-01 01:17:17 $'
-      '$Revision: 1.103 $'
+          '$Date: 2003-11-06 20:15:20 $'
+      '$Revision: 1.104 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
