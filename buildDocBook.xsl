@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-09 18:59:05 $'
-      '$Revision: 1.29 $'
+          '$Date: 2002-09-10 16:21:50 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -177,7 +177,8 @@
         These modules are desribed when it is appropriate.
       </para>
         <section>
-          <title>The eml module (eml.xsd) - a metadata container</title>
+          <title>The eml module (eml.xsd) - A metadata container
+          </title>
           <para>
             The eml module is a wrapper container that allows the inclusion 
             of any metadata content in a single EML document. The eml module 
@@ -210,8 +211,7 @@
         </section>
         <section>
           <title>
-            The resource module - (eml-resource.xsd) - base information for 
-            all resources
+            The resource module - (eml-resource.xsd) - Base information for all resources
           </title>
           <para>
             The eml-resource module contains general information that
@@ -249,33 +249,66 @@
         </note>
         <section>
           <title>
-            The dataset module - (eml-dataset.xsd) - dataset specific information
+            The dataset module - (eml-dataset.xsd) - Dataset specific information
           </title>
           <para>
+            The eml-dataset module contains general information that describes
+            dataset resources. It is intended to provide overview information
+            about the dataset, including title, abstract, keywords, contacts,
+            and the links to associated metadata for the given resource. It also
+            describes the temporal, geographic, and taxonomic coverage of the
+            overall dataset. A dataset can be (and often is) composed of a
+            series of data entities (tables) that are linked together by
+            particular integrity constraints.
           </para>
         </section>
         <section>
           <title>
-            The literature module - (eml-literature.xsd) - citation specific 
+            The literature module - (eml-literature.xsd) - Citation specific 
             information
           </title>
           <para>
+            The eml-literature module contains information that describes
+            literature resources. It is intended to provide overview information
+            about the literature citation, including title, abstract, keywords,
+            and contacts. Citation types follow the conventions laid out by
+            EndNote, and there is an attempt to represent a compatible subset of
+            the EndNote citation types.
           </para>
         </section>
         <section>
           <title>
-            The software module - (eml-software.xsd) - software specific 
+            The software module - (eml-software.xsd) - Software specific 
             information
           </title>
           <para>
+            The eml-software module contains general information that describes
+            software resources.
           </para>
         </section>
         <section>
           <title>
-            The protocol module - (eml-protocol.xsd) - protocol specific 
+            The protocol module - (eml-protocol.xsd) - Established procedural 
             information
           </title>
           <para>
+            The eml-protocol module is used to describe the prescribed
+            procedures that are used in the creation or the subsequent
+            processing of a dataset. Likewise, eml-protocol is used to describe
+            proccesses that have been used to define / improve the quality of a
+            data file, or to identify potential problems with the data file.
+            Note that the eml-protocol module is intended to be used to document
+            a <emphasis>prescribed</emphasis> procedure, whereas the eml-method
+            module is used to describe procedures that <emphasis>were actually
+            performed</emphasis>.  The distinction is that the use of the term
+            &quot;protocol&quot; is used in the &quot;prescriptive&quot; sense,
+            and the term &quot;method&quot; is used in the
+            &quot;descriptive&quot; sense.  This distinction allows managers to
+            build a protocol library of well-known, established protocols
+            (procedures), but also document what procedure was truely performed
+            in relation to the established protocol.  The method may have
+            diverged from the protocol purposefully, or perhaps incidentally,
+            but the procedural lineage is still preserved and understandable.
           </para>
         </section>
         <note>
@@ -295,7 +328,7 @@
         </note>
         <section>
           <title>
-            The access module (eml-access.xsd) - access control rules for
+            The access module (eml-access.xsd) - Access control rules for
             resources
           </title>
           <para>
@@ -303,7 +336,7 @@
         </section>
         <section>
           <title>
-            The physical module (eml-physical.xsd) - online and 
+            The physical module (eml-physical.xsd) - Online and 
             offline distribution of resources
           </title>
           <para>
@@ -311,15 +344,15 @@
         </section>
         <section>
           <title>
-            The party module (eml-party.xsd) - access control rules
-            for resources
+            The party module (eml-party.xsd) - People and organization
+            information
           </title>
           <para>
           </para>
         </section>
         <section>
           <title>
-            The coverage module (eml-coverage.xsd) - geographic,
+            The coverage module (eml-coverage.xsd) - Geographic,
             temporal, and taxonomic extents of resources 
           </title>
           <para>
@@ -327,7 +360,7 @@
         </section>
         <section>
           <title>
-            The project module (eml-project.xsd) - research context information
+            The project module (eml-project.xsd) - Research context information
             for resources
           </title>
           <para>
@@ -335,7 +368,7 @@
         </section>
         <section>
           <title>
-            The methods module (eml-methods.xsd) - methodological information
+            The methods module (eml-methods.xsd) - Methodological information
             for resources
           </title>
           <para>
