@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:fgdc="FGDC-STD-001-1998" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
-  <xs:import namespace="FGDC-STD-001-1998" schemaLocation="fgdc-spatialReference.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" elementFormDefault="unqualified">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-spatialReference.xsd,v $'
@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-10-01 16:54:04 $'
-      '$Revision: 1.20 $'
+          '$Date: 2002-10-01 23:13:22 $'
+      '$Revision: 1.21 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -234,7 +234,7 @@
       <xs:documentation>Comment describing your root element</xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name="geogcsType">
+  <xs:complexType name="geographicCoordinateSystemType">
     <xs:sequence>
       <xs:element name="datum" type="xs:string"/>
       <xs:element name="spheroid">
@@ -250,7 +250,14 @@
         <xs:complexType>
           <xs:sequence>
             <xs:element name="primeMeridianName"/>
-            <xs:element name="longitude"/>
+            <xs:element name="longitude">
+              <xs:simpleType>
+                <xs:restriction base="xs:float">
+                  <xs:minInclusive value="-180"/>
+                  <xs:maxInclusive value="180"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -266,17 +273,11 @@
   </xs:complexType>
   <xs:complexType name="horizontalCoordinateSystemType">
     <xs:choice>
-      <xs:element name="geogcs">
-        <xs:complexType>
-          <xs:complexContent>
-            <xs:extension base="geogcsType"/>
-          </xs:complexContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="projcs">
+      <xs:element name="geographicCoordinateSystem" type="geographicCoordinateSystemType"/>
+      <xs:element name="projectedCoordinateSystem">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="geogcs" type="geogcsType"/>
+            <xs:element name="geographicCoordinateSystem" type="geographicCoordinateSystemType"/>
             <xs:element name="projection">
               <xs:complexType>
                 <xs:sequence>
@@ -309,7 +310,7 @@
                             </xs:restriction>
                           </xs:simpleType>
                         </xs:element>
-                        <xs:element name="parameterDescription" type="xs:string"/>
+                        <xs:element name="parameterDescription" type="xs:string" minOccurs="0"/>
                         <xs:element name="parameterValue" type="xs:anySimpleType"/>
                       </xs:sequence>
                     </xs:complexType>
@@ -334,7 +335,7 @@
   <xs:element name="projectionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="horizontalCoordinateSystem" type="horizontalCoordinateSystemType" maxOccurs="unbounded"/>
+        <xs:element name="horizontalCoordinateSystemDescription" type="horizontalCoordinateSystemType" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
