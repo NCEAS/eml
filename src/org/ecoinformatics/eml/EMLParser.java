@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-24 18:33:32 $'
- * '$Revision: 1.1 $'
+ *     '$Date: 2002-09-24 22:12:30 $'
+ * '$Revision: 1.2 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,6 +51,14 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.DocumentType;
 import org.apache.xerces.dom.DocumentTypeImpl;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+import javax.xml.transform.dom.*;
+
 import edu.ucsb.nceas.configxml.*;
 
 /**
@@ -84,21 +92,25 @@ import edu.ucsb.nceas.configxml.*;
  *  </li>
  * </ul>
  */
-public class EMLParser extends DefaultHandler
+public class EMLParser
 {
   private String parserName;
   private ConfigXML config;
   private Key[] keys;
   private Keyref[] keyrefs;
+  private Hashtable idHash = new Hashtable();
+  private Hashtable idrefHash = new Hashtable();
+  private File xml;
+
 
   /**
-   * Create a new Pipeline by parsing an XML specification of the Pipeline.
-   *
-   * @param xml the xml specification of the Pipeline
-   * @param parserName the class name of a SAX parser for reading the XML
+   * parses an eml file
+   * @param xml the eml file to parse
    */
-  public EMLParser(Reader xml, String parserName) throws EMLParserException
+  public EMLParser(File xml)
+         throws EMLParserException
   {
+    this.xml = xml;
     try
     {
       config = new ConfigXML("@config.file@");
@@ -109,89 +121,191 @@ public class EMLParser extends DefaultHandler
     }
 
     parseConfig();
+    getAllKeys();
+    getAllKeyrefs();
+    resolveKeys();
+  }
 
-    /*for(int i=0; i<keys.length; i++)
-    {
-      System.out.println(keys[i].toString());
-    }
-    System.out.println();
+  /**
+   * make sure all ids are unique and hash the keys
+   */
+  private void getAllKeys()
+  {
     for(int i=0; i<keys.length; i++)
     {
-      System.out.println(keyrefs[i].toString());
-    }*/
+      try
+      {
+        NodeList keyNL = getPathContent(new FileInputStream(xml),
+                                        keys[i].selector);
+        for(int j=0; j<keyNL.getLength(); j++)
+        {
+          Node n = keyNL.item(j);
+          Node id = XPathAPI.selectSingleNode(n, keys[i].field);
+          String idval;
 
-    this.parserName = parserName;
-    XMLReader parser = initializeParser(parserName);
-    if (parser == null)
-    {
-      throw new EMLParserException("SAX parser not instantiated properly.");
-    }
+          if(id == null)
+          {
+            continue;
+          }
 
-    try
-    {
-      parser.parse(new InputSource(xml));
-    }
-    catch (SAXException e)
-    {
-      throw new EMLParserException(e.getMessage());
-    }
-    catch (IOException ioe)
-    {
-      throw new EMLParserException(ioe.getMessage());
+          if(keys[i].field.indexOf("@") != -1)
+          { //the field is an attribute
+            idval = id.getNodeValue();
+          }
+          else
+          { //the field is an element
+            idval = id.getFirstChild().getNodeValue();
+          }
+
+           //try to get the id.  if it is already in the hash, throw exception
+          Object o = idHash.get(idval);
+          if(o == null)
+          {
+            idHash.put(new String(idval), new Integer(j));
+            continue;  //continue on in the loop.
+          }
+          else
+          {
+            throw new EMLParserException("Error in xml document.  This " +
+            "EML document is not valid because the id " +
+            idval + " occurs " +
+            "more than once.  IDs must be unique.");
+          }
+        }
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error running xpath expression: " +
+                                     keys[i].selector + " : " + e.getMessage());
+      }
     }
   }
 
   /**
-   * Create an XML parser to read the config file using SAX.
+   * get all the keyrefs and make sure they don't have an id
    */
-  private XMLReader initializeParser(String parserName)
+  private void getAllKeyrefs()
   {
-    XMLReader parser = null;
-    // Set up the SAX document handlers for parsing
-    try
+    for(int i=0; i<keyrefs.length; i++)
     {
-      // Get an instance of the parser
-      parser = XMLReaderFactory.createXMLReader(parserName);
-      // Set the ContentHandler to this instance
-      parser.setContentHandler(this);
-      // Set the error Handler to this instance
-      parser.setErrorHandler(this);
+      try
+      {
+        NodeList keyrefNL = getPathContent(new FileInputStream(xml),
+                                           keyrefs[i].selector);
+        for(int j=0; j<keyrefNL.getLength(); j++)
+        {
+          Node n = keyrefNL.item(j);
+          System.out.println("got n");
+          Node id;
+          if(keyrefs[i].field.equals("."))
+          {
+            id = n;
+          }
+          else
+          {
+            id = XPathAPI.selectSingleNode(n, keyrefs[i].field);
+          }
+          System.out.println("got id: " + id.getNodeName());
+          String idval;
+
+          if(id == null)
+          {
+            continue;
+          }
+
+          if(keyrefs[i].field.indexOf("@") != -1)
+          { //the field is an attribute
+            idval = id.getNodeValue();
+          }
+          else
+          { //the field is an element
+            idval = id.getFirstChild().getNodeValue();
+          }
+          System.out.println("selector: " + keyrefs[i].selector);
+          System.out.println("field: " + keyrefs[i].field);
+          System.out.println("idval: " + idval);
+
+          int keyindex;
+          Object o = idHash.get(idval);
+
+          if(o == null)
+          { //check to make sure the referenced key exists
+            throw new EMLParserException("Error in xml document. This EML " +
+              "instance is invalid because referenced id " + idval +
+              " does not exist in the given keys.");
+          }
+          else
+          {
+            keyindex = ((Integer)o).intValue();
+          }
+          System.out.println("keyindex: " + keyindex);
+
+/*
+          //now make sure that what it is referring to is the right key
+          Key referencedKey = keys[keyindex.intValue()];
+          if(!referencedKey.name.equals(keyrefs[i].refer))
+          {
+            throw new EMLParserException("Error in xml document. This EML " +
+              "instance is invalid because the keyref " + keyrefs[i].name +
+              " must refer to a key by the name of " + keyrefs[i].refer +
+              ". Instead it points at " + referencedKey.name);
+          }
+
+          //now make sure that the references parent meets the criteria
+          //for the keys' xpath expression and that it does not have
+          //an id itself
+
+          Node parent = id.getParentNode();
+          Node parentxpath = XPathAPI.selectSingleNode(parent,
+                                                       referencedKey.selector);
+          if(parentxpath == null)
+          {
+            throw new EMLParserException("Error in xml document. This EML " +
+              "instance is invalid because this reference is nested in an " +
+              "invalid tag.  It should be nested in " + referencedKey.name);
+          }
+
+          Node parentid = XPathAPI.selectSingleNode(parent,
+                                                    referencedKey.field);
+          if(parentid != null)
+          {
+            throw new EMLParserException("Error in xml document. This EML " +
+              "instance is invalid because this element may not have an id " +
+              "because it is being used in a keyref expression");
+          }*/
+        }
+      }
+      catch(Exception e)
+      {
+        throw new EMLParserException("Error processing keyrefs: " +
+                                     keyrefs[i].selector + " : " + e.getMessage());
+      }
     }
-    catch (Exception e)
-    {
-      System.err.println("Error in initializeParser " +
-                       e.toString());
-      e.printStackTrace();
-    }
-    return parser;
   }
 
-  /**
-   * This method is called by SAX when a start tag is encountered for
-   * an element.
-   */
-  public void startElement(String uri, String localName, String qName,
-                           Attributes attributes) throws SAXException
+  private void resolveKeys()
   {
 
   }
 
   /**
-   * This method is called by SAX when an end tag is encountered for
-   * an element.
+   * Gets the content of a path in an xml file
    */
-  public void endElement(String uri, String localName, String qName)
-              throws SAXException
+  public static NodeList getPathContent(InputStream is, String xpath)
+         throws Exception
   {
-  }
+    InputSource in = new InputSource(is);
+    DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
+    dfactory.setNamespaceAware(true);
+    Document doc = dfactory.newDocumentBuilder().parse(in);
 
-  /**
-   * This method is called by SAX when character data is found
-   * while processing an element.
-   */
-  public void characters(char[] ch, int start, int length)
-  {
+    // Set up an identity transformer to use as serializer.
+    Transformer serializer = TransformerFactory.newInstance().newTransformer();
+    serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
+    // Use the simple XPath API to select a nodeIterator.
+    NodeList nl = XPathAPI.selectNodeList(doc, xpath);
+    return nl;
   }
 
   private void parseConfig()

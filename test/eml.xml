@@ -7,8 +7,13 @@
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
 
   <dataset>
-    <title>Sample datset Description</title>
+    <title>Sample dataset Description</title>
     <creator id="23445" scope="document">
+      <individualName>
+        <surName>Smith</surName>
+      </individualName>
+    </creator>
+    <creator id="23446" scope="document">
       <individualName>
         <surName>Smith</surName>
       </individualName>
@@ -42,7 +47,7 @@
     <distribution>
       <online>
         <connection>
-        <connectionDefinition><references>def.1</references>
+        <connectionDefinition><references>23446</references>
         </connectionDefinition>
           <parameter>
             <name>databaseName</name>

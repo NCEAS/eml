@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-24 18:33:32 $'
- * '$Revision: 1.1 $'
+ *     '$Date: 2002-09-24 22:12:30 $'
+ * '$Revision: 1.2 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,10 +44,7 @@ import java.lang.*;
  */
 public class EMLParserTest extends TestCase
 {
-  private final static String
-    DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
-  private final static String
-    FILE = "test/eml.xml";
+  private final static String FILE = "test/eml.xml";
 
   private EMLParser emlp;
 
@@ -67,7 +64,7 @@ public class EMLParserTest extends TestCase
     try
     {
       File f = new File(FILE);
-      emlp = new EMLParser(new FileReader(f), DEFAULT_PARSER);
+      emlp = new EMLParser(f);
     }
     catch(Exception e)
     {
