@@ -1,8 +1,17 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1" xmlns="eml://ecoinformatics.org/physical-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
+<xs:schema 
+    targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1" 
+    xmlns="eml://ecoinformatics.org/physical-2.0.0rc1" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" 
+    schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -20,8 +29,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: jones $'
-          '$Date: 2002-10-03 00:34:36 $'
-      '$Revision: 1.50 $'
+          '$Date: 2002-10-04 15:59:34 $'
+      '$Revision: 1.51 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -40,26 +49,25 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-physical</doc:moduleName>
-        <doc:moduleDescription>The eml-physical module describes the external 
-	and internal physical characteristics of a data object as well as the
-	information required for its distribution. Examples of the external 
-	physical characteristics of a data object would be the filename, size,
-	compression, encoding methods, and authentication of a file (or byte 
-	stream) that resides on a filesystem or the name of a database table 
-	if the data object resides in a relational database.  Internal 
-	physical characteristics describe the format of the data object being 
-	described.  Examples are Microsoft Access 2000, ASCII, or UTF-8.  It 
-	also includes the information needed to parse the data object to 
-	extract the entity and its attributes from the data object.  
-	Distribution information describes how to retrieve the data object.
-	The retrieval information can be either online with connection 
-	information, a URL for example, or offline with the data object 
-	residing on an archival tape.
-	</doc:moduleDescription>
+        <doc:moduleDescription>The eml-physical module describes the external
+        and internal physical characteristics of a data object as well as the
+        information required for its distribution. Examples of the external
+        physical characteristics of a data object would be the filename,
+        size, compression, encoding methods, and authentication of a file
+        or byte stream.  Internal physical characteristics describe the
+        format of the data object being described.  Both named binary or
+        otherwise proprietary formats can be cited (e.g., Microsoft Access
+        2000), or text formats can be precisely described (e.g., ASCII text
+        delimited with commas).  For these text formats, it also includes the
+        information needed to parse the data object to extract the entity
+        and its attributes from the data object.  Distribution information
+        describes how to retrieve the data object.  The retrieval information
+        can be either online (e.g., a URL or other connection information)
+        or offline (e.g., a data object residing on an archival tape).
+	    </doc:moduleDescription>
         <doc:recommendedUsage>Any data object that is being desribed by EML
-	needs this information so the entities and attributes that reside with
-	in the data object can be extracted.
-        </doc:recommendedUsage>
+        needs this information so the entities and attributes that reside
+        with in the data object can be extracted. </doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
@@ -67,25 +75,37 @@
   <xs:element name="physical" type="PhysicalType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Physical structure.</doc:tooltip>
+        <doc:tooltip>Physical structure</doc:tooltip>
         <doc:summary>Physical structure of an entity or entities.</doc:summary>
         <doc:description>The content model for physical is a CHOICE between
         "references" and all of the elements that let you describe the
         internal/external characteristics and distribution of a data object
-	(e.g., dataObject, dataFormat, distribution.) A physical element can 
-	contain a reference to an physical element defined elsewhere. Using 
-	a reference means that the referenced physical is identical, not just 
-	in name but identical in its complete description. 
-	</doc:description>
-        <doc:lineage>The eml-physical was introduced into EML 1.4 as
-        eml-file.</doc:lineage>
+        (e.g., dataObject, dataFormat, distribution.) A physical element can
+        contain a reference to an physical element defined elsewhere. Using
+        a reference means that the referenced physical is identical, not just
+        in name but identical in its complete description.  </doc:description>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="PhysicalType">
     <xs:choice>
       <xs:sequence>
-        <xs:element name="objectName" type="xs:string"/>
+        <xs:element name="objectName" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Data object name</doc:tooltip>
+              <doc:summary>The name of the data object.
+              </doc:summary>
+              <doc:description>The name of the data object.  This is 
+              possibly distinct from the entity name in that one physical 
+              object can contain multiple entities, even though that is not 
+              a recommended practice.  The objectName often is the filename
+              of a file in a filesytem or that is accessible on the network.
+              </doc:description>
+              <doc:example>rainfall-sev-2002-10.txt</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="size" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
@@ -93,11 +113,10 @@
               <doc:summary>Describes the physical size of the
                     data object.</doc:summary>
               <doc:description>This element contains information of the
-                    physical size of the entity, typically in
-                    bytes.</doc:description>
+                    physical size of the entity, by default represented in
+                    bytes unless the unit attribute is provided to change
+                    the units.</doc:description>
               <doc:example>134</doc:example>
-              <doc:lineage>The entitySize was introduced into EML
-                    1.4.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -108,13 +127,11 @@
                     <xs:appinfo>
                       <doc:tooltip>Unit of measurement</doc:tooltip>
                       <doc:summary>Unit of measurement for the entity
-                            size, typically bytes</doc:summary>
+                            size, by default byte</doc:summary>
                       <doc:description>This element gives the unit of
                             measurement for the size of the entity, and is
-                            typically a byte.</doc:description>
+                            by default a byte.</doc:description>
                       <doc:example>byte</doc:example>
-                      <doc:lineage>The unit was introduced into EML
-                            1.4.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -125,18 +142,16 @@
         <xs:element name="authentication" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Authentication method</doc:tooltip>
+              <doc:tooltip>Authentication value</doc:tooltip>
               <doc:summary>A value, typically a checksum, used to
                     authenticate that the bitstream delivered to the user is
                     identical to the original.</doc:summary>
               <doc:description>This element describes authentication
                     procedures or techniques, typically by giving a checksum
-                    method (e.g., MD5) and checksum value for the
-                    bytestream.</doc:description>
-              <doc:example>f5b2177ea03aea73de12da81f896fe40
-              </doc:example>
-              <doc:lineage>The authentication element was introduced into
-                    EML 1.4.</doc:lineage>
+                    value for the onject. The method used to compute the
+                    authentication value (e.g., MD5) is listed in the method 
+                    attribute.</doc:description>
+              <doc:example>f5b2177ea03aea73de12da81f896fe40</doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -153,8 +168,6 @@
                             be used to validate a bytestream. Typical checksum
                             methods include MD5 and CRC.</doc:description>
                       <doc:example>MD5</doc:example>
-                      <doc:lineage>The authentication element was
-                            introduced into EML 1.4.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -162,45 +175,58 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="compressionMethod" type="xs:string" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Entity's compression method</doc:tooltip>
-              <doc:summary>Name of the entity's compression
-                    method</doc:summary>
-              <doc:description>This element describes any compression
-                    methods used to compress the entity, such as zip, compress,
-                    etc.</doc:description>
-              <doc:lineage>The compressed element was introduced into EML
-                    1.4.</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="encodingMethod" type="xs:string" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Encoding Method</doc:tooltip>
-              <doc:summary>Method used for encoding the
-                    entity</doc:summary>
-              <doc:description>This element describes the entity's
-                    encoded method, such as MIME base64 encoding or binhex
-                    encoding.</doc:description>
-              <doc:lineage>The encoded element was introduced into EML
-                    1.4.</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="compressionMethod" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Compression Method</doc:tooltip>
+                <doc:summary>Name of a compression method applied
+                </doc:summary>
+                <doc:description>This element lists a compression method used
+                to compress the object, such as zip, compress, etc. Compression
+                and encoding methods must be listed in the order in which they
+                were applied, so that decompression and deencoding should
+                occur in the reverse order of the listing. For example,
+                if a file is compressed using zip and then encoded using
+                MIME base64, the compression method would be listed first
+                and the encoding method second.</doc:description>
+                <doc:example>zip</doc:example>
+                <doc:example>gzip</doc:example>
+                <doc:example>compress</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="encodingMethod" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Encoding Method</doc:tooltip>
+                <doc:summary>Name of a encoding method applied
+                </doc:summary>
+                <doc:description>This element lists a encoding method used
+                to encode the object, such as base64, binhex, etc. Compression
+                and encoding methods must be listed in the order in which they
+                were applied, so that decompression and deencoding should
+                occur in the reverse order of the listing. For example,
+                if a file is compressed using zip and then encoded using
+                MIME base64, the compression method would be listed first
+                and the encoding method second.</doc:description>
+                <doc:example>base64</doc:example>
+                <doc:example>uuencode</doc:example>
+                <doc:example>binhex</doc:example>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
         <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Character Encoding</doc:tooltip>
-              <doc:summary>Contains the name of the chracter encoding
+              <doc:summary>Contains the name of the character encoding
                     used for the data.</doc:summary>
               <doc:description>This element contains the name of the
                     character encoding. This is typically ASCII or UTF-8, or
                     one of the other common encodings.</doc:description>
               <doc:example>UTF-8</doc:example>
-              <doc:lineage>Introduced in EML 2.0</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -209,36 +235,74 @@
             <xs:appinfo>
               <doc:tooltip>Data format</doc:tooltip>
               <doc:summary>Describes the internal physical format
-	      of a data object.</doc:summary>
+	          of a data object.</doc:summary>
               <doc:description>This element is the parent which is a CHOICE 
-	      between four possible internal physical formats 
-	      which describe the internal 
-	      physical characteristics of the data object.  Using this 
-	      information the user should be able construct the entity 
-	      and attributes described in those modules. Note that this is 
-	      the format of the
-              physical file itself.</doc:description>
-              <doc:lineage>The format element was introduced into EML
-              1.4.</doc:lineage>
+	          between four possible internal physical formats 
+	          which describe the internal 
+	          physical characteristics of the data object.  Using this 
+	          information the user should be able parse physical object to
+              extract the entity and its attributes. Note that this is 
+	          the format of the physical object itself.</doc:description>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:choice>
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Generic binary format</doc:tooltip>
-                  <doc:summary>Generic binary format</doc:summary>
-                  <doc:description>Documentation for a generic binary
-                  format</doc:description>
-                  <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
               <xs:element name="textFormat">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Text Format</doc:tooltip>
+                    <doc:summary>Description of a text formatted object
+                    </doc:summary>
+                    <doc:description>Description of a text formatted object.
+                    The description includes detailed parsing instructions for
+                    extracting attributes from the bytestream for simple
+                    delimited file formats (e.g., CSV), fixed format files
+                    that use fixed columns for attribute locations, and 
+                    mixtures of the two.  It also supports records that
+                    span multiple lines.</doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="numHeaderLines" minOccurs="0"/>
-                    <xs:element name="numFooterLines" minOccurs="0"/>
-                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="numHeaderLines" type="xs:int"
+                    minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Number of header lines</doc:tooltip>
+                          <doc:summary>Number of header lines preceding
+                          data.</doc:summary>
+                          <doc:description>Number of header lines preceding 
+                          data.  Lines are determined by the 
+                          physicalLineDelimiter, or if it is absent, by the
+                          recordDelimiter.  This value indicated the 
+                          number of header lines that should be skipped
+                          before starting to parse the data.
+                          </doc:description>
+                          <doc:example>4</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numFooterLines" type="xs:int"
+                    minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Number of footer lines</doc:tooltip>
+                          <doc:summary>Number of footer lines following
+                          data.</doc:summary>
+                          <doc:description>Number of footer lines following 
+                          data.  Lines are determined by the 
+                          physicalLineDelimiter, or if it is absent, by the
+                          recordDelimiter.  This value indicated the 
+                          number of footer lines that should be skipped
+                          after parsing the data. If this value is omitted, 
+                          parsers should assume the data continues to the end 
+                          of the data stream.</doc:description>
+                          <doc:example>4</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="recordDelimiter" type="xs:string" 
+                    minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Record delimiter character</doc:tooltip>
@@ -246,75 +310,193 @@
                           records.</doc:summary>
                           <doc:description>This element specifies the record
                           delimiter character when the format is text. The
-                          record delimiter is usually a newline (\n) on UNIX, a
+                          record delimiter is usually a linefeed (\n) on UNIX, a
                           carriage return (\r) on MacOS, or both (\r\n) on
                           Windows/DOS. Multiline records are usually delimited
                           with two line ending characters, for example on UNIX
-                          it would be two newline characters
-                          (\n\n).</doc:description>
+                          it would be two linefeed characters (\n\n). As record
+                          delimeters are often non-printing characters, one can
+                          use either the special value "\n" to represent a 
+                          linefeed (ASCII 0x0a) and "\r" to represent a carriage
+                          return (ASCII 0x0d).  Alternatively, one can use the
+                          hex value to represent character values (e.g., 0x0a).
+                          </doc:description>
                           <doc:example>\n\r</doc:example>
-                          <doc:lineage>The recordDelimiter element was
-                          introduced into EML 1.4.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="physicalLineDelimiter" minOccurs="0" maxOccurs="unbounded"/>
-                    <xs:element name="numPhysicalLinesPerRecord" type="xs:unsignedInt" minOccurs="0">
+                    <xs:element name="physicalLineDelimiter" minOccurs="0" 
+                    maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>Number of physical lines</doc:tooltip>
+                          <doc:tooltip>Physical line delimiter character
+                          </doc:tooltip>
+                          <doc:summary>Character used to delimit
+                          physical lines.</doc:summary>
+                          <doc:description>This element specifies the physical
+                          line delimiter character when the format is text. The
+                          line delimiter is usually a linefeed (\n) on UNIX, a
+                          carriage return (\r) on MacOS, or both (\r\n) on
+                          Windows/DOS. Multiline records are usually delimited
+                          with two line ending characters, for example on UNIX
+                          it would be two linefeed characters (\n\n). As line
+                          delimeters are often non-printing characters, one can
+                          use either the special value "\n" to represent a 
+                          linefeed (ASCII 0x0a) and "\r" to represent a carriage
+                          return (ASCII 0x0d).  Alternatively, one can use the
+                          hex value to represent character values (e.g., 0x0a).
+                          If this value is not provided, prcessors should 
+                          assume that the physical line delimiter is the same
+                          as the record delimiter.
+                          </doc:description>
+                          <doc:example>\n\r</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numPhysicalLinesPerRecord" 
+                    type="xs:unsignedInt" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Physical lines per record</doc:tooltip>
                           <doc:summary>The number of physical lines in the file
-                          spanned by a single logical data
-                          record.</doc:summary>
+                          spanned by a single logical data record.</doc:summary>
                           <doc:description>A single logical data record may be
                           written over several physical lines in a file, with
                           no special marker to indicate the end of a record. In
                           such cases, it is necessary to know the number of
                           lines per record in order to correctly read
-                          them.</doc:description>
+                          them. If this value is not provided, processors should
+                          assume that records are wholly contained on one 
+                          physical line.  If the value is greater than 1, then 
+                          processers should examine the lineNumber field for
+                          each attribute to determine which line of the 
+                          record contains the information.</doc:description>
                           <doc:example>3</doc:example>
-                          <doc:lineage>Introduced into EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="maxRecordLength" type="xs:unsignedLong" minOccurs="0"/>
+                    <xs:element name="maxRecordLength" type="xs:unsignedLong" 
+                    minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Maximum record length</doc:tooltip>
+                          <doc:summary>The maximum number fo characters in any
+                          record in the physical file.
+                          </doc:summary>
+                          <doc:description>The maximum number of chanracters 
+                          in any record in the physical file.  For delimited
+                          files, the record length varies and this is not
+                          particularly useful.  However, for fixed format files
+                          that do not contain record delimiters, this field is
+                          critical to tell processors when one record stops
+                          and another begins.</doc:description>
+                          <doc:example>597</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                     <xs:choice>
                       <xs:element name="simpleDelimited">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Simple delimited format
+                            </doc:tooltip>
+                            <doc:summary>A simple delimited format.
+                            </doc:summary>
+                            <doc:description>A simple delimited format that
+                            uses one of a series of delimiters to indicate 
+                            the ends of fields in the data stream. More
+                            complex formats such as fixed format or mixed
+                            delimited and fixed formats can be described using
+                            the "complex" element.
+                            </doc:description>
+                          </xs:appinfo>
+                        </xs:annotation>
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded"/>
-                            <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="fieldDelimiter" type="xs:string" 
+                            maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
-                                  <doc:tooltip>Quote character</doc:tooltip>
-                                  <doc:summary>Character used to quote values for
-                          delimiter escaping</doc:summary>
-                                  <doc:description>This element specifies a character
-                          to be used in the entity for quoting values so that
-                          field delimeters can be used within the value. This
-                          basically allows delimeter "escaping". The
-                          quoteChacter is typically a " or '.</doc:description>
-                                  <doc:example>"</doc:example>
-                                  <doc:lineage>The quoteCharacter element was taken
-                          from the NBII standard.</doc:lineage>
+                                  <doc:tooltip>Field Delimiter character
+                                  </doc:tooltip>
+                                  <doc:summary>Character used to delimit the
+                                  end of an attribute</doc:summary>
+                                  <doc:description>This element specifies
+                                  a character to be used in the object for
+                                  indicating the ending column for an attribute.
+                                  The delimiter character itself is not part
+                                  of the attribute value, but rather is present
+                                  in the column following the last character 
+                                  of the value. Typical delimiter characters
+                                  include commas, tabs, spaces, and semicolons.
+                                  The only time the fieldDelimiter character is
+                                  not interpreted as a delimiter is if it
+                                  is contained in a quoted string 
+                                  (see quoteCharacter) or is immediately
+                                  preceded by a literalCharacter.
+                                  Non-printable quote characters can be 
+                                  provided as their hex values, and for tab 
+                                  characters by its ASCII string "\t".
+                                  Processors should assume that the field
+                                  starts in the column following the previous
+                                  field if the previous field was fixed,
+                                  or in the column following the delimiter
+                                  from the previous field if the previous
+                                  field was delimited.
+                                  </doc:description>
+                                  <doc:example>,</doc:example>
+                                  <doc:example>\t</doc:example>
+                                  <doc:example>0x09</doc:example>
+                                  <doc:example>0x20</doc:example>
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-                            <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="quoteCharacter" type="xs:string" 
+                            minOccurs="0" maxOccurs="unbounded">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Quote character</doc:tooltip>
+                                  <doc:summary>Character used to quote values
+                                  for delimiter escaping</doc:summary>
+                                  <doc:description>This element specifies
+                                  a character to be used in the object for
+                                  quoting values so that field delimeters can
+                                  be used within the value. This basically
+                                  allows delimeter "escaping". The quoteChacter
+                                  is typically a " or '. When a processor
+                                  encounters a quote character, it should 
+                                  not interpret any following characters as 
+                                  a delimiter until a matching quote character
+                                  has been encountered (i.e., quotes come in 
+                                  pairs). It is an error to not provide a 
+                                  closing quote before the record ends. 
+                                  Non-printable quote characters can be 
+                                  provided as their hex values.
+                                  </doc:description>
+                                  <doc:example>"</doc:example>
+                                  <doc:example>'</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="literalCharacter" 
+                            type="xs:string" minOccurs="0" 
+                            maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Literal character</doc:tooltip>
                                   <doc:summary>Character used to escape other
-                          characters</doc:summary>
-                                  <doc:description>This element specifies a character
-                          to be used for escaping character values so that the
-                          following character is treated as its literal value.
-                          This allows "escaping" for special characters like
-                          quotes, commas, and spaces when they aren't intended
-                          as a delimiter value. The literalCharacter is 
-			  typicallya \.</doc:description>
+                                  special characters</doc:summary>
+                                  <doc:description>This element specifies
+                                  a character to be used for escaping
+                                  special character values so that they
+                                  are treated as literal values.
+                                  This allows "escaping" for special
+                                  characters like quotes, commas, and spaces
+                                  when they are intended to be used in an
+                                  attribute value rather than being intended 
+                                  as a delimiter.  The literalCharacter is 
+                                  typically a \.</doc:description>
                                   <doc:example>\</doc:example>
-                                  <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
@@ -322,266 +504,327 @@
                         </xs:complexType>
                       </xs:element>
                       <xs:element name="complex">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Complex text format
+                            </doc:tooltip>
+                            <doc:summary>A complex text format.
+                            </doc:summary>
+                            <doc:description>A complex text format that
+                            can describe delimited fields, fixed width
+                            fields, and mixtures of the two. This supports
+                            multiline records (where one record is distributed
+                            across multiple physical lines).  When using the
+                            complex format, the number of textFixed and 
+                            textDelimited elements should exactly equal the
+                            number of attributes that have been described
+                            for the entity, and the order of the textFixed
+                            and textDelimited elements should correspond to
+                            the order of the attributes as described in the
+                            entity. Thus, for a delimited file with fourteen
+                            attributs, one should provide exactly fourteen
+                            textDelimited elements.
+                            </doc:description>
+                          </xs:appinfo>
+                        </xs:annotation>
                         <xs:complexType>
-                          <xs:sequence>
-                            <xs:choice maxOccurs="unbounded">
-                              <xs:element name="textFixed">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>ASCII fixed delimited</doc:tooltip>
-                                    <doc:summary>Describes physical format of entities 
-		  and attributes delimitedby special characters like commas
-		  and spaces.</doc:summary>
-                                    <doc:description>Describes physical format of entities 
-		  and attributes delimitedby special characters like commas
-		  and spaces.</doc:description>
-                                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                                <xs:complexType>
-                                  <xs:sequence>
-                                    <xs:element name="fieldWidth" type="xs:unsignedLong">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Field width</doc:tooltip>
-                                          <doc:summary>FieldWidth specification for fixed
-                                field length.</doc:summary>
-                                          <doc:description>FixedWidth fields have a set
-                                length, thus the end of the field can always be
-                                determined by adding the fieldWidth to the
-                                starting column number.</doc:description>
-                                          <doc:example>any positive integer, see example
-                                in "delimeter" description</doc:example>
-                                          <doc:lineage>The fieldWidth element was
-                                introduced into EML 1.4. Semantics changed to
-                                work identically to the NBII DTD.</doc:lineage>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Physical Line Number</doc:tooltip>
-                                          <doc:summary>The line on which the data field
-                                is found, when the data record is written over
-                                more than one physical line in the
-                                file.</doc:summary>
-                                          <doc:description>A single logical data record
-                                may be written over several physical lines in a
-                                file, with no special marker to indicate the
-                                end of a record. In such cases, the relative
-                                location of a data field must be indicated by
-                                both relative row and column
-                                number.</doc:description>
-                                          <doc:example>3</doc:example>
-                                          <doc:lineage>Introduced into EML
-                                2.0.</doc:lineage>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="fieldStartColumn" type="xs:long" minOccurs="0">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Start column</doc:tooltip>
-                                          <doc:summary>The starting column number for a
-                                fixed format attribute.</doc:summary>
-                                          <doc:description>FixedWidth fields have a set
-                                length, thus the end of the field can always be
-                                determined by adding the fieldWidth to the
-                                starting column number.</doc:description>
-                                          <doc:example>any positive integer, see example
-                                in "delimiter" description</doc:example>
-                                          <doc:lineage>Introduced into EML
-                                2.0.</doc:lineage>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                  </xs:sequence>
-                                </xs:complexType>
-                              </xs:element>
-                              <xs:element name="textDelimited">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>ASCII field delimited
-                                    </doc:tooltip>
-                                    <doc:summary>Describes physical format of 
-                                    entities and attributes delimited by 
-                                    special characters like commas and spaces.
-                                    </doc:summary>
-                                    <doc:description>Describes physical format 
-                                    of entities and attributes delimited by 
-                                    special characters like commas and spaces.
-                                    </doc:description>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                                <xs:complexType>
-                                  <xs:sequence>
-                                    <xs:element name="fieldDelimiter" 
-                                    type="xs:string">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Attribute delimiter</doc:tooltip>
-                                          <doc:summary>The end of the attribute (field) is
-                          delimited by a special character called a field
-                          delimiter.</doc:summary>
-                                          <doc:description>
-                          Variable width format fields (attributes) can vary
-                          in their
-                          field length, thus the end of the field is
-                          delimited by a special character called a
-                          field delimiter (typically a comma or a space).
-                          Data sets are generally classified as fixedWidth
-                          format or variableWidth format, but we have
-                          determined that this is actually a per-field
-                          classification because one may encounter
-                          fixedWidth fields mixed together in the same
-                          data file with variableWidth fields.
-                          In our encoding scheme, the start of each field
-                          is assumed to be the column after the last column
-                          of the previous field, or the first column
-                          if this is the first field in the dataset, unless
-                          the starting column is explicity enumerated using the
-                          "fieldStartColumn" element.
-                          The end column for each field is classified
-                          using either a special character delimeter indicated
-                          using the filedDelimiter element,
-                          or a fixed field length indicated by using the
-                          "fieldWidth"
-                          element.  The delimiter for the last field in the
-                          data set can be omitted.
-                          variableWidth fields can vary in their field length,
-                          and the end of
-                          the field is delimited by a special character
-                          called a field delimiter, usually a comma or
-                          a tab character.  fixedWidth fields have a set
-                          length, and so the end of the field can always
-                          be determined by adding the fieldWidth to the
-                          starting column number.  Here is an example:
-                          Assume we have the following data in a data set:
-                          May,100aaaa,1.2,
-                          April,200aaaa,3.4,
-                          June,300bbbb,4.6,
-                          The metadata indicating the physical layout of the
-                          4 fields would include the
-                          following:
-                          <![CDATA[
-                          <delimiter>,</delimiter>
-                          <fieldWidth>3</fieldWidth>
-                          <fieldWidth>3</fieldWidth>
-                          <delimiter>,</delimiter>
-                          ]]>
-                          In a strictly fixed format file, the metadata would
-                          be slightly different:
-                          May100aaaa1.2
-                          Apr200aaaa3.4
-                          Jun300bbbb4.6
-                          <![CDATA[
-                            <fieldWidth>3</fieldWidth>
-                            <fieldWidth>3</fieldWidth>
-                            <fieldWidth>4</fieldWidth>
-                            <fieldWidth>3</fieldWidth>
-                          ]]>
-                                          or, one could explicitly describe 
-                                          the starting columns:
-                          <![CDATA[
-                            <fieldStartColumn>1</fieldStartColumn>
-                            <fieldWidth>3</fieldWidth>
-                            <fieldStartColumn>4</fieldStartColumn>
-                            <fieldWidth>3</fieldWidth>
-                            <fieldStartColumn>7</fieldStartColumn>
-                            <fieldWidth>4</fieldWidth>
-                            <fieldStartColumn>11</fieldStartColumn>
-                            <fieldWidth>3</fieldWidth>
-                          ]]></doc:description>
-                          
-                                          <doc:example>,</doc:example>
-                                          <doc:example>|</doc:example>
-                                          <doc:example> </doc:example>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Physical Line Number</doc:tooltip>
-                                          <doc:summary>The line on which the data field
-                                is found, when the data record is written over
-                                more than one physical line in the
-                                file.</doc:summary>
-                                          <doc:description>A single logical data record
-                                may be written over several physical lines in a
-                                file, with no special marker to indicate the
-                                end of a record. In such cases, the relative
-                                location of a data field must be indicated by
-                                both relative row and column
-                                number.</doc:description>
-                                          <doc:example>3</doc:example>
-                                          <doc:lineage>Introduced into EML
-                                2.0.</doc:lineage>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Quote character</doc:tooltip>
-                                          <doc:summary>Character used to quote values for
-                          delimiter escaping</doc:summary>
-                                          <doc:description>This element specifies a character
-                          to be used in the entity for quoting values so that
-                          field delimeters can be used within the value. This
-                          basically allows delimeter "escaping". The
-                          quoteChacter is typically a " or '.</doc:description>
-                                          <doc:example>"</doc:example>
-                                          <doc:lineage>The quoteCharacter element was taken
-                          from the NBII standard.</doc:lineage>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                    <xs:element name="literalCharacter" 
-                                    type="xs:string" minOccurs="0" 
-                                    maxOccurs="unbounded">
-                                      <xs:annotation>
-                                        <xs:appinfo>
-                                          <doc:tooltip>Literal character
-                                          </doc:tooltip>
-                                          <doc:summary>Character used to
-                                          escape other characters</doc:summary>
-                                          <doc:description>This element
-                                          specifies a character to be used
-                                          for escaping character values
-                                          so that the following character
-                                          is treated as its literal value.
-                                          This allows "escaping" for special
-                                          characters like quotes, commas, and
-                                          spaces when they aren't intended as a
-                                          delimiter value. The literalCharacter
-                                          is typically a \.</doc:description>
-                                          <doc:example>\</doc:example>
-                                        </xs:appinfo>
-                                      </xs:annotation>
-                                    </xs:element>
-                                  </xs:sequence>
-                                </xs:complexType>
-                              </xs:element>
-                            </xs:choice>
-                          </xs:sequence>
+                          <xs:choice maxOccurs="unbounded">
+                            <xs:element name="textFixed">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Fixed format text
+                                  </doc:tooltip>
+                                  <doc:summary>Describes the physical format
+                                  of data sequences that use a fixed 
+                                  number of characters in a specified position
+                                  in the stream to locate attribute values.
+                                  </doc:summary>
+                                  <doc:description>Describes the physical 
+                                  format of data sequences that use a fixed 
+                                  number of characters in a specified position
+                                  in the stream to locate attribute values.
+                                  This method is common in sensor-derived
+                                  data and in legacy database systems.  To
+                                  parse it, one must know the number 
+                                  of characters for each attribute and the 
+                                  starting column and line to begin reading
+                                  the value.
+                                  </doc:description>
+                                </xs:appinfo>
+                              </xs:annotation>
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="fieldWidth" 
+                                  type="xs:unsignedLong">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Field width</doc:tooltip>
+                                        <doc:summary>Field width in
+                                        characters for fixed field
+                                        length.</doc:summary>
+                                        <doc:description>Fixed width fields
+                                        have a set length, thus the end of
+                                        the field can always be determined by
+                                        adding the fieldWidth to the starting
+                                        column number.</doc:description>
+                                        <doc:example>7</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="lineNumber" 
+                                  type="xs:unsignedLong" minOccurs="0">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Physical Line Number
+                                        </doc:tooltip>
+                                        <doc:summary>The line on which
+                                        the data field is found, when
+                                        the data record is written over
+                                        more than one physical line in
+                                        the file.</doc:summary>
+                                        <doc:description>A single logical
+                                        data record may be written over
+                                        several physical lines in a file,
+                                        with no special marker to indicate
+                                        the end of a record. In such
+                                        cases, the relative location of
+                                        a data field must be indicated
+                                        by both relative row and column
+                                        number.  The lineNumber should never
+                                        greater that the number of physical
+                                        lines per record.  
+                                        </doc:description>
+                                        <doc:example>3</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="fieldStartColumn" 
+                                  type="xs:long" minOccurs="0">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Start column
+                                        </doc:tooltip>
+                                        <doc:summary>The starting
+                                        column number for a fixed format
+                                        attribute.</doc:summary>
+                                        <doc:description>Fixed width fields
+                                        have a set length, thus the end of
+                                        the field can always be determined by
+                                        adding the fieldWidth to the starting
+                                        column number. If the starting 
+                                        column is not provided, processors 
+                                        should assume that the field starts
+                                        in the column following the previous
+                                        field if the previous field was fixed,
+                                        or in the column following the 
+                                        delimiter from the previous field if
+                                        the previous field was delimited.
+                                        </doc:description>
+                                        <doc:example>58</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="textDelimited">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Delimited format text
+                                  </doc:tooltip>
+                                  <doc:summary>Describes the physical format
+                                  of data sequences that use delimiters
+                                  in the stream to locate attribute values.
+                                  </doc:summary>
+                                  <doc:description>Describes the physical 
+                                  format of data sequences that use delimiters
+                                  in the stream to locate attribute values.
+                                  This method is common in data exported from
+                                  spreadsheets and database systems,
+                                  To parse it, one must know the character
+                                  that indicates the end of each attribute 
+                                  and the line to begin reading the value.
+                                  </doc:description>
+                                </xs:appinfo>
+                              </xs:annotation>
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="fieldDelimiter" 
+                                  type="xs:string">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Field Delimiter character
+                                        </doc:tooltip>
+                                        <doc:summary>Character used
+                                        to delimit the end of a particular
+                                        attribute</doc:summary>
+                                        <doc:description>This element
+                                        specifies a character to be used
+                                        in the object for indicating the
+                                        ending column for an attribute.
+                                        The delimiter character itself is
+                                        not part of the attribute value,
+                                        but rather is present in the column
+                                        following the last character of the
+                                        value. Typical delimiter characters
+                                        include commas, tabs, spaces,
+                                        and semicolons.  The only time the
+                                        fieldDelimiter character is not
+                                        interpreted as a delimiter is if it
+                                        is contained in a quoted string (see
+                                        quoteCharacter) or is immediately
+                                        preceded by a literalCharacter.
+                                        Non-printable quote characters can
+                                        be provided as their hex values,
+                                        and for tab characters by its ASCII
+                                        string "\t".  Processors should
+                                        assume that the field starts in the
+                                        column following the previous field
+                                        if the previous field was fixed,
+                                        or in the column following the
+                                        delimiter from the previous field
+                                        if the previous field was delimited.
+                                        </doc:description>
+                                        <doc:example>,</doc:example>
+                                        <doc:example>\t</doc:example>
+                                        <doc:example>0x09</doc:example>
+                                        <doc:example>0x20</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="lineNumber" 
+                                  type="xs:unsignedLong" minOccurs="0">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Physical Line Number
+                                        </doc:tooltip>
+                                        <doc:summary>The line on which
+                                        the data field is found, when
+                                        the data record is written over
+                                        more than one physical line in
+                                        the file.</doc:summary>
+                                        <doc:description>A single logical
+                                        data record may be written over
+                                        several physical lines in a file,
+                                        with no special marker to indicate
+                                        the end of a record. In such
+                                        cases, the relative location of
+                                        a data field must be indicated
+                                        by both relative row and column
+                                        number. 
+                                        The lineNumber should never
+                                        greater that the number of physical
+                                        lines per record.  When parsing the
+                                        first field on a physical line as
+                                        a delimited field, they should assume
+                                        that the field data starts in the
+                                        first column.  Otherwise, follow the
+                                        rules indicated under fieldDelimiter.
+                                        </doc:description>
+                                        <doc:example>3</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="quoteCharacter" 
+                                  type="xs:string" minOccurs="0" 
+                                  maxOccurs="unbounded">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Quote character
+                                        </doc:tooltip>
+                                        <doc:summary>Character used
+                                        to quote values for delimiter
+                                        escaping</doc:summary>
+                                        <doc:description>This element
+                                        specifies a character to be used in
+                                        the object for quoting values so
+                                        that field delimeters can be used
+                                        within the value. This basically
+                                        allows delimeter "escaping". The
+                                        quoteChacter is typically a " or
+                                        '. When a processor encounters
+                                        a quote character, it should not
+                                        interpret any following characters
+                                        as a delimiter until a matching
+                                        quote character has been encountered
+                                        (i.e., quotes come in pairs). It is
+                                        an error to not provide a closing
+                                        quote before the record ends.
+                                        Non-printable quote characters
+                                        can be provided as their hex
+                                        values.</doc:description>
+                                        <doc:example>"</doc:example>
+                                        <doc:example>'</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="literalCharacter" 
+                                  type="xs:string" minOccurs="0" 
+                                  maxOccurs="unbounded">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <doc:tooltip>Literal character
+                                        </doc:tooltip>
+                                        <doc:summary>Character used
+                                        to escape other special
+                                        characters</doc:summary>
+                                        <doc:description>This element
+                                        specifies a character to be used
+                                        for escaping special character
+                                        values so that they are treated
+                                        as literal values.  This allows
+                                        "escaping" for special characters
+                                        like quotes, commas, and spaces
+                                        when they are intended to be used
+                                        in an attribute value rather than
+                                        being intended as a delimiter.
+                                        The literalCharacter is typically
+                                        a \.</doc:description>
+                                        <doc:example>\</doc:example>
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:choice>
                         </xs:complexType>
                       </xs:element>
                     </xs:choice>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="formatType">
+              <xs:element name="externallyDefinedFormat">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Externally Defined Format</doc:tooltip>
+                    <doc:summary>Information about a non-text or proprietary
+                    formatted object.
+                    </doc:summary>
+                    <doc:description>Information about a non-text or
+                    propriateary formatted object.
+                    The description names the format explicitly, but assumes
+                    a processor implicitly knows how to parse that format
+                    to extract the data.  A format version can be included.
+                    This is mainly used for proprietary formats, including
+                    binary files like Microsoft Excel and text formats like
+                    ESRI's ArcInfo export format.  This is not a recommended
+                    way to permenantly archive data because the software to
+                    parse the format is unlikely to be available over extended
+                    periods, but is included to allow for commonly used
+                    physical formats.
+                    </doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="formatName" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Name</doc:tooltip>
-                          <doc:summary>Name of the internal format of the data
+                          <doc:summary>Name of the format of the data
                           object</doc:summary>
-                          <doc:description>Name of the internal format of
+                          <doc:description>Name of the format of
                           the data object</doc:description>
                           <doc:example>Microsoft Excel</doc:example>
                         </xs:appinfo>
@@ -592,9 +835,9 @@
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Version</doc:tooltip>
-                          <doc:summary>Version of the internal format of the
-			  data object</doc:summary>
-                          <doc:description>Version of the internal format of 
+                          <doc:summary>Version of the format of the
+			              data object</doc:summary>
+                          <doc:description>Version of the format of 
                           the data object</doc:description>
                           <doc:example>2000 (9.0.2720)</doc:example>
                         </xs:appinfo>
@@ -604,24 +847,25 @@
                     minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>citation</doc:tooltip>
-                          <doc:summary>Data object is an eml-literature
-                          document.</doc:summary>
-                          <doc:description>Data object conforms to the EML
-                          standard for citation as defined in the XML schema
-			  for eml-literature.</doc:description>
-                          <doc:example>eml-literature.xml</doc:example>
+                          <doc:tooltip>Format citation</doc:tooltip>
+                          <doc:summary>Citation providing more details about
+                          the physical format.
+                          </doc:summary>
+                          <doc:description>Citation providing more detail about
+                          the physical format, including parsing information
+                          or information about the software required for
+                          reading the object.</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="binaryRasterInfo">
+              <xs:element name="binaryRasterFormat">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>raster image parameters</doc:tooltip>
-                    <doc:summary>contains binary raster data header
+                    <doc:tooltip>Raster image format</doc:tooltip>
+                    <doc:summary>Contains binary raster data header
                     parameters</doc:summary>
                     <doc:description>The binaryRasterInfo element is a
                     container for various parameters used to described the
@@ -630,7 +874,6 @@
                     header information used for BIP and BIL files ("Extendable
                     Image Formats for ArcView GIS 3.1 and
                     3.2").</doc:description>
-                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -640,7 +883,7 @@
                         <xs:appinfo>
                           <doc:tooltip>Number of rows</doc:tooltip>
                           <doc:summary>The number of rows in the image.
-			  </doc:summary>
+			              </doc:summary>
                           <doc:description>The number of rows in the image.
                           Rows are parallel to the x-axis of the map coordinate
                           system. There is no default.</doc:description>
@@ -654,7 +897,7 @@
                         <xs:appinfo>
                           <doc:tooltip>Number of columns</doc:tooltip>
                           <doc:summary>The number of columns in the image.
-			  </doc:summary>
+			              </doc:summary>
                           <doc:description>The number of columns in the image.
                           Columns are parallel to the y-axis of the map
                           coordinate system. There is no
@@ -714,72 +957,87 @@
                         </xs:attribute>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="nbands" type="xs:int" minOccurs="0">
+                    <xs:element name="multiBand" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>Number of Bands</doc:tooltip>
-                          <doc:summary>The number of spectral bands in the
-                          image.</doc:summary>
-                          <doc:description>The number of spectral bands in the
-                          image. The default is 1.</doc:description>
-                          <doc:example>1</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                          <doc:tooltip>Multiple band image</doc:tooltip>
+                          <doc:summary>Multiple band image information.
+                          </doc:summary>
+                          <doc:description>Information needed to properly 
+                          interpret a multiband image.
+                          </doc:description>
                         </xs:appinfo>
                       </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="nbands" type="xs:int">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Number of Bands</doc:tooltip>
+                                <doc:summary>The number of spectral bands in the
+                                image.</doc:summary>
+                                <doc:description>The number of spectral
+                                bands in the image. Must be greater than 1.
+                                </doc:description>
+                                <doc:example>2</doc:example>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="layout" type="xs:string">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Layout</doc:tooltip>
+                                <doc:summary>The organization of the bands
+                                in the image file.</doc:summary>
+                                <doc:description>The organization of
+                                the bands in the image file. Acceptable
+                                values are bil - Band interleaved by
+                                line. bip - Band interleaved by pixel.
+                                bsq - Band sequential.
+                                </doc:description>
+                                <doc:example>bil</doc:example>
+                                <doc:example>bip</doc:example>
+                                <doc:example>bsq</doc:example>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
                     </xs:element>
-                    <xs:element name="nbits" type="xs:int" minOccurs="0">
+                    <xs:element name="nbits" type="xs:int">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Number of Bits</doc:tooltip>
                           <doc:summary>The number of bits per pixel per
                           band.</doc:summary>
                           <doc:description>The number of bits per pixel per
-                          band. Acceptable values are 1, 4, 8, 16, and 32. The
-                          default value is eight bits per pixel per band. For a
-                          true color image with three bands (R, G, B) stored
-                          using eight bits for each pixel in each band, nbits
-                          equals eight and nbands equals three, for a total of
-                          twenty-four bits per pixel. For an image with nbits
-                          equal to one, nbands must also equal
-                          one.</doc:description>
+                          band. Acceptable values are typically 1, 4, 8, 16, 
+                          and 32. The default value is eight bits per pixel per
+                          band. For a true color image with three bands (R, G,
+                          B) stored using eight bits for each pixel in each
+                          band, nbits equals eight and nbands equals three,
+                          for a total of twenty-four bits per pixel. 
+                          </doc:description>
                           <doc:example>8</doc:example>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="byteorder" type="xs:string" minOccurs="0">
+                    <xs:element name="byteorder" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Byte Order</doc:tooltip>
-                          <doc:summary>The byte order in which image pixel
-                          values are stored.</doc:summary>
-                          <doc:description>The byte order in which image pixel
+                          <doc:summary>The byte order in which values are 
+                          stored.</doc:summary>
+                          <doc:description>The byte order in which
                           values are stored. The byte order is important for
-                          sixteen-bit images, with two bytes per pixel.
-                          Acceptable values are I - Intel byte order (Silicon
-                          Graphics, DEC Alpha, PC) Also known as little endian.
-                          M - Motorola byte order (Sun, HP, etc.) Also known as
-                          big-endian. The default byte order is the same as
-                          that of the host machine executing the
-                          software.</doc:description>
-                          <doc:example>I or M</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="layout" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Layout</doc:tooltip>
-                          <doc:summary>The organization of the bands in the
-                          image file.</doc:summary>
-                          <doc:description>The organization of the bands in the
-                          image file. Acceptable values are bil - Band
-                          interleaved by line. bip - Band interleaved by pixel.
-                          bsq - Band sequential. The default layout is
-                          bil.</doc:description>
-                          <doc:example>bil, bip, bsq</doc:example>
-                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                          sixteen-bit and higher images, that have two or more
+                          bytes per pixel.
+                          Acceptable values are little-endian (common on Intel 
+                          systems like PCs) and big-endian (common on
+                          Motorola platforms).</doc:description>
+                          <doc:example>little-endian</doc:example>
+                          <doc:example>big-endian</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -803,7 +1061,7 @@
                     <xs:element name="ulxmap" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>upper left X map coordinate</doc:tooltip>
+                          <doc:tooltip>Upper left X map coordinate</doc:tooltip>
                           <doc:summary>The x-axis map coordinate of the
                           center of the upper-left pixel.</doc:summary>
                           <doc:description>The x-axis map coordinate of the
@@ -818,7 +1076,7 @@
                     <xs:element name="ulymap" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>upper left Y map coordinate</doc:tooltip>
+                          <doc:tooltip>Upper left Y map coordinate</doc:tooltip>
                           <doc:summary>The y-axis map coordinate of the
                           center of the upper-left pixel.</doc:summary>
                           <doc:description>The y-axis map coordinate of the
