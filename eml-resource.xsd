@@ -13,9 +13,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Chris Jones, Chad Berkley
 
-     '$Author: berkley $'
-       '$Date: 2000-07-14 21:40:41 $'
-   '$Revision: 1.2 $'
+     '$Author: cjones $'
+       '$Date: 2000-08-01 09:29:10 $'
+   '$Revision: 1.3 $'
 
 
 	** This annotation should be removed after draft review and/or acceptance.**
@@ -67,7 +67,7 @@
        of their "base" and "derivedBy" attributes. 
    -->
        
-  <xs:complexType name = "Resource" content="mixed">
+  <xs:complexType name = "Resource" content="elementOnly">
       <xs:sequence>
         <xs:element name = "identifier" type = "string"
                     minOccurs="0" maxOccurs="1" />
@@ -79,7 +79,7 @@
                  eml-dataset
               </xs:documentation>
            </xs:annotation> -->
-	  <xs:element name = "title" type = "string" 
+        <xs:element name = "title" type = "string" 
                     minOccurs="1" maxOccurs="1" />
              <!-- <xs:annotation>
                 <xs:documentation>
@@ -89,7 +89,7 @@
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
              </xs:annotation> -->
-	  <xs:element name = "alternateTitle" type = "string" 
+	<xs:element name = "alternateTitle" type = "string" 
                     minOccurs="0" maxOccurs="1" />
 	     <!-- <xs:annotation>
                 <xs:documentation>Short name or other language name
@@ -99,7 +99,7 @@
                 	ISO 19115.3 (iso-geo-md-2000June-draft)
                 </xs:documentation>
              </xs:annotation> -->
-          <xs:element name = "originator" type = "rp:ResponsibleParty" 
+        <xs:element name = "originator" type = "rp:ResponsibleParty" 
                     minOccurs="1" maxOccurs="unbounded" />
 	     <!-- <xs:annotation>
                 <xs:documentation>
@@ -193,15 +193,6 @@
 	</xs:sequence>
   </xs:complexType>
   
-  <xs:complexType name = "ResourceVariation" content = "elementOnly">
-  	<xs:sequence>
-  	   <xs:choice>
-  	      <element name = "literature" type = "Literature" />
-  	      <element name = "dataset" type = "Dataset" />
-  	   </xs:choice>
-  	</xs:sequence>
-  </xs:complexType>
-  
   <xs:complexType name = "Dataset" base = "Resource" 
                   derivedBy="extension" content = "elementOnly">
   	<xs:sequence>
@@ -219,7 +210,7 @@
   </xs:complexType>
 
   <xs:complexType name = "Literature" base = "Resource" 
-                  derivedBy="extension" content = "mixed">
+                  derivedBy="extension" content = "elementOnly">
       <xs:sequence>
 	   <xs:element name = "ISBN" type = "string" 
                      minOccurs="0" maxOccurs="1" />
@@ -275,7 +266,7 @@
       </xs:sequence>
   </xs:complexType>	
 
-  <xs:complexType name = "Abstract"  content="mixed">       
+  <xs:complexType name = "Abstract"  content="elementOnly">       
         <xs:sequence>
             <xs:element name = "paragraph" type = "string"
                         minOccurs="1" maxOccurs="unbounded" />
@@ -291,7 +282,7 @@
         </xs:sequence>
   </xs:complexType>
   
-  <xs:complexType name = "KeywordInfo" content = "mixed">
+  <xs:complexType name = "KeywordInfo" content = "elementOnly">
 	<xs:sequence>
 	   <xs:element name = "keyword" type = "string" 
                      minOccurs="1" maxOccurs="1" />
