@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: higgins $'
+  *     '$Date: 2003-12-29 22:22:32 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@
 
       <xsl:if test="associatedParty">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
-             <xsl:text>Associate Party:</xsl:text>
+             <xsl:text>Associated Party:</xsl:text>
          </td></tr>
       </xsl:if>
       <xsl:for-each select="associatedParty">
@@ -247,7 +247,7 @@
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="resfirstColStyle"/>
     <tr><td class="{$ressubHeaderStyle}" colspan="2">
-      <xsl:text>Associate Party(s):</xsl:text>
+      <xsl:text>Associated Party(s):</xsl:text>
     </td></tr>
     <tr><td colspan="2">
     <xsl:call-template name="party">
