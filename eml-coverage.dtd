@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-04-17 22:08:07 $'
-      '$Revision: 1.11 $'
+        '$Author: cjones $'
+          '$Date: 2002-04-19 16:20:08 $'
+      '$Revision: 1.12 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,63 +22,75 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ELEMENT begdate (#PCDATA)>
-<!ELEMENT beggeol (geolage)>
-<!ELEMENT begtime (#PCDATA)>
-<!ELEMENT citeinfo ANY>
+<!-- entity referring to the eml-literature fields -->
+<!-- literature also imports party, so it is used in here too -->
+<!ENTITY % literature SYSTEM "eml-literature.dtd">
+%literature;
+
 <!ELEMENT coverage (geographicCov, temporalCov, taxonomicCov)>
-<!ELEMENT enddate (#PCDATA)>
-<!ELEMENT endgeol (geolage)>
-<!ELEMENT endtime (#PCDATA)>
-<!ELEMENT geographicCov (descgeog, bounding, dsgpoly*)>
-<!ELEMENT geolage (geolscal, geolest, geolun?, geolexpl?, geolcit*)>
-<!ELEMENT gring (#PCDATA)>
-<!ELEMENT grngpoin (gringlat, gringlon)>
-<!ELEMENT mdattim (sngdate+)>
-<!ELEMENT rngdates ((begdate, begtime?, enddate, endtime?) | (beggeol, endgeol))>
-<!ELEMENT sngdate ((caldate, time?) | geolage)>
-<!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
-<!ELEMENT taxonomicCov (keywtax+, taxonsys?, taxongen?, taxoncl+)>
-<!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
-<!ELEMENT descgeog (#PCDATA)>
-<!ELEMENT bounding (westbc?, eastbc, northbc, southbc?, boundalt?)>
-<!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
-<!ELEMENT geolscal (#PCDATA)>
-<!ELEMENT geolest (#PCDATA)>
-<!ELEMENT geolun (#PCDATA)>
-<!ELEMENT geolexpl (#PCDATA)>
-<!ELEMENT geolcit (citeinfo)>
-<!ELEMENT gringlat (#PCDATA)>
-<!ELEMENT gringlon (#PCDATA)>
-<!ELEMENT caldate (#PCDATA)>
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier system CDATA #IMPLIED >
+<!ELEMENT geographicCov (geographicDescription, boundingCoordinates, datasetGPolygon*)>
+<!ELEMENT temporalCov (singleDateTime | multipleDatesTimes | rangeOfDates)>
+<!ELEMENT taxonomicCov (keywordsTaxon+, taxonomicSystem?, generalTaxonomicCoverage?, taxonomicClassification+)>
+
+<!-- Geographic Coverage elements -->
+<!ELEMENT geographicDescription (#PCDATA)>
+<!ELEMENT boundingCoordinates (westBoundingCoordinate?, eastBoundingCoordinate, northBoundingCoordinate, southBoundingCoordinate?, boundingAltitudes?)>
+<!ELEMENT westBoundingCoordinate (#PCDATA)>
+<!ELEMENT eastBoundingCoordinate (#PCDATA)>
+<!ELEMENT northBoundingCoordinate (#PCDATA)>
+<!ELEMENT southBoundingCoordinate (#PCDATA)>
+<!ELEMENT boundingAltitudes (altitudeMinimum, altitudeMaximum, altitudeUnits)>
+<!ELEMENT altitudeMinimum (#PCDATA)>
+<!ELEMENT altitudeMaximum (#PCDATA)>
+<!ELEMENT altitudeUnits (#PCDATA)>
+
+<!ELEMENT datasetGPolygon (datasetGPolygonOuterGRing, datasetGPolygonExclusionGRing*)>
+<!ELEMENT datasetGPolygonOuterGRing (gRingPoint+ | gRing)>
+<!ELEMENT datasetGPolygonExclusionGRing (gRingPoint+ | gRing)>
+<!ELEMENT gRingPoint (gRingLatitude, gRingLongitude)>
+<!ELEMENT gRingLatitude (#PCDATA)>
+<!ELEMENT gRingLongitude (#PCDATA)>
+<!ELEMENT gRing (#PCDATA)>
+
+<!-- Temporal Coverage elements -->
+<!ELEMENT singleDateTime ((calendarDate, time?) | geologicAge)>
+<!ELEMENT calendarDate (#PCDATA)>
 <!ELEMENT time (#PCDATA)>
-<!ELEMENT taxonrn (#PCDATA)>
-<!ELEMENT taxonrv (#PCDATA)>
-<!ELEMENT common (#PCDATA)>
-<!ELEMENT keywtax (taxonkt, taxonkey+)>
-<!ELEMENT taxonsys (classsys+, idref*, ider+, taxonpro, taxoncom?, vouchers*)>
-<!ELEMENT taxongen (#PCDATA)>
-<!ELEMENT westbc (#PCDATA)>
-<!ELEMENT eastbc (#PCDATA)>
-<!ELEMENT northbc (#PCDATA)>
-<!ELEMENT southbc (#PCDATA)>
-<!ELEMENT boundalt (altmin, altmax, altunits)>
-<!ELEMENT altmax (#PCDATA)>
-<!ELEMENT dsgpolyo (grngpoin+ | gring)>
-<!ELEMENT dsgpolyx (grngpoin+ | gring)>
-<!ELEMENT taxonkt (#PCDATA)>
-<!ELEMENT taxonkey (#PCDATA)>
-<!ELEMENT classsys (classcit, classmod?)>
-<!ELEMENT idref (citeinfo)>
-<!ELEMENT ider (cntinfo)>
-<!ELEMENT taxonpro (#PCDATA)>
-<!ELEMENT taxoncom (#PCDATA)>
-<!ELEMENT vouchers (specimen, reposit)>
-<!ELEMENT altmin (#PCDATA)>
-<!ELEMENT almax (#PCDATA)>
-<!ELEMENT altunits (#PCDATA)>
-<!ELEMENT classcit (citeinfo)>
-<!ELEMENT classmod (#PCDATA)>
-<!ELEMENT cntinfo ANY>
+<!ELEMENT multipleDatesTimes (singleDateTime+)>
+<!ELEMENT rangeOfDates ((beginningDate, beginningTime?, endingDate, endingTime?) | (beginningGeologicAge, endingGeologicAge))>
+<!ELEMENT beginningDate (#PCDATA)>
+<!ELEMENT beginningTime (#PCDATA)>
+<!ELEMENT endingDate (#PCDATA)>
+<!ELEMENT endingTime (#PCDATA)>
+<!ELEMENT beginningGeologicAge (geologicAge)>
+<!ELEMENT endingGeologicAge (geologicAge)>
+<!ELEMENT geologicAge (geologicTimeScale, geologicAgeEstimate, geologicAgeUncertainty?, geologicAgeExplanation?, geologicCitation*)>
+<!ELEMENT geologicTimeScale (#PCDATA)>
+<!ELEMENT geologicAgeEstimate (#PCDATA)>
+<!ELEMENT geologicAgeUncertainty (#PCDATA)>
+<!ELEMENT geologicAgeExplanation (#PCDATA)>
+<!ELEMENT geologicCitation (citation)>
+
+<!-- Taxonomic Coverage elements -->
+<!ELEMENT keywordsTaxon (taxonomicKeywordThesaurus, taxomomicKeywords+)>
+<!ELEMENT taxonomicKeywordThesaurus (#PCDATA)>
+<!ELEMENT taxomomicKeywords (#PCDATA)>
+<!ELEMENT taxonomicSystem (classificationSystem+, identificationReference*, identifierName+, taxonomicProcedures, taxonomicCompleteness?, vouchers*)>
+<!ELEMENT classificationSystem (classificationSystemCitation, classificationSystemModifications?)>
+<!ELEMENT classificationSystemCitation (citation)>
+<!ELEMENT classificationSystemModifications (#PCDATA)>
+<!ELEMENT identificationReference (citation)>
+<!ELEMENT identifierName (originator+)>
+<!ELEMENT originator ((%ResponsibleParty;))>
+<!ELEMENT taxonomicProcedures (#PCDATA)>
+<!ELEMENT taxonomicCompleteness (#PCDATA)>
+<!ELEMENT vouchers (specimen, repository)>
 <!ELEMENT specimen (#PCDATA)>
-<!ELEMENT reposit (cntinfo)>
+<!ELEMENT repository (originator+)>
+<!ELEMENT generalTaxonomicCoverage (#PCDATA)>
+<!ELEMENT taxonomicClassification (taxonRankName?, taxonRankValue?, commonName*, taxonomicClassification*)>
+<!ELEMENT taxonRankName (#PCDATA)>
+<!ELEMENT taxonRankValue (#PCDATA)>
+<!ELEMENT commonName (#PCDATA)>
