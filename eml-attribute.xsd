@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2004-06-14 17:15:36 $'
-      '$Revision: 1.105 $'
+          '$Date: 2004-06-14 17:35:33 $'
+      '$Revision: 1.106 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1022,6 +1022,21 @@
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
+		  <xs:attribute name="order" type="xs:long" use="optional">
+		    <xs:annotation>
+		      <xs:appinfo>
+			<doc:tooltip>Order</doc:tooltip>
+			<doc:summary>Mechanism for specifying what the 
+			order of the code-definitions included should 
+			be</doc:summary>
+			<doc:description>Ordinal scale measurements have a discrete list 
+			of values with a specific ordering of those values. This attributes 
+			specifies that order. For example, for LOW, MEDIUM, HIGH, the 
+			order attribute might be "LOW=1, MEDIUM=2and HIGH=3
+                  	</doc:description>
+		      </xs:appinfo>
+		    </xs:annotation>
+		  </xs:attribute>
                 </xs:complexType>
               </xs:element>
               <xs:element name="externalCodeSet">
