@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc3" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc3" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc3" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc3" schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc3" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc3" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" schemaLocation="eml-resource.xsd"/>
+<xs:schema 
+  targetNamespace="eml://ecoinformatics.org/attribute-2.0.0rc3" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+  xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc3" 
+  xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc3" 
+  xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc3" 
+  xmlns="eml://ecoinformatics.org/attribute-2.0.0rc3" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc3" 
+  schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc3" 
+  schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc3" 
+  schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" 
+  schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-attribute.xsd,v $'
@@ -21,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: mccartne $'
-          '$Date: 2002-11-26 21:49:02 $'
-      '$Revision: 1.95 $'
+        '$Author: jones $'
+          '$Date: 2002-12-06 03:42:03 $'
+      '$Revision: 1.96 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,12 +62,12 @@
             dataset entities
           </title>
             <para>
-            The eml-attribute Module describes all attributes (variables)
+            The eml-attribute module describes all attributes (variables)
             in a data entity: dataTable, spatialRaster, spatialVector,
-            storedProcedure, view or otherEntity). The description includes the
+            storedProcedure, view or otherEntity. The description includes the
             name and definition of each attribute, its domain, definitions of
             coded values, and other pertinent information. Two structures exist
-            in this module: 1.  attribute-used to define a single attribute;
+            in this module: 1.  attribute is used to define a single attribute;
             2. attributeList is used to define a list of attributes that go
             together in some logical way.
           </para>
@@ -76,8 +89,7 @@
             unit. In modelling the attribute element, the authors of EML drew
             inspiration from the
             <ulink url="http://physics.nist.gov/cuu/Units/introduction.html">
-            NIST Reference on Constants, Units, and
-            Uncertainty</ulink>.
+            NIST Reference on Constants, Units, and Uncertainty</ulink>.
             This document defines a unit as "a particular physical quantity,
             defined and adopted by convention, with which other particular
             quantities of the same kind are compared to express their value."
@@ -131,7 +143,11 @@
             seems to fall in a gray area between the logical and physical
             aspects of stored data. Neither comfortable with eliminating it nor
             with making it required, the authors left it available but optional
-            under attribute.</para>
+            under attribute. In addition, it is repeatable so that different 
+            storage types can be provided for various systems (e.g., different
+            databases might use different types for columns, even though the
+            domain of the attribute is the same regardless of which database
+            is used).</para>
               <para>Attributes representing dates, times, or combinations thereof
             (hereafter "dateTime") were the most difficult to model in EML. Is
             dateTime of type interval or ordinal? Does it have units or not?
@@ -141,7 +157,11 @@
             arbitrary. There was clearly a need, however, to allow for the
             interoperability of dateTime formats. EML 2.0 tries to provide an
             unambiguous mechanism for describing the format of dateTime
-            values.</para>
+            values by providing a separate category for datetime values. This
+            "datetime" measurement scale allows users to explicitly label 
+            attributes that contain Gregorian date and time values, and allows
+            them to provide the information needed to parse these values into
+            their appropriate components (e.g., days, months, years)./</para>
             </sidebar>
           </section>
         </doc:moduleDescription>
@@ -161,7 +181,7 @@
         entity (ie. dataTable).</doc:summary>
         <doc:description>The content model for attribute is a CHOICE between
         "references" and all of the elements that let you describe the
-        attribute (e.g., attributeName,attributeDefinition,precision)The
+        attribute (e.g., attributeName, attributeDefinition, precision). The
         attribute element allows a user to document the characteristics that
         describe a 'field' or 'variable' in a data entity (e.g. dataTable).
         Complete attribute descriptions are perhaps the most important aspect
@@ -173,10 +193,8 @@
         "measurement1" in dataTable "survey1" has a precision of 0.1 and
         you are documenting dataTable survey2 which has an attribute called
         "measurement1" but the survey2's measurement1 has a precision of
-        0.001 then these are different attributes.</doc:description>
-        <doc:example>Because the attribute element is a container for other
-        elements, look at the contents of its sub-elements for examples of what
-        to enter.</doc:example>
+        0.001 then these are different attributes and must be decribed
+        separately.</doc:description>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -203,10 +221,10 @@
         <doc:tooltip>Attribute Type</doc:tooltip>
         <doc:summary>
         Type definition for the content of an attribute (variable)
-        description that can be part of an entity.
+        that can be part of an entity.
         </doc:summary>
         <doc:description> Type definition for the content of an
-        attribute (variable) description that can be part of an entity.
+        attribute (variable) that can be part of an entity.
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -217,7 +235,7 @@
             <xs:appinfo>
               <doc:tooltip>Attribute name</doc:tooltip>
               <doc:summary>The name of the attribute
-              in the dataset.</doc:summary>
+              </doc:summary>
               <doc:description>Attribute name is official name of the
               attribute.  This is usually a short, sometimes cryptic name
               that is used to refer to the attribute.  Many systems have
@@ -259,8 +277,8 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute definition</doc:tooltip>
-              <doc:summary>Precise definition of attribute in the
-              dataset</doc:summary>
+              <doc:summary>Precise definition of the attribute
+              </doc:summary>
               <doc:description>This element gives a precise definition of
               attribute in the data entity (dataTable, spatialRaster,
               spatialVector, storedProcedure, view or otherEntity) being
@@ -280,8 +298,8 @@
               <doc:tooltip>Storage Type</doc:tooltip>
               <doc:summary>Storage type hint for this field</doc:summary>
               <doc:description>This element describes the storage type,
-              for data in a RDBMS (or
-              other data management system) field. As many systems do not
+              for data in a RDBMS (or other data management system) field. 
+              As many systems do not
               provide for fine-grained restrictions on types, this type will
               often be a superset of the allowed domain defined in
               attributeDomain. Values for this field are by default drawn from
@@ -309,7 +327,7 @@
                       <doc:summary>The system used to define the storage types.
                       This should be an identifier of a well known and
                       published typing system.</doc:summary>
-                      <doc:description>The typeSystem element is the system
+                      <doc:description>The typeSystem attribute is the system
                       used to define the storage types. This should be an
                       identifier of a well known and published typing system.
                       The default and recommended system is the XML Schema data
@@ -352,9 +370,7 @@
               <doc:example>Interval is used for data which consist of
               equidistant points on a scale. The Celsius scale is an interval
               scale, since each degree is equal but there is no natural
-              zero point (so, 20 C is not twice as hot as 10 C). Date-time
-              values are also interval scale values, and special fields for
-              describing date-time formats and domains are provided.
+              zero point (so, 20 C is not twice as hot as 10 C).
               </doc:example>
               <doc:example>Ratio is used for data which consists not only of
               equidistant points but also has a meaningful zero
@@ -371,19 +387,21 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Nominal scale</doc:tooltip>
+                    <doc:summary>Characteristics used to define nominal 
+                    (categorical) scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
                     nominal scale variable, which are variables that are
-                    categorical in nature.</doc:description>
-                    <doc:example>Nominal is used when numbers have only been
+                    categorical in nature.
+                    Nominal is used when numbers have only been
                     assigned to a variable for the purpose of categorizing the
                     variable.  An example of a nominal scale is assigning the
-                    number 1 for male and 2 for female.</doc:example>
+                    number 1 for male and 2 for female.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="nonNumericDomain" type="NonNumericDomainType" maxOccurs="unbounded"/>
+                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -391,24 +409,24 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Ordinal scale</doc:tooltip>
+                    <doc:summary>Characteristics used to define ordinal 
+                    (ordered) scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
                     ordinal scale variable, which specify ordered values
                     without specifying the magnitude of the difference between
-                    values.</doc:description>
-                    <doc:example>Ordinal is used when the categories have
+                    values. Ordinal is used when the categories have
                     a logical or ordered relationship to each other. These
                     types of scale allow one to distinguish the order
                     of values, but not the magnitude of the difference
                     between values. An example of an ordinal scale is a
                     categorical survey where you rank a variable 1=good,
-                    2=fair, 3=poor. 
-                    </doc:example>
+                    2=fair, 3=poor.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="nonNumericDomain" type="NonNumericDomainType" maxOccurs="unbounded"/>
+                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -416,26 +434,25 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Interval scale</doc:tooltip>
+                    <doc:summary>Characteristics used to define interval 
+                    scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
                     interval scale variable, which specifies both the order
                     and magnitude of values, but has no natural zero point.
-                    </doc:description>
-                    <doc:example>Interval is used for data which consist of
+                    Interval is used for data which consist of
                     equidistant points on a scale. The Celsius scale is an
                     interval scale, since each degree is equal but there is
                     no natural zero point (so, 20 C is not twice as hot as
                     10 C).  zero point (so, 20 C is not twice as hot as 10
-                    C). Date-time values are also interval scale values,
-                    and special fields for describing date-time formats and
-                    domains are provided.</doc:example>
+                    C).</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
                     <xs:element name="precision" type="PrecisionType" maxOccurs="unbounded"/>
-                    <xs:element name="numericDomain" type="NumericDomainType" maxOccurs="unbounded"/>
+                    <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -443,24 +460,26 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Ratio scale</doc:tooltip>
+                    <doc:summary>Characteristics used to define ratio 
+                    scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
                     ratio scale variable, which specifies the order and
                     magnitude of values and has a natural zero point, allowing
-                    for ratio comparisons to be valid.</doc:description>
-                    <doc:example>Ratio is used for data which consists not
+                    for ratio comparisons to be valid.
+                    Ratio is used for data which consists not
                     only of equidistant points but also has a meaningful zero
                     point, which allows ratios to have meaning. An example
                     of a ratio scale would be the Kelvin temperature scale
                     (200K is half as hot as 400K), and length in meters (e.g.,
-                    10 meters is twice as long as 5 meters).</doc:example>
+                    10 meters is twice as long as 5 meters).</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
                     <xs:element name="precision" type="PrecisionType"/>
-                    <xs:element name="numericDomain" type="NumericDomainType" maxOccurs="unbounded"/>
+                    <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -468,13 +487,12 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Date/Time scale</doc:tooltip>
+                    <doc:summary>Characteristics used to define date and 
+                    time attributes</doc:summary>
                     <doc:description>This field is used for defining the
-                    characteristics of this variable if it is a
-                    datetime scale variable, which specify values
-                    that fall on the Gregorian calendar system.
-                    values.</doc:description>
-                    <doc:example>Datetime is used when the values fall on
-                    the Gregorian calendar.  Datetime values are special
+                    characteristics of this attribute if it contains
+                    date and time values. Datetime is used when the values fall on
+                    the Gregorian calendar system.  Datetime values are special
                     because the have properties of interval values (most
                     of the time it is legitimate to treat them as interval 
                     values by converting them to a duration from a fixed
@@ -486,12 +504,139 @@
                     the information necessary to properly understand and
                     parse date and time values without improperly 
                     labeling them under one of the more traditional scales.
-                    </doc:example>
+                    </doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="dateTimeDomain" type="DateTimeDomainType" maxOccurs="unbounded"/>
+                    <xs:element name="formatString" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Date/Time Format</doc:tooltip>
+                          <doc:summary>A format string that describes the format for a 
+              date-time value from the Gregorian calendar.</doc:summary>
+                          <doc:description>
+                            <para xmlns="">A format string that describes the format for a 
+              date-time value from the Gregorian calendar.  Datetime values
+              should be expressed in a format that conforms to the ISO 8601
+              standard.  This field allows one to specify the format string
+              that should be used to decode the date or time value.  To describe
+              the format of an attribute containing date-time values, construct
+              a string representation of the format using the following symbols:
+              </para>
+                            <para xmlns="">
+                              <literalLayout>
+              Y   year
+              M   month
+              W   month abbreviation (e.g., JAN)
+              D   day
+              h   hour
+              m   minute
+              s   second
+              T   time designator (demarcates date and time parts of date-time)
+              Z   UTC designator, indicating value is in UTC time
+              .   indicates a decimal fraction of a unit
+              +/- indicates a positive or negative number,
+                  or a positive or negative time zone adjustment relative to UTC
+              -   indicates a separator between date components
+              A/P am or pm designator
+              </literalLayout>
+                            </para>
+                            <para xmlns="">
+              Any other character in the format string is interpreted as a
+              separator character.  Here are some examples of the format
+              strings that can be constructed.
+              </para>
+                            <para xmlns="">
+                              <literalLayout>
+                                 Format string          Example value
+                                 -------------------    ------------------
+                  ISO Date       YYYY-MM-DD             2002-10-14
+                  ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
+                  ISO Time       hh:mm:ss               17:13:45
+                  ISO Time       hh:mm:ss.sss           09:13:45.432
+                  ISO Time       hh:mm.mm               09:13.42
+                  Non-standard   DD/MM/YYYY             14/10/2002
+                  Non-standard   MM/DD/YYYY             10/14/2002
+                  Non-standard   MM/DD/YY               10/14/02
+                  Non-standard   YYYY-WWW-DD            2002-OCT-14
+                  Non-standard   YYYYWWWDD              2002OCT14
+                  Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
+              </literalLayout>
+                            </para>
+                            <para xmlns="">
+              Some notes about these examples.  First, the ISO 8601 standard is
+              strict about the order of date components and the separators that
+              are legal.  Best practice is to follow the ISO 8601 format
+              precisely.  However, we recognize that existing data contain
+              non-standard dates, and existing equipment (e.g., sensors) may
+              still be producing non-standard dates.  Consequently, we have
+              provided the formatting string with additional characters to
+              describe the date formats. In particular note that the use of a
+              slash (/) to separate date components, a space to separate date
+              and time components, using a twelve-hour time with am/pm
+              designator, and placing any of the components out of
+              descending order is non-standard according to ISO.  Nevertheless,
+              these formats can be described using the format string to
+              accommodate existing data.
+              </para>
+                            <para xmlns="">
+              Decimal date-time values can be extended by indicating in
+              the format that additional decimals can be used.  Only the final
+              unit (e.g., seconds in a time value) can use the extended digits
+              according to the ISO 8601 standard.  For example, to show indicate
+              that seconds are represented to the nearest 1/1000 of a second, the 
+              format string would be "hh:mm:ss.sss".  Note that this only indicates
+              the number of decimals used to record the value, and not the 
+              precision of the measurement (see dateTimePrecision for that).
+              </para>
+                            <para xmlns="">
+              Date/time values are from an interval scale, but it is extremely
+              complex because of the vagaries of the calendar (e.g., leap
+              years, and leap seconds).  The duration between date-time values
+              in the future is not even deterministic because leap seconds are
+              based on current measurements of the earth's orbit. Consequently,
+              date-time values are unlike any other measured values.  The format
+              string for date-time values allows one to accurately calculate the
+              duration in SI second units between two measured date-time values,
+              assuming that the conversion software has a detailed knowledge of
+              the Gregorian calendar. Note that this field would not be used if
+              one is recording time durations.  In that case, one should use a
+              standard unit such as seconds, nominalMinute or nominalDay, or a
+              customUnit that defines the unit in terms of its relationship to
+              SI second.
+              </para>
+                          </doc:description>
+                          <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
+                          <doc:example>YYYY-MM-DD</doc:example>
+                          <doc:example>YYYY</doc:example>
+                          <doc:example>hh:mm:ss</doc:example>
+                          <doc:example>hh:mm:ss.sss</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dateTimePrecision" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>DateTime Precision</doc:tooltip>
+                          <doc:summary>An indication of the precision of a date or
+                          time value</doc:summary>
+                          <doc:description>A quantitative indication of the precision
+                          of a date or time measurement.  The precision should be 
+                          interpreted in the smallest units represented by the datetime
+                          format.  For example, if a datetime value has a format of
+                          "hh:mm:ss.sss", then "seconds" are the smallest unit and the
+                          precision should be expressed in seconds.  Thus, a precision
+                          value of "0.01" would mean that measurements were precise to
+                          the nearest hundredth of a second, even though the format 
+                          string might indicate that values were written down with 3
+                          decimal places.</doc:description>
+                          <doc:example>0.1</doc:example>
+                          <doc:example>0.01</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dateTimeDomain" type="DateTimeDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -548,7 +693,7 @@
                     that the data value was removed because of
                     calibration errors.</doc:description>
                     <doc:example>Sensor down time.</doc:example>
-                    <doc:example>technician error.</doc:example>
+                    <doc:example>Technician error.</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -692,15 +837,14 @@
         <doc:summary>Unit of measurement for data in the
         field</doc:summary>
         <doc:description>This field identifies the unit of measurement
-        for this attribute. It is a choice of either a standard SI unit,
-        a custom unit, or a date-time format. If it is a custom unit,
+        for this attribute. It is a choice of either a standard unit,
+        or a custom unit. If it is a custom unit,
         the definition of the unit must be provided in the document using
         the STMML syntax, and the name provided in the customUnit element must
         reference the id of its associated STMML definition precisely. For
         further information on STMML (http://www.xml-cml.org/stmml/) or
         see stmml.xsd which is included with the EML 2.0 distribution for
-        details. If it is a date-time format, the format string must comply
-        with the ISO 8601 specification.</doc:description>
+        details.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -749,7 +893,8 @@
         of the measurement, in the same unit as the measurement. For
         example, for an attribute with unit "meter", a precision of "0.1"
         would be interpreted as precise to the nearest 1/10th of a
-        meter.</doc:description>
+        meter, and a precision of "1" would be interpreted as precise
+        to the nearest 1 meter.</doc:description>
         <doc:example>0.1</doc:example>
         <doc:example>0.5</doc:example>
         <doc:example>1</doc:example>
@@ -762,26 +907,28 @@
   <xs:complexType name="NonNumericDomainType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>attribute domain</doc:tooltip>
+        <doc:tooltip>Non-numeric domain</doc:tooltip>
         <doc:summary/>
-        <doc:description>The attributeDomain field describes the domain
-        of the attribute being documented.  It can describe three
-        different types of domains: enumerated, text and numeric.  This
-        is an important field for post processing and error checking
-        of the dataset. It represents a formal specification of the
-        value space for the attribute, and so there should never be
-        a value for the attribute that falls outside of the set of
-        values prescribed by the attributeDomain.  For example, if a
-        numeric attribute has a domain with a minimum value of 7,
-        there should be no values less that 7 in the data for
-        that attribute. However, note that the observed range of data
-        values might be smaller than the domain (i.e., values that are
-        possible in terms of the domain will not always be observed in
-        the actual data).</doc:description>
+        <doc:description>The non-numeric domain field describes the domain
+        of the attribute being documented.  It can describe two
+        different types of domains: enumerated and text.  Enumerated
+        domains are lists of values that are explicitly provided as
+        legitimate values.  Only values from that list should occur
+        in the attribute.  They are often used for response codes
+        such as "HIGH" and "LOW".  Text domains are used for attributes
+        that allow more free-form text fields, but still permit some
+        specification of the value-space through pattern matching.  A
+        text domain is ususally used for comment and notes attributes,
+        and other character attributes that don't have a precise set of
+        constrained values. This is an important field for post processing
+        and error checking of the dataset. It represents a formal 
+        specification of the value space for the attribute, and so there 
+        should never be a value for the attribute that falls outside of 
+        the set of values prescribed by the domain.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
-      <xs:choice>
+      <xs:choice maxOccurs="unbounded">
         <xs:element name="enumeratedDomain">
           <xs:annotation>
             <xs:appinfo>
@@ -806,19 +953,12 @@
               <xs:element name="codeDefinition" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Code List</doc:tooltip>
-                    <doc:summary>A list of codes and their
-                    definitions</doc:summary>
-                    <doc:description>The codeList element contains a list
-                    of codes and their definitions.</doc:description>
-                    <doc:example>
-                    &lt;codeList&gt;
-                      &lt;code&gt;1&lt;/code&gt;
-                      &lt;definition&gt;high viscosity&lt;/definition&gt;
-                      &lt;code&gt;2&lt;/code&gt;
-                      &lt;definition&gt;low viscosity&lt;/definition&gt;
-                    &lt;/codeList&gt;
-                    </doc:example>
+                    <doc:tooltip>Code Definition</doc:tooltip>
+                    <doc:summary>A codes and its definition</doc:summary>
+                    <doc:description>This element gives the value of a
+                    particular code and its definition.  It is repeatable
+                    to allow for a list of codes to be provided.
+                    </doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -827,12 +967,15 @@
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Code</doc:tooltip>
-                          <doc:summary>Code associated with the
-                          attribute</doc:summary>
+                          <doc:summary>Code value allowed in the
+                          domain</doc:summary>
                           <doc:description>The code element specifies a
-                          code associated with the
-                          attribute.</doc:description>
+                          code value that can be used in the domain
+                          </doc:description>
                           <doc:example>1</doc:example>
+                          <doc:example>HIGH</doc:example>
+                          <doc:example>BEPA</doc:example>
+                          <doc:example>24</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -840,12 +983,14 @@
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Code definition</doc:tooltip>
-                          <doc:summary>Description of the code associated
-                          with the attribute.</doc:summary>
+                          <doc:summary>Definition of the associated code
+                          </doc:summary>
                           <doc:description>The definition describes the
-                          code associated with the
-                          attribute.</doc:description>
-                          <doc:example>high viscosity</doc:example>
+                          code with which it is associated in enough 
+                          detail for scientists to interpret the meaning
+                          of the coded values.</doc:description>
+                          <doc:example>high density, above 10 per square 
+                          meter</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -883,13 +1028,13 @@
                     in this attribute. This can either be a citation
                     (using the eml-citation module) or a
                     URL. Using an externally defined codeset (rather
-                    than a codeList means that interpretation of the
+                    than a codeDefinition) means that interpretation of the
                     data is dependent upon future users being able to
                     obtain the code definitions, so care should be taken
                     to only use highly standardized external code sets that
                     will be available for many years.  If at all possible,
                     it is preferable to define the codes inline using the
-                    codeList element.</doc:description>
+                    codeDefinition element.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -945,7 +1090,10 @@
                     table</doc:summary>
                     <doc:description>The entityCodeList is a list of
                     codes and their definitions in a data
-                    entity.</doc:description>
+                    entity that is present in this dataset. The fields
+                    specify exactly which entity it is, and which 
+                    attributes of that entity contain the codes and their
+                    definitions.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -1005,7 +1153,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:choice>
-            <xs:attribute name="enforced" default="yes">
+            <xs:attribute name="enforced" use="optional" default="yes">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Enforced Domain</doc:tooltip>
@@ -1140,7 +1288,7 @@
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
         a given data set (descriptive). The information in
-        numericDomain and in precision together constitutes
+        numericDomain and in precision together constitute
         sufficient information to decide upon an appropriate
         system specific data type for representing a particular
         attribute. For example, an attribute with a numeric domain
@@ -1162,57 +1310,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="numericBounds" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Numeric Bounds</doc:tooltip>
-              <doc:summary>Bounds of allowable numeric values</doc:summary>
-              <doc:description>Minimum and maximum bounds of an allowable range of values.</doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="minimum" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Minimum numeric range</doc:tooltip>
-                    <doc:summary>Minimum numeric range of
-                attribute</doc:summary>
-                    <doc:description>The minimum element specifies the
-                minimum value range of numeric
-                attribute.</doc:description>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="maximum" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Maximum numeric range</doc:tooltip>
-                    <doc:summary>Maximum numeric range of
-                attribute</doc:summary>
-                    <doc:description>The maximum element specifies the
-                maximum value range of a numeric
-                attribute.</doc:description>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        <xs:group ref="BoundsGroup"/>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
@@ -1232,172 +1330,113 @@
         be in the same date-time format as is used in the "formatString"
         description for the attribute.  For example, if the format
         string is "YYYY-MM-DD", then a valid minimum in the domain
-        would be "2001-05-29".
+        would be "2001-05-29".  The "bounds" element is optional, and
+        if it is missing then any legitimate value from the Gregorian 
+        calendar system is allowed in the attribute as long as its
+        representation matches its corresponding formatString.
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="formatString" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Date/Time Format</doc:tooltip>
-              <doc:summary>A format string that describes the format for a 
-              date-time value from the Gregorian calendar.</doc:summary>
-              <doc:description>
-                <para xmlns="">A format string that describes the format for a 
-              date-time value from the Gregorian calendar.  Datetime values
-              should be expressed in a format that conforms to the ISO 8601
-              standard.  This field allows one to specify the format string
-              that should be used to decode the date or time value.  To describe
-              the format of an attribute containing date-time values, construct
-              a string representation of the format using the following symbols:
-              </para>
-                <para xmlns="">
-                  <literalLayout>
-              Y   year
-              M   month
-              D   day
-              h   hour
-              m   minute
-              s   second
-              T   time designator (demarcates date and time parts of date-time)
-              Z   UTC designator, indicating value is in UTC time
-              .   indicates a decimal fraction of a unit
-              +/- indicates a positive or negative number,
-                  or a positive or negative time zone adjustment relative to UTC
-              -   indicates a separator between date components
-              A/P am or pm designator
-              </literalLayout>
-                </para>
-                <para xmlns="">
-              Any other character in the format string is interpreted as a
-              separator character.  Here are some examples of the format
-              strings that can be constructed.
-              </para>
-                <para xmlns="">
-                  <literalLayout>
-                                 Format string          Example value
-                                 -------------------    ------------------
-                  ISO Date       YYYY-MM-DD             2002-10-14
-                  ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
-                  ISO Time       hh:mm:ss               17:13:45
-                  ISO Time       hh:mm:ss.sss           09:13:45.432
-                  ISO Time       hh:mm.mm               09:13.42
-                  Non-standard   DD/MM/YYYY             14/10/2002
-                  Non-standard   MM/DD/YYYY             10/14/2002
-                  Non-standard   MM/DD/YY               10/14/02
-                  Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
-              </literalLayout>
-                </para>
-                <para xmlns="">
-              Some notes about these examples.  First, the ISO 8601 standard is
-              strict about the order of date components and the separators that
-              are legal.  Best practice is to follow the ISO 8601 format
-              precisely.  However, we recognize that existing data contain
-              non-standard dates, and existing equipment (e.g., sensors) may
-              still be producing non-standard dates.  Consequently, we have
-              provided the formatting string with additional characters to
-              describe the date formats. In particular note that the use of a
-              slash (/) to separate date components, a space to separate date
-              and time components, using a twelve-hour time with am/pm
-              designator, and placing any of the components out of
-              descending order is non-standard according to ISO.  Nevertheless,
-              these formats can be described using the format string to
-              accommodate existing data.
-              </para>
-                <para xmlns="">
-              Precision for date-time values can be extended by indicating in
-              the format that additional decimals can be used.  Only the final
-              unit (e.g., seconds in a time value) can use the extended digits
-              according to the ISO 8601 standard.
-              </para>
-                <para xmlns="">
-              Date/time values are from an interval scale, but it is extremely
-              complex because of the vagaries of the calendar (e.g., leap
-              years, and leap seconds).  The duration between date-time values
-              in the future is not even deterministic because leap seconds are
-              based on current measurements of the earth's orbit. Consequently,
-              date-time values are unlike any other measured values.  The format
-              string for date-time values allows one to accurately calculate the
-              duration in SI second units between two measured date-time values,
-              assuming that the conversion software has a detailed knowledge of
-              the Gregorian calendar. Note that this field would not be used if
-              one is recording time durations.  In that case, one should use a
-              standard unit such as seconds, nominalMinute or nominalDay, or a
-              customUnit that defines the unit in terms of its relationship to
-              SI second.
-              </para>
-              </doc:description>
-              <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
-              <doc:example>YYYY-MM-DD</doc:example>
-              <doc:example>YYYY</doc:example>
-              <doc:example>HH:MM:SS</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="dateBounds" minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Date Time  Bounds</doc:tooltip>
-              <doc:summary>Bounds of allowable datetime values</doc:summary>
-              <doc:description>Minimum and maximum bounds of an allowable range of values.</doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="minimum" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Minimum date-time range</doc:tooltip>
-                    <doc:summary>Minimum date-time range of
-                attribute</doc:summary>
-                    <doc:description>The minimum element specifies the
-                minimum value range of date-time attribute. The value
-                should be in the same date-time format that is indicated
-                in the "unit" element.</doc:description>
-                    <doc:example>2001-03-14</doc:example>
-                    <doc:example>2001-03-14T14:22:13</doc:example>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="maximum" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Maximum date-time range</doc:tooltip>
-                    <doc:summary>Maximum date-time range of
-                attribute</doc:summary>
-                    <doc:description>The maximum element specifies the
-                maximum value range of a date-time attribute. The value
-                should be in the same date-time format that is indicated
-                in the "unit" element.</doc:description>
-                    <doc:example>2001-03-14</doc:example>
-                    <doc:example>2001-03-14T14:22:13</doc:example>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        <xs:group ref="BoundsGroup"/>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
+  <xs:group name="BoundsGroup">
+    <xs:sequence>
+    <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="minimum" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Minimum numeric bound</doc:tooltip>
+                <doc:summary>Minimum numeric bound of
+                attribute</doc:summary>
+                <doc:description>The minimum element specifies the
+                minimum permitted value of a numeric
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="exclusive" type="xs:boolean" 
+                  use="required">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Exclusive
+                        </doc:tooltip>
+                        <doc:summary>Exclusive bounds flag
+                        </doc:summary>
+                        <doc:description>If exclusive is set to true, then
+                        the value specifies a lower bound not including
+                        the value itself.  Setting exclusive to true is
+                        the equivalent of using a less-than or greater-than
+                        operator, while setting it to false is the same as
+                        using a less-than-or-equals or greater-than-or-equals
+                        operator. For example, if the minimum is "5" and
+                        exclusive is false, then all values must be greater
+                        than or equal to 5, but if exclusive is true than
+                        all values must be greater than 5 (not including
+                        5.0 itself).
+                        </doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="maximum" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Maximum numeric bound</doc:tooltip>
+                <doc:summary>Maximum numeric bound of
+                attribute</doc:summary>
+                <doc:description>The maximum element specifies the
+                maximum permitted value of a numeric
+                attribute.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="exclusive" type="xs:boolean" 
+                  use="required">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Exclusive
+                        </doc:tooltip>
+                        <doc:summary>Exclusive bounds flag
+                        </doc:summary>
+                        <doc:description>If exclusive is set to true, then
+                        the value specifies a lower bound not including
+                        the value itself.  Setting exclusive to true is
+                        the equivalent of using a less-than or greater-than
+                        operator, while setting it to false is the same as
+                        using a less-than-or-equals or greater-than-or-equals
+                        operator. For example, if the minimum is "5" and
+                        exclusive is false, then all values must be greater
+                        than or equal to 5, but if exclusive is true than
+                        all values must be greater than 5 (not including
+                        5.0 itself).
+                        </doc:description>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    </xs:sequence>
+  </xs:group>
   <xs:simpleType name="NumberType">
     <xs:annotation>
       <xs:appinfo>
@@ -1406,10 +1445,63 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="natural"/>
-      <xs:enumeration value="whole"/>
-      <xs:enumeration value="integer"/>
-      <xs:enumeration value="real"/>
+      <xs:enumeration value="natural">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Natural numbers</doc:tooltip>
+            <doc:summary>Natural numbers
+            </doc:summary>
+            <doc:description>The number type for this attribute consists
+            of the 'natural' numbers, otherwise known as the counting numbers:
+            1, 2, 3, 4, ...
+            </doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="whole">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Whole numbers</doc:tooltip>
+            <doc:summary>Whole numbers
+            </doc:summary>
+            <doc:description>The number type for this attribute consists
+            of the 'whole' numbers, which are the natural numbers plus the
+            zero value: 0, 1, 2, 3, 4, ...
+            </doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="integer">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Integer numbers</doc:tooltip>
+            <doc:summary>Integer numbers
+            </doc:summary>
+            <doc:description>The number type for this attribute consists
+            of the 'integer' numbers, which are the natural numbers, plus the
+            zero value, plus the negatives of the natural numbers: ..., -4, -3, 
+            -2, -1, 0, 1, 2, 3, 4, ...
+            </doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="real">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Real numbers</doc:tooltip>
+            <doc:summary>Real numbers
+            </doc:summary>
+            <doc:description>The number type for this attribute consists
+            of the 'real' numbers, which contains both the rational numbers
+            that can be expressed as fractions and the irrational numbers 
+            that can not be expressed as fractions (such as the square root of 2).
+            </doc:description>
+            <doc:example>4.1516</doc:example>
+            <doc:example>2.5</doc:example>
+            <doc:example>.3333333...</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="unitDictionary">

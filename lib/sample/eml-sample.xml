@@ -108,12 +108,15 @@
         </attributeDefinition>
         <storageType>gYear</storageType>
         <measurementScale>
-          <ordinal>
+          <datetime>
+            <formatString>YYYY</formatString>
+            <dateTimePrecision>1</dateTimePrecision>
             <dateTimeDomain id="dd.2">
-              <formatString>YYYY</formatString>
-              <minimum>1944</minimum>
+              <bounds>
+                <minimum exclusive="false">1944</minimum>
+              </bounds>
             </dateTimeDomain>
-          </ordinal>
+          </datetime>
         </measurementScale>
       </attribute>
       <attribute  id="att.3">
@@ -127,7 +130,9 @@
             <precision>0.5</precision>
             <numericDomain id="nd.3">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="true">0</minimum>
+              </bounds>
             </numericDomain>
           </interval>
         </measurementScale>
@@ -144,8 +149,10 @@
             <precision>0.1</precision>
             <numericDomain id="nd.4">
               <numberType>real</numberType>
-              <minimum>0</minimum>
-              <maximum>100</maximum>
+              <bounds>
+                <minimum exclusive="true">0</minimum>
+                <maximum exclusive="true">100</maximum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -162,7 +169,9 @@
             <precision>0.1</precision>
             <numericDomain id="nd.5">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="true">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -263,7 +272,9 @@
             <precision>0.01</precision>
             <numericDomain id="nd.6">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="true">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -280,7 +291,9 @@
             <precision>0.01</precision>
             <numericDomain id="nd.7">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="true">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -292,13 +305,16 @@
         </attributeDefinition>
         <storageType>time</storageType>
         <measurementScale>
-          <ordinal>
+          <datetime>
+            <formatString>hh:mm:ss.s</formatString>
+            <dateTimePrecision>0.1</dateTimePrecision>
             <dateTimeDomain id="dd.3">
-              <formatString>hh:mm:ss.s</formatString>
-              <minimum>15:00:00.0</minimum>
-              <maximum>19:00:00.0</maximum>
+              <bounds>
+                <minimum exclusive="true">15:00:00.0</minimum>
+                <maximum exclusive="true">19:00:00.0</maximum>
+              </bounds>
             </dateTimeDomain>
-          </ordinal>
+          </datetime>
         </measurementScale>
       </attribute>
     </attributeList>

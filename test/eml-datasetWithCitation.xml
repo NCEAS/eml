@@ -108,13 +108,15 @@
         </attributeDefinition>
         <storageType>gYear</storageType>
         <measurementScale>
-          <interval>
-            <unit><formattedDateTimeUnit>YYYY</formattedDateTimeUnit></unit>
-            <precision>1</precision>
+          <datetime>
+            <formatString>YYYY</formatString>
+            <dateTimePrecision>1</dateTimePrecision>
             <dateTimeDomain id="dd.2">
-              <minimum>1944</minimum>
+              <bounds>
+                <minimum exclusive="false">1944</minimum>
+              </bounds>
             </dateTimeDomain>
-          </interval>
+          </datetime>
         </measurementScale>
       </attribute>
       <attribute  id="att.3">
@@ -128,7 +130,9 @@
             <precision>0.5</precision>
             <numericDomain id="nd.3">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+              <minimum exclusive="false">0</minimum>
+              </bounds>
             </numericDomain>
           </interval>
         </measurementScale>
@@ -145,8 +149,10 @@
             <precision>0.1</precision>
             <numericDomain id="nd.4">
               <numberType>real</numberType>
-              <minimum>0</minimum>
-              <maximum>100</maximum>
+              <bounds>
+                <minimum exclusive="false">0</minimum>
+                <maximum exclusive="false">100</maximum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -163,7 +169,9 @@
             <precision>0.1</precision>
             <numericDomain id="nd.5">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="false">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -264,7 +272,9 @@
             <precision>0.01</precision>
             <numericDomain id="nd.6">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="false">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>
@@ -281,7 +291,9 @@
             <precision>0.01</precision>
             <numericDomain id="nd.7">
               <numberType>real</numberType>
-              <minimum>0</minimum>
+              <bounds>
+                <minimum exclusive="false">0</minimum>
+              </bounds>
             </numericDomain>
           </ratio>
         </measurementScale>

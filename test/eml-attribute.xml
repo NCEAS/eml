@@ -17,7 +17,9 @@
           <precision>0.5</precision>
           <numericDomain id="nd.1">
             <numberType>real</numberType>
-            <minimum>0</minimum>
+            <bounds>
+              <minimum exclusive="false">0</minimum>
+            </bounds>
           </numericDomain>
         </interval>
       </measurementScale>
