@@ -21,9 +21,9 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     Science Foundation (see README for details) The David and Lucile Packard
     Foundation For Details: http://knb.ecoinformatics.org/ 
     
-    '$Author: berkley $' 
-    '$Date: 2002-05-30 23:17:30 $' 
-    '$Revision: 1.36 $' 
+    '$Author: cjones $' 
+    '$Date: 2002-05-31 01:51:33 $' 
+    '$Revision: 1.37 $' 
     
     This program is
     free software; you can redistribute it and/or modify it under the terms
@@ -56,7 +56,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
   
   <xs:complexType name="Project">
     <xs:choice>
-      <xs:element name="content" type="ResearchProjectType/>
+      <xs:element name="content" type="ResearchProjectType"/>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
@@ -290,7 +290,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
                 </xs:complexType>
               </xs:element>
               <xs:element name="citation" type="cit:Citation" />
-              <xs:element name="coverage" type="cov:Coverage" />
+              <xs:element name="coverage" type="cov:CoverageType" />
             </xs:choice>
           </xs:complexType>
         </xs:element>
