@@ -1,0 +1,244 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:rp="eml:ResponsibleParty"
+           xmlns:res="eml:resource"
+           targetNamespace="eml:literature">
+
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-literature.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: jones $'
+          '$Date: 2001-04-14 00:10:04 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+     <moduleName>
+        eml-resource
+      </moduleName>
+      <moduleDescription>
+        The eml-literature module contains information that describes
+        literature resources It is intended to provide overview information
+        about the literature citation, including title, abstract, keywords, 
+        and contacts.
+      </moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <!-- import the elements from eml-resource -->
+  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+
+  <!-- import the elements from responsible party -->
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+ 
+  <xs:element name="literature" type="LitCitation">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Literature Citation
+        </tooltip>
+        <summary>
+          Information describing a literature resource.
+        </summary>
+        <description>
+          The literature element contains general information about a
+          literature resource that is being documented, or a piece of
+          literature that is being cited in support of a given resource,
+          such as a dataset.  It contains subelements that are specific to a
+          literature resource such as a book, a journal article, 
+          a thesis, etc.  It extends the generic resource elements with 
+          literature specific fields.
+        </description>
+        <example>
+          Please see the examples within the subelements for this type.
+        </example>
+        <lineage>
+          This field was introduced in EML 2.0.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="LitCitation">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Literature Citation
+        </tooltip>
+        <summary>
+          Information describing a literature resource.
+        </summary>
+        <description>
+          The 'LitCitation' type contains general information about a
+          literature resource that is being documented, or a piece of
+          literature that is being cited in support of a given resource,
+          such as a dataset.
+          It contains subelements that are specific to a
+          literature resource such as a book, a journal article, 
+          a thesis, etc.  It extends the generic resource elements with 
+          literature specific fields.
+        </description>
+        <example>
+          Please see the examples within the subelements for this type.
+        </example>
+        <lineage>
+          This field was introduced in EML 2.0.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="res:ResourceBase">
+        <xs:sequence>
+          <xs:element name="ISBN" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  International Standard Book Number
+                </tooltip>
+                <summary>
+                  The unique Internation Standard Book Number
+                </summary>
+                <description>
+                  The ISBN, or International Standard Book Number
+                  that has been assigned to this literature resource.
+                </description>
+                <example>
+                  ISBN 1-861003-11-0
+                </example>
+                <lineage>
+                  This field was introduced into EML 2.0 and was derived 
+                  from the ISO 19115.3 standard (iso-geo-md-2000June-draft) 
+                  and the ISO Standard 2108.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+      
+          <xs:element name="ISSN" type="xs:string" 
+                      minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  International Standard Serial Number
+                </tooltip>
+                <summary>
+                  The unique Internation Standard Serial Number
+                </summary>
+                <description>
+                  The ISSN, or International Standard Serial Number
+                  that has been assigned to this literature resource.
+                </description>
+                <example>
+                  ISSN 1234-5679
+                </example>
+                <lineage>
+                  This field was introduced into EML 2.0 and was derived 
+                  from the ISO 19115.3 standard (iso-geo-md-2000June-draft) 
+                  and the ISO 3297-1975; ANSI Z39.9-1979 standard.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+     
+          <xs:element name="editor" type="rp:Person" 
+                      minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  Editor
+                </tooltip>
+                <summary>
+                  The name of the editor of the literature resource.
+                </summary>
+                <description>
+                  This field provides a container for the information 
+                  that describes the editor of the literature resource.  
+                  The editor may be a person
+                  or organization or a role within an organization.
+                </description>
+                <example>
+                  Please see the examples within the subelements.
+                </example>
+                <lineage>
+                  This field was introduced into EML 2.0 beta 1, and was 
+                  derived from the FGDC-STD-001.1-1999 standard
+                  (nbii-fgdc-std-001.1-1999)
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation> 
+          </xs:element>
+    
+          <xs:element name="edition" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  Edition
+                </tooltip>
+                <summary>
+                  The edition of the literature resource.
+                </summary>
+                <description>
+                  The edition that has been assigned to a literature 
+                  resource by its publisher.
+                </description>
+                <example>
+                  2nd Edition
+                </example>
+                <lineage>
+                  This field was introduced into EML 2.0 beta 1, and was 
+                  derived from the FGDC-STD-001.1-1999 
+                  (nbii-fgdc-std-001.1-1999) and ISO 19115.3 
+                  (iso-geo-md-2000June-draft) standards.
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+    
+          <xs:element name="volume" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
+                  Volume
+                </tooltip>
+                <summary>
+                  The volume number of the resource.
+                </summary>
+                <description>
+                  The volume number that has been assigned to a
+                  resource by its publisher.
+                </description>
+                <example>
+                  Volume 7
+                </example>
+                <lineage>
+                  This field was introduced into EML 2.0 beta 1
+                </lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

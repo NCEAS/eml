@@ -1,12 +1,12 @@
 <!--         
-       '$RCSfile: eml-dataset.dtd,v $'
+       '$RCSfile: eml-software.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-04-14 00:10:03 $'
-      '$Revision: 1.8 $'
+          '$Date: 2001-04-14 00:10:04 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,12 +27,13 @@
 <!ENTITY % ResourceBase SYSTEM "./eml-resource.dtd">
 %ResourceBase;
 
-<!-- entity referring to the coverage fields -->
-<!ENTITY % coverage SYSTEM "./eml-coverage.dtd">
-%coverage;
-
-<!-- The dataset branch -->
-<!ELEMENT dataset ((%resbase;), temporalCoverage*, geographicCoverage*,
-                  taxonomicCoverage* )>
+<!-- The software branch -->
+<!ELEMENT software ((%resbase;), versionNumber?, sourceModule?, binaryFile?,
+                    location?, programmingLanguage?)>
+<!ELEMENT versionNumber (#PCDATA)>
+<!ELEMENT sourceModule (#PCDATA)>
+<!ELEMENT binaryFile (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+<!ELEMENT programmingLanguage (#PCDATA)>
 
 <!-- EOF -->

@@ -1,0 +1,215 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:res="eml:resource"
+           targetNamespace="eml:software">
+
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-software.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: jones $'
+          '$Date: 2001-04-14 00:10:04 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+     <moduleName>
+        eml-resource
+      </moduleName>
+      <moduleDescription>
+        The eml-resource module contains general information that describes
+        dataset resources, literature resources, collection  resources, and
+        software resources.  It is intended to provide overview information
+        about the resource, including title, abstract, keywords, contacts, and
+        the links to associated metadata for the given resource.
+      </moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <!-- import the elements from eml-resource -->
+  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+
+  <xs:element name="software">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Software
+        </tooltip>
+        <summary>
+          General information about a software resource.
+        </summary>
+        <description>
+          the 'software' element contains general information about a
+          software resource that is being documented.  This is field is
+          intended to give information for software tools that are needed 
+          to interpret a dataset, software that was written to process a
+          resource, or software as a resource in itself.
+          It includes the version, the programming language,
+          and the location of the software, along with the source code
+          information or binary file information.  The information 
+          provided in the subelements are specific to software 
+          resources and extend the Resource type.
+        </description>
+        <example>
+          Please see the examples for each subelement of the 'Software'
+          type.
+        </example>
+        <lineage>
+          The 'software' element was introduced into EML 2.0, however
+          it was derived from the eml-software module in EML 1.4.
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="res:ResourceBase">
+          <xs:sequence>
+            <xs:element name="versionNumber" type="xs:string"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Version number
+                  </tooltip>
+                  <summary>
+                    The version number of the software resource.
+                  </summary>
+                  <description>
+                    This field provides the version number of the 
+                    software that is being documented.  The version 
+                    number may be a vendor-assigned number, or it may be 
+                    a version tag from a software versioning system such 
+                    as CVS (Concurrent Versioning System).
+                  </description>
+                  <example>
+                    8.2.1 or WEBSITE_2_BETA_1
+                  </example>
+                  <lineage>
+                    This field was introduced into EML 2.0 beta 1, and is
+                    derived from the eml-software module in EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="sourceModule" type="xs:string"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Source module
+                  </tooltip>
+                  <summary>
+                    The name of the source code module.
+                  </summary>
+                  <description>
+                    This field provides the name of the source code 
+                    module that contains the non-binary source.
+                  </description>
+                  <example>
+                    eml-2.0b1.tgz
+                  </example>
+                  <lineage>
+                    This field was introduced into EML 2.0 beta 1, and is
+                    derived from the eml-software module in EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryFile" type="xs:string"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Binary file
+                  </tooltip>
+                  <summary>
+                    The name of the binary file for the software.
+                  </summary>
+                  <description>
+                    This field provides the name of the compiled 
+                    binary file for the software distribution.  
+                  </description>
+                  <example>
+                    morpho-macintosh-1.2.bin
+                </example>
+                  <lineage>
+                    This field was introduced into EML 2.0 beta 1, and is
+                    derived from the eml-software module in EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="location" type="xs:string"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Software location
+                  </tooltip>
+                  <summary>
+                    The Internet location of the software resource.
+                  </summary>
+                  <description>
+                    This field provides the Uniform Resource Locator 
+                    of where the software resource is available on 
+                    the Internet.
+                  </description>
+                  <example>
+                    http://knb.ecoinformatics.org/software/metacat/
+                  </example>
+                  <lineage>
+                    This field was introduced into EML 2.0 beta 1, and is
+                    derived from the eml-software module in EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="programmingLanguage" type="xs:string"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Programming Language
+                  </tooltip>
+                  <summary>
+                    The programming language for the software resource.
+                  </summary>
+                  <description>
+                    This field provides the name and version of the 
+                    programming language in which the software 
+                    resource was written.
+                  </description>
+                  <example>
+                    PERL version 5.005_03
+                  </example>
+                  <lineage>
+                    This field was introduced into EML 2.0 beta 1, and is
+                    derived from the eml-software module in EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
