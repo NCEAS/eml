@@ -23,9 +23,9 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-06 22:25:39 $'
-      '$Revision: 1.54 $'
+        '$Author: chapal $'
+          '$Date: 2002-09-10 18:24:33 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
         <doc:moduleName>eml-access</doc:moduleName>
         <doc:moduleDescription>The EML Access Module describes the level of
         access that is to be granted or denied to a resource for a particular
-        user or group of users. A single eml-access document may be used
+        user or group of users. A single eml-access document may be used to
         express access control for many resources, or for a given resource
         (e.g., a dataset or document). The relationship between a resource and
         it's access control document is defined in the eml-resource module. The
@@ -65,34 +65,34 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
   <xs:element name="access" type="AccessType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Access control list</doc:tooltip>
+        <doc:tooltip>Access control rules</doc:tooltip>
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
-        <doc:description>The acl element contains a list of rules that define
+        <doc:description>The access element contains a list of rules that define
         the level of access for a given resource, be it a dataset or another
-        metadata document. the acl element must contain the elements defined in
-        the ACL type.</doc:description>
-        <doc:example>Because the acl element is a container for other elements,
-        look at the contents of its sub-elements for examples of what to
-        enter.</doc:example>
-        <doc:lineage>The acl element is derived from eml-access.dtd, version
-        1.3</doc:lineage>
+        metadata document.  Because the access element is declared to be of
+        complex type 'AccessType', an instance must contain the elements defined
+        for accessType.</doc:description>
+        <doc:example>See the description of individual elements defined in
+        AccessType to review each component element's rules.</doc:example>
+        <doc:lineage>The access element is derived from the acl
+        element in eml-access.dtd, version 1.3</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="AccessType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Access control list</doc:tooltip>
+        <doc:tooltip>Access control rules</doc:tooltip>
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
-        <doc:description>The acl element contains a list of rules that define
-        the level of access for a given resource, be it a dataset or another
-        metadata document. the acl element must contain the elements defined in
-        the ACL type.</doc:description>
+        <doc:description>The access element contains a list of rules that define
+        the level of access for a given resource, either a dataset or another
+        metadata document. The access element must contain the elements defined
+        in the AccessType type.</doc:description>
         <doc:example />
-        <doc:lineage>The acl element is derived from eml-access.dtd, version
-        1.3</doc:lineage>
+        <doc:lineage>The AccessType type is derived from the acl element in
+        eml-access.dtd, version 1.3</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -142,7 +142,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
           applied.</doc:summary>
           <doc:description>The order attribute defines which rule should be
           applied first to obtain the desired access control. The acceptable
-          values are pre-defined in a list of 'allowFirst' and
+          values are defined in a list of 'allowFirst' and
           'denyFirst'.</doc:description>
           <doc:example>allowFirst</doc:example>
           <doc:lineage>The order element was introduced into EML 2.0
@@ -160,17 +160,17 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>Authentication system</doc:tooltip>
-          <doc:summary>The authentication system that is used to verify the
-          user or group to whom the ACL allows or denies access.</doc:summary>
+          <doc:summary>The authentication system is used to verify the user or
+          group to whom access is allowed or denied.</doc:summary>
           <doc:description>The authentication system determines the set of
           principals (users + groups) that can be used in the access control
           list, and the membership of users in groups. This element is intended
-          to provide a reference to the authentication system in order to
-          verify the user or group. This reference is typically in the form of
-          a URI, which includes the connection protocol, internet host, and
-          path to the authentication mechanism.</doc:description>
+          to provide a reference to the authentication system that is used to 
+	  verify the user or group. This reference is typically in the form 
+	  of a URI, which includes the connection protocol, Internet host, and 
+	  path to the authentication mechanism.</doc:description>
           <doc:example>
-          ldap://directory.nceas.ucsb.edu:389/o=NCEAS,c=US</doc:example>
+          ldap://directory.nceas.ucsb.edu:389/o=nceas,c=us</doc:example>
           <doc:lineage>The authSystem element was introduced into EML 2.0
           Proposed.</doc:lineage>
         </xs:appinfo>
@@ -181,14 +181,13 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Access Rule</doc:tooltip>
-        <doc:summary>Access Rules define the extent to which a user may access
-        a resource.</doc:summary>
+        <doc:summary>Access Rules define a user's access to a
+        resource.</doc:summary>
         <doc:description>The AccessRule type defines a list of users that are
         derived from a particular authentication system (such as an LDAP
         directory), whether the user or group is allowed or denied access, the
-        extent of their access (write access, or only read access), and the
-        duration or number of times that they may access the
-        resource.</doc:description>
+        extent of their access (write access, or only read
+        access).</doc:description>
         <doc:example />
         <doc:lineage>The AccessRule type was introduced into EML 2.0
         Proposed</doc:lineage>
@@ -202,7 +201,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
             <doc:summary>The user or group (principal) for which the access
             control applies.</doc:summary>
             <doc:description>The principal element defines the user or group to
-            which the access control list applies. The users and groups must be
+            which the access control rule applies. The users and groups must be
             defined in the authentication system described in the authSystem
             element.</doc:description>
             <doc:example>berkley</doc:example>
@@ -219,12 +218,15 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
             resource.</doc:summary>
             <doc:description>The permission that is being granted or denied to
             a particular user or group for a given resource. The list of
-            permissions come from a predetermined list, and include 'read'
-            (allow/deny viewing of the resource), 'write' (allow/deny
-            modification of the resource), and 'all' (allow read/write, and the
-            ability to modify access restrictions as well.)</doc:description>
+            permissions come from a predetermined list (applicable to an LDAP
+	    authentication system): (allow/deny viewing of the resource), 'write'
+	    (allow/deny modification of the resource), 'changePermission' 
+	    (ability to modify access restrictions) and 'all' (allow read/write, 
+	    and the changePermission). This element also allows other 
+	    permissions that may be applicable to some other authentication
+	    system.</doc:description>
             <doc:example>read</doc:example>
-            <doc:lineage>The duration element was introduced into EML 2.0
+            <doc:lineage>The permission element was introduced into EML 2.0
             Proposed.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
