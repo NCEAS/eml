@@ -1,5 +1,20 @@
-March 11, 2003
+March 20, 2003
+Converting eml beta6 packages to eml2
 
+There are currently 6 XSLT stylesheets in the xsl/ subdirectory which are used to convert a set of eml-beta6 modules into an eml2 document. These are: triple_info.xsl, emlb6toeml2.xsl, eml2attr.xsl, eml2cit.xls, eml2entphy.xsl, and eml2project.xsl. The starting point is an eml-beta6 dataset module which contains the triple information which defines the modules in the package. The triple_info.xsl transform processes the triples information into a hierarchy that is then used to create the eml2 document by the other stylesheets, starting with emlb6toeml2.xsl.  
+
+There is a command line based java application (EMLConvert.java) that combines these steps. To run the compiled java code enter
+
+java -cp ./ EMLConvert <beta6 package document>
+
+where <beta6 package document> is the dataset document for the beta6 package (e.g. 'C:\work\higgins.204.2' on a Windows machine). Note that path can be included with the document name and the name is assumed to be the id. Other modules in the package are assumed to be in the same directory. The easiest way to create this directory is to use the 'Export' command in Morpho which will write all the modules in a package to directory with files names corresponding to the ids.  
+
+The transformation should write a file called 'eml2out.xml' to the current working directory.
+
+-------------------------------
+
+March 11, 2003    (comments superceded by above)
+                  
 Converting eml beta6 packages to eml2
 
 The xslt stylesheets 'emlb6toeml2.xsl', 'triple_info.xsl', 'eml2entphy.xsl', and 'eml2attr.xsl' can be used to convert a set of eml beta6 modules that represent an emlbeta6 package into an eml2 document. There are two transformations in the process and a Windows batch file for executing the operation is named 'runnit.bat'.
