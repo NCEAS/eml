@@ -5,7 +5,7 @@
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
-    '$RCSfile: eml-physical.xsd,v $'
+       '$RCSfile: eml-physical.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
                             Arizona State University
@@ -19,9 +19,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:48 $'
-      '$Revision: 1.42 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-16 23:40:58 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -565,6 +565,7 @@
                     </xs:element>
                     <xs:element name="ncols" type="xs:int">
                       <xs:annotation>
+                        <xs:appinfo>
                           <doc:description>The number of columns in the image.
                           Columns are parallel to the y-axis of the map
                           coordinate system. There is no
