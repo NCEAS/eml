@@ -42,11 +42,15 @@
           <xsl:element name="measurementScale">
      <!-- must determine which of 5 measurementScales to create -->
            <xsl:if test="((./attributeDomain/textDomain) and (./attributeDomain/textDomain=''))">
-             <xsl:element name="textDomain">
-               <xsl:element name="definition">
-                 <xsl:value-of select="'not available'"/>
-                </xsl:element>
-              </xsl:element>
+             <xsl:element name="nominal">
+               <xsl:element name="nonNumericDomain">
+                 <xsl:element name="textDomain">
+                   <xsl:element name="definition">
+                     <xsl:value-of select="'not available'"/>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>  
+              </xsl:element>  
            </xsl:if>
      
             <xsl:if test="((./attributeDomain/enumeratedDomain!='')or(./attributeDomain/textDomain!=''))">
