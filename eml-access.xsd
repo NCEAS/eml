@@ -26,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2004-07-01 18:28:24 $'
-      '$Revision: 1.70 $'
+          '$Date: 2004-07-01 21:03:11 $'
+      '$Revision: 1.71 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -101,7 +101,10 @@
               either provide multiple &lt;describes&gt; elements within
               a single additionalMetadata element, or provide multiple
               additionalMetadata elements, each of which describes access
-              exceptions for a particular distribution.
+              exceptions for a particular distribution. Note that each
+              'additionalMetadata' element can only contain one child element
+              besides the describes tags (e.g., only one &lt;access&gt; 
+              element).
              </para>
              <para>
               The values that can be assigned to the &lt;permission&gt;
