@@ -1,22 +1,23 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/dataTable-2.0.0rc2"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2"
-xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2"
-xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2"
-xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2"
-  schemaLocation="eml-entity.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2"
-  schemaLocation="eml-attribute.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2"
-  schemaLocation="eml-constraint.xsd" />
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2" 
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" 
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/dataTable-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2" 
+  schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2" 
+  schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+  schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataTable.xsd,v $'
@@ -34,8 +35,8 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.35 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.36 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -95,15 +96,14 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
         must contain the elements defined for dataTableType. See the
         description for dataTableType to review component element
         rules.</doc:description>
-        <doc:lineage>The entity element was introduced into EML 1.4 as
-        file.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="DataTableType">
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="ent:EntityGroup" />
+        <xs:group ref="ent:EntityGroup"/>
         <xs:element name="attributeList" type="att:AttributeListType">
           <xs:annotation>
             <xs:appinfo>
@@ -116,12 +116,11 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
-        maxOccurs="unbounded" >
+        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Constraint</doc:tooltip>
-              <doc:summary></doc:summary>
+              <doc:summary/>
               <doc:description>Description of any relational constraints on '
               this entity.  For more information see the eml-constraint
               module.</doc:description>
@@ -143,14 +142,13 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
               </doc:description>
               <doc:example>yes</doc:example>
               <doc:example>no</doc:example>
-              <doc:lineage>The caseSensitive element was introduced into EML
-              1.4.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:simpleType>
             <xs:restriction base="xs:string">
-              <xs:enumeration value="yes" />
-              <xs:enumeration value="no" />
+              <xs:enumeration value="yes"/>
+              <xs:enumeration value="no"/>
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
@@ -167,17 +165,15 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2">
               formatting such as the number of header lines (see eml-physical
               for that information).</doc:description>
               <doc:example>975</doc:example>
-              <doc:lineage>Introduced in EML 2</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="res:IDType" use="optional" />
-    <xs:attribute name="system" type="res:SystemType" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
 </xs:schema>
-

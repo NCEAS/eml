@@ -1,26 +1,27 @@
-<?xml version="1.0"?>
-  <xs:schema targetNamespace="eml://ecoinformatics.org/eml-2.0.0rc2"
-    xmlns="eml://ecoinformatics.org/eml-2.0.0rc2"
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-    xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc2"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-    xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc2"
-    xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc2"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-             schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc2"
-             schemaLocation="eml-dataset.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc2"
-             schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/software-2.0.0rc2"
-             schemaLocation="eml-software.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc2"
-             schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-             schemaLocation="eml-resource.xsd"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns="eml://ecoinformatics.org/eml-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:prot="eml://ecoinformatics.org/protocol-2.0.0rc2" 
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2" 
+    xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc2" 
+    xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/eml-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc2" 
+  schemaLocation="eml-dataset.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc2" 
+  schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/software-2.0.0rc2" 
+  schemaLocation="eml-software.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc2" 
+  schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                        '$RCSfile: eml.xsd,v $'
@@ -38,8 +39,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.42 $'
+          '$Date: 2002-10-07 21:04:55 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,7 +75,7 @@
                 The Dublin Core Metadata Initiative
               </citetitle>
             </ulink>, which describes a general element set used to describe
-            &quot;networked digital resources&quot;. The top-level structure
+            "networked digital resources". The top-level structure
             of EML has been design to be compatible with the Dublin Core
             syntax. In general, dataset resources, literature resources,
             software resources, and protocol resources comprise the
@@ -83,7 +84,7 @@
             used to describe non-digital resources such as paper maps and
             other non-digital media.
             <emphasis>
-              In EML, the definition of a &quot;Data Package&quot; is the
+              In EML, the definition of a "Data Package" is the
               combination of both the data and metadata for a resource.
             </emphasis>
               So, data packages are built by using the &lt;eml&gt; wrapper,
@@ -100,23 +101,7 @@
             EML standard.
           </para>
         </section>
-        <!--
-        The eml module is a wrapper container that
-        allows inclusion of any metadata content in a single EML document. In
-        general, dataset resources, literature resources,
-        and software resources, or another type that extends eml-resource
-        are described using an eml document.  The eml document represents
-        a "package" that can contain both metadata and data.  It can
-        optionally include non-EML metadata through the flexibility of the
-        "additionalMetadata" element.  Any additional metadata that is
-        provided can provide a pointer into the EML metadata indicating
-        what the context of the additional metadata is.  For example, a
-        spatial raster image might be described in EML, and an FGDC
-        CSDGM metadata document could be included in the additionalMetadata
-        element with a pointer to the EML spatialRaster element to indicate
-        that the FGDC metadata is providing supplemental documentation about
-        that particular image entity.
-        -->
+        
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -168,7 +153,7 @@
         There is no validity constraint that restricts what metadata may be
         present in additionalMetadata.
         </doc:description>
-        <doc:lineage>As of EML 2.0.0.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
@@ -240,8 +225,7 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
-        <xs:element name="additionalMetadata" minOccurs="0"
-        maxOccurs="unbounded">
+        <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Additional Metadata</doc:tooltip>
@@ -261,8 +245,7 @@
             </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="describes" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="describes" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Describes Reference</doc:tooltip>

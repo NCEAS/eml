@@ -1,12 +1,14 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/access-2.0.0rc2"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  schemaLocation="eml-resource.xsd" />
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/access-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/access-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -24,8 +26,8 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.60 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.61 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,10 +73,10 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
               the eml module.  An access control document may be defined, or
               referenced, from this location, and the &lt;describes&gt; element
               is used to point to the subset of the resource that is to be
-              controlled via its &quot;id&quot; attribute.  Applications that
+              controlled via its "id" attribute.  Applications that
               process EML documents must implement the access control rules from
               both mechanisms.  Note that, although access control may be bound
-              to any element with an &quot;id&quot; attribute, the processing
+              to any element with an "id" attribute, the processing
               involved may be very costly.  For instance, it would not be
               recommended to apply access control to a column of a data file
               (eml-attribute), since every read/write operation on that column
@@ -82,7 +84,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
             </para>
             <para>
               The eml-access module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              "referenced" via the &lt;references&gt; tag.  This
               allows an access control document to be described once, and then
               used as a reference in other locations within the EML document
               via it's ID.
@@ -108,8 +110,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
         for accessType.</doc:description>
         <doc:example>See the description of individual elements defined in
         AccessType to review each component element's rules.</doc:example>
-        <doc:lineage>The access element is derived from the acl
-        element in eml-access.dtd, version 1.3</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -124,8 +125,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
         metadata document. The access element must contain the elements defined
         in the AccessType type.</doc:description>
 
-        <doc:lineage>The AccessType type is derived from the acl element in
-        eml-access.dtd, version 1.3</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -140,8 +140,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
               user or group is able to execute the defined
               permission.</doc:description>
               <doc:example>allow</doc:example>
-              <doc:lineage>The deny element was introduced into EML 2.0
-              Proposed.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -155,18 +154,16 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
               user or group is not able to execute the defined
               permission.</doc:description>
               <doc:example>deny</doc:example>
-              <doc:lineage>The deny element was introduced into EML 2.0
-              Proposed.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="res:IDType" use="optional" />
-    <xs:attribute name="system" type="res:SystemType" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
     <xs:attribute name="order" use="optional" default="allowFirst">
       <xs:annotation>
         <xs:appinfo>
@@ -178,14 +175,13 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
           values are defined in a list of 'allowFirst' and
           'denyFirst'.</doc:description>
           <doc:example>allowFirst</doc:example>
-          <doc:lineage>The order element was introduced into EML 2.0
-          Proposed.</doc:lineage>
+          
         </xs:appinfo>
       </xs:annotation>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="allowFirst" />
-          <xs:enumeration value="denyFirst" />
+          <xs:enumeration value="allowFirst"/>
+          <xs:enumeration value="denyFirst"/>
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
@@ -204,8 +200,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
     path to the authentication mechanism.</doc:description>
           <doc:example>
           ldap://directory.nceas.ucsb.edu:389/o=nceas,c=us</doc:example>
-          <doc:lineage>The authSystem element was introduced into EML 2.0
-          Proposed.</doc:lineage>
+          
         </xs:appinfo>
       </xs:annotation>
     </xs:attribute>
@@ -222,8 +217,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
         extent of their access (write access, or only read
         access).</doc:description>
 
-        <doc:lineage>The AccessRule type was introduced into EML 2.0
-        Proposed</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -238,8 +232,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
             defined in the authentication system described in the authSystem
             element.</doc:description>
             <doc:example>berkley</doc:example>
-            <doc:lineage>The principal element was introduced into EML 2.0
-            Proposed.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -259,22 +252,21 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
       permissions that may be applicable to some other authentication
       system.</doc:description>
             <doc:example>read</doc:example>
-            <doc:lineage>The permission element was introduced into EML 2.0
-            Proposed.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
           <xs:union>
             <xs:simpleType>
               <xs:restriction base="xs:string">
-                <xs:enumeration value="read" />
-                <xs:enumeration value="write" />
-                <xs:enumeration value="changePermission" />
-                <xs:enumeration value="all" />
+                <xs:enumeration value="read"/>
+                <xs:enumeration value="write"/>
+                <xs:enumeration value="changePermission"/>
+                <xs:enumeration value="all"/>
               </xs:restriction>
             </xs:simpleType>
             <xs:simpleType>
-              <xs:restriction base="xs:string" />
+              <xs:restriction base="xs:string"/>
             </xs:simpleType>
           </xs:union>
         </xs:simpleType>
@@ -282,4 +274,3 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc2">
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
-

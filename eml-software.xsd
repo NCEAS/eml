@@ -1,19 +1,20 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/software-2.0.0rc2"
-xmlns="eml://ecoinformatics.org/software-2.0.0rc2"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc2"
-xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc2"
-  schemaLocation="eml-access.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc2"
-  schemaLocation="eml-project.xsd" />
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns="eml://ecoinformatics.org/software-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc2" 
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/software-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc2" 
+  schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc2" 
+  schemaLocation="eml-project.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-software.xsd,v $'
@@ -31,8 +32,8 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.35 $'
+          '$Date: 2002-10-07 21:04:55 $'
+      '$Revision: 1.36 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,7 +69,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
             </para>
             <para>
               The eml-software module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              "referenced" via the &lt;references&gt; tag.  This
               allows a software resource to be described once, and then used
               as a reference in other locations within the EML document via
               it's ID.
@@ -97,17 +98,14 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
         package can run on multiple hardware and/or operating systems. See
         implementation element documentation for a more thorough
         explanation.</doc:description>
-        <doc:lineage>The software Element was introduced in 2.0.0 beta 9. It
-        replaces the software element. The software element was introduced
-        into EML 2.0, however it was derived from the eml-software module in
-        EML 1.4.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="SoftwareType">
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="res:ResourceGroup" />
+        <xs:group ref="res:ResourceGroup"/>
         <xs:element name="implementation" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -123,14 +121,12 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
               requirements can be placed here.</doc:description>
               <doc:example>Please see the examples for each subelement of the
               implementation type.</doc:example>
-              <doc:lineage>The implementation Element was introduced in 2.0.0
-              beta 9.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="distribution" type="res:DistributionType"
-              maxOccurs="unbounded">
+              <xs:element name="distribution" type="res:DistributionType" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                    <doc:tooltip>Distribution</doc:tooltip>
@@ -140,8 +136,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                    resource is distributed online and offline. Connections to
                    online systems can be described as URLs and as a list of
                    relevant connection parameters.</doc:description>
-                   <doc:lineage>Derived from distribution elements in the FGDC
-                   standard.</doc:lineage>
+                   
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -182,8 +177,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="LanguageCodeStandard" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="LanguageCodeStandard" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Language Code Standard</doc:tooltip>
@@ -199,8 +193,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="operatingSystem" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="operatingSystem" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Operating System</doc:tooltip>
@@ -217,8 +210,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="machineProcessor" type="xs:string"
-              minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="machineProcessor" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Machine Processor</doc:tooltip>
@@ -259,8 +251,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="runtimeMemoryUsage" type="xs:string"
-              minOccurs="0">
+              <xs:element name="runtimeMemoryUsage" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Runtime Memory Usage</doc:tooltip>
@@ -273,8 +264,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="programmingLanguage" type="xs:string"
-              minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="programmingLanguage" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Programming Language</doc:tooltip>
@@ -308,8 +298,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element ref="dependency" minOccurs="0"
-              maxOccurs="unbounded" >
+              <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>dependency</doc:tooltip>
@@ -344,7 +333,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
            </xs:appinfo>
           </xs:annotation>
           </xs:element>
-          <xs:element name="license" type="xs:string" >
+          <xs:element name="license" type="xs:string">
           <xs:annotation>
            <xs:appinfo>
             <doc:tooltip>License</doc:tooltip>
@@ -354,7 +343,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
           </xs:annotation>
          </xs:element>
         </xs:choice>
-        <xs:element name="version" type="xs:string" >
+        <xs:element name="version" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Version</doc:tooltip>
@@ -362,8 +351,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
               packaged.</doc:summary>
               <doc:description>String value corresponding to the major, minor,
               custom, and build version.</doc:description>
-              <doc:lineage>The Version element was introduced in 2.0.0 beta
-              9.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -377,12 +365,11 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
            </xs:appinfo>
           </xs:annotation>
          </xs:element>
-        <xs:element name="project" type="proj:ResearchProjectType"
-        minOccurs="0" >
+        <xs:element name="project" type="proj:ResearchProjectType" minOccurs="0">
          <xs:annotation>
           <xs:appinfo>
            <doc:tooltip>project descriptor</doc:tooltip>
-           <doc:summary></doc:summary>
+           <doc:summary/>
            <doc:description>This field is a description of the project with
            which this software product is related.  Please see the eml-project
            module for more information.</doc:description>
@@ -392,10 +379,9 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="res:IDType" use="optional" />
-    <xs:attribute name="system" type="res:SystemType" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:simpleType name="Action">
     <xs:annotation>
@@ -411,13 +397,12 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
         other elements have been simply metadata designed to describe data,
         literature citations, etc... with the Action element we can use this
         module as a command to carry out the action.</doc:description>
-        <doc:lineage>The Action Element was introduced in 2.0.0 beta
-        9.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="install" />
-      <xs:enumeration value="assert" />
+      <xs:enumeration value="install"/>
+      <xs:enumeration value="assert"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="dependency">
@@ -433,13 +418,12 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
         Dependency has also been made a sub-element of implementation because
         there can be both implementation and package level dependencies within
         a package.</doc:description>
-        <doc:lineage>The implementation Element was introduced in 2.0.0 beta
-        9.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="action" type="Action" >
+        <xs:element name="action" type="Action">
          <xs:annotation>
           <xs:appinfo>
            <doc:tooltip>Action</doc:tooltip>
@@ -454,12 +438,11 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2">
            data, literature citations, etc... with the Action element we can
            use this module as a command to carry out the action.
            </doc:description>
-           <doc:lineage>The Action Element was introduced in 2.0.0 beta
-           9.</doc:lineage>
+           
           </xs:appinfo>
          </xs:annotation>
         </xs:element>
-        <xs:element ref="software" />
+        <xs:element ref="software"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

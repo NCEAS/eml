@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
-  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
-  elementFormDefault="unqualified">
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc2" 
+    elementFormDefault="unqualified">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
-    schemaLocation="eml-documentation.xsd"/>
+  schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
-    schemaLocation="eml-resource.xsd"/>
+  schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-spatialReference.xsd,v $'
@@ -26,8 +27,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-10-07 21:04:55 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -2265,7 +2266,7 @@
                           two adjacent depth values, expressed in Depth
                           Distance Units of measure.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2276,7 +2277,7 @@
                           <doc:summary>The units in which depths are
                           recorded.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -2287,7 +2288,7 @@
                           <doc:summary>The means used to encode
                           depths.</doc:summary>
                           <doc:description/>
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>

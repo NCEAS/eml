@@ -1,13 +1,14 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/constraint-2.0.0rc2"
-  xmlns="eml://ecoinformatics.org/constraint-2.0.0rc2"
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-    schemaLocation="eml-resource.xsd"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/constraint-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-constraint.xsd,v $'
@@ -25,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.42 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,7 +79,7 @@
         created, it should be linked into a dataset using the "triple" element,
         and all of the entities that are referenced in the constraints should be
         accessible within that same package.</doc:description>
-        <doc:lineage>New in EML 2.0</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -92,7 +93,7 @@
             pertains.</doc:description>
             <doc:example>date</doc:example>
             <doc:example>site</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -113,7 +114,7 @@
                   null.</doc:description>
                   <doc:example>site</doc:example>
                   <doc:example>plot</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -130,7 +131,7 @@
                         specifies that the attribute participates in the key
                         that is being defined.</doc:description>
                         <doc:example>site</doc:example>
-                        <doc:lineage>New in EML 2.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -151,7 +152,7 @@
             other entities, however it is required to be unique within the
             entity.</doc:description>
             <doc:example>date</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -171,7 +172,7 @@
                   key indicates the attribute which should not be
                   null.</doc:description>
                   <doc:example>date, site, plot</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -188,7 +189,7 @@
                         entity and specifies that the attribute participates in
                         the key that is being defined.</doc:description>
                         <doc:example>site</doc:example>
-                        <doc:lineage>New in EML 2.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -208,7 +209,7 @@
             which checks a conditional clause within an
             entity.</doc:description>
             <doc:example>if site&gt;1 then plot&gt;10</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -228,7 +229,7 @@
                   entities.</doc:description>
                   <doc:example>(year &gt; 1900 and year &lt;
                   1990)</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -247,7 +248,7 @@
                 or SPlus.
                 </doc:description>
                 <doc:example>perl 5.6.1</doc:example>
-                <doc:lineage>As of EML 2.0.0</doc:lineage>
+                
               </xs:appinfo>
             </xs:annotation>
           </xs:attribute>
@@ -262,7 +263,7 @@
             relationship among entities which relates this entity to another's
             primary key.
             </doc:description>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -278,7 +279,7 @@
             tables that is not done with a primary/foreign key
             relationship.</doc:description>
             <doc:example>JOIN code</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -297,7 +298,7 @@
                   of attributes must match an identifying key in the referenced
                   entity.</doc:description>
                   <doc:example>site, plot</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -313,7 +314,7 @@
                         entity. This name will be unique within an entity and
                         specifies that the attribute participates in the key
                         that is being defined.</doc:description>
-                        <doc:lineage>New in EML 2.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -332,7 +333,7 @@
             <doc:description>The notNullConstraint element defines a constraint
             that indicates that no null values should be present for an
             attribute in this entity.</doc:description>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -351,7 +352,7 @@
                   key in the referenced entity. For a 'not null' constraint, the
                   key indicates the attribute which should not be
                   null.</doc:description>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -367,7 +368,7 @@
                         entity. This name will be unique within an entity and
                         specifies that the attribute participates in the key
                         that is being defined.</doc:description>
-                        <doc:lineage>New in EML 2.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -393,7 +394,7 @@
         child portion of a cardinality expression.  Allowed values are positive
         integers including zero or the string value "many".</doc:description>
         <doc:example>0,1, 2, 15,many</doc:example>
-        <doc:lineage>New in EML 2.0</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="xs:integer">
@@ -415,7 +416,7 @@
             represents a human readible and meaningful name for the
             constraint.</doc:description>
             <doc:example>PrimaryKey_birdSurvey</doc:example>
-            <doc:lineage>New in EML 2.0.0.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -434,7 +435,7 @@
             attributes:speciesCode and observationDate 3. The species name
             associated with the species code in survey.txt can be found in the
             file speciesList.txt</doc:example>
-            <doc:lineage>New in EML 2.0.0.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -455,7 +456,7 @@
             set of attributes must match an identifying key in the referenced
             entity. For a 'not null' constraint, the key indicates the attribute
             which should not be null.</doc:description>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -471,7 +472,7 @@
                   name will be unique within an entity and specifies that the
                   attribute participates in the key that is being
                   defined.</doc:description>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -490,7 +491,7 @@
             matches one of the "identifier" elements for an
             entity.</doc:description>
             <doc:example>knb.79.4</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -507,7 +508,7 @@
             parent's primary key as a non-key attribute of the child
             entity.</doc:description>
             <doc:example>felationshipType code</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -535,7 +536,7 @@
             <doc:example>One to many</doc:example>
             <doc:example>One to 10</doc:example>
             <doc:example>Zero or One to Many</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -554,7 +555,7 @@
                   that the "existence" of a child record is
                   mandatory.</doc:description>
                   <doc:example>One to 10, Zero or One to Many</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
@@ -577,7 +578,7 @@
                   positive integers including zero or the string value
                   "many"</doc:description>
                   <doc:example>2, 15, many</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>

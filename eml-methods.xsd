@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/methods-2.0.0rc2"
-xmlns="eml://ecoinformatics.org/methods-2.0.0rc2"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc2"
-xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2"
-xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2"
-xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0rc2"
-xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc2"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc2"
-  schemaLocation="eml-dataset.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/software-2.0.0rc2"
-  schemaLocation="eml-software.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc2"
-  schemaLocation="eml-protocol.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2"
-  schemaLocation="eml-party.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2"
-  schemaLocation="eml-text.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2"
-  schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc2"
-  schemaLocation="eml-literature.xsd" />
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns="eml://ecoinformatics.org/methods-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc2" 
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2" 
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2" 
+    xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0rc2" 
+    xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/methods-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc2" 
+  schemaLocation="eml-dataset.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/software-2.0.0rc2" 
+  schemaLocation="eml-software.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc2" 
+  schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2" 
+  schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2" 
+  schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+  schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc2" 
+  schemaLocation="eml-literature.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-methods.xsd,v $'
@@ -46,8 +47,8 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.16 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -85,9 +86,9 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             a <emphasis>prescribed</emphasis> procedure, whereas the eml-method
             module is used to describe procedures that <emphasis>were actually
             performed</emphasis>.  The distinction is that the use of the term
-            &quot;protocol&quot; is used in the &quot;prescriptive&quot; sense,
-            and the term &quot;method&quot; is used in the
-            &quot;descriptive&quot; sense.  This distinction allows managers to
+            "protocol" is used in the "prescriptive" sense,
+            and the term "method" is used in the
+            "descriptive" sense.  This distinction allows managers to
             build a protocol library of well-known, established protocols
             (procedures), but also document what procedure was truely performed
             in relation to the established protocol.  The method may have
@@ -96,7 +97,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
           </para>
           <para>
             The eml-methods module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
+            "referenced" via the &lt;references&gt; tag.  This allows
             a method to be described once, and then used as a reference in
             other locations within the EML document via it's ID.
           </para>
@@ -127,16 +128,14 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             quality control measures taken.</doc:description>
             <doc:example>Please see the examples for the
             sub-fields.</doc:example>
-            <doc:lineage>Derived from EML 1.4; related to FGDC
-            ProcessingStep</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
             <xs:extension base="ProcedureStepType">
               <xs:sequence>
-                <xs:element name="dataSource" type="ds:DatasetType"
-                minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="dataSource" type="ds:DatasetType" minOccurs="0" maxOccurs="unbounded">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>data source</doc:tooltip>
@@ -163,8 +162,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             geographic, temporal and taxonomic coverage of the
             study.  See individual elements for more detailed
             descriptions.</doc:description>
-            <doc:lineage>Modification of the sampling element introduced into
-            EML 1.4</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -186,12 +184,12 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                   The studyExtent can be entered either in non-structured
                   textual form or using the structure of the coverage
                   element.</doc:description>
-                  <doc:lineage>New in EML 2.0.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:choice maxOccurs="unbounded">
-                  <xs:element name="coverage" type="cov:Coverage" >
+                  <xs:element name="coverage" type="cov:Coverage">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>coverage</doc:tooltip>
@@ -208,7 +206,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                         textual form or using the structure of the coverage
                         element.  See eml-coverage for more
                         information.</doc:description>
-                        <doc:lineage>New in EML 2.0.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -230,7 +228,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                         Platte River, starting 6 miles downstream and ending 9
                         miles downstream of the route 132 bridge in Evanston,
                         ND.</doc:example>
-                        <doc:lineage>As of EML 2.0.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
@@ -276,7 +274,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                   <doc:example>The bounding box of a specific 3-meter square
                   plot.</doc:example>
                   <doc:example>The location of a weather station.</doc:example>
-                  <doc:lineage>New in EML 2.0.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -298,11 +296,11 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                         referencedEntityId can be thought of as a foreign key
                         in a relational database.</doc:description>
                         <doc:example>x</doc:example>
-                        <doc:lineage>New in EML 2.0.0</doc:lineage>
+                        
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="coverage" type="cov:GeographicCoverage" >
+                  <xs:element name="coverage" type="cov:GeographicCoverage">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>sampling unit location</doc:tooltip>
@@ -316,8 +314,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
                 </xs:choice>
               </xs:complexType>
             </xs:element>
-            <xs:element name="citation" type="cit:CitationType" minOccurs="0"
-            maxOccurs="unbounded" >
+            <xs:element name="citation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded">
              <xs:annotation>
               <xs:appinfo>
                <doc:tooltip>citation</doc:tooltip>
@@ -332,8 +329,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="qualityControl" type="ProcedureStepType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="qualityControl" type="ProcedureStepType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Quality Control</doc:tooltip>
@@ -348,7 +344,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             extent to which they are met. A quality control statement is
             associated with the methodStep that could have affected the
             targeted quality goal.</doc:description>
-            <doc:lineage>As of EML 2.0.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -383,12 +379,12 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
               small, young plants or take the base of the blade. For Postelsia,
               take a few of the blades. The other plants are small enough so a
               whole blade can be taken. &lt;/para&gt;</doc:example>
-              <doc:lineage>Derived from EML 1.4</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:choice maxOccurs="unbounded">
-          <xs:element name="Citation" type="cit:CitationType" >
+          <xs:element name="Citation" type="cit:CitationType">
            <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>citation</doc:tooltip>
@@ -400,7 +396,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
-          <xs:element name="protocol" type="pro:ProtocolType" >
+          <xs:element name="protocol" type="pro:ProtocolType">
            <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Protocol</doc:tooltip>
@@ -416,8 +412,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
          </xs:element>
         </xs:choice>
       </xs:choice>
-      <xs:element name="instrumentation" type="xs:string" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="instrumentation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Instrumentation</doc:tooltip>
@@ -428,32 +423,30 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2">
             and quality assurance. The description should include vendor, model
             number, optional equipment, etc.</doc:description>
             <doc:example>LACHAT analyzer, model XYX.</doc:example>
-            <doc:lineage>New in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="software" type="sw:SoftwareType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="software" type="sw:SoftwareType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Software</doc:tooltip>
             <doc:summary>Software used in the processing of data.</doc:summary>
             <doc:description>The software element allows reference to any
             software used to process data.</doc:description>
-            <doc:lineage>Introduced in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="subStep" type="ProcedureStepType" minOccurs="0"
-      maxOccurs="unbounded" >
+      <xs:element name="subStep" type="ProcedureStepType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>substep</doc:tooltip>
-            <doc:summary></doc:summary>
+            <doc:summary/>
             <doc:description>This fields allows the nesting of additional method
             steps within this step.  This is useful for heirarchical method
             descriptions.</doc:description>
-            <doc:lineage>Introduced in EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>

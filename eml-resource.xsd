@@ -1,19 +1,20 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2"
-  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2"
-  xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2"
-  xmlns="eml://ecoinformatics.org/resource-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2"
-    schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2"
-    schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2"
-    schemaLocation="eml-text.xsd"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2" 
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2" 
+  schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+  schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2" 
+  schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -31,8 +32,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 17:48:17 $'
-      '$Revision: 1.71 $'
+          '$Date: 2002-10-07 21:04:55 $'
+      '$Revision: 1.72 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,8 +69,8 @@
               eml-resource with modules that are specific to that particular
               resource type.  For instance, all resources have creators,
               titles, and perhaps keywords, but only the dataset resource would
-              have a &quot;data table&quot; within it.  Likewise, a literature
-              resource may have an &quot;ISBN&quot; number associated with it,
+              have a "data table" within it.  Likewise, a literature
+              resource may have an "ISBN" number associated with it,
               whereas the other resource types would not.
             </para>
             <para>
@@ -95,8 +96,7 @@
         resources.</doc:description>
         <doc:example>Please see the individual sub-fields for specific
         examples.</doc:example>
-        <doc:lineage>The 'ResourceBase' element was introduced into EML
-        2.0.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -111,7 +111,7 @@
             from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
-            <doc:lineage>As of EML 2.0.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -133,8 +133,7 @@
             appropriate place to store a filename associated with other storage
             systems.</doc:description>
             <doc:example>vernal-data-1999</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the ISO 19115.3 standard (iso-geo-md-2000June-draft).</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -153,8 +152,7 @@
             language if not English/en).</doc:description>
             <doc:example>Vernal pool amphibian density data, Isla Vista,
             1990-1996.</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the ISO 19115.3 standard (iso-geo-md-2000June-draft).</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -171,10 +169,7 @@
             resource.</doc:description>
             <doc:example>For a book, the creators are its
             authors.</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999). It has
-            parallel semantics to the Creator element in Dublin
-            Core.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -189,7 +184,7 @@
             documentation for the resource.</doc:description>
             <doc:example>The scientist who collected the data, sometimes a data
             technician, or other individual.</doc:example>
-            <doc:lineage>New in EML 2.0.0.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -205,7 +200,7 @@
             roles in the creation or maintenance of the resource, and these
             roles should be indicated in the "role" element.</doc:description>
             <doc:example>The technician who collected the data.</doc:example>
-            <doc:lineage>New in EML 2.0.0.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -223,7 +218,7 @@
                       roles include technician, reviewer, principal
                       investigator, and many others.</doc:description>
                       <doc:example>principalInvestigator</doc:example>
-                      <doc:lineage>From ISO.</doc:lineage>
+                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
@@ -243,10 +238,7 @@
             the full year, month, and day. Note that month and day are optional
             components. Formats must conform to ISO 8601.</doc:description>
             <doc:example>1999-10-26</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999) The
-            string should follow the date standard described in ISO
-            8601.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -260,7 +252,7 @@
             This can be a well-known language name, or one of the ISO language
             codes to be more precise.</doc:description>
             <doc:example>English</doc:example>
-            <doc:lineage>From Dublin Core Element Set.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -274,9 +266,7 @@
             journal may be part of a series of the journal for a particular
             year.</doc:description>
             <doc:example>Volume 20</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999) and ISO
-            19115.3 standard (iso-geo-md-2000June-draft)</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -288,9 +278,7 @@
             <doc:description>A brief overview of the resource that is being
             documented. The abstract should include basic information that
             summarizes the resource.</doc:description>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard
-            (nbii-fgdc-std-001.1-1999)</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -308,9 +296,7 @@
             delimiters).</doc:description>
             <doc:example>Please see the examples for the subfields contained
             within this field.</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard
-            (nbii-fgdc-std-001.1-1999)</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -327,9 +313,7 @@
                   keyword (i.e., keywords should not be separated by commas or
                   other delimiters).</doc:description>
                   <doc:example>biodiversity</doc:example>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1,
-                  and was derived from EML 1.3. and the ISO 19115.3 standard
-                  (iso-geo-md-2000June-draft).</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -347,9 +331,7 @@
                           <doc:example>
                           "discipline","place","stratum","temporal","thematic",
                           or "taxonomic"</doc:example>
-                          <doc:lineage>This field was introduced into EML 2.0,
-                          and was derived from EML 1.3. and the ISO 19115.3
-                          standard(iso-geo-md-2000June-draft).</doc:lineage>
+                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:attribute>
@@ -367,9 +349,7 @@
                   keyword thesaurus from which keyword was derived. The keyword
                   thesauri are usually discipline specific.</doc:description>
                   <doc:example>IRIS keyword thesaurus</doc:example>
-                  <doc:lineage>This field was introduced into EML 2.0, and was
-                  derived from EML 1.3. and the ISO 19115.3
-                  standard(iso-geo-md-2000June-draft).</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -386,9 +366,7 @@
             characterized by the other resource metadata
             fields.</doc:description>
             <doc:example>Copyright 2001, Robert Warner</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard
-            (nbii-fgdc-std-001.1-1999)</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -408,8 +386,7 @@
             <doc:example>Copyright 2001 Regents of the University of California
             Santa Barbara. Free for use by all individuals provided that the
             owners are acknowledged in any use or publication.</doc:example>
-            <doc:lineage>Introduced in EML 2.0, derived from Dublin Core
-            Element Set 1.1.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -423,8 +400,7 @@
             resource is distributed online and offline. Connections to online
             systems can be described as URLs and as a list of relevant
             connection parameters.</doc:description>
-            <doc:lineage>Derived from distribution elements in the FGDC
-            standard.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -439,8 +415,7 @@
             entire extent to which all of the data might
             apply.</doc:description>
             <doc:example>See the coverage module for examples.</doc:example>
-            <doc:lineage>Derived from the temporalCoverage element that was
-            introduced into EML 1.4.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -454,7 +429,7 @@
         <doc:description>This field provides a restricted list of categories
         that a keyword may fall under.</doc:description>
         <doc:example>place</doc:example>
-        <doc:lineage/>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -473,7 +448,7 @@
         <doc:description>This type is the union of the built-in types for year
         and date.</doc:description>
         <doc:example>1999, or 2001-03-15</doc:example>
-        <doc:lineage>New in EML 2.0.0.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="xs:gYear xs:date"/>
@@ -590,15 +565,13 @@
                     be used instead of the URL element.</doc:description>
                     <doc:example>
                     http://data.org/getdata?id=98332</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:anyURI">
-                      <xs:attribute name="function" type="FunctionType"
-                      use="optional" default="download"/>
+                      <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
@@ -632,8 +605,7 @@
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element name="connectionDefinition"
-                      type="ConnectionDefinitionType">
+                      <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Connection Definition</doc:tooltip>
@@ -648,8 +620,7 @@
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="parameter" minOccurs="0"
-                      maxOccurs="unbounded">
+                      <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Parameter</doc:tooltip>
@@ -717,12 +688,10 @@
                   </xs:choice>
                   <xs:attribute name="id" type="IDType" use="optional"/>
                   <xs:attribute name="system" type="SystemType" use="optional"/>
-                  <xs:attribute name="scope" type="ScopeType" use="optional"
-                  default="document"/>
+                  <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="connectionDefinition"
-              type="ConnectionDefinitionType">
+              <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Connection Definition</doc:tooltip>
@@ -735,7 +704,7 @@
                     protocol and its parameters, but not the actual values
                     to be used to make the connection (instead, see the
                     connection element).</doc:description>
-                    <doc:lineage>New in EML 2.0.0</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -752,8 +721,7 @@
               digitally, such as 3.5" floppy disk, or various tape media types,
               or 'hardcopy'</doc:description>
               <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
-              <doc:lineage>ISO CD 19115.3, Geographic information -
-              Metadata</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -770,8 +738,7 @@
                     termed 'hardcopy'.</doc:description>
                     <doc:example>Tape, 3.5 inch Floppy Disk,
                     hardcopy</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -786,8 +753,7 @@
                     tape.</doc:description>
                     <doc:example>High Density (HD), Double Density
                     (DD)</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -799,8 +765,7 @@
                     <doc:description>if a density is given numerically, the
                     units should be given here.</doc:description>
                     <doc:example>B/cm</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -813,13 +778,11 @@
                     <doc:description>the total volume of the storage medium on
                     which this resource is shipped.</doc:description>
                     <doc:example>650 MB</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
@@ -828,8 +791,7 @@
                     <doc:description>the file system format of the medium on
                     which the resource is shipped</doc:description>
                     <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -840,8 +802,7 @@
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertinent information about
                     the media</doc:description>
-                    <doc:lineage>ISO CD 19115.3, Geographic information -
-                    Metadata</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -865,8 +826,7 @@
               base64, and then include that in a CDATA section.  The latter
               will be necessary for binary formats.
               </doc:description>
-              <doc:lineage>ISO CD 19115.3, Geographic information -
-              Metadata</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -880,8 +840,7 @@
     </xs:choice>
     <xs:attribute name="id" type="IDType" use="optional"/>
     <xs:attribute name="system" type="SystemType" use="optional"/>
-    <xs:attribute name="scope" type="ScopeType" use="optional"
-    default="document"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="ConnectionDefinitionType">
     <xs:annotation>
@@ -899,7 +858,7 @@
         used by multiple connections (e.g., to download different files
         from the same database), but each connection must provide or
         reference a valid connection definition.</doc:description>
-        <doc:lineage>New in EML 2.0.0</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -923,7 +882,7 @@
               EML to adopt a more comprehensive standard such as WSDL, but for
               now this simpler description is provided.</doc:description>
               <doc:example>metacat</doc:example>
-              <doc:lineage>As of EML 2.0.0</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -943,7 +902,7 @@
                       </doc:description>
                       <doc:example>
                       http://knb.ecoinformatics.org/knb/</doc:example>
-                      <doc:lineage>As of EML 2.0.0</doc:lineage>
+                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -976,7 +935,7 @@
               desired object.  The response will either be an XML document
               or a multipart-form-encoded response containing data.
               </doc:example>
-              <doc:lineage>As of EML 2.0.0</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -992,7 +951,7 @@
               of information needed for the request.  Parameters may also set
               default values that are used if a connection does not provide a
               value for a parameter.</doc:description>
-              <doc:lineage>As of EML 2.0.0</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -1006,7 +965,7 @@
                     <doc:description>The name of a parameter that is needed to
                     properly use this connection scheme.</doc:description>
                     <doc:example>hostname</doc:example>
-                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1023,7 +982,7 @@
                     <doc:example>The fully qualified name of the internet host
                     that is providing the metacat service, as would be returned
                     by a Domain Name System (DNS) query.</doc:example>
-                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1043,7 +1002,7 @@
                     in the connection always override any default values
                     provided in the conneciton definition.</doc:description>
                     <doc:example>metacat.nceas.ucsb.edu</doc:example>
-                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1061,14 +1020,13 @@
             provided elsewhere in EML. This is useful to provide a single,
             shared connection definition for a scheme that is used by
             multiple connections.</doc:description>
-            <doc:lineage>As of EML 2.0.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:choice>
     <xs:attribute name="id" type="IDType" use="optional"/>
     <xs:attribute name="system" type="SystemType" use="optional"/>
-    <xs:attribute name="scope" type="ScopeType" use="optional"
-    default="document"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
 </xs:schema>

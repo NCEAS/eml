@@ -1,46 +1,47 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc2"
-  xmlns:v="eml://ecoinformatics.org/view-2.0.0rc2"
-  xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc2"
-  xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc2"
-  xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc2"
-  xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc2"
-  xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc2"
-  xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc2"
-  xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2"
-  xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2"
-  xmlns="eml://ecoinformatics.org/dataset-2.0.0rc2"
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2"
-  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2"
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-    schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2"
-    schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc2"
-    schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2"
-    schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc2"
-    schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc2"
-    schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc2"
-    schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc2"
-    schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc2"
-    schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc2"
-    schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2"
-    schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc2"
-    schemaLocation="eml-view.xsd"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:v="eml://ecoinformatics.org/view-2.0.0rc2" 
+    xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc2" 
+    xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc2" 
+    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc2" 
+    xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc2" 
+    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc2" 
+    xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc2" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2" 
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/dataset-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc2" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc2" 
+  schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc2" 
+  schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2" 
+  schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc2" 
+  schemaLocation="eml-dataTable.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc2" 
+  schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc2" 
+  schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc2" 
+  schemaLocation="eml-spatialRaster.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc2" 
+  schemaLocation="eml-spatialVector.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc2" 
+  schemaLocation="eml-storedProcedure.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2" 
+  schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc2" 
+  schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -58,8 +59,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.45 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.46 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -103,7 +104,7 @@
             </para>
             <para>
               The eml-dataset module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              "referenced" via the &lt;references&gt; tag.  This
               allows a dataset to be described once, and then used as a
               reference in other locations within the EML document via it's ID.
             </para>
@@ -127,8 +128,7 @@
         time series or remote sensing application)
         or it could be just one actual collection
         (a day in the field).</doc:description>
-        <doc:lineage>This element was introduced in EML 2.0, and is derived
-        from the eml-dataset module in EML 1.4.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -146,8 +146,7 @@
         time series or remote sensing application)
         or it could be just one actual collection
         (a day in the field).</doc:description>
-        <doc:lineage>This element was introduced in EML 2.0, and is derived
-        from the eml-dataset module in EML 1.4.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -175,12 +174,11 @@
               resource. This includes information about the frequency of
               update, and whether there is ongoing data
               collection.</doc:description>
-              <doc:lineage>ISO CD 19115.2</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="contact" type="rp:ResponsibleParty"
-            maxOccurs="unbounded">
+        <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Contact</doc:tooltip>
@@ -189,7 +187,7 @@
               for this dataset. This is the
               person or institution to contact with questions about the use,
               interpretation of a data set.</doc:description>
-              <doc:lineage>New in EML2.0.0.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -202,7 +200,7 @@
               a traditional publishing house, but it may also simply be an
               institution that is making the data available in a published (ie,
               citable) format.</doc:description>
-              <doc:lineage>New in EML2.0.0.</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -217,9 +215,7 @@
               resource was created.</doc:description>
               <doc:example>San Francisco, CA, USA</doc:example>
               <doc:example>New Yor, NY, USA</doc:example>
-              <doc:lineage>This element was derived from elements described in
-              the FGDC-STD-001.1-1999 standard
-              (nbii-fgdc-std-001.1-1999)</doc:lineage>
+              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -236,8 +232,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="project" type="proj:ResearchProjectType"
-                    minOccurs="0">
+        <xs:element name="project" type="proj:ResearchProjectType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>project</doc:tooltip>
@@ -354,8 +349,7 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-                  default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="MaintenanceType">
     <xs:annotation>
@@ -378,12 +372,11 @@
             <doc:description>A text description of the maintenance of this data
               resource.  Note that this field must be marked up using DocBook
               like tagging.  See eml-text for more information.</doc:description>
-            <doc:lineage>ISO CD 19115.2</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="maintenanceUpdateFrequency" type="MaintUpFreqType"
-                  minOccurs="0">
+      <xs:element name="maintenanceUpdateFrequency" type="MaintUpFreqType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Maintenance Update Frequency</doc:tooltip>
@@ -394,7 +387,7 @@
             to the datset
             after the initial dataset is completed.  The values for this
             field must come from the enumeration MaintUpFreqType.</doc:description>
-            <doc:lineage>SO/CD 19115.2</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -406,7 +399,7 @@
             release.</doc:summary>
             <doc:description>A description of changes made to the data since
             its release.</doc:description>
-            <doc:lineage>EML 2.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -421,7 +414,7 @@
                   <doc:description>The expression should unambigously identify
                   the entity(s) and attribute(s) that were
                   changed.</doc:description>
-                  <doc:lineage>EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -434,7 +427,7 @@
                   <doc:description>The previous value or an expression that
                   describes the previous value of the
                   data.</doc:description>
-                  <doc:lineage>EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -445,7 +438,7 @@
                   <doc:summary>The date the changes were applied.</doc:summary>
                   <doc:description>The date the changes were
                   applied.</doc:description>
-                  <doc:lineage>EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -457,7 +450,7 @@
                   made to the data.</doc:summary>
                   <doc:description>Explanation or justification for the change
                   made to the data.</doc:description>
-                  <doc:lineage>EML 2.0</doc:lineage>
+                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>

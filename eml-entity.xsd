@@ -1,31 +1,32 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/entity-2.0.0rc2"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
-xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2"
-xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc2"
-xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc2"
-xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2"
-xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2"
-xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2"
-  schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2"
-  schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc2"
-  schemaLocation="eml-physical.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc2"
-  schemaLocation="eml-methods.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2"
-  schemaLocation="eml-attribute.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2"
-  schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2"
-  schemaLocation="eml-constraint.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2"
-  schemaLocation="eml-text.xsd" />
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+    xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc2" 
+    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc2" 
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc2" 
+    xmlns="eml://ecoinformatics.org/entity-2.0.0rc2" 
+    targetNamespace="eml://ecoinformatics.org/entity-2.0.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+  schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc2" 
+  schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc2" 
+  schemaLocation="eml-physical.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc2" 
+  schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2" 
+  schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+  schemaLocation="eml-constraint.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc2" 
+  schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -43,8 +44,8 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.74 $'
+          '$Date: 2002-10-07 21:04:54 $'
+      '$Revision: 1.75 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -84,7 +85,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
             </para>
             <para>
               The eml-entity module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              "referenced" via the &lt;references&gt; tag.  This
               allows an entity document to be described once, and then
               used as a reference in other locations within the EML document
               via it's ID.
@@ -110,18 +111,16 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
         type.</doc:description>
         <doc:example>Photograph of rocky intertidal plot 12 from Santa Cruz
         Island</doc:example>
-        <doc:lineage>The entity element was introduced into EML 1.4 as
-        file.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="OtherEntityType">
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="EntityGroup" />
+        <xs:group ref="EntityGroup"/>
         <xs:sequence>
-          <xs:element name="attributeList" type="att:AttributeListType"
-          minOccurs="0">
+          <xs:element name="attributeList" type="att:AttributeListType" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Attribute List</doc:tooltip>
@@ -133,12 +132,11 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
-          maxOccurs="unbounded" >
+          <xs:element name="constraint" type="con:ConstraintType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Constraint</doc:tooltip>
-                <doc:summary></doc:summary>
+                <doc:summary/>
                 <doc:description>Description of any relational constraints on '
                 this entity.  For more information see the eml-constraint
                 module.</doc:description>
@@ -158,19 +156,17 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
                 want to specify the kind of "other" entity this
                 is.</doc:description>
                 <doc:example>Photograph</doc:example>
-                <doc:lineage>The entityType element was introduced into EML 1.4
-                as entityFormat.</doc:lineage>
+                
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
       </xs:sequence>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="res:IDType" use="optional" />
-    <xs:attribute name="system" type="res:SystemType" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:group name="EntityGroup">
     <xs:annotation>
@@ -185,13 +181,11 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
         columns and rows, but can also represent an image or other type of
         data. See 'eml-attribute' for descriptions of the required attribute
         fields.</doc:description>
-        <doc:lineage>The eml-entity was introduced into EML 1.4 as
-        eml-file.</doc:lineage>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternate Identifier</doc:tooltip>
@@ -202,7 +196,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
             from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
-            <doc:lineage>As of EML 2.0.0</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -223,7 +217,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
                     system.</doc:description>
                     <doc:example>
                     http://knb.ecoinformatics.org/knb/</doc:example>
-                    <doc:lineage>As of EML 2.0.0</doc:lineage>
+                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:attribute>
@@ -239,8 +233,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
             <doc:description>The name identifies the entity in the dataset:
             file name, name of database table, etc.</doc:description>
             <doc:example>SpeciesAbundance1996</doc:example>
-            <doc:lineage>The entityName was introduced into EML
-            1.4.</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -255,11 +248,11 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
             entity.</doc:description>
             <doc:example>Species abundance data for 1996 at the VCR LTER
             site</doc:example>
-            <doc:lineage>Introduced in EML 2</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" >
+      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>physical descriptors</doc:tooltip>
@@ -270,7 +263,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" >
+      <xs:element name="coverage" type="cov:Coverage" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>coverage descriptors</doc:tooltip>
@@ -282,20 +275,19 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="method" type="md:MethodsType" minOccurs="0" >
+      <xs:element name="method" type="md:MethodsType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>method descriptions</doc:tooltip>
-            <doc:summary></doc:summary>
+            <doc:summary/>
             <doc:description>Information on the specific methods used to collect
             information in this entity.  Please see the eml-methods module for
             more information.</doc:description>
-            <doc:example></doc:example>
+            <doc:example/>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Additional Information</doc:tooltip>
@@ -305,9 +297,7 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc2">
             characterized by the other entity metadata
             fields.</doc:description>
             <doc:example>Multiple sampling events represented</doc:example>
-            <doc:lineage>This element was derived from elements described in
-            the FGDC-STD-001.1-1999 standard
-            (nbii-fgdc-std-001.1-1999)</doc:lineage>
+            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
