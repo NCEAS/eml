@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-04-18 16:13:08 $'
-      '$Revision: 1.23 $'
+        '$Author: jones $'
+          '$Date: 2002-05-10 22:38:43 $'
+      '$Revision: 1.24 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,37 +24,47 @@
 -->
 
 <!-- entity referring to the eml-party fields -->
-<!ENTITY % resParty SYSTEM "./eml-party.dtd">
-%resParty;
+<!ENTITY % emlParty SYSTEM "./eml-party.dtd">
+%emlParty;
+<!-- entity referring to the eml-coverage fields -->
+<!ENTITY % emlCoverage SYSTEM "./eml-coverage.dtd">
+%emlCoverage;
 <!-- entity to conglomerate these fields into one name -->
 <!ENTITY % ResourceBase "(identifier+, shortName?, title+,
-                     originator+, pubDate?, pubPlace?, series?, abstract?, 
-                     keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*,  triple*)">
+                     creator+, metadataProvider*, associatedParty*, 
+                     pubDate?, language?, series?, abstract?, 
+                     keywordSet*, additionalInfo*, intellectualRights*, 
+                     (onlineURL | offlineMedium)*,  coverage*, triple*)">
 <!-- common fields -->
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT shortName (#PCDATA)>
 <!ELEMENT title (#PCDATA)>
-<!ELEMENT originator ((%ResponsibleParty;))>
+<!ELEMENT creator ((%ResponsibleParty;))>
+<!ELEMENT metadataProvider ((%ResponsibleParty;))>
+<!ELEMENT associatedParty ((%ResponsibleParty;), role)>
+<!ELEMENT role (#PCDATA)>
 <!ELEMENT pubDate (#PCDATA)>
-<!ELEMENT pubPlace (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
 <!ELEMENT series (#PCDATA)>
 <!ELEMENT abstract (paragraph+)>
-<!ELEMENT keywordSet (keyword+, keywordThesaurus*)>
+<!ELEMENT keywordSet (keyword+, keywordThesaurus?)>
 <!ELEMENT keyword (#PCDATA)>
 <!ATTLIST keyword keywordType CDATA #IMPLIED>
 <!ELEMENT keywordThesaurus (#PCDATA)>
 <!ELEMENT additionalInfo (paragraph+)>
 <!ELEMENT paragraph (#PCDATA)>
-<!ELEMENT rights (paragraph+)>
+<!ELEMENT intellectualRights (paragraph+)>
 <!ELEMENT onlineURL (#PCDATA)>
-<!ELEMENT offlineMedium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*, medNote?)>
+<!ELEMENT offlineMedium (medName?, medDensity?, medDensityUnits?, 
+                         medVol?, medFormat*, medNote?)>
 <!ELEMENT medName (#PCDATA)>
 <!ELEMENT medDensity (#PCDATA)>
 <!ELEMENT medDensityUnits (#PCDATA)>
 <!ELEMENT medVol (#PCDATA)>
 <!ELEMENT medFormat (#PCDATA)>
 <!ELEMENT medNote (#PCDATA)>
+<!ELEMENT coverage ((%Coverage;))>
 <!ELEMENT triple (subject, relationship, object)>
 <!ELEMENT subject (#PCDATA)>
 <!ELEMENT relationship (#PCDATA)>

@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-04-18 16:13:08 $'
-      '$Revision: 1.18 $'
+        '$Author: jones $'
+          '$Date: 2002-05-10 22:38:43 $'
+      '$Revision: 1.19 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,13 +22,14 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ENTITY % coverage SYSTEM "eml-coverage.dtd" >
-%coverage;
-<!ENTITY % resource SYSTEM "eml-resource.dtd" >
-%resource;
+<!ENTITY % emlResource SYSTEM "eml-resource.dtd" >
+%emlResource;
 
-<!ELEMENT dataset ((identifier+, shortName?, title+,
-                     originator+, pubDate?, pubPlace?, series?, abstract?, 
-                     keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*,  triple*), 
-                     (temporalCov*, geographicCov*, taxonomicCov*))>
-
+<!ELEMENT dataset ((%ResourceBase;), purpose?, maintenance?, 
+                   contact+, publisher?, pubPlace?)>
+<!ELEMENT purpose (paragraph+)>
+<!ELEMENT paragraph (#PCDATA)>
+<!ELEMENT maintenance (paragraph+)>
+<!ELEMENT contact (%ResponsibleParty;)>
+<!ELEMENT publisher (%ResponsibleParty;)>
+<!ELEMENT pubPlace (#PCDATA)>
