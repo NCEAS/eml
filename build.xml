@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2003-11-06 20:15:20 $'
-      '$Revision: 1.66 $'
+        '$Author: cjones $'
+          '$Date: 2003-12-11 01:24:21 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,13 +39,13 @@
       servlet on your system. -->
     <!-- where to install the servlet -->
     <property name="servlet.install.dir"
-              value="/opt/tomcat/webapps/emlparser"/>
+              value="/var/www/org.ecoinformatics.knb/emlparser"/>
     <!-- the server the servlet will run on -->
-    <property name="server" value="http://trestles.nceas.ucsb.edu:8080"/>
+    <property name="server" value="http://knb.ecoinformatics.org"/>
     <!--the servlet context directory-->
     <property name="servletdir" value="emlparser"/>
     <!-- the path to the servlet from the servletdir -->
-    <property name="servletpath" value="servlet/emlparser"/>
+    <property name="servletpath" value="/emlparser"/>
     <!-- namespaces that the servlet should auto resolve -->
     <property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml.xsd"/>
