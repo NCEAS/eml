@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2003-10-28 17:39:40 $'
-      '$Revision: 1.100 $'
+          '$Date: 2003-10-28 18:02:21 $'
+      '$Revision: 1.101 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -451,7 +451,8 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
-                    <xs:element name="precision" type="PrecisionType" maxOccurs="unbounded"/>
+                    <xs:element name="precision" type="PrecisionType" 
+                                maxOccurs="unbounded"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -478,7 +479,8 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
-                    <xs:element name="precision" type="PrecisionType"/>
+                    <xs:element name="precision" type="PrecisionType"
+                                maxOccurs="unbounded"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -889,12 +891,16 @@
       <xs:appinfo>
         <doc:tooltip>Precision</doc:tooltip>
         <doc:summary>The precision of the measurement.</doc:summary>
-        <doc:description>The precision element represents the precision
-        of the measurement, in the same unit as the measurement. For
-        example, for an attribute with unit "meter", a precision of "0.1"
-        would be interpreted as precise to the nearest 1/10th of a
-        meter, and a precision of "1" would be interpreted as precise
-        to the nearest 1 meter.</doc:description>
+        <doc:description>Precision indicates how close together or how 
+        repeatable measurements are.  A precise measuring instrument will give 
+        very nearly the same result each time it is used. This means that 
+        someone interpreting the data should expect that if a measurement were 
+        repeated, most measured values would fall within the interval specified 
+        by the precision. The value of precision should be expressed in the
+        same unit as the measurement. For example, for an attribute with unit 
+        "meter", a precision of "0.1" would be interpreted to mean that most 
+        repeat measurements would fall within an interval of 1/10th of a meter.
+        </doc:description>
         <doc:example>0.1</doc:example>
         <doc:example>0.5</doc:example>
         <doc:example>1</doc:example>
