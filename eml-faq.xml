@@ -16,9 +16,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-12-06 22:23:43 $'
-      '$Revision: 1.17 $'
+        '$Author: higgins $'
+          '$Date: 2003-05-19 18:03:01 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -612,6 +612,21 @@
 
     <qandaentry id="id.20">
       <question>
+        <para>How can 'references' be treated in XSLT transformations of EML?</para>
+      </question>
+
+      <answer>
+        <para>XSLT can be used to transform EML to other formats, but the treatment
+        of 'references' elements is somewhat complicated. A text file describing the
+        details of one method for handling the 'references' elements is available at
+        <ulink url="http://knb.ecoinformatics.org/software/eml/eml-2.0.0/references_XSLT.txt">
+        http://knb.ecoinformatics.org/software/eml/eml-2.0.0/references_XSLT.txt</ulink>
+        </para>
+      </answer>
+    </qandaentry>
+
+    <qandaentry id="id.21">
+      <question>
         <para>I'm interested in contributing to EML. Can I?</para>
       </question>
 
@@ -635,7 +650,7 @@
       </answer>
     </qandaentry>
 
-    <qandaentry id="id.21">
+    <qandaentry id="id.22">
       <question>
         <para>Where can I get EML?</para>
       </question>
