@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:attribute" 
+<xs:schema targetNamespace="eml:attribute-2.0.0beta7" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation" 
-           xmlns="eml:attribute">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="eml-documentation.xsd"/>
+           xmlns:doc="eml:documentation-2.0.0beta7" 
+           xmlns="eml:attribute-2.0.0beta7">
+  <xs:import namespace="eml:documentation-2.0.0beta7" 
+             schemaLocation="eml-documentation.xsd-2.0.0beta7"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -13,8 +13,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-02-22 21:51:12 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-04-17 00:11:24 $'
+      '$Revision: 1.22 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
