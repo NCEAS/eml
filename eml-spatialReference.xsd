@@ -1,0 +1,1944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="eml:spatialReference" xmlns="eml:spatialReference" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-spatialReference.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+   
+        '$Author: mccartne $'
+          '$Date: 2002-05-29 17:02:01 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-spatiaRepresentation</doc:moduleName>
+        <doc:moduleDescription>
+          The eml-spatiaRepresentation module allows for the description of 
+          the relationship between locational references made in the dataset and the real world.  A spatial referencing system typically consists of the identification of a datum, a spheroid, and a set of parameters used in the mathematical projection from geographic to planar coordinates.        </doc:moduleDescription>
+        <doc:recommendedUsage>
+          all entities that are georeferenced
+        </doc:recommendedUsage>
+        <doc:standAlone>
+          yes
+        </doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-spatialVector
+          </doc:moduleName>
+          <doc:relationshipType>
+            has spatial reference information for
+          </doc:relationshipType>
+        </doc:relationship>
+        <doc:relationship>
+          <doc:moduleName>
+            eml-spatialRasterr
+          </doc:moduleName>
+          <doc:relationshipType>
+            has spatial reference information for
+          </doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+
+
+  <xs:element name="spatialReferenceInformation" type="spatialReferenceInformationBase">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Spatial reference information
+        </doc:tooltip>
+        <doc:summary>
+          Description of the spatial referencing of the dataset.
+        </doc:summary>
+        <doc:description>
+        the description of the reference frame for, and the means to encode, coordinates in the data set. </doc:description>
+        <doc:example/>
+        <doc:lineage>
+          FGDC-STD-001-1998.
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="spatialReferenceInformationBase">
+    <xs:sequence>
+      <xs:element name="horizontalCoordinateSystemDefinition" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+          Horizontal Coordinate System 
+        </doc:tooltip>
+            <doc:summary>
+              The reference frame or system from which linear or angular quantities are measured and assigned to the position that a point occupies.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>
+          FGDC-STD-001-1998.
+        </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="coordinateSystemName">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="geographicCoordinateSystemName">
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:restriction base="xs:string"/>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="projectedCoordinateSystemName">
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:restriction base="xs:string"/>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:choice>
+              <xs:element name="geographic" type="GeographicType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+          Geographic coordinates
+        </doc:tooltip>
+                    <doc:summary>
+          Statement of the quantities of latitude and longitude which define the position of a point on the Earth's surface with respect to a reference spheroid.        
+        </doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>
+          FGDC-STD-001-1998.
+        </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="planar" type="PlanarType" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Planar</doc:tooltip>
+                    <doc:summary>The quantities of distances, or distances and angles, which define the position of a point on a reference plane to which the surface of the Earth has been projected.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="local">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Local</doc:tooltip>
+                    <doc:summary>a description of any coordinate system that is not aligned with the surface of the Earth.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="local_Description" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Local Description</doc:tooltip>
+                          <doc:summary>A description of the coordinate system and its orientation to the surface of the Earth.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="local_Georeference_Information" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Local Georeference Information</doc:tooltip>
+                          <doc:summary>a description of the information provided to register the local system to the Earth (e.g. control points, satellite ephemeral data, inertial navigation data).</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+            <xs:element name="geodetic_Model" type="GeodeticModelType" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Geodetic Model </doc:tooltip>
+                  <doc:summary>parameters for the shape of the earth.</doc:summary>
+                  <doc:description/>
+                  <doc:example/>
+                  <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="vertical_Coordinate_System_Definition" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+          Vertical Coordinate System Definition  
+        </doc:tooltip>
+            <doc:summary>
+              The reference frame or system from which vertical distances (altitudes or depths) are measured.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>
+          FGDC-STD-001-1998.
+        </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="altitude_System_Definition" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Altitude System Definition</doc:tooltip>
+                  <doc:summary>the reference frame or system from which altitudes (elevations) are measured. </doc:summary>
+                  <doc:description>The term "altitude"' is used instead of the common term "elevation" to conform to the terminology in Federal Information Processing Standards 70-1 and 173.</doc:description>
+                  <doc:example/>
+                  <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="altitude_Datum_Name" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Altitude Datum Name</doc:tooltip>
+                        <doc:summary>The identification given to the surface taken as the surface of reference from which altitudes are measured.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="altitude_Resolution" type="xs:string" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Altitude Resolution</doc:tooltip>
+                        <doc:summary>The minimum distance possible between two adjacent altitude values, expressed in Altitude Distance Units of measure.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="altitude_Distance_Units" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Altitude Distance Units </doc:tooltip>
+                        <doc:summary>Units in which altitude is measured.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="altitude_Encoding_Method" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Altitude Encoding Method</doc:tooltip>
+                        <doc:summary>The means used to encode the altitudes.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="depth_System_Definition" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Depth System Definition</doc:tooltip>
+                  <doc:summary>The reference frame or system from which depths are measured.</doc:summary>
+                  <doc:description/>
+                  <doc:example/>
+                  <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="depth_Datum_Name" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Depth Datum Name </doc:tooltip>
+                        <doc:summary>The identification given to surface of reference from which depths are measured.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="depth_Resolution" type="xs:string" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Depth Resolution</doc:tooltip>
+                        <doc:summary>The minimum distance possible between two adjacent depth values, expressed in Depth Distance Units of measure.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="depth_Distance_Units" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Depth Distance Units</doc:tooltip>
+                        <doc:summary>The units in which depths are recorded.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="depth_Encoding_Method" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Depth Encoding Method</doc:tooltip>
+                        <doc:summary>The means used to encode depths.</doc:summary>
+                        <doc:description/>
+                        <doc:example/>
+                        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HorizontalCoordinateSystemDefinitionBase"/>
+  <xs:complexType name="GeographicType">
+    <xs:sequence>
+      <xs:element name="LatitudeResolution" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Latitude Resolution</doc:tooltip>
+            <doc:summary>The minimum difference between two adjacent latitude values expressed in Geographic Coordinate Units of measure.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LongitudeResolution" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Longitude Resolution</doc:tooltip>
+            <doc:summary>The minimum difference between two adjacent longitude values expressed in Geographic Coordinate Units of measure.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GeographicCoordinateUnits">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Geographic Coordinate Units</doc:tooltip>
+            <doc:summary>The units of measure used for the latitude and longitude values.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Decimal degrees"/>
+            <xs:enumeration value="Decimal minutes"/>
+            <xs:enumeration value="Decimal seconds"/>
+            <xs:enumeration value="Degrees and decimal minutes"/>
+            <xs:enumeration value="Degrees, minutes, and decimal seconds"/>
+            <xs:enumeration value="Radians"/>
+            <xs:enumeration value="Grads"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlanarType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="MapProjection">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Map Projection</doc:tooltip>
+              <doc:summary>the systematic representation of all or part of the surface of the Earth on a plane or developable surface.</doc:summary>
+              <doc:description/>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mapProjectionName">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Map Projection Name</doc:tooltip>
+                    <doc:summary>The name of the map projection.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Albers Conical Equal Area"/>
+                    <xs:enumeration value="Azimuthal Equidistant"/>
+                    <xs:enumeration value="Equidistant Conic"/>
+                    <xs:enumeration value="Equirectangular"/>
+                    <xs:enumeration value="General Vertical Near-sided Projection"/>
+                    <xs:enumeration value="Gnomonic"/>
+                    <xs:enumeration value="Lambert Azimuthal Equal Area"/>
+                    <xs:enumeration value="Lambert Conformal Conic"/>
+                    <xs:enumeration value="Mercator"/>
+                    <xs:enumeration value="Modified Stereographic for Alaska"/>
+                    <xs:enumeration value="Miller Cylindrical"/>
+                    <xs:enumeration value="Oblique Mercator"/>
+                    <xs:enumeration value="Orthographic"/>
+                    <xs:enumeration value="Polar Stereographic"/>
+                    <xs:enumeration value="Polyconic"/>
+                    <xs:enumeration value="Robinson"/>
+                    <xs:enumeration value="Sinusoidal"/>
+                    <xs:enumeration value="Space Oblique Mercator"/>
+                    <xs:enumeration value="Stereographic"/>
+                    <xs:enumeration value="Transverse Mercator"/>
+                    <xs:enumeration value="van der Grinten"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:choice>
+                <xs:element name="albersConicalEqualArea" type="AlbersConicalEqualAreaType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Albers Conical Equal Area </doc:tooltip>
+                      <doc:summary>Parameters for the Albers Conical Equal Area projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="AzimuthalEquidistant" type="AzimuthalEquidistantType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Azimuthal Equidistant </doc:tooltip>
+                      <doc:summary>Parameters for the Azimuthal Equidistant projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="EquidistantConic" type="EquidistantConicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Equidistant Conic </doc:tooltip>
+                      <doc:summary>Parameters for the Equidistant Conic projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Equirectangular" type="EquirectangularType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Equirectangular</doc:tooltip>
+                      <doc:summary>Parameters for the Equirectangular projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="GeneralVerticalNear-sidedPerspective" type="GeneralVerticalNear-sidedPerspectiveType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>General Vertical Near-sided Perspective </doc:tooltip>
+                      <doc:summary>Parameters for the General Vertical Near-sided Perspective projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Gnomonic" type="GnomonicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Gnomonic </doc:tooltip>
+                      <doc:summary>Parameters for the Gnomonic projection</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LambertAzimuthalEqualArea" type="LambertAzimuthalEqualAreaType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Lambert Azimuthal Equal Area</doc:tooltip>
+                      <doc:summary>Parameters for the Lambert Azimuthal Equal Area projection. </doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LambertConformalConic" type="LambertConformalConicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Lambert Conformal Conic </doc:tooltip>
+                      <doc:summary>Parameters for the Lambert Conformal Conic projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Mercator" type="MercatorType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Mercator</doc:tooltip>
+                      <doc:summary>Parameters for the Mercator projection</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="ModifiedStereographicforAlaska" type="ModifiedStereographicforAlaskaType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Modified Stereographic for Alaska</doc:tooltip>
+                      <doc:summary>Parameters for the Modified Stereographic for Alaska projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="MillerCylindrical" type="MillerCylindricalType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Miller Cylindrical</doc:tooltip>
+                      <doc:summary>Parameters for the Miller Cylindrical projection</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="ObliqueMercator" type="ObliqueMercatorType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Oblique Mercator</doc:tooltip>
+                      <doc:summary>Parameters for the Oblique Mercator projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="orthographic" type="orthographicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Orthographic </doc:tooltip>
+                      <doc:summary>Parameters for the Orthographic projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="polarStereographic" type="polarStereographicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Polar Stereographic</doc:tooltip>
+                      <doc:summary>parameters for the Polar Stereographic  projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Polyconic" type="PolyconicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Polyconic</doc:tooltip>
+                      <doc:summary>Parameters for the Polyconic projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="robinson" type="RobinsonType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Robinson </doc:tooltip>
+                      <doc:summary>Parameters for the Robinson projection. </doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="sinusoidal" type="SinusoidalType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Sinusoidal</doc:tooltip>
+                      <doc:summary>Parameters for the Sinusoidal projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="spaceObliqueMercator" type="SpaceObliqueMercatorType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Space Oblique Mercator (Landsat)</doc:tooltip>
+                      <doc:summary>Parameters for the Space Oblique Mercator (Landsat) projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="stereographic" type="StereographicType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Stereographic</doc:tooltip>
+                      <doc:summary>Parameters for the Stereographic projection</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="transverseMercator" type="TransverseMercatorType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Transverse Mercator</doc:tooltip>
+                      <doc:summary>Parameters for the Transvers mercator projection</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="vanderGrinten" type="VanderGrintenType">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>van der Grinten</doc:tooltip>
+                      <doc:summary>Parameters for the van der Grinten projection.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="otherprj" type="xs:string">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Other Projection Definition </doc:tooltip>
+                      <doc:summary>a description of a projection, not defined elsewhere in the standard, that was used for the data set.</doc:summary>
+                      <doc:description>The information provided shall include the name of the projection, names of parameters and values used for the data set, and the citation of the specification for the algorithms that describe the mathematical relationship between Earth and plane or developable surface for the projection.</doc:description>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="MapProjectionParameters">
+                  <xs:annotation>
+                    <xs:appinfo>Source: FGDC-STD-001-1998 Definition: Map Projection Parameters -  a complete parameter set of the projection that was used for the data set.  The information provided shall include the names of the parameters and values used for the data set that describe the mathematical relationship between the Earth and the plane or developable surface for the projection.</xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element ref="azimuthMeasurePointLongitude" minOccurs="0"/>
+                      <xs:element ref="azimuthalAngle" minOccurs="0"/>
+                      <xs:element ref="falseEasting" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="falseNorthing" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="HeightOfPerspectivePointAboveSurface" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Height of Perspective Point Above Surface -  height of viewpoint above the Earth, expressed in meters.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="landsat" minOccurs="0"/>
+                      <xs:element ref="latitudeOfProjectionCenter" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Center -  latitude of the point of projection for azimuthal projections.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="latitudeOfProjectionOrigin" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="longitudeofCentralMeridian" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="longitudeOfProjectionCenter" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Projection Center -  longitude of the point of projection for azimuthal projections.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="obliqueLineLatitude" minOccurs="0" maxOccurs="unbounded"/>
+                      <xs:element ref="obliqueLineLongitude" minOccurs="0" maxOccurs="unbounded"/>
+                      <xs:element ref="pathNumber" minOccurs="0"/>
+                      <xs:element ref="scaleFactorAtCenterLine" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Scale Factor at Center Line -  a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the center line.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="scaleFactorAtCentralMeridian" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Scale Factor at Central Meridian -  a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the central meridian.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="scaleFactorAtEquator" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Scale Factor at Equator -  a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the equator.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="scaleFactorAtProjectionOrigin" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Scale Factor at Projection Origin -  a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="standardParallel" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element ref="straightVerticalLongitudeFromPole" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Straight Vertical Longitude from Pole -  longitude to be oriented straight up from the North or South Pole.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="gridCoordinateSystem">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Grid Coordinate System</doc:tooltip>
+              <doc:summary>A plane-rectangular coordinate system usually based on, and mathematically adjusted to, a map projection so that geographic positions can be readily transformed to and from plane coordinates.</doc:summary>
+              <doc:description/>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gridCoordinateSystemName" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Grid Coordinate System</doc:tooltip>
+                    <doc:summary>The name of the grid coordinate system.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:choice>
+                <xs:element name="universalTransverseMercator">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Universal Transverse Mercator (UTM) </doc:tooltip>
+                      <doc:summary>A grid system based on the transverse mercator projection, applied between latitudes 84 degrees north and 80 degrees south on the Earth's surface.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="UTMZoneNumber" type="xs:string">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>UTM Zone Number </doc:tooltip>
+                            <doc:summary>Identifier for the UTM zone.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="transverseMercator" type="TransverseMercatorType">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Transverse Mercator</doc:tooltip>
+                            <doc:summary>Parameters for theTransverse mercator projection.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>Source: FGDC-STD-001-1998 Definition: Transverse Mercator -  contains parameters for theTransverse mercator projection.</xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="universalPolarStereographic">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Universal Polar Stereographic (UPS)</doc:tooltip>
+                      <doc:summary>A grid system based on the polar stereographic projection, applied to the Earth's polar regions north of 84 degrees north and south of 80 degrees south.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="UPS_Zone_Identifier" type="xs:string">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>UPS Zone Identifier</doc:tooltip>
+                            <doc:summary>Identifier for the UPS zone.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="polarStereographic" type="polarStereographicType">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Polar Stereographic</doc:tooltip>
+                            <doc:summary>parameters for the Polar Stereographic projection.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="statePlaneCoordinateSystem">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>State Plane Coordinate System (SPCS) </doc:tooltip>
+                      <doc:summary>a plane-rectangular coordinate system established for each state in the United States by the National Geodetic Survey.</doc:summary>
+                      <doc:description/>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="SPCSZoneIdentifier" type="xs:string">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>SPCS Zone Identifier</doc:tooltip>
+                            <doc:summary>Identifier for the SPCS zone.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:choice>
+                        <xs:element name="lambertConformalConic" type="LambertConformalConicType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip> Lambert Conformal Conic</doc:tooltip>
+                              <doc:summary>Parameters for the Lambert Conformal Conic projection. </doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="transverseMercator" type="TransverseMercatorType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip> Transverse Mercator</doc:tooltip>
+                              <doc:summary>Parameters for theTransverse mercator projection.</doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="obliqueMercator" type="ObliqueMercatorType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Oblique Mercator </doc:tooltip>
+                              <doc:summary>Parameters for the Oblique Mercator projection.</doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="polyconic" type="PolyconicType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Polyconic</doc:tooltip>
+                              <doc:summary>Parameters for the Polyconic projection.</doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:choice>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="ARCCoordinateSystem">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>ARC Coordinate System </doc:tooltip>
+                      <doc:summary>The Equal Arc-second Coordinate System,</doc:summary>
+                      <doc:description>a plane-rectangular coordinate system established in Department of Defense, 1990, Military specification ARC Digitized Raster Graphics (ADRG) (MIL-A-89007):  Philadelphia, Department of Defense, Defense Printing Service Detachment Office.</doc:description>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ARCSystemZoneIdentifier" type="xs:string">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>ARC System Zone Identifier</doc:tooltip>
+                            <doc:summary>identifier for the ARC Coordinate System Zone.</doc:summary>
+                            <doc:description/>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:choice>
+                        <xs:element name="equirectangular" type="EquirectangularType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Equirectangular </doc:tooltip>
+                              <doc:summary>Parameters for the Equirectangular projection.</doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="azimuthalEquidistant" type="AzimuthalEquidistantType">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Azimuthal Equidistant </doc:tooltip>
+                              <doc:summary>Parameters for the Azimuthal Equidistant projection.</doc:summary>
+                              <doc:description/>
+                              <doc:example/>
+                              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:choice>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="otherGridSystemDefinition" type="xs:string">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Other Grid System's Definition</doc:tooltip>
+                      <doc:summary>A complete description of a grid system, not defined elsewhere in this standard, that was used for the data set.</doc:summary>
+                      <doc:description>The information provided shall include the name of the grid system, the names of the parameters and values used for the data set, and the citation of the specification for the algorithms that describe the mathematical relationship between the Earth and the coordinates of the grid system.</doc:description>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="local_Planar">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Local Planar </doc:tooltip>
+              <doc:summary>Any right-handed planar coordinate system of which the z-axis coincides with a plumb line through the origin that locally is aligned with the surface of the Earth.</doc:summary>
+              <doc:description/>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="localPlanarDescription" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Local Planar Description</doc:tooltip>
+                    <doc:summary>A description of the local planar system.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="localPlanarGeoreferenceInformation" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Local Planar Georeference Information</doc:tooltip>
+                    <doc:summary>a description of the information provided to register the local planar system to the Earth (e.g. control points, satellite ephemeral data, inertial navigation data).</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="planarCoordinateInformation">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Planar Coordinate Information</doc:tooltip>
+            <doc:summary>Information about the coordinate system developed on the planar surface.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="planarCoordinateEncodingMethod" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Planar Coordinate Encoding Method </doc:tooltip>
+                  <doc:summary>The means used to represent horizontal positions.</doc:summary>
+                  <doc:description/>
+                  <doc:example/>
+                  <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:choice>
+              <xs:element name="coordinate_Representation">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Coordinate Representation</doc:tooltip>
+                    <doc:summary>The method of encoding the position of a point by measuring its distance from perpendicular reference axes (the "coordinate pair" and "row and column" methods).</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Abscissa_Resolution" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Abscissa Resolution</doc:tooltip>
+                          <doc:summary>The (nominal) minimum distance between the "x" or column values of two adjacent points, expressed in Planar Distance Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Ordinate_Resolution" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Ordinate Resolution</doc:tooltip>
+                          <doc:summary>The (nominal) minimum distance between the "y" or row values of two adjacent points, expressed in Planar Distance Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="distance_and_Bearing_Representation">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Distance and Bearing Representation</doc:tooltip>
+                    <doc:summary>A method of encoding the position of a point by measuring its distance and direction (azimuth angle) from another point.</doc:summary>
+                    <doc:description/>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="distance_Resolution" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Distance Resolution </doc:tooltip>
+                          <doc:summary>the minimum distance measurable between two points, expressed Planar Distance Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Bearing_Resolution" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Bearing Resolution</doc:tooltip>
+                          <doc:summary>The minimum angle measurable between two points, expressed in Bearing Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Bearing_Units" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Bearing Units</doc:tooltip>
+                          <doc:summary>Units of measure used for angles.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Bearing_Reference_Direction" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Bearing Reference Direction</doc:tooltip>
+                          <doc:summary>Direction from which the bearing is measured.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="bearingReferenceMeridian" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Bearing Reference Meridian</doc:tooltip>
+                          <doc:summary>Axis from which the bearing is measured.</doc:summary>
+                          <doc:description/>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+            <xs:element name="Planar_Distance_Units" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Planar Distance Units</doc:tooltip>
+                  <doc:summary>units of measure used for distances.</doc:summary>
+                  <doc:description/>
+                  <doc:example/>
+                  <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeodeticModelType">
+    <xs:sequence>
+      <xs:element name="horizontal_Datum_Name" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Horizontal Datum Name</doc:tooltip>
+            <doc:summary>The identification given to the reference system used for defining the coordinates of points.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ellipsoid_Name" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Ellipsoid Name</doc:tooltip>
+            <doc:summary>Identification given to established representations of the Earth's shape.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="semi-major_Axis" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Semi-major Axis</doc:tooltip>
+            <doc:summary>Radius of the equatorial axis of the ellipsoid.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="denominator_of_Flattening_Ratio" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Denominator of Flattening Ratio</doc:tooltip>
+            <doc:summary>The denominator of the ratio of the difference between the equatorial and polar radii of the ellipsoid when the numerator is set to 1.</doc:summary>
+            <doc:description/>
+            <doc:example/>
+            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GnomonicType">
+    <xs:sequence>
+      <xs:element ref="longitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Projection Center -  longitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Center -  latitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="standardParallel" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Standard Parallel </doc:tooltip>
+        <doc:summary>The line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="longitudeofCentralMeridian" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Longitude of Central Meridian </doc:tooltip>
+        <doc:summary>The line of longitude at the center of a map projection generally used as the basis for constructing the projection.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="latitudeOfProjectionOrigin" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Latitude of Projection Origin</doc:tooltip>
+        <doc:summary>The latitude chosen as the origin of rectangular coordinates for a map projection.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="falseEasting" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>False Easting </doc:tooltip>
+        <doc:summary>The value added to all "x" values in the rectangular coordinates for a map projection.</doc:summary>
+        <doc:description>This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="falseNorthing" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>False Northing</doc:tooltip>
+        <doc:summary>The value added to all "y" values in the rectangular coordinates for a map projection.</doc:summary>
+        <doc:description>This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="HeightOfPerspectivePointAboveSurface">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Height of Perspective Point Above Surface</doc:tooltip>
+        <doc:summary>Height of viewpoint above the Earth, expressed in meters.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="longitudeOfProjectionCenter">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Longitude of Projection Center</doc:tooltip>
+        <doc:summary>Longitude of the point of projection for azimuthal projections.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="latitudeOfProjectionCenter">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Latitude of Projection Center</doc:tooltip>
+        <doc:summary>Latitude of the point of projection for azimuthal projections.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="scaleFactorAtEquator">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Scale Factor at Equator </doc:tooltip>
+        <doc:summary>A multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the equator.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="scaleFactorAtCenterLine">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Scale Factor at Center Line </doc:tooltip>
+        <doc:summary> A multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the center line.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="straightVerticalLongitudeFromPole">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Straight Vertical Longitude from Pole </doc:tooltip>
+        <doc:summary>Longitude to be oriented straight up from the North or South Pole.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="scaleFactorAtProjectionOrigin">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Scale Factor at Projection Origin</doc:tooltip>
+        <doc:summary>A multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>Source: FGDC-STD-001-1998 Definition: Scale Factor at Projection Origin -  a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin.</xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="scaleFactorAtCentralMeridian">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Scale Factor at Central Meridian</doc:tooltip>
+        <doc:summary>A multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the central meridian.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="azimuthMeasurePointLongitude">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Azimuth Measure Point Longitude</doc:tooltip>
+        <doc:summary>The longitude of the map projection origin.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="azimuthalAngle">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Azimuthal Angle</doc:tooltip>
+        <doc:summary>The angle measured clockwise from north, and expressed in degrees.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="obliqueLineLatitude">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Oblique Line Latitude</doc:tooltip>
+        <doc:summary>The latitude of a point defining the oblique line.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="obliqueLineLongitude">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Oblique Line Longitude</doc:tooltip>
+        <doc:summary>The longitude of a point defining the oblique line.</doc:summary>
+        <doc:description/>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="pathNumber" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Path Number</doc:tooltip>
+        <doc:summary>Number of the orbit of the Landsat satellite.</doc:summary>
+        <doc:description>This data element exists solely to provide a parameter needed to define the space oblique mercator projection.  It is not used to identify data originating from a remote sensing vehicle.</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AlbersConicalEqualAreaType">
+    <xs:sequence>
+      <xs:element ref="standardParallel" maxOccurs="unbounded"/>
+      <xs:element ref="longitudeofCentralMeridian"/>
+      <xs:element ref="latitudeOfProjectionOrigin"/>
+      <xs:element ref="falseEasting"/>
+      <xs:element ref="falseNorthing"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AzimuthalEquidistantType">
+    <xs:sequence>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquidistantConicType">
+    <xs:sequence>
+      <xs:element ref="standardParallel" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquirectangularType">
+    <xs:sequence>
+      <xs:element ref="standardParallel">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeneralVerticalNear-sidedPerspectiveType">
+    <xs:sequence>
+      <xs:element ref="HeightOfPerspectivePointAboveSurface"/>
+      <xs:element ref="longitudeOfProjectionCenter"/>
+      <xs:element ref="latitudeOfProjectionCenter"/>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LambertAzimuthalEqualAreaType">
+    <xs:sequence>
+      <xs:element ref="longitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Projection Center -  longitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Center -  latitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LambertConformalConicType">
+    <xs:sequence>
+      <xs:element ref="standardParallel" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModifiedStereographicforAlaskaType">
+    <xs:sequence>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition:False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MercatorType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element ref="standardParallel">
+          <xs:annotation>
+            <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="scaleFactorAtEquator"/>
+      </xs:choice>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MillerCylindricalType">
+    <xs:sequence>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObliqueMercatorType">
+    <xs:sequence>
+      <xs:element ref="scaleFactorAtCenterLine"/>
+      <xs:choice>
+        <xs:element name="obliqueLineAzimuth">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Oblique Line Azimuth</doc:tooltip>
+              <doc:summary>The method used to describe the line along which an oblique mercator map projection is centered using the map projection origin and an azimuth.</doc:summary>
+              <doc:description/>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="azimuthalAngle">
+                <xs:annotation>
+                  <xs:documentation>Source: FGDC-STD-001-1998 Definition: Azimuthal Angle -  angle measured clockwise from north, and expressed in degrees.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element ref="azimuthMeasurePointLongitude">
+                <xs:annotation>
+                  <xs:documentation>Source: FGDC-STD-001-1998 Definition: Azimuth Measure Point Longitude -  longitude of the map projection origin.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ObliqueLinePoint" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Oblique Line Point</doc:tooltip>
+              <doc:summary>The method used to describe the line along which an oblique mercator map projection is centered using two points near the limits of the mapped region that define the center line.</doc:summary>
+              <doc:description/>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="obliqueLineLatitude">
+                <xs:annotation>
+                  <xs:documentation>Source: FGDC-STD-001-1998 Definition: Oblique Line Latitude -  latitude of a point defining the oblique line.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element ref="obliqueLineLongitude">
+                <xs:annotation>
+                  <xs:documentation>Source: FGDC-STD-001-1998 Definition: Oblique Line Longitude -  longitude of a point defining the oblique line.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="orthographicType">
+    <xs:sequence>
+      <xs:element ref="longitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Projection Center -  longitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Center -  latitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="polarStereographicType">
+    <xs:sequence>
+      <xs:element ref="straightVerticalLongitudeFromPole"/>
+      <xs:choice>
+        <xs:element ref="standardParallel">
+          <xs:annotation>
+            <xs:documentation>Source: FGDC-STD-001-1998 Definition: Standard Parallel -  line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="scaleFactorAtProjectionOrigin"/>
+      </xs:choice>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PolyconicType">
+    <xs:sequence>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RobinsonType">
+    <xs:sequence>
+      <xs:element ref="longitudeOfProjectionCenter">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Projection Center -  longitude of the point of projection for azimuthal projections.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SinusoidalType">
+    <xs:sequence>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpaceObliqueMercatorType">
+    <xs:sequence>
+      <xs:element ref="landsat"/>
+      <xs:element ref="pathNumber">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Path Number -  number of the orbit of the Landsat satellite.  (Note:  This data element exists solely to provide a parameter needed to define the space oblique mercator projection.  It is not used to identify data originating from a remote sensing vehicle.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StereographicType">
+    <xs:sequence>
+      <xs:element ref="longitudeOfProjectionCenter"/>
+      <xs:element ref="latitudeOfProjectionCenter"/>
+      <xs:element ref="falseEasting"/>
+      <xs:element ref="falseNorthing"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransverseMercatorType">
+    <xs:sequence>
+      <xs:element ref="scaleFactorAtCentralMeridian"/>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="latitudeOfProjectionOrigin">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Latitude of Projection Origin -  latitude chosen as the origin of rectangular coordinates for a map projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VanderGrintenType">
+    <xs:sequence>
+      <xs:element ref="longitudeofCentralMeridian">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of Central Meridian -  the line of longitude at the center of a map projection generally used as the basis for constructing the projection.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseEasting">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting -  the value added to all "x" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="falseNorthing">
+        <xs:annotation>
+          <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Northing -  the value added to all "y" values in the rectangular coordinates for a map projection.  This value frequently is assigned to eliminate negative numbers.  Expressed in the unit of measure identified in Planar Coordinate Units.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="landsat" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Landsat Number</doc:tooltip>
+        <doc:summary>number of the Landsat satellite. </doc:summary>
+        <doc:description>This data element exists solely to provide a parameter needed to define the space oblique mercator projection.  It is not used to identify data originating from a remote sensing vehicle.)</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>
