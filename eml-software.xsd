@@ -28,9 +28,9 @@ xmlns:acc="eml:access-2.0.0beta9">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-06-14 16:14:22 $'
-      '$Revision: 1.20 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-14 16:34:13 $'
+      '$Revision: 1.21 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,9 +47,14 @@ xmlns:acc="eml:access-2.0.0beta9">
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-software</doc:moduleName>
-      <doc:moduleDescription>The eml-software module contains general
-      information that describes software resources.</doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-software</doc:moduleName>
+        <doc:moduleDescription>The eml-software module contains general
+        information that describes software resources.</doc:moduleDescription>
+        <doc:recommendedUsage>All dataset where software was used in
+        the analysis or creation of the dataset.</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="software" type="SoftwareType">

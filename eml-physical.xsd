@@ -18,9 +18,9 @@
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
-        '$Author: cjones $'
-          '$Date: 2002-06-14 01:41:52 $'
-      '$Revision: 1.29 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-14 16:34:13 $'
+      '$Revision: 1.30 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -31,22 +31,26 @@
     GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
-      </xs:documentation>
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-physical</doc:moduleName>
-      <doc:moduleDescription>
-        The eml-physical Module defines the structural
-        characteristics of data formats as delivered over the wire or
-        as found in a file system.  One physical object (which can be a
-        bytestream or an object in a file system) might contain multiple
-        entities (for example, this would be typical in a MS Access file
-        that contained multiple tables of data).  However, it is typically
-        used to describe a file or stream that is in some text-based
-        format such as ASCII or UTF-8, and includes the information needed
-        to parse the data stream to extract the entity and its attributes
-        from the stream.
-      </doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-physical</doc:moduleName>
+        <doc:moduleDescription>
+          The eml-physical Module defines the structural
+          characteristics of data formats as delivered over the wire or
+          as found in a file system.  One physical object (which can be a
+          bytestream or an object in a file system) might contain multiple
+          entities (for example, this would be typical in a MS Access file
+          that contained multiple tables of data).  However, it is typically
+          used to describe a file or stream that is in some text-based
+          format such as ASCII or UTF-8, and includes the information needed
+          to parse the data stream to extract the entity and its attributes
+          from the stream.
+        </doc:moduleDescription>
+        <doc:recommendedUsage>All packages that contain data</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="physical" type="PhysicalType">
@@ -604,7 +608,7 @@
                           </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-		      </xs:element>
+          </xs:element>
                       <xs:element name="ncols" type="xs:int">
                         <xs:annotation>
                           <xs:appinfo>
@@ -620,7 +624,7 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-		      </xs:element>
+          </xs:element>
                       <xs:element name="orientation" nillable="true" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -628,12 +632,12 @@
                             <doc:summary>Specification of the binary raster entity's record
                             orientation.</doc:summary>
                             <doc:description>This element contains specification of the
-                            binary raster entity's record orientation by defining the element's 
-			    attribute "columnorrow". The binary raster will be
-			    column major if the raster is to be displayed column
-			    by column from the byte stream, or row major if it
-			    is to be displayed row by row from the byte stream.
-			    </doc:description>
+                            binary raster entity's record orientation by defining the element's
+          attribute "columnorrow". The binary raster will be
+          column major if the raster is to be displayed column
+          by column from the byte stream, or row major if it
+          is to be displayed row by row from the byte stream.
+          </doc:description>
                             <doc:example>The valid attribute values are "columnmajor" or
                             "rowmajor". If the attribute is not specified, "columnmajor" is
                             used.</doc:example>
@@ -681,7 +685,7 @@
                         </doc:lineage>
                         </xs:appinfo>
                         </xs:annotation>
-		      </xs:element>
+          </xs:element>
                       <xs:element name="nbits" type="xs:int" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -702,7 +706,7 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-		      </xs:element>
+          </xs:element>
                       <xs:element name="byteorder" type="xs:string" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -725,9 +729,9 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-		      </xs:element>
+          </xs:element>
                       <xs:element name="layout" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -743,10 +747,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="skipbytes" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -761,10 +765,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="ulxmap" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -779,10 +783,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="ulymap" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -796,10 +800,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="xdim" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                           <doc:tooltip/>
                           <doc:summary/>
@@ -813,10 +817,10 @@
                             Introduced in EML 2.0.
                           </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="ydim" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -831,10 +835,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -849,10 +853,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -866,10 +870,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                       <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
-			<xs:annotation>
+      <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -882,8 +886,8 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-			</xs:annotation>
-		      </xs:element>
+      </xs:annotation>
+          </xs:element>
                     </xs:sequence>
                   </xs:complexType>
                 </xs:element>

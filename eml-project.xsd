@@ -25,9 +25,9 @@ xmlns:doc="eml:documentation-2.0.0beta9">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-06-14 16:14:22 $'
-      '$Revision: 1.47 $'
+        '$Author: berkley $'
+          '$Date: 2002-06-14 16:34:13 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -44,12 +44,16 @@ xmlns:doc="eml:documentation-2.0.0beta9">
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-project</doc:moduleName>
-      <doc:moduleDescription>The EML Project Module describes the research
-      context in which the dataset was created, including description of
-      over-all motivations and goals, funding, personnel, description of the
-      study area etc. This is also the module to describe over-all sampling
-      methods for the project.</doc:moduleDescription>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-project</doc:moduleName>
+        <doc:moduleDescription>The EML Project Module describes the research
+        context in which the dataset was created, including description of
+        over-all motivations and goals, funding, personnel, description of the
+        study area etc. This is also the module to describe over-all sampling
+        methods for the project.</doc:moduleDescription>
+        <doc:recommendedUsage>All datasets</doc:recommendedUsage>
+        <doc:standAlone>no</doc:standAlone>
+      </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml:party-2.0.0beta9" schemaLocation="eml-party.xsd" />
