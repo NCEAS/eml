@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:07 $'
-      '$Revision: 1.20 $'
+        '$Author: jones $'
+          '$Date: 2002-02-22 21:51:12 $'
+      '$Revision: 1.21 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -376,20 +376,23 @@
                           <xs:appinfo>
                             <doc:tooltip>Text domain</doc:tooltip>
                             <doc:summary>
-                            Description of a free-text domain pattern for the attribute
+                            Description of a free-text domain pattern for
+                            the attribute
                             </doc:summary>
                             <doc:description>
-                            This element describes a free text domain for the attribute.
-                            By default, if pattern is missing or empty, then any text
-                            is allowed.  If pattern is present, then it is interpreted
-                            as a regular expression constraining the allowable character
+                            This element describes a free text domain for
+                            the attribute.  By default, if pattern is missing
+                            or empty, then any text is allowed.  If pattern
+                            is present, then it is interpreted as a regular
+                            expression constraining the allowable character
                             sequences for the attribute.
                             </doc:description>
                             <doc:example>
-                                Typically, a textdomain will have an empty pattern or
-                                one that constrains allowable values. For example,
-                                '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows for only numeric 
-                                digits in the pattern of a US phone number.
+                            Typically, a textdomain will have an empty pattern
+                            or one that constrains allowable values. For
+                            example, '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows
+                            for only numeric digits in the pattern of a US
+                            phone number.
                             </doc:example>
                             <doc:lineage>
                             Introduced in EML 2.0.0beta5
@@ -402,18 +405,22 @@
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>
-                                  Code definition
+                                  Text domain definition
                                 </doc:tooltip>
                                   <doc:summary>
-                                  Description of the code associated with 
-                                  the attribute.
+                                  Definition of what this text domain represents
                                 </doc:summary>
-                                  <doc:description>
-                                  This element describes the code associated 
-                                  with the attribute.
+                                <doc:description>
+                                  The text domain definition indicates what
+                                  the purpose of the text domain is for this
+                                  attribute.  For example, a particular pattern
+                                  may be meant to represent phone numbers in
+                                  the US phone system format, or it may be
+                                  used to extend an enumerated domain with
+                                  free text or pattern-constrained values.
                                 </doc:description>
-                                  <doc:example>
-                                  "high" would be the definition for a code of "1"
+                                <doc:example>
+                                  US telephone numbers in the format "(999) 888-7777"
                                 </doc:example>
                                   <doc:lineage>
                                   The definition element is from EML 1.4.
@@ -429,25 +436,31 @@
                                     Text pattern
                                   </doc:tooltip>
                                   <doc:summary>
-                                    Regular expression pattern constraining the attribute
+                                    Regular expression pattern constraining
+                                    the attribute
                                   </doc:summary>
                                   <doc:description>
-                                    The "pattern" element specifies a regular expression
-                                    pattern that constrains the set of allowable values
-                                    for the attribute.  This is commonly used to 
-                                    define template patterns for data such as phone 
-                                    numbers where the attribute is text but
-                                    the values are not drawn from an enumeration.  
-                                    If the pattern field is empty or missing, it 
-                                    defaults to '.*', which matches any string,
-                                    including the empty string.  Repeated pattern
-                                    elements are combined using logical OR.  The
-                                    regular expression syntax is the same as that used
-                                    in the XML Schema Datatypes Recommendation from the
-                                    W3C.
+                                    The "pattern" element specifies a regular
+                                    expression pattern that constrains the
+                                    set of allowable values for the attribute.
+                                    This is commonly used to define template
+                                    patterns for data such as phone numbers
+                                    where the attribute is text but the
+                                    values are not drawn from an enumeration.
+                                    If the pattern field is empty or missing,
+                                    it defaults to '.*', which matches any
+                                    string, including the empty string.
+                                    Repeated pattern elements are combined
+                                    using logical OR.  The regular expression
+                                    syntax is the same as that used in the
+                                    XML Schema Datatypes Recommendation from
+                                    the W3C.
                                   </doc:description>
                                   <doc:example>
-                                  '[0-9a-zA-Z]' matches simple alphanumeric strings.
+                                  '[0-9a-zA-Z]' matches simple alphanumeric
+                                  strings and '(\d\d\d) \d\d\d-\d\d\d\d'
+                                  represents telephone strings in the US of
+                                  the form '(704) 876-1734'
                                   </doc:example>
                                   <doc:lineage>
                                     The pattern element was introduced into EML 2.0.0beta5.
