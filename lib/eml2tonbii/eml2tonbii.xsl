@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-07 22:30:39 $'
-  * '$Revision: 1.11 $'
+  *     '$Date: 2003-05-21 19:08:15 $'
+  * '$Revision: 1.12 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -419,11 +419,93 @@ version="1.0">
           </xsl:choose>
         </xsl:element>  
           
-        <xsl:if test="$show_optional">
-          <xsl:element name="taxonomy">
-          
-          </xsl:element>
-        </xsl:if>
+        <!-- loop over all coverage elements in the eml2 doc -->
+        <xsl:for-each select="/eml:eml//coverage">
+          <!-- 'references' handling for coverage -->
+              <xsl:variable name="cc_cov">
+                <xsl:choose>
+                  <xsl:when test="./references!=''">
+                    <xsl:variable name="ref_id" select="./references"/>
+                    <!-- current element just references its contents 
+                    There should only be a single node with an id attribute
+                    which matches the value of the references element -->
+                    <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <!-- no references tag, thus use the current node -->
+                    <xsl:copy-of select="."/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+
+          <xsl:choose>
+            <xsl:when test="xalan:nodeset($cc_cov)//taxonomicCoverage!=''">
+              <xsl:element name="taxonomy">
+                <xsl:element name="keywtax">
+                  <xsl:element name="taxonkt">
+                    <xsl:value-of select="'None'"/>
+                  </xsl:element>
+                  <xsl:element name="taxonkey">
+                    <xsl:value-of select="'N/A'"/>
+                  </xsl:element>
+                </xsl:element>
+                <xsl:for-each select="xalan:nodeset($cc_cov)//taxonomicCoverage/taxonomicClassification">
+                  <!-- add 'references' handling for taxonomicCoverage here -->
+                  <xsl:variable name="cc_taxon">
+                    <xsl:choose>
+                      <xsl:when test="./references!=''">
+                        <xsl:variable name="ref_id" select="./references"/>
+                        <!-- current element just references its contents 
+                        There should only be a single node with an id attribute
+                        which matches the value of the references element -->
+                        <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <!-- no references tag, thus use the current node -->
+                        <xsl:copy-of select="."/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+
+                  <xsl:element name="taxoncl">
+                    <xsl:element name="taxonrn">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc_taxon)//taxonRankName!=''">
+                          <xsl:value-of select="xalan:nodeset($cc_taxon)//taxonRankName"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'N/A'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>  
+                    </xsl:element>
+                    <xsl:element name="taxonrv">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc_taxon)//taxonRankValue!=''">
+                          <xsl:value-of select="xalan:nodeset($cc_taxon)//taxonRankValue"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'N/A'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>  
+                    </xsl:element>
+                    <xsl:element name="common">
+                      <xsl:choose>
+                        <xsl:when test="xalan:nodeset($cc_taxon)//commonName!=''">
+                          <xsl:value-of select="xalan:nodeset($cc_taxon)//commonName"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="'N/A'"/>
+                        </xsl:otherwise>
+                      </xsl:choose>  
+                    </xsl:element>
+                    
+                  </xsl:element>
+                </xsl:for-each>  
+              </xsl:element>
+            </xsl:when>  
+          </xsl:choose>  
+        </xsl:for-each>
+        
         <xsl:choose>
           <xsl:when test="/eml:eml/dataset/access!=''">
             <xsl:element name="accconst">
