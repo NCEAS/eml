@@ -10,7 +10,7 @@
 <xsl:template match="/">
 <book>
   <bookinfo>
-    <title>Guide to Ecological Metadata Language (EML)</title>
+    <title>Ecological Metadata Language (EML) Specification</title>
   </bookinfo>
   
   <toc>
@@ -20,6 +20,7 @@
         <tocentry><link linkend="introduction">Introduction to EML</link></tocentry>
         <tocentry><link linkend="purpose">Purpose of EML</link></tocentry>
         <tocentry><link linkend="architecture">EML's Architecture</link></tocentry>
+        <tocentry><link linkend="technicalArch">Technical Architectural Design</link></tocentry>
         <tocentry><link linkend="moduleDescriptions">Individual Module Descriptions (Non-normative)</link></tocentry>
         <tocentry><link linkend="index">Alphabetical Index of Elements</link></tocentry>
       </tocchap>
@@ -55,79 +56,224 @@
       <title>Architecture</title>
       <para>
         The architecture of EML was designed to serve the needs of the
-	ecological community, and has benefitted from previous work in other
-	related metadata languages. EML has adopted the strengths of many of
-	these languages, but also addresses a number of short-comings that
-	have proved to inhibit the automated processing iand integration of 
-	dataset resources via their metadata.
+        ecological community, and has benefitted from previous work in other
+        related metadata languages. EML has adopted the strengths of many of
+        these languages, but also addresses a number of short-comings that
+        have proved to inhibit the automated processing iand integration of 
+        dataset resources via their metadata.
       </para>
       <para>
         The following list represents some of the features of EML:
       </para>
       <itemizedlist>
         <listitem>
-	  Modularity: EML was designed as a collection of modules rather than
-	  one large standard to facilitate future growth of the language in both
-	  breadth and depth.  By implementing EML with an extensible
-	  architecture, groups may choose which of the core modules are
-	  pertinent to describing their data, literature, and software
-	  resources.  Also, if EML falls short in a particular area, it may be
-	  extended by creating a new module that describes the resource (e.g. a
-	  detailed soils metadata profile that extends eml-dataset).  The intent
-	  is to provide a common set of core modules for information exchange,
-	  but to allow for futute customizations of the language without the
-	  need of going through a lengthy 'approval' process.
+        Modularity: EML was designed as a collection of modules rather than
+        one large standard to facilitate future growth of the language in both
+        breadth and depth.  By implementing EML with an extensible
+        architecture, groups may choose which of the core modules are
+        pertinent to describing their data, literature, and software
+        resources.  Also, if EML falls short in a particular area, it may be
+        extended by creating a new module that describes the resource (e.g. a
+        detailed soils metadata profile that extends eml-dataset).  The intent
+        is to provide a common set of core modules for information exchange,
+        but to allow for futute customizations of the language without the
+        need of going through a lengthy 'approval' process.
         </listitem>
         <listitem>
-	  Detailed Structure: EML strives to balance the tradeoff of 'too much
-	  detail' with enough detail to enable advanced services in terms of
-	  processing data through the parsing of accompanied metadata.
-	  Therefore, a driving question throughout the design was: 'Will this
-	  particular piece of information be machine-processed, just human
-	  readable, or both?'  Information was then broken down into more highly
-	  structured elements when the answer involved machine processing.
+        Detailed Structure: EML strives to balance the tradeoff of 'too much
+        detail' with enough detail to enable advanced services in terms of
+        processing data through the parsing of accompanied metadata.
+        Therefore, a driving question throughout the design was: 'Will this
+        particular piece of information be machine-processed, just human
+        readable, or both?'  Information was then broken down into more highly
+        structured elements when the answer involved machine processing.
         </listitem>
         <listitem>
-	  Compatibility: EML adopts much of it's syntax from the other metadata
-	  standards that have evolved from the expertise of groups in other
-	  disciplines.  Whenever possible, EML adopted entire trees of
-	  information in order to facilitate conversion of EML documents into
-	  other metadata languages.  EML was designed with with the following
-	  standards in mind: Dublin Core Metadata Initiative, the Content
-	  Standard for Digital Geospatial Metadata (CSDGM from the US geological
-	  Survey's Federal Geographic Data Committee (FGDC)), the Biological
-	  Profile of the CSDGM (from the National Biological Information
-	  Infrastructure), the International Standards Organization's Geographic
-	  Information Standard (ISO 19115), the ISO 8601 Date and Time Standard,
-	  the OpenGIS Consortiums's Geography Markup Language (GML), the
-	  Scientific, Technical, and Medical Markup Language (STMML), and the
-	  Extensible Scientific Interchange Language (XSIL).
+        Compatibility: EML adopts much of it's syntax from the other metadata
+        standards that have evolved from the expertise of groups in other
+        disciplines.  Whenever possible, EML adopted entire trees of
+        information in order to facilitate conversion of EML documents into
+        other metadata languages.  EML was designed with with the following
+        standards in mind: Dublin Core Metadata Initiative, the Content
+        Standard for Digital Geospatial Metadata (CSDGM from the US geological
+        Survey's Federal Geographic Data Committee (FGDC)), the Biological
+        Profile of the CSDGM (from the National Biological Information
+        Infrastructure), the International Standards Organization's Geographic
+        Information Standard (ISO 19115), the ISO 8601 Date and Time Standard,
+        the OpenGIS Consortiums's Geography Markup Language (GML), the
+        Scientific, Technical, and Medical Markup Language (STMML), and the
+        Extensible Scientific Interchange Language (XSIL).
         </listitem>
         <listitem>
-	  Strong Typing: EML is implemented in an Extensible Markup Language
-	  (XML) known as XML Schema, which is a language that defines the rules
-	  that govern the EML syntax.  XML Schema is an internet recommendation
-	  from the World Wide Web Consortium (http://www.w3.org), and so a
-	  metadata document that is said to comply with the syntax of EML will
-	  structurally meet the criteria defined in the XML Schema documents for
-	  EML.  Over and above the structure (what elements can be nested within
-	  others, how many, etc.), XML Schema provides the ability to use strong
-	  data typing within elements.  This allows for finer validation of the
-	  contents of the element, not just it's structure.  For instance, an
-	  element may be of type 'date', and so the value that is inserted in
-	  the field will be checked against XML Schema's definition of a date.
-	  Traditionally, XML documents have been validated against Document Type
-	  Definitions (DTDs), which do not provide a means to employ strong
-	  validation on field values through typing.  EML is also distributed
-	  with DTD's that are generated from the XML Schema documents to provide
-	  some backward compatability.
+        Strong Typing: EML is implemented in an Extensible Markup Language
+        (XML) known as XML Schema, which is a language that defines the rules
+        that govern the EML syntax.  XML Schema is an internet recommendation
+        from the World Wide Web Consortium (http://www.w3.org), and so a
+        metadata document that is said to comply with the syntax of EML will
+        structurally meet the criteria defined in the XML Schema documents for
+        EML.  Over and above the structure (what elements can be nested within
+        others, how many, etc.), XML Schema provides the ability to use strong
+        data typing within elements.  This allows for finer validation of the
+        contents of the element, not just it's structure.  For instance, an
+        element may be of type 'date', and so the value that is inserted in
+        the field will be checked against XML Schema's definition of a date.
+        Traditionally, XML documents have been validated against Document Type
+        Definitions (DTDs), which do not provide a means to employ strong
+        validation on field values through typing.  EML is also distributed
+        with DTD's that are generated from the XML Schema documents to provide
+        some backward compatability.
+        </listitem>
+        <listitem>
+        There is a distinction between the content model and the syntactic 
+        implementation of that model.  The normative sections below define 
+        the content model and the XML Schema documents distributed with EML 
+        define the syntactic implementation. For the forseeable future, 
+        XML Schema will be the syntactic specification, although it may 
+        change later.
         </listitem>
       </itemizedlist>
+      <section> 
+        <title>Overview of eml modules and their use</title>
+        <para>
+          --what each module is and which modules should be used together
+          --associated metadata (extending eml)
+          --maybe a treeview image of how the modules are linked
+        </para>
+      </section>
     </section>
   </preface>
   
+  <chapter id="technicalArch">
+    <title>Technical Architecture (Normative)</title>
+    <section>
+      <title>Introduction</title>
+      <para>
+        This section explains the rules of EML.  There are some rules that cannot
+        be written directly into the XML Schemas nor enforced by an XML parser.
+        These are guidelines that every EML package must follow in order for
+        it to be considered EML compliant.
+      </para>
+    </section>
+    
+    <section>
+      <title>Module Structure</title>
+      <para>
+        Each EML module, with the exception of "eml" itself, has a top level
+        choice between the structured content of that modules or a 
+        &quot;references&quot; field.  This enables the reuse of content
+        previously defined elsewhere in the document.  Methods for defining
+        and referencing content are described in the 
+        <link linkend="reusableContent">next</link> section
+      </para>
+    </section>
+    
+    <section id="reusableContent">
+      <title>Reusable Content</title>
+      <para>
+        EML allows the reuse of previously defined structured content (DOM
+        sub-trees) through the use of ID/IDREF type references.  In order
+        for an EML package to remain cohesive and to allow for the cross
+        platform compatability of packages, the following rules with respect
+        to packaging must be followed.
+      </para>
+      <itemizedlist>
+        <listitem>
+          IDs are required on all modules that extend resource.
+        </listitem>
+        <listitem>
+          IDs are optional on all other modules.
+        </listitem>
+        <listitem>
+          If an ID is not provided, that content must be interpreted as 
+          representing a distinct object.
+        </listitem>
+        <listitem>
+          If an ID is provided for content then that content is distinct from 
+          all other content except for that content that references its ID.
+        </listitem>
+        <listitem>
+          If a user wants to reuse content to indicate the repetition of an 
+          object, a reference must be used.  you cannot have two identical 
+          ids in a document.
+        </listitem>
+        <listitem>
+          &quot;Local scope&quot; is defined as identifiers unique only to a 
+          single instance document (if a document does not have a system or if 
+          scope is set to 'local' then all ids are defined as distinct content).
+        </listitem>
+        <listitem>
+          System scope is defined as identifiers unique to an entire data 
+          management system (if two documents share a system string, then 
+          any IDs in those two documents that are identical refer to the 
+          same object).
+        </listitem>
+        <listitem>
+          if an element references another element, it must not have an ID.
+        </listitem>
+      </itemizedlist>
+      
+      <section>
+        <title>ID and Scope Examples</title>
+        <para>
+          Example Document 1:
+            &lt;name&gt;Joe&lt;/name&gt;
+            &lt;name&gt;Joe&lt;/name&gt;
+            
+          Example Document 2:
+            
+            &lt;name id=&quot;1&quot;&gt;Joe&lt;/name&gt;
+            &lt;name&gt;&lt;references&gt;1&lt;references&gt;
+            &lt;/name&gt;
+            
+          Example Document 3:
+            <document id="1" system="My Management System" scope="global">
+              <name id="2">Joe</name>
+            </document>
+            
+          Example Document 4:
+            <document id="3" system="My Management System" scope="global">
+              <name><references>2</references></name>
+            </document>
+          
+          Example Document 5:
+            <document id="1" scope="local">
+              <name>Joe</name>
+            </document>
+            
+          Example Document 6:
+            <document>
+              <name>Joe</name>
+            </document>
+        </para>
+        <para>
+          Example Document 1 has two elements with identical content.  By the
+          third rule, these two objects must be interpreted as being
+          semantically different.  Thus, this document references two different
+          people whose names both happen to be Joe.
+        </para>
+        <para>
+          In Example Document 2 there are two elements as well.  The first 
+          represents a person whose name is Joe.  The second represents 
+          the *same person*.  
+        </para>
+        <para>
+          Example Documents 3 and 4 have unique IDs with respect to each other
+          because they share the same system attribute and their scopes are
+          both set to global.  Document 4 is referencing the name element in 
+          Document 3.
+        </para>
+        <para>
+          Documents 5 and 6 both have a local scope even though Document 6 
+          does not explicitly define it.  In this case, each of the name elements
+          must be interpreted as unique objects even though they have identical
+          content.
+        </para>
+      </section>
+    </section>
+  </chapter>
+
   <chapter id="moduleDescriptions">
-    <title>Module Descriptions</title>
+    <title>Module Descriptions (Normative)</title>
     <xsl:for-each select="//doc:module">
       <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
     </xsl:for-each>
