@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<eml:unitList xmlns:eml="./eml-unit.xsd">
+<!-- ======================================================================= -->
+<!-- ========================= fundamental types =========================== -->
+<!-- ======================================================================= -->
+  <eml:unitType id="length" name="length">
+    <eml:dimension name="length" />
+  </eml:unitType>
+
+  <eml:unitType id="time" name="time">
+    <eml:dimension name="time" />
+  </eml:unitType>
+
+  <eml:unitType id="dimensionless" name="dimensionless">
+    <eml:dimension name="dimensionless" />
+  </eml:unitType>
+
+<!-- ======================================================================= -->
+<!-- ========================== derived types ============================== -->
+<!-- ======================================================================= -->
+  <eml:unitType id="acceleration" name="acceleration">
+    <eml:dimension name="length" />
+
+    <eml:dimension name="time" power="-2" />
+  </eml:unitType>
+
+<!-- ======================================================================= -->
+<!-- ====================== fundamental SI units =========================== -->
+<!-- ======================================================================= -->
+  <eml:unit id="second" name="second" unitType="time">
+    <eml:description>The SI unit of time</eml:description>
+  </eml:unit>
+
+  <eml:unit id="meter" name="meter" unitType="length" abbreviation="m">
+    <eml:description>The SI unit of length</eml:description>
+  </eml:unit>
+
+  <eml:unit id="kg" name="nameless" unitType="dimensionless" abbreviation="nodim">
+    <eml:description>A fictitious parent for dimensionless units</eml:description>
+  </eml:unit>
+
+<!-- ======================================================================= -->
+<!-- ===================== derived SI units ================================ -->
+<!-- ======================================================================= -->
+  <eml:unit id="newton" name="newton" unitType="force">
+    <eml:description>The SI unit of force</eml:description>
+  </eml:unit>
+
+<!-- multiples of fundamental SI units -->
+  <eml:unit id="g" name="gram" unitType="mass" parentSI="kg" multiplierToSI="0.001" abbreviation="g">
+    <eml:description>0.001 kg.</eml:description>
+  </eml:unit>
+
+  <eml:unit id="celsius" name="Celsius" parentSI="k" multiplierToSI="1" constantToSI="273.18">
+    <eml:description>
+      <p>A common unit of temperature</p>
+    </eml:description>
+  </eml:unit>
+
+<!-- fundamental non-SI units -->
+  <eml:unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
+    <eml:description>An imperial measure of length</eml:description>
+  </eml:unit>
+
+<!-- derived non-SI units -->
+  <eml:unit id="l" name="litre" unitType="volume" parentSI="meterCubed" abbreviation="l" multiplierToSI="0.001">
+    <eml:description>Nearly 1 dm**3 This is not quite exact</eml:description>
+  </eml:unit>
+
+  <eml:unit id="fahr" name="fahrenheit" parentSI="k" abbreviation="F" multiplierToSI="0.55555555555555555" constantToSI="-17.777777777777777777">
+    <eml:description>An obsolescent unit of temperature still used in popular meteorology</eml:description>
+  </eml:unit>
+</eml:unitList>
+
+

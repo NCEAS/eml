@@ -1,13 +1,9 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:attribute-2.0.0beta8" 
-           xmlns="eml:attribute-2.0.0beta8" 
-           xmlns:rp="eml:party-2.0.0beta8" 
-           xmlns:cov="eml:coverage-2.0.0beta8" 
-           xmlns:lit="eml:literature-2.0.0beta8" 
+<xs:schema targetNamespace="eml:unit-2.0.0beta8" 
            xmlns:doc="eml:documentation-2.0.0beta8" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation-2.0.0beta8" 
-             schemaLocation="eml-documentation.xsd"/>
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:uni="eml:unit-2.0.0beta8">
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-units.xsd,v $'
@@ -16,8 +12,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-28 14:55:47 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-05-28 15:31:10 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,12 +31,18 @@
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
-        <doc:moduleName>eml-attribute</doc:moduleName>
+        <doc:moduleName>eml-units</doc:moduleName>
         <doc:moduleDescription>
-           
+          This module is an implementation of STMML (http://www.xml-cml.org/stmml).
+          It should be used to define the unit dictionary for EML.  The
+          unit dictionary should precisely define every unit of measure
+          used to describe a data point measurement.  If a needed unit
+          is not in the dictionary, it should be added before the unit is
+          used. 
         </doc:moduleDescription>
         <doc:recommendedUsage>
-          
+          eml-unit should never be instantiated with a package, rather it is
+          used to define the EML data unit dictionary only.
         </doc:recommendedUsage>
         <doc:standAlone>
           yes
@@ -49,51 +51,51 @@
     </xs:appinfo>
   </xs:annotation>
   
-  <xs:element name="dimension" id="el.dimension">
-    <xs:complexType>
-      <xs:attribute name="name" type="dimensionType" use="required"/>
-      <xs:attribute name="power" type="xs:decimal" default="1"/> 
-    </xs:complexType>
-  </xs:element>
-
   <xs:simpleType name="dimensionType" id="st.dimensionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="mass" />
-      <xs:enumeration value="length" />
-      <xs:enumeration value="time" />
-      <xs:enumeration value="charge" />
-      <xs:enumeration value="amount" />
-      <xs:enumeration value="luminosity" />
-      <xs:enumeration value="temperature" />
-      <xs:enumeration value="dimensionless" />
+      <xs:enumeration value="mass"/>
+      <xs:enumeration value="length"/>
+      <xs:enumeration value="time"/>
+      <xs:enumeration value="charge"/>
+      <xs:enumeration value="amount"/>
+      <xs:enumeration value="luminosity"/>
+      <xs:enumeration value="temperature"/>
+      <xs:enumeration value="dimensionless"/>
       <xs:enumeration value="angle"/>
     </xs:restriction>
   </xs:simpleType>
-
+  
+  <xs:element name="dimension" id="el.dimension">
+    <xs:complexType>
+      <xs:attribute name="name" type="uni:dimensionType" use="required"/>
+      <xs:attribute name="power" type="xs:decimal" default="1"/>
+    </xs:complexType>
+  </xs:element>
+  
   <xs:element name="unitList" id="el.unitList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="unitType" minOccurs="0" maxOccurs="unbounded" />
-        <xs:element ref="unit" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="uni:unitType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="uni:unit" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="href" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
-
+  
   <xs:element name="unitType" id="el.unitType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="dimension" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="uni:dimension" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
-      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="name" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
-
+  
   <xs:element name="unit" id="el.unit">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="description" />
-        <xs:element ref="annotation" />
+        <xs:element ref="uni:description"/>
+        <xs:element ref="uni:annotation"/>
       </xs:choice>
       <xs:attribute name="id" type="xs:string" use="required"/>
       <xs:attribute name="abbreviation" type="xs:string"/>
@@ -110,7 +112,7 @@
       <xs:sequence minOccurs="0" maxOccurs="unbounded">
         <xs:any processContents="lax"/>
       </xs:sequence>
-      <xs:attributeGroup ref="sourceGroup"/>
+      <xs:attributeGroup ref="uni:sourceGroup"/>
       <xs:attribute name="class" type="xs:string"/>
     </xs:complexType>
   </xs:element>
@@ -118,15 +120,15 @@
   <xs:element name="annotation" id="el.annotation">
     <xs:complexType mixed="true">
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="documentation"/>
-        <xs:element ref="appinfo"/>
+        <xs:element ref="uni:documentation"/>
+        <xs:element ref="uni:appinfo"/>
       </xs:choice>
       <xs:attribute name="source" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   
-  <xs:attributeGroup name="sourceGroup" id="attGp.source"> 
-    <xs:attribute id="att.source" name="source" type="xs:anyURI"/>
+  <xs:attributeGroup name="sourceGroup" id="attGp.source">
+    <xs:attribute name="source" type="xs:anyURI" id="att.source"/>
   </xs:attributeGroup>
   
   <xs:element name="documentation" id="el.documentation">
@@ -134,8 +136,8 @@
       <xs:sequence minOccurs="0" maxOccurs="unbounded">
         <xs:any processContents="lax"/>
       </xs:sequence>
-      <xs:attributeGroup ref="sourceGroup"/>
-      <xs:attributeGroup ref="idGroup"/>
+      <xs:attributeGroup ref="uni:sourceGroup"/>
+      <xs:attributeGroup ref="uni:idGroup"/>
     </xs:complexType>
   </xs:element>
   
@@ -148,12 +150,12 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:attributeGroup name="idGroup" id="attGp.id"> 
-    <xs:attribute id="att.id" name="id" type="idType"/>
+  <xs:attributeGroup name="idGroup" id="attGp.id">
+    <xs:attribute name="id" type="uni:idType" id="att.id"/>
   </xs:attributeGroup>
   
   <xs:simpleType name="idType" id="st.idType">
-    <xs:restriction base="xs:string"> 
+    <xs:restriction base="xs:string">
       <xs:pattern value="[A-Za-z0-9_-]+(:[A-Za-z0-9_-]+)?"/>
     </xs:restriction>
   </xs:simpleType>
