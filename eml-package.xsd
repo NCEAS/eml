@@ -8,8 +8,8 @@
       Authors: Chad Berkley
 
      '$Author: berkley $'
-       '$Date: 2000-09-06 16:40:51 $'
-   '$Revision: 1.1 $'
+       '$Date: 2000-09-06 16:47:17 $'
+   '$Revision: 1.2 $'
 -->
 
 <?xml version ="1.0"?>
@@ -29,16 +29,16 @@
  
  <xs:complexType name="eml:Relation" content="elementOnly">
    <xs:sequence>
-     <xs:element name="subject" type="eml:ConnectionObject"
+     <xs:element name="subject" type="eml:Parameter"
                  minOccurs="1" maxOccurs="1" />
      <xs:element name="relationship" type="xs:string"
                  minOccurs="1" maxOccurs="1" />
-     <xs:element name="object" type="eml:ConnectionObject"
+     <xs:element name="object" type="eml:Parameter"
                  minOccurs="1" maxOccurs="1" />
    </xs:sequence>
  </xs:complexType>
  
- <xs:complexType name="eml:ConnectionObject" content="elementOnly">
+ <xs:complexType name="eml:Parameter" content="elementOnly">
    <xs:sequence>
      <xs:element name="param" type="xs:string"
                  minOccurs="1" maxOccurs="unbounded" />
