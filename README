@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-10-07 19:47:21 $'
-#      '$Revision: 1.26 $'
+#          '$Date: 2002-10-28 20:46:53 $'
+#      '$Revision: 1.27 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.0rc2
+Version: 2.0.0
 
 Feedback and bugs to: eml-dev@ecoinformatics.org
                       http://bugzilla.ecoinformatics.org
@@ -74,12 +74,15 @@ of each of the modules, and for a link to the full EML specification.
 
 HIGHLIGHTS IN THIS RELEASE
 --------------------------
-1) Massive documentation improvements.  Thanks to everyone who helped write 
+1) Modified eml-attribute measurementScale model to allow precision, unit,
+   and attributeDomain to only be used where appropriate
+2) Expanded attributeDomain to allow description of all numeric domains
+3) Massive documentation improvements.  Thanks to everyone who helped write 
    some of the documentation.
-2) New EML Validity Parser created.  It checks both EML rules and the schema
+4) New EML Validity Parser created.  It checks both EML rules and the schema
    rules to be sure an XML document is a valid EML document.  It is included 
    with the release, and provided as an online service. See docs/index.html.
-3) Much easier to use system for spatial reference that is derived from ESRI's
+5) Much easier to use system for spatial reference that is derived from ESRI's
    .prj format for named projections. Over 2000 predefined projections
    shipped with this EML release.
    
@@ -90,17 +93,11 @@ each of the modules that make up EML.  Also included is a schema
 for supporting documentation, and an instance document defining 
 standard attribute units for EML.
 
-The files are a part of the proposed release of EML 2.0.0.
-This is the second release candidate.  We expect no changes
-to EML between now and the final EML 2.0.0 release; this release is
-being made available for a 3 week public review as a final sanity
-check before EML 2.0.0 is officially released. Note that there have 
-been 9 beta releases and one prior release candidate prior
-to this during which substantial/philosophical changes were introduced.
-This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_0_0_RC_2".  Previous versions of EML (such as 1.4) 
-are available from this repository using the appropriate release tag 
-(i.e. RELEASE_EML_1_4).
+Note that there have been 9 beta releases and two prior release candidates
+prior to this release during which substantial/philosophical changes were
+introduced.  This release of EML can be retrieved from CVS using the tag
+"RELEASE_EML_2_0_0".  Previous versions of EML (such as 1.4) are available
+from this repository using the appropriate release tag (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
@@ -111,6 +108,21 @@ KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 
 ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
 -------------------------------------------------------------------------
+2.0.0 Changes- (numbers refer to the correspnding Bugzilla bug)
+471: eml spec overview document     
+624: eml-methods/methodsType needs clarification on choice/seq...     
+627: links broken in EML FAQ     
+629: unit conversion coefficients need checking     
+637: attributeDomain should be required     
+638: request for id/ref in attributeDomain     
+654: scope of the unit element     
+655: need better model for numeric domains for attributes     
+625: Cardinality regarding eml-methods should be corrected in ...     
+626: ProcedureStepType schema needs revision to protect sequen...     
+628: eml-physical has lit: rather than cit: references     
+632: broken link in faq
+634: Documentation of reference elements in the schemas
+
 RC2 Changes- (numbers refer to the correspnding Bugzilla bug)
 568: accomodate of stateful connection information   
 586: resolve validation problem with missing keys     

@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 21:39:47 $'
-      '$Revision: 1.56 $'
+          '$Date: 2002-10-28 20:46:53 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@
 
   <target name="init" depends="config">
     <property name="name" value="eml"/>
-    <property name="version" value="2.0.0rc2"/>
+    <property name="version" value="2.0.0"/>
     <property name="testdir" value="./test" />
     <property name="srcdir" value="./src" />
     <property name="sample.dir" value="lib/sample"/>
