@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!-- 
+       '$RCSfile: 130.11,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: brooke $'
+          '$Date: 2002-05-22 20:39:33 $'
+      '$Revision: 1.2 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    This document is part of an eml package that has as many elements as 
+    possible filled out (with "nonsense" test data), and is distributed in the 
+    hope that it will be of use to anyone who needs a "full" set of data for 
+    testing purposes.  The full test data set contains the following documents:
+	121.1, 122.4, 123.1, 124.1, 125.1, 126.1, 127.1, 128.1, 130.11, 131.6
+
+ -->
+<!DOCTYPE dataset PUBLIC "-//ecoinformatics.org//eml-dataset-2.0.0beta6//EN" "file://jar:file:/H:/dev/ecoinfo/MORPHO_ROOT/CVS_SOURCE/morpho/lib/morpho-config.jar!/catalog/eml-dataset-2.0.0.beta6e.dtd">
+<dataset>
+  <identifier>brooke2.130.11</identifier>
+  <shortName>Short name for test data set</shortName>
+  <title>Full Set of Test Data for EML Stylesheets</title>
+  <originator>
+      <individualName>
+        <surName> </surName>
+      </individualName>
+      <organizationName>Wallace's Window Cleaners</organizationName>
+    <address>
+      <deliveryPoint>123 Main Street</deliveryPoint>
+      <city>Santa Barbara</city>
+      <administrativeArea>CA</administrativeArea>
+      <postalCode>93101</postalCode>
+      <country>USA</country>
+    </address>
+    <phone phonetype="">(805) 555 1212</phone>
+    <electronicMailAddress>info@nceas.com</electronicMailAddress>
+    <onlineLink>http://www.nceas.ucsb.edu</onlineLink>
+    <role>Originator</role>
+  </originator>
+  <originator>
+      <individualName>
+        <salutation>Mr</salutation>
+        <givenName>Gromit</givenName>
+        <surName>Dog</surName>
+      </individualName>
+      <organizationName>Wallace's Window Cleaners</organizationName>
+      <positionName>dogsbody</positionName>
+    <address>
+      <deliveryPoint>62, West Wallaby Street</deliveryPoint>
+      <city>Halifax</city>
+      <administrativeArea>West Yorkshire</administrativeArea>
+      <postalCode>WF17 ONP</postalCode>
+      <country>UK</country>
+    </address>
+    <phone phonetype="">(0924) 473797</phone>
+    <electronicMailAddress>gromit@aardman.com</electronicMailAddress>
+    <onlineLink>http://www.aardman.com</onlineLink>
+    <role>Boss</role>
+  </originator>
+  <pubDate>2002-05-08</pubDate>
+  <pubPlace>Santa Barbara, CA, USA</pubPlace>
+  <series>Journal for EML Testing (J.E.T.)</series>
+  <abstract>
+    <paragraph>This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.  This is the first paragraph of the abstract.</paragraph>
+    <paragraph>This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract. This is the second paragraph of the abstract.</paragraph>
+  </abstract>
+  <keywordSet>
+    <keyword>test</keyword>
+    <keyword>eml</keyword>
+    <keyword>xslt</keyword>
+    <keyword>tea</keyword>
+    <keywordThesaurus>Roget's</keywordThesaurus>
+  </keywordSet>
+  <additionalInfo>
+    <paragraph>additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional info paragraph 1.  additional infoparagraph 1.</paragraph>
+    <paragraph>additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.   additional info paragraph 2.</paragraph>
+  </additionalInfo>
+  <rights>
+    <paragraph>Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1. Rights paragraph 1.</paragraph>
+  </rights>
+    <offlineMedium>
+      <medName>hardcopy</medName>
+      <medDensity>High Density</medDensity>
+      <medDensityUnits>g/cc</medDensityUnits>
+      <medVol>1 litre</medVol>
+      <medFormat>NFS</medFormat>
+      <medNote>No additional information available</medNote>
+    </offlineMedium>
+  <triple>
+    <subject>brooke2.121.1</subject>
+    <relationship>provides table-entity information for package</relationship>
+    <object>brooke2.130.11</object>
+  </triple>
+  <triple>
+    <subject>brooke2.122.4</subject>
+    <relationship>provides eml-attribute information for Table</relationship>
+    <object>brooke2.121.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.123.1</subject>
+    <relationship>provides eml-physical information for Table</relationship>
+    <object>brooke2.121.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.130.11</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.121.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.122.4</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.123.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.125.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.125.1</subject>
+    <relationship>isRelatedTo</relationship>
+    <object>brooke2.130.11</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.126.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.126.1</subject>
+    <relationship>isRelatedTo</relationship>
+    <object>brooke2.130.11</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.127.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.127.1</subject>
+    <relationship>isRelatedTo</relationship>
+    <object>brooke2.130.11</object>
+  </triple>
+  <triple>
+    <subject>brooke2.124.1</subject>
+    <relationship>provides access control rules for</relationship>
+    <object>brooke2.128.1</object>
+  </triple>
+  <triple>
+    <subject>brooke2.128.1</subject>
+    <relationship>isRelatedTo</relationship>
+    <object>brooke2.130.11</object>
+  </triple><triple><subject>brooke2.124.1</subject><relationship>provides access control rules for</relationship><object>brooke2.131.6</object></triple><triple><subject>brooke2.131.6</subject><relationship>isRelatedTo</relationship><object>brooke2.130.11</object></triple>
+  <temporalCov>
+      <mdattim>
+        <sngdate>
+              <caldate>1999-01-01</caldate>
+              <time>12:00:00</time>
+        </sngdate>
+        <sngdate>
+              <caldate>2002-01-01</caldate>
+              <time>11:11:11</time>
+        </sngdate>
+      </mdattim>
+  </temporalCov>
+  <geographicCov>
+    <descgeog>description of the geographic extent goes here</descgeog>
+    <bounding>
+      <westbc>12</westbc>
+      <eastbc>13</eastbc>
+      <northbc>14</northbc>
+      <southbc>15</southbc>
+      <boundalt>
+        <altmin>1</altmin>
+        <almax>222</almax>
+        <altunits>feet</altunits>
+      </boundalt>
+    </bounding>
+    <dsgpoly>
+      <dsgpolyo>
+          <gring>2.0,3.0,4.0,5.0</gring>
+      </dsgpolyo>
+      <dsgpolyx>
+          <gring>22.3,33.4,44.5,55.6</gring>
+      </dsgpolyx>
+    </dsgpoly>
+  </geographicCov>
+  <taxonomicCov>
+    <keywtax>
+      <taxonkt>the taxonomic thesaurus</taxonkt>
+      <taxonkey>tax</taxonkey>
+      <taxonkey>on</taxonkey>
+      <taxonkey>omy</taxonkey>
+    </keywtax>
+    <keywtax>
+      <taxonkt>the *other* taxonomic thesaurus</taxonkt>
+      <taxonkey>X</taxonkey>
+      <taxonkey>Y</taxonkey>
+      <taxonkey>Z</taxonkey>
+    </keywtax>
+    <taxongen>a very big range of taxa</taxongen>
+    <taxoncl>
+      <taxonrn>rank name here</taxonrn>
+      <taxonrv>RV here</taxonrv>
+      <common>common here</common>
+      <taxoncl>
+        <taxonrn>nested RN</taxonrn>
+        <taxonrv>nested RV</taxonrv>
+        <common>nested Common</common>
+      </taxoncl>
+    </taxoncl>
+  </taxonomicCov>
+</dataset>

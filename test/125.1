@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- 
+       '$RCSfile: 125.1,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: brooke $'
+          '$Date: 2002-05-22 20:39:33 $'
+      '$Revision: 1.2 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    This document is part of an eml package that has as many elements as 
+    possible filled out (with "nonsense" test data), and is distributed in the 
+    hope that it will be of use to anyone who needs a "full" set of data for 
+    testing purposes.  The full test data set contains the following documents:
+	121.1, 122.4, 123.1, 124.1, 125.1, 126.1, 127.1, 128.1, 130.11, 131.6
+
+ -->
+<!DOCTYPE eml-constraint PUBLIC "-//ecoinformatics.org//eml-constraint-2.0.0beta6//EN" "file://jar:file:/H:/dev/ecoinfo/MORPHO_ROOT/CVS_SOURCE/morpho/lib/morpho-config.jar!/catalog/eml-constraint-2.0.0.beta6e.dtd">
+<eml-constraint>
+  <identifier>brooke2.125.1</identifier>
+  <constraint>
+    <constraintType>This is what kind of constraint this is??</constraintType>
+    <constraintName>Primary Key</constraintName>
+    <constraintDescription>description of the constraint</constraintDescription>
+    <entityId>USER_TABLES</entityId>
+    <key>
+      <attributeName>NOT NULL</attributeName>
+      <attributeName>also NOT NULL</attributeName>
+    </key>
+    <referencedEntityId>TABLE_1</referencedEntityId>
+    <referencedKey>
+      <attributeName>refd Key 1</attributeName>
+      <attributeName>refd Key 2</attributeName>
+      <attributeName>refd Key 3</attributeName>
+    </referencedKey>
+    <cardinality>one to many</cardinality>
+    <checkCondition>SELECT * FROM USER_TABLES WHERE userID like '%gromit%';</checkCondition>
+  </constraint>
+</eml-constraint>
