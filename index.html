@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-09-09 10:06:34 $'
-      '$Revision: 1.12 $'
+          '$Date: 2002-09-13 07:55:59 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -59,7 +59,6 @@
 <hr />
 
   <table class="tabledefault" width="100%">
-  <td class="tablehead" colspan="2"><p><b>EML Version @version@</b></p></td>
   <tr>
   <td>
    <p>
@@ -74,7 +73,7 @@
    </p>
    <p>
     We are currently in the process of revising EML to create the
-    version 2.0 standard described below.  This is an ongoing process,
+    version 2.0.0 standard described below.  This is an ongoing process,
     and the current draft is being released for public comment and
     input on the revisions. The current draft is the result of a
     two workshops in which a variety of information managers
@@ -85,23 +84,17 @@
     may still be made before the final version 2 release is cut.
    </p>
    <p>
-    <i><b>Warning: this version is currently
-    being developed and therefore it will change as its form is
-    finalized.  We'll release a final version here when it is available.
-    </b></i>
-    Please continue to use version 1.4.1 in production
-    environments until we have finalized the version 2.0.0 release.  Thanks.
+   <b>The documentation in the current release is still somewhat
+   inadequate and out-of-date.  The major change between this 
+   release and the next will be a major overhaul of the documentation.  
+   We do not expect the schemas themselves to change between now and 
+   the final 2.0.0 release.</b>
    </p>
    <p>
-    Send any comments, errors, or suggestions to "eml-dev@ecoinformatics.org".
+    Send any comments, errors, or suggestions to 
+    <a href="mailto:eml-dev@ecoinformatics.org">eml-dev@ecoinformatics.org</a>.
    </p>
     <p>&nbsp;</p>
-  <p><a href="@server@/software/download.html"><b>Download EML</b></a><br />
-    The dowload consists of the EML modules, described in the
-    <a href="http://www.w3c.org/XML/Schema">XML Schema</a>
-    language.  In addition, the full documentation on the
-    modules is provided in HTML format. 
-  </p>
   <p>&nbsp;</p>
 
   </td>
@@ -110,22 +103,65 @@
 
   <table class="tabledefault" width="100%">
   <td class="tablehead" colspan="2"><p>
-      <b>EML Version @version@ Documentation</b>
+      <b>EML Version @version@</b>
   </p></td>
   <tr>
   <td>
+    <p>
+    You can access the EML specification online by reading it in HTML
+    format, or you can download the entire specification, including both 
+    the HTML documentation and the XML Schema files.
+    </p>
+    <ul>
+    <li><p><a href="@server@/software/download.html">Download EML</a><br />
+    The dowload consists of the EML modules, described in the
+    <a href="http://www.w3c.org/XML/Schema">XML Schema</a>
+    language.  In addition, the full documentation on the
+    modules is provided in HTML format. 
+    </p>
+    </li>
+    <li><p>Read the <a href="eml-docbook.html">EML @version@ Specification</a>
+    online</p>
+    </li>
+    </ul>
     <p><a href="eml-faq.html">EML @version@ Frequently Asked Questions (FAQ)</a></p>
   </td>
   </tr>
   <tr>
   <td>
-    <p><a href="eml-docbook.html">EML @version@ Specification</a></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
   </td>
   </tr>
   <tr>
+  <td class="tablehead" colspan="2"><p><b>About the EML Project</b></p></td>
+  </tr>
+  <tr>
   <td>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+  <p>
+  The EML project is an open source, community oriented project
+  dedicated to providing a high-quality metadata specification
+  for describing data relevant to the ecological discipline.
+  The project is completely comprised of 
+  <a href="members.html">voluntary project members</a> who donate 
+  their time and experience in order to advance
+  information management for ecology. Project decisions are made by
+  concensus according to the voting procedures described in the <a
+  href="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+  Charter</a>.
+  </p>
+  <p>
+  We welcome contributions to this work in any form.  Individuals
+  who invest substantial amounts of time and make valuable
+  contributions to the development and maintenance of EML (in the
+  opinion of current project members) will be invited to become
+  EML project members according to the rules set forth in the <a
+  href="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+  Charter</a>. Contributions can take many forms, including the
+  development of the EML schemas, writing documentation, and helping
+  with maintenance, among others.
+  </p>
+  <p>&nbsp;</p>
   </td>
   </tr>
   <tr>
@@ -141,16 +177,17 @@
     flux, or otherwise broken.  It is unlikely that it will contain the same
     files that are in the current release (@version@).
     Use at your own risk.  Write access to this repository is reserved
-    for EML project members. We welcome contributions to this work in any
-    form.  Individuals who invest substantial amounts of time and make
-    valuable contributions to the development and maintenace of EML
-    (in the opinion of current project members) will 
-    be invited to become EML project members according to the rules set forth
-    in the 
-    <a href="http://www.ecoinformatics.org/charter.html">ecoinformatics.org 
-    Charter</a>. Contributions can take many forms, including the development
+    for <a href="members.html">EML project members</a>. 
+    We welcome contributions to this work in any form.  
+    Contributions can take many forms, including the development
     of the EML schemas, writing documentation, and helping with maintenance,
-    among others.
+    among others.  Non-project members can contribute by submitting their
+    feedback, revisions, fixes, code, or any other contribution through
+    the <a href="http://www.ecoinformatics.org/mailman/listinfo/eml-dev">
+    eml-dev@ecoinformatics.org</a> mailing list, or through the 
+    <a href="http://bugzilla.ecoinformatics.org/buglist.cgi?product=EML&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">EML 
+    Bug Tracking system</a>. The preferred way to submit problems with EML or
+    feature requests is the bug tracking system.
   </p>
   </td>
   </tr>

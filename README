@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: jones $'
-#          '$Date: 2002-09-06 16:01:12 $'
-#      '$Revision: 1.21 $'
+#          '$Date: 2002-09-13 07:55:59 $'
+#      '$Revision: 1.22 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,8 +51,7 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Mark Schildhauer (schild@nceas.ucsb.edu)
               John Harris (harris@nceas.ucsb.edu)
               Matthew Brooke (brooke@nceas.ucsb.edu)
-              Noah Goldstein
-              Zheng Wang
+              Scott Chapal (scott.chapal@jonesctr.org)
 
 Web site: http://knb.ecoinformatics.org/software/eml
 
@@ -69,7 +68,7 @@ experience using the standard and from feedback from the ecological community.
 DOCUMENTATION
 -------------
 Please see the docs/index.html directory for a detailed description 
-of each of the modules.
+of each of the modules, and for a link to the full EML specification.
 
 FILES
 -----
@@ -80,7 +79,9 @@ standard attribute units for EML.
 
 The files are a part of the proposed release of EML 2.0.0.
 This is the first release candidate.  We expect no changes
-to these files for the final EML 2.0.0 release.  This release is 
+to these schemas for the final EML 2.0.0 release, although we
+do expect to substantially improve the documentation for the EML
+specification and EML field definitions.  This release is 
 being made available for final testing and feedback before the final
 release is made.  Note that there have been 9 beta releases prior
 to this during which substantial/philosophical changes were introduced.
@@ -91,12 +92,40 @@ are available from this repository using the appropriate release tag
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) Complete work on the XSLT stylesheets.  Need to convert stylesheets
+1) Some documentation is inadequate and/or out-of-date.  This will be
+   changed before the final 2.0.0 release.
+2) Complete work on the XSLT stylesheets.  Need to convert stylesheets
    to the new structure (they currently work with the BETA6 release
    (bug 249).
 
-ADDITIONS AND IMPROVEMENTS
---------------------------
+
+ADDITIONS AND IMPROVEMENTS (see also http://bugzilla.ecoinformatics.org/)
+-------------------------------------------------------------------------
+RC1 Changes- (numbers refer to the correspnding Bugzilla bug)
+471: created an EML specification overview document
+495: created FAQ for EML
+586: resolved key validation problems
+588: removed lineage tags from documentation
+484: eml-attribute changes to unit and attributeDomain
+579: fixed eml-docbook validation problems
+491: eml-coverage changed to correctly import types and to fix
+     singleDateTime model
+485: eml-physical changed to fix fixed ascii descriptors and distribution
+477: complexTypes imports changed to consistent model
+486: fixed spelling errors in eml-constraint
+492: eml-literature changed for EndNote consistency
+496: copyright updated throughout
+557: textual elements changed to use docbook subset define in eml-text.xsd
+563: changed id types from xs:ID to xs:string to allow numeric ids
+482: eml-dataset changed to include method element
+489: eml-protocol completely revised based on feedback, eml-method.xsd created
+544: eml-attribute storageType and attributeDomain documentation clarified
+556: format of eml namespaces changed to include ecoinformatics.org
+539: added additionalInfo and alternateIdentifier to eml-dataTable.xsd
+568: redesigned DistributionType to allow richer connection descriptions
+566: changed imports in eml-resource to import resource types not elements
+567: created eml sample documents and XML validation framework using ant/junit 
+
 Beta9 Fixes-
 1) Changed packaging concept to use internal id and references instead
    of triples
