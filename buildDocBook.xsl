@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.38 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-30 21:08:28 $'
+      '$Revision: 1.39 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -180,11 +180,11 @@
         These modules are described when it is appropriate.
       </para>
       <!-- Get the eml module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-resource module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-resource.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
@@ -209,19 +209,19 @@
         dataset documents as reusable content.
         </para>
       <!-- Get the eml-dataset module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-dataset.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-literature module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-literature.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-software module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-software.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-protocol module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-protocol.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
@@ -243,27 +243,27 @@
             than the entire dataset as a whole.
           </para>
       <!-- Get the eml-access module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-access.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-physical module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-physical.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-party module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-party.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-coverage module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-coverage.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-project module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-project.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-methods module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-methods.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
@@ -290,15 +290,15 @@
             this section.
           </para>
       <!-- Get the eml-entity module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-entity.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-attribute module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-attribute.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-constraint module description from the xsd file -->
-      <xsl:apply-templates 
+      <xsl:apply-templates
         select="document('eml-constraint.xsd')//doc:moduleDescription/*"
         mode="copy"/>
         <!--section>
@@ -529,9 +529,44 @@
         <title>ID and Scope Examples</title>
         <section>
           <title>Example Documents</title>
-          <para><emphasis>This section is not yet complete.</emphasis>  It should
-          contain:</para>
-          <para>examples of the various rules described above</para>
+            <example>
+              <title>Example 1</title>
+              <literalLayout>
+&lt;?xml version="1.0"?&gt;
+&lt;eml:eml
+    packageId="eml.1.1" system="knb"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
+
+  &lt;dataset&gt;
+    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+    &lt;!-- the two creators have the same id.  this should be an error--&gt;
+    &lt;creator id="23445" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Smith&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    &lt;creator id="23445" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Myer&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    ...
+  &lt;/dataset&gt;
+&lt;/eml:eml&gt;
+            </literalLayout>
+          </example>
+          <section>
+            <title>Example 2</title>
+          </section>
+          <section>
+            <title>Example 3</title>
+          </section>
+          <section>
+            <title>Example 4</title>
+          </section>
         </section>
         <section>
           <title>Explanation</title>

@@ -6,7 +6,7 @@
 <xsl:output method="xml" encoding="ISO-8859-1" indent="no" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl,v 1.3 2002-09-13 23:31:14 cjones Exp $
+     $Id: docbook.xsl,v 1.4 2002-09-30 21:08:29 berkley Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -59,6 +59,7 @@
 <xsl:include href="ebnf.xsl"/>
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
+<xsl:include href="literalLayout.xsl"/>
 
 <xsl:param name="html.stylesheet" select="'default.css'"/>
 <xsl:param name="stylesheet.result.type" select="'xhtml'"/>
