@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-30 21:20:10 $'
-      '$Revision: 1.40 $'
+          '$Date: 2002-09-30 21:58:37 $'
+      '$Revision: 1.41 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -463,12 +463,12 @@
       <itemizedlist>
         <listitem>
           <para>
-          IDs are required on all modules that extend resource.
+          IDs are required on the eml root element.
           </para>
         </listitem>
         <listitem>
           <para>
-          IDs are optional on all other modules.
+          IDs are optional on all other elements.
           </para>
         </listitem>
         <listitem>
@@ -492,9 +492,10 @@
         </listitem>
         <listitem>
           <para>
-          &quot;Local scope&quot; is defined as identifiers unique only to a
-          single instance document (if a document does not have a system or if
-          scope is set to 'local' then all ids are defined as distinct content).
+          &quot;Document scope&quot; is defined as identifiers unique only to a
+          single instance document (if a document does not have a system
+          attribute or if scope is set to 'document' then all ids are defined
+          as distinct content).
           </para>
         </listitem>
         <listitem>
@@ -519,7 +520,7 @@
           <para>
           The system and scope attribute are always optional except for at the
           'eml' module where the scope attribute is fixed as 'system'.  The scope
-          attribute defaults to 'local' for all other modules.
+          attribute defaults to 'document' for all other modules.
           </para>
         </listitem>
 
@@ -540,8 +541,8 @@
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
 
-  &lt;dataset&gt;
-    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+  &lt;dataset id="ds.1"&gt;
+    &lt;title&gt;Sample Dataset Description&lt;/title&gt;
     &lt;!-- the two creators have the same id.  this should be an error--&gt;
     &lt;creator id="23445" scope="document"&gt;
       &lt;individualName&gt;
@@ -557,6 +558,11 @@
   &lt;/dataset&gt;
 &lt;/eml:eml&gt;
             </literalLayout>
+            <section>
+              <para>This instance document is invalid because both creator
+              elements have the same id.  No two elements can have the
+              same string as an id.</para>
+            </section>
           </example>
           <example>
             <title>2</title>
@@ -569,8 +575,8 @@
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
 
-  &lt;dataset&gt;
-    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+  &lt;dataset id="ds.1"&gt;
+    &lt;title&gt;Sample Dataset Description&lt;/title&gt;
     &lt;creator id="23445" scope="document"&gt;
       &lt;individualName&gt;
         &lt;surName&gt;Smith&lt;/surName&gt;
@@ -588,6 +594,11 @@
   &lt;/dataset&gt;
 &lt;/eml:eml&gt;
             </literalLayout>
+            <section>
+              <para>This instance document is invalid because the contact
+              element references an id that does not exist. Any referenced
+              id must exist.</para>
+            </section>
           </example>
           <example>
             <title>3</title>
@@ -600,8 +611,8 @@
     xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
 
-  &lt;dataset&gt;
-    &lt;title&gt;Sample dataset Description&lt;/title&gt;
+  &lt;dataset id="ds.1"&gt;
+    &lt;title&gt;Sample Dataset Description&lt;/title&gt;
     &lt;creator id="23445" scope="document"&gt;
       &lt;individualName&gt;
         &lt;surName&gt;Smith&lt;/surName&gt;
@@ -619,18 +630,52 @@
   &lt;/dataset&gt;
 &lt;/eml:eml&gt;
             </literalLayout>
+            <section>
+              <para>This instance document is invalid because the contact
+              element both references another element and has an id itself.
+              If an element references another element, it may not have
+              an id.  This prevents circular references.</para>
+            </section>
           </example>
           <example>
             <title>4</title>
+            <literalLayout>
+&lt;?xml version="1.0"?&gt;
+&lt;eml:eml
+    packageId="eml.1.1" system="knb"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd"&gt;
+
+  &lt;dataset id="ds.1"&gt;
+    &lt;title&gt;Sample Dataset Description&lt;/title&gt;
+    &lt;creator id="23445" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Smith&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    &lt;creator id="23446" scope="document"&gt;
+      &lt;individualName&gt;
+        &lt;surName&gt;Smith&lt;/surName&gt;
+      &lt;/individualName&gt;
+    &lt;/creator&gt;
+    ...
+    &lt;contact&gt;
+      &lt;references&gt;23446&lt;/references&gt;
+    &lt;/contact&gt;
+    &lt;contact&gt;
+      &lt;references&gt;23445&lt;/references&gt;
+    &lt;/contact&gt;
+  &lt;/dataset&gt;
+&lt;/eml:eml&gt;
+            </literalLayout>
+            <section>
+              <para>This instance document is valid.  Each contact is
+              referencing one of the creators above and all the ids are
+              unique.</para>
+            </section>
           </example>
-        </section>
-        <section>
-          <title>Explanation</title>
-          <para><emphasis>This section is not yet complete.</emphasis>  But it
-          should contain:</para>
-          <para>
-            the explanation of the examples above
-          </para>
         </section>
       </section>
     </section>
