@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-17 18:06:18 $'
-  * '$Revision: 1.5 $'
+  *     '$Date: 2003-11-20 20:14:18 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -65,12 +65,22 @@
     <html>
       <head>
         <link rel="stylesheet" type="text/css"
-              href="{$stylePath}/{$qformat}/{$qformat}.css" />
+                href="{$stylePath}/{$qformat}/{$qformat}.css" />
+        <script language="Javascript" type="text/JavaScript"
+                src="{$stylePath}/{$qformat}/{$qformat}.js" />
+        <script language="Javascript" type="text/JavaScript"
+                src="{$styleCommonPath}/branding.js" />      
       </head>
       <body>
-        <table xsl:use-attribute-sets="cellspacing" width="100%">
+
+        <script language="JavaScript">insertTemplateOpening();</script> 
+        
+        <table xsl:use-attribute-sets="cellspacing" class="{$mainContainerTableStyle}">
         <xsl:apply-templates select="*[local-name()='eml']"/>
         </table>
+        
+        <script language="JavaScript">insertTemplateClosing();</script>
+        
       </body>
     </html>
    </xsl:template>
@@ -895,7 +905,7 @@
    <xsl:template name="additionalmetadataURL">
      <xsl:param name="index"/>
      <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$subHeaderStyle}">
+       <tr><td width="100%" class="{$linkedHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$index"/></xsl:attribute>
               <b>Additional Metadata</b></a>
            </td>
@@ -908,7 +918,7 @@
    <xsl:template name="xml">
      <xsl:param name="index"/>
      <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$subHeaderStyle}">
+       <tr><td width="100%" class="{$linkedHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
               <b>Original XML File</b></a>
            </td>

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 20:14:18 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -86,6 +86,23 @@
 <!--<xsl:param name="stylePath">@style-path@</xsl:param>-->
     <xsl:param name="stylePath">@style-path@</xsl:param> 
 
+<!--
+    /**
+    *   the path of the directory where the common javascript and css files 
+    *   reside - i.e the files that are not skin-specific. Starts
+    *   with context name, eg: /myContextRoot/styleCommonDirectory.
+    *   (As found in "http://hostname:port/myContextRoot/styleCommonDirectory").
+    *   Needs leading slash but not trailing slash
+    *
+    *   EXAMPLE:
+    *       <xsl:param name="styleCommonPath">/brooke/style/common</xsl:param>
+    */
+-->
+
+    <xsl:param name="styleCommonPath">/knb/style/common</xsl:param>     
+    
+    
+
 <!--the docid of xml which is processed-->
     <xsl:param name="docid"/>
 <!-- type of entity, data table or spacial raster or others-->
@@ -154,9 +171,16 @@
     */
 -->
 
+<!--    the style for main table that contains all the other display contents -->
+<xsl:param name="mainContainerTableStyle">mainContainerTable</xsl:param>
+    
 <!--    the style for major rows containing subsection titles etc. -->
   <xsl:param name="subHeaderStyle" select="'tablehead'"/>
 
+<!--    the style for major rows containing clickable subsection titles,
+        like "additional metadata" etc. -->
+  <xsl:param name="linkedHeaderStyle" select="'linkedHeaderStyle'"/>
+  
 <!--    the width for the first column (but see note above) -->
   <xsl:param name="firstColWidth" select="'15%'"/>
 
