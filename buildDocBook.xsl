@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                xmlns:doc="eml:documentation-2.0.0beta8" 
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 
 <xsl:template match="/">
-<xsl:text>
+<!--<xsl:text>
   <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
                     "file:///home/berkley/install/docbook/docbookx.dtd">
-</xsl:text>
+</xsl:text>-->
 <book>
   <bookinfo>
     <title>Guide to EML</title>
@@ -50,70 +51,66 @@
   
   <chapter label="Module Descriptions" id="moduleDescriptions">
     <title>Module Descriptions</title>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="//doc:moduleDocs"/>
   </chapter>
 </book>
 </xsl:template>
 
 <xsl:template match="doc:moduleDocs">
 <section>
-  <xsl:attribute name="id"><xsl:value-of 
-                 select="./doc:moduleName"/>
+  <xsl:attribute name="id">
+    <xsl:value-of select="./doc:moduleName"/>
   </xsl:attribute>
   <title><xsl:value-of select="./doc:moduleName"/></title>
   <itemizedlist>
     <listitem>
-      <para>
-        Recommended Usage: <xsl:value-of select="./doc:recommendedUsage"/>
-      </para>
+      <para>Recommended Usage: <xsl:value-of select="normalize-space(./doc:recommendedUsage)"/></para>
     </listitem>
     <listitem>
-      <para>
-        Stand-alone: <xsl:value-of select="./doc:standAlone"/>
-      </para>
+      <para>Stand-alone: <xsl:value-of select="normalize-space(./doc:standAlone)"/></para>
     </listitem>
+    <xsl:if test="count(./doc:importedBy) > 0">
     <listitem>
-      Imported By: 
-      <itemizedlist>
-        <xsl:apply-templates select="doc:importedBy"/>
-      </itemizedlist>
+      <para>Imported By:</para> 
+      <itemizedlist><xsl:apply-templates select="./doc:importedBy"/></itemizedlist>
     </listitem>
+    </xsl:if>
+    <xsl:if test="count(./doc:relationship) > 0">
     <listitem>
-      Relates To:
+      <para>Relates To:</para>
       <segmentedlist>
         <segtitle>related module</segtitle>
         <segtitle>relationship</segtitle>
-        <xsl:apply-templates select="doc:relationship"/>
+        <xsl:apply-templates select="./doc:relationship"/>
       </segmentedlist>
     </listitem>
-    <listitem
+    </xsl:if>
+    <listitem>
       <para>
         <ulink>
-          <xsl:attribute name="url">
-            file://../<xsl:value-of select="./doc:moduleName"/>.html
-          </xsl:attribute>
+          <xsl:attribute name="url">file://../<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
           Technical Specifications
         </ulink>
       </para>
-    </itemizedlist>
+    </listitem>
   </itemizedlist>
   <para>
-    <xsl:value-of select="./moduleDescription"/>
+    <xsl:value-of select="./doc:moduleDescription"/>
   </para>
 </section>
 </xsl:template>
 
 <xsl:template match="doc:relationship">
   <seglistitem>
-    <seg><xsl:value-of select="./moduleName"/></seg>
-    <seg><xsl:value-of select="./relationshipType"/></seg>
+    <seg><xsl:value-of select="normalize-space(./doc:moduleName)"/></seg>
+    <seg><xsl:value-of select="normalize-space(./doc:relationshipType)"/></seg>
   </seglistitem>
 </xsl:template>
 
 <xsl:template match="doc:importedBy">
   <listitem>
     <para>
-      <xsl:value-of select="."/>
+      <xsl:value-of select="normalize-space(.)"/>
     </para>
   </listitem>
 </xsl:template>
