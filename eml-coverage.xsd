@@ -1,4 +1,10 @@
-<?xml version="1.0"?><xs:schema targetNamespace="eml:coverage-2.0.0beta8" xmlns="eml:coverage-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:rp="eml:party-2.0.0beta8" xmlns:cit="eml:literature-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">  <xs:import namespace="eml:literature-2.0.0beta8" schemaLocation="eml-literature.xsd"/>  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>  <xs:import namespace="eml:party-2.0.0beta8" schemaLocation="eml-party.xsd"/>  <xs:annotation>    <xs:documentation>'$RCSfile: eml-coverage.xsd,v $' Copyright: 1997-2002
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:coverage-2.0.0beta8" xmlns="eml:coverage-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:rp="eml:party-2.0.0beta8" xmlns:cit="eml:literature-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:literature-2.0.0beta8" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml:party-2.0.0beta8" schemaLocation="eml-party.xsd"/>
+  <xs:annotation>
+    <xs:documentation>'$RCSfile: eml-coverage.xsd,v $' Copyright: 1997-2002
     Regents of the University of California, University of New Mexico, and
     Arizona State University Sponsors: National Center for Ecological
     Analysis and Synthesis and Partnership for Interdisciplinary Studies of
@@ -7,7 +13,7 @@
     Environmental Studies, Arizona State University Other funding: National
     Science Foundation (see README for details) The David and Lucile Packard
     Foundation For Details: http://knb.ecoinformatics.org/ '$Author: berkley
-    $' '$Date: 2002-06-10 21:22:37 $' '$Revision: 1.45 $' This program is
+    $' '$Date: 2002-06-10 23:27:10 $' '$Revision: 1.46 $' This program is
     free software; you can redistribute it and/or modify it under the terms
     of the GNU General Public License as published by the Free Software
     Foundation; either version 2 of the License, or (at your option) any
@@ -17,49 +23,156 @@
     Public License for more details. You should have received a copy of the
     GNU General Public License along with this program; if not, write to the
     Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-    02111-1307 USA</xs:documentation>    <xs:appinfo>      <doc:moduleDocs>        <doc:moduleName>eml-coverage</doc:moduleName>        <doc:moduleDescription>The eml-coverage module contains fields for
+    02111-1307 USA</xs:documentation>
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-coverage</doc:moduleName>
+        <doc:moduleDescription>The eml-coverage module contains fields for
         describing the coverage of a resource in terms of time, space, and
         taxonomy. These coverages (temporal, spatial, and taxonomic)
         represent the extent of applicability of the resource in those
-        domains.</doc:moduleDescription>        <doc:recommendedUsage>all datasets where spatial, temporal or
-        taxonomic coverage is important</doc:recommendedUsage>        <doc:standAlone>no</doc:standAlone>        <doc:importedBy>eml-attribute</doc:importedBy>        <doc:importedBy>eml-dataset</doc:importedBy>        <doc:importedBy>eml-dataTable</doc:importedBy>        <doc:importedBy>eml-entity</doc:importedBy>        <doc:importedBy>eml-project</doc:importedBy>        <doc:importedBy>eml-spatialGrid</doc:importedBy>        <doc:importedBy>eml-spatialImage</doc:importedBy>        <doc:importedBy>eml-spatialVector</doc:importedBy>      </doc:moduleDocs>    </xs:appinfo>  </xs:annotation>  <xs:complexType name="Coverage">    <xs:choice>      <xs:choice maxOccurs="unbounded">        <xs:element name="geographicCoverage" type="GeographicCoverage">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Geographic coverage</doc:tooltip>              <doc:summary>Geographic coverage information.</doc:summary>              <doc:description>Geographic Coverage is a container for
+        domains.</doc:moduleDescription>
+        <doc:recommendedUsage>all datasets where spatial, temporal or
+        taxonomic coverage is important</doc:recommendedUsage>
+        <doc:standAlone>no</doc:standAlone>
+        <doc:importedBy>eml-attribute</doc:importedBy>
+        <doc:importedBy>eml-dataset</doc:importedBy>
+        <doc:importedBy>eml-dataTable</doc:importedBy>
+        <doc:importedBy>eml-entity</doc:importedBy>
+        <doc:importedBy>eml-project</doc:importedBy>
+        <doc:importedBy>eml-spatialGrid</doc:importedBy>
+        <doc:importedBy>eml-spatialImage</doc:importedBy>
+        <doc:importedBy>eml-spatialVector</doc:importedBy>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexType name="Coverage">
+    <xs:choice>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="geographicCoverage" type="GeographicCoverage">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Geographic coverage</doc:tooltip>
+              <doc:summary>Geographic coverage information.</doc:summary>
+              <doc:description>Geographic Coverage is a container for
                   spatial information about a project, a resource, or an
                   entity within a resource. It allows a bounding box for the
                   overall coverage (in lat long), and also allows descriptin
-                  of arbitrary polygons with exclusions.</doc:description>              <doc:example>Please see the individual sub fields for
-                  specific examples.</doc:example>              <doc:lineage>The geographicCoverage element is derived from
-                  the NBII standard.</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="temporalCoverage" type="TemporalCoverage">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Temporal coverage</doc:tooltip>              <doc:summary>Temporal coverage information.</doc:summary>              <doc:description>This field specifies temporal coverage,
+                  of arbitrary polygons with exclusions.</doc:description>
+              <doc:example>Please see the individual sub fields for
+                  specific examples.</doc:example>
+              <doc:lineage>The geographicCoverage element is derived from
+                  the NBII standard.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="temporalCoverage" type="TemporalCoverage">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Temporal coverage</doc:tooltip>
+              <doc:summary>Temporal coverage information.</doc:summary>
+              <doc:description>This field specifies temporal coverage,
                   and allows coverages to be a single point in time, multiple
                   points in time, or a range of dates. Dates can be expressed
                   in tems of both calander dates and geologic dating
-                  systems.</doc:description>              <doc:example>Please see the individual sub fields for
-                  specific examples.</doc:example>              <doc:lineage>The TemporalCoverage complex type was
-                  introduced into EML 1.4.</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="taxonomicCoverage" type="TaxonomicCoverage">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Taxonomic coverage</doc:tooltip>              <doc:summary>Taxonomic coverage information.</doc:summary>              <doc:description>Taxonomic Coverage is a container for
+                  systems.</doc:description>
+              <doc:example>Please see the individual sub fields for
+                  specific examples.</doc:example>
+              <doc:lineage>The TemporalCoverage complex type was
+                  introduced into EML 1.4.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="taxonomicCoverage" type="TaxonomicCoverage">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxonomic coverage</doc:tooltip>
+              <doc:summary>Taxonomic coverage information.</doc:summary>
+              <doc:description>Taxonomic Coverage is a container for
                   Taxonomic information about a project, a resource, or an
                   entity within a resource. It includes a list of species
                   names (or higher level ranks) from one or more
-                  classification systems.</doc:description>              <doc:example>Please see the individual sub fields for
-                  specific examples.</doc:example>              <doc:lineage>The TaxonomicCoverage complex type was
+                  classification systems.</doc:description>
+              <doc:example>Please see the individual sub fields for
+                  specific examples.</doc:example>
+              <doc:lineage>The TaxonomicCoverage complex type was
                   introduced in EML 2 and derived from the NBII taxonomy
-                  element.</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>      </xs:choice>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>  </xs:complexType>  <xs:complexType name="TemporalCoverage">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Temporal coverage</doc:tooltip>        <doc:summary>Temporal coverage information.</doc:summary>        <doc:description>The temporal coverage fields are intended to be used
+                  element.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="TemporalCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Temporal coverage</doc:tooltip>
+        <doc:summary>Temporal coverage information.</doc:summary>
+        <doc:description>The temporal coverage fields are intended to be used
         in describing the date and time of an event. It allows for three
         general descriptions: a single date/time, multiple date/times, and a
-        range of date/times.</doc:description>        <doc:example>Please see the individual sub fields for specific
-        examples.</doc:example>        <doc:lineage>The TemporalCoverage complex type was introduced into
-        EML 1.4. From FGDC-STD-001.1-1999</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:choice>      <xs:choice>        <xs:element ref="singleDateTime" maxOccurs="unbounded"/>        <xs:element ref="rangeOfDates" maxOccurs="unbounded"/>      </xs:choice>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>  </xs:complexType>  <xs:element name="singleDateTime">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Single Date/Time</doc:tooltip>        <doc:summary>Means of encoding a single date and time</doc:summary>        <doc:description>The singleDateTime field is intended to describe a
+        range of date/times.</doc:description>
+        <doc:example>Please see the individual sub fields for specific
+        examples.</doc:example>
+        <doc:lineage>The TemporalCoverage complex type was introduced into
+        EML 1.4. From FGDC-STD-001.1-1999</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:choice>
+        <xs:element ref="singleDateTime" maxOccurs="unbounded"/>
+        <xs:element ref="rangeOfDates" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+  </xs:complexType>
+  <xs:element name="singleDateTime">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Single Date/Time</doc:tooltip>
+        <doc:summary>Means of encoding a single date and time</doc:summary>
+        <doc:description>The singleDateTime field is intended to describe a
         single date and time for an event. There is a choice between two
         options: a calendar date with a time, or a geologic
-        age.</doc:description>        <doc:example>Please see the individual sub-elements for
-        example.</doc:example>        <doc:lineage>FGDC-STD-001-1998:
-        /metadata/time_period_information/sngdate</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:complexType>      <xs:choice>        <xs:sequence>          <xs:element name="calendarDate" type="xs:date">            <xs:annotation>              <xs:appinfo>                <doc:tooltip>Calendar date</doc:tooltip>                <doc:summary>The calendar date for an event.</doc:summary>                <doc:description>The calendar date field is used to express a
+        age.</doc:description>
+        <doc:example>Please see the individual sub-elements for
+        example.</doc:example>
+        <doc:lineage>FGDC-STD-001-1998:
+        /metadata/time_period_information/sngdate</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice>
+        <xs:sequence>
+          <xs:element name="calendarDate" type="xs:date">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Calendar date</doc:tooltip>
+                <doc:summary>The calendar date for an event.</doc:summary>
+                <doc:description>The calendar date field is used to express a
                 date, giving the year, month, and day. The format should be
                 one that complies with the International Standards
                 Organization's standard 8601. The recommended format for EML
                 is YYYY-MM-DD, where Y is the four digit year, M is the two
                 digit month code (01 - 12, where January = 01), and D is the
-                two digit day of the month (01 - 31).</doc:description>                <doc:example>2001-01-01 , which is January 1st,
-                2001.</doc:example>                <doc:lineage>FGDC-STD-001-1998:
-                /metadata/time_period_information/sngdate/caldate</doc:lineage>              </xs:appinfo>            </xs:annotation>          </xs:element>          <xs:element name="time" type="xs:time" minOccurs="0">            <xs:annotation>              <xs:appinfo>                <doc:tooltip>Time of day</doc:tooltip>                <doc:summary>The time of day for an event.</doc:summary>                <doc:description>The time field is used to express the hour
+                two digit day of the month (01 - 31).</doc:description>
+                <doc:example>2001-01-01 , which is January 1st,
+                2001.</doc:example>
+                <doc:lineage>FGDC-STD-001-1998:
+                /metadata/time_period_information/sngdate/caldate</doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="time" type="xs:time" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Time of day</doc:tooltip>
+                <doc:summary>The time of day for an event.</doc:summary>
+                <doc:description>The time field is used to express the hour
                 (and optionally minute, or minute and second) of the day for
                 an event, and should comply with the International Standards
                 Organization's standard 8601. The recommended format for EML
@@ -75,22 +188,55 @@
                 which is "hh" hours and "mm" minutes ahead of UTC. A time
                 zone offset of "-hh:mm" indicates that the date/time uses a
                 local time zone which is "hh" hours and "mm" minutes behind
-                UTC.</doc:description>                <doc:example>1) 08:31:22Z , which means eight thirty one and
+                UTC.</doc:description>
+                <doc:example>1) 08:31:22Z , which means eight thirty one and
                 22 seconds in the morning at Coordinated Universal Time
                 (Greenwich Mean Time). 2) 14:06:09-08:00 , which means six
                 minutes, nine seconds past two o'clock p.m., Pacific Standard
-                Time (which is offset eight hours behind UTC)</doc:example>                <doc:lineage>FGDC-STD-001-1998:
-                /metadata/time_period_information/sngdate/time</doc:lineage>              </xs:appinfo>            </xs:annotation>          </xs:element>        </xs:sequence>        <xs:element ref="alternativeTimeScale"/>      </xs:choice>    </xs:complexType>  </xs:element>  <xs:element name="rangeOfDates">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Range of dates/times</doc:tooltip>        <doc:summary>Means of encoding a range of dates and
-        times.</doc:summary>        <doc:description>The 'rangeOfDates' field is intended to be used for
+                Time (which is offset eight hours behind UTC)</doc:example>
+                <doc:lineage>FGDC-STD-001-1998:
+                /metadata/time_period_information/sngdate/time</doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:element ref="alternativeTimeScale"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rangeOfDates">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Range of dates/times</doc:tooltip>
+        <doc:summary>Means of encoding a range of dates and
+        times.</doc:summary>
+        <doc:description>The 'rangeOfDates' field is intended to be used for
         describing a range of dates and/or times. It may be used multiple
         times to document multiple date ranges. It allows for two
         'singleDateTime' fields, the first to be used as the beginning
         dateTime, and the second to be used as the ending dateTime of the
-        range.</doc:description>        <doc:example>Please see the examples from the 'singleDateTime'ime'
-        field for specific examples.</doc:example>        <doc:lineage>FGDC-STD-001-1998:
-        /metadata/time_period_information/rngdates</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:complexType>      <xs:sequence>        <xs:element ref="singleDateTime"/>        <xs:element ref="singleDateTime"/>      </xs:sequence>    </xs:complexType>  </xs:element>  <xs:element name="alternativeTimeScale">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Alternative Time Scale</doc:tooltip>        <doc:summary>A name, code, or date describing an event or period in
+        range.</doc:description>
+        <doc:example>Please see the examples from the 'singleDateTime'ime'
+        field for specific examples.</doc:example>
+        <doc:lineage>FGDC-STD-001-1998:
+        /metadata/time_period_information/rngdates</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="singleDateTime"/>
+        <xs:element ref="singleDateTime"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="alternativeTimeScale">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Alternative Time Scale</doc:tooltip>
+        <doc:summary>A name, code, or date describing an event or period in
         an alternative time scale, such as one of the geologic time
-        scales.</doc:summary>        <doc:description>A name, code, or date describing an event or period
+        scales.</doc:summary>
+        <doc:description>A name, code, or date describing an event or period
         in an alternative time scale, for instance as an absolute date
         calculated using a named dating method, or as a relative date that is
         drawn from stratigraphy or biostratigraphy. Calendar dates as
@@ -108,19 +254,43 @@
         would be inaccurate to record absolute dates in situations where
         relative dates were measured. This structure is provided as an
         optional alternative to the standard calendar dates provided by ISO
-        8601.</doc:description>        <doc:example>Please see the individual sub-fields for specific
-        examples.</doc:example>        <doc:lineage>NBII FGDC-STD-001.1-1999:
-        /metadata/time_period_information/sngdate/geolage</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:complexType>      <xs:sequence>        <xs:element name="timeScaleName" type="xs:string">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>alternative time scale</doc:tooltip>              <doc:summary>Name of a recognized alternative time
-              scale.</doc:summary>              <doc:description>Name of a recognized alternative time scale.
+        8601.</doc:description>
+        <doc:example>Please see the individual sub-fields for specific
+        examples.</doc:example>
+        <doc:lineage>NBII FGDC-STD-001.1-1999:
+        /metadata/time_period_information/sngdate/geolage</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="timeScaleName" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>alternative time scale</doc:tooltip>
+              <doc:summary>Name of a recognized alternative time
+              scale.</doc:summary>
+              <doc:description>Name of a recognized alternative time scale.
               This includes 'Absolute' as the name of the time scale for
               measuring geologic dates before the present and names of
               geologic dating systems that are arrangements of symbols or
-              names in order of relative geologic time.</doc:description>              <doc:example>'Absolute', 'Geomagnetic Polarity Time Scale',
+              names in order of relative geologic time.</doc:description>
+              <doc:example>'Absolute', 'Geomagnetic Polarity Time Scale',
               'International Geological Time Scale',
-              'Oxygen-Isotope'</doc:example>              <doc:lineage>NBII FGDC-STD-001.1-1999:
-              /metadata/time_period_information/sngdate/geolage/geolscal</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="timeScaleAgeEstimate" type="xs:string">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Time scale age estimate</doc:tooltip>              <doc:summary/>              <doc:description>Either an absolute date or a relative age name
+              'Oxygen-Isotope'</doc:example>
+              <doc:lineage>NBII FGDC-STD-001.1-1999:
+              /metadata/time_period_information/sngdate/geolage/geolscal</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="timeScaleAgeEstimate" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Time scale age estimate</doc:tooltip>
+              <doc:summary/>
+              <doc:description>Either an absolute date or a relative age name
               describing an event or period in an alternative time scale such
-              as the Geologic Time Scale.</doc:description>              <doc:example>For example, '300 Ma' (300 million years before
+              as the Geologic Time Scale.</doc:description>
+              <doc:example>For example, '300 Ma' (300 million years before
               present) is a Geologic_Age_Estimate based on the Absolute
               Geologic_Time_Scale, 'C28r' is a chron name from the
               Geomagnetic Polarity Time Scale, and 'Maastrichtian' and
@@ -132,30 +302,93 @@
               'Danian' stages from the International Geological Time Scale,
               thus if you were documenting this event using the International
               Geological Time Scale, both 'Maastrichtian' and 'Danian' should
-              be included here.</doc:example>              <doc:lineage>NBII FGDC-STD-001.1-1999:
-              /metadata/time_period_information/sngdate/geolage/geolest</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="timeScaleAgeUncertainty" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Time scale age uncertainty</doc:tooltip>              <doc:summary>The error estimate for the alternative time
-              scale.</doc:summary>              <doc:description>The error estimate for the alternative time.
+              be included here.</doc:example>
+              <doc:lineage>NBII FGDC-STD-001.1-1999:
+              /metadata/time_period_information/sngdate/geolage/geolest</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="timeScaleAgeUncertainty" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Time scale age uncertainty</doc:tooltip>
+              <doc:summary>The error estimate for the alternative time
+              scale.</doc:summary>
+              <doc:description>The error estimate for the alternative time.
               This should include the units of measure, a description of what
               the error estimate represents and how it was
-              calculated.</doc:description>              <doc:example>+/- 5 Ma (Million Years)</doc:example>              <doc:lineage>NBII FGDC-STD-001.1-1999:
-              /metadata/time_period_information/sngdate/geolage/geolun</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="timeScaleAgeExplanation" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Time scale age explanation</doc:tooltip>              <doc:summary>The name and/or description of the method used to
-              calculate the time scale age estimate.</doc:summary>              <doc:description>The name and/or description of the method used
+              calculated.</doc:description>
+              <doc:example>+/- 5 Ma (Million Years)</doc:example>
+              <doc:lineage>NBII FGDC-STD-001.1-1999:
+              /metadata/time_period_information/sngdate/geolage/geolun</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="timeScaleAgeExplanation" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Time scale age explanation</doc:tooltip>
+              <doc:summary>The name and/or description of the method used to
+              calculate the time scale age estimate.</doc:summary>
+              <doc:description>The name and/or description of the method used
               to calculate the age estimate. Detailed information about the
               method may be provided through references contained in the Time
-              Scale Citation field.</doc:description>              <doc:example/>              <doc:lineage>NBII FGDC-STD-001.1-1999:
-              /metadata/time_period_information/sngdate/geolage/geolexpl</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="timeScaleCitation" minOccurs="0" maxOccurs="unbounded">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Time Scale citation</doc:tooltip>              <doc:summary>Citation for works providing detailed information
-              about any element of the time scale age.</doc:summary>              <doc:description>Citation for works providing detailed
+              Scale Citation field.</doc:description>
+              <doc:example/>
+              <doc:lineage>NBII FGDC-STD-001.1-1999:
+              /metadata/time_period_information/sngdate/geolage/geolexpl</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="timeScaleCitation" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Time Scale citation</doc:tooltip>
+              <doc:summary>Citation for works providing detailed information
+              about any element of the time scale age.</doc:summary>
+              <doc:description>Citation for works providing detailed
               information about any element of the time scale
-              age.</doc:description>              <doc:example>For example, a publication describing the
+              age.</doc:description>
+              <doc:example>For example, a publication describing the
               methodology used for carbon dating or describing the basic
               geologic time scale in more detail could be cited
-              here.</doc:example>              <doc:lineage>NBII FGDC-STD-001.1-1999:
-              /metadata/time_period_information/sngdate/geolage/geolcit</doc:lineage>            </xs:appinfo>          </xs:annotation>          <xs:complexType>            <xs:sequence>              <xs:element ref="cit:citation"/>            </xs:sequence>          </xs:complexType>        </xs:element>      </xs:sequence>    </xs:complexType>  </xs:element>  <xs:complexType name="GeographicCoverage">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Geographic coverage</doc:tooltip>        <doc:summary>Geographic coverage information.</doc:summary>        <doc:description>Geographic Coverage is a container for spatial
+              here.</doc:example>
+              <doc:lineage>NBII FGDC-STD-001.1-1999:
+              /metadata/time_period_information/sngdate/geolage/geolcit</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="cit:citation"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GeographicCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Geographic coverage</doc:tooltip>
+        <doc:summary>Geographic coverage information.</doc:summary>
+        <doc:description>Geographic Coverage is a container for spatial
         information about a a project, a resource, or an entity within a
-        resource.</doc:description>        <doc:example>Please see the individual sub-elements for specific
-        examples.</doc:example>        <doc:lineage>The GeographicCoverage complex type was derived from the
-        eml-entity module in EML 1.4.</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:choice>      <xs:sequence>        <xs:element name="geographicDescription" type="xs:string">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Description of geographic extent</doc:tooltip>              <doc:summary>Short description of the geographic areal domain
-              of the data set.</doc:summary>              <doc:description>A geographic extent description is especially
+        resource.</doc:description>
+        <doc:example>Please see the individual sub-elements for specific
+        examples.</doc:example>
+        <doc:lineage>The GeographicCoverage complex type was derived from the
+        eml-entity module in EML 1.4.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="geographicDescription" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Description of geographic extent</doc:tooltip>
+              <doc:summary>Short description of the geographic areal domain
+              of the data set.</doc:summary>
+              <doc:description>A geographic extent description is especially
               important when the extent of the data set is not well described
               by the "Bounding_Rectangle_Coordinates", or in the case of data
               which are not specifically geospatial, to provide a geographic
@@ -181,17 +414,28 @@
               standard data element "Place_Keyword" in that it allows a free
               text description of the geographic extent, rather than just a
               list of words or phrases useful as an index of location names
-              associated with the data set.</doc:description>              <doc:example>Examples include, "Manistee River watershed",
+              associated with the data set.</doc:description>
+              <doc:example>Examples include, "Manistee River watershed",
               "extent of 7 1/2 minute quads containing any property belonging
               to Yellowstone National Park", or "ponds and reservoirs larger
               than 2 acres in Jefferson County, Colorado". This is especially
               important when the extent of the data set is not well described
-              by the "Bounding_Rectangle_Coordinates".</doc:example>              <doc:lineage>FGDC-STD-001.1-1999
+              by the "Bounding_Rectangle_Coordinates".</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999
               /metadata/identification_information/spatial_domain/
-              description_of_geographic_extent</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="boundingCoordinates">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Bounding coordinates</doc:tooltip>              <doc:summary>The 4 points (latitude and longitude pairs) that
+              description_of_geographic_extent</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="boundingCoordinates">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Bounding coordinates</doc:tooltip>
+              <doc:summary>The 4 points (latitude and longitude pairs) that
               define a bounding box on the earth's surface. To define a
               single point, use the same point in both lat/lon
-              pairs.</doc:summary>              <doc:description>The limits of coverage of a data set expressed
+              pairs.</doc:summary>
+              <doc:description>The limits of coverage of a data set expressed
               by latitude and longitude values in the order western-most,
               eastern-most, northern-most, and southern-most. For data sets
               that include a complete band of latitude around the earth, the
@@ -201,12 +445,24 @@
               values for northBoundingCoordinate and southBoundingCoordinate,
               as well as the same value for westBoundingCoordinate and
               eastBoundingCoordinate. This will define the same lat/lon pairs
-              since all four are required.</doc:description>              <doc:example>Please see the individual sub-fields for specific
-              examples.</doc:example>              <doc:lineage>FGDC-STD-001.1-1999
+              since all four are required.</doc:description>
+              <doc:example>Please see the individual sub-fields for specific
+              examples.</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999
               /metadata/identification_information/spatial_domain/
-              bounding_coordinates</doc:lineage>            </xs:appinfo>          </xs:annotation>          <xs:complexType>            <xs:sequence>              <xs:element name="westBoundingCoordinate" type="xs:string">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>West bounding coordinate</doc:tooltip>                    <doc:summary>Western-most coordinate of the limit of
+              bounding_coordinates</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="westBoundingCoordinate" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>West bounding coordinate</doc:tooltip>
+                    <doc:summary>Western-most coordinate of the limit of
                     coverage for a bounding box, expressed in degrees of
-                    longitude.</doc:summary>                    <doc:description>The west bounding coordinate field
+                    longitude.</doc:summary>
+                    <doc:description>The west bounding coordinate field
                     defines the western-most point of the bounding box that
                     is being described. This longitude coordinate should be
                     expressed in decimal fractions of degrees. Whole degrees
@@ -227,11 +483,22 @@
                     last convention is permitted. For the special condition
                     of describing a band of latitude around the earth, the
                     East Bounding Coordinate data element shall be assigned
-                    the value +180 (180) degrees.</doc:description>                    <doc:example>'-118.25', '+25', '45.247'</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999
+                    the value +180 (180) degrees.</doc:description>
+                    <doc:example>'-118.25', '+25', '45.247'</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999
                     /metadata/identification_information/spatial_domain/
-                    bounding_coordinates/west_bounding_coordinate</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="eastBoundingCoordinate" type="xs:string">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>East bounding coordinate</doc:tooltip>                    <doc:summary>Eastern-most coordinate of the limit of
+                    bounding_coordinates/west_bounding_coordinate</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="eastBoundingCoordinate" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>East bounding coordinate</doc:tooltip>
+                    <doc:summary>Eastern-most coordinate of the limit of
                     coverage of a bounding box, expressed in degrees of
-                    longitude.</doc:summary>                    <doc:description>The east bounding coordinate field
+                    longitude.</doc:summary>
+                    <doc:description>The east bounding coordinate field
                     defines the eastern-most point of the bounding box that
                     is being described. This longitude coordinate should be
                     expressed in decimal fractions of degrees. Whole degrees
@@ -252,10 +519,21 @@
                     last convention is permitted. For the special condition
                     of describing a band of latitude around the earth, the
                     East Bounding Coordinate data element shall be assigned
-                    the value +180 (180) degrees.</doc:description>                    <doc:example>'-118.25', '+25', '45.247'</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999
+                    the value +180 (180) degrees.</doc:description>
+                    <doc:example>'-118.25', '+25', '45.247'</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999
                     /metadata/identification_information/spatial_domain/
-                    bounding_coordinates/east_bounding_coordinate</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="northBoundingCoordinate" type="xs:string">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>North bounding coordinate</doc:tooltip>                    <doc:summary>Northern-most coordinate of the limit of
-                    coverage expressed in latitude.</doc:summary>                    <doc:description>The north bounding coordinate field
+                    bounding_coordinates/east_bounding_coordinate</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="northBoundingCoordinate" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>North bounding coordinate</doc:tooltip>
+                    <doc:summary>Northern-most coordinate of the limit of
+                    coverage expressed in latitude.</doc:summary>
+                    <doc:description>The north bounding coordinate field
                     defines the northern-most point of the bounding box that
                     is being described. This latitude coordinate should be
                     expressed in decimal fractions of degrees. Whole degrees
@@ -273,10 +551,21 @@
                     assigned to the Northern Hemisphere. Any spatial address
                     with a latitude of +90 (90) or -90 degrees will specify
                     the position at the North or South Pole,
-                    respectively.</doc:description>                    <doc:example>'-18.44', '+44.35', '86'</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999
+                    respectively.</doc:description>
+                    <doc:example>'-18.44', '+44.35', '86'</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999
                     /metadata/identification_information/spatial_domain/
-                    bounding_coordinates/north_bounding_coordinate</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="southBoundingCoordinate" type="xs:string">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>South bounding coordinate</doc:tooltip>                    <doc:summary>Southern-most coordinate of the limit of
-                    coverage expressed in latitude.</doc:summary>                    <doc:description>The south bounding coordinate field
+                    bounding_coordinates/north_bounding_coordinate</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="southBoundingCoordinate" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>South bounding coordinate</doc:tooltip>
+                    <doc:summary>Southern-most coordinate of the limit of
+                    coverage expressed in latitude.</doc:summary>
+                    <doc:description>The south bounding coordinate field
                     defines the northern-most point of the bounding box that
                     is being described. This latitude coordinate should be
                     expressed in decimal fractions of degrees. Whole degrees
@@ -294,147 +583,478 @@
                     assigned to the Northern Hemisphere. Any spatial address
                     with a latitude of +90 (90) or -90 degrees will specify
                     the position at the North or South Pole,
-                    respectively.</doc:description>                    <doc:example>'-18.44', '+44.35', '86'</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999
+                    respectively.</doc:description>
+                    <doc:example>'-18.44', '+44.35', '86'</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999
                     /metadata/identification_information/spatial_domain/
-                    bounding_coordinates/south_bounding_coordinate</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="boundingAltitudes" minOccurs="0">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Bounding altitudes</doc:tooltip>                    <doc:summary>The limits of coverage of a data set
-                    expressed by altitude.</doc:summary>                    <doc:description>The bounding altitude field is intended
+                    bounding_coordinates/south_bounding_coordinate</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="boundingAltitudes" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Bounding altitudes</doc:tooltip>
+                    <doc:summary>The limits of coverage of a data set
+                    expressed by altitude.</doc:summary>
+                    <doc:description>The bounding altitude field is intended
                     to contain altitudinal (elevation) measurements in
                     relation to the bounding box being described. It allows
                     for minimum and maximum altitude fields, as well as a
                     field for the units of measure. The combination of these
                     fields provide the vertical extent information for the
                     bounding box. The units should refer to an accepted datum
-                    as the baseline.</doc:description>                    <doc:example>Please see the individual sub-fields for
-                    specific examples.</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999
+                    as the baseline.</doc:description>
+                    <doc:example>Please see the individual sub-fields for
+                    specific examples.</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999
                     /metadata/identification_information/spatial_domain/
-                    bounding_coordinates/bounding_altitudes</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:sequence>                    <xs:element name="altitudeMinimum" type="xs:string">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Minimum altitude</doc:tooltip>                          <doc:summary>The minimum altitude extent of
-                          coverage.</doc:summary>                          <doc:description>The minimum altitude extent of
+                    bounding_coordinates/bounding_altitudes</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="altitudeMinimum" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Minimum altitude</doc:tooltip>
+                          <doc:summary>The minimum altitude extent of
+                          coverage.</doc:summary>
+                          <doc:description>The minimum altitude extent of
                           coverage for the bounding box that is being
                           described. The minimum altitude should be in
                           reference to a known datum, which should be
                           described in the altitude units
-                          field.</doc:description>                          <doc:example>'12', '100.6' (e.g meters above Mean
-                          Lowest Low Water)</doc:example>                          <doc:lineage>FGDC-STD-001.1-1999
+                          field.</doc:description>
+                          <doc:example>'12', '100.6' (e.g meters above Mean
+                          Lowest Low Water)</doc:example>
+                          <doc:lineage>FGDC-STD-001.1-1999
                           /metadata/identification_information/spatial_domain/
                           bounding_coordinates/bounding_altitudes/
-                          altitude_minimum</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                    <xs:element name="altitudeMaximum" type="xs:string">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Maximum altitude</doc:tooltip>                          <doc:summary>The maximum altitude extent of
-                          coverage.</doc:summary>                          <doc:description>The maximum altitude extent of
+                          altitude_minimum</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="altitudeMaximum" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Maximum altitude</doc:tooltip>
+                          <doc:summary>The maximum altitude extent of
+                          coverage.</doc:summary>
+                          <doc:description>The maximum altitude extent of
                           coverage for the bounding box that is being
                           described. The maximum altitude should be in
                           reference to a known datum, which should be
                           described in the altitude units
-                          field.</doc:description>                          <doc:example>'12', '100.6' (e.g meters above Mean
-                          Lowest Low Water)</doc:example>                          <doc:lineage>FGDC-STD-001.1-1999
+                          field.</doc:description>
+                          <doc:example>'12', '100.6' (e.g meters above Mean
+                          Lowest Low Water)</doc:example>
+                          <doc:lineage>FGDC-STD-001.1-1999
                           /metadata/identification_information/spatial_domain/
                           bounding_coordinates/bounding_altitudes/
-                          altitude_maximum</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                    <xs:element name="altitudeUnits" type="xs:string">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Units of altitude</doc:tooltip>                          <doc:summary>Units in which altitude is
-                          measured.</doc:summary>                          <doc:description>Units in which altitude is
+                          altitude_maximum</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="altitudeUnits" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Units of altitude</doc:tooltip>
+                          <doc:summary>Units in which altitude is
+                          measured.</doc:summary>
+                          <doc:description>Units in which altitude is
                           measured. This field should be in relation to a
                           known datum which is described in the
-                          units.</doc:description>                          <doc:example>Meters (above Mean Lowest Low
-                          Water)</doc:example>                          <doc:lineage>FGDC-STD-001.1-1999
+                          units.</doc:description>
+                          <doc:example>Meters (above Mean Lowest Low
+                          Water)</doc:example>
+                          <doc:lineage>FGDC-STD-001.1-1999
                           /metadata/identification_information/spatial_domain/
                           bounding_coordinates/bounding_altitudes/
-                          altitude_distance_units</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                  </xs:sequence>                </xs:complexType>              </xs:element>            </xs:sequence>          </xs:complexType>        </xs:element>        <xs:element name="datasetGPolygon" minOccurs="0" maxOccurs="unbounded">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Polygon data set</doc:tooltip>              <doc:summary>Data Set G-Polygon coordinates defining the
-              outline of an area covered by a data set.</doc:summary>              <doc:description>Data Set G-Polygon coordinates defining the
-              outline of an area covered by a data set.</doc:description>              <doc:example>Please see the individual sub-fields for specific
-              examples.</doc:example>              <doc:lineage>FGDC-STD-001-1998:
+                          altitude_distance_units</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="datasetGPolygon" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Polygon data set</doc:tooltip>
+              <doc:summary>Data Set G-Polygon coordinates defining the
+              outline of an area covered by a data set.</doc:summary>
+              <doc:description>Data Set G-Polygon coordinates defining the
+              outline of an area covered by a data set.</doc:description>
+              <doc:example>Please see the individual sub-fields for specific
+              examples.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
-              dataset_g_polygon</doc:lineage>            </xs:appinfo>          </xs:annotation>          <xs:complexType>            <xs:sequence>              <xs:element name="datasetGPolygonOuterGRing">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Outer polygon</doc:tooltip>                    <doc:summary/>                    <doc:description>Data Set G-Polygon Outer G-Ring, the
+              dataset_g_polygon</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="datasetGPolygonOuterGRing">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Outer polygon</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Data Set G-Polygon Outer G-Ring, the
                     closed nonintersecting boundary of an interior
-                    area.</doc:description>                    <doc:example/>                    <doc:lineage>FGDC-STD-001-1998:
+                    area.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
-                    dataset_g_polygon/dataset_g_polygon_outer_g_ring</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:choice>                    <xs:sequence>                      <xs:element ref="gRingPoint" minOccurs="3" maxOccurs="unbounded"/>                    </xs:sequence>                    <xs:element ref="gRing"/>                  </xs:choice>                </xs:complexType>              </xs:element>              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0" maxOccurs="unbounded">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Exclusion polygon</doc:tooltip>                    <doc:summary/>                    <doc:description>Data Set G-Polygon Exclusion G-Ring, the
+                    dataset_g_polygon/dataset_g_polygon_outer_g_ring</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:sequence>
+                      <xs:element ref="gRingPoint" minOccurs="3" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:element ref="gRing"/>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="datasetGPolygonExclusionGRing" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Exclusion polygon</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Data Set G-Polygon Exclusion G-Ring, the
                     closed nonintersecting boundary of a void area (or hole
-                    in an interior area).</doc:description>                    <doc:example/>                    <doc:lineage>FGDC-STD-001-1998:
+                    in an interior area).</doc:description>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
-                    dataset_g_polygon/dataset_g_polygon_exclusion_g_ring</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:choice>                    <xs:element ref="gRingPoint" maxOccurs="unbounded"/>                    <xs:element ref="gRing"/>                  </xs:choice>                </xs:complexType>              </xs:element>            </xs:sequence>          </xs:complexType>        </xs:element>      </xs:sequence>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>  </xs:complexType>  <xs:element name="gRingPoint">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>G-Ring point</doc:tooltip>        <doc:summary/>        <doc:description>A single geographic location.</doc:description>        <doc:example/>        <doc:lineage>FGDC-STD-001-1998:
+                    dataset_g_polygon/dataset_g_polygon_exclusion_g_ring</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element ref="gRingPoint" maxOccurs="unbounded"/>
+                    <xs:element ref="gRing"/>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+  </xs:complexType>
+  <xs:element name="gRingPoint">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>G-Ring point</doc:tooltip>
+        <doc:summary/>
+        <doc:description>A single geographic location.</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
-        dataset_g_polygon/g_ring_point</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:complexType>      <xs:sequence>        <xs:element name="gRingLatitude" type="xs:string">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>G-Ring Latitude</doc:tooltip>              <doc:summary/>              <doc:description>The latitude of a point of the
-              g-ring.</doc:description>              <doc:example/>              <doc:lineage>FGDC-STD-001-1998:
+        dataset_g_polygon/g_ring_point</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="gRingLatitude" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>G-Ring Latitude</doc:tooltip>
+              <doc:summary/>
+              <doc:description>The latitude of a point of the
+              g-ring.</doc:description>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
-              g_ring_latitude</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="gRingLongitude" type="xs:string">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>G-Ring Longitude</doc:tooltip>              <doc:summary/>              <doc:description>The longitude of a point of the
-              g-ring.</doc:description>              <doc:example/>              <doc:lineage>FGDC-STD-001-1998:
+              g_ring_latitude</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="gRingLongitude" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>G-Ring Longitude</doc:tooltip>
+              <doc:summary/>
+              <doc:description>The longitude of a point of the
+              g-ring.</doc:description>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
-              g_ring_longitude</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>      </xs:sequence>    </xs:complexType>  </xs:element>  <xs:element name="gRing" type="xs:string">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>G-Ring</doc:tooltip>        <doc:summary/>        <doc:description>A set of ordered pairs of floating-point numbers,
+              g_ring_longitude</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="gRing" type="xs:string">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>G-Ring</doc:tooltip>
+        <doc:summary/>
+        <doc:description>A set of ordered pairs of floating-point numbers,
         separated by commas, in which the first number in each pair is the
         longitude of a point and the second is the latitude of the point.
         Longitude and latitude are specified in decimal degrees with north
         latitudes positive and south negative, east longitude positive and
-        west negative</doc:description>        <doc:example/>        <doc:lineage>FGDC-STD-001-1998:
+        west negative</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
-        dataset_g_polygon/g_ring</doc:lineage>      </xs:appinfo>    </xs:annotation>  </xs:element>  <xs:complexType name="TaxonomicCoverage">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Taxonomic coverage</doc:tooltip>        <doc:summary>Taxonomic coverage information.</doc:summary>        <doc:description>Taxonomic Coverage is a container for taxonomic
+        dataset_g_polygon/g_ring</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="TaxonomicCoverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Taxonomic coverage</doc:tooltip>
+        <doc:summary>Taxonomic coverage information.</doc:summary>
+        <doc:description>Taxonomic Coverage is a container for taxonomic
         information about a a project, a resource, or an entity within a
-        resource.</doc:description>        <doc:example>Please see the individual sub-fields for specific
-        examples.</doc:example>        <doc:lineage>The TaxonomicCoverage complex type was introduced in EML
-        2 and derived from the NBII taxonomy element.</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:choice>      <xs:sequence>        <xs:element name="taxonomicSystem" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Taxonomic system</doc:tooltip>              <doc:summary>Documentation of taxonomic sources, procedures,
-              and treatments.</doc:summary>              <doc:description>Documentation of taxonomic sources,
-              procedures, and treatments.</doc:description>              <doc:example/>              <doc:lineage>FGDC-STD-001.1-1999:
-              /metadata/identification_information/taxonomy/taxonomic_system</doc:lineage>            </xs:appinfo>          </xs:annotation>          <xs:complexType>            <xs:sequence>              <xs:element name="classificationSystem" maxOccurs="unbounded">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Classification
-                    system/authority</doc:tooltip>                    <doc:summary>Information about the classification system
-                    or authority used.</doc:summary>                    <doc:description>Information about the classification
-                    system or authority used.</doc:description>                    <doc:example>Flora of North America</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999:
+        resource.</doc:description>
+        <doc:example>Please see the individual sub-fields for specific
+        examples.</doc:example>
+        <doc:lineage>The TaxonomicCoverage complex type was introduced in EML
+        2 and derived from the NBII taxonomy element.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="taxonomicSystem" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxonomic system</doc:tooltip>
+              <doc:summary>Documentation of taxonomic sources, procedures,
+              and treatments.</doc:summary>
+              <doc:description>Documentation of taxonomic sources,
+              procedures, and treatments.</doc:description>
+              <doc:example/>
+              <doc:lineage>FGDC-STD-001.1-1999:
+              /metadata/identification_information/taxonomy/taxonomic_system</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="classificationSystem" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Classification
+                    system/authority</doc:tooltip>
+                    <doc:summary>Information about the classification system
+                    or authority used.</doc:summary>
+                    <doc:description>Information about the classification
+                    system or authority used.</doc:description>
+                    <doc:example>Flora of North America</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/classification_system_authority</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:sequence>                    <xs:element name="classificationSystemCitation">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Taxonomic citation</doc:tooltip>                          <doc:summary/>                          <doc:description>Relevant literature for
+                    taxonomic_system/classification_system_authority</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="classificationSystemCitation">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Taxonomic citation</doc:tooltip>
+                          <doc:summary/>
+                          <doc:description>Relevant literature for
                           documenting the used classification
-                          system.</doc:description>                          <doc:example/>                          <doc:lineage>FGDC-STD-001.1-1999:
+                          system.</doc:description>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
-                          classification_system_citation</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                      <xs:complexType>                        <xs:sequence>                          <xs:element ref="cit:citation"/>                        </xs:sequence>                      </xs:complexType>                    </xs:element>                    <xs:element name="classificationSystemModifications" type="xs:string" minOccurs="0">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Classification system
-                          modification</doc:tooltip>                          <doc:summary/>                          <doc:description>A description of any modifications
+                          classification_system_citation</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="cit:citation"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="classificationSystemModifications" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Classification system
+                          modification</doc:tooltip>
+                          <doc:summary/>
+                          <doc:description>A description of any modifications
                           or exceptions made to the classification system or
-                          authority used.</doc:description>                          <doc:example/>                          <doc:lineage>FGDC-STD-001.1-1999:
+                          authority used.</doc:description>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
-                          classification_system_modifications</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                  </xs:sequence>                </xs:complexType>              </xs:element>              <xs:element name="identificationReference" minOccurs="0" maxOccurs="unbounded">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Non-authoritative citation</doc:tooltip>                    <doc:summary/>                    <doc:description>Information on any nonauthoritative
+                          classification_system_modifications</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="identificationReference" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Non-authoritative citation</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Information on any nonauthoritative
                     materials (e.g. field guides) useful for reconstructing
-                    the actual identification process.</doc:description>                    <doc:example/>                    <doc:lineage>FGDC-STD-001.1-1999:
+                    the actual identification process.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/identification_reference</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:sequence>                    <xs:element ref="cit:citation"/>                  </xs:sequence>                </xs:complexType>              </xs:element>              <xs:element name="identifierName" maxOccurs="unbounded">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Identifier's Name</doc:tooltip>                    <doc:summary/>                    <doc:description>Information about the individual(s)
+                    taxonomic_system/identification_reference</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="cit:citation"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="identifierName" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Identifier's Name</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Information about the individual(s)
                     responsible for the identification(s) of the specimens or
-                    sightings, etc.</doc:description>                    <doc:example/>                    <doc:lineage>FGDC-STD-001.1-1999:
+                    sightings, etc.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/identifier</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:sequence>                    <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Originator</doc:tooltip>                          <doc:summary>A person or organization asociated
-                          with this resource.</doc:summary>                          <doc:description>The 'originator' element provides
+                    taxonomic_system/identifier</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Originator</doc:tooltip>
+                          <doc:summary>A person or organization asociated
+                          with this resource.</doc:summary>
+                          <doc:description>The 'originator' element provides
                           the full name of the person, organization, or
                           position associated with the resource. Typically,
                           the originator role is set to "owner" to indicate
                           the list of parties who "own" the resource, but
                           other roles such as "principal investigator",
                           "author", and "editor" are
-                          provided.</doc:description>                          <doc:example>Please see the examples within the sub
-                          fields for the responsible party.</doc:example>                          <doc:lineage>This element was derived from elements
+                          provided.</doc:description>
+                          <doc:example>Please see the examples within the sub
+                          fields for the responsible party.</doc:example>
+                          <doc:lineage>This element was derived from elements
                           described in the FGDC-STD-001.1-1999 standard
-                          (nbii-fgdc-std-001.1-1999)</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                  </xs:sequence>                </xs:complexType>              </xs:element>              <xs:element name="taxonomicProcedures" type="xs:string">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Taxonomic procedures</doc:tooltip>                    <doc:summary/>                    <doc:description>Description of the methods used for the
-                    taxonomic identification.</doc:description>                    <doc:example>specimen processing, comparison with museum
+                          (nbii-fgdc-std-001.1-1999)</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="taxonomicProcedures" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Taxonomic procedures</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Description of the methods used for the
+                    taxonomic identification.</doc:description>
+                    <doc:example>specimen processing, comparison with museum
                     materials, keys and key characters, chemical or genetic
-                    analyses</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999:
+                    analyses</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/taxonomic_procedures</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="taxonomicCompleteness" type="xs:string" minOccurs="0">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Taxonomic completeness</doc:tooltip>                    <doc:summary/>                    <doc:description>Information concerning the proportions
+                    taxonomic_system/taxonomic_procedures</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="taxonomicCompleteness" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Taxonomic completeness</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Information concerning the proportions
                     and treatment of unidentified materials ; estimates of
                     the importance, and identities of misidentifications,
                     uncertain determinations, synonyms or other incorrect
                     usages; taxa not well treated or requiring further work;
-                    and expertise of field workers.</doc:description>                    <doc:example>materials sent to experts, and not yet
-                    determined</doc:example>                    <doc:lineage>FGDC-STD-001.1-1999:
+                    and expertise of field workers.</doc:description>
+                    <doc:example>materials sent to experts, and not yet
+                    determined</doc:example>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/taxonomic_completeness</doc:lineage>                  </xs:appinfo>                </xs:annotation>              </xs:element>              <xs:element name="vouchers" minOccurs="0" maxOccurs="unbounded">                <xs:annotation>                  <xs:appinfo>                    <doc:tooltip>Specimen information</doc:tooltip>                    <doc:summary/>                    <doc:description>Information on the types of specimen,
+                    taxonomic_system/taxonomic_completeness</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="vouchers" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Specimen information</doc:tooltip>
+                    <doc:summary/>
+                    <doc:description>Information on the types of specimen,
                     the repository, and the individuals who identified the
-                    vouchers.</doc:description>                    <doc:example/>                    <doc:lineage>FGDC-STD-001.1-1999:
+                    vouchers.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
-                    taxonomic_system/vouchers</doc:lineage>                  </xs:appinfo>                </xs:annotation>                <xs:complexType>                  <xs:sequence>                    <xs:element name="specimen" type="xs:string">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Specimen type</doc:tooltip>                          <doc:summary/>                          <doc:description>A word or phrase describing the
-                          type of specimen collected.</doc:description>                          <doc:example>herbarium specimens, blood samples,
-                          photographs, individuals, or batches</doc:example>                          <doc:lineage>FGDC-STD-001.1-1999:
+                    taxonomic_system/vouchers</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="specimen" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Specimen type</doc:tooltip>
+                          <doc:summary/>
+                          <doc:description>A word or phrase describing the
+                          type of specimen collected.</doc:description>
+                          <doc:example>herbarium specimens, blood samples,
+                          photographs, individuals, or batches</doc:example>
+                          <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
-                          taxonomic_system/vouchers/specimen</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                    </xs:element>                    <xs:element name="repository">                      <xs:annotation>                        <xs:appinfo>                          <doc:tooltip>Storage location of
-                          specimen</doc:tooltip>                          <doc:summary/>                          <doc:description>Information about the curator or
+                          taxonomic_system/vouchers/specimen</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="repository">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Storage location of
+                          specimen</doc:tooltip>
+                          <doc:summary/>
+                          <doc:description>Information about the curator or
                           contact person and/or agency responsible for the
-                          specimens.</doc:description>                          <doc:example/>                          <doc:lineage>FGDC-STD-001.1-1999:
+                          specimens.</doc:description>
+                          <doc:example/>
+                          <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
-                          taxonomic_system/vouchers/repository</doc:lineage>                        </xs:appinfo>                      </xs:annotation>                      <xs:complexType>                        <xs:sequence>                          <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">                            <xs:annotation>                              <xs:appinfo>                                <doc:tooltip>Originator</doc:tooltip>                                <doc:summary>A person or organization
-                                asociated with this resource.</doc:summary>                                <doc:description>The 'originator' element
+                          taxonomic_system/vouchers/repository</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Originator</doc:tooltip>
+                                <doc:summary>A person or organization
+                                asociated with this resource.</doc:summary>
+                                <doc:description>The 'originator' element
                                 provides the full name of the person,
                                 organization, or position associated with the
                                 resource. Typically, the originator role is
@@ -442,19 +1062,56 @@
                                 parties who "own" the resource, but other
                                 roles such as "principal investigator",
                                 "author", and "editor" are
-                                provided.</doc:description>                                <doc:example>Please see the examples within
+                                provided.</doc:description>
+                                <doc:example>Please see the examples within
                                 the sub fields for the responsible
-                                party.</doc:example>                                <doc:lineage>This element was derived from
+                                party.</doc:example>
+                                <doc:lineage>This element was derived from
                                 elements described in the FGDC-STD-001.1-1999
                                 standard
-                                (nbii-fgdc-std-001.1-1999)</doc:lineage>                              </xs:appinfo>                            </xs:annotation>                          </xs:element>                        </xs:sequence>                      </xs:complexType>                    </xs:element>                  </xs:sequence>                </xs:complexType>              </xs:element>            </xs:sequence>          </xs:complexType>        </xs:element>        <xs:element name="generalTaxonomicCoverage" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>General taxonomic coverage</doc:tooltip>              <doc:summary>A description of the range of taxa addressed in
-              the data set or collection.</doc:summary>              <doc:description>A description of the range of taxa addressed
-              in the data set or collection.</doc:description>              <doc:example>"All vascular plants were identified to family or
+                                (nbii-fgdc-std-001.1-1999)</doc:lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="generalTaxonomicCoverage" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>General taxonomic coverage</doc:tooltip>
+              <doc:summary>A description of the range of taxa addressed in
+              the data set or collection.</doc:summary>
+              <doc:description>A description of the range of taxa addressed
+              in the data set or collection.</doc:description>
+              <doc:example>"All vascular plants were identified to family or
               species, mosses and lichens were identified as moss or
-              lichen."</doc:example>              <doc:lineage>FGDC-STD-001.1-1999:
+              lichen."</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/
-              general_taxonomic_coverage</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element ref="taxonomicClassification" maxOccurs="unbounded"/>      </xs:sequence>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>  </xs:complexType>  <xs:element name="taxonomicClassification">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Taxonomic classification</doc:tooltip>        <doc:summary>Information about the range of taxa addressed in the
-        data set or collection.</doc:summary>        <doc:description>Information about the range of taxa addressed in the
+              general_taxonomic_coverage</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="taxonomicClassification" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
+  </xs:complexType>
+  <xs:element name="taxonomicClassification">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Taxonomic classification</doc:tooltip>
+        <doc:summary>Information about the range of taxa addressed in the
+        data set or collection.</doc:summary>
+        <doc:description>Information about the range of taxa addressed in the
         data set or collection. It is recommended that one provide
         information starting from the taxonomic rank of kingdom, to a level
         which reflects the data set or collection being documented. The
@@ -462,35 +1119,79 @@
         Species should be included as ranks as appropriate. Because the
         taxonomic ranks are hierarchical, the Taxonomic Classification field
         is self-referencing to allow for an arbitrary depth of rank, down to
-        species.</doc:description>        <doc:example>The Taxonomic Classification field consists of a
+        species.</doc:description>
+        <doc:example>The Taxonomic Classification field consists of a
         sequence of 4 fields: taxonomic rank, taxonomic rank value, common
         name, and finally Taxonomic Classification (self-referencing). Please
-        see the sub-fields for specific examples.</doc:example>        <doc:lineage>FGDC-STD-001.1-1999:
+        see the sub-fields for specific examples.</doc:example>
+        <doc:lineage>FGDC-STD-001.1-1999:
         /metadata/identification_information/taxonomy/
-        taxonomic_classification</doc:lineage>      </xs:appinfo>    </xs:annotation>    <xs:complexType>      <xs:sequence>        <xs:element name="taxonRankName" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Taxon rank name</doc:tooltip>              <doc:summary>The name of the taxonomic rank for which the Taxon
-              rank value is provided.</doc:summary>              <doc:description>The name of the taxonomic rank for which the
+        taxonomic_classification</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="taxonRankName" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxon rank name</doc:tooltip>
+              <doc:summary>The name of the taxonomic rank for which the Taxon
+              rank value is provided.</doc:summary>
+              <doc:description>The name of the taxonomic rank for which the
               Taxon rank value is provided. This field allows for the name
-              one of the accepted levels of Taxa.</doc:description>              <doc:example>'Kingdom', 'Division/Phylum', 'Class', 'Order',
-              'Family', 'Genus', and 'Species'</doc:example>              <doc:lineage>FGDC-STD-001.1-1999:
+              one of the accepted levels of Taxa.</doc:description>
+              <doc:example>'Kingdom', 'Division/Phylum', 'Class', 'Order',
+              'Family', 'Genus', and 'Species'</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/
-              taxonomic_classification/taxon_rank_name</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="taxonRankValue" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Taxon rank value</doc:tooltip>              <doc:summary>The name representing the taxonomic rank of the
-              taxon being described.</doc:summary>              <doc:description>The name representing the taxonomic rank of
+              taxonomic_classification/taxon_rank_name</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="taxonRankValue" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxon rank value</doc:tooltip>
+              <doc:summary>The name representing the taxonomic rank of the
+              taxon being described.</doc:summary>
+              <doc:description>The name representing the taxonomic rank of
               the taxon being described. The values included may be
               referenced from an authoritative source such as the Integrated
               Taxonomic Information Sytem (ITIS)in the U.S.
               (http://www/itis.usda.gov) and in Canada
               (http://sis.agr.gc.ca/pls/itisca/taxaget). Also, Species2000 is
               another source of taxonomic information, found at
-              (http://www.sp2000.org)</doc:description>              <doc:example>Acer would be an example of a genus rank value,
+              (http://www.sp2000.org)</doc:description>
+              <doc:example>Acer would be an example of a genus rank value,
               and rubrum would be an example of a species rank value,
               together indicating the common name of red maple. It is
               recommended to start with Kingdom and include ranks down to the
-              most detailed level possible.</doc:example>              <doc:lineage>FGDC-STD-001.1-1999:
+              most detailed level possible.</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/
-              taxonomic_classification/taxon_rank_value</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="commonName" type="xs:string" minOccurs="0" maxOccurs="unbounded">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Common name</doc:tooltip>              <doc:summary>Specification of applicable common
-              names.</doc:summary>              <doc:description>Specification of applicable common names.
+              taxonomic_classification/taxon_rank_value</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="commonName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Common name</doc:tooltip>
+              <doc:summary>Specification of applicable common
+              names.</doc:summary>
+              <doc:description>Specification of applicable common names.
               These common names may be general descriptions of a group of
-              organisms if appropriate.</doc:description>              <doc:example>insects, vertebrate, grasses, waterfowl, vascular
-              plants, red maple.</doc:example>              <doc:lineage>FGDC-STD-001.1-1999:
+              organisms if appropriate.</doc:description>
+              <doc:example>insects, vertebrate, grasses, waterfowl, vascular
+              plants, red maple.</doc:example>
+              <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/
-              taxonomic_classification/applicable_common_name</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element ref="taxonomicClassification" minOccurs="0" maxOccurs="unbounded"/>      </xs:sequence>    </xs:complexType>  </xs:element></xs:schema>
+              taxonomic_classification/applicable_common_name</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="taxonomicClassification" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
