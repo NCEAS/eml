@@ -17,9 +17,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.40 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-28 21:30:23 $'
+      '$Revision: 1.41 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -976,7 +976,7 @@
         </xs:appinfo>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="scope" type="ScopeType" use="required" default="system"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" default="system"/>
   </xs:complexType>
   <!-- The keyword type domain take directly from ISO -->
   <xs:simpleType name="KeyTypCode">
