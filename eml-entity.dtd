@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2001-03-28 17:18:16 $'
-      '$Revision: 1.6 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-28 21:04:14 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,8 +37,7 @@
 <!ELEMENT entity (entityName, entitySize?, entityFormat, compressionMethod?,
                   endocingMethod?, recordDelimeter?,
                   quoteCharacter?, orientation?, numHeaderLines?,
-                  caseSensitive?, geographicCoverage*, temporalCoverage*,
-                  authentication*, dataProblem*)>
+                  caseSensitive?, authentication*, dataProblem*)>
 
 <!-- Entity name-->
 <!ELEMENT entityName (#PCDATA) >
@@ -72,41 +71,6 @@
 <!ELEMENT caseSensitive EMPTY >
 <!ATTLIST caseSensitive yesorno (yes|no) "no">
  
-<!-- Geographic coverage -->
-<!ELEMENT geographicCoverage (paragraph*, coordinates*)>
-<!-- Cartesian Coordinates -->
-<!ELEMENT coordinates (latitude, longitude) >
-<!ELEMENT latitude (#PCDATA)>
-<!ATTLIST latitude direction (north|south) #REQUIRED>
-<!ELEMENT longitude (#PCDATA)>
-<!ATTLIST longitude direction (east|west) #REQUIRED>
-
-<!-- Temporal coverage -->
-<!ENTITY % temporalCoverage "(startDate,stopDate?)">
-<!-- Date data collection commenced -->
-<!ELEMENT startDate (dateTime)>
-<!-- Date and time as designated in ISO 8601 -->
-<!ELEMENT dateTime (year?, month?, day?, hour?, minute?, second?, 
-                    second_fraction?, time_zone_designator?)>
-<!-- Year in YYYY format -->
-<!ELEMENT year (#PCDATA)>
-<!-- Month in MM format -->
-<!ELEMENT month (#PCDATA)>
-<!-- Day of month in DD format -->
-<!ELEMENT day (#PCDATA)>
-<!-- Hour in hh -->
-<!ELEMENT hour (#PCDATA)>
-<!-- Minute in mm -->
-<!ELEMENT minute (#PCDATA)>
-<!-- Seconds in ss -->
-<!ELEMENT second (#PCDATA)>
-<!-- One or more digits representing a decimal fraction of a second -->
-<!ELEMENT secondFraction (#PCDATA)>
-<!-- Time zone designato -->
-<!ELEMENT timeZoneDesignator (#PCDATA)>
-<!-- Date data collection terminated -->
-<!ELEMENT stopDate  (dateTime)>
-
 <!-- Authentication procedures or techniques -->
 <!ELEMENT authentication (#PCDATA) >
 

@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2001-03-28 17:18:16 $'
-      '$Revision: 1.5 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-28 21:04:14 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,13 +26,18 @@
 <!-- EML DTD document that defines the research context
      in which the dataset was created. -->
 
-<!-- Entity referring to the iso-party fields -->
-<!ENTITY % resParty SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/iso-party.dtd">
-%resParty;
+<!ENTITY % resource SYSTEM "./eml-resource.dtd">
+ %resource;
 
-<!-- Entity referring to the eml-entity fields -->
-<!ENTITY % temporalCoverage SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/eml-entity.dtd">
+<!ENTITY % tempCoverage "(startDate, stopDate?)">
 %temporalCoverage;
+
+<!ENTITY % geoCoverage "(geographicCoverage?)">
+%geographicCoverage;
+
+<!-- Entity referring to the iso-party fields -->
+<!ENTITY % responsibleParty "(responsibleParty*)">
+%responsibleParty;
 
 <!-- The root element, which represents the research project 
      employed by the researchers who created this dataset -->
@@ -51,10 +56,10 @@
 <!ELEMENT title (#PCDATA)>
 
 <!-- Names and addresses of principal investigators -->
-<!ELEMENT originator ((%responsibleParty;))>
+<!ELEMENT originator ((%resParty;))>
 
 <!-- General description of temporal coverage of the project -->
-<!ELEMENT temporalDescription ((%temporalCoverage;)*, duration?)>
+<!ELEMENT temporalDescription ((%temporalCoverage;)*)>
 <!ELEMENT duration (amount, unit)>
 <!ELEMENT amount (#PCDATA) >
 <!ELEMENT unit (#PCDATA) >
@@ -78,7 +83,7 @@
 <!ELEMENT siteType (paragraph+) >
 
 <!-- Location and size -->
-<!ELEMENT geography (coordinates*,paragraph*, citation*)>
+<!ELEMENT geography ((%geographicCoverage;)*,paragraph*, citation*)>
 
 <!-- Cartesian Coordinates -->
 <!ELEMENT coordinates (latitude, longitude) >
