@@ -20,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.66 $'
+        '$Author: jones $'
+          '$Date: 2002-10-01 22:12:42 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -519,178 +519,181 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:sequence>
-              <xs:choice>
-                <xs:element name="url">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Download site URL</doc:tooltip>
-                      <doc:summary>A URL (Uniform Resource Locator) from which
-                      this resource can be downloaded or information can be
-                      obtained about downloading it.</doc:summary>
-                      <doc:description>A URL (Uniform Resource Locator) from
-                      which this resource can be downloaded or additional
-                      information can be obtained. If accessing the URL would
-                      directly return the data stream, then the "function"
-                      attribute should be set to "download".  If the URL
-                      provides further information about downloading the
-                      object but does not directly return the data stream, then
-                      the "function" attribute should be set to "information".
-                      If the "function" attribute is omitted, then "download"
-                      is implied for the URL function.
-                      In more complex cases where a non-standard connection
-                      must be established that complies with application
-                      specific procedures beyond what can be described in the
-                      simple URL, then the "connection" element should
-                      be used instead of the URL element.</doc:description>
-                      <doc:example>
-                      http://data.org/getdata?id=98332</doc:example>
-                      <doc:lineage>ISO CD 19115.3, Geographic information -
-                      Metadata</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:simpleContent>
-                      <xs:extension base="xs:anyURI">
-                        <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
-                      </xs:extension>
-                    </xs:simpleContent>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="connection">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Connection</doc:tooltip>
-                      <doc:summary>A description of the information needed
-                      to make an application connection to a data service.
-                      </doc:summary>
-                      <doc:description>A description of the information needed
-                      to make an application connection to a data service.
-                      The connection starts with a connectionDefinition which
-                      lists all of the parameters needed for the connection
-                      and possible default values for each.  It then includes a
-                      list of parameter values, one for each parameter, that
-                      override the defaults for this particular connection.
-                      One parameter element should exist for every
-                      parameterDefinition that is present in the
-                      connectionDefinition, except that parameters that were
-                      defined with a defaultValue in their parameterDefinition
-                      can be ommitted from the connection and the default
-                      will be used. All information about how to use the
-                      parameters to establish a session and extract data is
-                      present in the connectionDefinition, possibly implicitly
-                      by naming a connection schemeName that is well-known.
-                      </doc:description>
-                    </xs:appinfo>
-                  </xs:annotation>
-                  <xs:complexType>
-                    <xs:choice>
-                      <xs:sequence>
-                        <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Connection Definition</doc:tooltip>
-                              <doc:summary>Definition of the connection protocol
-                              to be used for this connection.</doc:summary>
-                              <doc:description>Definition of the connection
-                              protocol to be used for this connection.  The
-                              definition has a "scheme" which identifies the
-                              protocol by name, and a detailed description of
-                              the scheme and its required parameters.
-                              </doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                        <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>Parameter</doc:tooltip>
-                              <doc:summary>A parameter to be used to make this
-                              connection.</doc:summary>
-                              <doc:description>A parameter to be used to make
-                              this connection. This value overrides any
-                              default value that may have been provided in the
-                              connection definition.
-                              </doc:description>
-                            </xs:appinfo>
-                          </xs:annotation>
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="name" type="xs:string">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Parameter Name</doc:tooltip>
-                                    <doc:summary>Name of the parameter to be
-                                    used to make this connection.</doc:summary>
-                                    <doc:description>The name of the parameter
-                                    to be used to make this connection.
-                                    </doc:description>
-                                    <doc:example>hostname</doc:example>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                              <xs:element name="value" type="xs:string">
-                                <xs:annotation>
-                                  <xs:appinfo>
-                                    <doc:tooltip>Parameter Value</doc:tooltip>
-                                    <doc:summary>The value of the parameter to
-                                    be used to make this connection.
-                                    </doc:summary>
-                                    <doc:description>The value of the parameter
-                                    to be used to make this connection. This
-                                    value overrides any default value that may
-                                    have been provided in the connection
-                                    definition.</doc:description>
-                                    <doc:example>nceas.ucsb.edu</doc:example>
-                                  </xs:appinfo>
-                                </xs:annotation>
-                              </xs:element>
-                            </xs:sequence>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                      <xs:element name="references" type="xs:string">
+            <xs:choice>
+              <xs:element name="url">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Download site URL</doc:tooltip>
+                    <doc:summary>A URL (Uniform Resource Locator) from which
+                    this resource can be downloaded or information can be
+                    obtained about downloading it.</doc:summary>
+                    <doc:description>A URL (Uniform Resource Locator) from
+                    which this resource can be downloaded or additional
+                    information can be obtained. If accessing the URL would
+                    directly return the data stream, then the "function"
+                    attribute should be set to "download".  If the URL
+                    provides further information about downloading the
+                    object but does not directly return the data stream, then
+                    the "function" attribute should be set to "information".
+                    If the "function" attribute is omitted, then "download"
+                    is implied for the URL function.
+                    In more complex cases where a non-standard connection
+                    must be established that complies with application
+                    specific procedures beyond what can be described in the
+                    simple URL, then the "connection" element should
+                    be used instead of the URL element.</doc:description>
+                    <doc:example>
+                    http://data.org/getdata?id=98332</doc:example>
+                    <doc:lineage>ISO CD 19115.3, Geographic information -
+                    Metadata</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:anyURI">
+                      <xs:attribute name="function" type="FunctionType" 
+                      use="optional" default="download"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="connection">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Connection</doc:tooltip>
+                    <doc:summary>A description of the information needed
+                    to make an application connection to a data service.
+                    </doc:summary>
+                    <doc:description>A description of the information needed
+                    to make an application connection to a data service.
+                    The connection starts with a connectionDefinition which
+                    lists all of the parameters needed for the connection
+                    and possible default values for each.  It then includes a
+                    list of parameter values, one for each parameter, that
+                    override the defaults for this particular connection.
+                    One parameter element should exist for every
+                    parameterDefinition that is present in the
+                    connectionDefinition, except that parameters that were
+                    defined with a defaultValue in their parameterDefinition
+                    can be ommitted from the connection and the default
+                    will be used. All information about how to use the
+                    parameters to establish a session and extract data is
+                    present in the connectionDefinition, possibly implicitly
+                    by naming a connection schemeName that is well-known.
+                    </doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:sequence>
+                      <xs:element name="connectionDefinition" 
+                      type="ConnectionDefinitionType">
                         <xs:annotation>
                           <xs:appinfo>
-                            <doc:tooltip>References</doc:tooltip>
-                            <doc:summary>The id of another connection in this
-                            EML document to be used to provide the connection
-                            information.
-                            </doc:summary>
-                            <doc:description>The id of another connection in
-                            this EML document to be used to provide the
-                            connection information. This is used instead of
-                            duplicating connection information when an identical
-                            connection needs to be used multiple times in an
-                            EML document.</doc:description>
+                            <doc:tooltip>Connection Definition</doc:tooltip>
+                            <doc:summary>Definition of the connection protocol
+                            to be used for this connection.</doc:summary>
+                            <doc:description>Definition of the connection
+                            protocol to be used for this connection.  The
+                            definition has a "scheme" which identifies the
+                            protocol by name, and a detailed description of
+                            the scheme and its required parameters.
+                            </doc:description>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                    </xs:choice>
-                    <xs:attribute name="id" type="xs:string" use="optional"/>
-                    <xs:attribute name="system" type="xs:string" use="optional"/>
-                    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
-                  </xs:complexType>
-                </xs:element>
-                <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Connection Definition</doc:tooltip>
-                      <doc:summary>The definition of a type of connection
-                      that will be used in another location in the EML
-                      document.</doc:summary>
-                      <doc:description>The definition of a type of connection
-                      that will be used in another location in the EML
-                      document. This only provides the definition of the
-                      protocol and its parameters, but not the actual values
-                      to be used to make the connection (instead, see the
-                      connection element).</doc:description>
-                      <doc:lineage>New in EML 2.0.0</doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-              </xs:choice>
-            </xs:sequence>
+                      <xs:element name="parameter" minOccurs="0" 
+                      maxOccurs="unbounded">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Parameter</doc:tooltip>
+                            <doc:summary>A parameter to be used to make this
+                            connection.</doc:summary>
+                            <doc:description>A parameter to be used to make
+                            this connection. This value overrides any
+                            default value that may have been provided in the
+                            connection definition.
+                            </doc:description>
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Parameter Name</doc:tooltip>
+                                  <doc:summary>Name of the parameter to be
+                                  used to make this connection.</doc:summary>
+                                  <doc:description>The name of the parameter
+                                  to be used to make this connection.
+                                  </doc:description>
+                                  <doc:example>hostname</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="value" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Parameter Value</doc:tooltip>
+                                  <doc:summary>The value of the parameter to
+                                  be used to make this connection.
+                                  </doc:summary>
+                                  <doc:description>The value of the parameter
+                                  to be used to make this connection. This
+                                  value overrides any default value that may
+                                  have been provided in the connection
+                                  definition.</doc:description>
+                                  <doc:example>nceas.ucsb.edu</doc:example>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                    <xs:element name="references" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>References</doc:tooltip>
+                          <doc:summary>The id of another connection in this
+                          EML document to be used to provide the connection
+                          information.
+                          </doc:summary>
+                          <doc:description>The id of another connection in
+                          this EML document to be used to provide the
+                          connection information. This is used instead of
+                          duplicating connection information when an identical
+                          connection needs to be used multiple times in an
+                          EML document.</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:choice>
+                  <xs:attribute name="id" type="xs:string" use="optional"/>
+                  <xs:attribute name="system" type="xs:string" use="optional"/>
+                  <xs:attribute name="scope" type="ScopeType" use="optional" 
+                  default="document"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="connectionDefinition" 
+              type="ConnectionDefinitionType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Connection Definition</doc:tooltip>
+                    <doc:summary>The definition of a type of connection
+                    that will be used in another location in the EML
+                    document.</doc:summary>
+                    <doc:description>The definition of a type of connection
+                    that will be used in another location in the EML
+                    document. This only provides the definition of the
+                    protocol and its parameters, but not the actual values
+                    to be used to make the connection (instead, see the
+                    connection element).</doc:description>
+                    <doc:lineage>New in EML 2.0.0</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <xs:element name="offline">
@@ -769,7 +772,8 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" 
+              maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
@@ -810,7 +814,8 @@
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" 
+    default="document"/>
   </xs:complexType>
   <xs:complexType name="ConnectionDefinitionType">
     <xs:annotation>
@@ -997,6 +1002,7 @@
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional"/>
     <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" 
+    default="document"/>
   </xs:complexType>
 </xs:schema>
