@@ -12,21 +12,6 @@
   <bookinfo>
     <title>Ecological Metadata Language (EML) Specification</title>
   </bookinfo>
-<!--
-  <toc>
-    <tocpart>
-      <tocchap>
-        <tocentry><link linkend="preface">Preface</link></tocentry>
-        <tocentry><link linkend="introduction">Introduction to EML</link></tocentry>
-        <tocentry><link linkend="purpose">Purpose of EML</link></tocentry>
-        <tocentry><link linkend="architecture">EML's Architecture</link></tocentry>
-        <tocentry><link linkend="technicalArch">Technical Architectural Design</link></tocentry>
-        <tocentry><link linkend="moduleDescriptions">Individual Module Descriptions (Non-normative)</link></tocentry>
-        <tocentry><link linkend="index">Alphabetical Index of Elements</link></tocentry>
-      </tocchap>
-    </tocpart>
-  </toc>
--->
   <preface id="preface">
     <title>EML Overview &amp; History</title>
     <section id="introduction">
@@ -52,8 +37,8 @@
       </para>
     </section>
 
-    <section id="architecture">
-      <title>Architecture</title>
+    <section id="features">
+      <title>Features</title>
       <para>
         The architecture of EML was designed to serve the needs of the
         ecological community, and has benefitted from previous work in other
@@ -126,19 +111,19 @@
         the field will be checked against XML Schema's definition of a date.
         Traditionally, XML documents have been validated against Document Type
         Definitions (DTDs), which do not provide a means to employ strong
-        validation on field values through typing.  EML is also distributed
-        with DTD's that are generated from the XML Schema documents to provide
-        some backward compatability.
+        validation on field values through typing.
         </para>
         </listitem>
         <listitem>
         <para>
-        There is a distinction between the content model and the syntactic
-        implementation of that model.  The normative sections below define
-        the content model and the XML Schema documents distributed with EML
-        define the syntactic implementation. For the forseeable future,
-        XML Schema will be the syntactic specification, although it may
-        change later.
+        There is a distinction between the content model (i.e. the concepts
+        behind the structure of a document - which fields go where, how many,
+        etc.) and the syntactic implementation of that model (the technology 
+        used to express the concepts defined in the content model).
+        The normative sections below define the content model and the 
+        XML Schema documents distributed with EML define the syntactic 
+        implementation. For the forseeable future, XML Schema will be the 
+        syntactic specification, although it may change later.
         </para>
         </listitem>
       </itemizedlist>
