@@ -13,44 +13,169 @@
                  National Center for Ecological Analysis and Synthesis
         Authors: Chris Jones, Matt Jones, Jivka Bojilova
 
-       '$Author: bojilova $'
-         '$Date: 2001-02-06 01:37:44 $'
-     '$Revision: 1.5 $'
+       '$Author: cjones $'
+         '$Date: 2001-02-06 22:21:11 $'
+     '$Revision: 1.6 $'
       -->
     </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+      </moduleName>
+      <moduleDescription>
+      </moduleDescription>
+    </xs:appInfo>
   </xs:annotation>
 
   <xs:element name="acl" type="ACL"
-             minOccurs="1"  maxOccurs="1" />
- 
+              minOccurs="1"  maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	</tooltip>
+	<summary>
+	</summary>
+	<description>
+	</description>
+	<example>
+	</example>
+	<lineage>
+	</lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element> 
   <xs:complexType name="ACL" content="elementOnly">
     <xs:sequence>
       <xs:element name="resource" type="Resource"
-                  minOccurs="1" maxOccurs="unbounded" />
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
  
   <xs:complexType name="Resource" content="elementOnly">
     <xs:sequence>
       <xs:element name="resourceIdentifier" type="xs:string"
-                  minOccurs="1" maxOccurs="unbounded" />
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="allow" type="PermissionType"
-                  minOccurs="0" maxOccurs="unbounded" />
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="deny" type="PermissionType"
-                  minOccurs="0" maxOccurs="unbounded" />
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
  
   <xs:complexType name="PermissionType" content="elementOnly">
     <xs:sequence>
       <xs:element name="principal" type="xs:string"
-                  minOccurs="1" maxOccurs="unbounded" />
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="permission" type="Permission"
                   minOccurs="1" maxOccurs="unbounded" />
       <xs:element name="duration" type="xs:timeDuration"
-                  minOccurs="0" maxOccurs="1" />
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="ticketCount" type="xs:positiveInteger"
-                  minOccurs="0" maxOccurs="1" />
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+            </tooltip>
+	    <summary>
+	    </summary>
+	    <description>
+	    </description>
+	    <example>
+	    </example>
+	    <lineage>
+	    </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 
