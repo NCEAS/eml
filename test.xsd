@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+  <xs:schema targetNamespace="eml://ecoinformatics.org/eml-test-2.0.0rc1"
+    xmlns="eml://ecoinformatics.org/eml-test-2.0.0rc1"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
+             schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc1"
+             schemaLocation="eml-dataset.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1"
+             schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/software-2.0.0rc1"
+             schemaLocation="eml-software.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc1"
+             schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
+             schemaLocation="eml-resource.xsd"/>
+
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element name="references" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:element name="test">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="contact" type="person" maxOccurs="unbounded"/>
+        <xs:element name="party" type="person" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:key name="identifierKey">
+      <xs:selector xpath="./contact"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <!--<xs:keyref name="replacementReference" refer="identifierKey">
+      <xs:selector xpath=".//references"/>
+      <xs:field xpath="."/>
+    </xs:keyref>-->
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<eml:test xmlns:eml="eml://ecoinformatics.org/eml-test-2.0.0rc1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="eml://ecoinformatics.org/eml-test-2.0.0rc1
+          test.xsd">
+  <contact id="id.1"/>
+  <contact id="id.2"/>
+  <party>
+    <references>id.1</references>
+  </party>
+</eml:test>
