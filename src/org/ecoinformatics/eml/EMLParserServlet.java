@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-03 21:36:17 $'
- *    '$Revision: 1.6 $'
+ *        '$Date: 2002-10-04 16:52:12 $'
+ *    '$Revision: 1.7 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -179,13 +179,14 @@ public class EMLParserServlet extends HttpServlet
                          ise.getMessage());
     }
 
+    tempfile = new File(".tmpfile." + sess_id);
+
     if (ctype != null && ctype.startsWith("multipart/form-data"))
     { //deal with multipart encoding of the package zip file
       try
       {
         fileToParse = handleGetFile(request, response);
         int c = fileToParse.read();
-        tempfile = new File(".tmpfile." + sess_id);
         FileOutputStream fos = new FileOutputStream(tempfile);
         while(c != -1)
         {
@@ -203,55 +204,45 @@ public class EMLParserServlet extends HttpServlet
         e.printStackTrace();
       }
     }
+    else
+    {
+      Enumeration paramlist = request.getParameterNames();
+      while (paramlist.hasMoreElements())
+      {
+        String name = (String)paramlist.nextElement();
+        Object value = request.getParameterValues(name);
+        params.put(name,value);
+      }
+    }
 
-    String action = (String)params.get("action");
+    String action = ((String[])params.get("action"))[0];
 
     if(action.equals("parse"))
     { //parse action
-      try
+      html.append(parse(tempfile));
+    }
+    else if(action.equals("textparse"))
+    {
+      String doctext = ((String[])params.get("doctext"))[0];
+      if(doctext == null || doctext.trim().equals(""))
       {
-        if(fileToParse != null)
+        html.append("<h2>Error.  Submitted document is null.</h2>");
+      }
+      else
+      {
+        StringReader sr = new StringReader(doctext);
+        FileWriter fw = new FileWriter(tempfile);
+        int c = sr.read();
+        while(c != -1)
         {
-          EMLParser parser = new EMLParser(tempfile,
-                             new File("@servletconfigfile@"));
-          html.append("<h2>Document is EML valid.</h2><p>There ");
-          html.append("were no EML errors found in your document.</p>");
+          fw.write(c);
+          c = sr.read();
         }
-        else
-        {
-          html.append("<h2>Error: The file sent to the parser was null.</h2>");
-        }
-      }
-      catch(Exception e)
-      {
-        html.append("<h2>EML Errors Found</h2><p>The following errors were found:");
-        html.append("</p><p>").append(e.getMessage()).append("</p>");
-      }
+        fw.flush();
+        fw.close();
 
-      try
-      {
-        SAXValidate validator = new SAXValidate(true);
-        validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces);
-        html.append("<hr><h2>Document is XML-schema valid.</h2>");
-        html.append("<p>There were no XML errors found in your document.</p>");
+        html.append(parse(tempfile));
       }
-      catch(SAXException se)
-      {
-        html.append("<hr><h2>XML-Schema Errors Found</h2><p>The following errors were ");
-        html.append("found:</p><p>").append(se.getMessage()).append("</p>");
-      }
-      catch(IOException ioe)
-      {
-        html.append("<hr><h2>IOException: Error reading file</h2>");
-        html.append("<p>").append(ioe.getMessage()).append("</p>");
-      }
-      catch(ClassNotFoundException cnfe)
-      {
-        html.append("<hr><h2>Parser class not found</h2>");
-        html.append("<p>").append(cnfe.getMessage()).append("</p>");
-      }
-
-      tempfile.delete();
     }
     else
     {
@@ -259,11 +250,63 @@ public class EMLParserServlet extends HttpServlet
       html.append("' not registered</h2>");
     }
 
+    tempfile.delete();
+
     html.append("<hr><a href=\"/emlparser\">Back</a> to the previous page.");
     html.append("</body></html>");
     response.setContentType("text/html");
     out.println(html.toString());
     out.flush();
+  }
+
+  private String parse(File tempfile)
+  {
+    StringBuffer html = new StringBuffer();
+
+    try
+    {
+      if(tempfile != null)
+      {
+        EMLParser parser = new EMLParser(tempfile,
+                           new File("@servletconfigfile@"));
+        html.append("<h2>Document is EML valid.</h2><p>There ");
+        html.append("were no EML errors found in your document.</p>");
+      }
+      else
+      {
+        html.append("<h2>Error: The file sent to the parser was null.</h2>");
+      }
+    }
+    catch(Exception e)
+    {
+      html.append("<h2>EML Errors Found</h2><p>The following errors were found:");
+      html.append("</p><p>").append(e.getMessage()).append("</p>");
+    }
+
+    try
+    {
+      SAXValidate validator = new SAXValidate(true);
+      validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces);
+      html.append("<hr><h2>Document is XML-schema valid.</h2>");
+      html.append("<p>There were no XML errors found in your document.</p>");
+    }
+    catch(SAXException se)
+    {
+      html.append("<hr><h2>XML-Schema Errors Found</h2><p>The following errors were ");
+      html.append("found:</p><p>").append(se.getMessage()).append("</p>");
+    }
+    catch(IOException ioe)
+    {
+      html.append("<hr><h2>IOException: Error reading file</h2>");
+      html.append("<p>").append(ioe.getMessage()).append("</p>");
+    }
+    catch(ClassNotFoundException cnfe)
+    {
+      html.append("<hr><h2>Parser class not found</h2>");
+      html.append("<p>").append(cnfe.getMessage()).append("</p>");
+    }
+
+    return html.toString();
   }
 
    /**
@@ -286,7 +329,8 @@ public class EMLParserServlet extends HttpServlet
         { // it's a parameter part
           ParamPart paramPart = (ParamPart) part;
           String value = paramPart.getStringValue();
-          params.put(name, value);
+          String[] s = {value};
+          params.put(name, s);
         }
         else if (part.isFile())
         { // it's a file part
