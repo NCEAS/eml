@@ -208,8 +208,17 @@
           same object).
         </listitem>
         <listitem>
-          if an element references another element, it must not have an ID.
+          If an element references another element, it must not have an ID.
         </listitem>
+        <listitem>
+          All EML packages must have the 'eml' module as the root.
+        </listitem>
+        <listitem>
+          The system and scope attribute are always optional except for at the 
+          'eml' module where the scope attribute is fixed as 'system'.  The scope
+          attribute defaults to 'local' for all other modules.
+        </listitem>
+
       </itemizedlist>
       
       <section>
