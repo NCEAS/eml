@@ -7,8 +7,8 @@
   * For Details: http://www.nceas.ucsb.edu/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-02-07 18:34:03 $'
-  *  '$Revision: 1.2 $'
+  *      '$Date: 2001-02-13 18:01:30 $'
+  *  '$Revision: 1.3 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -32,12 +32,11 @@
 
    <target name="init">
      <property name="build.docs" value="docs" /> 
-     <property name="xmlp" 
-               value="/usr/local/devtools/xerces-1.3.0/xerces.jar" />
-     <property name="cpath" value="${xmlp}:." />
    </target>
 
    <!-- Generate HTML documentation using an XSLT transform -->
+   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
+        your CLASSPATH in order for this to work -->
    <target name="docs" depends="init">
      <mkdir dir="${build.docs}"/>
      <style basedir="." destdir="${build.docs}"
@@ -52,8 +51,4 @@
      </copy>
    </target>
 
-   <!-- Build the java application in this directory -->
-   <target name="compile" depends="init">
-       <javac srcdir="." destdir="." classpath="${cpath}" /> 
-   </target> 
 </project>
