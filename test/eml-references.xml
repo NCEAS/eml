@@ -3,19 +3,19 @@
          xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 eml.xsd">
-  <dataset>
+  <dataset id="a">
     <title>Sample datset Description</title>
     <creator id="23445" scope="document">
       <individualName>
         <surName>Smith</surName>
       </individualName>
     </creator>
-    <contact>
+    <contact id="b">
       <individualName>
         <surName>Johnson</surName>
       </individualName>
     </contact>
-    <contact>
+    <contact id="c">
       <references>23445</references>
     </contact>
   </dataset>

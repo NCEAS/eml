@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: jones $'
- *     '$Date: 2002-09-06 22:25:40 $'
- * '$Revision: 1.3 $'
+ *     '$Date: 2002-09-12 20:25:30 $'
+ * '$Revision: 1.4 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,6 +90,9 @@ public class SaxValidateTest extends TestCase
     public void initialize()
     {
         assertTrue(true);
+        org.apache.xerces.impl.Version version = 
+            new org.apache.xerces.impl.Version();
+        System.out.println("Using Xerces: " + version.getVersion());
     }
 
     /**
@@ -109,6 +112,11 @@ public class SaxValidateTest extends TestCase
                 System.err.println("Validating file: " + testFile.getName());
                 test.runTest(new FileReader(testFile), DEFAULT_PARSER);
             } catch (Exception e) {
+                if (e instanceof SAXParseException) {
+                    SAXParseException spe = (SAXParseException)e;
+                    System.err.println("Error on line: " + spe.getLineNumber());
+                }
+                e.printStackTrace(System.err);
                 fail("Document NOT valid!\n\n" + e.getClass().getName() +
                     "(" + e.getMessage() + ")" );
             }
