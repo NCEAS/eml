@@ -21,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-13 18:19:55 $'
-      '$Revision: 1.59 $'
+        '$Author: blankman $'
+          '$Date: 2002-09-13 18:59:41 $'
+      '$Revision: 1.60 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,29 +43,70 @@
       <doc:moduleDocs>
         <doc:moduleName>eml-attribute</doc:moduleName>
         <doc:moduleDescription>The EML Attribute Module describes all
-        attributes (variables) in a data entity (e.g., data table). The
-        description includes the name and definition of each attribute, its
-        type, its allowable range (if numeric), definitions of coded values,
-        and other pertinent information.</doc:moduleDescription>
-        <doc:recommendedUsage>all datasets that use
-        tableEntities</doc:recommendedUsage>
+        attributes (variables) in a data entity: dataTable, spatialRaster,
+        spatialVector, storedProcedure, view or otherEntity). The description
+        includes the name and definition of each attribute, its type, its
+        allowable range (if numeric), definitions of coded values, and other
+        pertinent information. Two structures exist in this module: 1.
+        attribute-used to define a single attribute; 2. attributeList is used
+        to define a discreet list of attributes that go together in some
+        logical way.</doc:moduleDescription>
+        <doc:recommendedUsage>any dataset that uses dataTable, spatialRaster,
+        spatialVector, storedProcedure, view or otherEntity or in a custom
+        module where one wants to document an attribute
+        (variable)</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="attribute" type="AttributeType"/>
+ <xs:element name="attribute" type="AttributeType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Attribute</doc:tooltip>
+
+        <doc:summary>Characteristics of a 'field' or 'variable' in a data
+        entity (ie. dataTable).</doc:summary>
+
+        <doc:description>The content model for attribute is a CHOICE between
+        "references" and all of the elements that let you describe the
+        attribute (e.g., attributeName,attributeDefinition,precision)The
+        attribute element allows a user to document the characteristics that
+        describe a 'field' or 'variable' in a data entity (e.g. dataTable).
+        Complete attribute descriptions are perhaps the most aspect to making
+        data understandable to others. An attribute element describes to a
+        single attribute. An attribute element can contain a reference to an
+        attribute defined elsewhere. Using a reference means that the
+        referenced attribute is identical, not just in name but identical in
+        its complete description. For example, if attribute "measurement1" in
+        dataTable "survey1" has a precision of 0.1 and you are documenting
+        dataTable survey2 which has an attribute called "measurement1" but the
+        survey2's measurement1 has a precision of 0.001 then these are
+        different attributes.</doc:description>
+
+        <doc:example>Because the attribute element is a container for other
+        elements, look at the contents of its sub-elements for examples of what
+        to enter.</doc:example>
+
+        <doc:lineage>The attribute element was introduced into EML
+        1.4??</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
   <xs:complexType name="AttributeListType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>AttributeType complex type</doc:tooltip>
-        <doc:summary>container for attributes, attributeLists or
-        references</doc:summary>
-        <doc:description>This complexType is a choice between attribute,
-        attributeList and references. attribute is used to define a single
-        attribute, attributeList is used to define a discreet list of
-        attributes that go together in some logical way and references links
-        other metadat into this module.</doc:description>
-        <doc:example/>
+        <doc:tooltip>Attribute List complex type</doc:tooltip>
+
+        <doc:summary>container for one or more attribute descriptions or
+        references to attributes defined elsewhere.</doc:summary>
+
+        <doc:description>This complexType defines the structure of the
+        attributeList element. The content model is a choice between one or
+        more attribute elements, and references. References link attribute
+        elements defined elsewhere.</doc:description>
+
+        <doc:example />
+
         <doc:lineage>The eml-attribute was introduced into EML 1.4 as
         eml-variable.</doc:lineage>
       </xs:appinfo>
@@ -80,11 +121,15 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Attribute descriptors</doc:tooltip>
-        <doc:summary>Container of attribute descriptors of all attributes in a
-        dataset.</doc:summary>
-        <doc:description>Eml-attribute element represents a list of all
-        attributes in a dataset.</doc:description>
-        <doc:example/>
+
+        <doc:summary>Describes the structure for the container of attribute
+        descriptors for a specific attribute in a dataset.</doc:summary>
+
+        <doc:description>Describes the structure for the container of attribute
+        descriptors for a specific attribute in a dataset.</doc:description>
+
+        <doc:example />
+
         <doc:lineage>The eml-attribute was introduced into EML 1.4 as
         eml-variable.</doc:lineage>
       </xs:appinfo>
@@ -95,13 +140,19 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute name</doc:tooltip>
-              <doc:summary>Attribute name for identification</doc:summary>
+
+              <doc:summary>This element specifies name of the attribute (field)
+              in the dataset.</doc:summary>
+
               <doc:description>This element specifies name of the attribute
-              (field) in the dataset. This information is typically used as a
-              column header for the field/variable in a spreadsheet. It is
-              usually terse, without spaces, and can be used to "name" a column
-              in a table definition statement.</doc:description>
+              (field) in the dataset. This information is typically found as
+              the column header (first row) for the field/variable in a
+              spreadsheet. It is usually terse, without spaces, and can be used
+              to "name" a column in a table definition statement in a
+              RDBMS.</doc:description>
+
               <doc:example>spden</doc:example>
+
               <doc:lineage>The attributeName was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>
@@ -115,9 +166,10 @@
               name</doc:summary>
               <doc:description>A brief label used to describe the attribute.
               This is often needed because attribute names are usually very
-              terse- often shortened to 8 characters or less to deal with
-              analysis systems. A label is provided as a concise but more
-              descriptive representation of the attribute.</doc:description>
+              terse: often shortened to 8 characters or less to fit the
+              requirements of analysis or other software systems. A label is
+              provided as a concise but more descriptive representation of the
+              attribute's name.</doc:description>
               <doc:example>"Species Density" is a label for attribute with name
               "spden"</doc:example>
               <doc:lineage>Introduced in EML 2.0</doc:lineage>
@@ -131,9 +183,11 @@
               <doc:summary>Precise definition of attribute in the
               dataset</doc:summary>
               <doc:description>This element gives a precise definition of
-              attribute in the dataset. It explains the contents of the
-              attribute fully and possibly provides pointers to the methods
-              used to generate the attribute data.</doc:description>
+              attribute in the data entity (dataTable, spatialRaster,
+              spatialVector, storedProcedure, view or otherEntity) being
+              documented. It explains the contents of the attribute fully and
+              possibly provides pointers to the methods used to generate the
+              attribute data.</doc:description>
               <doc:example>"spden" is the number of individuals of all
               macroinvertebrate species found in the plot</doc:example>
               <doc:lineage>The attributeDefinition was introduced into EML
@@ -152,7 +206,10 @@
               or a custom unit. If it is a custom unit, the definition of the
               unit must be provided in the document using the STMML syntax, and
               the name provided in the customUnit element must reference the id
-              of its associated STMML definition precisely.</doc:description>
+              of its associated STMML definition precisely. For further
+              information on STMML (http://www.xml-cml.org/stmml/) or see
+              stmml.xsd which is included with the EML 2.0 distribution for
+              details.</doc:description>
               <doc:example/>
               <doc:lineage>The unit was introduced into EML 1.4.</doc:lineage>
             </xs:appinfo>
@@ -165,12 +222,12 @@
                     <doc:tooltip>Standard Unit</doc:tooltip>
                     <doc:summary>The name of a standard unit used to make this
                     measurement</doc:summary>
-                    <doc:description>The name of the standard unit used in
-                    making this measurement. The name must be one of the values
-                    defined in the unitDictionary. These are the major SI units
-                    and some commonly used units outside of SI. See the STMML
-                    definition of each unit that ships with EML for more
-                    information.</doc:description>
+                    <doc:description>The standardUnit element is the name of
+                    the standard unit used in making this measurement. The name
+                    must be one of the values defined in the unitDictionary.
+                    These are the major SI units and some commonly used units
+                    outside of SI. See the STMML definition of each unit that
+                    ships with EML for more information.</doc:description>
                     <doc:example>meter</doc:example>
                     <doc:lineage>introduced in EML 2.0.0Beta9</doc:lineage>
                   </xs:appinfo>
@@ -182,11 +239,13 @@
                     <doc:tooltip>Custom Unit</doc:tooltip>
                     <doc:summary>The name of a custom unit that is not part of
                     the standard list provided with EML.</doc:summary>
-                    <doc:description>The name of a custom unit that is not part
-                    of the standard list provided with EML. The unit must
-                    correspond to an id in the document where that definition
-                    is provided in STMML. This will most likely be in the
-                    additionalMetadata section.</doc:description>
+                    <doc:description>An entry in the customUnit element is the
+                    name of a custom unit that is not part of the standard list
+                    provided with EML. The unit must correspond to an id in the
+                    document where that definition is provided using the STMML
+                    syntax. The customUnit definition will most likely be in
+                    the additionalMetadata section.</doc:description>
+                    <doc:example>emergy</doc:example>
                     <doc:lineage>introduced in EML 2.0.0Beta9</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -198,26 +257,29 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Storage Type</doc:tooltip>
-              <doc:summary>Description of storage type for this field
-              </doc:summary>
-              <doc:description>This element describes the storage type for data
-              in the field that might be used to represent the data in a
-              database or other management system.  As many systems do not
+
+              <doc:summary>Description of storage type for this
+              field</doc:summary>
+
+              <doc:description>This element describes the storage type,
+              commonly referred to as datatype, for data in a RDBMS (or
+              otherdata management system) field. As many systems do not
               provide for fine-grained restrictions on types, this type will
               often be a superset of the allowed domain defined in
-              attributeDomain.  Values for this field are
-              by default drawn from the XML Schema Datatypes standard
-              values, such as: integer, double, string, etc. If
-              the XML Schema datatypes are not used, the type system from
-              which the values are derived should be listed in the
-              'typeSystem' attribute described below. This field represents
-              a 'hint' to processing systems as to how the attribute might
-              be represented in a system or language, but is distinct from the
-              actual expression of the domain of the attribute.  The field is
-              repeatable so that the storageType can be indicated for multiple
-              type systems (e.g., Oracle data types and Java data types).
-              </doc:description>
+              attributeDomain. Values for this field are by default drawn from
+              the XML Schema Datatypes standard values, such as: integer,
+              double, string, etc. If the XML Schema datatypes are not used,
+              the type system from which the values are derived should be
+              listed in the 'typeSystem' attribute described below. This field
+              represents a 'hint' to processing systems as to how the attribute
+              might be represented in a system or language, but is distinct
+              from the actual expression of the domain of the attribute. The
+              field is repeatable so that the storageType can be indicated for
+              multiple type systems (e.g., Oracle data types and Java data
+              types).</doc:description>
+
               <doc:example>integer</doc:example>
+
               <doc:lineage>From storageType, introduced in EML 1.4. Transformed
               to dataType in EML 2.0 Beta 1. Transformed to storageType in EML
               2.0.0.</doc:lineage>
@@ -229,20 +291,24 @@
                 <xs:attribute name="typeSystem" type="xs:string" use="optional" default="http://www.w3.org/2001/XMLSchema-datatypes">
                   <xs:annotation>
                     <xs:appinfo>
-                      <doc:tooltip>The system used to define the storage
-                      types</doc:tooltip>
+                      <doc:tooltip>Storage Type System</doc:tooltip>
+
                       <doc:summary>The system used to define the storage types.
                       This should be an identifier of a well known and
                       published typing system.</doc:summary>
-                      <doc:description>The system used to define the storage
-                      types. This should an identifier of a well known and
-                      published typing system. The default and recommended
-                      system is the XML Schema data type system. For details go
-                      to http://www.w3.org. If another system is used (such as
-                      Java or C++ types), typeSystem should be be changed to
-                      match the system.</doc:description>
+
+                      <doc:description>The typeSystem element is the system
+                      used to define the storage types. This should be an
+                      identifier of a well known and published typing system.
+                      The default and recommended system is the XML Schema data
+                      type system. For details go to http://www.w3.org. If
+                      another system is used (such as Java or C++ types),
+                      typeSystem should be be changed to match the
+                      system.</doc:description>
+
                       <doc:example>
                       http://www.w3.org/2001/XMLSchema-datatypes</doc:example>
+
                       <doc:lineage>As of EML 2.0.0</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -258,10 +324,10 @@
               <doc:summary>The scale of the measured attribute. This provides
               information about the scale in which the data was
               collected.</doc:summary>
-              <doc:description>The scale of the measured attribute. This
-              provides information about the scale in which the data was
-              collected. The allowed values are 'ratio', 'ordinal', 'nominal'
-              and 'interval'</doc:description>
+              <doc:description>The measurementScale element is the scale of the
+              measured attribute. This provides information about the scale in
+              which the data was collected. The allowed values are 'ratio',
+              'ordinal', 'nominal' and 'interval'.</doc:description>
               <doc:example>nominal</doc:example>
             </xs:appinfo>
           </xs:annotation>
@@ -282,14 +348,15 @@
                   <xs:appinfo>
                     <doc:tooltip>Code definition</doc:tooltip>
                     <doc:summary>Description of any coded values associated
-                    with the attribute</doc:summary>
-                    <doc:description>This element describes any code associated
-                    with the attribute. These codes can be defined here in the
-                    metadata as a list with definitions (preferred), can be
-                    referenced by pointing to an external citation or URL where
-                    the codes are defined, or can be referenced by pointing at
-                    an entity that contains the code value and code definition
-                    as two attributes.  Note that because this element is
+                    with the attribute.</doc:summary>
+                    <doc:description>The codeDefinition element describes any
+                    code associated with the attribute. These codes can be
+                    defined here in the metadata as a list with definitions
+                    (preferred), can be referenced by pointing to an external
+                    citation or URL where the codes are defined, or can be
+                    referenced by pointing at an entity that contains the code
+                    value and code definition as two attributes.
+                    Note that because this element is
                     optional, if it is omitted, the value of the attribute's
                     domain is taken to be the regular expression (.*) (any
                     text).</doc:description>
@@ -308,8 +375,8 @@
                           <doc:tooltip>Code List</doc:tooltip>
                           <doc:summary>A list of codes and their
                           definitions</doc:summary>
-                          <doc:description>This element contains a list of
-                          codes and their definitions.</doc:description>
+                          <doc:description>The codeList element contains a list
+                          of codes and their definitions.</doc:description>
                           <doc:lineage>The code element was introduced into EML
                           1.4.</doc:lineage>
                         </xs:appinfo>
@@ -322,8 +389,8 @@
                                 <doc:tooltip>Code</doc:tooltip>
                                 <doc:summary>Code associated with the
                                 attribute</doc:summary>
-                                <doc:description>This element specifies a code
-                                associated with the
+                                <doc:description>The code element specifies a
+                                code associated with the
                                 attribute.</doc:description>
                                 <doc:example>"1" would be the code for "high"
                                 (where high is the description of the
@@ -339,7 +406,7 @@
                                 <doc:tooltip>Code definition</doc:tooltip>
                                 <doc:summary>Description of the code associated
                                 with the attribute.</doc:summary>
-                                <doc:description>This element describes the
+                                <doc:description>The definition describes the
                                 code associated with the
                                 attribute.</doc:description>
                                 <doc:example>"high" would be the definition for
@@ -355,15 +422,15 @@
                                 <doc:tooltip>Source of code</doc:tooltip>
                                 <doc:summary>The name of the source for this
                                 code and its definition</doc:summary>
-                                <doc:description>The name of the source from
-                                which this code and its associated definition
-                                are drawn. This is commonly used for
-                                identifying standard coding systems, like the
-                                FIPS standard for postal abbreviations for
-                                states in the US. In other cases, the coding
-                                may be the researcher's customized way of
-                                recording and classifying their data, and no
-                                external "source" would
+                                <doc:description>The source element is the name
+                                of the source from which this code and its
+                                associated definition are drawn. This is
+                                commonly used for identifying standard coding
+                                systems, like the FIPS standard for postal
+                                abbreviations for states in the US. In other
+                                cases, the coding may be the researcher's
+                                customized way of recording and classifying
+                                their data, and no external "source" would
                                 exist.</doc:description>
                                 <doc:example>ISO country codes</doc:example>
                                 <doc:lineage>Introduced in EML
@@ -380,9 +447,11 @@
                           <doc:tooltip>External code set</doc:tooltip>
                           <doc:summary>A reference to an externally defined set
                           of codes used in this attribute</doc:summary>
-                          <doc:description>A reference to an externally defined
-                          set of codes used in this attribute. This can either
-                          be a citation or a URL.</doc:description>
+                          <doc:description>The externalCodeSet element is a
+                          reference to an externally defined set of codes used
+                          in this attribute. This can either be a citation
+                          (using the eml-citation module) or a
+                          URL.</doc:description>
                           <doc:lineage>Introduced in EML 2.0</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -394,8 +463,9 @@
                                 <doc:tooltip>Code Set Name</doc:tooltip>
                                 <doc:summary>The name of an externally defined
                                 code set</doc:summary>
-                                <doc:description>The name of an externally
-                                defined code set.</doc:description>
+                                <doc:description>The codesetName element is the
+                                name of an externally defined code
+                                set.</doc:description>
                                 <doc:example>FIPS State Abbreviation
                                 Codes</doc:example>
                                 <doc:lineage>Introduced in EML
@@ -410,7 +480,8 @@
                                   <doc:tooltip>Citation</doc:tooltip>
                                   <doc:summary>A citation for the code set
                                   reference</doc:summary>
-                                  <doc:description>A citation for the code set
+                                  <doc:description>The citation element is a
+                                  citation for the code set
                                   reference</doc:description>
                                   <doc:lineage>Introduced in EML
                                   2.0</doc:lineage>
@@ -423,8 +494,9 @@
                                   <doc:tooltip>Code set URL</doc:tooltip>
                                   <doc:summary>A URL for the code set
                                   reference</doc:summary>
-                                  <doc:description>A URL for the code set
-                                  reference</doc:description>
+                                  <doc:description>The codesetURL element is a
+                                  URL for the code set
+                                  reference.</doc:description>
                                   <doc:lineage>Introduced in EML
                                   2.0</doc:lineage>
                                 </xs:appinfo>
@@ -440,8 +512,9 @@
                           <doc:tooltip>Entity Code List</doc:tooltip>
                           <doc:summary>A code list that is defined in a data
                           table</doc:summary>
-                          <doc:description>A list of codes and their
-                          definitions in a data table</doc:description>
+                          <doc:description>The entityCodeList is a list of
+                          codes and their definitions in a data
+                          entity.</doc:description>
                           <doc:lineage>Introduced in EML 2.0</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -454,11 +527,12 @@
                                 <doc:summary>A reference to the id of the
                                 entity in which the code list has been
                                 defined</doc:summary>
-                                <doc:description>A reference to the id of the
-                                entity in which the code list has been defined.
-                                This entity must have been defined elsewhere in
-                                the metadata and have an id that matches the
-                                value of this element.</doc:description>
+                                <doc:description>The entityReference element is
+                                a reference to the id of the entity in which
+                                the code list has been defined. This entity
+                                must have been defined elsewhere in the
+                                metadata and have an id that matches the value
+                                of this element.</doc:description>
                                 <doc:lineage>Introduced in EML
                                 2.0</doc:lineage>
                               </xs:appinfo>
@@ -472,7 +546,8 @@
                                 <doc:summary>A reference to the id of the
                                 attrribute that contains the list of
                                 codes</doc:summary>
-                                <doc:description>A reference to the id of the
+                                <doc:description>The valueAttributeReference
+                                element is a reference to the id of the
                                 attribute that contains the list of codes. This
                                 attribute must have been defined elsewhere in
                                 the metadata and have an id that matches the
@@ -490,12 +565,12 @@
                                 <doc:summary>A reference to the id of the
                                 attrribute that contains the definition of
                                 codes</doc:summary>
-                                <doc:description>A reference to the id of the
-                                attribute that contains the definition of
-                                codes. This attribute must have been defined
-                                elsewhere in the metadata and have an id that
-                                matches the value of this
-                                element.</doc:description>
+                                <doc:description>The definitionAttributeReference element is a
+                                reference to the id of the attribute that
+                                contains the definition of codes. This
+                                attribute must have been defined elsewhere in
+                                the metadata and have an id that matches the
+                                value of this element.</doc:description>
                                 <doc:lineage>Introduced in EML
                                 2.0</doc:lineage>
                               </xs:appinfo>
@@ -521,11 +596,11 @@
                     <doc:tooltip>Text domain</doc:tooltip>
                     <doc:summary>Description of a free-text domain pattern for
                     the attribute</doc:summary>
-                    <doc:description>This element describes a free text domain
-                    for the attribute. By default, if pattern is missing or
-                    empty, then any text is allowed. If pattern is present,
-                    then it is interpreted as a regular expression constraining
-                    the allowable character sequences for the
+                    <doc:description>The textDomain element describes a free
+                    text domain for the attribute. By default, if a pattern is
+                    missing or empty, then any text is allowed. If a pattern is
+                    present, then it is interpreted as a regular expression
+                    constraining the allowable character sequences for the
                     attribute.</doc:description>
                     <doc:example>Typically, a textdomain will have an empty
                     pattern or one that constrains allowable values. For
@@ -543,13 +618,15 @@
                           <doc:tooltip>Text domain definition</doc:tooltip>
                           <doc:summary>Definition of what this text domain
                           represents</doc:summary>
-                          <doc:description>The text domain definition indicates
-                          what the purpose of the text domain is for this
-                          attribute. For example, a particular pattern may be
-                          meant to represent phone numbers in the US phone
-                          system format, or it may be used to extend an
-                          enumerated domain with free text or
-                          pattern-constrained values.</doc:description>
+                          <doc:description>The element definition provides the
+                          text domain definition, that is, what kinds of text
+                          expressions are allowed for this attribute. If there
+                          is a pattern supplied, the definition element
+                          expresses the meaning of the pattern, For example, a
+                          particular pattern may be meant to represent phone
+                          numbers in the US phone system format. A definition
+                          element may also be used to extend an enumerated
+                          domain.</doc:description>
                           <doc:example>US telephone numbers in the format
                           "(999) 888-7777"</doc:example>
                           <doc:lineage>The definition element is from EML
@@ -563,7 +640,7 @@
                           <doc:tooltip>Text pattern</doc:tooltip>
                           <doc:summary>Regular expression pattern constraining
                           the attribute</doc:summary>
-                          <doc:description>The "pattern" element specifies a
+                          <doc:description>The pattern element specifies a
                           regular expression pattern that constrains the set of
                           allowable values for the attribute. This is commonly
                           used to define template patterns for data such as
@@ -590,14 +667,15 @@
                           <doc:tooltip>Source of text domain</doc:tooltip>
                           <doc:summary>The name of the source for this text
                           domain.</doc:summary>
-                          <doc:description>The name of the source from which
-                          this text domain and its associated definition are
-                          drawn. This is commonly used for identifying standard
-                          coding systems, like the FIPS standard for postal
-                          abbreviations for states in the US. In other cases,
-                          the coding may be the researcher's customized way of
-                          recording and classifying their data, and no external
-                          "source" would exist.</doc:description>
+                          <doc:description>The source element is the name of
+                          the source from which this text domain and its
+                          associated definition are drawn. This is commonly
+                          used for identifying standard coding systems, like
+                          the FIPS standard for postal abbreviations for states
+                          in the US. In other cases, the coding may be a
+                          researcher's custom way of recording and classifying
+                          their data, and no external "source" would
+                          exist.</doc:description>
                           <doc:example>ISO country codes</doc:example>
                           <doc:lineage>Introduced in EML 2.0</doc:lineage>
                         </xs:appinfo>
@@ -612,11 +690,11 @@
                     <doc:tooltip>Numeric Domain</doc:tooltip>
                     <doc:summary>Numeric domain of attribute specifying allowed
                     value range</doc:summary>
-                    <doc:description>This element specifies the minimum and
-                    maximum values of a numeric attribute. These are
-                    theoretical or expected values, and not necessarily the
-                    actual minimum and maximum occurring in a given data
-                    set.</doc:description>
+                     <doc:description>The numericDomain element specifies the
+                    minimum and maximum values of a numeric attribute. These
+                    are theoretical or permitted values (ie. prescriptive), and
+                    not necessarily the actual minimum and maximum occurring in
+                    a given data set (descriptive).</doc:description>
                     <doc:example/>
                     <doc:lineage>The numericDomain was introduced into EML 1.4
                     as rangeDomain</doc:lineage>
@@ -630,8 +708,9 @@
                           <doc:tooltip>Minimum numeric range</doc:tooltip>
                           <doc:summary>Minimum numeric range of
                           attribute</doc:summary>
-                          <doc:description>This element specifies the minimum
-                          value range of numeric attribute.</doc:description>
+                          <doc:description>The minimum element specifies the
+                          minimum value range of numeric attribute.
+                          </doc:description>
                           <doc:example/>
                           <doc:lineage>The minimum element was introduced into
                           EML 1.4.</doc:lineage>
@@ -644,8 +723,8 @@
                           <doc:tooltip>Maximum numeric range</doc:tooltip>
                           <doc:summary>Maximum numeric range of
                           attribute</doc:summary>
-                          <doc:description>This element specifies the maximum
-                          value range of numeric attribute.</doc:description>
+                         <doc:description>The maximum element specifies the
+                          maximum value range of a numeric attribute.</doc:description>
                           <doc:example/>
                           <doc:lineage>The maximum element was introduced into
                           EML 1.4.</doc:lineage>
@@ -678,10 +757,15 @@
                   <xs:appinfo>
                     <doc:tooltip>The missing value code itself.</doc:tooltip>
                     <doc:summary>The missing value code itself.</doc:summary>
-                    <doc:description>The missing value code itself. This should
-                    describe what is placed into a data grid if the value is
-                    missing for some reason.</doc:description>
-                    <doc:example>-9999, -1, N/A, MISSING, .</doc:example>
+                    <doc:description>The code element is the missing value code
+                    itself. Each missing value code should be entered in a
+                    separate element instance. The value entered is what is
+                    placed into a data grid if the value is missing for some
+                    reason.</doc:description>
+                    <doc:example>-9999</doc:example>
+                    <doc:example>-1</doc:example>
+                    <doc:example>N/A</doc:example>
+                    <doc:example>MISSING</doc:example>
                     <doc:lineage>Added in EML-2.0.0rc1</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -689,17 +773,17 @@
               <xs:element name="codeExplanation" type="xs:string">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>An explanation of why the missing value code
-                    was used.</doc:tooltip>
+                    <doc:tooltip>Why the missing value code was
+                    used.</doc:tooltip>
                     <doc:summary>An explanation of why the missing value code
                     was used.</doc:summary>
-                    <doc:description>An explanation of why the missing value
-                    code was used. This should also explain what different
-                    missing value codes mean. For instance if -9999 represents
-                    a sensor error and -1 represents a technician error this
-                    should be noted.</doc:description>
+                    <doc:description>The codeExplanation element is an
+                    explanation of the meaning of the missing value code that
+                    was used, that is, the reason that there is a missing
+                    value.</doc:description>
                     <doc:example>Sensor down time.</doc:example>
-                    <doc:lineage>Added in eml-2.0.0rc1</doc:lineage>
+                    <doc:example>technician error.</doc:example>
+                    <doc:lineage>Added in eml-2.0.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -707,18 +791,19 @@
           </xs:complexType>
         </xs:element>
         <xs:element name="precision" type="xs:float" minOccurs="0">
-          <xs:annotation>
+           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Precision</doc:tooltip>
               <doc:summary>The precision of the measurement.</doc:summary>
-              <doc:description>The precision of the measurement, in the same
-              unit as the measurement.   For example, for an attribute with
-              unit "meter", a precision of "0.1" would be interpreted as
-              precise to the nearest 1/10th of a meter.</doc:description>
+              <doc:description>The precision element represents the precision
+              of the measurement, in the same unit as the measurement. For
+              example, for an attribute with unit "meter", a precision of "0.1"
+              would be interpreted as precise to the nearest 1/10th of a
+              meter.</doc:description>
               <doc:example>0.1</doc:example>
-              <doc:lineage>The precision element was introduced into EML
-              1.4., but the definition and documentation changed for
-              EML 2.0.0</doc:lineage>
+              <doc:lineage>The precision element was introduced into EML 1.4.,
+              but the definition and documentation changed for EML
+              2.0.0</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -729,14 +814,15 @@
               <doc:summary>The accuracy of the attribute. This information
               should describe any accuracy information that is known about the
               collection of this data attribute.</doc:summary>
-              <doc:description>The accuracy of the attribute. This information
-              should describe any accuracy information that is known about the
-              collection of this data attribute. The content model of this
-              metadata is taken directly from FGDC FGDC-STD-001-1998 section 2
-              with the exception of processContact, sourceCitation, and
-              timePeriodInformation which either user XMLSchema types or use
-              predefined EML types for these purposes.</doc:description>
-              <doc:example/>
+              <doc:description>The accuracy element represents the accuracy of
+              the attribute. This information should describe any accuracy
+              information that is known about the collection of this data
+              attribute. The content model of this metadata is taken directly
+              from FGDC FGDC-STD-001-1998 section 2 with the exception of
+              processContact, sourceCitation, and timePeriodInformation which
+              either user XMLSchema types or use predefined EML types for these
+              purposes.</doc:description>
+              <doc:example />
               <doc:lineage>New in EML 2.0.0rc1</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -755,16 +841,16 @@
       <xs:element name="attributeAccuracyReport" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>an explanation of the accuracy of the identification
-            of the entities and assignments of values in the data set and a
-            description of the tests used.</doc:tooltip>
-            <doc:summary>an explanation of the accuracy of the identification
-            of the entities and assignments of values in the data set and a
-            description of the tests used.</doc:summary>
-            <doc:description>an explanation of the accuracy of the
-            identification of the entities and assignments of values in the
-            data set and a description of the tests used.</doc:description>
-            <doc:example/>
+            <doc:tooltip>Attribute Accuracy Report</doc:tooltip>
+            <doc:summary>An explanatory report of the accuracy of the
+            attribute.</doc:summary>
+            <doc:description>The attributeAccuracyReport element is an
+            explanation of the accuracy of the observation recorded in this
+            attribute. It will often include a description of the tests used to
+            determine the accuracy of the observation. These reports are
+            generally prepared for remote sensing or other measurement
+            devices.</doc:description>
+            <doc:example />
             <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -772,19 +858,15 @@
       <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>a value assigned to summarize the accuracy of the
-            identification of the entities and assignments of values in the
-            data set and the identification of the test that yielded the
-            value.</doc:tooltip>
-            <doc:summary>a value assigned to summarize the accuracy of the
-            identification of the entities and assignments of values in the
-            data set and the identification of the test that yielded the
-            value.</doc:summary>
-            <doc:description>a value assigned to summarize the accuracy of the
-            identification of the entities and assignments of values in the
-            data set and the identification of the test that yielded the
-            value.</doc:description>
-            <doc:example/>
+            <doc:tooltip>Quantitative Attribute Accuracy
+            Assessment</doc:tooltip>
+            <doc:summary>A value assigned to summarize the accuracy of the
+            attribute.</doc:summary>
+            <doc:description>The quantitativeAttributeAccuracyAssessment
+            element is composed of two parts, a value that represents the
+            accuracy of the recorded observation an explanation of the tests
+            used to determine the accuracy.</doc:description>
+            <doc:example />
             <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -793,16 +875,14 @@
             <xs:element name="attributeAccuracyValue" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>an estimate of the accuracy of the
-                  identification of the entities and assignments of attribute
-                  values in the data set.</doc:tooltip>
-                  <doc:summary>an estimate of the accuracy of the
-                  identification of the entities and assignments of attribute
-                  values in the data set.</doc:summary>
-                  <doc:description>an estimate of the accuracy of the
-                  identification of the entities and assignments of attribute
-                  values in the data set.</doc:description>
-                  <doc:example/>
+                  <doc:tooltip>Attribute Accuracy Value</doc:tooltip>
+                  <doc:summary>A value assigned to estimate the accuracy of the
+                  attribute.</doc:summary
+                  <doc:description>The attributeAccuracyValue element is an
+                  estimate of the accuracy of the identification of the
+                  entities and assignments of attribute values in the data set.
+                  ??</doc:description>
+                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -810,13 +890,13 @@
             <xs:element name="attributeAccuracyExplanation" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <doc:tooltip>the identification of the test that yielded the
-                  Attribute Accuracy Value.</doc:tooltip>
-                  <doc:summary>the identification of the test that yielded the
-                  Attribute Accuracy Value.</doc:summary>
-                  <doc:description>the identification of the test that yielded
-                  the Attribute Accuracy Value.</doc:description>
-                  <doc:example/>
+                  <doc:tooltip>Attribute Accuracy Explanation</doc:tooltip>
+                  <doc:summary>The test which yields the Attribute Accuracy
+                  Value.</doc:summary>
+                  <doc:description>The attributeAccuracyExplanation element is
+                  the identification of the test that yielded the Attribute
+                  Accuracy Value.</doc:description>
+                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -833,11 +913,12 @@
         <doc:tooltip>Standard Units</doc:tooltip>
         <doc:summary>The enumerated list of standard units, mainly
         SI</doc:summary>
-        <doc:description>This enumeration lists the standard set of units that
-        are included with the EML distribution, mailnly from the SI standard.
-        These unit names can be used in the standardUnit filed to describe an
-        attribute's units. The units are defined in the STMML language in a
-        document that is shipped with each release of EML.</doc:description>
+        <doc:description>The unitDictionary element enumerates the standard set
+        of units that are included with the EML distribution, mailnly from the
+        SI standard. These unit names can be used in the standardUnit filed to
+        describe an attribute's units. The units are defined in the STMML
+        language in a document that is shipped with each release of
+        EML.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
