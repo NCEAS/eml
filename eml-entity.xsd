@@ -1,94 +1,83 @@
 <?xml version="1.0"?>
-<xs:schema 
-    targetNamespace="eml://ecoinformatics.org/entity-2.0.0rc1" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc1" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" 
-    xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc1" 
-    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc1" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
-    xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" 
-    schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc1" 
-    schemaLocation="eml-physical.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" 
-    schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc1" 
-    schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc1" 
-    schemaLocation="eml-constraint.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
-    schemaLocation="eml-text.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/entity-2.0.0rc1"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc1"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
+xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
+xmlns:phys="eml://ecoinformatics.org/physical-2.0.0rc1"
+xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1"
+xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc1"
+xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1"
+xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
+  schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1"
+  schemaLocation="eml-coverage.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.0.0rc1"
+  schemaLocation="eml-physical.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1"
+  schemaLocation="eml-methods.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc1"
+  schemaLocation="eml-attribute.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
+  schemaLocation="eml-resource.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc1"
+  schemaLocation="eml-constraint.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1"
+  schemaLocation="eml-text.xsd" />
   <xs:annotation>
-    <xs:documentation>
-       '$RCSfile: eml-entity.xsd,v $'
-       Copyright: 1997-2002 Regents of the University of California,
-                            University of New Mexico, and
-                            Arizona State University
-        Sponsors: National Center for Ecological Analysis and Synthesis and
-                  Partnership for Interdisciplinary Studies of Coastal Oceans,
-                     University of California Santa Barbara
-                  Long-Term Ecological Research Network Office,
-                     University of New Mexico
-                  Center for Environmental Studies, Arizona State University
-   Other funding: National Science Foundation (see README for details)
-                  The David and Lucile Packard Foundation
-     For Details: http://knb.ecoinformatics.org/
-
-        '$Author: jones $'
-          '$Date: 2002-09-06 23:18:00 $'
-      '$Revision: 1.64 $'
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    </xs:documentation>
+    <xs:documentation>'$RCSfile: eml-entity.xsd,v $' Copyright: 1997-2002
+    Regents of the University of California, University of New Mexico, and
+    Arizona State University Sponsors: National Center for Ecological Analysis
+    and Synthesis and Partnership for Interdisciplinary Studies of Coastal
+    Oceans, University of California Santa Barbara Long-Term Ecological
+    Research Network Office, University of New Mexico Center for Environmental
+    Studies, Arizona State University Other funding: National Science
+    Foundation (see README for details) The David and Lucile Packard Foundation
+    For Details: http://knb.ecoinformatics.org/ '$Author: blankman $' '$Date:
+    2002/09/06 23:18:00 $' '$Revision: 1.65 $' This program is free software;
+    you can redistribute it and/or modify it under the terms of the GNU General
+    Public License as published by the Free Software Foundation; either version
+    2 of the License, or (at your option) any later version. This program is
+    distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+    PARTICULAR PURPOSE. See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc., 59
+    Temple Place, Suite 330, Boston, MA 02111-1307 USA</xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-entity</doc:moduleName>
         <doc:moduleDescription>The EML Entity Module defines the logical
-        characteristics of every entity in the dataset. Entities are usually
-        tables of data with a fixed logical structure, but could also be other
-        types of data such as raster or vector image data. The "table-entity"
-        element is used to describe all table entities, and the "other-entity"
-        element would be used to describe all other types of entities. Specific
-        details of non-tabular entities are left to other standards (e.g., for
-        remote sensing data, one should include a spatial metadata module such
-        as the FGDC Content Standard for Digitial Geospatial Metadata
-        [CSDGM]).</doc:moduleDescription>
-        <doc:recommendedUsage>all datasets</doc:recommendedUsage>
-        <doc:standAlone>only when 'otherEntity' is used</doc:standAlone>
+        characteristics of each entity in the dataset. Entities are usually
+        tables of data (eml-dataTable). Data tables may be ascii text files,
+        relational database tables, excel spreadsheets or other type of tabular
+        data with a fixed logical structure. Related to data tables
+        (eml-dataTable) are views (eml-view) and stored procedure
+        (eml-storedProcedure). Views and stored procedures are produced by an
+        RDBMS or related system. Other types of data such as: raster
+        (spatialRaster), vector (spatialVector) or spatialReference image data
+        are also data entities. An otherEntity element would be used to
+        describe types of entities that are not decribed by dataTable, view,
+        storedProcedures, or GIS image data (spatialVector, spatialRaster,
+        spatialReference.</doc:moduleDescription>
+        <doc:recommendedUsage>This module is used to describe data
+        entities.</doc:recommendedUsage>
+        <doc:standAlone>Only when 'otherEntity' is used.</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="otherEntity" type="OtherEntityType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Other Entity descriptor</doc:tooltip>
-        <doc:summary>Descriptor of single non-table entity in the
-        dataset.</doc:summary>
-        <doc:description>The other entity element is a descriptor of one
-        non-tabular entity in the dataset, identified by its name. The element
-        can contain information about the entity's basic identity, its
-        temporal, geographic and taxonomic coverage, and its
+        <doc:tooltip>Other Entity</doc:tooltip>
+        <doc:summary>Descriptor of single data entity in a dataset of a type
+        not specifically described in eml.</doc:summary>
+        <doc:description>The other entity element is a descriptor of a
+        not-otherwise-defined entity in the dataset, identified by its name.
+        The element can contain information about the entity's basic identity,
+        its temporal, geographic and taxonomic coverage, and its
         type.</doc:description>
         <doc:example>Photograph of rocky intertidal plot 12 from Santa Cruz
         Island</doc:example>
@@ -100,7 +89,7 @@
   <xs:complexType name="OtherEntityType">
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="EntityGroup"/>
+        <xs:group ref="EntityGroup" />
         <xs:sequence>
           <xs:element name="entityType" type="xs:string">
             <xs:annotation>
@@ -108,13 +97,13 @@
                 <doc:tooltip>Entity type</doc:tooltip>
                 <doc:summary>Contains the name of the type for this
                 entity.</doc:summary>
-                <doc:description>This element contains the name of the entity's
-                type. The entity's type is typically the name of the data type
-                represented in the entity, such as raster image, vector image,
-                etc. This field should only be used if this is an 'other'
-                entity and you want to specify what the 'other' entity
+                <doc:description>The entityType field contains the name of the
+                entity's type. The entity's type is typically the name of the
+                type of data represented in the entity, such as "photograph".
+                This field is used only if this is an 'other' entity and you
+                want to specify the kind of "other" entity this
                 is.</doc:description>
-                <doc:example>Raster Image</doc:example>
+                <doc:example>Photograph</doc:example>
                 <doc:lineage>The entityType element was introduced into EML 1.4
                 as entityFormat.</doc:lineage>
               </xs:appinfo>
@@ -122,12 +111,12 @@
           </xs:element>
         </xs:sequence>
       </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
+      <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" 
-        default="document"/>
+    <xs:attribute name="id" type="xs:string" use="optional" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
+    default="document" />
   </xs:complexType>
   <xs:group name="EntityGroup">
     <xs:annotation>
@@ -135,28 +124,28 @@
         <doc:tooltip>Base Entity descriptors</doc:tooltip>
         <doc:summary>Basic information about an entity common to all entity
         types.</doc:summary>
-        <doc:description>Basic information about all entity types, including
-        name and coverage of the entity. The term entity is used in the sense
-        of an entity in a relational model; it generally represents a table,
-        but can also represent an image or other type of
-        data.</doc:description>
-        <doc:example>See 'eml-coverage' for descriptions of the coverage
-        elements</doc:example>
+        <doc:description>The EntityGroup defines the common structure for
+        descriptions of any type of entity, including the name and attributes
+        of the entity. The term entity is used in the sense of an entity in a
+        relational model. The most common entity is a table, something with
+        columns and rows, but can also represent an image or other type of
+        data. See 'eml-attribute' for descriptions of the required attribute
+        fields.</doc:description>
         <doc:lineage>The eml-entity was introduced into EML 1.4 as
         eml-file.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0" 
-        maxOccurs="unbounded">
+      <xs:element name="alternateIdentifier" minOccurs="0"
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternate Identifier</doc:tooltip>
             <doc:summary>A secondary identifier for this entity</doc:summary>
             <doc:description>An additional, secondary identifier for this
-            entity.  The primary identifier belongs in the "id" attribute,
-            but additional identifiers that are used to label this entity,
-            possibly from different data management systems, can be listed
+            entity. The primary identifier belongs in the "id" attribute, but
+            additional identifiers that are used to label this entity, possibly
+            from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
             <doc:lineage>As of EML 2.0.0</doc:lineage>
@@ -169,17 +158,17 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Identifier System</doc:tooltip>
-                    <doc:summary>The system in which this id is relevant
-                    </doc:summary>
-                    <doc:description>The computing system within which this
-                    identifier has relevance.  Generally, the identifier
-                    would be unique within the "system" and would be
+                    <doc:summary>The system in which this id is
+                    relevant</doc:summary>
+                    <doc:description>The information management system within
+                    which this identifier has relevance. Generally, the
+                    identifier would be unique within the "system" and would be
                     sufficient to retrieve the entity from the system. The
-                    system is often a URL or URI that identifies the
-                    main entry point for the data management system.
-                    </doc:description>
-                    <doc:example>http://knb.ecoinformatics.org/knb/
-                    </doc:example>
+                    system is often a URL or URI that identifies the main entry
+                    point for the information management
+                    system.</doc:description>
+                    <doc:example>
+                    http://knb.ecoinformatics.org/knb/</doc:example>
                     <doc:lineage>As of EML 2.0.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -192,7 +181,7 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Entity name</doc:tooltip>
-            <doc:summary>Entity name specifier</doc:summary>
+            <doc:summary>The name of the entity name</doc:summary>
             <doc:description>The name identifies the entity in the dataset:
             file name, name of database table, etc.</doc:description>
             <doc:example>SpeciesAbundance1996</doc:example>
@@ -207,23 +196,23 @@
             <doc:tooltip>Entity description</doc:tooltip>
             <doc:summary>General description of the entity and its
             contents</doc:summary>
-            <doc:description>Text generally describing the
-            entity, its type, and relevant information about the data in the
+            <doc:description>Text generally describing the entity, its type,
+            and relevant information about the data in the
             entity.</doc:description>
-            <doc:example>Species abundance data for 1996 at the VCR
-            LTER</doc:example>
+            <doc:example>Species abundance data for 1996 at the VCR LTER
+            site</doc:example>
             <doc:lineage>Introduced in EML 2</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="attributeList" type="att:AttributeListType"/>
-      <xs:element name="constraint" type="con:ConstraintType" 
-        minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0"/>
-      <xs:element name="coverage" type="cov:Coverage" minOccurs="0"/>
-      <xs:element name="method" type="md:MethodsType" minOccurs="0"/>
-      <xs:element name="additionalInfo" type="txt:TextType"
-        minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="attributeList" type="att:AttributeListType" />
+      <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
+      maxOccurs="unbounded" />
+      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" />
+      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" />
+      <xs:element name="method" type="md:MethodsType" minOccurs="0" />
+      <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0"
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Additional Information</doc:tooltip>
@@ -242,3 +231,4 @@
     </xs:sequence>
   </xs:group>
 </xs:schema>
+
