@@ -2,7 +2,9 @@
 <xs:schema targetNamespace="eml:coverage" 
            xmlns="eml:coverage" 
            xmlns:doc="eml:documentation" 
+           xmlns:cit="eml:literature" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:literature" schemaLocation="eml-literature.xsd"/>
   <xs:import namespace="eml:documentation" 
              schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
@@ -12,9 +14,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: berkley $'
-          '$Date: 2002-03-22 19:00:00 $'
-      '$Revision: 1.28 $'
+        '$Author: cjones $'
+          '$Date: 2002-04-16 16:55:57 $'
+      '$Revision: 1.29 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -174,32 +176,35 @@
         </xs:appinfo>
       </xs:annotation>
       <xs:choice>
-        <xs:element ref="sngdate"/>
-        <xs:element ref="mdattim"/>
-        <xs:element ref="rngdates"/>
+        <xs:element ref="singleDateTime"/>
+        <xs:element ref="multipleDatesTimes"/>
+        <xs:element ref="rangeOfDates"/>
       </xs:choice>
   </xs:complexType>
       
-  <xs:element name="sngdate">
+  <xs:element name="singleDateTime">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Single Date/Time</doc:tooltip>
         <doc:summary>Means of encoding a single date and time</doc:summary>
         <doc:description>
-          The sngdate field is intended to describe a single date and time
+          The singleDateTime field is intended to describe a single date and time
           for an event.  There is a choice between two options: a calendar
           date with a time, or a geologic age.
         </doc:description>
         <doc:example>
           Please see the individual sub-elements for example.
         </doc:example>
-        <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage>
+          FGDC-STD-001-1998: 
+            /metadata/time_period_information/sngdate
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:choice>
         <xs:sequence>
-          <xs:element name="caldate" type="xs:date">
+          <xs:element name="calendarDate" type="xs:date">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Calendar date</doc:tooltip>
@@ -218,7 +223,10 @@
                 <doc:example>
                   2001-01-01 , which is January 1st, 2001.
                 </doc:example>
-                <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                <doc:lineage>
+                  FGDC-STD-001-1998: 
+                    /metadata/time_period_information/sngdate/caldate
+                </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -257,19 +265,22 @@
                   past two o'clock p.m., Pacific Standard Time (which is
                   offset eight hours behind UTC)
                 </doc:example>
-                <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                <doc:lineage>
+		  FGDC-STD-001-1998:
+                    /metadata/time_period_information/sngdate/time
+		</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <xs:element ref="geolage"/>
+        <xs:element ref="geologicAge"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="begdate" type="xs:date">
+  <xs:element name="beginningDate" type="xs:date">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Beginning date </doc:tooltip>
+        <doc:tooltip>Beginning date</doc:tooltip>
         <doc:summary>
           The beginning date for a range of days.
         </doc:summary>
@@ -285,11 +296,14 @@
         <doc:example>
           2001-01-01, which is January 1st, 2001.
         </doc:example>
-        <doc:lineage> FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage>
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/rangeOfDates/begdate
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="begtime" type="xs:time">
+  <xs:element name="beginningTime" type="xs:time">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Beginning time of day</doc:tooltip>
@@ -298,7 +312,7 @@
           event.
         </doc:summary>
         <doc:description>
-          The beginning time (begtime) field is used to express the hour 
+          The beginning time (beginningTime) field is used to express the hour 
           (and optionally minute, or minute and second) for a start time 
           of a period of time, and should comply with the International 
           Standards Organization's standard 8601. The recommended format 
@@ -325,11 +339,14 @@
           past two o'clock p.m., Pacific Standard Time (which is
           offset eight hours behind UTC)
         </doc:example>
-        <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
+        <doc:lineage>
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/rangeOfDates/begtime
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="enddate" type="xs:date">
+  <xs:element name="endingDate" type="xs:date">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Ending date</doc:tooltip>
@@ -348,11 +365,14 @@
         <doc:example>
           2001-01-01, which is January 1st, 2001.
         </doc:example>
-        <doc:lineage> FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage> 
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/rangeOfDates/enddate
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="endtime" type="xs:time">
+  <xs:element name="endingTime" type="xs:time">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Ending time of day</doc:tooltip>
@@ -387,11 +407,14 @@
           past two o'clock p.m., Pacific Standard Time (which is
           offset eight hours behind UTC)
         </doc:example>
-        <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage>
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/rangeOfDates/endtime
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="mdattim">
+  <xs:element name="multipleDatesTimes">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Multiple dates/times</doc:tooltip>
@@ -399,28 +422,31 @@
           Means of encoding multiple individual dates and times.
         </doc:summary>
         <doc:description>
-          The 'mdattim' field is entended to be used as a means
+          The 'multipleDatesTimes' field is entended to be used as a means
           of recording multiple dates and times, rather than a single
           date/time, or a range of date/times.  It allows for multiple
-          'sngdate' (single date) fields to be used in sequence.
+          'singleDateTime' (single date) fields to be used in sequence.
         </doc:description>
         <doc:example>
           An example would be multiple date/times, encoded in the
           International Standards Organization's 8601 Date and Time
-          standard, as described in the sub-fields of the 'sngdate' field,
-          such as 'caldate' and 'time'.  The result would be a list of
+          standard, as described in the sub-fields of the 'singleDateTime' field,
+          such as 'calendarDate' and 'time'.  The result would be a list of
           date/times that: 2001-10-31 08:22Z, 2002-10-31 08:22Z, etc.
         </doc:example>
-        <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage>
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/mdattim
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="sngdate" maxOccurs="unbounded"/>
+        <xs:element ref="singleDateTime" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="rngdates">
+  <xs:element name="rangeOfDates">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Range of dates/times</doc:tooltip>
@@ -428,35 +454,38 @@
           Means of encoding a range of dates and times.
         </doc:summary>
         <doc:description>
-          The 'rngdates' field is intended to be used for describing a
+          The 'rangeOfDates' field is intended to be used for describing a
           range of dates and/or times.  It allows for a choice between two
           sequences of sub-fields: 1) A 'beginning date' and 'end date'
           with optional 'beginning time' and 'end time' fields, or 2) a
           'beginning geologic age' and 'ending geologic age'.
         </doc:description>
         <doc:example>
-          Please see the examples from the 'begdate', 'begtime',
-          'enddate', and 'endtime' fields for specific examples.
+          Please see the examples from the 'beginningDate', 'beginningTime',
+          'endingDate', and 'endingTime' fields for specific examples.
         </doc:example>
-        <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+        <doc:lineage>
+	  FGDC-STD-001-1998:
+           /metadata/time_period_information/rngdates
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:choice>
         <xs:sequence>
-          <xs:element ref="begdate"/>
-          <xs:element ref="begtime" minOccurs="0"/>
-          <xs:element ref="enddate"/>
-          <xs:element ref="endtime" minOccurs="0"/>
+          <xs:element ref="beginningDate"/>
+          <xs:element ref="beginningTime" minOccurs="0"/>
+          <xs:element ref="endingDate"/>
+          <xs:element ref="endingTime" minOccurs="0"/>
         </xs:sequence>
         <xs:sequence>
-          <xs:element ref="beggeol"/>
-          <xs:element ref="endgeol"/>
+          <xs:element ref="beginningGeologicAge"/>
+          <xs:element ref="endingGeologicAge"/>
         </xs:sequence>
       </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="geolage">
+  <xs:element name="geologicAge">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Geologic age</doc:tooltip>
@@ -473,7 +502,7 @@
           adequate to describe geologic time periods. Absolute geologic 
           time is usually measured in  millions of years  before present, 
           but may use different units and relative base times. Relative 
-          geologic time is measured by subdivisions of the earth s geology
+          geologic time is measured by subdivisions of the earth's geology.
           in an order based upon relative age, most commonly, vertical or 
           stratigraphic position. The actual dating systems used in 
           geologic studies often tie relative times measured through 
@@ -488,12 +517,15 @@
         <doc:example>
           Please see the individual sub-fields for specific examples.
         </doc:example>
-        <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+        <doc:lineage>
+          NBII FGDC-STD-001.1-1999:
+            /metadata/time_period_information/sngdate/geolage
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="geolscal" type="xs:string">
+        <xs:element name="geologicTimeScale" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic time scale</doc:tooltip>
@@ -511,15 +543,19 @@
                'Absolute', 'Geomagnetic Polarity Time Scale', 
                'International Geological Time Scale', 'Oxygen-Isotope'
               </doc:example>
-              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+              <doc:lineage>
+                NBII FGDC-STD-001.1-1999:
+                  /metadata/time_period_information/sngdate/geolage/geolscal
+	      </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geolest" type="xs:string">
+        <xs:element name="geologicAgeEstimate" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic age estimate</doc:tooltip>
-              <doc:summary/>
+              <doc:summary>
+              </doc:summary>
               <doc:description>
                 Either an absolute geologic date or a relative geologic 
                 age name describing an event or period in geologic time 
@@ -541,11 +577,14 @@
                 Time Scale, both 'Maastrichtian' and 'Danian' should be 
                 included here.
               </doc:example>
-              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+              <doc:lineage>
+                NBII FGDC-STD-001.1-1999:
+                  /metadata/time_period_information/sngdate/geolage/geolest
+	      </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geolun" type="xs:string" minOccurs="0">
+        <xs:element name="geologicAgeUncertainty" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic age uncertainty</doc:tooltip>
@@ -558,11 +597,14 @@
                 error estimate represents and how it was calculated.
               </doc:description>
               <doc:example/>
-              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+              <doc:lineage>
+                NBII FGDC-STD-001.1-1999:
+                  /metadata/time_period_information/sngdate/geolage/geolun
+	      </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geolexpl" type="xs:string" minOccurs="0">
+        <xs:element name="geologicAgeExplanation" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic age explanation</doc:tooltip>
@@ -574,14 +616,17 @@
                 The name and/or description of the method used to 
                 calculate the Geologic age estimate. Detailed information
                 about the method may be provided through references
-                contained in the Geologic_Citation field.
+                contained in the Geologic Citation field.
               </doc:description>
               <doc:example/>
-              <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+              <doc:lineage>
+                NBII FGDC-STD-001.1-1999:
+                  /metadata/time_period_information/sngdate/geolage/geolexpl
+	      </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geolcit" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="geologicCitation" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic citation</doc:tooltip>
@@ -598,53 +643,98 @@
                 for carbon dating or describing the basic geologic time 
                 scale in more detail could be cited here.
               </doc:example>
-              <doc:lineage> FGDC-STD-001.1-1999 </doc:lineage>
+              <doc:lineage>
+                NBII FGDC-STD-001.1-1999:
+                  /metadata/time_period_information/sngdate/geolage/geolcit
+	      </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="citeinfo"/>
+              <xs:element ref="cit:citation" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="beggeol">
+  <xs:element name="beginningGeologicAge">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Beginning geologic age</doc:tooltip>
-        <doc:summary/>
+        <doc:summary>
+          A name, code, or date for the beginning of an event or period in 
+          geologic time. 
+        </doc:summary>
         <doc:description>
           A name, code, or date for the beginning of an event or period in 
           geologic time. 
         </doc:description>
-        <doc:example/>
-        <doc:lineage>FGDC-STD-001.1-1999 </doc:lineage>
+        <doc:example>
+          For example, '300 Ma' (300 million years before present) 
+          is a Geologic_Age_Estimate based on the  Absolute  
+          Geologic_Time_Scale, 'C28r' is a chron name from the 
+          Geomagnetic Polarity Time Scale, and 'Maastrichtian' and 
+          'Jurassic'  are names from the International Geological 
+          Time Scale. Since different relative geologic time scales 
+          are often not aligned, multiple geologic dates may need 
+          to be specified. For example, the Geomagnetic Polarity 
+          Time Scale chron 'C29r', at the K/T boundary lies in both 
+          the 'Maastrichtian' and the 'Danian' stages from the 
+          International Geological Time Scale, thus if you were 
+          documenting this event using the International Geological 
+          Time Scale, both 'Maastrichtian' and 'Danian' should be 
+          included here.
+        </doc:example>
+        <doc:lineage>
+	  FGDC-STD-001.1-1999
+            /metadata/time_period_information/rngdates/beggeol
+	</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="geolage"/>
+        <xs:element ref="geologicAge"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="endgeol">
+  <xs:element name="endingGeologicAge">
     <xs:annotation>
        <xs:appinfo>
          <doc:tooltip>Ending geologic age</doc:tooltip>
-         <doc:summary/>
+         <doc:summary>
+           A name, code, or date for the end of an event or period in 
+           geologic time. 
+         </doc:summary>
          <doc:description>
            A name, code, or date for the end of an event or period in 
            geologic time. 
          </doc:description>
-         <doc:example/>
-         <doc:lineage>FGDC-STD-001.1-1999</doc:lineage>
+         <doc:example>
+           For example, '300 Ma' (300 million years before present) 
+           is a Geologic_Age_Estimate based on the  Absolute  
+           Geologic_Time_Scale, 'C28r' is a chron name from the 
+           Geomagnetic Polarity Time Scale, and 'Maastrichtian' and 
+           'Jurassic'  are names from the International Geological 
+           Time Scale. Since different relative geologic time scales 
+           are often not aligned, multiple geologic dates may need 
+           to be specified. For example, the Geomagnetic Polarity 
+           Time Scale chron 'C29r', at the K/T boundary lies in both 
+           the 'Maastrichtian' and the 'Danian' stages from the 
+           International Geological Time Scale, thus if you were 
+           documenting this event using the International Geological 
+           Time Scale, both 'Maastrichtian' and 'Danian' should be 
+           included here.
+         </doc:example>
+         <doc:lineage>
+	  FGDC-STD-001.1-1999
+            /metadata/time_period_information/rngdates/endgeol
+	 </doc:lineage>
        </xs:appinfo>
      </xs:annotation>
      <xs:complexType>
        <xs:sequence>
-         <xs:element ref="geolage"/>
+         <xs:element ref="geologicAge"/>
        </xs:sequence>
      </xs:complexType>
   </xs:element>
