@@ -1,17 +1,47 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" schemaLocation="eml-view.xsd"/>
+<xs:schema 
+    targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" 
+    xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" 
+    xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
+    xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
+    xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
+    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" 
+    xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" 
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" 
+    xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+    schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" 
+    schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" 
+    schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
+    schemaLocation="eml-dataTable.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" 
+    schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" 
+    schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
+    schemaLocation="eml-spatialRaster.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+    schemaLocation="eml-spatialVector.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
+    schemaLocation="eml-storedProcedure.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
+    schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" 
+    schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation/>
     <xs:appinfo>
@@ -64,7 +94,7 @@
     <xs:choice>
       <xs:sequence>
         <xs:group ref="res:ResourceGroup"/>
-        <xs:element name="purpose" minOccurs="0">
+        <xs:element name="purpose" type="txt:TextType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Purpose</doc:tooltip>
@@ -72,28 +102,10 @@
               resource.</doc:summary>
               <doc:description>A description of the purpose of this data
               resource.</doc:description>
-              <doc:example/>
-              <doc:lineage/>
             </xs:appinfo>
           </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Text paragraph</doc:tooltip>
-                    <doc:summary>A paragraph of text.</doc:summary>
-                    <doc:description>A paragraph of text.</doc:description>
-                    <doc:example/>
-                    <doc:lineage>This field was introduced into EML 2.0, and
-                    was derived from EML 1.3.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
-        <xs:element name="maintenance" minOccurs="0">
+        <xs:element name="maintenance" type="txt:TextType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Maintenance Description</doc:tooltip>
@@ -107,22 +119,6 @@
               <doc:lineage/>
             </xs:appinfo>
           </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Text paragraph</doc:tooltip>
-                    <doc:summary>A paragraph of text.</doc:summary>
-                    <doc:description>A paragraph of text.</doc:description>
-                    <doc:example/>
-                    <doc:lineage>This field was introduced into EML 2.0, and
-                    was derived from EML 1.3.</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
         <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
           <xs:annotation>
