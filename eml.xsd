@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-04-12 00:55:32 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-04-15 23:37:43 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,20 +53,23 @@
           Ecological Metadata
         </doc:tooltip>
         <doc:summary>
-          A collection of EML metadata documents linked using the eml-resource "triple" element.
+          A collection of EML metadata documents linked using the eml-resource
+          "triple" element.
         </doc:summary>
         <doc:description>
-          The "eml" element allows for the inclusion of arbitrary metadata documents as
-          child elements of a single document.  There is no validity constraint that 
-          restricts what metadata may be present, although it is recommended that one (and
-          only one) metadata document that derives from eml-resource be included in the set 
-          so that the "triple" element can be used to determine the appropriate relationships 
-          among the various documents.  This is accomplished by explicitly stating the 
-          relationships by referencing the "identifer" elements that are contained within 
-          each metadata element.  For example, one could indicate that several uniquely
-          identified data objects are a part of the data package, and which of the various
-          eml modules describe the entity, attribute, and constraints for each of those data 
-          objects.
+          The "eml" element allows for the inclusion of arbitrary metadata
+          documents as child elements of a single document.  There is
+          no validity constraint that restricts what metadata may be
+          present, although it is recommended that one (and only one)
+          metadata document that derives from eml-resource be included in
+          the set so that the "triple" element can be used to determine
+          the appropriate relationships among the various documents.
+          This is accomplished by explicitly stating the relationships by
+          referencing the "identifer" elements that are contained within
+          each metadata element.  For example, one could indicate that
+          several uniquely identified data objects are a part of the data
+          package, and which of the various eml modules describe the entity,
+          attribute, and constraints for each of those data objects.
         </doc:description>
         <doc:example>
           Please see the individual eml modules for specific examples.
