@@ -37,9 +37,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-02 18:25:07 $'
-      '$Revision: 1.27 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-03 21:14:58 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,10 +58,22 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-spatialVector</doc:moduleName>
-        <doc:moduleDescription>The eml-spatialVector module allows for the
-        description of spatial vectors in a GIS system. Specific attributes of
-        a spatial vector can be documented here including the vector's geometry
-        type, count and topology level.</doc:moduleDescription>
+        <doc:moduleDescription>
+          <section xmlns="">
+            <title>
+              The eml-spatialVector module - Logical information about
+              non-gridded geospatial image data
+            </title>
+            <para>
+              The eml-spatialVector module allows for the description of spatial 
+              objects in a GIS system that are not defined in a regularly gridded 
+              pattern.  These geometries include points and vectors and the 
+              relationships among them.  Specific attributes of a spatial vector can 
+              be documented here including the vector's geometry type, count and 
+              topology level.
+            </para>
+          </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>all spatial datasets that contain spatial data
         entities represented as vector features.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>

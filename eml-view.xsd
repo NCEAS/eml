@@ -42,9 +42,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-02 18:25:07 $'
-      '$Revision: 1.30 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-03 21:14:58 $'
+      '$Revision: 1.31 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,10 +63,19 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-view</doc:moduleName>
-        <doc:moduleDescription>The EML View module describes a view from a
-        database management system. A view is a query statement that is stored
-        as a database object and executed each time the view is
-        called.</doc:moduleDescription>
+        <doc:moduleDescription>
+        <section xmlns="">
+          <title>
+            The eml-view module - information on data tables resulting from a
+            database query
+          </title>
+          <para>
+            The EML View module describes a view from a database management system. 
+            A view is a query statement that is stored as a database object and 
+            executed each time the view is called.
+          </para>
+        </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>all datasets that contain one or more
         views</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>

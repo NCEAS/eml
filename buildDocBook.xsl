@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-02 17:35:55 $'
-      '$Revision: 1.44 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-03 21:14:58 $'
+      '$Revision: 1.45 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -337,30 +337,18 @@
       <xsl:apply-templates
         select="document('eml-spatialVector.xsd')//doc:moduleDescription/*"
         mode="copy"/>
-        <section>
-          <title>
-            The eml-spatialReference module -
-          </title>
-          <para>
-          <emphasis>This section is not yet complete.</emphasis>
-          </para>
-        </section>
-        <section>
-          <title>
-            The eml-storedProcedure module -
-          </title>
-          <para>
-          <emphasis>This section is not yet complete.</emphasis>
-          </para>
-        </section>
-        <section>
-          <title>
-            The eml-view module -
-          </title>
-          <para>
-          <emphasis>This section is not yet complete.</emphasis>
-          </para>
-        </section>
+      <!-- Get the eml-spatialReference module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-spatialReference.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
+      <!-- Get the eml-storedProcedure module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-storedProcedure.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
+      <!-- Get the eml-view module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-view.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
     </section>
     <section>
         <title>
