@@ -11,9 +11,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:21 $'
-      '$Revision: 1.5 $'
+        '$Author: bojilova $'
+          '$Date: 2001-02-17 00:04:29 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -87,6 +87,7 @@
                 File identifier of the metadata document.
               </description>
               <example>
+                metacat://dev.nceas.ucsb.edu?docid=nceas.155
               </example>
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
@@ -126,20 +127,13 @@
   <xs:element name="researchProject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="title" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
-        <xs:element ref="originator"
-                    minOccurs="1" maxOccurs="unbounded"/>	
-        <xs:element ref="temporalDescription"
-                    minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element ref="objectives"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="abstract"
-                    minOccurs="0" maxOccurs="1"/>	
-        <xs:element ref="funding"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="siteDescription"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="title"/>	
+        <xs:element ref="originator"/>	
+        <xs:element ref="temporalDescription"/>	
+        <xs:element ref="objectives"/>
+        <xs:element ref="abstract"/>	
+        <xs:element ref="funding"/>
+        <xs:element ref="siteDescription"/>	
         <xs:element ref="designDescription"
                     minOccurs="0" maxOccurs="unbounded"/>	
         <xs:element ref="methodDescription"
@@ -150,7 +144,30 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="originator" type="rp:ResponsibleParty">
+  <xs:element name="title" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Title
+        </tooltip>
+        <summary>
+          Title of the research project
+        </summary>
+        <description>
+          Title of the research project
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The title element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation> 
+  </xs:element>
+
+  <xs:element name="originator" type="rp:ResponsibleParty"
+                    minOccurs="1" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -171,7 +188,8 @@
     </xs:annotation> 
   </xs:element>
 	
-  <xs:element name="temporalDescription">
+  <xs:element name="temporalDescription"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -193,15 +211,37 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
-                    minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="duration" 
-                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="temporalCoverage"/>
+        <xs:element ref="duration"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name = "duration">
+  <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
+                    minOccurs="0" maxOccurs="unbounded">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	    Temporal coverage
+        </tooltip>
+        <summary>
+	    Temporal coverage descriptor
+        </summary>
+        <description>
+	    This element specifies temporal coverage of the 
+          research project.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The temporalCoverage was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="duration" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -231,7 +271,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name = "objectives">
+  <xs:element name="objectives"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -241,7 +282,8 @@
           Scope and purpose of the research project.
         </summary>
         <description>
-          Description of scope and purpose of the research project.
+          Description of scope and purpose of the research project
+          in paragraph of text.
         </description>
         <example>
         </example>
@@ -260,7 +302,8 @@
 	
   <xs:element name="paragraph" type="xs:string"/>
 
-  <xs:element name="abstract">
+  <xs:element name="abstract"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -270,7 +313,7 @@
           Descriptive abstract.
         </summary>
         <description>
-          Descriptive abstract.
+          Descriptive abstract in paragraph of text.
         </description>
         <example>
         </example>
@@ -287,7 +330,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="funding">
+  <xs:element name="funding"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -297,7 +341,8 @@
           Funding information.
         </summary>
         <description>
-          Grant and contract numbers, names and addresses of funding sources.
+          Grant and contract numbers, names and addresses of
+          funding sources described in paragraph of text.
         </description>
         <example>
         </example>
@@ -314,7 +359,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="siteDescription">
+  <xs:element name="siteDescription"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -325,8 +371,9 @@
         </summary>
         <description>
           Description of the site of the project. It can include 
-          general description, geographical, geological,
-          hydrological, hystorical, meterological information.
+          general description in paragraph of text, geographical,
+          geological, hydrological, hystorical, meteorological
+          information.
         </description>
         <example>
         </example>
@@ -357,7 +404,8 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="siteType">
+  <xs:element name="siteType" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -368,7 +416,7 @@
         </summary>
         <description>
           Site type - description, e.g., short-grass prairie,
-          blackwater stream, etc.
+          blackwater stream, etc. in paragraph of text.
         </description>
         <example>
         </example>
@@ -385,7 +433,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name = "geography">
+  <xs:element name="geography" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -396,7 +445,8 @@
         </summary>
         <description>
           Description of geographical location and size of the site 
-          of the project in Cartesian coordinates.
+          of the project in Cartesian coordinates, paragraph of text
+          or citation from some source.
         </description>
         <example>
         </example>
@@ -417,7 +467,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name = "coordinates">
+  <xs:element name="coordinates" 
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -553,7 +604,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="habitat">
+  <xs:element name="habitat" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -583,7 +635,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="geology">
+  <xs:element name="geology" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -613,7 +666,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="hydrology">
+  <xs:element name="hydrology" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -643,7 +697,8 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="history">
+  <xs:element name="history" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -673,7 +728,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="climate">
+  <xs:element name="climate" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -703,7 +759,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="designDescription">
+  <xs:element name="designDescription"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -740,7 +797,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="designMethod">
+  <xs:element name="designMethod" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -770,7 +828,8 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="plots">
+  <xs:element name="plots" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -800,7 +859,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="sampling">
+  <xs:element name="sampling" 
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -835,7 +895,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="methodsDescription">
+  <xs:element name="methodsDescription"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -877,7 +938,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="method">
+  <xs:element name="method"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -907,7 +969,8 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="instrument">
+  <xs:element name="instrument"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -937,7 +1000,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="taxonomy">
+  <xs:element name="taxonomy"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -967,7 +1031,8 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="permit">
+  <xs:element name="permit"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -996,7 +1061,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="legalInformation">
+  <xs:element name="legalInformation"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -1024,7 +1090,8 @@
     </xs:complexType>
   </xs:element>
 	
-  <xs:element name="staff" type="rp:ResponsibleParty">
+  <xs:element name="staff" type="rp:ResponsibleParty"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>

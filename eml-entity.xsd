@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.5 $'
+        '$Author: bojilova $'
+          '$Date: 2001-02-17 00:04:29 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,6 +73,7 @@
                 File identifier of the metadata document.
               </description>
               <example>
+                metacat://dev.nceas.ucsb.edu?docid=nceas.155
               </example>
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
@@ -112,7 +113,7 @@
   <xs:element name="entity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="entityName" type="xs:string"
+        <xs:element ref="entityName" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>	
         <xs:element ref="entitySize"
                     minOccurs="0" maxOccurs="1"/>	
@@ -126,14 +127,36 @@
                     minOccurs="0" maxOccurs="1"/>
         <xs:element ref="geographicCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element name="temporalCoverage" type="TemporalCoverage"
+        <xs:element ref="temporalCoverage"
                     minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element name="authentication" type="xs:string"
+        <xs:element ref="authentication" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded"/>	
         <xs:element ref="dataProblem"
                     minOccurs="0" maxOccurs="unbounded"/>	
       </xs:sequence>
     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="entityName">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Entity name
+        </tooltip>
+        <summary>
+	  Entity name specifier
+        </summary>
+        <description>
+	  The name identifies the entity in the dataset: file name, 
+          name of database table, etc.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The entityName was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
   </xs:element>
 
   <xs:element name="entitySize">
@@ -150,6 +173,7 @@
           of the entity within amount and unit descriptors.
         </description>
         <example>
+          <![CDATA[<amount>13</amount><unit>KB</unit>]]>
         </example>
         <lineage>
           The entitySize was introduced into EML 1.4.
@@ -177,9 +201,18 @@
         </summary>
         <description>
 	  This element contains information of the entity's format.
+          Entity's format can be specified by child element as
+          compressed, encoded, ASCII or binary.
         </description>
         <example>
           compressed, encoded, ASCII or binary
+
+          example 1:
+          <![CDATA[<format><compressed/></format>]]>
+          example 2:
+          <![CDATA[<format><encoded/></format>]]>
+          example 3:
+          <![CDATA[<format><baseEntityType><binary/></baseEntityType></format>]]>
         </example>
         <lineage>
           The format element was introduced into EML 1.4.
@@ -206,7 +239,7 @@
         </summary>
         <description>
 	  This element contains information of the entity's base
-          format type.
+          format type: ASCII or binary.
         </description>
         <example>
           ASCII or binary
@@ -234,10 +267,18 @@
 	  Specification of the entity's ASCII format type.
         </summary>
         <description>
-	  This element contains information of the entity's ASCII
-          format type. It specifies the record delimiter in the file.
+	  This element assures that the base file type of the
+          entity is ASCII and specifies the record delimiter 
+          in the file in this case.
         </description>
         <example>
+          <![CDATA[<format>
+                     <baseEntityType>
+                       <ascii>
+                         <recordDelimiter>\n\r</recordDelimiter>
+                       </ascii>
+                     </baseEntityType>
+                   </format>]]>
         </example>
         <lineage>
           The ascii element was introduced into EML 1.4.
@@ -264,7 +305,8 @@
           record orientation by element's attribute "columnorrow".
         </description>
         <example>
-          columnmajor or rowmajor
+          The valid attribute values are "columnmajor" or "rowmajor".
+          If the attribute is not specified, "columnmajor" is used.
         </example>
         <lineage>
           The orientation element was introduced into EML 1.4.
@@ -281,6 +323,27 @@
     </xs:complexType>
   </xs:element>
 
+  <xs:element name="headerLines">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Header lines
+        </tooltip>
+        <summary>
+	  Header lines in the entity
+        </summary>
+        <description>
+	  Number of header lines or information that prepares data.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The headerLines element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
+
   <xs:element name="caseSensitive" nullable="true">
     <xs:annotation>
       <xs:appInfo>
@@ -291,12 +354,13 @@
 	  Specification of text case sensitiveness in the entity.
         </summary>
         <description>
-	  This element contains specification of text 
+	  This element contains specification of data
           case sensitiveness in the entity. It is specified from 
           element's attribute "yesorno".
         </description>
         <example>
-          yes or no
+          The valid attribute values are "yes" or "no".
+          If the attribute is not specified, "yes" is used.
         </example>
         <lineage>
           The caseSensitive element was introduced into EML 1.4.
@@ -325,8 +389,8 @@
         </summary>
         <description>
 	  This element describes the geographic area which data are 
-          collected in the entity. It can specify the Cartesian 
-          coordinates of the area.
+          collected in the entity: descriptive paragraph of text or
+          Cartesian coordinates of the area.
         </description>
         <example>
         </example>
@@ -385,6 +449,8 @@
         <description>
 	  This element specifies the lattitude coordinates
           of the geographic area covered by the entity. 
+          The element's attribute "direction" should specify
+          the coordinate's direction to "north" or "south".
         </description>
         <example>
         </example>
@@ -415,6 +481,8 @@
         <description>
 	  This element specifies the longitude coordinates
           of the geographic area covered by the entity. 
+          The element's attribute "direction" should specify
+          the coordinate's direction to "east" or "west".
         </description>
         <example>
         </example>
@@ -433,23 +501,46 @@
     </xs:complexType>
   </xs:element>
 
+  <xs:element name="temporalCoverage" type="TemporalCoverage">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	    Temporal coverage
+        </tooltip>
+        <summary>
+	    Temporal coverage descriptor
+        </summary>
+        <description>
+	    This element specifies temporal coverage of the data
+          collected in the entity by specifing start and stop date.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The temporalCoverage was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
+
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Temporal coverage
+	    Temporal coverage
         </tooltip>
         <summary>
-	  Description of temporal coverage.
+	    Temporal coverage descriptor.
         </summary>
         <description>
-	  This element specifies temporal coverage by 
+	    This element specifies temporal coverage by 
           start and stop date.
         </description>
         <example>
         </example>
         <lineage>
-          The temporalCoverage element was introduced into EML 1.4.
+          The TemporalCoverage complex type was introduced
+          into EML 1.4.
         </lineage>
       </xs:appInfo>
     </xs:annotation>
@@ -483,7 +574,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="dateTime" type="DateTime"
+        <xs:element ref="dateTime"
                     minOccurs="1" maxOccurs="1"/>	
       </xs:sequence>
     </xs:complexType>
@@ -511,10 +602,34 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="dateTime" type="DateTime"
+        <xs:element ref="dateTime"
                     minOccurs="1" maxOccurs="1"/>	
       </xs:sequence>
     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="dateTime" type="DateTime">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Date and time
+        </tooltip>
+        <summary>
+	  Date and time as designated in ISO 8601
+        </summary>
+        <description>
+	  This element specifies date and time as 
+          designated in ISO 8601. We can consider not to use "DateTime"
+          type, but XML Schema's timeDuration instead.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The DateTime complex type was introduced into EML 1.4, and is
+          based on the ISO 8601 time standard.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
   </xs:element>
 
   <xs:complexType name="DateTime">
@@ -527,8 +642,9 @@
 	  Date and time as designated in ISO 8601
         </summary>
         <description>
-	  This element specifies date and time as 
-          designated in ISO 8601.
+	  This complex type specifies date and time as 
+          designated in ISO 8601. We can consider to drop this type,
+          but to use XML Schema's timeDuration instead.
         </description>
         <example>
         </example>
@@ -557,6 +673,27 @@
                   minOccurs="0" maxOccurs="1"/>	
     </xs:sequence>
   </xs:complexType>
+
+  <xs:element name="authentication">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	    Authentication
+        </tooltip>
+        <summary>
+	    Authentication descriptor
+        </summary>
+        <description>
+	    This element describes authentication procedures or techniques.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The authentication was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:element>
 
   <xs:element name="dataProblem">
     <xs:annotation>

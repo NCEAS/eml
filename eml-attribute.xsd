@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.4 $'
+        '$Author: bojilova $'
+          '$Date: 2001-02-17 00:04:29 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -72,6 +72,7 @@
                 File identifier of the metadata document.
               </description>
               <example>
+                metacat://dev.nceas.ucsb.edu?docid=nceas.155
               </example>
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
@@ -205,7 +206,7 @@
 	  Description of storage type from data in the field
         </summary>
         <description>
-	  This element describes the storage type from data in the field like:
+	  This element describes the storage type for data in the field like:
           integer, floating point, character, string.
         </description>
         <example>
@@ -309,11 +310,12 @@
 	  Number of significat digits after the floating point.
         </summary>
         <description>
-	  If data of that field are floating point storage type
+	  If data of that field are of floating point storage type
           this element specifies the number of significat digits
           after the floating point.
         </description>
         <example>
+          any integer number
         </example>
         <lineage>
           The precision element was introduced into EML 1.4.
