@@ -1,4 +1,33 @@
 <?xml version="1.0"?>
+<!--
+  *  '$RCSfile: eml2tonbii.xsl,v $'
+  *      Authors: Dan Higgins
+  *    Copyright: 2000 Regents of the University of California and the
+  *               National Center for Ecological Analysis and Synthesis
+  *  For Details: http://www.nceas.ucsb.edu/
+  *
+  *   '$Author: higgins $'
+  *     '$Date: 2003-04-07 22:37:59 $'
+  * '$Revision: 1.4 $'
+  * 
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  * This is an XSLT (http://www.w3.org/TR/xslt) stylesheet designed to
+  * convert an XML file in eml2 format to nbii fromat
+-->
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
 version="1.0">
@@ -253,68 +282,144 @@ version="1.0">
           </xsl:element>
         </xsl:if>
         <xsl:element name="keywords">
-          <xsl:element name="theme">
-            <xsl:choose>
-              <xsl:when test="/eml:eml/dataset/keywordSet!=''">
-               <!-- ??? in eml2 keywordSet is repeatable!! -->
-                <xsl:element name="themekt">
-          
-                </xsl:element>
-                <xsl:element name="themekey">
-          
-                </xsl:element>
-              </xsl:when>
-              <xsl:otherwise>
+          <xsl:choose>
+            <xsl:when test="/eml:eml/dataset/keywordSet!=''">
+              <xsl:for-each select="/eml:eml/dataset/keywordSet">
+                <xsl:variable name="current_thes" select="/eml:eml/dataset/keywordSet/keywordThesaurus"/>
+                <xsl:for-each select="./keyword">
+                  <xsl:choose>
+                    <xsl:when test="./@keywordType='theme'">
+                      <xsl:element name="theme">
+                        <xsl:element name="themekt">
+                          <xsl:choose>
+                            <xsl:when test="$current_thes!=''">
+                              <xsl:value-of select="$current_thes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:element>
+                        <xsl:element name="themekey">
+                          <xsl:value-of select="."/>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:when>
+                    <xsl:when test="./@keywordType='place'">
+                      <xsl:element name="place">
+                        <xsl:element name="placekt">
+                          <xsl:choose>
+                            <xsl:when test="$current_thes!=''">
+                              <xsl:value-of select="$current_thes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:element>
+                        <xsl:element name="placekey">
+                          <xsl:value-of select="."/>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:when>
+                    <xsl:when test="./@keywordType='stratum'">
+                      <xsl:element name="stratum">
+                        <xsl:element name="stratkt">
+                          <xsl:choose>
+                            <xsl:when test="$current_thes!=''">
+                              <xsl:value-of select="$current_thes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                      </xsl:element>
+                        <xsl:element name="stratkey">
+                          <xsl:value-of select="."/>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:when>
+                    <xsl:when test="./@keywordType='temporal'">
+                      <xsl:element name="temporal">
+                        <xsl:element name="tempkt">
+                          <xsl:choose>
+                            <xsl:when test="$current_thes!=''">
+                              <xsl:value-of select="$current_thes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:element>
+                        <xsl:element name="tempkey">
+                          <xsl:value-of select="."/>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
+                       <xsl:element name="theme">
+                        <xsl:element name="themekt">
+                          <xsl:choose>
+                            <xsl:when test="$current_thes!=''">
+                              <xsl:value-of select="$current_thes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:element>
+                        <xsl:element name="themekey">
+                          <xsl:value-of select="."/>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:for-each>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:element name="theme">
                 <xsl:element name="themekt">
                   <xsl:value-of select="'N/A'"/>
                 </xsl:element>
                 <xsl:element name="themekey">
                   <xsl:value-of select="'N/A'"/>
                 </xsl:element>
-              </xsl:otherwise>
-            </xsl:choose>  
-          </xsl:element>
-        <xsl:if test="$show_optional">
-          <xsl:element name="place">
-            <xsl:element name="placekt">
+              </xsl:element>  
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:element>  
           
-            </xsl:element>
-            <xsl:element name="placekey">
-          
-            </xsl:element>
-          </xsl:element>
-        </xsl:if>
-        <xsl:if test="$show_optional">
-          <xsl:element name="stratum">
-            <xsl:element name="stratkt">
-          
-            </xsl:element>
-            <xsl:element name="stratkey">
-          
-            </xsl:element>
-          </xsl:element>
-        </xsl:if>
-        <xsl:if test="$show_optional">
-          <xsl:element name="temporal">
-            <xsl:element name="tempkt">
-          
-            </xsl:element>
-            <xsl:element name="tempkey">
-          
-            </xsl:element>
-          </xsl:element>
-        </xsl:if>
-        </xsl:element>
         <xsl:if test="$show_optional">
           <xsl:element name="taxonomy">
+          
           </xsl:element>
         </xsl:if>
-        <xsl:element name="accconst">
-          access constraints
-        </xsl:element>
-        <xsl:element name="useconst">
-          use constraints
-        </xsl:element>
+        <xsl:choose>
+          <xsl:when test="/eml:eml/dataset/access!=''">
+            <xsl:element name="accconst">
+              <xsl:value-of select="/eml:eml/dataset/access"/>
+            </xsl:element>  
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:element name="accconst">
+              <xsl:value-of select="'N/A'"/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>  
+        <xsl:choose>
+          <xsl:when test="/eml:eml/dataset/access!=''">
+            <xsl:element name="useconst">
+              <xsl:value-of select="/eml:eml/dataset/access"/>
+            </xsl:element>  
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:element name="useconst">
+              <xsl:value-of select="'N/A'"/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>  
+
         <xsl:if test="$show_optional">
           <xsl:element name="ptcontac">
           </xsl:element>
@@ -372,23 +477,23 @@ version="1.0">
       </xsl:if>
       <xsl:element name="metainfo">
         <xsl:element name="metd">
-      
+          <xsl:value-of select="'N/A'"/>
         </xsl:element>
         <xsl:element name="metrd">
-      
+          <xsl:value-of select="'N/A'"/>      
         </xsl:element>
         <xsl:if test="$show_optional">
           <xsl:element name="metfrd">
-      
+          <xsl:value-of select="'N/A'"/>
           </xsl:element>
         </xsl:if>  
         <xsl:element name="metc">
           <xsl:element name="cntinfo">
             <xsl:choose>
-              <xsl:when test="1">
+              <xsl:when test="/eml:eml/dataset/contact/individualName!=''">
                 <xsl:element name="cntperp">
                   <xsl:element name="cntper">
-                  
+                    <xsl:value-of select="/eml:eml/dataset/contact/individualName"/>
                   </xsl:element>
                   <xsl:if test="$show_optional">
                     <xsl:element name="cntorg">
@@ -397,10 +502,22 @@ version="1.0">
                   </xsl:if>  
                 </xsl:element>
               </xsl:when>
-              <xsl:when test="0">
+              <xsl:when test="/eml:eml/dataset/contact/organizationName!=''">
                 <xsl:element name="cntorgp">
                   <xsl:element name="cntorg">
+                    <xsl:value-of select="/eml:eml/dataset/contact/organizationName"/>
+                  </xsl:element>
+                  <xsl:if test="$show_optional">
+                    <xsl:element name="cntper">
                   
+                    </xsl:element>
+                  </xsl:if>  
+                </xsl:element>
+              </xsl:when>
+              <xsl:when test="/eml:eml/dataset/contact/positionName!=''">
+                <xsl:element name="cntorgp">
+                  <xsl:element name="cntorg">
+                    <xsl:value-of select="/eml:eml/dataset/contact/positionName"/>
                   </xsl:element>
                   <xsl:if test="$show_optional">
                     <xsl:element name="cntper">
@@ -410,38 +527,74 @@ version="1.0">
                 </xsl:element>
               </xsl:when>
             </xsl:choose>
-            <xsl:if test="$show_optional">
+            <xsl:if test="/eml:eml/dataset/contact/positionName!=''">
               <xsl:element name="cntpos">
-              
+                <xsl:value-of select="/eml:eml/dataset/contact/positionName"/>
               </xsl:element>
             </xsl:if>
             <xsl:element name="cntaddr">
                <xsl:element name="addrtype">
-                 
+                 <xsl:value-of select="'mailing'"/>
                </xsl:element>
-               <xsl:if test="$show_optional">
-                 <xsl:element name="address">
-                 
-                 </xsl:element>
-               </xsl:if>
-               <xsl:element name="city">
-                 
-               </xsl:element>
-               <xsl:element name="state">
-                 
-               </xsl:element>
-               <xsl:element name="postal">
-                 
-               </xsl:element>
-               <xsl:if test="$show_optional">
-                 <xsl:element name="country">
-                 
-                 </xsl:element>
-               </xsl:if>
+               <xsl:choose>
+                 <xsl:when test="/eml:eml/dataset/contact/address/deliveryPoint!=''">
+                   <xsl:element name="address">
+                     <xsl:value-of select="/eml:eml/dataset/contact/address/deliveryPoint"/>
+                   </xsl:element>
+                 </xsl:when>
+               </xsl:choose>
+               
+               <xsl:choose>
+                 <xsl:when test="/eml:eml/dataset/contact/address/city!=''">
+                   <xsl:element name="city">
+                     <xsl:value-of select="/eml:eml/dataset/contact/address/city"/>
+                   </xsl:element>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:value-of select="'N/A'"/>
+                 </xsl:otherwise>
+               </xsl:choose>
+               
+               <xsl:choose>
+                 <xsl:when test="/eml:eml/dataset/contact/address/administrativaArea!=''">
+                   <xsl:element name="state">
+                     <xsl:value-of select="/eml:eml/dataset/contact/address/administrativaArea"/>
+                   </xsl:element>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:value-of select="'N/A'"/>
+                 </xsl:otherwise>
+               </xsl:choose>
+               
+               <xsl:choose>
+                 <xsl:when test="/eml:eml/dataset/contact/address/postalCode!=''">
+                   <xsl:element name="postal">
+                     <xsl:value-of select="/eml:eml/dataset/contact/address/postalCode"/>
+                   </xsl:element>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:value-of select="'N/A'"/>
+                 </xsl:otherwise>
+               </xsl:choose>
+               
+               <xsl:choose>
+                 <xsl:when test="/eml:eml/dataset/contact/address/country!=''">
+                   <xsl:element name="country">
+                     <xsl:value-of select="/eml:eml/dataset/contact/address/country"/>
+                   </xsl:element>
+                 </xsl:when>
+               </xsl:choose>
+               
             </xsl:element>
-            <xsl:element name="cntvoice">
-              
-            </xsl:element>
+
+             <xsl:choose>
+               <xsl:when test="/eml:eml/dataset/contact/phone!=''">
+                 <xsl:element name="cntvoice">
+                   <xsl:value-of select="/eml:eml/dataset/contact/phone"/>
+                 </xsl:element>
+               </xsl:when>
+             </xsl:choose>
+               
             <xsl:if test="$show_optional">
               <xsl:element name="cnttdd">
               
@@ -470,10 +623,10 @@ version="1.0">
           </xsl:element>
         </xsl:element>
         <xsl:element name="metstdn">
-      
+          <xsl:value-of select="'FGDC/NBII Content Standard for Digital Geospatial Metadata (from Ecological Metadata Langualge 2.0)'"/>
         </xsl:element>
         <xsl:element name="metstdv">
-      
+          <xsl:value-of select="'1999 Version (from Ecological Metadata Langualge 2.0)'"/>
         </xsl:element>
         <xsl:if test="$show_optional">
           <xsl:element name="mettc">
