@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<spvec:spatialVector
+    xmlns:spvec="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="eml://ecoinformatics.org/spatialVector-2.0.0rc1
+    eml-spatialVector.xsd">
+
+  <entityName>Test Data</entityName>
+  <entityDescription>This is a test entity that is fake.</entityDescription>
+  <attributeList>
+    <attribute>
+      <attributeName>rain</attributeName>
+      <attributeLabel>Surface Rainfall</attributeLabel>
+      <attributeDefinition>The amount of rainfall on the sampling unit.
+      </attributeDefinition>
+      <unit><standardUnit>millimeter</standardUnit></unit>
+      <storageType>float</storageType>
+      <storageType typeSystem="http://java.sun.com/docs/books/jls/second_edition/html">double</storageType>
+      <measurementScale>interval</measurementScale>
+      <attributeDomain>
+          <numericDomain><minimum>0</minimum></numericDomain>
+      </attributeDomain>
+      <precision>0.5</precision>
+    </attribute>
+  </attributeList>
+  <geometry>Point</geometry>
+
+  <spatialReference>
+    <horizontalCoordinateSystemDefinition>
+      <coordinateSystemName>
+        <geographicCoordinateSystemName>Planar</geographicCoordinateSystemName>
+        <projectedCoordinateSystemName>Cartesian</projectedCoordinateSystemName>
+      </coordinateSystemName>
+      <local>
+        <local_Description>xyz</local_Description>
+        <local_Georeference_Information>xyz</local_Georeference_Information>
+      </local>
+      <geodetic_Model>
+        <horizontal_Datum_Name>
+          xyz
+        </horizontal_Datum_Name>
+        <ellipsoid_Name>
+          xyz
+        </ellipsoid_Name>
+        <semi-major_Axis>
+          xyz
+        </semi-major_Axis>
+        <denominator_of_Flattening_Ratio>
+          xyz
+        </denominator_of_Flattening_Ratio>
+      </geodetic_Model>
+    </horizontalCoordinateSystemDefinition>
+
+    <vertical_Coordinate_System_Definition>
+      <altitude_System_Definition>
+        <altitude_Datum_Name>
+          xyz
+        </altitude_Datum_Name>
+        <altitude_Resolution>
+          123
+        </altitude_Resolution>
+        <altitude_Distance_Units>
+          meters
+        </altitude_Distance_Units>
+        <altitude_Encoding_Method>
+          whatever
+        </altitude_Encoding_Method>
+      </altitude_System_Definition>
+      <depth_System_Definition>
+        <depth_Datum_Name>
+          xyz
+        </depth_Datum_Name>
+        <depth_Resolution>
+          123
+        </depth_Resolution>
+        <depth_Distance_Units>
+          meters
+        </depth_Distance_Units>
+        <depth_Encoding_Method>
+          whatever
+        </depth_Encoding_Method>
+      </depth_System_Definition>
+    </vertical_Coordinate_System_Definition>
+  </spatialReference>
+</spvec:spatialVector>
