@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-07-31 22:09:42 $'
-#   '$Revision: 1.10 $'
+#       '$Date: 2001-12-16 21:10:40 $'
+#   '$Revision: 1.11 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,9 +24,10 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0beta3 Release
+Version: 2.0beta6
 
 Feedback and bugs to: knb-software@nceas.ucsb.edu
+                      http://bugzilla.ecoinformatics.org
 
 Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Chad Berkley (berkley@nceas.ucsb.edu)
@@ -34,6 +35,8 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Dan Higgins (higgins@nceas.ucsb.edu)
               Chris Jones (cjones@lifesci.ucsb.edu)
               Corinna Gries (corinna@asu.edu)
+              Peter McCartney (peter.mccartney@asu.edu)
+              Mark Schildhauer (schild@nceas.ucsb.edu)
               Noah Goldstein
               Zheng Wang
 
@@ -66,7 +69,6 @@ Integrity constraints        eml-constraint.[xsd,dtd]
 Geographic, temporal and     eml-coverage.[xsd,dtd]
   taxonomic coverage
 Data set info                eml-dataset.[xsd,dtd]
-Distribution info            eml-distribution.[xsd,dtd]
 Data entity (table) info     eml-entity.[xsd,dtd]
 Citation info                eml-literature.[xsd,dtd]
 People and organizations     eml-party.[xsd,dtd]
@@ -80,20 +82,22 @@ Also included is a schema for supporting documentation:
 Schema documentation info    eml-documentation.xsd
 
 The above files are a part of the proposed release of EML 2.0.  
-This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_BETA_3".  Previous versions of EML (such as 1.4) 
-are available from this repository using the
-appropriate release tag (i.e. RELEASE_EML_1_4).
+A number of issues still need to be worked out before the final
+version 2 release, but this version has now stabiized and we expect
+only minor modifications between this version and the final version 2
+release.  This release of EML can be retrieved from CVS using the 
+tag "RELEASE_EML_2_BETA_6".  Previous versions of EML (such as 1.4) 
+are available from this repository using the appropriate release tag 
+(i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) eml-distribution needs to be revisited, possibly eliminating this
-   module and folding its content into eml-resource
-2) Multiline records supported sufficiently in eml-physical?
-3) Check if eml-coverage uses eml-literature rather than citeinfo?
-4) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
-5) Possibly eliminate eml-distribution (Bug 174)
-6) Should eml-project extend ResourceBase? several fields overlap...
+1) Multiline records supported sufficiently in eml-physical?
+2) Check if eml-coverage uses eml-literature rather than citeinfo?
+3) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
+4) Should eml-project extend ResourceBase? several fields overlap...
+5) The "identifier" element may need to be decomposed into finer grains
+6) Need to resolve complete semantics of "triple" elements in eml-resource
 
 Legalese
 --------
