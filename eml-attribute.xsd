@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 23:41:15 $'
-      '$Revision: 1.86 $'
+          '$Date: 2002-10-31 15:48:58 $'
+      '$Revision: 1.87 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -721,10 +721,10 @@
                                -------------------    ------------------
                 ISO Date       YYYY-MM-DD             2002-10-14
                 ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
-                ISO Time       hh:mm:ss               09:13:45
+                ISO Time       hh:mm:ss               17:13:45
                 ISO Time       hh:mm:ss.sss           09:13:45.432
                 ISO Time       hh:mm.mm               09:13.42
-                Non-standard   DD/MM/YYYY             10/14/2002
+                Non-standard   DD/MM/YYYY             14/10/2002
                 Non-standard   MM/DD/YYYY             10/14/2002
                 Non-standard   MM/DD/YY               10/14/02
                 Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
@@ -733,7 +733,7 @@
             Some notes about these examples.  First, the ISO 8601 standard is
             strict about the order of date components and the separators that
             are legal.  Best practice is to follow the ISO 8601 format
-            precisely.  Howver, we recognize that existing data contain
+            precisely.  However, we recognize that existing data contain
             non-standard dates, and existing equipment (e.g., sensors) may 
             still be producing non-standard dates.  Consequently, we have
             provided the formatting string with additional characters to
