@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-13 18:25:13 $'
-      '$Revision: 1.14 $'
+          '$Date: 2002-10-04 20:47:13 $'
+      '$Revision: 1.15 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -527,11 +527,14 @@
   </unit>
 
   <!--angles-->
-  <unit id="radian" name="radiam" unitType="angle" multiplierToSI="1" abbreviation="rad">
+  <unit id="radian" name="radian" unitType="angle" multiplierToSI="1" abbreviation="rad">
     <description>radian</description>
   </unit>
   <unit id="degree" name="degree" unitType="angle" multiplierToSI="57.29578" abbreviation="deg">
     <description>radian</description>
+  </unit>
+  <unit id="grad" name="grad" unitType="angle" multiplierToSI="63.66197832" abbreviation="grad">
+    <description>grad</description>
   </unit>
 
   <!--frequency-->
@@ -857,7 +860,13 @@
   <unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
     <description>An imperial measure of length</description>
   </unit>
+  <unit id="USfoot" name="USfoot" parentSI="meter" abbreviation="usft" multiplierToSI=".3048">
+    <description>12 inches</description>
+  </unit>
   <unit id="foot" name="foot" parentSI="meter" abbreviation="ft" multiplierToSI=".3048">
+    <description>12 inches</description>
+  </unit>
+  <unit id="GoldCoastFoot" name="GoldCoastFoot" parentSI="meter" abbreviation="gcft" multiplierToSI=".3047997101815088">
     <description>12 inches</description>
   </unit>
   <unit id="fathom" name="fathom" parentSI="meter" multiplierToSI="1.8288">
@@ -868,6 +877,15 @@
   </unit>
   <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI=".9144">
     <description>3 feet</description>
+  </unit>
+  <unit id="yardIndian" name="yardIndian" parentSI="meter" multiplierToSI=".914398530744440774">
+    <description></description>
+  </unit>
+  <unit id="linkClarke" name="linkClarke" parentSI="meter" multiplierToSI=".2011661949">
+    <description></description>
+  </unit>
+  <unit id="yardSears" name="yardSears" parentSI="meter" multiplierToSI=".91439841461602867">
+    <description></description>
   </unit>
   <unit id="mile" name="mile" parentSI="meter" abbreviation="mile" multiplierToSI="1609.344">
     <description>5280 ft or 1609.344 meters</description>
