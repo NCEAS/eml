@@ -28,8 +28,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-23 15:07:16 $'
-      '$Revision: 1.45 $'
+          '$Date: 2002-09-23 18:32:25 $'
+      '$Revision: 1.46 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -92,19 +92,20 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Object name</doc:tooltip>
-                  <doc:summary>A name for the physical object.</doc:summary>
-                  <doc:description>The objectName is the a name (i.e.
-                  identifier) for the object being considered. In many cases,
-                  it may just be the file name on the file system where it is
-                  stored. Or if the object is a table in a RDB it may be the
-                  table name.</doc:description>
-                  <doc:lineage>Introduced in EML 2.0.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:element name="objectName" type="xs:string" />
+              <xs:element name="objectName" type="xs:string" >
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Object name</doc:tooltip>
+                    <doc:summary>A name for the physical object.</doc:summary>
+                    <doc:description>The objectName is the a name (i.e.
+                    identifier) for the object being considered. In many cases,
+                    it may just be the file name on the file system where it is
+                    stored. Or if the object is a table in a RDB it may be the
+                    table name.</doc:description>
+                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
               <xs:element name="size" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
@@ -262,17 +263,64 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:appinfo>
               </xs:annotation>
               <xs:element name="formatType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>format type</doc:tooltip>
+                    <doc:summary>The type of the format.</doc:summary>
+                    <doc:description>The type of the format.</doc:description>
+                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="formatName" type="xs:string" />
+                    <xs:element name="formatName" type="xs:string" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>format name</doc:tooltip>
+                          <doc:summary>The name of the format.</doc:summary>
+                          <doc:description>The name of the format.</doc:description>
+                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                     <xs:element name="formatVersion" type="xs:string"
-                    minOccurs="0" />
+                    minOccurs="0" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>format version</doc:tooltip>
+                          <doc:summary>The version of the format.</doc:summary>
+                          <doc:description>The version of the format.</doc:description>
+                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                     <xs:element name="citation" type="cit:CitationType"
-                    minOccurs="0" />
+                    minOccurs="0" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>format citation</doc:tooltip>
+                          <doc:summary>A citation for the format.</doc:summary>
+                          <doc:description>A citation for the format.  This
+                          could be a ciation for a published spec of the format.
+                          </doc:description>
+                          <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element name="asciiDelimited">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>ascii delimited</doc:tooltip>
+                    <doc:summary>Descriptors for ASCII based delimited text
+                    files.</doc:summary>
+                    <doc:description>Descriptors for ASCII based delimited text
+                    files.</doc:description>
+                    <doc:lineage>Introduced in EML 2.0.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="fieldDelimiter" type="xs:string">
@@ -356,7 +404,17 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="maxRecordLength" type="xs:unsignedLong"
-                    minOccurs="0" />
+                    minOccurs="0" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>maximum record length</doc:tooltip>
+                          <doc:summary></doc:summary>
+                          <doc:description>The maximum record length of this
+                          physical file if there is one.</doc:description>
+                          <doc:example>1024</doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                     <xs:element name="quoteCharacter" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
@@ -419,10 +477,30 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:complexType>
               </xs:element>
               <xs:element name="asciiFixed">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>ascii fixed format file</doc:tooltip>
+                    <doc:summary></doc:summary>
+                    <doc:description>Descriptors for ASCII based text files
+                    with fixed length fields.</doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="numHeaderLines" type="xs:string"
-                    minOccurs="0" />
+                    minOccurs="0" >
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Header lines</doc:tooltip>
+                          <doc:summary>Header lines in the entity</doc:summary>
+                          <doc:description>Number of header lines or
+                          information that prepares data.</doc:description>
+                          <doc:example>3</doc:example>
+                          <doc:lineage>The numHeaderLines element was
+                          introduced into EML 1.4.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                     <xs:element name="numPhysicalLines" type="xs:unsignedInt"
                     minOccurs="0">
                       <xs:annotation>
@@ -443,6 +521,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="fieldBounds">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>field bounds</doc:tooltip>
+                          <doc:summary></doc:summary>
+                          <doc:description>The bounds on a given field.
+                          </doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="lineNumber" type="xs:unsignedLong"
@@ -1065,6 +1151,17 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:complexType>
         </xs:element>
         <xs:element name="inline">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>inline data</doc:tooltip>
+              <doc:summary></doc:summary>
+              <doc:description>This field is provided for inline data. This
+              field can accomodate any type of data.  If the data is binary,
+              it should be base64 encoded before being pasted into this
+              field.  If it is ASCII text, it can simply be pasted here.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:any maxOccurs="unbounded" />

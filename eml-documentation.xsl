@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-17 19:00:36 $'
- *    '$Revision: 1.34 $'
+ *        '$Date: 2002-09-23 18:32:25 $'
+ *    '$Revision: 1.35 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -139,7 +139,7 @@
           <xsl:otherwise>REQUIRED </xsl:otherwise>
         </xsl:choose>
         <xsl:choose>
-          <xsl:when test="./@default">And has a default value of 
+          <xsl:when test="./@default">And has a default value of
           '<xsl:value-of select="./@default"/>'</xsl:when>
           <xsl:otherwise>and has no default value</xsl:otherwise>
         </xsl:choose>
@@ -274,12 +274,12 @@
                   </span>
                   </td>
                 </tr>
-                
+
                 <!-- Now display the CM for the element children -->
                 <xsl:apply-templates
                      select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent|xs:simpleContent"
                      mode="contentmodel" />
-                     
+
                 </xsl:if>
                 </xsl:if>
                 <!-- display the attributes -->
@@ -315,7 +315,7 @@
         <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
         <xsl:apply-templates select="xs:simpleType" mode="embedded"/>
       </tr>
-      
+
     </xsl:if>
   </xsl:template>
 
@@ -437,7 +437,7 @@
           </span>
         </td>
         </xsl:if>
-        
+
         <xsl:if test="./@default">
         <td class="tablepanel">
           <span class="plaintext">
@@ -509,7 +509,7 @@
             <xsl:value-of select="./@value"/>
           </span></p>
         </xsl:if>
-        
+
         <xsl:if test="./@default">
           <p>
           <span class="boldtext">Default value: </span>
@@ -555,7 +555,7 @@
     </tr>
     </xsl:if>
   </xsl:template>
-  
+
   <xsl:template match="xs:simpleType" mode="embedded">
     <tr>
       <td colspan="2" class="tablehead">
@@ -584,7 +584,7 @@
     <xsl:apply-templates select="xs:extension|xs:restriction"
                          mode="contentmodel" />
   </xsl:template>
-  
+
   <xsl:template match="xs:simpleContent" mode="contentmodel">
     <!-- Find all of the children of this complexContent and list them -->
     <xsl:apply-templates select="xs:extension|xs:restriction"
@@ -648,7 +648,7 @@
             <xsl:value-of select="./xs:appinfo/doc:tooltip"/>
             <br><span class="boldtext">Summary: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:summary"/>-->
-            <br><span class="boldtext">Description: </span></br>
+            <!--<br><span class="boldtext">Description: </span></br>-->
             <xsl:value-of select="./xs:appinfo/doc:description"/>
             <xsl:if test="./xs:appinfo/doc:example">
               <br><span class="boldtext">Example(s): </span></br>
