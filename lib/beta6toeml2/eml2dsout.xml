@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.0.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml" xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd" system="knb" packageId="obfs.84.4">
+  <dataset>
+    <title>Sevilleta Meteorological Data</title>
+    <creator>
+      <organizationName>(NM) Sevilleta Field Station</organizationName>
+    </creator>
+    <creator>
+      <organizationName>Organization of Biological Field Stations</organizationName>
+    </creator>
+    <metadataProvider>
+      <individualName>
+        <surName>Kristin Vanderbilt</surName>
+      </individualName>
+    </metadataProvider>
+    <associatedParty>
+      <individualName>
+        <givenName>James</givenName>
+        <surName>Gosz</surName>
+      </individualName>
+      <address>
+        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
+        <city>Albuquerque</city>
+        <administrativeArea>New Mexico</administrativeArea>
+        <postalCode>87131</postalCode>
+        <country>USA</country>
+      </address>
+      <phone>1-505-277-2265</phone>
+      <electronicMailAddress>jgosz@sevilleta.unm.edu</electronicMailAddress>
+      <role>Principal Investigator</role>
+    </associatedParty>
+    <associatedParty>
+      <individualName>
+        <givenName>Doug</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <address>
+        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
+        <city>Albuquerque</city>
+        <administrativeArea>New Mexico</administrativeArea>
+        <postalCode>87131</postalCode>
+        <country>U</country>
+      </address>
+      <phone>1-505-277-6328</phone>
+      <electronicMailAddress>dmoore@sevilleta.unm.edu</electronicMailAddress>
+      <role>Data Contact</role>
+    </associatedParty>
+    <associatedParty>
+      <individualName>
+        <givenName>Doug</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <role>Content Provider</role>
+    </associatedParty>
+    <abstract>
+      <para>These files contain hourly measurements of air temperature, relative humidity, windspeed, solar radiation, vapor pressure, and soil temperature and moisture for an array of automated weather stations at the Sevilleta National Wildlife Refuge and some satellite sites.</para>
+      <para>Paragraph 2</para>
+    </abstract>
+    <keywordSet>
+      <keyword keywordType="theme">zooplankton</keyword>
+      <keyword keywordType="theme">Van Dorn sampling</keyword>
+      <keyword keywordType="theme">population survey</keyword>
+      <keyword keywordType="theme">fictitious sample data</keyword>
+      <keyword keywordType="place">Great Lakes</keyword>
+      <keywordThesaurus>obfs.84.4Sevilleta Meteorological DataJamesGoszDepartment of Biology, University of New MexicoAlbuquerqueNew Mexico87131USA1-505-277-2265jgosz@sevilleta.unm.eduPrincipal InvestigatorDougMooreDepartment of Biology, University of New MexicoAlbuquerqueNew Mexico87131U1-505-277-6328dmoore@sevilleta.unm.eduData ContactDougMooreContent ProviderKristin VanderbiltMetadata Provider(NM) Sevilleta Field StationOriginatorOrganization of Biological Field StationsOriginatorThese files contain hourly measurements of air temperature, relative humidity, windspeed, solar radiation, vapor pressure, and soil temperature and moisture for an array of automated weather stations at the Sevilleta National Wildlife Refuge and some satellite sites.Paragraph 2zooplanktonVan Dorn samplingpopulation surveyfictitious sample dataGreat LakesTest thesaurusobtain permission from originator(s)Select type of medium here.obfs.83.2describes access control rules forobfs.84.4obfs.83.2provides access control rules forobfs.83.223JUL198703Jan1991107.03106.5234.3834.22rnrvcommonrn1rv1common1</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+      <para>obtain permission from originator(s)</para>
+    </intellectualRights>
+    <distribution>
+      <offline>
+        <mediumName>Select type of medium here.</mediumName>
+      </offline>
+    </distribution>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>
+        *
+      </geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>107.03</westBoundingCoordinate>
+          <eastBoundingCoordinate>106.52</eastBoundingCoordinate>
+          <northBoundingCoordinate>34.38</northBoundingCoordinate>
+          <southBoundingCoordinate>34.22</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>1987-07-23</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>1991-01-03</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+      <taxonomicCoverage>
+        <taxonomicClassification>
+          <taxonRankName>rn</taxonRankName>
+          <taxonRankValue>rv</taxonRankValue>
+          <commonName>common</commonName>
+        </taxonomicClassification>
+        <taxonomicClassification>
+          <taxonRankName>rn1</taxonRankName>
+          <taxonRankValue>rv1</taxonRankValue>
+          <commonName>common1</commonName>
+        </taxonomicClassification>
+      </taxonomicCoverage>
+    </coverage>
+    <contact>
+      <individualName>
+        <givenName>Doug</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <address>
+        <deliveryPoint>Department of Biology, University of New Mexico</deliveryPoint>
+        <city>Albuquerque</city>
+        <administrativeArea>New Mexico</administrativeArea>
+        <postalCode>87131</postalCode>
+        <country>U</country>
+      </address>
+      <phone>1-505-277-6328</phone>
+      <electronicMailAddress>dmoore@sevilleta.unm.edu</electronicMailAddress>
+    </contact>
+    <access authSystem="ldap://ldap.ecoinformatics.org" order="denyFirst">
+      <allow>
+        <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
+        <permission>all</permission>
+      </allow>
+      <deny>
+        <principal>public</principal>
+        <permission>read</permission>
+      </deny>
+      <deny>
+        <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
+        <permission>read</permission>
+      </deny>
+      <allow>
+        <principal>public</principal>
+        <permission>read</permission>
+      </allow>
+    </access>
+  </dataset>
+</eml:eml>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<acl authSystem="ldap://ldap.ecoinformatics.org" order="denyFirst">
+  <identifier system="knb">obfs.83.2</identifier>
+    <allow>
+      <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <deny>
+      <principal>public</principal>
+      <permission>read</permission>
+    </deny>
+    <deny>
+      <principal>uid=obfsadmin,o=LTER,dc=ecoinformatics,dc=org</principal>
+      <permission>all</permission>
+    </deny>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+</acl>
