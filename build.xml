@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-07 16:48:25 $'
-      '$Revision: 1.53 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-07 18:27:53 $'
+      '$Revision: 1.54 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -96,9 +96,8 @@
     <property name="package.home" value="org/ecoinformatics" />
     <property name="configxml" value="lib/configxml.jar"/>
     <property name="cos" value="lib/cos.jar"/>
-    <property name="jnet" value="lib/jnet.jar"/>
     <property name="servlet" value="lib/servlet.jar"/>
-    <property name="cpath" value="${servlet}:${cos}:${jnet}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
+    <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
     <mkdir dir="${build.docs}/eml-${version}"/>
@@ -177,11 +176,11 @@
            in="eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
            processor="trax"/>
     <style basedir="." style="sortDocBook.xsl"
-           in="${build.dir}/eml-docbook-nosort.xml" 
+           in="${build.dir}/eml-docbook-nosort.xml"
            out="${build.dir}/eml-docbook.xml"
            processor="trax"/>
     <!-- the following copy is needed to do the ant replacement -->
-    <copy file="${build.dir}/eml-docbook.xml" 
+    <copy file="${build.dir}/eml-docbook.xml"
           tofile="${build.docs}/eml-${version}/eml-docbook.xml"
           filtering="yes"/>
     <echo>
@@ -363,7 +362,6 @@
     <copy file="lib/configxml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
     <copy file="lib/cos.jar" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
     <copy file="lib/eml.jar" tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
-    <copy file="lib/jnet.jar" tofile="${servlet.install.dir}/WEB-INF/lib/jnet.jar"/>
     <copy file="${xalan}" tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
     <copy file="${xml-apis}" tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
     <copy file="${xmlp}" tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
