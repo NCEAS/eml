@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.21 $'
+        '$Author: jones $'
+          '$Date: 2001-12-16 21:53:20 $'
+      '$Revision: 1.22 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -1490,7 +1490,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <!--<xs:element ref="taxoncl" minOccurs="0" maxOccurs="unbounded"/>-->
+        <xs:element ref="taxoncl" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
