@@ -13,9 +13,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:07 $'
-      '$Revision: 1.26 $'
+        '$Author: berkley $'
+          '$Date: 2002-03-22 19:04:05 $'
+      '$Revision: 1.27 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -326,61 +326,6 @@
             <xs:enumeration value="all"/>
           </xs:restriction>
         </xs:simpleType>
-      </xs:element>
-      <xs:element name="duration" type="cov:TemporalCoverage" minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>
-            For application developers, the duration element will need to be 
-            used in the context of a start date/time, and will need an intuitive
-            interface to translate duration information into the ISO 8601
-            format.
-          </xs:documentation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Access duration
-            </doc:tooltip>
-            <doc:summary>
-              The duration of time that the permission applies.
-            </doc:summary>
-            <doc:description>
-              Access to a resource for a particular user or group may be
-              restricted to a limited time frame.  This sets the duration of the
-              paticular permission.  The period of time is represented as the
-              number of Years, Months, Days, Hours, Minutes, and Seconds that
-              the  permission applies to the resource.
-            </doc:description>
-            <doc:example>
-              P1Y4M6DT10H9M22S (a period of 1 Year, 4 months, 6 Days, 10 Hours,
-              9 Minutes, and 22 Seconds)
-            </doc:example>
-            <doc:lineage>
-              The duration element was introduced into EML 2.0 Proposed, and is
-              based on the ISO 8601 time standard.
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="ticketCount" type="xs:positiveInteger" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
-              Number of accesses
-            </doc:tooltip>
-            <doc:summary>
-              The number of times a user or group may access the resource.
-            </doc:summary>
-            <doc:description>
-              Access to a resource for a particular user or group may be
-              restricted based on the number of times the resource is accessed.
-            </doc:description>
-            <doc:example>
-              4
-            </doc:example>
-            <doc:lineage>
-              The ticketCount element was introduced into EML 2.0 Proposed.
-            </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
