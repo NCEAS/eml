@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2003-11-06 20:15:20 $'
-      '$Revision: 1.56 $'
+        '$Author: mccartne $'
+          '$Date: 2004-09-01 04:26:41 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -435,8 +435,8 @@
         <listitem>
           <para>
           If a user wants to reuse content to indicate the repetition of an
-          object, a reference must be used.  Two identical
-          ids cannot exist in a single document.
+          object, a reference must be used. Two identical ids with the same system 
+	  attribute cannot exist in a single document.
           </para>
         </listitem>
         <listitem>
@@ -458,7 +458,8 @@
         <listitem>
           <para>
           If an element references another element, it must not have an
-          ID itself.
+          ID itself. The system attribute must have the same value in both the
+	  target and referencing elements or it must be absent in both.
           </para>
         </listitem>
         <listitem>
