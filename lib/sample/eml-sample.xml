@@ -64,6 +64,26 @@
   <dataTable>
     <entityName>CDR LTER-patterns among communities.txt</entityName>
     <entityDescription>patterns amoung communities at CDR</entityDescription>
+    <physical>
+      <dataObject>
+        <objectName>CDR LTER-patterns among communities.txt</objectName>
+        <size unit="bytes">1245</size>
+        <characterEncoding>ASCII</characterEncoding>
+      </dataObject>
+      <dataFormat>
+        <textFormat>
+          <numHeaderLines>1</numHeaderLines>
+          <simpleDelimited>
+            <fieldDelimiter>\t</fieldDelimiter>
+          </simpleDelimited>
+        </textFormat>
+      </dataFormat>
+      <distribution>
+        <online>
+          <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;docid=knb.46.1</url>
+        </online>
+      </distribution>
+    </physical>
     <attributeList>
       <attribute id="att.1">
         <attributeName>Field</attributeName>
@@ -196,26 +216,6 @@
         <measurementScale>ratio</measurementScale>
       </attribute>
     </attributeList>
-    <physical>
-      <dataObject>
-        <objectName>CDR LTER-patterns among communities.txt</objectName>
-        <size unit="bytes">1245</size>
-        <characterEncoding>ASCII</characterEncoding>
-      </dataObject>
-      <dataFormat>
-        <textFormat>
-          <numHeaderLines>1</numHeaderLines>
-          <simpleDelimited>
-            <fieldDelimiter>\t</fieldDelimiter>
-          </simpleDelimited>
-        </textFormat>
-      </dataFormat>
-      <distribution>
-        <online>
-          <url>http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;docid=knb.46.1</url>
-        </online>
-      </distribution>
-    </physical>
     <orientation>columnMajor</orientation>
     <caseSensitive>no</caseSensitive>
     <numberOfRecords>22</numberOfRecords>

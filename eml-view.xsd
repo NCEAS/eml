@@ -42,9 +42,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:42 $'
-      '$Revision: 1.29 $'
+        '$Author: jones $'
+          '$Date: 2002-10-02 18:25:07 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -101,24 +101,46 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
     <xs:choice>
       <xs:sequence>
         <xs:group ref="ent:EntityGroup" />
-        <xs:sequence>
-          <xs:element name="queryStatement" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Query Statement</doc:tooltip>
-                <doc:summary>Query syntax that produced the view</doc:summary>
-                <doc:description>The value of a queryStatement field is the
-                actual query statement stored in the database is entered here.
-                The query statement generates the entity being
-                documented.</doc:description>
-                <doc:example>Select site as SiteID,common_name as CommonName,
-                count as CountOfIndividuals from samples inner join taxonlist
-                on samples.speciesid=taxonlist.speciesid</doc:example>
-                <doc:lineage>EML 2.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
+        <xs:element name="attributeList" type="att:AttributeListType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Attribute List</doc:tooltip>
+              <doc:summary>The list of attributes associated with this
+              entity.</doc:summary>
+              <doc:description>The list of attributes associated with this
+              entity.  For more information see the eml-attribute
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
+        maxOccurs="unbounded" >
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Constraint</doc:tooltip>
+              <doc:summary></doc:summary>
+              <doc:description>Description of any relational constraints on '
+              this entity.  For more information see the eml-constraint
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="queryStatement" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Query Statement</doc:tooltip>
+              <doc:summary>Query syntax that produced the view</doc:summary>
+              <doc:description>The value of a queryStatement field is the
+              actual query statement stored in the database is entered here.
+              The query statement generates the entity being
+              documented.</doc:description>
+              <doc:example>Select site as SiteID,common_name as CommonName,
+              count as CountOfIndividuals from samples inner join taxonlist
+              on samples.speciesid=taxonlist.speciesid</doc:example>
+              <doc:lineage>EML 2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>

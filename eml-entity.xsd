@@ -42,9 +42,9 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.70 $'
+        '$Author: jones $'
+          '$Date: 2002-10-02 18:25:07 $'
+      '$Revision: 1.71 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -114,6 +114,31 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
       <xs:sequence>
         <xs:group ref="EntityGroup" />
         <xs:sequence>
+          <xs:element name="attributeList" type="att:AttributeListType"
+          minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Attribute List</doc:tooltip>
+                <doc:summary>The list of attributes associated with this
+                entity.</doc:summary>
+                <doc:description>The list of attributes associated with this
+                entity.  For more information see the eml-attribute
+                module.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
+          maxOccurs="unbounded" >
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Constraint</doc:tooltip>
+                <doc:summary></doc:summary>
+                <doc:description>Description of any relational constraints on '
+                this entity.  For more information see the eml-constraint
+                module.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
           <xs:element name="entityType" type="xs:string">
             <xs:annotation>
               <xs:appinfo>
@@ -225,30 +250,6 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
             <doc:example>Species abundance data for 1996 at the VCR LTER
             site</doc:example>
             <doc:lineage>Introduced in EML 2</doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="attributeList" type="att:AttributeListType">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>attribute list</doc:tooltip>
-            <doc:summary>The list of attributes associated with this
-            entity.</doc:summary>
-            <doc:description>The list of attributes associated with this
-            entity.  For more information see the eml-attribute
-            module.</doc:description>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
-      maxOccurs="unbounded" >
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>constraints</doc:tooltip>
-            <doc:summary></doc:summary>
-            <doc:description>Description of any relational constraints on this
-            entity.  For more information see the eml-constraint
-            module.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>

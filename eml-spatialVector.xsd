@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
-xmlns="eml://ecoinformatics.org/spatialVector-2.0.0rc1" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1"
-xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema 
+    targetNamespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
+    xmlns="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1"
+    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc1"
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc1"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
   schemaLocation="eml-documentation.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
@@ -12,6 +17,10 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
   schemaLocation="eml-entity.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
   schemaLocation="eml-resource.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc1"
+  schemaLocation="eml-attribute.xsd" />
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc1"
+  schemaLocation="eml-constraint.xsd" />
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-spatialVector.xsd,v $'
@@ -29,8 +38,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-02 14:57:03 $'
-      '$Revision: 1.26 $'
+          '$Date: 2002-10-02 18:25:07 $'
+      '$Revision: 1.27 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -77,6 +86,30 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:choice>
       <xs:sequence>
         <xs:group ref="ent:EntityGroup" />
+        <xs:element name="attributeList" type="att:AttributeListType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Attribute List</doc:tooltip>
+              <doc:summary>The list of attributes associated with this
+              entity.</doc:summary>
+              <doc:description>The list of attributes associated with this
+              entity.  For more information see the eml-attribute
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
+        maxOccurs="unbounded" >
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Constraint</doc:tooltip>
+              <doc:summary></doc:summary>
+              <doc:description>Description of any relational constraints on '
+              this entity.  For more information see the eml-constraint
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="geometry" type="GeometryType" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -126,8 +159,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="id" type="res:IDType" use="optional" />
+    <xs:attribute name="system" type="res:SystemType" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
   </xs:complexType>

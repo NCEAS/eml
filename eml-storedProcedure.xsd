@@ -42,9 +42,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:42 $'
-      '$Revision: 1.29 $'
+        '$Author: jones $'
+          '$Date: 2002-10-02 18:25:07 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,21 +107,43 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:choice>
       <xs:sequence>
         <xs:group ref="ent:EntityGroup" />
-        <xs:sequence>
-          <xs:element name="parameter" type="ParameterType" minOccurs="0"
-          maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Parameter</doc:tooltip>
-                <doc:summary>A parameter that is required as input to the
-                stored procedure.</doc:summary>
-                <doc:description>The parameter elements defines the fields that
-                may be required to invoke a stored procedure.</doc:description>
-                <doc:lineage>EML 2.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
+        <xs:element name="attributeList" type="att:AttributeListType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Attribute List</doc:tooltip>
+              <doc:summary>The list of attributes associated with this
+              entity.</doc:summary>
+              <doc:description>The list of attributes associated with this
+              entity.  For more information see the eml-attribute
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="constraint" type="con:ConstraintType" minOccurs="0"
+        maxOccurs="unbounded" >
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Constraint</doc:tooltip>
+              <doc:summary></doc:summary>
+              <doc:description>Description of any relational constraints on '
+              this entity.  For more information see the eml-constraint
+              module.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="parameter" type="ParameterType" minOccurs="0"
+        maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Parameter</doc:tooltip>
+              <doc:summary>A parameter that is required as input to the
+              stored procedure.</doc:summary>
+              <doc:description>The parameter elements defines the fields that
+              may be required to invoke a stored procedure.</doc:description>
+              <doc:lineage>EML 2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
