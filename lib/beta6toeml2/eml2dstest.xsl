@@ -4,8 +4,12 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-	<xsl:variable name="dsb6" select="document('obfs.dsb6')"/>
-	<xsl:variable name="acb6" select="document('obfs.acb6')"/>
+
+  <xsl:variable name="pack" select="document('packageStructure.xml')"/>
+	<xsl:variable name="acb6" select="document($pack/package/acl)"/>
+  
+	<xsl:variable name="dsb6" select="document($pack/package/@id)"/>
+<!--  <xsl:variable name="acb6" select="document('obfs.acb6')"/>  -->
   
   <xsl:include href="eml2entphy.xsl"/>
   <xsl:template match="/">
@@ -21,7 +25,6 @@
       xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
       xmlns:stmml="http://www.xml-cml.org/schema/stmml"
       xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"> 
-
       <dataset>
         <xsl:if test="$dsb6/dataset/shortName!=''">
           <xsl:element name="shortName">
@@ -91,9 +94,18 @@
           <xsl:if test="$dsb6/dataset/keywordSet!=''">
             <xsl:element name="keywordSet">
               <xsl:for-each select="$dsb6/dataset/keywordSet/keyword">
+               <xsl:choose>
+               <xsl:when test="./@keywordType!=''">
                 <keyword keywordType="{./@keywordType}">
                   <xsl:value-of select="."/>
-                </keyword>  
+                </keyword> 
+               </xsl:when>
+               <xsl:otherwise>
+                <keyword keywordType="theme">
+                  <xsl:value-of select="."/>
+                </keyword> 
+               </xsl:otherwise>
+               </xsl:choose>
               </xsl:for-each>
               <xsl:if test="$dsb6/dataset/keywordSet/keywordThesaurus!=''">
                 <xsl:element name="keywordThesaurus">
@@ -203,12 +215,19 @@
           </xsl:element> 
         </xsl:if>  
          
-        <xsl:for-each select="$dsb6/dataset/originator/role">
-          <xsl:if test="(contains(.,'ontact'))">
-            <xsl:element name="contact">
-              <xsl:call-template name="responsibleParty"/>
-            </xsl:element>
-          </xsl:if>
+        <xsl:for-each select="$dsb6/dataset/originator/role[1]">
+        <xsl:choose>
+          <xsl:when test="$dsb6/dataset/originator/role[contains(.,'ontact')]">
+              <xsl:element name="contact">
+                <xsl:call-template name="responsibleParty"/>
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="contact">
+                <xsl:call-template name="responsibleParty"/>
+              </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
         </xsl:for-each>
 
           <xsl:if test="$dsb6/dataset/pubPlace!=''">
@@ -243,11 +262,16 @@
           </xsl:for-each>
           </access>
           
-          <xsl:if test="$attb6/eml-attribute!=''">
+          <xsl:for-each select="$pack/package/entities/entity">  
             <xsl:element name="dataTable">
-              <xsl:call-template name="dataSet"/>
-            </xsl:element>  
-          </xsl:if>  
+              <xsl:call-template name="dataSet">
+                <xsl:with-param name="enb6ID" select="./@id"/>
+                <xsl:with-param name="phb6ID" select="./physical"/>
+                <xsl:with-param name="attb6ID" select="./attribute"/>
+              </xsl:call-template>
+            
+            </xsl:element>
+          </xsl:for-each>  
         </dataset>
     </eml:eml>
 	</xsl:template>

@@ -4,13 +4,18 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-	<xsl:variable name="enb6" select="document('ent1.enb6')"/>
-	<xsl:variable name="phb6" select="document('phy1.phb6')"/>
+<!--	<xsl:variable name="enb6" select="document('ent1.enb6')"/> -->
+<!--	<xsl:variable name="phb6" select="document('phy1.phb6')"/> -->
 
   
   <xsl:include href="eml2attr.xsl"/>
 
   <xsl:template name="dataSet">
+    <xsl:param name="enb6ID"/>
+    <xsl:param name="phb6ID"/>
+    <xsl:param name="attb6ID"/>
+    <xsl:variable name="enb6" select="document($enb6ID)"/>
+    <xsl:variable name="phb6" select="document($phb6ID)"/>
     <xsl:element name="entityName">
       <xsl:value-of select="$enb6/table-entity/entityName"/>
     </xsl:element>
@@ -58,6 +63,8 @@
 
         <xsl:call-template name="dataFormat">
           <xsl:with-param name="string" select="$phb6/eml-physical/format"/>
+          <xsl:with-param name="enb6" select="$enb6"/>
+          <xsl:with-param name="phb6" select="$phb6"/>
         </xsl:call-template>
 
       </xsl:element>
@@ -65,7 +72,9 @@
         <!-- 'distribution information is inserted here -->
         <!-- 'coverage information is inserted here -->
         <!-- 'attribute list information is inserted here -->
-        <xsl:call-template name="attrTransform"/>
+        <xsl:call-template name="attrTransform">
+          <xsl:with-param name="attb6ID" select="$attb6ID"/>
+        </xsl:call-template>
         <!-- 'constraint information is inserted here -->
         
         <xsl:if test="$enb6/table-entity/caseSensitive/@yesorno!=''">
@@ -87,6 +96,8 @@
   <!-- creates the dataFormat tree of eml2.0 based on input string -->
   <xsl:template name="dataFormat">
     <xsl:param name="string"/>
+    <xsl:param name="enb6"/>
+    <xsl:param name="phb6"/>
     <xsl:variable name="ucstring" select="translate($string, 'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
     <xsl:choose>
       <xsl:when test="((contains($ucstring, 'STRING'))or(contains($ucstring,'TEXT'))or(contains($ucstring,'ASCI')))">

@@ -7,12 +7,12 @@
 
 
 	<!-- assign variables for input doc i.e. beta6 attribute module -->
-	<xsl:variable name="attb6" select="document('att1.atb6')"/>
+<!-- 	<xsl:variable name="attb6" select="document('att1.atb6')"/> -->
 	<xsl:variable name="unitDict" select="document('eml-unitDictionary.xml')"/>
 
   <xsl:template name="attrTransform">
-
-  
+    <xsl:param name="attb6ID"/>
+    <xsl:variable name="attb6" select="document($attb6ID)"/>
     <attributeList>
       <xsl:for-each select="$attb6/eml-attribute/attribute">
         <xsl:element name="attribute">
@@ -40,7 +40,15 @@
           </xsl:if>
           
           <xsl:element name="measurementScale">
-     <!-- must determine which of 5 measurementScales to create -->     
+     <!-- must determine which of 5 measurementScales to create -->
+           <xsl:if test="((./attributeDomain/textDomain) and (./attributeDomain/textDomain=''))">
+             <xsl:element name="textDomain">
+               <xsl:element name="definition">
+                 <xsl:value-of select="'not available'"/>
+                </xsl:element>
+              </xsl:element>
+           </xsl:if>
+     
             <xsl:if test="((./attributeDomain/enumeratedDomain!='')or(./attributeDomain/textDomain!=''))">
               <xsl:if test="./dataType='Date'"> <!-- need other string checks for time, etc here -->
                 <xsl:element name="datetime">
@@ -61,7 +69,8 @@
               <xsl:if test="./dataType!='Date'"> <!-- need other string checks for time, etc here -->
                 <xsl:element name="nominal">
                   <xsl:element name="nonNumericDomain">
-                     <xsl:if test="./attributeDomain/enumeratedDomain!=''">
+                   <xsl:choose>
+                     <xsl:when test="./attributeDomain/enumeratedDomain!=''">
                         <xsl:element name="enumeratedDomain">
                           <xsl:for-each select="./attributeDomain/enumeratedDomain"> 
                             <xsl:element name="codeDefinition">
@@ -79,8 +88,8 @@
                            </xsl:element>
                           </xsl:for-each>  
                         </xsl:element>
-                     </xsl:if>
-                     <xsl:if test="./attributeDomain/textDomain!=''">
+                     </xsl:when>
+                     <xsl:when test="./attributeDomain/textDomain!=''">
                         <xsl:element name="textDomain">
                           <xsl:for-each select="./attributeDomain/textDomain"> 
                             <xsl:element name="definition">
@@ -98,15 +107,53 @@
                             </xsl:if>  
                           </xsl:for-each>
                        </xsl:element>
-                     </xsl:if>
+                     </xsl:when>
+                    </xsl:choose> 
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
               <!-- don't see how to determine if data is ordinal !! -->
             </xsl:if>
             
-            <xsl:if test="./attributeDomain/numericDomain!=''">
+            <xsl:if test="./attributeDomain/numericDomain">
             <!-- must be ratio or interval -->
+            <!-- may have case where minimum exist but has no data -->
+              <xsl:if test="(./attributeDomain/numericDomain/minimum='')">
+                <xsl:element name="interval">
+                  <xsl:element name="unit">
+                      <xsl:call-template name="getUnit">
+                        <xsl:with-param name="string" select="./unit"/>
+                      </xsl:call-template>  
+
+              <!--        <xsl:value-of select="./unit"/>  -->
+                  </xsl:element>
+                  <xsl:element name="precision">
+                  <!-- Note: 'precision' sometimes is filled out in beta6 for nonnumeric data! -->
+                    <xsl:choose>
+                      <xsl:when test="./precision!=''">
+                        <xsl:value-of select="./precision"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'0.0'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:element name="numericDomain">
+                    <xsl:element name="numberType">real</xsl:element>
+                    <!--should really check data type + bounds to see if integer?-->
+                    <xsl:element name="bounds">
+                      <xsl:element name="minimum">
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
+                        <xsl:value-of select="'0.0'"/>
+                      </xsl:element>
+                      <xsl:element name="maximum">
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
+                        <xsl:value-of select="'0.0'"/>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:if>
               <xsl:if test="((./attributeDomain/numericDomain/minimum!='')and((./attributeDomain/numericDomain/minimum)&gt;=0.0))">
                 <xsl:element name="ratio">
                   <xsl:element name="unit">
@@ -132,9 +179,11 @@
                     <!--should really check data type + bounds to see if integer?-->
                     <xsl:element name="bounds">
                       <xsl:element name="minimum">
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
                         <xsl:value-of select="./attributeDomain/numericDomain/minimum"/>
                       </xsl:element>
                       <xsl:element name="maximum">
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
                         <xsl:value-of select="./attributeDomain/numericDomain/maximum"/>
                       </xsl:element>
                     </xsl:element>
@@ -165,9 +214,11 @@
                     <xsl:element name="numberType">real</xsl:element>
                     <xsl:element name="bounds">
                       <minimum exclusive='false'>
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
                         <xsl:value-of select="./attributeDomain/numericDomain/minimum"/>
                       </minimum>
                       <maximum exclusive='false'>
+                        <xsl:attribute name="exclusive">false</xsl:attribute>
                         <xsl:value-of select="./attributeDomain/numericDomain/maximum"/>
                       </maximum>
                     </xsl:element>

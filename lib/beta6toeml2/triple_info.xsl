@@ -7,7 +7,8 @@
 <xsl:variable name="dsb6" select="document('sample.dsb6')"/>
 
 <xsl:template match = "/">
- <xsl:element name="jones.204.18">
+ <xsl:element name="package">
+   <xsl:attribute name="id">jones.204.18</xsl:attribute>
  <!--
   <xsl:call-template name="parseTriples">
     <xsl:with-param name="subjectVal" select="'jones.204.18'"/>
@@ -70,7 +71,7 @@
   <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides eml-attribute information for Table')]">
   <xsl:if test="./object=$entity">
     <xsl:element name="attribute">
-      <xsl:value-of select="$entity"/>
+      <xsl:value-of select="./subject"/>
     </xsl:element>
   </xsl:if>
   </xsl:for-each>  
@@ -81,7 +82,7 @@
   <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides eml-physical information for Table')]">
   <xsl:if test="./object=$entity">
     <xsl:element name="physical">
-      <xsl:value-of select="$entity"/>
+      <xsl:value-of select="./subject"/>
     </xsl:element>
   </xsl:if>
   </xsl:for-each>  
@@ -92,7 +93,7 @@
   <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides table-entity information for DATAFILE')]">
   <xsl:if test="./subject=$entity">
     <xsl:element name="dataFile">
-      <xsl:value-of select="$entity"/>
+      <xsl:value-of select="./object"/>
     </xsl:element>
   </xsl:if>
   </xsl:for-each>  
