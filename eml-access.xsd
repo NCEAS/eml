@@ -1,6 +1,6 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
-           targetNamespace="eml:access" >
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           targetNamespace="eml:access">
 
   <xs:annotation>
     <xs:documentation>
@@ -14,14 +14,18 @@
         Authors: Chris Jones, Matt Jones, Jivka Bojilova
 
        '$Author: cjones $'
-         '$Date: 2001-02-06 22:21:11 $'
-     '$Revision: 1.6 $'
+         '$Date: 2001-02-07 05:58:48 $'
+     '$Revision: 1.7 $'
       -->
     </xs:documentation>
     <xs:appInfo>
       <moduleName>
+        eml-access
       </moduleName>
       <moduleDescription>
+        The EML Access Module describes the level of access that is to be
+        granted or denied to particular users or groups for a given resource
+        (e.g a dataset or document).
       </moduleDescription>
     </xs:appInfo>
   </xs:annotation>
@@ -31,56 +35,108 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	</tooltip>
-	<summary>
-	</summary>
-	<description>
-	</description>
-	<example>
-	</example>
-	<lineage>
-	</lineage>
+          Access Control List
+        </tooltip>
+        <summary>
+          The rules set in this module will determine the level of access to 
+          a resource for the defined users and groups.
+        </summary>
+        <description>
+          The EML Access Module represents a list of resources to be controlled
+          in the context of a particular authentication system. That is, the 
+          authentication system determines the set of principals (users + groups) 
+          that can be used, and the membership of users in groups.  The rules
+          set in this module will determine the level of access to a resource for
+          the defined users and groups.
+        </description>
+        <example>
+        </example>
+        <lineage>
+           The acl element is derived from eml-access.dtd, version 1.3
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
   </xs:element> 
-  <xs:complexType name="ACL" content="elementOnly">
+  <xs:complexType name="ACL">
     <xs:sequence>
       <xs:element name="resource" type="Resource"
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              Resource Object
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The object to which a particular set of rules will be applied.
+            </summary>
+            <description>
+              The resource element defines which data object will be subject to
+              the access control rules. It contains a reference identifier that
+              points to the specific resource in a stored location.
+            </description>
+            <example>
+            </example>
+            <lineage>
+              The duration element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+    <xs:attribute name="authSystem" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:appInfo>
+          <tooltip>
+            Authentication System
+          </tooltip>
+         <summary>
+           The authentication system that is used to verify the user or group
+           to whom the ACL allows or denies access.
+         </summary>
+         <description>
+            The authentication system determines the set of principals 
+            (users + groups) that can be used in the access control list,
+            and the membership of users in groups. This element is intended 
+            to provide a reference to the authentication system in order to 
+            verify the user or group.  This reference is typically in the 
+            form of a URI, which includes the  connection protocol, internet 
+            host, and path to the authentication mechanism. 
+         </description>
+         <example>
+           ldap://directory.nceas.ucsb.edu:389/o=NCEAS,c=US
+         </example>
+         <lineage>
+           The authSystem element was introduced into EML 2.0 Proposed.
+         </lineage>
+        </xs:appInfo>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
  
-  <xs:complexType name="Resource" content="elementOnly">
+  <xs:complexType name="Resource">
     <xs:sequence>
       <xs:element name="resourceIdentifier" type="xs:string"
                   minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              Resource Type
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The type definition for the resource element
+            </summary>
+            <description>
+              The Resource type includes all of the elements that a resource
+              element will inherit.  At the moment, in the context of access
+              control, this type contains one element, resourceIdentifier, which
+              is a reference to a resource in a storage system.
+            </description>
+            <example>
+	      http://data.nceas.ucsb.edu/datafile.txt
+            </example>
+            <lineage>
+              The resourceIdentifier element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
@@ -89,15 +145,21 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              allow permission
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The permission that grants access to a permission type.
+            </summary>
+            <description>
+              The allow element indicates that a particular user or group is
+              able to execute the defined permission.
+            </description>
+            <example>
+              allow
+            </example>
+            <lineage>
+              The deny element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
@@ -106,19 +168,70 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              deny permission
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The permission that denies access to a permission type.
+            </summary>
+            <description>
+              The deny element indicates that a particular user or group is
+              not able to execute the defined permission.
+            </description>
+            <example>
+              deny
+            </example>
+            <lineage>
+              The deny element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+    <xs:attribute name="order" type="Order" use="required" value="allowFirst">
+      <xs:annotation>
+        <xs:appInfo>
+          <tooltip>
+            permission order
+          </tooltip>
+          <summary>
+            The order in which the permission rules should be applied.
+          </summary>
+          <description>
+	    The order attribute defines which rule should be applied first to
+	    obtain the desired access control.  The acceptable values are
+	    pre-defined in an enumerated list of allowFirst and denyFirst.
+          </description>
+          <example>
+	    allowFirst
+          </example>
+          <lineage>
+            The order element was introduced into EML 2.0 Proposed.
+          </lineage>
+        </xs:appInfo>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="public" type="Public" use="required" value="yes">
+      <xs:annotation>
+        <xs:appInfo>
+          <tooltip>
+            public access
+          </tooltip>
+          <summary>
+	    The public read access to the object
+          </summary>
+          <description>
+	    The public attribute defines whether or not the resource is publicly 
+	    readable by default.
+          </description>
+          <example>
+	    yes
+          </example>
+          <lineage>
+            The public element was introduced into EML 2.0 Proposed.
+          </lineage>
+        </xs:appInfo>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
  
   <xs:complexType name="PermissionType" content="elementOnly">
@@ -128,34 +241,84 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              user or group
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The user or group (principal) for which the access control
+              applies.
+            </summary>
+            <description>
+              The principal element defines the user or group to which the access
+              control list applies.  The users and groups must be defined in the
+              authentication system described in the authSystem element.
+            </description>
+            <example>
+              berkley
+            </example>
+            <lineage>
+              The principal element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="permission" type="Permission"
-                  minOccurs="1" maxOccurs="unbounded" />
-      <xs:element name="duration" type="xs:timeDuration"
-                  minOccurs="0" maxOccurs="1">
+                  minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              Type of Permission
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The type of permission being granted or denied for the resource.
+            </summary>
+            <description>
+              The permission that is being granted or denied to a particular
+              user or group for a given resource.  The list of permissions come
+              from a predetermined list, and include 'read' (allow/deny viewing 
+              of the resource), 'write' (allow/deny modification of the 
+              resource), and 'all' (allow read/write, and the ability to modify
+              access restrictions as well.)
+            </description>
+            <example>
+              read
+            </example>
+            <lineage>
+              The duration element was introduced into EML 2.0 Proposed.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="duration" type="xs:timeDuration"
+                  minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            For application developers, the duration element will need to used
+            in the context of a start date/time, and will need an intuitive
+            interface to translate duration information into the ISO 8601
+            format.
+          </xs:documentation>
+          <xs:appInfo>
+            <tooltip>
+              Access Duration
+            </tooltip>
+            <summary>
+              The duration of time that the permission applies.
+            </summary>
+            <description>
+              Access to a resource for a particular user or group may be
+              restricted to a limited time frame.  This sets the duration of the
+              paticular permission.  The period of time is represented as the
+              number of Years, Months, Days, Hours, Minutes, and Seconds that
+              the  permission applies to the resource.
+            </description>
+            <example>
+              P1Y4M6DT10H9M22S (a period of 1 Year, 4 months, 6 Days, 10 Hours,
+              9 Minutes, and 22 Seconds)
+            </example>
+            <lineage>
+              The duration element was introduced into EML 2.0 Proposed, and is
+              based on the ISO 8601 time standard.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
@@ -164,15 +327,21 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
+              Number of Accesses
             </tooltip>
-	    <summary>
-	    </summary>
-	    <description>
-	    </description>
-	    <example>
-	    </example>
-	    <lineage>
-	    </lineage>
+            <summary>
+              The number of times a user or group may access the resource.
+            </summary>
+            <description>
+              Access to a resource for a particular user or group may be
+              restricted based on the number of times the resource is accessed.
+            </description>
+            <example>
+              4
+            </example>
+            <lineage>
+              The ticketCount element was introduced into EML 2.0 Proposed.
+            </lineage>
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
@@ -183,6 +352,76 @@
     <xs:enumeration value="read" /> 
     <xs:enumeration value="write" /> 
     <xs:enumeration value="all" /> 
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Permission Types
+        </tooltip>
+        <summary>
+	  A list of permissions that define the level of access control. 
+        </summary>
+        <description>
+	  The Permission type provides a list of permissions that define 
+	  the level of access control on a given resource.   
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The Permission type was introduced into EML 2.0 Proposed.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:simpleType>
+
+  <xs:simpleType name="Order" base="xs:string">
+    <xs:enumeration value="allowFirst" /> 
+    <xs:enumeration value="denyFirst" /> 
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  allow/deny order
+        </tooltip>
+        <summary>
+	  A list of values that indicate the order in which an allow/deny 
+	  rule is applied. 
+        </summary>
+        <description>
+	  The Order type provides a list of values that indicate the order in
+	  which an allow/deny rule is applied. With both an allow rule and a
+	  deny rule, the order that they are applied determines the outcome of
+	  the access restrictions.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The Order type was introduced into EML 2.0 Proposed.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
+  </xs:simpleType>
+
+  <xs:simpleType name="Public" base="xs:string">
+    <xs:enumeration value="yes" /> 
+    <xs:enumeration value="no" /> 
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+	  Public Access Flag
+        </tooltip>
+        <summary>
+	  A list of values that define whether a resource is publicly readable.
+        </summary>
+        <description>
+	  The Public type provides a list of values that define whether a
+	  resource is publicly readable with no authentication requirements.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The Public type was introduced into EML 2.0 Proposed.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
   </xs:simpleType>
  
 </xs:schema>
