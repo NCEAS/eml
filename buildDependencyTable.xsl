@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 15:02:08 $'
-      '$Revision: 1.2 $'
+          '$Date: 2002-09-10 15:38:29 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,7 +49,11 @@
   <tr>
   <th/>
   <xsl:for-each select="//doc:module">
-    <th><xsl:value-of select="."/></th>
+    <th>
+      <xsl:call-template name="verttext">
+        <xsl:with-param name="text" select="."/>
+      </xsl:call-template>
+    </th>
   </xsl:for-each>
   </tr>
     <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
@@ -87,6 +91,25 @@
   </table>
 </body>
 </html>
+</xsl:template>
+
+<!--this template makes the table headers go vertical-->
+<xsl:template name="verttext">
+  <xsl:param name="text"/>
+  <xsl:variable name="textchar">
+    <xsl:value-of select="substring($text, 1, 1)"/>
+  </xsl:variable>
+  <xsl:variable name="textend">
+    <xsl:value-of select="substring($text, 2)"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$textchar"/><br/>
+
+  <xsl:if test="string-length($textend) > 0">
+    <xsl:call-template name="verttext">
+      <xsl:with-param name="text" select="$textend"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
