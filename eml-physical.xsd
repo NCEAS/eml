@@ -19,9 +19,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: blankman $'
-          '$Date: 2003-09-09 20:11:58 $'
-      '$Revision: 1.64 $'
+        '$Author: jones $'
+          '$Date: 2003-11-01 01:17:17 $'
+      '$Revision: 1.65 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1247,12 +1247,13 @@
         <xs:element name="offline">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>medium of the resource</doc:tooltip>
-              <doc:summary>the medium on which this resource is distributed,
-              either digitally or as hardcopy</doc:summary>
-              <doc:description>the medium on which this resource is distributed
-              digitally, such as 3.5" floppy disk, or various tape media types,
-              or 'hardcopy'</doc:description>
+              <doc:tooltip>Offline Distribution</doc:tooltip>
+              <doc:summary>Details about the offline medium on which 
+              this resource is distributed, either digitally or as 
+              hardcopy.</doc:summary>
+              <doc:description>Details about the offline medium on which this 
+              resource is distributed digitally, such as 3.5" floppy disk, or 
+              various tape media types, or 'hardcopy'.</doc:description>
               <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
             </xs:appinfo>
           </xs:annotation>
@@ -1276,10 +1277,10 @@
               <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>density of the digital medium</doc:tooltip>
-                    <doc:summary>the density of the digital medium if this is
+                    <doc:tooltip>Density of the digital medium</doc:tooltip>
+                    <doc:summary>The density of the digital medium if this is
                     relevant.</doc:summary>
-                    <doc:description>the density of the digital medium if this
+                    <doc:description>The density of the digital medium if this
                     is relevant. Used mainly for floppy disks or
                     tape.</doc:description>
                     <doc:example>High Density (HD), Double Density
@@ -1290,9 +1291,9 @@
               <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>units of a numerical density</doc:tooltip>
-                    <doc:summary>a numerical density's units</doc:summary>
-                    <doc:description>if a density is given numerically, the
+                    <doc:tooltip>Units of a numerical density</doc:tooltip>
+                    <doc:summary>A numerical density's units</doc:summary>
+                    <doc:description>If a density is given numerically, the
                     units should be given here.</doc:description>
                     <doc:example>B/cm</doc:example>
                   </xs:appinfo>
@@ -1301,8 +1302,8 @@
               <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>storage volume</doc:tooltip>
-                    <doc:summary>total volume of the storage
+                    <doc:tooltip>Storage volume</doc:tooltip>
+                    <doc:summary>Total volume of the storage
                     medium</doc:summary>
                     <doc:description>the total volume of the storage medium on
                     which this resource is shipped.</doc:description>
@@ -1313,10 +1314,10 @@
               <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>medium format</doc:tooltip>
-                    <doc:summary>format of the medium on which the resource is
+                    <doc:tooltip>Medium format</doc:tooltip>
+                    <doc:summary>Format of the medium on which the resource is
                     shipped.</doc:summary>
-                    <doc:description>the file system format of the medium on
+                    <doc:description>The file system format of the medium on
                     which the resource is shipped</doc:description>
                     <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
                   </xs:appinfo>
@@ -1325,10 +1326,10 @@
               <xs:element name="mediumNote" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>note about the media</doc:tooltip>
-                    <doc:summary>note about the media</doc:summary>
-                    <doc:description>any additional pertinent information about
-                    the media</doc:description>
+                    <doc:tooltip>Note about the media</doc:tooltip>
+                    <doc:summary>Note about the media</doc:summary>
+                    <doc:description>Any additional pertinent information about
+                    the media.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>

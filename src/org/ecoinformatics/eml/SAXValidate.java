@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2003-07-17 17:23:11 $'
- *    '$Revision: 1.5 $'
+ *      '$Author: jones $'
+ *        '$Date: 2003-11-01 01:17:18 $'
+ *    '$Revision: 1.6 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -116,7 +116,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
                                   ClassNotFoundException,
                                   SAXException, SAXParseException
   {
-    runTest(xml, parserName, ".");
+    runTest(xml, parserName, 
+            "eml://ecoinformatics.org/@eml-version@ eml.xsd");
   }
 
   /**
