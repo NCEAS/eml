@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-06-17 20:00:33 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2002-06-18 20:50:55 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
     <html>       
       <head> 	
           <link rel="stylesheet" type="text/css" 
-            href="/brooke/style/{$qformat}.css" />
+            href="{$stylePath}/{$qformat}.css" />
       </head>   
       <body> 	
         <center>           
