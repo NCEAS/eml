@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2002-10-05 00:02:24 $'
- *    '$Revision: 1.3 $'
+ *      '$Author: mccartne $'
+ *        '$Date: 2002-10-07 22:48:29 $'
+ *    '$Revision: 1.4 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@ import org.jdom.output.XMLOutputter;
  *      path= root folder to search for prj files
  */
 public class MakeProjectionDictionary {
+   public static String[][] unitNames=new String[8][2];
 
 
     public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0rc2"));
@@ -58,6 +59,22 @@ public class MakeProjectionDictionary {
 
 
     public static void main(String args[]) throws IOException {
+         unitNames[0][0]="Meter";
+        unitNames[0][1]="meter";
+        unitNames[1][0]="Foot_US";
+        unitNames[1][1]="Foot_US";
+        unitNames[2][0]="Grad";
+        unitNames[2][1]="gradient";
+        unitNames[3][0]="Degree";
+        unitNames[3][1]="degree";
+        unitNames[4][0]="Foot_Gold_Coast";
+        unitNames[4][1]="Foot_Gold_Coast";
+        unitNames[5][0]="Yard_Indian";
+        unitNames[5][1]="Yard_Indian";
+        unitNames[6][0]="Yard_Sears";
+        unitNames[6][1]="Yard_Sears";
+        unitNames[7][0]="Link_Clarke";
+        unitNames[7][1]="Link_Clarke";
 
         root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0rc2 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
         if (args.length==1){
@@ -151,8 +168,14 @@ public class MakeProjectionDictionary {
                     }
                     if (tokens.nextToken().equalsIgnoreCase("UNIT")){
                         Element unit=new Element("unit");
-                        unit.setAttribute("name", tokens.nextToken());
-                        unit.setAttribute("radiansPerUnit",tokens.nextToken());
+                        String unitName = tokens.nextToken();
+                        for (i=0;i<unitNames.length/2;i++){
+                            if (unitNames[i][0].equalsIgnoreCase(unitName)){
+                                unit.setAttribute("name",unitNames[i][1]);
+                                i=unitNames.length/2;
+                            }
+ 
+                        }
                         geogcs.addContent(unit);
                     } else {
                         System.out.print("Didnt find UNIT\n");
@@ -185,9 +208,15 @@ public class MakeProjectionDictionary {
                         project.addContent(param);
                     }
                         Element unit = new Element("unit");
-                        unit.setAttribute("name",tokens.nextToken());
-                        unit.setAttribute("metersPerUnit",tokens.nextToken());
-                        project.addContent(unit);
+                         String unitName = tokens.nextToken();
+                        for (i=0;i<unitNames.length/2;i++){
+                            if (unitNames[i][0].equalsIgnoreCase(unitName)){
+                                unit.setAttribute("name",unitNames[i][1]);
+                                i=unitNames.length/2;
+                            }
+ 
+                        }
+                       project.addContent(unit);
 
                     projcs.addContent(project);
 
@@ -225,8 +254,14 @@ public class MakeProjectionDictionary {
                 }
                 if (tokens.nextToken().equalsIgnoreCase("UNIT")){
                     Element unit=new Element("unit");
-                    unit.setAttribute("name",tokens.nextToken());
-                    unit.setAttribute("radiansPerUnit",tokens.nextToken());
+                        String unitName = tokens.nextToken();
+                        for (i=0;i<unitNames.length/2;i++){
+                            if (unitNames[i][0].equalsIgnoreCase(unitName)){
+                                unit.setAttribute("name",unitNames[i][1]);
+                                i=unitNames.length/2;
+                            }
+ 
+                        }
                     geogcs.addContent(unit);
                 } else {
                     System.out.print("Didnt find UNIT\n");
