@@ -25,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-05-30 23:17:30 $'
-      '$Revision: 1.5 $'
+          '$Date: 2002-05-31 17:31:53 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -70,12 +70,12 @@
   
   <xs:complexType name="DataTable">
     <xs:choice>
-      <xs:element name="content" type="dataTable"/>
+      <xs:element name="content" type="DataTableType"/>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
   
-  <xs:element name="dataTable" type="DataTable">
+  <xs:element name="dataTable" type="DataTableType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>
@@ -98,7 +98,7 @@
     </xs:annotation>
   </xs:element>
     
-  <xs:complexType name="DataTable">
+  <xs:complexType name="DataTableType">
     <xs:attribute name="id" type="xs:ID" use="required" />
     <xs:attribute name="system" type="xs:string" use="optional" />
     <xs:attribute name="scope" use="optional" default="system">
