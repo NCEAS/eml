@@ -35,11 +35,11 @@
                   Center for Environmental Studies, Arizona State University
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
-     For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-07 00:48:42 $'
-      '$Revision: 1.56 $'
+     For Details: http://knb.ecoinformatics.org/
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:48 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
@@ -85,7 +85,6 @@
         researchers created the associated dataset. The association of a
         dataset with this project metadata is established in
         eml-dataset</doc:description>
-        <doc:example />
         <doc:lineage>The researchProject element was introduced into EML 1.4.
         eml-project was introduced in EML 2.0. It replaces eml-research, which
         was introduced into EML 1.4 as replacement for
@@ -198,7 +197,6 @@
                     The descriptions may be either general descriptions in
                     textual form or specific values for named theme
                     attributes such as average rainfall.</doc:description>
-                    <doc:example />
                     <doc:lineage>New in EML 2.0.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>

@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-09-16 18:17:33 $'
- *    '$Revision: 1.31 $'
+ *        '$Date: 2002-09-16 22:04:47 $'
+ *    '$Revision: 1.32 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -563,8 +563,10 @@
             <br><span class="boldtext">Description: </span></br>
             <xsl:value-of select="./xs:appinfo/doc:description"/>
             <xsl:if test="./xs:appinfo/doc:example">
-              <br><span class="boldtext">Example: </span></br>
-              <xsl:value-of select="./xs:appinfo/doc:example"/>
+              <br><span class="boldtext">Example(s): </span></br>
+              <xsl:for-each select="./xs:appinfo/doc:example">
+                <xsl:value-of select="."/><br/>
+              </xsl:for-each>
             </xsl:if>
             <!--
             <br><span class="boldtext">Lineage: </span></br>

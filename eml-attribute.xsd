@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-13 20:35:46 $'
-      '$Revision: 1.61 $'
+          '$Date: 2002-09-16 22:04:47 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,10 +63,8 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Attribute</doc:tooltip>
-
         <doc:summary>Characteristics of a 'field' or 'variable' in a data
         entity (ie. dataTable).</doc:summary>
-
         <doc:description>The content model for attribute is a CHOICE between
         "references" and all of the elements that let you describe the
         attribute (e.g., attributeName,attributeDefinition,precision)The
@@ -82,11 +80,9 @@
         dataTable survey2 which has an attribute called "measurement1" but the
         survey2's measurement1 has a precision of 0.001 then these are
         different attributes.</doc:description>
-
         <doc:example>Because the attribute element is a container for other
         elements, look at the contents of its sub-elements for examples of what
         to enter.</doc:example>
-
         <doc:lineage>The attribute element was introduced into EML
         1.4??</doc:lineage>
       </xs:appinfo>
@@ -96,17 +92,12 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Attribute List complex type</doc:tooltip>
-
         <doc:summary>container for one or more attribute descriptions or
         references to attributes defined elsewhere.</doc:summary>
-
         <doc:description>This complexType defines the structure of the
         attributeList element. The content model is a choice between one or
         more attribute elements, and references. References link attribute
         elements defined elsewhere.</doc:description>
-
-        <doc:example />
-
         <doc:lineage>The eml-attribute was introduced into EML 1.4 as
         eml-variable.</doc:lineage>
       </xs:appinfo>
@@ -121,14 +112,10 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Attribute descriptors</doc:tooltip>
-
         <doc:summary>Describes the structure for the container of attribute
         descriptors for a specific attribute in a dataset.</doc:summary>
-
         <doc:description>Describes the structure for the container of attribute
         descriptors for a specific attribute in a dataset.</doc:description>
-
-        <doc:example />
 
         <doc:lineage>The eml-attribute was introduced into EML 1.4 as
         eml-variable.</doc:lineage>
@@ -140,19 +127,15 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute name</doc:tooltip>
-
               <doc:summary>This element specifies name of the attribute (field)
               in the dataset.</doc:summary>
-
               <doc:description>This element specifies name of the attribute
               (field) in the dataset. This information is typically found as
               the column header (first row) for the field/variable in a
               spreadsheet. It is usually terse, without spaces, and can be used
               to "name" a column in a table definition statement in a
               RDBMS.</doc:description>
-
               <doc:example>spden</doc:example>
-
               <doc:lineage>The attributeName was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>
@@ -210,7 +193,6 @@
               information on STMML (http://www.xml-cml.org/stmml/) or see
               stmml.xsd which is included with the EML 2.0 distribution for
               details.</doc:description>
-              <doc:example/>
               <doc:lineage>The unit was introduced into EML 1.4.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -257,10 +239,8 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Storage Type</doc:tooltip>
-
               <doc:summary>Description of storage type for this
               field</doc:summary>
-
               <doc:description>This element describes the storage type,
               commonly referred to as datatype, for data in a RDBMS (or
               otherdata management system) field. As many systems do not
@@ -277,9 +257,7 @@
               field is repeatable so that the storageType can be indicated for
               multiple type systems (e.g., Oracle data types and Java data
               types).</doc:description>
-
               <doc:example>integer</doc:example>
-
               <doc:lineage>From storageType, introduced in EML 1.4. Transformed
               to dataType in EML 2.0 Beta 1. Transformed to storageType in EML
               2.0.0.</doc:lineage>
@@ -293,11 +271,9 @@
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Storage Type System</doc:tooltip>
-
                       <doc:summary>The system used to define the storage types.
                       This should be an identifier of a well known and
                       published typing system.</doc:summary>
-
                       <doc:description>The typeSystem element is the system
                       used to define the storage types. This should be an
                       identifier of a well known and published typing system.
@@ -306,10 +282,8 @@
                       another system is used (such as Java or C++ types),
                       typeSystem should be be changed to match the
                       system.</doc:description>
-
                       <doc:example>
                       http://www.w3.org/2001/XMLSchema-datatypes</doc:example>
-
                       <doc:lineage>As of EML 2.0.0</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -697,7 +671,6 @@
                     are theoretical or permitted values (ie. prescriptive), and
                     not necessarily the actual minimum and maximum occurring in
                     a given data set (descriptive).</doc:description>
-                    <doc:example/>
                     <doc:lineage>The numericDomain was introduced into EML 1.4
                     as rangeDomain</doc:lineage>
                   </xs:appinfo>
@@ -713,7 +686,6 @@
                           <doc:description>The minimum element specifies the
                           minimum value range of numeric attribute.
                           </doc:description>
-                          <doc:example/>
                           <doc:lineage>The minimum element was introduced into
                           EML 1.4.</doc:lineage>
                         </xs:appinfo>
@@ -727,7 +699,6 @@
                           attribute</doc:summary>
                          <doc:description>The maximum element specifies the
                           maximum value range of a numeric attribute.</doc:description>
-                          <doc:example/>
                           <doc:lineage>The maximum element was introduced into
                           EML 1.4.</doc:lineage>
                         </xs:appinfo>
@@ -747,7 +718,6 @@
               field</doc:summary>
               <doc:description>This element is to specify missing value in the
               data of the field.</doc:description>
-              <doc:example/>
               <doc:lineage>The missingValueCode was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>
@@ -824,7 +794,6 @@
               processContact, sourceCitation, and timePeriodInformation which
               either user XMLSchema types or use predefined EML types for these
               purposes.</doc:description>
-              <doc:example />
               <doc:lineage>New in EML 2.0.0rc1</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -852,7 +821,6 @@
             determine the accuracy of the observation. These reports are
             generally prepared for remote sensing or other measurement
             devices.</doc:description>
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -869,7 +837,6 @@
             element is composed of two parts, a value that represents the
             accuracy of the recorded observation an explanation of the tests
             used to determine the accuracy.</doc:description>
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -885,7 +852,6 @@
                   estimate of the accuracy of the identification of the
                   entities and assignments of attribute values in the data set.
                   ??</doc:description>
-                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -899,7 +865,6 @@
                   <doc:description>The attributeAccuracyExplanation element is
                   the identification of the test that yielded the Attribute
                   Accuracy Value.</doc:description>
-                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998 section 2</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>

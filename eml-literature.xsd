@@ -36,9 +36,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-07 00:27:59 $'
-      '$Revision: 1.38 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:47 $'
+      '$Revision: 1.39 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -291,7 +291,7 @@
                 <doc:description>An unpublished presentation from a conference,
                 workshop, workgroup, symposium, etc. It will be provided
                 upon request in either in paper and/or electronic
-                form.  If the presentation was actually published in a 
+                form.  If the presentation was actually published in a
                 proceedings, use the conferenceProceedings type instead.
                 </doc:description>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
@@ -1020,7 +1020,7 @@
             <doc:description>This element describes the geographic area which
             the map covers. Could be descriptive text or
             Cartesian coordinates of the area.</doc:description>
-            <doc:example/>
+
             <doc:lineage>The geographicCoverage element was introduced into EML
             2.0 beta 9.</doc:lineage>
           </xs:appinfo>
@@ -1415,7 +1415,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-    </xs:sequence>    
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Presentation">
     <xs:annotation>
@@ -1426,7 +1426,7 @@
         <doc:description>An unpublished presentation from a conference,
         workshop, workgroup, symposium, etc. It will be provided
         upon request in either in paper and/or electronic
-        form by contacting the authors.  If the presentation was actually 
+        form by contacting the authors.  If the presentation was actually
         published in a proceedings, use the conferenceProceedings type instead.
         </doc:description>
         <doc:lineage>As of EML 2.0.0</doc:lineage>
@@ -1437,9 +1437,9 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Conference Name</doc:tooltip>
-                <doc:summary>The name of the conference at which this 
+                <doc:summary>The name of the conference at which this
                 presentation was given.</doc:summary>
-                <doc:description>The name of the conference at which this 
+                <doc:description>The name of the conference at which this
                 presentation was given.</doc:description>
                 <doc:example>North American Science Symposium</doc:example>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
@@ -1472,5 +1472,5 @@
             </xs:annotation>
           </xs:element>
     </xs:sequence>
-  </xs:complexType>  
+  </xs:complexType>
 </xs:schema>

@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-16 18:17:33 $'
-      '$Revision: 1.62 $'
+          '$Date: 2002-09-16 22:04:47 $'
+      '$Revision: 1.63 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -778,7 +778,6 @@
                     datasetGPolygon.  This is the outer part of the doughnut
                     shape that encompasses the broadest area of coverage
                     </doc:description>
-                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
                     dataset_g_polygon/dataset_g_polygon_outer_g_ring
@@ -809,7 +808,6 @@
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).  This is the center of the doughnut
                     shape created by the datasetGPolygon.</doc:description>
-                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998:
                     /metadata/identification_information/spatial_domain/
                     dataset_g_polygon/dataset_g_polygon_exclusion_g_ring
@@ -844,7 +842,6 @@
         <doc:description>A single geographic location.  This is useful if you
         register your datasets by a single geospatial point, such as the
         lat/long of your research station.</doc:description>
-        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998:
         /metadata/identification_information/spatial_domain/
         dataset_g_polygon/g_ring_point</doc:lineage>
@@ -859,7 +856,6 @@
               <doc:summary/>
               <doc:description>The latitude of a point of the
               g-ring.</doc:description>
-              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
@@ -874,7 +870,6 @@
               <doc:summary/>
               <doc:description>The longitude of a point of the
               g-ring.</doc:description>
-              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998:
               /metadata/identification_information/spatial_domain/
               dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
@@ -931,7 +926,6 @@
               treatments.</doc:summary>
               <doc:description>Documentation of taxonomic sources, procedures,
               and treatments.</doc:description>
-              <doc:example/>
               <doc:lineage>FGDC-STD-001.1-1999:
               /metadata/identification_information/taxonomy/taxonomic_system
               </doc:lineage>
@@ -964,7 +958,6 @@
                           <doc:summary/>
                           <doc:description>Relevant literature for documenting
                           the used classification system.</doc:description>
-                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
@@ -982,7 +975,6 @@
                           <doc:description>A description of any modifications
                           or exceptions made to the classification system or
                           authority used.</doc:description>
-                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/classification_system_authority/
@@ -1002,7 +994,6 @@
                     <doc:description>Information on any nonauthoritative
                     materials (e.g. field guides) useful for reconstructing the
                     actual identification process.</doc:description>
-                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/identification_reference</doc:lineage>
@@ -1017,7 +1008,6 @@
                     <doc:description>Information about the individual(s)
                     responsible for the identification(s) of the specimens or
                     sightings, etc.</doc:description>
-                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/identifier</doc:lineage>
@@ -1094,7 +1084,6 @@
                     <doc:description>Information on the types of specimen, the
                     repository, and the individuals who identified the
                     vouchers.</doc:description>
-                    <doc:example/>
                     <doc:lineage>FGDC-STD-001.1-1999:
                     /metadata/identification_information/taxonomy/
                     taxonomic_system/vouchers</doc:lineage>
@@ -1126,7 +1115,6 @@
                           <doc:description>Information about the curator or
                           contact person and/or agency responsible for the
                           specimens.</doc:description>
-                          <doc:example/>
                           <doc:lineage>FGDC-STD-001.1-1999:
                           /metadata/identification_information/taxonomy/
                           taxonomic_system/vouchers/repository</doc:lineage>

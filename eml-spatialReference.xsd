@@ -21,9 +21,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-06 22:25:39 $'
-      '$Revision: 1.16 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:48 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,7 +66,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         identification of a reference datum, a spheroid definition, and
         projection algorithm. It also provides any constants required by that
         algorithm.</doc:description>
-        <doc:example />
         <doc:lineage>ISO 19115.3</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -80,7 +79,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               angular quantities are measured and assigned to the position that
               a point occupies.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -108,7 +106,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       Earth's surface with respect to a reference
                       spheroid.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -123,7 +120,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       reference plane to which the surface of the Earth has
                       been projected.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -136,7 +132,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       is not aligned with the surface of the
                       Earth.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -150,7 +145,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             and its orientation to the surface of the
                             Earth.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -166,7 +160,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             (e.g. control points, satellite ephemeral data,
                             inertial navigation data).</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -183,7 +176,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:summary>parameters for the shape of the
                     earth.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -198,7 +190,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               <doc:summary>The reference frame or system from which vertical
               distances (altitudes or depths) are measured.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -214,7 +205,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     the common term "elevation" to conform to the terminology
                     in Federal Information Processing Standards 70-1 and
                     173.</doc:description>
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -228,7 +218,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           taken as the surface of reference from which
                           altitudes are measured.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -242,7 +231,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           two adjacent altitude values, expressed in Altitude
                           Distance Units of measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -255,7 +243,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>Units in which altitude is
                           measured.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -268,7 +255,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>The means used to encode the
                           altitudes.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -283,7 +269,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:summary>The reference frame or system from which
                     depths are measured.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -297,7 +282,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           reference from which depths are
                           measured.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -311,7 +295,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           two adjacent depth values, expressed in Depth
                           Distance Units of measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -323,7 +306,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>The units in which depths are
                           recorded.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -335,7 +317,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>The means used to encode
                           depths.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -365,7 +346,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             values expressed in Geographic Coordinate Units of
             measure.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -378,7 +358,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             values expressed in Geographic Coordinate Units of
             measure.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -390,7 +369,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>The units of measure used for the latitude and
             longitude values.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -419,7 +397,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               surface of the Earth on a plane or developable
               surface.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -431,7 +408,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:tooltip>Map Projection Name</doc:tooltip>
                     <doc:summary>The name of the map projection.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -472,7 +448,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Albers Conical Equal Area
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -485,7 +460,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Azimuthal Equidistant
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -498,7 +472,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Equidistant Conic
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -510,7 +483,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Equirectangular
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -524,7 +496,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the General Vertical
                       Near-sided Perspective projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -536,7 +507,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Gnomonic
                       projection</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -549,7 +519,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Lambert Azimuthal Equal
                       Area projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -562,7 +531,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Lambert Conformal Conic
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -574,7 +542,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Mercator
                       projection</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -588,7 +555,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Modified Stereographic
                       for Alaska projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -601,7 +567,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Miller Cylindrical
                       projection</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -613,7 +578,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Oblique Mercator
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -625,7 +589,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Orthographic
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -638,7 +601,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>parameters for the Polar Stereographic
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -650,7 +612,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Polyconic
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -662,7 +623,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Robinson
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -674,7 +634,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Sinusoidal
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -688,7 +647,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Space Oblique Mercator
                       (Landsat) projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -700,7 +658,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Stereographic
                       projection</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -713,7 +670,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the Transvers mercator
                       projection</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -725,7 +681,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>Parameters for the van der Grinten
                       projection.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -743,7 +698,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       specification for the algorithms that describe the
                       mathematical relationship between Earth and plane or
                       developable surface for the projection.</doc:description>
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -910,7 +864,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               geographic positions can be readily transformed to and from plane
               coordinates.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -923,7 +876,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:summary>The name of the grid coordinate
                     system.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -939,7 +891,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       north and 80 degrees south on the Earth's
                       surface.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -952,7 +903,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:summary>Identifier for the UTM
                             zone.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -965,7 +915,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>Parameters for theTransverse mercator
                           projection.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           Source: FGDC-STD-001-1998 Definition: Transverse
                           Mercator - contains parameters for theTransverse
@@ -985,7 +934,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       regions north of 84 degrees north and south of 80 degrees
                       south.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -998,7 +946,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:summary>Identifier for the UPS
                             zone.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -1011,7 +958,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:summary>parameters for the Polar Stereographic
                             projection.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -1028,7 +974,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       established for each state in the United States by the
                       National Geodetic Survey.</doc:summary>
                       <doc:description />
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -1041,7 +986,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:summary>Identifier for the SPCS
                             zone.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -1056,7 +1000,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for the Lambert Conformal
                               Conic projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1069,7 +1012,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for theTransverse
                               mercator projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1082,7 +1024,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for the Oblique Mercator
                               projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1094,7 +1035,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for the Polyconic
                               projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1115,7 +1055,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       (MIL-A-89007): Philadelphia, Department of Defense,
                       Defense Printing Service Detachment
                       Office.</doc:description>
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -1130,7 +1069,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:summary>identifier for the ARC Coordinate
                             System Zone.</doc:summary>
                             <doc:description />
-                            <doc:example />
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -1144,7 +1082,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for the Equirectangular
                               projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1157,7 +1094,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:summary>Parameters for the Azimuthal
                               Equidistant projection.</doc:summary>
                               <doc:description />
-                              <doc:example />
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1179,7 +1115,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       specification for the algorithms that describe the
                       mathematical relationship between the Earth and the
                       coordinates of the grid system.</doc:description>
-                      <doc:example />
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -1196,7 +1131,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               the z-axis coincides with a plumb line through the origin that
               locally is aligned with the surface of the Earth.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -1209,7 +1143,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:summary>A description of the local planar
                     system.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -1225,7 +1158,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     points, satellite ephemeral data, inertial navigation
                     data).</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -1241,7 +1173,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>Information about the coordinate system developed on
             the planar surface.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1254,7 +1185,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   <doc:summary>The means used to represent horizontal
                   positions.</doc:summary>
                   <doc:description />
-                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -1269,7 +1199,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     (the "coordinate pair" and "row and column"
                     methods).</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -1284,7 +1213,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           expressed in Planar Distance Units of
                           measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1298,7 +1226,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           expressed in Planar Distance Units of
                           measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1315,7 +1242,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     by measuring its distance and direction (azimuth angle)
                     from another point.</doc:summary>
                     <doc:description />
-                    <doc:example />
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -1329,7 +1255,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           two points, expressed Planar Distance Units of
                           measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1342,7 +1267,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           points, expressed in Bearing Units of
                           measure.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1354,7 +1278,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>Units of measure used for
                           angles.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1368,7 +1291,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>Direction from which the bearing is
                           measured.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1381,7 +1303,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           <doc:summary>Axis from which the bearing is
                           measured.</doc:summary>
                           <doc:description />
-                          <doc:example />
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1397,7 +1318,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   <doc:summary>units of measure used for
                   distances.</doc:summary>
                   <doc:description />
-                  <doc:example />
                   <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -1416,7 +1336,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>The identification given to the reference system used
             for defining the coordinates of points.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1428,7 +1347,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>Identification given to established representations of
             the Earth's shape.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1440,7 +1358,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>Radius of the equatorial axis of the
             ellipsoid.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1453,7 +1370,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             the equatorial and polar radii of the ellipsoid when the numerator
             is set to 1.</doc:summary>
             <doc:description />
-            <doc:example />
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1503,7 +1419,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The line of constant latitude at which the surface of the
         Earth and the plane or developable surface intersect.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1516,7 +1431,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         generally used as the basis for constructing the
         projection.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1528,7 +1442,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The latitude chosen as the origin of rectangular
         coordinates for a map projection.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1542,7 +1455,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:description>This value frequently is assigned to eliminate
         negative numbers. Expressed in the unit of measure identified in Planar
         Coordinate Units.</doc:description>
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1556,7 +1468,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:description>This value frequently is assigned to eliminate
         negative numbers. Expressed in the unit of measure identified in Planar
         Coordinate Units.</doc:description>
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1568,7 +1479,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>Height of viewpoint above the Earth, expressed in
         meters.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1580,7 +1490,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>Longitude of the point of projection for azimuthal
         projections.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1592,7 +1501,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>Latitude of the point of projection for azimuthal
         projections.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1605,7 +1513,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         by computation or scaling to the actual distance along the
         equator.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1618,7 +1525,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         by computation or scaling to the actual distance along the center
         line.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1630,7 +1536,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>Longitude to be oriented straight up from the North or
         South Pole.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1643,7 +1548,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
       computation or scaling to the actual distance at the projection
       origin.</doc:summary>
       <doc:description />
-      <doc:example />
       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       Source: FGDC-STD-001-1998 Definition: Scale Factor at Projection Origin -
       a multiplier for reducing a distance obtained from a map by computation
@@ -1658,7 +1562,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         by computation or scaling to the actual distance along the central
         meridian.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1669,7 +1572,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Azimuth Measure Point Longitude</doc:tooltip>
         <doc:summary>The longitude of the map projection origin.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1681,7 +1583,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The angle measured clockwise from north, and expressed in
         degrees.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1693,7 +1594,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The latitude of a point defining the oblique
         line.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1705,7 +1605,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The longitude of a point defining the oblique
         line.</doc:summary>
         <doc:description />
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1720,7 +1619,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         needed to define the space oblique mercator projection. It is not used
         to identify data originating from a remote sensing
         vehicle.</doc:description>
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -2065,7 +1963,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               oblique mercator map projection is centered using the map
               projection origin and an azimuth.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -2097,7 +1994,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               the limits of the mapped region that define the center
               line.</doc:summary>
               <doc:description />
-              <doc:example />
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -2431,7 +2327,6 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         needed to define the space oblique mercator projection. It is not used
         to identify data originating from a remote sensing
         vehicle.)</doc:description>
-        <doc:example />
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<xs:schema 
+<xs:schema
     targetNamespace="eml://ecoinformatics.org/party-2.0.0rc1"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
     xmlns="eml://ecoinformatics.org/party-2.0.0rc1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
   schemaLocation="eml-documentation.xsd" />
@@ -25,9 +25,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-07 00:44:06 $'
-      '$Revision: 1.34 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:48 $'
+      '$Revision: 1.35 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -211,7 +211,6 @@
                       to which this number applies. By default, this is assumed
                       to be of type "voice", but other possibilities include
                       "facsimile" and "tdd".</doc:description>
-                      <doc:example />
                       <doc:lineage>Derived from NBII and related
                       standards.</doc:lineage>
                     </xs:appinfo>

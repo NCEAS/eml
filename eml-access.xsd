@@ -23,9 +23,9 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: chapal $'
-          '$Date: 2002-09-10 18:24:33 $'
-      '$Revision: 1.55 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:47 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
         the level of access for a given resource, either a dataset or another
         metadata document. The access element must contain the elements defined
         in the AccessType type.</doc:description>
-        <doc:example />
+
         <doc:lineage>The AccessType type is derived from the acl element in
         eml-access.dtd, version 1.3</doc:lineage>
       </xs:appinfo>
@@ -165,10 +165,10 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
           <doc:description>The authentication system determines the set of
           principals (users + groups) that can be used in the access control
           list, and the membership of users in groups. This element is intended
-          to provide a reference to the authentication system that is used to 
-	  verify the user or group. This reference is typically in the form 
-	  of a URI, which includes the connection protocol, Internet host, and 
-	  path to the authentication mechanism.</doc:description>
+          to provide a reference to the authentication system that is used to
+    verify the user or group. This reference is typically in the form
+    of a URI, which includes the connection protocol, Internet host, and
+    path to the authentication mechanism.</doc:description>
           <doc:example>
           ldap://directory.nceas.ucsb.edu:389/o=nceas,c=us</doc:example>
           <doc:lineage>The authSystem element was introduced into EML 2.0
@@ -188,7 +188,7 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
         directory), whether the user or group is allowed or denied access, the
         extent of their access (write access, or only read
         access).</doc:description>
-        <doc:example />
+
         <doc:lineage>The AccessRule type was introduced into EML 2.0
         Proposed</doc:lineage>
       </xs:appinfo>
@@ -219,12 +219,12 @@ xmlns="eml://ecoinformatics.org/access-2.0.0rc1">
             <doc:description>The permission that is being granted or denied to
             a particular user or group for a given resource. The list of
             permissions come from a predetermined list (applicable to an LDAP
-	    authentication system): (allow/deny viewing of the resource), 'write'
-	    (allow/deny modification of the resource), 'changePermission' 
-	    (ability to modify access restrictions) and 'all' (allow read/write, 
-	    and the changePermission). This element also allows other 
-	    permissions that may be applicable to some other authentication
-	    system.</doc:description>
+      authentication system): (allow/deny viewing of the resource), 'write'
+      (allow/deny modification of the resource), 'changePermission'
+      (ability to modify access restrictions) and 'all' (allow read/write,
+      and the changePermission). This element also allows other
+      permissions that may be applicable to some other authentication
+      system.</doc:description>
             <doc:example>read</doc:example>
             <doc:lineage>The permission element was introduced into EML 2.0
             Proposed.</doc:lineage>

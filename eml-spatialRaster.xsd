@@ -21,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: mccartne $'
-          '$Date: 2002-09-16 17:32:36 $'
-      '$Revision: 1.23 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-16 22:04:48 $'
+      '$Revision: 1.24 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,7 +107,6 @@
               (y) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               ordinate (y) axis</doc:description>
-              <doc:example/>
               <doc:lineage>The spatial entity elements were introduced into EML
               2.0 beta 7</doc:lineage>
             </xs:appinfo>
@@ -121,7 +120,6 @@
               (x) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               abscissa (x) axis</doc:description>
-              <doc:example/>
               <doc:lineage>The spatial entity elements were introduced into EML
               2.0 beta 7</doc:lineage>
             </xs:appinfo>
@@ -135,7 +133,6 @@
               (z) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               vertical (z) axis.</doc:description>
-              <doc:example/>
               <doc:lineage>The spatial entity elements were introduced into EML
               2.0 beta 7</doc:lineage>
             </xs:appinfo>
@@ -156,12 +153,14 @@
         </xs:element>
         <xs:element name="scaleFactor" type="xs:string" minOccurs="0">
           <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Scale Factor</doc:tooltip>
-              <doc:summary>The value used for scaling the source raster.</doc:summary>
-              <doc:description>The scale factor is used for raster-rescaling
-                operations, where the following operation is applied to each pixel
-                in the data in the source: rescaled=(source*scaleFactor)+offset.
+              <xs:appinfo>
+                <doc:tooltip>Scale Factor</doc:tooltip>
+                <doc:summary>The value used for scaling the source raster.
+                </doc:summary>
+                <doc:description>The scale factor is used for raster-rescaling
+                operations, where the following operation is applied to each
+                pixel in the data in the
+                source: rescaled=(source*scaleFactor)+offset.
                 </doc:description>
               <doc:example>2</doc:example>
               <doc:lineage/>
@@ -192,7 +191,6 @@
               <doc:description>Provides information about the image's
               suitability for use, sensor properties, and individual band
               descriptions.</doc:description>
-              <doc:example/>
               <doc:lineage>ISO 19115.3</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -213,7 +211,6 @@
                     clockwise from the target plane at intersection of the
                     optical line of sight with the earth's
                     surface.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -230,7 +227,6 @@
                     <doc:description>Illumitation azimuth measured in degrees
                     clockwise from true north at the time the image is
                     taken.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -244,7 +240,6 @@
                     north in degrees, clockwise.</doc:summary>
                     <doc:description>Angle from the first row of the image to
                     true north in degrees, clockwise.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -258,7 +253,6 @@
                     the quality of the image.</doc:summary>
                     <doc:description>Code which indicates conditions which
                     affect the quality of the image.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -270,7 +264,6 @@
                     <doc:summary>Specifies the image quality.</doc:summary>
                     <doc:description>Specifies the image
                     quality.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -287,7 +280,6 @@
                     <doc:description>Area of the dataset obscured by clouds,
                     expressed as a percentage of the spatial
                     extent.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -319,7 +311,6 @@
                     performed on the image.</doc:summary>
                     <doc:description>Counts the number of lossy compression
                     cycles performed on the image.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -336,7 +327,6 @@
                     <doc:description>Code which indicates whether or not
                     triangulation has been performed upon the
                     image.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -351,7 +341,6 @@
                     <doc:description>Code which indicates whether or not
                     Standard Radiometric Product data is
                     available.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -368,7 +357,6 @@
                     <doc:description>Code which indicates whether or not
                     constants are available which allow for camera calibration
                     corrections.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -383,7 +371,6 @@
                     <doc:description>Code which indicates whether or not
                     Calibration Reseau information is
                     available</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -400,7 +387,6 @@
                     <doc:description>Code which indicates whether or not lens
                     aberration correction information is
                     available</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -414,7 +400,6 @@
                     in.</doc:summary>
                     <doc:description>Set of wavelength that the sensor operates
                     in.</doc:description>
-                    <doc:example/>
                     <doc:lineage>ISO 19115.3</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -440,7 +425,6 @@
             wavelengths on which a sensor operates.</doc:summary>
             <doc:description>Number that uniquely identifies instances of bands
             of wavelengths on which a sensor operates.</doc:description>
-            <doc:example/>
             <doc:lineage>ISO 19115.3</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -454,7 +438,6 @@
             collecting within a designated band in metres.</doc:summary>
             <doc:description>Highest wavelength that the sensor is capable of
             collecting within a designated band in metres.</doc:description>
-            <doc:example/>
             <doc:lineage>ISO 19115.3</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -468,7 +451,6 @@
             collecting within a designated band in metres.</doc:summary>
             <doc:description>Lowest wavelength that the sensor is capable of
             collecting within a designated band in metres.</doc:description>
-            <doc:example/>
             <doc:lineage>ISO 19115.3</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
