@@ -1,0 +1,158 @@
+<!--
+    '$RCSfile: eml-project.dtd,v $'
+      Purpose: This dtd mimics the content model found in
+               eml-research.xsd.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Matt Jones, Zheng Wang, and Noah Goldstein
+
+     '$Author: bojilova $'
+     '$Date: 2001-02-12 22:35:44 $'
+     '$Revision: 1.1 $'
+-->
+
+<!-- EML DTD document that defines the research context
+     in which the dataset was created. -->
+
+<!-- Entity referring to the iso-party fields -->
+<!ENTITY % resParty SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/iso-party.dtd">
+%resParty;
+
+<!-- Entity referring to the eml-entity fields -->
+<!ENTITY % temporalCoverage SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/eml-entity.dtd">
+%temporalCoverage;
+
+<!-- The root element, which represents the research project 
+     employed by the researchers who created this dataset -->
+<!ELEMENT eml-research (identifier,researchProject)>
+
+<!-- File identifier of the metadata document -->
+<!ELEMENT identifier (#PCDATA)>
+
+<!-- Research project descriptor -->
+<!ELEMENT researchProject (title, originator+, temporalDescription*,
+		objectives?, abstract?, funding?, siteDescription*,
+	 	designDescription*, methodsDescription*, staff*)>
+
+<!-- Title or theme of the research project -->
+<!ELEMENT title (#PCDATA)>
+
+<!-- Names and addresses of principal investigators -->
+<!ELEMENT originator ((%responsibleParty;))>
+
+<!-- General description of temporal coverage of the project -->
+<!ELEMENT temporalDescription ((%temporalCoverage;)*, duration?)>
+<!ELEMENT duration (amount, unit)>
+<!ELEMENT amount (#PCDATA) >
+<!ELEMENT unit (#PCDATA) >
+
+<!-- Scope and purpose of the research project -->
+<!ELEMENT objectives (paragraph+) >
+
+<!-- Paragraph of text -->
+<!ELEMENT paragraph (#PCDATA)>
+
+<!-- Descriptive abstract -->
+<!ELEMENT abstract (paragraph+)>
+
+<!-- Grant and contract numbers, names and addresses of funding sources -->
+<!ELEMENT funding (paragraph+) >
+
+<!-- Site description -->
+<!ELEMENT siteDescription (paragraph*, siteType?, geography?, habitat?, geology?, hydrology?, history?, climate?)>
+
+<!-- Site type - description, e.g., short-grass prairie, blackwater stream, etc. -->
+<!ELEMENT siteType (paragraph+) >
+
+<!-- Location and size -->
+<!ELEMENT geography (coordinates*,paragraph*, citation*)>
+
+<!-- Cartesian Coordinates -->
+<!ELEMENT coordinates (lattitude, longitude) >
+<!ATTLIST coordinates description CDATA #FIXED "Cartesian Coordinates">
+
+<!-- Lattitude coordinates -->
+<!ELEMENT lattitude (#PCDATA)>
+
+<!-- Longitude coordinates -->
+<!ELEMENT longitude (#PCDATA)>
+
+<!-- Citation -->
+<!ELEMENT citation (author*, editor*, sourceInformation?)>
+
+<!ELEMENT author ((%responsibleParty;))>
+
+<!ELEMENT editor ((%responsibleParty;))>
+
+<!ELEMENT sourceInformation (title, volume?, issue?, pubdate?,
+                        publisher?, edition?, series?, chapter_title?,
+                        pages?, resourceURL*)>
+
+<!ELEMENT volume (#PCDATA)>
+
+<!ELEMENT issue (#PCDATA)>
+
+<!ELEMENT pubdate (datetime)>
+
+<!ELEMENT publisher ((%responsibleParty;))>
+
+<!ELEMENT edition (#PCDATA)>
+
+<!ELEMENT series  (#PCDATA)>
+
+<!ELEMENT chapterTitle (title)>
+
+<!ELEMENT pages (#PCDATA)>
+
+<!-- Detailed characteristics of habitat sampled -->
+<!ELEMENT habitat (paragraph*, citation*)>
+
+<!-- Geology and Landform -->
+<!ELEMENT geology (paragraph*, citation*)>
+
+<!-- Hydrology -->
+<!ELEMENT hydrology (paragraph*, citation*)>
+
+<!-- Site history -->
+<!ELEMENT history (paragraph*, citation*)>
+
+<!-- Site climatic characteristics -->
+<!ELEMENT climate (paragraph*, citation*)>
+
+<!-- Experimental or Sampling design -->
+<!ELEMENT designDescription (designMethod?, plots?, sampling?, paragraph*, citation*)>
+
+<!-- Description of Statistical/sampling design -->
+<!ELEMENT designMethod (paragraph*, citation*)>
+
+<!-- Permanent plot description -->
+<!ELEMENT plots (paragraph*,citation*) >
+
+<!-- Information necessary to understand temporal sampling regime -->
+<!ELEMENT sampling ((%temporalCoverage;)*, frequency?,paragraph*,citation*)>
+
+<!-- Frequency or period of data collection -->
+<!ELEMENT frequency (#PCDATA)>
+
+<!-- Research Methods description -->
+<!ELEMENT methodsDescription (method*, instrument*, taxonomy*, permit*, legalInformation*, paragraph*, citation*)>
+
+<!-- Description or reference to field/laboratory methods -->
+<!ELEMENT method (paragraph*, citation*)>
+
+<!-- Description of Instruments used -->
+<!ELEMENT instrument (paragraph*, citation*)>
+
+<!-- Taxonomy information -->
+<!ELEMENT taxonomy (paragraph*, citation*)>
+
+<!-- References to pertinent scientific and collecting permits -->
+<!ELEMENT permit (paragraph+) >
+
+<!-- Relevant laws, decision criteria, compliance standards -->
+<!ELEMENT legalInformation (paragraph+)>
+
+<!-- Project Personell -->
+<!ELEMENT staff ((%responsibleParty;))>
+
+<!-- End of file -->

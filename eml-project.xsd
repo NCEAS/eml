@@ -1,0 +1,637 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+           xmlns:rp="iso:ResponsibleParty"
+           xmlns:tc="eml:TemporalCoverage"
+	   targetNamespace="eml:research">
+
+  <xs:annotation>
+    <xs:documentation>
+    '$RCSfile: eml-project.xsd,v $'
+      Purpose: This is an XML Schema document describing the research context
+               in which the dataset was created formerly known as "eml-context".  
+               It draws information from iso:responsibleParty.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Chris Jones, Chad Berkley, Jivka Bojilova
+
+     '$Author: bojilova $'
+       '$Date: 2001-02-12 22:35:44 $'
+   '$Revision: 1.1 $'
+
+    </xs:documentation>
+    <xs:appInfo>
+      <moduleName>
+        eml-research
+      </moduleName>
+      <moduleDescription>
+        The EML Research Module describes the research context 
+        in which the dataset was created.
+      </moduleDescription>
+    </xs:appInfo>
+  </xs:annotation>
+
+ <!-- import the elements from responsible party for use
+      in eml-research/researchProject/originator  -->
+  <xs:import namespace="iso:ResponsibleParty"
+             schemaLocation = "./iso-party.xsd"/>
+
+ <!-- import the elements from eml-entity/temporalCoverage for use
+      in eml-research/researchProject/temporalDescription  -->
+  <xs:import namespace="eml:TemporalCoverage"
+             schemaLocation = "./eml-entity.xsd"/>
+
+  <xs:element name="eml-research" minOccurs="1" maxOccurs="1">
+    <xs:annotation>
+      <xs:appInfo>
+        <description>
+           Eml-research element represents the research project 
+           employed by the researchers who created this dataset.
+        </description>
+      </xs:appInfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="identifier" type="xs:string"
+                  minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              File identifier of the metadata document
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="researchProject"
+                  minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <description>
+              Research project element is a descriptor of an information
+              on the research methods employed by the researchers who 
+              created this dataset.
+            </description>
+          </xs:appInfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:element>
+	
+  <xs:element name="researchProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="originator"
+                    minOccurs="1" maxOccurs="unbounded"/>	
+        <xs:element ref="temporalDescription"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="objectives"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="abstract"
+                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element ref="funding"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="siteDescription"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="designDescription"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="methodDescription"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+        <xs:element ref="staff"
+                    minOccurs="0" maxOccurs="unbounded"/>	
+      </xs:sequence>
+    <xs:complexType>
+  </xs:element>
+
+  <xs:element name="originator" type="rp:ResponsibleParty">
+    <xs:annotation>
+      <xs:appInfo>
+        <xs:description>
+          The party who created the research project.
+        </xs:description>
+        <lineage>
+          FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation> 
+  </xs:element>
+	
+  <xs:element name="temporalDescription">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            General description of temporal coverage of the project
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="duration" 
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name = "duration">
+    <xs:complexType>
+      <xs:sequence>
+	<xs:element name="amount" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>
+	<xs:element name="unit" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <element name = "objectives">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Scope and purpose of the research project
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="paragraph" type="xs:string"/>
+
+  <xs:element name="abstract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="funding">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="siteDescription">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Site description
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="siteType" 
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="geography"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="habitat"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="geology"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="hydrology"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="history"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="climate"
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="siteType">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Site type - description, e.g., short-grass prairie,
+            blackwater stream, etc.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name = "geography">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Location and size.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="coordinates" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="paragraph" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name = "coordinates">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Location and size.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="lattitude" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>
+        <xs:element name="longitude" type="xs:string" 
+                    minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="citation">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Citation.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="author" type="rp:ResponsibleParty"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="editor" type="rp:ResponsibleParty"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sourceInformation"
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="sourceInformation">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Citation.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>
+        <xs:element name="volume" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="issue" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="pubDate" type="xs:date"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="publisher" type="rp:ResponsibleParty"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="edition" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="series" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="chapterTitle"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="pages" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="resourceURL" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="chapterTitle">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Chapter title.
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"
+                    minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="habitat">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Detailed characteristics of habitat sampled
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="geology">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Geology and Landform
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="hydrology">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Hydrology
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="history">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Site history
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="climate">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Site climatic characteristics
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="designDescription">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Experimental or Sampling design
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="designMethod"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="plots"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="sampling"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="designMethod">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Description of Statistical/sampling design
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="plots">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Permanent plot description
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="sampling">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Information necessary to understand temporal sampling regime
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="frequency" type="xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paragraph" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="methodsDescription">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Research Method description
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="method"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="instrument"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="taxonomy"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="permit"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="legalInformation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="method">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Description or reference to field/laboratory methods
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="instrument">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Description of Instruments used
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="taxonomy">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Taxonomy information
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="citation"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="permit">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            References to pertinent scientific and collecting permits
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="legalInformation">
+    <xs:complexType>
+      <xs:annotation>
+	<xs:appInfo>
+          <xs:description>
+            Relevant laws, decision criteria, compliance standards
+          </xs:description>
+        </xs:appInfo>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="paragraph"
+                    minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	
+  <xs:element name="staff" type="rp:ResponsibleParty">
+    <xs:annotation>
+      <xs:appInfo>
+        <xs:description>
+          Project personell.
+        </xs:description>
+        <lineage>
+          FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation> 
+  </xs:element>
+
+</xs:schema>
