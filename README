@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-07-23 08:01:36 $'
-#   '$Revision: 1.9 $'
+#       '$Date: 2001-07-31 22:09:42 $'
+#   '$Revision: 1.10 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,13 +42,20 @@ Web site: http://knb.ecoinformatics.org/software/eml
 The Ecological Metadata Language consists of a number of modules that define
 an XML markup syntax for ecologically relevant metadata.  It was originally
 based on work done by the ESA Committee on the Future of Long-Term
-Ecoloigical Data (http://esa.sdsc.edu/FLED/FLED.html) and on a related paper
+Ecological Data (http://esa.sdsc.edu/FLED/FLED.html) and on a related paper
 on ecological metadata by Michener et al. (see Michener, William K., et al., 
 1997. Ecological Appications, "Nongeospatial metadata for the ecological 
 sciences" Vol 7(1). pp. 330-342.).  Version 1.4 follows that paper closely in
 its implementation, but Version 2 has been modified substantially after
 experience using the standard and from feedback from the ecological community.
 
+DOCUMENTATION
+-------------
+Please see the docs/index.html directory for a detailed description 
+of each of the modules.
+
+FILES
+-----
 The files in this directory include both a Document Type Definition and 
 an XML Schema document for each of the following modules, as well as 
 complete documentation in the "docs" directory:
@@ -69,9 +76,6 @@ Methods and QA/QC            eml-protocol.[xsd,dtd]
 Basic resource info          eml-resource.[xsd,dtd]
 Software info                eml-software.[xsd,dtd]
 
-Please see the docs/index.html directory for a detailed description 
-of each of the modules.
-
 Also included is a schema for supporting documentation:
 Schema documentation info    eml-documentation.xsd
 
@@ -83,12 +87,23 @@ appropriate release tag (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) eml-distribution needs to be revisited and the DTD does not 
-   match the schema docs.
+1) eml-distribution needs to be revisited, possibly eliminating this
+   module and folding its content into eml-resource
 2) Multiline records supported sufficiently in eml-physical?
-3) Less granularity in eml-project (nix climate, hydrology, etc)?
-4) Check if eml-coverage uses eml-literature rather than citeinfo?
-5) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
-6) Overlap between eml-physical and eml-distribution (eg, compression)
-   Possibly eliminate eml-distribution (Bug 174)
-7) Should eml-project extend ResourceBase? several fields overlap...
+3) Check if eml-coverage uses eml-literature rather than citeinfo?
+4) Check if eml-coverage uses ResponsibleParty rather than cntinfo?
+5) Possibly eliminate eml-distribution (Bug 174)
+6) Should eml-project extend ResourceBase? several fields overlap...
+
+Legalese
+--------
+This software is copyrighted by The Regents of the University of California
+and the National Center for Ecological Analysis and Synthesis
+and licensed under the GNU GPL; see the 'LICENSE' file for
+details.
+
+This material is based upon work supported by the 
+National Science Foundation under Grant No. DEB99-80154 and DBI99-04777.
+Any opinions, findings and conclusions or recomendations expressed in this
+material are those of the author(s) and do not necessarily reflect 
+the views of the National Science Foundation (NSF).
