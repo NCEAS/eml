@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2000-11-25 16:15:03 $'
-  * '$Revision: 1.18 $'
+  *     '$Date: 2003-07-14 20:49:05 $'
+  * '$Revision: 1.19 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -744,16 +744,9 @@ version="1.0">
                  </xsl:element>
                </xsl:element>
              </xsl:element>
-           </xsl:when>  
+           </xsl:when>
+         </xsl:choose>
        </xsl:when>
-         <xsl:when test="/eml:eml/dataset/spatialVector/spatialReference!=''">
-         <xsl:choose>
-           <xsl:when test="/eml:eml/dataset/spatialVector/spatialReference/horizCoordSysDef!=''">
-             <xsl:element name="spref">
-      
-             </xsl:element>
-           </xsl:when>  
-         </xsl:when>
      </xsl:choose>  
       
       
