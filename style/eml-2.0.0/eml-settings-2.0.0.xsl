@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -84,7 +84,29 @@
 -->
 
 <!--<xsl:param name="stylePath">@style-path@</xsl:param>-->
-    <xsl:param name="stylePath">.</xsl:param> 
+    <xsl:param name="stylePath">@style-path@</xsl:param> 
+
+<!--the docid of xml which is processed-->
+    <xsl:param name="docid"/>
+<!-- type of entity, data table or spacial raster or others-->
+    <xsl:param name="entitytype"/>
+<!-- the index of entity in same entity type -->
+    <xsl:param name="entityindex"/>
+<!-- the index of physical part in entity part-->
+    <xsl:param name="physicalindex"/>
+<!-- the index of distribution in physical part  -->
+    <xsl:param name="distributionindex"/>
+<!-- the levle of distribution -->
+    <xsl:param name="distributionlevel"/>
+<!-- the index of attribute in attribute list-->
+    <xsl:param name="attributeindex"/>
+<!-- the index of additional metadata-->    
+    <xsl:param name="additionalmetadataindex"/>
+<!-- attribute set to get rid of cell spacing-->
+    <xsl:attribute-set name="cellspacing">
+      <xsl:attribute name="cellpadding">0</xsl:attribute>
+      <xsl:attribute name="cellspacing">0</xsl:attribute>
+    </xsl:attribute-set>    
 
 
 <!--
@@ -104,6 +126,9 @@
 -->
 
     <xsl:param name="tripleURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=@default-style@&docid=]]></xsl:param>
+    
+    <!-- URL for xmlformat-->
+    <xsl:param name="xmlURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=xml&docid=]]></xsl:param>
 
 
 <!--
@@ -142,11 +167,14 @@
   <xsl:param name="secondColWidth" select="'85%'"/>
 
 <!-- the style for the second column -->
-  <xsl:param name="secondColStyle" select="''"/>
+  <xsl:param name="secondColStyle" select="'secondCol'"/>
 
 <!-- Some html pages use a nested table in the second column.
      Some of these nested tables set their first column to
      the following width: -->
   <xsl:param name="secondColIndent" select="'10%'"/>
+  
+<!-- the first column width of attribute table-->
+  <xsl:param name="attributefirstColWidth" select="'15%'"/>
 
 </xsl:stylesheet>

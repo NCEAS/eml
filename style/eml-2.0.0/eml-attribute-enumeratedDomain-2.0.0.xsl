@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -29,155 +29,149 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:import href="eml-settings-2.0.0beta6-@name@.xsl" />
+ 
   <xsl:output method="html" encoding="iso-8859-1"/>
-  <xsl:template match="/">
-    <html>
-      <head>
-        <link rel="stylesheet" type="text/css" href="{$stylePath}/@name@.css"/>
-      </head>
+  
+   <xsl:template name="nonNumericDomain">
+     <xsl:param name="nondomainfirstColStyle"/>
+     <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+            <xsl:call-template name="nonNumericDomainCommon">
+             <xsl:with-param name="nondomainfirstColStyle" select="$nondomainfirstColStyle"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="nonNumericDomainCommon">
+             <xsl:with-param name="nondomainfirstColStyle" select="$nondomainfirstColStyle"/>
+           </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </table>
+  </xsl:template>
 
-      <body>
-        <table width="100%" cellspacing="0" cellpadding="0" border="1">
-          <tr>
-            <table cellspacing="0" width="100%" border="0">
-              <tr>
-                <td class="header-title">
-                  <div class="header-title">
-                    @header-title@
-                  </div>
-                   <div class="header-subtitle">
-                    @header-subtitle@
-                  </div>
-                </td>
-                <td class="header-image" rowspan="1">
-                  <div class="header-image">
-                    <img class="header" src="@html-path@/@header-image@"
-                      alt="@header-image-alt@" border="0" />
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="header-menu" colspan="2">
-                  <div class="header-menu">
-                   @header-menu@
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="header-submenu" colspan="2">
-                  <div class="header-submenu">
-                    &#160; <!-- &nbsp; that is XML compliant -->
-                  </div>
-                </td>
-              </tr>
-            </table>
+  
+  <xsl:template name="nonNumericDomainCommon">
+    <xsl:param name="nondomainfirstColStyle"/>
+    <xsl:for-each select="enumeratedDomain">
+      <xsl:call-template name="enumeratedDomain">
+        <xsl:with-param name="nondomainfirstColStyle" select="$nondomainfirstColStyle"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="textDomain">
+      <xsl:call-template name="enumeratedDomain">
+        <xsl:with-param name="nondomainfirstColStyle" select="$nondomainfirstColStyle"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="textDomain">
+       <xsl:param name="nondomainfirstColStyle"/>
+       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Text Domain</b></td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+            </td>
+       </tr> 
+       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Definition</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="definition"/>
+            </td>
+        </tr>
+        <xsl:for-each select="parttern">
+          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Pattern</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="."/>
+            </td>
           </tr>
-          <tr>
-            <td colspan="7" valign="top" align="left">
-              <table width="85%" border="0">
-                <tr>
-                  <td class="tablehead">Code Definitions for Allowed Values</td>
-                </tr>
-                <tr>
-                  <td>
-                    <table border="0" width="95%" cellspacing="0"
-                    align="center">
-                      <tr>
-                        <th colspan="3" valign="center" align="center" class="bordered">
-                          List of Acceptable Values
-                        </th>
-                      </tr>
-                      <tr>
-                        <th class="bordered">Code</th>
-                        <th class="bordered">Definition</th>
-                        <th class="bordered">Source</th>
-                      </tr>
-                      <tr>
-                        <xsl:for-each select="eml-attribute/attribute">
-                          <xsl:for-each select="attributeDomain">
-                            <xsl:for-each select="enumeratedDomain">
-                              <xsl:variable name="stripes">
-                                <xsl:choose>
-                                  <xsl:when test="position() mod 2 = 1">colodd</xsl:when>
-                                  <xsl:when test="position() mod 2 = 0">coleven</xsl:when>
-                                </xsl:choose>
-                              </xsl:variable>
-                              <tr>
-                                <td class="{$stripes}" align="center"><xsl:value-of select="code"/></td>
-                                <td class="{$stripes}" align="center"><xsl:value-of select="definition"/></td>
-                                <td class="{$stripes}" align="center"><xsl:value-of select="source"/></td> &#160;
-                              </tr>
-                            </xsl:for-each>
-                          </xsl:for-each>
-                        </xsl:for-each>
-                      </tr>
-                      <tr>
-                        <td>&#160;</td>
-                      </tr>
-                      <tr>
-                        <td>&#160;</td>
-                      </tr>
-                      <tr>
-                        <th colspan="3" valign="center" align="center" class="bordered">Acceptable Text Values</th>
-                      </tr>
-                      <tr>
-                        <th class="bordered">Definition</th>
-                        <th class="bordered">Pattern</th>
-                        <th class="bordered">Source</th>
-                      </tr>
-                      <tr>
-                      <xsl:for-each select="eml-attribute/attribute">
-                        <xsl:for-each select="attributeDomain">
-                          <xsl:for-each select="textDomain">
-                            <xsl:variable name="stripes">
-                              <xsl:choose>
-                                <xsl:when test="position() mod 2 = 1">colodd</xsl:when>
-                                <xsl:when test="position() mod 2 = 0">coleven</xsl:when>
-                              </xsl:choose>
-                            </xsl:variable>
-                            <tr>
-                              <td class="$stripes" align="center"><xsl:value-of select="code"/></td>
-                              <td class="$stripes" align="center"><xsl:value-of select="definition"/></td>
-                              <td class="$stripes" align="center"><xsl:value-of select="source"/></td> &#160;
-                            </tr>
-                          </xsl:for-each>
-                        </xsl:for-each>
-                      </xsl:for-each>
-                    </tr>
-                  </table>
-                </td>
-               </tr>
-             </table>
+        </xsl:for-each>
+        <xsl:if test="source">
+          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Source</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="source"/>
+            </td>
+          </tr>
+        </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="enumeratedDomain">
+     <xsl:param name="nondomainfirstColStyle"/>
+     <xsl:if test="codeDefinition">
+        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain</b></td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+            </td>
+       </tr>
+       <xsl:for-each select="codeDefinition">
+              <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Code Definition</td>
+                   <td width="{$secondColWidth}">
+                      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+                          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+                               Code
+                              </td>
+                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="code"/></td>
+                              
+                           </tr>
+                           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+                               Definition
+                              </td>
+                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="definition"/></td>
+                               
+                           </tr>
+                           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+                               Source
+                              </td>
+                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="source"/></td>
+                          </tr>
+                      </table>
+                   </td>
+               </tr> 
+         </xsl:for-each>
+     </xsl:if>  
+     <xsl:if test="externalCodeSet">
+        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain(External Set)</b></td>
+            <td width="{$secondColWidth}">&#160;
            </td>
-         </tr>
-       </table>
-      </body>
-    </html>
+        </tr>
+        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Set Name:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="externalCodeSet/codesetName"/>
+           </td>
+        </tr>
+        <xsl:for-each select="externalCodeSet/citation">
+           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Citation:</td>
+               <td width="{$secondColWidth}">
+                  <xsl:call-template name="citation">
+                      <xsl:with-param name="citationfirstColStyle" select="$nondomainfirstColStyle"/>
+                   </xsl:call-template>
+               </td>
+           </tr>
+        </xsl:for-each>
+        <xsl:for-each select="externalCodeSet/codesetURL">
+           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">URL</td>
+               <td width="{$secondColWidth}" class="{$secondColStyle}">
+                 <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:value-of select="."/></a>
+              </td>
+           </tr>
+        </xsl:for-each>
+     </xsl:if>
+     <xsl:if test="entityCodeList">
+        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain(Entity)</b></td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+            </td>
+       </tr>
+        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Entity Reference</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/entityReference"/>
+            </td>
+       </tr>
+       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Value Reference</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/valueAttributeReference"/>
+            </td>
+       </tr>
+       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Definition Reference</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/definitionAttributeReference"/>
+            </td>
+       </tr>
+     </xsl:if>  
+     
   </xsl:template>
 
-
-  <xsl:template match="enumeratedDomain">
-      <tr>
-        <td><xsl:value-of select="code"/></td>
-        <td><xsl:value-of select="definition"/></td>
-        <td><xsl:value-of select="source"/>&#160;</td>
-      </tr>
-  </xsl:template>
-
-  <xsl:template match="textDomain">
-     <tr>
-       <td><xsl:value-of select="definition"/></td>
-       <td><xsl:value-of select="pattern"/></td>
-       <td><xsl:value-of select="source"/>&#160;</td>
-     </tr>
-  </xsl:template>
-
-  <xsl:template match="numericDomain">
-    <tr>
-      <td><xsl:value-of select="minimum"/></td>
-      <td><xsl:value-of select="maximum"/></td>
-    </tr>
-  </xsl:template>
-
+  
 </xsl:stylesheet>

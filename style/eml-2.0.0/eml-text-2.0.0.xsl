@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -39,11 +39,8 @@
   <xsl:template name="text">
         <xsl:param name="textfirstColStyle" />
         <xsl:if test="(section and normalize-space(section)!='') or (para and normalize-space(para)!='')">
-        <table class="tabledefault" width="100%">
-          <xsl:apply-templates mode="text">
-             <xsl:with-param name="textfirstColStyle" select="$textfirstColStyle"/>
-          </xsl:apply-templates>
-          
+        <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+          <xsl:apply-templates  select="." mode="text"/>
         </table>
       </xsl:if>
   </xsl:template>
@@ -56,30 +53,21 @@
       <xsl:if test="normalize-space(.)!=''">
         <xsl:if test="title and normalize-space(title)!=''"> 
           <tr>
-            <td width="{$firstColWidth}" align="right" class="{$textfirstColStyle}">
-            Title:
-            </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}" >
-              <xsl:value-of select="title"/>
+            <td width="100%" align="left" class="{$secondColStyle}" >
+              <b><xsl:value-of select="title"/></b>
             </td>
           </tr>
         </xsl:if>
         <xsl:if test="para and normalize-space(para)!=''">
           <tr>
-            <td width="{$firstColWidth}" class="{$textfirstColStyle}">
-              <xsl:text>&#160;</xsl:text>
-            </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
-              <xsl:apply-templates select="para" mode="lowlevel"/>
+            <td width="100%" class="{$secondColStyle}">
+              <xsl:apply-templates select="para" mode="lowlevel"/>  
             </td>
            </tr>
          </xsl:if>
          <xsl:if test="section and normalize-space(section)!=''">
           <tr>
-            <td width="{$firstColWidth}" class="{$textfirstColStyle}">
-            <xsl:text>&#160;</xsl:text>
-            </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td width="100%" class="{$secondColStyle}">
               <xsl:apply-templates select="section" mode="lowlevel"/>
             </td>
          </tr>
@@ -89,34 +77,34 @@
   
   <!-- Section template for low level. Cteate a nested table and second column -->
   <xsl:template match="section" mode="lowlevel">
-     <table width="100%">
+     <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
       <xsl:if test="title and normalize-space(title)!=''">
         <tr>
-          <td width="{$secondColIndent}" align="right" class="{$secondColStyle}">
-            Title:
+          <td width="10%" class="{$secondColStyle}">
+            &#160;
           </td>
-          <td class="{$secondColStyle}">
+          <td class="{$secondColStyle}" width="90%" align="left">
             <xsl:value-of select="title"/>
           </td>
         </tr>
       </xsl:if>
       <xsl:if test="para and normalize-space(para)!=''">
         <tr>
-          <td width="{$secondColIndent}"  class="{$secondColStyle}">
-           <xsl:text>&#160;</xsl:text>
+          <td width="10%"  class="{$secondColStyle}">
+           &#160;
           </td>
-          <td class="{$secondColStyle}">
-            <xsl:apply-templates select="para" mode="lowlevel"/>
+          <td width="90%" class="{$secondColStyle}">
+            <xsl:apply-templates select="para" mode="lowlevel"/>  
           </td>
         </tr>
        </xsl:if>
        <xsl:if test="section and normalize-space(section)!=''">
-        <tr>
-          <td width="{$secondColIndent}"  class="{$secondColStyle}">
-            <xsl:text>&#160;</xsl:text>
+           <tr>
+          <td width="10%"  class="{$secondColStyle}">
+           &#160;
           </td>
-          <td class="{$secondColStyle}">
-            <xsl:apply-templates select="setction" mode="lowlevel"/>
+          <td width="90%" class="{$secondColStyle}">
+            <xsl:apply-templates select="section" mode="lowlevel"/>
           </td>
         </tr>
        </xsl:if>
@@ -127,9 +115,8 @@
    <xsl:template match="para" mode="text">
     <xsl:param name="textfirstColStyle"/>
     <tr>
-      <td width="{$firstColWidth}" class="{$textfirstColStyle}">&#160;</td>
-      <td width="{$secondColWidth}" class="{$secondColStyle}">
-         <xsl:apply-templates select="." mode="lowlevel"/>    
+      <td width="100%" class="{$secondColStyle}">
+         <xsl:apply-templates mode="lowlevel"/>    
       </td>
     </tr>
   </xsl:template>

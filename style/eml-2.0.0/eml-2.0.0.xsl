@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,10 +30,33 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:import href="eml-settings-2.0.0.xsl"/>
-  <xsl:import href="eml-identifier-2.0.0.xsl"/>
+  <xsl:import href="eml-access-2.0.0.xsl"/>
+  <xsl:import href="eml-additionalmetadata-2.0.0.xsl"/>
+  <xsl:import href="eml-attribute-2.0.0.xsl"/>
+  <xsl:import href="eml-attribute-enumeratedDomain-2.0.0.xsl"/>
+  <xsl:import href="eml-constraint-2.0.0.xsl"/>
+  <xsl:import href="eml-coverage-2.0.0.xsl"/>
   <xsl:import href="eml-dataset-2.0.0.xsl"/>
-
+  <xsl:import href="eml-datatable-2.0.0.xsl"/>
+  <xsl:import href="eml-distribution-2.0.0.xsl"/>
+  <xsl:import href="eml-entity-2.0.0.xsl"/>
+  <xsl:import href="eml-identifier-2.0.0.xsl"/>
+  <xsl:import href="eml-literature-2.0.0.xsl"/>
+  <xsl:import href="eml-method-2.0.0.xsl"/>
+  <xsl:import href="eml-otherentity-2.0.0.xsl"/>
+  <xsl:import href="eml-party-2.0.0.xsl"/>
+  <xsl:import href="eml-physical-2.0.0.xsl"/>
+  <xsl:import href="eml-project-2.0.0.xsl"/>
+  <xsl:import href="eml-protocol-2.0.0.xsl"/>
+  <xsl:import href="eml-resource-2.0.0.xsl"/>
+  <xsl:import href="eml-settings-2.0.0.xsl"/>
+  <xsl:import href="eml-software-2.0.0.xsl"/>
+  <xsl:import href="eml-spatialraster-2.0.0.xsl"/>
+  <xsl:import href="eml-spatialvector-2.0.0.xsl"/>
+  <xsl:import href="eml-storedprocedure-2.0.0.xsl"/>
+  <xsl:import href="eml-text-2.0.0.xsl"/>
+  <xsl:import href="eml-view-2.0.0.xsl"/>
+  
   <xsl:output method="html" encoding="iso-8859-1"/>
   <!-- global variables to store id node set in case to be referenced-->
   <xsl:variable name="ids" select="//*[@id!='']"/>
@@ -45,75 +68,913 @@
               href="{$stylePath}/{$qformat}.css" />
       </head>
       <body>
+        <table xsl:use-attribute-sets="cellspacing" width="100%">
+         <tr><td>
+          <table xsl:use-attribute-sets="cellspacing" width="100%" >
+          <tr>
+            <td rowspan="2"><img src="@web-base-url@/images/KNBLogo.gif"/></td>
+            <td colspan="7"><div class="title">Biocomplexity Data Search</div>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="@web-base-url@" class="toollink"> KNB </a></td>
+            <td><a href="@web-base-url@/data.html" class="toollink"> 
+                Data </a></td>
+            <td><a href="@web-base-url@/people.html" class="toollink"> 
+                People </a></td>
+            <td><a href="@web-base-url@/informatics" class="toollink"> 
+                Informatics </a></td>
+            <td><a href="@web-base-url@/biodiversity" class="toollink"> 
+                Biodiversity </a></td>
+            <td><a href="@web-base-url@/education" class="toollink"> 
+                Education </a></td>
+            <td><a href="@web-base-url@/software" class="toollink"> 
+                Software </a></td>
+         </tr>
+         <tr>
+          <td align="right" valign="top" colspan="7">
+            <form action="@html-path@/servlet/metacat" method="POST">
+             Data Search: <input type="text" name="anyfield" size="10" />
+             <input type="hidden" name="action" value="query" />   
+             <input type="hidden" name="qformat" value="knb" />
+             <input type="hidden" name="operator" value="UNION" />
+             
+             <input type="hidden" name="returnfield"
+              value="creator/individualName/surName" />
+             <input type="hidden" name="returnfield"
+              value="creator/organizationName" />
+             <input type="hidden" name="returnfield" 
+              value="originator/individualName/surName" />
+             <input type="hidden" name="returnfield" 
+              value="originator/individualName/givenName" />
+             <input type="hidden" name="returnfield" 
+              value="originator/organizationName" />
+             <input type="hidden" name="returnfield" 
+              value="title" />
+             <input type="hidden" name="returnfield" 
+              value="keyword" />
+             <input type="hidden" name="returndoctype"
+              value="eml://ecoinformatics.org/eml-2.0.0" />
+             <input type="hidden" name="returndoctype"
+              value="-//NCEAS//eml-dataset-2.0//EN" />
+             <input type="hidden" name="returndoctype"
+              value="-//NCEAS//resource//EN" />
+             <input type="hidden" name="returndoctype"
+              value="-//NCEAS//eml-dataset//EN" />
+              <input type="hidden" name="returndoctype"
+              value="-//ecoinformatics.org//eml-dataset-2.0.0beta6//EN" />
+              <input type="hidden" name="returndoctype"
+              value="-//ecoinformatics.org//eml-dataset-2.0.0beta4//EN" />
+           </form>
+          </td>
+        </tr>  
+       </table>
+       </td>
+       </tr>
         <xsl:apply-templates select="*[local-name()='eml']"/>
+      </table>
       </body>
     </html>
    </xsl:template>
    
    <xsl:template match="*[local-name()='eml']">
-       <xsl:apply-templates select="dataset"/>
-       <xsl:apply-templates select="citation"/>
-       <xsl:apply-templates select="software"/>
-       <xsl:apply-templates select="protocol"/>
+     <tr><td>
+       <xsl:for-each select="dataset">
+         <xsl:call-template name="emldataset"/>
+       </xsl:for-each>
+       <xsl:for-each select="citation">
+         <xsl:call-template name="emlcitation"/>
+       </xsl:for-each>
+       <xsl:for-each select="software">
+         <xsl:call-template name="emlsoftware"/>
+       </xsl:for-each>
+       <xsl:for-each select="protocol">
+         <xsl:call-template name="emlprotocol"/>
+       </xsl:for-each>
+     </td></tr>
+     
+       <!-- Additinal metadata-->
+       <xsl:choose>
+               <xsl:when test="$displaymodule='additionalmetadata'">
+                   <xsl:for-each select="additionalMetadata"> 
+                     <xsl:if test="$additionalmetadataindex=position()">
+                        <tr><td>
+                            <xsl:call-template name="additionalmetadata"/>
+                         </td></tr>
+                     </xsl:if>
+                  </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:if test="$displaymodule='dataset'">
+                   <xsl:for-each select="additionalMetadata">
+                      <tr><td>
+                          <xsl:call-template name="additionalmetadataURL">
+                             <xsl:with-param name="index" select="position()"/>
+                          </xsl:call-template>
+                      </td></tr>
+                   </xsl:for-each>
+                 </xsl:if>
+              </xsl:otherwise>
+     </xsl:choose>
+     <!-- xml format-->
+     <xsl:if test="$displaymodule='dataset'">
+       <tr><td>
+          <xsl:call-template name="xml"/> 
+        </td></tr>             
+     </xsl:if>
    </xsl:template>
    
-   <xsl:template match="dataset">
-        <center>
-           <xsl:if test="$displaymodule='dataset'">
-            <h1>Data set description</h1>
-            <h3>Ecological Metadata Language</h3>
-           </xsl:if>
-        </center>
-        <table class="tabledefault" width="100%">
+   <!--********************************************************
+                             dataset part
+       ********************************************************-->
+   
+   <xsl:template name="emldataset">
+      <table xsl:use-attribute-sets="cellspacing"  class="tabledefault" width="100%">
           <xsl:if test="$displaymodule='dataset'">
-            <tr>
-              <td width="100">
-                <xsl:call-template name="identifier">
-                  <xsl:with-param name="packageID" select="../@packageId"/>
-                  <xsl:with-param name="system" select="../@system"/>
-                </xsl:call-template>
-                </td>
-            </tr>
-            <tr>
-              <td width="100%">
-                <xsl:apply-templates select="." mode="dataset"/>
-              </td>
-            </tr>
+             <xsl:call-template name="datasetpart"/>  
           </xsl:if>
-        </table>
+          <xsl:if test="$displaymodule='entity'">
+             <xsl:call-template name="entitypart"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='attribute'">
+             <xsl:call-template name="attributepart"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='attributedomain'">
+             <xsl:call-template name="datasetattributedomain"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='attributecoverage'">
+             <xsl:call-template name="datasetattributecoverage"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='attributemethod'">
+             <xsl:call-template name="datasetattributemethod"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='inlinedata'">
+             <xsl:call-template name="emlinlinedata"/>
+          </xsl:if>
+      </table>
    </xsl:template>
    
-   <xsl:template match="citation">
-        <center>
-          <h1>Citation description</h1>
-          <h3>Ecological Metadata Language</h3>
-        </center>
+   <!--*************** Data set diaplay *************-->
+   <xsl:template name="datasetpart">
+      <tr><td colspan="2" width="100%">
+         <right>
+            <h3>Data Set Description</h3>
+         </right>
+      </td></tr>
+       <xsl:call-template name="identifier">
+                <xsl:with-param name="packageID" select="../@packageId"/>
+                <xsl:with-param name="system" select="../@system"/>
+      </xsl:call-template>
+      <tr>
+           <td colspan="2" width="100%">
+              <xsl:apply-templates select="." mode="dataset"/>
+           </td>
+      </tr>  
+   </xsl:template>
+   
+   <!--************ Entity diplay *****************-->
+   <xsl:template name="entitypart">
+       <xsl:choose>
+               <xsl:when test="references!=''">
+                  <xsl:variable name="ref_id" select="references"/>
+                  <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                  <xsl:for-each select="$references">
+                     <xsl:call-template name="entitypartcommon"/>
+                  </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:call-template name="entitypartcommon"/>
+              </xsl:otherwise>
+         </xsl:choose>
+    </xsl:template>
+   
+   
+    <xsl:template name="entitypartcommon">
+      <tr><td colspan="2" width="100%" >
+         <right>
+            <h3>Entity Description</h3>
+          </right>
+      </td></tr>
+      <xsl:call-template name="identifier">
+                <xsl:with-param name="packageID" select="../@packageId"/>
+                <xsl:with-param name="system" select="../@system"/>
+      </xsl:call-template>
+      <tr>
+           <td width="100%" colspan="2">
+              <!-- find the subtree to process -->
+             <xsl:call-template name="chooseentity"/>
+           </td>
+      </tr>  
+   </xsl:template>
+   
+   <!--************ Attribute display *****************-->
+    <xsl:template name="attributepart">
+      <tr><td width="100%">
+         <right>
+            <h3>Attributes Description</h3>
+         </right>
+      </td></tr>
+      <tr>
+           <td width="100%">
+              <!-- find the subtree to process -->
+            <xsl:if test="$entitytype='dataTable'">
+              <xsl:for-each select="dataTable">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:for-each select="attributeList">
+                         <xsl:call-template name="attributelist">
+                            <xsl:with-param name="docid" select="$docid"/>
+                            <xsl:with-param name="entitytype" select="$entitytype"/>
+                            <xsl:with-param name="entityindex" select="$entityindex"/>
+                         </xsl:call-template>
+                      </xsl:for-each>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+          </td>
+      </tr>  
+   </xsl:template>
+   
+   <!--************************Attribute Domain display module************************-->
+   <xsl:template name="datasetattributedomain">
+      <tr><td>
+         <right>
+            <h3>Attribute Domain</h3>
+         </right>
+      </td></tr>
+      <tr>
+           <td width="100%">
+             <!-- find the subtree to process -->
+             <xsl:call-template name="chooseentity"/>
+          </td>
+      </tr>  
+   </xsl:template>
+   
+   
+   <!--************************Attribute Method display module************************-->
+   <xsl:template name="datasetattributemethod">
+      <tr><td>
+         <right>
+            <h3>Attribute Method</h3>
+         </right>
+      </td></tr>
+      <tr>
+           <td width="100%">
+             <!-- find the subtree to process -->
+             <xsl:call-template name="chooseentity"/>
+          </td>
+      </tr>  
+   </xsl:template>
+   
+   
+   <!--************************Attribute Coverage display module************************-->
+   <xsl:template name="datasetattributecoverage">
+     <tr><td>
+         <right>
+            <h3>Attribute Coverage</h3>
+         </right>
+      </td></tr>
+      <tr>
+           <td width="100%">
+             <!-- find the subtree to process -->
+             <xsl:call-template name="chooseentity"/>
+          </td>
+      </tr>  
+   </xsl:template>
+   
+   
+   <xsl:template name="chooseentity">
+           <xsl:if test="$entitytype='dataTable'">
+              <xsl:for-each select="dataTable">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="dataTable">
+                                              <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="dataTable">
+                                              <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$entitytype='spatialRaster'">
+              <xsl:for-each select="spatialRaster">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="spatialRaster">
+                                              <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="spatialRaster">
+                                              <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$entitytype='spatialVector'">
+              <xsl:for-each select="spatialVector">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="spatialVector">
+                                             <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="spatialVector">
+                                              <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
+                                              <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>  
+                                              <xsl:with-param name="docid" select="$docid"/>
+                                              <xsl:with-param name="entitytype" select="$entitytype"/>
+                                              <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$entitytype='storedProcedure'">
+              <xsl:for-each select="storedProcedure">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="storedProcedure">
+                                             <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="storedProcedure">
+                                             <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$entitytype='view'">
+              <xsl:for-each select="view">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="view">
+                                             <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="view">
+                                             <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$entitytype='otherEntity'">
+              <xsl:for-each select="otherEntity">
+                  <xsl:if test="position()=$entityindex">
+                         <xsl:choose>
+                           <xsl:when test="references!=''">
+                              <xsl:variable name="ref_id" select="references"/>
+                              <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                                <xsl:for-each select="$references">
+                                    <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="otherEntity">
+                                             <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                           </xsl:when>
+                           <xsl:otherwise>
+                             <xsl:choose>
+                                       <xsl:when test="$displaymodule='entity'">
+                                          <xsl:call-template name="otherEntity">
+                                             <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
+                                             <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>  
+                                             <xsl:with-param name="docid" select="$docid"/>
+                                             <xsl:with-param name="entitytype" select="$entitytype"/>
+                                             <xsl:with-param name="entityindex" select="$entityindex"/>
+                                          </xsl:call-template>
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:call-template name="chooseattributelist"/>
+                                       </xsl:otherwise>
+                             </xsl:choose>   
+                         </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+   </xsl:template>
+   
+   <xsl:template name="chooseattributelist">
+       <xsl:for-each select="attributeList">
+          <xsl:choose>
+               <xsl:when test="references!=''">
+                  <xsl:variable name="ref_id" select="references"/>
+                  <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                  <xsl:for-each select="$references">
+                     <xsl:call-template name="chooseattribute"/>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                   <xsl:call-template name="chooseattribute"/>
+              </xsl:otherwise>
+         </xsl:choose>
+      </xsl:for-each>
+   </xsl:template>
+   
+   <xsl:template name="chooseattribute">
+       <xsl:for-each select="attribute">
+          <xsl:if test="position()=$attributeindex">
+            <xsl:if test="$displaymodule='attributedomain'">
+              <xsl:for-each select="measurementScale/*/*">
+                <xsl:call-template name="nonNumericDomain">
+                    <xsl:with-param name="nondomainfirstColStyle" select="$firstColStyle"/>
+                 </xsl:call-template>
+              </xsl:for-each>
+           </xsl:if>
+           <xsl:if test="$displaymodule='attributecoverage'">
+              <xsl:for-each select="coverage">
+                <xsl:call-template name="coverage">
+                </xsl:call-template>
+              </xsl:for-each>
+           </xsl:if>
+           <xsl:if test="$displaymodule='attributemethod'">
+              <xsl:for-each select="method">
+                <xsl:call-template name="method">
+                    <xsl:with-param name="methodfirstColStyle" select="$firstColStyle"/>
+                    <xsl:with-param name="methodsubHeaderStyle" select="$firstColStyle"/>
+                 </xsl:call-template>
+              </xsl:for-each>
+           </xsl:if>
+         </xsl:if>
+       </xsl:for-each>
+   </xsl:template>
+   
+   
+   
+   <!--*************************Distribution Inline Data display module*****************-->
+   <xsl:template name="emlinlinedata">
+      <tr><td>
+         <right>
+            <h3>Inline Data</h3>
+         </right>
+      </td></tr>
+      <tr>
+           <td width="100%">
+            <xsl:if test="$distributionlevel='toplevel'">
+               <xsl:for-each select="distribution">
+                  <xsl:if test="position()=$distributionindex">
+                     <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id1" select="references"/>
+                          <xsl:variable name="references1" select="$ids[@id=$ref_id1]" />
+                          <xsl:for-each select="$references1">
+                              <xsl:for-each select="inline">
+                                  <xsl:value-of select="."/>
+                              </xsl:for-each>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:for-each select="inline">
+                                  <xsl:value-of select="."/>
+                           </xsl:for-each>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+               </xsl:for-each>
+            </xsl:if>
+            <xsl:if test="$distributionlevel='entitylevel'">
+              <xsl:if test="$entitytype='dataTable'">
+                <xsl:for-each select="dataTable">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="$entitytype='spatialRaster'">
+                <xsl:for-each select="spatialRaster">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="$entitytype='spatialVector'">
+                <xsl:for-each select="spatialVector">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="$entitytype='storedProcedure'">
+                <xsl:for-each select="storedProcedure">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="$entitytype='view'">
+                <xsl:for-each select="view">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="$entitytype='otherEntity'">
+                <xsl:for-each select="otherEntity">
+                  <xsl:if test="position()=$entityindex">
+                      <xsl:choose>
+                       <xsl:when test="references!=''">
+                          <xsl:variable name="ref_id2" select="references"/>
+                          <xsl:variable name="references2" select="$ids[@id=$ref_id2]" />
+                          <xsl:for-each select="$references2">
+                             <xsl:call-template name="choosephysical"/>
+                          </xsl:for-each>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:call-template name="choosephysical"/>
+                       </xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:if>
+            </xsl:if>
+          </td>
+      </tr>  
+   </xsl:template>
+   
+   <xsl:template name="choosephysical">
+      <xsl:for-each select="physical">
+         <xsl:if test="position()=$physicalindex">
+            <xsl:choose>
+               <xsl:when test="references!=''">
+                  <xsl:variable name="ref_id" select="references"/>
+                  <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                  <xsl:for-each select="$references">
+                     <xsl:call-template name="choosedistribution"/>
+                  </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:call-template name="choosedistribution"/>
+              </xsl:otherwise>
+           </xsl:choose>
+        </xsl:if>
+      </xsl:for-each>
+   </xsl:template>
+   
+   <xsl:template name="choosedistribution">
+      <xsl:for-each select="distribution">
+         <xsl:if test="$distributionindex=position()">
+            <xsl:choose>
+               <xsl:when test="references!=''">
+                  <xsl:variable name="ref_id" select="references"/>
+                  <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+                  <xsl:for-each select="$references">
+                     <xsl:for-each select="inline">
+                        <xsl:value-of select="."/>
+                      </xsl:for-each>
+                  </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:for-each select="inline">
+                    <xsl:value-of select="."/>
+                  </xsl:for-each>
+              </xsl:otherwise>
+           </xsl:choose>
+        </xsl:if>
+      </xsl:for-each>
+   </xsl:template>
+   
+   
+     <!--********************************************************
+                     Citation part
+       ********************************************************-->
+   <xsl:template name="emlcitation">
+     <xsl:choose>
+       <xsl:when test="$displaymodule='inlinedata'">
+          <xsl:call-template name="emlinlinedata"/>
+       </xsl:when>
+       <xsl:otherwise>  
+        <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <tr>
+          <td width="100%" colspan="2">
+             <right>
+               <h3>Citation Description</h3>
+             </right>
+          </td>
+        </tr>
         <xsl:call-template name="identifier">
               <xsl:with-param name="packageID" select="../@packageId"/>
               <xsl:with-param name="system" select="../@system"/>
         </xsl:call-template>
+        <tr>
+          <td width="100%" colspan="2">
+            <xsl:call-template name="citation">
+               <xsl:with-param name="citationfirstColStyle" select="$firstColStyle"/>
+               <xsl:with-param name="citationsubHeaderStyle" select="$subHeaderStyle"/>
+           </xsl:call-template>
+          </td>
+        </tr>
+      </table>
+     </xsl:otherwise>
+    </xsl:choose>
    </xsl:template>
    
-   <xsl:template match="software">
-        <center>
-          <h1>Software description</h1>
-          <h3>Ecological Metadata Language</h3>
-        </center>
-        <xsl:call-template name="identifier">
+   
+      
+     <!--********************************************************
+                    Software part
+       ********************************************************-->
+   
+   <xsl:template name="emlsoftware">
+     <xsl:choose>
+       <xsl:when test="$displaymodule='inlinedata'">
+          <xsl:call-template name="emlinlinedata"/>
+       </xsl:when>
+       <xsl:otherwise>
+          <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+          <tr>
+            <td width="100%" colspan="2">
+             <right>
+               <h3>Software Description</h3>
+             </right>
+           </td>
+          </tr>
+          <xsl:call-template name="identifier">
               <xsl:with-param name="packageID" select="../@packageId"/>
               <xsl:with-param name="system" select="../@system"/>
-        </xsl:call-template>
+          </xsl:call-template>
+          <tr>
+           <td width="100%" colspan="2">
+            <xsl:call-template name="software">
+               <xsl:with-param name="softwarefirstColStyle" select="$firstColStyle"/>
+               <xsl:with-param name="softwaresubHeaderStyle" select="$subHeaderStyle"/>
+           </xsl:call-template>
+           </td>
+         </tr>
+       </table>
+      </xsl:otherwise>
+     </xsl:choose>
    </xsl:template>
    
-   <xsl:template match="protocol">
-       <center>
-          <h1>Protocol description</h1>
-          <h3>Ecological Metadata Language</h3>
-        </center>
-        <xsl:call-template name="identifier">
+     
+     <!--********************************************************
+                    Protocal part
+       ********************************************************-->
+   
+   <xsl:template name="emlprotocol">
+    <xsl:choose>
+       <xsl:when test="$displaymodule='inlinedata'">
+          <xsl:call-template name="emlinlinedata"/>
+       </xsl:when>
+       <xsl:otherwise>
+        <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+         <tr>
+          <td width="100%" colspan="2">
+             <right>
+               <h3>Protocal Description</h3>
+             </right>
+          </td>
+         </tr>
+         <xsl:call-template name="identifier">
               <xsl:with-param name="packageID" select="../@packageId"/>
               <xsl:with-param name="system" select="../@system"/>
-        </xsl:call-template>
+         </xsl:call-template>
+         <tr>
+          <td width="100%" colspan="2">
+            <xsl:call-template name="protocol">
+               <xsl:with-param name="protocolfirstColStyle" select="$firstColStyle"/>
+               <xsl:with-param name="protocolsubHeaderStyle" select="$subHeaderStyle"/>
+           </xsl:call-template>
+          </td>
+         </tr>
+       </table>
+      </xsl:otherwise>
+    </xsl:choose>
    </xsl:template>
-    
+   
+      <!--********************************************************
+                   additionalmetadata part
+       ********************************************************-->
+   <xsl:template name="additionalmetadataURL">
+     <xsl:param name="index"/>
+     <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
+       <tr><td width="100%" class="{$subHeaderStyle}">
+              <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$index"/></xsl:attribute>
+              <b>Additional Metadata</b></a>
+           </td>
+       </tr>
+     </table>
+   </xsl:template>
+     <!--********************************************************
+                   download xml part
+       ********************************************************-->
+   <xsl:template name="xml">
+     <xsl:param name="index"/>
+     <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
+       <tr><td width="100%" class="{$subHeaderStyle}">
+              <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
+              <b>Original XML File</b></a>
+           </td>
+       </tr>
+     </table>
+   </xsl:template>
 </xsl:stylesheet>

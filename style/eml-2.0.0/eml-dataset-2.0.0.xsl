@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -31,26 +31,315 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <xsl:import href="eml-resource-2.0.0.xsl"/>
-  
+    
   <xsl:output method="html" encoding="iso-8859-1"/>
   
   <xsl:template match="dataset" mode="dataset">
-    <table class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+      <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+             <xsl:call-template name="datasetresource"/>
+             <xsl:call-template name="datasetaccess"/>
+             <xsl:call-template name="datasetpurpose"/>
+             <xsl:call-template name="datasetmaintenance"/>
+             <xsl:call-template name="datasetcontact"/>
+             <xsl:call-template name="datasetpublisher"/>
+             <xsl:call-template name="datasetpubplace"/>
+             <xsl:call-template name="datasetmethod"/>
+             <xsl:call-template name="datasetproject"/>
+             <xsl:call-template name="datasetentity"/>
+          </xsl:for-each>
+       </xsl:when>
+       <xsl:otherwise>
+             <xsl:call-template name="datasetresource"/>
+             <xsl:call-template name="datasetaccess"/>
+             <xsl:call-template name="datasetpurpose"/>
+             <xsl:call-template name="datasetmaintenance"/>
+             <xsl:call-template name="datasetcontact"/>
+             <xsl:call-template name="datasetpublisher"/>
+             <xsl:call-template name="datasetpubplace"/>
+             <xsl:call-template name="datasetmethod"/>
+             <xsl:call-template name="datasetproject"/>
+             <xsl:call-template name="datasetentity"/>
+       </xsl:otherwise>
+      </xsl:choose>  
+    </table>
+    
+  </xsl:template>
+  
+  <xsl:template name="datasetresource">
      <tr>
-        <td rowspan="2" width="100%">
+        <td colspan="2" width="100%">
           <xsl:call-template name="resource">
             <xsl:with-param name="resfirstColStyle" select="$firstColStyle"/>
             <xsl:with-param name="ressubHeaderStyle" select="$subHeaderStyle"/>
           </xsl:call-template>
        </td>
      </tr>
-    </table>
-    
+  </xsl:template>
+  
+ 
+  
+  <xsl:template name="datasetpurpose">
+    <xsl:for-each select="purpose">
+      <tr><td class="{$subHeaderStyle}" colspan="2">
+           <xsl:text>Purpose:</xsl:text>
+        </td>
+       </tr>
+       <tr>
+            <td width="{$firstColWidth}"  class="{$firstColStyle}">
+            &#160;
+            </td>
+            <td width="{$secondColWidth}">
+              <xsl:call-template name="text">
+                <xsl:with-param name="textfirstColStyle" select="$firstColStyle"/>
+              </xsl:call-template>
+            </td>
+       </tr>
+     </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="datasetmaintenance">
+    <xsl:for-each select="maintenance">
+      <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Maintenance:</xsl:text>
+     </td></tr>
+     <xsl:call-template name="mantenancedescription"/>
+      <tr>
+          <td width="{$firstColWidth}"  class="{$firstColStyle}">
+          Frequency:
+          </td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}" >
+           <xsl:value-of select="maintenanceUpdateFrequency"/>
+          </td>
+     </tr>
+     <xsl:call-template name="datasetchangehistory"/>
+   </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="mantenancedescription">
+   <xsl:for-each select="description">
+     <tr>
+          <td width="{$firstColWidth}"  class="{$firstColStyle}">
+          Description:
+          </td>
+          <td width="{$secondColWidth}">
+            <xsl:call-template name="text">
+               <xsl:with-param name="textfirstColStyle" select="$firstColStyle"/>
+             </xsl:call-template>
+          </td>
+     </tr>
+    </xsl:for-each>
+  </xsl:template>
+  
+   <xsl:template name="datasetchangehistory">
+   <xsl:if test="changeHistory">
+     <tr>
+          <td width="{$firstColWidth}" class="{$firstColStyle}">
+          History:
+          </td>
+          <td width="{$secondColWidth}">
+            <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+              <xsl:for-each select="changeHistory">
+                <xsl:call-template name="historydetails"/>
+              </xsl:for-each>
+            </table>
+          </td>
+     </tr>
+     </xsl:if>
+   </xsl:template>
+   
+   <xsl:template name="historydetails">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            scope:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="changeScope"/>
+        </td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            old value:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="oldValue"/>
+        </td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            change date:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="changeDate"/>
+        </td></tr>
+        <xsl:if test="comment and normalize-space(comment)!=''">
+          <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            comment:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="comment"/>
+          </td></tr>
+        </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="datasetcontact">
+    <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Contact:</xsl:text>
+     </td></tr>
+    <xsl:for-each select="contact">
+     <tr><td colspan="2">
+       <xsl:call-template name="party">
+              <xsl:with-param name="partyfirstColStyle" select="$firstColStyle"/>
+       </xsl:call-template>
+     </td></tr>
+    </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="datasetpublisher">
+   <xsl:for-each select="publisher">
+     <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Publisher:</xsl:text>
+     </td></tr>
+     <tr><td colspan="2">
+       <xsl:call-template name="party">
+              <xsl:with-param name="partyfirstColStyle" select="$firstColStyle"/>
+       </xsl:call-template>
+     </td></tr>
+   </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="datasetpubplace">
+    <xsl:for-each select="pubPlace">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+           Publish Place:</td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <xsl:value-of select="."/>
+          </td>
+      </tr>
+   </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="datasetmethod">
+     <xsl:for-each select="methods">
+     <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Methods Info:</xsl:text>
+     </td></tr>
+      <tr>
+        <td colspan="2" width="100%">
+        <xsl:call-template name="method">
+          <xsl:with-param name="methodfirstColStyle" select="$firstColStyle"/>
+        </xsl:call-template>
+        </td>
+      </tr>
+    </xsl:for-each>
+  </xsl:template>
+   
+   <xsl:template name="datasetproject">
+    <xsl:for-each select="project">
+     <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Project Info:</xsl:text>
+     </td></tr>
+      <tr>
+        <td colspan="2" width="100%">
+        <xsl:call-template name="project">
+          <xsl:with-param name="projectfirstColStyle" select="$firstColStyle"/>
+        </xsl:call-template>
+        </td>
+      </tr>
+    </xsl:for-each>
+  </xsl:template>
+  
+   <xsl:template name="datasetaccess">
+    <xsl:for-each select="access">
+      <tr>
+        <td colspan="2" width="100%">
+        <xsl:call-template name="access">
+          <xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
+          <xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
+        </xsl:call-template>
+        </td>
+      </tr>
+    </xsl:for-each>
   </xsl:template>
   
   
-  <!--<xsl:template match="//dataTable/physical/distribution" mode="resource" />-->
+  
+  <xsl:template name="datasetentity" > 
+   <xsl:if test="dataTable or spatialRaster or spatialVector or storedProcedures or view or otherEntity">
+      <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Data Tables, Images, and Other Entities:</xsl:text>
+     </td></tr>
+   </xsl:if>
+    <xsl:for-each select="dataTable">
+      <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">dataTable</xsl:with-param>
+        <xsl:with-param name="showtype">Data Table</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+   <xsl:for-each select="spatialRaster">
+     <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">spatialRaster</xsl:with-param>
+        <xsl:with-param name="showtype">Spatial Raster</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+   <xsl:for-each select="spatialVector">
+      <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">spatialVector</xsl:with-param>
+        <xsl:with-param name="showtype">Spatial Vector</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+   <xsl:for-each select="storedProcedure">
+     <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">storedProcedure</xsl:with-param>
+        <xsl:with-param name="showtype">Stored Procedure</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+   <xsl:for-each select="view">
+      <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">view</xsl:with-param>
+        <xsl:with-param name="showtype">View</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+   <xsl:for-each select="otherEntity">
+      <xsl:call-template name="entityurl">
+        <xsl:with-param name="type">otherEntity</xsl:with-param>
+        <xsl:with-param name="showtype">Other Entity</xsl:with-param>
+        <xsl:with-param name="index" select="position()"/>
+      </xsl:call-template>
+   </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="entityurl">
+     <xsl:param name="showtype"/>
+     <xsl:param name="type"/>
+     <xsl:param name="index"/>
+      <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+             &#160;</td>
+            <td width="{$secondColWidth}" class="{$firstColStyle}">
+             <a><xsl:attribute name="href">
+              <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>
+             <b><xsl:value-of select="./entityName"/> (<xsl:value-of select="$showtype"/>)</b></a>
+            </td>
+         </tr> 
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+             &#160;</td>
+            <td width="{$secondColWidth}" class="{$firstColStyle}">
+             <a><xsl:attribute name="href">
+              <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>
+             <b><xsl:value-of select="./entityName"/> (<xsl:value-of select="$showtype"/>)</b></a>
+            </td>
+         </tr>
+       </xsl:otherwise>
+     </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="text()" mode="dataset" />
   <xsl:template match="text()" mode="resource" />
 

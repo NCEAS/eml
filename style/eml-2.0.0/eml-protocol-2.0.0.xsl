@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,76 +30,150 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:import href="eml-literature-2.0.0beta6-@name@.xsl"/>
-
+  
   <xsl:output method="html" encoding="iso-8859-1"/>
 
-  <xsl:template match="/">
-    <html>
-      <head>
-        <link rel="stylesheet" type="text/css"
-              href="{$stylePath}/{$qformat}.css" />
-      </head>
-      <body>
-        <center>
-          <h1>Protocol Description</h1>
-          <h3>Ecological Metadata Language</h3><br />
-        </center>
-        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
-        <xsl:apply-templates select="eml-protocol/identifier" mode="resource"/>
-        <xsl:apply-templates select="eml-protocol/protocol"/>
-        </table>
-      </body>
-    </html>
-  </xsl:template>
+  
 
-  <xsl:template match="protocol">
-        <xsl:for-each select="method">
-          <xsl:apply-templates select="."/>
+  <xsl:template name="protocol">
+    <xsl:param name="protocolfirstColStyle"/>
+    <xsl:param name="protocolsubHeaderStyle"/>
+    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+            <xsl:call-template name="protocolcommon">
+              <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+              <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+           <xsl:call-template name="protocolcommon">
+              <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+              <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+           </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </table>
+  </xsl:template>
+  
+   <xsl:template name="protocolcommon">
+        <xsl:param name="protocolfirstColStyle"/>
+        <xsl:param name="protocolsubHeaderStyle"/>
+        <xsl:call-template name="resource">
+           <xsl:with-param name="resfirstColStyle" select="$protocolfirstColStyle"/>
+           <xsl:with-param name="ressubHeaderStyle" select="$protocolsubHeaderStyle"/>
+           <xsl:with-param name="creator">Author(s):</xsl:with-param>
+        </xsl:call-template>
+        <xsl:for-each select="proceduralStep">
+          <tr><td colspan="2" class="{$protocolsubHeaderStyle}">
+              Step<xsl:text> </xsl:text><xsl:value-of select="position()"/>:
+              </td>
+          </tr>
+          <xsl:call-template name="step">
+              <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+              <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+          </xsl:call-template>
         </xsl:for-each>
-        <xsl:for-each select="processingStep">
-          <xsl:apply-templates select="."/>
-        </xsl:for-each>
-        <xsl:for-each select="qualityControl">
-          <xsl:apply-templates select="."/>
-        </xsl:for-each>
+        <xsl:call-template name="protocolAccess">
+              <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+              <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+        </xsl:call-template>
+  </xsl:template>
+  
+  <xsl:template name="step">
+    <xsl:param name="protocolfirstColStyle"/>
+    <xsl:param name="protocolsubHeaderStyle"/>
+    <xsl:for-each select="description">
+      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+          Description:
+          </td>
+          <td width="{$secondColWidth}">
+             <xsl:call-template name="text">
+               <xsl:with-param name="textfirstColStyle" select="$protocolfirstColStyle"/>
+             </xsl:call-template>
+          </td>
+      </tr>
+     </xsl:for-each>
+    <xsl:for-each select="citation">
+      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+          Citation:
+          </td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}">
+           &#160;
+          </td>
+      </tr>
+      <tr><td colspan="2">
+          <xsl:call-template name="citation">
+            <xsl:with-param name="citationfirstColStyle" select="$protocolfirstColStyle"/>
+            <xsl:with-param name="citationsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+          </xsl:call-template>
+          </td>
+      </tr>
+    </xsl:for-each>
+     <xsl:for-each select="protocol">
+      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+          Protocol:
+          </td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}">
+           &#160;
+          </td>
+      </tr>
+      <tr><td colspan="2">
+          <xsl:call-template name="protocol">
+            <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+            <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+          </xsl:call-template>
+          </td>
+      </tr>
+    </xsl:for-each>
+    <xsl:for-each select="instrumentation">
+        <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+          Instrument(s):
+          </td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="."/>
+          </td>
+      </tr>
+    </xsl:for-each>
+    <xsl:for-each select="software">
+     <tr><td colspan="2">
+          <xsl:call-template name="software">
+            <xsl:with-param name="softwarefirstColStyle" select="$protocolfirstColStyle"/>
+            <xsl:with-param name="softwaresubHeaderStyle" select="$protocolsubHeaderStyle"/>
+          </xsl:call-template>
+          </td>
+      </tr>
+    </xsl:for-each>
+    <xsl:for-each select="subStep">
+      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+          Substep<xsl:text> </xsl:text><xsl:value-of select="position()"/>
+          </td>
+          <td width="{$secondColWidth}" class="{$secondColStyle}">
+           &#160;
+          </td>
+      </tr>
+      <xsl:call-template name="step">
+          <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+          <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
-
-  <xsl:template match="method">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
-      <xsl:text>Method:</xsl:text></td></tr>
-      <xsl:call-template name="renderParagsCits"/>
+  <xsl:template name="protocolAccess">
+    <xsl:param name="protocolfirstColStyle"/>
+    <xsl:param name="protocolsubHeaderStyle"/>
+    <xsl:for-each select="access">
+      <tr><td colspan="2">
+         <xsl:call-template name="access">
+           <xsl:with-param name="accessfirstColStyle" select="$protocolfirstColStyle"/>
+           <xsl:with-param name="accesssubHeaderStyle" select="$protocolsubHeaderStyle"/>
+         </xsl:call-template>
+         </td>
+       </tr>
+    </xsl:for-each>
   </xsl:template>
-
-
-  <xsl:template match="processingStep">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
-      <xsl:text>Processing Step:</xsl:text></td></tr>
-      <xsl:call-template name="renderParagsCits"/>
-  </xsl:template>
-
-  <xsl:template match="qualityControl">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
-      <xsl:text>Quality Control Mechanisms:</xsl:text></td></tr>
-      <xsl:call-template name="renderParagsCits"/>
-  </xsl:template>
-
-
-  <xsl:template name="renderParagsCits">
-      <xsl:for-each select="./paragraph">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
-        &#160;</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:value-of select="."/></td></tr>
-      </xsl:for-each>
-
-      <xsl:for-each select="./citation">
-      <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
-      Literature Citation</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-      <table width="100%">
-        <xsl:apply-templates select="."/>
-      </table></td></tr>
-      </xsl:for-each>
-  </xsl:template>
-
 </xsl:stylesheet>

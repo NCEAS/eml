@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,13 @@
   <xsl:template name="distribution">
       <xsl:param name="disfirstColStyle"/>
       <xsl:param name="dissubHeaderStyle"/>
-      <table class="tabledefault" width="100%">
+      <xsl:param name="docid"/>
+      <xsl:param name="level">entitylevel</xsl:param>
+      <xsl:param name="entitytype"/>
+      <xsl:param name="entityindex"/>
+      <xsl:param name="physicalindex"/>
+      <xsl:param name="distributionindex"/>
+      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
        <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -56,22 +62,34 @@
             <xsl:apply-templates select="inline">
               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
-            </xsl:apply-templates>
+               <xsl:with-param name="docid" select="$docid"/>
+               <xsl:with-param name="level" select="$level"/>
+               <xsl:with-param name="entitytype" select="$entitytype"/>
+               <xsl:with-param name="entityindex" select="$entityindex"/>
+               <xsl:with-param name="physicalindex" select="$physicalindex"/>
+               <xsl:with-param name="distributionindex" select="$distributionindex"/>
+             </xsl:apply-templates>
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="online">
-            <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
-            <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
-          </xsl:apply-templates>
-          <xsl:apply-templates select="offline">
-            <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
-            <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
-          </xsl:apply-templates>
-          <xsl:apply-templates select="inline">
-            <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
-            <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
-          </xsl:apply-templates>
+            <xsl:apply-templates select="online">
+              <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+              <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
+            </xsl:apply-templates>
+            <xsl:apply-templates select="offline">
+              <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+              <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
+            </xsl:apply-templates>
+            <xsl:apply-templates select="inline">
+              <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+              <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
+               <xsl:with-param name="docid" select="$docid"/>
+               <xsl:with-param name="level" select="$level"/>
+               <xsl:with-param name="entitytype" select="$entitytype"/>
+               <xsl:with-param name="entityindex" select="$entityindex"/>
+               <xsl:with-param name="physicalindex" select="$physicalindex"/>
+               <xsl:with-param name="distributionindex" select="$distributionindex"/>
+            </xsl:apply-templates>
         </xsl:otherwise>
        </xsl:choose> 
       </table>
@@ -84,7 +102,7 @@
     <xsl:param name="disfirstColStyle"/>
     <xsl:param name="dissubHeaderStyle"/>
     <tr><td class="{$dissubHeaderStyle}" colspan="2">
-        <xsl:text>Online Distribution information:</xsl:text>
+        <xsl:text>Online Distribution Info:</xsl:text>
     </td></tr>
     <xsl:apply-templates select="url">
       <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
@@ -202,7 +220,7 @@
           <td width="{$firstColWidth}" class="{$disfirstColStyle}">
             <xsl:text>Description:</xsl:text>
           </td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td width="{$secondColWidth}">
            <xsl:apply-templates select="description">
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
             </xsl:apply-templates>
@@ -226,13 +244,21 @@
      <xsl:param name="disfirstColStyle"/>
      <tr>
         <td width="{$firstColWidth}" class="{$disfirstColStyle}">
-          <xsl:text>&#160;&#160;&#160;&#160;&#160;</xsl:text><xsl:value-of select="name" />
+          <xsl:text>&#160;&#160;&#160;&#160;&#160;</xsl:text><xsl:value-of select="name" /><xsl:text>:</xsl:text>
         </td>
-        <td width="{$secondColWidth}" class="{$secondColStyle}">
-          <table class="tabledefault" width="100%">
+        <td width="{$secondColWidth}">
+          <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
             <tr>
               <td width="{$firstColWidth}" class="{$disfirstColStyle}">
-                <xsl:value-of select="defaultValue" />
+                <xsl:choose>
+                  <xsl:when test="defaultValue">
+                    <xsl:value-of select="defaultValue" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    &#160;
+                  </xsl:otherwise>
+                </xsl:choose>
+                
               </td>
               <td width="{$secondColWidth}" class="{$secondColStyle}">
                 <xsl:value-of select="definition" />
@@ -251,7 +277,7 @@
     <xsl:param name="disfirstColStyle"/>
     <xsl:param name="dissubHeaderStyle"/>
     <tr><td class="{$dissubHeaderStyle}" colspan="2">
-        <xsl:text>Offline Distribution information:</xsl:text>
+        <xsl:text>Offline Distribution Info:</xsl:text>
     </td></tr>
     <xsl:if test="(mediumName) and normalize-space(mediumName)!=''">
       <tr><td width="{$firstColWidth}" class="{$disfirstColStyle}"><xsl:text>Medium:</xsl:text></td>
@@ -287,13 +313,28 @@
   <xsl:template match="inline">
     <xsl:param name="disfirstColStyle"/>
     <xsl:param name="dissubHeaderStyle"/>
+    <xsl:param name="docid"/>
+    <xsl:param name="level">entity</xsl:param>
+    <xsl:param name="entitytype"/>
+    <xsl:param name="entityindex"/>
+    <xsl:param name="physicalindex"/>
+    <xsl:param name="distributionindex"/>
+    
     <tr><td class="{$dissubHeaderStyle}" colspan="2">
-        <xsl:text>Inline Data Distribution:</xsl:text>
+        <xsl:text>Inline Data:</xsl:text>
     </td></tr>
     <tr><td width="{$firstColWidth}" class="{$disfirstColStyle}">
       <xsl:text>&#160;</xsl:text></td>
       <td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:value-of select="."/>
+      <!-- for top top distribution-->
+      <xsl:if test="$level='toplevel'">
+        <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/></xsl:attribute>
+        <b>Inline Data</b></a>
+      </xsl:if>
+      <xsl:if test="$level='entitylevel'">
+        <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=inlinedata&amp;distributionlevel=<xsl:value-of select="$level"/>&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;physicalindex=<xsl:value-of select="$physicalindex"/>&amp;distributionindex=<xsl:value-of select="$distributionindex"/></xsl:attribute>
+        <b>Inline Data</b></a>
+      </xsl:if>
      </td></tr>
   </xsl:template>
    

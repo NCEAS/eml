@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,166 +33,117 @@
 
 
   <xsl:output method="html" encoding="iso-8859-1"/>
-
-  
-
-          <!--xsl:apply-templates select="acl/identifier"
-mode="resource"/-->
-          <xsl:apply-templates select="acl"/>
-          <tr>
-            <td class="{$subHeaderStyle}" colspan="2"><xsl:text>Rules:</xsl:text>
-            </td>
-          </tr>
-          <xsl:if test="normalize-space(acl/@order)='allowFirst' and (//allow)">
-            <tr>
-              <td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
-              <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
-            </tr>
-            <xsl:call-template name="allow_deny">
-              <xsl:with-param name="permission" select="'allow'"/>
+  <xsl:template name="access">
+    <xsl:param name="accessfirstColStyle"/>
+    <xsl:param name="accesssubHeaderStyle"/>
+    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+            <xsl:call-template name="accessCommon">
+             <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
+             <xsl:with-param name="accesssubHeaderStyle" select="$accesssubHeaderStyle"/>
             </xsl:call-template>
-          </xsl:if>
-          <xsl:if test="(//deny)">
-          <tr>
-            <td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
-          </tr>
-          <xsl:call-template name="allow_deny">
-            <xsl:with-param name="permission" select="'deny'"/>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="accessCommon">
+             <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
+             <xsl:with-param name="accesssubHeaderStyle" select="$accesssubHeaderStyle"/>
           </xsl:call-template>
-          </xsl:if>
-          <tr>
-            <td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
-          </tr>
-          <xsl:if test="normalize-space(acl/@order)='denyFirst' and (//allow)">
+        </xsl:otherwise>
+      </xsl:choose>
+    </table>
+    
+  </xsl:template>
+  <xsl:template name="accessCommon">
+     <xsl:param name="accessfirstColStyle" />
+     <xsl:param name="accesssubHeaderStyle"/>
+        <xsl:call-template name="accesssystem">
+           <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
+           <xsl:with-param name="accesssubHeaderStyle" select="$accesssubHeaderStyle"/>
+        </xsl:call-template>
+        <tr><td class="{$accesssubHeaderStyle}" colspan="2">
+        <xsl:text>Access Rules:</xsl:text></td></tr>
+        <xsl:if test="normalize-space(./@order)='allowFirst' and (allow)">
             <xsl:call-template name="allow_deny">
                 <xsl:with-param name="permission" select="'allow'"/>
+                <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
+             </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="(deny)">
+           <xsl:call-template name="allow_deny">
+                <xsl:with-param name="permission" select="'deny'"/>
+                <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
             </xsl:call-template>
-          </xsl:if>
-     </table>
-            </div>
-          <!-- BEGIN SBCLTER PAGE BOTTOM HTML -->
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <!--div class="nsf" >This material is based on the upon work
-              supported by the National Science Foundation under Cooperative
-              Agreement #OCE-9982105. Any opinions, findings, or recommendations
-              expressed in the material are those of author(s) and do not
-              necessarily reflect the view of the National Science Foundation.
-              </div-->
-            </td>
-          </tr>
-          <tr>
-            <td class="footer-menu" colspan="2">
-              <div class="footer-menu">
-                @footer-menu@
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="footer-left">
-              <div class="footer-left">
-                @copyright@
-              </div>
-            </td>
-            <td class="footer-right">
-              <div class="footer-right">
-               Contact: <a class="footer-link"
-                        href="@mailto-address@">
-                        @header-subtitle@data@nceas.ucsb.edu
-                        </a> |
-                <a class="footer-link"
-                   href="@intranet-address@"
-                   target="offline">Internal Login
-                </a>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </body>
-    </html>
-    <!-- END SBCLTER PAGE BOTTOM HTML -->
-</xsl:template>
+        </xsl:if>
+        <xsl:if test="normalize-space(acl/@order)='denyFirst' and (allow)">
+            <xsl:call-template name="allow_deny">
+                <xsl:with-param name="permission" select="'allow'"/>
+                <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
+            </xsl:call-template>
+        </xsl:if>
+     
+   
+  </xsl:template>
 
-<xsl:template name="allow_deny">
+
+  <xsl:template name="allow_deny">
    <xsl:param name="permission"/>
+   <xsl:param name="accessfirstColStyle" />
+   <xsl:param name="accesssubHeaderSytle"/>
    <xsl:choose>
        <xsl:when test="$permission='allow'">
-           <xsl:for-each select="//allow">
-           <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
-            ALLOW:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-                    <table width="100%">
-                        <tr><td width="{$secondColIndent}" valign="top" class="{$firstColStyle}">
+           <xsl:for-each select="allow">
+           <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
+            ALLOW:</td><td width="{$secondColWidth}">
+                    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+                        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
                         <xsl:for-each select="./permission">
                             <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
                         </xsl:for-each></td>
-                        <td class="{$firstColStyle}">
-                        <xsl:for-each select="./principal">
+                        <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
+                        <xsl:for-each select="principal">
                             <xsl:value-of select="."/><br/>
                         </xsl:for-each>
                         </td></tr>
-                        <xsl:if test="(./ticketCount) and normalize-space(./ticketCount)!=''">
-                            <tr><td width="{$secondColIndent}" valign="top">ticket<br />count:</td>
-                                <td><xsl:value-of select="./ticketCount"/></td></tr>
-                        </xsl:if>
-                        <xsl:if test="(./duration)">
-                            <xsl:apply-templates select="./duration"/>
-                        </xsl:if>
-                         <tr><td width="{$secondColIndent}">&#160;</td><td>&#160;</td></tr>
                     </table></td></tr>
           </xsl:for-each>
        </xsl:when>
        <xsl:otherwise>
-           <xsl:for-each select="//deny">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
-            DENY:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-           <table width="100%">
-              <tr><td width="{$secondColIndent}" valign="top" class="{$firstColStyle}">
-                <xsl:for-each select="./permission">
+           <xsl:for-each select="deny">
+        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
+            DENY:</td><td width="{$secondColWidth}">
+           <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+              <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
+                <xsl:for-each select="permission">
                     <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
                 </xsl:for-each></td>
-                <td class="{$firstColStyle}">
-                <xsl:for-each select="./principal">
+                <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
+                <xsl:for-each select="principal">
                     <xsl:value-of select="."/><br/>
                 </xsl:for-each>
                 </td></tr>
-                <xsl:if test="(./ticketCount) and normalize-space(./ticketCount)!=''">
-                    <tr><td width="{$secondColIndent}" valign="top">ticket<br />count:</td>
-                        <td><xsl:value-of select="./ticketCount"/></td></tr>
-                </xsl:if>
-                <xsl:if test="(./duration)">
-                    <xsl:apply-templates select="./duration"/>
-                </xsl:if>
-                 <tr><td width="{$secondColIndent}">&#160;</td><td>&#160;</td></tr>
-            </table></td></tr>
+              </table></td></tr>
         </xsl:for-each>
        </xsl:otherwise>
    </xsl:choose>
-</xsl:template>
 
-<xsl:template match="acl">
-     <tr>
-       <td class="{$subHeaderStyle}" colspan="2">
-         <xsl:text>Access Control:</xsl:text>
-       </td>
-     </tr>
-     <tr>
-      <td width="{$firstColWidth}" class="{$firstColStyle}">Auth System:
-      </td>
-      <td width="{$secondColWidth}" class="{$secondColStyle}">
-          <xsl:value-of select="./@authSystem"/>
-      </td>
-     </tr>
-     <tr>
-      <td width="{$firstColWidth}" class="{$firstColStyle}">Order:
-      </td>
-      <td width="{$secondColWidth}" class="{$secondColStyle}">
-          <xsl:value-of select="./@order"/>
-      </td>
-     </tr>
+   </xsl:template>
+    
+  <xsl:template name="accesssystem">
+       <xsl:param name="accessfirstColStyle" />
+       <xsl:param name="accesssubHeaderStyle"/>
+        <tr><td class="{$accesssubHeaderStyle}" colspan="2">
+        <xsl:text>Access Control:</xsl:text></td></tr>
+        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">Auth System:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="./@authSystem"/></td>
+        </tr>
+        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">Order:</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="./@order"/></td>
+        </tr>
   </xsl:template>
+ 
 </xsl:stylesheet>

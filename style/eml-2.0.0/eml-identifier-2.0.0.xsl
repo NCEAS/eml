@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:35:03 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-13 19:42:35 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -37,16 +37,14 @@
         <xsl:param name="packageID"/>
         <xsl:param name="system"/>
         <xsl:if test="normalize-space(.)">
-          <table class="tabledefault" width="100%">
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            Metadata Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
              <xsl:value-of select="$packageID"/></td></tr>
              <xsl:if test="normalize-space(../@system)!=''">
                 <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-                  Metadata Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                  Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
                   <xsl:value-of select="$system"/></td></tr>
              </xsl:if>
-          </table>
         </xsl:if>
     </xsl:template>
     
