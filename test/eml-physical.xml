@@ -4,20 +4,29 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="eml://ecoinformatics.org/physical-2.0.0rc1 eml-physical.xsd">
 
-  <dataObject>
-    <objectName>data.txt</objectName>
-    <size>22</size>
-  </dataObject>
+  <objectName>data.txt</objectName>
+  <size>22</size>
 
   <dataFormat>
     <textFormat>
       <numHeaderLines>1</numHeaderLines>
+      <recordDelimiter>\n</recordDelimiter>
+      <maxRecordLength>10</maxRecordLength>
       <complex>
         <textDelimited>
           <fieldDelimiter>,</fieldDelimiter>
-          <maxRecordLength>10</maxRecordLength>
           <quoteCharacter>"</quoteCharacter>
-          <recordDelimiter>\n</recordDelimiter>
+          <literalCharacter>\</literalCharacter>
+        </textDelimited>
+        <textFixed>
+          <fieldWidth>7</fieldWidth>
+        </textFixed>
+        <textFixed>
+          <fieldWidth>4</fieldWidth>
+        </textFixed>
+        <textDelimited>
+          <fieldDelimiter>,</fieldDelimiter>
+          <quoteCharacter>"</quoteCharacter>
           <literalCharacter>\</literalCharacter>
         </textDelimited>
       </complex>
