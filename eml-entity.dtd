@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by c b (nceas) -->
 <!--         
        '$RCSfile: eml-entity.dtd,v $'
        Copyright: 2000 Regents of the University of California and the
@@ -7,8 +7,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-04-17 21:54:20 $'
-      '$Revision: 1.17 $'
+          '$Date: 2002-04-17 21:56:40 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,25 +24,28 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-
-
-
 <!ENTITY % coverage SYSTEM "eml-coverage.dtd">
 <!ELEMENT other-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (entityType))>
 <!ELEMENT spatial-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (spatialImage* | spatialGrid* | spatialVector*))>
 <!ELEMENT table-entity ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), (orientation?, caseSensitive?, numberOfRecords?))>
-<!ELEMENT spatialImage ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov),spatialRepresentationType, imageIdentifier?, imageType, meanGroundSampleDistance?, groundToImageCoefficient?, imageSuitability?, params?)>
-<!ELEMENT spatialGrid ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov),spatialRepresentationType, cellType?, cellOrigin?, rows, columns, verticals?, scanResolution?, groundSpacing?, cellDomain?)>
-<!ELEMENT spatialVector ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov),spatialRepresentationType, geometricObjectType?, geometricObjectCount?, topologyLevel?)>
+<!ELEMENT spatialImage ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), spatialRepresentationType, imageIdentifier?, imageType, meanGroundSampleDistance?, groundToImageCoefficient?, imageSuitability?, params?)>
+<!ELEMENT spatialGrid ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), spatialRepresentationType, cellType?, cellOrigin?, rows, columns, verticals?, scanResolution?, groundSpacing?, cellDomain?)>
+<!ELEMENT spatialVector ((identifier+, entityName, entityDescription?, temporalCov, geographicCov, taxonomicCov), spatialRepresentationType, geometricObjectType?, geometricObjectCount?, topologyLevel?)>
 <!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED>
+<!ATTLIST identifier
+	system CDATA #IMPLIED
+>
 <!ELEMENT entityName (#PCDATA)>
 <!ELEMENT entityDescription (#PCDATA)>
 <!ELEMENT entityType (#PCDATA)>
 <!ELEMENT orientation EMPTY>
-<!ATTLIST orientation columnorrow (columnmajor | rowmajor) #IMPLIED>
+<!ATTLIST orientation
+	columnorrow (columnmajor | rowmajor) #IMPLIED
+>
 <!ELEMENT caseSensitive EMPTY>
-<!ATTLIST caseSensitive yesorno (yes | no) #IMPLIED>
+<!ATTLIST caseSensitive
+	yesorno (yes | no) #IMPLIED
+>
 <!ELEMENT numberOfRecords (#PCDATA)>
 <!ELEMENT vouchers (specimen, reposit)>
 <!ELEMENT spatialRepresentationType (#PCDATA)>
@@ -66,7 +69,6 @@
 <!ELEMENT altmin (#PCDATA)>
 <!ELEMENT altmax (#PCDATA)>
 <!ELEMENT altunits (#PCDATA)>
-<!ELEMENT classcit (citeinfo)>
 <!ELEMENT classmod (#PCDATA)>
 <!ELEMENT cntinfo ANY>
 <!ELEMENT specimen (#PCDATA)>
