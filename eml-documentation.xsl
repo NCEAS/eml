@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: cjones $'
-  *       '$Date: 2001-02-15 21:28:57 $'
-  *   '$Revision: 1.3 $'
+  *       '$Date: 2001-02-16 07:50:21 $'
+  *   '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -47,148 +47,218 @@
           <xsl:value-of select="//moduleDescription" />
         </blockquote>
 
-        <table class="tabledefault" width="100%">
+        <table class="tabledefault">
           <tr>
-	    <td colspan="4">
+            <td colspan="5">
               <!-- display the documentation for each defined element -->
               <h2>Element Definitions:</h2>
               The elements described below are either containers for other
-              elements, or are containers for values provided by the researcher
+              elements, or are containers for values provided by the person
               using the module:
-	    </td>
-	  </tr>
+            </td>
+          </tr>
+          <!-- step through the elements that have annotation children-->
           <xsl:for-each select ="//xs:element[xs:annotation]">
-	  <tr>
-	    <td class="tablehead">
-	      <h3>
-	        <a class="sitelink">
-		  <xsl:attribute name="name">
-		    <xsl:if test="./@name">
+          <tr>
+            <td class="tablehead">
+              <!--give each element an anchor name-->
+              <a class="sitelink">
+                <xsl:attribute name="name">
+                  <xsl:if test="./@name">
+                  <xsl:value-of select="./@name" />
+                  </xsl:if>
+                  <xsl:if test="./@ref">
+                  <xsl:value-of select="./@ref" />
+                  </xsl:if>
+                </xsl:attribute>
+                <!-- and display the name of the element-->
+                <xsl:value-of select="./@name" />
+                <xsl:value-of select="./@ref" />
+              </a>
+            </td>
+            <td class="tablehead">
+                <!-- display the use -->
+                Required:
+              <xsl:if test="./@minOccurs &gt; '0'">
+              <span class="plaintext">
+                Yes
+              </span>
+              </xsl:if>
+              <xsl:if test="./@minOccurs = '0'">
+              <span class="plaintext">
+                No
+              </span>
+              </xsl:if>
+            </td>
+            <td class="tablehead">
+              <!-- display the cardinality -->
+              How many:
+              <span class="plaintext">
+                <xsl:value-of select="./@minOccurs" />
+                to
+                <xsl:value-of select="./@maxOccurs" />
+              </span>
+            </td>
+            <td class="tablehead">
+              <!-- display a link to the element's abstract type -->
+              Type: 
+              <a>
+                <xsl:attribute name="href">
+                  #<xsl:value-of select="./@type" />
+                </xsl:attribute>
+                <xsl:value-of select="./@type" />
+              </a>
+            </td>
+            <td class="tablehead">
+              <!--Attributes:-->
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="tablepanel">
+              <!-- display the help fields for each element-->
+              <blockquote>
+                <br><span class="boldtext">Tooltip: </span></br>
+                <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
+                <br><span class="boldtext">Summary: </span></br>
+                <xsl:value-of select="./xs:annotation/xs:appInfo/summary" />
+                <br><span class="boldtext">Description: </span></br>
+                <xsl:value-of select="./xs:annotation/xs:appInfo/description" />
+                <br><span class="boldtext">Example: </span></br>
+                <xsl:value-of select="./xs:annotation/xs:appInfo/example" />
+                <br><span class="boldtext">Lineage: </span></br>
+                <xsl:value-of select="./xs:annotation/xs:appInfo/lineage" />
+              </blockquote>
+            </td>
+          </tr>
+          </xsl:for-each>
+          <tr>
+            <td colspan="5">
+              <!-- display the documentation for each defined attribute -->
+              <h2>Attribute Definitions:</h2>
+            </td>
+          </tr>
+          <xsl:for-each select ="//xs:attribute[xs:annotation]">
+            <tr>
+              <td class="tablehead">
+                <!--give each attribute an anchor name-->
+                <a class="sitelink">
+                  <xsl:attribute name="name">
+                    <xsl:if test="./@name">
                     <xsl:value-of select="./@name" />
                     </xsl:if>
-		    <xsl:if test="./@ref">
+                    <xsl:if test="./@ref">
                     <xsl:value-of select="./@ref" />
                     </xsl:if>
-		  </xsl:attribute>
+                  </xsl:attribute>
+                  <!-- and display the name of the attribute-->
                   <xsl:value-of select="./@name" />
                   <xsl:value-of select="./@ref" />
-		</a>
-	      </h3>
-	    </td>
-	    <td class="tablehead">
-	      Required:
-	    </td>
-	    <td class="tablehead">
-	      How many:
-	    </td>
-	    <td class="tablehead">
-	      <h3>
-	        Type: 
-		<a>
-		  <xsl:attribute name="href">
-                    #<xsl:value-of select="./@type" />
-		  </xsl:attribute>
-		  <xsl:value-of select="./@type" />
-		</a>
-	      </h3>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td colspan="4" class="tablepanel">
-              <blockquote>
-                <h4>Tooltip: </h4>
-                <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
-                <h4>Summary: </h4>
-                <xsl:value-of select="./xs:annotation/xs:appInfo/summary" />
-                <h4>Description: </h4>
-                <xsl:value-of select="./xs:annotation/xs:appInfo/description" />
-                <h4>Example: </h4>
-                <xsl:value-of select="./xs:annotation/xs:appInfo/example" />
-                <h4>Lineage: </h4>
-                <xsl:value-of select="./xs:annotation/xs:appInfo/lineage" />
-              </blockquote>
-	    </td>
-	  </tr>
+                </a>
+              </td>
+              <td class="tablehead">
+                <!-- display the use -->
+                  Use:
+                <span class="plaintext">
+		<xs:value-of select="./@use" />
+                </span>
+              </td>
+              <td colspan="3" class="tablehead">
+                <!-- display the default value -->
+                Default value:
+                <span class="plaintext">
+                  <xsl:value-of select="./@value" />
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="tablepanel">
+                <!-- display the help fields for each element-->
+                <blockquote>
+                  <br><span class="boldtext">Tooltip: </span></br>
+                  <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
+                  <br><span class="boldtext">Summary: </span></br>
+                  <xsl:value-of select="./xs:annotation/xs:appInfo/summary" />
+                  <br><span class="boldtext">Description: </span></br>
+                  <xsl:value-of select="./xs:annotation/xs:appInfo/description" />
+                  <br><span class="boldtext">Example: </span></br>
+                  <xsl:value-of select="./xs:annotation/xs:appInfo/example" />
+                  <br><span class="boldtext">Lineage: </span></br>
+                  <xsl:value-of select="./xs:annotation/xs:appInfo/lineage" />
+                </blockquote>
+              </td>
+            </tr>
           </xsl:for-each>
-	  <tr>
-	    <td colspan="4">
+          <tr>
+            <td colspan="5">
               <!-- display the documentation for each defined complex type -->
               <h2>Complex Type Definitions:</h2>
-	    </td>
-	  </tr>
-          <xsl:for-each select ="//xs:complexType[xs:annotation]">
-	  <tr>
-	    <td class="tablehead">
-	      <h3>
-                <xsl:value-of select="./@name" />
-	      </h3>
-	    </td>
-	    <td class="tablehead">
-	      Required:
-	    </td>
-	    <td class="tablehead">
-	      How many:
-	    </td>
-	    <td class="tablehead">
-	      Type: <xsl:value-of select="./@type" />
-	    </td>
-	  </tr>
-	  <tr>
-	    <td colspan="4" class="tablepanel">
+            </td>
+          </tr>
+          <xsl:for-each select ="//xs:complexType">
+          <tr>
+            <td colspan="5" class="tablehead">
+              <h3>
+                <a class="sitelink">
+                  <xsl:attribute name="name">
+                    <xsl:value-of select="./@name" />
+                  </xsl:attribute>
+                  <xsl:value-of select="./@name" />
+                </a>
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="tablepanel">
               <blockquote>
-                <h4>Tooltip: </h4>
+                <br><span class="boldtext">Tooltip: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
-                <h4>Summary: </h4>
+                <br><span class="boldtext">Summary: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/summary" />
-                <h4>Description: </h4>
+                <br><span class="boldtext">Description: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/description" />
-                <h4>Example: </h4>
+                <br><span class="boldtext">Example: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/example" />
-                <h4>Lineage: </h4>
+                <br><span class="boldtext">Lineage: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/lineage" />
               </blockquote>
-	    </td>
-	  </tr>
+            </td>
+          </tr>
           </xsl:for-each>
-	  <tr>
-	    <td colspan="4">
+          <tr>
+            <td colspan="5">
               <!-- display the documentation for each defined simple type -->
               <h2>Simple Type Definitions:</h2>
-	    </td>
-	  </tr>
+            </td>
+          </tr>
           <xsl:for-each select ="//xs:simpleType[xs:annotation]">
-	  <tr>
-	    <td class="tablehead">
-	      <h3>
-                <xsl:value-of select="./@name" />
-	      </h3>
-	    </td>
-	    <td class="tablehead">
-	      Required:
-	    </td>
-	    <td class="tablehead">
-	      How many:
-	    </td>
-	    <td class="tablehead">
-	      Type: <xsl:value-of select="./@type" />
-	    </td>
-	  </tr>
-	  <tr>
-	    <td colspan="4" class="tablepanel">
+          <tr>
+            <td colspan="5" class="tablehead">
+              <h3>
+                <a class="sitelink">
+                  <xsl:attribute name="name">
+                    <xsl:value-of select="./@name" />
+                  </xsl:attribute>
+                  <xsl:value-of select="./@name" />
+                </a>
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="tablepanel">
               <blockquote>
-                <h4>Tooltip: </h4>
+                <br><span class="boldtext">Tooltip: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
-                <h4>Summary: </h4>
+                <br><span class="boldtext">Summary: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/summary" />
-                <h4>Description: </h4>
+                <br><span class="boldtext">Description: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/description" />
-                <h4>Example: </h4>
+                <br><span class="boldtext">Example: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/example" />
-                <h4>Lineage: </h4>
+                <br><span class="boldtext">Lineage: </span></br>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/lineage" />
               </blockquote>
-	    </td>
-	  </tr>
+            </td>
+          </tr>
            </xsl:for-each>
         </table>
         <p class="contact">
