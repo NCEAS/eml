@@ -12,8 +12,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-06-11 18:06:53 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-06-11 19:55:31 $'
+      '$Revision: 1.28 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -141,7 +141,7 @@
                 <xs:complexType>
                   <xs:choice maxOccurs="unbounded">
                     <xs:element ref="paragraph"/>
-                    <xs:element name="citation" type="cit:CitationType">
+                    <xs:element name="citation" type="cit:CitationType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>
@@ -204,7 +204,8 @@
                         Software used in the processing of data.
                       </doc:summary>
                     <doc:description> 
-                       The software element allows reference to any software used                       to process data. 
+                       The software element allows reference to any software used
+                       to process data. 
                       </doc:description>
                     <doc:example><![CDATA[
                         see content model for eml-software complex type]]></doc:example>
@@ -254,16 +255,20 @@
                     <doc:description> 
                         The qualityControl field provides a location for the 
                         description of actions taken to either control or assess 
-                        the quality of data resulting from the associated  method                        step. TA quality control description should identifiy a 
+                        the quality of data resulting from the associated  method
+                        step. TA quality control description should identifiy a 
                         quality goal and describe prescriptive steps taken to 
                         ensure that the data meet those standards or to 
                         postcriptive steps taken to assess the extent to which 
-                        they are met. A quality ccontrol statement is associated                         with the methodStep that could have affected the targeted                        quality goal.  
+                        they are met. A quality ccontrol statement is associated
+                        with the methodStep that could have affected the targeted
+                        quality goal.  
                       </doc:description>
                     <doc:example><![CDATA[
                 <paragraph>
                   Once the data file is received, verify it's integrity by
-                  comparing it's checksum with the pre-calculated MD5 checksum by                  running the md5 command on the file. If they match, the file 
+                  comparing it's checksum with the pre-calculated MD5 checksum by
+                  running the md5 command on the file. If they match, the file 
                   transferred correctly.
                 </paragraph>]]></doc:example>
                     <doc:lineage>
