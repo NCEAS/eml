@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2001-07-31 20:02:52 $'
-      '$Revision: 1.8 $'
+          '$Date: 2001-07-31 20:45:23 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,6 +35,8 @@
 <!ELEMENT researchProject (title+, personnel+, temporalCov*, geographicCov*,
                            abstract?, funding?, siteDescription*, 
 			   designDescription*, researchProject*)>
+<!-- Personnel element expanded from ResponsibleParty -->			   
+<!ELEMENT personnel (%ResponsibleParty;)>
 <!-- Grant and contract numbers, names and addresses of funding sources -->
 <!ELEMENT funding (paragraph+)>
 <!-- Site description -->
@@ -47,5 +49,3 @@
 <!ELEMENT sampling (temporalCov*, frequency?, paragraph*, citation*)>
 <!-- Frequency or period of data collection -->
 <!ELEMENT frequency (#PCDATA)>
-<!-- text paragraph -->
-<!ELEMENT paragraph (#PCDATA)>
