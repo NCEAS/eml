@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:output method="xml" indent="yes"/>
+<xsl:output encoding="ISO-8859-1"/>
+<xsl:strip-space elements="*"/>
+
+<xsl:variable name="dsb6" select="document('sample.dsb6')"/>
+
+<xsl:template match = "/">
+ <xsl:element name="jones.204.18">
+ <!--
+  <xsl:call-template name="parseTriples">
+    <xsl:with-param name="subjectVal" select="'jones.204.18'"/>
+  </xsl:call-template>
+  -->
+  <xsl:call-template name="getEntities">
+    <xsl:with-param name="datasetId" select="'jones.204.18'"/>
+  </xsl:call-template>
+
+  </xsl:element> 
+ 
+</xsl:template>
+
+<xsl:template name="parseTriples">
+  <xsl:param name="subjectVal"/>
+  <xsl:variable name="tripleList"  select="subjectVal"/>
+  <xsl:element name="{$tripleList}">
+    <xsl:for-each select="$dsb6/dataset/triple[./object=$subjectVal]">
+     <xsl:if test="((last()>0) and (./subject!=./object))">
+      <xsl:variable name="cur" select="./subject"/>
+      <xsl:element name="{$cur}">
+        <xsl:attribute name="rel">
+          <xsl:value-of select="./relationship"/>
+        </xsl:attribute>
+         <xsl:call-template name="parseTriples">
+          <xsl:with-param name="subjectVal" select="$cur"/>
+       </xsl:call-template>
+      </xsl:element>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:element>    
+</xsl:template>  
+
+<xsl:template name="getEntities">
+  <xsl:param name="datasetId"/>
+    <xsl:call-template name="getAccess">
+    </xsl:call-template>
+    <xsl:element name="entities">
+      <xsl:for-each select="$dsb6/dataset/triple/relationship[contains(.,'provides table-entity information for DATAFILE')]">
+        <xsl:element name="entity">
+          <xsl:attribute name="id">
+            <xsl:value-of select="../subject"/>
+          </xsl:attribute>
+               <xsl:call-template name="getAttributeFor">
+                  <xsl:with-param name="entity" select="../subject"/>
+                </xsl:call-template>
+               <xsl:call-template name="getPhysicalFor">
+                  <xsl:with-param name="entity" select="../subject"/>
+                </xsl:call-template>
+               <xsl:call-template name="getDataFileFor">
+                  <xsl:with-param name="entity" select="../subject"/>
+                </xsl:call-template>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+</xsl:template>  
+
+<xsl:template name="getAttributeFor">
+  <xsl:param name="entity"/>
+  <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides eml-attribute information for Table')]">
+  <xsl:if test="./object=$entity">
+    <xsl:element name="attribute">
+      <xsl:value-of select="$entity"/>
+    </xsl:element>
+  </xsl:if>
+  </xsl:for-each>  
+</xsl:template>
+
+<xsl:template name="getPhysicalFor">
+  <xsl:param name="entity"/>
+  <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides eml-physical information for Table')]">
+  <xsl:if test="./object=$entity">
+    <xsl:element name="physical">
+      <xsl:value-of select="$entity"/>
+    </xsl:element>
+  </xsl:if>
+  </xsl:for-each>  
+</xsl:template>
+
+<xsl:template name="getDataFileFor">
+  <xsl:param name="entity"/>
+  <xsl:for-each select="$dsb6/dataset/triple[contains(./relationship,'provides table-entity information for DATAFILE')]">
+  <xsl:if test="./subject=$entity">
+    <xsl:element name="dataFile">
+      <xsl:value-of select="$entity"/>
+    </xsl:element>
+  </xsl:if>
+  </xsl:for-each>  
+</xsl:template>
+
+<xsl:template name="getAccess">
+  <xsl:element name="acl">
+    <xsl:value-of select="$dsb6/dataset/triple[contains(./relationship,'provides access control rules for')]/subject[1]"/>
+  </xsl:element>  
+</xsl:template>
+
+</xsl:stylesheet>
