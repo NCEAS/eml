@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-02-19 02:56:06 $'
-      '$Revision: 1.8 $'
+        '$Author: bojilova $'
+          '$Date: 2001-03-19 17:04:50 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,8 @@
 <!ELEMENT resource (resourceIdentifier+, allow*, deny*)>
 <!-- The order in which the rules should be applied for this object -->
 <!-- The public read access to this object -->
-<!ATTLIST resource order (allowFirst|denyFirst) "allowFirst">
+<!ATTLIST resource order (allowFirst|denyFirst) "allowFirst" 
+                   public (yes|no) >
 <!-- the unique identifier for the object -->
 <!ELEMENT resourceIdentifier (#PCDATA)>
 
