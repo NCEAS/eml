@@ -30,8 +30,8 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
     Research Network Office, University of New Mexico Center for Environmental
     Studies, Arizona State University Other funding: National Science
     Foundation (see README for details) The David and Lucile Packard Foundation
-    For Details: http://knb.ecoinformatics.org/ '$Author: blankman $' '$Date:
-    2002/09/16 22:04:48 $' '$Revision: 1.9 $' This program is free software;
+    For Details: http://knb.ecoinformatics.org/ '$Author: gries $' '$Date:
+    2002/09/16 22:04:48 $' '$Revision: 1.10 $' This program is free software;
     you can redistribute it and/or modify it under the terms of the GNU General
     Public License as published by the Free Software Foundation; either version
     2 of the License, or (at your option) any later version. This program is
@@ -224,7 +224,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="coverage" type="cov:GeographicCoverage" />
+                  <xs:element name="coverage" type="cov:GeographicCoverage" >
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>sampling unit location</doc:tooltip>
@@ -232,11 +232,23 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
                       location</doc:summary>
                     </xs:appinfo>
                   </xs:annotation>
+                 </xs:element>
                 </xs:choice>
               </xs:complexType>
             </xs:element>
             <xs:element name="citation" type="cit:CitationType" minOccurs="0"
-            maxOccurs="unbounded" />
+            maxOccurs="unbounded" >
+             <xs:annotation>
+              <xs:appinfo>
+               <doc:tooltip>citation</doc:tooltip>
+               <doc:summary>Literature citation relating to the sampling
+               procedures used.</doc:summary>
+               <doc:description>The citation field allows to either reference 
+               a literature resource or enter structured literature
+               information</doc:description>
+              </xs:appinfo>
+             </xs:annotation>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -296,8 +308,8 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
           </xs:annotation>
         </xs:element>
         <xs:choice maxOccurs="unbounded">
-          <xs:element name="Citation" type="cit:CitationType" />
-          <xs:annotation>
+          <xs:element name="Citation" type="cit:CitationType" >
+           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>citation</doc:tooltip>
               <doc:summary>Literature citation relating to the methods
@@ -306,9 +318,10 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
               literature resource or enter structured literature
               information</doc:description>
             </xs:appinfo>
-          </xs:annotation>
-          <xs:element name="protocol" type="pro:ProtocolType" />
-          <xs:annotation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="protocol" type="pro:ProtocolType" >
+           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Protocol</doc:tooltip>
               <doc:summary>Protocol description relating to the methods
@@ -320,6 +333,7 @@ xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
               file.</doc:description>
             </xs:appinfo>
           </xs:annotation>
+         </xs:element>
         </xs:choice>
       </xs:choice>
       <xs:element name="instrumentation" type="xs:string" minOccurs="0"
