@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:dataTable-2.0.0beta8" xmlns="eml:dataTable-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:ent="eml:entity-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:dataTable-2.0.0beta8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation-2.0.0beta8" xmlns:cov="eml:coverage-2.0.0beta8" xmlns:ent="eml:entity-2.0.0beta8" xmlns:prot="eml:protocol-2.0.0beta8" xmlns:phys="eml:physical-2.0.0beta8" xmlns:att="eml:attribute-2.0.0beta8" xmlns="eml:dataTable-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml:coverage-2.0.0beta8" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>
@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-06-10 21:22:37 $'
-      '$Revision: 1.10 $'
+          '$Date: 2002-06-10 22:13:16 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -201,6 +201,6 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="id" type="xs:ID" use="optional"/>
   </xs:complexType>
 </xs:schema>
