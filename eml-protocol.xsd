@@ -1,13 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:protocol" 
-  xmlns:lit="eml:literature" 
-  xmlns:rp="eml:ResponsibleParty" 
-  xmlns="eml:protocol" 
-  xmlns:doc="eml:documentation" 
-  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  elementFormDefault="unqualified" 
-  attributeFormDefault="unqualified">
-  
+<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
   <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -16,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-07-31 17:49:23 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2001-07-31 21:33:37 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -99,16 +91,15 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="system" type="xs:string" use="optional"/>
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>
                     Catalog system
                   </doc:tooltip>
-                  <doc:summary>
+                <doc:summary>
                     The catalog system in which this identifier is used.
                   </doc:summary>
-                  <doc:description>
+                <doc:description>
                     This element gives the name of the catalog system in which
                     this identifier is used.  It is useful to determine the
                     scope of the identifier, and to determine the semantics
@@ -116,13 +107,18 @@
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
                   </doc:description>
-                  <doc:example><![CDATA[
+                <doc:example><![CDATA[
                     <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-                  <doc:lineage>
+                <doc:lineage>
                     New to EML 2.0.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional"/>
+              </xs:extension>
+            </xs:simpleContent>
           </xs:complexType>
         </xs:element>
         <xs:element ref="protocol" maxOccurs="unbounded"/>
@@ -167,8 +163,7 @@
               data table.  Likewise, a literature citation may be provided that
               describes the methodology that employed.
             </doc:description>
-            <doc:example>
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               Derived from EML 1.4
             </doc:lineage>
@@ -228,8 +223,7 @@
               of the data set based on the the processing steps or methods
               employed in collecting the data.
             </doc:description>
-            <doc:example>
-            </doc:example>
+            <doc:example/>
             <doc:lineage>
               Introduced in EML 2.0
             </doc:lineage>
@@ -266,7 +260,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="paragraph">
+  <xs:element name="paragraph" type="xs:string">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>
@@ -287,6 +281,5 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType/>
   </xs:element>
 </xs:schema>
