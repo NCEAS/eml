@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-10 17:50:09 $'
-      '$Revision: 1.33 $'
+          '$Date: 2002-09-12 06:52:47 $'
+      '$Revision: 1.34 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -228,6 +228,10 @@
             resource may have an &quot;ISBN&quot; number associated with it, 
             whereas the other resource types would not.
           </para>
+          <para>
+            The eml-resource module is exclusively used by other modules, and is
+            therefore not a stand-alone module.
+          </para>
         </section>
         <note>
           <para>
@@ -273,7 +277,7 @@
             The eml-dataset module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -287,13 +291,17 @@
             about the literature citation, including title, abstract, keywords,
             and contacts. Citation types follow the conventions laid out by
             EndNote, and there is an attempt to represent a compatible subset of
-            the EndNote citation types.
+            the EndNote citation types.  These citation types include: article,
+            book, chapter, edited book, manuscript, report, thesis, conference
+            proceedings, personal communication, map, generic, audio visual, and
+            presentation.  The &quot;generic&quot; citation type would be used
+            when one of the other types will not work.
           </para>
           <para>
             The eml-literature module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a citation to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -313,8 +321,8 @@
           <para>
             The eml-software module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a software resource to be described once, and then used as a 
+            reference in other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -344,8 +352,8 @@
           <para>
             The eml-protocol module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a protocol to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.
           </para>
         </section>
         <note>
@@ -369,12 +377,38 @@
             resources
           </title>
           <para>
+            The eml-access module describes the level of access that is to be granted or 
+            denied to a resource or a subset of a resource for a particular user or group 
+            of users. A single eml-access document may be used to express access control 
+            for many resources, or for a given resource (e.g., a dataset or citation ). 
+            The eml-access module represents a list of resources to be controlled in the 
+            context of a particular authentication system. That is, the authentication 
+            system determines the set of principals (users + groups) that can be used, 
+            and the membership of users in groups. The rules set in this module will 
+            determine the level of access to a resource for the defined users and groups.  
+            In EML, there are two mechanisms for including access control information via 
+            the eml-access module. 1)  Each top-level resource module (eml-dataset, 
+            eml-literature, eml-software, and eml-protocol) include an optional 
+            &lt;access&gt; element directly inline in the document.  This is used to 
+            define access control at the resource level scope.  2) Finer grained
+            access control may be applied to a subset of a resource via the
+            &lt;addtionalMetadata&gt; element in the eml module.  An access
+            control document may be defined, or referenced, from this location,
+            and the &lt;describes&gt; element is used to point to the subset of
+            the resource that is to be controlled via its &quot;id&quot;
+            attribute.  Applications that process EML documents must implement
+            the access control rules from both mechanisms.  Note that, although
+            access control may be bound to any element with an &quot;id&quot;
+            attribute, the processing involved may be very costly.  For
+            instance, it would not be recommended to apply access control to a
+            column of a data file (eml-attribute), since every read/write
+            operation on that column may not proceed until access is verified.
           </para>
           <para>
             The eml-access module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            an access control document to be described once, and then used as 
+            a reference in other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -387,8 +421,8 @@
           <para>
             The eml-physical module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a physical distribution to be described once, and then used as a 
+            reference in other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -401,8 +435,8 @@
           <para>
             The eml-party module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a party to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -415,8 +449,8 @@
           <para>
             The eml-coverage module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            the coverage extent to be described once, and then used as a 
+            reference in other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -429,8 +463,8 @@
           <para>
             The eml-project module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a research project to be described once, and then used as a 
+            reference in other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -443,8 +477,8 @@
           <para>
             The eml-methods module, like other modules, may be
             &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
-            a dataset to be described once, and then used as a reference in
-            other locations within the EML document via it's ID.:w
+            a method to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.
           </para>
         </section>
         <section>
@@ -454,9 +488,6 @@
       <para>
 
         <!--
-
-
-
         eml-entity.xsd
         eml-constraint.xsd
 
