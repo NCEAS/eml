@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: berkley $'
-  *       '$Date: 2002-04-20 03:36:23 $'
-  *   '$Revision: 1.20 $'
+  *       '$Date: 2002-04-21 23:26:57 $'
+  *   '$Revision: 1.21 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-                xmlns:doc="eml:documentation-2.0.0beta7" 
+                xmlns:doc="eml:documentation-2.0.0beta8" 
                 version="1.0">
   <xsl:output method="html"/>
   <xsl:template match="/">
