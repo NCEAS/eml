@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-26 15:33:21 $'
-      '$Revision: 1.42 $'
+          '$Date: 2002-09-30 16:16:00 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@
     <property name="version" value="2.0.0rc1"/>
     <property name="testdir" value="./test" />
     <property name="srcdir" value="./src" />
+    <property name="sample.dir" value="lib/sample"/>
     <property name="build.dir" value="build"/>
     <property name="build.tests" value="${build.dir}/tests"/>
     <property name="build.dest" value="${build.dir}/classes"/>
@@ -274,7 +275,13 @@
 
   <!-- use the ant "junit" task to run JUnit tests. -->
   <target name="test" depends="compile-test">
-
+     <!--copy the sample docs into the test directory so they get validated-->
+     <copy todir="${testdir}">
+       <fileset dir="${sample.dir}">
+         <exclude name="**/CVS*"/>
+         <exclude name="**/.#*"/>
+       </fileset>
+     </copy>
      <!-- use the ant "junit" task to run JUnit tests. -->
      <junit printsummary="yes" haltonfailure="no" fork="no"
             haltonerror="no">
