@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 22:31:20 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-12-06 01:43:31 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 
-  <xsl:output method="html" encoding="iso-8859-1"/>
+  <xsl:output method="html" encoding="iso-8859-1"
+              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
+              indent="yes" />  
   <!-- This module is for datatable module-->
 
   <xsl:template name="spatialVector">

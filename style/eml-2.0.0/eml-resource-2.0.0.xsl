@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 22:31:20 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2003-12-06 01:43:31 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,10 @@
   <!--<xsl:import href="eml-party-2.0.0.xsl"/>
   <xsl:import href="eml-distribution-2.0.0.xsl"/>
   <xsl:import href="eml-coverage-2.0.0.xsl"/>-->
-  <xsl:output method="html" encoding="iso-8859-1"/>
+  <xsl:output method="html" encoding="iso-8859-1"
+              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
+              indent="yes" />  
 
   <!-- This module is for resouce and it is self-contained (it is table)-->
   <xsl:template name="resource">

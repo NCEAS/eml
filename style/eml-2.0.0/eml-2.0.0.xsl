@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-25 19:10:12 $'
-  * '$Revision: 1.9 $'
+  *     '$Date: 2003-12-06 01:43:31 $'
+  * '$Revision: 1.10 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,10 @@
   <xsl:import href="eml-text-2.0.0.xsl"/>
   <xsl:import href="eml-view-2.0.0.xsl"/>
 
-  <xsl:output method="html" encoding="iso-8859-1"/>
+  <xsl:output method="html" encoding="iso-8859-1"
+              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
+              indent="yes" />  
   <!-- global variables to store id node set in case to be referenced-->
   <xsl:variable name="ids" select="//*[@id!='']"/>
 
@@ -67,10 +70,10 @@
         <link rel="stylesheet" type="text/css"
               href="{$stylePath}/{$qformat}/{$qformat}.css" />
         <script language="Javascript" type="text/JavaScript"
-                src="{$stylePath}/{$qformat}/{$qformat}.js" />
+                src="{$stylePath}/{$qformat}/{$qformat}.js"></script>
         <script language="Javascript"
                 type="text/JavaScript"
-                src="{$styleCommonPath}/branding.js" />
+                src="{$styleCommonPath}/branding.js"></script>
       </head>
       <body>
         

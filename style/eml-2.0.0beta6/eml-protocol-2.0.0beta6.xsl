@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-25 22:15:55 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2003-12-06 01:43:32 $'
+  * '$Revision: 1.5 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:import href="eml-literature-2.0.0beta6.xsl"/>
 
-  <xsl:output method="html" encoding="iso-8859-1"/>
+  <xsl:output method="html" encoding="iso-8859-1"
+              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
+              indent="yes" />  
 
   <xsl:template match="/">
     <html>
@@ -40,9 +43,9 @@
         <link rel="stylesheet" type="text/css"
                 href="{$stylePath}/{$qformat}/{$qformat}.css" />
         <script language="Javascript" type="text/JavaScript"
-                src="{$stylePath}/{$qformat}/{$qformat}.js" />
+                src="{$stylePath}/{$qformat}/{$qformat}.js"></script>
         <script language="Javascript" type="text/JavaScript"
-                src="{$styleCommonPath}/branding.js" />      
+                src="{$styleCommonPath}/branding.js"></script>      
       </head>
       <body>
 
