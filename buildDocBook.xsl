@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-10 17:40:54 $'
-      '$Revision: 1.31 $'
+          '$Date: 2002-09-10 17:47:28 $'
+      '$Revision: 1.32 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -271,7 +271,7 @@
           </para>
           <para>
             The eml-dataset module, like other modules, may be
-            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            &quot;referenced&quot; via the &lt;references&gt; tag.  This allows
             a dataset to be described once, and then used as a reference in
             other locations within the EML document via it's ID.:w
           </para>
