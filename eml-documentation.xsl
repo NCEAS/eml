@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: cjones $'
-  *       '$Date: 2001-03-22 21:13:08 $'
-  *   '$Revision: 1.8 $'
+  *       '$Date: 2001-03-23 07:42:53 $'
+  *   '$Revision: 1.9 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -113,103 +113,153 @@
         </td>
       </tr>
       <tr>
-        <!-- Determine if we're processing a typed element
-             or one with an explicit content model, act accordingly -->
-        <xsl:choose>
-          <xsl:when test="./@type">
-          <td valign="top" class="tablepanel">
-            <!--give each attribute link to its definition -->
-            <p>Type:
-            <a class="sitelink">
-              <xsl:attribute name="href">
-                <xsl:text>#</xsl:text>
-                <xsl:value-of select="./@type"/>
-              </xsl:attribute>
-              <!-- and display the name of the attribute-->
-              <xsl:value-of select="./@type"/>
-            </a>
-            </p>
-          </td>
-          </xsl:when>
-          <xsl:otherwise>
-          <td valign="top" class="tablepanel">
-            <blockquote>
+        <td class="tablepanel">
+          <!-- begin the inner content model table -->
+          <table border="0" class="tabledefault">
+            <!-- Determine if we're processing a typed element
+                 or one with an explicit content model, act accordingly -->
+            <xsl:choose>
+              <xsl:when test="./@type">
+              <tr>
+              <td valign="top" class="tablepanel">
+                <!--give each attribute link to its definition -->
+                <span class="boldtext">Type:</span>
+                <xsl:text> </xsl:text>
+                <a class="sitelink">
+                  <xsl:attribute name="href">
+                    <xsl:text>#</xsl:text>
+                    <xsl:value-of select="./@type"/>
+                  </xsl:attribute>
+                  <!-- and display the name of the attribute-->
+                  <xsl:value-of select="./@type"/>
+                </a>
+              </td>
+              </tr>
+              </xsl:when>
+              <xsl:otherwise>
 
-            <!-- display a link to the base type for derivations -->
-            <xsl:if test="./@derivedBy">
-              <p>Derived from:
-              <a class="sitelink">
-                <xsl:attribute name="href">
-                  <xsl:text>#</xsl:text>
-                  <xsl:value-of select="./@base"/>
-                </xsl:attribute>
-                <!-- and display the name of the attribute-->
-                <xsl:value-of select="./@base"/>
-              </a> (by <xsl:value-of select="./@derivedBy"/>)
-              </p>
-            </xsl:if>
+                <!-- display a link to the base type for derivations -->
+                <xsl:if test="./@derivedBy">
+	        <tr>
+                <td colspan="3" valign="top" class="tablepanel">
+                  Derived from:
+                  <a class="sitelink">
+                    <xsl:attribute name="href">
+                      <xsl:text>#</xsl:text>
+                      <xsl:value-of select="./@base"/>
+                    </xsl:attribute>
+                    <!-- and display the name of the attribute-->
+                    <xsl:value-of select="./@base"/>
+                  </a> (by <xsl:value-of select="./@derivedBy"/>)
+		</td>
+		</tr>
+                </xsl:if>
 
-            <!-- display the elements -->
-            <br>
-	      <span class="boldtext">
-                Allowable content:
-              </span>
-	    </br>
-            <!-- change this into a table format -->
-            <!-- Element Name | Required? | How many -->
-            <xsl:apply-templates 
-                 select="xs:complexType|xs:sequence|xs:choice|xs:element" 
-                 mode="contentmodel" />
+                <!-- display the elements -->
+		<tr>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Allowable content:
+                  </span>
+		  </td>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Required?:
+                  </span>
+		  </td>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    How many:
+                  </span>
+		  </td>
+		</tr>
+                <!-- change this into a table format -->
+                <!-- Element Name | Required? | How many -->
+                <xsl:apply-templates 
+                     select="xs:complexType|xs:sequence|xs:choice|xs:element" 
+                     mode="contentmodel" />
     
-            <!-- display the attributes -->
-            <br>
-	      <span class="boldtext">
-                Allowable attributes:
-              </span>
-	    </br>
-            <br>
-            <!-- change this into a table format -->
-            <!-- Attribute Name | Required? -->
-            <xsl:apply-templates 
-                 select="xs:attribute|xs:complexType/xs:attribute" 
-                 mode="contentmodel" />
-	    </br>
-            </blockquote>
+                <!-- display the attributes -->
+		<tr>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Allowable attributes:
+                  </span>
+		  </td>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Required?:
+                  </span>
+		  </td>
+		  <td valign="top" class="tablepanel">
+                  <span class="boldtext">
+                    Default Value:
+                  </span>
+		  </td>
+		</tr>
+                <!-- change this into a table format -->
+                <!-- Attribute Name | Required? -->
+                <xsl:apply-templates 
+                     select="xs:attribute|xs:complexType/xs:attribute" 
+                     mode="contentmodel" />
+              </xsl:otherwise>
+            </xsl:choose>
+            </table>
+            <!-- end the inner content model table -->
           </td>
-          </xsl:otherwise>
-        </xsl:choose>
-
         <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
       </tr>
     </xsl:if>
   </xsl:template>
    
   <xsl:template match="xs:sequence" mode="contentmodel">
+    <tr>
+    <td colspan="3" class="tablepanel">
     <xsl:text> A sequence of (</xsl:text>
+    </td>
+    </tr>
     <!-- Find all of the children of this sequence and list them -->
     <xsl:apply-templates 
          select="xs:element|xs:complexType|xs:sequence|xs:choice" 
          mode="contentmodel" />
+    <tr>
+    <td colspan="3" class="tablepanel">
     <xsl:text>)</xsl:text>
+    </td>
+    </tr>
 
     <xsl:if test="name(..) = 'xs:choice'
-	         and not(position()=last())">
-      <p>OR</p>
+                 and not(position()=last())">
+    <tr>
+    <td colspan="3" class="tablepanel">
+      OR
+    </td>
+    </tr>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="xs:choice" mode="contentmodel">
+    <tr>
+    <td colspan="3" class="tablepanel">
     <xsl:text> A choice of (</xsl:text>
+    </td>
+    </tr>
     <!-- Find all of the children of this choice and list them -->
     <xsl:apply-templates 
          select="xs:element|xs:complexType|xs:sequence|xs:choice" 
          mode="contentmodel" />
+    <tr>
+    <td colspan="3" class="tablepanel">
     <xsl:text>)</xsl:text>
+    </td>
+    </tr>
   </xsl:template>
 
   <xsl:template match="xs:element" mode="contentmodel">
         <!--give each element a link to its definition -->
-        <p>
+        
+	<tr>
+	<td class="tablepanel">
         <a class="sitelink">
           <xsl:attribute name="href">
             <xsl:text>#</xsl:text>
@@ -220,29 +270,36 @@
           <xsl:value-of select="./@name"/>
           <xsl:value-of select="./@ref"/>
         </a>
-        [
+	</td>
+	<td class="tablepanel">
         <xsl:choose>
           <xsl:when test="./@minOccurs &gt; '0'">Required</xsl:when>
           <xsl:otherwise>Optional</xsl:otherwise>
         </xsl:choose>
-        <xsl:text> </xsl:text>
+	</td>
+	<td class="tablepanel">
         <xsl:choose>
           <xsl:when test="./@maxOccurs = '1'">Once</xsl:when>
           <xsl:otherwise>Multiple Times</xsl:otherwise>
         </xsl:choose>
-        ]
-        </p>
+	</td>
+        </tr>
 
         <xsl:if test="name(..) = 'xs:choice' 
-	              and not(position()=last())">
-        <p>OR</p>
+                      and not(position()=last())">
+        <tr>
+        <td colspan="3" class="tablepanel">
+          OR
+        </td>
+        </tr>
         </xsl:if>
   </xsl:template>
  
   <!-- step through the attributes -->
   <xsl:template match="xs:attribute" mode="contentmodel">
         <!--give each attribute link to its definition -->
-        <p>
+	<tr>
+	<td class="tablepanel">
         <a class="sitelink">
           <xsl:attribute name="href">
             <xsl:text>#</xsl:text>
@@ -253,24 +310,26 @@
           <xsl:value-of select="./@name"/>
           <xsl:value-of select="./@ref"/>
         </a>
+	</td>
 
         <!-- display the use -->
         <xsl:if test="./@use">
-          [ 
+	<td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@use"/>
           </span> 
-          ]
+	</td>
         </xsl:if>
 
         <!-- display the default value -->
         <xsl:if test="./@value">
-          <p>Default value:
+	<td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@value"/>
-          </span></p>
+          </span>
+	</td>
         </xsl:if>
-        </p>
+	</tr>
   </xsl:template>
   
   <!-- step through the attributes -->
