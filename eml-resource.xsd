@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-24 01:49:06 $'
-      '$Revision: 1.38 $'
+          '$Date: 2002-05-24 20:19:43 $'
+      '$Revision: 1.39 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,53 +81,54 @@
         </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
-        <xs:complexType>
-          <xs:simpleContent>
-            <xs:extension base="xs:string">
-              <xs:attribute name="system" type="xs:string" use="optional"/>
-            </xs:extension>
-          </xs:simpleContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="shortName" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="shortName" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Short Name
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               A short name that describes the resource, sometimes 
               a filename.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'shortName' field provides a concise name that 
               describes the resource that is being documented. It is 
               the appropriate place to store a filename associated with 
               other storage systems.
             </doc:description>
-            <doc:example>
+              <doc:example>
               vernal-data-1999
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the 
               ISO 19115.3 standard (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="title" type="xs:string" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="title" type="xs:string" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Title
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               A brief description of the resource, providing enough detail
               to differentiate it from other similar resources.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'title' field provides a description of the
               resource that is being documented that is long enough
               to differentiate it from other similar resources.  Multiple
@@ -135,241 +136,241 @@
               the title in more than one language (use the "xml:lang"
               attribute to indicate the language if not English/en).
             </doc:description>
-            <doc:example>
+              <doc:example>
               Vernal pool amphibian density data, Isla Vista, 1990-1996.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the 
               ISO 19115.3 standard (iso-geo-md-2000June-draft).
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Creator
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The people or organizations who created this resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'creator' element provides the full name of the
               person, organization, or position who created the resource.  
               The list of creators for a resource represent the people and
               organizations who should be cited for the resource.
             </doc:description>
-            <doc:example>
+              <doc:example>
               For a book, the creators are its authors.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999).
               It has parallel semantics to the Creator element in Dublin Core.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Metadata Provider
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The people or organizations who created provided documentation
               and other metadata for this resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'metadataProvider' element provides the full name of the
               person, organization, or position who created documentation
               for the resource.  
             </doc:description>
-            <doc:example>
+              <doc:example>
               The scientist who collected the data, sometimes a data
               technician, or other individual.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               New in EML 2.0.0.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="associatedParty" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="associatedParty" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Associated Party
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               Other people or organizations who should be associated with
               this resource.  
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'associatedParty' element provides the full name of 
               other people, organizations, or positions who should be
               associated with the resource.  These parties might play
               various roles in the creation or maintenance of the resource,
               and these roles should be indicated in the "role" element.
             </doc:description>
-            <doc:example>
+              <doc:example>
               The technician who collected the data.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               New in EML 2.0.0.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:complexContent>
-            <xs:extension base="rp:ResponsibleParty">
-              <xs:sequence>
-                <xs:element name="role" type="rp:RoleType">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="rp:ResponsibleParty">
+                <xs:sequence>
+                  <xs:element name="role" type="rp:RoleType">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
                         Role
                       </doc:tooltip>
-                      <doc:summary>
+                        <doc:summary>
                         The role the party played with respect to the resource.
                       </doc:summary>
-                      <doc:description>
+                        <doc:description>
                         Use this field to describe the role the party played 
                         with respect to the resource.  Some potential roles
                         include technician, reviewer, principal investigator,
                         and many others.
                       </doc:description>
-                      <doc:example><![CDATA[<role>principalInvestigator</role>]]></doc:example>
-                      <doc:lineage>
+                        <doc:example><![CDATA[<role>principalInvestigator</role>]]></doc:example>
+                        <doc:lineage>
                         From ISO.
                       </doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:element>
-              </xs:sequence>
-            </xs:extension>
-          </xs:complexContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="pubDate" type="yearDate" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="pubDate" type="yearDate" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Publication date
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The publication date of the resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'pubDate' field represents the date that the resource was
               published.  The format should be represented as: CCYY, which
               represents a 4 digit year, or as CCYY-MM-DD, 
               which denotes the full year, month, and day. Note that month and
               day are optional components.  Formats must conform to ISO 8601.
             </doc:description>
-            <doc:example>
+              <doc:example>
               1999-10-26
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
               The string should follow the date standard described in ISO
               8601.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="language" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="language" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Language
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The language in which the resource is written.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The language in which the resource is written.  This can be
               a well-known language name, or one of the ISO language
               codes to be more precise.
             </doc:description>
-            <doc:example>
+              <doc:example>
               English
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               From Dublin Core Element Set.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="series" type="xs:string" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="series" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Series
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               The series from which the resource came.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               This field describes the series of resources that include the
               resource being described.  For example, a volume of a 
               journal may be part of a series of the journal for a 
               particular year.
             </doc:description>
-            <doc:example>
+              <doc:example>
               Volume 20
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
               and ISO 19115.3 standard (iso-geo-md-2000June-draft)
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="abstract" minOccurs="0">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="abstract" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Abstract
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               A brief overview of the resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               This field provides a container for one or more paragraph 
               fields that give a brief overview of the resource 
               that is being documented. 
             </doc:description>
-            <doc:example>
+              <doc:example>
               Please see the examples for the subfields contained 
               within this field.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     Abstract paragraph
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     The paragraph field for the text in an abstract.
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     This field is intended for the text of an abstract
                     that gives a brief overview of the resource.  There
                     may be one or more paragraphs within the abstract.
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     The major unanswered question in marine ecology is the
                     degree of connectedness between local populations. Put
                     another way, what proportion of young arriving into a
@@ -384,26 +385,26 @@
                     it is dependent on other populations for recruitment,
                     and the degree to which it supplies other areas.
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     This field was introduced into EML 2.0, and was derived from
                     EML 1.3.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="keywordSet" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="keywordSet" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Keyword information
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
                Keyword information that describes the resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               The 'keywordSet' element is a container for the 'keyword' and
               'keywordThesaurus' fields.  Each keywordSet field can contain
               one or more keywords and a name of a thesaurus for the set of
@@ -411,164 +412,164 @@
               keyword (i.e., keywords should not be separated by commas or
               other delimiters).
             </doc:description>
-            <doc:example>
+              <doc:example>
               Please see the examples for the subfields contained 
               within this field.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="keyword" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="keyword" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     Keyword
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     A single keyword that describes the resource.
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     This field names a keyword or keyphrase that concisely 
                     describes the resource or is related to the resource.
                     Each keyword field should contain one and only one 
                     keyword (i.e., keywords should not be separated by commas or
                     other delimiters).
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     biodiversity
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from EML 1.3. and the ISO 19115.3 standard
                     (iso-geo-md-2000June-draft).
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>
                         Keyword type
                       </doc:tooltip>
-                          <doc:summary>
+                            <doc:summary>
                         The type of each keyword.
                       </doc:summary>
-                          <doc:description>
+                            <doc:description>
                         This field classifies the keyword that has been
                         provided from a list of pre-determined categories. The
                         possible types are listed in the example.
                       </doc:description>
-                          <doc:example>
+                            <doc:example>
                         "discipline","place","stratum","temporal","thematic", 
                         or "taxonomic"
                       </doc:example>
-                          <doc:lineage>
+                            <doc:lineage>
                         This field was introduced into EML 2.0, and
                         was derived from EML 1.3. and the  ISO 19115.3
                         standard(iso-geo-md-2000June-draft).
                       </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:attribute>
-                  </xs:extension>
-                </xs:simpleContent>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="keywordThesaurus" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="keywordThesaurus" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     Keyword thesaurus
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     The name of a thesaurus from which the keyword is derived.
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     This field provides the name of the official keyword
                     thesaurus from which keyword was derived.  The keyword
                     thesauri are usually discipline specific.
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     IRIS keyword thesaurus
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     This field was introduced into EML 2.0, and
                     was derived from EML 1.3. and the  ISO 19115.3
                     standard(iso-geo-md-2000June-draft).
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="additionalInfo" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="additionalInfo" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Additional Information
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               Any extra information pertitent to the resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               This field provides any information that is not 
               characterized by the other resource metadata fields.
             </doc:description>
-            <doc:example>
+              <doc:example>
               Copyright 2001, Robert Warner
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     Paragraph
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     The paragraph field for the additional text.
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     This field is intended for the text 
                     that gives additional information about the resource.  
                     There may be one or more paragraphs.
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     Copyright 2001, Robert Warner
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     This field was introduced into EML 2.0.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="intellectualRights" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>Intellectual Property Rights</doc:tooltip>
-            <doc:summary>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="intellectualRights" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Intellectual Property Rights</doc:tooltip>
+              <doc:summary>
               Intellectual property rights regarding usage and 
               licensing of this resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               Typically, an intellectual Rights element will contain a rights 
               management statement for the resource, or reference a service 
               providing such information. Rights information 
@@ -578,121 +579,121 @@
               for attribution, or other requirements the owner would like to 
               impose.
             </doc:description>
-            <doc:example>
+              <doc:example>
               Copyright 2001 Regents of the University of California 
               Santa Barbara.  Free for use by all individuals provided that 
               the owners are acknowledged in any use or publication.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     Paragraph
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     The paragraph of text.
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     A paragraph of text.
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     Copyright 2001, Robert Warner
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     This field was introduced into EML 2.0.
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="distribution" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>Distribution Information
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="distribution" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Distribution Information
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               Information on how the resource is distributed online and offline
             </doc:summary>
-            <doc:description>
+              <doc:description>
               This element provides information on how the resource is 
               distributed online and offline.  Connections to online 
               systems can be described as URLs and as a list of relevant
               connection parameters.
             </doc:description>
-            <doc:example/>
-            <doc:lineage>
+              <doc:example/>
+              <doc:lineage>
               Derived from distribution elements in the FGDC standard.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:choice maxOccurs="unbounded">
-            <xs:element name="online">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Connection Information
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+              <xs:element name="online">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Connection Information
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     Connection information for accessing the resource online
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     Connection information for accessing the resource online,
                     represented either as a URL or as a series of named
                     parameters that are needed in order to connect.
                   </doc:description>
-                  <doc:example/>
-                  <doc:lineage/>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="url">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                    <doc:example/>
+                    <doc:lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="url">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                             Download site URL
                           </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                            A URL (Uniform Resource Locator) from which this resource can be downloaded
                           </doc:summary>
-                        <doc:description>
+                          <doc:description>
                             A URL (Uniform Resource Locator) from which this resource can be downloaded.  
                             This includes any information needed to access this site, such as 
                             connection information.
                           </doc:description>
-                        <doc:example>http://data.org/getdata?id=98332</doc:example>
-                        <doc:lineage>
+                          <doc:example>http://data.org/getdata?id=98332</doc:example>
+                          <doc:lineage>
                             ISO CD 19115.3, Geographic information - Metadata
                           </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                    <xs:complexType>
-                      <xs:simpleContent>
-                        <xs:extension base="xs:string">
-                          <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
-                        </xs:extension>
-                      </xs:simpleContent>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="connectionNotes" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>Parameter Value
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="connectionNotes" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Parameter Value
                           </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                             A value of one of the parameters needed to
                             connect using this connection.
                           </doc:summary>
-                        <doc:description>
+                          <doc:description>
                             A value of one of the parameters needed to
                             connect using this connection.  In general, if a URL
                             scheme exists for this type of connection, it
@@ -701,216 +702,218 @@
                             parameters such as host names and ports, paths,
                             UNC names, CGI parameters, etc.
                           </doc:description>
-                        <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
-                        <doc:lineage>
+                          <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
+                          <doc:lineage>
                             New in EML 2.0.0
                           </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                    <xs:complexType>
-                      <xs:simpleContent>
-                        <xs:extension base="xs:string"/>
-                      </xs:simpleContent>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="offline">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string"/>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="offline">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
                     medium of the resource
                   </doc:tooltip>
-                  <doc:summary>
+                    <doc:summary>
                     the medium on which this resource is distributed, either digitally or as hardcopy
                   </doc:summary>
-                  <doc:description>
+                    <doc:description>
                     the medium on which this resource is distributed digitally, such as 3.5" 
                     floppy disk, or various tape media types, or 'hardcopy'
                   </doc:description>
-                  <doc:example>
+                    <doc:example>
                     CD-ROM, 3.5 in. floppy disk, Zip disk
                   </doc:example>
-                  <doc:lineage>
+                    <doc:lineage>
                     ISO CD 19115.3, Geographic information - Metadata
                   </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="mediumName" type="xs:string" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="mediumName" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           Medium name
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           Name of the medium that for this resource distribution
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           Name of the medium on which this resource is distributed.  
                           Can be various digital media such as tapes and disks, or 
                           printed media which can collectively be termed 'hardcopy'.
                         </doc:description>
-                        <doc:example>
+                          <doc:example>
                           Tape, 3.5 inch Floppy Disk, hardcopy
                         </doc:example>
-                        <doc:lineage>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           density of the digital medium
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           the density of the digital medium if this is 
                           relevant.
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           the density of the digital medium if this is 
                           relevant.  Used mainly for floppy disks 
                           or tape.
                         </doc:description>
-                        <doc:example>
+                          <doc:example>
                           High Density (HD), Double Density (DD)
                         </doc:example>
-                        <doc:lineage>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           units of a numerical density
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           a numerical density's units
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           if a density is given numerically, the units 
                           should be given here.  
                         </doc:description>
-                        <doc:example>
+                          <doc:example>
                           B/cm
                         </doc:example>
-                        <doc:lineage>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           storage volume 
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           total volume of the storage medium
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           the total volume of the storage medium on 
                           which this resource is shipped.
                         </doc:description>
-                        <doc:example>
+                          <doc:example>
                           650 MB
                         </doc:example>
-                        <doc:lineage>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           medium format
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           format of the medium on which the resource is 
                           shipped.
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           the file system format of the medium on 
                           which the resource is shipped
                         </doc:description>
-                        <doc:example>
+                          <doc:example>
                           NTFS, FAT32, EXT2, QIK80
                         </doc:example>
-                        <doc:lineage>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                  <xs:element name="mediumNote" type="xs:string" minOccurs="0">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="mediumNote" type="xs:string" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
                           note about the media
                         </doc:tooltip>
-                        <doc:summary>
+                          <doc:summary>
                           note about the media
                         </doc:summary>
-                        <doc:description>
+                          <doc:description>
                           any additional pertitant information about the
                           media
                         </doc:description>
-                        <doc:example/>
-                        <doc:lineage>
+                          <doc:example/>
+                          <doc:lineage>
                           ISO CD 19115.3, 
                           Geographic information - Metadata
                         </doc:lineage>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:choice>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="coverage" type="cov:Coverage" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="coverage" type="cov:Coverage" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
               Resource coverage
             </doc:tooltip>
-            <doc:summary>
+              <doc:summary>
               Extent of the coverage of the resource.
             </doc:summary>
-            <doc:description>
+              <doc:description>
               This element describes the extent of the coverage of the
               resource in terms of its spatial extent, temporal extent, and
               taxonomic extent.  For data sets, this is useful to specify
               the entire extent to which all of the data might apply.
             </doc:description>
-            <doc:example>
+              <doc:example>
               See the coverage module for examples.
             </doc:example>
-            <doc:lineage>
+              <doc:lineage>
               Derived from the temporalCoverage element that was introduced 
               into EML 1.4.
             </doc:lineage>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
     <xs:attribute name="id" type="xs:ID" use="required">
       <xs:annotation>
         <xs:appinfo>
