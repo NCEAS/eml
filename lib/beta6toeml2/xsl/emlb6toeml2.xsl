@@ -24,10 +24,11 @@
     <eml:eml
       packageId = "{$dsb6/dataset/identifier}"
       system= "knb"
-      xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
+      xmlns:eml="eml://ecoinformatics.org/eml-2.0.0"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0"
       xmlns:stmml="http://www.xml-cml.org/schema/stmml"
-      xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd"> 
+      xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0 eml.xsd"> 
       <dataset>
         <xsl:if test="$dsb6/dataset/shortName!=''">
           <xsl:element name="shortName">
@@ -119,7 +120,7 @@
               </xsl:for-each>
               <xsl:if test="$dsb6/dataset/keywordSet/keywordThesaurus!=''">
                 <xsl:element name="keywordThesaurus">
-                  <xsl:value-of select="."/>
+                  <xsl:value-of select="$dsb6/dataset/keywordSet/keywordThesaurus"/>
                 </xsl:element>
               </xsl:if>
             </xsl:element>

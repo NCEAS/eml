@@ -90,7 +90,7 @@
               </xsl:for-each>
               <xsl:if test="$citb6/citation/keywordSet/keywordThesaurus!=''">
                 <xsl:element name="keywordThesaurus">
-                  <xsl:value-of select="."/>
+                  <xsl:value-of select="$citb6/citation/keywordSet/keywordThesaurus"/>
                 </xsl:element>
               </xsl:if>
             </xsl:element>
