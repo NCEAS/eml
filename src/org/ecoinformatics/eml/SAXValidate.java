@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2003-11-01 01:17:18 $'
- *    '$Revision: 1.6 $'
+ *      '$Author: berkley $'
+ *        '$Date: 2004-07-09 16:44:35 $'
+ *    '$Revision: 1.7 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,6 +53,8 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
+
+import edu.ucsb.nceas.configxml.*;
 
 /**
  * Validate an XML document using a SAX parser
@@ -116,8 +118,20 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
                                   ClassNotFoundException,
                                   SAXException, SAXParseException
   {
-    runTest(xml, parserName, 
-            "eml://ecoinformatics.org/@eml-version@ eml.xsd");
+    ConfigXML config;
+    String namespaces;
+    URL configFile = getClass().getResource("@configfileinemljar@");
+    try
+    {
+      config = new ConfigXML(configFile.openStream());
+      namespaces = config.get("namespaces", 0);
+    }
+    catch(Exception e)
+    {
+      throw new SAXException("Config file not found: " + e.getMessage());
+    }
+    
+    runTest(xml, parserName, namespaces);
   }
 
   /**
