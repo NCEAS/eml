@@ -14,9 +14,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Chris Jones, Chad Berkley, Jivka Bojilova
 
-     '$Author: bojilova $'
-       '$Date: 2001-02-12 22:35:44 $'
-   '$Revision: 1.1 $'
+     '$Author: jones $'
+       '$Date: 2001-02-13 18:22:00 $'
+   '$Revision: 1.2 $'
 
     </xs:documentation>
     <xs:appInfo>
@@ -99,7 +99,7 @@
         <xs:element ref="staff"
                     minOccurs="0" maxOccurs="unbounded"/>	
       </xs:sequence>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="originator" type="rp:ResponsibleParty">
@@ -144,7 +144,7 @@
     </xs:complexType>
   </xs:element>
 	
-  <element name = "objectives">
+  <xs:element name = "objectives">
     <xs:complexType>
       <xs:annotation>
 	<xs:appInfo>

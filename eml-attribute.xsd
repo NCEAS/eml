@@ -13,9 +13,9 @@
                  National Center for Ecological Analysis and Synthesis
         Authors: Matt Jones, Zheng Wang, and Noah Goldstein
 
-       '$Author: bojilova $'
-         '$Date: 2001-02-10 00:59:08 $'
-     '$Revision: 1.1 $'
+       '$Author: jones $'
+         '$Date: 2001-02-13 18:22:00 $'
+     '$Revision: 1.2 $'
       -->
     </xs:documentation>
     <xs:appInfo>
@@ -72,7 +72,7 @@
                     minOccurs="1" maxOccurs="1"/>	
         <xs:element name="attributeDefinition" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>	
-        <xs:element type="unit" type="xs:string"
+        <xs:element name="unit" type="xs:string"
                     minOccurs="0" maxOccurs="1"/>	
         <xs:element name="storageType" type="xs:string"
                     minOccurs="0" maxOccurs="1"/>
@@ -87,7 +87,7 @@
         <xs:element ref="fieldFormat"
                     minOccurs="0" maxOccurs="1"/>	
       </xs:sequence>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="codeDefinition">
@@ -98,7 +98,7 @@
         <xs:element name="definition" type="xs:string"
                     minOccurs="1" maxOccurs="1"/>	
       </xs:sequence>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="numericRange">
@@ -109,7 +109,7 @@
         <xs:element name="maximum" type="xs:string"
                     minOccurs="0" maxOccurs="1"/>	
       </xs:sequence>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="fieldFormat">
@@ -118,7 +118,7 @@
         <xs:element ref="attributeWidth" />	
         <xs:element name="fixedWidth" type="xs:strint" />	
       </xs:choice>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="attributeWith">
@@ -127,7 +127,7 @@
         <xs:element name="delimiter" type="xs:string"
                     minOccurs="1" maxOccurs="unbounded"/>	
       </xs:sequence>
-    <xs:complexType>
+    </xs:complexType>
   </xs:element>
 	
 </xs:schema>
