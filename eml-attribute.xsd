@@ -33,9 +33,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.66 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-30 15:30:08 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,14 +61,14 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             dataset entities
           </title>
           <para>
-            The EML Attribute Module describes all attributes (variables) in 
-            a data entity: dataTable, spatialRaster, spatialVector, 
-            storedProcedure, view or otherEntity). The description includes 
-            the name and definition of each attribute, its type, its 
-            allowable range (if numeric), definitions of coded values, 
-            and other pertinent information. Two structures exist in this 
-            module: 1.  attribute-used to define a single attribute; 
-            2. attributeList is used to define a discreet list of attributes 
+            The EML Attribute Module describes all attributes (variables) in
+            a data entity: dataTable, spatialRaster, spatialVector,
+            storedProcedure, view or otherEntity). The description includes
+            the name and definition of each attribute, its type, its
+            allowable range (if numeric), definitions of coded values,
+            and other pertinent information. Two structures exist in this
+            module: 1.  attribute-used to define a single attribute;
+            2. attributeList is used to define a discreet list of attributes
             that go together in some logical way.
           </para>
         </section>
@@ -1133,6 +1133,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:enumeration value="squareMile" />
       <xs:enumeration value="cubicInch" />
       <xs:enumeration value="fahrenheit" />
+      <xs:enumeration value="dimensionless" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
