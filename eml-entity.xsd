@@ -24,8 +24,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-11 22:20:04 $'
-      '$Revision: 1.49 $'
+          '$Date: 2002-06-12 15:33:53 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="attributeList" type="att:AttributeListType"/>
+          <xs:element name="attributeList" type="att:AttributeListType" minOccurs="0"/>
         </xs:sequence>
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
