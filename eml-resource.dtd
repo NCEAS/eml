@@ -7,28 +7,30 @@
       Authors: Chad Berkley
 
      '$Author: berkley $'
-       '$Date: 2000-07-14 21:11:32 $'
-   '$Revision: 1.1 $'
+       '$Date: 2000-08-09 21:08:32 $'
+   '$Revision: 1.2 $'
 -->
 
 <!-- The root element -->
 <!ELEMENT resource (dataset | literature)>
 
 <!-- entity referring to the iso-party fields -->
-<!ENTITY % resParty SYSTEM "iso-party.dtd">
+
+
+<!ENTITY % resParty SYSTEM "http://alpha.nceas.ucsb.edu/dtd/schemas/iso-party.dtd">
 %resParty;
 
+<!ELEMENT keywordInfo (keyword?, keywordType?, keywordThesaurus*)>
 <!ELEMENT keyword (#PCDATA)>
 <!ELEMENT keywordType (#PCDATA)>
 <!ELEMENT keywordThesaurus (#PCDATA)>
-<!ENTITY % keywordInfo "(keyword?, keywordType?, keywordThesaurus*)">
 
 <!-- common fields -->
 <!ELEMENT identifier (#PCDATA)>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT alternateTitle (#PCDATA)>
-<!ELEMENT originator (%responsibleParty;)>
-<!ELEMENT publisher (%responsibleParty;)>
+<!ELEMENT originator ((%responsibleParty;))>
+<!ELEMENT publisher ((%responsibleParty;))>
 <!ELEMENT pubdate (#PCDATA)>
 <!ELEMENT pubplace (#PCDATA)>
 <!ELEMENT series (#PCDATA)>
@@ -37,15 +39,18 @@
 <!ELEMENT additionalInfo (#PCDATA)>
 
 <!-- entity to conglomerate these fields into one name -->
-<!ENTITY % resbase "(identifier?, title, alternateTitle?, originator+, publisher?, pubdate?,
-                     pubplace?, series?, abstract?, (%keywordInfo;)*, url*, additionalInfo?)" >
+<!ENTITY % resbase "(identifier?, title, alternateTitle?, 
+                     originator+, publisher?, pubdate?,
+                     pubplace?, series?, abstract?, 
+                     keywordInfo*, url*, additionalInfo?)" >
 
 <!-- The dataset branch -->
 <!ELEMENT dataset ((%resbase;), geoForm)>
 <!ELEMENT geoForm (#PCDATA)>
 
 <!-- The literature branch -->
-<!ELEMENT literature ((%resbase;), ISBN?, ISSN?, editor*, edition?, volume?)>
+<!ELEMENT literature ((%resbase;), ISBN?, ISSN?, editor*, 
+                      edition?, volume?)>
 <!ELEMENT ISBN (#PCDATA)>
 <!ELEMENT ISSN (#PCDATA)>
 <!ELEMENT editor (#PCDATA)>
