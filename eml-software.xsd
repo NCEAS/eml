@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <xs:schema targetNamespace="eml://ecoinformatics.org/software-2.0.0rc1"
-xmlns="eml://ecoinformatics.org/software-2.0.0rc1" 
+xmlns="eml://ecoinformatics.org/software-2.0.0rc1"
 xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
 xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1"
 xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
@@ -30,9 +30,9 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: gries $'
-          '$Date: 2002-09-20 16:43:09 $'
-      '$Revision: 1.29 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-23 20:43:46 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -75,8 +75,6 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
         package can run on multiple hardware and/or operating systems. See
         implementation element documentation for a more thorough
         explanation.</doc:description>
-        <doc:example>Please see the examples for each subelement of the
-        software type.</doc:example>
         <doc:lineage>The software Element was introduced in 2.0.0 beta 9. It
         replaces the software element. The software element was introduced
         into EML 2.0, however it was derived from the eml-software module in
@@ -99,7 +97,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
               multiple implementations. So for example, a package may be
               written in java and the package may run on numerous hardware
               and/or operating systems like Pentium/Linux, Pentium/NT and so
-              on... Hardware and Software descriptions that have different
+              on. Hardware and Software descriptions that have different
               requirements can be placed here.</doc:description>
               <doc:example>Please see the examples for each subelement of the
               implementation type.</doc:example>
@@ -114,11 +112,11 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                    <doc:tooltip>Distribution</doc:tooltip>
-                   <doc:summary>Information on how the resource is distributed 
+                   <doc:summary>Information on how the resource is distributed
                    online and offline</doc:summary>
-                   <doc:description>This element provides information on how the
-                   resource is distributed online and offline. Connections to 
-                   online systems can be described as URLs and as a list of 
+                   <doc:description>This field provides information on how the
+                   resource is distributed online and offline. Connections to
+                   online systems can be described as URLs and as a list of
                    relevant connection parameters.</doc:description>
                    <doc:lineage>Derived from distribution elements in the FGDC
                    standard.</doc:lineage>
@@ -129,9 +127,10 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Physical Size</doc:tooltip>
-                    <doc:summary>Physical size of an implemetation in Kilo,
-                    Mega .... bytes.</doc:summary>
-                    <doc:description />
+                    <doc:summary>Physical size of an implemetation.
+                    </doc:summary>
+                    <doc:description>The physical size of an implemetation on
+                    disk.</doc:description>
                     <doc:example>100 Megabytes</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
@@ -141,8 +140,9 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                   <xs:appinfo>
                     <doc:tooltip>International Language</doc:tooltip>
                     <doc:summary>The International Language of the software
-                    implementation</doc:summary>
-                    <doc:description />
+                    implementation.</doc:summary>
+                    <doc:description>The International Language of the software
+                    implementation.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -152,11 +152,9 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                         <xs:appinfo>
                           <doc:tooltip>Language Value</doc:tooltip>
                           <doc:summary>The actual value for the language or
-                          code</doc:summary>
-                          <doc:description>The value could be just a text
-                          string like english or french or it could be an
-                          International Language code like ISO
-                          639-2.</doc:description>
+                          a code for the language.</doc:summary>
+                          <doc:description>The actual value for the language or
+                          a code for the language.</doc:description>
                           <doc:example>english</doc:example>
                           <doc:example>eng</doc:example>
                         </xs:appinfo>
@@ -168,9 +166,10 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                         <xs:appinfo>
                           <doc:tooltip>Language Code Standard</doc:tooltip>
                           <doc:summary>The International Language Code being
-                          used in the field languageValue</doc:summary>
-                          <doc:description>See
-                          www.loc.gov/standards/iso639-2/</doc:description>
+                          used in the field languageValue.</doc:summary>
+                          <doc:description>The International Language Code being
+                          used in the field languageValue. See
+                          http://www.loc.gov/standards/iso639-2/</doc:description>
                           <doc:example>ISO639-2</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
@@ -183,13 +182,16 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Operating System</doc:tooltip>
-                    <doc:summary>Operating System(s) an implementation runs
-                    on</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    <doc:summary>The operating system(s) an implementation runs
+                    on.</doc:summary>
+                    <doc:description>The operating system(s) an implementation runs
+                    on.</doc:description>
+                    <doc:example>Linux</doc:example>
                     <doc:example>Windows 95</doc:example>
-                    <doc:example>Window NT</doc:example>
+                    <doc:example>Windows NT4</doc:example>
                     <doc:example>Windows XP</doc:example>
                     <doc:example>Sun Solaris 2.8</doc:example>
+                    <doc:example>Mac OS X</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -198,12 +200,14 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Machine Processor</doc:tooltip>
-                    <doc:summary>The Machine Processor required for
-                    implementation</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    <doc:summary>The machine processor(s) required for
+                    executing the implementation.</doc:summary>
+                    <doc:description>The Machine Processor required for
+                    executing the implementation.</doc:description>
                     <doc:example>Pentium II</doc:example>
                     <doc:example>Intel 486</doc:example>
                     <doc:example>SUN Sparc</doc:example>
+                    <doc:example>Motorola</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -211,9 +215,10 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Virtual Machine</doc:tooltip>
-                    <doc:summary>Virtual Machine implementation
-                    requires</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    <doc:summary>The virtual machine that the implementation
+                    requires.</doc:summary>
+                    <doc:description>The virtual machine that the implementation
+                    requires.</doc:description>
                     <doc:example>Java Virtual Machine 1.2</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
@@ -223,10 +228,12 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                   <xs:appinfo>
                     <doc:tooltip>Disk Usage</doc:tooltip>
                     <doc:summary>The minimum amount of Disk Space required to
-                    install an implementation in Kilo, Mega bytes
-                    etc...</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    install this implementation.</doc:summary>
+                    <doc:description>The minimum amount of Disk Space required to
+                    install this implementation.</doc:description>
                     <doc:example>220 Megabytes</doc:example>
+                    <doc:example>15 MB</doc:example>
+                    <doc:example>100 kB</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -236,9 +243,11 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                   <xs:appinfo>
                     <doc:tooltip>Runtime Memory Usage</doc:tooltip>
                     <doc:summary>The minimum amount of memory required to run
-                    an lmplementation in Kilo, Mega b ytes etc...</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    an lmplementation.</doc:summary>
+                    <doc:description>The minimum amount of memory required to run
+                    an lmplementation.</doc:description>
                     <doc:example>32 Megabytes</doc:example>
+                    <doc:example>128 MB</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -247,9 +256,10 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Programming Language</doc:tooltip>
-                    <doc:summary>The Computer Programming Language the Software
-                    Package was programmed in.</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    <doc:summary>The computer programming language the software
+                    package was programmed in.</doc:summary>
+                    <doc:description>The computer programming language the software
+                    package was programmed in.</doc:description>
                     <doc:example>C++</doc:example>
                     <doc:example>Java</doc:example>
                     <doc:example>C</doc:example>
@@ -270,24 +280,45 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                     <doc:tooltip>Checksum</doc:tooltip>
                     <doc:summary>The generated checksum value of a software
                     package that is a self-contained module.</doc:summary>
-                    <doc:description>see summary</doc:description>
+                    <doc:description>The generated checksum value of a software
+                    package that is a self-contained module.</doc:description>
                     <doc:example>$sum software.jar 27021 22660</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element ref="dependency" minOccurs="0"
-              maxOccurs="unbounded" />
+              maxOccurs="unbounded" >
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>dependency</doc:tooltip>
+                    <doc:summary>This fields documents any dependencies
+                    that this implementation might have.</doc:summary>
+                    <doc:description>This fields documents any dependencies
+                    that this implementation might have.</doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>dependency</doc:tooltip>
+              <doc:summary>This fields documents any dependencies
+              that this software package in general might have.</doc:summary>
+              <doc:description>This fields documents any dependencies
+              that this software package in general might have.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="licenseURL" type="xs:string">
           <xs:annotation>
            <xs:appinfo>
             <doc:tooltip>URL for License</doc:tooltip>
             <doc:summary>URL where the license can be found</doc:summary>
-            <doc:description>see summary</doc:description>
+            <doc:description>URL where the license can be found</doc:description>
            </xs:appinfo>
           </xs:annotation>
           </xs:element>
@@ -296,7 +327,7 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
            <xs:appinfo>
             <doc:tooltip>License</doc:tooltip>
             <doc:summary>Text of the license</doc:summary>
-            <doc:description>see summary</doc:description>
+            <doc:description>Text of the license</doc:description>
            </xs:appinfo>
           </xs:annotation>
          </xs:element>
@@ -317,9 +348,10 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
         <xs:element name="access" type="acc:AccessType" minOccurs="0">
           <xs:annotation>
            <xs:appinfo>
-            <doc:tooltip></doc:tooltip>
-            <doc:summary></doc:summary>
-            <doc:description></doc:description>
+            <doc:tooltip>access</doc:tooltip>
+            <doc:summary>The access control rule descriptors.</doc:summary>
+            <doc:description>The access control rule descriptors.  Please
+            see the eml-access module for more information.</doc:description>
            </xs:appinfo>
           </xs:annotation>
          </xs:element>
@@ -327,29 +359,16 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
         minOccurs="0" >
          <xs:annotation>
           <xs:appinfo>
-           <doc:tooltip></doc:tooltip>
+           <doc:tooltip>project descriptor</doc:tooltip>
            <doc:summary></doc:summary>
-           <doc:description></doc:description>
+           <doc:description>This field is a description of the project with
+           which this software product is related.  Please see the eml-project
+           module for more information.</doc:description>
           </xs:appinfo>
          </xs:annotation>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string">
-       <xs:annotation>
-        <xs:appinfo>
-         <doc:tooltip>References</doc:tooltip>
-         <doc:summary>The id of another software resource in this
-         EML document to be used to provide the software
-         information.</doc:summary>
-         <doc:description>The id of another software in
-         this EML document to be used to provide the
-         software information. This is used instead of
-         duplicating software information when an identical
-         software needs to be used multiple times in an
-         EML document.</doc:description>
-        </xs:appinfo>
-       </xs:annotation>
-      </xs:element>
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
     <xs:attribute name="id" type="xs:string" use="optional" />
     <xs:attribute name="system" type="xs:string" use="optional" />
@@ -402,15 +421,15 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
          <xs:annotation>
           <xs:appinfo>
            <doc:tooltip>Action</doc:tooltip>
-           <doc:summary>Describes what action needs to be undertaken (if any) 
-           for a software dependency at either the software package or 
+           <doc:summary>Describes what action needs to be undertaken (if any)
+           for a software dependency at either the software package or
            implementation level.</doc:summary>
            <doc:description>This element and its enumerations of assert and
-           install can be used as commands by a software application to carry 
-           out these actions on software package dependencies. This is a change 
-           from how we have used all previous elements within eml. Up until now 
-           all other elements have been simply metadata designed to describe 
-           data, literature citations, etc... with the Action element we can 
+           install can be used as commands by a software application to carry
+           out these actions on software package dependencies. This is a change
+           from how we have used all previous elements within eml. Up until now
+           all other elements have been simply metadata designed to describe
+           data, literature citations, etc... with the Action element we can
            use this module as a command to carry out the action.
            </doc:description>
            <doc:lineage>The Action Element was introduced in 2.0.0 beta
