@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: mccartne $'
- *        '$Date: 2002-10-07 22:48:29 $'
- *    '$Revision: 1.4 $'
+ *        '$Date: 2002-10-07 22:54:31 $'
+ *    '$Revision: 1.5 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
