@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-12-18 04:45:55 $'
-      '$Revision: 1.5 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-20 20:40:19 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ELEMENT eml-physical (identifier+, format, characterEncoding?, size?, authentication*, compressionMethod?, encodingMethod?, numHeaderLines?, recordDelimiter?, maxRecordLength?, quoteCharacter*, literalCharacter*, (fieldStartColumn?, (fieldWidth | fieldDelimiter))*)>
+<!ELEMENT physical (identifier+, format, characterEncoding?, size?, authentication*, compressionMethod?, encodingMethod?, numHeaderLines?, recordDelimiter?, maxRecordLength?, quoteCharacter*, literalCharacter*, (fieldStartColumn?, (fieldWidth | fieldDelimiter))*)>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT format (#PCDATA)>

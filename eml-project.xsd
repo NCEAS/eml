@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-15 22:57:54 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-05-20 20:40:19 $'
+      '$Revision: 1.29 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@
              schemaLocation="eml-literature.xsd"/>
   <xs:import namespace="eml:protocol-2.0.0beta8" 
              schemaLocation="eml-protocol.xsd"/>
-  <xs:element name="eml-project">
+  <xs:element name="project">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>

@@ -13,9 +13,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-05-15 19:10:32 $'
-      '$Revision: 1.20 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-20 20:40:19 $'
+      '$Revision: 1.21 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!ELEMENT acl (identifier+, (allow | deny)+)>
-<!ATTLIST acl order (allowFirst | denyFirst) #REQUIRED authSystem CDATA #REQUIRED>
+<!ELEMENT access (identifier+, (allow | deny)+)>
+<!ATTLIST access order (allowFirst | denyFirst) #REQUIRED authSystem CDATA #REQUIRED>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT allow (principal+, permission+)>
