@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2002-04-19 22:49:44 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: brooke $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-<xsl:import href="eml-settings.xsl" />
+  <xsl:import href="eml-literature.xsl"/>
 
   <xsl:output method="html" encoding="iso-8859-1"/>
 
@@ -45,58 +45,61 @@
           <h1>Protocol Description</h1>
           <h3>Ecological Metadata Language</h3><br />
         </center>
-        <xsl:apply-templates select="eml-protocol/identifier"/>
+        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
+        <xsl:apply-templates select="eml-protocol/identifier" mode="resource"/>
         <xsl:apply-templates select="eml-protocol/protocol"/>
+        </table>
       </body>
     </html>
   </xsl:template>
   
   <xsl:template match="protocol">
-    <table border="1">
-      <tr>
-        <td>Method</td>
-        <td><xsl:apply-templates select="method"/></td>
-      </tr>
-      <tr>
-        <td>Processing Step</td>
-        <td><xsl:apply-templates select="processingStep"/></td>
-      </tr>
-      <tr>
-        <td>Quality Control</td>
-        <td><xsl:apply-templates select="qualityControl"/></td>
-      </tr>
-    </table>
+        <xsl:for-each select="method">
+          <xsl:apply-templates select="."/>
+        </xsl:for-each>      
+        <xsl:for-each select="processingStep">
+          <xsl:apply-templates select="."/>
+        </xsl:for-each>      
+        <xsl:for-each select="qualityControl">
+          <xsl:apply-templates select="."/>
+        </xsl:for-each>      
   </xsl:template>
-  
+
+
   <xsl:template match="method">
-    <p><h3>Method</h3>
-    <xsl:apply-templates/>
-    </p>
+    <tr class="{$subHeaderStyle}"><td colspan="2">
+      <xsl:text>Method:</xsl:text></td></tr>
+      <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
+
   
   <xsl:template match="processingStep">
-    <p><h3>Processing Step</h3>
-    <xsl:apply-templates/>
-    </p>
+    <tr class="{$subHeaderStyle}"><td colspan="2">
+      <xsl:text>Processing Step:</xsl:text></td></tr>
+      <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
 
   <xsl:template match="qualityControl">
-    <p><h3>Quality Control Mechanisms</h3>
-    <xsl:apply-templates/>
-    </p>
+    <tr class="{$subHeaderStyle}"><td colspan="2">
+      <xsl:text>Quality Control Mechanisms:</xsl:text></td></tr>
+      <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
- 
-  <xsl:template match="identifier">
-    <table>
-    <tr>
-      <td><b>Metadata Identifier:</b></td>
-      <td><xsl:value-of select="."/></td>
-    </tr>
-    </table>
-  </xsl:template>
+  
+  
+  <xsl:template name="renderParagsCits">
+      <xsl:for-each select="./paragraph">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
+        &#160;</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>
+      </xsl:for-each>
 
-  <xsl:template match="paragraph">
-    <p><xsl:value-of select="."/></p>
-  </xsl:template>
+      <xsl:for-each select="./citation">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
+      Literature Citation</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+      <table width="100%">
+        <xsl:apply-templates select="."/>
+      </table></td></tr>
+      </xsl:for-each>
+  </xsl:template> 
 
 </xsl:stylesheet>

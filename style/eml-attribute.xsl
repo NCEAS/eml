@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <!--
   *  '$RCSfile: eml-attribute.xsl,v $'
-  *      Authors: Matt Jones
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -50,17 +49,17 @@
         <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
         <xsl:apply-templates select="eml-attribute/identifier" mode="resource"/>
         <tr><td class="{$subHeaderStyle}" colspan="2">
-        <xsl:text>Attributes in the Data Set</xsl:text></td></tr>
+        Attributes in the Data Set</td></tr>
         <tr>
         <td colspan="2"><table width="100%"><tr> 
-            <td class="{$firstColStyle}" width="{$firstColWidth}"><xsl:text>Attribute Name</xsl:text></td>
-            <td class="{$firstColStyle}" width="{$firstColWidth}"><xsl:text>Attribute Definition</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Unit</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Type</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Codes</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Range</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Missing</xsl:text></td>
-            <td class="{$firstColStyle}" ><xsl:text>Precision</xsl:text></td>
+            <td class="{$firstColStyle}" width="{$firstColWidth}">Attribute Name</td>
+            <td class="{$firstColStyle}" >Label</td>
+            <td class="{$firstColStyle}" >Definition</td>
+            <td class="{$firstColStyle}" >Unit</td>
+            <td class="{$firstColStyle}" >Type</td>
+            <td class="{$firstColStyle}" >Missing</td>
+            <td class="{$firstColStyle}" >Precision</td>
+            <td class="{$firstColStyle}" >Attrib Domain</td>
         </tr>
         <xsl:for-each select="eml-attribute/attribute">
           <tr valign="top">
@@ -71,35 +70,29 @@
               </xsl:choose>
             </xsl:variable>
               <td width="{$firstColWidth}" class="{$firstColStyle}"><xsl:value-of select="attributeName"/></td>
-              <td width="{$firstColWidth}" class="{$stripes}"><xsl:value-of select="attributeDefinition"/></td>
-              <td class="{$stripes}"><xsl:value-of select="unit"/></td>
-              <td class="{$stripes}"><xsl:value-of select="dataType"/></td>
-              <td class="{$stripes}">
-              <xsl:if test="normalize-space(attributeDomain/enumeratedDomain/code)!='' or normalize-space(attributeDomain/enumeratedDomain/definition)!=''">
-              <ul><xsl:for-each select="attributeDomain/enumeratedDomain">
-                    <li><xsl:value-of select="code"/>
-                        <xsl:text> - </xsl:text>
-                        <xsl:value-of select="definition"/>
-                    </li>
-                  </xsl:for-each></ul>
-              </xsl:if></td>
-              <td class="{$stripes}">
-              <xsl:if test="normalize-space(attributeDomain/numericDomain/minimum)!='' or normalize-space(attributeDomain/numericDomain/maximum)!=''">
-                <ul>
-                  <xsl:for-each select="attributeDomain/numericDomain">
-                    <li><xsl:value-of select="minimum"/>
-                        <xsl:text> - </xsl:text>
-                        <xsl:value-of select="maximum"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </xsl:if></td>
+              <td class="{$stripes}"><xsl:value-of select="attributeLabel"/>&#160;</td>
+              <td class="{$stripes}"><xsl:value-of select="attributeDefinition"/></td>
+              <td class="{$stripes}"><xsl:value-of select="unit"/>&#160;</td>
+              <td class="{$stripes}"><xsl:value-of select="dataType"/>&#160;</td>
               <td class="{$stripes}">
                 <xsl:for-each select="missingValueCode">
-                    <xsl:value-of select="."/><br />
+                    <xsl:value-of select="."/>&#160;<br />
                 </xsl:for-each>
                 </td>
-              <td class="{$stripes}"><xsl:value-of select="precision"/></td>
+              <td class="{$stripes}"><xsl:value-of select="precision"/>&#160;</td>
+
+              <td class="{$stripes}">
+              <table width="100%">
+                  <xsl:for-each select="attributeDomain/enumeratedDomain">
+                    <xsl:apply-templates select="."/>
+                  </xsl:for-each>
+                  <xsl:for-each select="attributeDomain/textDomain">
+                    <xsl:apply-templates select="."/>
+                  </xsl:for-each>
+                  <xsl:for-each select="attributeDomain/numericDomain">
+                    <xsl:apply-templates select="."/>
+                  </xsl:for-each>
+              </table></td>
           </tr>
         </xsl:for-each>
         </table>
@@ -109,4 +102,33 @@
       </body>
     </html>
   </xsl:template>
+
+
+  <xsl:template match="enumeratedDomain">
+      <tr><td colspan="3" align="center" class="{$firstColStyle}">enumerated:</td></tr>
+      <tr><td>code:</td><td>defin:</td><td>source:</td></tr>
+      <tr><td><xsl:value-of select="code"/></td>
+          <td><xsl:value-of select="definition"/></td>
+          <td><xsl:value-of select="source"/>&#160;</td>
+      </tr>
+  </xsl:template>
+  
+  <xsl:template match="textDomain">
+      <tr><td colspan="3" align="center" class="{$firstColStyle}">text:</td></tr>
+      <tr><td>defin:</td><td>pattern:</td><td>source:</td></tr>
+      <tr><td><xsl:value-of select="definition"/></td>
+          <td><xsl:for-each select="pattern">
+            <xsl:value-of select="."/><br />
+          </xsl:for-each></td>
+          <td><xsl:value-of select="source"/>&#160;</td>
+      </tr>
+  </xsl:template>  
+  
+  <xsl:template match="numericDomain">
+      <tr><td colspan="2" align="center" class="{$firstColStyle}">numeric:</td></tr>
+      <tr><td>min:</td><td>max:</td></tr>
+      <tr><td><xsl:value-of select="minimum"/></td>
+          <td><xsl:value-of select="maximum"/>&#160;</td></tr>
+  </xsl:template>  
+  
 </xsl:stylesheet>

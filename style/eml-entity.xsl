@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2002-04-22 16:04:27 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: brooke $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,9 @@
   * suitable for rendering with modern web browsers. 
 --> 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">   
-  <xsl:import href="eml-settings.xsl" />
+  <xsl:import href="eml-identifier.xsl" />
+  <xsl:import href="eml-coverage.xsl" />
+  
   <xsl:output method="html" encoding="iso-8859-1"/>
 
   <xsl:template match="/">
@@ -41,115 +43,72 @@
       </head>   
       <body> 	
         <center>           
-          <h2>Table structure description</h2>           
-          <h4>Ecological Metadata Language</h4>         
+          <h1>Table structure description</h1>           
+          <h3>Ecological Metadata Language</h3>         
         </center>
-
-        <table width="750" border="0" cellspacing="0" cellpadding="1" 
-               class="tablehead">
-          <tr>         
-            <th width="25%" align="left"><xsl:text>Table Name</xsl:text></th>
-            <td><xsl:value-of select="table-entity/entityName"/></td>
-          </tr>          
-	</table>         
-
-	<table width="750" border="0" cellspacing="0" cellpadding="1">
-          <tr>         
-            <th width="25%" align="left"><xsl:text>Metadata ID</xsl:text></th>
-            <td><xsl:value-of select="table-entity/identifier"/></td>
-          </tr>          
-          <tr>         
-            <th width="25%" align="left"><xsl:text>Table Description</xsl:text></th>
-            <td><xsl:value-of select="table-entity/entityDescription"/></td>
-          </tr>          
-          <tr>          
-            <th align="left"><xsl:text>Orientation</xsl:text></th>         
-            <td><xsl:apply-templates select="table-entity/orientation"/>               
-                </td>
-          </tr>          
-          <tr>          
-            <th align="left"><xsl:text>Case Sensitive</xsl:text></th>         
-            <td><xsl:apply-templates select="table-entity/caseSensitive"/>               
-                </td>
-          </tr>          
-          <tr>          
-            <th align="left"><xsl:text>Number of Records</xsl:text></th>         
-            <td><xsl:apply-templates select="table-entity/numberOfRecords"/>               
-                </td>
-          </tr>          
-<!-- Removed for now until we have a better style for displaying coverage
-          <tr>          
-            <th align="left"><xsl:text>Geographic Coverage</xsl:text></th>         
-            <td>
-		<xsl:if test="geographic_coverage/paragraph/text() or geographic_coverage/coordinates/lattitude/text() or geographic_coverage/coordinates/longitude/text()"><ul>
-                <xsl:for-each select="geographic_coverage">
-                <li><xsl:for-each select="paragraph">
-                      <xsl:value-of select="."/><br/>
-                    </xsl:for-each>                     
-                    <xsl:for-each select="coordinates">                        
-                      <xsl:value-of select="lattitude"/>la -                         
-                      <xsl:value-of select="longitude"/>lo<br/>
-                    </xsl:for-each>                 
-                </li>               
-                </xsl:for-each>               
-                </ul></xsl:if>
-                </td>
-          </tr>          
--->
-<!-- Removed for now until we have a better style for displaying coverage
-          <tr>          
-            <th align="left"><xsl:text>Temporal Coverage</xsl:text></th>         
-            <td>
-		<xsl:if test="temporal_coverage/*/*/*/text()"><ul>
-                <xsl:for-each select="temporal_coverage">                 
-                <li><xsl:text>Start Date </xsl:text>
-                    <xsl:apply-templates select="start_date/datetime"/> 
-                    <xsl:text> - Stop Date </xsl:text>
-                    <xsl:apply-templates select="stop_date/datetime"/>
-                </li>
-                </xsl:for-each>
-                </ul></xsl:if>
-                </td>
-          </tr>          
--->
-
-        </table>
+        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
+          <xsl:apply-templates select="table-entity/identifier" mode="resource"/>
+          <tr class="{$subHeaderStyle}"><td colspan="2">Entity:</td></tr>
+          <xsl:apply-templates select="table-entity/entityName"/>
+          <xsl:apply-templates select="table-entity/entityDescription"/>
+          <xsl:apply-templates select="table-entity/caseSensitive"/>
+          <xsl:apply-templates select="table-entity/numberOfRecords"/>
+          <xsl:apply-templates select="table-entity/orientation"/>
+          <xsl:if test="table-entity/temporalCov">
+            <xsl:apply-templates select="table-entity/temporalCov"/>
+          </xsl:if>
+          <xsl:if test="table-entity/geographicCov">
+            <xsl:apply-templates select="table-entity/geographicCov"/>
+          </xsl:if>
+          <xsl:if test="table-entity/taxonomicCov">
+            <xsl:apply-templates select="table-entity/taxonomicCov"/>
+          </xsl:if>
+          </table>
       </body>
     </html>
   </xsl:template>
-
-  <xsl:template match="table-entity/identifier">
-    <table border="0" cellspacing="0" cellpadding="1">
-      <tr>
-        <td class="highlight">
-          <b><xsl:text>Metadata ID:</xsl:text></b>
-        </td>
-        <td>
-          <xsl:value-of select="."/>
-        </td>
-      </tr>
-    </table>
+  
+  <xsl:template match="entityName">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+    Name:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+    <b><xsl:value-of select="."/></b></td></tr> 
   </xsl:template>
 
-  <xsl:template match="orientation">
-      <xsl:value-of select="@columnorrow"/>
+  <xsl:template match="entityDescription">
+        <xsl:if test="../entityDescription and normalize-space(../entityDescription)!=''">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            Description:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="."/></td></tr>
+        </xsl:if>
   </xsl:template>
 
   <xsl:template match="caseSensitive">
-    <xsl:choose>
-      <xsl:when test="@yesorno='no'">No case sensitive fields</xsl:when>
-      <xsl:when test="@yesorno='yes'">Fields are case sensitive</xsl:when>
-    </xsl:choose>
+        <xsl:if test="../caseSensitive and normalize-space(../caseSensitive/@yesorno)!=''">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            Case Sensitive?:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="./@yesorno"/></td></tr>
+        </xsl:if>
   </xsl:template>
 
-  <xsl:template match="datetime">
-    <xsl:value-of select="year"/><xsl:text>/</xsl:text>
-    <xsl:value-of select="month"/><xsl:text>/</xsl:text>
-    <xsl:value-of select="day"/><xsl:text> </xsl:text>
-    <xsl:value-of select="hour"/><xsl:text>:</xsl:text>
-    <xsl:value-of select="minute"/><xsl:text>:</xsl:text>
-    <xsl:value-of select="second"/><xsl:text>:</xsl:text>
-    <xsl:value-of select="second_fraction"/>
+  <xsl:template match="numberOfRecords">
+        <xsl:if test="../numberOfRecords and normalize-space(../numberOfRecords)!=''">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            Number Of Records:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:value-of select="."/></td></tr>
+        </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="orientation">
+    <xsl:if test="(../orientation)">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+          Orientation:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+      <xsl:if test="normalize-space(@columnorrow)='columnmajor'">
+        <xsl:text>Column-major</xsl:text>
+      </xsl:if>
+      <xsl:if test="normalize-space(@columnorrow)='rownmajor'">
+        <xsl:text>Row-major</xsl:text>
+      </xsl:if></td></tr>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet> 

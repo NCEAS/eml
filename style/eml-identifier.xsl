@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -35,15 +35,15 @@
 
     <xsl:template match="identifier"/>
     <xsl:template match="identifier" mode="resource">
-      <xsl:for-each select="../identifier">
+        <xsl:if test="normalize-space(.)">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
            Metadata Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
            <xsl:value-of select="."/></td></tr>
            <xsl:if test="normalize-space(./@system)!=''">
-            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+              <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
                 Metadata Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
                 <xsl:value-of select="./@system"/></td></tr>
-           </xsl:if>      
-      </xsl:for-each>
+           </xsl:if>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -47,9 +47,14 @@
           <h3>Ecological Metadata Language</h3>
         </center>
         <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
-          <xsl:apply-templates select="software/identifier" mode="resource"/>
+
+          <!--xsl:apply-templates select="software/identifier" mode="resource"/>
+          <xsl:apply-templates select="software/pubDate" mode="resource"/>
+          <xsl:apply-templates select="software/pubPlace" mode="resource"/>
+          <xsl:apply-templates select="software/series" mode="resource"/-->
+
+          <xsl:apply-templates select="software/*" mode="resource"/>
           <xsl:apply-templates select="software"/>
-          <xsl:apply-templates select="/" mode="resource"/>
           </table>
       </body>
     </html>
@@ -109,4 +114,14 @@
         <xsl:value-of select="../programmingLanguage"/></td></tr>
       </xsl:if>
     </xsl:template>
+    
+<!-- suppress these -->
+  <xsl:template match="identifier"/>
+  <xsl:template match="shortName"/>
+  <xsl:template match="title"/>
+  <xsl:template match="software" mode="resource"/>
+  <xsl:template match="pubDate"/>
+  <xsl:template match="pubPlace"/>
+  <xsl:template match="series"/>
+
 </xsl:stylesheet>

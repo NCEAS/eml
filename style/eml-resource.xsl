@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 16:31:28 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,8 +30,8 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:import href="eml-identifier.xsl"/>
     <xsl:import href="eml-party.xsl"/>
+    <xsl:import href="eml-identifier.xsl"/>
     
     <xsl:output method="html" encoding="iso-8859-1"/>
 
@@ -86,10 +86,14 @@
     <tr class="{$subHeaderStyle}"><td colspan="2">
       <xsl:text>Data Set Owner(s):</xsl:text></td></tr>
       <xsl:apply-templates select="./" mode="party"/>
-      </xsl:template>
-    
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr>
+  </xsl:template>
+
   <xsl:template match="originator" mode="resource">
       <xsl:apply-templates select="./" mode="party"/>
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr>
   </xsl:template>
 
    <xsl:template match="abstract"/>   
@@ -115,11 +119,13 @@
   </xsl:template> 
        
   <xsl:template name="renderKeywordSet">        
-    <xsl:if test="./keywordThesaurus and normalize-space(./keywordThesaurus)!=''">
+    <xsl:for-each select="keywordThesaurus">
+    <xsl:if test="normalize-space(.)!=''">
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Thesaurus:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:value-of select="./keywordThesaurus"/></td></tr>
+        <xsl:value-of select="."/></td></tr>
     </xsl:if>
+    </xsl:for-each>
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>&#160;</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
       <xsl:if test="normalize-space(keyword)!=''">

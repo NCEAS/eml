@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -31,24 +31,24 @@
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:import href="eml-settings.xsl"/>
-
+    <xsl:import href="eml-literature.xsl"/>
+        
     <xsl:output method="html" encoding="iso-8859-1"/>
 
-<!-- ******************** N O T E S ********************** 
-     **   1) Many of the element names in the DTD do not match     
-     **   element names in Metacat.  This XSL contains a 
-     **   mixture of the two (I have used metacat-comatible
-     **   element names where I was able to make metacat test 
-     **   files; where this was not possible, I left the 
-     **   other (dtd) names.  Need to discover which is most 
-     **   current - metacat version or eml dtd version?????
+<!-- 
+     *********************** N O T E S ************************* 
      **
-     **   2) output for taxonomic classification is not finished       
-     **   3) output for taxonomic system is not finished           
-     **               SEE END OF FILE                      
-     ***************************************************** -->
+     **   1) Many of the element names in the DTD will need 
+     **      to be changed to comply with later versions of eml
+     **         
+     ***********************************************************
+-->
 
+     
+<!-- ********************************************************************* -->
+<!-- **************  G E O G R A P H I C   C O V E R A G E  ************** -->
+<!-- ********************************************************************* -->
+     
   <xsl:template match="geographicCov" mode="resource"/>
  
   <xsl:template match="geographicCov">
@@ -157,131 +157,263 @@
     <xsl:text>Longitude: </xsl:text>
     <xsl:value-of select="gringlongitude"/><br/>
   </xsl:template>
+
+<!-- ********************************************************************* -->
+<!-- ****************  T E M P O R A L   C O V E R A G E  **************** -->
+<!-- ********************************************************************* -->
+
   
   <xsl:template match="temporalCov" mode="resource"/>
   <xsl:template match="temporalCov">
      <tr class="{$subHeaderStyle}"><td colspan="2">
       <xsl:text>Temporal Coverage:</xsl:text></td></tr>
-      <xsl:apply-templates select="singleDateTime"/>
-      <xsl:apply-templates select="multipleDatesTimes"/>
+      <xsl:apply-templates select="sngdate"/>
+      <xsl:apply-templates select="mdattim"/>
       <xsl:apply-templates select="rngdates"/>
   </xsl:template>
 
-  <xsl:template match="rngdates">
-    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-        Date Range:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:apply-templates select="begdate"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="beginningTime"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="beginningGeologicAge"/>
-        <xsl:text>&#160; to &#160;</xsl:text>
-        <xsl:apply-templates select="enddate"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="endingTime"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="endingGeologicAge"/>
-        </td></tr>
+  <xsl:template match="sngdate">
+    <xsl:if test="./caldate and normalize-space(./caldate)!=''">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        Calendar Date:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="caldate"/>
+        <xsl:if test="./time and normalize-space(./time)!=''">
+          <xsl:text>&#160; at &#160;</xsl:text><xsl:apply-templates select="time"/>
+        </xsl:if></td></tr>
+    </xsl:if>
+    <xsl:if test="./geolage">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            Geologic Age:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:apply-templates select="geolage"/></td></tr>
+    </xsl:if>
   </xsl:template>
 
-  <xsl:template match="singleDateTime">
+  <xsl:template match="mdattim">
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-        Date:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:apply-templates select="calendarDate"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="time"/>
-        <xsl:text> </xsl:text><xsl:apply-templates select="geologicAge"/>
-        </td></tr>
-  </xsl:template>
-
-  <xsl:template match="multipleDatesTimes">
-    <xsl:for-each select="./singleDateTime">
+        MULTPLE DATES</td><td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr> 
+    <xsl:for-each select="./sngdate">
       <xsl:apply-templates select="."/>
     </xsl:for-each>
   </xsl:template>
   
-  <xsl:template match="calendarDate">  
-      <xsl:value-of select="."/>
+  <xsl:template match="rngdates">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        RANGE OF DATES</td><td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr> 
+        
+        <xsl:if test="(./begdate and normalize-space(./begdate)!='') or (./enddate and normalize-space(./enddate)!='')">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+                Begin:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                <xsl:value-of select="begdate"/>
+                <xsl:if test="./begtime and normalize-space(./begtime)!=''">
+                  <xsl:text>&#160; at &#160;</xsl:text><xsl:value-of select="begtime"/>
+                </xsl:if>
+            </td></tr>
+        
+        
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+                End:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                <xsl:value-of select="enddate"/>
+                <xsl:if test="./endtime and normalize-space(./endtime)!=''">
+                  <xsl:text>&#160; at &#160;</xsl:text><xsl:value-of select="endtime"/>
+                </xsl:if>
+            </td></tr>
+       </xsl:if>
+       
+        <xsl:if test="(./beggeol) or (./endgeol)">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            Begin:<br />(Geologic Age)</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                <xsl:apply-templates select="beggeol"/></td></tr>
+
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            End:<br />(Geologic Age)</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                <xsl:apply-templates select="endgeol"/></td></tr>
+        </xsl:if>
+        
+  </xsl:template>
+
+  
+  <xsl:template match="beggeol">  
+      <xsl:apply-templates select="geolage"/>
   </xsl:template> 
   
-  <xsl:template match="time">  
-      <xsl:value-of select="."/>
-  </xsl:template> 
-  
-  <xsl:template match="begdate">  
-      <xsl:value-of select="."/>
-  </xsl:template> 
-  
-  <xsl:template match="beginningTime">  
-      <xsl:value-of select="."/>
-  </xsl:template> 
-  
-  <xsl:template match="enddate">  
-      <xsl:value-of select="."/>
-  </xsl:template> 
-  
-  <xsl:template match="endingTime">  
-      <xsl:value-of select="."/>
-  </xsl:template> 
-  
-  <xsl:template match="beginningGeologicAge">  
-      <xsl:apply-templates select="geologicAge"/>
-  </xsl:template> 
-  
-  <xsl:template match="endingGeologicAge">  
-      <xsl:apply-templates select="geologicAge"/>
+  <xsl:template match="endgeol">  
+      <xsl:apply-templates select="geolage"/>
   </xsl:template> 
 
-  <xsl:template match="geologicAge">
-      <br /><xsl:text>GEOLOGIC AGE:</xsl:text><br /><xsl:text>timescale: </xsl:text>
-      <xsl:value-of select="geologicTimeScale"/>
-      <xsl:text>;</xsl:text><br /><xsl:text>age estimate: </xsl:text>
-      <xsl:value-of select="geologicAgeEstimate"/>
-      <xsl:text>;</xsl:text><br /><xsl:text>age uncertainty: </xsl:text>
-      <xsl:value-of select="geologicAgeUncertainty"/>
-      <xsl:text>;</xsl:text><br /><xsl:text>age explanation: </xsl:text>
-      <xsl:value-of select="geologicAgeExplanation"/>
-      <xsl:text>;</xsl:text><br /><xsl:text>citation: </xsl:text>
-      <xsl:value-of select="geologicCitation"/>
+  <xsl:template match="geolage">
+    <table width="100%">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            timescale:</td><td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="geolscal"/></td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            age estimate:</td><td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="geolest"/></td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            age uncertainty:</td><td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="geolun"/></td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            age explanation:</td><td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="geolexpl"/></td></tr>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            citation:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <table width="100%"><xsl:apply-templates select="geolcit"/></table>
+        </td></tr>
+    </table>
   </xsl:template> 
-  
+
+  <xsl:template match="geolcit">  
+      <xsl:apply-templates select="./*"/>
+  </xsl:template> 
+
+<!-- ********************************************************************* -->
+<!-- ***************  T A X O N O M I C   C O V E R A G E  *************** -->
+<!-- ********************************************************************* -->
+
   <xsl:template match="taxonomicCov" mode="resource"/>
   <xsl:template match="taxonomicCov">
      <tr class="{$subHeaderStyle}"><td colspan="2">
-      <xsl:text>Taxonomic Coverage:</xsl:text></td></tr> 
-      <xsl:for-each select="keywordsTaxon">
-      <xsl:apply-templates select="."/>
+      <xsl:text>Taxonomic Coverage:</xsl:text></td></tr>
+      <xsl:for-each select="keywtax">
+          <xsl:apply-templates select="."/>
       </xsl:for-each>
-      <xsl:apply-templates select="taxonomicSystem"/>
-      <xsl:apply-templates select="generalTaxonomicCoverage"/>
-      <xsl:apply-templates select="taxonomicClassification"/>
+      <xsl:apply-templates select="taxonsys"/>
+      <xsl:apply-templates select="taxongen"/>
+      <xsl:for-each select="taxoncl">
+          <xsl:apply-templates select="."/>
+      </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="keywordsTaxon">        
-    <xsl:if test="./keywordThesaurus and normalize-space(./taxonomicKeywordThesaurus)!=''">
+  <xsl:template match="keywtax">
+    <xsl:if test="./taxonkt and normalize-space(./taxonkt)!=''">
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Taxonomic Keywords:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        Thesaurus: &#160;<xsl:value-of select="./taxonomicKeywordThesaurus"/></td></tr>
+        Thesaurus: &#160;<xsl:value-of select="./taxonkt"/></td></tr>
     </xsl:if>
     <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>&#160;</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-      <xsl:if test="normalize-space(taxomomicKeywords)!=''">
+      <xsl:if test="normalize-space(taxonkey)!=''">
       <ul>
-        <xsl:for-each select="taxonomicKeywords">
+        <xsl:for-each select="taxonkey">
           <li><xsl:value-of select="."/></li>
         </xsl:for-each>
       </ul>
       </xsl:if>
     </td></tr>
-  </xsl:template>    
-    
-  <xsl:template match="generalTaxonomicCoverage">
-    <xsl:for-each select="."/>
+  </xsl:template>
+
+  <xsl:template match="taxongen">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>General:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>
   </xsl:template>
 
   <!-- output for taxonomic system is not finished -->
-  <xsl:template match="taxonomicSystem">
-    <xsl:apply-templates select="."/>
+  <xsl:template match="taxonsys">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Taxonomic System:</xsl:text></td><td width="{$secondColWidth}" class="{$firstColStyle}">&#160;</td></tr>
+      <xsl:apply-templates select="./*"/>
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>&#160;</xsl:text></td><td width="{$secondColWidth}" class="{$firstColStyle}">&#160;</td></tr>
   </xsl:template>
 
-  <!-- output for taxonomic classification is not finished -->
-  <xsl:template match="taxonomicClassification">
-    <xsl:apply-templates select="."/>
+  <xsl:template match="classsys">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">Classification System:</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="./classcit"/>
+        <xsl:apply-templates select="./classmod"/>
+        </table>
+        </td></tr>
   </xsl:template>
 
+    <xsl:template match="classcit">
+        <xsl:apply-templates select="citeinfo/*"/>
+  </xsl:template>
+  
+  <xsl:template match="classmod">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Modifications:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>
+  </xsl:template>
+
+  <xsl:template match="idref">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">ID Reference:</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="citeinfo/*"/>
+        </table>
+        </td></tr>
+  </xsl:template>
+
+  <xsl:template match="ider">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">ID Name:</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="cntinfo/*"/>
+        </table>
+        </td></tr>
+  </xsl:template>
+  
+  <xsl:template match="taxonpro">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Procedures:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:apply-templates select="."/></td></tr>
+  </xsl:template>
+  
+  <xsl:template match="taxoncom">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Completeness:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:apply-templates select="."/></td></tr>
+  </xsl:template>
+  
+  <xsl:template match="vouchers">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">Vouchers:</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="./specimen"/>
+        <xsl:apply-templates select="./reposit"/>
+        </table>
+        </td></tr>
+  </xsl:template>
+
+  <xsl:template match="specimen">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Specimen:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:apply-templates select="./*"/></td></tr>
+  </xsl:template>
+
+  <xsl:template match="reposit">
+      <tr><td width="{$firstColWidth}" class="{$firstColStyle}">Repository:</td>
+        <td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="cntinfo/*"/>
+        </table>
+        </td></tr>
+  </xsl:template>  
+  
+  <xsl:template match="taxoncl">
+    <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Classification:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <table width="100%">
+        <xsl:apply-templates select="./*"/>
+        </table>
+        </td></tr>
+  </xsl:template>
+  
+  <xsl:template match="taxonrn">
+      <tr><td width="{$secondColIndent}" class="{$secondColStyle}">
+        <xsl:text>Rank Name:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>      
+  </xsl:template> 
+  
+  <xsl:template match="taxonrv">
+      <tr><td width="{$secondColIndent}" class="{$secondColStyle}">
+        <xsl:text>Rank Value:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>
+  </xsl:template>
+  
+  <xsl:template match="common">
+      <tr><td width="{$secondColIndent}" class="{$secondColStyle}">
+        <xsl:text>Common Name:</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:for-each select=".">
+            <xsl:value-of select="."/>
+        </xsl:for-each></td></tr>      
+  </xsl:template>
+  
 </xsl:stylesheet>

@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2002-04-19 17:08:58 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: brooke $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,104 +30,132 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
 <xsl:import href="eml-settings.xsl" />
+<xsl:import href="eml-identifier.xsl" />
 
   <xsl:output method="html" encoding="iso-8859-1"/>
 
   <xsl:template match="/">
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" 
-              href="{$stylePath}/{$qformat}.css" />
+        <link rel="stylesheet" type="text/css" href="{$stylePath}/{$qformat}.css" />
       </head>
       <body>
         <center>
           <h1>Physical Structure Description</h1>
           <h3>Ecological Metadata Language</h3><br />
         </center>
-        
-        <xsl:apply-templates select="eml-physical/identifier"/>
-
-        <br /><h3>Physical Structure of the Data Set:</h3>
-        <table width="100%">
+        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
+        <xsl:apply-templates select="eml-physical/identifier" mode="resource"/>
         <tr>
-        <td class="tablehead" width="35%"><b><xsl:text>Element</xsl:text></b></td>
-        <td class="tablehead" width="65%"><b><xsl:text>Value</xsl:text></b></td>
-        </tr>
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>File Format</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/format"/></b></td>
-        </tr>
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Character Encoding</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/characterEncoding"/></b></td>
-        </tr>
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Size in kB</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/size"/></b></td>
-        </tr>
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Authentication (checksum method &amp; value)</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/authentication"/></b></td>
-        </tr>      
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Compression Method</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/compressionMethod"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Encoding Method</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/encodingMethod"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Number of Header Lines</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/numHeaderLines"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Record Delimiter</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/recordDelimiter"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Maximum Record Length</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/maxRecordLength"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Quote Character</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/quoteCharacter"/></b></td>
-        </tr>  
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Literal Character</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/literalCharacter"/></b></td>
-        </tr>
-        <tr>
-        <td class="highlight" width="35%"><xsl:text>Field Start Column</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/fieldStartColumn"/></b></td>
-        </tr>
-        <tr>
-        <xsl:if test="eml-physical/fieldDelimiter">
-        <td class="highlight" width="35%"><xsl:text>Field Delimeter</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/fieldDelimiter"/></b></td>
-        </xsl:if>
-        <xsl:if test="eml-physical/fieldWidth">
-        <td class="highlight" width="35%"><xsl:text>Field Width</xsl:text></td>
-        <td class="tabledefault" width="65%"><b><xsl:value-of select="eml-physical/fieldWidth"/></b></td>
-        </xsl:if>
-        </tr>
+        <td class="tablehead" colspan="2">Physical Structure:</td></tr>
+        <xsl:apply-templates select="eml-physical/*"/>
         </table>       
       </body>
     </html>
   </xsl:template>
   
   
-  <xsl:template match="identifier">
-    <table width="100%">
-      <tr>
-        <td class="highlight" width="35%">
-           <b><xsl:text>Metadata File ID:</xsl:text></b>
-        </td>
-        <td width="65%">
-            <xsl:value-of select="."/>
-        </td>
-      </tr>
-    </table>
+  <xsl:template match="format">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">File Format</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
   </xsl:template>
+  
+  <xsl:template match="characterEncoding">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Character Encoding</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
+  </xsl:template>
+
+  <xsl:template match="size">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Size</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/>
+        <xsl:if test="normalize-space(./@units)!=''">
+            ( <xsl:value-of select="./@units"/> )
+        </xsl:if></td>
+        </tr>
+  </xsl:template>
+
+  <xsl:template match="authentication">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Authentication (checksum value &amp; method)</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <xsl:value-of select="."/> (method: <xsl:value-of select="./@method"/>)</td></tr>      
+  </xsl:template>
+
+  <xsl:template match="compressionMethod">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Compression Method</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+  <xsl:template match="encodingMethod">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Encoding Method</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+  <xsl:template match="numHeaderLines">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Number of Header Lines</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+  <xsl:template match="recordDelimiter">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Record Delimiter</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+  <xsl:template match="maxRecordLength">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Maximum Record Length</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+  <xsl:template match="quoteCharacter">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Quote Character</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>  
+  </xsl:template>
+
+   <xsl:template match="literalCharacter">
+       <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Literal Character</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
+  </xsl:template>
+
+  <xsl:template match="fieldStartColumn">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Field Start Column</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
+  </xsl:template>
+
+  
+  <xsl:template match="fieldDelimiter">
+        <tr>
+        <td class="{$firstColStyle}" width="{$firstColWidth}">Field Delimeter</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
+  </xsl:template>
+  
+  <xsl:template match="fieldWidth">
+        <tr><td class="{$firstColStyle}" width="{$firstColWidth}">Field Width</td>
+        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        </tr>
+  </xsl:template>
+
 </xsl:stylesheet>

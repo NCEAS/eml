@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -86,17 +86,21 @@
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Referenced Entity Id</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="referencedEntityId"/></td></tr>            
-      </xsl:if>  
+      </xsl:if> 
       <xsl:if test="normalize-space(referencedKey)!=''">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-        <xsl:text>Referenced Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:value-of select="referencedKey"/></td></tr>            
-      </xsl:if>  
+          <xsl:for-each select="referencedKey/attributeName">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            <xsl:text>Referenced Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:apply-templates select="."/></td></tr>            
+          </xsl:for-each>
+      </xsl:if>
       <xsl:if test="normalize-space(key)!=''">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-        <xsl:text>Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
-        <xsl:value-of select="key"/></td></tr>            
-      </xsl:if>  
+          <xsl:for-each select="key/attributeName">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+            <xsl:text>Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+            <xsl:apply-templates select="."/></td></tr>            
+          </xsl:for-each>
+      </xsl:if>
       <xsl:if test="normalize-space(cardinality)!=''">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         <xsl:text>Cardinality</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
@@ -107,6 +111,10 @@
         <xsl:text>Check Condition</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="checkCondition"/></td></tr>            
       </xsl:if>  
+   </xsl:template>
+   
+   <xsl:template match="attributeName">
+        <xsl:value-of select="."/>
    </xsl:template>
             
  

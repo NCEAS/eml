@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -53,35 +53,29 @@
         <xsl:apply-templates select="acl"/>
         <tr><td class="{$subHeaderStyle}" colspan="2">
         <xsl:text>Rules:</xsl:text></td></tr>
+        <xsl:if test="normalize-space(acl/@order)='allowFirst' and (//allow)">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
             <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
         </tr>
-        <xsl:if test="normalize-space(acl/@order)='allowFirst' and (//allow)">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            ALLOW:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
             <xsl:call-template name="allow_deny">
                 <xsl:with-param name="permission" select="'allow'"/>
-            </xsl:call-template></td>
-        </tr>
+            </xsl:call-template>
         </xsl:if>
         <xsl:if test="(//deny)">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
             <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
         </tr>
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            DENY:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
             <xsl:call-template name="allow_deny">
                 <xsl:with-param name="permission" select="'deny'"/>
-            </xsl:call-template></td>
-        </tr>
+            </xsl:call-template>
         </xsl:if>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
+            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td>
+        </tr>
         <xsl:if test="normalize-space(acl/@order)='denyFirst' and (//allow)">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            ALLOW:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
             <xsl:call-template name="allow_deny">
                 <xsl:with-param name="permission" select="'allow'"/>
-            </xsl:call-template></td>
-        </tr>
+            </xsl:call-template>
         </xsl:if>
         </table>
       </body>
@@ -91,24 +85,59 @@
 
   <xsl:template name="allow_deny">
    <xsl:param name="permission"/>
-   <table width="100%">
    <xsl:choose>
        <xsl:when test="$permission='allow'">
            <xsl:for-each select="//allow">
-              <tr><td width="{$secondColIndent}" align="right">
-                <xsl:text>[ </xsl:text><xsl:value-of select="./permission"/><xsl:text> ]:&#160;&#160;&#160;</xsl:text></td>
-              <td><xsl:value-of select="./principal"/></td></tr>
-           </xsl:for-each>
+           <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
+            ALLOW:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                    <table width="100%">
+                        <tr><td width="{$secondColIndent}" valign="top" class="{$firstColStyle}">
+                        <xsl:for-each select="./permission">
+                            <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
+                        </xsl:for-each></td>
+                        <td class="{$firstColStyle}">
+                        <xsl:for-each select="./principal">
+                            <xsl:value-of select="."/><br/>
+                        </xsl:for-each>
+                        </td></tr>
+                        <xsl:if test="(./ticketCount) and normalize-space(./ticketCount)!=''">
+                            <tr><td width="{$secondColIndent}" valign="top">ticket<br />count:</td>
+                                <td><xsl:value-of select="./ticketCount"/></td></tr>
+                        </xsl:if>
+                        <xsl:if test="(./duration)">
+                            <xsl:apply-templates select="./duration"/>
+                        </xsl:if>
+                         <tr><td width="{$secondColIndent}">&#160;</td><td>&#160;</td></tr>
+                    </table></td></tr>
+          </xsl:for-each>
        </xsl:when>
        <xsl:otherwise>
            <xsl:for-each select="//deny">
-              <tr><td width="{$secondColIndent}" align="right">
-                <xsl:text>[ </xsl:text><xsl:value-of select="./permission"/><xsl:text> ]:&#160;&#160;&#160;</xsl:text></td>
-              <td><xsl:value-of select="./principal"/></td></tr>
-           </xsl:for-each>
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">
+            DENY:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+           <table width="100%">
+              <tr><td width="{$secondColIndent}" valign="top" class="{$firstColStyle}">
+                <xsl:for-each select="./permission">
+                    <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
+                </xsl:for-each></td>
+                <td class="{$firstColStyle}">
+                <xsl:for-each select="./principal">
+                    <xsl:value-of select="."/><br/>
+                </xsl:for-each>
+                </td></tr>
+                <xsl:if test="(./ticketCount) and normalize-space(./ticketCount)!=''">
+                    <tr><td width="{$secondColIndent}" valign="top">ticket<br />count:</td>
+                        <td><xsl:value-of select="./ticketCount"/></td></tr>
+                </xsl:if>
+                <xsl:if test="(./duration)">
+                    <xsl:apply-templates select="./duration"/>
+                </xsl:if>
+                 <tr><td width="{$secondColIndent}">&#160;</td><td>&#160;</td></tr>
+            </table></td></tr>
+        </xsl:for-each>
        </xsl:otherwise>
    </xsl:choose>
-   </table>
+
    </xsl:template>
     
   <xsl:template match="acl">

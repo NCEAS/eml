@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2002-05-22 20:17:22 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,8 +30,12 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:output method="html" encoding="iso-8859-1"/>
+
+  <xsl:import href="eml-settings.xsl"/>
  
+  <xsl:output method="html" encoding="iso-8859-1"/>
+
+     
 <!-- *************************************************************************
   * NOTE: EACH TEMPLATE CREATES A TR CONTAINING 2 TD's.  YOU NEED TO PROVIDE 
   * YOUR OWN TABLE TAGS IN THE CALLING STYLESHEET. 
