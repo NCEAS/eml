@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:constraint" xmlns="eml:constraint" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:constraint" xmlns="eml:constraint" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-constraint.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-12 22:42:54 $'
-      '$Revision: 1.8 $'
+          '$Date: 2001-07-13 17:35:36 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,33 +28,33 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>eml-constraint</moduleName>
-      <moduleDescription>
+      <doc:moduleName>eml-constraint</doc:moduleName>
+      <doc:moduleDescription>
         This schema defines the integrity constraints between entities as
         would be maintained in a relational database. These constraints include
         primary key constraints, foreign key constraints, unique key
         constraints, check constraints, and not null constraints, among potential others.
-      </moduleDescription>
+      </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="eml-constraint">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
           Relational integrity constraint descriptors
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
           Describes the relational integrity constraints of a relational 
           database.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           Describes the relational integrity constraints of a relational 
           database.  This includes primary keys, foreign keys, unique keys, etc.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
            New in EML 2.0
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
@@ -60,13 +62,13 @@
         <xs:element name="identifier" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Unique identifier
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 The unique identifier of this metadata file or object.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 The identifier field provides a unique identifier for this
                 metadata documentation.  It will most likely be part of a 
                 sequence of numbers or letters that are meaningful in a 
@@ -74,12 +76,12 @@
                 system can be identified in the "system" attribute. Multiple
                 identifiers can be listed corresponding to different catalog
                 systems.
-              </description>
-              <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -88,25 +90,25 @@
                 <xs:attribute name="system" type="xs:string" use="optional">
                   <xs:annotation>
                     <xs:appinfo>
-                      <tooltip>
+                      <doc:tooltip>
                     Catalog system
-                  </tooltip>
-                      <summary>
+                  </doc:tooltip>
+                      <doc:summary>
                     The catalog system in which this identifier is used.
-                  </summary>
-                      <description>
+                  </doc:summary>
+                      <doc:description>
                     This element gives the name of the catalog system in which
                     this identifier is used.  It is useful to determine the
                     scope of the identifier, and to determine the semantics
                     of the various subparts of the identifier. Unresolved issue:
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
-                  </description>
-                      <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]></example>
-                      <lineage>
+                  </doc:description>
+                      <doc:example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                      <doc:lineage>
                     New to EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -117,21 +119,21 @@
         <xs:element name="constraint" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Integrity constraint
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 Information about the integrity constraint being defined.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 Complete information needed to reconstruct this integrity
                 constraint for enforcement in a system such as a relational
                 database management system.  
-              </description>
-              <example/>
-              <lineage>
+              </doc:description>
+              <doc:example/>
+              <doc:lineage>
                 New in EML 2.0
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -139,22 +141,22 @@
               <xs:element name="constraintType">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>
+                    <doc:tooltip>
                       type of constraint
-                    </tooltip>
-                    <summary>
+                    </doc:tooltip>
+                    <doc:summary>
                       the type of constraint being defined
-                    </summary>
-                    <description>
+                    </doc:summary>
+                    <doc:description>
                       the type of constraint being defined.  This is 
                       what kind of constraint this is.
-                    </description>
-                    <example>
+                    </doc:description>
+                    <doc:example>
                       PrimaryKey, ForeignKey, UniqueKey
-                    </example>
-                    <lineage>
+                    </doc:example>
+                    <doc:lineage>
                       New in EML 2.0
-                    </lineage>
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -170,78 +172,78 @@
               <xs:element name="constraintName" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>
+                    <doc:tooltip>
                       constraint name
-                    </tooltip>
-                    <summary>
+                    </doc:tooltip>
+                    <doc:summary>
                       name of the field that this constraint is tied to
-                    </summary>
-                    <description>
+                    </doc:summary>
+                    <doc:description>
                      name of the field that this constraint is tied to.  This 
                      could also be the name of an independent constraint such 
                      as a trigger or an autonumber generator.
-                    </description>
-                    <example>
+                    </doc:description>
+                    <doc:example>
                       LocationID, TABLE1_NUMBER_GEN1
-                    </example>
-                    <lineage>
+                    </doc:example>
+                    <doc:lineage>
                       New in EML 2.0
-                    </lineage>
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="constraintDescription" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>
+                    <doc:tooltip>
                       constraint description
-                    </tooltip>
-                    <summary>
+                    </doc:tooltip>
+                    <doc:summary>
                       description of the constraint
-                    </summary>
-                    <description>
+                    </doc:summary>
+                    <doc:description>
                       description of the constraint.  Any additional 
                       information that may be needed to fully understand 
                       the constraint.
-                    </description>
-                    <example/>
-                    <lineage>
+                    </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
                       New in EML 2.0
-                    </lineage>
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="entityId" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>
+                    <doc:tooltip>
                       table to which this constraint is tied
-                    </tooltip>
-                    <summary>
+                    </doc:tooltip>
+                    <doc:summary>
                       table to which this constraint is tied
-                    </summary>
-                    <description>
+                    </doc:summary>
+                    <doc:description>
                       table to which this constraint is tied.  In the instance
                       of a key, it is the name of the table in which it is 
                       defined.
-                    </description>
-                    <example>
+                    </doc:description>
+                    <doc:example>
                       site_properties 
-                    </example>
-                    <lineage>
+                    </doc:example>
+                    <doc:lineage>
                       New in EML 2.0
-                    </lineage>
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="key" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>Key                    </tooltip>
-                    <summary>The set of attributes to which this constraint applies.</summary>
-                    <description>The set of attributes to which this constrint applies.  For a primary key or a unique key, the set of attributes must be identifying.  For a foeign key, the set of attributes must match an identifying key in the referenced entity.  For a not null constraint, the key indicates the attribute which should not be null.</description>
-                    <example/>
-                    <lineage>New in EML 2.0</lineage>
+                    <doc:tooltip>Key                    </doc:tooltip>
+                    <doc:summary>The set of attributes to which this constraint applies.</doc:summary>
+                    <doc:description>The set of attributes to which this constrint applies.  For a primary key or a unique key, the set of attributes must be identifying.  For a foeign key, the set of attributes must match an identifying key in the referenced entity.  For a not null constraint, the key indicates the attribute which should not be null.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>New in EML 2.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -253,26 +255,26 @@
               <xs:element name="referencedEntityId" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>Referenced Entity ID</tooltip>
-                    <summary>The id of the parent-entity in a foreign key constraint.</summary>
-                    <description>This field contains the id of the entity to which a foreign key refers, otherwise known as the parent-entity or parent-table.</description>
-                    <example>
+                    <doc:tooltip>Referenced Entity ID</doc:tooltip>
+                    <doc:summary>The id of the parent-entity in a foreign key constraint.</doc:summary>
+                    <doc:description>This field contains the id of the entity to which a foreign key refers, otherwise known as the parent-entity or parent-table.</doc:description>
+                    <doc:example>
                       site_properties 
-                    </example>
-                    <lineage>
+                    </doc:example>
+                    <doc:lineage>
                       New in EML 2.0
-                    </lineage>
+                    </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
               <xs:element name="referencedKey" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>Key                    </tooltip>
-                    <summary>The set of attributes to which a foreign key constraint refers.</summary>
-                    <description>The set of attributes to which a foreign key constraint refers.  If the key refers to the primary key in the referenced entity, then the "referencedKey" is optional.  For a foreign key, the set of attributes must match an identifying key in the referenced entity.</description>
-                    <example/>
-                    <lineage>New in EML 2.0</lineage>
+                    <doc:tooltip>Key                    </doc:tooltip>
+                    <doc:summary>The set of attributes to which a foreign key constraint refers.</doc:summary>
+                    <doc:description>The set of attributes to which a foreign key constraint refers.  If the key refers to the primary key in the referenced entity, then the "referencedKey" is optional.  For a foreign key, the set of attributes must match an identifying key in the referenced entity.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>New in EML 2.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -284,11 +286,11 @@
               <xs:element name="cardinality" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>Constrint Cardinality               </tooltip>
-                    <summary>The cardinality of a foreign key constraint.</summary>
-                    <description>Indicates the cardinality (zero, one, many) of a foreign key constraint.</description>
-                    <example/>
-                    <lineage>New in EML 2.0</lineage>
+                    <doc:tooltip>Constrint Cardinality               </doc:tooltip>
+                    <doc:summary>The cardinality of a foreign key constraint.</doc:summary>
+                    <doc:description>Indicates the cardinality (zero, one, many) of a foreign key constraint.</doc:description>
+                    <doc:example/>
+                    <doc:lineage>New in EML 2.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -302,11 +304,11 @@
               <xs:element name="checkCondition" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>Check Condition                </tooltip>
-                    <summary>A SQL statement to be used as the condition for a check constraint.</summary>
-                    <description>A SQL statement to be used as the condition for a check constraint.  Generally this provides a means for constraining the values within and among entities.</description>
-                    <example><![CDATA[(year > 1900 and year < 1990)]]></example>
-                    <lineage>New in EML 2.0</lineage>
+                    <doc:tooltip>Check Condition                </doc:tooltip>
+                    <doc:summary>A SQL statement to be used as the condition for a check constraint.</doc:summary>
+                    <doc:description>A SQL statement to be used as the condition for a check constraint.  Generally this provides a means for constraining the values within and among entities.</doc:description>
+                    <doc:example><![CDATA[(year > 1900 and year < 1990)]]></doc:example>
+                    <doc:lineage>New in EML 2.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>

@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-protocol.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-13 02:44:25 $'
-      '$Revision: 1.3 $'
+          '$Date: 2001-07-13 17:35:37 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,12 +28,12 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>eml-protocol</moduleName>
-      <moduleDescription>
+      <doc:moduleName>eml-protocol</doc:moduleName>
+      <doc:moduleDescription>
         The EML Protocol Module is used to describe methods and identify the proccesses that have been
 	used to define / improve the quality of a data file, also used to
 	identify potential problems with the data file.
-      </moduleDescription>
+      </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml:ResponsibleParty" schemaLocation="eml-party.xsd"/>
@@ -49,10 +51,10 @@
             <xs:appinfo>
               <tooltip/>
               <summary/>
-              <description> A description of the problems that might be associated 
+              <doc:description> A description of the problems that might be associated 
 	 with the implementation of this quality control / assurance procedure
-	 </description>
-              <example/>
+	 </doc:description>
+              <doc:example/>
               <lineage/>
             </xs:appinfo>
           </xs:annotation>
@@ -68,12 +70,12 @@
             <xs:appinfo>
               <tooltip/>
               <summary/>
-              <description>Step defines the quality control / assurance procedures 
+              <doc:description>Step defines the quality control / assurance procedures 
 	      that were applied to the corresponding data file.  For example, 
 	      a shell-script that 'greps' for an alpha-character within a 
 	      datafile that is supposed to contain only numeric characters
-	      </description>
-              <example/>
+	      </doc:description>
+              <doc:example/>
               <lineage/>
             </xs:appinfo>
           </xs:annotation>

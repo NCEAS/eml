@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:resource" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns="eml:resource" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:resource" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns="eml:resource" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-11 19:10:04 $'
-      '$Revision: 1.20 $'
+          '$Date: 2001-07-13 17:35:37 $'
+      '$Revision: 1.21 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,14 +28,14 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>eml-resource</moduleName>
-      <moduleDescription>
+      <doc:moduleName>eml-resource</doc:moduleName>
+      <doc:moduleDescription>
         The eml-resource module contains general information that describes
         dataset resources, literature resources, collection  resources, and
         software resources.  It is intended to provide overview information
         about the resource, including title, abstract, keywords, contacts, and
         the links to associated metadata and data for the given resource.
-      </moduleDescription>
+      </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <!-- import the elements from responsible party for use in originator -->
@@ -42,37 +44,37 @@
   <xs:complexType name="ResourceBase">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
           Resource Base
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
           Generic information about any resource that is being described.  
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           The 'ResourceBase' complexType contains information that is inherited
           by each resource type that is being documented.  The subelements with
           the resource base are common to al resources.
-        </description>
-        <example>
+        </doc:description>
+        <doc:example>
           Please see the examples within the sub-elements of the 'ResourceBase'
           complexType.
-        </example>
-        <lineage>
+        </doc:example>
+        <doc:lineage>
           The 'ResourceBase' element was introduced into EML 2.0.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="identifier" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Unique identifier
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               The unique identifier of this metadata file or object.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The identifier field provides a unique identifier for this
               metadata documentation.  It will most likely be part of a 
               sequence of numbers or letters that are meaningful in a 
@@ -80,12 +82,12 @@
               system can be identified in the "system" attribute. Multiple
               identifiers can be listed corresponding to different catalog
               systems.
-            </description>
-            <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
-            <lineage>
+            </doc:description>
+            <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+            <doc:lineage>
               The 'identifier' field is derived from the eml-dataset 
               meta_file_id filed in EML 1.4.
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -94,13 +96,13 @@
               <xs:attribute name="system" type="xs:string" use="optional">
                 <xs:annotation>
                   <xs:appinfo>
-                    <tooltip>
+                    <doc:tooltip>
                   Catalog system
-                </tooltip>
-                    <summary>
+                </doc:tooltip>
+                    <doc:summary>
                   The catalog system in which this identifier is used.
-                </summary>
-                    <description>
+                </doc:summary>
+                    <doc:description>
                   This element gives the name of the catalog system in which
                   this identifier is used.  It is useful to determine the
                   scope of the identifier, and to determine the semantics
@@ -108,12 +110,12 @@
                   Unresolved issue:
                   can or should this be a URI/URL pointing to the catalog
                   system, or just the name?
-                </description>
-                    <example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]></example>
-                    <lineage>
+                </doc:description>
+                    <doc:example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                    <doc:lineage>
                   New to EML 2.0.
-                </lineage>
+                </doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:attribute>
@@ -124,183 +126,183 @@
       <xs:element name="shortName" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Short Name
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               A short name that describes the resource, sometimes 
               a filename.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The 'shortName' field provides a concise name that 
               describes the resource that is being documented. It is 
               the appropriate place to store a filename associated with 
               other storage systems.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               vernal-data-1999
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the 
               ISO 19115.3 standard (iso-geo-md-2000June-draft).
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="title" type="xs:string" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Title
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               A brief description of the resource, providing enough detail
               to differentiate it from other similar resources.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The 'title' field provides a description of the
               resource that is being documented that is long enough
               to differentiate it from other similar resources.  Multiple
               titles may be provided, particularly when trying to express
               the title in more than one language (use the "xml:lang"
               attribute to indicate the language if not English/en).
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Vernal pool amphibian density data, Isla Vista, 1990-1996.
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the 
               ISO 19115.3 standard (iso-geo-md-2000June-draft).
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="originator" type="rp:ResponsibleParty" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Originator
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               A person or organization asociated with this resource.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The 'originator' element provides the full name of the
               person, organization, or position associated with the resource.  
               Typically, the originator role is set to "owner" 
               to indicate the list of parties who "own" the resource, 
               but other roles such as "principal investigator", "author", 
               and "editor" are provided.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Please see the examples within the sub fields for 
               the responsible party.
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="pubDate" type="xs:date" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Publication date
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               The publication date of the resource.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The 'pubDate' field represents the date that the resource was
               published.  The format should be represented as: CCYY-MM-DD, 
               which denotes the full year, month, and day.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               1999-10-26
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
               The type 'xs:date' folllows the date standard described in ISO
               8601.
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="pubPlace" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Publication place
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               The location that the resource was published.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               the 'pubPlace' field is the location where the resource was
               published, which may be different from where the resource was
               created.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               San Francisco, CA, USA
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="series" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Series
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               The series from which the resource came.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               This field describes the series of resources that include the
               resource being described.  For example, a volume of a 
               journal may be part of a series of the journal for a 
               particular year.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Volume 20
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
               and ISO 19115.3 standard (iso-geo-md-2000June-draft)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="abstract" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Abstract
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               A brief overview of the resource.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               This field provides a container for one or more paragraph 
               fields that give a brief overview of the resource 
               that is being documented. 
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Please see the examples for the subfields contained 
               within this field.
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -308,18 +310,18 @@
             <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Abstract paragraph
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The paragraph field for the text in an abstract.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     This field is intended for the text of an abstract
                     that gives a brief overview of the resource.  There
                     may be one or more paragraphs within the abstract.
-                  </description>
-                  <example>
+                  </doc:description>
+                  <doc:example>
                     The major unanswered question in marine ecology is the
                     degree of connectedness between local populations. Put
                     another way, what proportion of young arriving into a
@@ -333,11 +335,11 @@
                     example, is highly dependent on the degree to which
                     it is dependent on other populations for recruitment,
                     and the degree to which it supplies other areas.
-                  </example>
-                  <lineage>
+                  </doc:example>
+                  <doc:lineage>
                     This field was introduced into EML 2.0, and was derived from
                     EML 1.3.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -347,26 +349,26 @@
       <xs:element name="keywordSet" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Keyword information
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
                Keyword information that describes the resource.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The 'keywordSet' element is a container for the 'keyword' and
               'keywordThesaurus' fields.  Each keywordSet field can contain
               one or more keywords and a name of a thesaurus for the set of
               keywords.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Please see the examples for the subfields contained 
               within this field.
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -374,24 +376,24 @@
             <xs:element name="keyword" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Keyword
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     A keyword that describes the resource.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     This field names a keyword or keyphrase that concisely 
                     describes the resource or is related to the resource.
-                  </description>
-                  <example>
+                  </doc:description>
+                  <doc:example>
                     biodiversity
-                  </example>
-                  <lineage>
+                  </doc:example>
+                  <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from EML 1.3. and the ISO 19115.3 standard
                     (iso-geo-md-2000June-draft).
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
@@ -400,26 +402,26 @@
                     <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
-                          <tooltip>
+                          <doc:tooltip>
                         Keyword type
-                      </tooltip>
-                          <summary>
+                      </doc:tooltip>
+                          <doc:summary>
                         The type of each keyword.
-                      </summary>
-                          <description>
+                      </doc:summary>
+                          <doc:description>
                         This field classifies the keyword that has been
                         provided from a list of pre-determined categories. The
                         possible types are listed in the example.
-                      </description>
-                          <example>
+                      </doc:description>
+                          <doc:example>
                         "discipline","place","stratum","temporal","thematic", 
                         or "taxonomic"
-                      </example>
-                          <lineage>
+                      </doc:example>
+                          <doc:lineage>
                         This field was introduced into EML 2.0, and
                         was derived from EML 1.3. and the  ISO 19115.3
                         standard(iso-geo-md-2000June-draft).
-                      </lineage>
+                      </doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:attribute>
@@ -430,25 +432,25 @@
             <xs:element name="keywordThesaurus" type="xs:string" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Keyword thesaurus
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The name of a thesaurus from which the keyword is derived.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     This field provides the name of the official keyword
                     thesaurus from which keyword was derived.  The keyword
                     thesauri are usually discipline specific.
-                  </description>
-                  <example>
+                  </doc:description>
+                  <doc:example>
                     IRIS keyword thesaurus
-                  </example>
-                  <lineage>
+                  </doc:example>
+                  <doc:lineage>
                     This field was introduced into EML 2.0, and
                     was derived from EML 1.3. and the  ISO 19115.3
                     standard(iso-geo-md-2000June-draft).
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -458,23 +460,23 @@
       <xs:element name="additionalInfo" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Additional Information
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               Any extra information pertitent to the resource.
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               This field provides any information that is not 
               characterized by the other resource metadata fields.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Copyright 2001, Robert Warner
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               This element was derived from elements described in the
               FGDC-STD-001.1-1999 standard (nbii-fgdc-std-001.1-1999)
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -482,23 +484,23 @@
             <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Paragraph
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The paragraph field for the additional text.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     This field is intended for the text 
                     that gives additional information about the resource.  
                     There may be one or more paragraphs.
-                  </description>
-                  <example>
+                  </doc:description>
+                  <doc:example>
                     Copyright 2001, Robert Warner
-                  </example>
-                  <lineage>
+                  </doc:example>
+                  <doc:lineage>
                     This field was introduced into EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -508,11 +510,11 @@
       <xs:element name="rights" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>Rights</tooltip>
-            <summary>Rights regarding usage and licensing of this resource.</summary>
-            <description>Typically, a Rights element will contain a rights management statement for the resource, or reference  a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights.  In the case of a data set, rights might incude requirements for use, requirements for attribution, or other requirements the owner would like to impose.</description>
-            <example>Copyright 2001 Regents of the University of California Santa Barbara.  Free for use by all individulas provided that the owners are acknowledged in any use or publication.</example>
-            <lineage>Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.</lineage>
+            <doc:tooltip>Rights</doc:tooltip>
+            <doc:summary>Rights regarding usage and licensing of this resource.</doc:summary>
+            <doc:description>Typically, a Rights element will contain a rights management statement for the resource, or reference  a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights.  In the case of a data set, rights might incude requirements for use, requirements for attribution, or other requirements the owner would like to impose.</doc:description>
+            <doc:example>Copyright 2001 Regents of the University of California Santa Barbara.  Free for use by all individulas provided that the owners are acknowledged in any use or publication.</doc:example>
+            <doc:lineage>Introduced in EML 2.0, derived from Dublin Core Element Set 1.1.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -520,23 +522,23 @@
             <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Paragraph
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The paragraph field for the additional text.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     This field is intended for the text 
                     that gives additional information about the resource.  
                     There may be one or more paragraphs.
-                  </description>
-                  <example>
+                  </doc:description>
+                  <doc:example>
                     Copyright 2001, Robert Warner
-                  </example>
-                  <lineage>
+                  </doc:example>
+                  <doc:lineage>
                     This field was introduced into EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -546,14 +548,14 @@
       <xs:element name="triple" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <tooltip>
+            <doc:tooltip>
               Component list 
-            </tooltip>
-            <summary>
+            </doc:tooltip>
+            <doc:summary>
               The definition of a relationship between component objects
               in a resource package
-            </summary>
-            <description>
+            </doc:summary>
+            <doc:description>
               The triple element lists all relationships in the resource,
               which effectively enumerates the components of the resource.
               The relationships are in the form of:
@@ -561,8 +563,8 @@
               A triple allows a user to define a relationship between two
               objects.  This relationship can also be recursive so that an
               object can point back to the package of which it is a part.
-            </description>
-            <example>
+            </doc:description>
+            <doc:example>
               Normal (nonrecursive):
               <![CDATA[
               <subject>knb.3.4</subject> 
@@ -576,11 +578,11 @@
               ]]>
               where object lter.18 is the identifier of the resource
               in which this relationship exists.
-            </example>
-            <lineage>
+            </doc:example>
+            <doc:lineage>
               Derived from the eml-dataset.dtd element called "relation" in
               EML 1.4.
-            </lineage>
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -588,67 +590,67 @@
             <xs:element name="subject" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Subject element
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     Subject element of the relationship.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     Subject is the identifier of the metadata object or file 
                     that is the actor in the triple.
-                  </description>
-                  <example><![CDATA[ <subject>knb.3.4</subject> ]]></example>
-                  <lineage>
+                  </doc:description>
+                  <doc:example><![CDATA[ <subject>knb.3.4</subject> ]]></doc:example>
+                  <doc:lineage>
                     Subject element was introduce into EML 2.0 Proposed.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
             <xs:element name="relationship" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Relationship type
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The type of relationship between the subject and
                     object of the triple
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     Relationship is a descriptive phrase that specifies the 
                     how the subject of the triple is related to the object.  
                     This is typically meant to label the type of descriptor 
                     that a metadata file (the subject) represents for a data
                     file (the object).  This allows one to express concepts
                     such as "knb.32.3 lists access control rules for knb.2.2".
-                  </description>
-                  <example><![CDATA[ 
-                    <relationship>is metadata describing</relationship> ]]></example>
-                  <lineage>
+                  </doc:description>
+                  <doc:example><![CDATA[ 
+                    <relationship>is metadata describing</relationship> ]]></doc:example>
+                  <doc:lineage>
                     The relationship element was introduced in EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
             <xs:element name="object" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                     Object element
-                  </tooltip>
-                  <summary>
+                  </doc:tooltip>
+                  <doc:summary>
                     The object element of the relationship.
-                  </summary>
-                  <description>
+                  </doc:summary>
+                  <doc:description>
                     Object is the identifier of the metadata or data object 
                     that is acted upon according to the relationship in the
                     triple.
-                  </description>
-                  <example><![CDATA[ <subject>knb.8.4</subject> ]]></example>
-                  <lineage>
+                  </doc:description>
+                  <doc:example><![CDATA[ <subject>knb.8.4</subject> ]]></doc:example>
+                  <doc:lineage>
                     The object element was introduced in EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -661,19 +663,19 @@
   <xs:simpleType name="KeyTypCode">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
           Keyword type codes
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
           The list of keyword categories
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           This field provides a restricted list of categories that a keyword may
           fall under.
-        </description>
-        <example>
+        </doc:description>
+        <doc:example>
               place
-            </example>
+            </doc:example>
         <lineage/>
       </xs:appinfo>
     </xs:annotation>

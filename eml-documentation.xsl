@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-07-11 19:10:03 $'
-  *   '$Revision: 1.17 $'
+  *       '$Date: 2001-07-13 17:35:36 $'
+  *   '$Revision: 1.18 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,8 @@
     <html>
       <head>
         <title>
-          <xsl:value-of select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/> 
+          <xsl:value-of 
+               select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/> 
           Documentation
         </title>
         <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -45,16 +46,16 @@
         <div class="title">
           Module Documentation: 
           <xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/>
+            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>
         </div>
         <blockquote>
           <xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/moduleDescription"/>
+            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDescription"/>
         </blockquote>
 
         <img>
           <xsl:attribute name="src">../<xsl:value-of 
-            select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/>.png</xsl:attribute>
+            select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>.png</xsl:attribute>
         </img>
 
         <table border="0" class="tabledefault">
@@ -543,15 +544,15 @@
           <!-- display the help fields for each element-->
           <blockquote>
             <br><span class="boldtext">Tooltip: </span></br>
-            <xsl:value-of select="./xs:appinfo/tooltip"/>
+            <xsl:value-of select="./xs:appinfo/doc:tooltip"/>
             <br><span class="boldtext">Summary: </span></br>
-            <xsl:value-of select="./xs:appinfo/summary"/>
+            <xsl:value-of select="./xs:appinfo/doc:summary"/>
             <br><span class="boldtext">Description: </span></br>
-            <xsl:value-of select="./xs:appinfo/description"/>
+            <xsl:value-of select="./xs:appinfo/doc:description"/>
             <br><span class="boldtext">Example: </span></br>
-            <xsl:value-of select="./xs:appinfo/example"/>
+            <xsl:value-of select="./xs:appinfo/doc:example"/>
             <br><span class="boldtext">Lineage: </span></br>
-            <xsl:value-of select="./xs:appinfo/lineage"/>
+            <xsl:value-of select="./xs:appinfo/doc:lineage"/>
           </blockquote>
         </td>
   </xsl:template>

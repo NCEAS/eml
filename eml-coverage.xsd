@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-13 00:35:39 $'
-      '$Revision: 1.7 $'
+          '$Date: 2001-07-13 17:35:36 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,101 +28,101 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>eml-coverage</moduleName>
-      <moduleDescription>
+      <doc:moduleName>eml-coverage</doc:moduleName>
+      <doc:moduleDescription>
         The eml-coverage module contains fields for describing the 
         coverage of a resource in terms of time, space, and taxonomy. This
         coverages (temporal, spatial, and taxonomic) represent the extent
         of applicability of the resource in those domains.
-      </moduleDescription>
+      </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="temporalCov" type="TemporalCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Temporal coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Temporal coverage descriptor.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
             This element specifies temporal coverage, and allows coverages
             to be a single point in time, multiple points in time, or a
             range of dates.  Dates can be expressed in tems of both 
             calander dates and geologic dating systems.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:element name="geographicCov" type="GeographicCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Geographic coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Geographic coverage information.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           Geographic Coverage is a container for spatial information about a
           a project, a resource, or an entity within a resource.  It allows
           a bounding box for the overall coverage (in lat long), and also
           allows descriptin of arbitrary polygons with exclusions.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The geographicCov element is derived from the NBII standard.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:element name="taxonomicCov" type="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Taxonomic coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Taxonomic coverage information.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource. It includes 
           a list of species names (or higher level ranks) from one or more
           classification systems.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Temporal coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Temporal coverage descriptor.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
             This element specifies temporal coverage by 
           start and stop date.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -201,21 +203,21 @@
   <xs:complexType name="GeographicCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Geographic coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Geographic coverage information.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           Geographic Coverage is a container for spatial information about a
           a project, a resource, or an entity within a resource.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The GeographicCoverage complex type was derived from the eml-entity
           module in EML 1.4.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -285,21 +287,21 @@
   <xs:complexType name="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>
+        <doc:tooltip>
             Taxonomic coverage
-        </tooltip>
-        <summary>
+        </doc:tooltip>
+        <doc:summary>
             Taxonomic coverage information.
-        </summary>
-        <description>
+        </doc:summary>
+        <doc:description>
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource.
-        </description>
-        <example/>
-        <lineage>
+        </doc:description>
+        <doc:example/>
+        <doc:lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>

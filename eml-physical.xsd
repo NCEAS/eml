@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:physical" xmlns="eml:physical" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml:physical" xmlns="eml:physical" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -8,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-11 19:10:04 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-07-13 17:35:36 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,27 +28,27 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>eml-physical</moduleName>
-      <moduleDescription>
+      <doc:moduleName>eml-physical</doc:moduleName>
+      <doc:moduleDescription>
         The EML Phyiscal Representation Module defines the structural
         characteristics of data formats as delivered over the wire or
         as found in a file system.  One physical object (which can be a
         bytestream or an object in a file system) might contain multiple
         entities (for example, this would be typical in a MS Access file
         that contained multiple tables of data).
-      </moduleDescription>
+      </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="eml-physical">
     <xs:annotation>
       <xs:appinfo>
-        <tooltip>Physical structure.        </tooltip>
-        <summary>Physical structure of an entity or entities.</summary>
-        <description>Physical structure of an entity or entities.  This generally is a detailed description of a text representation that shows how the columns and rows of a table are represented, or simply the name of a well-known binary or proprietary format (e.g., Microsoft Excel 2000).</description>
-        <example/>
-        <lineage>
+        <doc:tooltip>Physical structure.        </doc:tooltip>
+        <doc:summary>Physical structure of an entity or entities.</doc:summary>
+        <doc:description>Physical structure of an entity or entities.  This generally is a detailed description of a text representation that shows how the columns and rows of a table are represented, or simply the name of a well-known binary or proprietary format (e.g., Microsoft Excel 2000).</doc:description>
+        <doc:example/>
+        <doc:lineage>
           The eml-physical was introduced into EML 1.4 as eml-file.
-        </lineage>
+        </doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
@@ -54,13 +56,13 @@
         <xs:element name="identifier" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Unique identifier
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 The unique identifier of this metadata file or object.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 The identifier field provides a unique identifier for this
                 metadata documentation.  It will most likely be part of a 
                 sequence of numbers or letters that are meaningful in a 
@@ -68,12 +70,12 @@
                 system can be identified in the "system" attribute. Multiple
                 identifiers can be listed corresponding to different catalog
                 systems.
-              </description>
-              <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -82,25 +84,25 @@
                 <xs:attribute name="system" type="xs:string" use="optional">
                   <xs:annotation>
                     <xs:appinfo>
-                      <tooltip>
+                      <doc:tooltip>
                     Catalog system
-                  </tooltip>
-                      <summary>
+                  </doc:tooltip>
+                      <doc:summary>
                     The catalog system in which this identifier is used.
-                  </summary>
-                      <description>
+                  </doc:summary>
+                      <doc:description>
                     This element gives the name of the catalog system in which
                     this identifier is used.  It is useful to determine the
                     scope of the identifier, and to determine the semantics
                     of the various subparts of the identifier. Unresolved issue:
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
-                  </description>
-                      <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]></example>
-                      <lineage>
+                  </doc:description>
+                      <doc:example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                      <doc:lineage>
                     New to EML 2.0.
-                  </lineage>
+                  </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -111,62 +113,62 @@
         <xs:element name="format" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 File format
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 Contains the name of the format for this file.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 This element contains the name of the file's format.
                 The file's format is typically ASCII, Unicode, or some
                 well-known binary format (e.g., Microsoft Excel 2000).  
                 This could be a mime-type.
-              </description>
-              <example><![CDATA[<format>ASCII</format>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<format>ASCII</format>]]></doc:example>
+              <doc:lineage>
                 The format element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Character Encoding
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 Contains the name of the chracter encoding used for the data.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 This element contains the name of the character encoding.
                 This is typically ASCII or UTF-8, or one of the other common encodings.
-              </description>
-              <example><![CDATA[<characterEncoding>UTF-8</characterEncoding>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<characterEncoding>UTF-8</characterEncoding>]]></doc:example>
+              <doc:lineage>
                 Introduced in EML 2.0
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="size" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Entity size
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 Describes the physical size of the entity.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 This element contains information of the physical size 
                 of the entity, typically in bytes.
-              </description>
-              <example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></doc:example>
+              <doc:lineage>
                 The entitySize was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -175,20 +177,20 @@
                 <xs:attribute name="unit" use="required" default="bytes">
                   <xs:annotation>
                     <xs:appinfo>
-                      <tooltip>
+                      <doc:tooltip>
                     Unit of measurement
-                  </tooltip>
-                      <summary>
+                  </doc:tooltip>
+                      <doc:summary>
                     Unit of measurement for the entity size, typically bytes
-                  </summary>
-                      <description>
+                  </doc:summary>
+                      <doc:description>
                     This element gives the unit of measurement for the 
                     size of the entity, and is typically bytes.
-                  </description>
-                      <example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></example>
-                      <lineage>
+                  </doc:description>
+                      <doc:example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></doc:example>
+                      <doc:lineage>
                     The unit was introduced into EML 1.4.
-                  </lineage>
+                  </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -199,20 +201,20 @@
         <xs:element name="authentication" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                   Authentication method
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
 A value, typically a checksum, used to authenticate that the bitstream delivered to the user is identical to the original.
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                   This element describes authentication procedures or 
                   techniques, typically by giving a checksum method (e.g., MD5) and checksum value for the bytestream.
-              </description>
-              <example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
+              <doc:lineage>
                 The authentication element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -221,19 +223,19 @@ A value, typically a checksum, used to authenticate that the bitstream delivered
                 <xs:attribute name="method" type="xs:string" use="optional">
                   <xs:annotation>
                     <xs:appinfo>
-                      <tooltip>
+                      <doc:tooltip>
                   Authentication method
-              </tooltip>
-                      <summary>
+              </doc:tooltip>
+                      <doc:summary>
 The method used to calculate an authentication checksum.
-              </summary>
-                      <description>
+              </doc:summary>
+                      <doc:description>
                   This element names the method used to calculate and authentication checksum that can be used to validate a bytestream.  Typical checksum methods include MD5 and CRC.
-              </description>
-                      <example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></example>
-                      <lineage>
+              </doc:description>
+                      <doc:example><![CDATA[<authentication method="MD5">f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
+                      <doc:lineage>
                 The authentication element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -244,77 +246,77 @@ The method used to calculate an authentication checksum.
         <xs:element name="compressionMethod" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                     Entity's compression method
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                   Name ofthe entity's compression method
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                   This element describes any compression methods used to
                   compress the entity, such as zip, compress, etc.
-              </description>
-              <example/>
-              <lineage>
+              </doc:description>
+              <doc:example/>
+              <doc:lineage>
                 The compressed element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="encodingMethod" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                     Encoding Method
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                   Method used for encoding the entity
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                   This element describes the entity's encoded method, such as
                   MIME base64 encoding or binhex encoding.
-              </description>
-              <example/>
-              <lineage>
+              </doc:description>
+              <doc:example/>
+              <doc:lineage>
                 The encoded element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="numHeaderLines" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                 Header lines
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                 Header lines in the entity
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 Number of header lines or information that prepares data.
-              </description>
-              <example><![CDATA[<numHeaderLines>3</numHeaderLines>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<numHeaderLines>3</numHeaderLines>]]></doc:example>
+              <doc:lineage>
                 The numHeaderLines element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="recordDelimiter" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                   Record delimiter character
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                   Character used to delimit records.
-              </summary>
-              <description>This element specifies the record delimiter character
-when the format is text. The record delimiter       is usually a newline (\n) on UNIX, a carriage return (\r) on MacOS, or both (\r\n) on Windows/DOS.  Multiline records are usually delimited with two line ending characters, for example on UNIX it would be two newline characters (\n\n).</description>
-              <example><![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]></example>
-              <lineage>
+              </doc:summary>
+              <doc:description>This element specifies the record delimiter character
+when the format is text. The record delimiter       is usually a newline (\n) on UNIX, a carriage return (\r) on MacOS, or both (\r\n) on Windows/DOS.  Multiline records are usually delimited with two line ending characters, for example on UNIX it would be two newline characters (\n\n).</doc:description>
+              <doc:example><![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]></doc:example>
+              <doc:lineage>
                 The recordDelimiter element was introduced into EML 1.4.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -322,44 +324,44 @@ when the format is text. The record delimiter       is usually a newline (\n) on
         <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                   Quote character
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                   Character used to quote values for delimeter escaping
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 This element specifies a character to be used in the entity
                 for quoting values so that field delimeters can be used within
                 the value.  This basically allows delimeter "escaping".  The
                 quoteChacter is typically a " or '.
-              </description>
-              <example><![CDATA[<quoteCharacter>"</quoteCharacter>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<quoteCharacter>"</quoteCharacter>]]></doc:example>
+              <doc:lineage>
                 The quoteCharacter element was taken from the NBII standard.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <tooltip>
+              <doc:tooltip>
                   Literal character
-              </tooltip>
-              <summary>
+              </doc:tooltip>
+              <doc:summary>
                   Character used to escape other characters
-              </summary>
-              <description>
+              </doc:summary>
+              <doc:description>
                 This element specifies a character to be used
                 for escaping character values so that the following character is treated as its literal
                 value.  This allows "escaping" for special characters like quotes, commas, and spaces when they aren't intended as a delimiter value.  The
                 literalChacter is typically a \.
-              </description>
-              <example><![CDATA[<literalCharacter>\</literalCharacter>]]></example>
-              <lineage>
+              </doc:description>
+              <doc:example><![CDATA[<literalCharacter>\</literalCharacter>]]></doc:example>
+              <doc:lineage>
                 Introduced in EML 2.0.
-              </lineage>
+              </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -367,24 +369,24 @@ when the format is text. The record delimiter       is usually a newline (\n) on
           <xs:element name="fieldStartColumn" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
-                <tooltip>
+                <doc:tooltip>
                         Start column
-                      </tooltip>
-                <summary>
-                        The starting column number for a fixed format attribute.         </summary>
-                <description>
+                      </doc:tooltip>
+                <doc:summary>
+                        The starting column number for a fixed format attribute.         </doc:summary>
+                <doc:description>
                         FixedWidth fields have a set length, thus 
                         the end of the field can always be determined
                         by adding the fieldWidth to the starting 
                         column number.
-                      </description>
-                <example>
+                      </doc:description>
+                <doc:example>
                         any positive integer, see example in "delimeter" 
                         description
-                      </example>
-                <lineage>
+                      </doc:example>
+                <doc:lineage>
                         Introduced into EML 2.0. 
-                      </lineage>
+                      </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -392,42 +394,42 @@ when the format is text. The record delimiter       is usually a newline (\n) on
             <xs:element name="fieldWidth" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                         Field width
-                      </tooltip>
-                  <summary>
+                      </doc:tooltip>
+                  <doc:summary>
                         FieldWidth specification for fixed field 
                         length.
-                      </summary>
-                  <description>
+                      </doc:summary>
+                  <doc:description>
                         FixedWidth fields have a set length, thus 
                         the end of the field can always be determined
                         by adding the fieldWidth to the starting 
                         column number.
-                      </description>
-                  <example>
+                      </doc:description>
+                  <doc:example>
                         any positive integer, see example in "delimeter" 
                         description
-                      </example>
-                  <lineage>
+                      </doc:example>
+                  <doc:lineage>
                         The fieldWidth element was introduced into 
                         EML 1.4. Semantics changed to work identically to
                         the NBII DTD.
-                      </lineage>
+                      </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
             <xs:element name="fieldDelimiter" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
-                  <tooltip>
+                  <doc:tooltip>
                           Attribute delimiter
-                      </tooltip>
-                  <summary>
+                      </doc:tooltip>
+                  <doc:summary>
                         The end of the attribute (field) is delimited by a 
                         special character called a field delimiter.
-                      </summary>
-                  <description>
+                      </doc:summary>
+                  <doc:description>
                         Variable width format fields (attributes) can vary in their 
                         field length, thus the end of the field is 
                         delimited by a special character called a 
@@ -499,15 +501,15 @@ when the format is text. The record delimiter       is usually a newline (\n) on
                           <fieldWidth>4</fieldWidth>
                           <fieldStartColumn>11</fieldStartColumn>
                           <fieldWidth>3</fieldWidth>
-                        ]]></description>
-                  <example>
+                        ]]></doc:description>
+                  <doc:example>
                         comma, tab, white space, etc.
-                      </example>
-                  <lineage>
+                      </doc:example>
+                  <doc:lineage>
                         The delimiter element was introduced into 
                         EML 1.4. Semantics changed to work identically to
                         the NBII DTD, and then modified to fit more cases.
-                      </lineage>
+                      </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
