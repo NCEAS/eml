@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-10-02 17:35:56 $'
- * '$Revision: 1.7 $'
+ *     '$Date: 2002-10-02 18:47:00 $'
+ * '$Revision: 1.8 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -347,7 +347,7 @@ public class EMLParser
   {
     InputSource in = new InputSource(is);
     DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
-    dfactory.setNamespaceAware(true);
+    dfactory.setNamespaceAware(false);
     Document doc = dfactory.newDocumentBuilder().parse(in);
 
     // Set up an identity transformer to use as serializer.
