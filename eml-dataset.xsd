@@ -1,0 +1,164 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:res="eml:resource"
+           xmlns:cov="eml:coverage"
+           targetNamespace="eml:dataset">
+
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-dataset.xsd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+  
+        '$Author: jones $'
+          '$Date: 2001-04-13 23:31:21 $'
+      '$Revision: 1.1 $'
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+     <moduleName>
+        eml-dataset
+      </moduleName>
+      <moduleDescription>
+        The eml-dataset module contains general information that describes
+        dataset resources.  It is intended to provide overview information
+        about the dataset, including title, abstract, keywords, contacts, and
+        the links to associated metadata for the given resource. It also
+        describes the temporal, geographic, and taxonomic coverage of the
+        overall dataset.  A dataset can be (an often is) composed of a
+        series of data entities (tables) that are linked together by particular
+        integrity constraints.
+      </moduleDescription>
+    </xs:appinfo>
+  </xs:annotation>
+
+ <!-- import the elements from eml-resource -->
+  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+
+ <!-- import the elements from eml-coverage -->
+  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
+ 
+  <xs:element name="dataset">
+    <xs:annotation>
+      <xs:appinfo>
+        <tooltip>
+          Dataset type
+        </tooltip>
+        <summary>
+          The container for fields describing a dataset resource.
+        </summary>
+        <description>
+          The dataset element defines extend the ResourceBase complexType
+          in order to provide information that is specific to describing
+          a set of data.  Therefore, dataset elements contain all of the
+          general resource elements, but also specific dataset elements.
+        </description>
+        <example>
+          Please see the examples for each subelement.
+        </example>
+        <lineage>
+          This element was introduced in EML 2.0, and is derived from
+          the eml-dataset module in EML 1.4.  
+        </lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="res:ResourceBase">
+          <xs:sequence>
+
+            <xs:element name="temporalCoverage" type="cov:TemporalCoverage"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Temporal coverage
+                  </tooltip>
+                  <summary>
+                    Information about the temporal extent of the resource.
+                  </summary>
+                  <description>
+                    This element describes the temporal extent of the
+                    resource expressed in a start date and a stop date.
+                  </description>
+                  <example>
+                  </example>
+                  <lineage>
+                    The temporalCoverage element was introduced into EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="geographicCoverage" type="cov:GeographicCoverage"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Geographic coverage
+                  </tooltip>
+                  <summary>
+                    Description of the geographic area which data are collected
+                    in the entity.
+                  </summary>
+                  <description>
+                    This element describes the geographic area which data are 
+                    collected in the entity: descriptive paragraph of text or
+                    Cartesian coordinates of the area.
+                  </description>
+                  <example>
+                  </example>
+                  <lineage>
+                    The geographicCoverage element was introduced into EML 1.4.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="taxonomicCoverage" type="cov:TaxonomicCoverage"
+                        minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip>
+                    Taxonomic coverage
+                  </tooltip>
+                  <summary>
+                    Description of the taxonomic extent of data in the 
+                    dataset.
+                  </summary>
+                  <description>
+                    This element describes the taxonomic extent of data
+                    in the dataset.  This can be a list of species, or 
+                    a group of species at a higher taxonomic rank (such
+                    as genus or family).
+                  </description>
+                  <example>
+                  </example>
+                  <lineage>
+                    The taxonomicCoverage element was introduced into EML 2.
+                  </lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+                                     
+          </xs:sequence>  
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
