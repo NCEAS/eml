@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: higgins $'
- *     '$Date: 2003-03-20 00:53:16 $'
- * '$Revision: 1.2 $'
+ *     '$Date: 2003-03-21 17:54:15 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -175,7 +175,7 @@ public class EMLConvert
     else {
       fname = str;
     }
-   System.out.println("path: "+path+"  --fname: "+fname);
+//   System.out.println("path: "+path+"  --fname: "+fname);
   } 
 
   private static void getPathInfo(String str) {
