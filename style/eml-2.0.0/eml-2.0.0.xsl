@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-24 06:18:06 $'
-  * '$Revision: 1.8 $'
+  *     '$Date: 2003-11-25 19:10:12 $'
+  * '$Revision: 1.9 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -1153,8 +1153,8 @@
        ********************************************************-->
    <xsl:template name="additionalmetadataURL">
      <xsl:param name="index"/>
-     <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$subHeaderStyle}">
+     <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
+       <tr><td class="{$linkedHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$index"/></xsl:attribute>
               <b>Additional Metadata</b></a>
            </td>
@@ -1166,8 +1166,8 @@
        ********************************************************-->
    <xsl:template name="xml">
      <xsl:param name="index"/>
-     <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$subHeaderStyle}">
+     <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
+       <tr><td class="{$linkedHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
               <b>Original XML File</b></a>
            </td>

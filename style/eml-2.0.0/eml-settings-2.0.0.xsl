@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-25 17:20:58 $'
-  * '$Revision: 1.10 $'
+  *     '$Date: 2003-11-25 19:10:31 $'
+  * '$Revision: 1.11 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -205,6 +205,10 @@
 <!--    the style for major rows containing subsection titles etc. -->
   <xsl:param name="subHeaderStyle" select="'tablehead'"/>
 
+<!--    the style for major rows containing links, such as additional metadata, 
+        original xml file etc. -->
+  <xsl:param name="linkedHeaderStyle" select="'linkedHeaderStyle'"/>
+
 <!--    the width for the first column (but see note above) -->
   <xsl:param name="firstColWidth" select="'15%'"/>
 
@@ -236,13 +240,13 @@
   <xsl:param name="innercoloddStyle" select="'innercolodd'"/>
 
 
-<!-- the default style for all the tables -->
+<!-- the default alignment style for the wrapper around the main tables -->
   <xsl:param name="mainTableAligmentStyle" select="'mainTableAligmentStyle'"/>
 
-<!-- the default style for all the tables -->
+<!-- the default style for the main container table -->
   <xsl:param name="mainContainerTableStyle" select="'mainContainerTableStyle'"/>
 
-<!-- the default style for all the tables -->
+<!-- the default style for all other tables -->
   <xsl:param name="tabledefaultStyle" select="'tabledefault'"/>
 
 <!-- the style for table party -->
