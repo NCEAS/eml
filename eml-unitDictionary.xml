@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-11 22:25:47 $'
-      '$Revision: 1.9 $'
+          '$Date: 2002-09-12 22:51:48 $'
+      '$Revision: 1.10 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,6 +71,10 @@
     <dimension name="dimensionless" />
   </unitType>
 
+  <unitType id="angle" name="angle">
+    <dimension name="angle" />
+  </unitType>
+
 <!-- ======================================================================= -->
 <!-- ========================== derived types ============================== -->
 <!-- ======================================================================= -->
@@ -84,9 +88,29 @@
     <dimension name="time" power="-1" />
   </unitType>
 
+  <unitType id="magneticFieldStrength" name="magneticFieldStrength">
+    <dimension name="charge" />
+    <dimension name="time" power="-1" />
+    <dimension name="length"/>
+  </unitType>
+
+  <unitType id="currentDensity" name="currentDensity">
+    <dimension name="charge" />
+    <dimension name="time" power="-1" />
+    <dimension name="length" power="-2"/>
+  </unitType>
+
   <unitType id="area" name="area">
     <dimension name="length" />
     <dimension name="length" />
+  </unitType>
+
+  <unitType id="reciprocal" name="reciprocal">
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="frequency" name="frequency">
+    <dimension name="time" power="-1"/>
   </unitType>
 
   <unitType id="volume" name="volume">
@@ -95,7 +119,15 @@
     <dimension name="length" />
   </unitType>
 
-  <unitType id="velocity" name="velocity">
+  <unitType id="volumetricArea" name="volumetricArea">
+    <dimension name="length" />
+    <dimension name="length" />
+    <dimension name="length" />
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="speed" name="speed">
     <dimension name="length" />
     <dimension name="time" power="-1"/>
   </unitType>
@@ -110,20 +142,20 @@
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
-  
+
   <unitType id="volumetricRate" name="volumetric rate">
     <dimension name="length"/>
     <dimension name="length"/>
     <dimension name="length"/>
     <dimension name="time" power="-1"/>
   </unitType>
-  
+
   <unitType id="massDensityRate" name="mass density rate">
     <dimension name="mass" />
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
-    <dimension name="time"/>
+    <dimension name="time" power="-1"/>
   </unitType>
 
   <unitType id="specificVolume" name="specific volume">
@@ -163,11 +195,48 @@
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
-  
+
   <unitType id="arealMassDensity" name="areal mass density">
     <dimension name="mass"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="arealMass" name="areal mass">
+    <dimension name="mass" power="-1"/>
+    <dimension name="length"/>
+    <dimension name="length"/>
+  </unitType>
+
+  <unitType id="force" name="force">
+    <dimension name="mass"/>
+    <dimension name="length"/>
+    <dimension name="time" power="-2"/>
+  </unitType>
+
+  <unitType id="energy" name="energy">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-2"/>
+  </unitType>
+
+  <unitType id="power" name="power">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-3"/>
+  </unitType>
+
+  <unitType id="potentialDifference" name="potentialDifference">
+    <dimension name="mass"/>
+    <dimension name="length" power="2"/>
+    <dimension name="time" power="-4"/>
+    <dimension name="charge" />
+  </unitType>
+
+  <unitType id="pressure" name="pressure">
+    <dimension name="mass"/>
+    <dimension name="time" power="-2"/>
+    <dimension name="length" power="3"/>
   </unitType>
 
 <!-- ======================================================================= -->
@@ -324,49 +393,170 @@
     <description>1000 cm^3</description>
   </unit>
 
+  <!--angles-->
+  <unit id="radian" name="radiam" unitType="angle" multiplierToSI="1" abbreviation="rad">
+    <description>radian</description>
+  </unit>
+  <unit id="degree" name="degree" unitType="angle" multiplierToSI="57.29578" abbreviation="deg">
+    <description>radian</description>
+  </unit>
+
+  <!--frequency-->
+  <unit id="hertz" name="hertz" unitType="frequency" multiplierToSI="1" abbreviation="Hz">
+    <description>hertz</description>
+  </unit>
+
+  <!--SI force -->
+  <unit id="newtom" name="newtom" unitType="force" multiplierToSI="1" abbreviation="N">
+    <description>newtom</description>
+  </unit>
+
+  <!--energy-->
+  <unit id="joule" name="joule" unitType="energy" multiplierToSI="1" abbreviation="J">
+    <description>joule = N*m</description>
+  </unit>
+  <unit id="calorie" name="calorie" unitType="energy" multiplierToSI="4.1868" abbreviation="cal">
+    <description>1 cal = 4.1868 J</description>
+  </unit>
+  <unit id="britishThermalUnity" name="british thermal unit" unitType="energy" multiplierToSI="1055.0559" abbreviation="btu">
+    <description>1 btu = 1055.0559 J</description>
+  </unit>
+  <unit id="footPound" name="foot pound" unitType="energy" multiplierToSI="1.355818" abbreviation="ft-lbs">
+    <description>1 ft-lbs = 1.355818 J</description>
+  </unit>
+
+  <!--SI power-->
+  <unit id="watt" name="watt" unitType="power" multiplierToSI="1" abbreviation="W">
+    <description>watt = J/s</description>
+  </unit>
+  <unit id="volt" name="volt" unitType="potentialDifference" multiplierToSI="1" abbreviation="V">
+    <description>volt</description>
+  </unit>
+
+  <!--SI pressure-->
+  <unit id="pascal" name="pascal" unitType="pressure" multiplierToSI="1" abbreviation="Pa">
+    <description>pascal</description>
+  </unit>
+  <unit id="megapascal" name="megapascal" unitType="pressure" multiplierToSI="1000000" abbreviation="MPa">
+    <description>mega pascal</description>
+  </unit>
+  <unit id="kilopascal" name="kilopascal" unitType="pressure" multiplierToSI="1000" abbreviation="kPa">
+    <description>mega pascal</description>
+  </unit>
+
+  <!--English pressure-->
+  <unit id="atmosphere" name="atmosphere" parentSI="pascal" unitType="pressure" multiplierToSI="101325" abbreviation="atm">
+    <description>1 atmosphere = 101325 pascals </description>
+  </unit>
+  <unit id="bar" name="bar" parentSI="pascal" unitType="pressure" multiplierToSI="100000" abbreviation="bar">
+    <description>1 bar = 100000 pascals</description>
+  </unit>
+
   <!--combos of SI-->
-  <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" multiplierToSI="1" abbreviation="mg/ml">
+  <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" abbreviation="mg/ml">
     <description>grams per milliliter</description>
   </unit>
-  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI="1" abbreviation="g/l">
+  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" abbreviation="g/l">
     <description>grams per liter</description>
   </unit>
-  <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity" multiplierToSI="1">
+  <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity">
     <description>Fundamental SI mass density</description>
   </unit>
-  <unit id="microgramsPerLiter" name="microgramsPerLiter" unitType="massDensity" multiplierToSI="1">
+  <unit id="microgramsPerLiter" name="microgramsPerLiter" unitType="massDensity">
     <description>micrograms / liter</description>
   </unit>
-  <unit id="milligramsPerLiter" name="milligramsPerLiter" unitType="massDensity" multiplierToSI="1">
+  <unit id="milligramsPerLiter" name="milligramsPerLiter" unitType="massDensity">
     <description>milligrams / liter</description>
   </unit>
-  <unit id="gramsPerCubicCentimeter" name="gramsPerCubitCentimeter" unitType="massDensity" multiplierToSI="1">
+  <unit id="gramsPerCubicCentimeter" name="gramsPerCubitCentimeter" unitType="massDensity">
     <description>grams per cubic centimeter</description>
   </unit>
-  <unit id="gramsPerMilliliter" name="gramsPerMilliliter" unitType="massDensity" multiplierToSI="1">
+  <unit id="gramsPerMilliliter" name="gramsPerMilliliter" unitType="massDensity">
     <description>grams per milliliter</description>
   </unit>
-  <unit id="gramsPerLiterPerDay" name="gramsPerLiterPerDay" unitType="massDensityRate" multiplierToSI="1">
+  <unit id="gramsPerLiterPerDay" name="gramsPerLiterPerDay" unitType="massDensityRate">
     <description>grams Per (Liter Per Day)</description>
   </unit>
-  <unit id="litersPerSecond" name="litersPerSecond" unitType="volumetricRate" multiplierToSI="1">
+  <unit id="litersPerSecond" name="litersPerSecond" unitType="volumetricRate">
     <description>liters per second</description>
   </unit>
-  <unit id="centimetersPerSecond" name="litersPerSec" unitType="volumetricRate" multiplierToSI="1">
+  <unit id="centimetersPerSecond" name="litersPerSec" unitType="volumetricRate">
     <description>centimeters per second</description>
   </unit>
-  <unit id="litersPerSec" name="litersPerSec" unitType="volumetricRate" multiplierToSI="1">
+  <unit id="litersPerSec" name="litersPerSec" unitType="volumetricRate">
     <description>liters per second</description>
   </unit>
-  <unit id="milligramsPerSquareMeter" name="milligramsPerSquareMeter" unitType="arealMassDensity" multiplierToSI="1">
+  <unit id="milligramsPerSquareMeter" name="milligramsPerSquareMeter" unitType="arealMassDensity">
     <description>milligrams Per Square Meter</description>
   </unit>
-  <unit id="hectare" name="hectare" unitType="area" multiplierToSI="100000">
-    <description>milligrams Per Square Meter</description>
+  <unit id="hectare" name="hectare" unitType="area">
+    <description>1 hectare is 10^4 square meters</description>
   </unit>
-  <unit id="kilogramsPerHectare" name="kilogramsPerHectare" unitType="arealMassDensity" multiplierToSI="1">
+  <unit id="kilogramsPerHectare" name="kilogramsPerHectare" unitType="arealMassDensity">
     <description>kilograms per hectare</description>
   </unit>
+  <unit id="squareKilometers" name="squareKilometers" unitType="area">
+    <description>square kilometers</description>
+  </unit>
+  <unit id="squareMillimeters" name="squareMillimeters" unitType="area">
+    <description>square millmeters</description>
+  </unit>
+  <unit id="tonne" name="tonne" unitType="mass" multiplierToSI="1000">
+    <description>metric ton or tonne</description>
+  </unit>
+  <unit id="tonnePerHectare" name="tonnePerHectare" unitType="arealMassDensity">
+    <description>metric ton or tonne per hectare</description>
+  </unit>
+  <unit id="bushel" name="bushel" unitType="volume">
+    <description>1 bushel = 35.23907 liters</description>
+  </unit>
+  <unit id="acre" name="acre" unitType="area">
+    <description>1 acre = 4046.8564 square meters or 1 hectare = 2.47 acres</description>
+  </unit>
+  <unit id="bushelsPerAcre" name="bushelsPerAcre" unitType="volumetricArea">
+    <description> bushels per acre</description>
+  </unit>
+  <unit id="litersPerHectare" name="litersPerHectare" unitType="volumetricArea">
+    <description>liters per hectare</description>
+  </unit>
+  <unit id="squareMeterPerKilogram" name="squareMeterPerKilogram" unitType="arealMass">
+    <description>liters per hectare</description>
+  </unit>
+  <unit id="squareMeter" name="squareMeter" unitType="area" multiplierToSI="1">
+    <description>square meter</description>
+  </unit>
+  <unit id="cubidMeter" name="cubitMeter" unitType="volume" multiplierToSI="1">
+    <description>cubic meter</description>
+  </unit>
+  <unit id="cubicMeter" name="cubicMeter" unitType="volume" multiplierToSI="1">
+    <description>cubic meter</description>
+  </unit>
+  <unit id="metersPerSecond" name="metersPerSecond" unitType="speed" multiplierToSI="1">
+    <description>meters per second</description>
+  </unit>
+  <unit id="metersPerSecondSquared" name="metersPerSecondSquared" unitType="acceleration" multiplierToSI="1">
+    <description>meters per second squared</description>
+  </unit>
+  <unit id="waveNumber" name="waveNumber" unitType="reciprocal" multiplierToSI="1">
+    <description>1/meters</description>
+  </unit>
+  <unit id="cubicMeterPerKilogram" name="cubicMeterPerKilogram" unitType="specificVolume" multiplierToSI="1">
+    <description>cubic meters per kilogram</description>
+  </unit>
+  <unit id="amperePerSquareMeter" name="amperePerSquareMeter" unitType="currentDensity" multiplierToSI="1">
+    <description>ampere per meter squared</description>
+  </unit>
+  <unit id="amperePerMeter" name="amperePerMeter" unitType="magneticFieldStrength" multiplierToSI="1">
+    <description>ampere per meter</description>
+  </unit>
+  <unit id="molePerCubicMeter" name="molePerCubicMeter" unitType="amountOfSubstanceConcentration" multiplierToSI="1">
+    <description>mole per cubic meter</description>
+  </unit>
+  <unit id="candelaPerSquareMeter" name="candelaPerSquareMeter" unitType="luminance" multiplierToSI="1">
+    <description>candela Per Square Meter</description>
+  </unit>
+
+
 
   <!--numeric densities-->
   <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="arealDensity" multiplierToSI="1" abbreviation="#/m^2">
@@ -388,6 +578,18 @@
   </unit>
   <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI=".9144">
     <description>3 feet</description>
+  </unit>
+  <unit id="mile" name="mile" parentSI="meter" abbreviation="mile" multiplierToSI="1609.344">
+    <description>5280 ft or 1609.344 meters</description>
+  </unit>
+  <unit id="pint" name="pint" parentSI="liter" abbreviation="pint" multiplierToSI=".473176">
+    <description>this is a US liquid pint</description>
+  </unit>
+  <unit id="pound" name="pound" parentSI="gram" abbreviation="lbs" multiplierToSI="453.6">
+    <description>1 pound in the Avoirdupois (commerce) scale</description>
+  </unit>
+  <unit id="ton" name="ton" parentSI="gram" abbreviation="ton" multiplierToSI="907200">
+    <description>standard US (short) ton = 2000 lbs</description>
   </unit>
 
 <!-- derived non-SI units -->
