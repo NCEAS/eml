@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 16:21:58 $'
-      '$Revision: 1.6 $'
+          '$Date: 2002-09-10 16:37:20 $'
+      '$Revision: 1.7 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@
   <table border="1" cellpadding="3">
   <tr>
   <th/>
+  <!--create the column headers-->
   <xsl:for-each select="//doc:module">
     <th valign="bottom" class="tablehead2">
       <xsl:call-template name="verttext">
@@ -56,12 +57,14 @@
     </th>
   </xsl:for-each>
   </tr>
+    <!--loop through each module to do the rows-->
     <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
       <xsl:variable name="modFile">
         <xsl:value-of select="."/>
       </xsl:variable>
       <tr>
 
+      <!--color the row based on it's position-->
       <xsl:attribute name="class">
        <xsl:choose>
          <xsl:when test="position() mod 2 = 1">rowodd</xsl:when>
@@ -69,12 +72,14 @@
        </xsl:choose>
       </xsl:attribute>
 
+      <!-- save the position for later use-->
       <xsl:variable name="pos">
         <xsl:value-of select="position() mod 2"/>
       </xsl:variable>
 
-      <td><xsl:value-of select="."/></td> <!--the row header-->
-
+      <td class="tablehead2"><xsl:value-of select="."/></td> <!--the row header-->
+        <!--go through each module again, this time comparing its imported
+            modules to the module name from the outer loop-->
         <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
           <xsl:variable name="modName">
             <xsl:value-of select="substring-before(., '.')"/>
@@ -88,6 +93,7 @@
           <xsl:if test="normalize-space($importedDoc)=normalize-space($modName)">
             <xsl:attribute name="class">
               <xsl:choose>
+               <!--change the color of the X cells slightly-->
                <xsl:when test="$pos = 1">rowoddemphasis</xsl:when>
                <xsl:when test="$pos = 0">rowevenemphasis</xsl:when>
              </xsl:choose>
@@ -95,6 +101,7 @@
             <xsl:text>X</xsl:text> <!--put the x where they are equal-->
           </xsl:if>
           <xsl:if test="normalize-space($modName)=normalize-space(substring-before($modFile, '.'))">
+            <!--color the diagonal cells where the info makes no sense-->
             <xsl:attribute name="bgcolor">
               <xsl:text>black</xsl:text>
             </xsl:attribute>
@@ -123,6 +130,7 @@
   <xsl:value-of select="$textchar"/><br/>
 
   <xsl:if test="string-length($textend) > 0">
+    <!--recurse if there is anything left in the string-->
     <xsl:call-template name="verttext">
       <xsl:with-param name="text" select="$textend"/>
     </xsl:call-template>
