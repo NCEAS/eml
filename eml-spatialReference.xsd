@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
-xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
-  schemaLocation="eml-resource.xsd" />
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-spatialReference.xsd,v $'
@@ -21,9 +17,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:48 $'
-      '$Revision: 1.17 $'
+        '$Author: mccartne $'
+          '$Date: 2002-09-24 19:48:55 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,6 +62,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         identification of a reference datum, a spheroid definition, and
         projection algorithm. It also provides any constants required by that
         algorithm.</doc:description>
+        <doc:example/>
         <doc:lineage>ISO 19115.3</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -74,25 +71,59 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <xs:element name="horizontalCoordinateSystemDefinition" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Horizontal Coordinate System</doc:tooltip>
+              <doc:tooltip>Horizontal Coordinate System Definition
+              </doc:tooltip>
               <doc:summary>The reference frame or system from which linear or
               angular quantities are measured and assigned to the position that
               a point occupies.</doc:summary>
-              <doc:description />
+              <doc:description>The reference frame or system from which linear
+              or angular quantities are measured and assigned to the position
+              that a point occupies.</doc:description>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="coordinateSystemName">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Coordinate System Name</doc:tooltip>
+                    <doc:summary>Descriptive names for the coordinate
+                          systems used by the data.</doc:summary>
+                    <doc:description>Descriptive names for the
+                          coordinate systems used by the data.
+                          </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
+                          http://www.esri.com/metadata/esriprof80.html
+                          </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="geographicCoordinateSystemName"
-                                type="xs:string">
+                    <xs:element name="geographicCoordinateSystemName" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Geographic Coordinate System Name
+                          </doc:tooltip>
+                          <doc:summary>A descriptive name for the geographic
+                          coordinate system used by the data.  If the data is
+                          projected, this is the name of the ellipsoid or
+                          spheroid used by the projected coordinate system.
+                          </doc:summary>
+                          <doc:description>A descriptive name for the
+                          geographic coordinate system used by the data.  If
+                          the data is projected, this is the name of the
+                          ellipsoid or spheroid used by the projected
+                          coordinate system.</doc:description>
+                          <doc:example/>
+                          <doc:lineage>
+                          http://www.esri.com/metadata/esriprof80.html
+                          </doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
                     </xs:element>
-                    <xs:element name="projectedCoordinateSystemName"
-                                type="xs:string">
-                    </xs:element>
+                    <xs:element name="projectedCoordinateSystemName" type="xs:string"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -100,18 +131,21 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                 <xs:element name="geographic" type="GeographicType">
                   <xs:annotation>
                     <xs:appinfo>
-                      <doc:tooltip>Geographic coordinates</doc:tooltip>
+                      <doc:tooltip>Geographic Coordinates</doc:tooltip>
                       <doc:summary>Statement of the quantities of latitude and
                       longitude which define the position of a point on the
                       Earth's surface with respect to a reference
                       spheroid.</doc:summary>
-                      <doc:description />
+                      <doc:description>The quantities of latitude and
+                      longitude which define the position of a point on the
+                      Earth's surface with respect to a reference spheroid.
+                      </doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="planar" type="PlanarType"
-                maxOccurs="unbounded">
+                <xs:element name="planar" type="PlanarType" maxOccurs="unbounded">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Planar</doc:tooltip>
@@ -119,7 +153,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       and angles, which define the position of a point on a
                       reference plane to which the surface of the Earth has
                       been projected.</doc:summary>
-                      <doc:description />
+                      <doc:description>The quantities of distances, or
+                      distances and angles, which define the position of a
+                      point on a reference plane to which the surface of the
+                      Earth has been projected.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -131,26 +169,31 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>a description of any coordinate system that
                       is not aligned with the surface of the
                       Earth.</doc:summary>
-                      <doc:description />
+                      <doc:description>A description of any coordinate system
+                      that is not aligned with the surface of the Earth.
+                      </doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:element name="local_Description" type="xs:string">
+                      <xs:element name="localDescription" type="xs:string">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Local Description</doc:tooltip>
                             <doc:summary>A description of the coordinate system
                             and its orientation to the surface of the
                             Earth.</doc:summary>
-                            <doc:description />
+                            <doc:description>A description of the coordinate
+                            system and its orientation to the surface of the
+                            Earth.</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="local_Georeference_Information"
-                      type="xs:string">
+                      <xs:element name="localGeoreferenceInformation" type="xs:string">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Local Georeference
@@ -159,7 +202,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             provided to register the local system to the Earth
                             (e.g. control points, satellite ephemeral data,
                             inertial navigation data).</doc:summary>
-                            <doc:description />
+                            <doc:description>A description of the information
+                            provided to register the local system to the Earth
+                            (e.g. control points, satellite ephemeral data,
+                            inertial navigation data).</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -168,14 +215,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   </xs:complexType>
                 </xs:element>
               </xs:choice>
-              <xs:element name="geodetic_Model" type="GeodeticModelType"
-              minOccurs="0">
+              <xs:element name="geodeticModel" type="GeodeticModelType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Geodetic Model</doc:tooltip>
                     <doc:summary>parameters for the shape of the
                     earth.</doc:summary>
-                    <doc:description />
+                    <doc:description>Parameters for the shape of the earth.
+                    </doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -183,19 +231,22 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vertical_Coordinate_System_Definition" minOccurs="0">
+        <xs:element name="verticalCoordinateSystemDefinition" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Vertical Coordinate System Definition</doc:tooltip>
               <doc:summary>The reference frame or system from which vertical
               distances (altitudes or depths) are measured.</doc:summary>
-              <doc:description />
+              <doc:description>The reference frame or system from which
+              vertical distances (altitudes or depths) are measured.
+              </doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="altitude_System_Definition" minOccurs="0">
+              <xs:element name="altitudeSystemDefinition" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Altitude System Definition</doc:tooltip>
@@ -205,56 +256,65 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     the common term "elevation" to conform to the terminology
                     in Federal Information Processing Standards 70-1 and
                     173.</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="altitude_Datum_Name" type="xs:string">
+                    <xs:element name="altitudeDatumName" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Datum Name</doc:tooltip>
                           <doc:summary>The identification given to the surface
                           taken as the surface of reference from which
                           altitudes are measured.</doc:summary>
-                          <doc:description />
+                          <doc:description>The identification given to the
+                          level surface taken as the surface of reference from
+                          which altitudes are measured.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitude_Resolution" type="xs:string"
-                    maxOccurs="unbounded">
+                    <xs:element name="altitudeResolution" type="xs:string" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Resolution</doc:tooltip>
                           <doc:summary>The minimum distance possible between
                           two adjacent altitude values, expressed in Altitude
                           Distance Units of measure.</doc:summary>
-                          <doc:description />
+                          <doc:description>The minimum distance possible
+                          between two adjacent altitude values, expressed in
+                          Altitude Distance Units of measure.
+                          </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitude_Distance_Units"
-                    type="xs:string">
+                    <xs:element name="altitudeDistanceUnits" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Distance Units</doc:tooltip>
                           <doc:summary>Units in which altitude is
                           measured.</doc:summary>
-                          <doc:description />
+                          <doc:description>Units in which altitudes are
+                          recorded.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitude_Encoding_Method"
-                    type="xs:string">
+                    <xs:element name="altitudeEncodingMethod" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Encoding Method</doc:tooltip>
                           <doc:summary>The means used to encode the
                           altitudes.</doc:summary>
-                          <doc:description />
+                          <doc:description>The means used to encode the
+                          altitudes.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -262,61 +322,72 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="depth_System_Definition" minOccurs="0">
+              <xs:element name="depthSystemDefinition" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Depth System Definition</doc:tooltip>
                     <doc:summary>The reference frame or system from which
                     depths are measured.</doc:summary>
-                    <doc:description />
+                    <doc:description>The reference frame or system from which
+                    depths are measured.</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="depth_Datum_Name" type="xs:string">
+                    <xs:element name="depthDatumName" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Datum Name</doc:tooltip>
                           <doc:summary>The identification given to surface of
                           reference from which depths are
                           measured.</doc:summary>
-                          <doc:description />
+                          <doc:description>The identification given to
+                          surface of reference from which depths are measured.
+                          </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depth_Resolution" type="xs:string"
-                    maxOccurs="unbounded">
+                    <xs:element name="depthResolution" type="xs:string" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Resolution</doc:tooltip>
                           <doc:summary>The minimum distance possible between
                           two adjacent depth values, expressed in Depth
                           Distance Units of measure.</doc:summary>
-                          <doc:description />
+                          <doc:description>The minimum distance possible
+                          between two adjacent depth values, expressed in
+                          Depth Distance Units of measure.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depth_Distance_Units" type="xs:string">
+                    <xs:element name="depthDistanceUnits" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Distance Units</doc:tooltip>
                           <doc:summary>The units in which depths are
                           recorded.</doc:summary>
-                          <doc:description />
+                          <doc:description>Units in which depths are recorded.
+                          </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depth_Encoding_Method" type="xs:string">
+                    <xs:element name="depthEncodingMethod" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Encoding Method</doc:tooltip>
                           <doc:summary>The means used to encode
                           depths.</doc:summary>
-                          <doc:description />
+                          <doc:description>The means used to encode depths.
+                          </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -328,14 +399,13 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" />
+      <xs:element name="references"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
-  <xs:complexType name="HorizontalCoordinateSystemDefinitionBase" />
+  <xs:complexType name="HorizontalCoordinateSystemDefinitionBase"/>
   <xs:complexType name="GeographicType">
     <xs:sequence>
       <xs:element name="LatitudeResolution" type="xs:string">
@@ -345,7 +415,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>The minimum difference between two adjacent latitude
             values expressed in Geographic Coordinate Units of
             measure.</doc:summary>
-            <doc:description />
+            <doc:description>The minimum difference between two adjacent
+            latitude values expressed in Geographic Coordinate Units of
+            measure.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -357,7 +430,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:summary>The minimum difference between two adjacent longitude
             values expressed in Geographic Coordinate Units of
             measure.</doc:summary>
-            <doc:description />
+            <doc:description>The minimum difference between two adjacent
+            longitude values expressed in Geographic Coordinate Units of
+            measure.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -368,19 +444,21 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             <doc:tooltip>Geographic Coordinate Units</doc:tooltip>
             <doc:summary>The units of measure used for the latitude and
             longitude values.</doc:summary>
-            <doc:description />
+            <doc:description>Units of measure used for the latitude and
+            longitude values.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:enumeration value="Decimal degrees" />
-            <xs:enumeration value="Decimal minutes" />
-            <xs:enumeration value="Decimal seconds" />
-            <xs:enumeration value="Degrees and decimal minutes" />
-            <xs:enumeration value="Degrees, minutes, and decimal seconds" />
-            <xs:enumeration value="Radians" />
-            <xs:enumeration value="Grads" />
+            <xs:enumeration value="Decimal degrees"/>
+            <xs:enumeration value="Decimal minutes"/>
+            <xs:enumeration value="Decimal seconds"/>
+            <xs:enumeration value="Degrees and decimal minutes"/>
+            <xs:enumeration value="Degrees, minutes, and decimal seconds"/>
+            <xs:enumeration value="Radians"/>
+            <xs:enumeration value="Grads"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -396,7 +474,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               <doc:summary>the systematic representation of all or part of the
               surface of the Earth on a plane or developable
               surface.</doc:summary>
-              <doc:description />
+              <doc:description>The systematic representation of all or part of
+              the surface of the Earth on a plane or developable surface.
+              </doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -407,71 +488,74 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   <xs:appinfo>
                     <doc:tooltip>Map Projection Name</doc:tooltip>
                     <doc:summary>The name of the map projection.</doc:summary>
-                    <doc:description />
+                    <doc:description>Name of the map projection.
+                    </doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:enumeration value="Albers Conical Equal Area" />
-                    <xs:enumeration value="Azimuthal Equidistant" />
-                    <xs:enumeration value="Equidistant Conic" />
-                    <xs:enumeration value="Equirectangular" />
-                    <xs:enumeration
-                    value="General Vertical Near-sided Projection" />
-                    <xs:enumeration value="Gnomonic" />
-                    <xs:enumeration value="Lambert Azimuthal Equal Area" />
-                    <xs:enumeration value="Lambert Conformal Conic" />
-                    <xs:enumeration value="Mercator" />
-                    <xs:enumeration
-                    value="Modified Stereographic for Alaska" />
-                    <xs:enumeration value="Miller Cylindrical" />
-                    <xs:enumeration value="Oblique Mercator" />
-                    <xs:enumeration value="Orthographic" />
-                    <xs:enumeration value="Polar Stereographic" />
-                    <xs:enumeration value="Polyconic" />
-                    <xs:enumeration value="Robinson" />
-                    <xs:enumeration value="Sinusoidal" />
-                    <xs:enumeration value="Space Oblique Mercator" />
-                    <xs:enumeration value="Stereographic" />
-                    <xs:enumeration value="Transverse Mercator" />
-                    <xs:enumeration value="van der Grinten" />
+                    <xs:enumeration value="Albers Conical Equal Area"/>
+                    <xs:enumeration value="Azimuthal Equidistant"/>
+                    <xs:enumeration value="Equidistant Conic"/>
+                    <xs:enumeration value="Equirectangular"/>
+                    <xs:enumeration value="General Vertical Near-sided Projection"/>
+                    <xs:enumeration value="Gnomonic"/>
+                    <xs:enumeration value="Lambert Azimuthal Equal Area"/>
+                    <xs:enumeration value="Lambert Conformal Conic"/>
+                    <xs:enumeration value="Mercator"/>
+                    <xs:enumeration value="Modified Stereographic for Alaska"/>
+                    <xs:enumeration value="Miller Cylindrical"/>
+                    <xs:enumeration value="Oblique Mercator"/>
+                    <xs:enumeration value="Orthographic"/>
+                    <xs:enumeration value="Polar Stereographic"/>
+                    <xs:enumeration value="Polyconic"/>
+                    <xs:enumeration value="Robinson"/>
+                    <xs:enumeration value="Sinusoidal"/>
+                    <xs:enumeration value="Space Oblique Mercator"/>
+                    <xs:enumeration value="Stereographic"/>
+                    <xs:enumeration value="Transverse Mercator"/>
+                    <xs:enumeration value="van der Grinten"/>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:choice>
-                <xs:element name="albersConicalEqualArea"
-                type="AlbersConicalEqualAreaType">
+                <xs:element name="albersConicalEqualArea" type="AlbersConicalEqualAreaType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Albers Conical Equal Area</doc:tooltip>
                       <doc:summary>Parameters for the Albers Conical Equal Area
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Albers
+                      Conical Equal Area projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="AzimuthalEquidistant"
-                type="AzimuthalEquidistantType">
+                <xs:element name="AzimuthalEquidistant" type="AzimuthalEquidistantType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Azimuthal Equidistant</doc:tooltip>
                       <doc:summary>Parameters for the Azimuthal Equidistant
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Azimuthal
+                      Equidistant projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="EquidistantConic"
-                type="EquidistantConicType">
+                <xs:element name="EquidistantConic" type="EquidistantConicType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Equidistant Conic</doc:tooltip>
                       <doc:summary>Parameters for the Equidistant Conic
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the
+                      Equidistant Conic projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -482,20 +566,24 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Equirectangular</doc:tooltip>
                       <doc:summary>Parameters for the Equirectangular
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the
+                      Equirectangular projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="GeneralVerticalNear-sidedPerspective"
-                type="GeneralVerticalNear-sidedPerspectiveType">
+                <xs:element name="GeneralVerticalNear-sidedPerspective" type="GeneralVerticalNear-sidedPerspectiveType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>General Vertical Near-sided
                       Perspective</doc:tooltip>
                       <doc:summary>Parameters for the General Vertical
                       Near-sided Perspective projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the General
+                      Vertical Near-sided Perspective projection.
+                      </doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -506,31 +594,35 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Gnomonic</doc:tooltip>
                       <doc:summary>Parameters for the Gnomonic
                       projection</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Gnomonic
+                      projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="LambertAzimuthalEqualArea"
-                type="LambertAzimuthalEqualAreaType">
+                <xs:element name="LambertAzimuthalEqualArea" type="LambertAzimuthalEqualAreaType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Lambert Azimuthal Equal Area</doc:tooltip>
                       <doc:summary>Parameters for the Lambert Azimuthal Equal
                       Area projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Lambert
+                      Azimuthal Equal Area projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="LambertConformalConic"
-                type="LambertConformalConicType">
+                <xs:element name="LambertConformalConic" type="LambertConformalConicType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Lambert Conformal Conic</doc:tooltip>
                       <doc:summary>Parameters for the Lambert Conformal Conic
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Lambert
+                      Conformal Conic projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -541,32 +633,36 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Mercator</doc:tooltip>
                       <doc:summary>Parameters for the Mercator
                       projection</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Mercator
+                      projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="ModifiedStereographicforAlaska"
-                type="ModifiedStereographicforAlaskaType">
+                <xs:element name="ModifiedStereographicforAlaska" type="ModifiedStereographicforAlaskaType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Modified Stereographic for
                       Alaska</doc:tooltip>
                       <doc:summary>Parameters for the Modified Stereographic
                       for Alaska projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Modified
+                      Stereographic for Alaska projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="MillerCylindrical"
-                type="MillerCylindricalType">
+                <xs:element name="MillerCylindrical" type="MillerCylindricalType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Miller Cylindrical</doc:tooltip>
                       <doc:summary>Parameters for the Miller Cylindrical
                       projection</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Miller
+                      Cylindrical projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -577,7 +673,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Oblique Mercator</doc:tooltip>
                       <doc:summary>Parameters for the Oblique Mercator
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Oblique
+                      Mercator projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -588,19 +686,22 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Orthographic</doc:tooltip>
                       <doc:summary>Parameters for the Orthographic
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the
+                      Orthographic projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="polarStereographic"
-                type="polarStereographicType">
+                <xs:element name="polarStereographic" type="polarStereographicType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Polar Stereographic</doc:tooltip>
                       <doc:summary>parameters for the Polar Stereographic
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Polar
+                      Stereographic projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -611,7 +712,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Polyconic</doc:tooltip>
                       <doc:summary>Parameters for the Polyconic
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Polyconic
+                      projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -622,7 +725,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Robinson</doc:tooltip>
                       <doc:summary>Parameters for the Robinson
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Robinson
+                      projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -633,20 +738,23 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Sinusoidal</doc:tooltip>
                       <doc:summary>Parameters for the Sinusoidal
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Sinusoidal
+                      projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="spaceObliqueMercator"
-                type="SpaceObliqueMercatorType">
+                <xs:element name="spaceObliqueMercator" type="SpaceObliqueMercatorType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Space Oblique Mercator
                       (Landsat)</doc:tooltip>
                       <doc:summary>Parameters for the Space Oblique Mercator
                       (Landsat) projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the Space
+                      Oblique Mercator (Landsat) projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -657,19 +765,22 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>Stereographic</doc:tooltip>
                       <doc:summary>Parameters for the Stereographic
                       projection</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the
+                      Stereographic projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
-                <xs:element name="transverseMercator"
-                type="TransverseMercatorType">
+                <xs:element name="transverseMercator" type="TransverseMercatorType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Transverse Mercator</doc:tooltip>
                       <doc:summary>Parameters for the Transvers mercator
                       projection</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for theTransverse
+                      mercator projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -680,7 +791,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>van der Grinten</doc:tooltip>
                       <doc:summary>Parameters for the van der Grinten
                       projection.</doc:summary>
-                      <doc:description />
+                      <doc:description>Contains parameters for the van der
+                      Grinten projection.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -692,31 +805,42 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>a description of a projection, not defined
                       elsewhere in the standard, that was used for the data
                       set.</doc:summary>
-                      <doc:description>The information provided shall include
-                      the name of the projection, names of parameters and
-                      values used for the data set, and the citation of the
+                      <doc:description>A complete description of a projection,
+                      not defined elsewhere in the standard, that was used for
+                      the data set. The information provided shall include the
+                      name of the projection, names of parameters and values
+                      used for the data set, and the citation of the
                       specification for the algorithms that describe the
                       mathematical relationship between Earth and plane or
-                      developable surface for the projection.</doc:description>
+                      developable surface for the projection.
+                      </doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:element>
                 <xs:element name="MapProjectionParameters">
                   <xs:annotation>
-                    <xs:appinfo>Source: FGDC-STD-001-1998 Definition: Map
-                    Projection Parameters - a complete parameter set of the
-                    projection that was used for the data set. The information
-                    provided shall include the names of the parameters and
-                    values used for the data set that describe the mathematical
-                    relationship between the Earth and the plane or developable
-                    surface for the projection.</xs:appinfo>
+                    <xs:appinfo>
+                      <doc:tooltip>Map Projection Parameters</doc:tooltip>
+                      <doc:summary>A complete description of a projection
+                      that was used for the data set. </doc:summary>
+                      <doc:description>A complete description of a projection
+                      that was used for the data set. The information provided
+                      shall include the names of the parameters and values
+                      used for the data set, and the citation of the
+                      specification for the algorithms that describe the
+                      mathematical relationship between the Earth and the
+                      plane or developable surface for the projection.
+                      </doc:description>
+                      <doc:example/>
+                      <doc:lineage>FGDC-STD-001-1998</doc:lineage>
+                    </xs:appinfo>
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:element ref="azimuthMeasurePointLongitude"
-                      minOccurs="0" />
-                      <xs:element ref="azimuthalAngle" minOccurs="0" />
+                      <xs:element ref="azimuthMeasurePointLongitude" minOccurs="0"/>
+                      <xs:element ref="azimuthalAngle" minOccurs="0"/>
                       <xs:element ref="falseEasting" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
@@ -739,8 +863,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           Units.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="HeightOfPerspectivePointAboveSurface"
-                      minOccurs="0">
+                      <xs:element ref="HeightOfPerspectivePointAboveSurface" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Height of Perspective Point Above Surface
@@ -748,9 +871,8 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           meters.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="landsat" minOccurs="0" />
-                      <xs:element ref="latitudeOfProjectionCenter"
-                      minOccurs="0">
+                      <xs:element ref="landsat" minOccurs="0"/>
+                      <xs:element ref="latitudeOfProjectionCenter" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Latitude of Projection Center - latitude
@@ -758,8 +880,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           projections.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="latitudeOfProjectionOrigin"
-                      minOccurs="0">
+                      <xs:element ref="latitudeOfProjectionOrigin" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Latitude of Projection Origin - latitude
@@ -767,8 +888,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           map projection.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="longitudeofCentralMeridian"
-                      minOccurs="0">
+                      <xs:element ref="longitudeofCentralMeridian" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Longitude of Central Meridian - the line
@@ -777,8 +897,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           projection.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="longitudeOfProjectionCenter"
-                      minOccurs="0">
+                      <xs:element ref="longitudeOfProjectionCenter" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Longitude of Projection Center -
@@ -786,11 +905,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           projections.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="obliqueLineLatitude" minOccurs="0"
-                      maxOccurs="unbounded" />
-                      <xs:element ref="obliqueLineLongitude" minOccurs="0"
-                      maxOccurs="unbounded" />
-                      <xs:element ref="pathNumber" minOccurs="0" />
+                      <xs:element ref="obliqueLineLatitude" minOccurs="0" maxOccurs="unbounded"/>
+                      <xs:element ref="obliqueLineLongitude" minOccurs="0" maxOccurs="unbounded"/>
+                      <xs:element ref="pathNumber" minOccurs="0"/>
                       <xs:element ref="scaleFactorAtCenterLine" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
@@ -800,8 +917,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           along the center line.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="scaleFactorAtCentralMeridian"
-                      minOccurs="0">
+                      <xs:element ref="scaleFactorAtCentralMeridian" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Scale Factor at Central Meridian - a
@@ -819,8 +935,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           the equator.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="scaleFactorAtProjectionOrigin"
-                      minOccurs="0">
+                      <xs:element ref="scaleFactorAtProjectionOrigin" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Scale Factor at Projection Origin - a
@@ -829,8 +944,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           at the projection origin.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="standardParallel" minOccurs="0"
-                      maxOccurs="unbounded">
+                      <xs:element ref="standardParallel" minOccurs="0" maxOccurs="unbounded">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Standard Parallel - line of constant
@@ -839,8 +953,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           intersect.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element ref="straightVerticalLongitudeFromPole"
-                      minOccurs="0">
+                      <xs:element ref="straightVerticalLongitudeFromPole" minOccurs="0">
                         <xs:annotation>
                           <xs:documentation>Source: FGDC-STD-001-1998
                           Definition: Straight Vertical Longitude from Pole -
@@ -863,7 +976,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               on, and mathematically adjusted to, a map projection so that
               geographic positions can be readily transformed to and from plane
               coordinates.</doc:summary>
-              <doc:description />
+              <doc:description>A plane-rectangular coordinate system usually
+              based on, and mathematically adjusted to, a map projection so
+              that geographic positions can be readily transformed to and from
+              plane coordinates.</doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -872,10 +989,12 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               <xs:element name="gridCoordinateSystemName" type="xs:string">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Grid Coordinate System</doc:tooltip>
+                    <doc:tooltip>Grid Coordinate System Name</doc:tooltip>
                     <doc:summary>The name of the grid coordinate
                     system.</doc:summary>
-                    <doc:description />
+                    <doc:description>Name of the grid coordinate system.
+                    </doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -890,7 +1009,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       mercator projection, applied between latitudes 84 degrees
                       north and 80 degrees south on the Earth's
                       surface.</doc:summary>
-                      <doc:description />
+                      <doc:description>A grid system based on the transverse
+                      mercator projection, applied between latitudes 84 degrees
+                      north and 80 degrees south on the Earth's
+                      surface.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -902,23 +1025,25 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:tooltip>UTM Zone Number</doc:tooltip>
                             <doc:summary>Identifier for the UTM
                             zone.</doc:summary>
-                            <doc:description />
+                            <doc:description>Identifier for the UTM
+                            zone.</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="transverseMercator"
-                      type="TransverseMercatorType">
+                      <xs:element name="transverseMercator" type="TransverseMercatorType">
                         <xs:annotation>
                           <xs:appinfo>
-                          <doc:tooltip>Transverse Mercator</doc:tooltip>
-                          <doc:summary>Parameters for theTransverse mercator
+                            <doc:tooltip>Transverse Mercator</doc:tooltip>
+                            <doc:summary>Parameters for theTransverse mercator
                           projection.</doc:summary>
-                          <doc:description />
-                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
-                          Source: FGDC-STD-001-1998 Definition: Transverse
-                          Mercator - contains parameters for theTransverse
-                          mercator projection.</xs:appinfo>
+                            <doc:description>Contains parameters for
+                            theTransverse mercator projection.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                          </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                     </xs:sequence>
@@ -933,31 +1058,38 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       stereographic projection, applied to the Earth's polar
                       regions north of 84 degrees north and south of 80 degrees
                       south.</doc:summary>
-                      <doc:description />
+                      <doc:description>A grid system based on the polar
+                      stereographic projection, applied to the Earth's polar
+                      regions north of 84 degrees north and south of 80 degrees
+                      south.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:element name="UPS_Zone_Identifier" type="xs:string">
+                      <xs:element name="UPSZoneIdentifier" type="xs:string">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>UPS Zone Identifier</doc:tooltip>
                             <doc:summary>Identifier for the UPS
                             zone.</doc:summary>
-                            <doc:description />
+                            <doc:description>Identifier for the UPS
+                            zone.</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="polarStereographic"
-                      type="polarStereographicType">
+                      <xs:element name="polarStereographic" type="polarStereographicType">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Polar Stereographic</doc:tooltip>
                             <doc:summary>parameters for the Polar Stereographic
                             projection.</doc:summary>
-                            <doc:description />
+                            <doc:description> Contains parameters for the Polar
+                            Stereographic projection. </doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
@@ -973,7 +1105,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:summary>a plane-rectangular coordinate system
                       established for each state in the United States by the
                       National Geodetic Survey.</doc:summary>
-                      <doc:description />
+                      <doc:description>A plane-rectangular coordinate system
+                      established for each state in the United States by the
+                      National Geodetic Survey.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -985,45 +1120,52 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                             <doc:tooltip>SPCS Zone Identifier</doc:tooltip>
                             <doc:summary>Identifier for the SPCS
                             zone.</doc:summary>
-                            <doc:description />
+                            <doc:description> Identifier for the SPCS
+                            zone.</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:choice>
-                        <xs:element name="lambertConformalConic"
-                        type="LambertConformalConicType">
+                        <xs:element name="lambertConformalConic" type="LambertConformalConicType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Lambert Conformal
                               Conic</doc:tooltip>
                               <doc:summary>Parameters for the Lambert Conformal
                               Conic projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for the
+                              Lambert Conformal Conic projection.
+                              </doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
                         </xs:element>
-                        <xs:element name="transverseMercator"
-                        type="TransverseMercatorType">
+                        <xs:element name="transverseMercator" type="TransverseMercatorType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Transverse Mercator</doc:tooltip>
                               <doc:summary>Parameters for theTransverse
                               mercator projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for
+                              theTransverse mercator projection.
+                              </doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
                         </xs:element>
-                        <xs:element name="obliqueMercator"
-                        type="ObliqueMercatorType">
+                        <xs:element name="obliqueMercator" type="ObliqueMercatorType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Oblique Mercator</doc:tooltip>
                               <doc:summary>Parameters for the Oblique Mercator
                               projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for the
+                              Oblique Mercator projection.</doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1034,7 +1176,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                               <doc:tooltip>Polyconic</doc:tooltip>
                               <doc:summary>Parameters for the Polyconic
                               projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for the
+                              Polyconic projection.</doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1049,51 +1193,55 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                       <doc:tooltip>ARC Coordinate System</doc:tooltip>
                       <doc:summary>The Equal Arc-second Coordinate
                       System,</doc:summary>
-                      <doc:description>a plane-rectangular coordinate system
-                      established in Department of Defense, 1990, Military
-                      specification ARC Digitized Raster Graphics (ADRG)
-                      (MIL-A-89007): Philadelphia, Department of Defense,
-                      Defense Printing Service Detachment
-                      Office.</doc:description>
+                      <doc:description>The Equal Arc-second Coordinate System,
+                      a plane-rectangular coordinate system established in
+                      Department of Defense, 1990, Military specification ARC
+                      Digitized Raster Graphics (ADRG) (MIL-A-89007):
+                      Philadelphia, Department of Defense, Defense Printing
+                      Service Detachment Office.</doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:element name="ARCSystemZoneIdentifier"
-                      type="xs:string">
+                      <xs:element name="ARCSystemZoneIdentifier" type="xs:string">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>ARC System Zone
                             Identifier</doc:tooltip>
                             <doc:summary>identifier for the ARC Coordinate
                             System Zone.</doc:summary>
-                            <doc:description />
+                            <doc:description>Identifier for the ARC Coordinate
+                            System Zone.</doc:description>
+                            <doc:example/>
                             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
                       <xs:choice>
-                        <xs:element name="equirectangular"
-                        type="EquirectangularType">
+                        <xs:element name="equirectangular" type="EquirectangularType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Equirectangular</doc:tooltip>
                               <doc:summary>Parameters for the Equirectangular
                               projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for the
+                              Equirectangular projection.</doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
                         </xs:element>
-                        <xs:element name="azimuthalEquidistant"
-                        type="AzimuthalEquidistantType">
+                        <xs:element name="azimuthalEquidistant" type="AzimuthalEquidistantType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Azimuthal Equidistant</doc:tooltip>
                               <doc:summary>Parameters for the Azimuthal
                               Equidistant projection.</doc:summary>
-                              <doc:description />
+                              <doc:description>Contains parameters for the
+                              Azimuthal Equidistant projection.</doc:description>
+                              <doc:example/>
                               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
@@ -1105,16 +1253,21 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                 <xs:element name="otherGridSystemDefinition" type="xs:string">
                   <xs:annotation>
                     <xs:appinfo>
-                      <doc:tooltip>Other Grid System's Definition</doc:tooltip>
+                      <doc:tooltip>Other Grid System's Definition
+                      </doc:tooltip>
                       <doc:summary>A complete description of a grid system, not
                       defined elsewhere in this standard, that was used for the
                       data set.</doc:summary>
-                      <doc:description>The information provided shall include
-                      the name of the grid system, the names of the parameters
-                      and values used for the data set, and the citation of the
-                      specification for the algorithms that describe the
-                      mathematical relationship between the Earth and the
-                      coordinates of the grid system.</doc:description>
+                      <doc:description> A complete description of a grid
+                      system, not defined elsewhere in this standard, that was
+                      used for the data set. The information provided shall
+                      include the name of the grid system, the names of the
+                      parameters and values used for the data set, and the
+                      citation of the specification for the algorithms that
+                      describe the mathematical relationship between the Earth
+                      and the coordinates of the grid system.
+                      </doc:description>
+                      <doc:example/>
                       <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
@@ -1123,14 +1276,18 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="local_Planar">
+        <xs:element name="localPlanar">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Local Planar</doc:tooltip>
               <doc:summary>Any right-handed planar coordinate system of which
               the z-axis coincides with a plumb line through the origin that
               locally is aligned with the surface of the Earth.</doc:summary>
-              <doc:description />
+              <doc:description>Any right-handed planar coordinate system of
+              which the z-axis coincides with a plumb line through the origin
+              that locally is aligned with the surface of the
+              Earth.</doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -1142,13 +1299,14 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:tooltip>Local Planar Description</doc:tooltip>
                     <doc:summary>A description of the local planar
                     system.</doc:summary>
-                    <doc:description />
+                    <doc:description>A description of the local planar
+                    system.</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="localPlanarGeoreferenceInformation"
-              type="xs:string">
+              <xs:element name="localPlanarGeoreferenceInformation" type="xs:string">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Local Planar Georeference
@@ -1157,7 +1315,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     register the local planar system to the Earth (e.g. control
                     points, satellite ephemeral data, inertial navigation
                     data).</doc:summary>
-                    <doc:description />
+                    <doc:description>A description of the information provided
+                    to register the local planar system to the Earth (e.g.
+                    control points, satellite ephemeral data, inertial
+                    navigation data).</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -1170,9 +1332,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Planar Coordinate Information</doc:tooltip>
-            <doc:summary>Information about the coordinate system developed on
-            the planar surface.</doc:summary>
-            <doc:description />
+            <doc:summary>A description of the information provided to
+            register the local planar system to the Earth (e.g. control points,
+            satellite ephemeral data, inertial navigation
+            data).</doc:summary>
+            <doc:description>A description of the information provided to
+            register the local planar system to the Earth (e.g. control points,
+            satellite ephemeral data, inertial navigation
+            data).</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1184,13 +1352,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   <doc:tooltip>Planar Coordinate Encoding Method</doc:tooltip>
                   <doc:summary>The means used to represent horizontal
                   positions.</doc:summary>
-                  <doc:description />
+                  <doc:description>The means used to represent horizontal
+                  positions.</doc:description>
+                  <doc:example/>
                   <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
             <xs:choice>
-              <xs:element name="coordinate_Representation">
+              <xs:element name="coordinateRepresentation">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Coordinate Representation</doc:tooltip>
@@ -1198,13 +1368,17 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     by measuring its distance from perpendicular reference axes
                     (the "coordinate pair" and "row and column"
                     methods).</doc:summary>
-                    <doc:description />
+                    <doc:description>The method of encoding the position of a
+                    point by measuring its distance from perpendicular
+                    reference axes (the "coordinate pair" and "row and column"
+                    methods).</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Abscissa_Resolution" type="xs:string">
+                    <xs:element name="AbscissaResolution" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Abscissa Resolution</doc:tooltip>
@@ -1212,12 +1386,16 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           the "x" or column values of two adjacent points,
                           expressed in Planar Distance Units of
                           measure.</doc:summary>
-                          <doc:description />
+                          <doc:description>The (nominal) minimum distance
+                          between the "x" or column values of two adjacent
+                          points, expressed in Planar Distance Units of
+                          measure.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="Ordinate_Resolution" type="xs:string">
+                    <xs:element name="OrdinateResolution" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Ordinate Resolution</doc:tooltip>
@@ -1225,7 +1403,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                           the "y" or row values of two adjacent points,
                           expressed in Planar Distance Units of
                           measure.</doc:summary>
-                          <doc:description />
+                          <doc:description>The (nominal) minimum distance
+                          between the "y" or row values of two adjacent points,
+                          expressed in Planar Distance Units of
+                          measure.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1233,7 +1415,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="distance_and_Bearing_Representation">
+              <xs:element name="distanceandBearingRepresentation">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Distance and Bearing
@@ -1241,68 +1423,81 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                     <doc:summary>A method of encoding the position of a point
                     by measuring its distance and direction (azimuth angle)
                     from another point.</doc:summary>
-                    <doc:description />
+                    <doc:description>A method of encoding the position of a
+                    point by measuring its distance and direction (azimuth
+                    angle) from another point.</doc:description>
+                    <doc:example/>
                     <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="distance_Resolution" type="xs:string">
+                    <xs:element name="distanceResolution" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Distance Resolution</doc:tooltip>
                           <doc:summary>the minimum distance measurable between
                           two points, expressed Planar Distance Units of
                           measure.</doc:summary>
-                          <doc:description />
+                          <doc:description>The minimum distance measurable
+                          between two points, expressed Planar Distance Units
+                          of measure.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="Bearing_Resolution" type="xs:string">
+                    <xs:element name="bearingResolution" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bearing Resolution</doc:tooltip>
                           <doc:summary>The minimum angle measurable between two
                           points, expressed in Bearing Units of
                           measure.</doc:summary>
-                          <doc:description />
+                          <doc:description> The minimum angle measurable
+                          between two points, expressed in Bearing Units of
+                          measure. </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="Bearing_Units" type="xs:string">
+                    <xs:element name="bearingUnits" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bearing Units</doc:tooltip>
                           <doc:summary>Units of measure used for
                           angles.</doc:summary>
-                          <doc:description />
+                          <doc:description>Units of measure used for
+                          angles.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="Bearing_Reference_Direction"
-                    type="xs:string">
+                    <xs:element name="bearingReferenceDirection" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bearing Reference
                           Direction</doc:tooltip>
                           <doc:summary>Direction from which the bearing is
                           measured.</doc:summary>
-                          <doc:description />
+                          <doc:description> Direction from which the bearing is
+                          measured. </doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bearingReferenceMeridian"
-                    type="xs:string">
+                    <xs:element name="bearingReferenceMeridian" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bearing Reference Meridian</doc:tooltip>
                           <doc:summary>Axis from which the bearing is
                           measured.</doc:summary>
-                          <doc:description />
+                          <doc:description>Axis from which the bearing is
+                          measured.</doc:description>
+                          <doc:example/>
                           <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1311,13 +1506,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
                 </xs:complexType>
               </xs:element>
             </xs:choice>
-            <xs:element name="Planar_Distance_Units" type="xs:string">
+            <xs:element name="planarDistanceUnits" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Planar Distance Units</doc:tooltip>
                   <doc:summary>units of measure used for
                   distances.</doc:summary>
-                  <doc:description />
+                  <doc:description>Units of measure used for
+                  distances.</doc:description>
+                  <doc:example/>
                   <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -1329,47 +1526,56 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="GeodeticModelType">
     <xs:sequence>
-      <xs:element name="horizontal_Datum_Name" type="xs:string" minOccurs="0">
+      <xs:element name="horizontalDatumName" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Horizontal Datum Name</doc:tooltip>
             <doc:summary>The identification given to the reference system used
             for defining the coordinates of points.</doc:summary>
-            <doc:description />
+            <doc:description>The identification given to the reference system
+            used for defining the coordinates of points.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="ellipsoid_Name" type="xs:string">
+      <xs:element name="ellipsoidName" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Ellipsoid Name</doc:tooltip>
             <doc:summary>Identification given to established representations of
             the Earth's shape.</doc:summary>
-            <doc:description />
+            <doc:description>Identification given to established
+            representations of the Earth's shape.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="semi-major_Axis" type="xs:string">
+      <xs:element name="semiMajorAxis" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Semi-major Axis</doc:tooltip>
             <doc:summary>Radius of the equatorial axis of the
             ellipsoid.</doc:summary>
-            <doc:description />
+            <doc:description>Radius of the equatorial axis of the
+            ellipsoid.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="denominator_of_Flattening_Ratio" type="xs:string">
+      <xs:element name="denominatorOfFlatteningRatio" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Denominator of Flattening Ratio</doc:tooltip>
             <doc:summary>The denominator of the ratio of the difference between
             the equatorial and polar radii of the ellipsoid when the numerator
             is set to 1.</doc:summary>
-            <doc:description />
+            <doc:description>The denominator of the ratio of the difference
+            between the equatorial and polar radii of the ellipsoid when the
+            numerator is set to 1.</doc:description>
+            <doc:example/>
             <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -1418,7 +1624,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Standard Parallel</doc:tooltip>
         <doc:summary>The line of constant latitude at which the surface of the
         Earth and the plane or developable surface intersect.</doc:summary>
-        <doc:description />
+        <doc:description>Line of constant latitude at which the surface of the
+        Earth and the plane or developable surface intersect.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1430,7 +1638,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>The line of longitude at the center of a map projection
         generally used as the basis for constructing the
         projection.</doc:summary>
-        <doc:description />
+        <doc:description>The line of longitude at the center of a map
+        projection generally used as the basis for constructing the
+        projection.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1441,7 +1652,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Latitude of Projection Origin</doc:tooltip>
         <doc:summary>The latitude chosen as the origin of rectangular
         coordinates for a map projection.</doc:summary>
-        <doc:description />
+        <doc:description> Latitude chosen as the origin of rectangular
+        coordinates for a map projection. </doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1452,9 +1665,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>False Easting</doc:tooltip>
         <doc:summary>The value added to all "x" values in the rectangular
         coordinates for a map projection.</doc:summary>
-        <doc:description>This value frequently is assigned to eliminate
-        negative numbers. Expressed in the unit of measure identified in Planar
-        Coordinate Units.</doc:description>
+        <doc:description>The value added to all "x" values in the rectangular
+        coordinates for a map projection. This value frequently is assigned to
+        eliminate negative numbers. Expressed in the unit of measure identified
+        in Planar Coordinate Units.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1465,9 +1680,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>False Northing</doc:tooltip>
         <doc:summary>The value added to all "y" values in the rectangular
         coordinates for a map projection.</doc:summary>
-        <doc:description>This value frequently is assigned to eliminate
-        negative numbers. Expressed in the unit of measure identified in Planar
-        Coordinate Units.</doc:description>
+        <doc:description>The value added to all "y" values in the rectangular
+        coordinates for a map projection. This value frequently is assigned to
+        eliminate negative numbers. Expressed in the unit of measure identified
+        in Planar Coordinate Units.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1475,10 +1692,12 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   <xs:element name="HeightOfPerspectivePointAboveSurface">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Height of Perspective Point Above Surface</doc:tooltip>
+        <doc:tooltip>Height Of Perspective Point Above Surface</doc:tooltip>
         <doc:summary>Height of viewpoint above the Earth, expressed in
         meters.</doc:summary>
-        <doc:description />
+        <doc:description>Height of viewpoint above the Earth, expressed in
+        meters.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1489,7 +1708,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Longitude of Projection Center</doc:tooltip>
         <doc:summary>Longitude of the point of projection for azimuthal
         projections.</doc:summary>
-        <doc:description />
+        <doc:description>Longitude of the point of projection for azimuthal
+        projections.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1500,7 +1721,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Latitude of Projection Center</doc:tooltip>
         <doc:summary>Latitude of the point of projection for azimuthal
         projections.</doc:summary>
-        <doc:description />
+        <doc:description>Latitude of the point of projection for azimuthal
+        projections.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1512,7 +1735,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>A multiplier for reducing a distance obtained from a map
         by computation or scaling to the actual distance along the
         equator.</doc:summary>
-        <doc:description />
+        <doc:description>A multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance along the
+        equator.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1524,7 +1750,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:summary>A multiplier for reducing a distance obtained from a map
         by computation or scaling to the actual distance along the center
         line.</doc:summary>
-        <doc:description />
+        <doc:description>A multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance along the center
+        line.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1532,10 +1761,12 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   <xs:element name="straightVerticalLongitudeFromPole">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Straight Vertical Longitude from Pole</doc:tooltip>
+        <doc:tooltip>Straight Vertical Longitude From Pole</doc:tooltip>
         <doc:summary>Longitude to be oriented straight up from the North or
         South Pole.</doc:summary>
-        <doc:description />
+        <doc:description>Longitude to be oriented straight up from the North or
+        South Pole.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1543,12 +1774,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   <xs:element name="scaleFactorAtProjectionOrigin">
     <xs:annotation>
       <xs:appinfo>
-      <doc:tooltip>Scale Factor at Projection Origin</doc:tooltip>
-      <doc:summary>A multiplier for reducing a distance obtained from a map by
+        <doc:tooltip>Scale Factor At Projection Origin</doc:tooltip>
+        <doc:summary>A multiplier for reducing a distance obtained from a map by
       computation or scaling to the actual distance at the projection
       origin.</doc:summary>
-      <doc:description />
-      <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+        <doc:description>A multiplier for reducing a distance obtained from a map
+      by computation or scaling to the actual distance at the projection
+      origin.</doc:description>
+        <doc:example/>
+        <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       Source: FGDC-STD-001-1998 Definition: Scale Factor at Projection Origin -
       a multiplier for reducing a distance obtained from a map by computation
       or scaling to the actual distance at the projection origin.</xs:appinfo>
@@ -1557,11 +1791,14 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   <xs:element name="scaleFactorAtCentralMeridian">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Scale Factor at Central Meridian</doc:tooltip>
+        <doc:tooltip>Scale Factor At Central Meridian</doc:tooltip>
         <doc:summary>A multiplier for reducing a distance obtained from a map
         by computation or scaling to the actual distance along the central
         meridian.</doc:summary>
-        <doc:description />
+        <doc:description>A multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance along the central
+        meridian.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1571,7 +1808,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
       <xs:appinfo>
         <doc:tooltip>Azimuth Measure Point Longitude</doc:tooltip>
         <doc:summary>The longitude of the map projection origin.</doc:summary>
-        <doc:description />
+        <doc:description>Longitude of the map projection
+        origin.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1582,7 +1821,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Azimuthal Angle</doc:tooltip>
         <doc:summary>The angle measured clockwise from north, and expressed in
         degrees.</doc:summary>
-        <doc:description />
+        <doc:description>Angle measured clockwise from north, and expressed in
+        degrees.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1593,7 +1834,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Oblique Line Latitude</doc:tooltip>
         <doc:summary>The latitude of a point defining the oblique
         line.</doc:summary>
-        <doc:description />
+        <doc:description>Latitude of a point defining the oblique
+        line.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1604,7 +1847,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Oblique Line Longitude</doc:tooltip>
         <doc:summary>The longitude of a point defining the oblique
         line.</doc:summary>
-        <doc:description />
+        <doc:description>Longitude of a point defining the oblique
+        line.</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1615,21 +1860,22 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
         <doc:tooltip>Path Number</doc:tooltip>
         <doc:summary>Number of the orbit of the Landsat
         satellite.</doc:summary>
-        <doc:description>This data element exists solely to provide a parameter
-        needed to define the space oblique mercator projection. It is not used
-        to identify data originating from a remote sensing
-        vehicle.</doc:description>
+        <doc:description>Number of the orbit of the Landsat satellite. (Note:
+        This data element exists solely to provide a parameter needed to define
+        the space oblique mercator projection. It is not used to identify data
+        originating from a remote sensing vehicle.).</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="AlbersConicalEqualAreaType">
     <xs:sequence>
-      <xs:element ref="standardParallel" maxOccurs="unbounded" />
-      <xs:element ref="longitudeofCentralMeridian" />
-      <xs:element ref="latitudeOfProjectionOrigin" />
-      <xs:element ref="falseEasting" />
-      <xs:element ref="falseNorthing" />
+      <xs:element ref="standardParallel" maxOccurs="unbounded"/>
+      <xs:element ref="longitudeofCentralMeridian"/>
+      <xs:element ref="latitudeOfProjectionOrigin"/>
+      <xs:element ref="falseEasting"/>
+      <xs:element ref="falseNorthing"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AzimuthalEquidistantType">
@@ -1754,9 +2000,9 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="GeneralVerticalNear-sidedPerspectiveType">
     <xs:sequence>
-      <xs:element ref="HeightOfPerspectivePointAboveSurface" />
-      <xs:element ref="longitudeOfProjectionCenter" />
-      <xs:element ref="latitudeOfProjectionCenter" />
+      <xs:element ref="HeightOfPerspectivePointAboveSurface"/>
+      <xs:element ref="longitudeOfProjectionCenter"/>
+      <xs:element ref="latitudeOfProjectionCenter"/>
       <xs:element ref="falseEasting">
         <xs:annotation>
           <xs:documentation>Source: FGDC-STD-001-1998 Definition: False Easting
@@ -1891,7 +2137,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             intersect.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="scaleFactorAtEquator" />
+        <xs:element ref="scaleFactorAtEquator"/>
       </xs:choice>
       <xs:element ref="longitudeofCentralMeridian">
         <xs:annotation>
@@ -1953,7 +2199,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="ObliqueMercatorType">
     <xs:sequence>
-      <xs:element ref="scaleFactorAtCenterLine" />
+      <xs:element ref="scaleFactorAtCenterLine"/>
       <xs:choice>
         <xs:element name="obliqueLineAzimuth">
           <xs:annotation>
@@ -1962,7 +2208,10 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               <doc:summary>The method used to describe the line along which an
               oblique mercator map projection is centered using the map
               projection origin and an azimuth.</doc:summary>
-              <doc:description />
+              <doc:description>Method used to describe the line along which an
+              oblique mercator map projection is centered using the map
+              projection origin and an azimuth.</doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -1993,7 +2242,11 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
               oblique mercator map projection is centered using two points near
               the limits of the mapped region that define the center
               line.</doc:summary>
-              <doc:description />
+              <doc:description>Method used to describe the line along which an
+              oblique mercator map projection is centered using two points near
+              the limits of the mapped region that define the center
+              line.</doc:description>
+              <doc:example/>
               <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
@@ -2082,7 +2335,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="polarStereographicType">
     <xs:sequence>
-      <xs:element ref="straightVerticalLongitudeFromPole" />
+      <xs:element ref="straightVerticalLongitudeFromPole"/>
       <xs:choice>
         <xs:element ref="standardParallel">
           <xs:annotation>
@@ -2092,7 +2345,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
             intersect.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="scaleFactorAtProjectionOrigin" />
+        <xs:element ref="scaleFactorAtProjectionOrigin"/>
       </xs:choice>
       <xs:element ref="falseEasting">
         <xs:annotation>
@@ -2212,7 +2465,7 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="SpaceObliqueMercatorType">
     <xs:sequence>
-      <xs:element ref="landsat" />
+      <xs:element ref="landsat"/>
       <xs:element ref="pathNumber">
         <xs:annotation>
           <xs:documentation>Source: FGDC-STD-001-1998 Definition: Path Number -
@@ -2244,15 +2497,15 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
   </xs:complexType>
   <xs:complexType name="StereographicType">
     <xs:sequence>
-      <xs:element ref="longitudeOfProjectionCenter" />
-      <xs:element ref="latitudeOfProjectionCenter" />
-      <xs:element ref="falseEasting" />
-      <xs:element ref="falseNorthing" />
+      <xs:element ref="longitudeOfProjectionCenter"/>
+      <xs:element ref="latitudeOfProjectionCenter"/>
+      <xs:element ref="falseEasting"/>
+      <xs:element ref="falseNorthing"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="TransverseMercatorType">
     <xs:sequence>
-      <xs:element ref="scaleFactorAtCentralMeridian" />
+      <xs:element ref="scaleFactorAtCentralMeridian"/>
       <xs:element ref="longitudeofCentralMeridian">
         <xs:annotation>
           <xs:documentation>Source: FGDC-STD-001-1998 Definition: Longitude of
@@ -2323,13 +2576,13 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://eco
       <xs:appinfo>
         <doc:tooltip>Landsat Number</doc:tooltip>
         <doc:summary>number of the Landsat satellite.</doc:summary>
-        <doc:description>This data element exists solely to provide a parameter
-        needed to define the space oblique mercator projection. It is not used
-        to identify data originating from a remote sensing
-        vehicle.)</doc:description>
+        <doc:description>Number of the Landsat satellite. (Note: This data
+        element exists solely to provide a parameter needed to define the space
+        oblique mercator projection. It is not used to identify data
+        originating from a remote sensing vehicle.).</doc:description>
+        <doc:example/>
         <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
 </xs:schema>
-
