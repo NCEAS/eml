@@ -62,7 +62,8 @@
     <xsl:call-template name="getAccess">
       <xsl:with-param name="dsb6" select="$dsb6"/>
     </xsl:call-template>
-    <xsl:element name="entities">
+    <xsl:if test="$dsb6/dataset/triple/relationship[contains(.,'provides table-entity information for DATAFILE')]!=''">
+     <xsl:element name="entities">
       <xsl:for-each select="$dsb6/dataset/triple/relationship[contains(.,'provides table-entity information for DATAFILE')]">
         <xsl:element name="entity">
           <xsl:attribute name="id">
@@ -82,10 +83,14 @@
                 </xsl:call-template>
         </xsl:element>
       </xsl:for-each>
-    </xsl:element>
-    <xsl:call-template name="getProject">
-      <xsl:with-param name="dsb6" select="$dsb6"/>
-    </xsl:call-template>
+     </xsl:element>
+    </xsl:if> 
+    
+    <xsl:if test="$dsb6/dataset/triple[contains(./relationship,'provides eml-project information for')]!=''">
+      <xsl:call-template name="getProject">
+        <xsl:with-param name="dsb6" select="$dsb6"/>
+      </xsl:call-template>
+    </xsl:if>
     
 </xsl:template>  
 
@@ -128,7 +133,7 @@
 <xsl:template name="getAccess">
   <xsl:param name="dsb6"/>
   <xsl:element name="acl">
-    <xsl:value-of select="$dsb6/dataset/triple[contains(./relationship,'provides access control rules for')]/subject[1]"/>
+    <xsl:value-of select="$dsb6/dataset/triple[contains(./relationship,'access control rules for')]/subject[1]"/>
   </xsl:element>  
 </xsl:template>
 

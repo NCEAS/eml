@@ -215,7 +215,7 @@
               </xsl:element> 
             </xsl:if>
             
-            <xsl:if test="$dsb6/dataset/taxonomicCov!=''">
+            <xsl:if test="$dsb6/dataset/taxonomicCov/taxoncl!=''">
               <xsl:element name="taxonomicCoverage">
                 <xsl:for-each select="$dsb6/dataset/taxonomicCov">
                   <xsl:call-template name="taxonomicCoverage"/>
@@ -479,7 +479,8 @@
    
   <!-- taxonomic coverage template -->
   <xsl:template name="taxonomicCoverage">
-    <xsl:if test="./taxoncl!=''">
+  <!-- there does not seem to be an eml2 equivalent for the the 'keywtax' element of beta6 -->
+     <xsl:if test="./taxoncl!=''">
       <xsl:for-each select="./taxoncl">
         <xsl:element name="taxonomicClassification">
           <xsl:element name="taxonRankName">
