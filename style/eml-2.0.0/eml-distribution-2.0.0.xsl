@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:31 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: berkley $'
+  *     '$Date: 2004-07-19 17:07:21 $'
+  * '$Revision: 1.5.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -120,13 +120,23 @@
 
   <xsl:template match="url">
     <xsl:param name="disfirstColStyle"/>
+    <xsl:variable name="URL" select="."/>
     <tr>
       <td width="{$firstColWidth}" class="{$disfirstColStyle}">
         <xsl:text>&#160;</xsl:text>
       </td>
       <td width="{$secondColWidth}" class="{$secondColStyle}">
          <a>
-          <xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute>
+           <xsl:choose>
+           <xsl:when test="starts-with($URL,'ecogrid')">
+		<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
+		<xsl:variable name="docID" select="substring-after($URL1, '/')"/>
+		<xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docID"/></xsl:attribute>
+           </xsl:when>
+           <xsl:otherwise>
+		<xsl:attribute name="href"><xsl:value-of select="$URL"/></xsl:attribute>
+           </xsl:otherwise>
+          </xsl:choose>
           <xsl:attribute name="target">_blank</xsl:attribute>
           <xsl:value-of select="."/>
         </a>
