@@ -24,8 +24,8 @@ xmlns="eml:constraint-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 15:13:16 $'
-      '$Revision: 1.26 $'
+          '$Date: 2002-06-14 15:45:40 $'
+      '$Revision: 1.27 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,6 +68,16 @@ xmlns="eml:constraint-2.0.0beta9">
     </xs:annotation>
     <xs:choice>
       <xs:element name="primaryKey">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Primary Key</doc:tooltip>
+            <doc:summary>The primary key in the entity</doc:summary>
+            <doc:description>The primary key in the entity to which this
+            constraint document relates.</doc:description>
+            <doc:example />
+            <doc:lineage>New in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="ConstraintBaseGroup" />
@@ -114,6 +124,19 @@ xmlns="eml:constraint-2.0.0beta9">
         </xs:complexType>
       </xs:element>
       <xs:element name="uniqueKey">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Unique Key</doc:tooltip>
+            <doc:summary>A unique key in the entity</doc:summary>
+            <doc:description>This represents a unique key within the
+            referenced entity. This is different from a primary key in that
+            it does not form any implicit foriegn key relationships to other
+            entities, however it is required to be unique within the entity.
+            </doc:description>
+            <doc:example />
+            <doc:lineage>New in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="ConstraintBaseGroup" />
@@ -160,6 +183,17 @@ xmlns="eml:constraint-2.0.0beta9">
         </xs:complexType>
       </xs:element>
       <xs:element name="checkConstraint">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Check Constraint</doc:tooltip>
+            <doc:summary>A constraint which checks a conditional clause
+            within an entity.</doc:summary>
+            <doc:description>A constraint which checks a conditional clause
+            within an entity.</doc:description>
+            <doc:example></doc:example>
+            <doc:lineage>New in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="ConstraintBaseGroup" />
@@ -184,11 +218,32 @@ xmlns="eml:constraint-2.0.0beta9">
         </xs:complexType>
       </xs:element>
       <xs:element name="foreignKey">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Foreign Key</doc:tooltip>
+            <doc:summary>A foreign key relationship among entities</doc:summary>
+            <doc:description>A foreign key relationship among entities which
+            relates this entity to another's primary key.
+            </doc:description>
+            <doc:example />
+            <doc:lineage>New in EML 2.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:group ref="ForeignKeyGroup" />
         </xs:complexType>
       </xs:element>
       <xs:element name="joinCondition">
+        <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Join Condition</doc:tooltip>
+              <doc:summary>A non primary/foreign key join</doc:summary>
+              <doc:description>This describes any join of two tables that is
+              not done with a primary/foreign key relationship.</doc:description>
+              <doc:example />
+              <doc:lineage>New in EML 2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:group ref="ForeignKeyGroup" />
@@ -292,12 +347,12 @@ xmlns="eml:constraint-2.0.0beta9">
     </xs:choice>
     <xs:attribute name="id" type="xs:ID" use="optional" />
     <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="res:FunctionType" use="optional"
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
   </xs:complexType>
   <xs:simpleType name="CardinalityChildOccurancesType">
     <xs:annotation>
-      <xs:appInfo>
+      <xs:appinfo>
         <doc:tooltip>Child portion of a cardinality expression</doc:tooltip>
         <doc:summary>Child portion of a cardinality expression Allowed values
         are positive integers including zero or the string value
@@ -307,7 +362,7 @@ xmlns="eml:constraint-2.0.0beta9">
         "many"</doc:description>
         <doc:example>0,1, 2, 15,many</doc:example>
         <doc:lineage>New in EML 2.0</doc:lineage>
-      </xs:appInfo>
+      </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="xs:integer">
       <xs:simpleType>
@@ -319,17 +374,18 @@ xmlns="eml:constraint-2.0.0beta9">
   </xs:simpleType>
   <xs:group name="ConstraintBaseGroup">
     <xs:sequence>
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>Name of the constraint</doc:tooltip>
-          <doc:summary>A meaningfull name of the constraint.</doc:summary>
-          <doc:description>The constraint name represents a human readible and
-          meaningful name for the constraint.</doc:description>
-          <doc:example>PrimaryKey_birdSurvey</doc:example>
-          <doc:lineage>New in EML 2.0.0.</doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-      <xs:element name="constraintName" type="xs:string" />
+      <xs:element name="constraintName" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Name of the constraint</doc:tooltip>
+            <doc:summary>A meaningfull name of the constraint.</doc:summary>
+            <doc:description>The constraint name represents a human readible and
+            meaningful name for the constraint.</doc:description>
+            <doc:example>PrimaryKey_birdSurvey</doc:example>
+            <doc:lineage>New in EML 2.0.0.</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="constraintDescription" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -410,7 +466,7 @@ xmlns="eml:constraint-2.0.0beta9">
       </xs:element>
       <xs:element name="relationshipType" minOccurs="0">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <doc:tooltip>Relationship type: Identifying or
             non-identifying</doc:tooltip>
             <doc:summary>Relationship type: Identifying or
@@ -421,7 +477,7 @@ xmlns="eml:constraint-2.0.0beta9">
             attribute of the child entity.</doc:description>
             <doc:example />
             <doc:lineage>New in EML 2.0</doc:lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -432,7 +488,7 @@ xmlns="eml:constraint-2.0.0beta9">
       </xs:element>
       <xs:element name="cardinality" minOccurs="0">
         <xs:annotation>
-          <xs:appInfo>
+          <xs:appinfo>
             <doc:tooltip>Cardinality of the relationship between two
             entities.</doc:tooltip>
             <doc:summary>Cardinality of the relationship between a parent
@@ -448,13 +504,13 @@ xmlns="eml:constraint-2.0.0beta9">
             <doc:example>One to many, One to 10, Zero or One to
             Many</doc:example>
             <doc:lineage>New in EML 2.0</doc:lineage>
-          </xs:appInfo>
+          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="parentOccurances">
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <doc:tooltip>Parent portion of a 1 to exactly N
                   cardinality</doc:tooltip>
                   <doc:summary>Parent portion of a 1 to exactly N cardinality.
@@ -466,7 +522,7 @@ xmlns="eml:constraint-2.0.0beta9">
                   mandatory.</doc:description>
                   <doc:example>One to 10, Zero or One to Many</doc:example>
                   <doc:lineage>New in EML 2.0</doc:lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
               <xs:simpleType>
                 <xs:restriction base="xs:integer">
@@ -478,7 +534,7 @@ xmlns="eml:constraint-2.0.0beta9">
             <xs:element name="childOccurances"
             type="CardinalityChildOccurancesType">
               <xs:annotation>
-                <xs:appInfo>
+                <xs:appinfo>
                   <doc:tooltip>Child portion of the cardinality
                   expression</doc:tooltip>
                   <doc:summary>Child portion of a cardinality expression
@@ -489,7 +545,7 @@ xmlns="eml:constraint-2.0.0beta9">
                   zero or the string value "many"</doc:description>
                   <doc:example>2, 15, many</doc:example>
                   <doc:lineage>New in EML 2.0</doc:lineage>
-                </xs:appInfo>
+                </xs:appinfo>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
