@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-16 17:35:06 $'
-      '$Revision: 1.3 $'
+          '$Date: 2001-07-09 19:01:57 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -394,11 +394,10 @@
   <xs:element name = "taxoncl">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref = "taxonrn"/>
-        <xs:element ref = "taxonrv"/>
-        <xs:element ref = "common" minOccurs = "0" maxOccurs = "unbounded"/>
-        <xs:element name = "taxonrn" type = "xs:string"/>
-        <xs:element name = "taxonrv" type = "xs:string"/>
+        <xs:element name = "taxonrn" type = "xs:string"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name = "taxonrv" type = "xs:string"
+                    minOccurs="0" maxOccurs="1"/>
         <xs:element name = "common" type = "xs:string" 
                     minOccurs="0" maxOccurs="unbounded"/>
         <xs:element ref = "taxoncl" minOccurs = "0" maxOccurs = "unbounded"/>
