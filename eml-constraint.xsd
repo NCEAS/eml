@@ -1,6 +1,6 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="eml:relation">
+           targetNamespace="eml:constraint">
   
   <xs:annotation>
     <xs:documentation>
@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-27 00:04:44 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-03-27 00:09:34 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
     </xs:documentation>
     <xs:appinfo>
       <moduleName>
-        eml-relation
+        eml-constraint
       </moduleName>
       <moduleDescription>
         This schema defines the integrity constraints between entities as
@@ -40,7 +40,7 @@
     </xs:appinfo>
   </xs:annotation>
   
-  <xs:element name="eml-relation">
+  <xs:element name="eml-constraint">
     <xs:annotation>
       <xs:appinfo>
         <tooltip>
