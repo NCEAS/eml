@@ -2,9 +2,9 @@
 <xs:schema targetNamespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1"
 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
-xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc1" 
+xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
 xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1"
-xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
 xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
   schemaLocation="eml-documentation.xsd" />
@@ -18,8 +18,7 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
   schemaLocation="eml-resource.xsd" />
   <xs:annotation>
     <xs:documentation>
-    '$RCSfile: eml-spatialRaster.xsd,v $'
-       Copyright: 1997-2002 Regents of the University of California,
+    Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
                             Arizona State University
         Sponsors: National Center for Ecological Analysis and Synthesis and
@@ -33,8 +32,8 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: blankman $'
-          '$Date: 2002-10-01 17:58:10 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-10-01 18:03:01 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +47,7 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
@@ -73,10 +72,10 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
         <doc:summary>Description of a gis layer composed of raster
         pixels.</doc:summary>
         <doc:description>Description of a gis layer composed of raster pixels
-        comprising a regular-pattern grid.  Generally, a raster object may be
-        thought of as a pattern of closely spaced rows of dots that collectively
-        form an image.  Raster spatial objects are used to locate zero-, two-,
-        or three-dimensional locations in the
+        comprising a regular-pattern grid. Generally, a raster object may be
+        thought of as a pattern of closely spaced rows of dots that
+        collectively form an image. Raster spatial objects are used to locate
+        zero-, two-, or three-dimensional locations in the
         dataset</doc:description>
         <doc:example>An interpolated grid of irregularly spaced data is an
         example of this element.</doc:example>
@@ -99,8 +98,8 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Raster Origin</doc:tooltip>
-              <doc:summary>The corner location of the pixel having the
-              minimum x and y values</doc:summary>
+              <doc:summary>The corner location of the pixel having the minimum
+              x and y values</doc:summary>
               <doc:description>Identification the corner of the grid where the
               first values for both the x and y axes begin in the
               file.</doc:description>
@@ -166,29 +165,29 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
         </xs:element>
         <xs:element name="scaleFactor" type="xs:string" minOccurs="0">
           <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Scale Factor</doc:tooltip>
-                <doc:summary>The value used for scaling the source raster.</doc:summary>
-                <doc:description>The scale factor is used for raster-rescaling
-                operations, where the following operation is applied to each pixel
-                in the data in the source: rescaled=(source*scaleFactor)+offset.
-                </doc:description>
-                <doc:example>2</doc:example>
-                <doc:lineage>EML 2.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+            <xs:appinfo>
+              <doc:tooltip>Scale Factor</doc:tooltip>
+              <doc:summary>The value used for scaling the source
+              raster.</doc:summary>
+              <doc:description>The scale factor is used for raster-rescaling
+              operations, where the following operation is applied to each
+              pixel in the data in the source:
+              rescaled=(source*scaleFactor)+offset.</doc:description>
+              <doc:example>2</doc:example>
+              <doc:lineage>EML 2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="offset" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Offset</doc:tooltip>
-              <doc:summary>The offset value used for scaling the source raster.
-              </doc:summary>
+              <doc:summary>The offset value used for scaling the source
+              raster.</doc:summary>
               <doc:description>The offset is used for raster-rescaling
-              operations, where the following operation is applied to each 
-              pixel in the data in the source: 
-              rescaled=(source*scaleFactor)+offset.
-              </doc:description>
+              operations, where the following operation is applied to each
+              pixel in the data in the source:
+              rescaled=(source*scaleFactor)+offset.</doc:description>
               <doc:example>20</doc:example>
               <doc:lineage>EML 2.0</doc:lineage>
             </xs:appinfo>
@@ -366,8 +365,8 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
               type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Camera Calibration Information Availability
-                    </doc:tooltip>
+                    <doc:tooltip>Camera Calibration Information
+                    Availability</doc:tooltip>
                     <doc:summary>Code which indicates whether or not constants
                     are available which allow for camera calibration
                     corrections.</doc:summary>
@@ -383,8 +382,8 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
               type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Film Distortion Information Availability
-                    </doc:tooltip>
+                    <doc:tooltip>Film Distortion Information
+                    Availability</doc:tooltip>
                     <doc:summary>Code which indicates whether or not
                     Calibration Reseau information is available</doc:summary>
                     <doc:description>Code which indicates whether or not
@@ -399,8 +398,8 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
               type="xs:boolean" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Lens Distortion Information Availability
-                    </doc:tooltip>
+                    <doc:tooltip>Lens Distortion Information
+                    Availability</doc:tooltip>
                     <doc:summary>Code which indicates whether or not lens
                     aberration correction information is
                     available</doc:summary>
@@ -480,18 +479,18 @@ xmlns="eml://ecoinformatics.org/spatialRaster-2.0.0rc1">
         </xs:annotation>
       </xs:element>
       <xs:element name="waveLengthUnits" type="xs:string" minOccurs="0">
-       <xs:annotation>
+        <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Wave Length Units</doc:tooltip>
-            <doc:summary>Units in which the sensor wavelegths are expressed.
-            </doc:summary>
+            <doc:summary>Units in which the sensor wavelegths are
+            expressed.</doc:summary>
             <doc:description>Units of measure for the wavelength at which the
             sensor collected the data.</doc:description>
             <doc:example>Microns</doc:example>
             <doc:lineage>ISO 19115.3</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-        </xs:element>
+      </xs:element>
       <xs:element name="peakResponse" minOccurs="0" />
     </xs:sequence>
   </xs:complexType>
