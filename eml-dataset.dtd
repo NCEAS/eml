@@ -7,7 +7,7 @@
   *      Created: 1997 August 19
   *     Modified: 1999 June 23
   *      Version: 1.4
-  *    File Info: '$Id: eml-dataset.dtd,v 1.4 1999-09-08 16:45:54 jones Exp $'
+  *    File Info: '$Id: eml-dataset.dtd,v 1.5 1999-12-15 22:15:18 jones Exp $'
   *
   * Ecological Metadata Language is a general purpose metadata content
   * specification for documenting ecological data.  The specification 
@@ -63,7 +63,8 @@
 
 <!-- Class 1 -->
 <!ELEMENT eml-dataset (meta_file_id, dataset_id, title+, originator+, abstract?, keyword_info*,relations+)>
-<!ATTLIST eml-dataset description CDATA #FIXED "Overall description of data set">
+<!ATTLIST eml-dataset description CDATA #FIXED "Overall description of data set"
+                      longdesc CDATA #FIXED "Data set">
 
 <!-- Class 1.B -->
 <!ELEMENT meta_file_id (#PCDATA)>
@@ -143,9 +144,6 @@
 <!ATTLIST keyword description CDATA #FIXED "Common-use word or phrase used to describe the subject of the dataset">
 <!ELEMENT keyword_thesaurus (#PCDATA)>
 <!ATTLIST keyword_thesaurus description CDATA #FIXED "Name of the formally registered thesaurus or a similar athouritative source of keywords">
-
-<!ELEMENT eml-package (meta_file_id,module-ptr+)>
-<!ATTLIST eml-package description CDATA #FIXED "eml">
 
 <!ELEMENT relations EMPTY>
 <!ATTLIST relations 

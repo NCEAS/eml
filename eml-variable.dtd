@@ -7,7 +7,7 @@
   *      Created: 1997 August 19
   *     Modified: 1999 June 23
   *      Version: 1.4
-  *    File Info: '$Id: eml-variable.dtd,v 1.5 1999-09-08 16:45:55 jones Exp $'
+  *    File Info: '$Id: eml-variable.dtd,v 1.6 1999-12-15 22:15:18 jones Exp $'
   *
   * Ecological Metadata Language is a general purpose metadata content
   * specification for documenting ecological data.  The specification 
@@ -91,8 +91,7 @@
 
 <!-- Class 4.B.4.b -->
 <!ELEMENT code_definition (code, definition) >
-<!ATTLIST code_definition description CDATA #FIXED "Description of any codes associated with
-variables">
+<!ATTLIST code_definition description CDATA #FIXED "Description of any codes associated with variables">
 <!ELEMENT code (#PCDATA) >
 <!ATTLIST code description CDATA #FIXED "Code">
 <!ELEMENT definition (#PCDATA) >
