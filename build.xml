@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2004-08-13 18:07:22 $'
-      '$Revision: 1.73 $'
+        '$Author: jones $'
+          '$Date: 2004-08-13 19:54:51 $'
+      '$Revision: 1.74 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,12 +48,14 @@
     <property name="servletpath" value="/emlparser"/>
     <!-- namespaces that the servlet should auto resolve -->
     <property name="namespaces"
-              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd"/>
+              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.0/stmml.xsd"/>
     <!-- the path from the tomcat/bin directory to the config.xml file -->	
     <property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
     <property name="servlettempdir" value="/tmp/emlparser"/>
     <filter token="tempdir" value="${servlettempdir}"/>
-    <property name="cvsroot" value=":ext:sgarg@cvs.ecoinformatics.org:/cvs"/>
+    <property environment="env"/>
+    <property name="cvsroot" value=":ext:${env.USER}@cvs.ecoinformatics.org:/cvs"/>
+    <echo>Using ${cvsroot}"</echo>
     <property name="eml-module" value="eml"/>
     <property name="eml2_0_0-tag" value="RELEASE_EML_2_0_0_UPDATE_1"/>
   </target>
@@ -86,6 +88,7 @@
     <property name="cos" value="lib/cos.jar"/>
     <property name="servlet" value="lib/apache/servlet.jar"/>
     <property name="configxml" value="lib/configxml.jar"/>
+    <property name="junit" value="/usr/local/devtools/junit3.7/junit.jar"/>
 
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
@@ -111,7 +114,7 @@
     <property name="ver.tst" value="${ver.dir}/test"/>
     <property name="package.home" value="org/ecoinformatics" />
 
-    <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
+    <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
     <mkdir dir="${build.docs}/eml-${version}"/>
