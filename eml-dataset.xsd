@@ -202,7 +202,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:string" use="optional" />
     <xs:attribute name="system" type="xs:string" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />

@@ -23,8 +23,8 @@ xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-08-21 20:51:36 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-08-22 00:35:04 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -301,10 +301,11 @@ xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
+        </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:string" use="optional" />
     <xs:attribute name="system" type="xs:string" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
@@ -463,7 +464,7 @@ xmlns:doc="eml:documentation-2.0.0beta9" xmlns="eml:party-2.0.0beta9">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="id" type="xs:string" use="optional" />
     <xs:attribute name="system" type="xs:string" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
