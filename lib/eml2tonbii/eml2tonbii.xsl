@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-06-09 16:34:27 $'
-  * '$Revision: 1.17 $'
+  *     '$Date: 2000-11-25 16:15:03 $'
+  * '$Revision: 1.18 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -691,18 +691,68 @@ version="1.0">
 <!-- spatial reference information -->
 <!-- As in other places, fgdc here seems designed for use with a single entity.
      EML2 allows multiple entities; for now, just handle the first one! -->
+
+     <!-- The emlSpatialReferenceDictionary.xml has a large collection of horizCoordSysDefs defined
+            by name for use in the spatialReference/horizCoordSysName element. The information here is
+            basically the same as would be in the horizCoordSysDef tag -->
      
      <xsl:choose>
        <xsl:when test="/eml:eml/dataset/spatialRaster/spatialReference!=''">
        <!-- Note: spatialRefenence is required in spatialRaster, but NOT in spatialVector! -->
-         <xsl:element name="spref">
-      
-         </xsl:element>
+         <xsl:choose>
+           <xsl:when test="/eml:eml/dataset/spatialRaster/spatialReference/horizCoordSysDef!=''">
+             <xsl:element name="spref">
+               <xsl:element name="horizsys">
+                 <xsl:element name="planar">
+                   <xsl:element name="mapproj"> 
+                     <xsl:element name="mapprojn">
+                       <xsl:choose>
+                         <xsl:when test="//horizCoordSysDef/projCoordSys/projection/@name!=''">
+                           <xsl:value-of select="//horizCoordSysDef/projCoordSys/projection/@name"/>
+                         </xsl:when>
+                         <xsl:otherwise>
+                           <xsl:value-of select="'N/A'"/>
+                         </xsl:otherwise>
+                       </xsl:choose>
+                     </xsl:element>
+                     <xsl:element name="mapprojp">
+                       <!-- eml has a set of arbitrary parameter (attributes) to describe a projection
+                            fgdc, however, has a long list of named elements - how to map>??? 
+                            Also, order of fgdc parameters does not match order in nbii1999.xsd  
+                            -->
+                            <xsl:element name="longcm">
+                              <!-- longcm is the 'Central Meridian'; I think this corresponds to the 
+                                   'primeMeridian' in eml -->
+                              <xsl:value-of select="//horizCoordSysDef/geogCoordSys/primeMeridian/@longitude"/>
+                            </xsl:element>
+                     </xsl:element>
+                   </xsl:element>
+                 </xsl:element>
+                 <xsl:element name="geodetic">
+                   <xsl:element name="horizdn">
+                     <xsl:value-of select="//horizCoordSysDef//geogCoordSys/datum/@name"/>
+                   </xsl:element>
+                   <xsl:element name="ellps">
+                     <xsl:value-of select="//horizCoordSysDef//geogCoordSys/spheroid/@name"/>
+                   </xsl:element>
+                   <xsl:element name="semiaxis">
+                     <xsl:value-of select="//horizCoordSysDef//geogCoordSys/spheroid/@semiAxisMajor"/>
+                   </xsl:element>
+                   <xsl:element name="denflat">
+                     <xsl:value-of select="//horizCoordSysDef//geogCoordSys/spheroid/@denomFlatRation"/>
+                   </xsl:element>
+                 </xsl:element>
+               </xsl:element>
+             </xsl:element>
+           </xsl:when>  
        </xsl:when>
          <xsl:when test="/eml:eml/dataset/spatialVector/spatialReference!=''">
-           <xsl:element name="spref">
+         <xsl:choose>
+           <xsl:when test="/eml:eml/dataset/spatialVector/spatialReference/horizCoordSysDef!=''">
+             <xsl:element name="spref">
       
-           </xsl:element>
+             </xsl:element>
+           </xsl:when>  
          </xsl:when>
      </xsl:choose>  
       
