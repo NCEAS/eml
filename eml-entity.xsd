@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-03-24 02:26:29 $'
-      '$Revision: 1.9 $'
+          '$Date: 2001-03-26 20:23:18 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -64,16 +64,16 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-                File identifier
+                Unique identifier
               </tooltip>
               <summary>
-                File identifier of the metadata document.
+                Unique identifier of this metadata document.
               </summary>
               <description>
-                File identifier of the metadata document.
+                Unique identifier of this metadata document.
               </description>
               <example>
-                metacat://dev.nceas.ucsb.edu?docid=nceas.155
+                nceas.155.1
               </example>
               <lineage>
                 The identifier was introduced into EML 1.4 as meta_file_id.
@@ -81,36 +81,34 @@
             </xs:appInfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="entity"
-                    minOccurs="1" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appInfo>
-              <tooltip>
-                Entity descriptor
-              </tooltip>
-              <summary>
-                Descriptor of one entity in the dataset.
-              </summary>
-              <description>
-                Entity element is a descriptor of one entity in the dataset
-                identified by its name. The entity element can contain information 
-                about the entity's size, format, orientation, header lines, 
-                case sensitiveness, geographic and temporal coverage,
-                authentication description and data problem.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The entity element was introduced into EML 1.4 as file.
-              </lineage>
-            </xs:appInfo>
-          </xs:annotation>
-        </xs:element>
+        <xs:element ref="entity" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
   <xs:element name="entity">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Entity descriptor
+        </tooltip>
+        <summary>
+          Descriptor of one entity in the dataset.
+        </summary>
+        <description>
+          Entity element is a descriptor of one entity in the dataset
+          identified by its name. The entity element can contain information 
+          about the entity's size, format, orientation, header lines, 
+          case sensitiveness, geographic and temporal coverage,
+          authentication description and data problem.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The entity element was introduced into EML 1.4 as file.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="entityName" type="xs:string"
