@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-12 19:49:59 $'
-  * '$Revision: 1.12 $'
+  *     '$Date: 2004-07-12 19:58:02 $'
+  * '$Revision: 1.13 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -79,9 +79,12 @@
 
         <div id="{$mainTableAligmentStyle}">
           <script language="JavaScript" type="text/JavaScript">
-	     <xsl:if test="$insertTemplate='0'"><xsl:comment></xsl:if>
-                   insertTemplateOpening();
-             <xsl:if test="$insertTemplate='0'">//</xsl:comment></xsl:if>
+	     <xsl:if test="$insertTemplate='0'">
+                 <xsl:comment>insertTemplateOpening();//</xsl:comment>
+             </xsl:if>
+	     <xsl:if test="$insertTemplate='1'">
+                 insertTemplateOpening();
+             </xsl:if>
           </script>
 
           <table xsl:use-attribute-sets="cellspacing" width="100%"
@@ -90,7 +93,12 @@
           </table>
 
 	  <script language="JavaScript" type="text/JavaScript">
-          	<xsl:comment>insertTemplateClosing();//</xsl:comment>
+	     <xsl:if test="$insertTemplate='0'">
+               <xsl:comment>insertTemplateClosing();//</xsl:comment>
+             </xsl:if>
+	     <xsl:if test="$insertTemplate='1'">
+                 insertTemplateClosing();
+             </xsl:if>
           </script>
         </div>
       </body>
