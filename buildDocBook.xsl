@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-                xmlns:doc="eml:documentation-2.0.0beta8" 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:doc="eml:documentation-2.0.0beta8"
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
-<xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN" 
+<xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
             doctype-system="http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"/>
 
 <xsl:template match="/">
@@ -12,7 +12,7 @@
   <bookinfo>
     <title>Ecological Metadata Language (EML) Specification</title>
   </bookinfo>
-  
+
   <toc>
     <tocpart>
       <tocchap>
@@ -26,32 +26,32 @@
       </tocchap>
     </tocpart>
   </toc>
-  
+
   <preface id="preface">
-    <title>EML Overview &amp; History</title> 
+    <title>EML Overview &amp; History</title>
     <section id="introduction">
       <title>Introduction</title>
       <para>
-       Ecological Metadata Language (EML) is a metadata standard developed by the 
-       ecology discipline and for the ecology discipline. It is based on prior 
-       work done by the Ecological Society of America and associated efforts 
-       (Michener et al., 1997, Ecological Applications). EML is implemented as 
-       a series of XML document types that can by used in a modular and extensible 
-       manner to document ecological data. Each EML module is designed to describe 
-       one logical part of the total metadata that should be included with any 
+       Ecological Metadata Language (EML) is a metadata standard developed by the
+       ecology discipline and for the ecology discipline. It is based on prior
+       work done by the Ecological Society of America and associated efforts
+       (Michener et al., 1997, Ecological Applications). EML is implemented as
+       a series of XML document types that can by used in a modular and extensible
+       manner to document ecological data. Each EML module is designed to describe
+       one logical part of the total metadata that should be included with any
        ecological dataset.
       </para>
     </section>
-    
+
     <section id="purpose">
       <title>Purpose Statement</title>
       <para>
         To provide the ecological community with an extensible, flexible,
-        metadata standard for use in data analysis and archiving that will 
-        allow automated machine processing, searching and retrieval.  
+        metadata standard for use in data analysis and archiving that will
+        allow automated machine processing, searching and retrieval.
       </para>
     </section>
-    
+
     <section id="architecture">
       <title>Architecture</title>
       <para>
@@ -59,7 +59,7 @@
         ecological community, and has benefitted from previous work in other
         related metadata languages. EML has adopted the strengths of many of
         these languages, but also addresses a number of short-comings that
-        have proved to inhibit the automated processing iand integration of 
+        have proved to inhibit the automated processing iand integration of
         dataset resources via their metadata.
       </para>
       <para>
@@ -124,15 +124,15 @@
         some backward compatability.
         </listitem>
         <listitem>
-        There is a distinction between the content model and the syntactic 
-        implementation of that model.  The normative sections below define 
-        the content model and the XML Schema documents distributed with EML 
-        define the syntactic implementation. For the forseeable future, 
-        XML Schema will be the syntactic specification, although it may 
+        There is a distinction between the content model and the syntactic
+        implementation of that model.  The normative sections below define
+        the content model and the XML Schema documents distributed with EML
+        define the syntactic implementation. For the forseeable future,
+        XML Schema will be the syntactic specification, although it may
         change later.
         </listitem>
       </itemizedlist>
-      <section> 
+      <section>
         <title>Overview of eml modules and their use</title>
         <para>
           --what each module is and which modules should be used together
@@ -142,7 +142,7 @@
       </section>
     </section>
   </preface>
-  
+
   <chapter id="technicalArch">
     <title>Technical Architecture (Normative)</title>
     <section>
@@ -154,19 +154,19 @@
         it to be considered EML compliant.
       </para>
     </section>
-    
+
     <section>
       <title>Module Structure</title>
       <para>
         Each EML module, with the exception of "eml" itself, has a top level
-        choice between the structured content of that modules or a 
+        choice between the structured content of that modules or a
         &quot;references&quot; field.  This enables the reuse of content
         previously defined elsewhere in the document.  Methods for defining
-        and referencing content are described in the 
+        and referencing content are described in the
         <link linkend="reusableContent">next</link> section
       </para>
     </section>
-    
+
     <section id="reusableContent">
       <title>Reusable Content</title>
       <para>
@@ -184,27 +184,27 @@
           IDs are optional on all other modules.
         </listitem>
         <listitem>
-          If an ID is not provided, that content must be interpreted as 
+          If an ID is not provided, that content must be interpreted as
           representing a distinct object.
         </listitem>
         <listitem>
-          If an ID is provided for content then that content is distinct from 
+          If an ID is provided for content then that content is distinct from
           all other content except for that content that references its ID.
         </listitem>
         <listitem>
-          If a user wants to reuse content to indicate the repetition of an 
-          object, a reference must be used.  you cannot have two identical 
+          If a user wants to reuse content to indicate the repetition of an
+          object, a reference must be used.  you cannot have two identical
           ids in a document.
         </listitem>
         <listitem>
-          &quot;Local scope&quot; is defined as identifiers unique only to a 
-          single instance document (if a document does not have a system or if 
+          &quot;Local scope&quot; is defined as identifiers unique only to a
+          single instance document (if a document does not have a system or if
           scope is set to 'local' then all ids are defined as distinct content).
         </listitem>
         <listitem>
-          System scope is defined as identifiers unique to an entire data 
-          management system (if two documents share a system string, then 
-          any IDs in those two documents that are identical refer to the 
+          System scope is defined as identifiers unique to an entire data
+          management system (if two documents share a system string, then
+          any IDs in those two documents that are identical refer to the
           same object).
         </listitem>
         <listitem>
@@ -214,13 +214,13 @@
           All EML packages must have the 'eml' module as the root.
         </listitem>
         <listitem>
-          The system and scope attribute are always optional except for at the 
+          The system and scope attribute are always optional except for at the
           'eml' module where the scope attribute is fixed as 'system'.  The scope
           attribute defaults to 'local' for all other modules.
         </listitem>
 
       </itemizedlist>
-      
+
       <section>
         <title>ID and Scope Examples</title>
         <section>
@@ -302,18 +302,18 @@
             people whose names both happen to be Joe.
           </para>
           <para>
-            In Example Document 2 there are two elements as well.  The first 
-            represents a person whose name is Joe.  The second represents 
-            the <emphasis>same person</emphasis>.  
+            In Example Document 2 there are two elements as well.  The first
+            represents a person whose name is Joe.  The second represents
+            the <emphasis>same person</emphasis>.
           </para>
           <para>
             Example Documents 3 and 4 have unique IDs with respect to each other
             because they share the same system attribute and their scopes are
-            both set to global.  Document 4 is referencing the name element in 
+            both set to global.  Document 4 is referencing the name element in
             Document 3.
           </para>
           <para>
-            Documents 5 and 6 both have a local scope even though Document 6 
+            Documents 5 and 6 both have a local scope even though Document 6
             does not explicitly define it.  In this case, each of the name elements
             must be interpreted as unique objects even though they have identical
             content.
@@ -329,7 +329,7 @@
       <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
     </xsl:for-each>
   </chapter>
-  
+
   <index id="index">
     <title>Index</title>
       <indexdiv>
@@ -610,9 +610,17 @@
     <listitem>
       <para>Stand-alone: <xsl:value-of select="normalize-space(./doc:standAlone)"/></para>
     </listitem>
+    <listitem>
+      <para>Imports:</para>
+      <itemizedlist>
+        <xsl:for-each select="/xs:schema/xs:import">
+          <xsl:apply-templates select="."/>
+        </xsl:for-each>
+      </itemizedlist>
+    </listitem>
     <xsl:if test="count(./doc:importedBy) > 0">
     <listitem>
-      <para>Imported By:</para> 
+      <para>Imported By:</para>
       <itemizedlist><xsl:apply-templates select="./doc:importedBy"/></itemizedlist>
     </listitem>
     </xsl:if>
@@ -637,6 +645,16 @@
       <xsl:value-of select="normalize-space(.)"/>
     </para>
   </listitem>
+</xsl:template>
+
+<xsl:template match="xs:import">
+  <xsl:if test="string(@schemaLocation) != string('eml-documentation.xsd')">
+    <listitem>
+      <para>
+        <xsl:value-of select="substring(normalize-space(@schemaLocation), 0, string-length(normalize-space(@schemaLocation))-3)"/>
+      </para>
+    </listitem>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="xs:element" mode="indexentry">
