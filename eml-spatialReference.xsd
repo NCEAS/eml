@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-09-27 18:00:23 $'
-      '$Revision: 1.19 $'
+          '$Date: 2002-10-01 16:54:04 $'
+      '$Revision: 1.20 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,43 +61,282 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="horizsysList">
+  <xs:complexType name="SpatialReferenceType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Spatial Reference Description</doc:tooltip>
+        <doc:summary>The system used to reference spatial locations to a
+        coordinate system</doc:summary>
+        <doc:description>A spatial reference description provides the
+        information for relating the positional information in a spatial
+        dataset to real-world locations. A description typically includes
+        identification of a reference datum, a spheroid definition, and
+        projection algorithm. It also provides any constants required by that
+        algorithm.</doc:description>
+        <doc:lineage>ISO 19115.3</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element name="standardHorizontalCoordinateSystem" type="xs:string"/>
+          <xs:element name="customHorizontalCoordinateSystem" type="horizontalCoordinateSystemType"/>
+        </xs:choice>
+        <xs:element name="verticalCoordinateSystem" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Vertical Coordinate System Definition</doc:tooltip>
+              <doc:summary>The reference frame or system from which vertical
+              distances (altitudes or depths) are measured.</doc:summary>
+              <doc:description/>
+              <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="altitudeSystemDefinition" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Altitude System Definition</doc:tooltip>
+                    <doc:summary>the reference frame or system from which
+                    altitudes (elevations) are measured.</doc:summary>
+                    <doc:description>The term "altitude"' is used instead of
+                    the common term "elevation" to conform to the terminology
+                    in Federal Information Processing Standards 70-1 and
+                    173.</doc:description>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="altitudeDatumName" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Altitude Datum Name</doc:tooltip>
+                          <doc:summary>The identification given to the surface
+                          taken as the surface of reference from which
+                          altitudes are measured.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="altitudeResolution" type="xs:string" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Altitude Resolution</doc:tooltip>
+                          <doc:summary>The minimum distance possible between
+                          two adjacent altitude values, expressed in Altitude
+                          Distance Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="altitudeDistanceUnits" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Altitude Distance Units</doc:tooltip>
+                          <doc:summary>Units in which altitude is
+                          measured.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="altitudeEncodingMethod" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Altitude Encoding Method</doc:tooltip>
+                          <doc:summary>The means used to encode the
+                          altitudes.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="depthSystemDefinition" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Depth System Definition</doc:tooltip>
+                    <doc:summary>The reference frame or system from which
+                    depths are measured.</doc:summary>
+                    <doc:description/>
+                    <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="depthDatumName" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Depth Datum Name</doc:tooltip>
+                          <doc:summary>The identification given to surface of
+                          reference from which depths are
+                          measured.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="depthResolution" type="xs:string" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Depth Resolution</doc:tooltip>
+                          <doc:summary>The minimum distance possible between
+                          two adjacent depth values, expressed in Depth
+                          Distance Units of measure.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="depthDistanceUnits" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Depth Distance Units</doc:tooltip>
+                          <doc:summary>The units in which depths are
+                          recorded.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="depthEncodingMethod" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Depth Encoding Method</doc:tooltip>
+                          <doc:summary>The means used to encode
+                          depths.</doc:summary>
+                          <doc:description/>
+                          <doc:lineage>FGDC-STD-001-1998.</doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="references"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:element name="horizontalCoordinateSystem" type="horizontalCoordinateSystemType">
     <xs:annotation>
       <xs:documentation>Comment describing your root element</xs:documentation>
     </xs:annotation>
+  </xs:element>
+  <xs:complexType name="geogcsType">
+    <xs:sequence>
+      <xs:element name="datum" type="xs:string"/>
+      <xs:element name="spheroid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="spheroidName"/>
+            <xs:element name="semiAxisMajor" minOccurs="0"/>
+            <xs:element name="denominatorFlatteningRatio" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="primeMeridian">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="primeMeridianName"/>
+            <xs:element name="longitude"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="unitName"/>
+            <xs:element name="radiansPerUnit" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="horizontalCoordinateSystemType">
+    <xs:choice>
+      <xs:element name="geogcs">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="geogcsType"/>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="projcs">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="geogcs" type="geogcsType"/>
+            <xs:element name="projection">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="projectionName"/>
+                  <xs:element name="parameter" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="parameterName">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="False_Easting"/>
+                              <xs:enumeration value="False_Northing"/>
+                              <xs:enumeration value="Central_Meridian"/>
+                              <xs:enumeration value="Scale_Factor"/>
+                              <xs:enumeration value="Latitude_Of_Origin"/>
+                              <xs:enumeration value="Longitude_Of_Center"/>
+                              <xs:enumeration value="Standard_Parallel_1"/>
+                              <xs:enumeration value="Standard_Parallel_2"/>
+                              <xs:enumeration value="Latitude_Of_Center"/>
+                              <xs:enumeration value="Azimuth"/>
+                              <xs:enumeration value="Latitude_Of_1st_Point"/>
+                              <xs:enumeration value="Latitude_Of_2nd_Point"/>
+                              <xs:enumeration value="Longitude_Of_1st_Point"/>
+                              <xs:enumeration value="Longitude_Of_2nd_Point"/>
+                              <xs:enumeration value="Pseudo_Standard_Parallel_1"/>
+                              <xs:enumeration value="X_Scale"/>
+                              <xs:enumeration value="Y_scale"/>
+                              <xs:enumeration value="XY_Plane Rotation"/>
+                              <xs:enumeration value="Height"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="parameterDescription" type="xs:string"/>
+                        <xs:element name="parameterValue" type="xs:anySimpleType"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="unit">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="unitName" type="xs:string"/>
+                        <xs:element name="metersPerUnit" type="xs:float" minOccurs="0"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:element name="projectionList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="horizsys">
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="fgdc:Horizsys">
-                <xs:attribute name="name" type="xs:string" use="required"/>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:element name="horizontalCoordinateSystem" type="horizontalCoordinateSystemType" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="spatialReference" type="SpatialReferenceType"/>
-  <xs:complexType name="SpatialReferenceType">
-    <xs:sequence>
-      <xs:choice>
-        <xs:element name="standardHorizsys" type="standardProjection"/>
-        <xs:element name="standardHorizsys">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="Clarke_1866_UTM_Zone_12N"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-      </xs:choice>
-      <xs:element name="vertDef" type="fgdc:Vertdef" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="standardProjection">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Clarke_1866_UTM_Zone_12N"/>
-    </xs:restriction>
-  </xs:simpleType>
 </xs:schema>
