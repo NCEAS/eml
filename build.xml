@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<project name="test" default="project" basedir=".">
+   <target name="init">
+      <property name="xmlp" 
+                value="/home/jones/software/xml-xerces/java/build/xerces.jar" />
+      <property name="cpath" value="${xmlp}:." />
+   </target>
+   
+   <target name="project" depends="init">
+       <javac srcdir="." destdir="." classpath="${cpath}" /> 
+   </target> 
+
+</project>

@@ -1,0 +1,97 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+           targetNamespace="iso:ResponsibleParty">
+  
+  <complexType name="ResponsibleParty" content="elementOnly">
+    <sequence>
+      <choice minOccurs="1" maxOccurs="unbounded">
+        <element name="individualName" type="Person" />
+        <element name="organizationName" type="string" />
+        <element name="positionName" type="string" />
+      </choice>
+      <element name="contactinfo" 
+               type="Contact" minOccurs="0" maxOccurs="unbounded" />
+      <element name="roleCode" 
+               type="string" minOccurs="1" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="Person" content="elementOnly">
+    <sequence>
+      <element name="salutation" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+      <element name="givenname" 
+               type="string" minOccurs="1" maxOccurs="unbounded" />
+      <element name="surname" 
+               type="string" minOccurs="1" maxOccurs="1" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="Contact" content="elementOnly">
+    <sequence>
+      <element name="phone" 
+               type="Telephone" minOccurs="0" maxOccurs="1" />
+      <element name="address" 
+               type="Address" minOccurs="0" maxOccurs="1" />
+      <element name="onlineResource" 
+               type="OnlineResource" minOccurs="0" maxOccurs="1" />
+      <element name="hoursOfService" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="contactInstructions" 
+               type="string" minOccurs="0" maxOccurs="1" />
+    </sequence>
+  </complexType>
+
+  <complexType name="Telephone" content="elementOnly">
+    <sequence>
+      <element name="voice" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+      <element name="facsimile" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+      <sequence minOccurs="0" maxOccurs="unbounded">
+        <element name="other" type="string" />
+        <element name="otherType" type="string" />
+      </sequence>
+    </sequence>
+  </complexType>
+  <!-- The constraint that "other" is required if voice or facsimile are
+       not provided has not been expressed in the Telephone type yet -->
+
+  <complexType name="Address" content="elementOnly">
+    <sequence>
+      <element name="deliveryPoint" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+      <element name="city" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="administrativeArea" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="postalCode" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="country" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="electronicMailAddress" 
+               type="string" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="OnlineResource" content="elementOnly">
+    <sequence>
+      <element name="linkage" 
+               type="URL" minOccurs="1" maxOccurs="1" />
+      <element name="protocol" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="applicationProfile" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="name" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="description" 
+               type="string" minOccurs="0" maxOccurs="1" />
+      <element name="functionCode" 
+               type="string" minOccurs="0" maxOccurs="1" />
+    </sequence>
+  </complexType>
+
+  <simpleType name="URL" base="string" /> 
+  <!-- Could add restrictions here to make it conform to URL syntax -->
+  
+</xs:schema>
