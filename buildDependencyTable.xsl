@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 15:47:11 $'
-      '$Revision: 1.4 $'
+          '$Date: 2002-09-10 16:04:51 $'
+      '$Revision: 1.5 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
   <tr>
   <th/>
   <xsl:for-each select="//doc:module">
-    <th valign="bottom">
+    <th valign="bottom" class="tablehead2">
       <xsl:call-template name="verttext">
         <xsl:with-param name="text" select="."/>
       </xsl:call-template>
@@ -61,7 +61,16 @@
         <xsl:value-of select="."/>
       </xsl:variable>
       <tr>
-      <td><b><xsl:value-of select="."/></b></td>
+
+      <xsl:attribute name="class">
+       <xsl:choose>
+         <xsl:when test="position() mod 2 = 1">rowodd</xsl:when>
+         <xsl:when test="position() mod 2 = 0">roweven</xsl:when>
+       </xsl:choose>
+      </xsl:attribute>
+
+      <td><xsl:value-of select="."/></td> <!--the row header-->
+
         <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
           <xsl:variable name="modName">
             <xsl:value-of select="substring-before(., '.')"/>
@@ -72,9 +81,9 @@
             <xsl:value-of select="substring-before(./@schemaLocation, '.')"/>
           </xsl:variable>
           <xsl:if test="normalize-space($importedDoc)=normalize-space($modName)">
-            <xsl:attribute name="bgcolor">
-              <xsl:text>green</xsl:text>
-            </xsl:attribute>
+            <!--<xsl:attribute name="bgcolor">
+              <xsl:text>white</xsl:text>
+            </xsl:attribute>-->
             <xsl:text>X</xsl:text>
           </xsl:if>
           <xsl:if test="normalize-space($modName)=normalize-space(substring-before($modFile, '.'))">
