@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-13 17:35:36 $'
-      '$Revision: 1.6 $'
+          '$Date: 2001-07-31 16:24:36 $'
+      '$Revision: 1.7 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,12 +30,16 @@
     <xs:appinfo>
       <doc:moduleName>eml-physical</doc:moduleName>
       <doc:moduleDescription>
-        The EML Phyiscal Representation Module defines the structural
+        The eml-physical Module defines the structural
         characteristics of data formats as delivered over the wire or
         as found in a file system.  One physical object (which can be a
         bytestream or an object in a file system) might contain multiple
         entities (for example, this would be typical in a MS Access file
-        that contained multiple tables of data).
+        that contained multiple tables of data).  However, it is typically
+        used to describe a file or stream that is in some text-based 
+        format such as ASCII or UTF-8, and includes the information needed
+        to parse the data stream to extract the entity and its attributes
+        from the stream.
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
