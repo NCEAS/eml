@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" elementFormDefault="unqualified" attributeFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+<xs:schema 
+    targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    xmlns="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    elementFormDefault="unqualified" 
+    attributeFormDefault="unqualified">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -18,8 +28,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-09-06 22:25:39 $'
-      '$Revision: 1.58 $'
+          '$Date: 2002-09-06 22:59:06 $'
+      '$Revision: 1.59 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,10 +59,12 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
-  <!-- import the elements from eml-coverage -->
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+    schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" 
+    schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
+    schemaLocation="eml-text.xsd"/>
   <xs:group name="ResourceGroup">
     <xs:annotation>
       <xs:appinfo>
@@ -70,7 +82,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="alternateIdentifier" minOccurs="0" 
+        maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternate Identifier</doc:tooltip>
@@ -146,7 +159,8 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
+      <xs:element name="creator" type="rp:ResponsibleParty" 
+        maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Creator</doc:tooltip>
@@ -166,7 +180,8 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="metadataProvider" type="rp:ResponsibleParty" 
+        minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Metadata Provider</doc:tooltip>
@@ -268,52 +283,19 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="abstract" minOccurs="0">
+      <xs:element name="abstract" minOccurs="0" type="txt:TextType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Abstract</doc:tooltip>
             <doc:summary>A brief overview of the resource.</doc:summary>
-            <doc:description>This field provides a container for one or more
-            paragraph fields that give a brief overview of the resource that is
-            being documented.</doc:description>
-            <doc:example>Please see the examples for the subfields contained
-            within this field.</doc:example>
+            <doc:description>A brief overview of the resource that is
+            being documented. The abstract should include basic information
+            that summarizes the resource.</doc:description>
             <doc:lineage>This element was derived from elements described in
             the FGDC-STD-001.1-1999 standard
             (nbii-fgdc-std-001.1-1999)</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Abstract paragraph</doc:tooltip>
-                  <doc:summary>The paragraph field for the text in an
-                  abstract.</doc:summary>
-                  <doc:description>This field is intended for the text of an
-                  abstract that gives a brief overview of the resource. There
-                  may be one or more paragraphs within the
-                  abstract.</doc:description>
-                  <doc:example>The major unanswered question in marine ecology
-                  is the degree of connectedness between local populations. Put
-                  another way, what proportion of young arriving into a local
-                  population are products of local production? What is the
-                  source of recruits for any local population, and where do the
-                  young produced in a local population go? The answers to these
-                  questions are unknown for any widespread species with a
-                  pelagic dispersal phase. Proper marine management depends on
-                  knowledge in this area: the efficacy of any reserve design,
-                  for example, is highly dependent on the degree to which it is
-                  dependent on other populations for recruitment, and the
-                  degree to which it supplies other areas.</doc:example>
-                  <doc:lineage>This field was introduced into EML 2.0, and was
-                  derived from EML 1.3.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>
       <xs:element name="keywordSet" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
@@ -356,7 +338,8 @@
               <xs:complexType>
                 <xs:simpleContent>
                   <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
+                    <xs:attribute name="keywordType" type="KeyTypCode" 
+                        use="optional">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Keyword type</doc:tooltip>
@@ -397,7 +380,8 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="additionalInfo" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="additionalInfo" type="txt:TextType"
+        minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Additional Information</doc:tooltip>
@@ -412,27 +396,8 @@
             (nbii-fgdc-std-001.1-1999)</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Paragraph</doc:tooltip>
-                  <doc:summary>The paragraph field for the additional
-                  text.</doc:summary>
-                  <doc:description>This field is intended for the text that
-                  gives additional information about the resource. There may be
-                  one or more paragraphs.</doc:description>
-                  <doc:example>Copyright 2001, Robert Warner</doc:example>
-                  <doc:lineage>This field was introduced into EML
-                  2.0.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>
-      <xs:element name="intellectualRights" minOccurs="0">
+      <xs:element name="intellectualRights" type="txt:TextType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Intellectual Property Rights</doc:tooltip>
@@ -452,24 +417,9 @@
             Element Set 1.1.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Paragraph</doc:tooltip>
-                  <doc:summary>The paragraph of text.</doc:summary>
-                  <doc:description>A paragraph of text.</doc:description>
-                  <doc:example>Copyright 2001, Robert Warner</doc:example>
-                  <doc:lineage>This field was introduced into EML
-                  2.0.</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>
-      <xs:element name="distribution" type="DistributionType" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="distribution" type="DistributionType" 
+        minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Distribution Information</doc:tooltip>
@@ -556,10 +506,10 @@
             <xs:appinfo>
               <doc:tooltip>Connection Information</doc:tooltip>
               <doc:summary>Connection information for accessing the resource
-            online</doc:summary>
+              online</doc:summary>
               <doc:description>Connection information for accessing the resource
-            online, represented either as a URL or as a series of named
-            parameters that are needed in order to connect.</doc:description>
+              online, represented either as a URL or as a series of named
+              parameters that are needed in order to connect.</doc:description>
               <doc:example/>
               <doc:lineage/>
             </xs:appinfo>
@@ -584,8 +534,10 @@
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
-                      <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
-                      <xs:attribute name="schemaInformation" type="xs:anyURI" use="optional"/>
+                      <xs:attribute name="function" type="FunctionType" 
+                        use="optional" default="download"/>
+                      <xs:attribute name="schemaInformation" type="xs:anyURI" 
+                        use="optional"/>
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
@@ -594,7 +546,8 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Connection Notes</doc:tooltip>
-                    <doc:summary>General notes about the connection</doc:summary>
+                    <doc:summary>General notes about the connection
+                    </doc:summary>
                     <doc:description>General notes about the
                   connection.</doc:description>
                     <doc:lineage>New in EML 2.0.0</doc:lineage>
@@ -647,27 +600,28 @@
                   <xs:appinfo>
                     <doc:tooltip>density of the digital medium</doc:tooltip>
                     <doc:summary>the density of the digital medium if this is
-                  relevant.</doc:summary>
-                    <doc:description>the density of the digital medium if this is
-                  relevant. Used mainly for floppy disks or
-                  tape.</doc:description>
+                    relevant.</doc:summary>
+                    <doc:description>the density of the digital medium if 
+                    this is relevant. Used mainly for floppy disks or
+                    tape.</doc:description>
                     <doc:example>High Density (HD), Double Density
-                  (DD)</doc:example>
+                    (DD)</doc:example>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
-                  Metadata</doc:lineage>
+                    Metadata</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
+              <xs:element name="mediumDensityUnits" type="xs:string" 
+                minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>units of a numerical density</doc:tooltip>
                     <doc:summary>a numerical density's units</doc:summary>
-                    <doc:description>if a density is given numerically, the units
-                  should be given here.</doc:description>
+                    <doc:description>if a density is given numerically, the 
+                    units should be given here.</doc:description>
                     <doc:example>B/cm</doc:example>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
-                  Metadata</doc:lineage>
+                    Metadata</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -677,24 +631,25 @@
                     <doc:tooltip>storage volume</doc:tooltip>
                     <doc:summary>total volume of the storage medium</doc:summary>
                     <doc:description>the total volume of the storage medium on
-                  which this resource is shipped.</doc:description>
+                    which this resource is shipped.</doc:description>
                     <doc:example>650 MB</doc:example>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
-                  Metadata</doc:lineage>
+                    Metadata</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" 
+                minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
                     <doc:summary>format of the medium on which the resource is
-                  shipped.</doc:summary>
+                    shipped.</doc:summary>
                     <doc:description>the file system format of the medium on
-                  which the resource is shipped</doc:description>
+                    which the resource is shipped</doc:description>
                     <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
-                  Metadata</doc:lineage>
+                    Metadata</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -704,10 +659,10 @@
                     <doc:tooltip>note about the media</doc:tooltip>
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertitant information about
-                  the media</doc:description>
+                    the media</doc:description>
                     <doc:example/>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
-                  Metadata</doc:lineage>
+                    Metadata</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
