@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<txt:text xmlns:txt="eml://ecoinformatics.org/text-2.0.0beta9" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="eml://ecoinformatics.org/text-2.0.0beta9 
+          eml-text.xsd">
+  <section>
+    <paragraph>This is some text.</paragraph>
+    <section>
+      <title>Subsection title</title>
+      <paragraph>Some text in the subsection</paragraph>
+    </section>
+  </section>
+  <section>
+    <paragraph>Start with some text, and then mix in some elements:
+      <itemizedlist>
+        <listitem>Item numero uno</listitem>
+        <listitem>Item numero dos</listitem>
+        <listitem>Item numero tres</listitem>
+      </itemizedlist>
+      And then some text with <emphasis>emphasis</emphasis>
+      following the list of items.
+    </paragraph>
+  </section>
+</txt:text>
