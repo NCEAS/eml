@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-10 21:53:32 $'
-      '$Revision: 1.34 $'
+          '$Date: 2002-05-14 22:40:19 $'
+      '$Revision: 1.35 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -665,195 +665,342 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="onlineURL" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                Download site URL
-              </doc:tooltip>
-              <doc:summary>
-               A URL (Uniform Resource Locator) from which this resource can be downloaded
-              </doc:summary>
-              <doc:description>
-                A URL (Uniform Resource Locator) from which this resource can be downloaded.  
-                This includes any information needed to access this site, such as 
-                connection information.
-              </doc:description>
-              <doc:example>http://data.org/getdata?id=98332</doc:example>
-              <doc:lineage>
-                ISO CD 19115.3, Geographic information - Metadata
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="offlineMedium">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>
-                medium of the resource
-              </doc:tooltip>
-              <doc:summary>
-                the medium on which this resource is distributed, either digitally or as hardcopy
-              </doc:summary>
-              <doc:description>
-                the medium on which this resource is distributed digitally, such as 3.5" 
-                floppy disk, or various tape media types, or 'hardcopy'
-              </doc:description>
-              <doc:example>
-                CD-ROM, 3.5 in. floppy disk, Zip disk
-              </doc:example>
-              <doc:lineage>
-                ISO CD 19115.3, Geographic information - Metadata
-              </doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="medName" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      Medium name
-                    </doc:tooltip>
-                    <doc:summary>
-                      Name of the medium that for this resource distribution
-                    </doc:summary>
-                    <doc:description>
-                      Name of the medium on which this resource is distributed.  
-                      Can be various digital media such as tapes and disks, or 
-                      printed media which can collectively be termed 'hardcopy'.
-                    </doc:description>
-                    <doc:example>
-                      Tape, 3.5 inch Floppy Disk, hardcopy
-                    </doc:example>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="medDensity" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      density of the digital medium
-                    </doc:tooltip>
-                    <doc:summary>
-                      the density of the digital medium if this is 
-                      relevant.
-                    </doc:summary>
-                    <doc:description>
-                      the density of the digital medium if this is 
-                      relevant.  Used mainly for floppy disks 
-                      or tape.
-                    </doc:description>
-                    <doc:example>
-                      High Density (HD), Double Density (DD)
-                    </doc:example>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="medDensityUnits" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      units of a numerical density
-                    </doc:tooltip>
-                    <doc:summary>
-                      a numerical density's units
-                    </doc:summary>
-                    <doc:description>
-                      if a density is given numerically, the units 
-                      should be given here.  
-                    </doc:description>
-                    <doc:example>
-                      B/cm
-                    </doc:example>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="medVol" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      storage volume 
-                    </doc:tooltip>
-                    <doc:summary>
-                      total volume of the storage medium
-                    </doc:summary>
-                    <doc:description>
-                      the total volume of the storage medium on 
-                      which this resource is shipped.
-                    </doc:description>
-                    <doc:example>
-                      650 MB
-                    </doc:example>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="medFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      medium format
-                    </doc:tooltip>
-                    <doc:summary>
-                      format of the medium on which the resource is 
-                      shipped.
-                    </doc:summary>
-                    <doc:description>
-                      the file system format of the medium on 
-                      which the resource is shipped
-                    </doc:description>
-                    <doc:example>
-                      NTFS, FAT32, EXT2, QIK80
-                    </doc:example>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="medNote" type="xs:string" minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                      note about the media
-                    </doc:tooltip>
-                    <doc:summary>
-                      note about the media
-                    </doc:summary>
-                    <doc:description>
-                      any additional pertitant information about the
-                      media
-                    </doc:description>
-                    <doc:example/>
-                    <doc:lineage>
-                      ISO CD 19115.3, 
-                      Geographic information - Metadata
-                    </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
+      <xs:element name="distribution" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Distribution Information
+            </doc:tooltip>
+            <doc:summary>
+              Information on how the resource is distributed online and offline
+            </doc:summary>
+            <doc:description>
+              This element provides information on how the resource is 
+              distributed online and offline.  Connections to online 
+              systems can be described as URLs and as a list of relevant
+              connection parameters.
+            </doc:description>
+            <doc:example>
+            </doc:example>
+            <doc:lineage>
+              Derived from distribution elements in the FGDC standard.
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="connection">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Connection Information
+                  </doc:tooltip>
+                  <doc:summary>
+                    Connection information for accessing the resource online
+                  </doc:summary>
+                  <doc:description>
+                    Connection information for accessing the resource online,
+                    represented either as a URL or as a series of named
+                    parameters that are needed in order to connect.
+                  </doc:description>
+                  <doc:example>
+                  </doc:example>
+                  <doc:lineage>
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:choice>
+                    <xs:element name="onlineURL" type="xs:string">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>
+                            Download site URL
+                          </doc:tooltip>
+                          <doc:summary>
+                           A URL (Uniform Resource Locator) from which this resource can be downloaded
+                          </doc:summary>
+                          <doc:description>
+                            A URL (Uniform Resource Locator) from which this resource can be downloaded.  
+                            This includes any information needed to access this site, such as 
+                            connection information.
+                          </doc:description>
+                          <doc:example>http://data.org/getdata?id=98332</doc:example>
+                          <doc:lineage>
+                            ISO CD 19115.3, Geographic information - Metadata
+                          </doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="parameter" minOccurs="1" 
+                                maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Parameter Value
+                          </doc:tooltip>
+                          <doc:summary>
+                            A value of one of the parameters needed to
+                            connect using this connection.
+                          </doc:summary>
+                          <doc:description>
+                            A value of one of the parameters needed to
+                            connect using this connection.  In general, if a URL
+                            scheme exists for this type of connection, it
+                            is much better to provide this information in 
+                            onlineURL rather than here.  Examples include
+                            parameters such as host names and ports, paths,
+                            UNC names, CGI parameters, etc.
+                          </doc:description>
+                          <doc:example>
+                            <![CDATA[<parameter name="port">8081</parameter>parameter>]]>
+                          </doc:example>
+                          <doc:lineage>
+                            New in EML 2.0.0
+                          </doc:lineage>
+                        </xs:appinfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="name" type="xs:string" 
+                                          use="required">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Paramter Name
+                                  </doc:tooltip>
+                                  <doc:summary>
+                                    The name of the parameter
+                                  </doc:summary>
+                                  <doc:description>
+                                    The name of one of the paramters needed
+                                    to connect using this connection.
+                                  </doc:description>
+                                  <doc:example>
+                                    <![CDATA[<parameter name="port">8081</parameter>parameter>]]>
+                                  </doc:example>
+                                  <doc:lineage>
+                                    New in EML 2.0.0
+                                  </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:attribute>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+                <xs:attribute name="name" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Connection Name
+                      </doc:tooltip>
+                      <doc:summary>
+                        Name of this connection
+                      </doc:summary>
+                      <doc:description>
+                        An optional descriptive name for this connection that
+                        allows the connection to be referenced.
+                      </doc:description>
+                      <doc:example>
+                        KNB Site
+                      </doc:example>
+                      <doc:lineage>
+                        New in EML 2.0.0
+                      </doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="scheme" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Connection Scheme
+                      </doc:tooltip>
+                      <doc:summary>
+                        The type of connection represented
+                      </doc:summary>
+                      <doc:description>
+                        The type of the connection represented. Common
+                        schemes include http and ftp, as well as various
+                        database schemes such as jdbc and odbc.
+                      </doc:description>
+                      <doc:example>
+                        jdbc
+                      </doc:example>
+                      <doc:lineage>
+                        New in EML2.0.0
+                      </doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="offlineMedium">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
+                    medium of the resource
+                  </doc:tooltip>
+                  <doc:summary>
+                    the medium on which this resource is distributed, either digitally or as hardcopy
+                  </doc:summary>
+                  <doc:description>
+                    the medium on which this resource is distributed digitally, such as 3.5" 
+                    floppy disk, or various tape media types, or 'hardcopy'
+                  </doc:description>
+                  <doc:example>
+                    CD-ROM, 3.5 in. floppy disk, Zip disk
+                  </doc:example>
+                  <doc:lineage>
+                    ISO CD 19115.3, Geographic information - Metadata
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="medName" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          Medium name
+                        </doc:tooltip>
+                        <doc:summary>
+                          Name of the medium that for this resource distribution
+                        </doc:summary>
+                        <doc:description>
+                          Name of the medium on which this resource is distributed.  
+                          Can be various digital media such as tapes and disks, or 
+                          printed media which can collectively be termed 'hardcopy'.
+                        </doc:description>
+                        <doc:example>
+                          Tape, 3.5 inch Floppy Disk, hardcopy
+                        </doc:example>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="medDensity" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          density of the digital medium
+                        </doc:tooltip>
+                        <doc:summary>
+                          the density of the digital medium if this is 
+                          relevant.
+                        </doc:summary>
+                        <doc:description>
+                          the density of the digital medium if this is 
+                          relevant.  Used mainly for floppy disks 
+                          or tape.
+                        </doc:description>
+                        <doc:example>
+                          High Density (HD), Double Density (DD)
+                        </doc:example>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="medDensityUnits" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          units of a numerical density
+                        </doc:tooltip>
+                        <doc:summary>
+                          a numerical density's units
+                        </doc:summary>
+                        <doc:description>
+                          if a density is given numerically, the units 
+                          should be given here.  
+                        </doc:description>
+                        <doc:example>
+                          B/cm
+                        </doc:example>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="medVol" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          storage volume 
+                        </doc:tooltip>
+                        <doc:summary>
+                          total volume of the storage medium
+                        </doc:summary>
+                        <doc:description>
+                          the total volume of the storage medium on 
+                          which this resource is shipped.
+                        </doc:description>
+                        <doc:example>
+                          650 MB
+                        </doc:example>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="medFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          medium format
+                        </doc:tooltip>
+                        <doc:summary>
+                          format of the medium on which the resource is 
+                          shipped.
+                        </doc:summary>
+                        <doc:description>
+                          the file system format of the medium on 
+                          which the resource is shipped
+                        </doc:description>
+                        <doc:example>
+                          NTFS, FAT32, EXT2, QIK80
+                        </doc:example>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="medNote" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>
+                          note about the media
+                        </doc:tooltip>
+                        <doc:summary>
+                          note about the media
+                        </doc:summary>
+                        <doc:description>
+                          any additional pertitant information about the
+                          media
+                        </doc:description>
+                        <doc:example/>
+                        <doc:lineage>
+                          ISO CD 19115.3, 
+                          Geographic information - Metadata
+                        </doc:lineage>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="coverage" 
                         type="cov:Coverage" 
                         minOccurs="0" 
