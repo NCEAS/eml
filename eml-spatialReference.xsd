@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" elementFormDefault="unqualified">
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" elementFormDefault="unqualified">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-10-02 00:42:12 $'
-      '$Revision: 1.23 $'
+          '$Date: 2002-10-02 00:53:08 $'
+      '$Revision: 1.24 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -2326,11 +2326,12 @@
         </xs:complexType>
       </xs:element>
     </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="horizCoordSysType">
     <xs:choice>
       <xs:element name="geogCoordSys" type="geogCoordSysType"/>
-      <xs:element name="projCoordSystem">
+      <xs:element name="projCoordSys">
         <xs:complexType>
           <xs:sequence>
             <xs:element name="geogCoordSys" type="geogCoordSysType"/>
