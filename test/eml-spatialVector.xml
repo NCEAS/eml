@@ -25,82 +25,8 @@
     </attribute>
   </attributeList>
   <geometry>Point</geometry>
-
+  <geometricObjectCount>1</geometricObjectCount>
   <spatialReference>
-    <horizontalCoordinateSystemDefinition>
-     <coordinateSystemName>
-        <geographicCoordinateSystemName>Planar</geographicCoordinateSystemName>
-        <projectedCoordinateSystemName>Cartesian</projectedCoordinateSystemName>
-      </coordinateSystemName>
-      <planar>
-        <MapProjection>
-          <mapProjectionName>Mercator</mapProjectionName>
-          <MapProjectionParameters>
-            <spref:azimuthMeasurePointLongitude>123</spref:azimuthMeasurePointLongitude>
-          </MapProjectionParameters>
-        </MapProjection>
-        <planarCoordinateInformation>
-          <planarCoordinateEncodingMethod>
-            some info
-          </planarCoordinateEncodingMethod>
-          <coordinate_Representation>
-            <Abscissa_Resolution>
-              123
-            </Abscissa_Resolution>
-            <Ordinate_Resolution>
-              123
-            </Ordinate_Resolution>
-          </coordinate_Representation>
-          <Planar_Distance_Units>
-            meter
-          </Planar_Distance_Units>
-        </planarCoordinateInformation>
-      </planar>
-      <geodetic_Model>
-        <horizontal_Datum_Name>
-          xyz
-        </horizontal_Datum_Name>
-        <ellipsoid_Name>
-          xyz
-        </ellipsoid_Name>
-        <semi-major_Axis>
-          xyz
-        </semi-major_Axis>
-        <denominator_of_Flattening_Ratio>
-          xyz
-        </denominator_of_Flattening_Ratio>
-      </geodetic_Model>
-    </horizontalCoordinateSystemDefinition>
-
-    <vertical_Coordinate_System_Definition>
-      <altitude_System_Definition>
-        <altitude_Datum_Name>
-          xyz
-        </altitude_Datum_Name>
-        <altitude_Resolution>
-          123
-        </altitude_Resolution>
-        <altitude_Distance_Units>
-          meters
-        </altitude_Distance_Units>
-        <altitude_Encoding_Method>
-          whatever
-        </altitude_Encoding_Method>
-      </altitude_System_Definition>
-      <depth_System_Definition>
-        <depth_Datum_Name>
-          xyz
-        </depth_Datum_Name>
-        <depth_Resolution>
-          123
-        </depth_Resolution>
-        <depth_Distance_Units>
-          meters
-        </depth_Distance_Units>
-        <depth_Encoding_Method>
-          whatever
-        </depth_Encoding_Method>
-      </depth_System_Definition>
-    </vertical_Coordinate_System_Definition>
+    <horizCoordSysName>GCS_Accra</horizCoordSysName>
   </spatialReference>
 </spvec:spatialVector>
