@@ -166,6 +166,8 @@
                         publisher?, edition?, series?, chapter_title?,
                         pages?, resource_url*)>
 <!ATTLIST source_information description CDATA #FIXED "Source information">
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title description CDATA #FIXED "Title or theme of data set">
 <!ELEMENT vol (#PCDATA)>
 <!ATTLIST vol description CDATA #FIXED "Volume">
 <!ELEMENT issue (#PCDATA)>
