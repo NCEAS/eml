@@ -31,8 +31,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-10-02 05:54:39 $'
-      '$Revision: 1.66 $'
+          '$Date: 2002-10-02 06:31:56 $'
+      '$Revision: 1.67 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -108,6 +108,23 @@
     </xs:appinfo>
   </xs:annotation>
   <xs:complexType name="Coverage">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Coverage</doc:tooltip>
+        <doc:summary>
+          Spatial, temporal, and taxonomic coverage information.
+        </doc:summary>
+        <doc:description>This field si a container for the spatial, temporal 
+        and taxonomic coverages that apply to various resources, often dataset
+        resources.  Please see the individual descriptions of the sub fields for
+        more detail.
+        </doc:description>
+        <doc:example>Please see the individual sub fields for specific
+        examples.</doc:example>
+        <doc:lineage>The TemporalCoverage complex type was introduced
+        into EML 1.4.</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:choice>
       <xs:choice maxOccurs="unbounded">
         <xs:element name="geographicCoverage" type="GeographicCoverage">
@@ -841,10 +858,10 @@
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element ref="gRingPoint" minOccurs="3"
-                                  maxOccurs="unbounded"/>
+                      <xs:element name="gRingPoint" type="GRingPointType" 
+                                  minOccurs="3" maxOccurs="unbounded"/>
                     </xs:sequence>
-                    <xs:element ref="gRing"/>
+                    <xs:element name="gRing" type="GRingPointType"/>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
@@ -870,8 +887,9 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:choice>
-                    <xs:element ref="gRingPoint" maxOccurs="unbounded"/>
-                    <xs:element ref="gRing"/>
+                    <xs:element name="gRingPoint" type="GRingPointType"
+                                maxOccurs="unbounded"/>
+                    <xs:element name="gRing" type="GRingPointType"/>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
@@ -886,7 +904,7 @@
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
                   default="document"/>
   </xs:complexType>
-  <xs:element name="gRingPoint">
+  <xs:complexType name="GRingPointType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring point</doc:tooltip>
@@ -901,40 +919,38 @@
         dataset_g_polygon/g_ring_point</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="gRingLatitude" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>G-Ring Latitude</doc:tooltip>
-              <doc:summary/>
-              <doc:description>The latitude of a point of the
-              g-ring.</doc:description>
-              <doc:lineage>FGDC-STD-001-1998:
-              /metadata/identification_information/spatial_domain/
-              dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
-              g_ring_latitude</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="gRingLongitude" type="xs:string">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>G-Ring Longitude</doc:tooltip>
-              <doc:summary/>
-              <doc:description>The longitude of a point of the
-              g-ring.</doc:description>
-              <doc:lineage>FGDC-STD-001-1998:
-              /metadata/identification_information/spatial_domain/
-              dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
-              g_ring_longitude</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="gRing" type="xs:string">
+    <xs:sequence>
+      <xs:element name="gRingLatitude" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>G-Ring Latitude</doc:tooltip>
+            <doc:summary/>
+            <doc:description>The latitude of a point of the
+            g-ring.</doc:description>
+            <doc:lineage>FGDC-STD-001-1998:
+            /metadata/identification_information/spatial_domain/
+            dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
+            g_ring_latitude</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="gRingLongitude" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>G-Ring Longitude</doc:tooltip>
+            <doc:summary/>
+            <doc:description>The longitude of a point of the
+            g-ring.</doc:description>
+            <doc:lineage>FGDC-STD-001-1998:
+            /metadata/identification_information/spatial_domain/
+            dataset_g_polygon/g_ring_point/g_ring_polygon_outer_g_ring/
+            g_ring_longitude</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GRingType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring</doc:tooltip>
@@ -955,7 +971,7 @@
         dataset_g_polygon/g_ring</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-  </xs:element>
+  </xs:complexType>
   <xs:complexType name="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
