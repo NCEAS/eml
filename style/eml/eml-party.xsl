@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
+  * '$Revision: 1.1.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -182,14 +182,9 @@
           <td width="{$secondColWidth}">
             <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
               <tr><td width="100%" class="{$secondColStyle}">
-                 <xsl:if test="$withHTMLLinks='1'">
-                   <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                    <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
                     <xsl:value-of select="."/></a>
-                  </xsl:if>
-                  <xsl:if test="$withHTMLLinks='0'">
-                    <xsl:value-of select="."/>
-                  </xsl:if>
-                </td>
+                   </td>
               </tr>
             </table>
           </td>
@@ -207,14 +202,9 @@
           <td width="{$secondColWidth}">
              <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
                <tr><td width="100%" class="{$secondColStyle}">
-                 <xsl:if test="$withHTMLLinks='1'">
-                   <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
-                   <xsl:value-of select="."/></a>
-                 </xsl:if>
-                 <xsl:if test="$withHTMLLinks='0'">
-                   <xsl:value-of select="."/>
-                 </xsl:if>
-                 </td>
+                     <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                     <xsl:value-of select="."/></a>
+                    </td>
                </tr>
              </table>
            </td>

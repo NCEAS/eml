@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
+  * '$Revision: 1.1.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,9 +40,6 @@
         <xsl:param name="packageID"/>
         <xsl:param name="system"/>
         <xsl:if test="normalize-space(.)">
-        <tr><td colspan="2">
-        <table xsl:use-attribute-sets="cellspacing" width="100%"
-                                        class="{$mainContainerTableStyle}">
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
              <xsl:value-of select="$packageID"/></td></tr>
@@ -51,8 +48,6 @@
                   Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
                   <xsl:value-of select="$system"/></td></tr>
              </xsl:if>
-         </table>
-         </td></tr>
         </xsl:if>
     </xsl:template>
     

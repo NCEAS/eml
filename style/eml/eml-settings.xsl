@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
+  * '$Revision: 1.1.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -96,24 +96,10 @@
 
 <!--
     /**
-    *   To show any html links (emails and webpage).
-    */
--->
-  <xsl:param name="withHTMLLinks">1</xsl:param>
-
-<!--
-    /**
     *   To show the Attributes table in the entity display.
     */
 -->
   <xsl:param name="withAttributes">1</xsl:param>
-
-<!--
-    /**
-    *   To insert templates where header and footer are defined.
-    */
--->
-  <xsl:param name="insertTemplate">1</xsl:param>
 
 
 <!--
@@ -163,7 +149,7 @@
 <!-- the index of attribute in attribute list-->
     <xsl:param name="attributeindex"/>
 <!-- the index of additional metadata-->
-    <xsl:param name="additionalmetadataindex">1</xsl:param>
+    <xsl:param name="additionalmetadataindex"/>
 <!-- attribute set to get rid of cell spacing-->
     <xsl:attribute-set name="cellspacing">
       <xsl:attribute name="cellpadding">0</xsl:attribute>
@@ -187,10 +173,10 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><![CDATA[@html-path@/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
+    <xsl:param name="tripleURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
 
     <!-- URL for xmlformat-->
-    <xsl:param name="xmlURI"><![CDATA[@html-path@/metacat?action=read&qformat=xml&docid=]]></xsl:param>
+    <xsl:param name="xmlURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=xml&docid=]]></xsl:param>
 
 
 <!--
@@ -219,7 +205,7 @@
 <!--    the style for major rows containing subsection titles etc. -->
   <xsl:param name="subHeaderStyle" select="'tablehead'"/>
 
-<!--    the style for major rows containing links, such as additional metadata,
+<!--    the style for major rows containing links, such as additional metadata, 
         original xml file etc. -->
   <xsl:param name="linkedHeaderStyle" select="'linkedHeaderStyle'"/>
 

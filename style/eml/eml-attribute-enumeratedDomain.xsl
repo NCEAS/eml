@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-attribute-enumeratedDomain-2.0.0.xsl,v $'
+  *  '$RCSfile: eml-attribute-enumeratedDomain.xsl,v $'
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-20 21:41:45 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
   * '$Revision: 1.1.2.1 $'
   *
   * This program is free software; you can redistribute it and/or modify

@@ -8,9 +8,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *     Authors: Matt Jones
   *
-  *    '$Author: brooke $'
-  *      '$Date: 2003-11-20 20:12:43 $'
-  *  '$Revision: 1.1 $'
+  *    '$Author: berkley $'
+  *      '$Date: 2004-07-26 23:52:31 $'
+  *  '$Revision: 1.1.8.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
+  * '$Revision: 1.1.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@
 
       <xsl:if test="associatedParty">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
-             <xsl:text>Associated Party:</xsl:text>
+             <xsl:text>Associate Party:</xsl:text>
          </td></tr>
       </xsl:if>
       <xsl:for-each select="associatedParty">
@@ -153,14 +153,14 @@
           <xsl:with-param name="docid" select="$docid"/>
         </xsl:call-template>
       </xsl:for-each>
+    </table>
 
-      <xsl:for-each select="coverage">
-        <xsl:call-template name="resourcecoverage">
+    <xsl:for-each select="coverage">
+      <xsl:call-template name="resourcecoverage">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
-        </xsl:call-template>
-      </xsl:for-each>
-    </table>
+      </xsl:call-template>
+    </xsl:for-each>
 
   </xsl:template>
 
@@ -247,7 +247,7 @@
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="resfirstColStyle"/>
     <tr><td class="{$ressubHeaderStyle}" colspan="2">
-      <xsl:text>Associated Party(s):</xsl:text>
+      <xsl:text>Associate Party(s):</xsl:text>
     </td></tr>
     <tr><td colspan="2">
     <xsl:call-template name="party">

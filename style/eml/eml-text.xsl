@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2004-07-26 23:52:31 $'
+  * '$Revision: 1.1.4.1 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@
   <!-- para template without table structure. It does actually transfer.
        Currently, only get the text and it need more revision-->
   <xsl:template match="para" mode="lowlevel">
-       <xsl:value-of select="."/><br/>
+       <xsl:value-of select="."/>
   </xsl:template>
 
 </xsl:stylesheet>
