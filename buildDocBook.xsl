@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-12 06:52:47 $'
-      '$Revision: 1.34 $'
+          '$Date: 2002-09-13 19:52:53 $'
+      '$Revision: 1.35 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -171,13 +171,13 @@
         are logically designed in order to document ecological resources.
         Some of the modules are dependent on others, while others may be used
         as stand-alone descriptions.  This section describes the modules from
-        the &quot;top down&quot;, starting from the top-level eml.xsd wrapper
+        the &quot;top down&quot;, starting from the top-level eml wrapper
         module, followed by modules of increasing detail.  However, there are
-        modules that may be used at many levels, such as eml-access.xsd.  
-        These modules are desribed when it is appropriate.
+        modules that may be used at many levels, such as eml-access.  
+        These modules are described when it is appropriate.
       </para>
         <section>
-          <title>The eml module (eml.xsd) - A metadata container
+          <title>The eml module - A metadata container
           </title>
           <para>
             The eml module is a wrapper container that allows the inclusion 
@@ -197,8 +197,15 @@
             list of information that may be described in EML. EML is largely
             designed to desrcibe digital resources, however, it may also be
             used to describe non-digital resources such as paper maps and
-            other non-digital media.  All EML documents must begin with the 
-            &lt;eml&gt; tag. and end with the &lt;/eml&gt; tag.
+            other non-digital media.
+            <emphasis>
+              In EML, the definition of a &quot;Data Package&quot; is the
+              combination of both the data and metadata for a resource.
+            </emphasis>
+              So, data packages are built by using the &lt;eml&gt; wrapper, 
+              which will include all of the metadata, and optionally the data 
+              (or references to them). All EML packages must begin with the 
+              &lt;eml&gt; tag and end with the &lt;/eml&gt; tag.
           </para>
           <para>
             The eml module may be extended to describe other resources by
@@ -211,7 +218,8 @@
         </section>
         <section>
           <title>
-            The resource module - (eml-resource.xsd) - Base information for all resources
+            The resource module - Base information for 
+            all resources
           </title>
           <para>
             The eml-resource module contains general information that
@@ -253,7 +261,7 @@
         </note>
         <section>
           <title>
-            The dataset module - (eml-dataset.xsd) - Dataset specific 
+            The dataset module - Dataset specific 
             information
           </title>
           <para>
@@ -282,7 +290,7 @@
         </section>
         <section>
           <title>
-            The literature module - (eml-literature.xsd) - Citation specific 
+            The literature module - Citation specific 
             information
           </title>
           <para>
@@ -306,7 +314,7 @@
         </section>
         <section>
           <title>
-            The software module - (eml-software.xsd) - Software specific 
+            The software module - Software specific 
             information
           </title>
           <para>
@@ -327,7 +335,7 @@
         </section>
         <section>
           <title>
-            The protocol module - (eml-protocol.xsd) - Established procedural 
+            The protocol module - Established procedural 
             information
           </title>
           <para>
@@ -373,36 +381,38 @@
         </note>
         <section>
           <title>
-            The access module (eml-access.xsd) - Access control rules for
-            resources
+            The access module - Access control rules for resources
           </title>
           <para>
-            The eml-access module describes the level of access that is to be granted or 
-            denied to a resource or a subset of a resource for a particular user or group 
-            of users. A single eml-access document may be used to express access control 
-            for many resources, or for a given resource (e.g., a dataset or citation ). 
-            The eml-access module represents a list of resources to be controlled in the 
-            context of a particular authentication system. That is, the authentication 
-            system determines the set of principals (users + groups) that can be used, 
-            and the membership of users in groups. The rules set in this module will 
-            determine the level of access to a resource for the defined users and groups.  
-            In EML, there are two mechanisms for including access control information via 
-            the eml-access module. 1)  Each top-level resource module (eml-dataset, 
-            eml-literature, eml-software, and eml-protocol) include an optional 
-            &lt;access&gt; element directly inline in the document.  This is used to 
-            define access control at the resource level scope.  2) Finer grained
-            access control may be applied to a subset of a resource via the
-            &lt;addtionalMetadata&gt; element in the eml module.  An access
-            control document may be defined, or referenced, from this location,
-            and the &lt;describes&gt; element is used to point to the subset of
-            the resource that is to be controlled via its &quot;id&quot;
-            attribute.  Applications that process EML documents must implement
-            the access control rules from both mechanisms.  Note that, although
-            access control may be bound to any element with an &quot;id&quot;
-            attribute, the processing involved may be very costly.  For
-            instance, it would not be recommended to apply access control to a
-            column of a data file (eml-attribute), since every read/write
-            operation on that column may not proceed until access is verified.
+            The eml-access module describes the level of access that is to be 
+            granted or denied to a resource or a subset of a resource for a 
+            particular user or group of users. A single eml-access document 
+            may be used to express access control for many resources, or 
+            for a given resource (e.g., a dataset or citation ).  The 
+            eml-access module represents a list of resources to be controlled 
+            in the context of a particular authentication system. That is, the 
+            authentication system determines the set of principals (users + 
+            groups) that can be used, and the membership of users in groups. 
+            The rules set in this module will determine the level of access to 
+            a resource for the defined users and groups.  In EML, there are 
+            two mechanisms for including access control information via the 
+            eml-access module. 1)  Each top-level resource module 
+            (eml-dataset, eml-literature, eml-software, and eml-protocol) 
+            include an optional &lt;access&gt; element directly inline in the 
+            document.  This is used to define access control at the resource 
+            level scope.  2) Finer grained access control may be applied to a 
+            subset of a resource via the &lt;addtionalMetadata&gt; element in 
+            the eml module.  An access control document may be defined, or 
+            referenced, from this location, and the &lt;describes&gt; element 
+            is used to point to the subset of the resource that is to be 
+            controlled via its &quot;id&quot; attribute.  Applications that 
+            process EML documents must implement the access control rules from 
+            both mechanisms.  Note that, although access control may be bound 
+            to any element with an &quot;id&quot; attribute, the processing 
+            involved may be very costly.  For instance, it would not be 
+            recommended to apply access control to a column of a data file 
+            (eml-attribute), since every read/write operation on that column 
+            may not proceed until access is verified.
           </para>
           <para>
             The eml-access module, like other modules, may be
@@ -413,10 +423,30 @@
         </section>
         <section>
           <title>
-            The physical module (eml-physical.xsd) - Online and 
-            offline distribution of resources
+            The physical module - Online and offline distribution of resources
           </title>
           <para>
+            The eml-physical module defines the structural characteristics of 
+            data formats as delivered over the wire or as found in a file 
+            system. One physical object (which can be a bytestream or an 
+            object in a file system) might contain multiple entities (for 
+            example, this would be typical in a MS Access file that contained 
+            multiple tables of data). However, it is typically used to 
+            describe a file or stream that is in some text-based format such 
+            as ASCII or UTF-8, and includes the information needed to parse 
+            the data stream to extract the entity and its attributes from the 
+            stream.  The eml-physical module defines three distinct distribution
+            types: 1) online - defined as either a URL, a &quot;connection&quot;            comprised of a connection definition and a parameter list, or just 
+            a connection definition, 2) offline - which contains a number of
+            fields to document data distribution on media such as CDROM, digital
+            tape, etc., or 3) inline - where the data are directly included in
+            the eml-physical metadata document, perhaps in an XML syntax itself.
+            The eml-physical module is used in 2 ways: 1) at the resource level
+            where one may define a general means of getting to the entire
+            dataset using one of the 3 options above, and 2) in the eml-entity
+            module, where each entity (.e.g. each table in a database) is
+            defined as either a specific URL or a specific connection (which may
+            use the connection definition that is defined at the resource level.
           </para>
           <para>
             The eml-physical module, like other modules, may be
@@ -427,10 +457,16 @@
         </section>
         <section>
           <title>
-            The party module (eml-party.xsd) - People and organization
-            information
+            The party module - People and organization information
           </title>
           <para>
+            The eml-party module describes a responsible party (person or 
+            organization), and is typically used to name the originator of a 
+            resource or metadata document. It contains detailed contact 
+            information for the party, be it an individual person, an 
+            organization, or a named position within an organization. The
+            eml-party module is used throughout the other EML modules where
+            detailed contact information is needed.
           </para>
           <para>
             The eml-party module, like other modules, may be
@@ -441,10 +477,44 @@
         </section>
         <section>
           <title>
-            The coverage module (eml-coverage.xsd) - Geographic,
-            temporal, and taxonomic extents of resources 
+            The coverage module - Geographic, temporal, and taxonomic extents 
+            of resources 
           </title>
           <para>
+            The eml-coverage module contains fields for describing the coverage
+            of a resource in terms of time, space, and taxonomy. These 
+            coverages (temporal, spatial, and taxonomic) represent the extent 
+            of applicability of the resource in those domains.  
+            graphic coverage section allows for 2 means of expressing coverage
+            on the surface of the earth: 1) via a set of bounding coordinates
+            that define the North, South, East and West points in a rectangular
+            area, optionally including a bounding altitude, 
+            and 2) using a G-Ring polygon definition, where an irregularly
+            shaped area may be defined using a ordered list of
+            latitude/longitude coordinates.  A G-Ring may also include an
+            &quot;inner G-Ring&quot; that defines one or more
+            &quot;cut-outs&quot; in the area, i.e. the donut hole concept.
+          </para>
+          <para>
+            The temporal coverage section allows for the definition of either a
+            single date/time, or a range of dates/times. These date/times may be
+            expressed as a calendar date according to the ISO 8601 Date and Time
+            Specification, or or by using an alternate time scale, such as the
+            geologic time scale. In order to express an &quot;ongoing&quot; time
+            frame, the end date in the range would likely use the alternate time
+            scale fields with a value of &quot;ongoing&quot;, whereas the begin
+            date would use the specific calendar date fields.
+          </para>
+          <para>
+            The taxonomic coverage section allows for detailed description of
+            the taxonomic extent of the dataset or resource.  The taxonomic
+            classification consists of a recursive set of taxon rank names,
+            their values, and their common names.  This construct allows for a
+            taxonomic hierarchy to be built to show the level of identification
+            (e.g. Rank Name = Kingdom, Rank Value = Animalia, Common Name =
+            Animals, and so on down the hierarchy.) The taxonomic coverage
+            module also allows for the definition of the classification system
+            in cases where alternative systems are used.
           </para>
           <para>
             The eml-coverage module, like other modules, may be
@@ -455,10 +525,16 @@
         </section>
         <section>
           <title>
-            The project module (eml-project.xsd) - Research context information
-            for resources
+            The project module - Research context information for resources
           </title>
           <para>
+            The eml-project module describes the research context in which the 
+            dataset was created, including descriptions of over-all motivations 
+            and goals, funding, personnel, description of the study area etc. 
+            This is also the module to describe the design of the project: the
+            scientific questions being asked, the architecture of the design,
+            etc.  This module is used to place the dataset that is being
+            documented into it's larger research context.
           </para>
           <para>
             The eml-project module, like other modules, may be
@@ -469,10 +545,30 @@
         </section>
         <section>
           <title>
-            The methods module (eml-methods.xsd) - Methodological information
-            for resources
+            The methods module - Methodological information for resources
           </title>
           <para>
+            The eml-methods module describes the methods
+            followed in the creation of the dataset, including description of
+            field, laboratory and processing steps, sampling methods and units,
+            quality control proceudures.  The eml-methods module is used 
+            to describe the <emphasis>actual</emphasis>
+            procedures that are used in the creation or the subsequent
+            processing of a dataset. Likewise, eml-methods is used to describe
+            proccesses that have been used to define / improve the quality of a
+            data file, or to identify potential problems with the data file.
+            Note that the eml-protocol module is intended to be used to document
+            a <emphasis>prescribed</emphasis> procedure, whereas the eml-method
+            module is used to describe procedures that <emphasis>were actually
+            performed</emphasis>.  The distinction is that the use of the term
+            &quot;protocol&quot; is used in the &quot;prescriptive&quot; sense,
+            and the term &quot;method&quot; is used in the
+            &quot;descriptive&quot; sense.  This distinction allows managers to
+            build a protocol library of well-known, established protocols
+            (procedures), but also document what procedure was truely performed
+            in relation to the established protocol.  The method may have
+            diverged from the protocol purposefully, or perhaps incidentally,
+            but the procedural lineage is still preserved and understandable.
           </para>
           <para>
             The eml-methods module, like other modules, may be
@@ -481,38 +577,160 @@
             other locations within the EML document via it's ID.
           </para>
         </section>
-        <section>
+        <note>
           <para>
+           note schema specific modules
+          </para>
+        </note>
+        <section>
+          <title>
+            The eml-entity module - Entity level information within datasets
+          </title>
+          <para>
+            The eml-entity module defines the logical characteristics of every 
+            entity in the dataset. Entities are usually tables of data with a 
+            fixed logical structure, but could also be other types of data 
+            such as raster or vector image data. The "table-entity" element is 
+            used to describe all table entities, and the "other-entity" 
+            element would be used to describe all other types of entities. 
+            Specific details of non-tabular entities are left to other 
+            standards (e.g., for remote sensing data, one should include a 
+            spatial metadata module such as the FGDC Content Standard for 
+            Digitial Geospatial Metadata [CSDGM]).
           </para>
         </section>
-      <para>
-
-        <!--
-        eml-entity.xsd
-        eml-constraint.xsd
-
-        eml-dataTable.xsd
-        eml-attribute.xsd
-
-        eml-spatialRaster.xsd
-        eml-spatialReference.xsd
-        eml-spatialVector.xsd
-
-        eml-storedProcedure.xsd
-        eml-view.xsd
-
-        eml-text.xsd
-        stmml.xsd
-        eml-documentation.xsd
-        -->
-
-      </para>
-      <para>
-        --associated metadata (extending eml)
-      </para>
-      <para>
-        --maybe a treeview image of how the modules are linked
-      </para>
+        <section>
+          <title>
+            The eml-attribute module - Attribute level information within 
+            dataset entities
+          </title>
+          <para>
+            The eml-attribute module describes all attributes (known in 
+            various disciplines as variables, fields, columns, etc) in a data 
+            entity (e.g., data table). The description includes the name and 
+            definition of each attribute, its type, its allowable range 
+            (if numeric), definitions of coded values, and other pertinent 
+            information.
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-constraint module - Relationships among and within 
+            dataset entities
+          </title>
+          <para>
+            The eml-constraint schema defines the integrity constraints 
+            between entities (e.g., data tables) as would be maintained in a 
+            relational database.  These constraints include primary key 
+            constraints, foreign key constraints, unique key constraints, 
+            check constraints, and not null constraints, among potential others.
+          </para>
+        </section>
+        <!--section>
+          <title>
+            The stmml module - Definitions for creating a unit
+            dictionary in EML
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section-->
+        <note>
+          <para>
+             The following six modules are used to describe a number of common
+             types of entities found in datasets.  Each entity type uses the
+             eml-entity module elements as it's base set of elements, but then
+             extends the base with entity-specific elements.  Note that the
+             eml-spatialReference module is not an entity type, but is rather a
+             common set of elements used to describe spatial reference systems
+             in both eml-spatialRaster and eml-spatialVector.  It is described
+             here in relation to those two modules.
+          </para>
+        </note>
+        <section>
+          <title>
+            The eml-dataTable module - Logical information
+            about data table entities
+          </title>
+          <para>
+            The eml-dataTable module is used to describe the logical
+            characteristics of each tabular set of information in a dataset. A
+            series of comma-sparated text files may be considered a dataset, 
+            and each file would subsequently be considered a dataTable entity
+            within the dataset.  Since the eml-dataTable module extends the
+            eml-entity module, it uses all of the common entity elements to
+            describe the table, along with a few elements specific to just data
+            table entities.  The eml-dataTable module allows for the
+            description of each attribute (column/field/variable) within the
+            data table through the use of the eml-attribute module.  Likewise,
+            there are fields used to describe the physical distribution of the
+            data table, it's overall coverage, the methodology used in creating
+            the data, and other logical structure information such as its
+            orientation, case sensitivity, etc.
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-spatialRaster module - 
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-spatialVector module -
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-spatialReference module -
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-storedProcedure module -
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section>
+        <section>
+          <title>
+            The eml-view module -
+          </title>
+          <para>
+          <emphasis>This section is not yet complete.</emphasis>
+          </para>
+        </section>
+        <note>
+          <para>
+           Note on eml utility schemas
+          </para>
+        </note>
+        <section>
+          <title>
+            The eml-text module -
+          </title>
+          <para>
+            The eml text module is a wrapper container that allows general 
+            text descriptions to be used within the various modules of eml. 
+            It can include either structured or unstructured text blocks.  
+            It isn't really appropriate to use this module outside of the 
+            context of a parent module, because the parent module determines 
+            the appropriate context to which this text description applies.
+            The eml-text module allows one to provide structure to a text
+            description in order to convey concepts such as sections
+            (paragraphs), hierarchy (ordered and unordered lists), emphasis
+            (bold, superscript, subscript) etc.
+          </para>
+        </section>
     </section>
   </chapter>
 
