@@ -45,11 +45,18 @@
         <!-- eml2 also has separate elements for metadataProvider and associatedParty -->
         <!-- use the 'role' value from emlb6 to detemine where info goes in eml2      -->
         <xsl:for-each select="$dsb6/dataset/originator/role">
-          <xsl:if test="((.='Originator')or(.='originator'))">
-            <xsl:element name="creator">
-              <xsl:call-template name="responsibleParty"/>
-            </xsl:element>  
-          </xsl:if>
+          <xsl:choose>
+            <xsl:when test="((.='Originator')or(.='originator'))">
+              <xsl:element name="creator">
+                <xsl:call-template name="responsibleParty"/>
+              </xsl:element>  
+            </xsl:when>
+            <xsl:otherwise>  <!-- creator is a required element; this put some info there if role is missing -->
+              <xsl:element name="creator">
+                <xsl:call-template name="responsibleParty"/>
+              </xsl:element>  
+            </xsl:otherwise>
+          </xsl:choose>  
         </xsl:for-each>
           
         <xsl:for-each select="$dsb6/dataset/originator/role">
@@ -497,6 +504,10 @@
     <xsl:param name="string"/>
     <xsl:variable name="ucstring" select="translate($string, 'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
     <xsl:choose>
+      <!-- first handle case where there is just a year (4 digits) -->
+      <xsl:when test="((contains(translate($string, '0123456789', '9999999999'),'9999'))and(string-length($string)=4))">
+        <xsl:value-of select="concat($string,'-01-01')"/>
+      </xsl:when>
       <xsl:when test="contains($ucstring,'JAN')">
         <xsl:value-of select="concat(substring-after($ucstring,'JAN'),'-01-',substring-before($ucstring,'JAN'))"/>
       </xsl:when>
