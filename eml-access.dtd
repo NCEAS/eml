@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: bojilova $'
-          '$Date: 2001-03-19 17:04:50 $'
-      '$Revision: 1.9 $'
+        '$Author: berkley $'
+          '$Date: 2001-03-22 22:41:12 $'
+      '$Revision: 1.10 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,21 +23,15 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
-<!-- The root element, which represents a list of resources to be controlled
-     in the context of a particular authentication system. That is, the 
-     authentication system determines the set of principals (users + groups) 
-     that can be used, and the membership of users in groups -->
-<!ELEMENT acl (resource+)>
-<!ATTLIST acl authSystem CDATA #REQUIRED>
-
-<!-- The object to which a particular set of rules will be applied -->
-<!ELEMENT resource (resourceIdentifier+, allow*, deny*)>
+<!-- The root element represents a list of principals that should be either
+     allowed or denied access to a resource. -->
+<!ELEMENT acl (allow*, deny*)>
+<!ATTLIST acl authSystem CDATA #REQUIRED
+              order  (allowFirst|denyFirst) "allowFirst" 
+              public (yes|no)>
+<!-- The authentication system that this access file uses -->
 <!-- The order in which the rules should be applied for this object -->
 <!-- The public read access to this object -->
-<!ATTLIST resource order (allowFirst|denyFirst) "allowFirst" 
-                   public (yes|no) >
-<!-- the unique identifier for the object -->
-<!ELEMENT resourceIdentifier (#PCDATA)>
 
 <!-- an allow rule adds the listed permission for a particular principal -->
 <!ELEMENT allow (principal+, permission+, duration?, ticketCount?)>
@@ -53,3 +47,4 @@
 <!ELEMENT ticketCount (#PCDATA)>
 
 <!-- EOF -->
+
