@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-05-07 20:19:09 $'
-      '$Revision: 1.13 $'
+          '$Date: 2002-05-08 02:04:12 $'
+      '$Revision: 1.14 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED >
 <!ELEMENT geographicCov (geographicDescription, boundingCoordinates, datasetGPolygon*)>
-<!ELEMENT temporalCov (singleDateTime | multipleDatesTimes | rangeOfDates)>
+<!ELEMENT temporalCov (singleDateTime* | rangeOfDates*)>
 <!ELEMENT taxonomicCov (taxonomicSystem?, generalTaxonomicCoverage?, taxonomicClassification+)>
 
 <!-- Geographic Coverage elements -->
@@ -58,14 +58,7 @@
 <!ELEMENT singleDateTime ((calendarDate, time?) | geologicAge)>
 <!ELEMENT calendarDate (#PCDATA)>
 <!ELEMENT time (#PCDATA)>
-<!ELEMENT multipleDatesTimes (singleDateTime+)>
-<!ELEMENT rangeOfDates ((beginningDate, beginningTime?, endingDate, endingTime?) | (beginningGeologicAge, endingGeologicAge))>
-<!ELEMENT beginningDate (#PCDATA)>
-<!ELEMENT beginningTime (#PCDATA)>
-<!ELEMENT endingDate (#PCDATA)>
-<!ELEMENT endingTime (#PCDATA)>
-<!ELEMENT beginningGeologicAge (geologicAge)>
-<!ELEMENT endingGeologicAge (geologicAge)>
+<!ELEMENT rangeOfDates (singleDateTime,singleDateTime)>
 <!ELEMENT geologicAge (geologicTimeScale, geologicAgeEstimate, geologicAgeUncertainty?, geologicAgeExplanation?, geologicCitation*)>
 <!ELEMENT geologicTimeScale (#PCDATA)>
 <!ELEMENT geologicAgeEstimate (#PCDATA)>

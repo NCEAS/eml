@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2002-05-07 20:19:09 $'
-      '$Revision: 1.33 $'
+          '$Date: 2002-05-08 02:04:12 $'
+      '$Revision: 1.34 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -180,9 +180,8 @@
         </xs:appinfo>
       </xs:annotation>
       <xs:choice>
-        <xs:element ref="singleDateTime"/>
-        <xs:element ref="multipleDatesTimes"/>
-        <xs:element ref="rangeOfDates"/>
+        <xs:element ref="singleDateTime" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element ref="rangeOfDates" minOccurs="1" maxOccurs="unbounded"/>
       </xs:choice>
   </xs:complexType>
       
@@ -281,175 +280,6 @@
       </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="beginningDate" type="xs:date">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Beginning date</doc:tooltip>
-        <doc:summary>
-          The beginning date for a range of days.
-        </doc:summary>
-        <doc:description>
-          The beginning date field is used to express the first date 
-          for a range of dates, giving the year, month, and day.  
-          The format should be one that complies with the International
-          Standards Organization's standard 8601.  The recommended format 
-          for EML is YYYY-MM-DD, where Y is the four digit year, M is the
-          two digit month code (01 - 12, where January = 01),
-          and D is the two digit day of the month (1 - 31).
-        </doc:description>
-        <doc:example>
-          2001-01-01, which is January 1st, 2001.
-        </doc:example>
-        <doc:lineage>
-          FGDC-STD-001-1998:
-           /metadata/time_period_information/rangeOfDates/begdate
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="beginningTime" type="xs:time">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Beginning time of day</doc:tooltip>
-        <doc:summary>
-          The beginning hour (and optionally minute, or minute and second) of an
-          event.
-        </doc:summary>
-        <doc:description>
-          The beginning time (beginningTime) field is used to express the hour 
-          (and optionally minute, or minute and second) for a start time 
-          of a period of time, and should comply with the International 
-          Standards Organization's standard 8601. The recommended format 
-          for EML is hh:mm:ssTZD, where hh is the two digit
-          hour of the day, mm is the two digit minute of the hour,
-          and ss is the two digit second of the minute.  TZD stands
-          for Time Zone Designator which is used to handle time zone
-          offsets. Times may be expressed in two ways: 
-          1) UTC (Coordinated Universal Time, also known as 
-          Greenwich Mean Time, or GMT), with a special UTC 
-          designator ("Z"), 2) local time, together with a time zone
-          offset in hours and minutes. A time zone offset of 
-          "+hh:mm" indicates that the date/time uses a local time 
-          zone which is "hh" hours and "mm" minutes ahead of UTC. A
-          time zone offset of "-hh:mm" indicates that the date/time
-          uses a local time zone which is "hh" hours and "mm" 
-          minutes behind UTC.                
-        </doc:description>
-        <doc:example>
-          1) 08:31:22Z , which means eight thirty one and 22 seconds
-          in the morning at Coordinated Universal Time (Greenwich 
-          Mean Time).
-          2) 14:06:09-08:00 , which means six minutes, nine seconds
-          past two o'clock p.m., Pacific Standard Time (which is
-          offset eight hours behind UTC)
-        </doc:example>
-        <doc:lineage>
-          FGDC-STD-001-1998:
-           /metadata/time_period_information/rangeOfDates/begtime
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="endingDate" type="xs:date">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Ending date</doc:tooltip>
-        <doc:summary>
-          End date in a range of dates
-        </doc:summary>
-        <doc:description>
-          The end date field is used to express the last date 
-          for a range of dates, giving the year, month, and day.  
-          The format should be one that complies with the International
-          Standards Organization's standard 8601.  The recommended format 
-          for EML is YYYY-MM-DD, where Y is the four digit year, M is the
-          two digit month code (01 - 12, where January = 01),
-          and D is the two digit day of the month (01 - 31).
-        </doc:description>
-        <doc:example>
-          2001-01-01, which is January 1st, 2001.
-        </doc:example>
-        <doc:lineage> 
-          FGDC-STD-001-1998:
-           /metadata/time_period_information/rangeOfDates/enddate
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="endingTime" type="xs:time">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Ending time of day</doc:tooltip>
-        <doc:summary>
-          The ending time of day in a period of time
-        </doc:summary>
-        <doc:description>
-          The 'end time' field is used to express the last hour (and 
-          optionally minute, or minute and second) of the day 
-          for a period of time, and should comply with the International 
-          Standards Organization's standard 8601.  The recommended
-          format for EML is hh:mm:ssTZD, where hh is the two digit
-          hour of the day, mm is the two digit minute of the hour,
-          and ss is the two digit second of the minute.  TZD stands
-          for Time Zone Designator which is used to handle time zone
-          offsets. Times may be expressed in two ways: 
-          1) UTC (Coordinated Universal Time, also known as 
-          Greenwich Mean Time, or GMT), with a special UTC 
-          designator ("Z"), 2) local time, together with a time zone
-          offset in hours and minutes. A time zone offset of 
-          "+hh:mm" indicates that the date/time uses a local time 
-          zone which is "hh" hours and "mm" minutes ahead of UTC. A
-          time zone offset of "-hh:mm" indicates that the date/time
-          uses a local time zone which is "hh" hours and "mm" 
-          minutes behind UTC.
-        </doc:description>
-        <doc:example>
-          1) 08:31:22Z , which means eight thirty one and 22 seconds
-          in the morning at Coordinated Universal Time (Greenwich
-          Mean Time).
-          2) 14:06:09-08:00 , which means six minutes, nine seconds
-          past two o'clock p.m., Pacific Standard Time (which is
-          offset eight hours behind UTC)
-        </doc:example>
-        <doc:lineage>
-          FGDC-STD-001-1998:
-           /metadata/time_period_information/rangeOfDates/endtime
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="multipleDatesTimes">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Multiple dates/times</doc:tooltip>
-        <doc:summary>
-          Means of encoding multiple individual dates and times.
-        </doc:summary>
-        <doc:description>
-          The 'multipleDatesTimes' field is entended to be used as a means
-          of recording multiple dates and times, rather than a single
-          date/time, or a range of date/times.  It allows for multiple
-          'singleDateTime' (single date) fields to be used in sequence.
-        </doc:description>
-        <doc:example>
-          An example would be multiple date/times, encoded in the
-          International Standards Organization's 8601 Date and Time
-          standard, as described in the sub-fields of the 'singleDateTime' field
-          , such as 'calendarDate' and 'time'.  The result would be a list of 
-          date/times that: 2001-10-31 08:22Z, 2002-10-31 08:22Z, etc.
-        </doc:example>
-        <doc:lineage>
-          FGDC-STD-001-1998:
-           /metadata/time_period_information/mdattim
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="singleDateTime" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="rangeOfDates">
     <xs:annotation>
       <xs:appinfo>
@@ -459,14 +289,14 @@
         </doc:summary>
         <doc:description>
           The 'rangeOfDates' field is intended to be used for describing a
-          range of dates and/or times.  It allows for a choice between two
-          sequences of sub-fields: 1) A 'beginning date' and 'end date'
-          with optional 'beginning time' and 'end time' fields, or 2) a
-          'beginning geologic age' and 'ending geologic age'.
+          range of dates and/or times.  It may be used multiple times to 
+	  document multiple date ranges.  It allows for two 'singleDateTime'
+	  fields, the first to be used as the beginning dateTime, and the second
+	  to be used as the ending dateTime of the range.
         </doc:description>
         <doc:example>
-          Please see the examples from the 'beginningDate', 'beginningTime',
-          'endingDate', and 'endingTime' fields for specific examples.
+          Please see the examples from the 'singleDateTime'ime' field for 
+	  specific examples.
         </doc:example>
         <doc:lineage>
           FGDC-STD-001-1998:
@@ -475,18 +305,10 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
-      <xs:choice>
-        <xs:sequence>
-          <xs:element ref="beginningDate"/>
-          <xs:element ref="beginningTime" minOccurs="0"/>
-          <xs:element ref="endingDate"/>
-          <xs:element ref="endingTime" minOccurs="0"/>
-        </xs:sequence>
-        <xs:sequence>
-          <xs:element ref="beginningGeologicAge"/>
-          <xs:element ref="endingGeologicAge"/>
-        </xs:sequence>
-      </xs:choice>
+      <xs:sequence>
+        <xs:element ref="singleDateTime"/>
+        <xs:element ref="singleDateTime"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="geologicAge">
@@ -663,86 +485,6 @@
         </xs:element>
       </xs:sequence>
     </xs:complexType>
-  </xs:element>
-  <xs:element name="beginningGeologicAge">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Beginning geologic age</doc:tooltip>
-        <doc:summary>
-          A name, code, or date for the beginning of an event or period in 
-          geologic time. 
-        </doc:summary>
-        <doc:description>
-          A name, code, or date for the beginning of an event or period in 
-          geologic time. 
-        </doc:description>
-        <doc:example>
-          For example, '300 Ma' (300 million years before present) 
-          is a Geologic_Age_Estimate based on the  Absolute  
-          Geologic_Time_Scale, 'C28r' is a chron name from the 
-          Geomagnetic Polarity Time Scale, and 'Maastrichtian' and 
-          'Jurassic'  are names from the International Geological 
-          Time Scale. Since different relative geologic time scales 
-          are often not aligned, multiple geologic dates may need 
-          to be specified. For example, the Geomagnetic Polarity 
-          Time Scale chron 'C29r', at the K/T boundary lies in both 
-          the 'Maastrichtian' and the 'Danian' stages from the 
-          International Geological Time Scale, thus if you were 
-          documenting this event using the International Geological 
-          Time Scale, both 'Maastrichtian' and 'Danian' should be 
-          included here.
-        </doc:example>
-        <doc:lineage>
-          FGDC-STD-001.1-1999
-            /metadata/time_period_information/rngdates/beggeol
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="geologicAge"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="endingGeologicAge">
-    <xs:annotation>
-       <xs:appinfo>
-         <doc:tooltip>Ending geologic age</doc:tooltip>
-         <doc:summary>
-           A name, code, or date for the end of an event or period in 
-           geologic time. 
-         </doc:summary>
-         <doc:description>
-           A name, code, or date for the end of an event or period in 
-           geologic time. 
-         </doc:description>
-         <doc:example>
-           For example, '300 Ma' (300 million years before present) 
-           is a Geologic_Age_Estimate based on the  Absolute  
-           Geologic_Time_Scale, 'C28r' is a chron name from the 
-           Geomagnetic Polarity Time Scale, and 'Maastrichtian' and 
-           'Jurassic'  are names from the International Geological 
-           Time Scale. Since different relative geologic time scales 
-           are often not aligned, multiple geologic dates may need 
-           to be specified. For example, the Geomagnetic Polarity 
-           Time Scale chron 'C29r', at the K/T boundary lies in both 
-           the 'Maastrichtian' and the 'Danian' stages from the 
-           International Geological Time Scale, thus if you were 
-           documenting this event using the International Geological 
-           Time Scale, both 'Maastrichtian' and 'Danian' should be 
-           included here.
-         </doc:example>
-         <doc:lineage>
-          FGDC-STD-001.1-1999
-            /metadata/time_period_information/rngdates/endgeol
-         </doc:lineage>
-       </xs:appinfo>
-     </xs:annotation>
-     <xs:complexType>
-       <xs:sequence>
-         <xs:element ref="geologicAge"/>
-       </xs:sequence>
-     </xs:complexType>
   </xs:element>
         
   <xs:complexType name="GeographicCoverage">
