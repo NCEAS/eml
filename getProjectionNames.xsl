@@ -1,4 +1,5 @@
 <?xml version='1.0'?>
+
 <!--
        '$RCSfile: getProjectionNames.xsl,v $'
        Copyright: 1997-2002 Regents of the University of California,
@@ -15,8 +16,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-10-02 00:45:40 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-10-02 18:26:14 $'
+      '$Revision: 1.2 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,17 +35,41 @@
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
-<xs:simpleType>
-    <xs:restriction base="xs:string">
-  	<xsl:for-each  select="//horizCoordSysDef">
+<simpleType name="horizCoordSysNames">
+    <xs:restriction base="string">
+  	<xsl:for-each  select="//horizCoordSysDef/@name">
     	<xsl:element name="xs:enumeration">
 			<xsl:attribute name="value">
-				<xsl:value-of select="@name"/>
+				<xsl:value-of select="."/>
 			</xsl:attribute>
 	 	</xsl:element>
 	</xsl:for-each>
     </xs:restriction>
-</xs:simpleType>
+</simpleType>
+
+
+<simpleType name="projectionNames">
+    <xs:restriction base="string">
+  	<xsl:for-each select="//projection[not(@name=preceding::projection/@name)]">
+		<xsl:element name="xs:enumeration">
+			<xsl:attribute name="value">
+				<xsl:value-of select="./@name"/>
+			</xsl:attribute>
+	 	</xsl:element>
+	</xsl:for-each>
+    </xs:restriction>
+</simpleType>
+<simpleType name="parameterNames">
+    <xs:restriction base="string">
+  	<xsl:for-each select="//parameter[not(@name=preceding::parameter/@name)]">
+		<xsl:element name="xs:enumeration">
+			<xsl:attribute name="value">
+				<xsl:value-of select="./@name"/>
+			</xsl:attribute>
+	 	</xsl:element>
+	</xsl:for-each>
+    </xs:restriction>
+</simpleType>
 
 </xsl:template>
 
@@ -52,6 +77,6 @@
 
 </xsl:stylesheet><!-- Stylus Studio meta-information - (c)1998-2002 eXcelon Corp.
 <metaInformation>
-<scenarios ><scenario default="yes" name="Scenario1" userelativepaths="yes" externalpreview="no" url="..\..\..\..\ESRI\arcgis\arcexe82\Coordinate Systems\eml&#x2D;spatialReferenceDictionary.xml" htmlbaseurl="" processortype="internal" commandline="" additionalpath="" additionalclasspath="" postprocessortype="none" postprocesscommandline="" postprocessadditionalpath="" postprocessgeneratedext=""/></scenarios><MapperInfo srcSchemaPath="" srcSchemaRoot="" srcSchemaPathIsRelative="yes" srcSchemaInterpretAsXML="no" destSchemaPath="" destSchemaRoot="" destSchemaPathIsRelative="yes" destSchemaInterpretAsXML="no"/>
+<scenarios ><scenario default="no" name="Scenario1" userelativepaths="yes" externalpreview="no" url="eml&#x2D;spatialReferenceDictionary.xml" htmlbaseurl="" processortype="internal" commandline="" additionalpath="" additionalclasspath="" postprocessortype="none" postprocesscommandline="" postprocessadditionalpath="" postprocessgeneratedext=""/><scenario default="yes" name="Scenario2" userelativepaths="yes" externalpreview="no" url="eml&#x2D;spatialReferenceDictionaryShort.xml" htmlbaseurl="" processortype="internal" commandline="" additionalpath="" additionalclasspath="" postprocessortype="none" postprocesscommandline="" postprocessadditionalpath="" postprocessgeneratedext=""/></scenarios><MapperInfo srcSchemaPath="" srcSchemaRoot="" srcSchemaPathIsRelative="yes" srcSchemaInterpretAsXML="no" destSchemaPath="" destSchemaRoot="" destSchemaPathIsRelative="yes" destSchemaInterpretAsXML="no"/>
 </metaInformation>
 -->
