@@ -30,8 +30,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-09-09 14:43:54 $'
-      '$Revision: 1.38 $'
+          '$Date: 2002-09-09 18:42:08 $'
+      '$Revision: 1.39 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -108,17 +108,19 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="maintenance" type="MaintenanceBase" minOccurs="0">
+        <xs:element name="maintenance" type="MaintenanceType" minOccurs="0">
           <xs:annotation>
-            <xs:appinfo><doc:tooltip>Maintenance</doc:tooltip>
-<doc:summary>A description of the maintenance of this data
+            <xs:appinfo>
+              <doc:tooltip>Maintenance</doc:tooltip>
+              <doc:summary>A description of the maintenance of this data
               resource.</doc:summary>
-<doc:description>A description of the maintenance of this data
+              <doc:description>A description of the maintenance of this data
               resource. This includes information about the frequency of
               update, and whether there is ongoing data
               collection.</doc:description>
-<doc:example/>
-<doc:lineage>ISO CD 19115.2</doc:lineage></xs:appinfo>
+              <doc:example/>
+              <doc:lineage>ISO CD 19115.2</doc:lineage>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
@@ -182,36 +184,97 @@
     <xs:attribute name="system" type="xs:string" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
-  <xs:complexType name="MaintenanceBase">
+  <xs:complexType name="MaintenanceType">
     <xs:sequence>
       <xs:element name="description" type="txt:TextType">
         <xs:annotation>
-          <xs:appinfo><doc:tooltip>Maintenance Description</doc:tooltip>
-<doc:summary>A text description of the maintenance of this data
+          <xs:appinfo>
+            <doc:tooltip>Maintenance Description</doc:tooltip>
+            <doc:summary>A text description of the maintenance of this data
               resource.</doc:summary>
-<doc:description>A text description of the maintenance of this data
+            <doc:description>A text description of the maintenance of this data
               resource.</doc:description>
-<doc:example/>
-<doc:lineage>ISO CD 19115.2</doc:lineage></xs:appinfo>
+            <doc:example/>
+            <doc:lineage>ISO CD 19115.2</doc:lineage>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="maintenanceUpdateFrequency" type="MaintUpFreqType" minOccurs="0">
         <xs:annotation>
-          <xs:appinfo><doc:tooltip>Maintenance Update Frequency</doc:tooltip>
-<doc:summary>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:summary>
-<doc:description>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:description>
-<doc:example/>
-<doc:lineage>SO/CD 19115.2</doc:lineage></xs:appinfo>
+          <xs:appinfo>
+            <doc:tooltip>Maintenance Update Frequency</doc:tooltip>
+            <doc:summary>
+            Frequency with which changes and additions are made to the datset after the initial dataset is completed.
+            </doc:summary>
+            <doc:description>
+            Frequency with which changes and additions are made to the datset after the initial dataset is completed.
+            </doc:description>
+            <doc:example/>
+            <doc:lineage>SO/CD 19115.2</doc:lineage>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="changeHistory" type="ChangeHistoryBase" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="changeHistory" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:appinfo><doc:tooltip>Change History</doc:tooltip>
-<doc:summary>A description of changes made to the data since its release.</doc:summary>
-<doc:description>A description of changes made to the data since its release.</doc:description>
-<doc:example/>
-<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
+          <xs:appinfo>
+            <doc:tooltip>Change History</doc:tooltip>
+            <doc:summary>A description of changes made to the data since its release.</doc:summary>
+            <doc:description>A description of changes made to the data since its release.</doc:description>
+            <doc:example/>
+            <doc:lineage>EML 2.0</doc:lineage>
+          </xs:appinfo>
         </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="changeScope" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Change Scope</doc:tooltip>
+                  <doc:summary>An expression describing the scope to which the documented change was 
+                  applied.</doc:summary>
+                  <doc:description>The expression should unambigously identify the entity(s) and attribute(s) that were 
+                  changed.</doc:description>
+                  <doc:example/>
+                  <doc:lineage>EML 2.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="oldValue" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Old Value</doc:tooltip>
+                  <doc:summary>The previous value of the data prior to the change.</doc:summary>
+                  <doc:description>The previous value or an expression that describes the previous value of the 
+                  data.</doc:description>
+                  <doc:example/>
+                  <doc:lineage>EML 2.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="changeDate" type="xs:date">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Change Date</doc:tooltip>
+                  <doc:summary>The date the changes were applied.</doc:summary>
+                  <doc:description/>
+                  <doc:example/>
+                  <doc:lineage>EML 2.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comment" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Comment</doc:tooltip>
+                  <doc:summary>Explanation or justification for the change made to the data.         </doc:summary>
+                  <doc:description>Explanation or justification for the change made to the data.      </doc:description>
+                  <doc:example/>
+                  <doc:lineage>EML 2.0</doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -230,35 +293,4 @@
       <xs:enumeration value="otherMaintenancePeriod"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="ChangeHistoryBase">
-    <xs:sequence>
-      <xs:element name="changeScope" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo><doc:tooltip>Change Scope</doc:tooltip>
-<doc:summary>An expression describing the scope to which the documented change was applied.</doc:summary>
-<doc:description>The expression should unambigously identify the entity(s) and attribute(s) that were changed.</doc:description>
-<doc:example/>
-<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="oldValue" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo><doc:tooltip>Old Value</doc:tooltip>
-<doc:summary>The previous value of the data prior to the change.</doc:summary>
-<doc:description>The previous value or an expression that describes the previous value of the data.</doc:description>
-<doc:example/>
-<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="changeDate" type="xs:date">
-        <xs:annotation>
-          <xs:appinfo><doc:tooltip>Change Date</doc:tooltip>
-<doc:summary>The date the changes were applied.</doc:summary>
-<doc:description></doc:description>
-<doc:example/>
-<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
 </xs:schema>
