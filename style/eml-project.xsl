@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2002-04-19 22:01:52 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2002-04-19 22:49:44 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -252,7 +252,7 @@
   
   
 
-  <xsl:template match="randOfDates">
+  <xsl:template match="rangeOfDates">
     <tr><td>
     <xsl:text>Date Range: </xsl:text>
     <xsl:apply-templates select="begdate"/>
