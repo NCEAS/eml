@@ -1,0 +1,83 @@
+<!--
+       '$RCSfile: eml-physical.dtd,v $'
+       Copyright: 2000 Regents of the University of California and the
+                  National Center for Ecological Analysis and Synthesis
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: jones $'
+          '$Date: 2001-04-14 00:34:27 $'
+      '$Revision: 1.1 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+<!-- EML DTD document that defines the structural
+     characteristics of physical objects -->
+
+<!-- The root element, which contains an identifier and 
+     an physical description -->
+<!ELEMENT eml-physical (identifier, entity)>
+
+<!-- File identifier of the metadata document -->
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier system CDATA>
+
+<!-- Entity element is a descriptor of an entity in the dataset
+     identified by its name. -->
+<!ELEMENT entity (entityName, entitySize?, entityFormat, compressionMethod?,
+                  endocingMethod?, recordDelimeter?,
+                  quoteCharacter?, orientation?, numHeaderLines?,
+                  caseSensitive?, authentication*, dataProblem*)>
+
+<!-- Entity name-->
+<!ELEMENT entityName (#PCDATA) >
+
+<!-- Entity size -->
+<!ELEMENT entitySize (#PCDATA) >
+<!ATTLIST entitySize unit CDATA "bytes">
+
+<!-- Entity format (e.g., ASCII, UNICODE, other character encodings,
+     name of various binary formats [TIFF]) -->
+<!ELEMENT entityFormat (#PCDATA)>
+<!-- Method of compression -->
+<!ELEMENT compressionMethod (#PCDATA)>
+<!-- Method of encoding -->
+<!ELEMENT encodingMethod (#PCDATA)>
+<!-- The character used to delimit records in the entity -->
+<!ELEMENT recordDelimiter (#PCDATA)>
+<!-- The character used to delimit quote data values so that the
+     filed delimeters can be used in the data value, typically
+     " or ' -->
+<!ELEMENT quoteCharacter (#PCDATA)>
+
+<!-- Is entity column major or row major? -->
+<!ELEMENT orientation EMPTY >
+<!ATTLIST orientation columnorrow (columnmajor|rowmajor) "columnmajor">
+
+<!-- Number of header lines or information that prepares data -->
+<!ELEMENT numHeaderLines (#PCDATA) >
+
+<!-- Case sensitivity of field -->
+<!ELEMENT caseSensitive EMPTY >
+<!ATTLIST caseSensitive yesorno (yes|no) "no">
+ 
+<!-- Authentication procedures or techniques -->
+<!ELEMENT authentication (#PCDATA) >
+
+<!-- Data anomalies; description of missing data -->
+<!ELEMENT dataProblem (paragraph+)>
+<!ATTLIST dataProblem problemType (missing|anomaly|error) #REQUIRED>
+<!ELEMENT paragraph (#PCDATA)>
+
+<!-- End of file -->
