@@ -1,1 +1,176 @@
-<?xml version="1.0"?><xs:schema targetNamespace="eml:spatialVector-2.0.0beta9" xmlns="eml:spatialVector-2.0.0beta9" xmlns:ent="eml:entity-2.0.0beta9" xmlns:spref="eml:spatialReference-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema">  <xs:import namespace="eml:documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>  <xs:import namespace="eml:spatialReference-2.0.0beta9" schemaLocation="eml-spatialReference.xsd"/>  <xs:import namespace="eml:entity-2.0.0beta9" schemaLocation="eml-entity.xsd"/>  <xs:import namespace="eml:resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>  <xs:annotation>    <xs:documentation>            '$RCSfile: eml-spatialVector.xsd,v $'        Copyright: 1997-2002 Regents of the University of California,                             University of New Mexico, and                             Arizona State University         Sponsors: National Center for Ecological Analysis and Synthesis and                   Partnership for Interdisciplinary Studies of Coastal Oceans,                      University of California Santa Barbara                   Long-Term Ecological Research Network Office,                      University of New Mexico                   Center for Environmental Studies, Arizona State University    Other funding: National Science Foundation (see README for details)                   The David and Lucile Packard Foundation      For Details: http://knb.ecoinformatics.org/          '$Author: jones $'           '$Date: 2002-06-13 19:40:28 $'       '$Revision: 1.15 $'      This program is free software; you can redistribute it and/or modify     it under the terms of the GNU General Public License as published by     the Free Software Foundation; either version 2 of the License, or     (at your option) any later version.      This program is distributed in the hope that it will be useful,     but WITHOUT ANY WARRANTY; without even the implied warranty of     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     GNU General Public License for more details.      You should have received a copy of the GNU General Public License     along with this program; if not, write to the Free Software     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA     </xs:documentation>    <xs:appinfo>      <doc:moduleDocs>        <doc:moduleName>eml-spatialVector</doc:moduleName>        <doc:moduleDescription>The eml-spatialVector module allows for the         description of spatial vectors in a GIS system. Specific attributes         of a spatial vector can be documented here including the vector's         geometry type, count  and topology level.</doc:moduleDescription>        <doc:recommendedUsage>all spatial datasets that contain spatial data entities represented as vector features.</doc:recommendedUsage>        <doc:standAlone>yes</doc:standAlone>        <doc:relationship>          <doc:moduleName>eml-dataset</doc:moduleName>          <doc:relationshipType>has spatial vector information           for</doc:relationshipType>        </doc:relationship>      </doc:moduleDocs>    </xs:appinfo>  </xs:annotation>  <xs:element name="spatialVector" type="SpatialVectorType">    <xs:annotation>      <xs:appinfo>        <doc:tooltip>Spatial Vector Entity</doc:tooltip>        <doc:summary>Description of a spatial data entity based on features represented by vectors</doc:summary>        <doc:description>Description of a spatial data entity based on features represented by vectors</doc:description>        <doc:example/>        <doc:lineage>The spatial entity elements were introduced into EML 2.0         beta 7</doc:lineage>      </xs:appinfo>    </xs:annotation>  </xs:element>  <xs:complexType name="SpatialVectorType">    <xs:choice>      <xs:sequence>        <xs:group ref="ent:EntityGroup"/>        <xs:element name="geometry" type="GeometryType" maxOccurs="unbounded">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Geometry</doc:tooltip>              <doc:summary>Type of geometric feature(s) represented in the entity.</doc:summary>              <doc:description>Geometric feature classification is based on an enumeration of simple feature classes defined by the OpenGIS consortium and implemented in Geographic Markup Language as simple feature types.</doc:description>              <doc:example/>              <doc:lineage>GML2.0</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Geometric Object Count</doc:tooltip>              <doc:summary>Total number of the point or vector objects                   occurring in the dataset.</doc:summary>              <doc:description>Total number of the point or vector objects                   occurring in the dataset.</doc:description>              <doc:example/>              <doc:lineage>ISO 19115.3</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">          <xs:annotation>            <xs:appinfo>              <doc:tooltip>Topology Level</doc:tooltip>              <doc:summary>Code which identifies the degree of                   complexity.</doc:summary>              <doc:description>This element describes the relative complexity of the geometric information in the data file.</doc:description>              <doc:example/>              <doc:lineage>ISO 19115.3</doc:lineage>            </xs:appinfo>          </xs:annotation>        </xs:element>        <xs:element name="spatialReference" type="spref:SpatialReferenceType" minOccurs="0"/>        <xs:element name="horizonalAccuracy" type="DataQuality" minOccurs="0"/>        <xs:element name="verticalAccuracy" type="DataQuality" minOccurs="0"/>      </xs:sequence>      <xs:element name="references" type="xs:string"/>    </xs:choice>    <xs:attribute name="id" type="xs:ID" use="optional"/>    <xs:attribute name="system" type="xs:string" use="optional"/>    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>  </xs:complexType>  <xs:simpleType name="GeometryType">    <xs:restriction base="xs:string">      <xs:enumeration value="Point"/>      <xs:enumeration value="LineString"/>      <xs:enumeration value="LinearRing"/>      <xs:enumeration value="Polygon"/>      <xs:enumeration value="MultiPoint"/>      <xs:enumeration value="MultiLineString"/>      <xs:enumeration value="MultiPolygon"/>      <xs:enumeration value="MultiGeometry"/>    </xs:restriction>  </xs:simpleType>  <xs:simpleType name="TopologyLevel">    <xs:restriction base="xs:string">      <xs:enumeration value="geometryOnly"/>      <xs:enumeration value="nonPlanarGraph"/>      <xs:enumeration value="planarLineGraph"/>      <xs:enumeration value="fullPlanarGraph"/>      <xs:enumeration value="surfaceGraph"/>      <xs:enumeration value="fullTopology3D"/>    </xs:restriction>  </xs:simpleType>  <xs:complexType name="DataQuality">    <xs:sequence>      <xs:element name="accuracyReport" type="xs:string"/>      <xs:element name="quantitativeAccuracyReport" minOccurs="0" maxOccurs="unbounded">        <xs:complexType>          <xs:sequence>            <xs:element name="quantitativeAccuracyValue" type="xs:string"/>            <xs:element name="quantitativeAccuracyMethod" type="xs:string"/>          </xs:sequence>        </xs:complexType>      </xs:element>    </xs:sequence>  </xs:complexType></xs:schema>
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:spatialVector-2.0.0beta9"
+xmlns="eml:spatialVector-2.0.0beta9" xmlns:ent="eml:entity-2.0.0beta9"
+xmlns:spref="eml:spatialReference-2.0.0beta9"
+xmlns:doc="eml:documentation-2.0.0beta9" xmlns:res="eml:resource-2.0.0beta9"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml:documentation-2.0.0beta9"
+  schemaLocation="eml-documentation.xsd" />
+  <xs:import namespace="eml:spatialReference-2.0.0beta9"
+  schemaLocation="eml-spatialReference.xsd" />
+  <xs:import namespace="eml:entity-2.0.0beta9"
+  schemaLocation="eml-entity.xsd" />
+  <xs:import namespace="eml:resource-2.0.0beta9"
+  schemaLocation="eml-resource.xsd" />
+  <xs:annotation>
+    <xs:documentation>
+    '$RCSfile: eml-spatialVector.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: jones $'
+          '$Date: 2002-06-14 16:14:22 $'
+      '$Revision: 1.16 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-spatialVector</doc:moduleName>
+        <doc:moduleDescription>The eml-spatialVector module allows for the
+        description of spatial vectors in a GIS system. Specific attributes of
+        a spatial vector can be documented here including the vector's geometry
+        type, count and topology level.</doc:moduleDescription>
+        <doc:recommendedUsage>all spatial datasets that contain spatial data
+        entities represented as vector features.</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
+        <doc:relationship>
+          <doc:moduleName>eml-dataset</doc:moduleName>
+          <doc:relationshipType>has spatial vector information
+          for</doc:relationshipType>
+        </doc:relationship>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="spatialVector" type="SpatialVectorType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Spatial Vector Entity</doc:tooltip>
+        <doc:summary>Description of a spatial data entity based on features
+        represented by vectors</doc:summary>
+        <doc:description>Description of a spatial data entity based on features
+        represented by vectors</doc:description>
+        <doc:example />
+        <doc:lineage>The spatial entity elements were introduced into EML 2.0
+        beta 7</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="SpatialVectorType">
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="ent:EntityGroup" />
+        <xs:element name="geometry" type="GeometryType" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Geometry</doc:tooltip>
+              <doc:summary>Type of geometric feature(s) represented in the
+              entity.</doc:summary>
+              <doc:description>Geometric feature classification is based on an
+              enumeration of simple feature classes defined by the OpenGIS
+              consortium and implemented in Geographic Markup Language as
+              simple feature types.</doc:description>
+              <doc:example />
+              <doc:lineage>GML2.0</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="geometricObjectCount" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Geometric Object Count</doc:tooltip>
+              <doc:summary>Total number of the point or vector objects
+              occurring in the dataset.</doc:summary>
+              <doc:description>Total number of the point or vector objects
+              occurring in the dataset.</doc:description>
+              <doc:example />
+              <doc:lineage>ISO 19115.3</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="topologyLevel" type="TopologyLevel" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Topology Level</doc:tooltip>
+              <doc:summary>Code which identifies the degree of
+              complexity.</doc:summary>
+              <doc:description>This element describes the relative complexity
+              of the geometric information in the data file.</doc:description>
+              <doc:example />
+              <doc:lineage>ISO 19115.3</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="spatialReference" type="spref:SpatialReferenceType"
+        minOccurs="0" />
+        <xs:element name="horizonalAccuracy" type="DataQuality"
+        minOccurs="0" />
+        <xs:element name="verticalAccuracy" type="DataQuality" minOccurs="0" />
+      </xs:sequence>
+      <xs:element name="references" type="xs:string" />
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
+    default="document" />
+  </xs:complexType>
+  <xs:simpleType name="GeometryType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Point" />
+      <xs:enumeration value="LineString" />
+      <xs:enumeration value="LinearRing" />
+      <xs:enumeration value="Polygon" />
+      <xs:enumeration value="MultiPoint" />
+      <xs:enumeration value="MultiLineString" />
+      <xs:enumeration value="MultiPolygon" />
+      <xs:enumeration value="MultiGeometry" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TopologyLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="geometryOnly" />
+      <xs:enumeration value="nonPlanarGraph" />
+      <xs:enumeration value="planarLineGraph" />
+      <xs:enumeration value="fullPlanarGraph" />
+      <xs:enumeration value="surfaceGraph" />
+      <xs:enumeration value="fullTopology3D" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DataQuality">
+    <xs:sequence>
+      <xs:element name="accuracyReport" type="xs:string" />
+      <xs:element name="quantitativeAccuracyReport" minOccurs="0"
+      maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="quantitativeAccuracyValue" type="xs:string" />
+            <xs:element name="quantitativeAccuracyMethod" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
