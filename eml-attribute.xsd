@@ -21,9 +21,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-06 22:25:39 $'
-      '$Revision: 1.57 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-11 22:25:47 $'
+      '$Revision: 1.58 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -159,7 +159,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:choice>
-              <xs:element name="standardUnit" type="unitDictionary">
+              <xs:element name="standardUnit" type="unitDictionary" default="undefined">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Standard Unit</doc:tooltip>
@@ -274,7 +274,7 @@
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
-        <xs:element name="attributeDomain">
+        <xs:element name="attributeDomain" minOccurs="0">
           <xs:complexType>
             <xs:choice>
               <xs:element name="enumeratedDomain">
@@ -289,7 +289,10 @@
                     referenced by pointing to an external citation or URL where
                     the codes are defined, or can be referenced by pointing at
                     an entity that contains the code value and code definition
-                    as two attributes.</doc:description>
+                    as two attributes.  Note that because this element is 
+                    optional, if it is omitted, the value of the attribute's
+                    domain is taken to be the regular expression (.*) (any
+                    text).</doc:description>
                     <doc:example>The format will typically be : "code" has
                     "definition", e.g. "1" = "high", "2" = "medium", "3" =
                     "low"</doc:example>
@@ -888,6 +891,8 @@
       <xs:enumeration value="milliGramsPerMilliLiter"/>
       <xs:enumeration value="gramsPerLiter"/>
       <xs:enumeration value="kilogramsPerCubicMeter"/>
+      <xs:enumeration value="undefined"/>
+      <xs:enumeration value="dimensionless"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

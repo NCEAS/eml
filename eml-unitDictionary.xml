@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-13 21:21:39 $'
-      '$Revision: 1.8 $'
+          '$Date: 2002-09-11 22:25:47 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -110,6 +110,21 @@
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
+  
+  <unitType id="volumetricRate" name="volumetric rate">
+    <dimension name="length"/>
+    <dimension name="length"/>
+    <dimension name="length"/>
+    <dimension name="time" power="-1"/>
+  </unitType>
+  
+  <unitType id="massDensityRate" name="mass density rate">
+    <dimension name="mass" />
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="time"/>
+  </unitType>
 
   <unitType id="specificVolume" name="specific volume">
     <dimension name="mass" power="-1"/>
@@ -145,6 +160,12 @@
 
   <unitType id="arealDensity" name="areal density">
     <dimension name="dimensionless"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+  
+  <unitType id="arealMassDensity" name="areal mass density">
+    <dimension name="mass"/>
     <dimension name="length" power="-1"/>
     <dimension name="length" power="-1"/>
   </unitType>
@@ -305,13 +326,46 @@
 
   <!--combos of SI-->
   <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity" multiplierToSI="1" abbreviation="mg/ml">
-    <description>grams per liter</description>
+    <description>grams per milliliter</description>
   </unit>
   <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI="1" abbreviation="g/l">
     <description>grams per liter</description>
   </unit>
   <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity" multiplierToSI="1">
     <description>Fundamental SI mass density</description>
+  </unit>
+  <unit id="microgramsPerLiter" name="microgramsPerLiter" unitType="massDensity" multiplierToSI="1">
+    <description>micrograms / liter</description>
+  </unit>
+  <unit id="milligramsPerLiter" name="milligramsPerLiter" unitType="massDensity" multiplierToSI="1">
+    <description>milligrams / liter</description>
+  </unit>
+  <unit id="gramsPerCubicCentimeter" name="gramsPerCubitCentimeter" unitType="massDensity" multiplierToSI="1">
+    <description>grams per cubic centimeter</description>
+  </unit>
+  <unit id="gramsPerMilliliter" name="gramsPerMilliliter" unitType="massDensity" multiplierToSI="1">
+    <description>grams per milliliter</description>
+  </unit>
+  <unit id="gramsPerLiterPerDay" name="gramsPerLiterPerDay" unitType="massDensityRate" multiplierToSI="1">
+    <description>grams Per (Liter Per Day)</description>
+  </unit>
+  <unit id="litersPerSecond" name="litersPerSecond" unitType="volumetricRate" multiplierToSI="1">
+    <description>liters per second</description>
+  </unit>
+  <unit id="centimetersPerSecond" name="litersPerSec" unitType="volumetricRate" multiplierToSI="1">
+    <description>centimeters per second</description>
+  </unit>
+  <unit id="litersPerSec" name="litersPerSec" unitType="volumetricRate" multiplierToSI="1">
+    <description>liters per second</description>
+  </unit>
+  <unit id="milligramsPerSquareMeter" name="milligramsPerSquareMeter" unitType="arealMassDensity" multiplierToSI="1">
+    <description>milligrams Per Square Meter</description>
+  </unit>
+  <unit id="hectare" name="hectare" unitType="area" multiplierToSI="100000">
+    <description>milligrams Per Square Meter</description>
+  </unit>
+  <unit id="kilogramsPerHectare" name="kilogramsPerHectare" unitType="arealMassDensity" multiplierToSI="1">
+    <description>kilograms per hectare</description>
   </unit>
 
   <!--numeric densities-->
