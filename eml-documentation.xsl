@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-03-26 22:48:03 $'
-  *   '$Revision: 1.14 $'
+  *       '$Date: 2001-03-27 02:25:18 $'
+  *   '$Revision: 1.15 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -165,19 +165,23 @@
               <xsl:otherwise>
 
                 <!-- display a link to the base type for derivations -->
-                <xsl:if test="./@derivedBy">
-                <tr>
-                <td colspan="3" valign="top" class="tablepanel">
-                  Derived from:
-                  <a class="sitelink">
-                    <xsl:attribute name="href">
-                      <xsl:text>#</xsl:text>
-                      <xsl:value-of select="./@base"/>
-                    </xsl:attribute>
-                    <xsl:value-of select="./@base"/>
-                  </a> (by <xsl:value-of select="./@derivedBy"/>)
-                </td>
-                </tr>
+                <xsl:if test="./@derivedBy|./xs:complexType/@derivedBy">
+                  <xsl:variable name="baseval" 
+                            select="./@base|./xs:complexType/@base"/>
+                  <xsl:variable name="derival" 
+                            select="./@derivedBy|./xs:complexType/@derivedBy"/>
+                  <tr>
+                  <td colspan="3" valign="top" class="tablepanel">
+                    Derived from:
+                    <a class="sitelink">
+                      <xsl:attribute name="href">
+                        <xsl:text>#</xsl:text>
+                        <xsl:value-of select="$baseval"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="$baseval"/>
+                    </a> (by <xsl:value-of select="$derival"/>)
+                  </td>
+                  </tr>
                 </xsl:if>
 
                 <!-- display the elements -->
