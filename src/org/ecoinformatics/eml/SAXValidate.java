@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2002-10-03 21:36:17 $'
- *    '$Revision: 1.4 $'
+ *      '$Author: jones $'
+ *        '$Date: 2003-11-01 01:17:18 $'
+ *    '$Revision: 1.6 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -85,6 +85,18 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
   }
 
   /**
+   * Method for handling warnings during a parse
+   *
+   * @param exception         The parsing error
+   * @exception SAXException  Description of Exception
+   */
+  public void warning(SAXParseException exception)
+    throws SAXException
+  {
+    throw new SAXException("WARNING: " + exception.getMessage());
+  }
+
+  /**
    * Run the validation test using the DEFAULT_PARSER defined in this
    * class.
    * @param xml the xml document to parse
@@ -104,7 +116,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
                                   ClassNotFoundException,
                                   SAXException, SAXParseException
   {
-    runTest(xml, parserName, ".");
+    runTest(xml, parserName, 
+            "eml://ecoinformatics.org/@eml-version@ eml.xsd");
   }
 
   /**
