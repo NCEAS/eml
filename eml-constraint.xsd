@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.11 $'
+        '$Author: schild $'
+          '$Date: 2001-12-16 17:41:13 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -255,7 +255,7 @@
                     <doc:description>
                       The set of attributes to which this constraint applies.  
                       For a primary key or a unique key, the set of attributes must be 
-                      identifying.  For a foeign key, the set of attributes must match 
+                      identifying.  For a foreign key, the set of attributes must match 
                       an identifying key in the referenced entity.  For a not null 
                       constraint, the key indicates the attribute which should not 
                       be null.
