@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-21 19:08:15 $'
-  * '$Revision: 1.12 $'
+  *     '$Date: 2003-05-22 17:37:45 $'
+  * '$Revision: 1.13 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -853,14 +853,16 @@ version="1.0">
                  </xsl:choose>
                
               </xsl:element>
-
+              <xsl:element name="cntvoice">
                <xsl:choose>
                  <xsl:when test="xalan:nodeset($cc)//phone!=''">
-                   <xsl:element name="cntvoice">
-                     <xsl:value-of select="xalan:nodeset($cc)//phone"/>
-                   </xsl:element>
+                   <xsl:value-of select="xalan:nodeset($cc)//phone"/>
                  </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:value-of select="'N/A'"/>
+                 </xsl:otherwise>
                </xsl:choose>
+              </xsl:element>  
                
               <xsl:if test="$show_optional">
                 <xsl:element name="cnttdd">
@@ -890,6 +892,7 @@ version="1.0">
           
             </xsl:for-each>
           </xsl:element> <!-- end cntinfo -->
+        </xsl:element><!-- end distrib --> 
           <xsl:element name="resdesc">
             <xsl:value-of select="/eml:eml/@packageId"/>
           </xsl:element>
@@ -1002,7 +1005,7 @@ version="1.0">
                     </xsl:element>
                   </xsl:element>
                 </xsl:element>
-                <xsl:element name="formcnt">
+                <xsl:element name="formcont">
                  <xsl:value-of select="'See Entity/Attribute element (eainfo)'"/>
                 </xsl:element>
                 <xsl:element name="filedec">
@@ -1123,8 +1126,10 @@ version="1.0">
               </xsl:element>
             </xsl:element>
            </xsl:for-each>
+           <xsl:element name="fees">
+             <xsl:value-of select="'N/A'"/>
+           </xsl:element>
           </xsl:element>
-        </xsl:element><!-- end distrib --> 
       </xsl:element><!-- end distinfo -->
     </xsl:if>
 
@@ -1270,6 +1275,11 @@ version="1.0">
                    <xsl:value-of select="xalan:nodeset($cc)//phone"/>
                  </xsl:element>
                </xsl:when>
+               <xsl:otherwise>
+                 <xsl:element name="cntvoice">
+                   <xsl:value-of select="'N/A'"/>
+                 </xsl:element>
+               </xsl:otherwise>
              </xsl:choose>
                
             <xsl:if test="$show_optional">
