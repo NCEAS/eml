@@ -14,8 +14,8 @@
     <xsl:param name="enb6ID"/>
     <xsl:param name="phb6ID"/>
     <xsl:param name="attb6ID"/>
-    <xsl:variable name="enb6" select="document($enb6ID)"/>
-    <xsl:variable name="phb6" select="document($phb6ID)"/>
+    <xsl:variable name="enb6" select="document(concat($packageDir,'/',$enb6ID))"/>
+    <xsl:variable name="phb6" select="document(concat($packageDir,'/',$phb6ID))"/>
     <xsl:element name="entityName">
       <xsl:value-of select="$enb6/table-entity/entityName"/>
     </xsl:element>

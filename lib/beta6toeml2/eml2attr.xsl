@@ -12,7 +12,7 @@
 
   <xsl:template name="attrTransform">
     <xsl:param name="attb6ID"/>
-    <xsl:variable name="attb6" select="document($attb6ID)"/>
+    <xsl:variable name="attb6" select="document(concat($packageDir,'/',$attb6ID))"/>
     <attributeList>
       <xsl:for-each select="$attb6/eml-attribute/attribute">
         <xsl:element name="attribute">
