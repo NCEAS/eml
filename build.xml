@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-05-15 21:08:11 $'
-  *  '$Revision: 1.16 $'
+  *      '$Date: 2002-05-17 21:05:48 $'
+  *  '$Revision: 1.17 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -108,5 +108,11 @@
     <delete file="./eml-${version}.tar"/>
     <!--<delete dir="dist"/>-->
     <!--<delete dir="docs"/>-->
+  </target>
+  
+  <target name="docbook" depends="docs">
+    <mkdir dir="${build.docs}/user"/>
+    <style basedir="." style="buildDocBook.xsl" 
+           in="eml.xsd" out="${build.docs}/user/eml-docbook.xml" processor="trax"/>
   </target>
 </project>

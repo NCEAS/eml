@@ -4,12 +4,9 @@
                 xmlns:doc="eml:documentation-2.0.0beta8" 
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
-
+<xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN" 
+            doctype-system="http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"/>
 <xsl:template match="/">
-<!--<xsl:text>
-  <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2CR1//EN"
-                    "file:///home/berkley/install/docbook/docbookx.dtd">
-</xsl:text>-->
 <book>
   <bookinfo>
     <title>Guide to EML</title>
@@ -51,7 +48,9 @@
   
   <chapter label="Module Descriptions" id="moduleDescriptions">
     <title>Module Descriptions</title>
-    <xsl:apply-templates select="//doc:moduleDocs"/>
+    <xsl:for-each select="//doc:module">
+      <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
+    </xsl:for-each>
   </chapter>
 </book>
 </xsl:template>
