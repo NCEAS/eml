@@ -31,9 +31,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-10 21:16:10 $'
-      '$Revision: 1.61 $'
+        '$Author: jones $'
+          '$Date: 2002-09-12 00:30:00 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -556,6 +556,31 @@
                   </xs:complexType>
                 </xs:element>
                 <xs:element name="connection">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Connection</doc:tooltip>
+                      <doc:summary>A description of the information needed
+                      to make an application connection to a data service.
+                      </doc:summary>
+                      <doc:description>A description of the information needed
+                      to make an application connection to a data service.
+                      The connection starts with a connectionDefinition which
+                      lists all of the parameters needed for the connection
+                      and possible default values for each.  It then includes a
+                      list of parameter values, one for each parameter, that
+                      override the defaults for this particular connection.
+                      One parameter element should exist for every 
+                      parameterDefinition that is present in the 
+                      connectionDefinition, except that parameters that were
+                      defined with a defaultValue in their parameterDefinition
+                      can be ommitted from the connection and the default 
+                      will be used. All information about how to use the
+                      parameters to establish a session and extract data is
+                      present in the connectionDefinition, possibly implicitly
+                      by naming a connection schemeName that is well-known.
+                      </doc:description>
+                    </xs:appinfo>
+                  </xs:annotation>
                   <xs:complexType>
                     <xs:choice>
                       <xs:sequence>
@@ -668,19 +693,6 @@
                   </xs:annotation>
                 </xs:element>
               </xs:choice>
-              <xs:element name="connectionNotes" type="txt:TextType"
-              minOccurs="0">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Connection Notes</doc:tooltip>
-                    <doc:summary>General notes about the
-                    connection</doc:summary>
-                    <doc:description>General notes about the
-                    connection.</doc:description>
-                    <doc:lineage>New in EML 2.0.0</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
