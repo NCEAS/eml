@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-29 18:53:32 $'
-      '$Revision: 1.23 $'
+          '$Date: 2002-10-29 22:00:35 $'
+      '$Revision: 1.24 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -194,10 +194,6 @@
     <dimension name="length" power="-1"/>
   </unitType>
 
-  <unitType id="undefined" name="undefined">
-    <dimension name="dimensionless"/>
-  </unitType>
-
   <unitType id="volumetricDensity" name="volumetricDensity"> <!--numberPerMeterCubed-->
     <dimension name="dimensionless"/>
     <dimension name="length" power="-1"/>
@@ -348,11 +344,7 @@
 <!-- ====================== Unit Definitions =============================== -->
 <!-- ======================================================================= -->
 
-  <unit id="undefined" name="undefined" unitType="undefined">
-    <description>unit for fields with no unit</description>
-  </unit>
-
-  <unit id="dimensionless" name="dimensionless" unitType="undefined">
+  <unit id="dimensionless" name="dimensionless" unitType="dimensionless">
     <description>unit for fields with no unit</description>
   </unit>
 
