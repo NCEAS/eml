@@ -1,0 +1,348 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           xmlns:rp="iso:ResponsibleParty"
+           targetNamespace="eml:resource">
+
+  
+
+ <!-- import the elements from responsible party for use
+       is resource/originator 
+   -->
+  <xs:import namespace="iso:ResponsibleParty" 
+          schemaLocation="./iso-party.xsd"/>
+ 
+  <!-- resource is the root element. -->
+  <xs:element name="resource">
+    
+   
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="1">
+
+        <xs:element name="dataset">
+          
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ResourceBase">
+                <xs:sequence>
+
+                  <xs:element name="temporalCoverage" type="TemporalCoverage"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+
+                  <xs:element name="geographicCoverage" type="GeographicCoverage"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                                           
+                  <xs:element name="geoForm" type="GeoForm" 
+                              minOccurs="0" maxOccurs="1">
+                    
+                  </xs:element>
+                </xs:sequence>  
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+     
+        <xs:element name="literature" type="LitCitation"/>
+
+        <xs:element name="software">
+          
+
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ResourceBase">
+                <xs:sequence>
+                  <xs:element name="versionNumber" type="xs:string"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                  <xs:element name="sourceModule" type="xs:string"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                  <xs:element name="binaryFile" type="xs:string"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                  <xs:element name="location" type="xs:string"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                  <xs:element name="programmingLanguage" type="xs:string"
+                              minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                </xs:sequence>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+       
+  <xs:complexType name="LitCitation">
+    
+    <xs:complexContent>
+      <xs:extension base="ResourceBase">
+        <xs:sequence>
+          <xs:element name="ISBN" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            
+          </xs:element>
+      
+          <xs:element name="ISSN" type="xs:string" 
+                      minOccurs="0" maxOccurs="1" >
+            
+          </xs:element>
+     
+          <xs:element name="editor" type="rp:Person" 
+                      minOccurs="0" maxOccurs="unbounded">
+             
+          </xs:element>
+    
+          <xs:element name="edition" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            
+          </xs:element>
+    
+          <xs:element name="volume" type="xs:string" 
+                      minOccurs="0" maxOccurs="1">
+            
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- this is the base type that the other types inherit -->
+  <xs:complexType name="ResourceBase">
+    
+
+    <xs:sequence>
+      <xs:element name="identifier" type="xs:string"
+                  minOccurs="1" maxOccurs="unbounded">
+        
+        <xs:complexType>
+          <xs:attribute name="system" use="optional" type="xs:string">
+            
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="shortName" type="xs:string" 
+                  minOccurs="0" maxOccurs="1" >
+        
+      </xs:element>
+
+      <xs:element name="title" type="xs:string" 
+                  minOccurs="1" maxOccurs="1" >
+        
+      </xs:element>
+
+      <xs:element name="alternateTitle" type="xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+
+      <xs:element name="originator" type="rp:ResponsibleParty" 
+                  minOccurs="1" maxOccurs="unbounded" >
+        
+      </xs:element>
+      
+      <xs:element name="pubDate" type="xs:date" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+
+      <xs:element name="pubPlace" type="xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+
+      <xs:element name="series" type="xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+
+      <xs:element name="abstract" type="Abstract" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+
+      <xs:element name="keywordInfo" type="KeywordInfo" 
+                  minOccurs="0" maxOccurs="unbounded" >
+        
+      </xs:element>
+
+      <xs:element name="URL" type="xs:string" 
+                  minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>
+
+      <xs:element name="additionalInfo" type="xs:string" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Abstract">       
+    
+    <xs:sequence>
+      <xs:element name="paragraph" type="xs:string"
+                  minOccurs="1" maxOccurs="unbounded">
+        
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="KeywordInfo">
+    
+    <xs:sequence>
+      <xs:element name="keyword" type="xs:string" 
+                  minOccurs="1" maxOccurs="1" >
+        
+      </xs:element>
+      <xs:element name="keywordType" type="KeyTypCode" 
+                  minOccurs="0" maxOccurs="1">
+        
+      </xs:element>
+      <xs:element name="keywordThesaurus" type="xs:string" 
+                  minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TemporalCoverage">
+    
+    <xs:sequence>
+      <xs:element name="startDate" type="DateTime"
+                      minOccurs="1" maxOccurs="1">
+        
+      </xs:element>        
+ 
+      <xs:element name="stopDate" type="DateTime"
+                      minOccurs="0" maxOccurs="1">
+        
+      </xs:element>       
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DateTime">
+    
+    <xs:sequence>
+      <xs:element name="year" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="month" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="day" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="hour" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="minute" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="second" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="secondFraction" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="timeZoneDesignator" type="xs:string"
+                  minOccurs="0" maxOccurs="1"/>        
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GeographicCoverage">
+    
+    <xs:sequence>
+      <xs:element name="paragraph" type="xs:string"
+                  minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>        
+ 
+      <xs:element name="coordinates"
+                  minOccurs="0" maxOccurs="unbounded">
+        
+        <xs:complexType>
+          <xs:sequence>
+
+            <xs:element name="latitude" type="xs:string"
+                              minOccurs="1" maxOccurs="1">
+              
+              <xs:complexType>
+                <xs:attribute name="direction" use="required">
+                  
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="north" />
+                      <xs:enumeration value="south" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="longitude" type="xs:string"
+                              minOccurs="1" maxOccurs="1">
+              
+              <xs:complexType>
+                <xs:attribute name="direction" use="required">
+                  
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="east" /> 
+                      <xs:enumeration value="west" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>        
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- The geospatial representation form domain 
+      taken directly from NBII -->
+  <xs:simpleType name="GeoForm">
+    
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="atlas" />
+      <xs:enumeration value="audio" />
+      <xs:enumeration value="diagram" />
+      <xs:enumeration value="document" />
+      <xs:enumeration value="globe" />
+      <xs:enumeration value="map" />
+      <xs:enumeration value="model" />
+      <xs:enumeration value="multimediaPresentation" />
+      <xs:enumeration value="profile" />
+      <xs:enumeration value="rasterDigitalData" />
+      <xs:enumeration value="remoteSensingImage" />
+      <xs:enumeration value="section" />
+      <xs:enumeration value="spreadsheet" />
+      <xs:enumeration value="tabularDigitalData" />
+      <xs:enumeration value="vectorDigitalData" />
+      <xs:enumeration value="video" />
+      <xs:enumeration value="view" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- The keyword type domain take directly from ISO -->
+  <xs:simpleType name="KeyTypCode">
+    
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="discipline" />
+      <xs:enumeration value="place" />
+      <xs:enumeration value="stratum" />
+      <xs:enumeration value="temporal" />
+      <xs:enumeration value="thematic" />
+      <xs:enumeration value="taxonomic" />
+    </xs:restriction>
+      <!-- More types should be added here. -->
+  </xs:simpleType>
+        
+</xs:schema>

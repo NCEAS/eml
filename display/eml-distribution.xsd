@@ -1,0 +1,155 @@
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2000/10/XMLSchema"
+           xmlns:rp="iso:ResponsibleParty"
+           targetNamespace="eml:distribution">
+  
+  
+  
+  <xs:import namespace="iso:ResponsibleParty" 
+          schemaLocation = "./iso-party.xsd"/>
+  
+  <xs:element name="eml-distribution">
+    
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name = "identifier" type = "xs:string"
+                    minOccurs="1" maxOccurs="unbounded">
+          
+          <xs:complexType>
+            <xs:attribute name="system" use="optional" type="xs:string">
+              
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="distributorFormat" type="Format"
+                     minOccurs="1" maxOccurs="unbounded">
+          
+        </xs:element>
+        <xs:element name="distributor" minOccurs="1" maxOccurs="unbounded">
+          
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="contact" type="rp:ResponsibleParty"
+                          minOccurs="1" maxOccurs="unbounded">
+                
+              </xs:element>
+              <xs:element name="StandardOrderProcess" minOccurs="0" 
+                          maxOccurs="unbounded">
+                
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="fees" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      
+                    </xs:element>
+                    <xs:element name="dateTimeAvailable" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                    
+                  </xs:element>
+                    <xs:element name="orderingInstructions" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      
+                    </xs:element>
+                    <xs:element name="turnaround" type="xs:string"
+                                minOccurs="0" maxOccurs="unbounded">
+                      
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>      
+              </xs:element>
+              <xs:element name="distributorFormat" ref="Format"
+                          minOccurs="0" maxOccurs="unbounded">
+                
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="digitalTransfer" minOccurs="0" maxOccurs="unbounded">
+          
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="distributionUnits" type="xs:string"
+                          minOccurs="0" maxOccurs="1">
+                
+              </xs:element>
+              <xs:element name="transferSize" type="xs:string"
+                          minOccurs="0" maxOccurs="1">
+                
+              </xs:element>
+              <xs:element name="online" type="rp:OnlineResource"
+                          minOccurs="0" maxOccurs="unbounded">
+                
+              </xs:element>
+              <xs:element name="offlineResource"
+                          minOccurs="0" maxOccurs="unbounded">
+                
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="medium" 
+                                minOccurs="0" maxOccurs="unbounded">
+                      
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="medName" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            
+                          </xs:element>
+                          <xs:element name="medDensity" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            
+                          </xs:element>
+                          <xs:element name="medDensityUnits" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            
+                          </xs:element>
+                          <xs:element name="medVol" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            
+                          </xs:element>
+                          <xs:element name="medFormat" type="xs:string"
+                                      minOccurs="0" maxOccurs="unbounded">
+                            
+                          </xs:element>
+                          <xs:element name="medNote" type="xs:string"
+                                      minOccurs="0" maxOccurs="1">
+                            
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="Format">
+    <xs:sequence>
+      <xs:element name="formatName" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded">
+        
+      </xs:element>
+      <xs:element name="formatVersion" type="xs:string" 
+               minOccurs="1" maxOccurs="unbounded">
+        
+      </xs:element>
+      <xs:element name="formatSpec" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>
+      <xs:element name="compressionType" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>
+      <xs:element name="distributionFormat" type="xs:string" 
+               minOccurs="0" maxOccurs="unbounded">
+        
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>
