@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-03 01:40:13 $'
-      '$Revision: 1.47 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-03 16:33:10 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<project name="eml" default="docs" basedir="."> 
+<project name="eml" default="docs" basedir=".">
 
   <target name="config">
     <!-- These are properties you'll need to change for the build to work
@@ -336,7 +336,12 @@
     <copy file="${xalan}" tofile="${servlet.install.dir}/WEB-INF/lib/xalan.jar"/>
     <copy file="${xml-apis}" tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
     <copy file="${xmlp}" tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
-<copy file="${api}" tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
+    <copy file="${api}" tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
+    <copy todir="${servlet.install.dir}/schema">
+      <fileset dir=".">
+        <include name="*.xsd"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="clean">

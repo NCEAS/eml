@@ -28,9 +28,23 @@
 <body>
   <p>
     This parser will validate that your EML instance file conforms to the rules
-    set forth in the EML spec.  Browse the file you would like to validate
-    in the space below and click 'submit'.  Note that this parser does <em>not</em>
-    do XML validation.
+    set forth in the EML spec.  It also runs a SAX validation parse to check
+    if your document is schema valid according to the EML schemas.  For this to
+    work, you must have an xsi:schemaLocation attribute on the root of your
+    document with a pointer to the eml.xsd file.  Your root element should look
+    something like this:
+    <pre>
+    &lt;eml:eml
+      packageId="eml.1.1" system="knb"
+      xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc1 http://trestles.nceas.ucsb.edu:8080/emlparser/schema/eml.xsd"&gt;
+    </pre>
+    Where the url "http://trestles.nceas.ucsb.edu:8080/emlparser/schema/eml.xsd"
+    points to a valid online location of the schema.</p><hr>
+    <p>
+    Browse the file you would like to validate in the space below and click
+    'submit'.</p>
   </p>
   <br>
   <form enctype="multipart/form-data" method="post" action="/emlparser/servlet/emlparser">

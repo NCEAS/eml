@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2002-10-03 01:40:13 $'
- *    '$Revision: 1.3 $'
+ *      '$Author: berkley $'
+ *        '$Date: 2002-10-03 16:33:10 $'
+ *    '$Revision: 1.4 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
  *  GNU General Public License for more details.
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
 package org.ecoinformatics.eml;
@@ -54,6 +54,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpUtils;
 import javax.servlet.ServletOutputStream;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * Servlet interface for the EMLParser
@@ -210,9 +213,8 @@ public class EMLParserServlet extends HttpServlet
         {
           EMLParser parser = new EMLParser(tempfile,
                              new File("../webapps/emlparser/lib/config.xml"));
-          html.append("<h2>Document valid.</h2><p>There ");
+          html.append("<h2>Document is EML valid.</h2><p>There ");
           html.append("were no EML errors found in your document.</p>");
-          tempfile.delete();
         }
         else
         {
@@ -221,9 +223,34 @@ public class EMLParserServlet extends HttpServlet
       }
       catch(Exception e)
       {
-        html.append("<h2>Errors Found</h2><p>The following errors were found:");
+        html.append("<h2>EML Errors Found</h2><p>The following errors were found:");
         html.append("</p><p>").append(e.getMessage()).append("</p>");
       }
+
+      try
+      {
+        SAXValidate validator = new SAXValidate(true);
+        validator.runTest(new FileReader(tempfile));
+        html.append("<hr><h2>Document is XML-schema valid.</h2>");
+        html.append("<p>There were no XML errors found in your document.</p>");
+      }
+      catch(SAXException se)
+      {
+        html.append("<hr><h2>XML-Schema Errors Found</h2><p>The following errors were ");
+        html.append("found:</p><p>").append(se.getMessage()).append("</p>");
+      }
+      catch(IOException ioe)
+      {
+        html.append("<hr><h2>IOException: Error reading file</h2>");
+        html.append("<p>").append(ioe.getMessage()).append("</p>");
+      }
+      catch(ClassNotFoundException cnfe)
+      {
+        html.append("<hr><h2>Parser class not found</h2>");
+        html.append("<p>").append(cnfe.getMessage()).append("</p>");
+      }
+
+      tempfile.delete();
       html.append("</body></html>");
     }
     else
