@@ -10,9 +10,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-02-22 22:32:54 $'
-      '$Revision: 1.9 $'
+        '$Author: jones $'
+          '$Date: 2001-03-22 20:03:38 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -98,7 +98,7 @@
       </xs:appInfo>
     </xs:annotation>
    
-    <choice minOccurs="1" maxOccurs="1">
+    <xs:choice minOccurs="1" maxOccurs="1">
       <xs:element name = "dataset" type = "Dataset">
         <xs:annotation>
           <xs:appInfo>
@@ -176,7 +176,7 @@
           </xs:appInfo>
         </xs:annotation>
       </xs:element>
-    </choice>
+    </xs:choice>
   </xs:complexType>
        
   <!-- this is the base type that the other types inherit -->
