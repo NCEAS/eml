@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2001-03-28 17:18:16 $'
-      '$Revision: 1.13 $'
+          '$Date: 2001-03-28 20:24:10 $'
+      '$Revision: 1.14 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,8 +58,28 @@
                      keywordInfo*, url*, additionalInfo?)" >
 
 <!-- The dataset branch -->
-<!ELEMENT dataset ((%resbase;), geoForm)>
+<!ELEMENT dataset ((%resbase;), temporalCoverage*, geographicCoverage*, geoForm)>
 <!ELEMENT geoForm (#PCDATA)>
+<!ELEMENT temporalCoverage (startDate, stopDate?)>
+<!ENTITY % Date "(year?, month?, day?, hour?, minute?, second?, 
+                       secondFraction?, timeZoneDesignator?)">
+<!ELEMENT startDate ((%Date;))>
+<!ELEMENT stopDate ((%Date;))>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT month (#PCDATA)>
+<!ELEMENT day (#PCDATA)>
+<!ELEMENT hour (#PCDATA)>
+<!ELEMENT minute (#PCDATA)>
+<!ELEMENT second (#PCDATA)>
+<!ELEMENT secondFraction (#PCDATA)>
+<!ELEMENT timeZoneDesignator (#PCDATA)>
+
+<!ELEMENT geographicCoverage (paragraph, coordinates)>
+<!ELEMENT coordinates (latitude, longitude)>
+<!ELEMENT latitude (#PCDATA)>
+<!ATTLIST latitude direction #REQUIRED CDATA>
+<!ELEMENT longitude (#PCDATA)>
+<!ATTLIST longitude direction #REQUIRED CDATA>
 
 <!-- The literature branch -->
 <!ELEMENT literature ((%resbase;), ISBN?, ISSN?, editor*, 
