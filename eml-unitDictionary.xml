@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-30 19:30:25 $'
-      '$Revision: 1.29 $'
+          '$Date: 2002-10-30 19:46:01 $'
+      '$Revision: 1.30 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -218,8 +218,8 @@
   <unitType id="potentialDifference" name="potentialDifference"> <!--volt-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-4"/>
-    <dimension name="charge"/>
+    <dimension name="time" power="-2"/>
+    <dimension name="charge" power="-1"/>
   </unitType>
 
   <unitType id="capacitance" name="capacitance"> <!--farad-->
@@ -232,21 +232,21 @@
   <unitType id="resistance" name="resistance"> <!--ohm-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-3"/>
+    <dimension name="time" power="-1"/>
     <dimension name="charge" power="-2"/>
   </unitType>
 
   <unitType id="resistivity" name="resistivity"> <!--ohmMeters-->
     <dimension name="mass"/>
     <dimension name="length" power="3"/>
-    <dimension name="time" power="-3"/>
+    <dimension name="time" power="-1"/>
     <dimension name="charge" power="-2"/>
   </unitType>
 
   <unitType id="conductance" name="conductance"> <!--siemens-->
     <dimension name="mass" power="-1"/>
     <dimension name="length" power="-2"/>
-    <dimension name="time" power="3"/>
+    <dimension name="time" power="1"/>
     <dimension name="charge" power="2"/>
   </unitType>
 
@@ -266,7 +266,6 @@
   <unitType id="inductance" name="inductance"> <!--henry-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-5"/>
     <dimension name="charge" power="-2"/>
   </unitType>
 
@@ -297,7 +296,7 @@
   <unitType id="pressure" name="pressure"> <!--pascal-->
     <dimension name="mass"/>
     <dimension name="time" power="-2"/>
-    <dimension name="length" power="3"/>
+    <dimension name="length" power="1"/>
   </unitType>
 
   <unitType id="transmissivity" name="transmissivity"> <!--metersSquaredPerSecond-->
@@ -429,7 +428,7 @@
     <description>A common unit of temperature</description>
   </unit>
 
-  <unit id="fahrenheit" name="fahrenheit" parentSI="kelvin" abbreviation="F" multiplierToSI="0.55555555555555555" constantToSI="-17.777777777777777777">
+  <unit id="fahrenheit" name="fahrenheit" parentSI="kelvin" abbreviation="F" multiplierToSI="0.556" constantToSI="-17.778">
     <description>An obsolescent unit of temperature still used in popular meteorology</description>
   </unit>
 
@@ -490,13 +489,16 @@
     <description>3 feet</description>
   </unit>
   <unit id="Yard_Indian" name="Yard_Indian" parentSI="meter" multiplierToSI="0.914398530744440774">
-    <description/>
+    <description>This is an ESRI unit and the multiplier comes from ESRI.  It
+    may not be accurate.</description>
   </unit>
   <unit id="Link_Clarke" name="Link_Clarke" parentSI="meter" multiplierToSI="0.2011661949">
-    <description/>
+    <description>This is an ESRI unit and the multiplier comes from ESRI.  It
+    may not be accurate.</description>
   </unit>
   <unit id="Yard_Sears" name="Yard_Sears" parentSI="meter" multiplierToSI="0.91439841461602867">
-    <description/>
+    <description>This is an ESRI unit and the multiplier comes from ESRI.  It
+    may not be accurate.</description>
   </unit>
   <unit id="mile" name="mile" parentSI="meter" abbreviation="mile" multiplierToSI="1609.344">
     <description>5280 ft or 1609.344 meters</description>
@@ -578,7 +580,7 @@
   <unit id="degree" name="degree" unitType="angle" parentSI="radian" multiplierToSI="0.0174532924" abbreviation="º">
     <description>360 degrees comprise a unit circle</description>
   </unit>
-  <unit id="gradient" name="gradient" unitType="angle" parentSI="radian" multiplierToSI="63.661977" abbreviation="grad">
+  <unit id="gradient" name="gradient" unitType="angle" parentSI="radian" multiplierToSI="0.015707" abbreviation="grad">
     <description>gradient</description>
   </unit>
 
@@ -854,7 +856,7 @@
   <unit id="feetPerSecond" name="feetPerSecond" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.3048"  abbreviation="ft/s">
     <description>feet per second</description>
   </unit>
-  <unit id="feetPerHour" name="feetPerHour" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.000084666" abbreviation="ft/hr">
+  <unit id="feetPerHour" name="feetPerHour" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.000084667" abbreviation="ft/hr">
     <description>feet per hour</description>
   </unit>
   <unit id="yardsPerSecond" name="yardsPerSecond" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.9144"  abbreviation="yd/s">
@@ -881,7 +883,7 @@
   <unit id="knots" name="knots" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.514444">
     <description>knots</description>
   </unit>
-  <unit id="kilometersPerHour" name="kilometersPerHour" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.277777" abbreviation="km/hr">
+  <unit id="kilometersPerHour" name="kilometersPerHour" unitType="speed" parentSI="metersPerSecond" multiplierToSI="0.2778" abbreviation="km/hr">
     <description>km/hr</description>
   </unit>
 
