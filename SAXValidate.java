@@ -29,10 +29,12 @@ public class SAXValidate extends DefaultHandler
 
    private static final String
            DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
+   private boolean schemavalidate = false;
 
    /** Construct an instance of the handler class 
     */
-   public SAXValidate() {
+   public SAXValidate(boolean validateschema) {
+     this.schemavalidate = validateschema;
    }
  
    public void error (SAXParseException exception) throws SAXException {
@@ -44,13 +46,22 @@ public class SAXValidate extends DefaultHandler
    */
   static public void main(String[] args) {
      
-    if (args.length != 1) {
-      System.err.println("USAGE: java SAXValidate <xmlfile>");
+    if (args.length < 1 || args.length > 2) {
+      System.err.println("USAGE: java SAXValidate [-s] <xmlfile>");
     } else {
+      boolean svalidate = false;
+      String filename = "";
+      
+      if (args.length > 1) {
+        if (args[0].equals("-s")) {
+          svalidate = true;
+        }
+        filename = args[1];
+      } else {
+        filename = args[0];
+      }
 
-      String filename = args[0];
-
-      SAXValidate test = new SAXValidate();
+      SAXValidate test = new SAXValidate(svalidate);
 
       try {
         test.runTest(new FileReader(new File(filename).toString()), 
@@ -82,6 +93,9 @@ public class SAXValidate extends DefaultHandler
       parser.setErrorHandler((ErrorHandler)this);
 
       parser.setFeature("http://xml.org/sax/features/validation", true);
+      if (schemavalidate) {
+        parser.setFeature("http://apache.org/xml/features/validation/schema", true);
+      }
 
       // Parse the document
       parser.parse(new InputSource(xml));
