@@ -28,9 +28,9 @@
                   The David and Lucile Packard Foundation
 
      For Details: http://knb.ecoinformatics.org/
-        '$Author: blankman $'
-          '$Date: 2002-10-14 17:50:32 $'
-      '$Revision: 1.59 $'
+        '$Author: jones $'
+          '$Date: 2002-10-29 22:59:17 $'
+      '$Revision: 1.60 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1094,7 +1094,7 @@
           </xs:annotation>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
@@ -1250,23 +1250,7 @@
                         </xs:complexType>
                       </xs:element>
                     </xs:sequence>
-                    <xs:element name="references" type="xs:string">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>References</doc:tooltip>
-                          <doc:summary>The id of another connection in this
-                            EML document to be used to provide the connection
-                            information.
-                            </doc:summary>
-                          <doc:description>The id of another connection in
-                            this EML document to be used to provide the
-                            connection information. This is used instead of
-                            duplicating connection information when an identical
-                            connection needs to be used multiple times in an
-                            EML document.</doc:description>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
+                    <xs:group ref="res:ReferencesGroup"/>
                   </xs:choice>
                   <xs:attribute name="id" type="res:IDType" use="optional"/>
                   <xs:attribute name="system" type="res:SystemType" use="optional"/>
@@ -1404,7 +1388,7 @@
           </xs:complexType>
         </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>

@@ -32,8 +32,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 21:04:54 $'
-      '$Revision: 1.71 $'
+          '$Date: 2002-10-29 22:59:17 $'
+      '$Revision: 1.72 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -191,7 +191,7 @@
           </xs:complexType>
         </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
@@ -284,7 +284,7 @@
     </xs:complexType>
   </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
@@ -834,7 +834,7 @@
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
@@ -1109,7 +1109,7 @@
         </xs:element>
         <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded"/>
       </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>

@@ -32,8 +32,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 21:04:55 $'
-      '$Revision: 1.72 $'
+          '$Date: 2002-10-29 22:59:17 $'
+      '$Revision: 1.73 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -668,23 +668,7 @@
                         </xs:complexType>
                       </xs:element>
                     </xs:sequence>
-                    <xs:element name="references" type="xs:string">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>References</doc:tooltip>
-                          <doc:summary>The id of another connection in this
-                          EML document to be used to provide the connection
-                          information.
-                          </doc:summary>
-                          <doc:description>The id of another connection in
-                          this EML document to be used to provide the
-                          connection information. This is used instead of
-                          duplicating connection information when an identical
-                          connection needs to be used multiple times in an
-                          EML document.</doc:description>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
+                    <xs:group ref="ReferencesGroup"/>
                   </xs:choice>
                   <xs:attribute name="id" type="IDType" use="optional"/>
                   <xs:attribute name="system" type="SystemType" use="optional"/>
@@ -836,7 +820,7 @@
           </xs:complexType>
         </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string"/>
+      <xs:group ref="ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="IDType" use="optional"/>
     <xs:attribute name="system" type="SystemType" use="optional"/>
@@ -1010,23 +994,50 @@
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>References</doc:tooltip>
-            <doc:summary>A reference to a connection definition that is
-            provided elsewhere in EML.</doc:summary>
-            <doc:description>A reference to a connection definition that is
-            provided elsewhere in EML. This is useful to provide a single,
-            shared connection definition for a scheme that is used by
-            multiple connections.</doc:description>
-            
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
+      <xs:group ref="ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="IDType" use="optional"/>
     <xs:attribute name="system" type="SystemType" use="optional"/>
     <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
+  <xs:group name="ReferencesGroup">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>References Group</doc:tooltip>
+        <doc:summary>A group of elements repeatedly used throughout EML
+        to reference IDs.</doc:summary>
+        <doc:description>A group containing the "references" element that
+        is used throughout EML.</doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="references" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>References</doc:tooltip>
+            <doc:summary>The id of another element in this
+            EML document to be used to here in this context.
+            </doc:summary>
+            <doc:description>The id of another element in
+            this EML document to be used to here in this context.
+            This is used instead of duplicating information when an identical
+            piece of information needs to be used multiple times in an
+            EML document. For example, if the same person is the creator,
+            metadataProvider, and contact for a dataset, their name and address
+            can be provided once as part of the "creator" element, and then
+            their "id" can be used in the "references" element of 
+            metadataProvider and contact.  This reduces the likelihood of
+            error by reducing redundancy, and allows one to specify that
+            two pieces of information are identical.  To be a vaild EML
+            document, the content of every "references" element MUST be
+            defined in the document as the value of an "id" attribute on
+            some element within the document.  Other critical rules
+            about the use of IDs and references in EML are provided in the
+            text of the EML specification.</doc:description>
+            <doc:example>knb.45.3</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
 </xs:schema>
