@@ -1,17 +1,15 @@
-<?xml version="1.0"?>
-<xs:schema targetNamespace="eml:literature" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns:res="eml:resource" xmlns="eml:literature">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
-  <xs:annotation>
-    <xs:documentation>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="eml:literature" xmlns="eml:literature" xmlns:res="eml:resource" xmlns:rp="eml:ResponsibleParty" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
        '$RCSfile: eml-literature.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-13 17:35:36 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-07-22 23:45:36 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,30 +25,30 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-    <xs:appinfo>
-      <doc:moduleName>eml-resource</doc:moduleName>
-      <doc:moduleDescription>
+		<xs:appinfo>
+			<moduleName>eml-resource</moduleName>
+			<moduleDescription>
         The eml-literature module contains information that describes
         literature resources It is intended to provide overview information
         about the literature citation, including title, abstract, keywords, 
         and contacts.
-      </doc:moduleDescription>
-    </xs:appinfo>
-  </xs:annotation>
-  <!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
-  <!-- import the elements from responsible party -->
-  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
-  <xs:element name="citation" type="LitCitation">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>
+      </moduleDescription>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- import the elements from eml-resource -->
+	<xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
+	<!-- import the elements from responsible party -->
+	<xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+	<xs:element name="citation" type="LitCitation">
+		<xs:annotation>
+			<xs:appinfo>
+				<tooltip>
           Literature Citation
-        </doc:tooltip>
-        <doc:summary>
+        </tooltip>
+				<summary>
           Information describing a literature resource.
-        </doc:summary>
-        <doc:description>
+        </summary>
+				<description>
           The literature element contains general information about a
           literature resource that is being documented, or a piece of
           literature that is being cited in support of a given resource,
@@ -58,26 +56,26 @@
           literature resource such as a book, a journal article, 
           a thesis, etc.  It extends the generic resource elements with 
           literature specific fields.
-        </doc:description>
-        <doc:example>
+        </description>
+				<example>
           Please see the examples within the subelements for this type.
-        </doc:example>
-        <doc:lineage>
+        </example>
+				<lineage>
           This field was introduced in EML 2.0.
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name="LitCitation">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>
+        </lineage>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LitCitation">
+		<xs:annotation>
+			<xs:appinfo>
+				<tooltip>
           Literature Citation
-        </doc:tooltip>
-        <doc:summary>
+        </tooltip>
+				<summary>
           Information describing a literature resource.
-        </doc:summary>
-        <doc:description>
+        </summary>
+				<description>
           The 'LitCitation' type contains general information about a
           literature resource that is being documented, or a piece of
           literature that is being cited in support of a given resource,
@@ -86,141 +84,444 @@
           literature resource such as a book, a journal article, 
           a thesis, etc.  It extends the generic resource elements with 
           literature specific fields.
-        </doc:description>
-        <doc:example>
+        </description>
+				<example>
           Please see the examples within the subelements for this type.
-        </doc:example>
-        <doc:lineage>
+        </example>
+				<lineage>
           This field was introduced in EML 2.0.
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="res:ResourceBase">
-        <xs:sequence>
-          <xs:element name="ISBN" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
+        </lineage>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="res:ResourceBase">
+				<xs:sequence>
+					<xs:element name="ISBN" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>
                   International Standard Book Number
-                </doc:tooltip>
-                <doc:summary>
+                </tooltip>
+								<summary>
                   The unique Internation Standard Book Number
-                </doc:summary>
-                <doc:description>
+                </summary>
+								<description>
                   The ISBN, or International Standard Book Number
                   that has been assigned to this literature resource.
-                </doc:description>
-                <doc:example>
+                </description>
+								<example>
                   ISBN 1-861003-11-0
-                </doc:example>
-                <doc:lineage>
+                </example>
+								<lineage>
                   This field was introduced into EML 2.0 and was derived 
                   from the ISO 19115.3 standard (iso-geo-md-2000June-draft) 
                   and the ISO Standard 2108.
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="ISSN" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
+                </lineage>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ISSN" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>
                   International Standard Serial Number
-                </doc:tooltip>
-                <doc:summary>
+                </tooltip>
+								<summary>
                   The unique Internation Standard Serial Number
-                </doc:summary>
-                <doc:description>
+                </summary>
+								<description>
                   The ISSN, or International Standard Serial Number
                   that has been assigned to this literature resource.
-                </doc:description>
-                <doc:example>
+                </description>
+								<example>
                   ISSN 1234-5679
-                </doc:example>
-                <doc:lineage>
+                </example>
+								<lineage>
                   This field was introduced into EML 2.0 and was derived 
                   from the ISO 19115.3 standard (iso-geo-md-2000June-draft) 
                   and the ISO 3297-1975; ANSI Z39.9-1979 standard.
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="editor" type="rp:Person" minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Editor
-                </doc:tooltip>
-                <doc:summary>
-                  The name of the editor of the literature resource.
-                </doc:summary>
-                <doc:description>
-                  This field provides a container for the information 
-                  that describes the editor of the literature resource.  
-                  The editor may be a person
-                  or organization or a role within an organization.
-                </doc:description>
-                <doc:example>
-                  Please see the examples within the subelements.
-                </doc:example>
-                <doc:lineage>
-                  This field was introduced into EML 2.0 beta 1, and was 
-                  derived from the FGDC-STD-001.1-1999 standard
-                  (nbii-fgdc-std-001.1-1999)
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="edition" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Edition
-                </doc:tooltip>
-                <doc:summary>
-                  The edition of the literature resource.
-                </doc:summary>
-                <doc:description>
-                  The edition that has been assigned to a literature 
-                  resource by its publisher.
-                </doc:description>
-                <doc:example>
-                  2nd Edition
-                </doc:example>
-                <doc:lineage>
-                  This field was introduced into EML 2.0 beta 1, and was 
-                  derived from the FGDC-STD-001.1-1999 
-                  (nbii-fgdc-std-001.1-1999) and ISO 19115.3 
-                  (iso-geo-md-2000June-draft) standards.
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="volume" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>
-                  Volume
-                </doc:tooltip>
-                <doc:summary>
-                  The volume number of the resource.
-                </doc:summary>
-                <doc:description>
-                  The volume number that has been assigned to a
-                  resource by its publisher.
-                </doc:description>
-                <doc:example>
-                  Volume 7
-                </doc:example>
-                <doc:lineage>
-                  This field was introduced into EML 2.0 beta 1
-                </doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
+                </lineage>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="article" type="Article">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Journal article</tooltip>
+								<summary></summary>
+								<description>Information for full citation of a journal article</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+						<xs:element name="book" type="Book">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Book</tooltip>
+								<summary></summary>
+								<description>Information for full citation of a book</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+						<xs:element name="chapter" type="Chapter">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Chapter within a book</tooltip>
+								<summary></summary>
+								<description>Information for full citation of a single chapter within an edited book</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+						<xs:element name="manuscript" type="Manuscript">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>unpublished manuscipt</tooltip>
+								<summary></summary>
+								<description>Information about an unpublished manuscript</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+						<xs:element name="report" type="Report">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Report</tooltip>
+								<summary></summary>
+								<description>Information about a report published by an institution for in-house purposes. They usually are available by request to the institution.</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+						<xs:element name="thesis" type="Thesis">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Thesis as part of a degree</tooltip>
+								<summary></summary>
+								<description>Information about a thesis that has been written as part of a degree requirement and is frequently published in small numbers by the degree awarding institution.</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Article">
+		<xs:sequence>
+			<xs:element name="journal" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Name of the journal</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="volume" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Volume of journal in which article appears</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="issue" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Issue of journal in which article appears</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="pageRange" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>beginning and end page number of article</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Book">
+		<xs:sequence>
+			<xs:element name="edition" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Edition of book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="totalPages" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Total number of pages in book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="totalFigures" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Number of figures in book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTables" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Number of tables in book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="volume" type="xs:string" minOccurs="0">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Volume if book is part of series</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Chapter">
+		<xs:sequence>
+			<xs:element name="chapterNumber" type="xs:string" minOccurs="0">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Chapter number of interest within book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+			<xs:element name="bookEditor" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Name of book editor</tooltip>
+								<summary></summary>
+								<description>The editor may be a person
+                  or organization or a role within an organization.</description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="bookTitle" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Title of book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+			<xs:element name="publisher" type="xs:string">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Publishing company</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+			<xs:element name="pageRange" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Beginning and ending page of chapter</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="edition" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Edition of book</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="volume" type="xs:string" minOccurs="0">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Volume of book if part of a series</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Manuscript">
+		<xs:sequence>
+			<xs:element name="pubInfo" type="rp:ResponsibleParty">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>address where manuscript may be requested</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+			<xs:element name="Location" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Report">
+		<xs:sequence>
+			<xs:element name="institution" type="rp:ResponsibleParty">
+												<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Responsible institution where report may be requested</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+			<xs:element name="reportNumber" type="xs:string">
+												<xs:annotation>
+							<xs:appinfo>
+								<tooltip>ID number of report</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Thesis">
+		<xs:sequence>
+			<xs:element name="degree" type="xs:string">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Name of degree</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="pubInfo" type="rp:ResponsibleParty">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Address where thesis may be requested</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="totalPages" type="xs:string">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Number of pages in thesis</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+			<xs:element name="degreeInstitution" type="xs:string">
+									<xs:annotation>
+							<xs:appinfo>
+								<tooltip>Degree awarding institution</tooltip>
+								<summary></summary>
+								<description></description>
+								<example></example>
+								<lineage>This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling literature</lineage>
+							</xs:appinfo>
+						</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>
