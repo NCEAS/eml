@@ -279,20 +279,33 @@
 
   <chapter id="moduleDescriptions">
     <title>Module Descriptions (Normative)</title>
-    <!--<itemizedlist>
-      <xsl:for-each select="//doc:module">
-        <listitem>
-          <link>
-            <xsl:attribute name="linkend">
-              <xsl:value-of select="document(.)//doc:moduleDocs/doc:moduleName"/>
-            </xsl:attribute>
-            <xsl:value-of select="document(.)//doc:moduleDocs/doc:moduleName"/>
-          </link>
-        </listitem>
-      </xsl:for-each>
-    </itemizedlist>-->
     <xsl:for-each select="//doc:module">
-      <xsl:apply-templates select="document(.)//doc:moduleDocs"/>
+      <xsl:variable name="moduleNameVar">
+        <!-- save the name of the module we are in in this loop-->
+        <xsl:value-of select="document(.)//doc:moduleName"/>.xsd
+      </xsl:variable>
+      <xsl:variable name="importedByList">
+      <!--this is the variable that will be sent to the template-->
+      <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
+        <xsl:variable name="currentModuleName">
+          <!--save the name of the module that we are in this loop-->
+          <xsl:value-of select="."/>
+        </xsl:variable>
+        <xsl:for-each select="document(.)//xs:import">
+          <!-- go through each import statement and see if the current module is there -->
+          <xsl:if test="normalize-space($moduleNameVar)=normalize-space(./@schemaLocation)">
+            <!-- if it is put it in the variable -->
+            <xsl:value-of select="substring($currentModuleName, 0,
+                                  string-length($currentModuleName) - 3)"/>
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:for-each>
+      </xsl:variable>
+      <xsl:apply-templates select="document(.)//doc:moduleDocs">
+        <!--send the importedBy variable to this stylesheet-->
+        <xsl:with-param name="importedBy" select="$importedByList"/>
+      </xsl:apply-templates>
     </xsl:for-each>
   </chapter>
 
@@ -565,6 +578,7 @@
 </xsl:template>
 
 <xsl:template match="doc:moduleDocs">
+<xsl:param name="importedBy"/>
 <section>
   <xsl:attribute name="id">
     <xsl:value-of select="./doc:moduleName"/>
@@ -579,18 +593,23 @@
     </listitem>
     <listitem>
       <para>Imports:</para>
-      <itemizedlist>
-        <xsl:for-each select="/xs:schema/xs:import">
-          <xsl:apply-templates select="."/>
-        </xsl:for-each>
-      </itemizedlist>
+      <para>
+        <xsl:variable name="importedItem">
+          <xsl:for-each select="/xs:schema/xs:import">
+              <xsl:value-of select="substring(normalize-space(@schemaLocation), 0,
+                                      string-length(normalize-space(@schemaLocation))-3)"/>
+            <xsl:text>, </xsl:text>
+          </xsl:for-each>
+        </xsl:variable>
+        <xsl:value-of select="substring($importedItem, 0, string-length($importedItem) - 1)"/>
+      </para>
     </listitem>
-    <xsl:if test="count(./doc:importedBy) > 0">
     <listitem>
       <para>Imported By:</para>
-      <itemizedlist><xsl:apply-templates select="./doc:importedBy"/></itemizedlist>
+      <para>
+      <xsl:value-of select="substring($importedBy, 0, string-length($importedBy) - 1)"/>
+      </para>
     </listitem>
-    </xsl:if>
     <listitem>
       <para>
         <ulink>
@@ -604,24 +623,6 @@
     <xsl:value-of select="./doc:moduleDescription"/>
   </para>
 </section>
-</xsl:template>
-
-<xsl:template match="doc:importedBy">
-  <listitem>
-    <para>
-      <xsl:value-of select="normalize-space(.)"/>
-    </para>
-  </listitem>
-</xsl:template>
-
-<xsl:template match="xs:import">
-  <xsl:if test="string(@schemaLocation) != string('eml-documentation.xsd')">
-    <listitem>
-      <para>
-        <xsl:value-of select="substring(normalize-space(@schemaLocation), 0, string-length(normalize-space(@schemaLocation))-3)"/>
-      </para>
-    </listitem>
-  </xsl:if>
 </xsl:template>
 
 <xsl:template match="xs:element" mode="indexentry">
