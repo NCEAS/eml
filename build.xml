@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-04-14 01:04:08 $'
-  *  '$Revision: 1.6 $'
+  *      '$Date: 2001-07-11 19:10:03 $'
+  *  '$Revision: 1.7 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -43,6 +43,7 @@
      <style basedir="." destdir="${build.docs}"
             style="eml-documentation.xsl" 
             includes="*.xsd"
+            excludes="eml-documentation.xsd"
             processor="xalan"> 
      </style> 
      <copy todir="${build.docs}" filtering="no">
@@ -73,5 +74,4 @@
            ******************************************
      </echo>
    </target>
-
 </project>

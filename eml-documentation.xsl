@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-03-27 19:41:56 $'
-  *   '$Revision: 1.16 $'
+  *       '$Date: 2001-07-11 19:10:03 $'
+  *   '$Revision: 1.17 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -27,13 +27,15 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                xmlns="eml:documentation" 
+                xmlns:doc="eml:documentation" 
                 version="1.0">
   <xsl:output method="html"/>
   <xsl:template match="/">
     <html>
       <head>
         <title>
-          <xsl:value-of select="xs:schema/xs:annotation/xs:appinfo/moduleName"/> 
+          <xsl:value-of select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/> 
           Documentation
         </title>
         <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -43,12 +45,17 @@
         <div class="title">
           Module Documentation: 
           <xsl:value-of 
-            select="xs:schema/xs:annotation/xs:appinfo/moduleName"/>
+            select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/>
         </div>
         <blockquote>
           <xsl:value-of 
-            select="xs:schema/xs:annotation/xs:appinfo/moduleDescription"/>
+            select="/xs:schema/xs:annotation/xs:appinfo/moduleDescription"/>
         </blockquote>
+
+        <img>
+          <xsl:attribute name="src">../<xsl:value-of 
+            select="/xs:schema/xs:annotation/xs:appinfo/moduleName"/>.png</xsl:attribute>
+        </img>
 
         <table border="0" class="tabledefault">
           <tr>
