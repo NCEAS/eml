@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: bojilova $'
-  *       '$Date: 2001-02-15 17:14:57 $'
-  *   '$Revision: 1.2 $'
+  *     '$Author: cjones $'
+  *       '$Date: 2001-02-15 21:28:57 $'
+  *   '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -49,20 +49,52 @@
 
         <table class="tabledefault" width="100%">
           <tr>
-	    <td>
+	    <td colspan="4">
               <!-- display the documentation for each defined element -->
-              <h3>Element Definitions:</h3>
+              <h2>Element Definitions:</h2>
+              The elements described below are either containers for other
+              elements, or are containers for values provided by the researcher
+              using the module:
 	    </td>
 	  </tr>
-          <xsl:for-each select="//xs:element[xs:annotation]">
+          <xsl:for-each select ="//xs:element[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
-              <xsl:value-of select="./@name" />
-              <xsl:value-of select="./@ref" />
+	      <h3>
+	        <a class="sitelink">
+		  <xsl:attribute name="name">
+		    <xsl:if test="./@name">
+                    <xsl:value-of select="./@name" />
+                    </xsl:if>
+		    <xsl:if test="./@ref">
+                    <xsl:value-of select="./@ref" />
+                    </xsl:if>
+		  </xsl:attribute>
+                  <xsl:value-of select="./@name" />
+                  <xsl:value-of select="./@ref" />
+		</a>
+	      </h3>
+	    </td>
+	    <td class="tablehead">
+	      Required:
+	    </td>
+	    <td class="tablehead">
+	      How many:
+	    </td>
+	    <td class="tablehead">
+	      <h3>
+	        Type: 
+		<a>
+		  <xsl:attribute name="href">
+                    #<xsl:value-of select="./@type" />
+		  </xsl:attribute>
+		  <xsl:value-of select="./@type" />
+		</a>
+	      </h3>
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="tablepanel">
+	    <td colspan="4" class="tablepanel">
               <blockquote>
                 <h4>Tooltip: </h4>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
@@ -79,19 +111,30 @@
 	  </tr>
           </xsl:for-each>
 	  <tr>
-	    <td>
+	    <td colspan="4">
               <!-- display the documentation for each defined complex type -->
-              <h3>Complex Type Definitions:</h3>
+              <h2>Complex Type Definitions:</h2>
 	    </td>
 	  </tr>
           <xsl:for-each select ="//xs:complexType[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
-              <xsl:value-of select="./@name" />
+	      <h3>
+                <xsl:value-of select="./@name" />
+	      </h3>
+	    </td>
+	    <td class="tablehead">
+	      Required:
+	    </td>
+	    <td class="tablehead">
+	      How many:
+	    </td>
+	    <td class="tablehead">
+	      Type: <xsl:value-of select="./@type" />
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="tablepanel">
+	    <td colspan="4" class="tablepanel">
               <blockquote>
                 <h4>Tooltip: </h4>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
@@ -108,19 +151,30 @@
 	  </tr>
           </xsl:for-each>
 	  <tr>
-	    <td>
+	    <td colspan="4">
               <!-- display the documentation for each defined simple type -->
-              <h3>Simple Type Definitions:</h3>
+              <h2>Simple Type Definitions:</h2>
 	    </td>
 	  </tr>
           <xsl:for-each select ="//xs:simpleType[xs:annotation]">
 	  <tr>
 	    <td class="tablehead">
-              <xsl:value-of select="./@name" />
+	      <h3>
+                <xsl:value-of select="./@name" />
+	      </h3>
+	    </td>
+	    <td class="tablehead">
+	      Required:
+	    </td>
+	    <td class="tablehead">
+	      How many:
+	    </td>
+	    <td class="tablehead">
+	      Type: <xsl:value-of select="./@type" />
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="tablepanel">
+	    <td colspan="4" class="tablepanel">
               <blockquote>
                 <h4>Tooltip: </h4>
                 <xsl:value-of select="./xs:annotation/xs:appInfo/tooltip" />
@@ -135,7 +189,7 @@
               </blockquote>
 	    </td>
 	  </tr>
-          </xsl:for-each>
+           </xsl:for-each>
         </table>
         <p class="contact">
           Web Contact:
@@ -145,4 +199,3 @@
     </html>
   </xsl:template>
 </xsl:stylesheet>
-
