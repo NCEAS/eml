@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-06 22:34:44 $'
-  * '$Revision: 1.9 $'
+  *     '$Date: 2003-05-07 17:06:10 $'
+  * '$Revision: 1.10 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -505,6 +505,145 @@ version="1.0">
         </xsl:element>
       </xsl:if>
       
+      
+<!-- start the 'eainfo' branch -->      
+<!-- create only if there is entity data in the eml2 document --> 
+   <!-- initially just consider datatable entities -->
+      <xsl:if test="/eml:eml/dataset/dataTable!=''">
+        <xsl:element name="eainfo">
+          <xsl:for-each select="/eml:eml/dataset/dataTable">
+
+            <xsl:variable name="cc">
+              <xsl:choose>
+                <xsl:when test="./references!=''">
+                  <xsl:variable name="ref_id" select="./references"/>
+                    <!-- current element just references its contents 
+                    There should only be a single node with an id attribute
+                    which matches the value of the references element -->
+                   <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- no references tag, thus use the current node -->
+                  <xsl:copy-of select="."/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+
+            <xsl:element name="detailed">
+              <xsl:element name="enttyp">
+                <xsl:element name="enttypl">
+                  <xsl:value-of select="xalan:nodeset($cc)//entityName"/>
+                </xsl:element>
+                <xsl:choose>
+                  <xsl:when test="xalan:nodeset($cc)//entityDescription!=''">
+                    <xsl:element name="enttypd">
+                      <xsl:value-of select="xalan:nodeset($cc)//entityDescription"/>
+                    </xsl:element>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:element name="enttypd">
+                      <xsl:value-of select="'N/A'"/>
+                    </xsl:element>                  
+                  </xsl:otherwise>
+                </xsl:choose> 
+                <xsl:element name="enttypds">
+                  <xsl:value-of select="'N/A'"/>
+                </xsl:element>
+              </xsl:element>
+              
+              <xsl:for-each select="xalan:nodeset($cc)//attributeList/attribute">
+              
+                <xsl:variable name="cc-attr">
+                    <xsl:choose>
+                      <xsl:when test="./references!=''">
+                          <xsl:variable name="ref_id" select="./references"/>
+                          <xsl:copy-of select="$ids[@id=$ref_id]"/>
+                      </xsl:when>
+                    <xsl:otherwise>
+                      <!-- no references tag, thus use the current node -->
+                      <xsl:copy-of select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+                
+                <xsl:element name="attr">
+                  <xsl:element name="attrlabl">
+                    <xsl:value-of select="concat(xalan:nodeset($cc-attr)//attributeName,':::',xalan:nodeset($cc-attr)//attributeLabel)"/>
+                  </xsl:element>
+                  <xsl:element name="attrdef">
+                    <xsl:value-of select="xalan:nodeset($cc-attr)//attributeDefinition"/>
+                  </xsl:element>
+                  <xsl:element name="attrdefs">
+                    <xsl:value-of select="'N/A'"/>
+                  </xsl:element>
+                  <xsl:element name="attrdomv">
+                    <xsl:choose>
+                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//enumeratedDomain/codeDefinition!=''">
+                        <xsl:for-each select="xalan:nodeset($cc-attr)//measurementScale//enumeratedDomain/codeDefinition">
+                          <xsl:element name="edom">
+                            <xsl:element name="edomv">
+                              <xsl:value-of select="./code"/>
+                            </xsl:element>
+                            <xsl:element name="edomvd">
+                              <xsl:value-of select="./definition"/>                            
+                            </xsl:element>
+                            <xsl:element name="edomvds">
+                              <xsl:choose>
+                                <xsl:when test="./source!=''">
+                                  <xsl:value-of select="./source"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:value-of select="N/A"/>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:for-each>
+                      </xsl:when>
+                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//textDomain!=''">
+                        <xsl:element name="udom">
+                          <xsl:value-of select="'free text'"/>
+                        </xsl:element>
+                      </xsl:when>
+                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain!=''">
+                        <xsl:element name="rdom">
+                          <xsl:element name="rdommin">
+                            <xsl:choose>
+                              <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/minimum!=''">
+                                <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/minimum"/>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="N/A"/>
+                              </xsl:otherwise>
+                            </xsl:choose>    
+                          </xsl:element>
+                          <xsl:element name="rdommax">
+                            <xsl:choose>
+                              <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/maximum!=''">
+                                <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/maximum"/>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="N/A"/>
+                              </xsl:otherwise>
+                            </xsl:choose>    
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:when>
+                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale/datetime!=''">
+                        <xsl:element name="udom">
+                          <xsl:value-of select="'free text'"/>
+                        </xsl:element>
+                      </xsl:when>
+                    </xsl:choose>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:for-each> <!--end for-each attribute-->
+              
+            </xsl:element>
+          </xsl:for-each>
+        </xsl:element>  
+      </xsl:if>
+
 <!-- start of the 'distinfo' branch -->
 <!-- This must be created if entities exist in eml2 in order to capture the
       eml-physical metadata -->      
@@ -843,19 +982,52 @@ version="1.0">
                         </xsl:choose>
                       </xsl:element>
                       <xsl:element name="reccap">
-                      
+                        <xsl:choose>
+                          <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume!=''">
+                            <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="'N/A'"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </xsl:element>
                       <xsl:element name="recfmt">
                         <xsl:element name="recden">
-                        
+                          <xsl:choose>
+                            <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity!=''">
+                              <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </xsl:element>
                         <xsl:element name="recdenu">
-                        
+                          <xsl:choose>
+                            <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits!=''">
+                              <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="'N/A'"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </xsl:element>
                       </xsl:element>
-                      <xsl:element name="compat">
-                      
+                      <xsl:element name="recfmt">
+                        <xsl:choose>
+                          <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat!=''">
+                            <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="'N/A'"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </xsl:element>
+                      <xsl:if test="xalan:nodeset($cc-phys)//distribution/offline/mediumNote!=''">
+                        <xsl:element name="compat">
+                          <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumNote"/>
+                        </xsl:element>
+                      </xsl:if>
                     </xsl:element>
                   </xsl:otherwise>
                 </xsl:choose>
@@ -866,144 +1038,7 @@ version="1.0">
         </xsl:element><!-- end distrib --> 
       </xsl:element><!-- end distinfo -->
     </xsl:if>
-      
-<!-- start the 'eainfo' branch -->      
-<!-- create only if there is entity data in the eml2 document --> 
-   <!-- initially just consider datatable entities -->
-      <xsl:if test="/eml:eml/dataset/dataTable!=''">
-        <xsl:element name="eainfo">
-          <xsl:for-each select="/eml:eml/dataset/dataTable">
 
-            <xsl:variable name="cc">
-              <xsl:choose>
-                <xsl:when test="./references!=''">
-                  <xsl:variable name="ref_id" select="./references"/>
-                    <!-- current element just references its contents 
-                    There should only be a single node with an id attribute
-                    which matches the value of the references element -->
-                   <xsl:copy-of select="$ids[@id=$ref_id]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- no references tag, thus use the current node -->
-                  <xsl:copy-of select="."/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:variable>
-
-            <xsl:element name="detailed">
-              <xsl:element name="enttyp">
-                <xsl:element name="enttypl">
-                  <xsl:value-of select="xalan:nodeset($cc)//entityName"/>
-                </xsl:element>
-                <xsl:choose>
-                  <xsl:when test="xalan:nodeset($cc)//entityDescription!=''">
-                    <xsl:element name="enttypd">
-                      <xsl:value-of select="xalan:nodeset($cc)//entityDescription"/>
-                    </xsl:element>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:element name="enttypd">
-                      <xsl:value-of select="'N/A'"/>
-                    </xsl:element>                  
-                  </xsl:otherwise>
-                </xsl:choose> 
-                <xsl:element name="enttypds">
-                  <xsl:value-of select="'N/A'"/>
-                </xsl:element>
-              </xsl:element>
-              
-              <xsl:for-each select="xalan:nodeset($cc)//attributeList/attribute">
-              
-                <xsl:variable name="cc-attr">
-                    <xsl:choose>
-                      <xsl:when test="./references!=''">
-                          <xsl:variable name="ref_id" select="./references"/>
-                          <xsl:copy-of select="$ids[@id=$ref_id]"/>
-                      </xsl:when>
-                    <xsl:otherwise>
-                      <!-- no references tag, thus use the current node -->
-                      <xsl:copy-of select="."/>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:variable>
-                
-                <xsl:element name="attr">
-                  <xsl:element name="attrlabl">
-                    <xsl:value-of select="concat(xalan:nodeset($cc-attr)//attributeName,':::',xalan:nodeset($cc-attr)//attributeLabel)"/>
-                  </xsl:element>
-                  <xsl:element name="attrdef">
-                    <xsl:value-of select="xalan:nodeset($cc-attr)//attributeDefinition"/>
-                  </xsl:element>
-                  <xsl:element name="attrdefs">
-                    <xsl:value-of select="'N/A'"/>
-                  </xsl:element>
-                  <xsl:element name="attrdomv">
-                    <xsl:choose>
-                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//enumeratedDomain/codeDefinition!=''">
-                        <xsl:for-each select="xalan:nodeset($cc-attr)//measurementScale//enumeratedDomain/codeDefinition">
-                          <xsl:element name="edom">
-                            <xsl:element name="edomv">
-                              <xsl:value-of select="./code"/>
-                            </xsl:element>
-                            <xsl:element name="edomvd">
-                              <xsl:value-of select="./definition"/>                            
-                            </xsl:element>
-                            <xsl:element name="edomvds">
-                              <xsl:choose>
-                                <xsl:when test="./source!=''">
-                                  <xsl:value-of select="./source"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                  <xsl:value-of select="N/A"/>
-                                </xsl:otherwise>
-                              </xsl:choose>
-                            </xsl:element>
-                          </xsl:element>
-                        </xsl:for-each>
-                      </xsl:when>
-                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//textDomain!=''">
-                        <xsl:element name="udom">
-                          <xsl:value-of select="'free text'"/>
-                        </xsl:element>
-                      </xsl:when>
-                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain!=''">
-                        <xsl:element name="rdom">
-                          <xsl:element name="rdommin">
-                            <xsl:choose>
-                              <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/minimum!=''">
-                                <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/minimum"/>
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="N/A"/>
-                              </xsl:otherwise>
-                            </xsl:choose>    
-                          </xsl:element>
-                          <xsl:element name="rdommax">
-                            <xsl:choose>
-                              <xsl:when test="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/maximum!=''">
-                                <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale//numericDomain/bounds/maximum"/>
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="N/A"/>
-                              </xsl:otherwise>
-                            </xsl:choose>    
-                          </xsl:element>
-                        </xsl:element>
-                      </xsl:when>
-                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale/datetime!=''">
-                        <xsl:element name="udom">
-                          <xsl:value-of select="'free text'"/>
-                        </xsl:element>
-                      </xsl:when>
-                    </xsl:choose>
-                  </xsl:element>
-                </xsl:element>
-              </xsl:for-each> <!--end for-each attribute-->
-              
-            </xsl:element>
-          </xsl:for-each>
-        </xsl:element>  
-      </xsl:if>
       
 <!-- start the 'metainfo' branch -->      
       <xsl:element name="metainfo">
