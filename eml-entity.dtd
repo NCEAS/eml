@@ -5,8 +5,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2001-02-16 17:03:20 $'
-      '$Revision: 1.3 $'
+          '$Date: 2001-03-24 02:26:29 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,7 +33,9 @@
 
 <!-- Entity element is a descriptor of an entity in the dataset
      identified by its name. -->
-<!ELEMENT entity (entityName, entitySize?, format, orientation?, headerLines?,
+<!ELEMENT entity (entityName, entitySize?, entityFormat, compressionMethod?,
+                  endocingMethod?, recordDelimeter?,
+                  quoteCharacter?, orientation?, numHeaderLines?,
                   caseSensitive?, geographicCoverage*, temporalCoverage*,
                   authentication*, dataProblem*)>
 
@@ -41,28 +43,29 @@
 <!ELEMENT entityName (#PCDATA) >
 
 <!-- Entity size -->
-<!ELEMENT entitySize (amount, unit) >
-<!ELEMENT amount (#PCDATA) >
-<!ELEMENT unit (#PCDATA) >
+<!ELEMENT entitySize (#PCDATA) >
+<!ATTLIST entitySize unit CDATA "bytes">
 
-<!-- Entity type and compression schemes employed -->
-<!ELEMENT format (compressed|encoded|baseEntityType)>
+<!-- Entity format (e.g., ASCII, UNICODE, other character encodings,
+     name of various binary formats [TIFF]) -->
+<!ELEMENT entityFormat (#PCDATA)>
 <!-- Method of compression -->
-<!ELEMENT compressed (#PCDATA)>
+<!ELEMENT compressionMethod (#PCDATA)>
 <!-- Method of encoding -->
-<!ELEMENT encoded (#PCDATA)>
-<!-- Base entity type: ASCII or binary -->
-<!ELEMENT baseEntityType (ascii|binary)>
-<!ELEMENT ascii (recordDelimiter)>
+<!ELEMENT encodingMethod (#PCDATA)>
+<!-- The character used to delimit records in the entity -->
 <!ELEMENT recordDelimiter (#PCDATA)>
-<!ELEMENT binary EMPTY>
+<!-- The character used to delimit quote data values so that the
+     filed delimeters can be used in the data value, typically
+     " or ' -->
+<!ELEMENT quoteCharacter (#PCDATA)>
 
 <!-- Is entity column major or row major? -->
 <!ELEMENT orientation EMPTY >
 <!ATTLIST orientation columnorrow (columnmajor|rowmajor) "columnmajor">
 
 <!-- Number of header lines or information that prepares data -->
-<!ELEMENT headerLines (#PCDATA) >
+<!ELEMENT numHeaderLines (#PCDATA) >
 
 <!-- Case sensitivity of field -->
 <!ELEMENT caseSensitive EMPTY >
@@ -71,9 +74,9 @@
 <!-- Geographic coverage -->
 <!ELEMENT geographicCoverage (paragraph*, coordinates*)>
 <!-- Cartesian Coordinates -->
-<!ELEMENT coordinates (lattitude, longitude) >
-<!ELEMENT lattitude (#PCDATA)>
-<!ATTLIST lattitude direction (north|south) #REQUIRED>
+<!ELEMENT coordinates (latitude, longitude) >
+<!ELEMENT latitude (#PCDATA)>
+<!ATTLIST latitude direction (north|south) #REQUIRED>
 <!ELEMENT longitude (#PCDATA)>
 <!ATTLIST longitude direction (east|west) #REQUIRED>
 
@@ -82,7 +85,8 @@
 <!-- Date data collection commenced -->
 <!ELEMENT startDate (dateTime)>
 <!-- Date and time as designated in ISO 8601 -->
-<!ELEMENT dateTime (year?, month?, day?, hour?, minute?, second?, second_fraction?, time_zone_designator?)>
+<!ELEMENT dateTime (year?, month?, day?, hour?, minute?, second?, 
+                    second_fraction?, time_zone_designator?)>
 <!-- Year in YYYY format -->
 <!ELEMENT year (#PCDATA)>
 <!-- Month in MM format -->

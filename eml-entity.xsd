@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-03-21 16:27:49 $'
-      '$Revision: 1.8 $'
+        '$Author: jones $'
+          '$Date: 2001-03-24 02:26:29 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -113,170 +113,115 @@
   <xs:element name="entity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="entityName" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>        
-        <xs:element ref="entitySize"
-                    minOccurs="0" maxOccurs="1"/>        
-        <xs:element ref="format"
-                    minOccurs="1" maxOccurs="1"/>        
-        <xs:element ref="orientation"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element name="headerLines" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>        
-        <xs:element ref="caseSensitive"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="geographicCoverage"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-        <xs:element ref="temporalCoverage"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-        <xs:element ref="authentication" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-        <xs:element ref="dataProblem"
-                    minOccurs="0" maxOccurs="unbounded"/>        
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="entityName" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity name
-        </tooltip>
-        <summary>
-          Entity name specifier
-        </summary>
-        <description>
-          The name identifies the entity in the dataset: file name, 
-          name of database table, etc.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The entityName was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:element>
-
-  <xs:element name="entitySize"
-                    minOccurs="0" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity size
-        </tooltip>
-        <summary>
-          Describes the physical size of the entity.
-        </summary>
-        <description>
-          This element contains information of the physical size 
-          of the entity within amount and unit descriptors.
-        </description>
-        <example>
-          <![CDATA[<amount>13</amount><unit>KB</unit>]]>
-        </example>
-        <lineage>
-          The entitySize was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="amount" type="xs:strint"
+        <xs:element name="entityName" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-                    Entity size amount
+                Entity name
               </tooltip>
               <summary>
-                  Amount of physical size of entity
+                Entity name specifier
               </summary>
               <description>
-                  This element gives the amount of physical size 
-                of the entity.
+                The name identifies the entity in the dataset: file name, 
+                name of database table, etc.
               </description>
               <example>
-                <![CDATA[<amount>13</amount><unit>KB</unit>]]>
               </example>
               <lineage>
-                The amount was introduced into EML 1.4.
+                The entityName was introduced into EML 1.4.
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>        
-        <xs:element name="unit" type="xs:strint"
-                    minOccurs="1" maxOccurs="1">
+        </xs:element>
+      
+        <xs:element name="entitySize" type="xs:string"
+                          minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
+                Entity size
+              </tooltip>
+              <summary>
+                Describes the physical size of the entity.
+              </summary>
+              <description>
+                This element contains information of the physical size 
+                of the entity, typically in bytes.
+              </description>
+              <example>
+                <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
+              </example>
+              <lineage>
+                The entitySize was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="unit" use="required" value="bytes">
+              <xs:annotation>
+                <xs:appInfo>
+                  <tooltip>
                     Unit of measurement
-              </tooltip>
-              <summary>
-                  Unit of measurement of the amount of entity size
-              </summary>
-              <description>
-                  This element gives the unit of measurement for the 
-                amount of physical size of entity.
-              </description>
-              <example>
-                <![CDATA[<amount>13</amount><unit>KB</unit>]]>
-              </example>
-              <lineage>
-                The unit was introduced into EML 1.4.
-              </lineage>
-            </xs:appInfo>
-          </xs:annotation>
+                  </tooltip>
+                  <summary>
+                    Unit of measurement for the entity size, typically bytes
+                  </summary>
+                  <description>
+                    This element gives the unit of measurement for the 
+                    size of the entity, and is typically bytes.
+                  </description>
+                  <example>
+                    <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
+                  </example>
+                  <lineage>
+                    The unit was introduced into EML 1.4.
+                  </lineage>
+                </xs:appInfo>
+              </xs:annotation>
+            </xs:attribute>        
+          </xs:complexType>
         </xs:element>        
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-        
-  <xs:element name="format"
-                    minOccurs="1" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity's format
-        </tooltip>
-        <summary>
-          Contains information of the entity's format.
-        </summary>
-        <description>
-          This element contains information of the entity's format.
-          Entity's format can be specified by child element as
-          compressed, encoded, ASCII or binary.
-        </description>
-        <example>
-          compressed, encoded, ASCII or binary
 
-          example 1:
-          <![CDATA[<format><compressed/></format>]]>
-          example 2:
-          <![CDATA[<format><encoded/></format>]]>
-          example 3:
-          <![CDATA[<format><baseEntityType><binary/></baseEntityType></format>]]>
-        </example>
-        <lineage>
-          The format element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:choice minOccurs="1" maxOccurs="1">
-        <xs:element name="compressed" type="xs:strint">
+        <xs:element name="entityFormat" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-                    Entity's compressed format type
+                Entity format
               </tooltip>
               <summary>
-                  Entity's compressed format type descriptor
+                Contains the name of the format for this entity.
               </summary>
               <description>
-                  This element describes the entity's compressed format type.
+                This element contains the name of the entity's format.
+                The entity's format is typically ASCII, Unicode, or some
+                well-known binary format.
+              </description>
+              <example>
+                <![CDATA[<entityFormat>ASCII</entityFormat>]]>
+              </example>
+              <lineage>
+                The format element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>   
+      
+        <xs:element name="compressionMethod" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                    Entity's compression method
+              </tooltip>
+              <summary>
+                  Name ofthe entity's compression method
+              </summary>
+              <description>
+                  This element describes any compression methods used to
+                  compress the entity, such as zip, compress, etc.
               </description>
               <example>
               </example>
@@ -286,17 +231,20 @@
             </xs:appInfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="encoded" type="xs:strint">
+    
+        <xs:element name="encodingMethod" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-                    Entity's encoded format type
+                    Encoding Method
               </tooltip>
               <summary>
-                  Entity's encoded format type descriptor
+                  Method used for encoding the entity
               </summary>
               <description>
-                  This element describes the entity's encoded format type.
+                  This element describes the entity's encoded method, such as
+                  MIME base64 encoding or binhex encoding.
               </description>
               <example>
               </example>
@@ -306,463 +254,503 @@
             </xs:appInfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="baseEntityType" />        
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="baseEntityType">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity's base format type
-        </tooltip>
-        <summary>
-          Contains information of the entity's base format type.
-        </summary>
-        <description>
-          This element contains information of the entity's base
-          format type: ASCII or binary.
-        </description>
-        <example>
-          ASCII or binary
-        </example>
-        <lineage>
-          The baseEntityType element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:choice minOccurs="1" maxOccurs="1">
-        <xs:element ref="ascii" />        
-        <xs:element name="binary" nullable="true">
+    
+        <xs:element name="recordDelimiter" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-                    Entity's binary type
+                  Entity's record delimiter
               </tooltip>
               <summary>
-                  Specification of the entity's binary format type.
+                  Character used to delimit records in the entity.
               </summary>
               <description>
-                  This element assures that the base file type of the
-                entity is binary.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The binary element was introduced into EML 1.4.
-              </lineage>
-            </xs:appInfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="ascii">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity's ASCII type
-        </tooltip>
-        <summary>
-          Specification of the entity's ASCII format type.
-        </summary>
-        <description>
-          This element assures that the base file type of the
-          entity is ASCII and specifies the record delimiter 
-          in the file in this case.
-        </description>
-        <example>
-          <![CDATA[<format>
-                     <baseEntityType>
-                       <ascii>
-                         <recordDelimiter>\n\r</recordDelimiter>
-                       </ascii>
-                     </baseEntityType>
-                   </format>]]>
-        </example>
-        <lineage>
-          The ascii element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:element name="recordDelimiter" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Entity's record delimiter
-            </tooltip>
-            <summary>
-                Specification of entity's record delimiter.
-            </summary>
-            <description>
                 This element specifies entity's record delimiter 
-              when the base file type is ASCII.
-            </description>
-            <example>
-               <![CDATA[<format>
-                     <baseEntityType>
-                       <ascii>
-                         <recordDelimiter>\n\r</recordDelimiter>
-                       </ascii>
-                     </baseEntityType>
-                   </format>]]>
-            </example>
-            <lineage>
-              The recordDelimiter element was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>        
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="orientation" nullable="true"
-                    minOccurs="0" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Entity's record orientation
-        </tooltip>
-        <summary>
-          Specification of the entity's record orientation.
-        </summary>
-        <description>
-          This element contains specification of the entity's
-          record orientation by element's attribute "columnorrow".
-        </description>
-        <example>
-          The valid attribute values are "columnmajor" or "rowmajor".
-          If the attribute is not specified, "columnmajor" is used.
-        </example>
-        <lineage>
-          The orientation element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:attribute name="columnorrow" use="default" value="columnmajor">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Attribute of orientation element
-            </tooltip>
-            <summary>
-                Specification of the entity's record orientation.
-            </summary>
-            <description>
-                This attribute specifies the entity's
-              record orientation.
-            </description>
-            <example>
-              The valid attribute values are "columnmajor" or "rowmajor".
-              If the attribute is not specified, "columnmajor" is used.
-            </example>
-            <lineage>
-              The columnorrow attribute was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:enumeration value="columnmajor" /> 
-          <xs:enumeration value="rowmajor" />         
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="headerLines" type="xs:string"
-                    minOccurs="0" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Header lines
-        </tooltip>
-        <summary>
-          Header lines in the entity
-        </summary>
-        <description>
-          Number of header lines or information that prepares data.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The headerLines element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:element>
-
-  <xs:element name="caseSensitive" nullable="true"
-                    minOccurs="0" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Data case sensitiveness
-        </tooltip>
-        <summary>
-          Specification of text case sensitiveness in the entity.
-        </summary>
-        <description>
-          This element contains specification of text
-          case sensitiveness of the data in the entity. It is 
-          specified from element's attribute "yesorno".
-        </description>
-        <example>
-          The valid attribute values are "yes" or "no".
-          If the attribute is not specified, "yes" is used.
-        </example>
-        <lineage>
-          The caseSensitive element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:attribute name="yesorno" use="default" value="yes">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Attribute of caseSensitive element
-            </tooltip>
-            <summary>
-                Specification of text case sensitiveness in the entity.
-            </summary>
-            <description>
-                This attribute specifies text case sensitiveness of entity's
-              data.
-            </description>
-            <example>
-              The valid attribute values are "yes" or "no".
-              If the attribute is not specified, "yes" is used.
-            </example>
-            <lineage>
-              The yesorno attribute was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:enumeration value="yes" /> 
-          <xs:enumeration value="no" />         
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="geographicCoverage"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Geographic coverage
-        </tooltip>
-        <summary>
-          Description of the geographic area which data are collected
-          in the entity.
-        </summary>
-        <description>
-          This element describes the geographic area which data are 
-          collected in the entity: descriptive paragraph of text or
-          Cartesian coordinates of the area.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The geographicCoverage element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="paragraph" type="xs:strint"
-                    minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appInfo>
-              <tooltip>
-                  Paragraph of text
-              </tooltip>
-              <summary>
-                  Paragraph of text describing the geographic area
-                which data are collected in the entity.
-              </summary>
-              <description>
-                  This element describes the geographic area which data are 
-                collected in the entity.
+                when the base file type is ASCII.  The record delimiter
+                is usually a newline (\n) on UNIX or a carriage return (\r)
+                on MacOS or both (\r\n) on Windows/DOS.
               </description>
               <example>
+                 <![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]>
               </example>
               <lineage>
-                The paragraph element was introduced into EML 1.4.
+                The recordDelimiter element was introduced into EML 1.4.
               </lineage>
             </xs:appInfo>
           </xs:annotation>
         </xs:element>        
-        <xs:element ref="coordinates"
-                    minOccurs="0" maxOccurs="unbounded"/>        
+
+        <xs:element name="quoteCharacter" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                  Quote character
+              </tooltip>
+              <summary>
+                  Character used to quote values for delimeter escaping
+              </summary>
+              <description>
+                This element specifies a character to be used in the entity
+                for quoting values so that field delimeters can be used within
+                the value.  This basically allows delimeter "escaping".  The
+                quoteChacter is typically a " or '.
+              </description>
+              <example>
+                 <![CDATA[<quoteCharacter>"</quoteCharacter>]]>
+              </example>
+              <lineage>
+                The quoteCharacter element was taken from the NBII standard.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>        
+    
+        <xs:element name="orientation" nullable="true"
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Entity's record orientation
+              </tooltip>
+              <summary>
+                Specification of the entity's record orientation.
+              </summary>
+              <description>
+                This element contains specification of the entity's
+                record orientation by element's attribute "columnorrow".
+              </description>
+              <example>
+                The valid attribute values are "columnmajor" or "rowmajor".
+                If the attribute is not specified, "columnmajor" is used.
+              </example>
+              <lineage>
+                The orientation element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="columnorrow" use="default" value="columnmajor">
+              <xs:annotation>
+                <xs:appInfo>
+                  <tooltip>
+                      Attribute of orientation element
+                  </tooltip>
+                  <summary>
+                      Specification of the entity's record orientation.
+                  </summary>
+                  <description>
+                      This attribute specifies the entity's
+                    record orientation.
+                  </description>
+                  <example>
+                    The valid attribute values are "columnmajor" or "rowmajor".
+                    If the attribute is not specified, "columnmajor" is used.
+                  </example>
+                  <lineage>
+                    The columnorrow attribute was introduced into EML 1.4.
+                  </lineage>
+                </xs:appInfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:enumeration value="columnmajor" /> 
+                <xs:enumeration value="rowmajor" />         
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="numHeaderLines" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Header lines
+              </tooltip>
+              <summary>
+                Header lines in the entity
+              </summary>
+              <description>
+                Number of header lines or information that prepares data.
+              </description>
+              <example>
+                 <![CDATA[<numHeaderLines>3</numHeaderLines>]]>
+              </example>
+              <lineage>
+                The numHeaderLines element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+      
+        <xs:element name="caseSensitive" nullable="true"
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Data case sensitiveness
+              </tooltip>
+              <summary>
+                Specification of text case sensitiveness in the entity.
+              </summary>
+              <description>
+                This element contains specification of text
+                case sensitiveness of the data in the entity. It is 
+                specified from element's attribute "yesorno".
+              </description>
+              <example>
+                The valid attribute values are "yes" or "no".
+                If the attribute is not specified, "yes" is used.
+              </example>
+              <lineage>
+                The caseSensitive element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="yesorno" use="default" value="yes">
+              <xs:annotation>
+                <xs:appInfo>
+                  <tooltip>
+                      Attribute of caseSensitive element
+                  </tooltip>
+                  <summary>
+                      Specification of text case sensitiveness in the entity.
+                  </summary>
+                  <description>
+                      This attribute specifies text case sensitiveness of entity's
+                    data.
+                  </description>
+                  <example>
+                    The valid attribute values are "yes" or "no".
+                    If the attribute is not specified, "yes" is used.
+                  </example>
+                  <lineage>
+                    The yesorno attribute was introduced into EML 1.4.
+                  </lineage>
+                </xs:appInfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:enumeration value="yes" /> 
+                <xs:enumeration value="no" />         
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="geographicCoverage"
+                    minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Geographic coverage
+              </tooltip>
+              <summary>
+                Description of the geographic area which data are collected
+                in the entity.
+              </summary>
+              <description>
+                This element describes the geographic area which data are 
+                collected in the entity: descriptive paragraph of text or
+                Cartesian coordinates of the area.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The geographicCoverage element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string"
+                          minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                        Paragraph of text
+                    </tooltip>
+                    <summary>
+                        Paragraph of text describing the geographic area
+                      which data are collected in the entity.
+                    </summary>
+                    <description>
+                        This element describes the geographic area which data are 
+                      collected in the entity.
+                    </description>
+                    <example>
+                    </example>
+                    <lineage>
+                      The paragraph element was introduced into EML 1.4.
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>        
+      
+              <xs:element name="coordinates"
+                          minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                      Cartesian coordinates
+                    </tooltip>
+                    <summary>
+                      Cartesian coordinates for the geographic area.
+                    </summary>
+                    <description>
+                      This element specifies the Cartesian coordinates: latitude
+                      and longitude of the geographic area covered by the 
+                      entity's data. 
+                    </description>
+                    <example>
+                    </example>
+                    <lineage>
+                      The coordinates element was introduced into EML 1.4.
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+
+                    <xs:element name="latitude" type="xs:string"
+                                      minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            latitude coordinates
+                          </tooltip>
+                          <summary>
+                            latitude coordinates for the geographic area.
+                          </summary>
+                          <description>
+                            This element specifies the latitude coordinates
+                            of the geographic area covered by the entity's data. 
+                            The element's attribute "direction" should specify
+                            the coordinate's direction to "north" or "south".
+                          </description>
+                          <example>
+                          </example>
+                          <lineage>
+                            The latitude element was introduced into EML 1.4.
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="direction" use="required">
+                          <xs:annotation>
+                            <xs:appInfo>
+                              <tooltip>
+                                  Attribute of latitude element
+                              </tooltip>
+                              <summary>
+                                  Specification of latitude direction.
+                              </summary>
+                              <description>
+                                  This attribute specifies latitude direction of 
+                                the collected data. The attribute assertion is required.
+                              </description>
+                              <example>
+                                The valid attribute values are "north" or "south".
+                              </example>
+                              <lineage>
+                                This attribute was introduced into EML 1.4.
+                              </lineage>
+                            </xs:appInfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:enumeration value="north" /> 
+                            <xs:enumeration value="south" />         
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+      
+                    <xs:element name="longitude" type="xs:string"
+                                      minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appInfo>
+                          <tooltip>
+                            Longitude coordinates
+                          </tooltip>
+                          <summary>
+                            Longitude coordinates for the geographic area.
+                          </summary>
+                          <description>
+                            This element specifies the longitude coordinates
+                            of the geographic area covered by the entity's data. 
+                            The element's attribute "direction" should specify
+                            the coordinate's direction to "east" or "west".
+                          </description>
+                          <example>
+                          </example>
+                          <lineage>
+                            The longitude element was introduced into EML 1.4.
+                          </lineage>
+                        </xs:appInfo>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="direction" use="required">
+                          <xs:annotation>
+                            <xs:appInfo>
+                              <tooltip>
+                                  Attribute of longitude element
+                              </tooltip>
+                              <summary>
+                                  Specification of longitude direction.
+                              </summary>
+                              <description>
+                                  This attribute specifies longitude direction of 
+                                the collected data. The attribute assertion is required.
+                              </description>
+                              <example>
+                                The valid attribute values are "east" or "west".
+                              </example>
+                              <lineage>
+                                This attribute was introduced into EML 1.4.
+                              </lineage>
+                            </xs:appInfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:enumeration value="east" /> 
+                            <xs:enumeration value="west" />         
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>        
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>      
+                
+        <xs:element name="temporalCoverage" type="TemporalCoverage"
+                          minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                  Temporal coverage
+              </tooltip>
+              <summary>
+                  Temporal coverage descriptor
+              </summary>
+              <description>
+                  This element specifies temporal coverage of the data
+                collected in the entity by specifing start and stop date.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The temporalCoverage was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>    
+               
+        <xs:element name="authentication" type="xs:string"
+                          minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                  Authentication
+              </tooltip>
+              <summary>
+                  Authentication descriptor
+              </summary>
+              <description>
+                  This element describes authentication procedures or 
+                  techniques, typically by giving a checksum method (e.g., MD5)
+                  and checksum value for the entity.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The authentication was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+      
+        <xs:element name="dataProblem"
+                          minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+                Data problem
+              </tooltip>
+              <summary>
+                Description of any data problems in the entity.
+              </summary>
+              <description>
+                This element describes any data problems in the entity:
+                data anomalies or missing data.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The dataProblem element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string"
+                          minOccurs="1" maxOccurs="unbounded" >
+                <xs:annotation>
+                  <xs:appInfo>
+                    <tooltip>
+                        Paragraph of text
+                    </tooltip>
+                    <summary>
+                        Paragraph of text describing any data problems
+                      in the entity.
+                    </summary>
+                    <description>
+                        This element describes any data problems
+                      in the entity: data anomalies or missing data.
+                    </description>
+                    <example>
+                    </example>
+                    <lineage>
+                      The paragraph element was introduced into EML 1.4.
+                    </lineage>
+                  </xs:appInfo>
+                </xs:annotation>
+              </xs:element>        
+            </xs:sequence>
+            <xs:attribute name="problemType" use="required" >
+              <xs:annotation>
+                <xs:appInfo>
+                  <tooltip>
+                      Attribute of dataProblem element
+                  </tooltip>
+                  <summary>
+                      Specification of data problem type.
+                  </summary>
+                  <description>
+                      This attribute specifies the type of data problem.
+                    The attribute assertion is required.
+                  </description>
+                  <example>
+                    The valid attribute values are "missing", "anomaly"
+                    or "error".
+                  </example>
+                  <lineage>
+                    This attribute was introduced into EML 1.4.
+                  </lineage>
+                </xs:appInfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:enumeration value="missing" /> 
+                <xs:enumeration value="anomaly" />         
+                <xs:enumeration value="error" />         
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
-  </xs:element>
-        
-  <xs:element name="coordinates"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Cartesian coordinates
-        </tooltip>
-        <summary>
-          Cartesian coordinates for the geographic area.
-        </summary>
-        <description>
-          This element specifies the Cartesian coordinates: lattitude
-          and longitude of the geographic area covered by the 
-          entity's data. 
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The coordinates element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="lattitude" minOccurs="1" maxOccurs="1"/>        
-        <xs:element ref="longitude" minOccurs="1" maxOccurs="1"/>        
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="lattitude" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Lattitude coordinates
-        </tooltip>
-        <summary>
-          Lattitude coordinates for the geographic area.
-        </summary>
-        <description>
-          This element specifies the lattitude coordinates
-          of the geographic area covered by the entity's data. 
-          The element's attribute "direction" should specify
-          the coordinate's direction to "north" or "south".
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The lattitude element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:attribute name="direction" use="required">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Attribute of lattitude element
-            </tooltip>
-            <summary>
-                Specification of lattitude direction.
-            </summary>
-            <description>
-                This attribute specifies lattitude direction of 
-              the collected data. The attribute assertion is required.
-            </description>
-            <example>
-              The valid attribute values are "north" or "south".
-            </example>
-            <lineage>
-              This attribute was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:enumeration value="north" /> 
-          <xs:enumeration value="south" />         
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="longitude" type="xs:string"
-                    minOccurs="1" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Longitude coordinates
-        </tooltip>
-        <summary>
-          Longitude coordinates for the geographic area.
-        </summary>
-        <description>
-          This element specifies the longitude coordinates
-          of the geographic area covered by the entity's data. 
-          The element's attribute "direction" should specify
-          the coordinate's direction to "east" or "west".
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The longitude element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:attribute name="direction" use="required">
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Attribute of longitude element
-            </tooltip>
-            <summary>
-                Specification of longitude direction.
-            </summary>
-            <description>
-                This attribute specifies longitude direction of 
-              the collected data. The attribute assertion is required.
-            </description>
-            <example>
-              The valid attribute values are "east" or "west".
-            </example>
-            <lineage>
-              This attribute was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:enumeration value="east" /> 
-          <xs:enumeration value="west" />         
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="temporalCoverage" type="TemporalCoverage"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-            Temporal coverage
-        </tooltip>
-        <summary>
-            Temporal coverage descriptor
-        </summary>
-        <description>
-            This element specifies temporal coverage of the data
-          collected in the entity by specifing start and stop date.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The temporalCoverage was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
   </xs:element>
 
   <xs:complexType name="TemporalCoverage">
@@ -787,70 +775,65 @@
       </xs:appInfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element ref="startDate"
-                  minOccurs="1" maxOccurs="1"/>        
-      <xs:element ref="stopDate"
-                  minOccurs="0" maxOccurs="1"/>        
+      <xs:element name="startDate"
+                      minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Start date
+            </tooltip>
+            <summary>
+              Start date of the temporal coverage.
+            </summary>
+            <description>
+              This element specifies the start date of the temporal
+              coverage.
+            </description>
+            <example>
+            </example>
+            <lineage>
+              The startDate element was introduced into EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="dateTime"
+                        minOccurs="1" maxOccurs="1"/>        
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>        
+ 
+      <xs:element name="stopDate"
+                      minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Stop date
+            </tooltip>
+            <summary>
+              Stop date of the temporal coverage.
+            </summary>
+            <description>
+              This element specifies the stop date of the temporal
+              coverage.
+            </description>
+            <example>
+            </example>
+            <lineage>
+              The stopDate element was introduced into EML 1.4.
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="dateTime"
+                        minOccurs="1" maxOccurs="1"/>        
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>       
     </xs:sequence>
   </xs:complexType>
-
-  <xs:element name="startDate"
-                  minOccurs="1" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Start date
-        </tooltip>
-        <summary>
-          Start date of the temporal coverage.
-        </summary>
-        <description>
-          This element specifies the start date of the temporal
-          coverage.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The startDate element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="dateTime"
-                    minOccurs="1" maxOccurs="1"/>        
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="stopDate"
-                  minOccurs="0" maxOccurs="1">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Stop date
-        </tooltip>
-        <summary>
-          Stop date of the temporal coverage.
-        </summary>
-        <description>
-          This element specifies the stop date of the temporal
-          coverage.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The stopDate element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="dateTime"
-                    minOccurs="1" maxOccurs="1"/>        
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 
   <xs:element name="dateTime" type="DateTime"
                   minOccurs="1" maxOccurs="1">
@@ -918,105 +901,5 @@
                   minOccurs="0" maxOccurs="1"/>        
     </xs:sequence>
   </xs:complexType>
-
-  <xs:element name="authentication" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-            Authentication
-        </tooltip>
-        <summary>
-            Authentication descriptor
-        </summary>
-        <description>
-            This element describes authentication procedures or techniques.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The authentication was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-  </xs:element>
-
-  <xs:element name="dataProblem"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appInfo>
-        <tooltip>
-          Data problem
-        </tooltip>
-        <summary>
-          Description of any data problems in the entity.
-        </summary>
-        <description>
-          This element describes any data problems in the entity:
-          data anomalies or missing data.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The dataProblem element was introduced into EML 1.4.
-        </lineage>
-      </xs:appInfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="paragraph" type="xs:string"
-                    minOccurs="1" maxOccurs="unbounded" >
-          <xs:annotation>
-            <xs:appInfo>
-              <tooltip>
-                  Paragraph of text
-              </tooltip>
-              <summary>
-                  Paragraph of text describing any data problems
-                in the entity.
-              </summary>
-              <description>
-                  This element describes any data problems
-                in the entity: data anomalies or missing data.
-              </description>
-              <example>
-              </example>
-              <lineage>
-                The paragraph element was introduced into EML 1.4.
-              </lineage>
-            </xs:appInfo>
-          </xs:annotation>
-        </xs:element>        
-      </xs:sequence>
-      <xs:attribute name="problemType" use="required" >
-        <xs:annotation>
-          <xs:appInfo>
-            <tooltip>
-                Attribute of dataProblem element
-            </tooltip>
-            <summary>
-                Specification of data problem type.
-            </summary>
-            <description>
-                This attribute specifies the type of data problem.
-              The attribute assertion is required.
-            </description>
-            <example>
-              The valid attribute values are "missing", "anomaly"
-              or "error".
-            </example>
-            <lineage>
-              This attribute was introduced into EML 1.4.
-            </lineage>
-          </xs:appInfo>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:enumeration value="missing" /> 
-          <xs:enumeration value="anomaly" />         
-          <xs:enumeration value="error" />         
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
 
 </xs:schema>
