@@ -6,10 +6,10 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: jones $'
-  *       '$Date: 2002-06-13 19:50:22 $'
-  *   '$Revision: 1.24 $'
-  * 
+  *     '$Author: berkley $'
+  *       '$Date: 2002-08-22 21:04:35 $'
+  *   '$Revision: 1.25 $'
+  *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
   * the Free Software Foundation; either version 2 of the License, or
@@ -25,17 +25,17 @@
   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   *
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-                xmlns:doc="eml:documentation-2.0.0beta9" 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9"
                 version="1.0">
   <xsl:output method="html"/>
   <xsl:template match="/">
     <html>
       <head>
         <title>
-          <xsl:value-of 
-               select="//doc:moduleName"/> 
+          <xsl:value-of
+               select="//doc:moduleName"/>
           Documentation
         </title>
         <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -45,8 +45,8 @@
         <table border="0" width="100%">
         <tr valign="top"><td>
         <div class="title">
-          Module Documentation: 
-          <xsl:value-of 
+          Module Documentation:
+          <xsl:value-of
             select="//doc:moduleName"/>
         </div>
         </td><td>
@@ -54,12 +54,12 @@
         </td></tr>
         </table>
         <blockquote>
-          <xsl:value-of 
+          <xsl:value-of
             select="//doc:moduleDescription"/>
         </blockquote>
 
         <img>
-          <xsl:attribute name="src"><xsl:value-of 
+          <xsl:attribute name="src"><xsl:value-of
             select="//doc:moduleName"/>.png</xsl:attribute>
         </img>
 
@@ -100,7 +100,7 @@
       </body>
     </html>
   </xsl:template>
-  
+
   <!-- step through the elements -->
   <xsl:template match="xs:element|xs:complexType" mode="documentation">
     <!-- MBJ: this should be all elements -->
@@ -173,21 +173,21 @@
                   </td>
                 </tr>
                 <!-- Now process the CM for the attribute children -->
-                <xsl:apply-templates 
-                     select="xs:attribute|xs:complexType/xs:attribute" 
+                <xsl:apply-templates
+                     select="xs:attribute|xs:complexType/xs:attribute"
                      mode="contentmodel" />
               </xsl:when>
               <xsl:otherwise>
 
                 <!-- display a link to the base type for derivations -->
                 <xsl:if test="./xs:complexContent/xs:extension|./xs:complexContent/xs:restriction">
-                  <xsl:variable name="baseval" 
+                  <xsl:variable name="baseval"
                        select="./xs:complexContent/xs:extension/@base|./xs:complexContent/xs:restriction/@base"/>
-                  <xsl:variable name="derival" 
+                  <xsl:variable name="derival"
                        select="name(./xs:complexContent/xs:extension)"/>
                   <!-- this next line probably doesn't work :-) -->
                   <xsl:if test="./xs:complexContent/xs:restriction">
-                    <xsl:variable name="derival" 
+                    <xsl:variable name="derival"
                          select="name(./xs:complexContent/xs:restriction)"/>
                   </xsl:if>
                   <tr>
@@ -207,7 +207,7 @@
                           <xsl:value-of select="$baseval"/>
                         </xsl:attribute>
                         <xsl:value-of select="$baseval"/>
-                        </a> 
+                        </a>
                        </xsl:otherwise>
                      </xsl:choose>
                      (by <xsl:value-of select="$derival"/>)
@@ -235,10 +235,10 @@
                   </td>
                 </tr>
                 <!-- Now display the CM for the element children -->
-                <xsl:apply-templates 
-                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent" 
+                <xsl:apply-templates
+                     select="xs:complexType|xs:sequence|xs:choice|xs:element|xs:complexContent"
                      mode="contentmodel" />
-    
+
                 <!-- display the attributes -->
                 <tr>
                   <td valign="top" class="tablepanel">
@@ -258,8 +258,8 @@
                   </td>
                 </tr>
                 <!-- Now display the CM for the attribute children -->
-                <xsl:apply-templates 
-                     select="xs:attribute|xs:complexType/xs:attribute" 
+                <xsl:apply-templates
+                     select="xs:attribute|xs:complexType/xs:attribute"
                      mode="contentmodel" />
               </xsl:otherwise>
             </xsl:choose>
@@ -270,7 +270,7 @@
       </tr>
     </xsl:if>
   </xsl:template>
-   
+
   <xsl:template match="xs:sequence" mode="contentmodel">
     <tr>
     <td colspan="3" class="tablepanel">
@@ -278,8 +278,8 @@
     </td>
     </tr>
     <!-- Find all of the children of this sequence and list them -->
-    <xsl:apply-templates 
-         select="xs:element|xs:complexType|xs:sequence|xs:choice" 
+    <xsl:apply-templates
+         select="xs:element|xs:complexType|xs:sequence|xs:choice"
          mode="contentmodel" />
     <tr>
     <td colspan="3" class="tablepanel">
@@ -304,8 +304,8 @@
     </td>
     </tr>
     <!-- Find all of the children of this choice and list them -->
-    <xsl:apply-templates 
-         select="xs:element|xs:complexType|xs:sequence|xs:choice" 
+    <xsl:apply-templates
+         select="xs:element|xs:complexType|xs:sequence|xs:choice"
          mode="contentmodel" />
     <tr>
     <td colspan="3" class="tablepanel">
@@ -316,7 +316,7 @@
 
   <xsl:template match="xs:element" mode="contentmodel">
         <!--give each element a link to its definition -->
-        
+
         <tr>
         <td class="tablepanel">
         <a class="sitelink">
@@ -344,7 +344,7 @@
         </td>
         </tr>
 
-        <xsl:if test="name(..) = 'xs:choice' 
+        <xsl:if test="name(..) = 'xs:choice'
                       and not(position()=last())">
         <tr>
         <td colspan="3" class="tablepanel">
@@ -353,7 +353,7 @@
         </tr>
         </xsl:if>
   </xsl:template>
- 
+
   <!-- step through the attributes -->
   <xsl:template match="xs:attribute" mode="contentmodel">
         <!--give each attribute link to its definition -->
@@ -376,7 +376,7 @@
         <td class="tablepanel">
           <span class="plaintext">
             <xsl:value-of select="./@use"/>
-          </span> 
+          </span>
         </td>
         </xsl:if>
 
@@ -390,7 +390,7 @@
         </xsl:if>
         </tr>
   </xsl:template>
-  
+
   <!-- step through the attributes -->
   <xsl:template match="xs:attribute" mode="documentation">
     <tr>
@@ -456,12 +456,12 @@
       <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
     </tr>
   </xsl:template>
-  
+
   <!-- format the complexType content model -->
   <xsl:template match="xs:complexType" mode="contentmodel">
     <!-- Find all of the children of this complexType and list them -->
-    <xsl:apply-templates 
-         select="xs:sequence|xs:choice|xs:element|xs:complexContent" 
+    <xsl:apply-templates
+         select="xs:sequence|xs:choice|xs:element|xs:complexContent"
          mode="contentmodel" />
   </xsl:template>
 
@@ -480,7 +480,7 @@
       </td>
     </tr>
     <tr>
-      <td class="tablepanel"> 
+      <td class="tablepanel">
         <xsl:apply-templates select="xs:extension|xs:restriction"
                              mode="contentmodel"/>
       </td>
@@ -491,7 +491,7 @@
   <!-- format the complexContent content model -->
   <xsl:template match="xs:complexContent" mode="contentmodel">
     <!-- Find all of the children of this complexContent and list them -->
-    <xsl:apply-templates select="xs:extension|xs:restriction" 
+    <xsl:apply-templates select="xs:extension|xs:restriction"
                          mode="contentmodel" />
   </xsl:template>
 
@@ -513,7 +513,7 @@
               <xsl:value-of select="./@base"/>
             </xsl:attribute>
             <xsl:value-of select="./@base"/>
-          </a> 
+          </a>
         </xsl:otherwise>
       </xsl:choose>
       (by <xsl:value-of select="name(.)"/>)
@@ -522,16 +522,16 @@
     <!-- Find all of the children and list them -->
     <xsl:choose>
       <xsl:when test="name(..) = 'xs:simpleType'">
-        
+
         <p>
         <span class="boldtext">Allowed values: </span>
         <ul>
           <xsl:apply-templates select="xs:enumeration" mode="contentmodel" />
         </ul>
         </p>
-      </xsl:when> 
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="xs:sequence|xs:choice" 
+        <xsl:apply-templates select="xs:sequence|xs:choice"
                              mode="contentmodel" />
       </xsl:otherwise>
     </xsl:choose>
@@ -561,5 +561,5 @@
           </blockquote>
         </td>
   </xsl:template>
- 
+
 </xsl:stylesheet>

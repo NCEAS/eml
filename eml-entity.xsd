@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:entity-2.0.0beta9"
-xmlns="eml:entity-2.0.0beta9" xmlns:att="eml:attribute-2.0.0beta9"
-xmlns:prot="eml:protocol-2.0.0beta9" xmlns:phys="eml:physical-2.0.0beta9"
-xmlns:cov="eml:coverage-2.0.0beta9" xmlns:doc="eml:documentation-2.0.0beta9"
-xmlns:res="eml:resource-2.0.0beta9" xmlns:con="eml:constraint-2.0.0beta9"
+<xs:schema targetNamespace="ecoinformatics.org:eml:entity-2.0.0beta9"
+xmlns="ecoinformatics.org:eml:entity-2.0.0beta9" xmlns:att="ecoinformatics.org:eml:attribute-2.0.0beta9"
+xmlns:prot="ecoinformatics.org:eml:protocol-2.0.0beta9" xmlns:phys="ecoinformatics.org:eml:physical-2.0.0beta9"
+xmlns:cov="ecoinformatics.org:eml:coverage-2.0.0beta9" xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9"
+xmlns:res="ecoinformatics.org:eml:resource-2.0.0beta9" xmlns:con="ecoinformatics.org:eml:constraint-2.0.0beta9"
 xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:documentation-2.0.0beta9"
   schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml:coverage-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:coverage-2.0.0beta9"
   schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml:physical-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:physical-2.0.0beta9"
   schemaLocation="eml-physical.xsd" />
-  <xs:import namespace="eml:protocol-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:protocol-2.0.0beta9"
   schemaLocation="eml-protocol.xsd" />
-  <xs:import namespace="eml:attribute-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:attribute-2.0.0beta9"
   schemaLocation="eml-attribute.xsd" />
-  <xs:import namespace="eml:resource-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:resource-2.0.0beta9"
   schemaLocation="eml-resource.xsd" />
-  <xs:import namespace="eml:constraint-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:constraint-2.0.0beta9"
   schemaLocation="eml-constraint.xsd" />
   <xs:annotation>
     <xs:documentation>
@@ -35,9 +35,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-08-22 00:35:04 $'
-      '$Revision: 1.57 $'
+        '$Author: berkley $'
+          '$Date: 2002-08-22 21:04:35 $'
+      '$Revision: 1.58 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

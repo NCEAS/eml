@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:resource-2.0.0beta9"
-xmlns="eml:resource-2.0.0beta9" xmlns:cov="eml:coverage-2.0.0beta9"
-xmlns:rp="eml:party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:doc="eml:documentation-2.0.0beta9" elementFormDefault="unqualified"
+<xs:schema targetNamespace="ecoinformatics.org:eml:resource-2.0.0beta9"
+xmlns="ecoinformatics.org:eml:resource-2.0.0beta9" xmlns:cov="ecoinformatics.org:eml:coverage-2.0.0beta9"
+xmlns:rp="ecoinformatics.org:eml:party-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:doc="ecoinformatics.org:eml:documentation-2.0.0beta9" elementFormDefault="unqualified"
 attributeFormDefault="unqualified">
-  <xs:import namespace="eml:documentation-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:documentation-2.0.0beta9"
   schemaLocation="eml-documentation.xsd" />
   <xs:annotation>
     <xs:documentation>
@@ -23,8 +23,8 @@ attributeFormDefault="unqualified">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-06-14 17:51:49 $'
-      '$Revision: 1.52 $'
+          '$Date: 2002-08-22 21:04:35 $'
+      '$Revision: 1.53 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,9 +74,9 @@ attributeFormDefault="unqualified">
     </xs:appinfo>
   </xs:annotation>
 <!-- import the elements from responsible party for use in originator -->
-  <xs:import namespace="eml:party-2.0.0beta9" schemaLocation="eml-party.xsd" />
+  <xs:import namespace="ecoinformatics.org:eml:party-2.0.0beta9" schemaLocation="eml-party.xsd" />
 <!-- import the elements from eml-coverage -->
-  <xs:import namespace="eml:coverage-2.0.0beta9"
+  <xs:import namespace="ecoinformatics.org:eml:coverage-2.0.0beta9"
   schemaLocation="eml-coverage.xsd" />
   <xs:group name="ResourceGroup">
     <xs:annotation>
