@@ -294,16 +294,9 @@
 <additionalMetadata>
   <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml"
     xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
-    <stmml:unitType name="massdensity" id="massdensity">
-      <stmml:dimension name="mass"/>
-      <stmml:dimension name="length" power="-2"/>
-    </stmml:unitType>
-    <stmml:unitType name="speciesdensity" id="speciesdensity">
-      <stmml:dimension name="dimensionless"/>
-      <stmml:dimension name="length" power="-2"/>
-    </stmml:unitType>
-    <stmml:unit name="gramsPerSquareMeter" unitType="massdensity" id="gramsPerSquareMeter"/>
-    <stmml:unit name="speciesPerSquareMeter" unitType="speciesdensity" id="speciesPerSquareMeter"/>
+    <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
+    <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
+    <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
   </stmml:unitList>
 </additionalMetadata>
 </eml:eml>
