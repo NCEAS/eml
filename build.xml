@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-13 22:51:57 $'
-      '$Revision: 1.38 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-24 18:33:31 $'
+      '$Revision: 1.39 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -40,10 +40,10 @@
 
     <!-- The location of the Xerces 2 jar file -->
     <property name="xmlp"
-        value="/usr/local/devtools/xerces-2_0_1/xercesImpl.jar"/>
+        value="lib/xerces-2_0_1/xercesImpl.jar"/>
     <!-- The location of the Xerces XML API jar file -->
     <property name="api"
-        value="/usr/local/devtools/xerces-2_0_1/xmlParserAPIs.jar"/>
+        value="lib/xerces-2_0_1/xmlParserAPIs.jar"/>
     <!-- The location of the docbook XSL stylesheet-->
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
@@ -53,22 +53,27 @@
     <property name="name" value="eml"/>
     <property name="version" value="2.0.0rc1"/>
     <property name="testdir" value="./test" />
+    <property name="srcdir" value="./src" />
     <property name="build.dir" value="build"/>
     <property name="build.tests" value="${build.dir}/tests"/>
     <property name="build.dest" value="${build.dir}/classes"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
+    <property name="config.file" value="lib/config.xml"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
     <filter token="docrooturl" value=""/>
     <filter token="version" value="${version}"/>
     <filter token="testdir" value="${testdir}" />
+    <filter token="srcdir" value="${srcdir}" />
+    <filter token="config.file" value="${config.file}" />
 
     <property name="dist.dir" value="./dist"/>
     <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
     <property name="ver.docs" value="${ver.dir}/docs"/>
     <property name="package.home" value="org/ecoinformatics" />
-    <property name="cpath" value="${xmlp}:${api}"/>
+    <property name="configxml" value="lib/configxml.jar"/>
+    <property name="cpath" value="${xmlp}:${api}:${configxml}"/>
 
     <mkdir dir="${build.docs}"/>
   </target>
@@ -245,6 +250,46 @@
        <batchtest fork="yes" todir="${build.dir}">
          <fileset dir="${build.tests}">
            <include name="**/*.java" />
+         </fileset>
+       </batchtest>
+    </junit>
+  </target>
+
+  <target name="emlparsertest" depends="init">
+    <mkdir dir="${build.tests}"/>
+     <mkdir dir="${build.dest}"/>
+     <copy todir="${build.tests}" filtering="yes">
+       <fileset dir="${testdir}">
+         <exclude name="**/CVS*"/>
+         <exclude name="**/.#*"/>
+       </fileset>
+     </copy>
+     <copy todir="${build.tests}" filtering="yes">
+       <fileset dir="${srcdir}">
+         <exclude name="**/CVS*"/>
+         <exclude name="**/.#*"/>
+       </fileset>
+     </copy>
+
+     <javac srcdir="${build.tests}"
+            destdir="${build.dest}"
+            classpath="${cpath}"
+            debug="on"/>
+
+     <jar jarfile="${build.dir}/${name}-test.jar" basedir="${build.dest}"
+          includes="${package.home}/**" />
+
+     <junit printsummary="yes" haltonfailure="no" fork="no"
+            haltonerror="no">
+       <classpath>
+         <pathelement path="${cpath}:${build.dir}/${name}-test.jar" />
+       </classpath>
+
+       <formatter type="plain" />
+
+       <batchtest fork="yes" todir="${build.dir}">
+         <fileset dir="${build.tests}">
+           <include name="**/EMLParserTest.java" />
          </fileset>
        </batchtest>
     </junit>
