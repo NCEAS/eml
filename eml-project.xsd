@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:project" 
-           xmlns="eml:project" 
-           xmlns:cit="eml:literature" 
-           xmlns:cov="eml:coverage" 
-           xmlns:rp="eml:ResponsibleParty" 
-           xmlns:pro="eml:protocol" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:doc="eml:documentation">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:project" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pro="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns:cov="eml:coverage" xmlns:cit="eml:literature" xmlns="eml:project">
+  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-project.xsd,v $'
@@ -16,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-07-31 20:52:25 $'
-      '$Revision: 1.20 $'
+        '$Author: jones $'
+          '$Date: 2001-07-31 21:57:39 $'
+      '$Revision: 1.21 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,9 +27,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>
-        eml-project
-      </doc:moduleName>
+      <doc:moduleName>eml-project</doc:moduleName>
       <doc:moduleDescription>
         The EML Project Module describes the research context 
         in which the dataset was created.
@@ -88,9 +78,7 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-              <doc:example>
-                <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-              </doc:example>
+              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
               <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -117,9 +105,7 @@
                         can or should this be a URI/URL pointing to the catalog
                         system, or just the name?
                       </doc:description>
-                      <doc:example>
-                        <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-                      </doc:example>
+                      <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
                       <doc:lineage>
                         New to EML 2.0.
                       </doc:lineage>
@@ -337,46 +323,44 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
                       Temporal Coverage
                     </doc:tooltip>
-                    <doc:summary>
+                  <doc:summary>
 		      Information on the periods of time that sampling took
 		      place
                     </doc:summary>
-                    <doc:description>
+                  <doc:description>
                       Information necessary to understand temporal sampling regime:
                       temporal boundaries, frequency of occurrence,
                       descriptive paragraph of text or citation from a source.
                     </doc:description>
-                    <doc:example/>
-                    <doc:lineage>
+                  <doc:example/>
+                  <doc:lineage>
                       The sampling element was introduced into EML 1.4.
                     </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              <xs:element name="frequency" type="xs:string" minOccurs="0"/>
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
+                </xs:appinfo>
+                <xs:appinfo>
+                  <doc:tooltip>
 		      Sampling frequency
                     </doc:tooltip>
-                    <doc:summary>
+                  <doc:summary>
 		      Information on the rate of sampling
                     </doc:summary>
-                    <doc:description>
+                  <doc:description>
 		      The frequency field is intended to document the sampling
 		      rate for the specific method employed.
                     </doc:description>
-                    <doc:example/>
-                    <doc:lineage>
+                  <doc:example/>
+                  <doc:lineage>
                       The sampling element was introduced into EML 1.4.
                     </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="frequency" type="xs:string" minOccurs="0"/>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
               <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>

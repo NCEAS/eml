@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns:lit="eml:literature" elementFormDefault="unqualified" attributeFormDefault="unqualified">
   <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-31 21:33:37 $'
-      '$Revision: 1.9 $'
+          '$Date: 2001-07-31 21:57:39 $'
+      '$Revision: 1.10 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,9 +27,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>
-        eml-protocol
-      </doc:moduleName>
+      <doc:moduleName>eml-protocol</doc:moduleName>
       <doc:moduleDescription>
         The EML Protocol Module is used to describe methods and identify the proccesses that have been
         used to define / improve the quality of a data file, also used to
