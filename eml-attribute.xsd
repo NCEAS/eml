@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-29 22:59:17 $'
-      '$Revision: 1.80 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-30 15:16:02 $'
+      '$Revision: 1.81 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -289,11 +289,11 @@
               <doc:example>Ordinal is used when the categories have a logical
               or ordered relationship to each other. These types of scale
               allow one to distinguish the order of values, but not the
-              magnitude of the difference between values. An example of an 
+              magnitude of the difference between values. An example of an
               ordinal scale is a categorical survey where you rank a variable
               1=good, 2=fair, 3=poor. Date values on the Gregorian calendar
               are also ordinal, as the relative order of the values is
-              prescribed, but the magnitude of the difference between 
+              prescribed, but the magnitude of the difference between
               the values is not (due to leap years, leap seconds, and various
               other peculiarities).</doc:example>
               <doc:example>Interval is used for data which consist of
@@ -302,8 +302,8 @@
               zero point (so, 20 C is not twice as hot as 10 C).</doc:example>
               <doc:example>Ratio is used for data which consists not only of
               equidistant points but also has a meaningful zero
-              point, which allows ratios to have meaning. An example of a 
-              ratio scale would be the Kelvin temperature scale (200K is 
+              point, which allows ratios to have meaning. An example of a
+              ratio scale would be the Kelvin temperature scale (200K is
               half as hot as 400K), and length in
               meters (e.g., 10 meters is twice as long as 5 meters).
               </doc:example>
@@ -317,7 +317,7 @@
                     <doc:tooltip>Nominal scale</doc:tooltip>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
-                    nominal scale variable, which are varibales that are 
+                    nominal scale variable, which are varibales that are
                     categorical in nature.</doc:description>
                     <doc:example>Nominal is used when numbers have only been
                     assigned to a variable for the purpose of categorizing the
@@ -327,7 +327,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="nonNumericDomain" 
+                    <xs:element name="nonNumericDomain"
                     type="NonNumericDomainType"
                     minOccurs="1" maxOccurs="unbounded"/>
                   </xs:sequence>
@@ -341,7 +341,7 @@
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
                     ordinal scale variable, which specify ordered values
-                    without specifying the magnitude of the difference between 
+                    without specifying the magnitude of the difference between
                     values.</doc:description>
                     <doc:example>Ordinal is used when the categories have
                     a logical or ordered relationship to each other. These
@@ -638,7 +638,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
-      <xs:element name="standardUnit" type="unitDictionary" default="undefined">
+      <xs:element name="standardUnit" type="unitDictionary">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Standard Unit</doc:tooltip>
