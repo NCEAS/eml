@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.46 $'
+        '$Author: blankman $'
+          '$Date: 2002-10-01 16:06:16 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -55,41 +55,16 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-protocol</doc:moduleName>
-        <doc:moduleDescription>
-          <section xmlns="">
-            <title>
-              The protocol module - Established procedural
-              information
-            </title>
-            <para>
-              The eml-protocol module is used to describe the prescribed 
-              procedures that are used in the creation or the subsequent 
-              processing of a dataset. Likewise, eml-protocol is used to 
-              describe proccesses that have been used to define / improve the 
-              quality of a data file, or to identify potential problems with 
-              the data file.  Note that the eml-protocol module is intended to 
-              be used to document a <emphasis>prescribed</emphasis> procedure, 
-              whereas the eml-method module is used to describe procedures 
-              that <emphasis>were actually performed</emphasis>.  The 
-              distinction is that the use of the term &quot;protocol&quot; is 
-              used in the &quot;prescriptive&quot; sense, and the term 
-              &quot;method&quot; is used in the &quot;descriptive&quot; sense.  
-              This distinction allows managers to build a protocol library of 
-              well-known, established protocols (procedures), but also 
-              document what procedure was truely performed in relation to the 
-              established protocol.  The method may have diverged from the 
-              protocol purposefully, or perhaps incidentally, but the 
-              procedural lineage is still preserved and understandable.
-            </para>
-            <para>
-              The eml-protocol module, like other modules, may be 
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This 
-              allows a protocol to be described once, and then used as a 
-              reference in other locations within the EML document via it's ID.
-            </para>
-          </section>
+        <doc:moduleDescription>The EML Protocol Module is used to define
+        abstract, prescriptive procedures for generating or processing data.
+        Conceptually, a protocol is a standardized method. eml-protocol
+        resembles eml-methods; however, eml-methods is descriptive (often
+        written in the declarative mood:  "I took five subsamples...") whereas
+        eml-protocol is prescriptive (often written in the imperative mood:
+        "Take five subsamples...").  A protocol may have versions, whereas
+        methods (as used in eml-methods) should not.
         </doc:moduleDescription>
-       <doc:recommendedUsage>Use eml-protocol to describe prescriptive
+        <doc:recommendedUsage>Use eml-protocol to describe prescriptive
         procedures that can be associated with other descriptive or
         prescriptive procedures.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -99,7 +74,8 @@
   <xs:complexType name="ProtocolType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>ProtocolType</doc:tooltip>
+        <doc:tooltip>A prescriptive procedure; a standardized method
+        </doc:tooltip>
         <doc:summary>A reusable container for information related to
         a prescriptive procedure.</doc:summary>
         <doc:description>The ProtocolType container defines a number of
@@ -114,32 +90,8 @@
       <xs:sequence>
         <xs:group ref="res:ResourceGroup"/>
         <xs:element name="proceduralStep" type="md:ProcedureStepType"
-            minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>proceduralStep</doc:tooltip>
-              <doc:summary>This field represents a single step in this
-              collection protocol.</doc:summary>
-              <doc:description>This field represents a single step in this
-              collection protocol.  For more information please see the
-              eml-methods module.</doc:description>
-              <doc:lineage>Introduced in EML 2.0</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="access" type="acc:AccessType" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>access control rules</doc:tooltip>
-              <doc:summary>This field provides access control rules for
-              this protocol.</doc:summary>
-              <doc:description>This field provides access control rules for
-              this protocol.  Please see the documentation on eml-access
-              for more information.</doc:description>
-              <doc:lineage>Introduced in EML 2.0</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
+            minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
