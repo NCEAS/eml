@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-02-16 17:10:15 $'
-  *  '$Revision: 1.5 $'
+  *      '$Date: 2001-04-14 01:04:08 $'
+  *  '$Revision: 1.6 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -32,6 +32,7 @@
 
    <target name="init">
      <property name="build.docs" value="docs" /> 
+     <property name="build.stripped" value="stripped" /> 
    </target>
 
    <!-- Generate HTML documentation using an XSLT transform -->
@@ -49,6 +50,28 @@
          <include name="default.css"/>
        </fileset>
      </copy>
+   </target>
+
+   <!-- Generate versions of the XSD files with all annotation
+        tags stripped from the source -->
+   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
+        your CLASSPATH in order for this to work -->
+   <target name="stripdocs" depends="init">
+     <mkdir dir="${build.stripped}"/>
+     <style basedir="." destdir="${build.stripped}"
+            extension=".xsd"
+            style="removeAnnotation.xsl" 
+            includes="*.xsd"
+            processor="xalan"> 
+     </style> 
+     <echo>
+
+           ******************************************
+                           Success!
+           Stripped versions of the XSD files can now
+           be found in the directory named "${build.stripped}"
+           ******************************************
+     </echo>
    </target>
 
 </project>
