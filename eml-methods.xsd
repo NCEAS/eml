@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema targetNamespace="eml://ecoinformatics.org/methods-2.0.0rc1"
-    xmlns="eml://ecoinformatics.org/methods-2.0.0rc1"
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
-    xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0rc1"
-    xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc1"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
+xmlns="eml://ecoinformatics.org/methods-2.0.0rc1"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1"
+xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc1"
+xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
+xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
+xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0rc1"
+xmlns:sw="eml://ecoinformatics.org/software-2.0.0rc1"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
+xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
   schemaLocation="eml-documentation.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0rc1"
@@ -22,39 +22,25 @@
   <xs:import namespace="eml://ecoinformatics.org/protocol-2.0.0rc1"
   schemaLocation="eml-protocol.xsd" />
   <xs:annotation>
-    <xs:documentation>
-    '$RCSfile: eml-methods.xsd,v $'
-       Copyright: 1997-2002 Regents of the University of California,
-                            University of New Mexico, and
-                            Arizona State University
-        Sponsors: National Center for Ecological Analysis and Synthesis and
-                  Partnership for Interdisciplinary Studies of Coastal Oceans,
-                     University of California Santa Barbara
-                  Long-Term Ecological Research Network Office,
-                     University of New Mexico
-                  Center for Environmental Studies, Arizona State University
-   Other funding: National Science Foundation (see README for details)
-                  The David and Lucile Packard Foundation
-     For Details: http://knb.ecoinformatics.org/
-
-        '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:48 $'
-      '$Revision: 1.8 $'
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    </xs:documentation>
+    <xs:documentation>'$RCSfile: eml-methods.xsd,v $' Copyright: 1997-2002
+    Regents of the University of California, University of New Mexico, and
+    Arizona State University Sponsors: National Center for Ecological Analysis
+    and Synthesis and Partnership for Interdisciplinary Studies of Coastal
+    Oceans, University of California Santa Barbara Long-Term Ecological
+    Research Network Office, University of New Mexico Center for Environmental
+    Studies, Arizona State University Other funding: National Science
+    Foundation (see README for details) The David and Lucile Packard Foundation
+    For Details: http://knb.ecoinformatics.org/ '$Author: blankman $' '$Date:
+    2002/09/16 22:04:48 $' '$Revision: 1.9 $' This program is free software;
+    you can redistribute it and/or modify it under the terms of the GNU General
+    Public License as published by the Free Software Foundation; either version
+    2 of the License, or (at your option) any later version. This program is
+    distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+    PARTICULAR PURPOSE. See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc., 59
+    Temple Place, Suite 330, Boston, MA 02111-1307 USA</xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-methods</doc:moduleName>
@@ -113,10 +99,10 @@
       <xs:element name="sampling" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Description of sampling methods.</doc:tooltip>
-            <doc:summary>Description of sampling methods including the
-            "coverage" of the study, a description of the sampling procedures,
-            and the spatial sampling units.</doc:summary>
+            <doc:tooltip>sampling methods</doc:tooltip>
+            <doc:summary>Description of sampling procedures including the
+            geographic, temporal and taxonomic coverage of the
+            study.</doc:summary>
             <doc:description>See individual elements for more detailed
             descriptions.</doc:description>
             <doc:lineage>Modification of the sampling element introduced into
@@ -130,34 +116,38 @@
                 <xs:appinfo>
                   <doc:tooltip>Geographic, temporal, taxonomic
                   coverage</doc:tooltip>
-                  <doc:summary>A description of the specific areas sampled
-                  (geographic coverage) and the sampling frequency (temporal
-                  coverage).</doc:summary>
-                  <doc:description>A "studyExtent" represents both a specific
-                  sampling area and the sampling frequency (temporal
+                  <doc:summary>A description of the geographic area sampled
+                  (geographic coverage), the sampling frequency (temporal
+                  coverage), and living organisms sampled (taxonomic
+                  coverage.</doc:summary>
+                  <doc:description>The field studyExtent represents both a
+                  specific sampling area and the sampling frequency (temporal
                   boundaries, frequency of occurrence). The geographic
-                  "studyExtent" is usually a surrogate (representative area of)
+                  studyExtent is usually a surrogate (representative area of)
                   for the larger area documented in the "studyAreaDescription".
-                  The "studyExtent" can be entered either in non-structured
-                  textual form or using the structure of the "coverage"
+                  The studyExtent can be entered either in non-structured
+                  textual form or using the structure of the coverage
                   element.</doc:description>
                   <doc:lineage>New in EML 2.0.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
                 <xs:choice maxOccurs="unbounded">
-                  <xs:element name="coverage" />
+                  <xs:element name="coverage" type="cov:Coverage" />
                   <xs:element name="description" type="txt:TextType">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Text description of the
                         coverage</doc:tooltip>
                         <doc:summary>A textual description of the specific
-                        areas sampled (geographic coverage) and the sampling
-                        frequency (temporal coverage).</doc:summary>
-                        <doc:description>A textual description of the specific
-                        sampling area and the sampling frequency (temporal
-                        boundaries, frequency of occurrence).</doc:description>
+                        areas sampled (geographic coverage), the sampling
+                        frequency (temporal coverage), and groups of living
+                        organisms sampled (taxonomic coverage).</doc:summary>
+                        <doc:description>The coverage field allows for a
+                        textual description of the specific sampling area, the
+                        sampling frequency (temporal boundaries, frequency of
+                        occurrence), and groups of living organisms sampled
+                        (taxonomic coverage).</doc:description>
                         <doc:example>The study was conducted on the North
                         Platte River, starting 6 miles downstream and ending 9
                         miles downstream of the route 132 bridge in Evanston,
@@ -175,11 +165,12 @@
                   <doc:tooltip>Sampling methods and procedures</doc:tooltip>
                   <doc:summary>A description of sampling methods and
                   procedures</doc:summary>
-                  <doc:description>This element allows for a text-based/human
-                  readable description of the sampling procedures used in the
-                  research project. The content of this element would be
-                  similar to a description of sampling procedures found in the
-                  methods section of a journal article.</doc:description>
+                  <doc:description>The samplingDescription field allows for a
+                  text-based/human readable description of the sampling
+                  procedures used in the research project. The content of this
+                  element would be similar to a description of sampling
+                  procedures found in the methods section of a journal
+                  article.</doc:description>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -187,25 +178,26 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Spatial sampling units</doc:tooltip>
-                  <doc:summary>Spatial sampling units represent the "plot"
+                  <doc:summary>Spatial sampling units represent the plots
                   sampled.</doc:summary>
                   <doc:description>A spatial sampling unit describes the
-                  specific geographic areas sampled. For example, if a
-                  researcher places a single light source at a specific point
-                  in a research location in order to attract insects to derive
-                  an estimate of the insect population, then the sampling unit
-                  is the area illuminated by the light source (in actual
-                  practice there might be multiple sampling unit in this case
-                  since different species have different attraction rates). A
-                  sampling unit may also be seen as the bounding box of a
-                  specific 3-meter square "plot". In the case of a study in
-                  which the measurements from several disbursed "point
-                  collection" devices are aggregated, then the sampling unit
+                  specific geographic areas sampled. In the case of a study in
+                  which the measurements from several disbursed point
+                  collection devices are aggregated, then the sampling unit
                   would be the area of that aggregation. Spatial sampling units
-                  can either be described by reference to a "coverage"
-                  description or by reference to the values in a data table
-                  (usually a GIS layer)</doc:description>
-                  <doc:example>x</doc:example>
+                  can either be described by filling out the structured
+                  coverage element or by reference to the values in a data
+                  table (usually a GIS layer)</doc:description>
+                  <doc:example>If a researcher places a single light source at
+                  a specific point in a research location in order to attract
+                  insects to derive an estimate of the insect population, then
+                  the sampling unit is the area illuminated by the light source
+                  (in actual practice there might be multiple sampling units in
+                  this case since different species have different attraction
+                  rates).</doc:example>
+                  <doc:example>The bounding box of a specific 3-meter square
+                  plot.</doc:example>
+                  <doc:example>The location of a weather station.</doc:example>
                   <doc:lineage>New in EML 2.0.0</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
@@ -216,23 +208,30 @@
                       <xs:appinfo>
                         <doc:tooltip>The identifier of a spatial sampling
                         entity.</doc:tooltip>
-                        <doc:summary>The identifier of a entity described in
-                        the "entity" module. This is usually a GIS
+                        <doc:summary>The identifier of an entity described in
+                        the entity module. This is usually a GIS
                         layer.</doc:summary>
-                        <doc:description>A value of a "referencedEntityId"
-                        element is reference to the identifier of the "entity"
+                        <doc:description>A value of a referencedEntityId
+                        element is a reference to the identifier of the entity
                         module that provides the metadata for a data table
-                        (RDBMS, GIS or "ascii" text) that has the actual
-                        spatial sampling unit values. The "referencedEntityId"
-                        is an indirect pointer to the actual values. The
-                        "referencedEntityId" can be thought of as a "foreign
-                        key" in a relational database.</doc:description>
+                        (RDBMS, GIS or ascii text) that has the actual spatial
+                        sampling unit values. The referencedEntityId field is
+                        an indirect pointer to the actual values. The
+                        referencedEntityId can be thought of as a foreign key
+                        in a relational database.</doc:description>
                         <doc:example>x</doc:example>
                         <doc:lineage>New in EML 2.0.0</doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
                   <xs:element name="coverage" type="cov:GeographicCoverage" />
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>sampling unit location</doc:tooltip>
+                      <doc:summary>Structured description of each sampling unit
+                      location</doc:summary>
+                    </xs:appinfo>
+                  </xs:annotation>
                 </xs:choice>
               </xs:complexType>
             </xs:element>
@@ -253,10 +252,10 @@
             quality of data resulting from the associated method step. A
             quality control description should identifiy a quality goal and
             describe prescriptive steps taken to ensure that the data meet
-            those standards or to postcriptive steps taken to assess the extent
-            to which they are met. A quality ccontrol statement is associated
-            with the methodStep that could have affected the targeted quality
-            goal.</doc:description>
+            those standards and/or postscriptive steps taken to assess the
+            extent to which they are met. A quality control statement is
+            associated with the methodStep that could have affected the
+            targeted quality goal.</doc:description>
             <doc:lineage>As of EML 2.0.0</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
@@ -271,12 +270,16 @@
             <xs:appinfo>
               <doc:tooltip>Methods description</doc:tooltip>
               <doc:summary>Description of the methods employed in collecting or
-              generating a data set or other resource.</doc:summary>
-              <doc:description>The description field allows for repeated
-              text that describes the methodology for
-              a project, experiment, or particular data table. Likewise, a
-              literature citation may be provided that describes the
-              methodology that was employed.</doc:description>
+              generating a data set or other resource or in quality control and
+              assurance.</doc:summary>
+              <doc:description>The description field allows for repeated text
+              that describes the methodology for a project, experiment, or
+              particular data table or to describe the steps taken to control
+              or assure the quality of the data. Likewise, a literature
+              citation may be provided that describes the methodology that was
+              employed. Or the information my be provided by either referencing
+              a protocol resource or entering the structured protocol
+              information</doc:description>
               <doc:example>&lt;para&gt; 1.Collect tissues from algae of
               interest. &lt;/para&gt; &lt;para&gt; a.We are currently
               collecting Egregia menziezii, Mazzaella splendens, M. flaccida,
@@ -293,8 +296,30 @@
           </xs:annotation>
         </xs:element>
         <xs:choice maxOccurs="unbounded">
-          <xs:element name="citation" type="cit:CitationType" />
+          <xs:element name="Citation" type="cit:CitationType" />
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>citation</doc:tooltip>
+              <doc:summary>Literature citation relating to the methods
+              used.</doc:summary>
+              <doc:description>The citation field allows to either reference a
+              literature resource or enter structured literature
+              information</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:element name="protocol" type="pro:ProtocolType" />
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Protocol</doc:tooltip>
+              <doc:summary>Protocol description relating to the methods
+              used.</doc:summary>
+              <doc:description>The protocol field is used to either reference a
+              protocol resource or describe methods and identify the proccesses
+              that have been used to define / improve the quality of a data
+              file, also used to identify potential problems with the data
+              file.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
         </xs:choice>
       </xs:choice>
       <xs:element name="instrumentation" type="xs:string" minOccurs="0"
@@ -305,9 +330,9 @@
             <doc:summary>Instruments used for measurement and recording
             data.</doc:summary>
             <doc:description>The Instrumentation field allows the description
-            of any instruments used in the data collection. The description
-            should include vendor, model number, optional equipment,
-            etc.</doc:description>
+            of any instruments used in the data collection or quality control
+            and quality assurance. The description should include vendor, model
+            number, optional equipment, etc.</doc:description>
             <doc:example>LACHAT analyzer, model XYX.</doc:example>
             <doc:lineage>New in EML 2.0</doc:lineage>
           </xs:appinfo>
