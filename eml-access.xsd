@@ -25,9 +25,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2004-06-25 22:42:21 $'
-      '$Revision: 1.69 $'
+        '$Author: jones $'
+          '$Date: 2004-07-01 18:28:24 $'
+      '$Revision: 1.70 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,45 +52,102 @@
               The eml-access module - Access control rules for resources
             </title>
              <para>
-              The eml-access module describes the level of access that is to be
-              granted or denied to a resource or a subset of a resource for a
-              particular user or group of users. A single eml-access document
-              may be used to express access control for many resources, or
-              for a given resource (e.g., a dataset or citation or a distribution). The
-              eml-access module represents a list of resources to be controlled
-              in the context of a particular authentication system. That is, the
-              authentication system determines the set of principals (users +
-              groups) that can be used, and the membership of users in groups.
-              The rules set in this module will determine the level of access to
-              a resource for the defined users and groups.  In EML, there are
-              two mechanisms for including access control information via the
-              eml-access module. 1)  Each top-level resource module
+              The eml-access module describes the level of access that is
+              to be granted or denied to a resource (including both metadata and
+              data) for a particular user or group of users.  The eml-access
+              module uses references to a particular authentication system
+              to determine the set of principals (users + groups) that can be
+              specified in access rules, and the membership of users in groups.
+              The special principal 'public' can be used to indicate that any
+              user or group has a particular access permission, thereby making
+              it easier to specify that anonymous access is allowed.
+             </para>
+             <para>
+              The rules specified in this module will determine the level
+              of access to a resource for specific users and groups.
+              There are two mechanisms for including access control information
+              via the eml-access module: 1) Each top-level resource module
               (eml-dataset, eml-literature, eml-software, and eml-protocol)
-              include an optional &lt;access&gt; element directly inline in the
-              document.  This is used to define access control at the resource
-              level scope.  2) Finer grained access control may be applied to a
-              the &lt;distribution&gt; element via the &lt;addtionalMetadata&gt; element in
-              the eml module.  An access control document may be defined, or
-              referenced, from this location, and the &lt;describes&gt; element
-              is used to point to the distribution that is to be
-              controlled via its "id" attribute. An example of this is given below:
-              <literalLayout>
-              &lt;additonalMetadata&gt;
-                &lt;describes&gt;
-		  xyz123
-                &lt;/describes&gt;
-                &lt;access&gt;
-		  .
-                  .
-                &lt;/access&gt;
-              &lt;/additionalMetadata&gt;
-              </literalLayout>
-              For describing access for multiple distributions, multiple 
-              additionalMetadata should be used. If more than one access element 
-              is defined in one additionalMetadata, only the first access element 
-              is considered. Rest all access elements are ignored. Applications 
-              that process EML documents must implement the access control rules from
-              both mechanisms.
+              includes an optional &lt;access&gt; element 
+              that is used to define the default access
+              control at the resource level for all metadata and data in
+              the EML package.  If this access element is ommitted from the
+              document, then by definition the package submitter should be
+              given full access to the package but all other users should
+              be denied all access.  2) Exceptions for particular data
+              components of the package can be controlled at a finer grain by
+              using an access description in the &lt;addtionalMetadata&gt;
+              element that points at a particular &lt;distribution&gt;
+              element by referencing its unique id.  An access control
+              document may be defined, or referenced, from this location,
+              and the &lt;describes&gt; element is used to point to the
+              distribution that is to be controlled via its "id" attribute.
+              When access control rules are specified this way, they apply
+              to the data in the distribution element, and not the metadata.
+              Thus, it controls access to the content of the &lt;inline&gt;
+              element, as well as resources that are referenced by the
+              &lt;online/url&gt; and &lt;online/connection&gt; elements.
+              These exceptions to access to particular data resources are
+              applied after the default access rules from (1) are applied, so
+              they effectively override the default rules when they overlap.
+              Any access rules that are specified in locations other than the
+              top-level 'access' element or in 'additionalMetadata' pointing
+              at only a distribution id are completely ignored.  For example,
+              rules found in '/eml/dataset/methods/methodStep/citation/access'
+              would be completely ignored.
+             </para>
+             <para>
+              For describing access to different data entities,  one can
+              either provide multiple &lt;describes&gt; elements within
+              a single additionalMetadata element, or provide multiple
+              additionalMetadata elements, each of which describes access
+              exceptions for a particular distribution.
+             </para>
+             <para>
+              The values that can be assigned to the &lt;permission&gt;
+              element are: "read", "write", "changePermission", and
+              "all". Users given read permission can view the resource;
+              write can make changes to the resource excluding changes to
+              access rules; changePermission can change access rules; and
+              all has all of read, write, and changePermission.
+             </para>
+             <para>
+              An example is given below, with non-critical sections elided:
+<literalLayout>
+  &lt;eml&gt;
+    &lt;dataset&gt;
+      &lt;access 
+          authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
+          order="allowFirst"&gt;
+        &lt;allow&gt;
+          &lt;principal&gt;uid=alice,o=NASA,dc=ecoinformatics,dc=org&lt;/principal&gt;
+          &lt;permission&gt;read&lt;/permission&gt;
+          &lt;permission&gt;write&lt;/permission&gt;
+        &lt;allow&gt;
+      &lt;/access&gt;
+      ...
+    &lt;/dataset&gt;
+    &lt;additonalMetadata&gt;
+      &lt;describes&gt;entity123&lt;/describes&gt;
+      &lt;describes&gt;entity234&lt;/describes&gt;
+      &lt;access 
+          authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
+          order="allowFirst"&gt;
+        &lt;deny&gt;
+          &lt;principal&gt;uid=alice,o=NASA,dc=ecoinformatics,dc=org&lt;/principal&gt;
+          &lt;permission&gt;write&lt;/permission&gt;
+        &lt;/deny&gt;
+      &lt;/access&gt;
+    &lt;/additionalMetadata&gt;
+  &lt;eml&gt;
+</literalLayout>
+              In this example, the overall default access is for the 
+              user alice to be able to read and write all metadata and data, 
+              but nobody else has any access beside the submitter.  However,
+              for entity123 and entity234, there is an additional rule
+              saying that user alice does not have write permission.  The net
+              effect is that alice can read and make changes to the metadata,
+              but can only read the two data entities.
             </para>
             <para>
               The eml-access module, like other modules, may be
@@ -98,6 +155,17 @@
               allows an access control document to be described once, and then
               used as a reference in other locations within the EML document
               via its ID.
+            </para>
+            <para>
+            In summary, access rules can be applied in two places in an
+            eml document, and all other 'access' elements in the document
+            are completely ignored. Default access rules are established
+            in the top 'access' element for the main eml resource (e.g.,
+            "/eml/dataset/access").  These default rules can be overridden
+            for particular data entities by providing an additional "access"
+            element in &lt;additionalMetadata&gt; with a &lt;describes&gt;
+            element that points at the id of the distribution for the
+            data entity.
             </para>
           </section>
         </doc:moduleDescription>
@@ -114,13 +182,12 @@
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
         <doc:description>The access element contains a list of rules that define
-        the level of access for a given resource, be it a dataset or another
-        metadata document.  Because the access element is declared to be of
+        the level of access for a given data package, including both metadata
+        and data.  Because the access element is declared to be of
         complex type 'AccessType', an instance must contain the elements defined
         for accessType.</doc:description>
         <doc:example>See the description of individual elements defined in
         AccessType to review each component element's rules.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -131,11 +198,9 @@
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
         <doc:description>The access element contains a list of rules that define
-        the level of access for a given resource, either a dataset or another
-        metadata document. The access element must contain the elements defined
+        the level of access for a given data package, including both metadata
+        and data. The access element must contain the elements defined
         in the AccessType type.</doc:description>
-
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -143,28 +208,25 @@
         <xs:element name="allow" type="AccessRule">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Allow permission</doc:tooltip>
-              <doc:summary>The permission that grants access to a permission
+              <doc:tooltip>Allow rule</doc:tooltip>
+              <doc:summary>A rule that grants a permission
               type.</doc:summary>
               <doc:description>The allow element indicates that a particular
-              user or group is able to execute the defined
-              permission.</doc:description>
+              user or group is granted the defined permission.</doc:description>
               <doc:example>allow</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="deny" type="AccessRule">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Deny permission</doc:tooltip>
-              <doc:summary>The permission that denies access to a permission
+              <doc:tooltip>Deny rule</doc:tooltip>
+              <doc:summary>A rule that revokes a permission
               type.</doc:summary>
               <doc:description>The deny element indicates that a particular
-              user or group is not able to execute the defined
+              user or group is not granted the defined
               permission.</doc:description>
               <doc:example>deny</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -177,15 +239,18 @@
     <xs:attribute name="order" use="optional" default="allowFirst">
       <xs:annotation>
         <xs:appinfo>
-          <doc:tooltip>Permission order</doc:tooltip>
-          <doc:summary>The order in which the permission rules should be
+          <doc:tooltip>Rule order</doc:tooltip>
+          <doc:summary>The order in which the allow and deny rules should be
           applied.</doc:summary>
-          <doc:description>The order attribute defines which rule should be
+          <doc:description>The order attribute defines which rules should be
           applied first to obtain the desired access control. The acceptable
-          values are defined in a list of 'allowFirst' and
-          'denyFirst'.</doc:description>
+          values are 'allowFirst' and 'denyFirst'. If 'allowFirst' is
+          specified, then all 'allow' rules are processed, and then overridden
+          by all 'deny' rules.  If 'denyFirst' is specified, then all 'deny'
+          rules are processed, and then overridden by all 'allow' rules.  This
+          allows users to efficiently express their desired rules.
+          </doc:description>
           <doc:example>allowFirst</doc:example>
-          
         </xs:appinfo>
       </xs:annotation>
       <xs:simpleType>
@@ -205,12 +270,12 @@
           principals (users + groups) that can be used in the access control
           list, and the membership of users in groups. This element is intended
           to provide a reference to the authentication system that is used to
-    verify the user or group. This reference is typically in the form
-    of a URI, which includes the connection protocol, Internet host, and
-    path to the authentication mechanism.</doc:description>
+          verify the user or group. This reference is typically in the form
+          of a URI, which includes the connection protocol, Internet host, and
+          path to the authentication mechanism.</doc:description>
           <doc:example>
-          ldap://directory.nceas.ucsb.edu:389/o=nceas,c=us</doc:example>
-          
+          ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org
+          </doc:example>
         </xs:appinfo>
       </xs:annotation>
     </xs:attribute>
@@ -224,10 +289,8 @@
         <doc:description>The AccessRule type defines a list of users that are
         derived from a particular authentication system (such as an LDAP
         directory), whether the user or group is allowed or denied access, the
-        extent of their access (write access, or only read
+        extent of their access (read, write , or changePermission
         access).</doc:description>
-
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -240,9 +303,12 @@
             <doc:description>The principal element defines the user or group to
             which the access control rule applies. The users and groups must be
             defined in the authentication system described in the authSystem
-            element.</doc:description>
-            <doc:example>berkley</doc:example>
-            
+            element.  The special principal 'public' can be used to indicate
+            that any user or group has a particular access permission, thereby
+            making it easier to specify that anonymous access is allowed.
+            </doc:description>
+            <doc:example>public</doc:example>
+            <doc:example>uid=alice,o=LTER,dc=ecoinformatics,dc=org</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -250,19 +316,20 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Type of permission</doc:tooltip>
-            <doc:summary>The type of permission being granted or denied for the
-            resource.</doc:summary>
-            <doc:description>The permission that is being granted or denied to
-            a particular user or group for a given resource. The list of
-            permissions come from a predetermined list (applicable to an LDAP
-      authentication system): (allow/deny viewing of the resource), 'write'
-      (allow/deny modification of the resource), 'changePermission'
-      (ability to modify access restrictions) and 'all' (allow read/write,
-      and the changePermission). This element also allows other
-      permissions that may be applicable to some other authentication
-      system.</doc:description>
+            <doc:summary>The type of permission being granted or denied.
+            </doc:summary>
+            <doc:description>The permission that is being granted or denied
+            to a particular user or group for a given resource. The list of
+            permissions come from a predetermined list: 'read' (allow/deny
+            viewing of the resource), 'write' (allow/deny modification of the
+            resource excluding access rules), 'changePermission' (ability to
+            modify access rules) and 'all' (allow all of read, write, and
+            changePermission). This element also allows other permission values
+            that may be applicable to some other authentication systems but
+            are not defined in this specification (if these other values
+            are used, access rule enforcement is indeterminate outside of
+            the originating system).</doc:description>
             <doc:example>read</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
