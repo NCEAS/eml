@@ -24,17 +24,6 @@
          </contact>
            <spatialRaster scope="document" system="" id="">
                  <entityName>Spatial Raster test entity</entityName>
-                 <coverage>
-                   <geographicCoverage>
-                     <geographicDescription>geodescription</geographicDescription>
-                     <boundingCoordinates>
-                       <westBoundingCoordinate>-180.0</westBoundingCoordinate>
-                       <eastBoundingCoordinate>180.0</eastBoundingCoordinate>
-                       <northBoundingCoordinate>90.0</northBoundingCoordinate>
-                       <southBoundingCoordinate>-90.0</southBoundingCoordinate>
-                     </boundingCoordinates>
-                   </geographicCoverage>
-                 </coverage>
                  <physical scope="document" system="" id="">
                        <objectName>world_20k.jpg</objectName>
                        <size unit="bytes">28173</size>
@@ -47,6 +36,17 @@
                            </textFormat>
                        </dataFormat>
                  </physical>
+                 <coverage>
+                   <geographicCoverage>
+                     <geographicDescription>geodescription</geographicDescription>
+                     <boundingCoordinates>
+                       <westBoundingCoordinate>-180.0</westBoundingCoordinate>
+                       <eastBoundingCoordinate>180.0</eastBoundingCoordinate>
+                       <northBoundingCoordinate>90.0</northBoundingCoordinate>
+                       <southBoundingCoordinate>-90.0</southBoundingCoordinate>
+                     </boundingCoordinates>
+                   </geographicCoverage>
+                 </coverage>
                  <attributeList id="">
                      <attribute scope="document" system="" id="">
                            <attributeName>Raster Description</attributeName>
