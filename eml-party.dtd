@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-12-18 04:45:55 $'
-      '$Revision: 1.4 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-18 16:13:08 $'
+      '$Revision: 1.5 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,11 +38,8 @@
 <!ELEMENT postalCode (#PCDATA)>
 <!ELEMENT country (#PCDATA)>
 <!ELEMENT phone (#PCDATA)>
-<!ATTLIST phone
-  phonetype CDATA "voice"
->
+<!ATTLIST phone phonetype CDATA "voice" >
 <!ELEMENT electronicMailAddress (#PCDATA)>
 <!ELEMENT onlineLink (#PCDATA)>
 <!-- Note that the domain for role is not expressed in the DTD -->
 <!ELEMENT role (#PCDATA)>
-<!-- EOF -->

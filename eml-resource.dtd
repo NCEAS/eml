@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-12-18 04:45:55 $'
-      '$Revision: 1.22 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-18 16:13:08 $'
+      '$Revision: 1.23 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
+
 <!-- entity referring to the eml-party fields -->
 <!ENTITY % resParty SYSTEM "./eml-party.dtd">
 %resParty;
@@ -31,9 +32,7 @@
                      keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*,  triple*)">
 <!-- common fields -->
 <!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier
-  system CDATA #IMPLIED
->
+<!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT shortName (#PCDATA)>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT originator ((%ResponsibleParty;))>
@@ -43,9 +42,7 @@
 <!ELEMENT abstract (paragraph+)>
 <!ELEMENT keywordSet (keyword+, keywordThesaurus*)>
 <!ELEMENT keyword (#PCDATA)>
-<!ATTLIST keyword
-  keywordType CDATA #IMPLIED
->
+<!ATTLIST keyword keywordType CDATA #IMPLIED>
 <!ELEMENT keywordThesaurus (#PCDATA)>
 <!ELEMENT additionalInfo (paragraph+)>
 <!ELEMENT paragraph (#PCDATA)>

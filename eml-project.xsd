@@ -18,9 +18,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2002-04-17 00:11:24 $'
-      '$Revision: 1.25 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-18 16:13:08 $'
+      '$Revision: 1.26 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -344,44 +344,48 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                      Temporal Coverage
-                    </doc:tooltip>
-                  <doc:summary>
-                      Information on the periods of time that sampling took
-                      place
-                    </doc:summary>
-                  <doc:description>
-                      Information necessary to understand temporal sampling regime:
-                      temporal boundaries, frequency of occurrence,
-                      descriptive paragraph of text or citation from a source.
-                    </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                      The sampling element was introduced into EML 1.4.
-                    </doc:lineage>
-                </xs:appinfo>
-                <xs:appinfo>
-                  <doc:tooltip>
-                      Sampling frequency
-                    </doc:tooltip>
-                  <doc:summary>
-                      Information on the rate of sampling
-                    </doc:summary>
-                  <doc:description>
-                      The frequency field is intended to document the sampling
-                      rate for the specific method employed.
-                    </doc:description>
-                  <doc:example/>
-                  <doc:lineage>
-                      The sampling element was introduced into EML 1.4.
-                    </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="frequency" type="xs:string" minOccurs="0"/>
+              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+                        Temporal Coverage
+                      </doc:tooltip>
+                    <doc:summary>
+                        Information on the periods of time that sampling took
+                        place
+                      </doc:summary>
+                    <doc:description>
+                        Information necessary to understand temporal sampling regime:
+                        temporal boundaries, frequency of occurrence,
+                        descriptive paragraph of text or citation from a source.
+                      </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
+                        The sampling element was introduced into EML 1.4.
+                      </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="frequency" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+                        Sampling frequency
+                      </doc:tooltip>
+                    <doc:summary>
+                        Information on the rate of sampling
+                      </doc:summary>
+                    <doc:description>
+                        The frequency field is intended to document the sampling
+                        rate for the specific method employed.
+                      </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
+                        The sampling element was introduced into EML 1.4.
+                      </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
               <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
               <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>

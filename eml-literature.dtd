@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: higgins $'
-          '$Date: 2001-12-20 19:47:46 $'
-      '$Revision: 1.7 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-18 16:13:08 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,22 +22,13 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
+
+<!ENTITY % coverage SYSTEM "eml-coverage.dtd" >
+%coverage;
+<!ENTITY % resource SYSTEM "eml-resource.dtd" >
+%resource;
+
 <!ELEMENT citation ((identifier+, shortName?, title+, originator+, pubDate?, pubPlace?, series?, abstract?, keywordSet*, additionalInfo*, rights*, (onlineURL | offlineMedium)*, triple*), (ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis)))>
-<!ELEMENT identifier (#PCDATA)>
-<!ATTLIST identifier system CDATA #IMPLIED>
-<!ELEMENT shortName (#PCDATA)>
-<!ELEMENT title (#PCDATA)>
-<!ELEMENT originator ((individualName | organizationName | positionName), address*, phone*, electronicMailAddress*, onlineLink*, role+)>
-<!ELEMENT pubDate (#PCDATA)>
-<!ELEMENT pubPlace (#PCDATA)>
-<!ELEMENT series (#PCDATA)>
-<!ELEMENT abstract (paragraph+)>
-<!ELEMENT keywordSet (keyword+, keywordThesaurus*)>
-<!ELEMENT additionalInfo (paragraph+)>
-<!ELEMENT rights (paragraph+)>
-<!ELEMENT onlineURL (#PCDATA)>
-<!ELEMENT offlineMedium (medName?, medDensity?, medDensityUnits?, medVol?, medFormat*, medNote?)>
-<!ELEMENT triple (subject, relationship, object)>
 <!ELEMENT ISBN (#PCDATA)>
 <!ELEMENT ISSN (#PCDATA)>
 <!ELEMENT article (journal, volume, issue?, pageRange)>
@@ -46,28 +37,6 @@
 <!ELEMENT manuscript (pubInfo, Location)>
 <!ELEMENT report (institution, reportNumber)>
 <!ELEMENT thesis (degree, pubInfo, totalPages, degreeInstitution)>
-<!ELEMENT individualName (salutation*, givenName*, surName)>
-<!ELEMENT organizationName (#PCDATA)>
-<!ELEMENT positionName (#PCDATA)>
-<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, postalCode?, country?)>
-<!ELEMENT phone (#PCDATA)>
-<!ATTLIST phone phonetype CDATA #IMPLIED>
-<!ELEMENT electronicMailAddress (#PCDATA)>
-<!ELEMENT onlineLink (#PCDATA)>
-<!ELEMENT role (#PCDATA)>
-<!ELEMENT paragraph (#PCDATA)>
-<!ELEMENT keyword (#PCDATA)>
-<!ATTLIST keyword keywordType (place | stratum | temporal | theme) #IMPLIED>
-<!ELEMENT keywordThesaurus (#PCDATA)>
-<!ELEMENT medName (#PCDATA)>
-<!ELEMENT medDensity (#PCDATA)>
-<!ELEMENT medDensityUnits (#PCDATA)>
-<!ELEMENT medVol (#PCDATA)>
-<!ELEMENT medFormat (#PCDATA)>
-<!ELEMENT medNote (#PCDATA)>
-<!ELEMENT subject (#PCDATA)>
-<!ELEMENT relationship (#PCDATA)>
-<!ELEMENT object (#PCDATA)>
 <!ELEMENT journal (#PCDATA)>
 <!ELEMENT volume (#PCDATA)>
 <!ELEMENT issue (#PCDATA)>
@@ -86,11 +55,3 @@
 <!ELEMENT reportNumber (#PCDATA)>
 <!ELEMENT degree (#PCDATA)>
 <!ELEMENT degreeInstitution (#PCDATA)>
-<!ELEMENT salutation (#PCDATA)>
-<!ELEMENT givenName (#PCDATA)>
-<!ELEMENT surName (#PCDATA)>
-<!ELEMENT deliveryPoint (#PCDATA)>
-<!ELEMENT city (#PCDATA)>
-<!ELEMENT administrativeArea (#PCDATA)>
-<!ELEMENT postalCode (#PCDATA)>
-<!ELEMENT country (#PCDATA)>
