@@ -27,7 +27,7 @@
       </xsl:element>
     </xsl:if>
 
-     <xsl:if test="$phb6/eml-physical/!=''">
+     <xsl:if test="$phb6/eml-physical!=''">
       <xsl:element name="physical">
         <xsl:element name="objectName">
           <!-- beta6 physical objects do not have names; need to pull out of triple data

@@ -187,7 +187,7 @@
        </xsl:element>
        <xsl:if test="$projectb6/eml-project/researchProject/siteDescription/citation!=''">
           <xsl:call-template name="citTransform">
-            <xsl:with-param name="citb6" select="$projectb6/eml-project/researchProject/siteDescription/"/>
+            <xsl:with-param name="citb6" select="$projectb6/eml-project/researchProject/siteDescription"/>
           </xsl:call-template>  
        </xsl:if>
        <xsl:if test="(($projectb6/eml-project/researchProject/temporalCov!='') or ($projectb6/eml-project/researchProject/geographicCov!=''))">
