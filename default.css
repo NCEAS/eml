@@ -9,8 +9,8 @@
   *     Authors: Matt Jones
   *
   *    '$Author: brooke $'
-  *      '$Date: 2003-11-15 06:46:20 $'
-  *  '$Revision: 1.12 $'
+  *      '$Date: 2003-11-17 21:44:48 $'
+  *  '$Revision: 1.13 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,14 +33,16 @@ body {
     color: #333333; 
     background-color: #eeeeee;
     font-weight: normal;
-    font-size: 11px; 
+    font-size: 12px; 
     font-family: Verdana,Arial,Helvetica,sans-serif; }
     
 a {
     color: #669933;
     font-weight: bold;
-    font-size: 11px; 
-    text-decoration: none; }
+    font-size: 12px; 
+    text-decoration: none; 
+		text-align: left;
+		}
 		
 a:hover {
     color: #ff9933;
@@ -92,23 +94,35 @@ a.toollink:hover {
 a.sitelink {
     color: #339933;
     text-decoration: none; 
-    font-size: 11px; 
+    font-size: 12px; 
     font-weight: bold; }
 a.sitelink:hover {
     color: #ff9933;
     text-decoration: underline; }
-
+h3 {
+	font-size: 18px;
+	font-family: Georgia, Times New Roman, Times, serif;
+	text-align: center;
+	}
+b {
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+	}
+	
 .tabledefault {
     background: white;
     color: #555555;
-		width: 790px;
-    font-size: 11px; 
+/*		width: 790px; */
+		width: 100%; 
+    font-size: 12px; 
+		line-height: 1.2;
     left-padding: 5px;
     right-padding: 5px; }
 .tablepanel {
     background: #eeeeee;
     color: #555555;
-    font-size: 11px; 
+    font-size: 12px; 
     left-padding: 5px;
     right-padding: 5px; }
 .tablehead {
@@ -169,24 +183,24 @@ p.emphasis {
   font-style:  normal;
 }
 .roweven {
-/*
-    background: #d0e3f7; }
-*/
     background: white; }
 .rowodd {
     background: white; }
 .highlight  {
     background-color: #dddddd; 
-    font-size: -1; }
+    font-size: 12px; }
+.secondCol {
+    background-color: #ffffff; 
+    font-size: 12px; }
 .plaintext {
     color: #555555;
     font-weight: normal;
-    font-size: 11px;
+    font-size: 12px;
     }
 .boldtext {
     color: #333333;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     }
 
 .searchresultsdivider {
@@ -207,8 +221,6 @@ p.emphasis {
 
 
 .sectionheader {
-
-    background-image: url(http://anacapa.nceas.ucsb.edu:8080/knbweb/images/panelhead_bg.gif);
 	  text-align: center;
     color: #0247A8; 
     font-size: 16px; 
@@ -225,28 +237,31 @@ p.emphasis {
 
 	  padding: 5px;
     font-weight: normal;
-    font-size: 11px; }
+    font-size: 12px; }
 
 .text_example { 
 
 	  padding: 5px;
     color: #999999;
     font-weight: normal;
-    font-size: 11px; }
+    font-size: 12px; }
 
 .searchcat {
   	padding-left: 5px;
     color: #0247A8;
     font-weight: bold;
-    font-size: 11px; }
-		
+    font-size: 12px; }
+
+td {
+		line-height: 1.5;
+}		
 td.searchsubcat {
   	padding-left: 15px; }
 
 a.searchsubcat {
     color: #669933; 
     font-weight: normal;
-    font-size: 11px; }
+    font-size: 12px; }
 		
 a.searchsubcat:hover {
     color: #ff9933;
