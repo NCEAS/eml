@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <xs:schema 
-    targetNamespace="eml://ecoinformatics.org/protocol-2.0.0rc1" 
-    xmlns="eml://ecoinformatics.org/protocol-2.0.0rc1" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
+    targetNamespace="eml://ecoinformatics.org/protocol-2.0.0rc1"
+    xmlns="eml://ecoinformatics.org/protocol-2.0.0rc1"
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+    xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1"
     xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" 
@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-09-11 14:24:40 $'
-      '$Revision: 1.43 $'
+        '$Author: blankman $'
+          '$Date: 2002-09-19 20:52:05 $'
+      '$Revision: 1.44 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -55,11 +55,12 @@
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-protocol</doc:moduleName>
-        <doc:moduleDescription>The EML Protocol Module is used to describe
-        methods and identify the proccesses that have been used to define /
-        improve the quality of a data file, also used to identify potential
-        problems with the data file.</doc:moduleDescription>
-        <doc:recommendedUsage>all datasets</doc:recommendedUsage>
+        <doc:moduleDescription>The EML Protocol Module is used to define
+        abstract, prescriptive procedures that generate or process data.
+        </doc:moduleDescription>
+       <doc:recommendedUsage>Use eml-protocol to describe prescriptive
+        procedures that can be associated with other descriptive or
+        prescriptive procedures.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
@@ -68,12 +69,13 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>ProtocolType</doc:tooltip>
-        <doc:summary>A reusable container for protocol-related
-        information</doc:summary>
+        <doc:summary>A reusable container for information related to
+        a prescriptive procedure.</doc:summary>
         <doc:description>The ProtocolType container defines a number of
         reusable fields that can be referenced from multiple EML
-        modules.</doc:description>
-        <doc:example>Please see the examples for the sub-fields.</doc:example>
+        modules.  It represents well-defined, prescriptive procedures
+        that can be used to document other prescriptive procedures or
+        descriptive procedures such as methods.</doc:description>
         <doc:lineage>Introduced in EML 2.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -94,13 +96,12 @@
   <xs:element name="protocol" type="ProtocolType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Protocol Information</doc:tooltip>
-        <doc:summary>A container for methods and protocol-related
-        information</doc:summary>
+        <doc:tooltip>A prescriptive procedure</doc:tooltip>
+        <doc:summary>A reusable container for information related to
+        a prescriptive procedure.</doc:summary>
         <doc:description>The protocol field provides a container for other
-        related fields such as methods, processingStep, and
-        qualityControl.</doc:description>
-        <doc:example>Please see the examples for the sub-fields.</doc:example>
+        related fields, such as proceduralStep and ResourceGroup.
+        </doc:description>
         <doc:lineage>Introduced in EML 2.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
