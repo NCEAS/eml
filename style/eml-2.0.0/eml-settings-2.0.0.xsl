@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-24 06:44:55 $'
-  * '$Revision: 1.9 $'
+  *     '$Date: 2003-11-25 17:20:58 $'
+  * '$Revision: 1.10 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@
     */
 -->
 
-  <xsl:param name="qformat">default</xsl:param>
+  <xsl:param name="qformat">@default-style@</xsl:param>
 
 
 <!--
