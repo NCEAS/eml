@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: jones $'
-          '$Date: 2001-07-31 16:24:37 $'
-      '$Revision: 1.24 $'
+        '$Author: cjones $'
+          '$Date: 2001-07-31 18:24:51 $'
+      '$Revision: 1.25 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -106,24 +106,24 @@
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>
-                    Catalog system
-                  </doc:tooltip>
+                        Catalog system
+                      </doc:tooltip>
                       <doc:summary>
-                    The catalog system in which this identifier is used.
-                  </doc:summary>
+                        The catalog system in which this identifier is used.
+                      </doc:summary>
                       <doc:description>
-                    This element gives the name of the catalog system in which
-                    this identifier is used.  It is useful to determine the
-                    scope of the identifier, and to determine the semantics
-                    of the various subparts of the identifier. Unresolved issue:
-                    can or should this be a URI/URL pointing to the catalog
-                    system, or just the name?
-                  </doc:description>
+                        This element gives the name of the catalog system in which
+                        this identifier is used.  It is useful to determine the
+                        scope of the identifier, and to determine the semantics
+                        of the various subparts of the identifier. Unresolved issue:
+                        can or should this be a URI/URL pointing to the catalog
+                        system, or just the name?
+                      </doc:description>
                       <doc:example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                        <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
                       <doc:lineage>
-                    New to EML 2.0.
-                  </doc:lineage>
+                        New to EML 2.0.
+                      </doc:lineage>
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
