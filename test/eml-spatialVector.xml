@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <spvec:spatialVector
     xmlns:spvec="eml://ecoinformatics.org/spatialVector-2.0.0rc1"
+    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="eml://ecoinformatics.org/spatialVector-2.0.0rc1
     eml-spatialVector.xsd">
@@ -27,14 +28,34 @@
 
   <spatialReference>
     <horizontalCoordinateSystemDefinition>
-      <coordinateSystemName>
+     <coordinateSystemName>
         <geographicCoordinateSystemName>Planar</geographicCoordinateSystemName>
         <projectedCoordinateSystemName>Cartesian</projectedCoordinateSystemName>
       </coordinateSystemName>
-      <local>
-        <local_Description>xyz</local_Description>
-        <local_Georeference_Information>xyz</local_Georeference_Information>
-      </local>
+      <planar>
+        <MapProjection>
+          <mapProjectionName>Mercator</mapProjectionName>
+          <MapProjectionParameters>
+            <spref:azimuthMeasurePointLongitude>123</spref:azimuthMeasurePointLongitude>
+          </MapProjectionParameters>
+        </MapProjection>
+        <planarCoordinateInformation>
+          <planarCoordinateEncodingMethod>
+            some info
+          </planarCoordinateEncodingMethod>
+          <coordinate_Representation>
+            <Abscissa_Resolution>
+              123
+            </Abscissa_Resolution>
+            <Ordinate_Resolution>
+              123
+            </Ordinate_Resolution>
+          </coordinate_Representation>
+          <Planar_Distance_Units>
+            meter
+          </Planar_Distance_Units>
+        </planarCoordinateInformation>
+      </planar>
       <geodetic_Model>
         <horizontal_Datum_Name>
           xyz
