@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: berkley $'
-  *      '$Date: 2002-04-21 22:47:53 $'
-  *  '$Revision: 1.14 $'
+  *      '$Date: 2002-05-08 19:55:05 $'
+  *  '$Revision: 1.15 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -47,7 +47,8 @@
         your CLASSPATH in order for this to work -->
   <target name="docs" depends="init">
     <mkdir dir="${build.docs}"/>
-    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl" includes="*.xsd" excludes="eml-documentation.xsd" processor="xalan"/>
+    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl" 
+           includes="*.xsd" excludes="eml-documentation.xsd" processor="xalan"/>
     <copy todir="${build.docs}" filtering="no">
       <fileset dir=".">
         <include name="default.css"/>
@@ -66,7 +67,8 @@
         your CLASSPATH in order for this to work -->
   <target name="stripdocs" depends="init">
     <mkdir dir="${build.stripped}"/>
-    <style basedir="." destdir="${build.stripped}" extension=".xsd" style="removeAnnotation.xsl" includes="*.xsd" processor="xalan"/>
+    <style basedir="." destdir="${build.stripped}" extension=".xsd" 
+           style="removeAnnotation.xsl" includes="*.xsd" processor="trax"/>
     <echo>
 
            ******************************************
@@ -76,6 +78,7 @@
            ******************************************
      </echo>
   </target>
+  
   <target name="dist" depends="docs">
     <mkdir dir="${dist.dir}"/>
     <delete dir="${ver.dir}"/>
