@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-07-11 19:10:03 $'
-  *  '$Revision: 1.7 $'
+  *      '$Date: 2001-07-13 02:59:21 $'
+  *  '$Revision: 1.8 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -33,6 +33,9 @@
    <target name="init">
      <property name="build.docs" value="docs" /> 
      <property name="build.stripped" value="stripped" /> 
+     <filter token="server" value="http://knb.ecoinformatics.org" />
+     <filter token="docrooturl" value="" />
+     <filter token="version" value="2.0 beta 2" />
    </target>
 
    <!-- Generate HTML documentation using an XSLT transform -->
@@ -49,6 +52,11 @@
      <copy todir="${build.docs}" filtering="no">
        <fileset dir=".">
          <include name="default.css"/>
+       </fileset>
+     </copy>
+     <copy todir="${build.docs}" filtering="yes">
+       <fileset dir=".">
+         <include name="index.html"/>
        </fileset>
      </copy>
    </target>
