@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/text-2.0.0rc3" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc3" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="eml://ecoinformatics.org/text-2.0.0rc3"
+    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc3"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3"
     targetNamespace="eml://ecoinformatics.org/text-2.0.0rc3">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3"
   schemaLocation="eml-documentation.xsd"/>
 
   <xs:annotation>
@@ -24,9 +24,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-30 17:58:27 $'
-      '$Revision: 1.13 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-31 17:37:15 $'
+      '$Revision: 1.14 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@
         of relevant subsections that allow the use of titles, sections, and
         paragraphs in the text block. This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -95,7 +95,7 @@
         of relevant subsections that allow the use of titles, sections, and
         paragraphs in the text block. This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
@@ -108,7 +108,7 @@
             grouping related paragraphs of text together, with
             an optional title.  This markup is a subset of DocBook.
             </doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -123,7 +123,7 @@
             markup tags, inlcuding emphasis, subscript,
             superscript, and lists. This markup is a subset of DocBook.
             </doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -140,7 +140,7 @@
         markup tags, inlcuding emphasis, subscript,
         superscript, and lists. This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -154,7 +154,7 @@
             list is generally displayed as a bulleted list.
             This markup is a subset of DocBook.
             </doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -168,7 +168,7 @@
             paragraph.  The list is generally displayed as a numbered
             list. This markup is a subset of DocBook.
             </doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -181,7 +181,7 @@
              Emphasized text is generally rendered as boldfaced or otherwise
              distinct from the surrounding text.
              This markup is a subset of DocBook.</doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -192,7 +192,7 @@
             <doc:summary>A subscript in a text paragraph.</doc:summary>
             <doc:description>A subscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -203,7 +203,18 @@
             <doc:summary>A superscript in a text paragraph.</doc:summary>
             <doc:description>A superscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-            
+
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="literalLayout" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>literalLayout</doc:tooltip>
+            <doc:summary>The equivalent to &lt;pre&gt; in html.</doc:summary>
+            <doc:description>This element specifies that the structure of
+            the text within the tag, specifically the whitespace, should not
+            be altered.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -218,7 +229,7 @@
         grouping related paragraphs of text together, with
         an optional title.  This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -230,7 +241,7 @@
             <doc:description>The optional title for a section.
             This markup is a subset of DocBook.
             </doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -246,7 +257,7 @@
               markup tags, inlcuding emphasis, subscript,
               superscript, and lists. This markup is a subset of DocBook.
               </doc:description>
-              
+
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -259,7 +270,7 @@
               grouping related paragraphs of text together, with
               an optional title.  This markup is a subset of DocBook.
               </doc:description>
-              
+
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -275,7 +286,7 @@
         is used by both orderedlist elements and itemizedlist elements.
         This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -306,7 +317,7 @@
                     markup tags, inlcuding emphasis, subscript,
                     superscript, and lists. This markup is a subset of DocBook.
                     </doc:description>
-                    
+
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -320,7 +331,7 @@
                     list is generally displayed as a bulleted list.
                     This markup is a subset of DocBook.
                     </doc:description>
-                    
+
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -334,7 +345,7 @@
                     paragraph.  The list is generally displayed as a numbered
                     list. This markup is a subset of DocBook.
                     </doc:description>
-                    
+
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -353,7 +364,7 @@
         This type is used by both subscript and superscript elements to define
         their recursive content. This markup is a subset of DocBook.
         </doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -364,7 +375,7 @@
             <doc:summary>A subscript in a text paragraph.</doc:summary>
             <doc:description>A subscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -375,7 +386,7 @@
             <doc:summary>A superscript in a text paragraph.</doc:summary>
             <doc:description>A superscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
