@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-06-03 19:13:30 $'
-  * '$Revision: 1.15 $'
+  *     '$Date: 2003-06-04 18:51:58 $'
+  * '$Revision: 1.16 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,18 @@ version="1.0">
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
+<!-- mapping of eml2 geometry types to fgdc; multi... types very uncertain! -->
+  <xsl:variable name="geometryTypeMap">
+    <geomtype name="LineString" sdtstype="String"/>
+    <geomtype name="LinearRing" sdtstype="Area chain"/>
+    <geomtype name="Polygon" sdtstype="G-polygon"/>
+    <geomtype name="Point" sdtstype="Point"/>
+    <geomtype name="MultiPoint" sdtstype="Point"/>
+    <geomtype name="MultiLineString" sdtstype="Ring composed of strings"/>
+    <geomtype name="MultiPolygon" sdtstype="G-polygon"/>
+    <geomtype name="MultiGeometry" sdtstype="Node, network"/>
+  </xsl:variable>
+  
   <xsl:variable name="show_optional" select="0"/>
   
   <!-- create a variable that contains all the elements that have an 'id' 
@@ -186,16 +198,16 @@ version="1.0">
         <xsl:element name="timeperd">
           <xsl:element name="timeinfo">
             <xsl:choose>
-              <xsl:when test="1">
+              <xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate!=''">
                 <xsl:element name="sngdate">
                   <xsl:choose>
                     <xsl:when test="1">
                       <xsl:element name="caldate">
-                      
+                        <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate"/>
                       </xsl:element>
-                      <xsl:if test="$show_optional">
+                      <xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/time!=''">
                         <xsl:element name="time">
-                      
+                          <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/time"/>
                         </xsl:element>
                       </xsl:if>  
                     </xsl:when>
@@ -222,17 +234,17 @@ version="1.0">
                   </xsl:choose>
                 </xsl:element>
               </xsl:when>
-              <xsl:when test="0">
+              <xsl:when test="0"> <!-- need to handle repeated singleDataTime elements here -->
                 <xsl:element name="mdattim">
                   <xsl:element name="sngdate">
                     <xsl:choose>
                       <xsl:when test="1">
                         <xsl:element name="caldate">
-                        
-                        </xsl:element>
-                        <xsl:if test="$show_optional">
-                          <xsl:element name="time">
                            
+                        </xsl:element>
+                        <xsl:if test="0">
+                          <xsl:element name="time">
+                              
                           </xsl:element>
                         </xsl:if>  
                       </xsl:when>
@@ -260,24 +272,24 @@ version="1.0">
                   </xsl:element>
                 </xsl:element>
               </xsl:when>
-              <xsl:when test="0">
+              <xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate!=''">
                 <xsl:element name="rngdates">
                   <xsl:choose>
                     <xsl:when test="1">
                       <xsl:element name="begdate">
-                      
+                        <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate"/>
                       </xsl:element>
-                      <xsl:if test="$show_optional">
+                      <xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time!=''">
                         <xsl:element name="begtime">
-                      
+                          <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time"/>
                         </xsl:element>
                       </xsl:if>
                       <xsl:element name="enddate">
-                      
+                        <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/calendarDate"/>
                       </xsl:element>
-                      <xsl:if test="$show_optional">
+                      <xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time!=''">
                         <xsl:element name="endtime">
-                      
+                          <xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time"/>
                         </xsl:element>
                       </xsl:if>
                     </xsl:when>
@@ -292,6 +304,13 @@ version="1.0">
                   </xsl:choose>
                 </xsl:element>
               </xsl:when>
+              <xsl:otherwise>
+                <xsl:element name="sngdate">
+                  <xsl:element name="caldate">
+                    <xsl:value-of select="'N/A'"/>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:otherwise>
             </xsl:choose>
           </xsl:element>
           <xsl:element name="current">
@@ -300,16 +319,54 @@ version="1.0">
         </xsl:element>
         <xsl:element name="status">
           <xsl:element name="progress">
-          
+          <!-- allowed values for progress are 'Complete' 'In work' and 'Planned'.
+               I am unable to find a way to get this info from eml2
+               Just assume 'Complete' for now -->
+            <xsl:value-of select="'Complete'"/>     
           </xsl:element>
           <xsl:element name="update">
-          
-          </xsl:element>
+            <xsl:choose>
+              <xsl:when test="/eml:eml/dataset/maintenance/maintenanceUpdateFrequency=''">
+                <xsl:value-of select="/eml:eml/dataset/maintenance/maintenanceUpdateFrequency"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="'Unknown'"/>
+              </xsl:otherwise>
+            </xsl:choose>
+           </xsl:element>
         </xsl:element>
-        <xsl:if test="$show_optional">
+        
+        <!-- spatial domain; esp bounding box info goes here -->
+        <!-- need to handle possible 'references' element here
+             Also, geographicCoverage is repeatable in eml2, but is NOT repeatable in fgdc;
+             This implementation just insert data from the first instance -->
+        <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage!=''">
           <xsl:element name="spdom">
+            <xsl:element name="descgeog">
+              <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/geographicDescription"/>
+            </xsl:element>
+            <xsl:element name="bounding">
+              <xsl:element name="westbc">
+                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate"/>
+              </xsl:element>
+              <xsl:element name="eastbc">
+                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate"/>
+              </xsl:element>
+              <xsl:element name="northbc">
+                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate"/>
+              </xsl:element>
+              <xsl:element name="southbc">
+                <xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate"/>
+              </xsl:element>
+              <!-- The dsgpoly (datasetGPolygon) element is quite complex; it is optional, so skip for now
+              <xsl:if test="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/datasetGPolygon!=''">
+                
+              </xsl:if>
+              -->
+            </xsl:element>
           </xsl:element>
         </xsl:if>
+        
         <xsl:element name="keywords">
           <xsl:choose>
             <xsl:when test="/eml:eml/dataset/keywordSet!=''">
@@ -622,7 +679,8 @@ version="1.0">
             <xsl:element name="ptvctinf">
               <xsl:element name="sdtsterm">
                 <xsl:element name="sdtstype">
-                  <xsl:value-of select="/eml:eml/dataset/spatialVector/geometry"/>
+                  <xsl:variable name="geotype" select="/eml:eml/dataset/spatialVector/geometry"/>
+                  <xsl:value-of select="$geometryTypeMap/*[@name=$geotype]/@sdtstype"/>
                 </xsl:element>
               </xsl:element>
             </xsl:element>
