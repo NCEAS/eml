@@ -36,8 +36,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-06-13 18:04:22 $'
-      '$Revision: 1.52 $'
+          '$Date: 2002-06-13 18:20:48 $'
+      '$Revision: 1.53 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             </xs:sequence>
             <xs:element name="references" type="xs:string" />
         </xs:choice>
-        <xs:attribute name="id" type="xs:ID" use="required" />
+        <xs:attribute name="id" type="xs:ID" use="optional" />
         <xs:attribute name="system" type="xs:string" use="optional" />
         <xs:attribute name="scope" type="res:ScopeType" use="optional"
         default="document" />
