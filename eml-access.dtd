@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2001-03-28 20:24:10 $'
-      '$Revision: 1.12 $'
+        '$Author: jones $'
+          '$Date: 2001-07-10 17:56:34 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,34 +22,33 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-
-<!-- entity referring to the eml-resource fields, of which we use 
-     the identifier field
--->
-<!ENTITY % resource SYSTEM "./eml-resource.dtd">
-  %resource;
-<!ENTITY % tempCoverage "(startDate, stopDate?)">
-
-<!-- The root element represents a list of principals that should be either
-     allowed or denied access to a resource. -->
-<!ELEMENT acl (identifier+,allow*, deny*)>
-<!ATTLIST acl authSystem CDATA #REQUIRED
-              order  (allowFirst|denyFirst) "allowFirst">
+<!-- The root element represents a list of allow or deny records for 
+       principals that should be either allowed or denied access to a resource. -->
+<!ELEMENT acl (identifier+, (allow, deny)+)>
+<!ATTLIST acl
+  authSystem CDATA #REQUIRED
+  order (allowFirst | denyFirst) "allowFirst"
+>
 <!-- The authentication system that this access file uses -->
 <!-- The order in which the rules should be applied for this object -->
 <!-- The public read access to this object -->
-
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier
+  system CDATA #IMPLIED
+>
+<!ENTITY % AccessRule "principal+, permission+, duration?, ticketCount?">
 <!-- an allow rule adds the listed permission for a particular principal -->
-<!ELEMENT allow (principal+, permission+, duration?, ticketCount?)>
+<!ELEMENT allow (%AccessRule;)>
 <!-- a deny rule removes the listed permission for a particular principal -->
-<!ELEMENT deny (principal+, permission+, duration?, ticketCount?)>
+<!ELEMENT deny (%AccessRule;)>
 <!-- the user/group in the authentication system to whom this rule applies -->
 <!ELEMENT principal (#PCDATA)>
 <!-- the permission to be allowed or denied (read/write/all) -->
 <!ELEMENT permission (#PCDATA)>
 <!-- the duration of the permission -->
-<!ELEMENT duration (%tempCoverage;)>
+<!ENTITY % cov SYSTEM "./eml-coverage.dtd">
+%cov;
+<!ELEMENT duration (%TemporalCoverage;)>
 <!-- the number of accesses allowed by this rule if access is granted -->
 <!ELEMENT ticketCount (#PCDATA)>
-
 <!-- EOF -->

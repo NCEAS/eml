@@ -1,7 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:cov="eml:coverage"
-           targetNamespace="eml:access">
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:access" xmlns="eml:access" xmlns:cov="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -10,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: jones $'
-          '$Date: 2001-04-16 17:42:11 $'
-      '$Revision: 1.19 $'
+          '$Date: 2001-07-10 17:56:34 $'
+      '$Revision: 1.20 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,9 +45,7 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  
   <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
- 
   <xs:element name="acl">
     <xs:annotation>
       <xs:appinfo>
@@ -75,11 +71,9 @@
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "identifier" type = "xs:string"
-                    minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="identifier" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <tooltip>
@@ -97,9 +91,7 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </description>
-              <example>
-               <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
-              </example>
+              <example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></example>
               <lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -107,16 +99,18 @@
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="system" use="optional" type="xs:string">
-              <xs:annotation>
-                <xs:appinfo>
-                  <tooltip>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <tooltip>
                     Catalog system
                   </tooltip>
-                  <summary>
+                      <summary>
                     The catalog system in which this identifier is used.
                   </summary>
-                  <description>
+                      <description>
                     This element gives the name of the catalog system in which
                     this identifier is used.  It is useful to determine the
                     scope of the identifier, and to determine the semantics
@@ -124,64 +118,64 @@
                     can or should this be a URI/URL pointing to the catalog
                     system, or just the name?
                   </description>
-                  <example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]>
-                  </example>
-                  <lineage>
+                      <example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]></example>
+                      <lineage>
                     New to EML 2.0.
                   </lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="allow" type="AccessRule"
-                    minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="allow" type="AccessRule">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
                 Allow permission
               </tooltip>
-              <summary>
+                <summary>
                 The permission that grants access to a permission type.
               </summary>
-              <description>
+                <description>
                 The allow element indicates that a particular user or group is
                 able to execute the defined permission.
               </description>
-              <example>
+                <example>
                 allow
               </example>
-              <lineage>
+                <lineage>
                 The deny element was introduced into EML 2.0 Proposed.
               </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="deny" type="AccessRule"
-                    minOccurs="0" maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <tooltip>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="deny" type="AccessRule">
+            <xs:annotation>
+              <xs:appinfo>
+                <tooltip>
                 Deny permission
               </tooltip>
-              <summary>
+                <summary>
                 The permission that denies access to a permission type.
               </summary>
-              <description>
+                <description>
                 The deny element indicates that a particular user or group is
                 not able to execute the defined permission.
               </description>
-              <example>
+                <example>
                 deny
               </example>
-              <lineage>
+                <lineage>
                 The deny element was introduced into EML 2.0 Proposed.
               </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
       </xs:sequence>
       <xs:attribute name="order" use="required" default="allowFirst">
         <xs:annotation>
@@ -207,8 +201,8 @@
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:enumeration value="allowFirst"/> 
-            <xs:enumeration value="denyFirst"/> 
+            <xs:enumeration value="allowFirst"/>
+            <xs:enumeration value="denyFirst"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
@@ -218,11 +212,11 @@
             <tooltip>
               Authentication system
             </tooltip>
-           <summary>
+            <summary>
              The authentication system that is used to verify the user or group
              to whom the ACL allows or denies access.
            </summary>
-           <description>
+            <description>
               The authentication system determines the set of principals 
               (users + groups) that can be used in the access control list,
               and the membership of users in groups. This element is intended 
@@ -231,18 +225,17 @@
               form of a URI, which includes the  connection protocol, internet 
               host, and path to the authentication mechanism. 
            </description>
-           <example>
+            <example>
              ldap://directory.nceas.ucsb.edu:389/o=NCEAS,c=US
            </example>
-           <lineage>
+            <lineage>
              The authSystem element was introduced into EML 2.0 Proposed.
            </lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
-  </xs:element> 
- 
+  </xs:element>
   <xs:complexType name="AccessRule">
     <xs:annotation>
       <xs:appinfo>
@@ -259,17 +252,14 @@
           access (write access, or only read access), and the duration or number
           of times that they may access the resource.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The AccessRule type was introduced into EML 2.0 Proposed
         </lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-
-      <xs:element name="principal" type="xs:string"
-                  minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="principal" type="xs:string" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -294,9 +284,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
-      <xs:element name="permission" 
-                  minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="permission" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -321,17 +309,15 @@
             </lineage>
           </xs:appinfo>
         </xs:annotation>
-	<xs:simpleType>
+        <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:enumeration value="read" /> 
-            <xs:enumeration value="write" /> 
-            <xs:enumeration value="all" /> 
+            <xs:enumeration value="read"/>
+            <xs:enumeration value="write"/>
+            <xs:enumeration value="all"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-
-      <xs:element name="duration" type="cov:TemporalCoverage"
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="duration" type="cov:TemporalCoverage" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             For application developers, the duration element will need to be 
@@ -364,9 +350,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
-      <xs:element name="ticketCount" type="xs:positiveInteger"
-                  minOccurs="0" maxOccurs="1">
+      <xs:element name="ticketCount" type="xs:positiveInteger" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <tooltip>
@@ -388,8 +372,6 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      
     </xs:sequence>
   </xs:complexType>
-
 </xs:schema>
