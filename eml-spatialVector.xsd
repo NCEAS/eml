@@ -24,9 +24,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.3 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-29 22:30:21 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,13 @@
     </xs:appinfo>
   </xs:annotation>
   
+  <xs:complexType name="spatialVectorContainer">
+    <xs:choice>
+      <xs:element ref="spatialVector"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+  
   <xs:element name="spatialVector" type="SpatialVector">
     <xs:annotation>
       <xs:appinfo>
@@ -90,6 +97,7 @@
   </xs:element>
   
   <xs:complexType name="SpatialVector">
+    <xs:attribute name="id" type="xs:ID" use="required"/>
     <xs:complexContent>
       <xs:extension base="ent:SpatialRepresentation">
         <xs:sequence>

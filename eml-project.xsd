@@ -8,7 +8,10 @@ xmlns:doc="eml:documentation-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8"
   schemaLocation="eml-documentation.xsd" />
   <xs:annotation>
-    <xs:documentation>'$RCSfile: eml-project.xsd,v $' Copyright: 1997-2002
+    <xs:documentation>
+    '$RCSfile: eml-project.xsd,v $' 
+    
+    Copyright: 1997-2002
     Regents of the University of California, University of New Mexico, and
     Arizona State University Sponsors: National Center for Ecological
     Analysis and Synthesis and Partnership for Interdisciplinary Studies of
@@ -16,8 +19,13 @@ xmlns:doc="eml:documentation-2.0.0beta8">
     Ecological Research Network Office, University of New Mexico Center for
     Environmental Studies, Arizona State University Other funding: National
     Science Foundation (see README for details) The David and Lucile Packard
-    Foundation For Details: http://knb.ecoinformatics.org/ '$Author: higgins
-    $' '$Date: 2002-05-28 20:50:10 $' '$Revision: 1.34 $' This program is
+    Foundation For Details: http://knb.ecoinformatics.org/ 
+    
+    '$Author: berkley $' 
+    '$Date: 2002-05-29 22:30:21 $' 
+    '$Revision: 1.35 $' 
+    
+    This program is
     free software; you can redistribute it and/or modify it under the terms
     of the GNU General Public License as published by the Free Software
     Foundation; either version 2 of the License, or (at your option) any
@@ -45,7 +53,16 @@ xmlns:doc="eml:documentation-2.0.0beta8">
   schemaLocation="eml-literature.xsd" />
   <xs:import namespace="eml:protocol-2.0.0beta8"
   schemaLocation="eml-protocol.xsd" />
+  
+  <xs:complexType name="ProjectContainer">
+    <xs:choice>
+      <xs:element ref="researchProject"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+  
   <xs:element name="researchProject" type="ResearchProjectType" />
+  
   <xs:complexType name="ResearchProjectType">
     <xs:annotation>
       <xs:appinfo>
@@ -263,7 +280,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
                         </xs:simpleContent>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="citation" type="cit:LitCitation"
+                    <xs:element name="citation" type="cit:Citation"
                     minOccurs="0" maxOccurs="unbounded" />
                   </xs:sequence>
                   <xs:attribute name="name" type="xs:string"
@@ -272,7 +289,7 @@ xmlns:doc="eml:documentation-2.0.0beta8">
                   type="xs:boolean" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="citation" type="cit:LitCitation" />
+              <xs:element name="citation" type="cit:Citation" />
               <xs:element name="coverage" type="cov:Coverage" />
             </xs:choice>
           </xs:complexType>
@@ -427,13 +444,13 @@ xmlns:doc="eml:documentation-2.0.0beta8">
                         </xs:choice>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="citation" type="cit:LitCitation"
+                    <xs:element name="citation" type="cit:Citation"
                     minOccurs="0" maxOccurs="unbounded" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element name="paragraph" type="xs:string" />
-              <xs:element name="citation" type="cit:LitCitation" />
+              <xs:element name="citation" type="cit:Citation" />
               <xs:element name="protocol" type="pro:ProtocolType" />
             </xs:choice>
           </xs:complexType>

@@ -19,9 +19,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.41 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-29 22:30:20 $'
+      '$Revision: 1.42 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -79,6 +79,14 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
+  
+  <xs:complexType name="CoverageContainer">
+    <xs:choice>
+      <xs:element ref="coverage"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+  
   <xs:element name="coverage" type="Coverage">
     <xs:annotation>
       <xs:appinfo>

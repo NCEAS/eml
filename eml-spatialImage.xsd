@@ -24,9 +24,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.3 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-29 22:30:21 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,6 +68,13 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
+  
+  <xs:complexType name="spatialImageContainer">
+    <xs:choice>
+      <xs:element ref="spatialImage"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
   
   <xs:element name="spatialImage" type="SpatialImage">
     <xs:annotation>

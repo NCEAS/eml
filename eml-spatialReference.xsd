@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml:spatialReference" xmlns="eml:spatialReference" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+<xs:schema targetNamespace="eml:spatialReference-2.0.0beta8" 
+           xmlns="eml:spatialReference-2.0.0beta8" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:doc="eml:documentation-2.0.0beta8">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-spatialReference.xsd,v $'
@@ -16,9 +19,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: mccartne $'
-          '$Date: 2002-05-29 17:02:01 $'
-      '$Revision: 1.1 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-29 22:30:21 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,6 +69,12 @@
     </xs:appinfo>
   </xs:annotation>
 
+  <xs:complexType name="spatialReferenceContainer">
+    <xs:choice>
+      <xs:element ref="spatialReferenceInformation"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
 
   <xs:element name="spatialReferenceInformation" type="spatialReferenceInformationBase">
     <xs:annotation>
@@ -85,7 +94,9 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+  
   <xs:complexType name="spatialReferenceInformationBase">
+    <xs:attribute name="id" type="xs:ID" use="required"/>
     <xs:sequence>
       <xs:element name="horizontalCoordinateSystemDefinition" minOccurs="0">
         <xs:annotation>

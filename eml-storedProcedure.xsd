@@ -1,21 +1,12 @@
 <?xml version="1.0"?>
-
 <xs:schema targetNamespace="eml:storedProcedure-2.0.0beta8" 
-
             xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-
             xmlns:ent="eml:entity-2.0.0beta8" 
-
             xmlns:doc="eml:documentation-2.0.0beta8"
-
             xmlns="eml:storedProcedure-2.0.0beta8">
-
   <xs:import namespace="eml:entity-2.0.0beta8" schemaLocation="eml-entity.xsd"/>
-
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
-
   <xs:annotation>
-
     <xs:documentation>
        '$RCSfile: eml-storedProcedure.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
@@ -31,9 +22,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:48:26 $'
-      '$Revision: 1.3 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-29 22:30:21 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,300 +40,160 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-
     <xs:appinfo>
-
       <doc:moduleDocs>
-
         <doc:moduleName>eml-storedProcedure</doc:moduleName>
-
         <doc:moduleDescription>
-
           The StoredProcedure modules is meant to capture information on 
-
           procedures stored in the context of an RDBMS.  It should describe
-
           each stored procedure with a name, a sequence and a datatype.
-
         </doc:moduleDescription>
-
         <doc:recommendedUsage>
-
           all datasets that use storedProcedures for analysis or archive
-
           retrieval
-
         </doc:recommendedUsage>
-
         <doc:standAlone>
-
           yes
-
         </doc:standAlone>
-
         <doc:relationship>
-
           <doc:moduleName>
-
             eml-dataset
-
           </doc:moduleName>
-
           <doc:relationshipType>
-
             has stored procedure information for
-
           </doc:relationshipType>
-
         </doc:relationship>
-
       </doc:moduleDocs>
-
     </xs:appinfo>
-
   </xs:annotation>
-
   
-
+  <xs:complexType name="storedProcedureContainer">
+    <xs:choice>
+      <xs:element ref="storedProcedure"/>
+      <xs:element name="references" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+  
   <xs:element name="storedProcedure" type="StoredProcedureBase">
-
     <xs:annotation>
-
       <xs:appinfo>
-
         <doc:tooltip>
-
           
-
         </doc:tooltip>
-
         <doc:summary>
-
           
-
         </doc:summary>
-
         <doc:description>
-
           
-
         </doc:description>
-
         <doc:example>
-
             
-
         </doc:example>
-
         <doc:lineage>
-
           Introduced into eml-2.0.0beta9
-
         </doc:lineage>
-
       </xs:appinfo>
-
     </xs:annotation>
-
   </xs:element>
-
   
-
   <xs:complexType name="StoredProcedureBase">
-
+    <xs:attribute name="id" type="xs:ID" use="required"/>
     <xs:complexContent>
-
       <xs:extension base="ent:EntityBase">
-
         <xs:sequence>
-
           <xs:element name="param" type="ParamBase" minOccurs="0" maxOccurs="unbounded">
-
             <xs:annotation>
-
               <xs:appinfo>
-
                 <doc:tooltip>
-
                   
-
                 </doc:tooltip>
-
                 <doc:summary>
-
                   
-
                 </doc:summary>
-
                 <doc:description>
-
                   
-
                 </doc:description>
-
                 <doc:example>
-
                     
-
                 </doc:example>
-
                 <doc:lineage>
-
                   Introduced into eml-2.0.0beta9
-
                 </doc:lineage>
-
               </xs:appinfo>
-
             </xs:annotation>
-
           </xs:element>
-
         </xs:sequence>
-
       </xs:extension>
-
     </xs:complexContent>
-
   </xs:complexType>
-
   
-
   <xs:complexType name="ParamBase">
-
     <xs:sequence>
-
       <xs:element name="name" type="xs:string">
-
         <xs:annotation>
-
           <xs:appinfo>
-
             <doc:tooltip>
-
               
-
             </doc:tooltip>
-
             <doc:summary>
-
               
-
             </doc:summary>
-
             <doc:description>
-
               
-
             </doc:description>
-
             <doc:example>
-
                 
-
             </doc:example>
-
             <doc:lineage>
-
               Introduced into eml-2.0.0beta9
-
             </doc:lineage>
-
           </xs:appinfo>
-
         </xs:annotation>
-
       </xs:element>
-
       <xs:element name="sequence" type="xs:int">
-
         <xs:annotation>
-
           <xs:appinfo>
-
             <doc:tooltip>
-
               
-
             </doc:tooltip>
-
             <doc:summary>
-
               
-
             </doc:summary>
-
             <doc:description>
-
               
-
             </doc:description>
-
             <doc:example>
-
                 
-
             </doc:example>
-
             <doc:lineage>
-
               Introduced into eml-2.0.0beta9
-
             </doc:lineage>
-
           </xs:appinfo>
-
         </xs:annotation>
-
       </xs:element>
-
       <xs:element name="datatype" type="xs:string">
-
         <xs:annotation>
-
           <xs:appinfo>
-
             <doc:tooltip>
-
               
-
             </doc:tooltip>
-
             <doc:summary>
-
               
-
             </doc:summary>
-
             <doc:description>
-
               
-
             </doc:description>
-
             <doc:example>
-
                 
-
             </doc:example>
-
             <doc:lineage>
-
               Introduced into eml-2.0.0beta9
-
             </doc:lineage>
-
           </xs:appinfo>
-
         </xs:annotation>
-
       </xs:element>
-
     </xs:sequence>
-
   </xs:complexType>
-
   
-
 </xs:schema>
 
