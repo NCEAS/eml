@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-03-28 18:27:44 $'
-      '$Revision: 1.15 $'
+          '$Date: 2001-03-28 19:49:28 $'
+      '$Revision: 1.16 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1106,7 +1106,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="startDate"
+      <xs:element name="startDate" type="DateTime"
                       minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:appinfo>
@@ -1127,15 +1127,9 @@
             </lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="dateTime"
-                        minOccurs="1" maxOccurs="1"/>        
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>        
  
-      <xs:element name="stopDate"
+      <xs:element name="stopDate" type="DateTime"
                       minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:appinfo>
@@ -1156,12 +1150,6 @@
             </lineage>
           </xs:appinfo>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="dateTime"
-                        minOccurs="1" maxOccurs="1"/>        
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>       
     </xs:sequence>
   </xs:complexType>

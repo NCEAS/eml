@@ -1,7 +1,7 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:rp="iso:ResponsibleParty"
-           xmlns:tc="eml:TemporalCoverage"
+           xmlns:rs="eml:resource"
            targetNamespace="eml:research">
 
   <xs:annotation>
@@ -11,9 +11,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-03-27 06:52:13 $'
-      '$Revision: 1.11 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-28 19:49:28 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -40,15 +40,9 @@
     </xs:appinfo>
   </xs:annotation>
 
- <!-- import the elements from responsible party for use
-      in eml-research/researchProject/originator  -->
-  <xs:import namespace="iso:ResponsibleParty"
-             schemaLocation = "./iso-party.xsd"/>
-
- <!-- import the elements from eml-entity/temporalCoverage for use
-      in eml-research/researchProject/temporalDescription  -->
-  <xs:import namespace="eml:TemporalCoverage"
-             schemaLocation = "./eml-entity.xsd"/>
+ <!-- import the elements from eml-resource -->
+  <xs:import namespace="eml:resource"
+             schemaLocation = "./eml-resource.xsd"/>
 
   <xs:element name="eml-research">
     <xs:annotation>
@@ -229,7 +223,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
+              <xs:element name="temporalCoverage" type="rs:TemporalCoverage"
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
@@ -250,37 +244,6 @@
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
-              </xs:element>
-
-              <xs:element name="duration" 
-                                minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <tooltip>
-                      Duration
-                    </tooltip>
-                    <summary>
-                      Duration of the project.
-                    </summary>
-                    <description>
-                      Duration of the project in amount and unit.
-                    </description>
-                    <example>
-                      <![CDATA[<amount>30</amount><unit>day(s)</unit>]]>
-                    </example>
-                    <lineage>
-                      The duration element was introduced into EML 1.4.
-                    </lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="amount" type="xs:string"
-                                minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="unit" type="xs:string"
-                                minOccurs="1" maxOccurs="1"/>
-                  </xs:sequence>
-                </xs:complexType>
               </xs:element>
 
             </xs:sequence>
@@ -483,15 +446,15 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="coordinates" 
+              <xs:element name="geographicCoverage" type="rs:GeographicCoverage" 
                           minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <tooltip>
-                      Geographical coordinates
+                      Geographical coverage
                     </tooltip>
                     <summary>
-                      Geographical coordinates of the site of the project.
+                      Geographical coverage of the site of the project.
                     </summary>
                     <description>
                       This element is to specify the geographical coordinates
@@ -500,23 +463,15 @@
                     <example>
                     </example>
                     <lineage>
-                      The coordinates element was introduced into EML 1.4.
+                      The geographicCoverage element was introduced into EML 1.4.
                     </lineage>
                   </xs:appinfo>
                 </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="latitude" type="xs:string"
-                                minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="longitude" type="xs:string" 
-                                minOccurs="1" maxOccurs="1"/>
-                  </xs:sequence>
-                </xs:complexType>
               </xs:element>
         
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -546,7 +501,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -576,7 +531,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -606,7 +561,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -636,7 +591,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -666,7 +621,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -676,81 +631,6 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:complexType name="Citation">
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          Citation
-        </tooltip>
-        <summary>
-          Citation from a source containing context related information.
-        </summary>
-        <description>
-          Citation from a source containing context related information.
-          It can include the author, editor and information for the source.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The Citation complex type was introduced into EML 1.4.
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="author" type="rp:ResponsibleParty"
-                  minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="editor" type="rp:ResponsibleParty"
-                  minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="sourceInformation" type="SourceInformation"
-                  minOccurs="0" maxOccurs="1"/>
-    </xs:sequence>
-  </xs:complexType>
-        
-  <xs:complexType name="SourceInformation">
-    <xs:annotation>
-      <xs:appinfo>
-        <tooltip>
-          Source information
-        </tooltip>
-        <summary>
-          Source information of the citation.
-        </summary>
-        <description>
-          Information of the source of the citation: title, volume,
-          issue, publication date, publisher, series, chapter title,
-          pages, resource URL.
-        </description>
-        <example>
-        </example>
-        <lineage>
-          The SourceInformation type was introduced into EML 1.4.
-        </lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="title" type="xs:string"
-                  minOccurs="1" maxOccurs="1"/>
-      <xs:element name="volume" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="issue" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="pubDate" type="xs:date"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="publisher" type="rp:ResponsibleParty"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="edition" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="series" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="chapterTitle"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="pages" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>
-      <xs:element name="resourceURL" type="xs:string"
-                  minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-        
   <xs:element name="chapterTitle">
     <xs:annotation>
       <xs:appinfo>
@@ -825,7 +705,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -855,7 +735,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -884,13 +764,13 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="temporalCoverage" type="tc:TemporalCoverage"
+              <xs:element name="temporalCoverage" type="rs:TemporalCoverage"
                           minOccurs="0" maxOccurs="unbounded"/>
               <xs:element name="frequency" type="xs:string"
                           minOccurs="0" maxOccurs="1"/>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -898,7 +778,7 @@
         
         <xs:element name="paragraph" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="Citation"
+        <xs:element name="citation" type="rs:LitCitation"
                     minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
@@ -952,7 +832,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -982,7 +862,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -1012,7 +892,7 @@
             <xs:sequence>
               <xs:element name="paragraph" type="xs:string"
                           minOccurs="0" maxOccurs="unbounded"/>
-              <xs:element name="citation" type="Citation"
+              <xs:element name="citation" type="rs:LitCitation"
                           minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
@@ -1077,7 +957,7 @@
               
         <xs:element name="paragraph" type="xs:string"
                     minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="citation" type="Citation"
+        <xs:element name="citation" type="rs:LitCitation"
                     minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
