@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.52 $'
+          '$Date: 2002-10-30 17:58:26 $'
+      '$Revision: 1.53 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3"
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
@@ -501,10 +501,10 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc2 eml.xsd"&gt;
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc3"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc3 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -535,10 +535,10 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc2 eml.xsd"&gt;
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc3"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc3 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -572,10 +572,10 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc2 eml.xsd"&gt;
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc3"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc3 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -609,10 +609,10 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc2 eml.xsd"&gt;
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc3"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc3 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;

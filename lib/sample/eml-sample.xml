@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc2"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.0.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc2"
+    xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0rc3"
     xmlns:stmml="http://www.xml-cml.org/schema/stmml"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc2 eml.xsd">
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.0rc3 eml.xsd">
 
 <dataset>
   <title>Data from Cedar Creek LTER on productivity and species richness
@@ -88,131 +88,191 @@
         <attributeName>Field</attributeName>
         <attributeLabel>Fld</attributeLabel>
         <attributeDefinition>Field where the data was collected</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
-        <storageType>integer</storageType>
-        <measurementScale>nominal</measurementScale>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain id="nd.1">
+              <textDomain>
+                <definition>Valid names of fields</definition>
+              </textDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
       </attribute>
       <attribute id="att.2">
         <attributeName>Year</attributeName>
         <attributeLabel>Yr</attributeLabel>
         <attributeDefinition>The year the data was collected</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
-        <storageType>integer</storageType>
-        <measurementScale>interval</measurementScale>
+        <storageType>gYear</storageType>
+        <measurementScale>
+          <interval>
+            <unit><standardUnit>second</standardUnit></unit>
+            <precision>1</precision>
+            <numericDomain id="nd.2">
+              <numberType>integer</numberType>
+              <minimum>1900</minimum>
+            </numericDomain>
+          </interval>
+        </measurementScale>
       </attribute>
       <attribute  id="att.3">
         <attributeName>Species Richness</attributeName>
         <attributeLabel>SR</attributeLabel>
         <attributeDefinition>Species richness for CDR</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
-        <storageType>integer</storageType>
-        <measurementScale>interval</measurementScale>
+        <storageType>float</storageType>
+        <measurementScale>
+          <interval>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.5</precision>
+            <numericDomain id="nd.3">
+              <numberType>real</numberType>
+              <minimum>0</minimum>
+            </numericDomain>
+          </interval>
+        </measurementScale>
       </attribute>
       <attribute  id="att.4">
         <attributeName>percent cover</attributeName>
         <attributeLabel>%cover</attributeLabel>
         <attributeDefinition>The percent ground cover on the field</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain id="nd.4">
+              <numberType>real</numberType>
+              <minimum>0</minimum>
+              <maximum>100</maximum>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute  id="att.5">
         <attributeName>Average Species Richness for 1991</attributeName>
         <attributeLabel>avesr91</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1991</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain id="nd.5">
+              <numberType>real</numberType>
+              <minimum>0</minimum>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute  id="att.6">
         <attributeName>Average Species Richness for 1992</attributeName>
         <attributeLabel>avesr92</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1992</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute  id="att.7">
         <attributeName>Average Species Richness for 1993</attributeName>
         <attributeLabel>avesr93</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1993</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.8">
         <attributeName>Average Species Richness for 1994</attributeName>
         <attributeLabel>avesr94</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1994</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.9">
         <attributeName>Average Species Richness for 1995</attributeName>
         <attributeLabel>avesr95</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1995</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.10">
         <attributeName>Average Species Richness for 1996</attributeName>
         <attributeLabel>avesr96</attributeLabel>
         <attributeDefinition>The average species richness for the field in 1996</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.11">
         <attributeName>mean species richness</attributeName>
         <attributeLabel>MeanSR</attributeLabel>
         <attributeDefinition>the mean species richness from 1991 to 1996</attributeDefinition>
-        <unit>
-          <standardUnit>dimensionless</standardUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><standardUnit>dimensionless</standardUnit></unit>
+            <precision>0.1</precision>
+            <numericDomain><references>nd.5</references></numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.12">
         <attributeName>Biomass</attributeName>
         <attributeLabel>Biomass (g/m2)</attributeLabel>
         <attributeDefinition>The total biomass measured in this field</attributeDefinition>
-        <unit>
-          <customUnit>gramsPerSquareMeter</customUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><customUnit>gramsPerSquareMeter</customUnit></unit>
+            <precision>0.01</precision>
+            <numericDomain id="nd.6">
+              <numberType>real</numberType>
+              <minimum>0</minimum>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
       <attribute id="att.13">
         <attributeName>Species Per Square Meter</attributeName>
         <attributeLabel>Spp/m2 (calc)</attributeLabel>
         <attributeDefinition>Calculated species per square meter</attributeDefinition>
-        <unit>
-          <customUnit>speciesPerSquareMeter</customUnit>
-        </unit>
         <storageType>float</storageType>
-        <measurementScale>ratio</measurementScale>
+        <measurementScale>
+          <ratio>
+            <unit><customUnit>speciesPerSquareMeter</customUnit></unit>
+            <precision>0.01</precision>
+            <numericDomain id="nd.7">
+              <numberType>real</numberType>
+              <minimum>0</minimum>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
       </attribute>
     </attributeList>
     <caseSensitive>no</caseSensitive>

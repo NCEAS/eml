@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc2" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc2" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc2" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc2" 
-    xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc2" 
-    targetNamespace="eml://ecoinformatics.org/dataTable-2.0.0rc2">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc2" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc3" 
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc3" 
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc3" 
+    xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc3" 
+    targetNamespace="eml://ecoinformatics.org/dataTable-2.0.0rc3">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc2" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" 
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc2" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc3" 
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc2" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc3" 
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc2" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc3" 
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-29 22:59:17 $'
-      '$Revision: 1.37 $'
+          '$Date: 2002-10-30 17:58:26 $'
+      '$Revision: 1.38 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or

@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-07 16:48:25 $'
-      '$Revision: 1.10 $'
+          '$Date: 2002-10-30 17:58:26 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc2"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3"
                 version="1.0">
 <xsl:output method="html" indent="yes"/>
 
