@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-13 18:27:42 $'
- * '$Revision: 1.5 $'
+ *     '$Date: 2002-10-03 15:17:04 $'
+ * '$Revision: 1.6 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,13 @@
 
 package org.ecoinformatics.emltest;
 
+import org.ecoinformatics.eml.SAXValidate;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
 import junit.framework.TestSuite;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;
@@ -43,6 +46,7 @@ import org.xml.sax.ext.DeclHandler;
 import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -197,67 +201,6 @@ public class SaxValidateTest extends TestCase
             }
         }
         return fileList;
-    }
-
-    /**
-     * Validate an XML document using a SAX parser
-     */
-    private class SAXValidate extends DefaultHandler implements ErrorHandler
-    {
-        private boolean schemavalidate = false;
-
-        /**
-         * Construct an instance of the handler class
-         *
-         * @param validateschema  Description of Parameter
-         */
-        public SAXValidate(boolean validateschema)
-        {
-            this.schemavalidate = validateschema;
-        }
-
-        /**
-         * Method for handling errors during a parse
-         *
-         * @param exception         The parsing error
-         * @exception SAXException  Description of Exception
-         */
-        public void error(SAXParseException exception) throws SAXException
-        {
-            throw exception;
-        }
-
-        /**
-         * Run the validation test.
-         *
-         * @param xml           the xml stream to be validated
-         * @param parserName    the name of a SAX2 compliant parser class
-         * @exception IOException thrown when test files can't be opened
-         * @exception ClassNotFoundException  thrown when the SAX Parser
-         *                                    class can't be located
-         */
-        public void runTest(Reader xml, String parserName)
-                 throws IOException, ClassNotFoundException,
-                 SAXException, SAXParseException
-        {
-
-            // Get an instance of the parser
-            XMLReader parser = XMLReaderFactory.createXMLReader(parserName);
-
-            // Set Handlers in the parser
-            parser.setContentHandler((ContentHandler)this);
-            parser.setErrorHandler((ErrorHandler)this);
-
-            parser.setFeature("http://xml.org/sax/features/validation", true);
-            if (schemavalidate) {
-                parser.setFeature(
-                    "http://apache.org/xml/features/validation/schema",
-                    true);
-            }
-
-            // Parse the document
-            parser.parse(new InputSource(xml));
-        }
     }
 }
 
