@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/physical-2.0.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" 
-    xmlns:cit="eml://ecoinformatics.org/literature-2.0.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0" 
-    targetNamespace="eml://ecoinformatics.org/physical-2.0.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0" 
-  schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0" 
-  schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0" xmlns:res="eml://ecoinformatics.org/resource-2.0.0" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" xmlns="eml://ecoinformatics.org/physical-2.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-physical.xsd,v $'
@@ -29,8 +20,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: blankman $'
-          '$Date: 2003-08-20 00:45:11 $'
-      '$Revision: 1.63 $'
+          '$Date: 2003-09-09 20:11:58 $'
+      '$Revision: 1.64 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -989,7 +980,6 @@
                           for a total of twenty-four bits per pixel.
                           </doc:description>
                           <doc:example>8</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1024,7 +1014,6 @@
                           existing image header information in the file. The
                           default value is zero bytes.</doc:description>
                           <doc:example>0</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1040,7 +1029,6 @@
                           end of each band within a row that must be
                           skipped.</doc:description>
                           <doc:example>3</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1055,7 +1043,6 @@
                           trailing bits at the end of each
                           row.</doc:description>
                           <doc:example>8</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1069,7 +1056,6 @@
                           a BSQ format image. The default is
                           zero.</doc:description>
                           <doc:example>1</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1089,7 +1075,6 @@
               resource is distributed online and offline. Connections to online
               systems can be described as URLs and as a list of relevant
               connection parameters.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1147,7 +1132,6 @@
                       be used instead of the URL element.</doc:description>
                     <doc:example>
                       http://data.org/getdata?id=98332</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -1270,7 +1254,6 @@
               digitally, such as 3.5" floppy disk, or various tape media types,
               or 'hardcopy'</doc:description>
               <doc:example>CD-ROM, 3.5 in. floppy disk, Zip disk</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -1287,7 +1270,6 @@
                     termed 'hardcopy'.</doc:description>
                     <doc:example>Tape, 3.5 inch Floppy Disk,
                     hardcopy</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1302,7 +1284,6 @@
                     tape.</doc:description>
                     <doc:example>High Density (HD), Double Density
                     (DD)</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1314,7 +1295,6 @@
                     <doc:description>if a density is given numerically, the
                     units should be given here.</doc:description>
                     <doc:example>B/cm</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1327,7 +1307,6 @@
                     <doc:description>the total volume of the storage medium on
                     which this resource is shipped.</doc:description>
                     <doc:example>650 MB</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1340,7 +1319,6 @@
                     <doc:description>the file system format of the medium on
                     which the resource is shipped</doc:description>
                     <doc:example>NTFS, FAT32, EXT2, QIK80</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1351,14 +1329,13 @@
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertinent information about
                     the media</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inline">
+        <xs:element name="inline" type="res:InlineType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Inline distribution</doc:tooltip>
@@ -1378,14 +1355,8 @@
               and compressionMethod fields in eml-physical as if the data
               had been obtained out-of-band (e.g., from a URL).
               </doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
-          <xs:complexType>
-            <xs:sequence>
-              <xs:any maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
       </xs:choice>
       <xs:group ref="res:ReferencesGroup"/>
