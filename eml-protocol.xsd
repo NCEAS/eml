@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
-<!-- edited with XML Spy v4.0 NT beta 2 build Jul 26 2001 (http://www.xmlspy.com) by cjones (ucsb) -->
-<xs:schema targetNamespace="eml:protocol" xmlns:lit="eml:literature" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:protocol" 
+  xmlns:lit="eml:literature" 
+  xmlns:rp="eml:ResponsibleParty" 
+  xmlns="eml:protocol" 
+  xmlns:doc="eml:documentation" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  elementFormDefault="unqualified" 
+  attributeFormDefault="unqualified">
+  
   <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -10,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-07-31 16:54:23 $'
-      '$Revision: 1.7 $'
+          '$Date: 2001-07-31 17:49:23 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,21 +35,94 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <doc:moduleName>eml-protocol</doc:moduleName>
+      <doc:moduleName>
+        eml-protocol
+      </doc:moduleName>
       <doc:moduleDescription>
         The EML Protocol Module is used to describe methods and identify the proccesses that have been
-	used to define / improve the quality of a data file, also used to
-	identify potential problems with the data file.
+        used to define / improve the quality of a data file, also used to
+        identify potential problems with the data file.
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml:literature" schemaLocation="eml-literature.xsd"/>
   <xs:element name="eml-protocol">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          EML Protocol
+        </doc:tooltip>
+        <doc:summary>
+          A field that contains method, processing, and quality control
+          information.
+        </doc:summary>
+        <doc:description> 
+          eml-protocol is a field that contains method, processing, and quality control
+          information.  It may consist of paragraphs of descriptive text that
+          describes the methods to be employed, or optionally references to
+          literature citations that do the same.  Likewise, descriptions of pre
+          and post processing of data files may be described within.
+        </doc:description>
+        <doc:example>
+          Please see the examples for the sub-fields.
+        </doc:example>
+        <doc:lineage>
+          Derived from EML 1.4: eml-status, and eml-quality modules.
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="identifier" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
+                Unique identifier
+              </doc:tooltip>
+              <doc:summary>
+                The unique identifier of this metadata file or object.
+              </doc:summary>
+              <doc:description>
+                The identifier field provides a unique identifier for this
+                metadata documentation.  It will most likely be part of a 
+                sequence of numbers or letters that are meaningful in a 
+                larger context, such as a metadata catalog. That larger
+                system can be identified in the "system" attribute. Multiple
+                identifiers can be listed corresponding to different catalog
+                systems.
+              </doc:description>
+              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:lineage>
+                The 'identifier' field is derived from the eml-dataset 
+                meta_file_id filed in EML 1.4.
+              </doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:attribute name="system" type="xs:string" use="optional"/>
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>
+                    Catalog system
+                  </doc:tooltip>
+                  <doc:summary>
+                    The catalog system in which this identifier is used.
+                  </doc:summary>
+                  <doc:description>
+                    This element gives the name of the catalog system in which
+                    this identifier is used.  It is useful to determine the
+                    scope of the identifier, and to determine the semantics
+                    of the various subparts of the identifier. Unresolved issue:
+                    can or should this be a URI/URL pointing to the catalog
+                    system, or just the name?
+                  </doc:description>
+                  <doc:example><![CDATA[
+                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                  <doc:lineage>
+                    New to EML 2.0.
+                  </doc:lineage>
+                </xs:appinfo>
+              </xs:annotation>
           </xs:complexType>
         </xs:element>
         <xs:element ref="protocol" maxOccurs="unbounded"/>
@@ -50,18 +130,48 @@
     </xs:complexType>
   </xs:element>
   <xs:complexType name="ProtocolType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          ProtocolType
+        </doc:tooltip>
+        <doc:summary>
+          A reusable container for protocol-related information
+        </doc:summary>
+        <doc:description> 
+          The ProtocolType container defines a number of reusable fields that
+          can be referenced from multiple EMl modules.
+        </doc:description>
+        <doc:example>
+          Please see the examples for the sub-fields.
+        </doc:example>
+        <doc:lineage>
+          Introduced in EML 2.0
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="method" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip/>
-            <doc:summary/>
+            <doc:tooltip>
+              method information
+            </doc:tooltip>
+            <doc:summary>
+              Information about the methods employed in collecting or generating
+              a data set or other resource.
+            </doc:summary>
             <doc:description> 
-							  A description of the problems that might be associated 
-	                                          with the implementation of this quality control / assurance procedure
-	                                        </doc:description>
-            <doc:example/>
-            <doc:lineage/>
+              The method field allows for repeated paragraphs of text that
+              describe the methodology for a project, experiment, or particular
+              data table.  Likewise, a literature citation may be provided that
+              describes the methodology that employed.
+            </doc:description>
+            <doc:example>
+            </doc:example>
+            <doc:lineage>
+              Derived from EML 1.4
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -74,15 +184,26 @@
       <xs:element name="processingStep" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip/>
-            <doc:summary/>
-            <doc:description>Step defines the quality control / assurance procedures 
-	      that were applied to the corresponding data file.  For example, 
-	      a shell-script that 'greps' for an alpha-character within a 
-	      datafile that is supposed to contain only numeric characters
-	      </doc:description>
-            <doc:example/>
-            <doc:lineage/>
+            <doc:tooltip>
+              Processing Step
+            </doc:tooltip>
+            <doc:summary>
+              Information on pre or post processing actions for a data set.
+            </doc:summary>
+            <doc:description> 
+              Step defines the quality control or quality assurance procedures 
+              that were applied to the corresponding data file.  For example, 
+              a shell-script that 'greps' for an alpha-character within a 
+              datafile that is supposed to contain only numeric characters
+            </doc:description>
+            <doc:example>
+              For example, a shell-script that 'greps' for an alpha-character 
+              within a datafile that is supposed to contain only numeric 
+              characters.
+            </doc:example>
+            <doc:lineage>
+              Introduced in EML 2.0
+            </doc:lineage>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -93,6 +214,27 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="qualityControl" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>
+              Quality Control
+            </doc:tooltip>
+            <doc:summary>
+              Information on possible errors or on the quality of a data set.
+            </doc:summary>
+            <doc:description> 
+              The qualityControl field provides a location for the description
+              of possible errors in a data set, or a description of the quality
+              of the data set based on the the processing steps or methods
+              employed in collecting the data.
+            </doc:description>
+            <doc:example>
+            </doc:example>
+            <doc:lineage>
+              Introduced in EML 2.0
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element ref="paragraph" minOccurs="0" maxOccurs="unbounded"/>
@@ -102,8 +244,49 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="protocol" type="ProtocolType"/>
+  <xs:element name="protocol" type="ProtocolType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Protocol Information
+        </doc:tooltip>
+        <doc:summary>
+          A container for methods and protocol-related information
+        </doc:summary>
+        <doc:description> 
+          The protocol field provides a container for other related fields 
+          such as methods, processingStep, and qualityControl.
+        </doc:description>
+        <doc:example>
+          Please see the examples for the sub-fields.
+        </doc:example>
+        <doc:lineage>
+          Introduced in EML 2.0
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
   <xs:element name="paragraph">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
+          Paragraph
+        </doc:tooltip>
+        <doc:summary>
+          A field for text paragraphs
+        </doc:summary>
+        <doc:description> 
+          The paragraph field is used as a generic field for text.  It allows
+          the text to be divided into distinct paragraphs within an EML file.
+        </doc:description>
+        <doc:example>
+          Any text, really, could be part of a single paragraph element...
+        </doc:example>
+        <doc:lineage>
+          Derived from EML 1.3
+        </doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:complexType/>
   </xs:element>
 </xs:schema>
