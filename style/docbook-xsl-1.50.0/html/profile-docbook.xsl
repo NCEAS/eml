@@ -6,7 +6,7 @@
 <xsl:output method="html" encoding="ISO-8859-1" indent="no"/>
 
 <!-- ********************************************************************
-     $Id: profile-docbook.xsl,v 1.1 2002-09-07 02:09:02 berkley Exp $
+     $Id: profile-docbook.xsl,v 1.2 2002-09-13 22:40:29 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -4,7 +4,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: glossary.xsl,v 1.1 2002-09-07 02:09:01 berkley Exp $
+     $Id: glossary.xsl,v 1.2 2002-09-13 22:40:28 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

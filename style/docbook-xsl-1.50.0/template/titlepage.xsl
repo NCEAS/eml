@@ -8,7 +8,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: titlepage.xsl,v 1.1 2002-09-07 02:09:12 berkley Exp $
+     $Id: titlepage.xsl,v 1.2 2002-09-13 22:40:30 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -22,7 +22,7 @@
 <doc:reference xmlns="">
 <referenceinfo>
 <releaseinfo role="meta">
-$Id: titlepage.xsl,v 1.1 2002-09-07 02:09:12 berkley Exp $
+$Id: titlepage.xsl,v 1.2 2002-09-13 22:40:30 cjones Exp $
 </releaseinfo>
 <author><surname>Walsh</surname>
 <firstname>Norman</firstname></author>

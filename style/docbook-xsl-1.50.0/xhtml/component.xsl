@@ -4,7 +4,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- ********************************************************************
-     $Id: component.xsl,v 1.1 2002-09-07 02:09:12 berkley Exp $
+     $Id: component.xsl,v 1.2 2002-09-13 22:40:30 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

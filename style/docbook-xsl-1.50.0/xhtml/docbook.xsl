@@ -6,7 +6,7 @@
 <xsl:output method="xml" encoding="ISO-8859-1" indent="no" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl,v 1.1 2002-09-07 02:09:12 berkley Exp $
+     $Id: docbook.xsl,v 1.2 2002-09-13 22:40:30 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -60,6 +60,7 @@
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
 
+<xsl:param name="html.stylesheet" select="'../default.css'"/>
 <xsl:param name="stylesheet.result.type" select="'xhtml'"/>
 
 <!-- ==================================================================== -->
@@ -222,7 +223,6 @@ body { background-image: url("</xsl:text>
     <xsl:call-template name="user.head.content">
       <xsl:with-param name="node" select="$doc"/>
     </xsl:call-template>
-    <link rel="stylesheet" type="text/css" href="default.css"/>
   </head>
   <body>
     <xsl:call-template name="body.attributes"/>

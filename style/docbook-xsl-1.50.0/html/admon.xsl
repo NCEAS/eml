@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: admon.xsl,v 1.1 2002-09-07 02:09:02 berkley Exp $
+     $Id: admon.xsl,v 1.2 2002-09-13 22:40:29 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
