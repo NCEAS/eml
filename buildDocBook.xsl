@@ -214,60 +214,102 @@
       
       <section>
         <title>ID and Scope Examples</title>
-        <para>
-          Example Document 1:
-            &lt;name&gt;Joe&lt;/name&gt;
-            &lt;name&gt;Joe&lt;/name&gt;
-            
-          Example Document 2:
-            
-            &lt;name id=&quot;1&quot;&gt;Joe&lt;/name&gt;
-            &lt;name&gt;&lt;references&gt;1&lt;references&gt;
-            &lt;/name&gt;
-            
-          Example Document 3:
-            <document id="1" system="My Management System" scope="global">
-              <name id="2">Joe</name>
-            </document>
-            
-          Example Document 4:
-            <document id="3" system="My Management System" scope="global">
-              <name><references>2</references></name>
-            </document>
-          
-          Example Document 5:
-            <document id="1" scope="local">
-              <name>Joe</name>
-            </document>
-            
-          Example Document 6:
-            <document>
-              <name>Joe</name>
-            </document>
-        </para>
-        <para>
-          Example Document 1 has two elements with identical content.  By the
-          third rule, these two objects must be interpreted as being
-          semantically different.  Thus, this document references two different
-          people whose names both happen to be Joe.
-        </para>
-        <para>
-          In Example Document 2 there are two elements as well.  The first 
-          represents a person whose name is Joe.  The second represents 
-          the *same person*.  
-        </para>
-        <para>
-          Example Documents 3 and 4 have unique IDs with respect to each other
-          because they share the same system attribute and their scopes are
-          both set to global.  Document 4 is referencing the name element in 
-          Document 3.
-        </para>
-        <para>
-          Documents 5 and 6 both have a local scope even though Document 6 
-          does not explicitly define it.  In this case, each of the name elements
-          must be interpreted as unique objects even though they have identical
-          content.
-        </para>
+        <section>
+          <title>Example Documents</title>
+          <section>
+            <title>1</title>
+            <literallayout>
+&lt;document&gt;
+  &lt;person&gt;
+    &lt;name&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+  &lt;person&gt;
+    &lt;name&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+          <section>
+            <title>2</title>
+            <literallayout>
+&lt;document&gt;
+  &lt;person&gt;
+    &lt;name id=&quot;1&quot;&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+  &lt;person&gt;
+    &lt;name&gt;&lt;references&gt;1&lt;references&gt;
+  &lt;/person&gt;
+  &lt;/name&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+          <section>
+            <title>3</title>
+            <literallayout>
+&lt;document id="1" system="My Management System" scope="global"&gt;
+  &lt;person&gt;
+    &lt;name id=&quot;2&quot;&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+          <section>
+            <title>4</title>
+            <literallayout>
+&lt;document id=&quot;3&quot; system=&quot;My Management System&quot; scope=&quot;global&quot;&gt;
+  &lt;person&gt;
+    &lt;name&gt;&lt;references&gt;2&lt;/references&gt;&lt;/name&gt;
+  &lt;/person&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+          <section>
+            <title>5</title>
+            <literallayout>
+&lt;document id=&quot;1&quot; scope=&quot;local&quot;&gt;
+  &lt;person&gt;
+    &lt;name&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+          <section>
+            <title>6</title>
+            <literallayout>
+&lt;document&gt;
+  &lt;person&gt;
+    &lt;name&gt;Joe&lt;/name&gt;
+  &lt;/person&gt;
+&lt;/document&gt;
+            </literallayout>
+          </section>
+        </section>
+        <section>
+          <title>Explanation</title>
+          <para>
+            Example Document 1 has two elements with identical content.  By the
+            third rule, these two objects must be interpreted as being
+            semantically different.  Thus, this document references two different
+            people whose names both happen to be Joe.
+          </para>
+          <para>
+            In Example Document 2 there are two elements as well.  The first 
+            represents a person whose name is Joe.  The second represents 
+            the <emphasis>same person</emphasis>.  
+          </para>
+          <para>
+            Example Documents 3 and 4 have unique IDs with respect to each other
+            because they share the same system attribute and their scopes are
+            both set to global.  Document 4 is referencing the name element in 
+            Document 3.
+          </para>
+          <para>
+            Documents 5 and 6 both have a local scope even though Document 6 
+            does not explicitly define it.  In this case, each of the name elements
+            must be interpreted as unique objects even though they have identical
+            content.
+          </para>
+        </section>
       </section>
     </section>
   </chapter>
