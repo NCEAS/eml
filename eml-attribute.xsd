@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-30 15:16:02 $'
-      '$Revision: 1.81 $'
+          '$Date: 2002-10-30 17:05:26 $'
+      '$Revision: 1.82 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -72,12 +72,18 @@
             together in some logical way.
           </para>
           <para>
-              The eml-attribute module, like other modules, may be
-              "referenced" via the &lt;references&gt; tag.  This
-              allows an attribute document to be described once, and then
-              used as a reference in other locations within the EML document
-              via it's ID.
+            The eml-attribute module, like other modules, may be
+            "referenced" via the &lt;references&gt; tag.  This
+            allows an attribute document to be described once, and then
+            used as a reference in other locations within the EML document
+            via it's ID.
+          </para>
+          <sidebar>
+            <title>Attributes that contain date or time information</title>
+            <para>
+              Date Information here.
             </para>
+          </sidebar>
         </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>any dataset that uses dataTable, spatialRaster,
