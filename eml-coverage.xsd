@@ -5,7 +5,8 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
              schemaLocation="./eml-documentation.xsd"/>
-    <xs:annotation>
+  <xs:annotation>
+    <xs:documentation>
       <xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
@@ -13,22 +14,23 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-12-12 08:36:50 $'
-      '$Revision: 1.16 $'
+          '$Date: 2001-12-12 09:26:02 $'
+      '$Revision: 1.17 $'
     
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+      This program is free software; you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation; either version 2 of the License, or
+      (at your option) any later version.
   
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
   
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+      You should have received a copy of the GNU General Public License
+      along with this program; if not, write to the Free Software
+      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
       </xs:documentation>
       <xs:appinfo>
         <doc:moduleName>
@@ -41,34 +43,19 @@
         of applicability of the resource in those domains.
         </doc:moduleDescription>
       </xs:appinfo>
-    </xs:annotation>
+  </xs:annotation>
+    
+  <xs:element name="coverage">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element ref="geographicCov"/>
+          <xs:element ref="temporalCov"/>
+          <xs:element ref="taxonomicCov"/>
+        </xs:sequence>
+      </xs:complexType>
+  </xs:element>
 
-    <xs:element name="temporalCov" type="TemporalCoverage">
-      <xs:annotation>
-        <xs:appinfo>
-          <doc:tooltip>
-            Temporal coverage
-          </doc:tooltip>
-          <doc:summary>
-            Temporal coverage information.
-          </doc:summary>
-          <doc:description>
-            This field specifies temporal coverage, and allows coverages
-            to be a single point in time, multiple points in time, or a
-            range of dates.  Dates can be expressed in tems of both 
-            calander dates and geologic dating systems.
-          </doc:description>
-          <doc:example>
-            Please see the individual sub fields for specific examples.
-          </doc:example>
-          <doc:lineage>
-            The TemporalCoverage complex type was introduced into EML 1.4.
-          </doc:lineage>
-        </xs:appinfo>
-      </xs:annotation>
-    </xs:element>
-
-    <xs:element name="geographicCov" type="GeographicCoverage">
+  <xs:element name="geographicCov" type="GeographicCoverage">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>
@@ -91,9 +78,34 @@
           </doc:lineage>
         </xs:appinfo>
       </xs:annotation>
-    </xs:element>
-
-    <xs:element name="taxonomicCov" type="TaxonomicCoverage">
+  </xs:element>
+    
+  <xs:element name="temporalCov" type="TemporalCoverage">
+      <xs:annotation>
+        <xs:appinfo>
+          <doc:tooltip>
+            Temporal coverage
+          </doc:tooltip>
+          <doc:summary>
+            Temporal coverage information.
+          </doc:summary>
+          <doc:description>
+            This field specifies temporal coverage, and allows coverages
+            to be a single point in time, multiple points in time, or a
+            range of dates.  Dates can be expressed in tems of both 
+            calander dates and geologic dating systems.
+          </doc:description>
+          <doc:example>
+            Please see the individual sub fields for specific examples.
+          </doc:example>
+          <doc:lineage>
+            The TemporalCoverage complex type was introduced into EML 1.4.
+          </doc:lineage>
+        </xs:appinfo>
+      </xs:annotation>
+  </xs:element>
+    
+  <xs:element name="taxonomicCov" type="TaxonomicCoverage">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>
@@ -117,9 +129,9 @@
           </doc:lineage>
         </xs:appinfo>
       </xs:annotation>
-    </xs:element>
+  </xs:element>
 
-    <xs:complexType name="TemporalCoverage">
+  <xs:complexType name="TemporalCoverage">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>
@@ -148,10 +160,10 @@
         <xs:element ref="mdattim"/>
         <xs:element ref="rngdates"/>
       </xs:choice>
-      </xs:complexType>
+  </xs:complexType>
       
-      <xs:element name="sngdate">
-        <xs:annotation>
+  <xs:element name="sngdate">
+    <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Single Date/Time</doc:tooltip>
             <doc:summary>Means of encoding a single date and time</doc:summary>
@@ -165,8 +177,8 @@
             </doc:example>
             <doc:lineage>FGDC-STD-001-1998</doc:lineage>
           </xs:appinfo>
-        </xs:annotation>
-        <xs:complexType>
+    </xs:annotation>
+    <xs:complexType>
           <xs:choice>
             <xs:sequence>
               <xs:element name="caldate" type="xs:date">
@@ -234,10 +246,10 @@
             </xs:sequence>
             <xs:element ref="geolage"/>
           </xs:choice>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="begdate" type="xs:date">
-        <xs:annotation>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="begdate" type="xs:date">
+    <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Beginning date </doc:tooltip>
             <doc:summary>
@@ -257,9 +269,9 @@
             </doc:example>
             <doc:lineage> FGDC-STD-001-1998</doc:lineage>
           </xs:appinfo>
-        </xs:annotation>
-        </xs:element>
-        <xs:element name="begtime" type="xs:time">
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="begtime" type="xs:time">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Beginning time of day</doc:tooltip>
@@ -297,8 +309,8 @@
               <doc:lineage>FGDC-STD-001-1998 </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-        </xs:element>
-        <xs:element name="enddate" type="xs:date">
+  </xs:element>
+  <xs:element name="enddate" type="xs:date">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Ending date</doc:tooltip>
@@ -320,8 +332,8 @@
               <doc:lineage> FGDC-STD-001-1998</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-        </xs:element>
-        <xs:element name="endtime" type="xs:time">
+  </xs:element>
+  <xs:element name="endtime" type="xs:time">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Ending time of day</doc:tooltip>
@@ -359,8 +371,8 @@
               <doc:lineage>FGDC-STD-001-1998</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-        </xs:element>
-        <xs:element name="mdattim">
+  </xs:element>
+  <xs:element name="mdattim">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Multiple dates/times</doc:tooltip>
@@ -388,8 +400,8 @@
               <xs:element ref="sngdate" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
-        </xs:element>
-        <xs:element name="rngdates">
+  </xs:element>
+  <xs:element name="rngdates">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Range of dates/times</doc:tooltip>
@@ -424,8 +436,8 @@
               </xs:sequence>
             </xs:choice>
           </xs:complexType>
-        </xs:element>
-        <xs:element name="geolage">
+  </xs:element>
+  <xs:element name="geolage">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Geologic age</doc:tooltip>
@@ -578,8 +590,8 @@
               </xs:element>
             </xs:sequence>
           </xs:complexType>
-        </xs:element>
-        <xs:element name="beggeol">
+  </xs:element>
+  <xs:element name="beggeol">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Beginning geologic age</doc:tooltip>
@@ -597,8 +609,8 @@
               <xs:element ref="geolage"/>
             </xs:sequence>
           </xs:complexType>
-        </xs:element>
-        <xs:element name="endgeol">
+  </xs:element>
+  <xs:element name="endgeol">
           <xs:annotation>
              <xs:appinfo>
                <doc:tooltip>Ending geologic age</doc:tooltip>
@@ -616,8 +628,9 @@
                <xs:element ref="geolage"/>
              </xs:sequence>
            </xs:complexType>
-        </xs:element>
-        <xs:complexType name="GeographicCoverage">
+  </xs:element>
+        
+  <xs:complexType name="GeographicCoverage">
           <xs:annotation>
             <xs:appinfo>
              <doc:tooltip>
@@ -858,9 +871,10 @@
               </xs:complexType>
             </xs:element>
           </xs:sequence>
-        </xs:complexType>
-        <xs:element name="grngpoin">
-    <xs:annotation>
+  </xs:complexType>
+        
+  <xs:element name="grngpoin">
+      <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring point</doc:tooltip>
         <doc:summary/>
@@ -868,8 +882,8 @@
         <doc:example/>
         <doc:lineage>FGDC-STD-001-1998</doc:lineage>
       </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
+      </xs:annotation>
+      <xs:complexType>
       <xs:sequence>
         <xs:element name="gringlat" type="xs:string">
           <xs:annotation>
@@ -894,7 +908,7 @@
           </xs:annotation>
         </xs:element>
       </xs:sequence>
-    </xs:complexType>
+      </xs:complexType>
   </xs:element>
   <xs:element name="gring" type="xs:string">
     <xs:annotation>
@@ -913,6 +927,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+    
   <xs:complexType name="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -1201,6 +1216,7 @@
       <xs:element ref="taxoncl" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:element name="taxoncl">
     <xs:annotation>
       <xs:appinfo>
@@ -1308,13 +1324,4 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="citeinfo"/>
-  <xs:element name="coverage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="geographicCov"/>
-        <xs:element ref="temporalCov"/>
-        <xs:element ref="taxonomicCov"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>
