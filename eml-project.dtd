@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-12-18 04:45:55 $'
-      '$Revision: 1.12 $'
+        '$Author: higgins $'
+          '$Date: 2002-01-02 17:01:41 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -101,8 +101,8 @@
 <!ELEMENT northbc (#PCDATA)>
 <!ELEMENT southbc (#PCDATA)>
 <!ELEMENT boundalt (altmin, almax, altunits)>
-<!ELEMENT dsgpolyo ((grngpoin, grngpoin, grngpoin, grngpoin+) | gring)>
-<!ELEMENT dsgpolyx ((grngpoin, grngpoin, grngpoin, grngpoin+) | gring)>
+<!ELEMENT dsgpolyo (grngpoin+ | gring)>
+<!ELEMENT dsgpolyx (grngpoin+ | gring)>
 <!ELEMENT taxonkt (#PCDATA)>
 <!ELEMENT taxonkey (#PCDATA)>
 <!ELEMENT classsys (classcit, classmod?)>
