@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <xs:schema targetNamespace="eml:access" 
            xmlns="eml:access" 
-           xmlns:cov="eml:coverage" 
            xmlns:doc="eml:documentation" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml:documentation" 
@@ -14,8 +13,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: berkley $'
-          '$Date: 2002-03-22 19:04:05 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-03-22 19:06:20 $'
+      '$Revision: 1.28 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,7 +49,6 @@
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-  <xs:import namespace="eml:coverage" schemaLocation="eml-coverage.xsd"/>
   <xs:element name="acl">
     <xs:annotation>
       <xs:appinfo>
