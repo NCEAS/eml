@@ -1,4 +1,4 @@
-/*
+/**
  *     '$RCSfile: EMLParserServlet.java,v $'
  *     Copyright: 1997-2002 Regents of the University of California,
  *                          University of New Mexico, and
@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-03 18:44:39 $'
- *    '$Revision: 1.5 $'
+ *        '$Date: 2002-10-03 21:36:17 $'
+ *    '$Revision: 1.6 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

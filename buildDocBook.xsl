@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-03 21:14:58 $'
-      '$Revision: 1.45 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-03 21:36:17 $'
+      '$Revision: 1.46 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -499,7 +499,10 @@
         of EML.  To run the parser, you must have Java 1.3.1 or higher.  To
         execute it change into the lib directory of the release and run
         the 'runEMLParser' script passing your EML instance file as a
-        parameter.
+        parameter.  There is also an <ulink url="@server@/@servletdir@">online
+        version</ulink> of this parser which is publicly accessible.  The online
+        parser will both validate your XML document against the schema as
+        well as check the integrity of your references.
         </para>
       </section>
         <title>ID and Scope Examples</title>
