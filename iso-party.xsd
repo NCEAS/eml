@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-02-21 21:29:43 $'
-      '$Revision: 1.12 $'
+        '$Author: berkley $'
+          '$Date: 2001-03-19 19:35:16 $'
+      '$Revision: 1.13 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -279,6 +279,52 @@
             </lineage>
           </xs:appInfo>
         </xs:annotation>
+      </xs:element>
+      <xs:element name="userName" type="xs:string" 
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appInfo>
+            <tooltip>
+              Username of contact
+            </tooltip>
+            <summary>
+              The username of the contact.
+            </summary>
+            <description>
+              The username of the contact on the system to which the user
+              authenticates himself.  This should be a distinguished username
+              on the system that the attribute "systemType" points to.
+            </description>
+            <example>
+              "uid=cjones,dc=pisco,dc=ecoinformatics,dc=org", "berkley"
+            </example>
+            <lineage>
+              new to EML 2.0
+            </lineage>
+          </xs:appInfo>
+        </xs:annotation>
+        <xs:attribute name="systemType" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:appInfo>
+                <tooltip>
+                  System Type
+                </tooltip>
+                <summary>
+                  The system type to which the user name authenticates.
+                </summary>
+                <description>
+                  The system type to which the user name authenticates.  This
+                  should not be a server name.  It should be more general.
+                </description>
+                <example>
+                  LDAP, Metacat, MCAT
+                </example>
+                <lineage>
+                  new to EML 2.0.
+                </lineage>
+              </xs:appInfo>
+            </xs:annotation>
+          </xs:attribute>
       </xs:element>
     </xs:sequence>
     <xs:annotation>
@@ -983,6 +1029,8 @@
         <xs:enumeration value = "principalInvestigator" />
         <xs:enumeration value = "processor" />
         <xs:enumeration value = "publisher" />
+        <!-- note that author and editor are not in the original ISO role 
+             code list -->
         <xs:enumeration value = "author" />
         <xs:enumeration value = "editor" />
     <xs:annotation>
