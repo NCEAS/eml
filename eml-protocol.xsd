@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns:lit="eml:literature" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="eml:protocol" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:doc="eml:documentation" 
+           xmlns="eml:protocol" 
+           xmlns:rp="eml:ResponsibleParty" 
+           xmlns:lit="eml:literature" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified">
   <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -8,9 +15,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-31 21:57:39 $'
-      '$Revision: 1.10 $'
+        '$Author: cjones $'
+          '$Date: 2001-12-14 19:24:48 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,9 +36,9 @@
     <xs:appinfo>
       <doc:moduleName>eml-protocol</doc:moduleName>
       <doc:moduleDescription>
-        The EML Protocol Module is used to describe methods and identify the proccesses that have been
-        used to define / improve the quality of a data file, also used to
-        identify potential problems with the data file.
+        The EML Protocol Module is used to describe methods and identify the 
+        proccesses that have been used to define / improve the quality of a data
+        file, also used to identify potential problems with the data file.
       </doc:moduleDescription>
     </xs:appinfo>
   </xs:annotation>
@@ -43,14 +50,14 @@
           EML Protocol
         </doc:tooltip>
         <doc:summary>
-          A field that contains method, processing, and quality control
+          A set of fields that contains method, processing, and quality control
           information.
         </doc:summary>
         <doc:description> 
-          eml-protocol is a field that contains method, processing, and quality control
-          information.  It may consist of paragraphs of descriptive text that
-          describes the methods to be employed, or optionally references to
-          literature citations that do the same.  Likewise, descriptions of pre
+          eml-protocol is a set of fields that contains method, processing, and 
+          quality control information.  It may consist of paragraphs of descriptive
+          text that describes the methods to be employed, or optionally references 
+          to literature citations that do the same.  Likewise, descriptions of pre
           and post processing of data files may be described within.
         </doc:description>
         <doc:example>
@@ -81,7 +88,9 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-              <doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+              <doc:example>
+                <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+              </doc:example>
               <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
@@ -106,10 +115,11 @@
                     system, or just the name?
                   </doc:description>
                 <doc:example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
+                    <identifier system="metacat">nceas.3.2</identifier>]]>
+                </doc:example>
                 <doc:lineage>
                     New to EML 2.0.
-                  </doc:lineage>
+                </doc:lineage>
               </xs:appinfo>
             </xs:annotation>
             <xs:simpleContent>
@@ -134,7 +144,7 @@
         </doc:summary>
         <doc:description> 
           The ProtocolType container defines a number of reusable fields that
-          can be referenced from multiple EMl modules.
+          can be referenced from multiple EML modules.
         </doc:description>
         <doc:example>
           Please see the examples for the sub-fields.
@@ -159,9 +169,29 @@
               The method field allows for repeated paragraphs of text that
               describe the methodology for a project, experiment, or particular
               data table.  Likewise, a literature citation may be provided that
-              describes the methodology that employed.
+              describes the methodology that was employed.
             </doc:description>
-            <doc:example/>
+            <doc:example>
+              <![CDATA[
+                <paragraph>
+                  1.Collect tissues from algae of interest.
+                </paragraph>
+                <paragraph>
+                  a.We are currently collecting Egregia menziezii, Mazzaella 
+                  splendens, M. flaccida, Hedophyllum sessile, Postelsia 
+                  palmaeformis and Fucus gardneri.We stopped collecting 
+                  Neorhodomela larix and Odonthalia floccosa because they can be 
+                  heavily fouled and we feared that would skew the results.
+                </paragraph>
+                <paragraph>
+                  b.We collect a 7-10 cm blade or branch from each plant. For 
+                  Egregia, try to sample small, young plants or take the base of 
+                  the blade. For Postelsia, take a few of the blades. The other 
+                  plants are small enough so a whole blade can be taken.
+                </paragraph>
+                </paragraph>
+              ]]>
+            </doc:example>
             <doc:lineage>
               Derived from EML 1.4
             </doc:lineage>
@@ -190,9 +220,21 @@
               datafile that is supposed to contain only numeric characters
             </doc:description>
             <doc:example>
-              For example, a shell-script that 'greps' for an alpha-character 
-              within a datafile that is supposed to contain only numeric 
-              characters.
+              <![CDATA[
+                <paragraph>
+                  2.Freeze tissues at -20C until they can be dried. Dry tissue in 
+                  drying oven (60C, at least 24h).
+                </paragraph>
+                <paragraph>
+                  Grinding: All glassware and plasticware should be acid washed in 
+                  10% HCl. Place dried algal sample in plastic vial with ground 
+                  glass ball. For very hard to grind tissue such as M. splendens, 
+                  two balls may be used. Place vials in grinder. Only two vials can
+                  go in the mill at one time. Grind for 2-5 minutes. Tissue should 
+                  be fine powder. Place ground tissue in small screw cap vials and 
+                  store in drying oven or dessication chamber.
+                </paragraph>
+              ]]>
             </doc:example>
             <doc:lineage>
               Introduced in EML 2.0
@@ -221,7 +263,16 @@
               of the data set based on the the processing steps or methods
               employed in collecting the data.
             </doc:description>
-            <doc:example/>
+            <doc:example>
+              <![CDATA[
+                <paragraph>
+                  Once the data file is received, verify it's integrity by
+                  comparing it's checksum with the pre-calculated MD5 checksum by 
+                  running the md5 command on the file. If they match, the file 
+                  transferred correctly.
+                </paragraph>
+              ]]>
+            </doc:example>
             <doc:lineage>
               Introduced in EML 2.0
             </doc:lineage>
@@ -272,7 +323,8 @@
           the text to be divided into distinct paragraphs within an EML file.
         </doc:description>
         <doc:example>
-          Any text, really, could be part of a single paragraph element...
+          Any text, really, could be part of a single paragraph element...Please
+          look at the examples for each of the protocol sub-fields.
         </doc:example>
         <doc:lineage>
           Derived from EML 1.3
