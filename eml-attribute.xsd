@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc3" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc3" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc3" xmlns="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/attribute-2.0.0rc3" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc3" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc3" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc3" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc3" schemaLocation="eml-methods.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc3" schemaLocation="eml-coverage.xsd"/>
@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-11-08 17:02:16 $'
-      '$Revision: 1.94 $'
+          '$Date: 2002-11-26 21:49:02 $'
+      '$Revision: 1.95 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -402,121 +402,13 @@
                     of values, but not the magnitude of the difference
                     between values. An example of an ordinal scale is a
                     categorical survey where you rank a variable 1=good,
-                    2=fair, 3=poor. Date-time values from the Gregorian
-                    calendar are complex; we have included them in EML as 
-                    ordinal values, and have provided a specialized domain
-                    description for date-time values.</doc:example>
+                    2=fair, 3=poor. 
+                    </doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
-                  <xs:choice maxOccurs="unbounded">
-                    <xs:element name="nonNumericDomain" type="NonNumericDomainType"/>
-                  </xs:choice>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="dateTime">
-                <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="dateTimePrecision" type="xs:string"/>
-                    <xs:element name="formatString" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Date/Time Format</doc:tooltip>
-                          <doc:summary>A format string that describes the format for a 
-              date-time value from the Gregorian calendar.</doc:summary>
-                          <doc:description>
-                            <para xmlns="">A format string that describes the format for a 
-              date-time value from the Gregorian calendar.  Datetime values
-              should be expressed in a format that conforms to the ISO 8601
-              standard.  This field allows one to specify the format string
-              that should be used to decode the date or time value.  To describe
-              the format of an attribute containing date-time values, construct
-              a string representation of the format using the following symbols:
-              </para>
-                            <para xmlns="">
-                              <literalLayout>
-              Y   year
-              M   month
-              D   day
-              h   hour
-              m   minute
-              s   second
-              T   time designator (demarcates date and time parts of date-time)
-              Z   UTC designator, indicating value is in UTC time
-              .   indicates a decimal fraction of a unit
-              +/- indicates a positive or negative number,
-                  or a positive or negative time zone adjustment relative to UTC
-              -   indicates a separator between date components
-              A/P am or pm designator
-              </literalLayout>
-                            </para>
-                            <para xmlns="">
-              Any other character in the format string is interpreted as a
-              separator character.  Here are some examples of the format
-              strings that can be constructed.
-              </para>
-                            <para xmlns="">
-                              <literalLayout>
-                                 Format string          Example value
-                                 -------------------    ------------------
-                  ISO Date       YYYY-MM-DD             2002-10-14
-                  ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
-                  ISO Time       hh:mm:ss               17:13:45
-                  ISO Time       hh:mm:ss.sss           09:13:45.432
-                  ISO Time       hh:mm.mm               09:13.42
-                  Non-standard   DD/MM/YYYY             14/10/2002
-                  Non-standard   MM/DD/YYYY             10/14/2002
-                  Non-standard   MM/DD/YY               10/14/02
-                  Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
-              </literalLayout>
-                            </para>
-                            <para xmlns="">
-              Some notes about these examples.  First, the ISO 8601 standard is
-              strict about the order of date components and the separators that
-              are legal.  Best practice is to follow the ISO 8601 format
-              precisely.  However, we recognize that existing data contain
-              non-standard dates, and existing equipment (e.g., sensors) may
-              still be producing non-standard dates.  Consequently, we have
-              provided the formatting string with additional characters to
-              describe the date formats. In particular note that the use of a
-              slash (/) to separate date components, a space to separate date
-              and time components, using a twelve-hour time with am/pm
-              designator, and placing any of the components out of
-              descending order is non-standard according to ISO.  Nevertheless,
-              these formats can be described using the format string to
-              accommodate existing data.
-              </para>
-                            <para xmlns="">
-              Precision for date-time values can be extended by indicating in
-              the format that additional decimals can be used.  Only the final
-              unit (e.g., seconds in a time value) can use the extended digits
-              according to the ISO 8601 standard.
-              </para>
-                            <para xmlns="">
-              Date/time values are from an interval scale, but it is extremely
-              complex because of the vagaries of the calendar (e.g., leap
-              years, and leap seconds).  The duration between date-time values
-              in the future is not even deterministic because leap seconds are
-              based on current measurements of the earth's orbit. Consequently,
-              date-time values are unlike any other measured values.  The format
-              string for date-time values allows one to accurately calculate the
-              duration in SI second units between two measured date-time values,
-              assuming that the conversion software has a detailed knowledge of
-              the Gregorian calendar. Note that this field would not be used if
-              one is recording time durations.  In that case, one should use a
-              standard unit such as seconds, nominalMinute or nominalDay, or a
-              customUnit that defines the unit in terms of its relationship to
-              SI second.
-              </para>
-                          </doc:description>
-                          <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
-                          <doc:example>YYYY-MM-DD</doc:example>
-                          <doc:example>YYYY</doc:example>
-                          <doc:example>HH:MM:SS</doc:example>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="dateTimeDomain" type="DateTimeDomainType" minOccurs="0"/>
+                    <xs:element name="nonNumericDomain" type="NonNumericDomainType" maxOccurs="unbounded"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -542,8 +434,8 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
-                    <xs:element name="precision" type="PrecisionType"/>
-                    <xs:element name="numericDomain" type="NumericDomainType"/>
+                    <xs:element name="precision" type="PrecisionType" maxOccurs="unbounded"/>
+                    <xs:element name="numericDomain" type="NumericDomainType" maxOccurs="unbounded"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -568,7 +460,38 @@
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
                     <xs:element name="precision" type="PrecisionType"/>
-                    <xs:element name="numericDomain" type="NumericDomainType"/>
+                    <xs:element name="numericDomain" type="NumericDomainType" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="datetime">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Date/Time scale</doc:tooltip>
+                    <doc:description>This field is used for defining the
+                    characteristics of this variable if it is a
+                    datetime scale variable, which specify values
+                    that fall on the Gregorian calendar system.
+                    values.</doc:description>
+                    <doc:example>Datetime is used when the values fall on
+                    the Gregorian calendar.  Datetime values are special
+                    because the have properties of interval values (most
+                    of the time it is legitimate to treat them as interval 
+                    values by converting them to a duration from a fixed
+                    point) but they sometimes only behave as ordinals
+                    (because the calendar is not predetermined, for some
+                    datetime values one can only find out the order of
+                    the points and not the magnitude of the duration 
+                    between those points).  Thus, the datetime scale provides
+                    the information necessary to properly understand and
+                    parse date and time values without improperly 
+                    labeling them under one of the more traditional scales.
+                    </doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="dateTimeDomain" type="DateTimeDomainType" maxOccurs="unbounded"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -1239,10 +1162,17 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="numericRange" minOccurs="0">
+        <xs:element name="numericBounds" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Numeric Bounds</doc:tooltip>
+              <doc:summary>Bounds of allowable numeric values</doc:summary>
+              <doc:description>Minimum and maximum bounds of an allowable range of values.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="minimum" type="xs:string">
+              <xs:element name="minimum" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Minimum numeric range</doc:tooltip>
@@ -1253,8 +1183,15 @@
                 attribute.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
-              <xs:element name="maximum" type="xs:string">
+              <xs:element name="maximum" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Maximum numeric range</doc:tooltip>
@@ -1265,16 +1202,15 @@
                 attribute.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="inclusive" use="required" default="true">
-              <xs:simpleType>
-                <xs:restriction base="xs:string">
-                  <xs:enumeration value="true"/>
-                  <xs:enumeration value="false"/>
-                </xs:restriction>
-              </xs:simpleType>
-            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
@@ -1293,19 +1229,124 @@
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
         a given data set (descriptive). The domain expressions should
-        be in the same date-time format as is used in the "unit"
+        be in the same date-time format as is used in the "formatString"
         description for the attribute.  For example, if the format
-        string in unit is "YYYY-MM-DD", then a valid minimum in the domain
+        string is "YYYY-MM-DD", then a valid minimum in the domain
         would be "2001-05-29".
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="dateTimeRange" maxOccurs="unbounded">
+        <xs:element name="formatString" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Date/Time Format</doc:tooltip>
+              <doc:summary>A format string that describes the format for a 
+              date-time value from the Gregorian calendar.</doc:summary>
+              <doc:description>
+                <para xmlns="">A format string that describes the format for a 
+              date-time value from the Gregorian calendar.  Datetime values
+              should be expressed in a format that conforms to the ISO 8601
+              standard.  This field allows one to specify the format string
+              that should be used to decode the date or time value.  To describe
+              the format of an attribute containing date-time values, construct
+              a string representation of the format using the following symbols:
+              </para>
+                <para xmlns="">
+                  <literalLayout>
+              Y   year
+              M   month
+              D   day
+              h   hour
+              m   minute
+              s   second
+              T   time designator (demarcates date and time parts of date-time)
+              Z   UTC designator, indicating value is in UTC time
+              .   indicates a decimal fraction of a unit
+              +/- indicates a positive or negative number,
+                  or a positive or negative time zone adjustment relative to UTC
+              -   indicates a separator between date components
+              A/P am or pm designator
+              </literalLayout>
+                </para>
+                <para xmlns="">
+              Any other character in the format string is interpreted as a
+              separator character.  Here are some examples of the format
+              strings that can be constructed.
+              </para>
+                <para xmlns="">
+                  <literalLayout>
+                                 Format string          Example value
+                                 -------------------    ------------------
+                  ISO Date       YYYY-MM-DD             2002-10-14
+                  ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
+                  ISO Time       hh:mm:ss               17:13:45
+                  ISO Time       hh:mm:ss.sss           09:13:45.432
+                  ISO Time       hh:mm.mm               09:13.42
+                  Non-standard   DD/MM/YYYY             14/10/2002
+                  Non-standard   MM/DD/YYYY             10/14/2002
+                  Non-standard   MM/DD/YY               10/14/02
+                  Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
+              </literalLayout>
+                </para>
+                <para xmlns="">
+              Some notes about these examples.  First, the ISO 8601 standard is
+              strict about the order of date components and the separators that
+              are legal.  Best practice is to follow the ISO 8601 format
+              precisely.  However, we recognize that existing data contain
+              non-standard dates, and existing equipment (e.g., sensors) may
+              still be producing non-standard dates.  Consequently, we have
+              provided the formatting string with additional characters to
+              describe the date formats. In particular note that the use of a
+              slash (/) to separate date components, a space to separate date
+              and time components, using a twelve-hour time with am/pm
+              designator, and placing any of the components out of
+              descending order is non-standard according to ISO.  Nevertheless,
+              these formats can be described using the format string to
+              accommodate existing data.
+              </para>
+                <para xmlns="">
+              Precision for date-time values can be extended by indicating in
+              the format that additional decimals can be used.  Only the final
+              unit (e.g., seconds in a time value) can use the extended digits
+              according to the ISO 8601 standard.
+              </para>
+                <para xmlns="">
+              Date/time values are from an interval scale, but it is extremely
+              complex because of the vagaries of the calendar (e.g., leap
+              years, and leap seconds).  The duration between date-time values
+              in the future is not even deterministic because leap seconds are
+              based on current measurements of the earth's orbit. Consequently,
+              date-time values are unlike any other measured values.  The format
+              string for date-time values allows one to accurately calculate the
+              duration in SI second units between two measured date-time values,
+              assuming that the conversion software has a detailed knowledge of
+              the Gregorian calendar. Note that this field would not be used if
+              one is recording time durations.  In that case, one should use a
+              standard unit such as seconds, nominalMinute or nominalDay, or a
+              customUnit that defines the unit in terms of its relationship to
+              SI second.
+              </para>
+              </doc:description>
+              <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
+              <doc:example>YYYY-MM-DD</doc:example>
+              <doc:example>YYYY</doc:example>
+              <doc:example>HH:MM:SS</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dateBounds" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Date Time  Bounds</doc:tooltip>
+              <doc:summary>Bounds of allowable datetime values</doc:summary>
+              <doc:description>Minimum and maximum bounds of an allowable range of values.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="minimum" type="xs:string">
+              <xs:element name="minimum" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Minimum date-time range</doc:tooltip>
@@ -1319,8 +1360,15 @@
                     <doc:example>2001-03-14T14:22:13</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
-              <xs:element name="maximum" type="xs:string">
+              <xs:element name="maximum" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Maximum date-time range</doc:tooltip>
@@ -1334,16 +1382,15 @@
                     <doc:example>2001-03-14T14:22:13</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="inclusive" use="required" default="true">
-              <xs:simpleType>
-                <xs:restriction base="xs:string">
-                  <xs:enumeration value="true"/>
-                  <xs:enumeration value="false"/>
-                </xs:restriction>
-              </xs:simpleType>
-            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
