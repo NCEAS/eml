@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:46:59 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-17 17:57:03 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@
     <html>
       <head>
         <link rel="stylesheet" type="text/css"
-              href="{$stylePath}/{$qformat}.css" />
+              href="{$stylePath}/{$qformat}/{$qformat}.css" />
       </head>
       <body>
         <table xsl:use-attribute-sets="cellspacing" width="100%">
