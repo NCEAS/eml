@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-04-17 17:12:58 $'
-      '$Revision: 1.27 $'
+          '$Date: 2002-04-17 17:28:38 $'
+      '$Revision: 1.28 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -214,6 +214,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  
   <xs:element name="other-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -278,11 +279,12 @@
   <xs:element name="spatialImage" type="ImageSpatialRepresentation">
     <xs:complexType>
       <xs:complexContent>
-        <xs:extension base="EntityBase"/>
-        <xs:sequence>
-          <xs:element name="horizAccuracy" type="DataQuality"/>
-          <xs:element name="vertAccuracy" type="DataQuality"/>
-        </xs:sequence>
+        <xs:extension base="EntityBase">
+          <xs:sequence>
+            <xs:element name="horizAccuracy" type="DataQuality"/>
+            <xs:element name="vertAccuracy" type="DataQuality"/>
+          </xs:sequence>
+        </xs:extension>
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
@@ -290,11 +292,12 @@
   <xs:element name="spatialGrid" type="RasterSpatialRepresentation">
     <xs:complexType>
       <xs:complexContent>
-        <xs:extension base="EntityBase"/>
-        <xs:sequence>
-          <xs:element name="horizAccuracy" type="DataQuality"/>
-          <xs:element name="vertAccuracy" type="DataQuality"/>
-        </xs:sequence>
+        <xs:extension base="EntityBase">
+          <xs:sequence>
+            <xs:element name="horizAccuracy" type="DataQuality"/>
+            <xs:element name="vertAccuracy" type="DataQuality"/>
+          </xs:sequence>
+        </xs:extension>
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
@@ -302,11 +305,12 @@
   <xs:element name="spatialVector" type="SpatialVector">
     <xs:complexType>
       <xs:complexContent>
-        <xs:extension base="EntityBase"/>
-        <xs:sequence>
-          <xs:element name="horizAccuracy" type="DataQuality"/>
-          <xs:element name="vertAccuracy" type="DataQuality"/>
-        </xs:sequence>
+        <xs:extension base="EntityBase">
+          <xs:sequence>
+            <xs:element name="horizAccuracy" type="DataQuality"/>
+            <xs:element name="vertAccuracy" type="DataQuality"/>
+          </xs:sequence>
+        </xs:extension>
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
@@ -324,106 +328,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-  <!--
-  <xs:element name="spatial-entity">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>
-          Spatial Entity descriptor
-        </doc:tooltip>
-        <doc:summary>
-          Descriptor of single spatial entity in the dataset.
-        </doc:summary>
-        <doc:description>
-          The spatial entity element is a descriptor of one spatial entity in the
-          dataset, identified by its name. The element can contain information
-          about the entity's basic identity, temporal, geographic and
-          taxonomic coverage.
-        </doc:description>
-        <doc:example>
-           DEM of Hastings reserve.
-        </doc:example>
-        <doc:lineage>
-          The spatial entity element was introduced into EML 2.0 beta 7
-        </doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="EntityBase">
-          <xs:choice>
-            <xs:element name="spatialImage" type="ImageSpatialRepresentation" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    This element describes a spatially referenced image.
-                  </doc:tooltip>
-                  <doc:summary>
-                    This element describes a spatially referenced image.
-                  </doc:summary>
-                  <doc:description>
-                    This element describes a spatially referenced image. This could be 
-                    a GIS layer or any other spatially referenced visual
-                  </doc:description>
-                  <doc:example>
-                     arcview .arc or .arg file.
-                  </doc:example>
-                  <doc:lineage>
-                    The spatial entity elements were introduced into EML 2.0 beta 7
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="spatialGrid" type="RasterSpatialRepresentation" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    Description of a gis layer composed of raster pixels.
-                  </doc:tooltip>
-                  <doc:summary>
-                    Description of a gis layer composed of raster pixels.
-                  </doc:summary>
-                  <doc:description>
-                    Description of a gis layer composed of raster pixels.  This
-                    is a raster grid of pixels.  Raster spatial objects used to 
-                    locate zero-, two-, or three-dimensional locations in the 
-                    dataset
-                  </doc:description>
-                  <doc:example>
-                     
-                  </doc:example>
-                  <doc:lineage>
-                    The spatial entity elements were introduced into EML 2.0 beta 7
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="spatialVector" type="SpatialVector" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>
-                    Description of an image layer created from a sensor or scanner
-                  </doc:tooltip>
-                  <doc:summary>
-                    Description of an image layer created from a sensor or scanner
-                  </doc:summary>
-                  <doc:description>
-                    Description of an image layer created from a sensor or scanner
-                  </doc:description>
-                  <doc:example>
-                     
-                  </doc:example>
-                  <doc:lineage>
-                    The spatial entity elements were introduced into EML 2.0 beta 7
-                  </doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:choice>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element> -->
   
   <xs:complexType name="ImageSpatialRepresentation">
     <xs:sequence>
