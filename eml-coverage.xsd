@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml:coverage">
+<xs:schema targetNamespace="eml:coverage" xmlns="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
@@ -8,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-11 19:10:03 $'
-      '$Revision: 1.6 $'
+          '$Date: 2001-07-13 00:35:39 $'
+      '$Revision: 1.7 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -376,4 +376,13 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="citeinfo"/>
+  <xs:element name="coverage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="geographicCov"/>
+        <xs:element ref="temporalCov"/>
+        <xs:element ref="taxonomicCov"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
