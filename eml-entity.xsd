@@ -43,8 +43,8 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.68 $'
+          '$Date: 2002-09-24 06:51:03 $'
+      '$Revision: 1.69 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,24 +63,6 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-entity</doc:moduleName>
-<<<<<<< eml-entity.xsd
-        <doc:moduleDescription>The EML Entity Module defines the logical
-        characteristics of each entity in the dataset. Entities are usually
-        tables of data (eml-dataTable). Data tables may be ascii text files,
-        relational database tables, excel spreadsheets or other type of tabular
-        data with a fixed logical structure. Related to data tables
-        (eml-dataTable) are views (eml-view) and stored procedure
-        (eml-storedProcedure). Views and stored procedures are produced by an
-        RDBMS or related system. Other types of data such as: raster
-        (spatialRaster), vector (spatialVector) or spatialReference image data
-        are also data entities. An otherEntity element would be used to
-        describe types of entities that are not decribed by dataTable, view,
-        storedProcedures, or GIS image data (spatialVector, spatialRaster,
-        spatialReference.</doc:moduleDescription>
-        <doc:recommendedUsage>This module is used to describe data
-        entities.</doc:recommendedUsage>
-        <doc:standAlone>Only when 'otherEntity' is used.</doc:standAlone>
-=======
         <doc:moduleDescription>
           <section xmlns="">
             <title>
@@ -106,7 +88,6 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
         <doc:recommendedUsage>This module is used to describe data
         entities.</doc:recommendedUsage>
         <doc:standAlone>Only when 'otherEntity' is used.</doc:standAlone>
->>>>>>> 1.64.2.2
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
