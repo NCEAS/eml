@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-02-16 17:10:15 $'
-#   '$Revision: 1.5 $'
+#       '$Date: 2001-03-27 05:35:30 $'
+#   '$Revision: 1.6 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,18 +51,18 @@ experience using the standard and from feedback from the ecological community.
 The files in this directory include both a Document Type Definition and 
 an XML Schema document for each of the following modules:
 
-eml-resource.[dtd,xsd] 
-    (w/ dataset, bibliography, software and collection sections.)
-iso-party.[dtd,xsd]
+eml-package.[dtd,xsd]
 eml-entity.[dtd,xsd]
 eml-attribute.[dtd,xsd]
-eml-relations.[dtd,xsd]
+eml-constraint.[dtd,xsd]
 eml-distribution.[dtd,xsd]
 eml-research.[dtd,xsd]
 eml-qaqc.[dtd,xsd]
 eml-access.[dtd,xsd]
-eml-package.[dtd,xsd]
 eml-lineage.[dtd,xsd]
+eml-resource.[dtd,xsd] 
+    (w/ dataset, bibliography, software and collection sections.)
+iso-party.[dtd,xsd]
 
 Please see the docs/index.html directory for a detailed description of each of
 the modules.
