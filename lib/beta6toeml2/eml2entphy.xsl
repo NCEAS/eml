@@ -7,8 +7,10 @@
 	<xsl:variable name="enb6" select="document('ent1.enb6')"/>
 	<xsl:variable name="phb6" select="document('phy1.phb6')"/>
 
-  <xsl:template match="/">
-   <entity>
+  
+  <xsl:include href="eml2attr.xsl"/>
+
+  <xsl:template name="dataSet">
     <xsl:element name="entityName">
       <xsl:value-of select="$enb6/table-entity/entityName"/>
     </xsl:element>
@@ -57,10 +59,13 @@
         <xsl:call-template name="dataFormat">
           <xsl:with-param name="string" select="$phb6/eml-physical/format"/>
         </xsl:call-template>
+
+      </xsl:element>
         
         <!-- 'distribution information is inserted here -->
         <!-- 'coverage information is inserted here -->
         <!-- 'attribute list information is inserted here -->
+        <xsl:call-template name="attrTransform"/>
         <!-- 'constraint information is inserted here -->
         
         <xsl:if test="$enb6/table-entity/caseSensitive/@yesorno!=''">
@@ -75,11 +80,8 @@
           </xsl:element>
         </xsl:if>  
 
-      </xsl:element>
    </xsl:if>
       
-    
-   </entity>
   </xsl:template>
   
   <!-- creates the dataFormat tree of eml2.0 based on input string -->

@@ -7,8 +7,7 @@
 	<xsl:variable name="dsb6" select="document('obfs.dsb6')"/>
 	<xsl:variable name="acb6" select="document('obfs.acb6')"/>
   
-  <xsl:include href="eml2attr.xsl"/>
-
+  <xsl:include href="eml2entphy.xsl"/>
   <xsl:template match="/">
 
  	<!-- assign variables for input docs i.e. beta6 dataset and access -->
@@ -246,7 +245,7 @@
           
           <xsl:if test="$attb6/eml-attribute!=''">
             <xsl:element name="dataTable">
-              <xsl:call-template name="attrTransform"/>
+              <xsl:call-template name="dataSet"/>
             </xsl:element>  
           </xsl:if>  
         </dataset>

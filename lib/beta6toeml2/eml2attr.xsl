@@ -42,12 +42,62 @@
             <xsl:if test="((./attributeDomain/enumeratedDomain!='')or(./attributeDomain/textDomain!=''))">
               <xsl:if test="./dataType='Date'"> <!-- need other string checks for time, etc here -->
                 <xsl:element name="datetime">
-              
+                  <xsl:element name="formatString">
+                    <xsl:value-of select="'YYY-MM-DD'"/><!-- this is an arbitrary choice -->  
+                  </xsl:element>
+                  <xsl:element name="dateTimePrecision">
+                    <xsl:value-of select="'unknown'"/><!-- this is an arbitrary choice -->  
+                  </xsl:element>
+                  <xsl:element name="dateTimeDomain">
+                    <xsl:element name="bounds">
+                      <minimum exclusive="false">unknown</minimum>
+                      <maximum exclusive="false">unknown</maximum>
+                     </xsl:element>
+                  </xsl:element>
                 </xsl:element>
               </xsl:if>
               <xsl:if test="./dataType!='Date'"> <!-- need other string checks for time, etc here -->
                 <xsl:element name="nominal">
-              
+                  <xsl:element name="nonNumericDomain">
+                     <xsl:if test="./attributeDomain/enumeratedDomain!=''">
+                        <xsl:element name="enumeratedDomain">
+                          <xsl:for-each select="./attributeDomain/enumeratedDomain"> 
+                            <xsl:element name="codeDefinition">
+                              <xsl:element name="code">
+                                <xsl:value-of select="./code"/>
+                              </xsl:element>
+                              <xsl:element name="definition">
+                                <xsl:value-of select="./definition"/>
+                              </xsl:element>
+                              <xsl:if test="./source!=''">
+                                <xsl:element name="source">
+                                  <xsl:value-of select="./source"/>
+                                </xsl:element>
+                              </xsl:if>  
+                           </xsl:element>
+                          </xsl:for-each>  
+                        </xsl:element>
+                     </xsl:if>
+                     <xsl:if test="./attributeDomain/textDomain!=''">
+                        <xsl:element name="textDomain">
+                          <xsl:for-each select="./attributeDomain/textDomain"> 
+                            <xsl:element name="definition">
+                              <xsl:value-of select="./definition"/>
+                            </xsl:element>
+                            <xsl:if test="./pattern!=''">
+                              <xsl:element name="pattern">
+                                <xsl:value-of select="./pattern"/>
+                              </xsl:element>
+                            </xsl:if>  
+                            <xsl:if test="./source!=''">
+                              <xsl:element name="source">
+                                <xsl:value-of select="./source"/>
+                              </xsl:element>
+                            </xsl:if>  
+                          </xsl:for-each>
+                       </xsl:element>
+                     </xsl:if>
+                  </xsl:element>
                 </xsl:element>
               </xsl:if>
               <!-- don't see how to determine if data is ordinal !! -->
@@ -63,7 +113,15 @@
                     </xsl:element>
                   </xsl:element>
                   <xsl:element name="precision">
-                    <xsl:value-of select="./precision"/>
+                  <!-- Note: 'precision' sometimes is filled out in beta6 for nonnumeric data! -->
+                    <xsl:choose>
+                      <xsl:when test="./precision!=''">
+                        <xsl:value-of select="./precision"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'0.0'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </xsl:element>
                   <xsl:element name="numericDomain">
                     <xsl:element name="numberType">real</xsl:element>
@@ -87,7 +145,15 @@
                     </xsl:element>
                   </xsl:element>
                   <xsl:element name="precision">
-                    <xsl:value-of select="./precision"/>
+                  <!-- Note: 'precision' sometimes is filled out in beta6 for nonnumeric data! -->
+                    <xsl:choose>
+                      <xsl:when test="./precision!=''">
+                        <xsl:value-of select="./precision"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="'0.0'"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </xsl:element>
                   <xsl:element name="numericDomain">
                     <xsl:element name="numberType">real</xsl:element>

@@ -141,6 +141,27 @@
       </allow>
     </access>
     <dataTable>
+      <entityName> ExampleData.txt</entityName>
+      <entityDescription>entityDescription</entityDescription>
+      <physical>
+        <objectName>jscientist.6.1</objectName>
+        <size unit="bytes">1152</size>
+        <authentication>qqq</authentication>
+        <authentication>aaa</authentication>
+        <authentication>bbb</authentication>
+        <compressionMethod>qwerty</compressionMethod>
+        <encodingMethod>1</encodingMethod>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>#x0A</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
       <attributeList>
         <attribute>
           <attributeName>Tag</attributeName>
@@ -148,7 +169,13 @@
           <attributeDefinition>Identification number of plant</attributeDefinition>
           <storageType>Text</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>*</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -157,7 +184,13 @@
           <attributeDefinition>This is a six-letter code. For thecomplete species name, please see file BCISP.txt.</attributeDefinition>
           <storageType>Text</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>*</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -170,7 +203,7 @@
               <unit>
                 <customUnit>m</customUnit>
               </unit>
-              <precision/>
+              <precision>0.0</precision>
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
@@ -195,7 +228,7 @@
               <unit>
                 <customUnit/>
               </unit>
-              <precision/>
+              <precision>0.0</precision>
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
@@ -216,7 +249,24 @@
           <attributeDefinition>Tree diameter at breast height</attributeDefinition>
           <storageType>Integers</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>indicates that the plant is dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>the plant has not yet entered the census</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -229,7 +279,24 @@
           <attributeDefinition>Tree diameter at breast height</attributeDefinition>
           <storageType>Integers</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>indicates that the plant is dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>the plant has not yet entered the census</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -242,7 +309,24 @@
           <attributeDefinition>Tree diameter at breast height</attributeDefinition>
           <storageType>Integers</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>indicates that the plant is dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>the plant has not yet entered the census</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -255,7 +339,24 @@
           <attributeDefinition>Tree diameter at breast height</attributeDefinition>
           <storageType>Integers</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>Indicates that the plant had a dbh of 10 mm or greater in a previous census, then probably broke off and is still alive in this census, but does not yet measure 10 mm (resprout)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>indicates that the plant is dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>the plant has not yet entered the census</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -268,7 +369,28 @@
           <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>A</code>
+                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>D</code>
+                    <definition>dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>P</code>
+                    <definition>not entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -277,7 +399,28 @@
           <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>A</code>
+                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>D</code>
+                    <definition>dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>P</code>
+                    <definition>not entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>*</code>
@@ -290,7 +433,28 @@
           <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>A</code>
+                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>D</code>
+                    <definition>dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>P</code>
+                    <definition>not entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -299,7 +463,28 @@
           <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>A</code>
+                    <definition>alive and above 1cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>D</code>
+                    <definition>dead</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>P</code>
+                    <definition>not entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>alive but below 1 cm dbh (diameter at breast height)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -308,7 +493,24 @@
           <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>1</code>
+                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>&gt;1</code>
+                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>0</code>
@@ -321,7 +523,24 @@
           <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>1</code>
+                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>&gt;1</code>
+                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>0</code>
@@ -334,7 +553,24 @@
           <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>1</code>
+                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>&gt;1</code>
+                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>0</code>
@@ -347,7 +583,24 @@
           <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>1</code>
+                    <definition>All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>&gt;1</code>
+                    <definition>If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>0</code>
+                    <definition>0the stem had not yet entered the census, tree died or missing dbh</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>0</code>
@@ -360,7 +613,60 @@
           <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>*</code>
+                    <definition>*</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>L</code>
+                    <definition>L</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>F</code>
+                    <definition>F</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>G</code>
+                    <definition>G</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>D</code>
+                    <definition>D</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>S</code>
+                    <definition>S</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>X</code>
+                    <definition>X</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>R</code>
+                    <definition>R</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>N</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>P</code>
+                    <definition>P</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LG</code>
+                    <definition>LG</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RG</code>
+                    <definition>RG</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -369,7 +675,140 @@
           <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Z</code>
+                    <definition>Z</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DMC</code>
+                    <definition>DMC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>*</code>
+                    <definition>*</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LV</code>
+                    <definition>LV</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DT</code>
+                    <definition>DT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DB</code>
+                    <definition>DB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DU</code>
+                    <definition>DU</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IB</code>
+                    <definition>IB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IO</code>
+                    <definition>IO</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IT</code>
+                    <definition>IT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DF</code>
+                    <definition>DF</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NMZ</code>
+                    <definition>NMZ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Q</code>
+                    <definition>Q</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PB</code>
+                    <definition>PB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>V</code>
+                    <definition>V</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LN</code>
+                    <definition>LN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LT</code>
+                    <definition>LT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QIB</code>
+                    <definition>QIB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QIT</code>
+                    <definition>QIT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QIO</code>
+                    <definition>QIO</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ITQ</code>
+                    <definition>ITQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IOIT</code>
+                    <definition>IOIT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QV</code>
+                    <definition>QV</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MC</code>
+                    <definition>MC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LNQ</code>
+                    <definition>LNQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DMF</code>
+                    <definition>DMF</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RP</code>
+                    <definition>RP</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>T</code>
+                    <definition>T</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ITIB</code>
+                    <definition>ITIB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RTPN</code>
+                    <definition>RTPN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ITA</code>
+                    <definition>ITA</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LNIT</code>
+                    <definition>LNIT</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -378,7 +817,116 @@
           <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>DN</code>
+                    <definition>DN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>*</code>
+                    <definition>*</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DT</code>
+                    <definition>DT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DC</code>
+                    <definition>DC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>M</code>
+                    <definition>M</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>B</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DS</code>
+                    <definition>DS</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Q</code>
+                    <definition>Q</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LM</code>
+                    <definition>LM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>L</code>
+                    <definition>L</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QB</code>
+                    <definition>QB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MB</code>
+                    <definition>MB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RM</code>
+                    <definition>RM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>R</code>
+                    <definition>R</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QM</code>
+                    <definition>QM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LBM</code>
+                    <definition>LBM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BM</code>
+                    <definition>BM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QLM</code>
+                    <definition>QLM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QL</code>
+                    <definition>QL</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RL</code>
+                    <definition>RL</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RLM</code>
+                    <definition>RLM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BL</code>
+                    <definition>BL</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>C</code>
+                    <definition>C</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LQB</code>
+                    <definition>LQB</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RQM</code>
+                    <definition>RQM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QMB</code>
+                    <definition>QMB</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -387,7 +935,132 @@
           <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>*</code>
+                    <definition>*</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DT</code>
+                    <definition>DT</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>B</code>
+                    <definition>B</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DC</code>
+                    <definition>DC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DS</code>
+                    <definition>DS</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BM</code>
+                    <definition>BM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Q</code>
+                    <definition>Q</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BQ</code>
+                    <definition>BQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MQ</code>
+                    <definition>MQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>M</code>
+                    <definition>M</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>L</code>
+                    <definition>L</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DN</code>
+                    <definition>DN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BN</code>
+                    <definition>BN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BDS</code>
+                    <definition>BDS</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RM</code>
+                    <definition>RM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>MR</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BLDC</code>
+                    <definition>BLDC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>2</code>
+                    <definition>2</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BQM</code>
+                    <definition>BQM</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BMQ</code>
+                    <definition>BMQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LQ</code>
+                    <definition>LQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>RMQ</code>
+                    <definition>RMQ</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>QL</code>
+                    <definition>QL</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ML</code>
+                    <definition>ML</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>R</code>
+                    <definition>R</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>C</code>
+                    <definition>C</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BC</code>
+                    <definition>BC</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MQR</code>
+                    <definition>MQR</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BL</code>
+                    <definition>BL</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BD</code>
+                    <definition>BD</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -396,7 +1069,20 @@
           <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>tree not yet entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>tree has died</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -409,7 +1095,20 @@
           <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>tree not yet entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>tree has died</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -422,7 +1121,20 @@
           <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>tree not yet entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>tree has died</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -435,7 +1147,20 @@
           <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
           <storageType>Codes</storageType>
           <measurementScale>
-            <nominal/>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>-2</code>
+                    <definition>tree not yet entered census yet</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>-1</code>
+                    <definition>tree has died</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
           <missingValueCode>
             <code>-9</code>
@@ -448,7 +1173,16 @@
           <attributeDefinition>Date tree was censused</attributeDefinition>
           <storageType>Date</storageType>
           <measurementScale>
-            <datetime/>
+            <datetime>
+              <formatString>YYY-MM-DD</formatString>
+              <dateTimePrecision>unknown</dateTimePrecision>
+              <dateTimeDomain>
+                <bounds>
+                  <minimum exclusive="false">unknown</minimum>
+                  <maximum exclusive="false">unknown</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </datetime>
           </measurementScale>
         </attribute>
         <attribute>
@@ -457,7 +1191,16 @@
           <attributeDefinition>Date tree was censused</attributeDefinition>
           <storageType>Date</storageType>
           <measurementScale>
-            <datetime/>
+            <datetime>
+              <formatString>YYY-MM-DD</formatString>
+              <dateTimePrecision>unknown</dateTimePrecision>
+              <dateTimeDomain>
+                <bounds>
+                  <minimum exclusive="false">unknown</minimum>
+                  <maximum exclusive="false">unknown</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </datetime>
           </measurementScale>
         </attribute>
         <attribute>
@@ -466,7 +1209,16 @@
           <attributeDefinition>Date tree was censused</attributeDefinition>
           <storageType>Date</storageType>
           <measurementScale>
-            <datetime/>
+            <datetime>
+              <formatString>YYY-MM-DD</formatString>
+              <dateTimePrecision>unknown</dateTimePrecision>
+              <dateTimeDomain>
+                <bounds>
+                  <minimum exclusive="false">unknown</minimum>
+                  <maximum exclusive="false">unknown</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </datetime>
           </measurementScale>
         </attribute>
         <attribute>
@@ -475,10 +1227,21 @@
           <attributeDefinition>Date tree was censused</attributeDefinition>
           <storageType>Date</storageType>
           <measurementScale>
-            <datetime/>
+            <datetime>
+              <formatString>YYY-MM-DD</formatString>
+              <dateTimePrecision>unknown</dateTimePrecision>
+              <dateTimeDomain>
+                <bounds>
+                  <minimum exclusive="false">unknown</minimum>
+                  <maximum exclusive="false">unknown</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </datetime>
           </measurementScale>
         </attribute>
       </attributeList>
+      <caseSensitive>no</caseSensitive>
+      <numberOfRecords> 24</numberOfRecords>
     </dataTable>
   </dataset>
 </eml:eml>
