@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: jones $'
- *        '$Date: 2002-10-30 17:58:28 $'
- *    '$Revision: 1.7 $'
+ *        '$Date: 2002-12-06 22:23:44 $'
+ *    '$Revision: 1.8 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ public class MakeProjectionDictionary {
    public static String[][] unitNames=new String[8][2];
 
 
-    public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0rc3"));
+    public static Element root = new Element("projectionList", Namespace.getNamespace("sp", "eml://ecoinformatics.org/spatialReference-2.0.0"));
     public static Document XMLDoc = new Document(root);
 
 
@@ -76,7 +76,7 @@ public class MakeProjectionDictionary {
         unitNames[7][0]="Link_Clarke";
         unitNames[7][1]="Link_Clarke";
 
-        root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0rc3 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
+        root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
         if (args.length==1){
             processPrjFiles(args[0]);
 

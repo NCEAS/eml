@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc3" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc3" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" 
-    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc3" 
-    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc3" 
-    xmlns="eml://ecoinformatics.org/literature-2.0.0rc3" 
-    targetNamespace="eml://ecoinformatics.org/literature-2.0.0rc3">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" 
+    xmlns:rp="eml://ecoinformatics.org/party-2.0.0" 
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0" 
+    xmlns:acc="eml://ecoinformatics.org/access-2.0.0" 
+    xmlns:proj="eml://ecoinformatics.org/project-2.0.0" 
+    xmlns="eml://ecoinformatics.org/literature-2.0.0" 
+    targetNamespace="eml://ecoinformatics.org/literature-2.0.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" 
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0" 
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0" 
   schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0" 
   schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0" 
   schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0" 
   schemaLocation="eml-project.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 17:58:26 $'
-      '$Revision: 1.48 $'
+          '$Date: 2002-12-06 22:23:43 $'
+      '$Revision: 1.49 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

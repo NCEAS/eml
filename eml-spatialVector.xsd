@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc3" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc3" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0rc3" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0rc3" 
-    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0rc3" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc3" 
-    xmlns="eml://ecoinformatics.org/spatialVector-2.0.0rc3" 
-    targetNamespace="eml://ecoinformatics.org/spatialVector-2.0.0rc3">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc3" 
+    xmlns:res="eml://ecoinformatics.org/resource-2.0.0" 
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0" 
+    xmlns:con="eml://ecoinformatics.org/constraint-2.0.0" 
+    xmlns:att="eml://ecoinformatics.org/attribute-2.0.0" 
+    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.0.0" 
+    xmlns:ent="eml://ecoinformatics.org/entity-2.0.0" 
+    xmlns="eml://ecoinformatics.org/spatialVector-2.0.0" 
+    targetNamespace="eml://ecoinformatics.org/spatialVector-2.0.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0" 
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.0.0" 
   schemaLocation="eml-spatialReference.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0" 
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0" 
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.0.0" 
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0rc3" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.0.0" 
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 17:58:27 $'
-      '$Revision: 1.34 $'
+          '$Date: 2002-12-06 22:23:43 $'
+      '$Revision: 1.35 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
