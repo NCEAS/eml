@@ -22,7 +22,9 @@
 
   <parameter>
     <name>x</name>
-    <datatype>xs:integer</datatype>
+    <domainDescription>This is an integer between 0 and 10,003, which can
+    be represented using the xs:integer type from XML Schema datatypes.
+    </domainDescription>
     <required>true</required>
     <repeats>false</repeats>
   </parameter>
