@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema xmlns="eml:attribute" targetNamespace="eml:attribute" xmlns:doc="eml:documentation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml:documentation" 
-             schemaLocation="./eml-documentation.xsd"/>
+<xs:schema targetNamespace="eml:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation" xmlns="eml:attribute">
+  <xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-attribute.xsd,v $'
@@ -9,9 +8,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: schild $'
-          '$Date: 2001-12-11 03:02:58 $'
-      '$Revision: 1.18 $'
+        '$Author: jones $'
+          '$Date: 2001-12-11 04:17:42 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -157,7 +156,7 @@
                     </doc:description>
                     <doc:example>
                      spden 
-                    <doc:example/>
+                    </doc:example>
                     <doc:lineage>
                       The attributeName was introduced into EML 1.4.
                     </doc:lineage>
@@ -209,7 +208,7 @@
                     <doc:example>
                       "spden" is the number of individuals of all
                        macroinvertebrate species found in the plot
-                    <doc:example/>
+                    </doc:example>
                     <doc:lineage>
                       The attributeDefinition was introduced into EML 1.4.
                     </doc:lineage>
@@ -231,7 +230,7 @@
                     </doc:description>
                     <doc:example>
                       Integer count of individuals within plot
-                    <doc:example/>
+                    </doc:example>
                     <doc:lineage>
                       The unit was introduced into EML 1.4.
                     </doc:lineage>
@@ -263,87 +262,88 @@
               <xs:element name="attributeDomain">
                 <xs:complexType>
                   <xs:choice>
-                    <xs:element name="enumeratedDomain" maxOccurs="unbounded">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="enumeratedDomain">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>
                       Code definition
-                    </doc:tooltip>
-                          <doc:summary>
+                      </doc:tooltip>
+                            <doc:summary>
                       Description of any codes associated with the attribute
-                    </doc:summary>
-                          <doc:description>
+                      </doc:summary>
+                            <doc:description>
                       This element describes any code associated with the 
                       attribute.
-                    </doc:description>
-                          <doc:example>
+                      </doc:description>
+                            <doc:example>
                         The format will typically be : "code" has "definition",
                          e.g. "1" = "high", "2" = "medium", "3" = "low"
-                          <doc:example/>
-                          <doc:lineage>
+                          </doc:example>
+                            <doc:lineage>
                       The codeDefinition was introduced into EML 1.4.
-                    </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="code" type="xs:string">
-                            <xs:annotation>
-                              <xs:appinfo>
-                                <doc:tooltip>
+                      </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="code" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
                             Code
                           </doc:tooltip>
-                                <doc:summary>
+                                  <doc:summary>
                             Code associated with the attribute
                           </doc:summary>
-                                <doc:description>
+                                  <doc:description>
                             This element specifies a code associated with 
                             the attribute.
                           </doc:description>
-                                <doc:example>
+                                  <doc:example>
                                  "1" would be the code for "high" (where high is the description
                                   of the code)
-                                <doc:example/>
-                                <doc:lineage>
+                                </doc:example>
+                                  <doc:lineage>
                             The code element was introduced into EML 1.4.
                           </doc:lineage>
-                              </xs:appinfo>
-                            </xs:annotation>
-                          </xs:element>
-                          <xs:element name="definition" type="xs:string">
-                            <xs:annotation>
-                              <xs:appinfo>
-                                <doc:tooltip>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="definition" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
                                   Code definition
                                 </doc:tooltip>
-                                <doc:summary>
+                                  <doc:summary>
                                   Description of the code associated with 
                                   the attribute.
                                 </doc:summary>
-                                <doc:description>
+                                  <doc:description>
                                   This element describes the code associated 
                                   with the attribute.
                                 </doc:description>
-                                <doc:example>
+                                  <doc:example>
                                   "high" would be the definition for a code of "1"
-                                <doc:example/>
-                                <doc:lineage>
+                                </doc:example>
+                                  <doc:lineage>
                                   The definition element is from EML 1.4.
                                 </doc:lineage>
-                              </xs:appinfo>
-                            </xs:annotation>
-                          </xs:element>
-                          <xs:element name="source" type="xs:string" minOccurs="0">
-                            <xs:annotation>
-                              <xs:appinfo>
-                                <doc:tooltip>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="source" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
                                   Source of code
                                 </doc:tooltip>
-                                <doc:summary>
+                                  <doc:summary>
                                   The name of the source for this code and
                                   its definition
                                 </doc:summary>
-                                <doc:description>
+                                  <doc:description>
                                   The name of the source from which this code
                                   and its associated definition are drawn.
                                   This is commonly used for identifying
@@ -353,34 +353,148 @@
                                   researcher's customized way of recording and classifying
                                   their data, and no external "source" would exist.
                                 </doc:description>
-                                <doc:example>ISO country codes</doc:example>
-                                <doc:lineage>
+                                  <doc:example>ISO country codes</doc:example>
+                                  <doc:lineage>
                                   Introduced in EML 2.0
                                 </doc:lineage>
-                              </xs:appinfo>
-                            </xs:annotation>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="rangeDomain" maxOccurs="unbounded">
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="textDomain">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Text domain</doc:tooltip>
+                            <doc:summary>
+                            Description of a free-text domain pattern for the attribute
+                            </doc:summary>
+                            <doc:description>
+                            This element describes a free text domain for the attribute.
+                            By default, if pattern is missing or empty, then any text
+                            is allowed.  If pattern is present, then it is interpreted
+                            as a regular expression constraining the allowable character
+                            sequences for the attribute.
+                            </doc:description>
+                            <doc:example>
+                                Typically, a textdomain will have an empty pattern or
+                                one that constrains allowable values. For example,
+                                '[0-9]{3}-[0-9]{3}-[0-9]{4}' allows for only numeric 
+                                digits in the pattern of a US phone number.
+                            </doc:example>
+                            <doc:lineage>
+                            Introduced in EML 2.0.0beta5
+                            </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="definition" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
+                                  Code definition
+                                </doc:tooltip>
+                                  <doc:summary>
+                                  Description of the code associated with 
+                                  the attribute.
+                                </doc:summary>
+                                  <doc:description>
+                                  This element describes the code associated 
+                                  with the attribute.
+                                </doc:description>
+                                  <doc:example>
+                                  "high" would be the definition for a code of "1"
+                                </doc:example>
+                                  <doc:lineage>
+                                  The definition element is from EML 1.4.
+                                </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="pattern" type="xs:string" 
+                                        minOccurs="0" maxOccurs="unbounded">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
+                                    Text pattern
+                                  </doc:tooltip>
+                                  <doc:summary>
+                                    Regular expression pattern constraining the attribute
+                                  </doc:summary>
+                                  <doc:description>
+                                    The "pattern" element specifies a regular expression
+                                    pattern that constrains the set of allowable values
+                                    for the attribute.  This is commonly used to 
+                                    define template patterns for data such as phone 
+                                    numbers where the attribute is text but
+                                    the values are not drawn from an enumeration.  
+                                    If the pattern field is empty or missing, it 
+                                    defaults to '.*', which matches any string,
+                                    including the empty string.  Repeated pattern
+                                    elements are combined using logical OR.  The
+                                    regular expression syntax is the same as that used
+                                    in the XML Schema Datatypes Recommendation from the
+                                    W3C.
+                                  </doc:description>
+                                  <doc:example>
+                                  '[0-9a-zA-Z]' matches simple alphanumeric strings.
+                                  </doc:example>
+                                  <doc:lineage>
+                                    The pattern element was introduced into EML 2.0.0beta5.
+                                  </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="source" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
+                                  Source of text domain
+                                </doc:tooltip>
+                                  <doc:summary>
+                                  The name of the source for this text domain.
+                                </doc:summary>
+                                  <doc:description>
+                                  The name of the source from which this text domain
+                                  and its associated definition are drawn.
+                                  This is commonly used for identifying
+                                  standard coding systems, like the FIPS
+                                  standard for postal abbreviations for states
+                                  in the US. In other cases, the coding may be the
+                                  researcher's customized way of recording and classifying
+                                  their data, and no external "source" would exist.
+                                </doc:description>
+                                  <doc:example>ISO country codes</doc:example>
+                                  <doc:lineage>
+                                  Introduced in EML 2.0
+                                </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:element name="numericDomain" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>
-                      Numeric range
+                      Numeric Domain
                     </doc:tooltip>
                           <doc:summary>
-                      Numeric range of attribute
+                      Numeric domain of attribute specifying allowed value range
                     </doc:summary>
                           <doc:description>
                       This element specifies the minimum and maximum values
                       of a numeric attribute.  These are theoretical or expected
-                      values, and not necessarily the actual minimum and maximum   occurring
-                      in a given data set.
+                      values, and not necessarily the actual minimum and maximum
+                      occurring in a given data set.
                     </doc:description>
                           <doc:example/>
                           <doc:lineage>
-                      The numericRange was introduced into EML 1.4.
+                      The numericDomain was introduced into EML 1.4 as rangeDomain
                     </doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>

@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: higgins $'
-          '$Date: 2001-10-19 21:24:31 $'
-      '$Revision: 1.10 $'
+        '$Author: jones $'
+          '$Date: 2001-12-11 04:17:42 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,7 +33,8 @@
 >
 <!-- Attribute element is a descriptor of an attribute in the dataset
      identified by its name. -->
-<!ELEMENT attribute (attributeName, attributeLabel*, attributeDefinition, unit?, dataType?, attributeDomain, missingValueCode*, precision?)>
+<!ELEMENT attribute (attributeName, attributeLabel*, attributeDefinition, unit?,
+                     dataType?, attributeDomain, missingValueCode*, precision?)>
 <!-- Attribute name -->
 <!ELEMENT attributeName (#PCDATA)>
 <!-- Attribute label -->
@@ -45,7 +46,7 @@
 <!-- data type; Integer, floating point, character, string -->
 <!ELEMENT dataType (#PCDATA)>
 <!-- Domain of the attribute -->
-<!ELEMENT attributeDomain (enumeratedDomain+ | rangeDomain+)>
+<!ELEMENT attributeDomain ((enumeratedDomain | textDomain)+ | numericDomain+ )>
 <!-- Description of any codes associated with attributes -->
 <!ELEMENT enumeratedDomain (code, definition, source?)>
 <!ELEMENT code (#PCDATA)>
@@ -53,8 +54,10 @@
 <!ELEMENT definition (#PCDATA)>
 <!-- Source of attribute codes -->
 <!ELEMENT source (#PCDATA)>
+<!ELEMENT textDomain (definition, pattern*, source?)>
+<!ELEMENT pattern (#PCDATA)>
 <!-- Range for numeric values -->
-<!ELEMENT rangeDomain (minimum?, maximum?)>
+<!ELEMENT numericDomain (minimum?, maximum?)>
 <!ELEMENT minimum (#PCDATA)>
 <!ELEMENT maximum (#PCDATA)>
 <!-- Character used to represent missing data -->
