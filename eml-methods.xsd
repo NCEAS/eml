@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/methods-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sw="eml://ecoinformatics.org/software-2.0.0beta9" xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0beta9" xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0beta9" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns="eml://ecoinformatics.org/methods-2.0.0beta9">
+<xs:schema targetNamespace="eml://ecoinformatics.org/methods-2.0.0beta9" xmlns:txt="eml://ecoinformatics.org/text-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sw="eml://ecoinformatics.org/software-2.0.0beta9" xmlns:pro="eml://ecoinformatics.org/protocol-2.0.0beta9" xmlns:rp="eml://ecoinformatics.org/party-2.0.0beta9" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0beta9" xmlns:ds="eml://ecoinformatics.org/dataset-2.0.0beta9" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns="eml://ecoinformatics.org/methods-2.0.0beta9">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/dataset-2.0.0beta9" schemaLocation="eml-dataset.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-08-27 17:36:05 $'
-      '$Revision: 1.2 $'
+          '$Date: 2002-09-04 22:39:43 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@
     </xs:appinfo>
   </xs:annotation>
   <xs:import namespace="eml://ecoinformatics.org/party-2.0.0beta9" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0beta9" schemaLocation="eml-text.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0beta9" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
   <xs:element name="methods" type="MethodsType">
@@ -76,70 +77,40 @@
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:sequence>
-            <xs:element name="description">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Methods description</doc:tooltip>
-                  <doc:summary>Description of the methods employed in collecting or
-              generating a data set or other resource.</doc:summary>
-                  <doc:description>The description field allows for repeated
-              paragraphs of text that describe the methodology for a project,
-              experiment, or particular data table. Likewise, a literature
-              citation may be provided that describes the methodology that was
-              employed.</doc:description>
-                  <doc:example>&lt;paragraph&gt; 1.Collect tissues from algae of
-              interest. &lt;/paragraph&gt; &lt;paragraph&gt; a.We are currently
-              collecting Egregia menziezii, Mazzaella splendens, M. flaccida,
-              Hedophyllum sessile, Postelsia palmaeformis and Fucus gardneri.We
-              stopped collecting Neorhodomela larix and Odonthalia floccosa
-              because they can be heavily fouled and we feared that would skew
-              the results. &lt;/paragraph&gt; &lt;paragraph&gt; b.We collect a
-              7-10 cm blade or branch from each plant. For Egregia, try to
-              sample small, young plants or take the base of the blade. For
-              Postelsia, take a few of the blades. The other plants are small
-              enough so a whole blade can be taken.
-              &lt;/paragraph&gt;</doc:example>
-                  <doc:lineage>Derived from EML 1.4</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:choice maxOccurs="unbounded">
-                  <xs:element name="paragraph" type="xs:string"/>
-                  <xs:element name="citation" type="cit:CitationType"/>
-                  <xs:element name="protocol" type="pro:ProtocolType"/>
-                </xs:choice>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="instrumentation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Instrumentation</doc:tooltip>
-                  <doc:summary>Instruments used for measurement and recording
+          <xs:complexContent>
+            <xs:extension base="ProcedureStepType">
+              <xs:sequence>
+                <xs:element name="instrumentation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Instrumentation</doc:tooltip>
+                      <doc:summary>Instruments used for measurement and recording
               data.</doc:summary>
-                  <doc:description>The Instrumentation field allows the description
+                      <doc:description>The Instrumentation field allows the description
               of any instruments used in the data collection. The description
               should include vendor, model number, optional equipment,
               etc.</doc:description>
-                  <doc:example>LACHAT analyzer, model XYX.</doc:example>
-                  <doc:lineage>New in EML 2.0</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="dataSource" type="ds:DatasetType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="software" type="sw:SoftwareType" minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Software</doc:tooltip>
-                  <doc:summary>Software used in the processing of
+                      <doc:example>LACHAT analyzer, model XYX.</doc:example>
+                      <doc:lineage>New in EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="dataSource" type="ds:DatasetType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="software" type="sw:SoftwareType" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>Software</doc:tooltip>
+                      <doc:summary>Software used in the processing of
               data.</doc:summary>
-                  <doc:description>The software element allows reference to any
+                      <doc:description>The software element allows reference to any
               software used to process data.</doc:description>
-                  <doc:lineage>Introduced in EML 2.0</doc:lineage>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
+                      <doc:lineage>Introduced in EML 2.0</doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
         </xs:complexType>
       </xs:element>
       <xs:element name="sampling" minOccurs="0">
@@ -300,6 +271,39 @@
           </xs:choice>
         </xs:complexType>
       </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ProcedureStepType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="description" type="txt:TextType">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Methods description</doc:tooltip>
+            <doc:summary>Description of the methods employed in collecting or
+              generating a data set or other resource.</doc:summary>
+            <doc:description>The description field allows for repeated
+              paragraphs of text that describe the methodology for a project,
+              experiment, or particular data table. Likewise, a literature
+              citation may be provided that describes the methodology that was
+              employed.</doc:description>
+            <doc:example>&lt;paragraph&gt; 1.Collect tissues from algae of
+              interest. &lt;/paragraph&gt; &lt;paragraph&gt; a.We are currently
+              collecting Egregia menziezii, Mazzaella splendens, M. flaccida,
+              Hedophyllum sessile, Postelsia palmaeformis and Fucus gardneri.We
+              stopped collecting Neorhodomela larix and Odonthalia floccosa
+              because they can be heavily fouled and we feared that would skew
+              the results. &lt;/paragraph&gt; &lt;paragraph&gt; b.We collect a
+              7-10 cm blade or branch from each plant. For Egregia, try to
+              sample small, young plants or take the base of the blade. For
+              Postelsia, take a few of the blades. The other plants are small
+              enough so a whole blade can be taken.
+              &lt;/paragraph&gt;</doc:example>
+            <doc:lineage>Derived from EML 1.4</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="citation" type="cit:CitationType"/>
+      <xs:element name="protocol" type="pro:ProtocolType"/>
     </xs:choice>
   </xs:complexType>
 </xs:schema>
