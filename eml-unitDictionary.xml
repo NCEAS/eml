@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-11-05 18:20:21 $'
-      '$Revision: 1.36 $'
+        '$Author: blankman $'
+          '$Date: 2003-02-05 22:57:11 $'
+      '$Revision: 1.37 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1021,6 +1021,14 @@
   <unit id="numberPerMeterCubed" name="numberPerMeterCubed" unitType="volumetricDensity" multiplierToSI="1">
     <description>number per meter cubed</description>
   </unit>
+  
+  <unit id="numberPerLiter" name="numberPerLiter" unitType="volumetricDensity" multiplierToSI="0.001">
+    <description>number of entities per liter</description>
+  </unit>
+  
+  <unit id="numberPerMilliliter" name="numberPerMilliliter" unitType="volumetricDensity" multiplierToSI="0.000001">
+    <description>number of entities per milliliter</description>
+  </unit>
 
   <!--massSpecificLength-->
   <unit id="metersPerGram" name="metersPerGram" unitType="massSpecificLength" multiplierToSI="1" abbreviation="m/g">
@@ -1044,5 +1052,7 @@
   <unit id="cubicCentimetersPerCubicCentimeters" name="cubicCentimetersPerCubicCentimeters" unitType="volumePerVolume" multiplierToSI="1">
     <description>cubic centimeters per cubic centimeter</description>
   </unit>
+  
+ 
 
 </stmml:unitList>
