@@ -13,9 +13,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: schild $'
-          '$Date: 2001-12-16 17:27:14 $'
-      '$Revision: 1.20 $'
+        '$Author: berkley $'
+          '$Date: 2001-12-16 21:20:06 $'
+      '$Revision: 1.21 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -230,7 +230,7 @@
         </doc:description>
         <doc:example>
            Photograph of rocky intertidal plot 12 from Santa Cruz Island 
-        <doc:example/>
+        </doc:example>
         <doc:lineage>
           The entity element was introduced into EML 1.4 as file.
         </doc:lineage>
@@ -342,9 +342,10 @@
                   can or should this be a URI/URL pointing to the catalog
                   system, or just the name?
                 </doc:description>
-                    <doc:example><![CDATA[
-                  <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-                    <doc:lineage>
+                <doc:example><![CDATA[
+                  <identifier system="metacat">nceas.3.2</identifier>]]>
+                </doc:example>
+                <doc:lineage>
                   New to EML 2.0.
                 </doc:lineage>
                   </xs:appinfo>
