@@ -2,7 +2,7 @@
 <xs:schema targetNamespace="eml:unit-2.0.0beta8" 
            xmlns:doc="eml:documentation-2.0.0beta8" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:uni="eml:unit-2.0.0beta8">
+           xmlns="eml:unit-2.0.0beta8">
   <xs:import namespace="eml:documentation-2.0.0beta8" schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -20,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
    
-        '$Author: higgins $'
-          '$Date: 2002-05-28 18:53:05 $'
-      '$Revision: 1.3 $'
+        '$Author: berkley $'
+          '$Date: 2002-05-28 20:05:42 $'
+      '$Revision: 1.4 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@
   
   <xs:element name="dimension" id="el.dimension">
     <xs:complexType>
-      <xs:attribute name="name" type="uni:dimensionType" use="required"/>
+      <xs:attribute name="name" type="dimensionType" use="required"/>
       <xs:attribute name="power" type="xs:decimal" default="1"/>
     </xs:complexType>
   </xs:element>
@@ -84,8 +84,8 @@
   <xs:element name="unitList" id="el.unitList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="uni:unitType" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="uni:unit" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="unitType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="unit" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="href" type="xs:anyURI"/>
     </xs:complexType>
@@ -94,7 +94,7 @@
   <xs:element name="unitType" id="el.unitType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="uni:dimension" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="dimension" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="name" type="xs:string" use="required"/>
     </xs:complexType>
@@ -103,8 +103,8 @@
   <xs:element name="unit" id="el.unit">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="uni:description"/>
-        <xs:element ref="uni:annotation"/>
+        <xs:element ref="description"/>
+        <xs:element ref="annotation"/>
       </xs:choice>
       <xs:attribute name="id" type="xs:string" use="required"/>
       <xs:attribute name="abbreviation" type="xs:string"/>
@@ -121,7 +121,7 @@
       <xs:sequence minOccurs="0" maxOccurs="unbounded">
         <xs:any processContents="lax"/>
       </xs:sequence>
-      <xs:attributeGroup ref="uni:sourceGroup"/>
+      <xs:attributeGroup ref="sourceGroup"/>
       <xs:attribute name="class" type="xs:string"/>
     </xs:complexType>
   </xs:element>
@@ -129,8 +129,8 @@
   <xs:element name="annotation" id="el.annotation">
     <xs:complexType mixed="true">
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="uni:documentation"/>
-        <xs:element ref="uni:appinfo"/>
+        <xs:element ref="documentation"/>
+        <xs:element ref="appinfo"/>
       </xs:choice>
       <xs:attribute name="source" type="xs:anyURI"/>
     </xs:complexType>
@@ -145,8 +145,8 @@
       <xs:sequence minOccurs="0" maxOccurs="unbounded">
         <xs:any processContents="lax"/>
       </xs:sequence>
-      <xs:attributeGroup ref="uni:sourceGroup"/>
-      <xs:attributeGroup ref="uni:idGroup"/>
+      <xs:attributeGroup ref="sourceGroup"/>
+      <xs:attributeGroup ref="idGroup"/>
     </xs:complexType>
   </xs:element>
   
@@ -160,7 +160,7 @@
   </xs:element>
   
   <xs:attributeGroup name="idGroup" id="attGp.id">
-    <xs:attribute name="id" type="uni:idType" id="att.id"/>
+    <xs:attribute name="id" type="idType" id="att.id"/>
   </xs:attributeGroup>
   
   <xs:simpleType name="idType" id="st.idType">
@@ -168,4 +168,5 @@
       <xs:pattern value="[A-Za-z0-9_-]+(:[A-Za-z0-9_-]+)?"/>
     </xs:restriction>
   </xs:simpleType>
+  
 </xs:schema>
