@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-18 05:42:55 $'
-      '$Revision: 1.27 $'
+        '$Author: berkley $'
+          '$Date: 2002-03-22 19:00:00 $'
+      '$Revision: 1.28 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -734,6 +734,10 @@
               a complete band of latitude around the earth, the West 
               Bounding Coordinate shall be assigned the value -180.0, and 
               the East Bounding Coordinate shall be assigned the value 180.0 
+              
+              If your bound area is a single point, use only the northbc and 
+              eastbc to define your point.  westbc and southbc are optional
+              for this purpose.
             </doc:description>
             <doc:example>
               Please see the individual sub-fields for specific examples.
@@ -743,7 +747,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="westbc" type="xs:string">
+            <xs:element name="westbc" type="xs:string" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>West bounding coordinate</doc:tooltip>
@@ -851,7 +855,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element> 
-            <xs:element name="southbc" type="xs:string">
+            <xs:element name="southbc" type="xs:string" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>South bounding coordinate</doc:tooltip>

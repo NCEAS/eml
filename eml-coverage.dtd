@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2001-12-18 04:45:54 $'
-      '$Revision: 1.9 $'
+        '$Author: berkley $'
+          '$Date: 2002-03-22 19:01:10 $'
+      '$Revision: 1.10 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
 <!ELEMENT taxonomicCov (keywtax+, taxonsys?, taxongen?, taxoncl+)>
 <!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
 <!ELEMENT descgeog (#PCDATA)>
-<!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
+<!ELEMENT bounding (westbc?, eastbc, northbc, southbc?, boundalt?)>
 <!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
 <!ELEMENT geolscal (#PCDATA)>
 <!ELEMENT geolest (#PCDATA)>
