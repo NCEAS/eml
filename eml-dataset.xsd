@@ -30,8 +30,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-09-09 14:30:42 $'
-      '$Revision: 1.37 $'
+          '$Date: 2002-09-09 14:43:54 $'
+      '$Revision: 1.38 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -118,7 +118,7 @@
               update, and whether there is ongoing data
               collection.</doc:description>
 <doc:example/>
-<doc:lineage>ISO CD 19115.2</lineage></xs:appinfo>
+<doc:lineage>ISO CD 19115.2</doc:lineage></xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="contact" type="rp:ResponsibleParty" maxOccurs="unbounded">
@@ -192,7 +192,7 @@
 <doc:description>A text description of the maintenance of this data
               resource.</doc:description>
 <doc:example/>
-<doc:lineage>ISO CD 19115.2</lineage></xs:appinfo>
+<doc:lineage>ISO CD 19115.2</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="maintenanceUpdateFrequency" type="MaintUpFreqType" minOccurs="0">
@@ -201,7 +201,7 @@
 <doc:summary>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:summary>
 <doc:description>Frequency with which changes and additions are made to the datset after the initial dataset is completed.</doc:description>
 <doc:example/>
-<doc:lineage>SO/CD 19115.2</lineage></xs:appinfo>
+<doc:lineage>SO/CD 19115.2</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="changeHistory" type="ChangeHistoryBase" minOccurs="0" maxOccurs="unbounded">
@@ -210,7 +210,7 @@
 <doc:summary>A description of changes made to the data since its release.</doc:summary>
 <doc:description>A description of changes made to the data since its release.</doc:description>
 <doc:example/>
-<doc:lineage>EML 2.0</lineage></xs:appinfo>
+<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -238,7 +238,7 @@
 <doc:summary>An expression describing the scope to which the documented change was applied.</doc:summary>
 <doc:description>The expression should unambigously identify the entity(s) and attribute(s) that were changed.</doc:description>
 <doc:example/>
-<doc:lineage>EML 2.0</lineage></xs:appinfo>
+<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="oldValue" type="xs:string">
@@ -247,7 +247,7 @@
 <doc:summary>The previous value of the data prior to the change.</doc:summary>
 <doc:description>The previous value or an expression that describes the previous value of the data.</doc:description>
 <doc:example/>
-<doc:lineage>EML 2.0</lineage></xs:appinfo>
+<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="changeDate" type="xs:date">
@@ -256,7 +256,7 @@
 <doc:summary>The date the changes were applied.</doc:summary>
 <doc:description></doc:description>
 <doc:example/>
-<doc:lineage>EML 2.0</lineage></xs:appinfo>
+<doc:lineage>EML 2.0</doc:lineage></xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
