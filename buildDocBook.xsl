@@ -12,7 +12,7 @@
   <bookinfo>
     <title>Ecological Metadata Language (EML) Specification</title>
   </bookinfo>
-
+<!--
   <toc>
     <tocpart>
       <tocchap>
@@ -26,7 +26,7 @@
       </tocchap>
     </tocpart>
   </toc>
-
+-->
   <preface id="preface">
     <title>EML Overview &amp; History</title>
     <section id="introduction">
