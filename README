@@ -1,11 +1,20 @@
-#    '$RCSfile: README,v $'
-#    Copyright: 2000 Regents of the University of California and the
-#               National Center for Ecological Analysis and Synthesis
-#  For Details: http://knb.ecoinformatics.org/
+#       '$RCSfile: README,v $'
+#       Copyright: 1997-2002 Regents of the University of California,
+#                            University of New Mexico, and
+#                            Arizona State University
+#        Sponsors: National Center for Ecological Analysis and Synthesis and
+#                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+#                     University of California Santa Barbara
+#                  Long-Term Ecological Research Network Office,
+#                     University of New Mexico
+#                  Center for Environmental Studies, Arizona State University
+#   Other funding: National Science Foundation (see README for details)
+#                  The David and Lucile Packard Foundation
+#     For Details: http://knb.ecoinformatics.org/
 #
-#     '$Author: jones $'
-#       '$Date: 2002-06-13 19:50:22 $'
-#   '$Revision: 1.19 $'
+#        '$Author: jones $'
+#          '$Date: 2002-06-14 02:05:51 $'
+#      '$Revision: 1.20 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,50 +74,38 @@ of each of the modules.
 FILES
 -----
 The files in this directory include both a Document Type Definition and 
-an XML Schema document for each of the following modules, as well as 
-complete documentation in the "docs" directory:
+an XML Schema document for each of the modules that make up EML.
+Also included is a schema for supporting documentation.
 
-Access control               eml-access.[xsd,dtd]
-Attribute (variable) info    eml-attribute.[xsd,dtd]
-Integrity constraints        eml-constraint.[xsd,dtd]
-Geographic, temporal and     eml-coverage.[xsd,dtd]
-  taxonomic coverage
-Data set info                eml-dataset.[xsd,dtd]
-Data entity (table) info     eml-entity.[xsd,dtd]
-Citation info                eml-literature.[xsd,dtd]
-People and organizations     eml-party.[xsd,dtd]
-Physical format info         eml-physical.[xsd,dtd]
-Research project info        eml-project.[xsd,dtd]
-Methods and QA/QC            eml-protocol.[xsd,dtd]
-Basic resource info          eml-resource.[xsd,dtd]
-Software info                eml-software.[xsd,dtd]
-
-Also included is a schema for supporting documentation:
-Schema documentation info    eml-documentation.xsd
-
-The above files are a part of the proposed release of EML 2.0.  
+The files are a part of the proposed release of EML 2.0.  
 A number of issues still need to be worked out before the final
 version 2 release, but this version has now stabiized and we expect
 only minor modifications between this version and the final version 2
 release.  This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_BETA_8".  Previous versions of EML (such as 1.4) 
+tag "RELEASE_EML_2_BETA_9".  Previous versions of EML (such as 1.4) 
 are available from this repository using the appropriate release tag 
 (i.e. RELEASE_EML_1_4).
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-1) Need to add support for semantic metadata (bug 277)
-2) Need formal definitions for responsible party roles (bug 336)
-3) Need to find a way to store nominal, ordinal, interval and ratio
-   attributes in a meaningful way (bug 337)
-4) Complete work on the XSLT stylesheets.  Most are done but there
+1) Complete work on the XSLT stylesheets.  Most are done but there
    are still a few missing.  Also need to figure out how to import
    stylesheets so that templates are not rewritten for each 
-   module (bug 249)
-5) need lineage and versioning standard (bug 144)
+   module (bug 249).
+2) Resolve issues with eml-literature (bug 492)
 
 ADDITIONS AND IMPROVEMENTS
 --------------------------
+Beta9 Fixes-
+1) Changed packaging concept to use internal id and references instead
+   of triples
+2) Review and revised all modules according to agrred upon changes from 
+   the April, 2002 EML meeting at Sevilleta Field Station
+
+Beta 8 Fixes-
+1) Fixed illegal declaration of type and extension in eml-entity
+2) Updated all PNG image files
+
 Beta 7 Fixes-
 1) Added a 'style' subdirectory with a style sheet for most modules
    to translate the metadata to HTML
@@ -118,9 +115,6 @@ Beta 7 Fixes-
 5) Added the eml module for creating packages all in one file.  It is a single
    node with a model of ANY so any of the eml modules can be put into it.
 6) Numerous bug fixes (see bugzilla.ecoinformatics.org)
-Beta 8 Fixes-
-1) Fixed illegal declaration of type and extension in eml-entity
-2) Updated all PNG image files
 
 Legalese
 --------
@@ -130,7 +124,8 @@ and licensed under the GNU GPL; see the 'LICENSE' file for
 details.
 
 This material is based upon work supported by the 
-National Science Foundation under Grant No. DEB99-80154 and DBI99-04777.
+National Science Foundation under Grant No. DEB-9980154, DBI-9904777,
+DEB-0072909, DBI-9983132, and DEB-9634135.
 Any opinions, findings and conclusions or recomendations expressed in this
 material are those of the author(s) and do not necessarily reflect 
 the views of the National Science Foundation (NSF).
