@@ -32,8 +32,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: blankman $'
-          '$Date: 2003-08-19 21:23:42 $'
-      '$Revision: 1.75 $'
+          '$Date: 2003-08-20 01:47:01 $'
+      '$Revision: 1.76 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -304,7 +304,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="calendarDate" type="xs:date">
+        <xs:element name="calendarDate" type="res:yearDate">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Calendar date</doc:tooltip>
@@ -315,10 +315,12 @@
               standard 8601. The recommended format for EML is YYYY-MM-DD,
               where Y is the four digit year, M is the two digit month code
               (01 - 12, where January = 01), and D is the two digit day of
-              the month (01 - 31).</doc:description>
-              <doc:example>2001-01-01 , which is January 1st,
-              2001.</doc:example>
-              
+              the month (01 - 31). This field can also be used to enter just 
+	      the year portion of a date.</doc:description>
+              <doc:example>2001-01-01</doc:example>
+	      <doc:example>2001-10-12</doc:example>
+	      <doc:example>2001</doc:example>
+	      <doc:example>1895</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
