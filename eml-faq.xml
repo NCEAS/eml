@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: brunt $'
-          '$Date: 2002-09-30 17:02:00 $'
-      '$Revision: 1.8 $'
+          '$Date: 2002-09-30 17:50:15 $'
+      '$Revision: 1.9 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -581,7 +581,44 @@
 
     <qandaentry id="id.19">
       <question>
-        <para>I'm interrested in contributing to EML. Can I?</para>
+        <para>The differences between "method" and "protocol" seem
+        to be very subtle in EML. How do I distinguish between
+        the two?</para>
+      </question>
+
+      <answer>
+        <para> The eml-methods module describes the methods followed
+        in the creation of the dataset being described, including
+        description of field, laboratory and processing steps,
+        sampling methods and units, quality control proceudures. The
+        eml-methods module is used to describe the "actual" procedures
+        that are used in the creation or the subsequent processing of
+        a dataset. Likewise, eml-methods is used to describe
+        proccesses that have been used to define / improve the quality
+        of a data file, or to identify potential problems with the
+        data file. The eml-protocol module is intended to be used to
+        document a "prescribed" procedure, whereas the eml-method
+        module is used to describe procedures that were actually
+        performed. The distinction is that the use of the term
+        "protocol" is used in the "prescriptive" sense, and the term
+        "method" is used in the "descriptive" sense. This distinction
+        allows managers to build a protocol library of well-known,
+        established protocols (procedures), but also document what
+        procedure was truely performed in relation to the established
+        protocol. The method may have diverged from the protocol
+        purposefully, or perhaps incidentally, but the procedural
+        lineage is still preserved and understandable.
+	</para>
+	<para>The eml-methods module, like other modules, may be
+        "referenced" via the "<references>" tag. This allows a method
+        to be described once, and then used as a reference in other
+        locations within the EML document via it's ID.
+        </para>
+      </answer>
+
+    <qandaentry id="id.20">
+      <question>
+        <para>I'm interested in contributing to EML. Can I?</para>
       </question>
 
       <answer>
@@ -604,7 +641,7 @@
       </answer>
     </qandaentry>
 
-    <qandaentry id="id.20">
+    <qandaentry id="id.21">
       <question>
         <para>Where can I get EML?</para>
       </question>
