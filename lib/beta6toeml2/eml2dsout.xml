@@ -140,6 +140,346 @@
         <permission>read</permission>
       </allow>
     </access>
+    <dataTable>
+      <attributeList>
+        <attribute>
+          <attributeName>Tag</attributeName>
+          <attributeLabel>Tag number</attributeLabel>
+          <attributeDefinition>Identification number of plant</attributeDefinition>
+          <storageType>Text</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Species</attributeName>
+          <attributeLabel>Species Code</attributeLabel>
+          <attributeDefinition>This is a six-letter code. For thecomplete species name, please see file BCISP.txt.</attributeDefinition>
+          <storageType>Text</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>X</attributeName>
+          <attributeLabel>X  coordinate</attributeLabel>
+          <attributeDefinition>X coordinate within the plot, numbers go from west to east</attributeDefinition>
+          <storageType>Floating Point</storageType>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit>m</customUnit>
+              </unit>
+              <precision/>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-9.0</minimum>
+                  <maximum exclusive="false">999.9</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Y</attributeName>
+          <attributeLabel>Y coordinate</attributeLabel>
+          <attributeDefinition>Y coordinate within the plot, numbers go from south to north</attributeDefinition>
+          <storageType>Floating Point</storageType>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit/>
+              </unit>
+              <precision/>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-9.0</minimum>
+                  <maximum exclusive="false">499.9</maximum>
+                </bounds>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Dbh1</attributeName>
+          <attributeLabel>diameter at breast height 1</attributeLabel>
+          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
+          <storageType>Integers</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Dbh2</attributeName>
+          <attributeLabel>diameter at breast height2</attributeLabel>
+          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
+          <storageType>Integers</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>diameter at breast height3</attributeName>
+          <attributeLabel>Dbh3</attributeLabel>
+          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
+          <storageType>Integers</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>diameter at breast height4</attributeName>
+          <attributeLabel>Dbh4</attributeLabel>
+          <attributeDefinition>Tree diameter at breast height</attributeDefinition>
+          <storageType>Integers</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Recr1</attributeName>
+          <attributeLabel>Recr1</attributeLabel>
+          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Recr2</attributeName>
+          <attributeLabel>Recr2</attributeLabel>
+          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>*</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Recr3</attributeName>
+          <attributeLabel>Recr3</attributeLabel>
+          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Recr4</attributeName>
+          <attributeLabel>Recr4</attributeLabel>
+          <attributeDefinition>Code tells if stem is alive or dead. If alive, incudes dbh size as greater or smaller than 1 cm dbh</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Pom1</attributeName>
+          <attributeLabel>Point of measure1</attributeLabel>
+          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>0</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Pom2</attributeName>
+          <attributeLabel>Point of measure2</attributeLabel>
+          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>0</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Pom3</attributeName>
+          <attributeLabel>Point of measure 3</attributeLabel>
+          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>0</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Pom 4</attributeName>
+          <attributeLabel>Point of measure4</attributeLabel>
+          <attributeDefinition>Indicates whether there was a change in point of measure (POM). A change in POM was not consistently recorded in the field data sheets, except in the case of the"big" trees with buttresses. This variable was added into the database recently, using rules that were recently devised. All stems with dbh&gt;=10mm were given a POM of 1 the first time they entered a census. If the plant was measured at a new height or stem in the next census, POM was increased to the next number. This happened for trees with buttresses if the measurement was taken above the buttress, for resprouts, for trees with deformities at 1.3m, and for multiple stems that lost the largest stem.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>0</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Codes1</attributeName>
+          <attributeLabel>Condition Codes1</attributeLabel>
+          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Codes2</attributeName>
+          <attributeLabel>Condition Codes2</attributeLabel>
+          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Codes3</attributeName>
+          <attributeLabel>Condition Codes3</attributeLabel>
+          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Codes4</attributeName>
+          <attributeLabel>Condition Codes4</attributeLabel>
+          <attributeDefinition>These codes indicate condition of the tree. Unfortunately, different codes were used over the censuses, and sometimes the same code could mean different things in different censuses. In 1985, codes were usually entered in pairs, so a letter can take different meanings depending on what the previous letter was. Codes were consistent for the 90 and 95 censuses.</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Mult 1</attributeName>
+          <attributeLabel>Number of Stems 1</attributeLabel>
+          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Mult2</attributeName>
+          <attributeLabel>Number of Stems 2</attributeLabel>
+          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Mult3</attributeName>
+          <attributeLabel>Number of Stems 3</attributeLabel>
+          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Mult4</attributeName>
+          <attributeLabel>Number of Stems 4</attributeLabel>
+          <attributeDefinition>Number of Stems at 1.3m, most will have 1 stem. Please refer to the multiple stem files for all multiple stem measurements (m80, m85, m90, m95)</attributeDefinition>
+          <storageType>Codes</storageType>
+          <measurementScale>
+            <nominal/>
+          </measurementScale>
+          <missingValueCode>
+            <code>-9</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Date1</attributeName>
+          <attributeLabel>Date1</attributeLabel>
+          <attributeDefinition>Date tree was censused</attributeDefinition>
+          <storageType>Date</storageType>
+          <measurementScale>
+            <datetime/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Date2</attributeName>
+          <attributeLabel>Date2</attributeLabel>
+          <attributeDefinition>Date tree was censused</attributeDefinition>
+          <storageType>Date</storageType>
+          <measurementScale>
+            <datetime/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Date3</attributeName>
+          <attributeLabel>Date3</attributeLabel>
+          <attributeDefinition>Date tree was censused</attributeDefinition>
+          <storageType>Date</storageType>
+          <measurementScale>
+            <datetime/>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Date4</attributeName>
+          <attributeLabel>Date4</attributeLabel>
+          <attributeDefinition>Date tree was censused</attributeDefinition>
+          <storageType>Date</storageType>
+          <measurementScale>
+            <datetime/>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+    </dataTable>
   </dataset>
 </eml:eml>
 

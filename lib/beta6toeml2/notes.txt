@@ -14,8 +14,9 @@ in beta6 obfs and nrs metadata:
   temporalCov/**/caldate has data in form (23July1987) format, not dd-mm-year (preliminary conversion template included)     
   in taxonomicCov, where does keywtax (required) map to in eml2???
  
+  Under NumericDomainType, 'numberType' is one of 'natural(>0)', 'whole'(>=0), 'integer', or 'real'  Why not include positive-real (>0), nonnegative-real(>=0)?
 
-
+  'exclusive' attribute of minimum and maximum elements always set to 'false' due to lack of information (?)
 
 
 

@@ -5,10 +5,11 @@
 <xsl:strip-space elements="*"/>
 
 
-  <xsl:template match="/">
-
 	<!-- assign variables for input doc i.e. beta6 attribute module -->
 	<xsl:variable name="attb6" select="document('att1.atb6')"/>
+
+  <xsl:template name="attrTransform">
+
   
     <attributeList>
       <xsl:for-each select="$attb6/eml-attribute/attribute">
@@ -65,7 +66,8 @@
                     <xsl:value-of select="./precision"/>
                   </xsl:element>
                   <xsl:element name="numericDomain">
-                    <xsl:element name="numberType">not available</xsl:element>
+                    <xsl:element name="numberType">real</xsl:element>
+                    <!--should really check data type + bounds to see if integer?-->
                     <xsl:element name="bounds">
                       <xsl:element name="minimum">
                         <xsl:value-of select="./attributeDomain/numericDomain/minimum"/>
@@ -88,14 +90,14 @@
                     <xsl:value-of select="./precision"/>
                   </xsl:element>
                   <xsl:element name="numericDomain">
-                    <xsl:element name="numberType">not available</xsl:element>
+                    <xsl:element name="numberType">real</xsl:element>
                     <xsl:element name="bounds">
-                      <xsl:element name="minimum">
+                      <minimum exclusive='false'>
                         <xsl:value-of select="./attributeDomain/numericDomain/minimum"/>
-                      </xsl:element>
-                      <xsl:element name="maximum">
+                      </minimum>
+                      <maximum exclusive='false'>
                         <xsl:value-of select="./attributeDomain/numericDomain/maximum"/>
-                      </xsl:element>
+                      </maximum>
                     </xsl:element>
                   </xsl:element>
                 </xsl:element>

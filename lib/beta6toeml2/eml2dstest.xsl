@@ -4,14 +4,15 @@
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
 
-
-  <xsl:template match="/">
-
-	<!-- assign variables for input docs i.e. beta6 dataset and access -->
 	<xsl:variable name="dsb6" select="document('obfs.dsb6')"/>
 	<xsl:variable name="acb6" select="document('obfs.acb6')"/>
   
-  <xsl:variable name="eName" select="'creator'"/>
+  <xsl:include href="eml2attr.xsl"/>
+
+  <xsl:template match="/">
+
+ 	<!-- assign variables for input docs i.e. beta6 dataset and access -->
+ 
 
     <eml:eml
         packageId = "{$dsb6/dataset/identifier}"
@@ -216,7 +217,6 @@
               <xsl:value-of select="$dsb6/dataset/pubPlace"/>
             </xsl:element>
           </xsl:if>
-          
           <access
             order="{$acb6/acl/@order}"
             authSystem="{$acb6/acl/@authSystem}" >
@@ -243,9 +243,13 @@
               </xsl:if>
           </xsl:for-each>
           </access>
-            
-          </dataset>
-
+          
+          <xsl:if test="$attb6/eml-attribute!=''">
+            <xsl:element name="dataTable">
+              <xsl:call-template name="attrTransform"/>
+            </xsl:element>  
+          </xsl:if>  
+        </dataset>
     </eml:eml>
 	</xsl:template>
   
