@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-03 16:33:10 $'
-      '$Revision: 1.48 $'
+          '$Date: 2002-10-03 18:44:39 $'
+      '$Revision: 1.49 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,28 +35,23 @@
 <project name="eml" default="docs" basedir=".">
 
   <target name="config">
-    <!-- These are properties you'll need to change for the build to work
-         on your system. -->
-
-    <!-- The location of the Xerces 2 jar file -->
-    <property name="xmlp"
-        value="lib/xerces-2_0_1/xercesImpl.jar"/>
-    <!-- The location of the Xerces XML API jar file -->
-    <property name="api"
-        value="lib/xerces-2_0_1/xmlParserAPIs.jar"/>
-    <!--xalan jar files-->
-    <property name="xalan"
-        value="lib/xalan-j_2_4_0/xalan.jar"/>
-    <property name="xml-apis"
-        value="lib/xalan-j_2_4_0/xml-apis.jar"/>
-    <!--jdom jar files-->
-    <property name="jdom" value="lib/jdom.jar"/>
-    <!-- The location of the docbook XSL stylesheet-->
-    <property name="htmldocbook-style"
-        value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
+    <!-- These are properties you'll need to change to install the parser
+      servlet on your system. -->
     <!-- where to install the servlet -->
     <property name="servlet.install.dir"
               value="/usr/local/devtools/jakarta-tomcat/webapps/emlparser"/>
+    <!-- the server the servlet will run on -->
+    <property name="server" value="http://trestles.nceas.ucsb.edu:8080"/>
+    <!--the servlet context directory-->
+    <property name="servletdir" value="emlparser"/>
+    <!-- the path to the servlet from the servletdir -->
+    <property name="servletpath" value="servlet/emlparser"/>
+    <!-- namespaces that the servlet should auto resolve -->
+    <property name="namespaces"
+              value="eml://ecoinformatics.org/eml-2.0.0rc1 ${server}/${servletdir}/schema/eml.xsd"/>
+    <!-- the path from the tomcat/bin directory to the config.xml file -->
+    <property name="servletconfigfile" value="../webapps/emlparser/lib/config.xml"/>
+
   </target>
 
   <target name="init" depends="config">
@@ -72,12 +67,25 @@
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
     <property name="config.file" value="lib/config.xml"/>
+    <property name="xmlp"
+        value="lib/xerces-2_0_1/xercesImpl.jar"/>
+    <property name="api"
+        value="lib/xerces-2_0_1/xmlParserAPIs.jar"/>
+    <property name="xalan"
+        value="lib/xalan-j_2_4_0/xalan.jar"/>
+    <property name="xml-apis"
+        value="lib/xalan-j_2_4_0/xml-apis.jar"/>
+    <property name="jdom" value="lib/jdom.jar"/>
+    <property name="htmldocbook-style"
+        value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
     <filter token="docrooturl" value=""/>
     <filter token="version" value="${version}"/>
     <filter token="testdir" value="${testdir}" />
     <filter token="srcdir" value="${srcdir}" />
     <filter token="config.file" value="${config.file}" />
+    <filter token="namespaces" value="${namespaces}"/>
+    <filter token="servletconfigfile" value="${servletconfigfile}"/>
 
     <property name="dist.dir" value="./dist"/>
     <property name="ver.dir" value="${dist.dir}/eml-${version}"/>

@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-10-03 16:33:10 $'
- * '$Revision: 1.2 $'
+ *     '$Date: 2002-10-03 18:44:39 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,6 +94,13 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     runTest(xml, DEFAULT_PARSER);
   }
 
+  public void runTest(Reader xml, String parserName)throws IOException,
+                                  ClassNotFoundException,
+                                  SAXException, SAXParseException
+  {
+    runTest(xml, parserName, ".");
+  }
+
   /**
    * Run the validation test.
    *
@@ -105,13 +112,21 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
    * @exception SAXException
    * @exception SAXParserException
    */
-  public void runTest(Reader xml, String parserName)
+  public void runTest(Reader xml, String parserName, String schemaLocation)
            throws IOException, ClassNotFoundException,
            SAXException, SAXParseException
   {
 
     // Get an instance of the parser
-    XMLReader parser = XMLReaderFactory.createXMLReader(parserName);
+    XMLReader parser;
+    if(parserName.equals("DEFAULT"))
+    {
+      parser = XMLReaderFactory.createXMLReader(DEFAULT_PARSER);
+    }
+    else
+    {
+      parser = XMLReaderFactory.createXMLReader(parserName);
+    }
 
     // Set Handlers in the parser
     parser.setContentHandler((ContentHandler)this);
@@ -119,49 +134,15 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     parser.setFeature("http://xml.org/sax/features/namespaces", true);
     parser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
     parser.setFeature("http://xml.org/sax/features/validation", true);
+    parser.setProperty(
+      "http://apache.org/xml/properties/schema/external-schemaLocation",
+      schemaLocation);
     if (schemavalidate) {
         parser.setFeature(
             "http://apache.org/xml/features/validation/schema",
             true);
     }
-    //parser.setEntityResolver(new EML2Resolver());
-
     // Parse the document
     parser.parse(new InputSource(xml));
   }
-
-
-  /**
-   * class to resolve eml entities
-   */
-
-  private class EML2Resolver implements EntityResolver
-  {
-
-   /**
-    * resolves the entity
-    *
-    * this doesn't seem to work with schemas.  it returns the public id as
-    * the file part of the xsi:schemaLocation and null as the system id.
-    */
-   public InputSource resolveEntity (String publicId, String systemId)
-   {
-     System.out.println("attempting to resolve entity: " + publicId + " " +
-                        systemId);
-     if (systemId.equals("eml://ecoinformatics.org/eml-2.0.0rc1"))
-     {
-       System.out.println("resolving entity for eml");
-       // return a special input source
-       //MyReader reader = new MyReader();
-       //return new InputSource(reader);
-       return null;
-     }
-     else
-     {
-       // use the default behaviour
-       return null;
-     }
-   }
- }
-
 }

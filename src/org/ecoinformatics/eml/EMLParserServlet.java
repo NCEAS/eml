@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-03 16:33:10 $'
- *    '$Revision: 1.4 $'
+ *        '$Date: 2002-10-03 18:44:39 $'
+ *    '$Revision: 1.5 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -69,7 +69,8 @@ public class EMLParserServlet extends HttpServlet
   private HttpServletRequest request;
   private static HttpServletResponse response;
   private static PrintWriter out = null;
-  Hashtable params = new Hashtable();
+  private Hashtable params = new Hashtable();
+  private static final String namespaces = "@namespaces@";
 
   /**
    * Initialize the servlet
@@ -212,7 +213,7 @@ public class EMLParserServlet extends HttpServlet
         if(fileToParse != null)
         {
           EMLParser parser = new EMLParser(tempfile,
-                             new File("../webapps/emlparser/lib/config.xml"));
+                             new File("@servletconfigfile@"));
           html.append("<h2>Document is EML valid.</h2><p>There ");
           html.append("were no EML errors found in your document.</p>");
         }
@@ -230,7 +231,7 @@ public class EMLParserServlet extends HttpServlet
       try
       {
         SAXValidate validator = new SAXValidate(true);
-        validator.runTest(new FileReader(tempfile));
+        validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces);
         html.append("<hr><h2>Document is XML-schema valid.</h2>");
         html.append("<p>There were no XML errors found in your document.</p>");
       }
@@ -251,14 +252,15 @@ public class EMLParserServlet extends HttpServlet
       }
 
       tempfile.delete();
-      html.append("</body></html>");
     }
     else
     {
       html.append("<h2>Error.  Action '").append(action);
-      html.append("' not registered");
+      html.append("' not registered</h2>");
     }
 
+    html.append("<hr><a href=\"/emlparser\">Back</a> to the previous page.");
+    html.append("</body></html>");
     response.setContentType("text/html");
     out.println(html.toString());
     out.flush();
