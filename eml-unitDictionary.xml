@@ -108,6 +108,13 @@
     <dimension name="mass" power="-1"/>
   </unitType>
 
+  <unitType id="simpleDensity" name="simple density">
+    <dimension name="dimensionless"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
 <!-- ======================================================================= -->
 <!-- ====================== fundamental SI units =========================== -->
 <!-- ======================================================================= -->
@@ -155,47 +162,80 @@
 
 <!-- multiples of fundamental SI units -->
   <!--grams-->
-  <unit id="mg" name="milligram" unitType="mass" parentSI="kg" multiplierToSI="0.000001" abbreviation="mg">
+  <unit id="microgram" name="microgram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000000001" abbreviation="microg">
     <description>0.000001 kg.</description>
   </unit>
-
-  <unit id="g" name="gram" unitType="mass" parentSI="kg" multiplierToSI="0.001" abbreviation="g">
+  <unit id="milligram" name="milligram" unitType="mass" parentSI="kilogram" multiplierToSI="0.000001" abbreviation="mg">
+    <description>0.000001 kg.</description>
+  </unit>
+  <unit id="gram" name="gram" unitType="mass" parentSI="kilogram" multiplierToSI="0.001" abbreviation="g">
     <description>0.001 kg.</description>
   </unit>
 
   <!--temp-->
-  <unit id="celsius" name="Celsius" parentSI="K" multiplierToSI="1" constantToSI="273.18" abbreviation="C">
-    <description>
-      <p>A common unit of temperature</p>
-    </description>
+  <unit id="celsius" name="Celsius" parentSI="kelvin" multiplierToSI="1" constantToSI="273.18" abbreviation="C">
+    <description>A common unit of temperature</description>
   </unit>
 
   <!--meters-->
-  <unit id="millimeter" name="millimeter" parentSI="m" multiplierToSI=".001" abbreviation="mm">
-    <description>
-      <p>.001 meters</p>
-    </description>
+  <unit id="nanometer" name="nanometer" parentSI="meter" multiplierToSI=".000000001" abbreviation="nm">
+    <description>.000000001 meters</description>
   </unit>
-  <unit id="centimeter" name="centimeter" parentSI="m" multiplierToSI=".01" abbreviation="cm">
-    <description>
-      <p>.01 meters</p>
-    </description>
+  <unit id="micrometer" name="micrometer" parentSI="meter" multiplierToSI=".000001" abbreviation="microm">
+    <description>.000001 meters</description>
   </unit>
-  <unit id="kilometer" name="kilometer" parentSI="m" multiplierToSI="1000" abbreviation="km">
-    <description>
-      <p>1000 meters</p>
-    </description>
+  <unit id="millimeter" name="millimeter" parentSI="meter" multiplierToSI=".001" abbreviation="mm">
+    <description>.001 meters</description>
+  </unit>
+  <unit id="centimeter" name="centimeter" parentSI="meter" multiplierToSI=".01" abbreviation="cm">
+    <description>.01 meters</description>
+  </unit>
+  <unit id="kilometer" name="kilometer" parentSI="meter" multiplierToSI="1000" abbreviation="km">
+    <description>1000 meters</description>
+  </unit>
+
+  <!--seconds-->
+  <unit id="millisecond" name="millisecond" parentSI="second" multiplierToSI=".001" abbreviation="millisec">
+    <description>1/1000 of a second</description>
+  </unit>
+  <unit id="minute" name="minute" parentSI="second" multiplierToSI="60" abbreviation="min">
+    <description>60 seconds</description>
+  </unit>
+  <unit id="hour" name="hour" parentSI="second" multiplierToSI="3600" abbreviation="hr">
+    <description>3600 seconds</description>
+  </unit>
+
+  <!--liters-->
+  <unit id="microliter" name="microliter" unitType="volume" multiplierToSI=".000000001" abbreviation="microl">
+    <description>1/1000000 of a liter</description>
+  </unit>
+  <unit id="milliliter" name="milliliter" unitType="volume" multiplierToSI=".000001" abbreviation="ml">
+    <description>1/1000 of a liter</description>
+  </unit>
+  <unit id="liter" name="liter" unitType="volume" multiplierToSI=".001" abbreviation="L">
+    <description>1000 cm^3</description>
+  </unit>
+
+  <!--combos of SI-->
+  <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity" multiplierToSI=".001">
+    <description>grams per liter</description>
+  </unit>
+  <unit id="kilogramsPerCubicMeter" name="kilogramsPerCubicMeter" unitType="massDensity" multiplierToSI="1">
+    <description>Fundamental SI mass density</description>
   </unit>
 
 <!-- fundamental non-SI units -->
   <unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
     <description>An imperial measure of length</description>
   </unit>
+  <unit id="foot" name="foot" parentSI="meter" abbreviation="ft" multiplierToSI=".3048">
+    <description>12 inches</description>
+  </unit>
+  <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI=".9144">
+    <description>3 feet</description>
+  </unit>
 
 <!-- derived non-SI units -->
-  <unit id="l" name="litre" unitType="volume" parentSI="meterCubed" abbreviation="l" multiplierToSI="0.001">
-    <description>Nearly 1 dm**3 This is not quite exact</description>
-  </unit>
 
   <unit id="fahr" name="fahrenheit" parentSI="k" abbreviation="F" multiplierToSI="0.55555555555555555" constantToSI="-17.777777777777777777">
     <description>An obsolescent unit of temperature still used in popular meteorology</description>
