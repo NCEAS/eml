@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema targetNamespace="eml://ecoinformatics.org/literature-2.0.0rc1"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1"
-    xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1"
-    xmlns="eml://ecoinformatics.org/literature-2.0.0rc1">
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
+xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
+xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
+xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
+xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1"
+xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1"
+xmlns="eml://ecoinformatics.org/literature-2.0.0rc1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    schemaLocation="eml-documentation.xsd"/>
+  schemaLocation="eml-documentation.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
-    schemaLocation="eml-resource.xsd"/>
+  schemaLocation="eml-resource.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1"
-    schemaLocation="eml-coverage.xsd"/>
+  schemaLocation="eml-coverage.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1"
-    schemaLocation="eml-party.xsd"/>
+  schemaLocation="eml-party.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1"
-    schemaLocation="eml-access.xsd"/>
+  schemaLocation="eml-access.xsd" />
   <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1"
-    schemaLocation="eml-project.xsd"/>
+  schemaLocation="eml-project.xsd" />
   <xs:annotation>
     <xs:documentation>
-       '$RCSfile: eml-literature.xsd,v $'
+      '$RCSfile: eml-literature.xsd,v $'
        Copyright: 1997-2002 Regents of the University of California,
                             University of New Mexico, and
                             Arizona State University
@@ -37,8 +37,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-16 22:04:47 $'
-      '$Revision: 1.39 $'
+          '$Date: 2002-09-18 20:04:24 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,11 +60,11 @@
         <doc:moduleDescription>The eml-literature module contains information
         that describes literature resources. It is intended to provide overview
         information about the literature citation, including title, abstract,
-        keywords, and contacts.  Citation types follow the conventions laid
-        out by EndNote, and there is an attempt to represent a compatible
-        subset of the EndNote citation types.</doc:moduleDescription>
-        <doc:recommendedUsage>All datasets with literary citations
-        </doc:recommendedUsage>
+        keywords, and contacts. Citation types follow the conventions laid out
+        by EndNote, and there is an attempt to represent a compatible subset of
+        the EndNote citation types.</doc:moduleDescription>
+        <doc:recommendedUsage>All datasets with literary
+        citations</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
@@ -80,8 +80,8 @@
         literature that is being cited in support of a given resource, such as
         a dataset. It contains subelements that are specific to a literature
         resource such as a book, a journal article, a thesis, etc. It extends
-        the generic resource elements with literature specific fields.
-        </doc:description>
+        the generic resource elements with literature specific
+        fields.</doc:description>
         <doc:lineage>As of EML 2.0.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -89,7 +89,7 @@
   <xs:complexType name="CitationType">
     <xs:choice>
       <xs:sequence>
-        <xs:group ref="res:ResourceGroup"/>
+        <xs:group ref="res:ResourceGroup" />
         <xs:choice>
           <xs:element name="article" type="Article">
             <xs:annotation>
@@ -98,8 +98,8 @@
                 <doc:summary>Information for full citation of a journal article
                 or other periodical article.</doc:summary>
                 <doc:description>The article field provides sub-fields for a
-                full citation of an article in a journal or other periodical.
-                </doc:description>
+                full citation of an article in a journal or other
+                periodical.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 1, and
                 was derived from MARC/various software packages handling
                 literature</doc:lineage>
@@ -127,7 +127,7 @@
                 <doc:summary>Information for citation of a chapter in a
                 book</doc:summary>
                 <doc:description>The book chapter allows citation of a single
-                chapter or section of a book.  The "creator" for a book chapter
+                chapter or section of a book. The "creator" for a book chapter
                 are the chapter's authors, while the "editor" is the book
                 editors. Likewise, "title" is the chapter title, while
                 "bookTitle" is the title of the whole book.</doc:description>
@@ -146,7 +146,7 @@
                 book</doc:summary>
                 <doc:description>The edited book represents a book which was
                 edited by one or more editors, but whose chapters were possibly
-                authored by others.  The editors of an edited book should be
+                authored by others. The editors of an edited book should be
                 listed in the "creator" field.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
@@ -192,17 +192,18 @@
                 <doc:summary>Information about a thesis that has been written
                 as part of a degree requirement and is frequently published in
                 small numbers by the degree awarding institution.</doc:summary>
-                <doc:description>Information about a thesis that has been written
-                as part of a degree requirement and is frequently published in
-                small numbers by the degree awarding institution.
-                </doc:description>
+                <doc:description>Information about a thesis that has been
+                written as part of a degree requirement and is frequently
+                published in small numbers by the degree awarding
+                institution.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 1, and
                 was derived from MARC/various software packages handling
                 literature</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="conferenceProceedings" type="ConferenceProceedings">
+          <xs:element name="conferenceProceedings"
+          type="ConferenceProceedings">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>conference proceedings</doc:tooltip>
@@ -217,15 +218,16 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="personalCommunication" type="PersonalCommunication">
+          <xs:element name="personalCommunication"
+          type="PersonalCommunication">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Personal communication</doc:tooltip>
                 <doc:summary>A personal communication that has been saved
                 online or as hard-copy.</doc:summary>
-                <doc:description>This could be a widely distributed memo,
-                an e-mail, a transcript from a
-                conversation or interview, etc...</doc:description>
+                <doc:description>This could be a widely distributed memo, an
+                e-mail, a transcript from a conversation or interview,
+                etc...</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
                 literature and discussions at the EML Workshop at the Sevilleta
@@ -240,8 +242,8 @@
                 <doc:summary>This element desribes the map that is being cited
                 or cataloged.</doc:summary>
                 <doc:description>This element desribes the map that is being
-                cited or cataloged, including its geographic coverage and scale.
-                </doc:description>
+                cited or cataloged, including its geographic coverage and
+                scale.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
                 literature and discussions at the EML Workshop at the Sevilleta
@@ -254,11 +256,11 @@
               <xs:appinfo>
                 <doc:tooltip>Generic Citation</doc:tooltip>
                 <doc:summary>This reference type was created for references
-                that do not fit in to the other existing reference types
-                </doc:summary>
+                that do not fit in to the other existing reference
+                types</doc:summary>
                 <doc:description>This reference type was created for references
-                that do not fit in to the other existing reference types.
-                </doc:description>
+                that do not fit in to the other existing reference
+                types.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
                 literature and discussions at the EML Workshop at the Sevilleta
@@ -272,9 +274,9 @@
                 <doc:tooltip>audio visual</doc:tooltip>
                 <doc:summary>This reference type is meant to cover all forms of
                 audio and visual media.</doc:summary>
-                <doc:description>This reference type is meant to cover all forms
-                of audio and visual media, including film, video, broadcast,
-                other electronic media.</doc:description>
+                <doc:description>This reference type is meant to cover all
+                forms of audio and visual media, including film, video,
+                broadcast, other electronic media.</doc:description>
                 <doc:lineage>This field was introduced into EML 2.0 beta 9, and
                 was derived from MARC/various software packages handling
                 literature and discussions at the EML Workshop at the Sevilleta
@@ -289,37 +291,47 @@
                 <doc:summary>An unpublished presentation from a conference,
                 workshop, workgroup, symposium etc.</doc:summary>
                 <doc:description>An unpublished presentation from a conference,
-                workshop, workgroup, symposium, etc. It will be provided
-                upon request in either in paper and/or electronic
-                form.  If the presentation was actually published in a
-                proceedings, use the conferenceProceedings type instead.
-                </doc:description>
+                workshop, workgroup, symposium, etc. It will be provided upon
+                request in either in paper and/or electronic form. If the
+                presentation was actually published in a proceedings, use the
+                conferenceProceedings type instead.</doc:description>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
         </xs:choice>
         <xs:element name="access" type="acc:AccessType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>access control rules</doc:tooltip>
+              <doc:summary>The access element describes the access control
+              rules for this literature resource.</doc:summary>
+              <doc:description>The access element describes the access control
+              rules for this literature resource. This is a general purpose
+              description which will be used by any EML compliant
+              repository.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
         </xs:element>
       </xs:sequence>
-      <xs:element name="references" type="xs:string"/>
+      <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType"
-        use="optional" default="document"/>
+    <xs:attribute name="id" type="xs:string" use="optional" />
+    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="scope" type="res:ScopeType" use="optional"
+    default="document" />
   </xs:complexType>
   <xs:complexType name="Article">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>article</doc:tooltip>
-        <doc:summary>Information for full citation of a journal article
-        or other periodical article.</doc:summary>
-        <doc:description>The article field provides sub-fields for a
-        full citation of an article in a journal or other periodical.
-        </doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 1, and
-        was derived from MARC/various software packages handling
+        <doc:summary>Information for full citation of a journal article or
+        other periodical article.</doc:summary>
+        <doc:description>The article field provides sub-fields for a full
+        citation of an article in a journal or other
+        periodical.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
+        derived from MARC/various software packages handling
         literature</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -332,7 +344,9 @@
             etc... in which the article was published.</doc:summary>
             <doc:description>The name of the journal, magazine, newspaper,
             zine, etc... in which the article was published.</doc:description>
-            <doc:example>"Ecology","New York Times", "Harper's"</doc:example>
+            <doc:example>"Ecology"</doc:example>
+            <doc:example>"New York Times"</doc:example>
+            <doc:example>"Harper's"</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -362,7 +376,7 @@
             appears</doc:summary>
             <doc:description>The issue field is used to describe the issue of
             the journal in which the article appears.</doc:description>
-            <doc:example>"November 2001"</doc:example>
+            <doc:example>November 2001</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -378,7 +392,7 @@
             <doc:description>The page range field is used for the beginning and
             ending pages of the journal article that is being
             documented.</doc:description>
-            <doc:example>"115-122"</doc:example>
+            <doc:example>115-122</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -393,8 +407,8 @@
             article</doc:summary>
             <doc:description>The organization that physically puts together the
             article and publishes it.</doc:description>
-            <doc:example>"Harper Collins", "University Of California Press"
-            </doc:example>
+            <doc:example>Harper Collins</doc:example>
+            <doc:example>University Of California Press</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -405,13 +419,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -440,12 +454,11 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Book</doc:tooltip>
-        <doc:summary>Information for full citation of a
-        book</doc:summary>
-        <doc:description>The book field provides sub-fields for a full
-        citation of a book.</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 1, and
-        was derived from MARC/various software packages handling
+        <doc:summary>Information for full citation of a book</doc:summary>
+        <doc:description>The book field provides sub-fields for a full citation
+        of a book.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
+        derived from MARC/various software packages handling
         literature</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -458,8 +471,8 @@
             book</doc:summary>
             <doc:description>The organization that physically puts together the
             book and publishes it.</doc:description>
-            <doc:example>"Harper Collins", "University Of California Press"
-            </doc:example>
+            <doc:example>Harper Collins</doc:example>
+            <doc:example>University Of California Press</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -470,13 +483,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -490,7 +503,7 @@
             <doc:summary>The edition of the book being described.</doc:summary>
             <doc:description>The edition field is to document the edition of
             the book that is being described.</doc:description>
-            <doc:example>"Second Edition"</doc:example>
+            <doc:example>Second Edition</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -506,7 +519,7 @@
             <doc:description>The volume field is used to describe the volume
             number of a book that is part of a multi-volume series of
             books.</doc:description>
-            <doc:example>"Volume 2"</doc:example>
+            <doc:example>Volume 2</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -520,7 +533,7 @@
             <doc:summary>Number of volumes in a collection</doc:summary>
             <doc:description>Number of volumes in a
             collection</doc:description>
-            <doc:example>"12"</doc:example>
+            <doc:example>12</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -535,7 +548,7 @@
             <doc:description>The total pages field is used to describe the
             total number of pages in the book that is being
             described.</doc:description>
-            <doc:example>"628"</doc:example>
+            <doc:example>628</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -550,7 +563,7 @@
             <doc:description>the total figures field is used to describe the
             total number of figures, diagrams, and plates in the book that is
             being documented.</doc:description>
-            <doc:example>"45"</doc:example>
+            <doc:example>45</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -565,7 +578,7 @@
             <doc:description>The total tables field is used to describe the
             total number of tables that are present in the book that is being
             documented.</doc:description>
-            <doc:example>"10"</doc:example>
+            <doc:example>10</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -596,15 +609,15 @@
         <doc:tooltip>Book Chapter</doc:tooltip>
         <doc:summary>Information for citation of a chapter in a
         book</doc:summary>
-        <doc:description>The book chapter allows citation of a single
-        chapter or section of a book.  The "creator" for a book chapter
-        are the chapter's authors, while the "editor" is the book
-        editors. Likewise, "title" is the chapter title, while
-        "bookTitle" is the title of the whole book.</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 9, and
-        was derived from MARC/various software packages handling
-        literature and discussions at the EML Workshop at the Sevilleta
-        in April 2002.</doc:lineage>
+        <doc:description>The book chapter allows citation of a single chapter
+        or section of a book. The "creator" for a book chapter are the
+        chapter's authors, while the "editor" is the book editors. Likewise,
+        "title" is the chapter title, while "bookTitle" is the title of the
+        whole book.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
+        derived from MARC/various software packages handling literature and
+        discussions at the EML Workshop at the Sevilleta in April
+        2002.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
@@ -614,39 +627,33 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Chapter number</doc:tooltip>
-                <doc:summary>The chapter number of interest within a book
-                </doc:summary>
-                <doc:description>The chapter number of the chapter of a
-                book that is being described.</doc:description>
-                <doc:example>"7"</doc:example>
-                <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was
-              derived from MARC/various software packages handling literature
-            </doc:lineage>
+                <doc:summary>The chapter number of interest within a
+                book</doc:summary>
+                <doc:description>The chapter number of the chapter of a book
+                that is being described.</doc:description>
+                <doc:example>7</doc:example>
+                <doc:lineage>This field was introduced into EML 2.0 beta 1, and
+                was derived from MARC/various software packages handling
+                literature</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element name="editor" type="rp:ResponsibleParty"
-            maxOccurs="unbounded">
+          maxOccurs="unbounded">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Book editor</doc:tooltip>
-                <doc:summary>
-              The name of the editor of the book.
-            </doc:summary>
-                <doc:description>
-              The book editor field is used to document the name of the
-              editor of the book that is being described. The editor may be
-              a person, organization, or a role within an organization.
-            </doc:description>
-                <doc:example>
-              "Tom Christiansen", "Institute of Marine Science", "Publication
-              Manager"
-            </doc:example>
-                <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was
-              derived from MARC/various software packages handling literature
-            </doc:lineage>
+                <doc:summary>The name of the editor of the book.</doc:summary>
+                <doc:description>The book editor field is used to document the
+                name of the editor of the book that is being described. The
+                editor may be a person, organization, or a role within an
+                organization.</doc:description>
+                <doc:example>Tom Christiansen</doc:example>
+                <doc:example>Institute of Marine Science</doc:example>
+                <doc:example>Publication Manager</doc:example>
+                <doc:lineage>This field was introduced into EML 2.0 beta 1, and
+                was derived from MARC/various software packages handling
+                literature</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -654,20 +661,13 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Book title</doc:tooltip>
-                <doc:summary>
-              The title of the book.
-            </doc:summary>
-                <doc:description>
-              The book title field is used to document the title of the book
-              that is being described.
-            </doc:description>
-                <doc:example>
-              "War and Peace"
-            </doc:example>
-                <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was
-              derived from MARC/various software packages handling literature
-            </doc:lineage>
+                <doc:summary>The title of the book.</doc:summary>
+                <doc:description>The book title field is used to document the
+                title of the book that is being described.</doc:description>
+                <doc:example>War and Peace</doc:example>
+                <doc:lineage>This field was introduced into EML 2.0 beta 1, and
+                was derived from MARC/various software packages handling
+                literature</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -675,20 +675,15 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Chapter page range</doc:tooltip>
-                <doc:summary>
-              The beginning and ending page numbers of a chapter.
-            </doc:summary>
-                <doc:description>
-              The page range field is used to document the beginning and ending
-              pages of a chapter in a book.
-            </doc:description>
-                <doc:example>
-              "25-122"
-            </doc:example>
-                <doc:lineage>
-              This field was introduced into EML 2.0 beta 1, and was
-              derived from MARC/various software packages handling literature
-            </doc:lineage>
+                <doc:summary>The beginning and ending page numbers of a
+                chapter.</doc:summary>
+                <doc:description>The page range field is used to document the
+                beginning and ending pages of a chapter in a
+                book.</doc:description>
+                <doc:example>25-122</doc:example>
+                <doc:lineage>This field was introduced into EML 2.0 beta 1, and
+                was derived from MARC/various software packages handling
+                literature</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -700,10 +695,10 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>conference proceedings</doc:tooltip>
-        <doc:summary>The published notes, papers, presentations etc...
-        of a conference.</doc:summary>
-        <doc:description>The published notes, papers, presentations,
-        etc..., of a conference.</doc:description>
+        <doc:summary>The published notes, papers, presentations etc... of a
+        conference.</doc:summary>
+        <doc:description>The published notes, papers, presentations, etc..., of
+        a conference.</doc:description>
         <doc:lineage>As of EML 2.0.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -714,12 +709,11 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Conference Name</doc:tooltip>
-                <doc:summary>The name of the conference whose
-                          proceedings have been published.</doc:summary>
-                <doc:description>The name of the conference whose
-                          proceedings have been published.</doc:description>
-                <doc:example>North American Science
-                          Symposium</doc:example>
+                <doc:summary>The name of the conference whose proceedings have
+                been published.</doc:summary>
+                <doc:description>The name of the conference whose proceedings
+                have been published.</doc:description>
+                <doc:example>North American Science Symposium</doc:example>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
@@ -728,23 +722,23 @@
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Conference Date</doc:tooltip>
-                <doc:summary>The date the conference was
-                          held.</doc:summary>
+                <doc:summary>The date the conference was held.</doc:summary>
                 <doc:description>The date the conference was
-                          held.</doc:description>
+                held.</doc:description>
                 <doc:example>November 1-6, 1998</doc:example>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="conferenceLocation" type="rp:Address" minOccurs="0">
+          <xs:element name="conferenceLocation" type="rp:Address"
+          minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Conference Location</doc:tooltip>
                 <doc:summary>The location where the conference was
-                          held.</doc:summary>
-                <doc:description>The location where the conference
-                          was held.</doc:description>
+                held.</doc:summary>
+                <doc:description>The location where the conference was
+                held.</doc:description>
                 <doc:lineage>As of EML 2.0.0</doc:lineage>
               </xs:appinfo>
             </xs:annotation>
@@ -757,18 +751,17 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>unpublished manuscipt</doc:tooltip>
-        <doc:summary>Information about an unpublished
-        manuscript</doc:summary>
-        <doc:description>The manuscript field provides sub-fields for a
-        full citation of an unpublished manuscript.</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 1, and
-        was derived from MARC/various software packages handling
+        <doc:summary>Information about an unpublished manuscript</doc:summary>
+        <doc:description>The manuscript field provides sub-fields for a full
+        citation of an unpublished manuscript.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
+        derived from MARC/various software packages handling
         literature.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="institution" type="rp:ResponsibleParty"
-        maxOccurs="unbounded">
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Manuscript publication information</doc:tooltip>
@@ -794,7 +787,7 @@
             <doc:description>The total pages field is used to describe the
             total number of pages in the manuscript that is being
             described.</doc:description>
-            <doc:example>"628"</doc:example>
+            <doc:example>628</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -809,12 +802,11 @@
         <doc:tooltip>Report</doc:tooltip>
         <doc:summary>Information about a report published by an
         institution.</doc:summary>
-        <doc:description>The report may be self published by the
-        institution or through a publisher. They usually are available
-        by request to the institution or can be purchased from the
-        publisher.</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 1, and
-        was derived from MARC/various software packages handling
+        <doc:description>The report may be self published by the institution or
+        through a publisher. They usually are available by request to the
+        institution or can be purchased from the publisher.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
+        derived from MARC/various software packages handling
         literature</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -828,7 +820,7 @@
             <doc:description>The report number field is used to describe the
             unique identification number that has been issued by the report
             institution for the report being described.</doc:description>
-            <doc:example>"22"</doc:example>
+            <doc:example>22</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -843,8 +835,8 @@
             report</doc:summary>
             <doc:description>The organization that physically put together the
             report and publishes it.</doc:description>
-            <doc:example>"Harper Collins", "University Of California Press"
-            </doc:example>
+            <doc:example>Harper Collins</doc:example>
+            <doc:example>University Of California Press</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -855,13 +847,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -876,7 +868,7 @@
             <doc:description>The total pages field is used to describe the
             total number of pages in the report that is being
             described.</doc:description>
-            <doc:example>"628"</doc:example>
+            <doc:example>628</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -889,15 +881,14 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Personal communication</doc:tooltip>
-        <doc:summary>A personal communication that has been saved
-        online or as hard-copy.</doc:summary>
-        <doc:description>This could be a widely distributed memo,
-        an e-mail, a transcript from a
-        conversation or interview, etc...</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 9, and
-        was derived from MARC/various software packages handling
-        literature and discussions at the EML Workshop at the Sevilleta
-        in April 2002.</doc:lineage>
+        <doc:summary>A personal communication that has been saved online or as
+        hard-copy.</doc:summary>
+        <doc:description>This could be a widely distributed memo, an e-mail, a
+        transcript from a conversation or interview, etc...</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
+        derived from MARC/various software packages handling literature and
+        discussions at the EML Workshop at the Sevilleta in April
+        2002.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -909,8 +900,8 @@
             communication</doc:summary>
             <doc:description>The organization that physically puts together the
             communication and publishes it.</doc:description>
-            <doc:example>"Harper Collins", "University Of California Press"
-            </doc:example>
+            <doc:example>Harper Collins</doc:example>
+            <doc:example>University Of California Press</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -921,13 +912,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -942,22 +933,24 @@
             <doc:description>The type of personal communication. Could be an
             email, letter, memo, transcript of conversation either hardcopy or
             online.</doc:description>
-            <doc:example>"memo", "letter", "email", etc....</doc:example>
+            <doc:example>memo</doc:example>
+            <doc:example>letter</doc:example>
+            <doc:example>email</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta
             9</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="recipient" type="rp:ResponsibleParty"
-        minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="recipient" type="rp:ResponsibleParty" minOccurs="0"
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Recipient</doc:tooltip>
             <doc:summary>Recipient of the communication</doc:summary>
             <doc:description>The person, place or thing the personal
             communication was sent to.</doc:description>
-            <doc:example>"Schmedley, Joe", "jschmedley@lternet.edu",
-            etc....</doc:example>
+            <doc:example>Schmedley, Joe</doc:example>
+            <doc:example>jschmedley@lternet.edu</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta
             9</doc:lineage>
           </xs:appinfo>
@@ -969,15 +962,15 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>map</doc:tooltip>
-        <doc:summary>This element desribes the map that is being cited
-        or cataloged.</doc:summary>
-        <doc:description>This element desribes the map that is being cited
-        or cataloged, including its geographic coverage and scale.
-        </doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 9, and
-        was derived from MARC/various software packages handling
-        literature and discussions at the EML Workshop at the Sevilleta
-        in April 2002.</doc:lineage>
+        <doc:summary>This element desribes the map that is being cited or
+        cataloged.</doc:summary>
+        <doc:description>This element desribes the map that is being cited or
+        cataloged, including its geographic coverage and
+        scale.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
+        derived from MARC/various software packages handling literature and
+        discussions at the EML Workshop at the Sevilleta in April
+        2002.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -1003,7 +996,7 @@
             <doc:summary>The edition of the map being described.</doc:summary>
             <doc:description>The edition field is to document the edition of
             the mapthat is being described.</doc:description>
-            <doc:example>"Second Edition"</doc:example>
+            <doc:example>Second Edition</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1011,16 +1004,15 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="geographicCoverage" type="cov:GeographicCoverage"
-        minOccurs="0" maxOccurs="unbounded">
+      minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Geographic coverage</doc:tooltip>
             <doc:summary>Description of the geographic area which the map
             covers</doc:summary>
             <doc:description>This element describes the geographic area which
-            the map covers. Could be descriptive text or
-            Cartesian coordinates of the area.</doc:description>
-
+            the map covers. Could be descriptive text or Cartesian coordinates
+            of the area.</doc:description>
             <doc:lineage>The geographicCoverage element was introduced into EML
             2.0 beta 9.</doc:lineage>
           </xs:appinfo>
@@ -1044,15 +1036,15 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>audio visual</doc:tooltip>
-        <doc:summary>This reference type is meant to cover all forms of
-        audio and visual media.</doc:summary>
-        <doc:description>This reference type is meant to cover all forms
-        of audio and visual media, including film, video, broadcast,
-        other electronic media.</doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 9, and
-        was derived from MARC/various software packages handling
-        literature and discussions at the EML Workshop at the Sevilleta
-        in April 2002.</doc:lineage>
+        <doc:summary>This reference type is meant to cover all forms of audio
+        and visual media.</doc:summary>
+        <doc:description>This reference type is meant to cover all forms of
+        audio and visual media, including film, video, broadcast, other
+        electronic media.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
+        derived from MARC/various software packages handling literature and
+        discussions at the EML Workshop at the Sevilleta in April
+        2002.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -1064,34 +1056,35 @@
             film, the broadcaster etc...</doc:summary>
             <doc:description>Organization which actually distributes the video,
             film, the broadcaster etc...</doc:description>
-            <doc:example>"LTER Network Office", "Public Broadcasting",
-            "Pacifica Radio" etc...</doc:example>
+            <doc:example>LTER Network Office</doc:example>
+            <doc:example>Public Broadcasting</doc:example>
+            <doc:example>Pacifica Radio</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="publicationPlace" type="xs:string"
-        minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="publicationPlace" type="xs:string" minOccurs="0"
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="performer" type="rp:ResponsibleParty"
-        minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="performer" type="rp:ResponsibleParty" minOccurs="0"
+      maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Performer</doc:tooltip>
@@ -1099,8 +1092,8 @@
             production</doc:summary>
             <doc:description>The performers involved in acting, narrating, or
             shown in the audio visual production.</doc:description>
-            <doc:example>"Jim Nabors", "Sir Lawrence Olivier", etc
-            ...</doc:example>
+            <doc:example>Jim Nabors</doc:example>
+            <doc:example>Sir Lawrence Olivier</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1135,8 +1128,8 @@
             reference</doc:summary>
             <doc:description>The organization which physically puts together
             the reference and publishes it.</doc:description>
-            <doc:example>"Harper Collins", "University Of California
-            Press"</doc:example>
+            <doc:example>Harper Collins</doc:example>
+            <doc:example>University Of California Press</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -1147,13 +1140,13 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publication Place</doc:tooltip>
-            <doc:summary>The location at which the work was published.
-            </doc:summary>
-            <doc:description>The location at which the work was published.
-            This is usually the name of the city in which the publishing
-            house produced the work.
-            </doc:description>
-            <doc:example>"New York", "London"</doc:example>
+            <doc:summary>The location at which the work was
+            published.</doc:summary>
+            <doc:description>The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.</doc:description>
+            <doc:example>New York</doc:example>
+            <doc:example>London</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature.</doc:lineage>
@@ -1167,7 +1160,9 @@
             <doc:summary>The type of reference.</doc:summary>
             <doc:description>The reference type describes the type of reference
             this generic type is being used to represent.</doc:description>
-            <doc:example>"zine", "film", "radio program", etc...</doc:example>
+            <doc:example>zine</doc:example>
+            <doc:example>film</doc:example>
+            <doc:example>radio program</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1183,7 +1178,7 @@
             <doc:description>The volume field is used to describe the volume
             number of a reference that is part of a multi-volume series of
             references.</doc:description>
-            <doc:example>"Volume 2"</doc:example>
+            <doc:example>Volume 2</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 9, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1213,7 +1208,7 @@
             <doc:description>The total pages field is used to describe the
             total number of pages in the references that is being
             described.</doc:description>
-            <doc:example>"628"</doc:example>
+            <doc:example>628</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1229,7 +1224,7 @@
             <doc:description>The total figures field is used to describe the
             total number of figures, diagrams, and plates in the reference that
             is being documented.</doc:description>
-            <doc:example>"45"</doc:example>
+            <doc:example>45</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1245,7 +1240,7 @@
             <doc:description>The total tables field is used to describe the
             total number of tables that are present in the reference that is
             being documented.</doc:description>
-            <doc:example>"10"</doc:example>
+            <doc:example>10</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1261,7 +1256,7 @@
             <doc:description>The edition field is to document the edition of
             the generic reference type that is being
             described.</doc:description>
-            <doc:example>"Second Edition"</doc:example>
+            <doc:example>Second Edition</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1276,7 +1271,8 @@
             original.</doc:summary>
             <doc:description>Supplemental information about the original
             publication of the current reference.</doc:description>
-            <doc:example>"Date", "Publisher", etc...</doc:example>
+            <doc:example>Date</doc:example>
+            <doc:example>Publisher</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta
             9.</doc:lineage>
           </xs:appinfo>
@@ -1290,8 +1286,8 @@
             published under a different title.</doc:summary>
             <doc:description>Reference for current edition that was originally
             published under a different title.</doc:description>
-            <doc:example>"Stream Research in the LTER Network,
-            1993"</doc:example>
+            <doc:example>Stream Research in the LTER Network,
+            1993</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta
             9.</doc:lineage>
           </xs:appinfo>
@@ -1303,12 +1299,12 @@
             <doc:tooltip>Reviewed Item</doc:tooltip>
             <doc:summary>Reference types that are reviews of other
             references.</doc:summary>
-            <doc:description>Use for articles, chapters, audio visual , etc...
+            <doc:description>Use for articles, chapters, audio visual, etc.
             that are critical review of books, cinema, art, or other
             works.</doc:description>
-            <doc:example>"Structure and Function of an Alpine Ecosystem Niwot
+            <doc:example>Structure and Function of an Alpine Ecosystem Niwot
             Ridge, Colorado Edited by WILLIAM D. BOWMAN and TIMOTHY R.
-            SEASTEDT, University of Colorado, Boulder"</doc:example>
+            SEASTEDT, University of Colorado, Boulder</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta
             9.</doc:lineage>
           </xs:appinfo>
@@ -1355,15 +1351,14 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Thesis as part of a degree</doc:tooltip>
-        <doc:summary>Information about a thesis that has been written
-        as part of a degree requirement and is frequently published in
-        small numbers by the degree awarding institution.</doc:summary>
-        <doc:description>Information about a thesis that has been written
-        as part of a degree requirement and is frequently published in
-        small numbers by the degree awarding institution.
-        </doc:description>
-        <doc:lineage>This field was introduced into EML 2.0 beta 1, and
-        was derived from MARC/various software packages handling
+        <doc:summary>Information about a thesis that has been written as part
+        of a degree requirement and is frequently published in small numbers by
+        the degree awarding institution.</doc:summary>
+        <doc:description>Information about a thesis that has been written as
+        part of a degree requirement and is frequently published in small
+        numbers by the degree awarding institution.</doc:description>
+        <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
+        derived from MARC/various software packages handling
         literature</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -1376,8 +1371,9 @@
             completed.</doc:summary>
             <doc:description>The degree field is used to describe the name or
             degree level for which the thesis was completed.</doc:description>
-            <doc:example>"Ph.D.", "M.S.", "Master of Science",
-            etc...</doc:example>
+            <doc:example>Ph.D.</doc:example>
+            <doc:example>M.S.</doc:example>
+            <doc:example>Master of Science</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1393,7 +1389,7 @@
             <doc:description>The degree institution field is used to name the
             institution from which the degree was awarded for the thesis being
             described.</doc:description>
-            <doc:example>"Western Washington University"</doc:example>
+            <doc:example>Western Washington University</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1408,7 +1404,7 @@
             <doc:description>The total pages field is used to document the
             number of pages that are present in the thesis that is being
             described.</doc:description>
-            <doc:example>"356"</doc:example>
+            <doc:example>356</doc:example>
             <doc:lineage>This field was introduced into EML 2.0 beta 1, and was
             derived from MARC/various software packages handling
             literature</doc:lineage>
@@ -1421,56 +1417,55 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Unpublished Presentation</doc:tooltip>
-        <doc:summary>An unpublished presentation from a conference,
-        workshop, workgroup, symposium, etc.</doc:summary>
+        <doc:summary>An unpublished presentation from a conference, workshop,
+        workgroup, symposium, etc.</doc:summary>
         <doc:description>An unpublished presentation from a conference,
-        workshop, workgroup, symposium, etc. It will be provided
-        upon request in either in paper and/or electronic
-        form by contacting the authors.  If the presentation was actually
-        published in a proceedings, use the conferenceProceedings type instead.
-        </doc:description>
+        workshop, workgroup, symposium, etc. It will be provided upon request
+        in either in paper and/or electronic form by contacting the authors. If
+        the presentation was actually published in a proceedings, use the
+        conferenceProceedings type instead.</doc:description>
         <doc:lineage>As of EML 2.0.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-          <xs:element name="conferenceName" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Conference Name</doc:tooltip>
-                <doc:summary>The name of the conference at which this
-                presentation was given.</doc:summary>
-                <doc:description>The name of the conference at which this
-                presentation was given.</doc:description>
-                <doc:example>North American Science Symposium</doc:example>
-                <doc:lineage>As of EML 2.0.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="conferenceDate" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Conference Date</doc:tooltip>
-                <doc:summary>The date the conference was
-                          held.</doc:summary>
-                <doc:description>The date the conference was
-                          held.</doc:description>
-                <doc:example>November 1-6, 1998</doc:example>
-                <doc:lineage>As of EML 2.0.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="conferenceLocation" type="rp:Address" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Conference Location</doc:tooltip>
-                <doc:summary>The location where the conference was
-                          held.</doc:summary>
-                <doc:description>The location where the conference
-                          was held.</doc:description>
-                <doc:lineage>As of EML 2.0.0</doc:lineage>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+      <xs:element name="conferenceName" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Conference Name</doc:tooltip>
+            <doc:summary>The name of the conference at which this presentation
+            was given.</doc:summary>
+            <doc:description>The name of the conference at which this
+            presentation was given.</doc:description>
+            <doc:example>North American Science Symposium</doc:example>
+            <doc:lineage>As of EML 2.0.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="conferenceDate" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Conference Date</doc:tooltip>
+            <doc:summary>The date the conference was held.</doc:summary>
+            <doc:description>The date the conference was
+            held.</doc:description>
+            <doc:example>November 1-6, 1998</doc:example>
+            <doc:lineage>As of EML 2.0.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="conferenceLocation" type="rp:Address" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Conference Location</doc:tooltip>
+            <doc:summary>The location where the conference was
+            held.</doc:summary>
+            <doc:description>The location where the conference was
+            held.</doc:description>
+            <doc:lineage>As of EML 2.0.0</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
+
