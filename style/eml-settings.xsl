@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2002-04-19 17:08:58 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: brooke $'
+  *     '$Date: 2002-05-01 01:02:19 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -64,4 +64,12 @@
 <!-- <xsl:param name="tripleURI"><![CDATA[@html-path@/metacat?action=read&qformat=knb&docid=]]></xsl:param> -->
   <xsl:param name="tripleURI"><![CDATA[/brooke/servlet/metacat?action=read&qformat=knb&docid=]]></xsl:param>  
   
+  
+  <xsl:param name="subHeaderStyle" select="'tablehead'"/>
+  <xsl:param name="firstColWidth" select="'15%'"/>
+  <xsl:param name="firstColStyle" select="'highlight'"/>
+  <xsl:param name="secondColWidth" select="'85%'"/>
+  <xsl:param name="secondColStyle" select="''"/>  
+  <xsl:param name="secondColIndent" select="'10%'"/> 
+
 </xsl:stylesheet>

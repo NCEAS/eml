@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-dataset.xsl,v $'
-  *      Authors: Matt Jones
+  *  '$RCSfile: eml-identifier.xsl,v $'
+  *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
   *     '$Date: 2002-05-01 01:02:19 $'
-  * '$Revision: 1.2 $'
+  * '$Revision: 1.1 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -25,33 +25,25 @@
   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   *
   * This is an XSLT (http://www.w3.org/TR/xslt) stylesheet designed to
-  * convert an XML file that is valid with respect to the eml-dataset.dtd
+  * convert an XML file that is valid with respect to the eml-variable.dtd
   * module of the Ecological Metadata Language (EML) into an HTML format 
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-<xsl:import href="eml-settings.xsl" />
-<xsl:import href="eml-resource.xsl"/>
-<xsl:import href="eml-coverage.xsl"/>
 
-  <xsl:output method="html" encoding="iso-8859-1"/>
-  
-  <xsl:template match="/">
-    <html>
-      <head>
-        <link rel="stylesheet" type="text/css" 
-              href="{$stylePath}/{$qformat}.css" />
-      </head>
-      <body>
-        <center>
-          <h1>Data set description</h1>
-          <h3>Ecological Metadata Language</h3>
-        </center>
-        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
-          <xsl:apply-templates select="./" mode="resource"/>
-          <xsl:apply-templates select="dataset/"/>
-          </table>
-      </body>
-    </html>
-  </xsl:template>
+    <xsl:output method="html" encoding="iso-8859-1"/>
+
+    <xsl:template match="identifier"/>
+    <xsl:template match="identifier" mode="resource">
+      <xsl:for-each select="../identifier">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+           Metadata Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+           <xsl:value-of select="."/></td></tr>
+           <xsl:if test="normalize-space(./@system)!=''">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+                Metadata Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+                <xsl:value-of select="./@system"/></td></tr>
+           </xsl:if>      
+      </xsl:for-each>
+    </xsl:template>
 </xsl:stylesheet>

@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2002-04-22 16:04:27 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: brooke $'
+  *     '$Date: 2002-05-01 01:02:19 $'
+  * '$Revision: 1.3 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:import href="eml-settings.xsl" />
+<xsl:import href="eml-identifier.xsl" />
 
   <xsl:output method="html" encoding="iso-8859-1"/>
   
@@ -46,103 +47,67 @@
           <h1>Constraints</h1>
           <h3>Ecological Metadata Language</h3>
         </center>
-        <table width="100%"><!-- total 10 columns -->
-        <tr>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        </tr>
-        <xsl:apply-templates select="eml-constraint/identifier"/>
+        <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
+        <xsl:apply-templates select="eml-constraint/identifier" mode="resource"/>
+        <xsl:for-each select="eml-constraint/constraint">
+        <tr><td class="{$subHeaderStyle}" colspan="2">
+        <xsl:text>Relational Integrity Constraints:</xsl:text></td></tr> 
+           <xsl:apply-templates select="."/>
+        </xsl:for-each>
 
-        <tr class="tablehead">
-        <td width="10%"><xsl:text>Type</xsl:text></td>
-        <td width="10%"><xsl:text>Name</xsl:text></td>
-        <td colspan="2"><xsl:text>Description</xsl:text></td>
-        <td width="10%"><xsl:text>entityId</xsl:text></td>
-        <td width="10%"><xsl:text>key</xsl:text></td>
-        <td width="10%"><xsl:text>referencedEntityId</xsl:text></td>
-        <td width="10%"><xsl:text>referencedKey</xsl:text></td>
-        <td width="10%"><xsl:text>cardinality</xsl:text></td>
-        <td width="10%"><xsl:text>checkCondition</xsl:text></td>
-        </tr>
-
-         <xsl:call-template name="blankrow">
-                <xsl:with-param name="style" select="'tabledefault'"/>
-         </xsl:call-template>
-         <xsl:apply-templates select="eml-constraint/constraint"/>
         </table>
       </body>
     </html>
   </xsl:template>
-  
 
+ 
   <xsl:template match="constraint">
-       <xsl:for-each select=".">
-          <tr valign="top">
-                <xsl:attribute name="class">
-                  <xsl:choose>
-                    <xsl:when test="position() mod 2 = 1">rowodd</xsl:when>
-                    <xsl:when test="position() mod 2 = 0">roweven</xsl:when>
-                  </xsl:choose>
-                </xsl:attribute>
-                <td width="10%"><xsl:value-of select="./constraintType"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./constraintName"/><xsl:text>&#160;</xsl:text></td>
-                <td colspan="2"><xsl:value-of select="./constraintDescription"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./entityId"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./key"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./referencedEntityId"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./referencedKey"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./cardinality"/><xsl:text>&#160;</xsl:text></td>
-                <td width="10%"><xsl:value-of select="./checkCondition"/><xsl:text>&#160;</xsl:text></td>
-              </tr>
-              <xsl:call-template name="blankrow">
-                <xsl:with-param name="style" select="'roweven'"/>
-              </xsl:call-template>
-              </xsl:for-each>
-
-  </xsl:template>
-  
-  <xsl:template match="identifier">
-
-        <xsl:for-each select=".">
-        <tr>
-        <td class="highlight" colspan="2">
-           <b><xsl:text>Metadata File ID:</xsl:text></b>
-        </td>
-        <td colspan="3">
-            <xsl:value-of select="."/>
-        </td>
-        <td class="highlight" colspan="2">
-           <b><xsl:text>Catalog System:</xsl:text></b></td>
-        <td colspan="3">
-            <xsl:value-of select="./@system"/><xsl:text>&#160;</xsl:text></td>
-      </tr>
-      </xsl:for-each>
-      <xsl:call-template name="blankrow">
-      <xsl:with-param name="style" select="'tabledefault'"/>
-      </xsl:call-template>
-  </xsl:template>
-  
-   <xsl:template name="blankrow">
-   <xsl:param name="style"/> 
-        <tr class="{$style}">
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td colspan="2"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        <td width="10%"><xsl:text>&#160;</xsl:text></td>
-        </tr>
-  </xsl:template>
-             
+      <xsl:if test="normalize-space(constraintType)!=''">
+            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Type</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="constraintType"/></td></tr>
+      </xsl:if>  
+      <xsl:if test="normalize-space(constraintName)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Name</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="constraintName"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(constraintDescription)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Description</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="constraintDescription"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(entityId)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Entity Id</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="entityId"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(referencedEntityId)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Referenced Entity Id</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="referencedEntityId"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(referencedKey)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Referenced Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="referencedKey"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(key)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Key</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="key"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(cardinality)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Cardinality</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="cardinality"/></td></tr>            
+      </xsl:if>  
+      <xsl:if test="normalize-space(checkCondition)!=''">
+        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
+        <xsl:text>Check Condition</xsl:text></td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <xsl:value-of select="checkCondition"/></td></tr>            
+      </xsl:if>  
+   </xsl:template>
+            
+ 
 </xsl:stylesheet>
