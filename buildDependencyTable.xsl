@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 16:04:51 $'
-      '$Revision: 1.5 $'
+          '$Date: 2002-09-10 16:21:58 $'
+      '$Revision: 1.6 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,10 @@
        </xsl:choose>
       </xsl:attribute>
 
+      <xsl:variable name="pos">
+        <xsl:value-of select="position() mod 2"/>
+      </xsl:variable>
+
       <td><xsl:value-of select="."/></td> <!--the row header-->
 
         <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
@@ -80,11 +84,15 @@
           <xsl:variable name="importedDoc">
             <xsl:value-of select="substring-before(./@schemaLocation, '.')"/>
           </xsl:variable>
+          <!-- compare the import variable to the modName variable-->
           <xsl:if test="normalize-space($importedDoc)=normalize-space($modName)">
-            <!--<xsl:attribute name="bgcolor">
-              <xsl:text>white</xsl:text>
-            </xsl:attribute>-->
-            <xsl:text>X</xsl:text>
+            <xsl:attribute name="class">
+              <xsl:choose>
+               <xsl:when test="$pos = 1">rowoddemphasis</xsl:when>
+               <xsl:when test="$pos = 0">rowevenemphasis</xsl:when>
+             </xsl:choose>
+            </xsl:attribute>
+            <xsl:text>X</xsl:text> <!--put the x where they are equal-->
           </xsl:if>
           <xsl:if test="normalize-space($modName)=normalize-space(substring-before($modFile, '.'))">
             <xsl:attribute name="bgcolor">
