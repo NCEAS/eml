@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
-  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-  elementFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
-    schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
-    schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/spatialReference-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" elementFormDefault="unqualified">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-spatialReference.xsd,v $'
@@ -26,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: mccartne $'
-          '$Date: 2002-10-03 17:55:20 $'
-      '$Revision: 1.26 $'
+          '$Date: 2002-10-04 23:48:39 $'
+      '$Revision: 1.27 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -2392,23 +2385,13 @@
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
-          <xs:attribute name="name" type="xs:string" use="required">
+          <xs:attribute name="name" type="angleUnits" use="required">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Unit Name</doc:tooltip>
                 <doc:summary>The name of the unit of measure .</doc:summary>
                 <doc:description/>
                 <doc:example>Degrees</doc:example>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:attribute>
-          <xs:attribute name="radiansPerUnit" type="xs:float" use="required">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Radians per Unit</doc:tooltip>
-                <doc:summary>The number of radians</doc:summary>
-                <doc:description/>
-                <doc:example>0.0174532925199432955</doc:example>
               </xs:appinfo>
             </xs:annotation>
           </xs:attribute>
@@ -2514,24 +2497,13 @@
                       </xs:appinfo>
                     </xs:annotation>
                     <xs:complexType>
-                      <xs:attribute name="name" type="xs:string" use="required">
+                      <xs:attribute name="name" type="lengthUnits" use="required">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Projection Unit Name</doc:tooltip>
                             <doc:summary>The name of the unit of measure.</doc:summary>
                             <doc:description/>
                             <doc:example>Meter</doc:example>
-                          </xs:appinfo>
-                        </xs:annotation>
-                      </xs:attribute>
-                      <xs:attribute name="metersPerUnit" type="xs:float" use="required">
-                        <xs:annotation>
-                          <xs:appinfo>
-                            <doc:tooltip>Meters per unit</doc:tooltip>
-                            <doc:summary>Number of meters per unit.</doc:summary>
-                            <doc:description>A multiplier to allow any unit ot be related to meters as a standard unit of
-                            measure.</doc:description>
-                            <doc:example>1.0</doc:example>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:attribute>
@@ -2563,20 +2535,52 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="horizCoordSysDef" type="horizCoordSysType" maxOccurs="unbounded">
-                    <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Horizonal Coordinate System Definition</doc:tooltip>
-                <doc:summary>The definition of a coordinate system</doc:summary>
-                <doc:description>Terms and parameters necessary to define a geographic or projected coordinate
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Horizonal Coordinate System Definition</doc:tooltip>
+              <doc:summary>The definition of a coordinate system</doc:summary>
+              <doc:description>Terms and parameters necessary to define a geographic or projected coordinate
                 system for horizonal distances.</doc:description>
-              </xs:appinfo>
-            </xs:annotation>
-
-        
-        
+            </xs:appinfo>
+          </xs:annotation>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="spatialReference" type="SpatialReferenceType"/>
+  <xs:simpleType name="lengthUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="meter"/>
+      <xs:enumeration value="nanometer"/>
+      <xs:enumeration value="micrometer"/>
+      <xs:enumeration value="micron"/>
+      <xs:enumeration value="millimeter"/>
+      <xs:enumeration value="centimeter"/>
+      <xs:enumeration value="decimeter"/>
+      <xs:enumeration value="dekameter"/>
+      <xs:enumeration value="hectometer"/>
+      <xs:enumeration value="kilometer"/>
+      <xs:enumeration value="megameter"/>
+      <xs:enumeration value="angstrom"/>
+      <xs:enumeration value="inch"/>
+      <xs:enumeration value="Foot_US"/>
+      <xs:enumeration value="foot"/>
+      <xs:enumeration value="Foot_Gold_Coast"/>
+      <xs:enumeration value="fathom"/>
+      <xs:enumeration value="nauticalMile"/>
+      <xs:enumeration value="yard"/>
+      <xs:enumeration value="Yard_Indian"/>
+      <xs:enumeration value="Link_Clarke"/>
+      <xs:enumeration value="Yard_Sears"/>
+      <xs:enumeration value="mile"/>
+      <xs:enumeration value="waveNumber"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="angleUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="degree"/>
+      <xs:enumeration value="gradient"/>
+      <xs:enumeration value="radian"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
