@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2001-07-23 02:07:54 $'
-      '$Revision: 1.7 $'
+        '$Author: cjones $'
+          '$Date: 2001-07-31 20:02:52 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,37 +32,20 @@
      employed by the researchers who created this dataset -->
 <!ELEMENT eml-project (identifier, researchProject+)>
 <!-- Research project descriptor -->
-<!ELEMENT researchProject (title+, originator+, temporalCov*, objectives?, abstract?, funding?, siteDescription*, designDescription*, eml-protocol*, staff*, researchProject*)>
-<!-- Scope and purpose of the research project -->
-<!ELEMENT objectives (paragraph+)>
+<!ELEMENT researchProject (title+, personnel+, temporalCov*, geographicCov*,
+                           abstract?, funding?, siteDescription*, 
+			   designDescription*, researchProject*)>
 <!-- Grant and contract numbers, names and addresses of funding sources -->
 <!ELEMENT funding (paragraph+)>
 <!-- Site description -->
-<!ELEMENT siteDescription (paragraph*, siteType?, geography?, habitat?, geology?, hydrology?, history?, climate?)>
-<!-- Site type - description, e.g., short-grass prairie, blackwater stream, etc. -->
-<!ELEMENT siteType (paragraph+)>
-<!-- Location and size -->
-<!ELEMENT geography (geographicCov*, paragraph*, citation*)>
-<!-- Detailed characteristics of habitat sampled -->
-<!ELEMENT habitat (paragraph*, citation*)>
-<!-- Geology and Landform -->
-<!ELEMENT geology (paragraph*, citation*)>
-<!-- Hydrology -->
-<!ELEMENT hydrology (paragraph*, citation*)>
-<!-- Site history -->
-<!ELEMENT history (paragraph*, citation*)>
-<!-- Site climatic characteristics -->
-<!ELEMENT climate (paragraph*, citation*)>
+<!ELEMENT siteDescription (paragraph*, citation*)>
 <!-- Experimental or Sampling design -->
-<!ELEMENT designDescription (designMethod?, plots?, sampling?, paragraph*, citation*)>
+<!ELEMENT designDescription (protocol*, sampling*, paragraph*, citation*)>
 <!-- Description of Statistical/sampling design -->
 <!ELEMENT designMethod (paragraph*, citation*)>
-<!-- Permanent plot description -->
-<!ELEMENT plots (paragraph*, citation*)>
 <!-- Information necessary to understand temporal sampling regime -->
 <!ELEMENT sampling (temporalCov*, frequency?, paragraph*, citation*)>
 <!-- Frequency or period of data collection -->
 <!ELEMENT frequency (#PCDATA)>
-<!-- Project Personell -->
-<!ELEMENT staff ((%ResponsibleParty;))>
-<!-- End of file -->
+<!-- text paragraph -->
+<!ELEMENT paragraph (#PCDATA)>
