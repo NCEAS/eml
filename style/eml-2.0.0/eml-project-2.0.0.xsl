@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,10 +33,10 @@
 
   <xsl:output method="html" encoding="iso-8859-1"/>
 
-  
+
    <xsl:template name="project">
       <xsl:param name="projectfirstColStyle"/>
-      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -55,9 +55,9 @@
       </xsl:choose>
       </table>
   </xsl:template>
-  
-  
-  
+
+
+
   <xsl:template name="projectcommon">
     <xsl:param name="projectfirstColStyle"/>
     <xsl:call-template name="projecttitle">
@@ -83,8 +83,8 @@
     </xsl:call-template>
   </xsl:template>
 
-  
-  
+
+
    <xsl:template name="projecttitle">
      <xsl:param name="projectfirstColStyle"/>
      <xsl:for-each select="title">
@@ -97,9 +97,9 @@
        </tr>
      </xsl:for-each>
   </xsl:template>
-  
-  
-  
+
+
+
   <xsl:template name="projectpersonnel">
      <xsl:param name="projectfirstColStyle"/>
      <tr><td width="{$firstColWidth}" class="{$projectfirstColStyle}">
@@ -118,7 +118,7 @@
                                  Role:
                                </td>
                                <td width="{$secondColWidth}">
-                                 <table xsl:use-attribute-sets="cellspacing" class="tableparty" width="100%">
+                                 <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
                                      <tr>
                                          <td width="100%" class="{$secondColStyle}">
                                             <xsl:value-of select="."/>
@@ -133,8 +133,8 @@
          </td>
      </tr>
   </xsl:template>
-  
-  
+
+
    <xsl:template name="projectabstract">
      <xsl:param name="projectfirstColStyle"/>
      <xsl:for-each select="abstract">
@@ -149,7 +149,7 @@
        </tr>
      </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="projectfunding">
      <xsl:param name="projectfirstColStyle"/>
      <xsl:for-each select="funding">
@@ -164,9 +164,9 @@
        </tr>
     </xsl:for-each>
   </xsl:template>
-  
-  
-  
+
+
+
    <xsl:template name="projectstudyareadescription">
      <xsl:param name="projectfirstColStyle"/>
      <xsl:for-each select="studyAreaDescription">
@@ -174,7 +174,7 @@
            <xsl:text>Study Area:</xsl:text>
           </td>
           <td width="{$secondColWidth}">
-              <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+              <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                   <xsl:for-each select="descriptor">
                       <xsl:for-each select="descriptorValue">
                       <tr><td width="{$firstColWidth}" class="{$projectfirstColStyle}">
@@ -197,7 +197,7 @@
                               Citation:
                             </td>
                             <td width="{$secondColWidth}">
-                             <xsl:call-template name="citation"> 
+                             <xsl:call-template name="citation">
                                   <xsl:with-param name="citationfirstColStyle" select="projectfirstColStyle"/>
                              </xsl:call-template>
                            </td>
@@ -207,19 +207,19 @@
             </table>
          </td>
        </tr>
-     
+
        <xsl:for-each select="citation">
          <tr><td width="{$firstColWidth}" class="{$projectfirstColStyle}">
           Study Area Citation:
           </td>
           <td width="{$secondColWidth}">
               <xsl:call-template name="citation">
-                   <xsl:with-param name="citationfirstColStyle" select="projectfirstColStyle"/>             
+                   <xsl:with-param name="citationfirstColStyle" select="projectfirstColStyle"/>
                </xsl:call-template>
           </td>
         </tr>
       </xsl:for-each>
-       
+
        <xsl:for-each select="coverage">
         <tr><td width="{$firstColWidth}" class="{$projectfirstColStyle}">
           Study Area Coverage:
@@ -228,12 +228,12 @@
              <xsl:call-template name="coverage"/>
           </td>
         </tr>
-      </xsl:for-each>  
+      </xsl:for-each>
     </xsl:for-each>
    </xsl:template>
-  
-  
-  
+
+
+
   <xsl:template name="projectdesigndescription">
     <xsl:param name="projectfirstColStyle"/>
     <xsl:for-each select="designDescription">
@@ -258,8 +258,8 @@
     </xsl:for-each>
   </xsl:template>
 
-  
-  
+
+
   <xsl:template name="projectrelatedproject">
     <xsl:param name="projectfirstColStyle"/>
     <xsl:for-each select="relatedProject">
@@ -274,6 +274,6 @@
        </tr>
     </xsl:for-each>
   </xsl:template>
- 
+
 
 </xsl:stylesheet>

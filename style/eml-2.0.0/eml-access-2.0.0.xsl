@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:46:59 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
   <xsl:template name="access">
     <xsl:param name="accessfirstColStyle"/>
     <xsl:param name="accesssubHeaderStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -56,7 +56,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </table>
-    
+
   </xsl:template>
   <xsl:template name="accessCommon">
      <xsl:param name="accessfirstColStyle" />
@@ -85,8 +85,8 @@
                 <xsl:with-param name="accessfirstColStyle" select="$accessfirstColStyle"/>
             </xsl:call-template>
         </xsl:if>
-     
-   
+
+
   </xsl:template>
 
 
@@ -99,7 +99,7 @@
            <xsl:for-each select="allow">
            <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
             ALLOW:</td><td width="{$secondColWidth}">
-                    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+                    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                         <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
                         <xsl:for-each select="./permission">
                             <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
@@ -116,7 +116,7 @@
            <xsl:for-each select="deny">
         <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}" valign="top">
             DENY:</td><td width="{$secondColWidth}">
-           <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+           <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
               <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
                 <xsl:for-each select="permission">
                     <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text>
@@ -132,7 +132,7 @@
    </xsl:choose>
 
    </xsl:template>
-    
+
   <xsl:template name="accesssystem">
        <xsl:param name="accessfirstColStyle" />
        <xsl:param name="accesssubHeaderStyle"/>
@@ -145,5 +145,5 @@
             <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="./@order"/></td>
         </tr>
   </xsl:template>
- 
+
 </xsl:stylesheet>

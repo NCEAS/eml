@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,15 +30,15 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  
+
   <xsl:output method="html" encoding="iso-8859-1"/>
 
-  
+
 
   <xsl:template name="protocol">
     <xsl:param name="protocolfirstColStyle"/>
     <xsl:param name="protocolsubHeaderStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -59,7 +59,7 @@
       </xsl:choose>
     </table>
   </xsl:template>
-  
+
    <xsl:template name="protocolcommon">
         <xsl:param name="protocolfirstColStyle"/>
         <xsl:param name="protocolsubHeaderStyle"/>
@@ -83,7 +83,7 @@
               <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
         </xsl:call-template>
   </xsl:template>
-  
+
   <xsl:template name="step">
     <xsl:param name="protocolfirstColStyle"/>
     <xsl:param name="protocolsubHeaderStyle"/>

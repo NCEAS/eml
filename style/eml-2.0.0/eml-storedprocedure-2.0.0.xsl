@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,17 +30,17 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
- 
+
 
   <xsl:output method="html" encoding="iso-8859-1"/>
   <!-- This module is for datatable module-->
-  
+
   <xsl:template name="storedProcedure">
       <xsl:param name="storedprocedurefirstColStyle"/>
       <xsl:param name="storedproceduresubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -48,7 +48,7 @@
           <xsl:for-each select="$references">
             <xsl:call-template name="storedProcedureCommon">
              <xsl:with-param name="storedprocedurefirstColStyle" select="$storedprocedurefirstColStyle"/>
-             <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>  
+             <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>
              <xsl:with-param name="docid" select="$docid"/>
              <xsl:with-param name="entityindex" select="$entityindex"/>
             </xsl:call-template>
@@ -57,7 +57,7 @@
         <xsl:otherwise>
            <xsl:call-template name="storedProcedureCommon">
              <xsl:with-param name="storedprocedurefirstColStyle" select="$storedprocedurefirstColStyle"/>
-             <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>  
+             <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>
              <xsl:with-param name="docid" select="$docid"/>
              <xsl:with-param name="entityindex" select="$entityindex"/>
             </xsl:call-template>
@@ -65,7 +65,7 @@
       </xsl:choose>
       </table>
   </xsl:template>
-  
+
   <xsl:template name="storedProcedureCommon">
     <xsl:param name="storedprocedurefirstColStyle"/>
     <xsl:param name="storedproceduresubHeaderStyle"/>
@@ -146,7 +146,7 @@
             Parameter:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                   <xsl:for-each select="name">
                     <tr><td width="{$firstColWidth}" class="{$storedprocedurefirstColStyle}">
                           Name:
@@ -187,14 +187,16 @@
             </td>
        </tr>
     </xsl:for-each>
+    <xsl:if test="$withAttributes='1'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="storedProcedureAttributeList">
         <xsl:with-param name="storedprocedurefirstColStyle" select="$storedprocedurefirstColStyle"/>
-        <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>  
+        <xsl:with-param name="storedproceduresubHeaderStyle" select="$storedproceduresubHeaderStyle"/>
         <xsl:with-param name="docid" select="$docid"/>
         <xsl:with-param name="entityindex" select="$entityindex"/>
       </xsl:call-template>
     </xsl:for-each>
+    </xsl:if>
      <!-- Here to display distribution info-->
     <xsl:for-each select="physical">
        <xsl:call-template name="storedProcedureShowDistribution">
@@ -206,7 +208,7 @@
        </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
- 
+
   <xsl:template name="storedProcedureShowDistribution">
      <xsl:param name="storedprocedurefirstColStyle"/>
      <xsl:param name="storedproceduresubHeaderStyle"/>
@@ -230,8 +232,8 @@
       </td></tr>
     </xsl:for-each>
   </xsl:template>
-  
-  
+
+
   <xsl:template name="storedProcedureAttributeList">
     <xsl:param name="storedprocedurefirstColStyle"/>
     <xsl:param name="storedproceduresubHeaderStyle"/>
@@ -250,7 +252,7 @@
        </td>
     </tr>
   </xsl:template>
-  
-  
+
+
 
 </xsl:stylesheet>

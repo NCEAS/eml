@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -32,11 +32,11 @@
 
 
  <xsl:output method="html" encoding="iso-8859-1"/>
- 
+
  <xsl:template name="method">
   <xsl:param name="methodfirstColStyle"/>
   <xsl:param name="methodsubHeaderStyle"/>
-  <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+  <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
     <xsl:for-each select="methodStep">
      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
           <b>Step<xsl:text> </xsl:text><xsl:value-of select="position()"/>:</b>
@@ -69,13 +69,13 @@
          <xsl:with-param name="methodsubHeaderStyle" select="$methodsubHeaderStyle"/>
      </xsl:call-template>
     </xsl:for-each>
-   </table> 
+   </table>
  </xsl:template>
- 
+
  <!-- ******************************************
       Method step
       *******************************************-->
- 
+
  <xsl:template name="methodStep">
    <xsl:param name="methodfirstColStyle"/>
    <xsl:param name="methodsubHeaderStyle"/>
@@ -91,17 +91,17 @@
         </tr>
    </xsl:for-each>
  </xsl:template>
- 
+
  <!-- *********************************************
       Sampling
       *********************************************-->
- 
+
  <xsl:template name="sampling">
    <xsl:param name="methodfirstColStyle"/>
    <xsl:param name="methodsubHeaderStyle"/>
    <xsl:for-each select="studyExtent">
       <xsl:call-template name="studyExtent">
-         <xsl:with-param name="methodfirstColStyle" select="$methodfirstColStyle"/> 
+         <xsl:with-param name="methodfirstColStyle" select="$methodfirstColStyle"/>
       </xsl:call-template>
    </xsl:for-each>
    <xsl:for-each select="samplingDescription">
@@ -117,7 +117,7 @@
    </xsl:for-each>
    <xsl:for-each select="spatialSamplingUnits">
       <xsl:call-template name="spatialSamplingUnits">
-         <xsl:with-param name="methodfirstColStyle" select="$methodfirstColStyle"/> 
+         <xsl:with-param name="methodfirstColStyle" select="$methodfirstColStyle"/>
       </xsl:call-template>
    </xsl:for-each>
    <xsl:for-each select="citation">
@@ -133,7 +133,7 @@
       </tr>
     </xsl:for-each>
  </xsl:template>
- 
+
  <xsl:template name="studyExtent">
     <xsl:param name="methodfirstColStyle"/>
     <xsl:param name="methodsubHeaderStyle"/>
@@ -159,7 +159,7 @@
        </tr>
     </xsl:for-each>
  </xsl:template>
- 
+
  <xsl:template name="spatialSamplingUnits">
    <xsl:param name="methodfirstColStyle"/>
    <xsl:for-each select="referenceEntityId">
@@ -182,7 +182,7 @@
       </tr>
    </xsl:for-each>
  </xsl:template>
- 
+
  <!-- ***************************************
       quality control
       ***************************************-->
@@ -194,6 +194,6 @@
      <xsl:with-param name="protocolsubHeaderStyle" select="$methodsubHeaderStyle"/>
    </xsl:call-template>
   </xsl:template>
- 
+
  </xsl:stylesheet>
 

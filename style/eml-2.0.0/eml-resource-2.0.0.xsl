@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
     <xsl:param name="resfirstColStyle"/>
     <xsl:param name="ressubHeaderStyle"/>
     <xsl:param name="creator">Data Set Owner(s):</xsl:param>
-    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
       <xsl:for-each select="alternateIdentifier">
         <xsl:call-template name="resourcealternateIdentifier">
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@
       <xsl:param name="entityindex"/>
       <xsl:param name="physicalindex"/>
       <xsl:param name="distributionindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
        <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -91,7 +91,7 @@
                <xsl:with-param name="distributionindex" select="$distributionindex"/>
             </xsl:apply-templates>
         </xsl:otherwise>
-       </xsl:choose> 
+       </xsl:choose>
       </table>
   </xsl:template>
 
@@ -114,7 +114,7 @@
       <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
     </xsl:apply-templates>
   </xsl:template>
-  
+
   <xsl:template match="url">
     <xsl:param name="disfirstColStyle"/>
     <tr>
@@ -130,7 +130,7 @@
        </td>
     </tr>
   </xsl:template>
-  
+
   <xsl:template match="connection">
     <xsl:param name="disfirstColStyle"/>
     <xsl:choose>
@@ -150,7 +150,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <!-- A template shared by connection references and connection in line-->
   <xsl:template name="connectionCommon">
     <xsl:param name="disfirstColStyle"/>
@@ -170,7 +170,7 @@
       <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
     </xsl:apply-templates>
   </xsl:template>
-  
+
   <xsl:template name="renderParameters">
     <xsl:param name="disfirstColStyle"/>
     <xsl:for-each select="parameter" >
@@ -184,7 +184,7 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
    <xsl:template match="connectionDefinition">
     <xsl:param name="disfirstColStyle"/>
     <xsl:choose>
@@ -204,7 +204,7 @@
       </xsl:otherwise>
     </xsl:choose>
    </xsl:template>
-   
+
    <!-- This template will be shared by both reference and inline connectionDefinition-->
    <xsl:template name="connectionDefinitionCommon">
     <xsl:param name="disfirstColStyle"/>
@@ -232,14 +232,14 @@
           </xsl:call-template>
        </xsl:for-each>
    </xsl:template>
-   
+
    <xsl:template match="description">
      <xsl:param name="disfirstColStyle"/>
      <xsl:call-template name="text">
         <xsl:with-param name="textfirstColStyle" select="$secondColStyle" />
      </xsl:call-template>
    </xsl:template>
-   
+
    <xsl:template name="renderParameterDefinition">
      <xsl:param name="disfirstColStyle"/>
      <tr>
@@ -247,7 +247,7 @@
           <xsl:text>&#160;&#160;&#160;&#160;&#160;</xsl:text><xsl:value-of select="name" /><xsl:text>:</xsl:text>
         </td>
         <td width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
             <tr>
               <td width="{$firstColWidth}" class="{$disfirstColStyle}">
                 <xsl:choose>
@@ -258,7 +258,7 @@
                     &#160;
                   </xsl:otherwise>
                 </xsl:choose>
-                
+
               </td>
               <td width="{$secondColWidth}" class="{$secondColStyle}">
                 <xsl:value-of select="definition" />
@@ -268,11 +268,11 @@
         </td>
       </tr>
    </xsl:template>
-  
+
   <!-- ********************************************************************* -->
   <!-- *******************************  Offline data  ********************** -->
   <!-- ********************************************************************* -->
-  
+
   <xsl:template match="offline">
     <xsl:param name="disfirstColStyle"/>
     <xsl:param name="dissubHeaderStyle"/>
@@ -304,12 +304,12 @@
     <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="mediumNote"/></td></tr>
     </xsl:if>
   </xsl:template>
-  
+
   <!-- ********************************************************************* -->
   <!-- *******************************  Inline data  *********************** -->
-  <!-- ********************************************************************* -->  
-  
-  
+  <!-- ********************************************************************* -->
+
+
   <xsl:template match="inline">
     <xsl:param name="disfirstColStyle"/>
     <xsl:param name="dissubHeaderStyle"/>
@@ -319,7 +319,7 @@
     <xsl:param name="entityindex"/>
     <xsl:param name="physicalindex"/>
     <xsl:param name="distributionindex"/>
-    
+
     <tr><td class="{$dissubHeaderStyle}" colspan="2">
         <xsl:text>Inline Data:</xsl:text>
     </td></tr>
@@ -337,6 +337,6 @@
       </xsl:if>
      </td></tr>
   </xsl:template>
-   
-  
+
+
 </xsl:stylesheet>

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 20:14:18 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -65,22 +65,12 @@
     <html>
       <head>
         <link rel="stylesheet" type="text/css"
-                href="{$stylePath}/{$qformat}/{$qformat}.css" />
-        <script language="Javascript" type="text/JavaScript"
-                src="{$stylePath}/{$qformat}/{$qformat}.js" />
-        <script language="Javascript" type="text/JavaScript"
-                src="{$styleCommonPath}/branding.js" />      
+              href="{$stylePath}/{$qformat}/{$qformat}.css" />
       </head>
       <body>
-
-        <script language="JavaScript">insertTemplateOpening();</script> 
-        
-        <table xsl:use-attribute-sets="cellspacing" class="{$mainContainerTableStyle}">
+        <table xsl:use-attribute-sets="cellspacing" width="100%">
         <xsl:apply-templates select="*[local-name()='eml']"/>
         </table>
-        
-        <script language="JavaScript">insertTemplateClosing();</script>
-        
       </body>
     </html>
    </xsl:template>
@@ -114,21 +104,25 @@
                </xsl:when>
                <xsl:otherwise>
                  <xsl:if test="$displaymodule='dataset'">
-                   <xsl:for-each select="additionalMetadata">
-                      <tr><td>
-                          <xsl:call-template name="additionalmetadataURL">
+		   <xsl:if test="$withAdditionalMetadataLink='1'">
+                     <xsl:for-each select="additionalMetadata">
+                       <tr><td>
+                         <xsl:call-template name="additionalmetadataURL">
                              <xsl:with-param name="index" select="position()"/>
                           </xsl:call-template>
-                      </td></tr>
-                   </xsl:for-each>
+                       </td></tr>
+                     </xsl:for-each>
+                   </xsl:if>
                  </xsl:if>
               </xsl:otherwise>
      </xsl:choose>
      <!-- xml format-->
      <xsl:if test="$displaymodule='dataset'">
-       <tr><td>
-          <xsl:call-template name="xml"/>
-        </td></tr>
+       <xsl:if test="$withOriginalXMLLink='1'">
+         <tr><td>
+            <xsl:call-template name="xml"/>
+         </td></tr>
+       </xsl:if>
      </xsl:if>
    </xsl:template>
 
@@ -137,7 +131,7 @@
        ********************************************************-->
 
    <xsl:template name="emldataset">
-      <table xsl:use-attribute-sets="cellspacing"  class="tabledefault" width="100%">
+      <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
           <xsl:if test="$displaymodule='dataset'">
              <xsl:call-template name="datasetpart"/>
           </xsl:if>
@@ -158,6 +152,9 @@
           </xsl:if>
           <xsl:if test="$displaymodule='inlinedata'">
              <xsl:call-template name="emlinlinedata"/>
+          </xsl:if>
+          <xsl:if test="$displaymodule='attributedetail'">
+             <xsl:call-template name="entityparam"/>
           </xsl:if>
       </table>
    </xsl:template>
@@ -210,12 +207,15 @@
       <tr>
            <td colspan="2">
               <!-- find the subtree to process -->
-             <xsl:call-template name="chooseentity"/>
+             <xsl:call-template name="entityparam"/>
            </td>
       </tr>
    </xsl:template>
 
    <!--************ Attribute display *****************-->
+   <xsl:template name="attributedetailpart">
+   </xsl:template>
+
     <xsl:template name="attributepart">
       <tr><td width="100%">
          <right>
@@ -252,7 +252,7 @@
       <tr>
            <td width="100%">
              <!-- find the subtree to process -->
-             <xsl:call-template name="chooseentity"/>
+             <xsl:call-template name="entityparam"/>
           </td>
       </tr>
    </xsl:template>
@@ -268,7 +268,7 @@
       <tr>
            <td width="100%">
              <!-- find the subtree to process -->
-             <xsl:call-template name="chooseentity"/>
+             <xsl:call-template name="entityparam"/>
           </td>
       </tr>
    </xsl:template>
@@ -284,13 +284,249 @@
       <tr>
            <td width="100%">
              <!-- find the subtree to process -->
-             <xsl:call-template name="chooseentity"/>
+             <xsl:call-template name="entityparam"/>
           </td>
       </tr>
    </xsl:template>
 
 
-   <xsl:template name="chooseentity">
+   <xsl:template name="entityparam">
+     <xsl:choose>
+      <xsl:when test="$entitytype=''">
+	<xsl:variable name="dataTableCount" select="0"/>
+        <xsl:variable name="spatialRasterCount" select="0"/>
+        <xsl:variable name="spatialVectorCount" select="0"/>
+        <xsl:variable name="storedProcedureCount" select="0"/>
+        <xsl:variable name="viewCount" select="0"/>
+        <xsl:variable name="otherEntityCount" select="0"/>
+        <xsl:for-each select="dataTable|spatialRaster|spatialVector|storedProcedure|view|otherEntity">
+
+        <xsl:if test="'dataTable' = name()">
+           <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="dataTableCount">
+            <xsl:for-each select="../dataTable">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+           <xsl:if test="position() = $entityindex">
+             <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'dataTable'"/>
+                    <xsl:with-param name="entityindex" select="$dataTableCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'dataTable'"/>
+                    <xsl:with-param name="entityindex" select="$dataTableCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+ 		</xsl:choose>
+           </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="'spatialRaster' = name()">
+          <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="spatialRasterCount">
+            <xsl:for-each select="../spatialRaster">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+            <xsl:if test="position() = $entityindex">
+           <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'spatialRaster'"/>
+                    <xsl:with-param name="entityindex" select="$spatialRasterCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'spatialRaster'"/>
+                    <xsl:with-param name="entityindex" select="$spatialRasterCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+ 		</xsl:choose>
+            </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="'spatialVector' = name()">
+          <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="spatialVectorCount">
+            <xsl:for-each select="../spatialVector">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+           <xsl:if test="position() = $entityindex">
+             <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'spatialVector'"/>
+                    <xsl:with-param name="entityindex" select="$spatialVectorCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'spatialVector'"/>
+                    <xsl:with-param name="entityindex" select="$spatialVectorCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+ 		</xsl:choose>
+           </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="'storedProcedure' = name()">
+          <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="storedProcedureCount">
+            <xsl:for-each select="../storedProcedure">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+           <xsl:if test="position() = $entityindex">
+             <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'storedProcedure'"/>
+                    <xsl:with-param name="entityindex" select="$storedProcedureCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'storedProcedure'"/>
+                    <xsl:with-param name="entityindex" select="$storedProcedureCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+              </xsl:choose>
+           </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="'view' = name()">
+          <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="viewCount">
+            <xsl:for-each select="../view">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+           <xsl:if test="position() = $entityindex">
+            <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'view'"/>
+                    <xsl:with-param name="entityindex" select="$viewCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'view'"/>
+                    <xsl:with-param name="entityindex" select="$viewCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+ 		</xsl:choose>
+            </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="'otherEntityTable' = name()">
+          <xsl:variable name="currentNode" select="."/>
+           <xsl:variable name="otherEntityCount">
+            <xsl:for-each select="../otherEntity">
+    	      <xsl:if test=". = $currentNode">
+                <xsl:value-of select="position()"/>
+              </xsl:if>
+            </xsl:for-each>
+	   </xsl:variable>
+           <xsl:if test="position() = $entityindex">
+            <xsl:choose>
+               <xsl:when test="$displaymodule='attributedetail'">
+                 <xsl:for-each select="attributeList">
+                   <xsl:call-template name="singleattribute">
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="docid" select="$docid"/>
+                    <xsl:with-param name="entitytype" select="'otherEntity'"/>
+                    <xsl:with-param name="entityindex" select="$otherEntityCount"/>
+                   </xsl:call-template>
+                 </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:for-each select="../.">
+                   <xsl:call-template name="chooseentity">
+                    <xsl:with-param name="entitytype" select="'otherEntity'"/>
+                    <xsl:with-param name="entityindex" select="$otherEntityCount"/>
+                   </xsl:call-template>
+                  </xsl:for-each>
+                  </xsl:otherwise>
+ 		</xsl:choose>
+             </xsl:if>
+        </xsl:if>
+       </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:choose>
+           <xsl:when test="$displaymodule='attributedetail'">
+            <xsl:for-each select="attributeList">
+             <xsl:call-template name="singleattribute">
+               <xsl:with-param name="attributeindex" select="$attributeindex"/>
+               <xsl:with-param name="docid" select="$docid"/>
+               <xsl:with-param name="entitytype" select="$entitytype"/>
+               <xsl:with-param name="entityindex" select="$entityindex"/>
+             </xsl:call-template>
+            </xsl:for-each>
+           </xsl:when>
+           <xsl:otherwise>
+             <xsl:call-template name="chooseentity">
+               <xsl:with-param name="entitytype" select="$entitytype"/>
+               <xsl:with-param name="entityindex" select="$entityindex"/>
+             </xsl:call-template>
+           </xsl:otherwise>
+ 	 </xsl:choose>
+       </xsl:otherwise>
+     </xsl:choose>
+   </xsl:template>
+
+
+   <xsl:template name="chooseentity" match='dataset'>
+      <xsl:param name="entityindex"/>
+      <xsl:param name="entitytype"/>
            <xsl:if test="$entitytype='dataTable'">
               <xsl:for-each select="dataTable">
                   <xsl:if test="position()=$entityindex">
@@ -801,7 +1037,7 @@
           <xsl:call-template name="emlinlinedata"/>
        </xsl:when>
        <xsl:otherwise>
-        <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <tr>
           <td colspan="2">
              <right>
@@ -838,7 +1074,7 @@
           <xsl:call-template name="emlinlinedata"/>
        </xsl:when>
        <xsl:otherwise>
-          <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
           <tr>
             <td colspan="2">
              <right>
@@ -874,7 +1110,7 @@
           <xsl:call-template name="emlinlinedata"/>
        </xsl:when>
        <xsl:otherwise>
-        <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+        <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
          <tr>
           <td colspan="2">
              <right>
@@ -905,7 +1141,7 @@
    <xsl:template name="additionalmetadataURL">
      <xsl:param name="index"/>
      <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$linkedHeaderStyle}">
+       <tr><td width="100%" class="{$subHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$index"/></xsl:attribute>
               <b>Additional Metadata</b></a>
            </td>
@@ -918,7 +1154,7 @@
    <xsl:template name="xml">
      <xsl:param name="index"/>
      <table xsl:use-attribute-sets="cellspacing"  class="default" width="100%">
-       <tr><td width="100%" class="{$linkedHeaderStyle}">
+       <tr><td width="100%" class="{$subHeaderStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
               <b>Original XML File</b></a>
            </td>

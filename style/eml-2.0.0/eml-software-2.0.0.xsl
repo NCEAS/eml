@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
   <xsl:template name="software">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -107,7 +107,7 @@
               <xsl:with-param name="softwaresubHeaderStyle" select="$softwaresubHeaderStyle"/>
         </xsl:call-template>
   </xsl:template>
-  
+
   <xsl:template name="implementation">
      <xsl:param name="softwarefirstColStyle"/>
      <xsl:param name="softwaresubHeaderStyle"/>
@@ -233,7 +233,7 @@
         </xsl:for-each>
      </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="dependency">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
@@ -261,7 +261,7 @@
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="licenseURL">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:for-each select="licenseURL">
@@ -270,7 +270,7 @@
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="license">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:for-each select="license">
@@ -279,7 +279,7 @@
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="softwareAccess">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
@@ -293,7 +293,7 @@
        </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="softwareProject">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
@@ -309,6 +309,6 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-  
-  
+
+
 </xsl:stylesheet>

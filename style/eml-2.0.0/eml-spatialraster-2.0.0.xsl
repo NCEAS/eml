@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:47:00 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2003-11-20 22:31:20 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,17 +30,17 @@
   * suitable for rendering with modern web browsers.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
- 
+
 
   <xsl:output method="html" encoding="iso-8859-1"/>
   <!-- This module is for datatable module-->
-  
+
   <xsl:template name="spatialRaster">
       <xsl:param name="spatialrasterfirstColStyle"/>
       <xsl:param name="spatialrastersubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -48,7 +48,7 @@
           <xsl:for-each select="$references">
             <xsl:call-template name="spatialRastercommon">
              <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
-             <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>  
+             <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>
              <xsl:with-param name="docid" select="$docid"/>
              <xsl:with-param name="entityindex" select="$entityindex"/>
             </xsl:call-template>
@@ -57,7 +57,7 @@
         <xsl:otherwise>
            <xsl:call-template name="spatialRastercommon">
              <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
-             <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>  
+             <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>
              <xsl:with-param name="docid" select="$docid"/>
              <xsl:with-param name="entityindex" select="$entityindex"/>
             </xsl:call-template>
@@ -65,7 +65,7 @@
       </xsl:choose>
       </table>
   </xsl:template>
-  
+
   <xsl:template name="spatialRastercommon">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:param name="spatialrastersubHeaderStyle"/>
@@ -280,14 +280,16 @@
         <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
       </xsl:call-template>
     </xsl:for-each>
+    <xsl:if test="$withAttributes='1'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="spatialRasterAttributeList">
         <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
-        <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>  
+        <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>
         <xsl:with-param name="docid" select="$docid"/>
         <xsl:with-param name="entityindex" select="$entityindex"/>
       </xsl:call-template>
     </xsl:for-each>
+    </xsl:if>
     <!-- Here to display distribution info-->
     <xsl:for-each select="physical">
        <xsl:call-template name="spatialRasterShowDistribution">
@@ -299,7 +301,7 @@
        </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
-  
+
   <!--****************************************************
        spatial reference
       ****************************************************-->
@@ -321,10 +323,10 @@
             </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
-    
+
   </xsl:template>
-  
-  
+
+
   <xsl:template name="spatialReferenceCommon">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:for-each select="horizCoordSysName">
@@ -364,13 +366,13 @@
             Projection in Geo Coord. System:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="parameter">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           <xsl:value-of select="./@name"/>:
                          </td>
                          <td width="{$secondColWidth}">
-                             <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+                             <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                                 <tr>
                                     <td width="{$firstColWidth}" class="{$secondColStyle}">
                                       <xsl:value-of select="./@value"/>
@@ -402,7 +404,7 @@
             Altitude System Definition:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="altitudeDatumName">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           Datum:
@@ -448,7 +450,7 @@
             Depth System Definition:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="depthDatumName">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           Datum:
@@ -490,10 +492,10 @@
        </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="geogCoordSysType">
    <xsl:param name="spatialrasterfirstColStyle"/>
-   <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+   <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
       <xsl:for-each select="datum">
         <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
              Datum:
@@ -508,7 +510,7 @@
              Spheroid:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                   <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                        Name:
                        </td>
@@ -531,7 +533,7 @@
                        </td>
                    </tr>
                </table>
-              
+
             </td>
         </tr>
       </xsl:for-each>
@@ -540,7 +542,7 @@
              Prime Meridian:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                   <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                        Name:
                        </td>
@@ -567,10 +569,10 @@
               <xsl:value-of select="./@name"/>
             </td>
         </tr>
-      </xsl:for-each> 
+      </xsl:for-each>
    </table>
   </xsl:template>
-  
+
   <!--*******************************************************
        georeferenceinfo
       *******************************************************-->
@@ -581,7 +583,7 @@
             Corner Point:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="corner">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           Corner:
@@ -627,7 +629,7 @@
             Control Point:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="column">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           Column Location:
@@ -682,7 +684,7 @@
             Bilinear Fit:
             </td>
             <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                  <xsl:for-each select="xIntercept">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                           X Intercept:
@@ -724,7 +726,7 @@
        </tr>
     </xsl:for-each>
  </xsl:template>
- 
+
  <!--********************************************************
      data quality
      ********************************************************-->
@@ -744,7 +746,7 @@
              Quantitative Report:
             </td>
             <td width="{$secondColWidth}">
-                <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+                <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
                   <xsl:for-each select="quantitativeAccuracyReport">
                      <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
                          Accuracy Value:
@@ -766,7 +768,7 @@
        </tr>
    </xsl:if>
  </xsl:template>
- 
+
  <!--********************************************************
      imageDescription
      *********************************************************-->
@@ -901,13 +903,13 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
-  
+
   <!--***********************************************
       band description
       ************************************************-->
   <xsl:template name="bandDescription">
     <xsl:param name="spatialrasterfirstColStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="tabledefault" width="100%">
+    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
       <xsl:for-each select="sequenceIdentifier">
         <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
             Sequence Identifier:
@@ -955,7 +957,7 @@
      </xsl:for-each>
     </table>
   </xsl:template>
- 
+
   <xsl:template name="spatialRasterShowDistribution">
      <xsl:param name="spatialrasterfirstColStyle"/>
      <xsl:param name="spatialrastersubHeaderStyle"/>
@@ -964,7 +966,7 @@
      <xsl:param name="entitytype">spatialRaster</xsl:param>
      <xsl:param name="entityindex"/>
      <xsl:param name="physicalindex"/>
-     
+
     <xsl:for-each select="distribution">
       <tr><td colspan="2">
         <xsl:call-template name="distribution">
@@ -980,8 +982,8 @@
       </td></tr>
     </xsl:for-each>
   </xsl:template>
-  
-  
+
+
   <xsl:template name="spatialRasterAttributeList">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:param name="spatialrastersubHeaderStyle"/>
@@ -1000,5 +1002,5 @@
        </td>
     </tr>
   </xsl:template>
-  
+
 </xsl:stylesheet>
