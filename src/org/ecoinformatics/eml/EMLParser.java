@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-25 22:56:20 $'
- * '$Revision: 1.5 $'
+ *     '$Date: 2002-09-30 19:54:09 $'
+ * '$Revision: 1.6 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ public class EMLParser
   {
     this(xml, new File("@config.file@"));
   }
-  
+
   /**
    * parses an eml file
    * @param xml the eml file to parse
@@ -255,21 +255,6 @@ public class EMLParser
 
           //get the parent of the id node
           Node parent = id.getParentNode();
-          //create a temporary document fragment
-          Document tempdoc = buildDocumentFromPath(reverseEngineerPath(parent));
-          //parse the fragment to see if the selector matches it
-          Node xpathparent = XPathAPI.selectSingleNode(tempdoc,
-                                                       referencedKey.selector);
-
-          if(xpathparent == null)
-          {
-            throw new EMLParserException("Error in xml document. This EML " +
-            "instance is invalid because the reference in " +
-            parent.getNodeName() + " is an " +
-            "invalid tag.  It should be included in one of the paths listed " +
-            "in the "+ referencedKey.name +
-            " if you want it to have references.");
-          }
 
           NamedNodeMap parentAtts = parent.getAttributes();
           //make sure that the reference doesn't have an id
@@ -288,7 +273,7 @@ public class EMLParser
       catch(Exception e)
       {
         throw new EMLParserException("Error processing keyrefs: " +
-                                     keyrefs[i].selector + " : " + 
+                                     keyrefs[i].selector + " : " +
                                      e.getMessage());
       }
     }
@@ -499,7 +484,7 @@ public class EMLParser
       return s;
     }
   }
-  
+
   /**
    * provides a command line interface.
    */
@@ -512,18 +497,18 @@ public class EMLParser
     System.out.println("schema, use SAXValidate or another xml parser.");
     System.out.println("Usage: java org.ecoinformatics.eml.EMLParser <eml file> [<config file>]");
     System.out.println("-----------------------------------------------------------------------");
-    
+
     if(args.length > 2)
     {
       System.out.println("Invalid number of arguments.");
     }
-    
+
     String configfile = "";
     if(args.length == 2)
     {
       configfile = args[1];
     }
-    
+
     try
     {
       if(configfile.equals(""))

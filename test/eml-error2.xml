@@ -36,31 +36,13 @@
           <name>databaseName</name>
           <definition>The name of the database or catalog</definition>
         </parameterDefinition>
-        <parameterDefinition>
-          <name>owner</name>
-          <definition>The owner catalog</definition>
-        <defaultValue>dbo</defaultValue>
-        </parameterDefinition>
       </connectionDefinition>
       </online>
     </distribution>
     <distribution>
       <online>
         <connection>
-          <!--this field has a valid reference, but the reference is not 
-              setup correctly in the config.xml file so this file is invalid
-          -->
-          <connectionDefinition>
-            <references>23445</references>
-          </connectionDefinition>
-          <parameter>
-            <name>databaseName</name>
-            <value>landuse95</value>
-          </parameter>
-          <parameter>
-            <name>owner</name>
-            <value>sde</value>
-          </parameter>
+          <references>23445</references>
         </connection>
       </online>
     </distribution>

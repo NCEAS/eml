@@ -6,8 +6,8 @@
  *    Release: @release@
  *
  *   '$Author: berkley $'
- *     '$Date: 2002-09-25 22:08:51 $'
- * '$Revision: 1.3 $'
+ *     '$Date: 2002-09-30 19:54:09 $'
+ * '$Revision: 1.4 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ public class EMLParserTest extends TestCase
   /** Establish a testing framework by initializing appropriate objects  */
   public void setUp()
   {
-    
+
   }
 
   /** Release any objects after tests are complete  */
@@ -94,7 +94,7 @@ public class EMLParserTest extends TestCase
   {
     assertTrue(true);
   }
-  
+
   public void testParse()
   {
     try
@@ -106,7 +106,7 @@ public class EMLParserTest extends TestCase
     {
       fail("Error.  This file should have parsed correctly: " + e.getMessage());
     }
-    
+
     try
     {
       File f = new File(ERROR1);
@@ -116,28 +116,11 @@ public class EMLParserTest extends TestCase
     catch(Exception e)
     {
       //System.out.println(e.getMessage());
-      assertTrue(e.getMessage().equals("Error running xpath expression: " + 
-        "//dataset/creator|//dataset/contact : Error in xml document.  " +
+      assertTrue(e.getMessage().indexOf("Error in xml document.  " +
         "This EML document is not valid because the id 23445 occurs more " +
-        "than once.  IDs must be unique."));
+        "than once.  IDs must be unique.") != -1);
     }
-    
-    try
-    {
-      File f = new File(ERROR2);
-      emlp = new EMLParser(f);
-      fail("Error 2. An EMLParserException should have been thrown.");
-    }
-    catch(Exception e)
-    {
-      //System.out.println(e.getMessage());
-      assertTrue(e.getMessage().equals("Error processing keyrefs: " +
-        "//references : Error in xml document. This EML instance is " +
-        "invalid because the reference in connectionDefinition is an " +
-        "invalid tag.  It should be included in one of the paths listed in " +
-        "the identifierKey if you want it to have references."));
-    }
-    
+
     try
     {
       File f = new File(ERROR3);
@@ -152,7 +135,7 @@ public class EMLParserTest extends TestCase
         "invalid because referenced id 23447 does not exist in the " +
         "given keys."));
     }
-    
+
     try
     {
       File f = new File(ERROR4);
