@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: bojilova $'
-          '$Date: 2001-02-20 23:52:58 $'
-      '$Revision: 1.6 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-21 16:27:49 $'
+      '$Revision: 1.7 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,10 +41,10 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Attribute descriptors
+          Attribute descriptors
         </tooltip>
         <summary>
-	  Container of attribute descriptors of all attributes in a dataset.
+          Container of attribute descriptors of all attributes in a dataset.
         </summary>
         <description>
            Eml-attribute element represents a list of all attributes in a dataset.
@@ -63,10 +63,10 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	        File identifier
+                File identifier
               </tooltip>
               <summary>
-	        File identifier of the metadata document.
+                File identifier of the metadata document.
               </summary>
               <description>
                 File identifier of the metadata document.
@@ -85,10 +85,10 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	        Attribute descriptor
+                Attribute descriptor
               </tooltip>
               <summary>
-	        Descriptor of an attribute in the dataset.
+                Descriptor of an attribute in the dataset.
               </summary>
               <description>
                 Attribute element is a descriptor of an attribute in the dataset
@@ -111,15 +111,15 @@
   <xs:element name="attribute">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="attributeName"/>	
-        <xs:element ref="attributeDefinition"/>	
-        <xs:element ref="unit"/>	
+        <xs:element ref="attributeName"/>        
+        <xs:element ref="attributeDefinition"/>        
+        <xs:element ref="unit"/>        
         <xs:element ref="storageType"/>
-        <xs:element ref="codeDefinition"/>	
+        <xs:element ref="codeDefinition"/>        
         <xs:element ref="numericRange"/>
-        <xs:element ref="missingValueCode"/>	
-        <xs:element ref="precision"/>	
-        <xs:element ref="fieldFormat"/>	
+        <xs:element ref="missingValueCode"/>        
+        <xs:element ref="precision"/>        
+        <xs:element ref="fieldFormat"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -129,13 +129,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Attribute name
+          Attribute name
         </tooltip>
         <summary>
-	  Attribute name for identification
+          Attribute name for identification
         </summary>
         <description>
-	  This element specifies name of the attribute(field) in the dataset.
+          This element specifies name of the attribute(field) in the dataset.
         </description>
         <example>
         </example>
@@ -151,13 +151,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Attribute definition
+          Attribute definition
         </tooltip>
         <summary>
-	  Precise definition of attribute in the dataset
+          Precise definition of attribute in the dataset
         </summary>
         <description>
-	  This element gives precise definition of attribute in the dataset.
+          This element gives precise definition of attribute in the dataset.
         </description>
         <example>
         </example>
@@ -173,13 +173,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Unit of measurement
+          Unit of measurement
         </tooltip>
         <summary>
-	  Unit of measurement for data in the field
+          Unit of measurement for data in the field
         </summary>
         <description>
-	  This element specifies unit of measurement for data in the field.
+          This element specifies unit of measurement for data in the field.
         </description>
         <example>
         </example>
@@ -195,13 +195,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Storage type
+          Storage type
         </tooltip>
         <summary>
-	  Description of storage type from data in the field
+          Description of storage type from data in the field
         </summary>
         <description>
-	  This element describes the storage type for data in the field like:
+          This element describes the storage type for data in the field like:
           integer, floating point, character, string.
         </description>
         <example>
@@ -219,13 +219,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Code definition
+          Code definition
         </tooltip>
         <summary>
-	  Description of any codes associated with the attribute
+          Description of any codes associated with the attribute
         </summary>
         <description>
-	  This element describes a code associated with the attribute.
+          This element describes a code associated with the attribute.
         </description>
         <example>
         </example>
@@ -241,13 +241,13 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Code
+                  Code
               </tooltip>
               <summary>
-         	    Code associated with the attribute
+                     Code associated with the attribute
               </summary>
               <description>
-       	    This element specifies a code associated with the attribute.
+                   This element specifies a code associated with the attribute.
               </description>
               <example>
               </example>
@@ -256,19 +256,19 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
         <xs:element name="definition" type="xs:string"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Code definition
+                  Code definition
               </tooltip>
               <summary>
-         	    Description of the code associated with the attribute
+                     Description of the code associated with the attribute
               </summary>
               <description>
-       	    This element describes the code associated with the attribute.
+                   This element describes the code associated with the attribute.
               </description>
               <example>
               </example>
@@ -287,13 +287,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Numeric range
+          Numeric range
         </tooltip>
         <summary>
-	  Numeric range of attribute
+          Numeric range of attribute
         </summary>
         <description>
-	  This element specifies the minimum and maximum value range
+          This element specifies the minimum and maximum value range
           of numeric attribute.
         </description>
         <example>
@@ -310,13 +310,13 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Minimum numeric range
+                  Minimum numeric range
               </tooltip>
               <summary>
-         	    Minimum numeric range of attribute
+                     Minimum numeric range of attribute
               </summary>
               <description>
-       	    This element specifies the minimum value range
+                   This element specifies the minimum value range
                 of numeric attribute.
               </description>
               <example>
@@ -326,19 +326,19 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
         <xs:element name="maximum" type="xs:string"
                     minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Maximum numeric range
+                  Maximum numeric range
               </tooltip>
               <summary>
-         	    Maximum numeric range of attribute
+                     Maximum numeric range of attribute
               </summary>
               <description>
-       	    This element specifies the maximum value range
+                   This element specifies the maximum value range
                 of numeric attribute.
               </description>
               <example>
@@ -358,13 +358,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Character for missing value
+          Character for missing value
         </tooltip>
         <summary>
-	  Character for missing value in the data of the field
+          Character for missing value in the data of the field
         </summary>
         <description>
-	  This element is to specify missing value in the data
+          This element is to specify missing value in the data
           of the field.
         </description>
         <example>
@@ -381,13 +381,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Precision
+          Precision
         </tooltip>
         <summary>
-	  Number of significat digits after the floating point.
+          Number of significat digits after the floating point.
         </summary>
         <description>
-	  If data of that field are of floating point storage type
+          If data of that field are of floating point storage type
           this element specifies the number of significat digits
           after the floating point.
         </description>
@@ -406,10 +406,10 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Field format
+          Field format
         </tooltip>
         <summary>
-	  Data format of the field(attribute) in the dataset
+          Data format of the field(attribute) in the dataset
         </summary>
         <description>
           Data sets are generally classified as fixedWidth format or
@@ -462,8 +462,8 @@
     </xs:annotation>
     <xs:complexType>
       <xs:choice minOccurs="1" maxOccurs="1">
-        <xs:element ref="attributeWidth" />	
-        <xs:element ref="fixedWidth" />	
+        <xs:element ref="attributeWidth" />        
+        <xs:element ref="fixedWidth" />        
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -472,10 +472,10 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Attribute width
+          Attribute width
         </tooltip>
         <summary>
-	  AttributeWidth specification for variable field length.
+          AttributeWidth specification for variable field length.
         </summary>
         <description>
           AttributeWidth fields can vary in their field length, and the end of the
@@ -520,14 +520,14 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Attribute delimiter
+                  Attribute delimiter
               </tooltip>
               <summary>
-         	    The end of the field is delimited by a special character
+                     The end of the field is delimited by a special character
                 called a field delimiter.
               </summary>
               <description>
-       	    AttributeWidth fields can vary in their field length,
+                   AttributeWidth fields can vary in their field length,
                 thus the end of the field is delimited by a special character
                 called a field delimiter.
               </description>
@@ -543,15 +543,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-	
+        
   <xs:element name="fixedWidth">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Fixed width
+          Fixed width
         </tooltip>
         <summary>
-	  FixedWidth specification for fixed field length.
+          FixedWidth specification for fixed field length.
         </summary>
         <description>
           FixedWidth fields have a set length, and so the end of
@@ -596,10 +596,10 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Field width
+                  Field width
               </tooltip>
               <summary>
-         	    FieldWidth specification for fixed field length.
+                     FieldWidth specification for fixed field length.
               </summary>
               <description>
                 FixedWidth fields have a set length, thus the end of

@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: bojilova $'
-          '$Date: 2001-02-20 23:52:58 $'
-      '$Revision: 1.7 $'
+        '$Author: cjones $'
+          '$Date: 2001-03-21 16:27:49 $'
+      '$Revision: 1.8 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,13 +42,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity descriptors
+          Entity descriptors
         </tooltip>
         <summary>
-	  Container of entity descriptors of all entities in a dataset.
+          Container of entity descriptors of all entities in a dataset.
         </summary>
         <description>
-	  Eml-entity element contains a list of all entities in a dataset.
+          Eml-entity element contains a list of all entities in a dataset.
         </description>
         <example>
         </example>
@@ -64,10 +64,10 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	        File identifier
+                File identifier
               </tooltip>
               <summary>
-	        File identifier of the metadata document.
+                File identifier of the metadata document.
               </summary>
               <description>
                 File identifier of the metadata document.
@@ -86,10 +86,10 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	        Entity descriptor
+                Entity descriptor
               </tooltip>
               <summary>
-	        Descriptor of one entity in the dataset.
+                Descriptor of one entity in the dataset.
               </summary>
               <description>
                 Entity element is a descriptor of one entity in the dataset
@@ -114,25 +114,25 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="entityName" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1"/>        
         <xs:element ref="entitySize"
-                    minOccurs="0" maxOccurs="1"/>	
+                    minOccurs="0" maxOccurs="1"/>        
         <xs:element ref="format"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1"/>        
         <xs:element ref="orientation"
                     minOccurs="0" maxOccurs="1"/>
         <xs:element name="headerLines" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>	
+                    minOccurs="0" maxOccurs="1"/>        
         <xs:element ref="caseSensitive"
                     minOccurs="0" maxOccurs="1"/>
         <xs:element ref="geographicCoverage"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+                    minOccurs="0" maxOccurs="unbounded"/>        
         <xs:element ref="temporalCoverage"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+                    minOccurs="0" maxOccurs="unbounded"/>        
         <xs:element ref="authentication" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+                    minOccurs="0" maxOccurs="unbounded"/>        
         <xs:element ref="dataProblem"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+                    minOccurs="0" maxOccurs="unbounded"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -142,13 +142,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity name
+          Entity name
         </tooltip>
         <summary>
-	  Entity name specifier
+          Entity name specifier
         </summary>
         <description>
-	  The name identifies the entity in the dataset: file name, 
+          The name identifies the entity in the dataset: file name, 
           name of database table, etc.
         </description>
         <example>
@@ -165,13 +165,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity size
+          Entity size
         </tooltip>
         <summary>
-	  Describes the physical size of the entity.
+          Describes the physical size of the entity.
         </summary>
         <description>
-	  This element contains information of the physical size 
+          This element contains information of the physical size 
           of the entity within amount and unit descriptors.
         </description>
         <example>
@@ -189,13 +189,13 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-        	    Entity size amount
+                    Entity size amount
               </tooltip>
               <summary>
-	          Amount of physical size of entity
+                  Amount of physical size of entity
               </summary>
               <description>
-	          This element gives the amount of physical size 
+                  This element gives the amount of physical size 
                 of the entity.
               </description>
               <example>
@@ -206,19 +206,19 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
         <xs:element name="unit" type="xs:strint"
                     minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-        	    Unit of measurement
+                    Unit of measurement
               </tooltip>
               <summary>
-	          Unit of measurement of the amount of entity size
+                  Unit of measurement of the amount of entity size
               </summary>
               <description>
-	          This element gives the unit of measurement for the 
+                  This element gives the unit of measurement for the 
                 amount of physical size of entity.
               </description>
               <example>
@@ -229,23 +229,23 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-	
+        
   <xs:element name="format"
                     minOccurs="1" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity's format
+          Entity's format
         </tooltip>
         <summary>
-	  Contains information of the entity's format.
+          Contains information of the entity's format.
         </summary>
         <description>
-	  This element contains information of the entity's format.
+          This element contains information of the entity's format.
           Entity's format can be specified by child element as
           compressed, encoded, ASCII or binary.
         </description>
@@ -270,13 +270,13 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-        	    Entity's compressed format type
+                    Entity's compressed format type
               </tooltip>
               <summary>
-	          Entity's compressed format type descriptor
+                  Entity's compressed format type descriptor
               </summary>
               <description>
-	          This element describes the entity's compressed format type.
+                  This element describes the entity's compressed format type.
               </description>
               <example>
               </example>
@@ -290,13 +290,13 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-        	    Entity's encoded format type
+                    Entity's encoded format type
               </tooltip>
               <summary>
-	          Entity's encoded format type descriptor
+                  Entity's encoded format type descriptor
               </summary>
               <description>
-	          This element describes the entity's encoded format type.
+                  This element describes the entity's encoded format type.
               </description>
               <example>
               </example>
@@ -306,7 +306,7 @@
             </xs:appInfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="baseEntityType" />	
+        <xs:element ref="baseEntityType" />        
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -315,13 +315,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity's base format type
+          Entity's base format type
         </tooltip>
         <summary>
-	  Contains information of the entity's base format type.
+          Contains information of the entity's base format type.
         </summary>
         <description>
-	  This element contains information of the entity's base
+          This element contains information of the entity's base
           format type: ASCII or binary.
         </description>
         <example>
@@ -334,18 +334,18 @@
     </xs:annotation>
     <xs:complexType>
       <xs:choice minOccurs="1" maxOccurs="1">
-        <xs:element ref="ascii" />	
+        <xs:element ref="ascii" />        
         <xs:element name="binary" nullable="true">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-        	    Entity's binary type
+                    Entity's binary type
               </tooltip>
               <summary>
-	          Specification of the entity's binary format type.
+                  Specification of the entity's binary format type.
               </summary>
               <description>
-	          This element assures that the base file type of the
+                  This element assures that the base file type of the
                 entity is binary.
               </description>
               <example>
@@ -364,13 +364,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity's ASCII type
+          Entity's ASCII type
         </tooltip>
         <summary>
-	  Specification of the entity's ASCII format type.
+          Specification of the entity's ASCII format type.
         </summary>
         <description>
-	  This element assures that the base file type of the
+          This element assures that the base file type of the
           entity is ASCII and specifies the record delimiter 
           in the file in this case.
         </description>
@@ -394,13 +394,13 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Entity's record delimiter
+                Entity's record delimiter
             </tooltip>
             <summary>
-	        Specification of entity's record delimiter.
+                Specification of entity's record delimiter.
             </summary>
             <description>
-	        This element specifies entity's record delimiter 
+                This element specifies entity's record delimiter 
               when the base file type is ASCII.
             </description>
             <example>
@@ -417,7 +417,7 @@
             </lineage>
           </xs:appInfo>
         </xs:annotation>
-      </xs:element>	
+      </xs:element>        
     </xs:complexType>
   </xs:element>
 
@@ -426,13 +426,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Entity's record orientation
+          Entity's record orientation
         </tooltip>
         <summary>
-	  Specification of the entity's record orientation.
+          Specification of the entity's record orientation.
         </summary>
         <description>
-	  This element contains specification of the entity's
+          This element contains specification of the entity's
           record orientation by element's attribute "columnorrow".
         </description>
         <example>
@@ -449,13 +449,13 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Attribute of orientation element
+                Attribute of orientation element
             </tooltip>
             <summary>
-	        Specification of the entity's record orientation.
+                Specification of the entity's record orientation.
             </summary>
             <description>
-	        This attribute specifies the entity's
+                This attribute specifies the entity's
               record orientation.
             </description>
             <example>
@@ -480,13 +480,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Header lines
+          Header lines
         </tooltip>
         <summary>
-	  Header lines in the entity
+          Header lines in the entity
         </summary>
         <description>
-	  Number of header lines or information that prepares data.
+          Number of header lines or information that prepares data.
         </description>
         <example>
         </example>
@@ -502,13 +502,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Data case sensitiveness
+          Data case sensitiveness
         </tooltip>
         <summary>
-	  Specification of text case sensitiveness in the entity.
+          Specification of text case sensitiveness in the entity.
         </summary>
         <description>
-	  This element contains specification of text
+          This element contains specification of text
           case sensitiveness of the data in the entity. It is 
           specified from element's attribute "yesorno".
         </description>
@@ -526,13 +526,13 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Attribute of caseSensitive element
+                Attribute of caseSensitive element
             </tooltip>
             <summary>
-	        Specification of text case sensitiveness in the entity.
+                Specification of text case sensitiveness in the entity.
             </summary>
             <description>
-	        This attribute specifies text case sensitiveness of entity's
+                This attribute specifies text case sensitiveness of entity's
               data.
             </description>
             <example>
@@ -557,14 +557,14 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Geographic coverage
+          Geographic coverage
         </tooltip>
         <summary>
-	  Description of the geographic area which data are collected
+          Description of the geographic area which data are collected
           in the entity.
         </summary>
         <description>
-	  This element describes the geographic area which data are 
+          This element describes the geographic area which data are 
           collected in the entity: descriptive paragraph of text or
           Cartesian coordinates of the area.
         </description>
@@ -582,14 +582,14 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Paragraph of text
+                  Paragraph of text
               </tooltip>
               <summary>
-	          Paragraph of text describing the geographic area
+                  Paragraph of text describing the geographic area
                 which data are collected in the entity.
               </summary>
               <description>
-	          This element describes the geographic area which data are 
+                  This element describes the geographic area which data are 
                 collected in the entity.
               </description>
               <example>
@@ -599,25 +599,25 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
         <xs:element ref="coordinates"
-                    minOccurs="0" maxOccurs="unbounded"/>	
+                    minOccurs="0" maxOccurs="unbounded"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-	
+        
   <xs:element name="coordinates"
                     minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Cartesian coordinates
+          Cartesian coordinates
         </tooltip>
         <summary>
-	  Cartesian coordinates for the geographic area.
+          Cartesian coordinates for the geographic area.
         </summary>
         <description>
-	  This element specifies the Cartesian coordinates: lattitude
+          This element specifies the Cartesian coordinates: lattitude
           and longitude of the geographic area covered by the 
           entity's data. 
         </description>
@@ -630,8 +630,8 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="lattitude" minOccurs="1" maxOccurs="1"/>	
-        <xs:element ref="longitude" minOccurs="1" maxOccurs="1"/>	
+        <xs:element ref="lattitude" minOccurs="1" maxOccurs="1"/>        
+        <xs:element ref="longitude" minOccurs="1" maxOccurs="1"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -641,13 +641,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Lattitude coordinates
+          Lattitude coordinates
         </tooltip>
         <summary>
-	  Lattitude coordinates for the geographic area.
+          Lattitude coordinates for the geographic area.
         </summary>
         <description>
-	  This element specifies the lattitude coordinates
+          This element specifies the lattitude coordinates
           of the geographic area covered by the entity's data. 
           The element's attribute "direction" should specify
           the coordinate's direction to "north" or "south".
@@ -664,13 +664,13 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Attribute of lattitude element
+                Attribute of lattitude element
             </tooltip>
             <summary>
-	        Specification of lattitude direction.
+                Specification of lattitude direction.
             </summary>
             <description>
-	        This attribute specifies lattitude direction of 
+                This attribute specifies lattitude direction of 
               the collected data. The attribute assertion is required.
             </description>
             <example>
@@ -694,13 +694,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Longitude coordinates
+          Longitude coordinates
         </tooltip>
         <summary>
-	  Longitude coordinates for the geographic area.
+          Longitude coordinates for the geographic area.
         </summary>
         <description>
-	  This element specifies the longitude coordinates
+          This element specifies the longitude coordinates
           of the geographic area covered by the entity's data. 
           The element's attribute "direction" should specify
           the coordinate's direction to "east" or "west".
@@ -717,13 +717,13 @@
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Attribute of longitude element
+                Attribute of longitude element
             </tooltip>
             <summary>
-	        Specification of longitude direction.
+                Specification of longitude direction.
             </summary>
             <description>
-	        This attribute specifies longitude direction of 
+                This attribute specifies longitude direction of 
               the collected data. The attribute assertion is required.
             </description>
             <example>
@@ -747,13 +747,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	    Temporal coverage
+            Temporal coverage
         </tooltip>
         <summary>
-	    Temporal coverage descriptor
+            Temporal coverage descriptor
         </summary>
         <description>
-	    This element specifies temporal coverage of the data
+            This element specifies temporal coverage of the data
           collected in the entity by specifing start and stop date.
         </description>
         <example>
@@ -769,13 +769,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	    Temporal coverage
+            Temporal coverage
         </tooltip>
         <summary>
-	    Temporal coverage descriptor.
+            Temporal coverage descriptor.
         </summary>
         <description>
-	    This element specifies temporal coverage by 
+            This element specifies temporal coverage by 
           start and stop date.
         </description>
         <example>
@@ -788,9 +788,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="startDate"
-                  minOccurs="1" maxOccurs="1"/>	
+                  minOccurs="1" maxOccurs="1"/>        
       <xs:element ref="stopDate"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
     </xs:sequence>
   </xs:complexType>
 
@@ -799,13 +799,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Start date
+          Start date
         </tooltip>
         <summary>
-	  Start date of the temporal coverage.
+          Start date of the temporal coverage.
         </summary>
         <description>
-	  This element specifies the start date of the temporal
+          This element specifies the start date of the temporal
           coverage.
         </description>
         <example>
@@ -818,7 +818,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="dateTime"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -828,13 +828,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Stop date
+          Stop date
         </tooltip>
         <summary>
-	  Stop date of the temporal coverage.
+          Stop date of the temporal coverage.
         </summary>
         <description>
-	  This element specifies the stop date of the temporal
+          This element specifies the stop date of the temporal
           coverage.
         </description>
         <example>
@@ -847,7 +847,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="dateTime"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -857,13 +857,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Date and time
+          Date and time
         </tooltip>
         <summary>
-	  Date and time as designated in ISO 8601
+          Date and time as designated in ISO 8601
         </summary>
         <description>
-	  This element specifies date and time as 
+          This element specifies date and time as 
           designated in ISO 8601. We can consider not to use "DateTime"
           type, but XML Schema's timeDuration instead.
         </description>
@@ -881,13 +881,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Date and time
+          Date and time
         </tooltip>
         <summary>
-	  Date and time as designated in ISO 8601
+          Date and time as designated in ISO 8601
         </summary>
         <description>
-	  This complex type specifies date and time as 
+          This complex type specifies date and time as 
           designated in ISO 8601. We can consider to drop this type,
           but to use XML Schema's timeDuration instead.
         </description>
@@ -901,21 +901,21 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="year" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="month" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="day" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="hour" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="minute" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="second" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="secondFraction" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
       <xs:element name="timeZoneDesignator" type="xs:string"
-                  minOccurs="0" maxOccurs="1"/>	
+                  minOccurs="0" maxOccurs="1"/>        
     </xs:sequence>
   </xs:complexType>
 
@@ -924,13 +924,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	    Authentication
+            Authentication
         </tooltip>
         <summary>
-	    Authentication descriptor
+            Authentication descriptor
         </summary>
         <description>
-	    This element describes authentication procedures or techniques.
+            This element describes authentication procedures or techniques.
         </description>
         <example>
         </example>
@@ -946,13 +946,13 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Data problem
+          Data problem
         </tooltip>
         <summary>
-	  Description of any data problems in the entity.
+          Description of any data problems in the entity.
         </summary>
         <description>
-	  This element describes any data problems in the entity:
+          This element describes any data problems in the entity:
           data anomalies or missing data.
         </description>
         <example>
@@ -969,14 +969,14 @@
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
-	          Paragraph of text
+                  Paragraph of text
               </tooltip>
               <summary>
-	          Paragraph of text describing any data problems
+                  Paragraph of text describing any data problems
                 in the entity.
               </summary>
               <description>
-	          This element describes any data problems
+                  This element describes any data problems
                 in the entity: data anomalies or missing data.
               </description>
               <example>
@@ -986,19 +986,19 @@
               </lineage>
             </xs:appInfo>
           </xs:annotation>
-        </xs:element>	
+        </xs:element>        
       </xs:sequence>
       <xs:attribute name="problemType" use="required" >
         <xs:annotation>
           <xs:appInfo>
             <tooltip>
-	        Attribute of dataProblem element
+                Attribute of dataProblem element
             </tooltip>
             <summary>
-	        Specification of data problem type.
+                Specification of data problem type.
             </summary>
             <description>
-	        This attribute specifies the type of data problem.
+                This attribute specifies the type of data problem.
               The attribute assertion is required.
             </description>
             <example>

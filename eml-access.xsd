@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
    
         '$Author: cjones $'
-          '$Date: 2001-02-19 09:57:20 $'
-      '$Revision: 1.11 $'
+          '$Date: 2001-03-21 16:27:49 $'
+      '$Revision: 1.12 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -340,22 +340,22 @@
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
-	  Access Rule
+          Access Rule
         </tooltip>
         <summary>
-	  Access Rules define the extent to which a user may access a resource.
+          Access Rules define the extent to which a user may access a resource.
         </summary>
         <description>
-	  The AccessRule type defines a list of users that are derived from a
-	  particular authentication system (such as an LDAP directory), whether
-	  the user or group is allowed or denied access, the extent of their
-	  access (write access, or only read access), and the duration or number
-	  of times that they may access the resource.
+          The AccessRule type defines a list of users that are derived from a
+          particular authentication system (such as an LDAP directory), whether
+          the user or group is allowed or denied access, the extent of their
+          access (write access, or only read access), and the duration or number
+          of times that they may access the resource.
         </description>
         <example>
         </example>
         <lineage>
-	  The AccessRule type was introduced into EML 2.0 Proposed
+          The AccessRule type was introduced into EML 2.0 Proposed
         </lineage>
       </xs:appInfo>
     </xs:annotation>
