@@ -14,10 +14,32 @@
     <xsl:param name="attb6ID"/>
     <xsl:variable name="attb6" select="document(concat($packageDir,$attb6ID))"/>
     <attributeList>
+      <!-- first handle case if there is NO attribute information (since it is required)     -->  
+      <xsl:if test="count($attb6/eml-attribute/attribute)=0">
+        <xsl:element name="attribute">
+          <xsl:element name="attributeName">
+            <xsl:value-of select="'N/A'"/>
+          </xsl:element>
+          <xsl:element name="attributeDefinition">
+            <xsl:value-of select="'N/A'"/>
+          </xsl:element>
+          <xsl:element name="measurementScale">
+             <xsl:element name="nominal">
+               <xsl:element name="nonNumericDomain">
+                 <xsl:element name="textDomain">
+                   <xsl:element name="definition">
+                     <xsl:value-of select="'not available'"/>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>  
+              </xsl:element>  
+          </xsl:element>
+        </xsl:element>
+      </xsl:if>
       <xsl:for-each select="$attb6/eml-attribute/attribute">
         <xsl:element name="attribute">
         
-          <xsl:element name="attributeName">
+          <xsl:element name="attributeName"> 
             <xsl:value-of select="./attributeName"/>
           </xsl:element>
           

@@ -201,28 +201,29 @@
           <xsl:element name="coverage">
             
             <xsl:if test="$dsb6/dataset/geographicCov!=''">            
-              <xsl:element name="geographicCoverage">
-                <xsl:for-each select="$dsb6/dataset/geographicCov">
+              <xsl:for-each select="$dsb6/dataset/geographicCov">
+                <xsl:element name="geographicCoverage">
                   <xsl:call-template name="geographicCoverage"/>
-                </xsl:for-each>
-              </xsl:element> 
+                </xsl:element> 
+              </xsl:for-each>
             </xsl:if>
 
             <xsl:if test="$dsb6/dataset/temporalCov!=''">
-              <xsl:element name="temporalCoverage">
-                <xsl:for-each select="$dsb6/dataset/temporalCov">
+              <xsl:for-each select="$dsb6/dataset/temporalCov">
+                <xsl:element name="temporalCoverage">
                   <xsl:call-template name="temporalCoverage"/>
-                </xsl:for-each>
-              </xsl:element> 
+                </xsl:element> 
+              </xsl:for-each>
             </xsl:if>
             
             <xsl:if test="$dsb6/dataset/taxonomicCov/taxoncl!=''">
-              <xsl:element name="taxonomicCoverage">
-                <xsl:for-each select="$dsb6/dataset/taxonomicCov">
+              <xsl:for-each select="$dsb6/dataset/taxonomicCov">
+                <xsl:element name="taxonomicCoverage">
                   <xsl:call-template name="taxonomicCoverage"/>
-                </xsl:for-each>
-              </xsl:element> 
+                </xsl:element> 
+              </xsl:for-each>
             </xsl:if>
+            
           </xsl:element> 
         </xsl:if>  
          
