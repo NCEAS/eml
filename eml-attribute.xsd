@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-30 20:18:52 $'
-      '$Revision: 1.85 $'
+          '$Date: 2002-10-30 23:41:15 $'
+      '$Revision: 1.86 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -687,25 +687,86 @@
             <doc:tooltip>Date/Time Format</doc:tooltip>
             <doc:summary>A unit that describes the format for a date-time
             value from the Gregorian calendar.</doc:summary>
-            <doc:description>A unit that describes the format for a date-time
+            <doc:description>
+            <para>A unit that describes the format for a date-time
             value from the Gregorian calendar.  Datetime values should be
             expressed in a format that conforms to the ISO 8601 standard.  This
-            field allows one to specify the ISO 8601 format string that should
-            be used to decode the date or time value.  Date/time values are
-            from an interval scale, but it is extremely complex because of the
-            vagaries of the calendar (e.g., leap years, and leap seconds).
-            The duration between date-time values in the future is not even 
-            deterministic because leap seconds are based on current 
-            measurements of the earth's orbit. Consequently, date-time 
-            values are unlike any other measured values.  The
-            format string for date-time values allows one to accurately 
-            calculate the duration in SI second units between two measured 
-            date-time values, assuming that the conversion software has a 
-            detailed knowledge of the Gregorian calendar. Note that this field
-            would not be used if one is recording time durations.  In that
-            case, one should use a standard unit such as nominalMinute or
-            nominalDay, or a customUnit that defines the unit in terms of its
-            relationship to SI second.
+            field allows one to specify the format string that should
+            be used to decode the date or time value.  To describe the format
+            of an attribute containing date-time values, construct a string 
+            representation of the format using the following symbols:
+            </para>
+            <para>
+            Y   year
+            M   month
+            D   day
+            h   hour
+            m   minute
+            s   second
+            T   time designator (demarcates date and time parts of date-time)
+            Z   UTC designator, indicating value is in UTC time
+            .   indicates a decimal fraction of a unit
+            +/- indicates a positive or negative number, 
+                or a positive or negative time zone adjustment relative to UTC
+            -   indicates a separator between date components
+            A/P am or pm designator
+            </para>
+            <para>
+            Any other character in the format string is interpreted as a 
+            separator character.  Here are some examples of the format 
+            strings that can be constructed.
+            </para>
+            <para>
+                               Format string          Example value
+                               -------------------    ------------------
+                ISO Date       YYYY-MM-DD             2002-10-14
+                ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
+                ISO Time       hh:mm:ss               09:13:45
+                ISO Time       hh:mm:ss.sss           09:13:45.432
+                ISO Time       hh:mm.mm               09:13.42
+                Non-standard   DD/MM/YYYY             10/14/2002
+                Non-standard   MM/DD/YYYY             10/14/2002
+                Non-standard   MM/DD/YY               10/14/02
+                Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
+            </para>
+            <para>
+            Some notes about these examples.  First, the ISO 8601 standard is
+            strict about the order of date components and the separators that
+            are legal.  Best practice is to follow the ISO 8601 format
+            precisely.  Howver, we recognize that existing data contain
+            non-standard dates, and existing equipment (e.g., sensors) may 
+            still be producing non-standard dates.  Consequently, we have
+            provided the formatting string with additional characters to
+            describe the date formats. In particular note that the use of a
+            slash (/) to separate date components, a space to separate date 
+            and time components, using a twelve-hour time with am/pm 
+            designator, and placing any of the components out of
+            descending order is non-standard according to ISO.  Nevertheless,
+            these formats can be described using the format string to 
+            accomodate existing data.
+            </para>
+            <para>
+            Precision for date-time values can be extended by indicating in
+            the format that additional decimals can be used.  Only the final
+            unit (e.g., seconds in a time value) can use the extended digits 
+            according to the ISO 8601 standard.
+            </para>
+            <para>
+            Date/time values are from an interval scale, but it is extremely
+            complex because of the vagaries of the calendar (e.g., leap
+            years, and leap seconds).  The duration between date-time values
+            in the future is not even deterministic because leap seconds are
+            based on current measurements of the earth's orbit. Consequently,
+            date-time values are unlike any other measured values.  The format
+            string for date-time values allows one to accurately calculate the
+            duration in SI second units between two measured date-time values,
+            assuming that the conversion software has a detailed knowledge of
+            the Gregorian calendar. Note that this field would not be used if
+            one is recording time durations.  In that case, one should use a
+            standard unit such as seconds, nominalMinute or nominalDay, or a 
+            customUnit that defines the unit in terms of its relationship to 
+            SI second.
+            </para>
             </doc:description>
             <doc:example>YYYY-MM-DDTHH:MM:SS</doc:example>
             <doc:example>YYYY-MM-DD</doc:example>
