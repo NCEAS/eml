@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 16:04:04 $'
-      '$Revision: 1.48 $'
+          '$Date: 2002-10-04 17:39:11 $'
+      '$Revision: 1.49 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@
         ecological community, and has benefitted from previous work in other
         related metadata languages. EML has adopted the strengths of many of
         these languages, but also addresses a number of short-comings that
-        have proved to inhibit the automated processing iand integration of
+        have proved to inhibit the automated processing and integration of
         dataset resources via their metadata.
       </para>
       <para>
@@ -101,8 +101,8 @@
         </listitem>
         <listitem>
         <para>
-        Detailed Structure: EML strives to balance the tradeoff of 'too much
-        detail' with enough detail to enable advanced services in terms of
+        Detailed Structure: EML strives to balance the tradeoff of too much
+        detail with enough detail to enable advanced services in terms of
         processing data through the parsing of accompanied metadata.
         Therefore, a driving question throughout the design was: 'Will this
         particular piece of information be machine-processed, just human
@@ -131,18 +131,22 @@
         <listitem>
         <para>
         Strong Typing: EML is implemented in an Extensible Markup Language
-        (XML) known as XML Schema, which is a language that defines the rules
+        (XML) known as <ulink url="http://www.w3.org/XML/Schema">XML
+        Schema</ulink>, which is a language that defines the rules
         that govern the EML syntax.  XML Schema is an internet recommendation
-        from the World Wide Web Consortium (http://www.w3.org), and so a
+        from the <ulink url="http://www.w3.org">World Wide Web Consortium</ulink>,
+        and so a
         metadata document that is said to comply with the syntax of EML will
         structurally meet the criteria defined in the XML Schema documents for
         EML.  Over and above the structure (what elements can be nested within
-        others, how many, etc.), XML Schema provides the ability to use strong
+        others, cardinality, etc.), XML Schema provides the ability to use
+        strong
         data typing within elements.  This allows for finer validation of the
         contents of the element, not just it's structure.  For instance, an
         element may be of type 'date', and so the value that is inserted in
         the field will be checked against XML Schema's definition of a date.
-        Traditionally, XML documents have been validated against Document Type
+        Traditionally, XML documents (including previous versions of EML)
+        have been validated against Document Type
         Definitions (DTDs), which do not provide a means to employ strong
         validation on field values through typing.
         </para>
@@ -150,7 +154,7 @@
         <listitem>
         <para>
         There is a distinction between the content model (i.e. the concepts
-        behind the structure of a document - which fields go where, how many,
+        behind the structure of a document - which fields go where, cardinality,
         etc.) and the syntactic implementation of that model (the technology
         used to express the concepts defined in the content model).
         The normative sections below define the content model and the
@@ -166,9 +170,7 @@
   <chapter id="moduleOverview">
     <title>Overview of EML modules and their use</title>
     <section>
-      <title>
-        Logical use of the EML modules
-      </title>
+      <title>Module Overview Foreword</title>
       <para>
         The following section briefly describes each EML module and how they
         are logically designed in order to document ecological resources.
@@ -179,6 +181,11 @@
         modules that may be used at many levels, such as eml-access.
         These modules are described when it is appropriate.
       </para>
+    </section>
+    <section>
+      <title>
+        Root-level resources
+      </title>
       <!-- Get the eml module description from the xsd file -->
       <xsl:apply-templates
         select="document('eml.xsd')//doc:moduleDescription/*"
