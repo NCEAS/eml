@@ -31,8 +31,8 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-13 20:35:46 $'
-      '$Revision: 1.21 $'
+          '$Date: 2002-09-13 21:05:42 $'
+      '$Revision: 1.22 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -163,21 +163,22 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="scaleFactor" type="xs:string" minOccurs="0" />
-        <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Scale Factor</doc:tooltip>
-              <doc:summary>The value used for scaling the source raster.</doc:summary>
-              <doc:description>The scale factor is used for raster-rescaling
-              operations, where the following operation is applied to each pixel
-              in the data in the source: rescaled=(source*scaleFactor)+offset.
-              </doc:description>
-              <doc:example>2</doc:example>
-              <doc:lineage></doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        <xs:element name="offset" type="xs:string" minOccurs="0" />
-        <xs:annotation>
+        <xs:element name="scaleFactor" type="xs:string" minOccurs="0">
+          <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Scale Factor</doc:tooltip>
+                <doc:summary>The value used for scaling the source raster.</doc:summary>
+                <doc:description>The scale factor is used for raster-rescaling
+                operations, where the following operation is applied to each pixel
+                in the data in the source: rescaled=(source*scaleFactor)+offset.
+                </doc:description>
+                <doc:example>2</doc:example>
+                <doc:lineage></doc:lineage>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        <xs:element name="offset" type="xs:string" minOccurs="0">
+          <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Scaling Offset</doc:tooltip>
               <doc:summary>The offset value used for scaling the source raster.
@@ -190,6 +191,7 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
               <doc:lineage></doc:lineage>
             </xs:appinfo>
           </xs:annotation>
+        </xs:element>
         <xs:element name="imageDescription" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
@@ -496,7 +498,7 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="waveLengthUnits" type="xs:string" minOccurs="0" />
+      <xs:element name="waveLengthUnits" type="xs:string" minOccurs="0">
        <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Sensor Wave Length Units</doc:tooltip>
@@ -507,6 +509,7 @@ xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformati
             <doc:lineage>ISO 19115.3</doc:lineage>
           </xs:appinfo>
         </xs:annotation>
+        </xs:element>
       <xs:element name="peakResponse" minOccurs="0" />
     </xs:sequence>
   </xs:complexType>

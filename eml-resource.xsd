@@ -31,9 +31,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-12 00:30:00 $'
-      '$Revision: 1.62 $'
+        '$Author: berkley $'
+          '$Date: 2002-09-13 21:05:42 $'
+      '$Revision: 1.63 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -80,8 +80,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="alternateIdentifier" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Alternate Identifier</doc:tooltip>
@@ -569,11 +568,11 @@
                       and possible default values for each.  It then includes a
                       list of parameter values, one for each parameter, that
                       override the defaults for this particular connection.
-                      One parameter element should exist for every 
-                      parameterDefinition that is present in the 
+                      One parameter element should exist for every
+                      parameterDefinition that is present in the
                       connectionDefinition, except that parameters that were
                       defined with a defaultValue in their parameterDefinition
-                      can be ommitted from the connection and the default 
+                      can be ommitted from the connection and the default
                       will be used. All information about how to use the
                       parameters to establish a session and extract data is
                       present in the connectionDefinition, possibly implicitly
