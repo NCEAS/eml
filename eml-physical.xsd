@@ -12,9 +12,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.8 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-05 16:11:13 $'
+      '$Revision: 1.9 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -135,7 +135,9 @@
                 This element contains the name of the file's format.
                 The file's format is typically ASCII, Unicode, or some
                 well-known binary format (e.g., Microsoft Excel 2000).  
-                This could be a mime-type.
+                It is recommended to include a 
+                complete MIME type here, such as image/jpeg or text/xml.  Note
+                that this is the format of the physical file itself.
               </doc:description>
               <doc:example><![CDATA[<format>ASCII</format>]]></doc:example>
               <doc:lineage>

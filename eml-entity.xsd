@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-03-20 21:35:00 $'
-      '$Revision: 1.24 $'
+          '$Date: 2002-04-05 16:11:13 $'
+      '$Revision: 1.25 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -253,7 +253,9 @@
                     This element contains the name of the entity's type.
                     The entity's type is typically the name of the data
                     type represented in the entity, such as raster image,
-                    vector image, etc.
+                    vector image, etc.  This field should only be used if this
+                    is an 'other' entity and you want to specify what the
+                    'other' entity is.
                   </doc:description>
                   <doc:example>
                     <![CDATA[<entityType>Raster Image</entityType>]]>
