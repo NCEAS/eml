@@ -1,7 +1,24 @@
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
            targetNamespace="iso:ResponsibleParty">
-  
+
+  <annotation>
+    <documentation>
+    '$RCSfile: iso-party.xsd,v $'
+      Purpose: This is an XML Schema document for the "ResponsibleParty" 
+               class as described in "ISO 19115.3, Geographic Information, 
+               Metadata" draft standard.  It is a work in progress, as is 
+               the standard itself.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Matt Jones
+
+     '$Author: jones $'
+       '$Date: 2000-07-05 07:23:54 $'
+   '$Revision: 1.2 $'
+    </documentation>
+  </annotation>
+
   <complexType name="ResponsibleParty" content="elementOnly">
     <sequence>
       <choice minOccurs="1" maxOccurs="unbounded">
