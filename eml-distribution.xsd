@@ -11,8 +11,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2001-02-20 23:42:21 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-02-21 00:17:12 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -92,7 +92,7 @@
             </xs:appInfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Distributor">
+        <xs:element name="distributor" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
@@ -139,7 +139,8 @@
                   </xs:appInfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="StandardOrderProcess">
+              <xs:element name="StandardOrderProcess" minOccurs="0" 
+                          maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appInfo>
                     <tooltip>
@@ -296,7 +297,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DigitalTransfer">
+        <xs:element name="digitalTransfer" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appInfo>
               <tooltip>
@@ -387,7 +388,7 @@
                   </xs:appInfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="Medium">
+              <xs:element name="medium" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appInfo>
                     <tooltip>
