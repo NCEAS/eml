@@ -1,7 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="eml:coverage">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:coverage" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml:coverage">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-coverage.xsd,v $'
@@ -10,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-07-09 19:01:57 $'
-      '$Revision: 1.4 $'
+          '$Date: 2001-07-10 00:43:54 $'
+      '$Revision: 1.5 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +26,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-     <moduleName>
+      <moduleName>
         eml-coverage
       </moduleName>
       <moduleDescription>
@@ -39,7 +37,6 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
   <xs:element name="temporalCov" type="TemporalCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -55,8 +52,7 @@
             range of dates.  Dates can be expressed in tems of both 
             calander dates and geologic dating systems.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4.
@@ -64,7 +60,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:element name="geographicCov" type="GeographicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -80,15 +75,13 @@
           a bounding box for the overall coverage (in lat long), and also
           allows descriptin of arbitrary polygons with exclusions.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The geographicCov element is derived from the NBII standard.
         </lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:element name="taxonomicCov" type="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -104,8 +97,7 @@
           a list of species names (or higher level ranks) from one or more
           classification systems.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
@@ -113,7 +105,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:complexType name="TemporalCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -127,90 +118,88 @@
             This element specifies temporal coverage by 
           start and stop date.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The TemporalCoverage complex type was introduced
           into EML 1.4.
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-
     <xs:choice>
-      <xs:element ref = "sngdate"/>
-      <xs:element ref = "mdattim"/>
-      <xs:element ref = "rngdates"/>
+      <xs:element ref="sngdate"/>
+      <xs:element ref="mdattim"/>
+      <xs:element ref="rngdates"/>
     </xs:choice>
   </xs:complexType>
-
-  <xs:element name = "sngdate">
+  <xs:element name="sngdate">
     <xs:complexType>
       <xs:choice>
         <xs:sequence>
-          <xs:element name = "caldate" type = "xs:string"/>
-          <xs:element name = "time" type = "xs:string" minOccurs="0"/>
+          <xs:element name="caldate" type="xs:date"/>
+          <xs:element name="time" type="xs:time" minOccurs="0"/>
         </xs:sequence>
-        <xs:element ref = "geolage"/>
+        <xs:element ref="geolage"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
-
-  <xs:element name = "geolage">
+  <xs:element name="begdate" type="xs:date"/>
+  <xs:element name="begtime" type="xs:time"/>
+  <xs:element name="enddate" type="xs:date"/>
+  <xs:element name="endtime" type="xs:time"/>
+  <xs:element name="geolage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "geolscal" type = "xs:string"/>
-        <xs:element name = "geolest" type = "xs:string"/>
-        <xs:element name = "geolun" type = "xs:string" minOccurs="0"/>
-        <xs:element name = "geolexpl" type = "xs:string" minOccurs="0"/>
-        <xs:element name = "geolcit" minOccurs = "0" maxOccurs = "unbounded">
+        <xs:element name="geolscal" type="xs:string"/>
+        <xs:element name="geolest" type="xs:string"/>
+        <xs:element name="geolun" type="xs:string" minOccurs="0"/>
+        <xs:element name="geolexpl" type="xs:string" minOccurs="0"/>
+        <xs:element name="geolcit" minOccurs="0" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref = "citeinfo"/>
+              <xs:element ref="citeinfo"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
-  <xs:element name = "beggeol">
+  <xs:element name="beggeol">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref = "geolage"/>
+        <xs:element ref="geolage"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name = "endgeol">
+  <xs:element name="endgeol">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref = "geolage"/>
+        <xs:element ref="geolage"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name = "mdattim">
+  <xs:element name="mdattim">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref = "sngdate" maxOccurs = "unbounded"/>
+        <xs:element ref="sngdate" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name = "rngdates">
+  <xs:element name="rngdates">
     <xs:complexType>
       <xs:choice>
         <xs:sequence>
-          <xs:element ref = "begdate"/>
-          <xs:element ref = "begtime" minOccurs = "0"/>
-          <xs:element ref = "enddate"/>
-          <xs:element ref = "endtime" minOccurs = "0"/>
+          <xs:element ref="begdate"/>
+          <xs:element ref="begtime" minOccurs="0"/>
+          <xs:element ref="enddate"/>
+          <xs:element ref="endtime" minOccurs="0"/>
         </xs:sequence>
         <xs:sequence>
-          <xs:element ref = "beggeol"/>
-          <xs:element ref = "endgeol"/>
+          <xs:element ref="beggeol"/>
+          <xs:element ref="endgeol"/>
         </xs:sequence>
       </xs:choice>
     </xs:complexType>
   </xs:element>
-
   <xs:complexType name="GeographicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -224,62 +213,60 @@
           Geographic Coverage is a container for spatial information about a
           a project, a resource, or an entity within a resource.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The GeographicCoverage complex type was derived from the eml-entity
           module in EML 1.4.
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-
     <xs:sequence>
-      <xs:element name = "descgeog" type = "xs:string"/>
-      <xs:element name = "bounding">
+      <xs:element name="descgeog" type="xs:string"/>
+      <xs:element name="bounding">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name = "westbc" type = "xs:string"/>
-            <xs:element name = "eastbc" type = "xs:string"/>
-            <xs:element name = "northbc" type = "xs:string"/>
-            <xs:element name = "southbc" type = "xs:string"/>
-            <xs:element name = "boundalt" minOccurs="0">
+            <xs:element name="westbc" type="xs:string"/>
+            <xs:element name="eastbc" type="xs:string"/>
+            <xs:element name="northbc" type="xs:string"/>
+            <xs:element name="southbc" type="xs:string"/>
+            <xs:element name="boundalt" minOccurs="0">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name = "altmin" type = "xs:string"/>
-                  <xs:element name = "almax" type = "xs:string"/>
-                  <xs:element name = "altunits" type = "xs:string"/>
+                  <xs:element name="altmin" type="xs:string"/>
+                  <xs:element name="almax" type="xs:string"/>
+                  <xs:element name="altunits" type="xs:string"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name = "dsgpoly" minOccurs = "0" maxOccurs = "unbounded">
+      <xs:element name="dsgpoly" minOccurs="0" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name = "dsgpolyo">
+            <xs:element name="dsgpolyo">
               <xs:complexType>
                 <xs:choice>
                   <xs:sequence>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin" maxOccurs = "unbounded"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin" maxOccurs="unbounded"/>
                   </xs:sequence>
-                  <xs:element ref = "gring"/>
+                  <xs:element ref="gring"/>
                 </xs:choice>
               </xs:complexType>
             </xs:element>
-            <xs:element name = "dsgpolyx" minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dsgpolyx" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:choice>
                   <xs:sequence>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin"/>
-                    <xs:element ref = "grngpoin" maxOccurs = "unbounded"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin"/>
+                    <xs:element ref="grngpoin" maxOccurs="unbounded"/>
                   </xs:sequence>
-                  <xs:element ref = "gring"/>
+                  <xs:element ref="gring"/>
                 </xs:choice>
               </xs:complexType>
             </xs:element>
@@ -288,18 +275,15 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
-
-  <xs:element name = "grngpoin">
+  <xs:element name="grngpoin">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "gringlat" type = "xs:string"/>
-        <xs:element name = "gringlon" type = "xs:string"/>
+        <xs:element name="gringlat" type="xs:string"/>
+        <xs:element name="gringlon" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name = "gring" type = "xs:string"/>
-
+  <xs:element name="gring" type="xs:string"/>
   <xs:complexType name="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -313,68 +297,63 @@
           Taxonomic Coverage is a container for Taxonomic information about a
           a project, a resource, or an entity within a resource.
         </description>
-        <example>
-        </example>
+        <example/>
         <lineage>
           The TaxonomicCoverage complex type was introduced in EML 2 and 
           derived from the NBII taxonomy element.
         </lineage>
       </xs:appinfo>
     </xs:annotation>
-
     <xs:sequence>
-      <xs:element name = "keywtax" maxOccurs="unbounded">
+      <xs:element name="keywtax" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name = "taxonkt" type = "xs:string"/>
-            <xs:element name = "taxonkey" type = "xs:string" 
-                        maxOccurs="unbounded"/>
+            <xs:element name="taxonkt" type="xs:string"/>
+            <xs:element name="taxonkey" type="xs:string" maxOccurs="unbounded"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name = "taxonsys" minOccurs="0">
+      <xs:element name="taxonsys" minOccurs="0">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name = "classsys" maxOccurs = "unbounded">
+            <xs:element name="classsys" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name = "classcit">
+                  <xs:element name="classcit">
                     <xs:complexType>
                       <xs:sequence>
-                        <xs:element ref = "citeinfo"/>
+                        <xs:element ref="citeinfo"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
-                  <xs:element name = "classmod" type = "xs:string"
-                              minOccurs="0"/>
+                  <xs:element name="classmod" type="xs:string" minOccurs="0"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name = "idref" minOccurs = "0" maxOccurs = "unbounded">
+            <xs:element name="idref" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element ref = "citeinfo"/>
+                  <xs:element ref="citeinfo"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name = "ider" maxOccurs="unbounded">
+            <xs:element name="ider" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element ref = "cntinfo"/>
+                  <xs:element name="cntinfo"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name = "taxonpro" type = "xs:string"/>
-            <xs:element name = "taxoncom" type = "xs:string" minOccurs="0"/>
-            <xs:element name = "vouchers" 
-                        minOccurs = "0" maxOccurs = "unbounded">
+            <xs:element name="taxonpro" type="xs:string"/>
+            <xs:element name="taxoncom" type="xs:string" minOccurs="0"/>
+            <xs:element name="vouchers" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name = "specimen" type = "xs:string"/>
-                  <xs:element name = "reposit">
+                  <xs:element name="specimen" type="xs:string"/>
+                  <xs:element name="reposit">
                     <xs:complexType>
                       <xs:sequence>
-                        <xs:element ref = "cntinfo"/>
+                        <xs:element name="cntinfo"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -384,25 +363,19 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-
-      <xs:element name = "taxongen" type = "xs:string" minOccurs="0"/>
-
-      <xs:element ref = "taxoncl"/>
+      <xs:element name="taxongen" type="xs:string" minOccurs="0"/>
+      <xs:element ref="taxoncl"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:element name = "taxoncl">
+  <xs:element name="taxoncl">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name = "taxonrn" type = "xs:string"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element name = "taxonrv" type = "xs:string"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element name = "common" type = "xs:string" 
-                    minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref = "taxoncl" minOccurs = "0" maxOccurs = "unbounded"/>
+        <xs:element name="taxonrn" type="xs:string" minOccurs="0"/>
+        <xs:element name="taxonrv" type="xs:string" minOccurs="0"/>
+        <xs:element name="common" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="taxoncl" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
+  <xs:element name="citeinfo"/>
 </xs:schema>
