@@ -4,9 +4,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2001-07-23 02:07:54 $'
-      '$Revision: 1.3 $'
+        '$Author: higgins $'
+          '$Date: 2001-10-19 21:24:30 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,12 +22,65 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<!-- entity referring to the base resource fields -->
-<!ENTITY % resource SYSTEM "./eml-resource.dtd">
-%resource;
+
+<!ELEMENT individualName (salutation*, givenName*, surName)>
+<!ELEMENT salutation (#PCDATA)>
+<!ELEMENT givenName (#PCDATA)>
+<!ELEMENT surName (#PCDATA)>
+
+<!ELEMENT organizationName (#PCDATA)>
+<!ELEMENT positionName (#PCDATA)>
+
+<!ELEMENT address (deliveryPoint*, city?, administrativeArea?, 
+                   postalCode?, country?)>
+<!ELEMENT deliveryPoint (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT administrativeArea (#PCDATA)>
+<!ELEMENT postalCode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+
+<!ELEMENT phone (#PCDATA)>
+<!ATTLIST phone phonetype CDATA "voice">
+<!ELEMENT electronicMailAddress (#PCDATA)>
+<!ELEMENT onlineLink (#PCDATA)>
+
+<!-- Note that the domain for role is not expressed in the DTD -->
+<!ELEMENT role (#PCDATA)>
+
+
+<!-- entity to conglomerate these fields into one name -->
+<!ELEMENT role (#PCDATA)>
+
+<!-- common fields -->
+<!ELEMENT identifier (#PCDATA)>
+<!ATTLIST identifier system CDATA "">
+<!ELEMENT shortName (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT originator ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
+<!ELEMENT pubdate (#PCDATA)>
+<!ELEMENT pubplace (#PCDATA)>
+<!ELEMENT series (#PCDATA)>
+<!ELEMENT abstract (paragraph+)>
+<!ELEMENT keywordSet (keyword+, keywordThesaurus*)>
+<!ELEMENT keyword (#PCDATA)>
+<!ATTLIST keyword keywordType CDATA "">
+<!ELEMENT keywordThesaurus (#PCDATA)>
+<!ELEMENT additionalInfo (paragraph+)>
+<!ELEMENT paragraph (#PCDATA)>
+<!ELEMENT rights (paragraph+)>
+<!ELEMENT triple (subject, relationship, object)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT relationship (#PCDATA)>
+<!ELEMENT object (#PCDATA)>
+
+
 <!-- The literature branch -->
-<!ENTITY % LitCitation "(%ResourceBase;, ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))">
-<!ELEMENT citation (%LitCitation;)>
+<!ELEMENT citation (identifier+, shortName?, title+,
+                     originator+, pubdate?, pubplace?, series?, abstract?, 
+                     keywordSet*, additionalInfo?, rights*, triple*,
+ ISBN?, ISSN?, (article | book | chapter | manuscript | report | thesis))>
 <!ELEMENT ISBN (#PCDATA)>
 <!ELEMENT ISSN (#PCDATA)>
 <!ELEMENT article (jounal, volume, issue?, pageRange)>
@@ -48,9 +101,13 @@
 <!ELEMENT bookEditor (#PCDATA)>
 <!ELEMENT bookTitle (#PCDATA)>
 <!ELEMENT publisher (#PCDATA)>
-<!ELEMENT pubInfo (%ResponsibleParty;)>
+<!ELEMENT pubInfo ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
 <!ELEMENT Location (#PCDATA)>
-<!ELEMENT institution (%ResponsibleParty;)>
+<!ELEMENT institution ((individualName|organizationName|positionName)+,
+                             address*, phone*, electronicMailAddress*, 
+                             onlineLink*, role+)>
 <!ELEMENT reportNumber (#PCDATA)>
 <!ELEMENT degree (#PCDATA)>
 <!ELEMENT degreeInstitution (#PCDATA)>
