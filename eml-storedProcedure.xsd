@@ -42,9 +42,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-10-04 19:05:23 $'
-      '$Revision: 1.33 $'
+        '$Author: blankman $'
+          '$Date: 2002-10-04 21:48:30 $'
+      '$Revision: 1.34 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -98,7 +98,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
         into stored procedures and then invoke them directly from front-end
         applications. This element allows the optional describtion of any
         parameters that are expected to be passed to the procedure when it is
-        called.</doc:description>
+        called. A common use of a stored procedure is to rotate a data table 
+        from attributes in columns to attributes in rows for statistical 
+        analysis.</doc:description>
         <doc:lineage>EML 2.0</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
@@ -195,11 +197,10 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <doc:description>The domainDescription field is used to describe
             the valid entries for the parameter being described. A stored
             procedure will work only when the parameter's value corresponds to
-            an actual value in a database. A common use of a stored procedure
-            is to rotate a data table from columnMajor to rowMajor for
-            statistical analysis.</doc:description>
-            <doc:example>
-            </doc:example>
+            an actual value in a database.</doc:description>
+            <doc:example>The database has SiteId values that range from cap1 to
+            cap10, however the allowable SiteId values for this stored procedure
+            are cap1,cap2,cap4 or cap7. </doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
