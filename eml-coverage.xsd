@@ -31,8 +31,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.65 $'
+          '$Date: 2002-10-02 05:54:39 $'
+      '$Revision: 1.66 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1204,13 +1204,13 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="taxonomicClassification" maxOccurs="unbounded"/>
+        <xs:element name="taxonomicClassification" type="TaxonomicClassificationType"                     maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
-  <xs:element name="taxonomicClassification">
+  <xs:complexType name="TaxonomicClassificationType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Taxonomic classification</doc:tooltip>
@@ -1234,70 +1234,68 @@
         taxonomic_classification</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="taxonRankName" type="xs:string" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Taxon rank name</doc:tooltip>
-              <doc:summary>The name of the taxonomic rank for which the Taxon
-              rank value is provided.</doc:summary>
-              <doc:description>The name of the taxonomic rank for which the
-              Taxon rank value is provided. This field allows for the name one
-              of the accepted levels of Taxa.</doc:description>
-              <doc:example>'Kingdom', 'Division/Phylum', 'Class', 'Order',
-              'Family', 'Genus', and 'Species'</doc:example>
-              <doc:lineage>FGDC-STD-001.1-1999:
-              /metadata/identification_information/taxonomy/
-              taxonomic_classification/taxon_rank_name</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="taxonRankValue" type="xs:string" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Taxon rank value</doc:tooltip>
-              <doc:summary>The name representing the taxonomic rank of the
-              taxon being described.</doc:summary>
-              <doc:description>The name representing the taxonomic rank of the
-              taxon being described. The values included may be referenced from
-              an authoritative source such as the Integrated Taxonomic
-              Information Sytem (ITIS)in the U.S. (http://www/itis.usda.gov)
-              and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget). Also,
-              Species2000 is another source of taxonomic information, found at
-              (http://www.sp2000.org)</doc:description>
-              <doc:example>Acer would be an example of a genus rank value, and
-              rubrum would be an example of a species rank value, together
-              indicating the common name of red maple. It is recommended to
-              start with Kingdom and include ranks down to the most detailed
-              level possible.</doc:example>
-              <doc:lineage>FGDC-STD-001.1-1999:
-              /metadata/identification_information/taxonomy/
-              taxonomic_classification/taxon_rank_value</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="commonName" type="xs:string" minOccurs="0"
-                    maxOccurs="unbounded">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Common name</doc:tooltip>
-              <doc:summary>Specification of applicable common
-              names.</doc:summary>
-              <doc:description>Specification of applicable common names. These
-              common names may be general descriptions of a group of organisms
-              if appropriate.</doc:description>
-              <doc:example>insects, vertebrate, grasses, waterfowl, vascular
-              plants, red maple.</doc:example>
-              <doc:lineage>FGDC-STD-001.1-1999:
-              /metadata/identification_information/taxonomy/
-              taxonomic_classification/applicable_common_name</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element ref="taxonomicClassification" minOccurs="0"
-                    maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+    <xs:sequence>
+      <xs:element name="taxonRankName" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Taxon rank name</doc:tooltip>
+            <doc:summary>The name of the taxonomic rank for which the Taxon
+            rank value is provided.</doc:summary>
+            <doc:description>The name of the taxonomic rank for which the
+            Taxon rank value is provided. This field allows for the name one
+            of the accepted levels of Taxa.</doc:description>
+            <doc:example>'Kingdom', 'Division/Phylum', 'Class', 'Order',
+            'Family', 'Genus', and 'Species'</doc:example>
+            <doc:lineage>FGDC-STD-001.1-1999:
+            /metadata/identification_information/taxonomy/
+            taxonomic_classification/taxon_rank_name</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="taxonRankValue" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Taxon rank value</doc:tooltip>
+            <doc:summary>The name representing the taxonomic rank of the
+            taxon being described.</doc:summary>
+            <doc:description>The name representing the taxonomic rank of the
+            taxon being described. The values included may be referenced from
+            an authoritative source such as the Integrated Taxonomic
+            Information Sytem (ITIS)in the U.S. (http://www/itis.usda.gov)
+            and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget). Also,
+            Species2000 is another source of taxonomic information, found at
+            (http://www.sp2000.org)</doc:description>
+            <doc:example>Acer would be an example of a genus rank value, and
+            rubrum would be an example of a species rank value, together
+            indicating the common name of red maple. It is recommended to
+            start with Kingdom and include ranks down to the most detailed
+            level possible.</doc:example>
+            <doc:lineage>FGDC-STD-001.1-1999:
+            /metadata/identification_information/taxonomy/
+            taxonomic_classification/taxon_rank_value</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="commonName" type="xs:string" minOccurs="0"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Common name</doc:tooltip>
+            <doc:summary>Specification of applicable common
+            names.</doc:summary>
+            <doc:description>Specification of applicable common names. These
+            common names may be general descriptions of a group of organisms
+            if appropriate.</doc:description>
+            <doc:example>insects, vertebrate, grasses, waterfowl, vascular
+            plants, red maple.</doc:example>
+            <doc:lineage>FGDC-STD-001.1-1999:
+            /metadata/identification_information/taxonomy/
+            taxonomic_classification/applicable_common_name</doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" 
+                  minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
