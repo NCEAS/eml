@@ -6,7 +6,8 @@
            xmlns:doc="eml:documentation" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:import namespace="eml:documentation" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="eml-documentation.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -16,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-12-14 20:26:08 $'
-      '$Revision: 1.10 $'
+          '$Date: 2001-12-16 23:09:22 $'
+      '$Revision: 1.11 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -156,11 +157,22 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Journal article</doc:tooltip>
-                  <doc:summary/>
-                  <doc:description>Information for full citation of a journal article</doc:description>
-                  <doc:example/>
-                  <doc:lineage>This field was introduced into EML 2.0 beta 1, and was 
-                  derived from MARC/various software packages handling literature</doc:lineage>
+                  <doc:summary>
+                    Information for full citation of a journal article
+                  </doc:summary>
+                  <doc:description>The article field provides sub-fields 
+                  for a full citation of a journal article.  These fields 
+                  include the journal name, its volume number, the issue, 
+                  and the page range for the article.</doc:description>
+                  <doc:example>
+                    Please see the individual sub-fields for specific 
+                    examples
+                  </doc:example>
+                  <doc:lineage>
+                  This field was introduced into EML 2.0 beta 1, and was 
+                  derived from MARC/various software packages handling 
+                  literature
+                  </doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -168,11 +180,17 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Book</doc:tooltip>
-                  <doc:summary/>
-                  <doc:description>
+                  <doc:summary>
                     Information for full citation of a book
+                  </doc:summary>
+                  <doc:description>
+                    The book field provides sub-fields for a full citation of a
+                    book.  The sub-fields include the volume, the edition, the
+                    total pages, the total figures, and the total tables.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Please see the individual sub-fiels for specific examples.
+                  </doc:example>
                   <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from MARC/various software packages handling 
@@ -185,11 +203,19 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Chapter within a book</doc:tooltip>
-                  <doc:summary/>
+                  <doc:summary>
+                    Information for full citation of a single chapter 
+                    within an edited book.
+                  </doc:summary>
                   <doc:description>
-                    Information for full citation of a single chapter within an edited book
+                    The citation field provides sub-fields for a full citation
+                    of a particular chapter in a book.  The fields include the
+                    book title, the book editor, the publisher, volume, edition,
+                    chapter number, and page ranges.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Please see the individual sub-fields for specific examples.
+                  </doc:example>
                   <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from MARC/various software packages handling literature
@@ -201,11 +227,20 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>unpublished manuscipt</doc:tooltip>
-                  <doc:summary/>
-                  <doc:description>
+                  <doc:summary>
                     Information about an unpublished manuscript
+                  </doc:summary>
+                  <doc:description>
+                    The manuscript field provides sub-fields for a full 
+                    citation of an unpublished manuscript.  The two main fields 
+                    include the the publication information, and the location
+                    of the manuscript. The publication information allows for
+                    referencing the party that created the manuscript and all of
+                    the contact information.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Please see the individual sub-fields for specific examples.
+                  </doc:example>
                   <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from MARC/various software packages handling literature
@@ -217,12 +252,21 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Report</doc:tooltip>
-                  <doc:summary/>
+                  <doc:summary>
+                    Information about a report published by an institution 
+                    for in-house purposes. They usually are available by 
+                    request to the institution.
+                  </doc:summary>
                   <doc:description>
-                    Information about a report published by an institution for in-house 
-                    purposes. They usually are available by request to the institution.
+                    The report field provides nformation about a report
+                    published by an institution for in-house purposes. They 
+                    usually are available by request to the institution.  It
+                    provides sub-fields for the institution's contact information,
+                    as well as the report number.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Please see the individual sub-fields for specific examples.
+                  </doc:example>
                   <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from MARC/various software packages handling literature
@@ -234,13 +278,21 @@
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Thesis as part of a degree</doc:tooltip>
-                  <doc:summary/>
-                  <doc:description>
+                  <doc:summary>
                     Information about a thesis that has been written as part of a 
                     degree requirement and is frequently published in small numbers 
                     by the degree awarding institution.
+                  </doc:summary>
+                  <doc:description>
+                    Information about a thesis that has been written as part of a 
+                    degree requirement and is frequently published in small numbers 
+                    by the degree awarding institution. It provides sub-fields
+                    for the degree obtained, the contact information, the degree
+                    institution, and the total number of pages.
                   </doc:description>
-                  <doc:example/>
+                  <doc:example>
+                    Please see the individual sub-fields for specific examples.
+                  </doc:example>
                   <doc:lineage>
                     This field was introduced into EML 2.0 beta 1, and was 
                     derived from MARC/various software packages handling literature
@@ -258,10 +310,17 @@
       <xs:element name="journal" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Name of the journal</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Journal Name</doc:tooltip>
+            <doc:summary>
+              The name of the journal in which the article was published.
+            </doc:summary>
+            <doc:description>
+              The journal field is for the name of the peer-reviewed journal
+              that has published the article that is being documented.
+            </doc:description>
+            <doc:example>
+              "Ecology"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -272,10 +331,17 @@
       <xs:element name="volume" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Volume of journal in which article appears</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Journal Volume</doc:tooltip>
+            <doc:summary>
+              The volume of the journal in which the article appears
+            </doc:summary>
+            <doc:description>
+              The volume field is used to describe the volume of the journal in
+              which the article appears.
+            </doc:description>
+            <doc:example>
+              "Volume I"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -286,10 +352,17 @@
       <xs:element name="issue" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Issue of journal in which article appears</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Journal issue</doc:tooltip>
+            <doc:summary>
+              The issue of the journal in which the article appears
+            </doc:summary>
+            <doc:description>
+              The issue field is used to describe the issue of the journal in
+              which the article appears.  
+            </doc:description>
+            <doc:example>
+              "November 2001"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -300,10 +373,17 @@
       <xs:element name="pageRange" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>beginning and end page number of article</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Journal Pages</doc:tooltip>
+            <doc:summary>
+              The beginning and end page numbers of the journal article
+            </doc:summary>
+            <doc:description>
+              The page range field is used for the beginning and ending pages of
+              the journal article that is being documented.
+            </doc:description>
+            <doc:example>
+              "115-122"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -318,10 +398,17 @@
       <xs:element name="edition" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Edition of book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Book edition</doc:tooltip>
+            <doc:summary>
+              The edition of the book being described.
+            </doc:summary>
+            <doc:description>
+              The edition field is to document the edition of the book that is
+              being described.
+            </doc:description>
+            <doc:example>
+              "Second Edition"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -332,10 +419,17 @@
       <xs:element name="totalPages" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Total number of pages in book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Total book pages</doc:tooltip>
+            <doc:summary>
+              The total number of pages in the book.
+            </doc:summary>
+            <doc:description>
+              The total pages field is used to describe the total number of
+              pages in the book that is being described.
+            </doc:description>
+            <doc:example>
+              "628"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -347,9 +441,17 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Number of figures in book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The total number of figures in the book.
+            </doc:summary>
+            <doc:description>
+              the total figures field is used to describe the total number of
+              figures, diagrams, and plates in the book that is being
+              documented.
+            </doc:description>
+            <doc:example>
+              "45"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -361,9 +463,16 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Number of tables in book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The total number of tables in a book.
+            </doc:summary>
+            <doc:description>
+              The total tables field is used to describe the total number of
+              tables that are present in the book that is being documented.
+            </doc:description>
+            <doc:example>
+              "10"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -374,10 +483,17 @@
       <xs:element name="volume" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Volume if book is part of series</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Book volume</doc:tooltip>
+            <doc:summary>
+              The volume of the book that is part of a series.
+            </doc:summary>
+            <doc:description>
+              The volume field is used to describe the volume number of a book
+              that is part of a multi-volume series of books.
+            </doc:description>
+            <doc:example>
+              "Volume 2"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -392,10 +508,17 @@
       <xs:element name="chapterNumber" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Chapter number of interest within book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Chapter number</doc:tooltip>
+            <doc:summary>
+              The chapter number of interest within a book
+            </doc:summary>
+            <doc:description>
+              The chapter number of the chapter of a book that is being
+              described.
+            </doc:description>
+            <doc:example>
+              "7"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -406,13 +529,19 @@
       <xs:element name="bookEditor" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Name of book editor</doc:tooltip>
-            <doc:summary/>
+            <doc:tooltip>Book editor</doc:tooltip>
+            <doc:summary>
+              The name of the editor of the book.
+            </doc:summary>
             <doc:description>
-              The editor may be a person
-              or organization or a role within an organization.
+              The book editor field is used to document the name of the 
+              editor of the book that is being described. The editor may be
+              a person, organization, or a role within an organization.
             </doc:description>
-            <doc:example/>
+            <doc:example>
+              "Tom Christiansen", "Institute of Marine Science", "Publication
+              Manager"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -423,10 +552,17 @@
       <xs:element name="bookTitle" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Title of book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Book title</doc:tooltip>
+            <doc:summary>
+              The title of the book.
+            </doc:summary>
+            <doc:description>
+              The book title field is used to document the title of the book
+              that is being described.
+            </doc:description>
+            <doc:example>
+              "War and Peace"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -438,9 +574,16 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Publishing company</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The name of the book publisher.
+            </doc:summary>
+            <doc:description>
+              The publisher field is used to document the name of the publishing
+              company that published the book that is being described.  
+            </doc:description>
+            <doc:example>
+              "Univesity of California Press"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -451,10 +594,17 @@
       <xs:element name="pageRange" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Beginning and ending page of chapter</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Chapter page range</doc:tooltip>
+            <doc:summary>
+              The beginning and ending page numbers of a chapter.
+            </doc:summary>
+            <doc:description>
+              The page range field is used to document the beginning and ending
+              pages of a chapter in a book.
+            </doc:description>
+            <doc:example>
+              "25-122"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -465,10 +615,17 @@
       <xs:element name="edition" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Edition of book</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Book edition</doc:tooltip>
+            <doc:summary>
+              The edition of the book.
+            </doc:summary>
+            <doc:description>
+              The edition field is used to document the edition of the book
+              being described.
+            </doc:description>
+            <doc:example>
+              "Second Edition"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -479,10 +636,17 @@
       <xs:element name="volume" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Volume of book if part of a series</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Book volume</doc:tooltip>
+            <doc:summary>
+              The volume of the book that is part of a series.
+            </doc:summary>
+            <doc:description>
+              The volume field is used to document the the volume number of a
+              book that is part of a multi-volume series of books.
+            </doc:description>
+            <doc:example>
+              "Volume 2"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -497,10 +661,18 @@
       <xs:element name="pubInfo" type="rp:ResponsibleParty">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>address where manuscript may be requested</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Manuscript publication information</doc:tooltip>
+            <doc:summary>
+              The address and contact information needed to request a manuscript. 
+            </doc:summary>
+            <doc:description>
+              The publication information field is used to provide contact and
+              address information that would be needed to request an unpublished
+              manuscript
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -508,7 +680,28 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Location" type="xs:string"/>
+      <xs:element name="location" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Manuscript location information</doc:tooltip>
+            <doc:summary>
+              The online address URL location of the manuscript. 
+            </doc:summary>
+            <doc:description>
+              The location field is used to document the online location of the
+              manuscript that is being described.  It should be in the form of a
+              URL.
+            </doc:description>
+            <doc:example>
+              http://myserver.mydomain.edu/manuscript.html
+            </doc:example>
+            <doc:lineage>
+              This field was introduced into EML 2.0 beta 1, and was 
+              derived from MARC/various software packages handling literature
+            </doc:lineage>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Report">
@@ -517,11 +710,19 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>
-              Responsible institution where report may be requested
+              Report Institution
             </doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The responsible institution where report the may be requested
+            </doc:summary>
+            <doc:description>
+              The institution field is used to describe the name, address, and
+              contact information of the institution that created the report in
+              order to request the report.
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -532,10 +733,18 @@
       <xs:element name="reportNumber" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>ID number of report</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Report Number</doc:tooltip>
+            <doc:summary>
+              The unique identification number assigned to the report.
+            </doc:summary>
+            <doc:description>
+              The report number field is used to describe the unique
+              identification number that has been issued by the report
+              institution for the report being described.
+            </doc:description>
+            <doc:example>
+              "22"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -550,10 +759,17 @@
       <xs:element name="degree" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Name of degree</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Degee name</doc:tooltip>
+            <doc:summary>
+              The name or degree level for which the thesis was completed.
+            </doc:summary>
+            <doc:description>
+              The degree field is used to describe the name or degree level 
+              for which the thesis was completed.
+            </doc:description>
+            <doc:example>
+              "Ph.D.", "M.S.", "Master of Science", etc...
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -565,9 +781,17 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Address where thesis may be requested</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The address where the thesis may be requested
+            </doc:summary>
+            <doc:description>
+              The publication information field is used to provide the name,
+              address, and contact information that is needed in oreder to
+              request a copy of the thesis that is being described.
+            </doc:description>
+            <doc:example>
+              Please see the individual sub-fields for specific examples.
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -578,10 +802,17 @@
       <xs:element name="totalPages" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
-            <doc:tooltip>Number of pages in thesis</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:tooltip>Thesis Pages</doc:tooltip>
+            <doc:summary>
+              The total number of pages in the thesis.
+            </doc:summary>
+            <doc:description>
+              The total pages field is used to document the number of pages that
+              are present in the thesis that is being described.
+            </doc:description>
+            <doc:example>
+              "356"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
@@ -593,9 +824,16 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Degree awarding institution</doc:tooltip>
-            <doc:summary/>
-            <doc:description/>
-            <doc:example/>
+            <doc:summary>
+              The name of the degree-awarding institution
+            </doc:summary>
+            <doc:description>
+              The degree institution field is used to name the institution from
+              which the degree was awarded for the thesis being described.
+            </doc:description>
+            <doc:example>
+              "Western Washington University"
+            </doc:example>
             <doc:lineage>
               This field was introduced into EML 2.0 beta 1, and was 
               derived from MARC/various software packages handling literature
