@@ -6,7 +6,7 @@
 
 <!--	<xsl:variable name="enb6" select="document('ent1.enb6')"/> -->
 <!--	<xsl:variable name="phb6" select="document('phy1.phb6')"/> -->
-
+<xsl:param name="metacatURL" select="'http://metacat.nceas.ucsb.edu/knb/servlet/metacat'" />
   
   <xsl:include href="eml2attr.xsl"/>
 
@@ -72,7 +72,7 @@
           <xsl:element name="distribution">
             <xsl:element name="online">
               <xsl:element name="url">
-                <xsl:value-of select="concat('http://metacat.nceas.ucsb.edu/knb/servlet/metacat?action=read&amp;qformat=knb&amp;docid=',$datab6ID)"/>
+                <xsl:value-of select="concat($metacatURL,'?action=read&amp;qformat=knb&amp;docid=',$datab6ID)"/>
               </xsl:element>
             </xsl:element>
           </xsl:element>
