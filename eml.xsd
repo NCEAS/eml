@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-09-12 20:25:30 $'
-      '$Revision: 1.35 $'
+          '$Date: 2002-09-13 22:16:26 $'
+      '$Revision: 1.36 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,12 +60,20 @@
         <doc:moduleName>eml</doc:moduleName>
         <doc:moduleDescription>The eml module is a wrapper container that
         allows inclusion of any metadata content in a single EML document. In
-        general, dataset resources, literature resources, collection resources,
-        and software resources, or another type that extends eml-resource must
-        lead off the collection in the eml element because these resources
-        contain the "triple" element that allows specification of the
-        relationships among the various components of the data
-        package.</doc:moduleDescription>
+        general, dataset resources, literature resources,
+        and software resources, or another type that extends eml-resource 
+        are described using an eml document.  The eml document represents
+        a "package" that can contain both metadata and data.  It can 
+        optionally include non-EML metadata through the flexibility of the
+        "additionalMetadata" element.  Any additional metadata that is 
+        provided can provide a pointer into the EML metadata indicating
+        what the context of the additional metadata is.  For example, a
+        spatial raster image might be described in EML, and an FGDC 
+        CSDGM metadata document could be included in the additionalMetadata
+        element with a pointer to the EML spatialRaster element to indicate 
+        that the FGDC metadata is providing supplemental documentation about
+        that particular image entity.
+        </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
         <doc:module>eml.xsd</doc:module>
@@ -97,53 +105,249 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Ecological Metadata</doc:tooltip>
-        <doc:summary>A collection of EML metadata documents linked using the
-        eml-resource "triple" element.</doc:summary>
-        <doc:description>The "eml" element allows for the inclusion of
-        arbitrary metadata documents as child elements of a single document.
+        <doc:summary>A collection of EML metadata and additional metadata
+        linked using the inline references.</doc:summary>
+        <doc:description>The "eml" element allows for the inclusion of of
+        any metadata content in a single EML document. In general, dataset
+        resources, literature resources, and software resources, or another
+        type that extends eml-resource are described using an eml document.
+        The eml document represents a "package" that can contain both metadata
+        and data.  It can optionally include non-EML metadata through the
+        flexibility of the "additionalMetadata" element.  Any additional
+        metadata that is provided can provide a pointer into the EML metadata
+        indicating what the context of the additional metadata is (ie, what
+        it describes).         For example, a spatial raster image might
+        be described in EML, and an FGDC CSDGM metadata document could be
+        included in the additionalMetadata element with a pointer to the EML
+        spatialRaster element to indicate that the FGDC metadata is providing
+        supplemental documentation about that particular image entity.
         There is no validity constraint that restricts what metadata may be
-        present, although it is recommended that one (and only one) metadata
-        document that derives from eml-resource be included in the set so that
-        the "triple" element can be used to determine the appropriate
-        relationships among the various documents. This is accomplished by
-        explicitly stating the relationships by referencing the "identifer"
-        elements that are contained within each metadata element. For example,
-        one could indicate that several uniquely identified data objects are a
-        part of the data package, and which of the various eml modules describe
-        the entity, attribute, and constraints for each of those data
-        objects.</doc:description>
-        <doc:example>Please see the individual eml modules for specific
-        examples.</doc:example>
-        <doc:lineage>The 'eml' element was introduced into EML
-        2.0.0.</doc:lineage>
+        present in additionalMetadata.
+        </doc:description>
+        <doc:lineage>As of EML 2.0.0.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:choice>
-          <xs:element name="dataset" type="ds:DatasetType"/>
-          <xs:element name="citation" type="cit:CitationType"/>
-          <xs:element name="software" type="sw:SoftwareType"/>
-          <xs:element name="protocol" type="pro:ProtocolType"/>
+          <xs:element name="dataset" type="ds:DatasetType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Dataset Resource</doc:tooltip>
+                <doc:summary>A resource that describes a data set, which can
+                include one or more data entities such as data tables.
+                </doc:summary>
+                <doc:description>A resource that describes a data set, 
+                which can include one or more data entities such as 
+                data tables and spatial images (raster and vector). 
+                If included, this represents the primary resource that is
+                desciribed in this eml document.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="citation" type="cit:CitationType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Literature Resource</doc:tooltip>
+                <doc:summary>A resource that describes a literature
+                citation that one might find in a bibliography.
+                </doc:summary>
+                <doc:description>A resource that describes a literature
+                citation that one might find in a bibliography.
+                If included, this represents the primary resource that is
+                desciribed in this eml document.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="software" type="sw:SoftwareType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Software Resource</doc:tooltip>
+                <doc:summary>A resource that describes a software
+                package, which can include commercial and non-commercial
+                software as well as data processing programs.
+                </doc:summary>
+                <doc:description>A resource that describes a software
+                package, which can include commercial and non-commercial
+                software as well as data processing programs.
+                If included, this represents the primary resource that is
+                desciribed in this eml document.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="protocol" type="pro:ProtocolType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Protocol Resource</doc:tooltip>
+                <doc:summary>A resource that describes a scientific
+                protocol, which can include one or more descriptions 
+                of methods and procedures.
+                </doc:summary>
+                <doc:description>A resource that describes a scientific 
+                protocol, which can include one or more descriptions 
+                of methods and procedures.
+                If included, this represents the primary resource that is
+                desciribed in this eml document.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
         </xs:choice>
-        <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="additionalMetadata" minOccurs="0" 
+        maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>Additional Metadata</doc:tooltip>
+                <doc:summary>A flexible field for including any other 
+                relevant metadata that pertains to the resource being 
+                described.</doc:summary>
+                <doc:description>A flexible field for including any other 
+                relevant metadata that pertains to the resource being 
+                described.  This field allows EML to be extensible in 
+                that any XML-based metadata can be included in this
+                element, including metadata from other standards such as
+                the FGDC CSDGM.  The "describes" element of this field
+                allows the specific part of the resource which is described 
+                by the additional metadata to be indicated formally.
+                </doc:description>
+              </xs:appinfo>
+            </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="describes" type="xs:string" maxOccurs="unbounded"/>
-              <xs:any processContents="lax"/>
+              <xs:element name="describes" type="xs:string" 
+              maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Describes Reference</doc:tooltip>
+                    <doc:summary>A pointer to the
+                    id attribute for the subportion of the resource that 
+                    is described by this additional metadata.
+                    </doc:summary>
+                    <doc:description>A pointer to the
+                    id attribute for the subportion of the resource that 
+                    is described by this additional metadata. This is a
+                    formal field in that it is an error to provide a value
+                    in the "describes" element that does not correspond
+                    to the value of one of the "id" attributes in another
+                    eml module.  This is designed to allow automated 
+                    processors to discover the contextual relationship
+                    between the additional metadata and the resource it
+                    describes.
+                    </doc:description>
+                    <doc:example>knb.343.22</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:any processContents="lax">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Any Metadata</doc:tooltip>
+                    <doc:summary>Any well-formed XML-formatted metadata may
+                    be inserted at this location in the EML document.  If
+                    an element inserted here contains a reference to its
+                    namespace, and if there is an association between that
+                    namespace and an XML Schema that can be located by the
+                    processing application, then the processing application
+                    must validate the metadata element.  If these conditions
+                    are not met, then validation need not occur.
+                    </doc:summary>
+                    <doc:description>Any well-formed XML-formatted metadata may
+                    be inserted at this location in the EML document.  If
+                    an element inserted here contains a reference to its
+                    namespace, and if there is an association between that
+                    namespace and an XML Schema that can be located by the
+                    processing application, then the processing application
+                    must validate the metadata element.  If these conditions
+                    are not met, then validation need not occur.
+                    </doc:description>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:any>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="optional"/>
+            <xs:attribute name="id" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Identifer</doc:tooltip>
+                  <doc:summary>A unique identifier for this additional
+                  metadata that can be used to reference it elsewhere.
+                  </doc:summary>
+                  <doc:description>A unique identifier for this additional
+                  metadata that can be used to reference it elsewhere.
+                  This is a formal field in that it is an error to provide
+                  a value for the id attribute that is not unique within
+                  the document's set of id attributes. This is designed to
+                  allow other portions of the metadata to reference this
+                  section formally.</doc:description>
+                  <doc:example>knb.343.22</doc:example>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="packageId" type="xs:string" use="required"/>
-      <xs:attribute name="system" type="xs:string" use="required"/>
-      <xs:attribute name="scope" type="res:ScopeType" fixed="system"/>
+      <xs:attribute name="packageId" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Package Identifer</doc:tooltip>
+            <doc:summary>A unique identifier for this entire EML
+            metadata document that can be used to reference it elsewhere.
+            </doc:summary>
+            <doc:description>A unique identifier for this entire EML
+            metadata document that can be used to reference it elsewhere.
+            This identifier can be interpreted as the formal accession
+            number for this EML package, and is therefore required.  It
+            must be unique within a particular data management system
+            (see the "system" attribute).
+            </doc:description>
+            <doc:example>knb.343.22</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="system" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Identifer System</doc:tooltip>
+            <doc:summary>The data management system within which an 
+            identifier is in scope and therefore unique.
+            </doc:summary>
+            <doc:description>The data management system within which an 
+            identifier is in scope and therefore unique. This is typically
+            a URL (Uniform Resource Locator) that indicates a data
+            management system.  All identifers that share a system must
+            be unique. In other words, if the same identifier is used in
+            two locations with identical systems, then by definition the
+            objects at which they point are in fact the same object.
+            </doc:description>
+            <doc:example>http://metacat.somewhere.org/svc/mc/</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="scope" type="res:ScopeType" fixed="system">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Identifer Scope</doc:tooltip>
+            <doc:summary>The scope of the identifier.</doc:summary>
+            <doc:description>The scope of the identifier.  Scope is generally
+            set to either "system", meaning that it is scoped according to
+            the "system" attribute, or "document" if it is only to be in scope
+            within this single document instance.  In this particular use of 
+            scope, it is FIXED to be "system" because the packageId is
+            required and always has the scope of the required "system".
+            </doc:description>
+            <doc:example>system</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:attribute>
     </xs:complexType>
+    <!--
     <xs:key name="identifierKey">
       <xs:selector xpath="./dataset/creator|./dataset/contact"/>
       <xs:field xpath="@id"/>
     </xs:key>
+    -->
       <!--
       <xs:selector xpath=".//dataset|.//creator|.//contact"/>
       <xs:selector xpath=".//access|.//attribute|.//attributeList|.//constraint|.//coverage|.//temporalCoverage|.//geographicCoverage|.//taxonomicCoverage|.//dataset/*|.//dataSource|.//dataTable|.//otherEntity|.//citation|.//address|.//conferenceLocation|.//party|.//originator|.//creator/*|.//contact/*|.//publisher|.//editor|.//recipient|.//performer|.//institution|.//metadataProvider|.//associatedParty|.//personnel|.//physical|.//connectionDefinition|.//distribution|.//researchProject|.//project|.//relatedProject|.//software|.//spatialRaster|.//spatialReference|.//spatialVector|.//storedProcedure|.//view|.//protocol|.//additionalMetadata"/>
@@ -151,6 +355,7 @@
       <xs:selector xpath="."/>
       <xs:selector xpath=".//dataset//*|./protocol//*|./citation//*|./software//*|./additionalMetadata//*"/>
       -->
+      <!--
     <xs:keyref name="replacementReference" refer="identifierKey">
       <xs:selector xpath=".//references"/>
       <xs:field xpath="."/>
@@ -183,5 +388,6 @@
       <xs:selector xpath=".//unit/customUnit"/>
       <xs:field xpath="."/>
     </xs:keyref>
+    -->
   </xs:element>
 </xs:schema>
