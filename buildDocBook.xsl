@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-04 09:17:01 $'
-      '$Revision: 1.47 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 16:04:04 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -363,7 +363,7 @@
           </para>
         <section>
           <title>
-            The eml-text module -
+            The eml-text module - Text field formatting
           </title>
           <para>
             The eml text module is a wrapper container that allows general
@@ -375,7 +375,10 @@
             The eml-text module allows one to provide structure to a text
             description in order to convey concepts such as sections
             (paragraphs), hierarchy (ordered and unordered lists), emphasis
-            (bold, superscript, subscript) etc.
+            (bold, superscript, subscript) etc.  The structured elements
+            are a subset of <ulink url="http://www.docbook.org">DocBook</ulink>
+            so the predefined DocBook stylesheets can be used to style
+            EML fields that implement this module.
           </para>
         </section>
       <section>
@@ -579,7 +582,7 @@
             </section>
           </example>
           <example>
-            <title>Invalid EML due to a conflicting id attribute and a 
+            <title>Invalid EML due to a conflicting id attribute and a
             &lt;references&gt; element</title>
             <literalLayout>
 &lt;?xml version="1.0"?&gt;
@@ -972,11 +975,14 @@
   <xsl:attribute name="id">
     <xsl:value-of select="./doc:moduleName"/>
   </xsl:attribute>
-          <ulink>
-            <xsl:attribute name="url">./<xsl:value-of 
-              select="./doc:moduleName"/>.html</xsl:attribute>
-  <xsl:value-of select="./doc:moduleName"/>
-          </ulink>
+  <title><xsl:value-of select="./doc:moduleName"/></title>
+  <para>Normative technical docs for
+  <ulink>
+    <xsl:attribute name="url">./<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
+    <xsl:value-of select="./doc:moduleName"/>
+  </ulink>
+  </para>
+
   <!--itemizedlist>
     <listitem>
       <para>Recommended Usage: <xsl:value-of select="normalize-space(./doc:recommendedUsage)"/></para>
@@ -1015,7 +1021,7 @@
   <!--para>
     <xsl:value-of select="./doc:moduleDescription"/>
   </para-->
-</section>
+  </section>
 </xsl:template>
 
 <xsl:template match="xs:element" mode="indexentry">
