@@ -1,20 +1,9 @@
 <?xml version="1.0"?>
-<xs:schema
-    targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1"
-    xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1"
-    xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    schemaLocation="eml-documentation.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1"
-    schemaLocation="eml-party.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1"
-    schemaLocation="eml-coverage.xsd" />
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1"
-    schemaLocation="eml-text.xsd" />
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns="eml://ecoinformatics.org/resource-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -31,9 +20,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-13 21:05:42 $'
-      '$Revision: 1.63 $'
+        '$Author: mccartne $'
+          '$Date: 2002-09-16 17:31:27 $'
+      '$Revision: 1.64 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -155,8 +144,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="creator" type="rp:ResponsibleParty"
-      maxOccurs="unbounded">
+      <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Creator</doc:tooltip>
@@ -176,8 +164,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="metadataProvider" type="rp:ResponsibleParty"
-      minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="metadataProvider" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Metadata Provider</doc:tooltip>
@@ -334,8 +321,7 @@
               <xs:complexType>
                 <xs:simpleContent>
                   <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypCode"
-                    use="optional">
+                    <xs:attribute name="keywordType" type="KeyTypCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Keyword type</doc:tooltip>
@@ -376,8 +362,7 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="additionalInfo" type="txt:TextType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Additional Information</doc:tooltip>
@@ -414,8 +399,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="distribution" type="DistributionType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="distribution" type="DistributionType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Distribution Information</doc:tooltip>
@@ -425,7 +409,7 @@
             resource is distributed online and offline. Connections to online
             systems can be described as URLs and as a list of relevant
             connection parameters.</doc:description>
-            <doc:example />
+            <doc:example/>
             <doc:lineage>Derived from distribution elements in the FGDC
             standard.</doc:lineage>
           </xs:appinfo>
@@ -457,15 +441,15 @@
         <doc:description>This field provides a restricted list of categories
         that a keyword may fall under.</doc:description>
         <doc:example>place</doc:example>
-        <doc:lineage />
+        <doc:lineage/>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="place" />
-      <xs:enumeration value="stratum" />
-      <xs:enumeration value="temporal" />
-      <xs:enumeration value="theme" />
-      <xs:enumeration value="taxonomic" />
+      <xs:enumeration value="place"/>
+      <xs:enumeration value="stratum"/>
+      <xs:enumeration value="temporal"/>
+      <xs:enumeration value="theme"/>
+      <xs:enumeration value="taxonomic"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="yearDate">
@@ -479,18 +463,18 @@
         <doc:lineage>New in EML 2.0.0.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
-    <xs:union memberTypes="xs:gYear xs:date" />
+    <xs:union memberTypes="xs:gYear xs:date"/>
   </xs:simpleType>
   <xs:simpleType name="ScopeType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="system" />
-      <xs:enumeration value="document" />
+      <xs:enumeration value="system"/>
+      <xs:enumeration value="document"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="FunctionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="download" />
-      <xs:enumeration value="information" />
+      <xs:enumeration value="download"/>
+      <xs:enumeration value="information"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="DistributionType">
@@ -548,8 +532,7 @@
                   <xs:complexType>
                     <xs:simpleContent>
                       <xs:extension base="xs:anyURI">
-                        <xs:attribute name="function" type="FunctionType"
-                        use="optional" default="download" />
+                        <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
                       </xs:extension>
                     </xs:simpleContent>
                   </xs:complexType>
@@ -583,8 +566,7 @@
                   <xs:complexType>
                     <xs:choice>
                       <xs:sequence>
-                        <xs:element name="connectionDefinition"
-                        type="ConnectionDefinitionType">
+                        <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Connection Definition</doc:tooltip>
@@ -599,8 +581,7 @@
                             </xs:appinfo>
                           </xs:annotation>
                         </xs:element>
-                        <xs:element name="parameter" minOccurs="0"
-                        maxOccurs="unbounded">
+                        <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Parameter</doc:tooltip>
@@ -666,15 +647,12 @@
                         </xs:annotation>
                       </xs:element>
                     </xs:choice>
-                    <xs:attribute name="id" type="xs:string" use="optional" />
-                    <xs:attribute name="system" type="xs:string"
-                    use="optional" />
-                    <xs:attribute name="scope" type="ScopeType" use="optional"
-                    default="document" />
+                    <xs:attribute name="id" type="xs:string" use="optional"/>
+                    <xs:attribute name="system" type="xs:string" use="optional"/>
+                    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
                   </xs:complexType>
                 </xs:element>
-                <xs:element name="connectionDefinition"
-                type="ConnectionDefinitionType">
+                <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Connection Definition</doc:tooltip>
@@ -744,8 +722,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumDensityUnits" type="xs:string"
-              minOccurs="0">
+              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>units of a numerical density</doc:tooltip>
@@ -772,8 +749,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
@@ -794,7 +770,7 @@
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertinent information about
                     the media</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
                     Metadata</doc:lineage>
                   </xs:appinfo>
@@ -803,14 +779,19 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inline" type="xs:anyType" />
+        <xs:element name="inline">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="ConnectionDefinitionType">
     <xs:annotation>
@@ -995,10 +976,8 @@
         </xs:annotation>
       </xs:element>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
 </xs:schema>
-

@@ -1,19 +1,8 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1"
-    xmlns="eml://ecoinformatics.org/physical-2.0.0rc1"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1"
-    xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1"
-    schemaLocation="eml-documentation.xsd" />
-
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1"
-    schemaLocation="eml-literature.xsd" />
-
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1"
-    schemaLocation="eml-resource.xsd" />
-
+<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns="eml://ecoinformatics.org/physical-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>'$RCSfile: eml-physical.xsd,v $' Copyright: 1997-2002
     Regents of the University of California, University of New Mexico, and
@@ -23,8 +12,8 @@
     Research Network Office, University of New Mexico Center for Environmental
     Studies, Arizona State University Other funding: National Science
     Foundation (see README for details) The David and Lucile Packard Foundation
-    For Details: http://knb.ecoinformatics.org/ '$Author: jones $' '$Date:
-    2002/09/06 22:25:39 $' '$Revision: 1.40 $' This program is free software;
+    For Details: http://knb.ecoinformatics.org/ '$Author: mccartne $' '$Date:
+    2002/09/06 22:25:39 $' '$Revision: 1.41 $' This program is free software;
     you can redistribute it and/or modify it under the terms of the GNU General
     Public License as published by the Free Software Foundation; either version
     2 of the License, or (at your option) any later version. This program is
@@ -34,11 +23,9 @@
     You should have received a copy of the GNU General Public License along
     with this program; if not, write to the Free Software Foundation, Inc., 59
     Temple Place, Suite 330, Boston, MA 02111-1307 USA</xs:documentation>
-
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-physical</doc:moduleName>
-
         <doc:moduleDescription>The eml-physical Module defines the structural
         characteristics of data formats as delivered over the wire or as found
         in a file system. One physical object (which can be a bytestream or an
@@ -48,103 +35,76 @@
         stream that is in some text-based format such as ASCII or UTF-8, and
         includes the information needed to parse the data stream to extract the
         entity and its attributes from the stream.</doc:moduleDescription>
-
         <doc:recommendedUsage>All packages that contain
         data</doc:recommendedUsage>
-
         <doc:standAlone>yes</doc:standAlone>
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-
   <xs:element name="physical" type="PhysicalType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Physical structure.</doc:tooltip>
-
         <doc:summary>Physical structure of an entity or entities.</doc:summary>
-
         <doc:description>Physical structure of an entity or entities. This
         generally is a detailed description of a text representation that shows
         how the columns and rows of a table are represented, or simply the name
         of a well-known binary or proprietary format (e.g., Microsoft Excel
         2000).</doc:description>
-
-        <doc:example />
-
+        <doc:example/>
         <doc:lineage>The eml-physical was introduced into EML 1.4 as
         eml-file.</doc:lineage>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:complexType name="PhysicalType">
     <xs:annotation>
-      <xs:appinfo />
+      <xs:appinfo/>
     </xs:annotation>
-
     <xs:choice>
       <xs:sequence>
         <xs:element name="dataObject">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip />
-
-              <doc:summary />
-
+              <doc:tooltip/>
+              <doc:summary/>
               <doc:description>The dataObject element is a container for
               several items which identify the physical object described by
               this metadata document</doc:description>
-
-              <doc:example />
-
+              <doc:example/>
               <doc:lineage>Introduced in EML 2.0.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-
           <xs:complexType>
             <xs:sequence>
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Object name</doc:tooltip>
-
                   <doc:summary>A name for the physical object.</doc:summary>
-
                   <doc:description>The objectName is the a name (i.e.
                   identifier) for the object being considered. In many cases,
                   it may just be the file name on the file system where it is
                   stored. Or if the object is a table in a RDB it may be the
                   table name.</doc:description>
-
-                  <doc:example />
-
+                  <doc:example/>
                   <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
-
-              <xs:element name="objectName" type="xs:string" />
-
+              <xs:element name="objectName" type="xs:string"/>
               <xs:element name="size" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Entity size</doc:tooltip>
-
                     <doc:summary>Describes the physical size of the
                     entity.</doc:summary>
-
                     <doc:description>This element contains information of the
                     physical size of the entity, typically in
                     bytes.</doc:description>
-
-                    <doc:example>
-                    <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
-                    </doc:example>
-
+                    <doc:example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></doc:example>
                     <doc:lineage>The entitySize was introduced into EML
                     1.4.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
-
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
@@ -152,18 +112,12 @@
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Unit of measurement</doc:tooltip>
-
                             <doc:summary>Unit of measurement for the entity
                             size, typically bytes</doc:summary>
-
                             <doc:description>This element gives the unit of
                             measurement for the size of the entity, and is
                             typically bytes.</doc:description>
-
-                            <doc:example>
-                            <![CDATA[<entitySize unit="bytes">13</entitySize>]]>
-                            </doc:example>
-
+                            <doc:example><![CDATA[<entitySize unit="bytes">13</entitySize>]]></doc:example>
                             <doc:lineage>The unit was introduced into EML
                             1.4.</doc:lineage>
                           </xs:appinfo>
@@ -173,54 +127,38 @@
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
-
-              <xs:element name="authentication" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="authentication" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Authentication method</doc:tooltip>
-
                     <doc:summary>A value, typically a checksum, used to
                     authenticate that the bitstream delivered to the user is
                     identical to the original.</doc:summary>
-
                     <doc:description>This element describes authentication
                     procedures or techniques, typically by giving a checksum
                     method (e.g., MD5) and checksum value for the
                     bytestream.</doc:description>
-
-                    <doc:example>
-                    <![CDATA[<authentication method="MD5">
-                    f5b2177ea03aea73de12da81f896fe40</authentication>]]>
-                    </doc:example>
-
+                    <doc:example><![CDATA[<authentication method="MD5">
+                    f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
                     <doc:lineage>The authentication element was introduced into
                     EML 1.4.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
-
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
-                      <xs:attribute name="method" type="xs:string"
-                      use="optional">
+                      <xs:attribute name="method" type="xs:string" use="optional">
                         <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip>Authentication method</doc:tooltip>
-
                             <doc:summary>The method used to calculate an
                             authentication checksum.</doc:summary>
-
                             <doc:description>This element names the method used
                             to calculate and authentication checksum that can
                             be used to validate a bytestream. Typical checksum
                             methods include MD5 and CRC.</doc:description>
-
-                            <doc:example>
-                            <![CDATA[<authentication method="MD5">
-                            f5b2177ea03aea73de12da81f896fe40</authentication>]]>
-                            </doc:example>
-
+                            <doc:example><![CDATA[<authentication method="MD5">
+                            f5b2177ea03aea73de12da81f896fe40</authentication>]]></doc:example>
                             <doc:lineage>The authentication element was
                             introduced into EML 1.4.</doc:lineage>
                           </xs:appinfo>
@@ -230,65 +168,46 @@
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
-
-              <xs:element name="compressionMethod" type="xs:string"
-              minOccurs="0">
+              <xs:element name="compressionMethod" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Entity's compression method</doc:tooltip>
-
                     <doc:summary>Name ofthe entity's compression
                     method</doc:summary>
-
                     <doc:description>This element describes any compression
                     methods used to compress the entity, such as zip, compress,
                     etc.</doc:description>
-
-                    <doc:example />
-
+                    <doc:example/>
                     <doc:lineage>The compressed element was introduced into EML
                     1.4.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
               <xs:element name="encodingMethod" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Encoding Method</doc:tooltip>
-
                     <doc:summary>Method used for encoding the
                     entity</doc:summary>
-
                     <doc:description>This element describes the entity's
                     encoded method, such as MIME base64 encoding or binhex
                     encoding.</doc:description>
-
-                    <doc:example />
-
+                    <doc:example/>
                     <doc:lineage>The encoded element was introduced into EML
                     1.4.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-
-              <xs:element name="characterEncoding" type="xs:string"
-              minOccurs="0">
+              <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Character Encoding</doc:tooltip>
-
                     <doc:summary>Contains the name of the chracter encoding
                     used for the data.</doc:summary>
-
                     <doc:description>This element contains the name of the
                     character encoding. This is typically ASCII or UTF-8, or
                     one of the other common encodings.</doc:description>
-
-                    <doc:example>
-                    <![CDATA[<characterEncoding>UTF-8</characterEncoding>]]>
-                    </doc:example>
-
+                    <doc:example><![CDATA[<characterEncoding>UTF-8</characterEncoding>]]></doc:example>
                     <doc:lineage>Introduced in EML 2.0</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
@@ -296,62 +215,44 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-
         <xs:element name="dataFormat">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>File format</doc:tooltip>
-
               <doc:summary>Contains the name of the format for this
               file.</doc:summary>
-
               <doc:description>This element contains the name of the file's
               format. The file's format is typically ASCII, Unicode, or some
               well-known binary format (e.g., Microsoft Excel 2000). It is
               recommended to include a complete MIME type here, such as
               image/jpeg or text/xml. Note that this is the format of the
               physical file itself.</doc:description>
-
-              <doc:example>
-              <![CDATA[<dataFormat>ASCII</dataFormat>]]>
-              </doc:example>
-
+              <doc:example><![CDATA[<dataFormat>ASCII</dataFormat>]]></doc:example>
               <doc:lineage>The format element was introduced into EML
               1.4.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-
           <xs:complexType>
             <xs:choice>
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Generic binary format</doc:tooltip>
-
                   <doc:summary>Generic binary format</doc:summary>
-
                   <doc:description>Documentation for a generic binary
                   format</doc:description>
-
-                  <doc:example />
-
+                  <doc:example/>
                   <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                 </xs:appinfo>
               </xs:annotation>
-
               <xs:element name="formatType">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="formatName" type="xs:string" />
-
-                    <xs:element name="formatVersion" type="xs:string"
-                    minOccurs="0" />
-
-                    <xs:element name="citation" type="lit:CitationType"
-                    minOccurs="0" />
+                    <xs:element name="formatName" type="xs:string"/>
+                    <xs:element name="formatVersion" type="xs:string" minOccurs="0"/>
+                    <xs:element name="citation" type="lit:CitationType" minOccurs="0"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-
               <xs:element name="asciiDelimited">
                 <xs:complexType>
                   <xs:sequence>
@@ -359,11 +260,9 @@
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Attribute delimiter</doc:tooltip>
-
                           <doc:summary>The end of the attribute (field) is
                           delimited by a special character called a field
                           delimiter.</doc:summary>
-
                           <doc:description>
                           Variable width format fields (attributes) can vary
                           in their
@@ -432,10 +331,8 @@
                             <fieldStartColumn>11</fieldStartColumn>
                             <fieldWidth>3</fieldWidth>
                           ]]></doc:description>
-
                           <doc:example>comma, tab, white space,
                           etc.</doc:example>
-
                           <doc:lineage>The delimiter element was introduced
                           into EML 1.4. Semantics changed to work identically
                           to the NBII DTD, and then modified to fit more
@@ -443,65 +340,43 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="numHeaderLines" type="xs:unsignedLong"
-                    minOccurs="0">
+                    <xs:element name="numHeaderLines" type="xs:unsignedLong" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Header lines</doc:tooltip>
-
                           <doc:summary>Header lines in the entity</doc:summary>
-
                           <doc:description>Number of header lines or
                           information that prepares data.</doc:description>
-
-                          <doc:example>
-                          <![CDATA[<numHeaderLines>3</numHeaderLines>]]>
-                          </doc:example>
-
+                          <doc:example><![CDATA[<numHeaderLines>3</numHeaderLines>]]></doc:example>
                           <doc:lineage>The numHeaderLines element was
                           introduced into EML 1.4.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="maxRecordLength" type="xs:unsignedLong"
-                    minOccurs="0" />
-
-                    <xs:element name="quoteCharacter" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="maxRecordLength" type="xs:unsignedLong" minOccurs="0"/>
+                    <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Quote character</doc:tooltip>
-
                           <doc:summary>Character used to quote values for
                           delimeter escaping</doc:summary>
-
                           <doc:description>This element specifies a character
                           to be used in the entity for quoting values so that
                           field delimeters can be used within the value. This
                           basically allows delimeter "escaping". The
                           quoteChacter is typically a " or '.</doc:description>
-
-                          <doc:example>
-                          <![CDATA[<quoteCharacter>"</quoteCharacter>]]>
-                          </doc:example>
-
+                          <doc:example><![CDATA[<quoteCharacter>"</quoteCharacter>]]></doc:example>
                           <doc:lineage>The quoteCharacter element was taken
                           from the NBII standard.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="recordDelimiter" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Record delimiter character</doc:tooltip>
-
                           <doc:summary>Character used to delimit
                           records.</doc:summary>
-
                           <doc:description>This element specifies the record
                           delimiter character when the format is text. The
                           record delimiter is usually a newline (\n) on UNIX, a
@@ -510,26 +385,18 @@
                           with two line ending characters, for example on UNIX
                           it would be two newline characters
                           (\n\n).</doc:description>
-
-                          <doc:example>
-                          <![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]>
-                          </doc:example>
-
+                          <doc:example><![CDATA[<recordDelimiter>\n\r</recordDelimiter>]]></doc:example>
                           <doc:lineage>The recordDelimiter element was
                           introduced into EML 1.4.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="literalCharacter" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Literal character</doc:tooltip>
-
                           <doc:summary>Character used to escape other
                           characters</doc:summary>
-
                           <doc:description>This element specifies a character
                           to be used for escaping character values so that the
                           following character is treated as its literal value.
@@ -537,11 +404,7 @@
                           quotes, commas, and spaces when they aren't intended
                           as a delimiter value. The literalChacter is typically
                           a \.</doc:description>
-
-                          <doc:example>
-                          <![CDATA[<literalCharacter>\</literalCharacter>]]>
-                          </doc:example>
-
+                          <doc:example><![CDATA[<literalCharacter>\</literalCharacter>]]></doc:example>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -549,51 +412,39 @@
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-
               <xs:element name="asciiFixed">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="numHeaderLines" type="xs:string"
-                    minOccurs="0" />
-
-                    <xs:element name="numPhysicalLines" type="xs:unsignedInt"
-                    minOccurs="0">
+                    <xs:element name="numHeaderLines" type="xs:string" minOccurs="0"/>
+                    <xs:element name="numPhysicalLines" type="xs:unsignedInt" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Number of physical lines</doc:tooltip>
-
                           <doc:summary>The number of physical lines in the file
                           spanned by a single logical data
                           record.</doc:summary>
-
                           <doc:description>A single logical data record may be
                           written over several physical lines in a file, with
                           no special marker to indicate the end of a record. In
                           such cases, it is necessary to know the number of
                           lines per record in order to correctly read
                           them.</doc:description>
-
                           <doc:example>3</doc:example>
-
                           <doc:lineage>Introduced into EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="fieldBounds">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="lineNumber" type="xs:unsignedLong"
-                          minOccurs="0">
+                          <xs:element name="lineNumber" type="xs:unsignedLong" minOccurs="0">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Physical Line Number</doc:tooltip>
-
                                 <doc:summary>The line on which the data field
                                 is found, when the data record is written over
                                 more than one physical line in the
                                 file.</doc:summary>
-
                                 <doc:description>A single logical data record
                                 may be written over several physical lines in a
                                 file, with no special marker to indicate the
@@ -601,54 +452,41 @@
                                 location of a data field must be indicated by
                                 both relative row and column
                                 number.</doc:description>
-
                                 <doc:example>3</doc:example>
-
                                 <doc:lineage>Introduced into EML
                                 2.0.</doc:lineage>
                               </xs:appinfo>
                             </xs:annotation>
                           </xs:element>
-
-                          <xs:element name="fieldStartColumn"
-                          type="xs:unsignedLong">
+                          <xs:element name="fieldStartColumn" type="xs:unsignedLong">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Start column</doc:tooltip>
-
                                 <doc:summary>The starting column number for a
                                 fixed format attribute.</doc:summary>
-
                                 <doc:description>FixedWidth fields have a set
                                 length, thus the end of the field can always be
                                 determined by adding the fieldWidth to the
                                 starting column number.</doc:description>
-
                                 <doc:example>any positive integer, see example
                                 in "delimeter" description</doc:example>
-
                                 <doc:lineage>Introduced into EML
                                 2.0.</doc:lineage>
                               </xs:appinfo>
                             </xs:annotation>
                           </xs:element>
-
                           <xs:element name="fieldWidth" type="xs:unsignedLong">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Field width</doc:tooltip>
-
                                 <doc:summary>FieldWidth specification for fixed
                                 field length.</doc:summary>
-
                                 <doc:description>FixedWidth fields have a set
                                 length, thus the end of the field can always be
                                 determined by adding the fieldWidth to the
                                 starting column number.</doc:description>
-
                                 <doc:example>any positive integer, see example
                                 in "delimeter" description</doc:example>
-
                                 <doc:lineage>The fieldWidth element was
                                 introduced into EML 1.4. Semantics changed to
                                 work identically to the NBII DTD.</doc:lineage>
@@ -661,15 +499,12 @@
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-
               <xs:element name="binaryRasterInfo">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>raster image parameters</doc:tooltip>
-
                     <doc:summary>contains binary raster data header
                     parameters</doc:summary>
-
                     <doc:description>The binaryRasterInfo element is a
                     container for various parameters used to described the
                     contents of binary raster image files. In this case, it is
@@ -677,62 +512,46 @@
                     header information used for BIP and BIL files ("Extendable
                     Image Formats for ArcView GIS 3.1 and
                     3.2").</doc:description>
-
-                    <doc:example />
-
+                    <doc:example/>
                     <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
-
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="nrows" type="xs:int">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of rows in the image.
                           Rows are parallel to the x-axis of the map coordinate
                           system. There is no default.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="ncols" type="xs:int">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of columns in the image.
                           Columns are parallel to the y-axis of the map
                           coordinate system. There is no
                           default.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="orientation" nillable="true"
-                    minOccurs="0">
+                    <xs:element name="orientation" nillable="true" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Entity's record
                           orientation</doc:tooltip>
-
                           <doc:summary>Specification of the binary raster
                           entity's record orientation.</doc:summary>
-
                           <doc:description>This element contains specification
                           of the binary raster entity's record orientation by
                           defining the element's attribute "columnorrow". The
@@ -740,75 +559,57 @@
                           to be displayed column by column from the byte
                           stream, or row major if it is to be displayed row by
                           row from the byte stream.</doc:description>
-
                           <doc:example>The valid attribute values are
                           "columnmajor" or "rowmajor". If the attribute is not
                           specified, "columnmajor" is used.</doc:example>
-
                           <doc:lineage>The orientation element was introduced
                           into EML 2.0</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
-
                       <xs:complexType>
-                        <xs:attribute name="columnOrRow" use="optional"
-                        default="columnMajor">
+                        <xs:attribute name="columnOrRow" use="optional" default="columnMajor">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Attribute of orientation
                               element</doc:tooltip>
-
                               <doc:summary>Specification of the entity's record
                               orientation.</doc:summary>
-
                               <doc:description>This attribute specifies the
                               entity's record orientation.</doc:description>
-
                               <doc:example>The valid attribute values are
                               "columnmajor" or "rowmajor". If the attribute is
                               not specified, "columnmajor" is
                               used.</doc:example>
-
                               <doc:lineage>The columnorrow attribute was
                               introduced into EML 1.4.</doc:lineage>
                             </xs:appinfo>
                           </xs:annotation>
-
                           <xs:simpleType>
                             <xs:restriction base="xs:string">
-                              <xs:enumeration value="columnMajor" />
-
-                              <xs:enumeration value="rowMajor" />
+                              <xs:enumeration value="columnMajor"/>
+                              <xs:enumeration value="rowMajor"/>
                             </xs:restriction>
                           </xs:simpleType>
                         </xs:attribute>
                       </xs:complexType>
                     </xs:element>
-
                     <xs:element name="nbands" type="xs:int" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of spectral bands in the
                           image. The default is 1.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="nbits" type="xs:int" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of bits per pixel per
                           band. Acceptable values are 1, 4, 8, 16, and 32. The
                           default value is eight bits per pixel per band. For a
@@ -818,22 +619,16 @@
                           twenty-four bits per pixel. For an image with nbits
                           equal to one, nbands must also equal
                           one.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="byteorder" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="byteorder" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The byte order in which image pixel
                           values are stored. The byte order is important for
                           sixteen-bit images, with two bytes per pixel.
@@ -843,186 +638,135 @@
                           big-endian. The default byte order is the same as
                           that of the host machine executing the
                           software.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="layout" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The organization of the bands in the
                           image file. Acceptable values are bil - Band
                           interleaved by line. bip - Band interleaved by pixel.
                           bsq - Band sequential. The default layout is
                           bil.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="skipbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="skipbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of bytes of data in the
                           image file to skip in order to reach the start of the
                           image data. This keyword allows you to bypass any
                           existing image header information in the file. The
                           default value is zero bytes.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="ulxmap" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The y-axis map coordinate of the
                           center of the upper-left pixel. If this parameter is
                           specified, ulxmap must also be set, otherwise a
                           default value is used.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="ulymap" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The x-axis map coordinate of the
                           center of the upper-left pixel. If you specify this
                           parameter, set ulymap, too, otherwise a default value
                           is used.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="xdim" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The y-dimension of a pixel in map
                           units. If this parameter is specified, xdim must also
                           be set, otherwise a default value is
                           used.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
                     <xs:element name="ydim" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The x-dimension of a pixel in map
                           units. If this parameter is specified, ydim must also
                           be set, otherwise a default value is
                           used.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="bandrowbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of bytes per band per
                           row. This must be an integer. This keyword is used
                           only with BIL files when there are extra bits at the
                           end of each band within a row that must be
                           skipped.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="totalrowbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The total number of bytes of data
                           per row. Use totalrowbytes when there are extra
                           trailing bits at the end of each
                           row.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-
-                    <xs:element name="bandgapbytes" type="xs:string"
-                    minOccurs="0">
+                    <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip />
-
-                          <doc:summary />
-
+                          <doc:tooltip/>
+                          <doc:summary/>
                           <doc:description>The number of bytes between bands in
                           a BSQ format image. The default is
                           zero.</doc:description>
-
-                          <doc:example />
-
+                          <doc:example/>
                           <doc:lineage>Introduced in EML 2.0.</doc:lineage>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1033,39 +777,28 @@
             </xs:choice>
           </xs:complexType>
         </xs:element>
-
-        <xs:element name="distribution" type="PhysicalDistributionType"
-        minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="distribution" type="PhysicalDistributionType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Distribution Information</doc:tooltip>
-
               <doc:summary>Information on how the resource is distributed
               online and offline</doc:summary>
-
               <doc:description>This element provides information on how the
               resource is distributed online and offline. Connections to online
               systems can be described as URLs and as a list of relevant
               connection parameters.</doc:description>
-
-              <doc:example />
-
+              <doc:example/>
               <doc:lineage>Derived from distribution elements in the FGDC
               standard.</doc:lineage>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:sequence>
-
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-
-    <xs:attribute name="id" type="xs:string" use="optional" />
-
-    <xs:attribute name="system" type="xs:string" use="optional" />
-
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="PhysicalDistributionType">
     <xs:choice>
@@ -1122,8 +855,7 @@
                   <xs:complexType>
                     <xs:simpleContent>
                       <xs:extension base="xs:anyURI">
-                        <xs:attribute name="function" type="res:FunctionType"
-                        use="optional" default="download" />
+                        <xs:attribute name="function" type="res:FunctionType" use="optional" default="download"/>
                       </xs:extension>
                     </xs:simpleContent>
                   </xs:complexType>
@@ -1157,8 +889,7 @@
                   <xs:complexType>
                     <xs:choice>
                       <xs:sequence>
-                        <xs:element name="connectionDefinition"
-                        type="res:ConnectionDefinitionType">
+                        <xs:element name="connectionDefinition" type="res:ConnectionDefinitionType">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Connection Definition</doc:tooltip>
@@ -1173,8 +904,7 @@
                             </xs:appinfo>
                           </xs:annotation>
                         </xs:element>
-                        <xs:element name="parameter" minOccurs="0"
-                        maxOccurs="unbounded">
+                        <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
                           <xs:annotation>
                             <xs:appinfo>
                               <doc:tooltip>Parameter</doc:tooltip>
@@ -1240,11 +970,9 @@
                         </xs:annotation>
                       </xs:element>
                     </xs:choice>
-                    <xs:attribute name="id" type="xs:string" use="optional" />
-                    <xs:attribute name="system" type="xs:string"
-                    use="optional" />
-                    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-                    default="document" />
+                    <xs:attribute name="id" type="xs:string" use="optional"/>
+                    <xs:attribute name="system" type="xs:string" use="optional"/>
+                    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
                   </xs:complexType>
                 </xs:element>
               </xs:choice>
@@ -1300,8 +1028,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumDensityUnits" type="xs:string"
-              minOccurs="0">
+              <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>units of a numerical density</doc:tooltip>
@@ -1328,8 +1055,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="mediumFormat" type="xs:string" minOccurs="0"
-              maxOccurs="unbounded">
+              <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>medium format</doc:tooltip>
@@ -1350,7 +1076,7 @@
                     <doc:summary>note about the media</doc:summary>
                     <doc:description>any additional pertinent information about
                     the media</doc:description>
-                    <doc:example />
+                    <doc:example/>
                     <doc:lineage>ISO CD 19115.3, Geographic information -
                     Metadata</doc:lineage>
                   </xs:appinfo>
@@ -1359,14 +1085,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inline" type="xs:anyType" />
+        <xs:element name="inline">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
-      <xs:element name="references" type="xs:string" />
+      <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
-    <xs:attribute name="scope" type="res:ScopeType" use="optional"
-    default="document" />
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
 </xs:schema>
-
