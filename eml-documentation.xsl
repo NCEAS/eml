@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: jones $'
- *        '$Date: 2002-10-05 00:02:23 $'
- *    '$Revision: 1.41 $'
+ *        '$Date: 2002-10-07 16:48:25 $'
+ *    '$Revision: 1.42 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@
                select="//doc:moduleName"/>
           Documentation
         </title>
-        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <link rel="stylesheet" type="text/css" href="../default.css"/>
       </head>
       <body>
         <!-- display the module name and description -->

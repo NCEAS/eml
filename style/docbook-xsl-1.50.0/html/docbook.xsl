@@ -9,7 +9,7 @@
             indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl,v 1.5 2002-09-30 21:08:28 berkley Exp $
+     $Id: docbook.xsl,v 1.6 2002-10-07 16:48:25 jones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -64,7 +64,7 @@
 <xsl:include href="html-rtf.xsl"/>
 <xsl:include href="literalLayout.xsl"/>
 
-<xsl:param name="html.stylesheet" select="'default.css'"/>
+<xsl:param name="html.stylesheet" select="'../default.css'"/>
 <xsl:param name="stylesheet.result.type" select="'html'"/>
 
 <!-- ==================================================================== -->

@@ -13,9 +13,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-04 09:17:01 $'
-      '$Revision: 1.10 $'
+        '$Author: jones $'
+          '$Date: 2002-10-07 16:48:25 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -135,6 +135,9 @@ a.navlink {
     padding: 1em;
     font-size: 1em; 
     font-weight: bold; }
+p + p { 
+    margin: 0.25em; 
+    text-indent: 2em; }
 p { 
     margin: 0.25em; }
 .required { 

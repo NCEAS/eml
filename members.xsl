@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  * 
  *      '$Author: jones $'
- *        '$Date: 2002-09-13 07:55:59 $'
- *    '$Revision: 1.1 $'
+ *        '$Date: 2002-10-07 16:48:25 $'
+ *    '$Revision: 1.2 $'
  * 
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
     <html>
       <head>
         <title>EML Project Members</title>
-        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <link rel="stylesheet" type="text/css" href="../default.css"/>
       </head>
       <body>
         <!-- display the module name and description -->
@@ -49,7 +49,7 @@
         <tr valign="top"><td>
         <div class="title">EML Project Members</div>
         </td><td>
-        <a href="index.html" class="navlink">Back to EML Contents</a>
+        <a href="../index.html" class="navlink">Back to EML Contents</a>
         </td></tr>
         <tr><td>
           <p>

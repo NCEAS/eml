@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2002-10-05 00:02:23 $'
-      '$Revision: 1.52 $'
+          '$Date: 2002-10-07 16:48:25 $'
+      '$Revision: 1.53 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -101,24 +101,25 @@
     <property name="cpath" value="${servlet}:${cos}:${jnet}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
+    <mkdir dir="${build.docs}/eml-${version}"/>
   </target>
 
   <!-- Generate HTML documentation using an XSLT transform -->
   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
   <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml">
-    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl"
+    <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
            includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
     <style basedir="." destdir="${build.docs}" style="members.xsl"
            includes="members.xml" processor="trax"/>
     <copy todir="${build.docs}" filtering="yes">
       <fileset dir=".">
         <include name="index.html"/>
+        <include name="default.css"/>
       </fileset>
     </copy>
-    <copy todir="${build.docs}" filtering="no">
+    <copy todir="${build.docs}/eml-${version}" filtering="no">
       <fileset dir=".">
-        <include name="default.css"/>
         <include name="*.png"/>
       </fileset>
     </copy>
@@ -176,10 +177,12 @@
            in="eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
            processor="trax"/>
     <style basedir="." style="sortDocBook.xsl"
-           in="${build.dir}/eml-docbook-nosort.xml" out="${build.dir}/eml-docbook.xml"
+           in="${build.dir}/eml-docbook-nosort.xml" 
+           out="${build.dir}/eml-docbook.xml"
            processor="trax"/>
     <!-- the following copy is needed to do the ant replacement -->
-    <copy file="${build.dir}/eml-docbook.xml" tofile="${build.docs}/eml-docbook.xml"
+    <copy file="${build.dir}/eml-docbook.xml" 
+          tofile="${build.docs}/eml-${version}/eml-docbook.xml"
           filtering="yes"/>
     <echo>
       ***********************************************
@@ -200,14 +203,14 @@
       ************************************************
     </echo>
     <style basedir="." style="${htmldocbook-style}"
-           in="${build.docs}/eml-docbook.xml"
-           out="${build.docs}/eml-docbook.html"
+           in="${build.docs}/eml-${version}/eml-docbook.xml"
+           out="${build.docs}/eml-${version}/index.html"
            processor="trax"/>
-    <copy file="default.css" todir="docs/"/>
+    <copy file="default.css" todir="${build.docs}"/>
     <echo>
       ************************************************
         Docbook html created.  The html docbook file
-        is docs/eml-docbook.html.
+        is docs/eml-{$version}/eml-docbook.html.
       ************************************************
     </echo>
   </target>
@@ -224,26 +227,26 @@
     </echo>
     <style basedir="." style="${htmldocbook-style}"
            in="eml-faq.xml"
-           out="${build.docs}/eml-faq.html"
+           out="${build.docs}/eml-${version}/eml-faq.html"
            processor="trax"/>
     <echo>
       ************************************************
         FAQ rendered to HTML.  The html file
-        is docs/eml-faq.html.
+        is docs/eml-{$version}/eml-faq.html.
       ************************************************
     </echo>
   </target>
 
   <target name="tablehtml">
-    <copy file="default.css" todir="docs/"/>
+    <copy file="default.css" todir="${build.docs}"/>
     <style basedir="." style="buildDependencyTable.xsl"
            in="eml.xsd"
-           out="docs/eml-dependencies.html"
+           out="${build.docs}/eml-${version}/eml-dependencies.html"
            processor="trax"/>
     <echo>
       ************************************************
         Dependency Table rendered to HTML.
-        The html file is docs/eml-dependencies.html.
+        The html file is docs/eml-{$version}/eml-dependencies.html.
       ************************************************
     </echo>
   </target>
@@ -251,12 +254,12 @@
   <target name="buildenumerations">
     <style basedir="." style="getunits.xsl"
            in="eml-unitDictionary.xml"
-           out="docs/enumerations.xml"
+           out="${build.docs}/eml-${version}/enumerations.xml"
            processor="trax"/>
     <echo>
       ************************************************
                     enumerations created.
-                  see docs/enumerations.xml
+                  see docs/eml-{$version}/enumerations.xml
       ************************************************
     </echo>
   </target>
