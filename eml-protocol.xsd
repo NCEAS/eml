@@ -1,7 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="eml:entity">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:protocol" xmlns:rp="eml:ResponsibleParty" xmlns="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-protocol.xsd,v $'
@@ -9,9 +7,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: harris $'
-          '$Date: 2001-04-03 20:04:03 $'
-      '$Revision: 1.1 $'
+        '$Author: jones $'
+          '$Date: 2001-07-11 19:05:11 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,199 +26,170 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-      <moduleName>
-        eml-quality
-      </moduleName>
+      <moduleName>eml-protocol</moduleName>
       <moduleDescription>
-        The EML Quality Module is used to identify the proccesses that have been
+        The EML Protocol Module is used to describe methods and identify the proccesses that have been
 	used to define / improve the quality of a data file, also used to
 	identify potential problems with the data file.
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
-<xs:element name="eml-quality">
-<xs:complexType>
-<xs:sequence>
-	<xs:element name = "identifier" type = "xs:string"
-                    minOccurs="1" maxOccurs="unbounded">
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="eml-party.xsd"/>
+  <xs:element name="eml-protocol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" maxOccurs="unbounded">
           <xs:complexType>
-            <xs:attribute name="system" use="optional" type="xs:string">         
-            </xs:attribute>
+            <xs:attribute name="system" type="xs:string" use="optional"/>
           </xs:complexType>
         </xs:element>
-    
-	<xs:element name="step" 
-		minOccurs="1" maxOccurs="1">
-		
-	    <xs:annotation>
+        <xs:element name="step">
+          <xs:annotation>
             <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
+              <tooltip/>
+              <summary/>
               <description>Step defines the quality control / assurance procedures 
 	      that were applied to the corresponding data file.  For example, 
 	      a shell-script that 'greps' for an alpha-character within a 
 	      datafile that is supposed to contain only numeric characters
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
+              <example/>
+              <lineage/>
             </xs:appinfo>
           </xs:annotation>
-		
-	 <xs:complexType>
-    	  <xs:sequence>
-   
-      		<xs:element name="purpose" type="paragraph"
-			minOccurs="1" maxOccurs="unbounded">
-			
-	    <xs:annotation>
-            <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
-              <description> This refers to the motivation for designing or 
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="purpose" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> This refers to the motivation for designing or 
 	      implementing the quality control / assurance process to the data 
 	      file. 
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-		</xs:element>
-      		<xs:element name="action" type="paragraph"
-			minOccurs="1" maxOccurs="unbounded">
-	    <xs:annotation>
-            <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
-              <description> The action element describes the procedure taken  
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="action" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> The action element describes the procedure taken  
 	      in the quality control / assurance process performed on the data 
 	      file. 
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-	</xs:element>
-	<xs:element name="outcome" type="paragraph"
-			minOccurs="1" maxOccurs="unbounded">
-	    <xs:annotation>
-            <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
-              <description> The outcome expected after the quality control / 
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="outcome" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> The outcome expected after the quality control / 
 	      assurance procedure is applied on the data file. 
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-	</xs:element>
-	<xs:element name="appliedAttribute" type="paragraph"
-			minOccurs="0" maxOccurs="unbounded">
-	    <xs:annotation>
-            <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
-              <description> An attribute of the data file which this quality
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="appliedAttribute" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> An attribute of the data file which this quality
 	      control / assurance process was applied to
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>	
-	</xs:element>
-      	<xs:element name="contact" type="rp:responsibleParty"
-			minOccurs="0" maxOccurs="unbounded">
-	<xs:annotation>
-            <xs:appinfo>
-              <tooltip> </tooltip>
-              <summary> </summary>
-              <description> The person responsible of performing / difining this
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="contact" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> The person responsible of performing / difining this
 	      process on the attribute in the data file
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-         </xs:annotation>
-	</xs:element>      
-    </xs:sequence>
-   </xs:complexType>
-  </xs:element>
-  <xs:element name="knownProblems" type="paragraph"
-                    minOccurs="0" maxOccurs="unbounded">
-    <xs:annotation>
-      <xs:appinfo>
-         <tooltip> </tooltip>
-         <summary> </summary>
-         <description> A description of the problems that might be associated 
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="knownProblems" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <tooltip/>
+              <summary/>
+              <description> A description of the problems that might be associated 
 	 with the implementation of this quality control / assurance procedure
 	 </description>
-         <example> </example>
-         <lineage> </lineage>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  
-  <xs:element name="qualityCode" type=""
-                    minOccurs="0" maxOccurs="unbounded">
-   <xs:attribute name="codeSystem" use="optional" type="xs:string">
-	    <xs:annotation>
-        	<xs:appinfo>
-              	  <tooltip> </tooltip>
-              	  <summary> </summary>
-              	  <description> Give the name of the coding system utilized for 
-		  assigning quality control / assurance codes to the data file
-	      </description>
-              <example> </example>
-              <lineage> </lineage>
+              <example/>
+              <lineage/>
             </xs:appinfo>
           </xs:annotation>
-   </xs:attribute>
-     <xs:complexType>
-       <xs:sequence>
- 	<xs:element name="description" type="paragraph"
-			minOccurs="0" maxOccurs="1">
-	    <xs:annotation>
-        	<xs:appinfo>
-              	  <tooltip> </tooltip>
-              	  <summary> </summary>
-              	  <description> The description of the coding value utilized 
+        </xs:element>
+        <xs:element name="qualityCode" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="description" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> The description of the coding value utilized 
 		  for assigning quality control / assurance to the data 
 		  file
 	      </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-		
-	</xs:element>
-      		<xs:element name="code" type="paragraph"
-			minOccurs="0" maxOccurs="unbounded">
-		
-		   <xs:annotation>
-        	<xs:appinfo>
-              	  <tooltip> </tooltip>
-              	  <summary> </summary>
-          	  <description> This is a code which refers to the quality and 
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="code" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <tooltip/>
+                    <summary/>
+                    <description> This is a code which refers to the quality and 
 		  is specified in the code system that is used.  For example a 
 		  code system may have the value of NASA and the specific code
 		  designated by this attribute may have a value = "1". </description>
-              <example> </example>
-              <lineage> </lineage>
-            </xs:appinfo>
-          </xs:annotation>
-		
-		
-		</xs:element>
-		
-		
-    </xs:sequence>
-   </xs:complexType>
+                    <example/>
+                    <lineage/>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="codeSystem" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:appinfo>
+                  <tooltip/>
+                  <summary/>
+                  <description> Give the name of the coding system utilized for 
+		  assigning quality control / assurance codes to the data file
+	      </description>
+                  <example/>
+                  <lineage/>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
   </xs:element>
-      
-       
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-      
 </xs:schema>
