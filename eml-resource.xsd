@@ -9,8 +9,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2002-05-23 09:00:43 $'
-      '$Revision: 1.37 $'
+          '$Date: 2002-05-24 01:49:06 $'
+      '$Revision: 1.38 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -82,6 +82,15 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
+      <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="system" type="xs:string" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="shortName" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -627,7 +636,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:choice maxOccurs="unbounded">
-            <xs:element name="connection">
+            <xs:element name="online">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Connection Information
@@ -645,8 +654,8 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
-                <xs:choice>
-                  <xs:element name="onlineURL" type="xs:string">
+                <xs:sequence>
+                  <xs:element name="url">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -666,8 +675,15 @@
                           </doc:lineage>
                       </xs:appinfo>
                     </xs:annotation>
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                          <xs:attribute name="function" type="FunctionType" use="optional" default="download"/>
+                        </xs:extension>
+                      </xs:simpleContent>
+                    </xs:complexType>
                   </xs:element>
-                  <xs:element name="parameter" maxOccurs="unbounded">
+                  <xs:element name="connectionNotes" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Parameter Value
@@ -693,77 +709,14 @@
                     </xs:annotation>
                     <xs:complexType>
                       <xs:simpleContent>
-                        <xs:extension base="xs:string">
-                          <xs:attribute name="name" type="xs:string" use="required">
-                            <xs:annotation>
-                              <xs:appinfo>
-                                <doc:tooltip>Paramter Name
-                                  </doc:tooltip>
-                                <doc:summary>
-                                    The name of the parameter
-                                  </doc:summary>
-                                <doc:description>
-                                    The name of one of the paramters needed
-                                    to connect using this connection.
-                                  </doc:description>
-                                <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
-                                <doc:lineage>
-                                    New in EML 2.0.0
-                                  </doc:lineage>
-                              </xs:appinfo>
-                            </xs:annotation>
-                          </xs:attribute>
-                        </xs:extension>
+                        <xs:extension base="xs:string"/>
                       </xs:simpleContent>
                     </xs:complexType>
                   </xs:element>
-                </xs:choice>
-                <xs:attribute name="name" type="xs:string" use="optional">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Connection Name
-                      </doc:tooltip>
-                      <doc:summary>
-                        Name of this connection
-                      </doc:summary>
-                      <doc:description>
-                        An optional descriptive name for this connection that
-                        allows the connection to be referenced.
-                      </doc:description>
-                      <doc:example>
-                        KNB Site
-                      </doc:example>
-                      <doc:lineage>
-                        New in EML 2.0.0
-                      </doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attribute name="scheme" type="xs:string" use="optional">
-                  <xs:annotation>
-                    <xs:appinfo>
-                      <doc:tooltip>Connection Scheme
-                      </doc:tooltip>
-                      <doc:summary>
-                        The type of connection represented
-                      </doc:summary>
-                      <doc:description>
-                        The type of the connection represented. Common
-                        schemes include http and ftp, as well as various
-                        database schemes such as jdbc and odbc.
-                      </doc:description>
-                      <doc:example>
-                        jdbc
-                      </doc:example>
-                      <doc:lineage>
-                        New in EML2.0.0
-                      </doc:lineage>
-                    </xs:appinfo>
-                  </xs:annotation>
-                </xs:attribute>
+                </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="offlineMedium">
+            <xs:element name="offline">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>
@@ -786,7 +739,7 @@
               </xs:annotation>
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="medName" type="xs:string" minOccurs="0">
+                  <xs:element name="mediumName" type="xs:string" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -810,7 +763,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="medDensity" type="xs:string" minOccurs="0">
+                  <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -835,7 +788,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="medDensityUnits" type="xs:string" minOccurs="0">
+                  <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -858,7 +811,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="medVol" type="xs:string" minOccurs="0">
+                  <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -881,7 +834,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="medFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -905,7 +858,7 @@
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:element>
-                  <xs:element name="medNote" type="xs:string" minOccurs="0">
+                  <xs:element name="mediumNote" type="xs:string" minOccurs="0">
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>
@@ -958,7 +911,7 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:ID" use="optional">
+    <xs:attribute name="id" type="xs:ID" use="required">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>
@@ -986,7 +939,7 @@
         </xs:appinfo>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="system" type="xs:string" use="optional">
+    <xs:attribute name="system" type="xs:string" use="required">
       <xs:annotation>
         <xs:appinfo>
           <doc:tooltip>
@@ -1011,6 +964,7 @@
         </xs:appinfo>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="scope" type="ScopeType" use="required" default="system"/>
   </xs:complexType>
   <!-- The keyword type domain take directly from ISO -->
   <xs:simpleType name="KeyTypCode">
@@ -1057,5 +1011,17 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="xs:gYear xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ScopeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="system"/>
+      <xs:enumeration value="document"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FunctionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="download"/>
+      <xs:enumeration value="information"/>
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>
