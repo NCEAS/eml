@@ -1,0 +1,50 @@
+<!--         
+      '$RCSfile: eml-package.xsd,v $'
+      Purpose: This specifies a schema for structured metadata used to create
+               a kind of symbolic link from metadata->metadata and 
+               metadata->data files which show a relationship between the data.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Chad Berkley
+
+     '$Author: berkley $'
+       '$Date: 2000-09-06 16:40:51 $'
+   '$Revision: 1.1 $'
+-->
+
+<?xml version ="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
+           xmlns:eml="./package.xsd"
+           targetNamespace="eml" >
+
+ <xs:element name="package" type="eml:Package"
+             minOccurs="1"  maxOccurs="1" />
+ 
+  <xs:complexType name = "eml:Package" content="elementOnly">
+    <xs:sequence>
+      <xs:element name="relation" type="eml:Relation"
+                  minOccurs="1" maxOccurs="unbounded" />
+   </xs:sequence>
+ </xs:complexType>
+ 
+ <xs:complexType name="eml:Relation" content="elementOnly">
+   <xs:sequence>
+     <xs:element name="subject" type="eml:ConnectionObject"
+                 minOccurs="1" maxOccurs="1" />
+     <xs:element name="relationship" type="xs:string"
+                 minOccurs="1" maxOccurs="1" />
+     <xs:element name="object" type="eml:ConnectionObject"
+                 minOccurs="1" maxOccurs="1" />
+   </xs:sequence>
+ </xs:complexType>
+ 
+ <xs:complexType name="eml:ConnectionObject" content="elementOnly">
+   <xs:sequence>
+     <xs:element name="param" type="xs:string"
+                 minOccurs="1" maxOccurs="unbounded" />
+     <xs:attribute name="name" type="xs:string" />
+   </xs:sequence>
+ </xs:complexType>
+             
+</xs:schema>
+
