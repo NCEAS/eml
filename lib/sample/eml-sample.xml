@@ -203,10 +203,12 @@
         <characterEncoding>ASCII</characterEncoding>
       </dataObject>
       <dataFormat>
-        <asciiDelimited>
-          <fieldDelimiter>\t</fieldDelimiter>
+        <textFormat>
           <numHeaderLines>1</numHeaderLines>
-        </asciiDelimited>
+          <simpleDelimited>
+            <fieldDelimiter>\t</fieldDelimiter>
+          </simpleDelimited>
+        </textFormat>
       </dataFormat>
       <distribution>
         <online>

@@ -10,14 +10,18 @@
   </dataObject>
 
   <dataFormat>
-    <asciiDelimited>
-      <fieldDelimiter>,</fieldDelimiter>
+    <textFormat>
       <numHeaderLines>1</numHeaderLines>
-      <maxRecordLength>10</maxRecordLength>
-      <quoteCharacter>"</quoteCharacter>
-      <recordDelimiter>\n</recordDelimiter>
-      <literalCharacter>\</literalCharacter>
-    </asciiDelimited>
+      <complex>
+        <textDelimited>
+          <fieldDelimiter>,</fieldDelimiter>
+          <maxRecordLength>10</maxRecordLength>
+          <quoteCharacter>"</quoteCharacter>
+          <recordDelimiter>\n</recordDelimiter>
+          <literalCharacter>\</literalCharacter>
+        </textDelimited>
+      </complex>
+    </textFormat>
   </dataFormat>
 
   <distribution>
