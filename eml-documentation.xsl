@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: jones $'
-  *       '$Date: 2001-07-13 17:35:36 $'
-  *   '$Revision: 1.18 $'
+  *       '$Date: 2001-07-23 07:47:48 $'
+  *   '$Revision: 1.19 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -43,18 +43,24 @@
       </head>
       <body>
         <!-- display the module name and description -->
+        <table border="0" width="100%">
+        <tr valign="top"><td>
         <div class="title">
           Module Documentation: 
           <xsl:value-of 
             select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>
         </div>
+        </td><td>
+        <a href="index.html" class="navlink">Back to EML Contents</a>
+        </td></tr>
+        </table>
         <blockquote>
           <xsl:value-of 
             select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDescription"/>
         </blockquote>
 
         <img>
-          <xsl:attribute name="src">../<xsl:value-of 
+          <xsl:attribute name="src"><xsl:value-of 
             select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleName"/>.png</xsl:attribute>
         </img>
 

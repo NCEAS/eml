@@ -7,8 +7,8 @@
   *     Authors: Chad Berkley, Matt Jones
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-07-13 02:59:21 $'
-  *  '$Revision: 1.1 $'
+  *      '$Date: 2001-07-23 07:47:48 $'
+  *  '$Revision: 1.2 $'
   *
   *
   -->
@@ -40,7 +40,7 @@
 <hr />
   
   <table class="tabledefault" width="100%">
-  <td class="tablehead" colspan="2"><p><b>EML Version 2.0</b></p></td>
+  <td class="tablehead" colspan="2"><p><b>EML Version @version@</b></p></td>
   <tr>
   <td>
    <p>
@@ -57,20 +57,38 @@
     We are currently in the process of revising EML to create the 
     version 2.0 standard described below.  This is an ongoing process,
     and the current draft is being released for public comment and 
-    input on the revisions. Please continue to use version 1.4.1 in production
+    input on the revisions. The current draft is the result of a 
+    <a href="@server@/software/eml/eml-workshop-20010402.html">workshop</a>
+    held in April, 2001 in which a variety of information managers and
+    gathered to review and revise EML. This draft represents the concensus 
+    that we were able to reach at that meeting, despite the fact that
+    several contentious issues remain in the current draft.
+   </p>
+   <p>
+    Please continue to use version 1.4.1 in production
     environments until we have finalized the version 2.0 release.  Thanks.
    </p>
-  <p><a href="@server@/software/download.html">Download EML</a></p>
+   <p>
+    Send any comments, errors, or suggestions to "knb-software@nceas.ucsb.edu".
+   </p>
+  <p><a href="@server@/software/download.html">Download EML</a>
+    The dowload consists of the 14 EML modules, described in the 
+    <a href="http://www.w3c.org/XML/Schema">XML Schema</a>
+    language and in XML DTDs.  In addition, full documentation on the
+    modules is provided in HTML format.
+  </p>
 
   </td>
   </tr>
   </table>
   
   <table class="tabledefault" width="100%">
-  <td class="tablehead" colspan="2"><p><b>EML Version 2.0 Modules</b></p></td>
+  <td class="tablehead" colspan="2"><p>
+      <b>EML Version @version@ Modules</b>
+  </p></td>
   <tr>
   <td>
-    <p class="header"><a href="#version2">Version 2.0</a> 
+    <p class="header"><a href="#version2">Version @version@</a> 
        (Proposed, In development)</p>
     <p>
      Version 2 starts with version 1.4.1 as a base and impoves on the design
@@ -80,7 +98,7 @@
      finalized by the KNB development group.  We'll release a final 
      version here when it is available.</b></i>
     </p>
-    <p class="header">EML 2.0 Documentation</p>
+    <p class="header">EML @version@ Documentation</p>
     <ul>
     <li><a href="eml-access.html">eml-access</a></li>
     <li><a href="eml-attribute.html">eml-attribute</a></li>
@@ -100,7 +118,10 @@
   </td>
   </tr>
   </table>
-  
+ 
+  <img src="eml-dependencies.png"> 
+    <caption>Arrows show dependencies among modules in EML 2.0.</caption>
+  </img>
   
   <br /><br />
   

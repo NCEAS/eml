@@ -9,8 +9,8 @@
   *     Authors: Matt Jones
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-03-07 21:40:44 $'
-  *  '$Revision: 1.4 $'
+  *      '$Date: 2001-07-23 07:47:47 $'
+  *  '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,10 @@ a.toollink {
 a.sitelink {
     color: green;
     text-decoration: none; 
+    font-weight: bold; }
+a.navlink {
+    color: green;
+    text-align: right;
     font-weight: bold; }
 .logo {
     background: #ccccff;
@@ -81,6 +85,7 @@ a.sitelink {
     font-weight: bold; }
 .title { 
     color: black; 
+    vertical-align: top;
     margin-top: 1em;
     font-size: 1.5em; 
     font-weight: bold; }

@@ -7,8 +7,8 @@
   * For Details: http://knb.ecoinformatics.org/
   *
   *    '$Author: jones $'
-  *      '$Date: 2001-07-13 02:59:21 $'
-  *  '$Revision: 1.8 $'
+  *      '$Date: 2001-07-23 07:47:47 $'
+  *  '$Revision: 1.9 $'
   *
   * Build file for the Ant cross-platform build system for doc generation
   * See http://jakarta.apache.org for details on Ant
@@ -26,54 +26,47 @@
   * You should have received a copy of the GNU General Public License
   * along with this program; if not, write to the Free Software
   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
---> 
-
+-->
 <project name="eml" default="docs" basedir=".">
+  <target name="init">
+    <property name="version" value="2.0beta3"/>
+    <property name="build.docs" value="docs"/>
+    <property name="build.stripped" value="stripped"/>
+    <filter token="server" value="http://knb.ecoinformatics.org"/>
+    <filter token="docrooturl" value=""/>
+    <filter token="version" value="${version}"/>
 
-   <target name="init">
-     <property name="build.docs" value="docs" /> 
-     <property name="build.stripped" value="stripped" /> 
-     <filter token="server" value="http://knb.ecoinformatics.org" />
-     <filter token="docrooturl" value="" />
-     <filter token="version" value="2.0 beta 2" />
-   </target>
+    <property name="dist.dir" value="./dist"/>
+    <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
+    <property name="ver.docs" value="${ver.dir}/docs"/>
+  </target>
 
-   <!-- Generate HTML documentation using an XSLT transform -->
-   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
+  <!-- Generate HTML documentation using an XSLT transform -->
+  <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-   <target name="docs" depends="init">
-     <mkdir dir="${build.docs}"/>
-     <style basedir="." destdir="${build.docs}"
-            style="eml-documentation.xsl" 
-            includes="*.xsd"
-            excludes="eml-documentation.xsd"
-            processor="xalan"> 
-     </style> 
-     <copy todir="${build.docs}" filtering="no">
-       <fileset dir=".">
-         <include name="default.css"/>
-       </fileset>
-     </copy>
-     <copy todir="${build.docs}" filtering="yes">
-       <fileset dir=".">
-         <include name="index.html"/>
-       </fileset>
-     </copy>
-   </target>
-
-   <!-- Generate versions of the XSD files with all annotation
+  <target name="docs" depends="init">
+    <mkdir dir="${build.docs}"/>
+    <style basedir="." destdir="${build.docs}" style="eml-documentation.xsl" includes="*.xsd" excludes="eml-documentation.xsd" processor="xalan"/>
+    <copy todir="${build.docs}" filtering="no">
+      <fileset dir=".">
+        <include name="default.css"/>
+        <include name="*.png"/>
+      </fileset>
+    </copy>
+    <copy todir="${build.docs}" filtering="yes">
+      <fileset dir=".">
+        <include name="index.html"/>
+      </fileset>
+    </copy>
+  </target>
+  <!-- Generate versions of the XSD files with all annotation
         tags stripped from the source -->
-   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
+  <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-   <target name="stripdocs" depends="init">
-     <mkdir dir="${build.stripped}"/>
-     <style basedir="." destdir="${build.stripped}"
-            extension=".xsd"
-            style="removeAnnotation.xsl" 
-            includes="*.xsd"
-            processor="xalan"> 
-     </style> 
-     <echo>
+  <target name="stripdocs" depends="init">
+    <mkdir dir="${build.stripped}"/>
+    <style basedir="." destdir="${build.stripped}" extension=".xsd" style="removeAnnotation.xsl" includes="*.xsd" processor="xalan"/>
+    <echo>
 
            ******************************************
                            Success!
@@ -81,5 +74,31 @@
            be found in the directory named "${build.stripped}"
            ******************************************
      </echo>
-   </target>
+  </target>
+  <target name="dist" depends="docs">
+    <mkdir dir="${dist.dir}"/>
+    <delete dir="${ver.dir}"/>
+    <mkdir dir="${ver.dir}"/>
+    <mkdir dir="${ver.docs}"/>
+    <copy file="./LICENSE" todir="${ver.dir}"/>
+    <copy file="./README" todir="${ver.dir}"/>
+    <copy todir="${ver.dir}" filtering="no">
+      <fileset dir=".">
+        <include name="*.xsd"/>
+        <include name="*.dtd"/>
+      </fileset>
+    </copy>
+    <copy todir="${ver.docs}">
+      <fileset dir="./docs"/>
+    </copy>
+
+    <delete file="./eml-${version}.zip"/>
+    <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
+    <delete file="./eml-${version}.tar.gz"/>
+    <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
+    <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
+    <delete file="./eml-${version}.tar"/>
+    <delete dir="dist"/>
+    <delete dir="docs"/>
+  </target>
 </project>

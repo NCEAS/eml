@@ -4,8 +4,8 @@
 #  For Details: http://knb.ecoinformatics.org/
 #
 #     '$Author: jones $'
-#       '$Date: 2001-07-11 17:22:26 $'
-#   '$Revision: 1.7 $'
+#       '$Date: 2001-07-23 07:47:48 $'
+#   '$Revision: 1.8 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0 Beta 2 Release
+Version: 2.0beta3 Release
 
 Feedback and bugs to: knb-software@nceas.ucsb.edu
 
@@ -37,7 +37,7 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Noah Goldstein
               Zheng Wang
 
-Web site: http://knb.ecoinformatics.org/
+Web site: http://knb.ecoinformatics.org/software/eml
 
 The Ecological Metadata Language consists of a number of modules that define
 an XML markup syntax for ecologically relevant metadata.  It was originally
@@ -50,42 +50,31 @@ its implementation, but Version 2 has been modified substantially after
 experience using the standard and from feedback from the ecological community.
 
 The files in this directory include both a Document Type Definition and 
-an XML Schema document for each of the following modules, as well as a
-graphical summary of the structure (PNG format):
+an XML Schema document for each of the following modules, as well as 
+complete documentation in the "docs" directory:
 
-Access control               eml-access.[xsd,dtd,png]
-Attribute (variable) info    eml-attribute.[xsd,dtd,png]
-Integrity constraints        eml-constraint.[xsd,dtd,png]
-Geographic, temporal and     eml-coverage.[xsd,dtd,png]
+Access control               eml-access.[xsd,dtd]
+Attribute (variable) info    eml-attribute.[xsd,dtd]
+Integrity constraints        eml-constraint.[xsd,dtd]
+Geographic, temporal and     eml-coverage.[xsd,dtd]
   taxonomic coverage
-Data set info                eml-dataset.[xsd,dtd,png]
-Distribution info            eml-distribution.[xsd,dtd,png]
-Data entity (table) info     eml-entity.[xsd,dtd,png]
-Citation info                eml-literature.[xsd,dtd,png]
-People and organizations     eml-party.[xsd,dtd,png]
-Physical format info         eml-physical.[xsd,dtd,png]
-Research project info        eml-project.[xsd,dtd,png]
-Methods and QA/QC            eml-protocol.[xsd,dtd,png]
-Basic resource info          eml-resource.[xsd,dtd,png]
-Software info                eml-software.[xsd,dtd,png]
+Data set info                eml-dataset.[xsd,dtd]
+Distribution info            eml-distribution.[xsd,dtd]
+Data entity (table) info     eml-entity.[xsd,dtd]
+Citation info                eml-literature.[xsd,dtd]
+People and organizations     eml-party.[xsd,dtd]
+Physical format info         eml-physical.[xsd,dtd]
+Research project info        eml-project.[xsd,dtd]
+Methods and QA/QC            eml-protocol.[xsd,dtd]
+Basic resource info          eml-resource.[xsd,dtd]
+Software info                eml-software.[xsd,dtd]
 
 Please see the docs/index.html directory for a detailed description of each of
 the modules.
 
-There are also a few other files in the directory that are used as utilities
-to process the eml module files:
-
-eml-documentation.xsl (a transformation stylesheet for use with an XSLT engine
-		       that converts documentation that is embedded in the
-		       schema documents into formatted html pages.)
-default.css (the cascading stylesheet that defines the layout for the generated
-             html pages.)
-build.xml (an XML configuration file used with the Ant build system to
-           automatically call the XSLT processor and apply the above stylesheets
-	   for the documentation.  A 'docs' directory is created with the 
-	   resultant html pages.)
-
-The above files are a part of the proposed release of EML 2.0.  Previous
-versions of EML (such as 1.4) are available from this repository using the
+The above files are a part of the proposed release of EML 2.0.  
+This release of EML can be retrieved from CVS using the 
+tag "RELEASE_EML_2_BETA_3".  Previous versions of EML (such as 1.4) 
+are available from this repository using the
 appropriate release tag (i.e. RELEASE_EML_1_4).
 
