@@ -266,7 +266,7 @@ investigators">
 <!ATTLIST plots description CDATA #FIXED "Permanent plot description">
 
 <!-- Class 2.B.2.c -->
-<!ELEMENT sampling (temporal_coverage*, frequency?,paragragh*,citation*)>
+<!ELEMENT sampling (temporal_coverage*, frequency?,paragraph*,citation*)>
 <!ATTLIST sampling description CDATA #FIXED "Information necessary to understand temporal sampling regime">
 <!ELEMENT frequency (#PCDATA)>
 <!ATTLIST frequency description CDATA #FIXED "Frequency or period of data collection">
