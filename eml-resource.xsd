@@ -14,8 +14,8 @@
       Authors: Chris Jones, Chad Berkley
 
      '$Author: berkley $'
-       '$Date: 2000-09-21 17:00:30 $'
-   '$Revision: 1.5 $'
+       '$Date: 2000-10-13 17:46:30 $'
+   '$Revision: 1.6 $'
 
 
 	** This annotation should be removed after draft review and/or acceptance.**
@@ -64,7 +64,7 @@
   <xs:element name="resource" type="Resource" />
    
   <!-- the type of Resource is the main choice in the document --> 
-  <xs:complexType name=Resource content="elementOnly">
+  <xs:complexType name="Resource" content="elementOnly">
     <choice minOccurs="1" maxOccurs="1">
       <xs:element name = "dataset" type = "Dataset" />
       <xs:element name = "literature" type = "Literature" />
