@@ -1,74 +1,205 @@
 <?xml version="1.0"?>
-<eml:unitList xmlns:eml="./eml-unit.xsd">
+<unitList xmlns="http://www.xml-cml.org/schema/stmml"
+          xmlns:sch="http://www.ascc.net/xml/schematron"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
 <!-- ======================================================================= -->
 <!-- ========================= fundamental types =========================== -->
 <!-- ======================================================================= -->
-  <eml:unitType id="length" name="length">
-    <eml:dimension name="length" />
-  </eml:unitType>
+  <unitType id="length" name="length">
+    <dimension name="length" />
+  </unitType>
 
-  <eml:unitType id="time" name="time">
-    <eml:dimension name="time" />
-  </eml:unitType>
+  <unitType id="time" name="time">
+    <dimension name="time" />
+  </unitType>
 
-  <eml:unitType id="dimensionless" name="dimensionless">
-    <eml:dimension name="dimensionless" />
-  </eml:unitType>
+  <unitType id="mass" name="mass">
+    <dimension name="mass"/>
+  </unitType>
+
+  <unitType id="charge" name="charge">
+    <dimension name="charge"/>
+  </unitType>
+
+  <unitType id="temperature" name="temperature">
+    <dimension name="temperature"/>
+  </unitType>
+
+  <unitType id="amount" name="amount">
+    <dimension name="amount"/>
+  </unitType>
+
+  <unitType id="luminosity" name="luminosity">
+    <dimension name="luminosity"/>
+  </unitType>
+
+  <unitType id="dimensionless" name="dimensionless">
+    <dimension name="dimensionless" />
+  </unitType>
 
 <!-- ======================================================================= -->
 <!-- ========================== derived types ============================== -->
 <!-- ======================================================================= -->
-  <eml:unitType id="acceleration" name="acceleration">
-    <eml:dimension name="length" />
-    <eml:dimension name="time" power="-2" />
-  </eml:unitType>
+  <unitType id="acceleration" name="acceleration">
+    <dimension name="length" />
+    <dimension name="time" power="-2" />
+  </unitType>
+
+  <unitType id="current" name="current">
+    <dimension name="charge" />
+    <dimension name="time" power="-1" />
+  </unitType>
+
+  <unitType id="area" name="area">
+    <dimension name="length" />
+    <dimension name="length" />
+  </unitType>
+
+  <unitType id="volume" name="volume">
+    <dimension name="length" />
+    <dimension name="length" />
+    <dimension name="length" />
+  </unitType>
+
+  <unitType id="velocity" name="velocity">
+    <dimension name="length" />
+    <dimension name="time" power="-1"/>
+  </unitType>
+
+  <unitType id="waveNumber" name="wave number">
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="massDensity" name="mass density">
+    <dimension name="mass" />
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="specificVolume" name="specific volume">
+    <dimension name="mass" power="-1"/>
+    <dimension name="length"/>
+    <dimension name="length"/>
+    <dimension name="length"/>
+  </unitType>
+
+  <unitType id="magneticFieldStrength" name="magnetic field strength">
+    <dimension name="charge" />
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="amountOfSubstanceConcentration" name="amount of substance concentration">
+    <dimension name="amount" />
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="luminance" name="luminance">
+    <dimension name="luminosity" />
+    <dimension name="length" power="-1"/>
+    <dimension name="length" power="-1"/>
+  </unitType>
+
+  <unitType id="massFraction" name="mass fraction">
+    <dimension name="mass" />
+    <dimension name="mass" power="-1"/>
+  </unitType>
 
 <!-- ======================================================================= -->
 <!-- ====================== fundamental SI units =========================== -->
 <!-- ======================================================================= -->
-  <eml:unit id="second" name="second" unitType="time">
-    <eml:description>The SI unit of time</eml:description>
-  </eml:unit>
 
-  <eml:unit id="meter" name="meter" unitType="length" abbreviation="m">
-    <eml:description>The SI unit of length</eml:description>
-  </eml:unit>
+  <unit id="second" name="second" unitType="time">
+    <description>The SI unit of time</description>
+  </unit>
 
-  <eml:unit id="kg" name="nameless" unitType="dimensionless" abbreviation="nodim">
-    <eml:description>A fictitious parent for dimensionless units</eml:description>
-  </eml:unit>
+  <unit id="meter" name="meter" unitType="length" abbreviation="m">
+    <description>The SI unit of length</description>
+  </unit>
+
+  <unit id="kilogram" name="kilogram" unitType="mass" abbreviation="kg">
+    <description>SI unit of mass</description>
+  </unit>
+
+  <unit id="kelvin" name="kelvin" unitType="temperature" abbreviation="K">
+    <description>SI unit for temperature</description>
+  </unit>
+
+  <unit id="coulomb" name="coulomb" unitType="charge" abbreviation="C">
+    <description>SI unit for charge</description>
+  </unit>
+
+  <unit id="ampere" name="ampere" unitType="current" abbreviation="A">
+    <description>SI unit of electrical current</description>
+  </unit>
+
+  <unit id="mole" name="mole" unitType="amount" abbreviation="mol">
+    <description>SI unit of substance amount</description>
+  </unit>
+
+  <unit id="candela" name="candela" unitType="luminosity" abbreviation="cd">
+    <description>SI unit of luminosity</description>
+  </unit>
+
 
 <!-- ======================================================================= -->
 <!-- ===================== derived SI units ================================ -->
 <!-- ======================================================================= -->
-  <eml:unit id="newton" name="newton" unitType="force">
-    <eml:description>The SI unit of force</eml:description>
-  </eml:unit>
+
+  <unit id="newton" name="newton" unitType="force">
+    <description>The SI unit of force</description>
+  </unit>
 
 <!-- multiples of fundamental SI units -->
-  <eml:unit id="g" name="gram" unitType="mass" parentSI="kg" multiplierToSI="0.001" abbreviation="g">
-    <eml:description>0.001 kg.</eml:description>
-  </eml:unit>
+  <!--grams-->
+  <unit id="mg" name="milligram" unitType="mass" parentSI="kg" multiplierToSI="0.000001" abbreviation="mg">
+    <description>0.000001 kg.</description>
+  </unit>
 
-  <eml:unit id="celsius" name="Celsius" parentSI="k" multiplierToSI="1" constantToSI="273.18">
-    <eml:description>
+  <unit id="g" name="gram" unitType="mass" parentSI="kg" multiplierToSI="0.001" abbreviation="g">
+    <description>0.001 kg.</description>
+  </unit>
+
+  <!--temp-->
+  <unit id="celsius" name="Celsius" parentSI="K" multiplierToSI="1" constantToSI="273.18" abbreviation="C">
+    <description>
       <p>A common unit of temperature</p>
-    </eml:description>
-  </eml:unit>
+    </description>
+  </unit>
+
+  <!--meters-->
+  <unit id="millimeter" name="millimeter" parentSI="m" multiplierToSI=".001" abbreviation="mm">
+    <description>
+      <p>.001 meters</p>
+    </description>
+  </unit>
+  <unit id="centimeter" name="centimeter" parentSI="m" multiplierToSI=".01" abbreviation="cm">
+    <description>
+      <p>.01 meters</p>
+    </description>
+  </unit>
+  <unit id="kilometer" name="kilometer" parentSI="m" multiplierToSI="1000" abbreviation="km">
+    <description>
+      <p>1000 meters</p>
+    </description>
+  </unit>
 
 <!-- fundamental non-SI units -->
-  <eml:unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
-    <eml:description>An imperial measure of length</eml:description>
-  </eml:unit>
+  <unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254">
+    <description>An imperial measure of length</description>
+  </unit>
 
 <!-- derived non-SI units -->
-  <eml:unit id="l" name="litre" unitType="volume" parentSI="meterCubed" abbreviation="l" multiplierToSI="0.001">
-    <eml:description>Nearly 1 dm**3 This is not quite exact</eml:description>
-  </eml:unit>
+  <unit id="l" name="litre" unitType="volume" parentSI="meterCubed" abbreviation="l" multiplierToSI="0.001">
+    <description>Nearly 1 dm**3 This is not quite exact</description>
+  </unit>
 
-  <eml:unit id="fahr" name="fahrenheit" parentSI="k" abbreviation="F" multiplierToSI="0.55555555555555555" constantToSI="-17.777777777777777777">
-    <eml:description>An obsolescent unit of temperature still used in popular meteorology</eml:description>
-  </eml:unit>
-</eml:unitList>
+  <unit id="fahr" name="fahrenheit" parentSI="k" abbreviation="F" multiplierToSI="0.55555555555555555" constantToSI="-17.777777777777777777">
+    <description>An obsolescent unit of temperature still used in popular meteorology</description>
+  </unit>
+</unitList>
 
 
