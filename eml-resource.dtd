@@ -1,0 +1,55 @@
+<!--         
+      '$RCSfile: eml-resource.dtd,v $'
+      Purpose: This dtd mimics the content model found in 
+               resource-2000-07-06.xsd.
+    Copyright: 2000 Regents of the University of California and the
+               National Center for Ecological Analysis and Synthesis
+      Authors: Chad Berkley
+
+     '$Author: berkley $'
+       '$Date: 2000-07-14 21:11:32 $'
+   '$Revision: 1.1 $'
+-->
+
+<!-- The root element -->
+<!ELEMENT resource (dataset | literature)>
+
+<!-- entity referring to the iso-party fields -->
+<!ENTITY % resParty SYSTEM "iso-party.dtd">
+%resParty;
+
+<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT keywordType (#PCDATA)>
+<!ELEMENT keywordThesaurus (#PCDATA)>
+<!ENTITY % keywordInfo "(keyword?, keywordType?, keywordThesaurus*)">
+
+<!-- common fields -->
+<!ELEMENT identifier (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT alternateTitle (#PCDATA)>
+<!ELEMENT originator (%responsibleParty;)>
+<!ELEMENT publisher (%responsibleParty;)>
+<!ELEMENT pubdate (#PCDATA)>
+<!ELEMENT pubplace (#PCDATA)>
+<!ELEMENT series (#PCDATA)>
+<!ELEMENT abstract (#PCDATA)>
+<!ELEMENT url (URL)>
+<!ELEMENT additionalInfo (#PCDATA)>
+
+<!-- entity to conglomerate these fields into one name -->
+<!ENTITY % resbase "(identifier?, title, alternateTitle?, originator+, publisher?, pubdate?,
+                     pubplace?, series?, abstract?, (%keywordInfo;)*, url*, additionalInfo?)" >
+
+<!-- The dataset branch -->
+<!ELEMENT dataset ((%resbase;), geoForm)>
+<!ELEMENT geoForm (#PCDATA)>
+
+<!-- The literature branch -->
+<!ELEMENT literature ((%resbase;), ISBN?, ISSN?, editor*, edition?, volume?)>
+<!ELEMENT ISBN (#PCDATA)>
+<!ELEMENT ISSN (#PCDATA)>
+<!ELEMENT editor (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT volume (#PCDATA)>
+
+<!-- EOF -->
