@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-09-09 09:46:42 $'
-      '$Revision: 1.27 $'
+        '$Author: cjones $'
+          '$Date: 2002-09-09 16:14:20 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,14 +50,14 @@
     <section id="introduction">
       <title>Introduction</title>
       <para>
-       Ecological Metadata Language (EML) is a metadata standard developed by the
-       ecology discipline and for the ecology discipline. It is based on prior
-       work done by the Ecological Society of America and associated efforts
-       (Michener et al., 1997, Ecological Applications). EML is implemented as
-       a series of XML document types that can by used in a modular and extensible
-       manner to document ecological data. Each EML module is designed to describe
-       one logical part of the total metadata that should be included with any
-       ecological dataset.
+       Ecological Metadata Language (EML) is a metadata standard developed by 
+       the ecology discipline and for the ecology discipline. It is based on 
+       prior work done by the Ecological Society of America and associated 
+       efforts (Michener et al., 1997, Ecological Applications). EML is 
+       implemented as a series of XML document types that can by used in a 
+       modular and extensible manner to document ecological data. Each EML 
+       module is designed to describe one logical part of the total metadata 
+       that should be included with any ecological dataset.
       </para>
     </section>
 
@@ -162,11 +162,102 @@
       </itemizedlist>
       <section>
         <title>Overview of eml modules and their use</title>
-        <para><emphasis>This section is not yet complete.</emphasis>  It
-        should contain:</para>
         <para>
-          --what each module is and which modules should be used together
+          The following section briefly describes each EML module and how they
+          are logically designed in order to document ecological resources.
+          Some of the modules are dependent on others, while others may be used
+          as stand-alone descriptions.  This section describes the modules from
+          the &quot;top down&quot;, starting from the top-level eml.xsd wrapper
+          module, followed by modules of increasing detail.  However, there are
+          modules that may be used at many levels, such as eml-access.xsd.  
+          These modules are desribed when it is appropriate.
         </para>
+        <orderedlist>
+          <listitem>
+            The eml module - eml.xsd
+            <para>
+              The eml module is a wrapper container that allows the inclusion 
+              of any metadata content in a single EML document. The eml module 
+              is used as a container to hold structured descriptions of 
+              ecological resources.  In EML, the definition of a resource comes 
+              from the 
+              <ulink url="http://dublincore.org/documnets/usageguide/">
+                <citetitle>
+                  The Dublin Core Metadata Initiative
+                </citetitle>
+              </ulink>, which describes a general element set used to describe 
+              &quot;networked digital resources&quot;. The top-level structure 
+              of EML has been design to be compatible with the Dublin Core 
+              syntax. In general, dataset resources, literature resources, 
+              software resources, and protocol resources comprise the 
+              list of information that may be described in EML. EML is largely
+              designed to desrcibe digital resources, however, it may also be
+              used to describe non-digital resources such as paper maps and
+              other non-digital media. 
+            </para>
+            <para>
+              The eml module may be extended to describe other resources by
+              means of it's optional sub-field, &lt;additionalMetadata&gt;.
+              This field is largely reserved for the inclusion of metadata that
+              may be highly discipline specific and not covered in this version
+              of EML, or it may be used to internally extend fields within the
+              EML standard.
+            </para>
+          </listitem>
+          <listitem>
+            The resource module - eml-resource.xsd
+            <para>
+              The eml-resource module contains general information that
+              describes dataset resources, literature resources, protocol
+              resources, and software resources. Each of the above four types of
+              resources share a common set of information, but also have 
+              information that is unique to that particular resource type.  Each
+              resource type uses the eml-resource module to document the 
+              information common to all resources, but then extend 
+              eml-resource with modules that are specific to that particular 
+              resource type.  For instance, all resources have creators, 
+              titles, and perhaps keywords, but only the dataset resource would 
+              have a &quot;data table&quot; within it.  Likewise, a literature 
+              resource may have an &quot;ISBN&quot; number associated with it, 
+              whereas the other resource types would not.
+            </para>
+          </listitem>
+        <para>
+
+          <!--
+          eml-access.xsd
+
+          eml-dataset.xsd
+          eml-literature.xsd
+          eml-software.xsd
+          eml-protocol.xsd
+          eml-physical.xsd
+
+          eml-party.xsd
+          eml-coverage.xsd
+          eml-project.xsd
+          eml-methods.xsd
+
+          eml-entity.xsd
+          eml-constraint.xsd
+
+          eml-dataTable.xsd
+          eml-attribute.xsd
+
+          eml-spatialRaster.xsd
+          eml-spatialReference.xsd
+          eml-spatialVector.xsd
+
+          eml-storedProcedure.xsd
+          eml-view.xsd
+
+          eml-text.xsd
+          stmml.xsd
+          eml-documentation.xsd
+          -->
+
+        </para>
+        </orderedlist>
         <para>
           --associated metadata (extending eml)
         </para>
