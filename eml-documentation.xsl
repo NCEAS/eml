@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *     '$Author: jones $'
-  *       '$Date: 2001-07-23 07:47:48 $'
-  *   '$Revision: 1.19 $'
+  *     '$Author: berkley $'
+  *       '$Date: 2002-04-20 03:36:23 $'
+  *   '$Revision: 1.20 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-                xmlns="eml:documentation" 
-                xmlns:doc="eml:documentation" 
+                xmlns:doc="eml:documentation-2.0.0beta7" 
                 version="1.0">
   <xsl:output method="html"/>
   <xsl:template match="/">
