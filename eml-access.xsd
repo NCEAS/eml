@@ -1,70 +1,73 @@
-<!--         
-     $RCSfile: eml-access.xsd,v $'
-      Purpose: This is an XML Schema document that defines the access control
-               model for the Ecological Metadata Language.
-               It is a work in progress, as is the standard itself.
-    Copyright: 2000 Regents of the University of California and the
-               National Center for Ecological Analysis and Synthesis
-      Authors: Chris Jones, Matt Jones, Jivka Bojilova
-
-     '$Author: cjones $'
-       '$Date: 2000-11-08 19:01:31 $'
-   '$Revision: 1.3 $'
--->
-
 <?xml version ="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/1999/XMLSchema"
-           xmlns:eml="./access.xsd"
-           targetNamespace="eml" >
+           targetNamespace="eml:access" >
 
-  <xs:element name="acl" type="eml:ACL"
+  <xs:annotation>
+    <xs:documentation>
+      <!--         
+       $RCSfile: eml-access.xsd,v $'
+        Purpose: This is an XML Schema document that defines the access control
+                 model for the Ecological Metadata Language.
+                 It is a work in progress, as is the standard itself.
+      Copyright: 2000 Regents of the University of California and the
+                 National Center for Ecological Analysis and Synthesis
+        Authors: Chris Jones, Matt Jones, Jivka Bojilova
+
+       '$Author: cjones $'
+         '$Date: 2000-11-09 16:52:58 $'
+     '$Revision: 1.4 $'
+      -->
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="acl" type="ACL"
              minOccurs="1"  maxOccurs="1" />
  
-  <xs:complexType name="eml:ACL" content="elementOnly">
+  <xs:complexType name="ACL" content="elementOnly">
     <xs:sequence>
       <xs:element name="target" type="xs:string"
                   minOccurs="1" maxOccurs="1" />
-      <xs:element name="group" type="eml:Group"
+      <xs:element name="group" type="Group"
                   minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
  
-  <xs:complexType name="eml:Group" content="elementOnly">
+  <xs:complexType name="Group" content="elementOnly">
     <xs:sequence>
       <xs:element name="groupName" type="xs:string"
                   minOccurs="1" maxOccurs="unbounded" />
-      <xs:element name="user" type="eml:User"
+      <xs:element name="user" type="User"
                   minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="accessControl" type="eml:AccessControl"
-                  minOccurs="1" maxOccurs="1" />
-      <xs:element name="group" type="eml:Group"
+      <xs:element name="accessControl" type="AccessControl"
+                  minOccurs="0" maxOccurs="1" />
+      <xs:element name="group" type="Group"
                   minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
  
-  <xs:complexType name="eml:User" content="elementOnly">
+  <xs:complexType name="User" content="elementOnly">
     <xs:sequence>
       <xs:element name="userName" type="xs:string"
                   minOccurs="1" maxOccurs="unbounded" />
-      <xs:element name="accessControl" type="eml:AccessControl"
+      <xs:element name="accessControl" type="AccessControl"
                   minOccurs="1" maxOccurs="1" />
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="eml:AccessControl" content="elementOnly">
+  <xs:complexType name="AccessControl" content="elementOnly">
     <xs:sequence>
       <xs:choice>
-        <xs:element name="allow" type="eml:AccessType"
-                    minOccurs="0" maxOccurs="unbounded" />
-        <xs:element name="deny" type="eml:AccessType"
-                    minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="allow" type="AccessType"
+                    minOccurs="0" maxOccurs="1" />
+        <xs:element name="deny" type="AccessType"
+                    minOccurs="0" maxOccurs="1" />
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
  
-  <xs:complexType name="eml:AccessType" content="elementOnly">
+  <xs:complexType name="AccessType" content="elementOnly">
     <xs:sequence>
-        <xs:element name="permission" type="eml:Permission"
+        <xs:element name="permission" type="Permission"
                     minOccurs="0" maxOccurs="unbounded" />
         <xs:element name="duration" type="xs:timeDuration"
                     minOccurs="0" maxOccurs="unbounded" />
@@ -73,7 +76,7 @@
     </xs:sequence>
   </xs:complexType>
  
-  <xs:simpleType name="eml:Permission" base="xs:string">
+  <xs:simpleType name="Permission" base="xs:string">
     <xs:enumeration value="read" /> 
     <xs:enumeration value="write" /> 
     <xs:enumeration value="all" /> 
