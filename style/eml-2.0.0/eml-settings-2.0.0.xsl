@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: berkley $'
-  *     '$Date: 2004-07-12 18:40:42 $'
-  * '$Revision: 1.13 $'
+  *     '$Date: 2004-07-12 19:49:59 $'
+  * '$Revision: 1.14 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -107,6 +107,13 @@
     */
 -->
   <xsl:param name="withAttributes">1</xsl:param>
+
+<!--
+    /**
+    *   To insert templates where header and footer are defined.
+    */
+-->
+  <xsl:param name="insertTemplate">1</xsl:param>
 
 
 <!--
