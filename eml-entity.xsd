@@ -13,9 +13,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2002-04-17 00:11:24 $'
-      '$Revision: 1.26 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-17 17:12:58 $'
+      '$Revision: 1.27 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -274,6 +274,57 @@
     </xs:complexType>
   </xs:element>
   
+  
+  <xs:element name="spatialImage" type="ImageSpatialRepresentation">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="EntityBase"/>
+        <xs:sequence>
+          <xs:element name="horizAccuracy" type="DataQuality"/>
+          <xs:element name="vertAccuracy" type="DataQuality"/>
+        </xs:sequence>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="spatialGrid" type="RasterSpatialRepresentation">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="EntityBase"/>
+        <xs:sequence>
+          <xs:element name="horizAccuracy" type="DataQuality"/>
+          <xs:element name="vertAccuracy" type="DataQuality"/>
+        </xs:sequence>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="spatialVector" type="SpatialVector">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="EntityBase"/>
+        <xs:sequence>
+          <xs:element name="horizAccuracy" type="DataQuality"/>
+          <xs:element name="vertAccuracy" type="DataQuality"/>
+        </xs:sequence>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+         
+  <xs:complexType name="DataQuality">
+		<xs:sequence>
+			<xs:element name="accuracyReport" type="xs:string"/>
+			<xs:element name="quantAccReport" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="quantAccVal" type="xs:string"/>
+						<xs:element name="quantAccMethod" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  <!--
   <xs:element name="spatial-entity">
     <xs:annotation>
       <xs:appinfo>
@@ -372,7 +423,7 @@
         </xs:extension>
       </xs:complexContent>
     </xs:complexType>
-  </xs:element>
+  </xs:element> -->
   
   <xs:complexType name="ImageSpatialRepresentation">
     <xs:sequence>
