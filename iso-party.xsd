@@ -13,9 +13,9 @@
                National Center for Ecological Analysis and Synthesis
       Authors: Matt Jones
 
-     '$Author: cjones $'
-       '$Date: 2000-08-14 17:23:15 $'
-   '$Revision: 1.8 $'
+     '$Author: berkley $'
+       '$Date: 2000-10-26 16:17:40 $'
+   '$Revision: 1.9 $'
     </documentation>
   </annotation>
 
@@ -115,8 +115,8 @@
   <xs:simpleType name = "RoleCode" base = "string" >
 	<xs:enumeration value = "contentProvider" />
 	<xs:enumeration value = "custodianSteward" />
-        <xs:enumeration value = "owner" />
-        <xs:enumeration value = "user" />
+  <xs:enumeration value = "owner" />
+  <xs:enumeration value = "user" />
 	<xs:enumeration value = "distributor" />
 	<xs:enumeration value = "metadataProvider" />
 	<xs:enumeration value = "originator" />
