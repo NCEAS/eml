@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-10 16:21:50 $'
-      '$Revision: 1.30 $'
+          '$Date: 2002-09-10 17:40:54 $'
+      '$Revision: 1.31 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -249,17 +249,31 @@
         </note>
         <section>
           <title>
-            The dataset module - (eml-dataset.xsd) - Dataset specific information
+            The dataset module - (eml-dataset.xsd) - Dataset specific 
+            information
           </title>
           <para>
-            The eml-dataset module contains general information that describes
-            dataset resources. It is intended to provide overview information
-            about the dataset, including title, abstract, keywords, contacts,
-            and the links to associated metadata for the given resource. It also
-            describes the temporal, geographic, and taxonomic coverage of the
-            overall dataset. A dataset can be (and often is) composed of a
-            series of data entities (tables) that are linked together by
-            particular integrity constraints.
+            The eml-dataset module contains general information that describes 
+            dataset resources. It is intended to provide overview information 
+            about the dataset: broad information such as the title, abstract, 
+            keywords, contacts, maintenance history, purpose, and distribution 
+            of the data themselves. The eml-dataset module also imports many 
+            other modules that are used to describe the dataset in fine detail. 
+            Specifically, it uses the eml-methods module to describe methodology
+            used in collecting or processing the dataset, the eml-project module
+            to describe the overarching research context and experimental 
+            design, the eml-access module to define access control rules for 
+            the data and metadata, and the eml-entity module to provide 
+            detailed information about the logical structure of the dataset. A 
+            dataset can be (and often is) composed of a series of data 
+            entities (tables) that are linked together by particular integrity 
+            constraints.
+          </para>
+          <para>
+            The eml-dataset module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
           </para>
         </section>
         <section>
@@ -275,6 +289,12 @@
             EndNote, and there is an attempt to represent a compatible subset of
             the EndNote citation types.
           </para>
+          <para>
+            The eml-literature module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
+          </para>
         </section>
         <section>
           <title>
@@ -283,7 +303,18 @@
           </title>
           <para>
             The eml-software module contains general information that describes
-            software resources.
+            software resources.  This module is intended to fully document
+            software that is needed in order to view a resource (such as a
+            dataset) or to process a dataset.  The software module is also
+            imported into the eml-method module in oreder to document what
+            software was used to process or perform quality control procedures
+            on a dataset.
+          </para>
+          <para>
+            The eml-software module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
           </para>
         </section>
         <section>
@@ -310,6 +341,12 @@
             diverged from the protocol purposefully, or perhaps incidentally,
             but the procedural lineage is still preserved and understandable.
           </para>
+          <para>
+            The eml-protocol module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
+          </para>
         </section>
         <note>
           <para>
@@ -333,6 +370,12 @@
           </title>
           <para>
           </para>
+          <para>
+            The eml-access module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
+          </para>
         </section>
         <section>
           <title>
@@ -340,6 +383,12 @@
             offline distribution of resources
           </title>
           <para>
+          </para>
+          <para>
+            The eml-physical module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
           </para>
         </section>
         <section>
@@ -349,6 +398,12 @@
           </title>
           <para>
           </para>
+          <para>
+            The eml-party module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
+          </para>
         </section>
         <section>
           <title>
@@ -356,6 +411,12 @@
             temporal, and taxonomic extents of resources 
           </title>
           <para>
+          </para>
+          <para>
+            The eml-coverage module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
           </para>
         </section>
         <section>
@@ -365,6 +426,12 @@
           </title>
           <para>
           </para>
+          <para>
+            The eml-project module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
+          </para>
         </section>
         <section>
           <title>
@@ -372,6 +439,12 @@
             for resources
           </title>
           <para>
+          </para>
+          <para>
+            The eml-methods module, like other modules, may be
+            &quot;referenced&quot; via the &lt;references&tgt; tag.  This allows
+            a dataset to be described once, and then used as a reference in
+            other locations within the EML document via it's ID.:w
           </para>
         </section>
         <section>
