@@ -15,8 +15,8 @@
       Authors: Chris Jones, Chad Berkley, Jivka Bojilova
 
      '$Author: bojilova $'
-       '$Date: 2001-02-15 17:14:58 $'
-   '$Revision: 1.3 $'
+       '$Date: 2001-02-16 00:28:50 $'
+   '$Revision: 1.4 $'
 
     </xs:documentation>
     <xs:appInfo>
@@ -43,36 +43,74 @@
   <xs:element name="eml-research" minOccurs="1" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+	  Research protocol descriptors
+        </tooltip>
+        <summary>
+	  Container of all research projects in which context the
+          dataset was created.
+        </summary>
         <description>
            Eml-research element represents the research project 
            employed by the researchers who created this dataset.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The eml-reasearch was introduced into EML 1.4 as eml-context.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="identifier" type="xs:string"
-                  minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:appInfo>
-            <description>
-              File identifier of the metadata document
-            </description>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element ref="researchProject"
-                  minOccurs="1" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:appInfo>
-            <description>
-              Research project element is a descriptor of an information
-              on the research methods employed by the researchers who 
-              created this dataset.
-            </description>
-          </xs:appInfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	        File identifier
+              </tooltip>
+              <summary>
+	        File identifier of the metadata document.
+              </summary>
+              <description>
+                File identifier of the metadata document.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The identifier was introduced into EML 1.4 as meta_file_id.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="researchProject"
+                    minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	        Research project descriptor
+              </tooltip>
+              <summary>
+	        Descriptor of research project in which context 
+                the dataset was created.
+              </summary>
+              <description>
+                Research project element is a descriptor of
+                the research methods employed by the researchers who 
+                created this dataset. It can include research methods, 
+                data collection methods, equations, formulas. 
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The researchProject element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="researchProject">
@@ -105,9 +143,17 @@
   <xs:element name="originator" type="rp:ResponsibleParty">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Originator
+        </tooltip>
+        <summary>
+          The party who created the research project.
+        </summary>
         <description>
           The party who created the research project.
         </description>
+        <example>
+        </example>
         <lineage>
           FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
         </lineage>
@@ -118,9 +164,21 @@
   <xs:element name="temporalDescription">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Temporal description
+        </tooltip>
+        <summary>
+          Descriptor of temporal boudaries of the project.
+        </summary>
         <description>
-          General description of temporal coverage of the project
+          This element describes the temporal coverage of the project.
+          It specifies the duration, the start and ent date of the project.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The temporalDescription element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -134,6 +192,25 @@
   </xs:element>
 	
   <xs:element name = "duration">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Duration
+        </tooltip>
+        <summary>
+          Duration of the project.
+        </summary>
+        <description>
+          Duration of the project in amount and unit.
+        </description>
+        <example>
+          <![CDATA[<amount>30</amount><unit>day(s)</unit>]]>
+        </example>
+        <lineage>
+          The duration element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
 	<xs:element name="amount" type="xs:string"
@@ -147,9 +224,20 @@
   <xs:element name = "objectives">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Objectives
+        </tooltip>
+        <summary>
+          Scope and purpose of the research project.
+        </summary>
         <description>
-          Scope and purpose of the research project
+          Description of scope and purpose of the research project.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The objectives element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -163,6 +251,24 @@
   <xs:element name="paragraph" type="xs:string"/>
 
   <xs:element name="abstract">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Abstract
+        </tooltip>
+        <summary>
+          Descriptive abstract.
+        </summary>
+        <description>
+          Descriptive abstract.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The abstract element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="paragraph"
@@ -172,6 +278,24 @@
   </xs:element>
 	
   <xs:element name="funding">
+    <xs:annotation>
+      <xs:appInfo>
+        <tooltip>
+          Funding
+        </tooltip>
+        <summary>
+          Funding information.
+        </summary>
+        <description>
+          Grant and contract numbers, names and addresses of funding sources.
+        </description>
+        <example>
+        </example>
+        <lineage>
+          The funding element was introduced into EML 1.4.
+        </lineage>
+      </xs:appInfo>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="paragraph"
@@ -183,9 +307,22 @@
   <xs:element name="siteDescription">
     <xs:annotation>
       <xs:appInfo>
-        <description>
+        <tooltip>
           Site description
+        </tooltip>
+        <summary>
+          Site description.
+        </summary>
+        <description>
+          Description of the site of the project. It can include 
+          general description, geographical, geological,
+          hydrological, hystorical, meterological information.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The siteDescription element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -213,10 +350,21 @@
   <xs:element name="siteType">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Site type description
+        </tooltip>
+        <summary>
+          Site type description.
+        </summary>
         <description>
           Site type - description, e.g., short-grass prairie,
           blackwater stream, etc.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The siteType element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -230,9 +378,21 @@
   <xs:element name = "geography">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Geographical descriptor
+        </tooltip>
+        <summary>
+          Description of geographical location and size of the site.
+        </summary>
         <description>
-          Location and size.
+          Description of geographical location and size of the site 
+          of the project in Cartesian coordinates.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The geography element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -250,9 +410,21 @@
   <xs:element name = "coordinates">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Geographical coordinates
+        </tooltip>
+        <summary>
+          Geographical coordinates of the site of the project.
+        </summary>
         <description>
-          Location and size.
+          This element is to specify the geographical Cartesian coordinates
+          of the site of the project: lattitude and longitude.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The coordinates element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -268,9 +440,21 @@
   <xs:element name="citation">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Citation
+        </tooltip>
+        <summary>
+          Citation for the site.
+        </summary>
         <description>
-          Citation.
+          Citation for the site. It can include the author, editor and
+          information for the source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The citation element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -288,9 +472,22 @@
   <xs:element name="sourceInformation">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Source information
+        </tooltip>
+        <summary>
+          Source information of the citation.
+        </summary>
         <description>
-          Citation.
+          Information of the source of the citation: title, volume,
+          issue, publication date, publisher, series, chapter title,
+          pages, resource URL.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The sourceInformation element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -322,9 +519,20 @@
   <xs:element name="chapterTitle">
     <xs:annotation>
       <xs:appInfo>
-        <description>
+        <tooltip>
+          Chapter title
+        </tooltip>
+        <summary>
           Chapter title.
+        </summary>
+        <description>
+          Chapter title of the source where the citation comes from.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The chapterTitle element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -338,9 +546,21 @@
   <xs:element name="habitat">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Habitat sampled descriptor
+        </tooltip>
+        <summary>
+          Detailed characteristics of habitat sampled in the site.
+        </summary>
         <description>
-          Detailed characteristics of habitat sampled
+          Detailed characteristics of habitat sampled in the site:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The habitat element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -356,9 +576,21 @@
   <xs:element name="geology">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Geological descriptor
+        </tooltip>
+        <summary>
+          Geology and Landform description
+        </summary>
         <description>
-          Geology and Landform
+          Detailed characteristics of geology and landform of the site:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The geology element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -374,9 +606,21 @@
   <xs:element name="hydrology">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Hydrological descriptor
+        </tooltip>
+        <summary>
+          Hydrological description of the site.
+        </summary>
         <description>
-          Hydrology
+          Hydrological description of the site:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The hydrology element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -392,9 +636,21 @@
   <xs:element name="history">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Historical descriptor
+        </tooltip>
+        <summary>
+          Historical description of the site.
+        </summary>
         <description>
-          Site history
+          Historical description of the site:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The history element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -410,9 +666,21 @@
   <xs:element name="climate">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Climatic descriptor
+        </tooltip>
+        <summary>
+          Climatic description of the site.
+        </summary>
         <description>
-          Site climatic characteristics
+          Climatic description of the site:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The climate element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -428,9 +696,22 @@
   <xs:element name="designDescription">
     <xs:annotation>
       <xs:appInfo>
-        <description>
+        <tooltip>
           Experimental or Sampling design
+        </tooltip>
+        <summary>
+          Experimental or Sampling design of the project
+        </summary>
+        <description>
+          Experimental or Sampling design: the design method, plots,
+          samplings, descriptive paragraph of text or citation from 
+          a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The designDescription element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -452,9 +733,21 @@
   <xs:element name="designMethod">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Design method
+        </tooltip>
+        <summary>
+          Statistical/sampling design method descriptor
+        </summary>
         <description>
-          Description of Statistical/sampling design
+          Description of Statistical/sampling design method:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The designMethod element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -470,9 +763,21 @@
   <xs:element name="plots">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Permanent plot
+        </tooltip>
+        <summary>
+          Permanent plot of design of the project
+        </summary>
         <description>
-          Permanent plot description
+          Description of Permanent plot of design of the project:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The plots element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -488,9 +793,22 @@
   <xs:element name="sampling">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Temporal sampling regime
+        </tooltip>
+        <summary>
+          Temporal sampling regime
+        </summary>
         <description>
-          Information necessary to understand temporal sampling regime
+          Information necessary to understand temporal sampling regime:
+          temporal boundaries, frequency of occurrence,
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The sampling element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -510,9 +828,23 @@
   <xs:element name="methodsDescription">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Research method 
+        </tooltip>
+        <summary>
+          Research method descriptor
+        </summary>
         <description>
-          Research Method description
+          Description of research method of the project:
+          the method itself, instruments used, taxonomy, permit, 
+          legal information, 
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The methodsDecription element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -538,9 +870,21 @@
   <xs:element name="method">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Research method 
+        </tooltip>
+        <summary>
+          Research method descriptor
+        </summary>
         <description>
-          Description or reference to field/laboratory methods
+          Description or reference to field/laboratory method:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The method element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -556,9 +900,21 @@
   <xs:element name="instrument">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Instrument used 
+        </tooltip>
+        <summary>
+          Instrument used
+        </summary>
         <description>
-          Description of Instruments used
+          Instruments used:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The instrument element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -574,9 +930,21 @@
   <xs:element name="taxonomy">
     <xs:annotation>
       <xs:appInfo>
-        <description>
+        <tooltip>
+          Taxonomy
+        </tooltip>
+        <summary>
           Taxonomy information
+        </summary>
+        <description>
+          Taxonomy information:
+          descriptive paragraph of text or citation from a source.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The taxonomy element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -592,9 +960,22 @@
   <xs:element name="permit">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Permit
+        </tooltip>
+        <summary>
+          References to pertinent scientific and collecting permits
+          information
+        </summary>
         <description>
           References to pertinent scientific and collecting permits
+          information: descriptive paragraph of text.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The permit element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -608,9 +989,21 @@
   <xs:element name="legalInformation">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Legal information
+        </tooltip>
+        <summary>
+          Legal information
+        </summary>
         <description>
-          Relevant laws, decision criteria, compliance standards
+          References to pertinent scientific and collecting permits
+          information: descriptive paragraph of text.
         </description>
+        <example>
+        </example>
+        <lineage>
+          The legalInformation element was introduced into EML 1.4.
+        </lineage>
       </xs:appInfo>
     </xs:annotation>
     <xs:complexType>
@@ -624,6 +1017,12 @@
   <xs:element name="staff" type="rp:ResponsibleParty">
     <xs:annotation>
       <xs:appInfo>
+        <tooltip>
+          Project personell
+        </tooltip>
+        <summary>
+          Project personell
+        </summary>
         <description>
           Project personell.
         </description>
