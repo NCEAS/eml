@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *     '$Author: bojilova $'
-  *       '$Date: 2001-02-16 18:09:53 $'
-  *   '$Revision: 1.5 $'
+  *       '$Date: 2001-02-21 00:07:24 $'
+  *   '$Revision: 1.6 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -159,7 +159,7 @@
                 <!-- display the use -->
                   Use:
                 <span class="plaintext">
-		<xs:value-of select="./@use" />
+		  <xsl:value-of select="./@use" />
                 </span>
               </td>
               <td colspan="3" class="tablehead">
