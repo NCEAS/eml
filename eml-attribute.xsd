@@ -9,9 +9,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2001-07-31 16:24:37 $'
-      '$Revision: 1.17 $'
+        '$Author: schild $'
+          '$Date: 2001-12-11 03:02:58 $'
+      '$Revision: 1.18 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -152,7 +152,11 @@
                       This element specifies name of the attribute (field) 
                       in the dataset. This information is typically used as
                       a column header for the field/variable in a spreadsheet.
+                      It is usually terse, without spaces, and can be used
+                      to "name" a column in a table definition statement.
                     </doc:description>
+                    <doc:example>
+                     spden 
                     <doc:example/>
                     <doc:lineage>
                       The attributeName was introduced into EML 1.4.
@@ -167,17 +171,19 @@
                       Attribute label
                     </doc:tooltip>
                     <doc:summary>
-                      Label used to display this attribute
+                      A label that better describes an attribute than its name
                     </doc:summary>
                     <doc:description>
-                      A short label used to displayt this attribute.  This
-                      is needed because attribute names are often shortened to
-                      8 characters or less to deal with analysis systems, and
-                      so the label is provided as a more understandable 
-                      representation of the attribute.
+                      A brief label used to describe the attribute.  This
+                      is often needed because attribute names are usually 
+                      very terse- often shortened to 8 characters or less to
+                      deal with analysis systems. A label is provided as
+                      a concise but more descriptive representation of
+                      the attribute.
                     </doc:description>
                     <doc:example>
-                      "Species Density" is a label for attribute "spden"
+                      "Species Density" is a label for attribute with
+                       name "spden"
                     </doc:example>
                     <doc:lineage>
                       Introduced in EML 2.0
@@ -200,6 +206,9 @@
                       fully and possibly provides pointers to the methods 
                       used to generate the attribute data.
                     </doc:description>
+                    <doc:example>
+                      "spden" is the number of individuals of all
+                       macroinvertebrate species found in the plot
                     <doc:example/>
                     <doc:lineage>
                       The attributeDefinition was introduced into EML 1.4.
@@ -220,6 +229,8 @@
                       This element specifies unit of measurement for data 
                       in the field.
                     </doc:description>
+                    <doc:example>
+                      Integer count of individuals within plot
                     <doc:example/>
                     <doc:lineage>
                       The unit was introduced into EML 1.4.
@@ -262,9 +273,12 @@
                       Description of any codes associated with the attribute
                     </doc:summary>
                           <doc:description>
-                      This element describes a code associated with the 
+                      This element describes any code associated with the 
                       attribute.
                     </doc:description>
+                          <doc:example>
+                        The format will typically be : "code" has "definition",
+                         e.g. "1" = "high", "2" = "medium", "3" = "low"
                           <doc:example/>
                           <doc:lineage>
                       The codeDefinition was introduced into EML 1.4.
@@ -286,6 +300,9 @@
                             This element specifies a code associated with 
                             the attribute.
                           </doc:description>
+                                <doc:example>
+                                 "1" would be the code for "high" (where high is the description
+                                  of the code)
                                 <doc:example/>
                                 <doc:lineage>
                             The code element was introduced into EML 1.4.
@@ -301,12 +318,14 @@
                                 </doc:tooltip>
                                 <doc:summary>
                                   Description of the code associated with 
-                                  the attribute
+                                  the attribute.
                                 </doc:summary>
                                 <doc:description>
                                   This element describes the code associated 
                                   with the attribute.
                                 </doc:description>
+                                <doc:example>
+                                  "high" would be the definition for a code of "1"
                                 <doc:example/>
                                 <doc:lineage>
                                   The definition element is from EML 1.4.
@@ -330,7 +349,9 @@
                                   This is commonly used for identifying
                                   standard coding systems, like the FIPS
                                   standard for postal abbreviations for states
-                                  in the US.
+                                  in the US. In other cases, the coding may be the
+                                  researcher's customized way of recording and classifying
+                                  their data, and no external "source" would exist.
                                 </doc:description>
                                 <doc:example>ISO country codes</doc:example>
                                 <doc:lineage>
@@ -352,8 +373,10 @@
                       Numeric range of attribute
                     </doc:summary>
                           <doc:description>
-                      This element specifies the minimum and maximum value range
-                      of numeric attribute.
+                      This element specifies the minimum and maximum values
+                      of a numeric attribute.  These are theoretical or expected
+                      values, and not necessarily the actual minimum and maximum   occurring
+                      in a given data set.
                     </doc:description>
                           <doc:example/>
                           <doc:lineage>
