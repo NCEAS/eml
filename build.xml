@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-25 22:56:20 $'
-      '$Revision: 1.41 $'
+          '$Date: 2002-09-26 15:33:21 $'
+      '$Revision: 1.42 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -223,7 +223,7 @@
       ************************************************
     </echo>
   </target>
-  
+
   <target name="compile" depends="init">
     <mkdir dir="${build.tests}"/>
      <mkdir dir="${build.dest}"/>
@@ -245,13 +245,13 @@
             classpath="${cpath}"
             debug="on"/>
   </target>
-  
+
   <target name="jar" depends="compile">
     <jar jarfile="${build.dir}/${name}.jar" basedir="${build.dest}"
           includes="${package.home}/**" />
     <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
   </target>
-  
+
   <target name="compile-test" depends="jar">
      <!-- copy and compile the tests into a jar file -->
      <mkdir dir="${build.tests}"/>
