@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: higgins $'
-  *     '$Date: 2003-05-30 17:04:24 $'
-  * '$Revision: 1.14 $'
+  *     '$Date: 2003-06-03 19:13:30 $'
+  * '$Revision: 1.15 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -571,23 +571,68 @@ version="1.0">
       
         </xsl:element>
       </xsl:if>
-      <xsl:if test="$show_optional">
-        <xsl:element name="spdoinfo">
       
+<!-- spatial domain information -->
+<!-- It appears that nbii does not allow multiple spatial domain metadata trees,
+      while eml2 allows multiple copies of spatialRaster and spatialVector entities.
+      Only the first set of spatial data will be copied -->
+      
+      <!-- NEED TO HANDLE 'REFERENCES' -->
+      <xsl:if test="/eml:eml/dataset/spatialRaster!=''">
+        <!-- apparently, there are numerous elements in eml2 spatialRaster
+             which have no equivalent in nbii/fgdc rastinfo element! -->
+        <xsl:element name="spdoinfo">
+          <xsl:element name="direct">
+            <xsl:value-of select="'Raster'"/>
+          </xsl:element>
+          <xsl:element name="rastinfo">
+            <xsl:element name="rasttype">
+            <!-- apparently this element corresponds to the 'cellGeometry' element
+                 in eml2, which only has allowed values of 'pixel' and 'matrix';
+                 in fgdc, this element has allowed values of 'Point', 'Pixel', 
+                 'Grid Cell' or 'Voxel'-->
+              <xsl:choose>
+                <xsl:when test="/eml:eml/dataset/spatialRaster/cellGeometry='pixel'">
+                  <xsl:value-of select="'Pixel'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="'Grid Cell'"/>                
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:element>
+            <xsl:element name="rowcount">
+              <xsl:value-of select="/eml:eml/dataset/spatialRaster/rows"/>
+            </xsl:element>
+            <xsl:element name="colcount">
+              <xsl:value-of select="/eml:eml/dataset/spatialRaster/columns"/>
+            </xsl:element>
+            <xsl:element name="vrtcount">
+              <xsl:value-of select="/eml:eml/dataset/spatialRaster/verticals"/>
+            </xsl:element>
+          </xsl:element>
         </xsl:element>
       </xsl:if>
+      <!-- NEED TO HANDLE 'REFERENCES' -->
+      <xsl:if test="/eml:eml/dataset/spatialVector!=''">
+        <xsl:element name="spdoinfo">
+          <xsl:element name="direct">
+            <xsl:value-of select="'Vector'"/>
+          </xsl:element>
+          <xsl:for-each select="/eml:eml/dataset/spatialVector/geometry">
+            <xsl:element name="ptvctinf">
+              <xsl:element name="sdtsterm">
+                <xsl:element name="sdtstype">
+                  <xsl:value-of select="/eml:eml/dataset/spatialVector/geometry"/>
+                </xsl:element>
+              </xsl:element>
+            </xsl:element>
+          </xsl:for-each>  
+        </xsl:element>
+      </xsl:if>
+      
+<!-- spatial reference information -->      
       <xsl:if test="$show_optional">
         <xsl:element name="spref">
-      
-        </xsl:element>
-      </xsl:if>
-      <xsl:if test="$show_optional">
-        <xsl:element name="eainfo">
-      
-        </xsl:element>
-      </xsl:if>
-      <xsl:if test="$show_optional">
-        <xsl:element name="distinfo">
       
         </xsl:element>
       </xsl:if>
@@ -596,10 +641,11 @@ version="1.0">
 <!-- start the 'eainfo' branch -->      
 <!-- create only if there is entity data in the eml2 document --> 
    <!-- initially just consider datatable entities -->
-      <xsl:if test="/eml:eml/dataset/dataTable!=''">
+      <xsl:if test="/eml:eml/dataset/dataTable!='' or /eml:eml/dataset/spatialVector!='' or /eml:eml/dataset/spatialRaster!=''">
         <xsl:element name="eainfo">
-          <xsl:for-each select="/eml:eml/dataset/dataTable">
-
+          <xsl:for-each select="(/eml:eml/dataset/dataTable) | (/eml:eml/dataset/spatialVector) | (/eml:eml/dataset/spatialRaster)">
+           <!-- currently consider only the 3 entity types indicated -->
+           
             <xsl:variable name="cc">
               <xsl:choose>
                 <xsl:when test="./references!=''">
