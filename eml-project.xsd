@@ -1,17 +1,24 @@
 <?xml version="1.0"?>
-<!-- edited with XML Spy v4.0 NT beta 2 build Jul 26 2001 (http://www.xmlspy.com) by cjones (ucsb) -->
-<xs:schema targetNamespace="eml:project" xmlns="eml:project" xmlns:cit="eml:literature" xmlns:cov="eml:coverage" xmlns:rp="eml:ResponsibleParty" xmlns:pro="eml:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml:documentation">
-	<xs:import namespace="eml:documentation" schemaLocation="./eml-documentation.xsd"/>
-	<xs:annotation>
-		<xs:documentation>
+<xs:schema targetNamespace="eml:project" 
+           xmlns="eml:project" 
+           xmlns:cit="eml:literature" 
+           xmlns:cov="eml:coverage" 
+           xmlns:rp="eml:ResponsibleParty" 
+           xmlns:pro="eml:protocol" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:doc="eml:documentation">
+  <xs:import namespace="eml:documentation" 
+             schemaLocation="./eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
        '$RCSfile: eml-project.xsd,v $'
        Copyright: 2000 Regents of the University of California and the
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2001-07-31 19:19:25 $'
-      '$Revision: 1.18 $'
+          '$Date: 2001-07-31 19:51:50 $'
+      '$Revision: 1.19 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,50 +34,52 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
-		<xs:appinfo>
-			<doc:moduleName>eml-project</doc:moduleName>
-			<doc:moduleDescription>
+    <xs:appinfo>
+      <doc:moduleName>
+        eml-project
+      </doc:moduleName>
+      <doc:moduleDescription>
         The EML Project Module describes the research context 
         in which the dataset was created.
       </doc:moduleDescription>
-		</xs:appinfo>
-	</xs:annotation>
-	<xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
-	<xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
-	<xs:import namespace="eml:literature" schemaLocation="./eml-literature.xsd"/>
-	<xs:import namespace="eml:protocol" schemaLocation="./eml-protocol.xsd"/>
-	<xs:element name="eml-project">
-		<xs:annotation>
-			<xs:appinfo>
-				<doc:tooltip>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
+  <xs:import namespace="eml:coverage" schemaLocation="./eml-coverage.xsd"/>
+  <xs:import namespace="eml:literature" schemaLocation="./eml-literature.xsd"/>
+  <xs:import namespace="eml:protocol" schemaLocation="./eml-protocol.xsd"/>
+  <xs:element name="eml-project">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
           Research protocol descriptors
         </doc:tooltip>
-				<doc:summary>
+        <doc:summary>
           Container of all research projects in which context the
           dataset was created.
         </doc:summary>
-				<doc:description>
+        <doc:description>
            Eml-research element represents the research project 
            employed by the researchers who created this dataset.
         </doc:description>
-				<doc:example/>
-				<doc:lineage>
+        <doc:example/>
+        <doc:lineage>
           The eml-reasearch was introduced into EML 1.4 as eml-context.
         </doc:lineage>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="identifier" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="identifier" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Unique identifier
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 The unique identifier of this metadata file or object.
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 The identifier field provides a unique identifier for this
                 metadata documentation.  It will most likely be part of a 
                 sequence of numbers or letters that are meaningful in a 
@@ -79,310 +88,303 @@
                 identifiers can be listed corresponding to different catalog
                 systems.
               </doc:description>
-							<doc:example><![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-							<doc:lineage>
+              <doc:example>
+                <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+              </doc:example>
+              <doc:lineage>
                 The 'identifier' field is derived from the eml-dataset 
                 meta_file_id filed in EML 1.4.
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:simpleContent>
-							<xs:extension base="xs:string">
-								<xs:attribute name="system" type="xs:string" use="optional">
-									<xs:annotation>
-										<xs:appinfo>
-											<doc:tooltip>
-                    Catalog system
-                  </doc:tooltip>
-											<doc:summary>
-                    The catalog system in which this identifier is used.
-                  </doc:summary>
-											<doc:description>
-                    This element gives the name of the catalog system in which
-                    this identifier is used.  It is useful to determine the
-                    scope of the identifier, and to determine the semantics
-                    of the various subparts of the identifier. Unresolved issue:
-                    can or should this be a URI/URL pointing to the catalog
-                    system, or just the name?
-                  </doc:description>
-											<doc:example><![CDATA[
-                    <identifier system="metacat">nceas.3.2</identifier>]]></doc:example>
-											<doc:lineage>
-                    New to EML 2.0.
-                  </doc:lineage>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:attribute>
-							</xs:extension>
-						</xs:simpleContent>
-					</xs:complexType>
-				</xs:element>
-				<xs:element ref="researchProject" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="researchProject">
-		<xs:annotation>
-			<xs:appinfo>
-				<doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="system" type="xs:string" use="optional">
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <doc:tooltip>
+                        Catalog system
+                      </doc:tooltip>
+                      <doc:summary>
+                        The catalog system in which this identifier is used.
+                      </doc:summary>
+                      <doc:description>
+                        This element gives the name of the catalog system in which
+                        this identifier is used.  It is useful to determine the
+                        scope of the identifier, and to determine the semantics
+                        of the various subparts of the identifier. Unresolved issue:
+                        can or should this be a URI/URL pointing to the catalog
+                        system, or just the name?
+                      </doc:description>
+                      <doc:example>
+                        <![CDATA[<identifier system="metacat">nceas.3.2</identifier>]]>
+                      </doc:example>
+                      <doc:lineage>
+                        New to EML 2.0.
+                      </doc:lineage>
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="researchProject" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="researchProject">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
           Research project descriptor
         </doc:tooltip>
-				<doc:summary>
+        <doc:summary>
           Descriptor of research project in which context 
           the dataset was created.
         </doc:summary>
-				<doc:description>
+        <doc:description>
           Research project element is a descriptor of
           the research methods employed by the researchers who 
           created this dataset. It can include research methods, 
           data collection methods, equations, formulas. 
         </doc:description>
-				<doc:example/>
-				<doc:lineage>
+        <doc:example/>
+        <doc:lineage>
           The researchProject element was introduced into EML 1.4.
         </doc:lineage>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="title" type="xs:string" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>Project Title</doc:tooltip>
-							<doc:summary>Title of the project.</doc:summary>
-							<doc:description>A descriptive title for the research project.</doc:description>
-							<doc:example>Species diversity in Tennessee riparian habitats.</doc:example>
-							<doc:lineage>Introduced into EML 1.4.        </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="personnel" type="rp:ResponsibleParty" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Project Title</doc:tooltip>
+              <doc:summary>Title of the project.</doc:summary>
+              <doc:description>A descriptive title for the research project.</doc:description>
+              <doc:example>Species diversity in Tennessee riparian habitats.</doc:example>
+              <doc:lineage>Introduced into EML 1.4.        </doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="personnel" type="rp:ResponsibleParty" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Originator
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 The party who created the research project.
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 The party who created the research project.
               </doc:description>
-							<doc:example/>
-							<doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                 FGDC-STD-001.1-1999 (nbii-fgdc-std-001.1-1999)
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-				</xs:element>
-				<xs:element ref="cov:temporalCov" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="geographicCov" type="cov:GeographicCoverage" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
-                      Geographical coverage
-                    </doc:tooltip>
-							<doc:summary>
-                      Geographical coverage of the site of the project.
-                    </doc:summary>
-							<doc:description>
-                      This element is to specify the geographical coordinates
-                      of the site of the project: latitude and longitude.
-                    </doc:description>
-							<doc:example/>
-							<doc:lineage>
-                      The geographicCoverage element was introduced into EML 1.4.
-                    </doc:lineage>
-						</xs:appinfo>
-						<xs:appinfo>
-							<doc:tooltip>
-                      Geographical coverage
-                    </doc:tooltip>
-							<doc:summary>
-                      Geographical coverage of the site of the project.
-                    </doc:summary>
-							<doc:description>
-                      This element is to specify the geographical coordinates
-                      of the site of the project: latitude and longitude.
-                    </doc:description>
-							<doc:example/>
-							<doc:lineage>
-                      The geographicCoverage element was introduced into EML 1.4.
-                    </doc:lineage>
-						</xs:appinfo>
-						<xs:appinfo>
-							<doc:tooltip>
-                      Geographical coverage
-                    </doc:tooltip>
-							<doc:summary>
-                      Geographical coverage of the site of the project.
-                    </doc:summary>
-							<doc:description>
-                      This element is to specify the geographical coordinates
-                      of the site of the project: latitude and longitude.
-                    </doc:description>
-							<doc:example/>
-							<doc:lineage>
-                      The geographicCoverage element was introduced into EML 1.4.
-                    </doc:lineage>
-						</xs:appinfo>
-						<xs:appinfo>
-							<doc:tooltip>
-                      Geographical coverage
-                    </doc:tooltip>
-							<doc:summary>
-                      Geographical coverage of the site of the project.
-                    </doc:summary>
-							<doc:description>
-                      This element is to specify the geographical coordinates
-                      of the site of the project: latitude and longitude.
-                    </doc:description>
-							<doc:example/>
-							<doc:lineage>
-                      The geographicCoverage element was introduced into EML 1.4.
-                    </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="abstract" minOccurs="0">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="cov:temporalCov" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="geographicCov" type="cov:GeographicCoverage" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
+                Geographical coverage
+              </doc:tooltip>
+              <doc:summary>
+                Geographical coverage of the site of the project.
+              </doc:summary>
+              <doc:description>
+                This element is to specify the geographical coordinates
+                of the site of the project: latitude and longitude.
+              </doc:description>
+              <doc:example/>
+              <doc:lineage>
+                The geographicCoverage element was introduced into EML 1.4.
+              </doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="abstract" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Abstract
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 Descriptive abstract.
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 Descriptive abstract in paragraph of text.
               </doc:description>
-							<doc:example/>
-							<doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                 The abstract element was introduced into EML 1.4.
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="funding" minOccurs="0">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="funding" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Funding
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 Funding information.
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 Grant and contract numbers, names and addresses of
                 funding sources described in paragraph of text.
               </doc:description>
-							<doc:example/>
-							<doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                 The funding element was introduced into EML 1.4.
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element ref="siteDescription" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="designDescription" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="researchProject" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="siteDescription">
-		<xs:annotation>
-			<xs:appinfo>
-				<doc:tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paragraph" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="siteDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="designDescription" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="researchProject" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="siteDescription">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
           Site description
         </doc:tooltip>
-				<doc:summary>
+        <doc:summary>
           Site description.
         </doc:summary>
-				<doc:description>
+        <doc:description>
           Description of the site of the project. It can include 
           general description in paragraph of text, geographical,
           geological, hydrological, hystorical, meteorological
           information.
         </doc:description>
-				<doc:example/>
-				<doc:lineage>
+        <doc:example/>
+        <doc:lineage>
           The siteDescription element was introduced into EML 1.4.
         </doc:lineage>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="designDescription">
-		<xs:annotation>
-			<xs:appinfo>
-				<doc:tooltip>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="designDescription">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>
           Experimental or Sampling design
         </doc:tooltip>
-				<doc:summary>
+        <doc:summary>
           Experimental or Sampling design of the project
         </doc:summary>
-				<doc:description>
+        <doc:description>
           Experimental or Sampling design: the design method, plots,
           samplings, descriptive paragraph of text or citation from 
           a source.
         </doc:description>
-				<doc:example/>
-				<doc:lineage>
+        <doc:example/>
+        <doc:lineage>
           The designDescription element was introduced into EML 1.4.
         </doc:lineage>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="pro:protocol" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="sampling" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:appinfo>
-							<doc:tooltip>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:protocol" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="sampling" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>
                 Temporal sampling regime
               </doc:tooltip>
-							<doc:summary>
+              <doc:summary>
                 Temporal sampling regime
               </doc:summary>
-							<doc:description>
+              <doc:description>
                 Information necessary to understand temporal sampling regime:
                 temporal boundaries, frequency of occurrence,
                 descriptive paragraph of text or citation from a source.
               </doc:description>
-							<doc:example/>
-							<doc:lineage>
+              <doc:example/>
+              <doc:lineage>
                 The sampling element was introduced into EML 1.4.
               </doc:lineage>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
-							<xs:element name="frequency" type="xs:string" minOccurs="0"/>
-							<xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-							<xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="temporalCov" type="cov:TemporalCoverage" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+                      Temporal Coverage
+                    </doc:tooltip>
+                    <doc:summary>
+		      Information on the periods of time that sampling took
+		      place
+                    </doc:summary>
+                    <doc:description>
+                      Information necessary to understand temporal sampling regime:
+                      temporal boundaries, frequency of occurrence,
+                      descriptive paragraph of text or citation from a source.
+                    </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
+                      The sampling element was introduced into EML 1.4.
+                    </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              <xs:element name="frequency" type="xs:string" minOccurs="0"/>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>
+		      Sampling frequency
+                    </doc:tooltip>
+                    <doc:summary>
+		      Information on the rate of sampling
+                    </doc:summary>
+                    <doc:description>
+		      The frequency field is intended to document the sampling
+		      rate for the specific method employed.
+                    </doc:description>
+                    <doc:example/>
+                    <doc:lineage>
+                      The sampling element was introduced into EML 1.4.
+                    </doc:lineage>
+                  </xs:appinfo>
+                </xs:annotation>
+              <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="paragraph" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cit:citation" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
