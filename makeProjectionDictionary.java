@@ -28,7 +28,7 @@ public class makeProjectionDictionary {
     
     public static void main(String args[]) throws IOException {
         
-        root.setAttribute("schemaLocation","eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
+        root.setAttribute("schemaLocation","eml://ecoinformatics.org/spatialReference-2.0.0rc1 eml-spatialReference.xsd",Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
         if (args.length==1){
             processPrjFiles(args[0]);
             
