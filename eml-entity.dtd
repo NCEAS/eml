@@ -3,7 +3,6 @@
 <!ELEMENT beggeol (geolage)>
 <!ELEMENT begtime (#PCDATA)>
 <!ELEMENT citeinfo ANY>
-<!ELEMENT coverage (geographicCov, temporalCov, taxonomicCov)>
 <!ELEMENT enddate (#PCDATA)>
 <!ELEMENT endgeol (geolage)>
 <!ELEMENT endtime (#PCDATA)>
@@ -17,7 +16,6 @@
 <!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
 <!ELEMENT taxonomicCov (keywtax+, taxonsys?, taxongen?, taxoncl+)>
 <!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
-<!ELEMENT other-entity ((identifier+, entityName, entityDescription?, temporalCov?, geographicCov?, taxonomicCov?), (entityType))>
 <!ELEMENT table-entity ((identifier+, entityName, entityDescription?, temporalCov?, geographicCov?, taxonomicCov?), (orientation?, caseSensitive?, numberOfRecords?))>
 <!ELEMENT descgeog (#PCDATA)>
 <!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
@@ -41,7 +39,6 @@
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT entityName (#PCDATA)>
 <!ELEMENT entityDescription (#PCDATA)>
-<!ELEMENT entityType (#PCDATA)>
 <!ELEMENT orientation EMPTY>
 <!ATTLIST orientation columnorrow (columnmajor | rowmajor) #IMPLIED>
 <!ELEMENT caseSensitive EMPTY>

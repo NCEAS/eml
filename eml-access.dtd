@@ -5,66 +5,26 @@
 <!ELEMENT beggeol (geolage)>
 <!ELEMENT begtime (#PCDATA)>
 <!ELEMENT citeinfo ANY>
-<!ELEMENT coverage (geographicCov, temporalCov, taxonomicCov)>
 <!ELEMENT enddate (#PCDATA)>
 <!ELEMENT endgeol (geolage)>
 <!ELEMENT endtime (#PCDATA)>
-<!ELEMENT geographicCov (descgeog, bounding, dsgpoly*)>
 <!ELEMENT geolage (geolscal, geolest, geolun?, geolexpl?, geolcit*)>
-<!ELEMENT gring (#PCDATA)>
-<!ELEMENT grngpoin (gringlat, gringlon)>
 <!ELEMENT mdattim (sngdate+)>
 <!ELEMENT rngdates ((begdate, begtime?, enddate, endtime?) | (beggeol, endgeol))>
 <!ELEMENT sngdate ((caldate, time?) | geolage)>
-<!ELEMENT taxoncl (taxonrn?, taxonrv?, common*, taxoncl*)>
-<!ELEMENT taxonomicCov (keywtax+, taxonsys?, taxongen?, taxoncl+)>
-<!ELEMENT temporalCov (sngdate | mdattim | rngdates)>
 <!ELEMENT identifier (#PCDATA)>
 <!ATTLIST identifier system CDATA #IMPLIED>
 <!ELEMENT allow (principal+, permission+, duration?, ticketCount?)>
 <!ELEMENT deny (principal+, permission+, duration?, ticketCount?)>
-<!ELEMENT descgeog (#PCDATA)>
-<!ELEMENT bounding (westbc, eastbc, northbc, southbc, boundalt?)>
-<!ELEMENT dsgpoly (dsgpolyo, dsgpolyx*)>
 <!ELEMENT geolscal (#PCDATA)>
 <!ELEMENT geolest (#PCDATA)>
 <!ELEMENT geolun (#PCDATA)>
 <!ELEMENT geolexpl (#PCDATA)>
 <!ELEMENT geolcit (citeinfo)>
-<!ELEMENT gringlat (#PCDATA)>
-<!ELEMENT gringlon (#PCDATA)>
 <!ELEMENT caldate (#PCDATA)>
 <!ELEMENT time (#PCDATA)>
-<!ELEMENT taxonrn (#PCDATA)>
-<!ELEMENT taxonrv (#PCDATA)>
-<!ELEMENT common (#PCDATA)>
-<!ELEMENT keywtax (taxonkt, taxonkey+)>
-<!ELEMENT taxonsys (classsys+, idref*, ider+, taxonpro, taxoncom?, vouchers*)>
-<!ELEMENT taxongen (#PCDATA)>
 <!ELEMENT principal (#PCDATA)>
 <!ELEMENT permission (#PCDATA)>
 <!ELEMENT duration (sngdate | mdattim | rngdates)>
 <!ELEMENT ticketCount (#PCDATA)>
-<!ELEMENT westbc (#PCDATA)>
-<!ELEMENT eastbc (#PCDATA)>
-<!ELEMENT northbc (#PCDATA)>
-<!ELEMENT southbc (#PCDATA)>
-<!ELEMENT boundalt (altmin, almax, altunits)>
-<!ELEMENT dsgpolyo ((grngpoin, grngpoin, grngpoin, grngpoin+) | gring)>
-<!ELEMENT dsgpolyx ((grngpoin, grngpoin, grngpoin, grngpoin+) | gring)>
-<!ELEMENT taxonkt (#PCDATA)>
-<!ELEMENT taxonkey (#PCDATA)>
-<!ELEMENT classsys (classcit, classmod?)>
-<!ELEMENT idref (citeinfo)>
-<!ELEMENT ider (cntinfo)>
-<!ELEMENT taxonpro (#PCDATA)>
-<!ELEMENT taxoncom (#PCDATA)>
-<!ELEMENT vouchers (specimen, reposit)>
-<!ELEMENT altmin (#PCDATA)>
-<!ELEMENT almax (#PCDATA)>
-<!ELEMENT altunits (#PCDATA)>
-<!ELEMENT classcit (citeinfo)>
-<!ELEMENT classmod (#PCDATA)>
-<!ELEMENT cntinfo ANY>
-<!ELEMENT specimen (#PCDATA)>
-<!ELEMENT reposit (cntinfo)>
+
