@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns="eml://ecoinformatics.org/physical-2.0.0beta9">
+<xs:schema targetNamespace="eml://ecoinformatics.org/physical-2.0.0beta9" xmlns="eml://ecoinformatics.org/physical-2.0.0beta9" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0beta9" xmlns:lit="eml://ecoinformatics.org/literature-2.0.0beta9" xmlns:res="eml://ecoinformatics.org/resource-2.0.0beta9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0beta9" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0beta9" schemaLocation="eml-literature.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0beta9" schemaLocation="eml-resource.xsd"/>
@@ -18,9 +18,9 @@
    Other funding: National Science Foundation (see README for details)
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
-        '$Author: berkley $'
-          '$Date: 2002-08-22 21:45:48 $'
-      '$Revision: 1.34 $'
+        '$Author: mccartne $'
+          '$Date: 2002-09-05 16:25:38 $'
+      '$Revision: 1.35 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -326,7 +326,7 @@
               <xs:element name="formatType">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="formatName" type="xs:string" minOccurs="0"/>
+                    <xs:element name="formatName" type="xs:string"/>
                     <xs:element name="formatVersion" type="xs:string" minOccurs="0"/>
                     <xs:element ref="lit:citation" minOccurs="0"/>
                   </xs:sequence>
@@ -515,59 +515,93 @@
                   <xs:complexType>
                     <xs:sequence>
                       <xs:element name="numHeaderLines" type="xs:string" minOccurs="0"/>
-                      <xs:element name="fieldStartColumn" type="xs:string" minOccurs="0">
+                      <xs:element name="numPhysicalLines" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
-                            <doc:tooltip>
-                          Start column
-                        </doc:tooltip>
+                            <doc:tooltip>Number of physical lines</doc:tooltip>
                             <doc:summary>
-                          The starting column number for a fixed format attribute.
-                        </doc:summary>
+                          The number of physical lines in the file spanned by a single logical data record.                        </doc:summary>
                             <doc:description>
-                          FixedWidth fields have a set length, thus
-                          the end of the field can always be determined
-                          by adding the fieldWidth to the starting
-                          column number.
-                        </doc:description>
-                            <doc:example>
-                          any positive integer, see example in "delimeter" description
-                        </doc:example>
+                         A single logical data record may be written over several physical lines in a file, with no special marker to indicate the end of a record. In such cases, it is necessary to know the number of lines per record in order to correctly read them.                        </doc:description>
+                            <doc:example>3</doc:example>
                             <doc:lineage>
                           Introduced into EML 2.0.
                         </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
-                      <xs:choice maxOccurs="unbounded">
-                        <xs:element name="fieldWidth" type="xs:string">
-                          <xs:annotation>
-                            <xs:appinfo>
-                              <doc:tooltip>
+                      <xs:element name="fieldBounds">
+                        <xs:complexType>
+                          <xs:sequence maxOccurs="unbounded">
+                            <xs:element name="lineNumber" minOccurs="0">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>Physical Line Number</doc:tooltip>
+                                  <doc:summary>
+                          The line on which the data field is found, when the data record is written over more than one physical line in the file.                        </doc:summary>
+                                  <doc:description>
+                         A single logical data record may be written over several physical lines in a file, with no special marker to indicate the end of a record. In such cases, the relative location of a data field must be indicated by both relative row and column number.                        </doc:description>
+                                  <doc:example>3</doc:example>
+                                  <doc:lineage>
+                          Introduced into EML 2.0.
+                        </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="fieldStartColumn" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
+                          Start column
+                        </doc:tooltip>
+                                  <doc:summary>
+                          The starting column number for a fixed format attribute.
+                        </doc:summary>
+                                  <doc:description>
+                          FixedWidth fields have a set length, thus
+                          the end of the field can always be determined
+                          by adding the fieldWidth to the starting
+                          column number.
+                        </doc:description>
+                                  <doc:example>
+                          any positive integer, see example in "delimeter" description
+                        </doc:example>
+                                  <doc:lineage>
+                          Introduced into EML 2.0.
+                        </doc:lineage>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="fieldWidth" type="xs:string">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                  <doc:tooltip>
                             Field width
                           </doc:tooltip>
-                              <doc:summary>
+                                  <doc:summary>
                             FieldWidth specification for fixed field length.
                           </doc:summary>
-                              <doc:description>
+                                  <doc:description>
                             FixedWidth fields have a set length, thus
                             the end of the field can always be determined
                             by adding the fieldWidth to the starting
                             column number.
                           </doc:description>
-                              <doc:example>
+                                  <doc:example>
                             any positive integer, see example in "delimeter"
                             description
                           </doc:example>
-                              <doc:lineage>
+                                  <doc:lineage>
                             The fieldWidth element was introduced into
                             EML 1.4. Semantics changed to work identically to
                             the NBII DTD.
                           </doc:lineage>
-                            </xs:appinfo>
-                          </xs:annotation>
-                        </xs:element>
-                      </xs:choice>
+                                </xs:appinfo>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
                     </xs:sequence>
                   </xs:complexType>
                 </xs:element>
@@ -611,7 +645,7 @@
                           </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-          </xs:element>
+                      </xs:element>
                       <xs:element name="ncols" type="xs:int">
                         <xs:annotation>
                           <xs:appinfo>
@@ -627,7 +661,7 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-          </xs:element>
+                      </xs:element>
                       <xs:element name="orientation" nillable="true" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -649,8 +683,7 @@
                           </xs:appinfo>
                         </xs:annotation>
                         <xs:complexType>
-                          <xs:attribute name="columnOrRow" use="optional"
-                          default="columnMajor">
+                          <xs:attribute name="columnOrRow" use="optional" default="columnMajor">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Attribute of orientation element</doc:tooltip>
@@ -667,8 +700,8 @@
                             </xs:annotation>
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
-                                <xs:enumeration value="columnMajor" />
-                                <xs:enumeration value="rowMajor" />
+                                <xs:enumeration value="columnMajor"/>
+                                <xs:enumeration value="rowMajor"/>
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:attribute>
@@ -676,19 +709,19 @@
                       </xs:element>
                       <xs:element name="nbands" type="xs:int" minOccurs="0">
                         <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
                           The number of spectral bands in the image. The default is 1.
                         </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
+                            <doc:example/>
+                            <doc:lineage>
                           Introduced in EML 2.0.
                         </doc:lineage>
-                        </xs:appinfo>
+                          </xs:appinfo>
                         </xs:annotation>
-          </xs:element>
+                      </xs:element>
                       <xs:element name="nbits" type="xs:int" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -709,7 +742,7 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-          </xs:element>
+                      </xs:element>
                       <xs:element name="byteorder" type="xs:string" minOccurs="0">
                         <xs:annotation>
                           <xs:appinfo>
@@ -732,9 +765,9 @@
                             </doc:lineage>
                           </xs:appinfo>
                         </xs:annotation>
-          </xs:element>
+                      </xs:element>
                       <xs:element name="layout" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -750,10 +783,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="skipbytes" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -768,10 +801,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="ulxmap" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -786,10 +819,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="ulymap" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -803,27 +836,27 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="xdim" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
                             The y-dimension of a pixel in map units.
                             If this parameter is specified, xdim must
                             also be set, otherwise a default value is used.
                           </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
+                            <doc:example/>
+                            <doc:lineage>
                             Introduced in EML 2.0.
                           </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="ydim" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -838,10 +871,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -856,10 +889,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -873,10 +906,10 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                       <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
-      <xs:annotation>
+                        <xs:annotation>
                           <xs:appinfo>
                             <doc:tooltip/>
                             <doc:summary/>
@@ -889,17 +922,16 @@
                               Introduced in EML 2.0.
                             </doc:lineage>
                           </xs:appinfo>
-      </xs:annotation>
-          </xs:element>
+                        </xs:annotation>
+                      </xs:element>
                     </xs:sequence>
                   </xs:complexType>
                 </xs:element>
-                <xs:element name="genericBinary" minOccurs="0"/>
               </xs:choice>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="distribution" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="distribution" type="res:DistributionType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Distribution Information
@@ -919,250 +951,6 @@
           </doc:lineage>
             </xs:appinfo>
           </xs:annotation>
-          <xs:complexType>
-            <xs:choice maxOccurs="unbounded">
-              <xs:element name="online">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Connection Information
-                </doc:tooltip>
-                    <doc:summary>
-                  Connection information for accessing the resource online
-                </doc:summary>
-                    <doc:description>
-                  Connection information for accessing the resource online,
-                  represented either as a URL or as a series of named
-                  parameters that are needed in order to connect.
-                </doc:description>
-                    <doc:example/>
-                    <doc:lineage/>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="url" type="xs:string">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                          Download site URL
-                        </doc:tooltip>
-                          <doc:summary>
-                         A URL (Uniform Resource Locator) from which this resource can be downloaded
-                        </doc:summary>
-                          <doc:description>
-                          A URL (Uniform Resource Locator) from which this resource can be downloaded.
-                          This includes any information needed to access this site, such as
-                          connection information.
-                        </doc:description>
-                          <doc:example>http://data.org/getdata?id=98332</doc:example>
-                          <doc:lineage>
-                          ISO CD 19115.3, Geographic information - Metadata
-                        </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="connectionNotes" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Parameter Value
-                        </doc:tooltip>
-                          <doc:summary>
-                          A value of one of the parameters needed to
-                          connect using this connection.
-                        </doc:summary>
-                          <doc:description>
-                          A value of one of the parameters needed to
-                          connect using this connection.  In general, if a URL
-                          scheme exists for this type of connection, it
-                          is much better to provide this information in
-                          onlineURL rather than here.  Examples include
-                          parameters such as host names and ports, paths,
-                          UNC names, CGI parameters, etc.
-                        </doc:description>
-                          <doc:example><![CDATA[<parameter name="port">8081</parameter>parameter>]]></doc:example>
-                          <doc:lineage>
-                          New in EML 2.0.0
-                        </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string"/>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="offline">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>
-                  medium of the resource
-                </doc:tooltip>
-                    <doc:summary>
-                  the medium on which this resource is distributed, either digitally or as hardcopy
-                </doc:summary>
-                    <doc:description>
-                  the medium on which this resource is distributed digitally, such as 3.5"
-                  floppy disk, or various tape media types, or 'hardcopy'
-                </doc:description>
-                    <doc:example>
-                  CD-ROM, 3.5 in. floppy disk, Zip disk
-                </doc:example>
-                    <doc:lineage>
-                  ISO CD 19115.3, Geographic information - Metadata
-                </doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="mediumName" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        Medium name
-                      </doc:tooltip>
-                          <doc:summary>
-                        Name of the medium that for this resource distribution
-                      </doc:summary>
-                          <doc:description>
-                        Name of the medium on which this resource is distributed.
-                        Can be various digital media such as tapes and disks, or
-                        printed media which can collectively be termed 'hardcopy'.
-                      </doc:description>
-                          <doc:example>
-                        Tape, 3.5 inch Floppy Disk, hardcopy
-                      </doc:example>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        density of the digital medium
-                      </doc:tooltip>
-                          <doc:summary>
-                        the density of the digital medium if this is
-                        relevant.
-                      </doc:summary>
-                          <doc:description>
-                        the density of the digital medium if this is
-                        relevant.  Used mainly for floppy disks
-                        or tape.
-                      </doc:description>
-                          <doc:example>
-                        High Density (HD), Double Density (DD)
-                      </doc:example>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        units of a numerical density
-                      </doc:tooltip>
-                          <doc:summary>
-                        a numerical density's units
-                      </doc:summary>
-                          <doc:description>
-                        if a density is given numerically, the units
-                        should be given here.
-                      </doc:description>
-                          <doc:example>
-                        B/cm
-                      </doc:example>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        storage volume
-                      </doc:tooltip>
-                          <doc:summary>
-                        total volume of the storage medium
-                      </doc:summary>
-                          <doc:description>
-                        the total volume of the storage medium on
-                        which this resource is shipped.
-                      </doc:description>
-                          <doc:example>
-                        650 MB
-                      </doc:example>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        medium format
-                      </doc:tooltip>
-                          <doc:summary>
-                        format of the medium on which the resource is
-                        shipped.
-                      </doc:summary>
-                          <doc:description>
-                        the file system format of the medium on
-                        which the resource is shipped
-                      </doc:description>
-                          <doc:example>
-                        NTFS, FAT32, EXT2, QIK80
-                      </doc:example>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                    <xs:element name="mediumNote" type="xs:string" minOccurs="0">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>
-                        note about the media
-                      </doc:tooltip>
-                          <doc:summary>
-                        note about the media
-                      </doc:summary>
-                          <doc:description>
-                        any additional pertitant information about the
-                        media
-                      </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                        ISO CD 19115.3,
-                        Geographic information - Metadata
-                      </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="inline" type="xs:string"/>
-            </xs:choice>
-          </xs:complexType>
         </xs:element>
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
