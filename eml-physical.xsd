@@ -19,8 +19,8 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
         '$Author: cjones $'
-          '$Date: 2002-06-13 22:37:50 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-06-14 01:41:52 $'
+      '$Revision: 1.29 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -589,31 +589,86 @@
                   </xs:annotation>
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The number of rows in the image. Rows are parallel to the x-axis of the
-                          map coordinate system. There is no default.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The number of columns in the image. Columns are parallel to the y-axis
-                          of the map coordinate system. There is no default.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
+                      <xs:element name="nrows" type="xs:int">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of rows in the image. Rows are parallel to the x-axis of the
+                              map coordinate system. There is no default.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                            Introduced in EML 2.0.
+                          </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+		      </xs:element>
+                      <xs:element name="ncols" type="xs:int">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of columns in the image. Columns are parallel to the y-axis
+                              of the map coordinate system. There is no default.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                            Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+		      </xs:element>
+                      <xs:element name="orientation" nillable="true" minOccurs="0">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>Entity's record orientation</doc:tooltip>
+                            <doc:summary>Specification of the binary raster entity's record
+                            orientation.</doc:summary>
+                            <doc:description>This element contains specification of the
+                            binary raster entity's record orientation by defining the element's 
+			    attribute "columnorrow". The binary raster will be
+			    column major if the raster is to be displayed column
+			    by column from the byte stream, or row major if it
+			    is to be displayed row by row from the byte stream.
+			    </doc:description>
+                            <doc:example>The valid attribute values are "columnmajor" or
+                            "rowmajor". If the attribute is not specified, "columnmajor" is
+                            used.</doc:example>
+                            <doc:lineage>The orientation element was introduced into EML
+                            2.0</doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:attribute name="columnOrRow" use="optional"
+                          default="columnMajor">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Attribute of orientation element</doc:tooltip>
+                                <doc:summary>Specification of the entity's record
+                                orientation.</doc:summary>
+                                <doc:description>This attribute specifies the entity's
+                                record orientation.</doc:description>
+                                <doc:example>The valid attribute values are "columnmajor"
+                                or "rowmajor". If the attribute is not specified,
+                                "columnmajor" is used.</doc:example>
+                                <doc:lineage>The columnorrow attribute was introduced into
+                                EML 1.4.</doc:lineage>
+                              </xs:appinfo>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="columnMajor" />
+                                <xs:enumeration value="rowMajor" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:attribute>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="nbands" type="xs:int" minOccurs="0">
+                        <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip/>
                           <doc:summary/>
@@ -625,179 +680,210 @@
                           Introduced in EML 2.0.
                         </doc:lineage>
                         </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                        The number of bits per pixel per band. Acceptable values are
-                          1, 4, 8, 16, and 32. The default value is eight bits per pixel
-                          per band. For a true color image with three bands (R, G, B)
-                          stored using eight bits for each pixel in each band, nbits
-                          equals eight and nbands equals three, for a total of twenty-four
-                          bits per pixel. For an image with nbits equal to one, nbands
-                          must also equal one.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The byte order in which image pixel values are stored. The byte
-                          order is important for sixteen-bit images, with two bytes per
-                          pixel. Acceptable values are
-                          I - Intel byte order (Silicon Graphics, DEC Alpha, PC)
-                          Also known as littleendian.
-                          M - Motorola byte order (Sun, HP, etc.)
-                          Also known as big-endian.
-                          The default byte order is the same as that of the host machine
-                          executing the software.
-                       </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                        The organization of the bands in the image file. Acceptable
-                        values are bil - Band interleaved by line.
+                        </xs:annotation>
+		      </xs:element>
+                      <xs:element name="nbits" type="xs:int" minOccurs="0">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of bits per pixel per band. Acceptable values are
+                              1, 4, 8, 16, and 32. The default value is eight bits per pixel
+                              per band. For a true color image with three bands (R, G, B)
+                              stored using eight bits for each pixel in each band, nbits
+                              equals eight and nbands equals three, for a total of twenty-four
+                              bits per pixel. For an image with nbits equal to one, nbands
+                              must also equal one.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+		      </xs:element>
+                      <xs:element name="byteorder" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The byte order in which image pixel values are stored. The byte
+                              order is important for sixteen-bit images, with two bytes per
+                              pixel. Acceptable values are
+                              I - Intel byte order (Silicon Graphics, DEC Alpha, PC)
+                              Also known as littleendian.
+                              M - Motorola byte order (Sun, HP, etc.)
+                              Also known as big-endian.
+                              The default byte order is the same as that of the host machine
+                              executing the software.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+                        </xs:annotation>
+		      </xs:element>
+                      <xs:element name="layout" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The organization of the bands in the image file. Acceptable
+                              values are bil - Band interleaved by line.
                                    bip - Band interleaved by pixel.
                                    bsq - Band sequential.
-                        The default layout is bil.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
+                              The default layout is bil.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="skipbytes" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of bytes of data in the image file to skip
+                              in order to reach the start of the image data. This
+                              keyword allows you to bypass any existing image header
+                              information in the file. The default value is zero bytes.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="ulxmap" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The y-axis map coordinate of the center of the
+                              upper-left pixel. If this parameter is specified,
+                              ulxmap must also be set, otherwise a default value
+                              is used.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="ulymap" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The x-axis map coordinate of the center of the upper-left
+                              pixel. If you specify this parameter, set ulymap, too,
+                              otherwise a default value is used.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="xdim" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
                           <doc:tooltip/>
                           <doc:summary/>
                           <doc:description>
-                          The number of bytes of data in the image file to skip
-                          in order to reach the start of the image data. This
-                          keyword allows you to bypass any existing image header
-                          information in the file. The default value is zero bytes.
-                        </doc:description>
+                            The y-dimension of a pixel in map units.
+                            If this parameter is specified, xdim must
+                            also be set, otherwise a default value is used.
+                          </doc:description>
                           <doc:example/>
                           <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The x-axis map coordinate of the center of the upper-left
-                          pixel. If you specify this parameter, set ulymap, too,
-                          otherwise a default value is used.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The y-axis map coordinate of the center of the
-                          upper-left pixel. If this parameter is specified,
-                          ulxmap must also be set, otherwise a default value
-                          is used.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The x-dimension of a pixel in map units.
-                          If this parameter is specified,
-                          ydim must also be set, otherwise a default
-                          value is used.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The y-dimension of a pixel in map units.
-                          If this parameter is specified, xdim must
-                          also be set, otherwise a default value is used.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The number of bytes per band per row. This must
-                          be an integer. This keyword is used only with BIL
-                          files when there are extra bits at the end of
-                          each band within a row that must be skipped.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The total number of bytes of data per row.
-                          Use totalrowbytes when there are extra trailing
-                          bits at the end of each row.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                        <xs:appinfo>
-                          <doc:tooltip/>
-                          <doc:summary/>
-                          <doc:description>
-                          The number of bytes between bands in a BSQ format
-                          image. The default is zero.
-                        </doc:description>
-                          <doc:example/>
-                          <doc:lineage>
-                          Introduced in EML 2.0.
-                        </doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                      <xs:element name="nrows" type="xs:int"/>
-                      <xs:element name="ncols" type="xs:int"/>
-                      <xs:element name="nbands" type="xs:int" minOccurs="0"/>
-                      <xs:element name="nbits" type="xs:int" minOccurs="0"/>
-                      <xs:element name="byteorder" type="xs:string" minOccurs="0"/>
-                      <xs:element name="layout" type="xs:string" minOccurs="0"/>
-                      <xs:element name="skipbytes" type="xs:string" minOccurs="0"/>
-                      <xs:element name="ulxmap" type="xs:string" minOccurs="0"/>
-                      <xs:element name="ulymap" type="xs:string" minOccurs="0"/>
-                      <xs:element name="xdim" type="xs:string" minOccurs="0"/>
-                      <xs:element name="ydim" type="xs:string" minOccurs="0"/>
-                      <xs:element name="bandrowbytes" type="xs:string" minOccurs="0"/>
-                      <xs:element name="totalrowbytes" type="xs:string" minOccurs="0"/>
-                      <xs:element name="bandgapbytes" type="xs:string" minOccurs="0"/>
+                            Introduced in EML 2.0.
+                          </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="ydim" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The x-dimension of a pixel in map units.
+                              If this parameter is specified,
+                              ydim must also be set, otherwise a default
+                              value is used.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of bytes per band per row. This must
+                              be an integer. This keyword is used only with BIL
+                              files when there are extra bits at the end of
+                              each band within a row that must be skipped.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The total number of bytes of data per row.
+                              Use totalrowbytes when there are extra trailing
+                              bits at the end of each row.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
+                      <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
+			<xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip/>
+                            <doc:summary/>
+                            <doc:description>
+                              The number of bytes between bands in a BSQ format
+                              image. The default is zero.
+                            </doc:description>
+                            <doc:example/>
+                            <doc:lineage>
+                              Introduced in EML 2.0.
+                            </doc:lineage>
+                          </xs:appinfo>
+			</xs:annotation>
+		      </xs:element>
                     </xs:sequence>
                   </xs:complexType>
                 </xs:element>
