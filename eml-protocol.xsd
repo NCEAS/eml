@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: blankman $'
-          '$Date: 2002-10-01 16:06:16 $'
-      '$Revision: 1.47 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -95,8 +95,8 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
         default="document"/>
   </xs:complexType>

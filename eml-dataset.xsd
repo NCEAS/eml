@@ -1,18 +1,46 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" schemaLocation="eml-view.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/dataset-2.0.0rc1" 
+  xmlns:v="eml://ecoinformatics.org/view-2.0.0rc1" 
+  xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
+  xmlns:sv="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+  xmlns:md="eml://ecoinformatics.org/methods-2.0.0rc1" 
+  xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
+  xmlns:proj="eml://ecoinformatics.org/project-2.0.0rc1" 
+  xmlns:dat="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
+  xmlns:ent="eml://ecoinformatics.org/entity-2.0.0rc1" 
+  xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1" 
+  xmlns="eml://ecoinformatics.org/dataset-2.0.0rc1" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
+  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+    schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.0.0rc1" 
+    schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.0.0rc1" 
+    schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.0.0rc1" 
+    schemaLocation="eml-dataTable.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.0.0rc1" 
+    schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.0.0rc1" 
+    schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.0.0rc1" 
+    schemaLocation="eml-spatialRaster.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.0.0rc1" 
+    schemaLocation="eml-spatialVector.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.0.0rc1" 
+    schemaLocation="eml-storedProcedure.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
+    schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/view-2.0.0rc1" 
+    schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -30,8 +58,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.42 $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.43 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -324,8 +352,8 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
                   default="document"/>
   </xs:complexType>

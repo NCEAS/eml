@@ -30,9 +30,9 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: blankman $'
-          '$Date: 2002-10-01 23:43:33 $'
-      '$Revision: 1.31 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.32 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -48,12 +48,30 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc1">
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-dataTable</doc:moduleName>
-        <doc:moduleDescription>The EML dataTable Module defines the logical
-        characteristics of every dataTable in the dataset. Each attribute of
-        the table is described using a structure documented in eml-attribute.
-        This module is for basic table information only. A data table can be a
-        text file, a single data table in a spreadsheet, or a table in a
-        database.</doc:moduleDescription>
+        <doc:moduleDescription>
+        <section xmlns="">
+          <title>
+            The eml-dataTable module - Logical information
+            about data table entities
+          </title>
+          <para>
+            The eml-dataTable module is used to describe the logical
+            characteristics of each tabular set of information in a dataset. A
+            series of comma-sparated text files may be considered a dataset,
+            and each file would subsequently be considered a dataTable entity
+            within the dataset.  Since the eml-dataTable module extends the
+            eml-entity module, it uses all of the common entity elements to
+            describe the table, along with a few elements specific to just data
+            table entities.  The eml-dataTable module allows for the
+            description of each attribute (column/field/variable) within the
+            data table through the use of the eml-attribute module.  Likewise,
+            there are fields used to describe the physical distribution of the
+            data table, it's overall coverage, the methodology used in creating
+            the data, and other logical structure information such as its
+            orientation, case sensitivity, etc.
+          </para>
+        </section>
+        </doc:moduleDescription>
         <doc:recommendedUsage>The EML dataTable Module is used to document
         datasets with one or more data tables.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -154,8 +172,8 @@ xmlns="eml://ecoinformatics.org/dataTable-2.0.0rc1">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="id" type="res:IDType" use="optional" />
+    <xs:attribute name="system" type="res:SystemType" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
   </xs:complexType>

@@ -1,9 +1,19 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns="eml://ecoinformatics.org/resource-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" schemaLocation="eml-text.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:txt="eml://ecoinformatics.org/text-2.0.0rc1" 
+  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
+  xmlns:cov="eml://ecoinformatics.org/coverage-2.0.0rc1" 
+  xmlns="eml://ecoinformatics.org/resource-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+    schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.0.0rc1" 
+    schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.0.0rc1" 
+    schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -20,9 +30,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-01 22:12:42 $'
-      '$Revision: 1.67 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.68 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,24 +117,7 @@
         <xs:complexType>
           <xs:simpleContent>
             <xs:extension base="xs:string">
-              <xs:attribute name="system" type="xs:string" use="optional">
-                <xs:annotation>
-                  <xs:appinfo>
-                    <doc:tooltip>Identifier System</doc:tooltip>
-                    <doc:summary>The system in which this id is
-                    relevant</doc:summary>
-                    <doc:description>The computing system within which this
-                    identifier has relevance. Generally, the identifier would
-                    be unique within the "system" and would be sufficient to
-                    retrieve the entity from the system. The system is often a
-                    URL or URI that identifies the main entry point for the
-                    data management system.</doc:description>
-                    <doc:example>
-                    http://knb.ecoinformatics.org/knb/</doc:example>
-                    <doc:lineage>As of EML 2.0.0</doc:lineage>
-                  </xs:appinfo>
-                </xs:annotation>
-              </xs:attribute>
+              <xs:attribute name="system" type="SystemType" use="optional"/>
             </xs:extension>
           </xs:simpleContent>
         </xs:complexType>
@@ -485,7 +478,60 @@
     </xs:annotation>
     <xs:union memberTypes="xs:gYear xs:date"/>
   </xs:simpleType>
+  <xs:simpleType name="IDType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Identifer</doc:tooltip>
+        <doc:summary>A unique identifier for this additional
+        metadata that can be used to reference it elsewhere.
+        </doc:summary>
+        <doc:description>A unique identifier for this additional
+        metadata that can be used to reference it elsewhere.
+        This is a formal field in that it is an error to provide
+        a value for the id attribute that is not unique within
+        the document's set of id attributes. This is designed to
+        allow other portions of the metadata to reference this
+        section formally.</doc:description>
+        <doc:example>knb.343.22</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:list itemType="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="SystemType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Identifer System</doc:tooltip>
+        <doc:summary>The data management system within which an
+        identifier is in scope and therefore unique.
+        </doc:summary>
+        <doc:description>The data management system within which an
+        identifier is in scope and therefore unique. This is typically
+        a URL (Uniform Resource Locator) that indicates a data
+        management system.  All identifers that share a system must
+        be unique. In other words, if the same identifier is used in
+        two locations with identical systems, then by definition the
+        objects at which they point are in fact the same object.
+        </doc:description>
+        <doc:example>http://metacat.somewhere.org/svc/mc/</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:list itemType="xs:string"/>
+  </xs:simpleType>
   <xs:simpleType name="ScopeType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Identifer Scope</doc:tooltip>
+        <doc:summary>The scope of the identifier.</doc:summary>
+        <doc:description>The scope of the identifier.  Scope is generally
+        set to either "system", meaning that it is scoped according to
+        the "system" attribute, or "document" if it is only to be in scope
+        within this single document instance.  In this particular use of
+        scope, it is FIXED to be "system" because the packageId is
+        required and always has the scope of the required "system".
+        </doc:description>
+        <doc:example>system</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="system"/>
       <xs:enumeration value="document"/>
@@ -669,8 +715,8 @@
                       </xs:annotation>
                     </xs:element>
                   </xs:choice>
-                  <xs:attribute name="id" type="xs:string" use="optional"/>
-                  <xs:attribute name="system" type="xs:string" use="optional"/>
+                  <xs:attribute name="id" type="IDType" use="optional"/>
+                  <xs:attribute name="system" type="SystemType" use="optional"/>
                   <xs:attribute name="scope" type="ScopeType" use="optional" 
                   default="document"/>
                 </xs:complexType>
@@ -812,8 +858,8 @@
       </xs:choice>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="IDType" use="optional"/>
+    <xs:attribute name="system" type="SystemType" use="optional"/>
     <xs:attribute name="scope" type="ScopeType" use="optional" 
     default="document"/>
   </xs:complexType>
@@ -863,7 +909,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute name="system" type="xs:string" use="optional">
+                <xs:attribute name="system" type="SystemType" use="optional">
                   <xs:annotation>
                     <xs:appinfo>
                       <doc:tooltip>Scheme System</doc:tooltip>
@@ -1000,8 +1046,8 @@
         </xs:annotation>
       </xs:element>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="IDType" use="optional"/>
+    <xs:attribute name="system" type="SystemType" use="optional"/>
     <xs:attribute name="scope" type="ScopeType" use="optional" 
     default="document"/>
   </xs:complexType>

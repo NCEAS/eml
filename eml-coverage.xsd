@@ -1,9 +1,19 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/coverage-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1" xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns="eml://ecoinformatics.org/coverage-2.0.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/coverage-2.0.0rc1" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:cit="eml://ecoinformatics.org/literature-2.0.0rc1" 
+  xmlns:rp="eml://ecoinformatics.org/party-2.0.0rc1" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+  xmlns="eml://ecoinformatics.org/coverage-2.0.0rc1">
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.0.0rc1" 
+    schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.0.0rc1" 
+    schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-coverage.xsd,v $'
@@ -21,8 +31,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.64 $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.65 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -135,7 +145,7 @@
           <xs:complexType>
             <xs:complexContent>
               <xs:extension base="TemporalCoverage">
-                <xs:attribute name="system" type="xs:string" use="optional"/>
+                <xs:attribute name="system" type="res:SystemType" use="optional"/>
                 <xs:attribute name="scope" type="res:ScopeType" use="optional"
                               default="document"/>
               </xs:extension>
@@ -160,7 +170,7 @@
           <xs:complexType>
             <xs:complexContent>
               <xs:extension base="TaxonomicCoverage">
-                <xs:attribute name="system" type="xs:string" use="optional"/>
+                <xs:attribute name="system" type="res:SystemType" use="optional"/>
                 <xs:attribute name="scope" type="res:ScopeType" use="optional"
                               default="document"/>
               </xs:extension>
@@ -170,8 +180,8 @@
       </xs:choice>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
                   default="document"/>
   </xs:complexType>
@@ -211,11 +221,66 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="rangeOfDates" maxOccurs="unbounded"/>
+  <xs:element name="rangeOfDates">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Range of dates/times</doc:tooltip>
+        <doc:summary>Means of encoding a range of dates and
+        times.</doc:summary>
+        <doc:description>The 'RangeOfDatesType' field is intended to be used for
+        describing a range of dates and/or times. It may be used multiple times
+        to document multiple date ranges. It allows for two 'singleDateTime'
+        fields, the first to be used as the beginning dateTime, and the second
+        to be used as the ending dateTime of the range.</doc:description>
+        <doc:example>Please see the examples from the 'singleDateTime'
+        field for specific examples.</doc:example>
+        <doc:lineage>FGDC-STD-001-1998:
+        /metadata/time_period_information/rngdates</doc:lineage>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+    <xs:sequence>
+        <xs:element name="beginDate" type="SingleDateTimeType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Begin Date</doc:tooltip>
+              <doc:summary>A single time stamp signifying the beginning of
+              some time period</doc:summary>
+              <doc:description>A single time stamp signifying the beginning of
+              some time period.  There is a choice between two
+              options: a calendar date with a time, or a geologic
+              age.</doc:description>
+              <doc:example>Please see the individual sub-elements for
+              example.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
+              /metadata/time_period_information/sngdate</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="endDate" type="SingleDateTimeType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>End Date</doc:tooltip>
+              <doc:summary>A single time stamp signifying the end of
+              some time period</doc:summary>
+              <doc:description>A single time stamp signifying the end of
+              some time period.  There is a choice between two
+              options: a calendar date with a time, or a geologic
+              age.</doc:description>
+              <doc:example>Please see the individual sub-elements for
+              example.</doc:example>
+              <doc:lineage>FGDC-STD-001-1998:
+              /metadata/time_period_information/sngdate</doc:lineage>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+  </xs:element>
       </xs:choice>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
   <xs:complexType name="SingleDateTimeType">
     <xs:annotation>
@@ -428,62 +493,6 @@
       </xs:element>
     </xs:choice>
   </xs:complexType>
-  <xs:element name="rangeOfDates">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Range of dates/times</doc:tooltip>
-        <doc:summary>Means of encoding a range of dates and
-        times.</doc:summary>
-        <doc:description>The 'rangeOfDates' field is intended to be used for
-        describing a range of dates and/or times. It may be used multiple times
-        to document multiple date ranges. It allows for two 'singleDateTime'
-        fields, the first to be used as the beginning dateTime, and the second
-        to be used as the ending dateTime of the range.</doc:description>
-        <doc:example>Please see the examples from the 'singleDateTime'
-        field for specific examples.</doc:example>
-        <doc:lineage>FGDC-STD-001-1998:
-        /metadata/time_period_information/rngdates</doc:lineage>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="beginDate" type="SingleDateTimeType">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Begin Date</doc:tooltip>
-              <doc:summary>A single time stamp signifying the beginning of
-              some time period</doc:summary>
-              <doc:description>A single time stamp signifying the beginning of
-              some time period.  There is a choice between two
-              options: a calendar date with a time, or a geologic
-              age.</doc:description>
-              <doc:example>Please see the individual sub-elements for
-              example.</doc:example>
-              <doc:lineage>FGDC-STD-001-1998:
-              /metadata/time_period_information/sngdate</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="endDate" type="SingleDateTimeType">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>End Date</doc:tooltip>
-              <doc:summary>A single time stamp signifying the end of
-              some time period</doc:summary>
-              <doc:description>A single time stamp signifying the end of
-              some time period.  There is a choice between two
-              options: a calendar date with a time, or a geologic
-              age.</doc:description>
-              <doc:example>Please see the individual sub-elements for
-              example.</doc:example>
-              <doc:lineage>FGDC-STD-001-1998:
-              /metadata/time_period_information/sngdate</doc:lineage>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:complexType name="GeographicCoverage">
     <xs:annotation>
       <xs:appinfo>
@@ -872,8 +881,8 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
                   default="document"/>
   </xs:complexType>
@@ -1045,7 +1054,8 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="identifierName" maxOccurs="unbounded">
+              <xs:element name="identifierName" type="rp:ResponsibleParty"
+                          maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Identifier's Name</doc:tooltip>
@@ -1058,32 +1068,6 @@
                     taxonomic_system/identifier</doc:lineage>
                   </xs:appinfo>
                 </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="originator" type="rp:ResponsibleParty"
-                                maxOccurs="unbounded">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Originator</doc:tooltip>
-                          <doc:summary>A person or organization asociated with
-                          this resource.</doc:summary>
-                          <doc:description>The 'originator' element provides
-                          the full name of the person, organization, or
-                          position associated with the resource. Typically, the
-                          originator role is set to "owner" to indicate the
-                          list of parties who "own" the resource, but other
-                          roles such as "principal investigator", "author", and
-                          "editor" are provided.</doc:description>
-                          <doc:example>Please see the examples within the sub
-                          fields for the responsible party.</doc:example>
-                          <doc:lineage>This element was derived from elements
-                          described in the FGDC-STD-001.1-1999 standard
-                          (nbii-fgdc-std-001.1-1999)</doc:lineage>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
               </xs:element>
               <xs:element name="taxonomicProcedures" type="xs:string">
                 <xs:annotation>
@@ -1224,7 +1208,7 @@
       </xs:sequence>
       <xs:element name="references" type="xs:string"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
   <xs:element name="taxonomicClassification">
     <xs:annotation>

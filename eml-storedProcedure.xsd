@@ -42,9 +42,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: blankman $'
-          '$Date: 2002-10-02 00:30:04 $'
-      '$Revision: 1.28 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-02 05:40:42 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -125,8 +125,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="id" type="res:IDType" use="optional" />
+    <xs:attribute name="system" type="res:SystemType" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
   </xs:complexType>

@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.37 $'
+          '$Date: 2002-10-02 05:40:42 $'
+      '$Revision: 1.38 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -311,24 +311,7 @@
                 </xs:annotation>
               </xs:any>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="optional">
-              <xs:annotation>
-                <xs:appinfo>
-                  <doc:tooltip>Identifer</doc:tooltip>
-                  <doc:summary>A unique identifier for this additional
-                  metadata that can be used to reference it elsewhere.
-                  </doc:summary>
-                  <doc:description>A unique identifier for this additional
-                  metadata that can be used to reference it elsewhere.
-                  This is a formal field in that it is an error to provide
-                  a value for the id attribute that is not unique within
-                  the document's set of id attributes. This is designed to
-                  allow other portions of the metadata to reference this
-                  section formally.</doc:description>
-                  <doc:example>knb.343.22</doc:example>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:attribute>
+            <xs:attribute name="id" type="res:IDType" use="optional"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
@@ -350,25 +333,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:attribute>
-      <xs:attribute name="system" type="xs:string" use="required">
-        <xs:annotation>
-          <xs:appinfo>
-            <doc:tooltip>Identifer System</doc:tooltip>
-            <doc:summary>The data management system within which an
-            identifier is in scope and therefore unique.
-            </doc:summary>
-            <doc:description>The data management system within which an
-            identifier is in scope and therefore unique. This is typically
-            a URL (Uniform Resource Locator) that indicates a data
-            management system.  All identifers that share a system must
-            be unique. In other words, if the same identifier is used in
-            two locations with identical systems, then by definition the
-            objects at which they point are in fact the same object.
-            </doc:description>
-            <doc:example>http://metacat.somewhere.org/svc/mc/</doc:example>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:attribute>
+      <xs:attribute name="system" type="res:SystemType" use="required"/>
       <xs:attribute name="scope" type="res:ScopeType" fixed="system">
         <xs:annotation>
           <xs:appinfo>

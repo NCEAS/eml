@@ -43,8 +43,8 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.28 $'
+          '$Date: 2002-10-02 05:40:42 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -122,8 +122,8 @@ xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1">
       </xs:sequence>
       <xs:element name="references" type="xs:string" />
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional" />
-    <xs:attribute name="system" type="xs:string" use="optional" />
+    <xs:attribute name="id" type="res:IDType" use="optional" />
+    <xs:attribute name="system" type="res:SystemType" use="optional" />
     <xs:attribute name="scope" type="res:ScopeType" use="optional"
     default="document" />
   </xs:complexType>

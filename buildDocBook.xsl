@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: berkley $'
-          '$Date: 2002-09-30 21:58:37 $'
-      '$Revision: 1.41 $'
+        '$Author: cjones $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.42 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -325,44 +325,18 @@
              in both eml-spatialRaster and eml-spatialVector.  It is described
              here in relation to those two modules.
           </para>
-        <section>
-          <title>
-            The eml-dataTable module - Logical information
-            about data table entities
-          </title>
-          <para>
-            The eml-dataTable module is used to describe the logical
-            characteristics of each tabular set of information in a dataset. A
-            series of comma-sparated text files may be considered a dataset,
-            and each file would subsequently be considered a dataTable entity
-            within the dataset.  Since the eml-dataTable module extends the
-            eml-entity module, it uses all of the common entity elements to
-            describe the table, along with a few elements specific to just data
-            table entities.  The eml-dataTable module allows for the
-            description of each attribute (column/field/variable) within the
-            data table through the use of the eml-attribute module.  Likewise,
-            there are fields used to describe the physical distribution of the
-            data table, it's overall coverage, the methodology used in creating
-            the data, and other logical structure information such as its
-            orientation, case sensitivity, etc.
-          </para>
-        </section>
-        <section>
-          <title>
-            The eml-spatialRaster module -
-          </title>
-          <para>
-          <emphasis>This section is not yet complete.</emphasis>
-          </para>
-        </section>
-        <section>
-          <title>
-            The eml-spatialVector module -
-          </title>
-          <para>
-          <emphasis>This section is not yet complete.</emphasis>
-          </para>
-        </section>
+      <!-- Get the eml-dataTable module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-dataTable.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
+      <!-- Get the eml-spatialRaster module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-spatialRaster.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
+      <!-- Get the eml-spatialVector module description from the xsd file -->
+      <xsl:apply-templates
+        select="document('eml-spatialVector.xsd')//doc:moduleDescription/*"
+        mode="copy"/>
         <section>
           <title>
             The eml-spatialReference module -

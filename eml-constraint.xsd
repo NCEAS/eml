@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/constraint-2.0.0rc1" xmlns="eml://ecoinformatics.org/constraint-2.0.0rc1" xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" schemaLocation="eml-resource.xsd"/>
+<xs:schema targetNamespace="eml://ecoinformatics.org/constraint-2.0.0rc1" 
+  xmlns="eml://ecoinformatics.org/constraint-2.0.0rc1" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.0.0rc1" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.0.0rc1" 
+    schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.0.0rc1" 
+    schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-constraint.xsd,v $'
@@ -19,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: cjones $'
-          '$Date: 2002-09-24 06:10:38 $'
-      '$Revision: 1.39 $'
+          '$Date: 2002-10-02 05:40:41 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -372,8 +378,8 @@
         </xs:complexType>
       </xs:element>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="system" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:simpleType name="CardinalityChildOccurancesType">
