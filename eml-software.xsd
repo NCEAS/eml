@@ -1,10 +1,10 @@
 <?xml version ="1.0"?>
-<xs:schema xmlns:doc="eml:documentation-2.0.0beta7" 
+<xs:schema xmlns:doc="eml:documentation-2.0.0beta8" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:res="eml:resource-2.0.0beta7"
-           xmlns="eml:software-2.0.0beta7"
-           targetNamespace="eml:software-2.0.0beta7">
-  <xs:import namespace="eml:documentation-2.0.0beta7" 
+           xmlns:res="eml:resource-2.0.0beta8"
+           xmlns="eml:software-2.0.0beta8"
+           targetNamespace="eml:software-2.0.0beta8">
+  <xs:import namespace="eml:documentation-2.0.0beta8" 
              schemaLocation="eml-documentation.xsd"/>
 
   <xs:annotation>
@@ -14,9 +14,9 @@
                   National Center for Ecological Analysis and Synthesis
      For Details: http://knb.ecoinformatics.org/
   
-        '$Author: jones $'
-          '$Date: 2002-04-17 00:11:24 $'
-      '$Revision: 1.5 $'
+        '$Author: berkley $'
+          '$Date: 2002-04-21 22:45:30 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@
   </xs:annotation>
 
   <!-- import the elements from eml-resource -->
-  <xs:import namespace="eml:resource-2.0.0beta7" 
+  <xs:import namespace="eml:resource-2.0.0beta8" 
              schemaLocation="eml-resource.xsd"/>
 
   <xs:element name="software">
