@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-10-04 17:39:11 $'
-      '$Revision: 1.49 $'
+          '$Date: 2002-10-04 18:33:45 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -175,8 +175,8 @@
         The following section briefly describes each EML module and how they
         are logically designed in order to document ecological resources.
         Some of the modules are dependent on others, while others may be used
-        as stand-alone descriptions.  This section describes the modules from
-        the &quot;top down&quot;, starting from the top-level eml wrapper
+        as stand-alone descriptions.  This section describes the modules using
+        a &quot;top down&quot; approach, starting from the top-level eml wrapper
         module, followed by modules of increasing detail.  However, there are
         modules that may be used at many levels, such as eml-access.
         These modules are described when it is appropriate.
@@ -209,12 +209,6 @@
         Likewise, citations are used throughout the top-level resource
         modules by importing the literature module.
         </para>
-        <para>
-        Many sites may want to develop a library of protocol
-        documents, a library of party (people) documents, and a library of
-        software documents.  These may then be used by reference in your
-        dataset documents as reusable content.
-        </para>
       <!-- Get the eml-dataset module description from the xsd file -->
       <xsl:apply-templates
         select="document('eml-dataset.xsd')//doc:moduleDescription/*"
@@ -237,7 +231,7 @@
           Adding detail to top-level resources
         </title>
           <para>
-            The following  six modules are used to qualify the resources being
+            The following six modules are used to qualify the resources being
             described in more detail.  They are used to describe access control
             rules, distribution of the metadata and data themselves, parties
             associated with the resource, the geographic, temporal, and
@@ -293,8 +287,8 @@
             eml-entity), but some discipline specific entities have
             characteristics that are unique to that entity type.  Therefore, the
             eml-entity module is extended for each of these types (dataTable,
-            spatialRaster, spatialVector, etc...) in the section that follows
-            this section.
+            spatialRaster, spatialVector, etc...) which are described
+            in the next section.
           </para>
       <!-- Get the eml-entity module description from the xsd file -->
       <xsl:apply-templates

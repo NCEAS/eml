@@ -42,9 +42,9 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2002-10-02 18:25:07 $'
-      '$Revision: 1.71 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 18:33:45 $'
+      '$Revision: 1.72 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,19 +69,18 @@ xmlns="eml://ecoinformatics.org/entity-2.0.0rc1">
               The eml-entity module - Entity level information within datasets
             </title>
             <para>
-              The EML Entity Module defines the logical characteristics of 
-              each entity in the dataset. Entities are usually tables of 
-              data (eml-dataTable). Data tables may be ascii text files, 
-              relational database tables, excel spreadsheets or other type of 
-              tabular data with a fixed logical structure. Related to data 
-              tables (eml-dataTable) are views (eml-view) and stored 
-              procedure (eml-storedProcedure). Views and stored procedures 
-              are produced by an RDBMS or related system. Other types of data 
-              such as: raster (spatialRaster), vector (spatialVector) or 
-              spatialReference image data are also data entities. An 
-              otherEntity element would be used to describe types of entities 
-              that are not decribed by dataTable, view, storedProcedures, 
-              or GIS image data (spatialVector, spatialRaster, spatialReference.
+              The eml-entity module defines the logical characteristics of
+              each entity in the dataset. Entities are usually tables of
+              data (eml-dataTable). Data tables may be ascii text files,
+              relational database tables, spreadsheets or other type of
+              tabular data with a fixed logical structure. Related to data
+              tables are views (eml-view) and stored
+              procedures (eml-storedProcedure). Views and stored procedures
+              are produced by an RDBMS or related system. Other types of data
+              such as: raster (eml-spatialRaster), vector (eml-spatialVector) or
+              spatialReference image data are also data entities. An
+              otherEntity element would be used to describe types of entities
+              that are not decribed by any other entity type.
             </para>
           </section>
         </doc:moduleDescription>

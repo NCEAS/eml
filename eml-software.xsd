@@ -30,9 +30,9 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.32 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 18:33:45 $'
+      '$Revision: 1.33 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,19 +58,19 @@ xmlns:acc="eml://ecoinformatics.org/access-2.0.0rc1">
               information
             </title>
             <para>
-              The eml-software module contains general information that 
-              describes software resources.  This module is intended to fully 
-              document software that is needed in order to view a resource 
-              (such as a dataset) or to process a dataset.  The software 
-              module is also imported into the eml-method module in oreder to 
-              document what software was used to process or perform quality 
+              The eml-software module contains general information that
+              describes software resources.  This module is intended to fully
+              document software that is needed in order to view a resource
+              (such as a dataset) or to process a dataset.  The software
+              module is also imported into the eml-methods module in order to
+              document what software was used to process or perform quality
               control procedures on a dataset.
             </para>
             <para>
               The eml-software module, like other modules, may be
-              &quot;referenced&quot; via the &lt;references&gt; tag.  This 
-              allows a software resource to be described once, and then used 
-              as a reference in other locations within the EML document via 
+              &quot;referenced&quot; via the &lt;references&gt; tag.  This
+              allows a software resource to be described once, and then used
+              as a reference in other locations within the EML document via
               it's ID.
             </para>
           </section>

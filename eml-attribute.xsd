@@ -33,9 +33,9 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2002-10-02 05:40:41 $'
-      '$Revision: 1.68 $'
+        '$Author: berkley $'
+          '$Date: 2002-10-04 18:33:45 $'
+      '$Revision: 1.69 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,15 +61,15 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
             dataset entities
           </title>
           <para>
-            The EML Attribute Module describes all attributes (variables) in
-            a data entity: dataTable, spatialRaster, spatialVector,
+            The eml-attribute Module describes all attributes (variables) in
+            a data entity (dataTable, spatialRaster, spatialVector,
             storedProcedure, view or otherEntity). The description includes
             the name and definition of each attribute, its type, its
             allowable range (if numeric), definitions of coded values,
             and other pertinent information. Two structures exist in this
-            module: 1.  attribute-used to define a single attribute;
-            2. attributeList is used to define a discreet list of attributes
-            that go together in some logical way.
+            module: 1) 'attribute' which is used to define a single attribute
+            and
+            2) 'attributeList' is used to define a discreet list of attributes.
           </para>
         </section>
         </doc:moduleDescription>
