@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 16:37:20 $'
-      '$Revision: 1.7 $'
+          '$Date: 2002-09-13 22:18:34 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,9 +42,30 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<title>EML Dependency Table</title>
+<title>EML Dependency Chart</title>
 </head>
 <body class="tabledefault">
+  <h2 class="title">EML Dependency Chart</h2>
+  <p>
+    To read this chart, look at the row header and move across to the X.  The
+    relationship can be read
+    <em>&lt;row header&gt; depends on &lt;column header&gt;</em>
+    or
+    <em>&lt;row header&gt; imports &lt;column header&gt;</em>
+  </p>
+  <p>
+    If you read the chart in the reverse fashion the relationship becomes
+    <em>&lt;column header&gt; is depended on by &lt;row header&gt;</em>
+    or
+    <em>&lt;column header&gt; is imported by &lt;row header&gt;</em>
+  </p>
+  <p>
+    If one module depends on another, it is a good chance that you are going
+    to be using at least a small subset of the other modules nodes within
+    the module that you want to use.  This can be seen clearly by looking
+    at the diagrams associated with each
+    <a href="eml-docbook.html#moduleDescriptions">module</a>.
+  </p>
   <table border="1" cellpadding="3">
   <tr>
   <th/>
