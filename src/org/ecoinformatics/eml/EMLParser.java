@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2003-12-18 21:16:23 $'
- *    '$Revision: 1.14 $'
+ *        '$Date: 2003-12-18 22:20:14 $'
+ *    '$Revision: 1.15 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -258,11 +258,13 @@ public class EMLParser
         idval = id.getFirstChild().getNodeValue();
       }
 
-       //try to get the id.  if it is already in the hash, throw exception
-      Object o = idHash.get(idval);
+      //try to get the id.  if it is already in the hash, throw exception
+      //System.out.println("idval: " + idval);
+      Object o = idHash.get(keyname + "." + idval);
 
       if(o == null)
       {
+        //System.out.println("putting " + keyname + "." + idval + " :: " + i);
         idHash.put(keyname + "." + idval, new Integer(i));
         continue;  //continue on in the loop.
       }
