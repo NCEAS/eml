@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-29 18:00:20 $'
- *    '$Revision: 1.8 $'
+ *        '$Date: 2003-07-17 17:23:11 $'
+ *    '$Revision: 1.9 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -296,11 +296,6 @@ public class EMLParserServlet extends HttpServlet
       html.append("<hr><h2>Document is XML-schema valid.</h2>");
       html.append("<p>There were no XML errors found in your document.</p>");
     }
-    catch(SAXException se)
-    {
-      html.append("<hr><h2>XML-Schema Errors Found</h2><p>The following errors were ");
-      html.append("found:</p><p>").append(se.getMessage()).append("</p>");
-    }
     catch(IOException ioe)
     {
       html.append("<hr><h2>IOException: Error reading file</h2>");
@@ -310,6 +305,21 @@ public class EMLParserServlet extends HttpServlet
     {
       html.append("<hr><h2>Parser class not found</h2>");
       html.append("<p>").append(cnfe.getMessage()).append("</p>");
+    }
+    catch(SAXException se)
+    {
+      if(se.getMessage().indexOf("WARNING") != -1)
+      {
+        html.append("<hr><h2>XML-Schema Warning</h2><p>The following warnings ");
+        html.append("were issued about your document: </p><p>");
+        html.append(se.getMessage()).append("</p>");
+      }
+      else
+      {
+        html.append("<hr><h2>XML-Schema Errors Found</h2><p>");
+        html.append("The following errors were ");
+        html.append("found:</p><p>").append(se.getMessage()).append("</p>");
+      }
     }
 
     return html.toString();

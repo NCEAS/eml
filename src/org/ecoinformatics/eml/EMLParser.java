@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2003-03-13 17:45:18 $'
- *    '$Revision: 1.12 $'
+ *        '$Date: 2003-07-17 17:23:11 $'
+ *    '$Revision: 1.13 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@ public class EMLParser
   private Hashtable idHash = new Hashtable();
   private Hashtable idrefHash = new Hashtable();
   private File xml;
-  
+
   /**
    * parses an eml file
    * @param xml the eml input stream to parse
@@ -121,7 +121,7 @@ public class EMLParser
     URL configFile = getClass().getResource("@configfileinemljar@");
     try
     {
-      
+
       config = new ConfigXML(configFile.openStream());
     }
     catch(Exception e)
@@ -156,8 +156,8 @@ public class EMLParser
     parseKeys();
     parseKeyrefs();
   }
-  
-  
+
+
   /**
    * parses an eml reader
    * @param xmlReader the xml need to parse
@@ -173,7 +173,7 @@ public class EMLParser
     URL configFile = getClass().getResource("@configfileinemljar@");
     try
     {
-      
+
       config = new ConfigXML(configFile.openStream());
     }
     catch(Exception e)
@@ -186,8 +186,8 @@ public class EMLParser
     parseKeys(xmlString);
     parseKeyrefs(xmlString);
   }
-  
-  
+
+
   /**
    * make sure all ids are unique and hash the keys
    */
@@ -199,7 +199,7 @@ public class EMLParser
       {
         NodeList keyNL = getPathContent(new FileInputStream(xml),
                                         keys[i].selector);
-        parseKeysByNodeList(keyNL, i);
+        parseKeysByNodeList(keyNL, i, keys[i].name);
       }
       catch(Exception e)
       {
@@ -208,21 +208,21 @@ public class EMLParser
       }
     }
   }
-  
+
    /**
    * make sure all ids are unique and hash the keys for xml reader
    */
   private void parseKeys(String xmlString)
   {
-    
+
     for(int i=0; i<keys.length; i++)
     {
       StringReader reader = new StringReader(xmlString);
       try
       {
-      
+
         NodeList keyNL = getPathContent(reader, keys[i].selector);
-        parseKeysByNodeList(keyNL, i);
+        parseKeysByNodeList(keyNL, i, keys[i].name);
       }
       catch(Exception e)
       {
@@ -231,50 +231,51 @@ public class EMLParser
       }
     }
   }
-  
-  /*
+
+  /**
    * Check nodelist has a unique key
    */
-  private void parseKeysByNodeList(NodeList keyNL, int i) throws Exception
+  private void parseKeysByNodeList(NodeList keyNL, int i, String keyname)
+    throws Exception
   {
     for(int j=0; j<keyNL.getLength(); j++)
     {
-          Node n = keyNL.item(j);
-          Node id = XPathAPI.selectSingleNode(n, keys[i].field);
-          String idval;
+      Node n = keyNL.item(j);
+      Node id = XPathAPI.selectSingleNode(n, keys[i].field);
+      String idval;
 
-          if(id == null)
-          {
-            continue;
-          }
+      if(id == null)
+      {
+        continue;
+      }
 
-          if(keys[i].field.indexOf("@") != -1)
-          { //the field is an attribute
-            idval = id.getNodeValue();
-          }
-          else
-          { //the field is an element
-            idval = id.getFirstChild().getNodeValue();
-          }
+      if(keys[i].field.indexOf("@") != -1)
+      { //the field is an attribute
+        idval = id.getNodeValue();
+      }
+      else
+      { //the field is an element
+        idval = id.getFirstChild().getNodeValue();
+      }
 
-           //try to get the id.  if it is already in the hash, throw exception
-          Object o = idHash.get(idval);
+       //try to get the id.  if it is already in the hash, throw exception
+      Object o = idHash.get(idval);
 
-          if(o == null)
-          {
-            idHash.put(new String(idval), new Integer(i));
-            continue;  //continue on in the loop.
-          }
-          else
-          {
-            throw new EMLParserException("Error in xml document.  This " +
-            "EML document is not valid because the id " +
-            idval + " occurs " +
-            "more than once.  IDs must be unique.");
-          }
-     }//for
+      if(o == null)
+      {
+        idHash.put(keyname + "." + idval, new Integer(i));
+        continue;  //continue on in the loop.
+      }
+      else
+      {
+        throw new EMLParserException("Error in xml document.  This " +
+        "EML document is not valid because the id " +
+        idval + " occurs " +
+        "more than once.  IDs must be unique.");
+      }
+    }//for
   }
-  
+
 
   /**
    * get all the keyrefs and make sure they don't have an id
@@ -297,7 +298,7 @@ public class EMLParser
       }
     }
   }
-  
+
   /**
    * get all the keyrefs and make sure they don't have an id for xml reader
    */
@@ -310,7 +311,7 @@ public class EMLParser
       {
         NodeList keyrefNL = getPathContent(reader, keyrefs[i].selector);
         parseKeyrefsByNodeList(keyrefNL, i);
-       
+
       }
       catch(Exception e)
       {
@@ -320,7 +321,7 @@ public class EMLParser
       }
     }
   }
-  
+
   /*
    * get all the keyrefs and make usre they don't have and id(by node list)
    */
@@ -356,7 +357,7 @@ public class EMLParser
           }
 
           int keyindex;
-          Object o = idHash.get(idval);
+          Object o = idHash.get(keyrefs[i].refer + "." + idval);
           if(o == null)
           { //check to make sure the referenced key exists
             throw new EMLParserException("Error in xml document. This EML " +
@@ -468,7 +469,7 @@ public class EMLParser
     InputSource in = new InputSource(is);
     return getPathContent(in, xpath);
   }
-  
+
   /**
    * Gets the conten of a path in an xml document(from Reader)
    */
@@ -489,7 +490,7 @@ public class EMLParser
     return nl;
     //return getPathContent(in, xpath);
   }
-  
+
   private static NodeList getPathContent(InputSource in, String xpath)
                           throws Exception
   {
@@ -553,7 +554,7 @@ public class EMLParser
           throw new EMLParserException("Error in config file.  All keys " +
                                        "must have a name, selector and field.");
         }
-        
+
         keys[i] = new Key(name, selector, field);
       }
 
@@ -599,7 +600,7 @@ public class EMLParser
           throw new EMLParserException("Error in config file.  All keys " +
                                        "must have a name, selector and field.");
         }
-      
+
         keyrefs[i] = new Keyref(name, refer, selector, field);
       }
     }
@@ -607,29 +608,6 @@ public class EMLParser
     {
       throw new EMLParserException("Error parsing keys and keyrefs in config " +
                                    "file: " + e.getMessage());
-    }
-  }
-
-  /**
-   * class to represent a key
-   */
-  private class Key
-  {
-    protected String selector; //xpath expression for the selector
-    protected String field;    //xpath expression for the field in the selector
-    protected String name;     //name of the key
-
-    Key(String name, String selector, String field)
-    {
-      this.name = name;
-      this.selector = selector;
-      this.field = field;
-    }
-
-    public String toString()
-    {
-      String s = "name: " + name + " selector: " + selector + " field: " + field;
-      return s;
     }
   }
 
@@ -680,7 +658,7 @@ public class EMLParser
     }
     else if(args.length == 0)
     {
-      
+
       System.out.println("Usage: java org.ecoinformatics.eml.EMLParser [-q] [<config file>] <eml file>");
       System.out.println("  -q = quiet mode, little or no output");
       System.out.println("  <config file> = use an alternate config file.  The default is lib/config.xml");
@@ -704,7 +682,7 @@ public class EMLParser
         }
         String str = writer.toString();
         EMLParser readerParser = new EMLParser(str);
-        
+
       }
       else
       {
@@ -715,6 +693,29 @@ public class EMLParser
     catch(Exception e)
     {
       System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  /**
+   * class to represent a key
+   */
+  private class Key
+  {
+    protected String selector; //xpath expression for the selector
+    protected String field;    //xpath expression for the field in the selector
+    protected String name;     //name of the key
+
+    Key(String name, String selector, String field)
+    {
+      this.name = name;
+      this.selector = selector;
+      this.field = field;
+    }
+
+    public String toString()
+    {
+      String s = "name: " + name + " selector: " + selector + " field: " + field;
+      return s;
     }
   }
 

@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2002-10-03 21:36:17 $'
- *    '$Revision: 1.4 $'
+ *        '$Date: 2003-07-17 17:23:11 $'
+ *    '$Revision: 1.5 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -82,6 +82,18 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
   public void error(SAXParseException exception) throws SAXException
   {
     throw exception;
+  }
+
+  /**
+   * Method for handling warnings during a parse
+   *
+   * @param exception         The parsing error
+   * @exception SAXException  Description of Exception
+   */
+  public void warning(SAXParseException exception)
+    throws SAXException
+  {
+    throw new SAXException("WARNING: " + exception.getMessage());
   }
 
   /**

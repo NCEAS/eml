@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2003-03-13 17:45:18 $'
-      '$Revision: 1.63 $'
+          '$Date: 2003-07-17 17:23:11 $'
+      '$Revision: 1.64 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,9 +39,9 @@
       servlet on your system. -->
     <!-- where to install the servlet -->
     <property name="servlet.install.dir"
-              value="/usr/local/devtools/jakarta-tomcat/webapps/emlparser"/>
+              value="/opt/tomcat/webapps/emlparser"/>
     <!-- the server the servlet will run on -->
-    <property name="server" value="http://pine.nceas.ucsb.edu:8080"/>
+    <property name="server" value="http://trestles.nceas.ucsb.edu:8080"/>
     <!--the servlet context directory-->
     <property name="servletdir" value="emlparser"/>
     <!-- the path to the servlet from the servletdir -->
