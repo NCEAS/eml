@@ -458,51 +458,54 @@
   <xsl:template name="convertDate">
     <xsl:param name="string"/>
     <xsl:variable name="ucstring" select="translate($string, 'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-    <xsl:if test="contains($ucstring,'-')">
-      <xsl:value-of select="$string"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'JAN')">
-      <xsl:value-of select="concat(substring-after($ucstring,'JAN'),'-01-',substring-before($ucstring,'JAN'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'FEB')">
-      <xsl:value-of select="concat(substring-after($ucstring,'FEB'),'-02-',substring-before($ucstring,'FEB'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'MAR')">
-      <xsl:value-of select="concat(substring-after($ucstring,'MAR'),'-03-',substring-before($ucstring,'MAR'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'APR')">
-      <xsl:value-of select="concat(substring-after($ucstring,'APR'),'-04-',substring-before($ucstring,'APR'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'MAY')">
-      <xsl:value-of select="concat(substring-after($ucstring,'MAY'),'-05-',substring-before($ucstring,'MAY'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'JUN')">
-      <xsl:value-of select="concat(substring-after($ucstring,'JUN'),'-06-',substring-before($ucstring,'JUN'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'JUNE')">
-      <xsl:value-of select="concat(substring-after($ucstring,'JUNE'),'-06-',substring-before($ucstring,'JUNE'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'JUL')">
-      <xsl:value-of select="concat(substring-after($ucstring,'JUL'),'-07-',substring-before($ucstring,'JUL'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'JULY')">
-      <xsl:value-of select="concat(substring-after($ucstring,'JULY'),'-07-',substring-before($ucstring,'JULY'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'AUG')">
-      <xsl:value-of select="concat(substring-after($ucstring,'AUG'),'-08-',substring-before($ucstring,'AUG'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'SEP')">
-      <xsl:value-of select="concat(substring-after($ucstring,'SEP'),'-09-',substring-before($ucstring,'SEP'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'OCT')">
-      <xsl:value-of select="concat(substring-after($ucstring,'OCT'),'-10-',substring-before($ucstring,'OCT'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'NOV')">
-      <xsl:value-of select="concat(substring-after($ucstring,'NOV'),'-11-',substring-before($ucstring,'NOV'))"/>
-    </xsl:if>
-    <xsl:if test="contains($ucstring,'DEC')">
-      <xsl:value-of select="concat(substring-after($ucstring,'DEC'),'-12-',substring-before($ucstring,'DEC'))"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="contains($ucstring,'JAN')">
+        <xsl:value-of select="concat(substring-after($ucstring,'JAN'),'-01-',substring-before($ucstring,'JAN'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'FEB')">
+        <xsl:value-of select="concat(substring-after($ucstring,'FEB'),'-02-',substring-before($ucstring,'FEB'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'MAR')">
+        <xsl:value-of select="concat(substring-after($ucstring,'MAR'),'-03-',substring-before($ucstring,'MAR'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'APR')">
+        <xsl:value-of select="concat(substring-after($ucstring,'APR'),'-04-',substring-before($ucstring,'APR'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'MAY')">
+        <xsl:value-of select="concat(substring-after($ucstring,'MAY'),'-05-',substring-before($ucstring,'MAY'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'JUN')">
+        <xsl:value-of select="concat(substring-after($ucstring,'JUN'),'-06-',substring-before($ucstring,'JUN'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'JUNE')">
+        <xsl:value-of select="concat(substring-after($ucstring,'JUNE'),'-06-',substring-before($ucstring,'JUNE'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'JUL')">
+        <xsl:value-of select="concat(substring-after($ucstring,'JUL'),'-07-',substring-before($ucstring,'JUL'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'JULY')">
+        <xsl:value-of select="concat(substring-after($ucstring,'JULY'),'-07-',substring-before($ucstring,'JULY'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'AUG')">
+        <xsl:value-of select="concat(substring-after($ucstring,'AUG'),'-08-',substring-before($ucstring,'AUG'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'SEP')">
+        <xsl:value-of select="concat(substring-after($ucstring,'SEP'),'-09-',substring-before($ucstring,'SEP'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'OCT')">
+        <xsl:value-of select="concat(substring-after($ucstring,'OCT'),'-10-',substring-before($ucstring,'OCT'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'NOV')">
+        <xsl:value-of select="concat(substring-after($ucstring,'NOV'),'-11-',substring-before($ucstring,'NOV'))"/>
+      </xsl:when>
+      <xsl:when test="contains($ucstring,'DEC')">
+        <xsl:value-of select="concat(substring-after($ucstring,'DEC'),'-12-',substring-before($ucstring,'DEC'))"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$string"/>
+      </xsl:otherwise>
+    </xsl:choose>  
+
   </xsl:template>
 
   

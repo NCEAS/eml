@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:stmml="http://www.xml-cml.org/schema/stmml" version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output encoding="ISO-8859-1"/>
 <xsl:strip-space elements="*"/>
@@ -196,14 +197,14 @@
   <xsl:template name="getUnit">
     <xsl:param name="string"/>
     <xsl:choose>
-      <xsl:when test="$unitDict/unitList/unit/@id=$string">
+      <xsl:when test="$unitDict/stmml:unitList/stmml:unit/@id=$string">
         <xsl:element name="standardUnit">
-          <xsl:value-of select="$unitDict/unitList/unit/@id"/>
+          <xsl:value-of select="$unitDict/stmml:unitList/stmml:unit/@id[.=$string]"/>
         </xsl:element>  
       </xsl:when>
-      <xsl:when test="$unitDict/unitList/unit/@abbreviation=$string">
+      <xsl:when test="$unitDict/stmml:unitList/stmml:unit/@abbreviation=$string">
         <xsl:element name="standardUnit">
-          <xsl:value-of select="$unitDict/unitList/unit[./@abbreviation=$string]/@id"/>
+          <xsl:value-of select="$unitDict/stmml:unitList/stmml:unit[./@abbreviation=$string]/@id"/>
         </xsl:element>
           </xsl:when>
       <xsl:otherwise>
