@@ -5,7 +5,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" exclude-result-prefixes="src" version="1.0">
 
 <!-- ********************************************************************
-     $Id: param.xsl,v 1.2 2002-09-13 22:40:29 cjones Exp $
+     $Id: param.xsl,v 1.3 2002-09-18 06:09:41 cjones Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -204,7 +204,7 @@ set       toc
 
 <xsl:param name="pixels.per.inch" select="90"/>
 
-<xsl:param name="preface.autolabel" select="0"/>
+<xsl:param name="preface.autolabel" select="1"/>
 <xsl:param name="process.empty.source.toc" select="0"/>
 <xsl:param name="process.source.toc" select="0"/>
 
@@ -266,8 +266,8 @@ set       toc
 <xsl:param name="runinhead.default.title.end.punct" select="'.'"/>
 <xsl:param name="runinhead.title.end.punct" select="'.!?:'"/>
 <xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
-<xsl:param name="section.autolabel" select="0"/>
-<xsl:param name="section.label.includes.component.label" select="0"/>
+<xsl:param name="section.autolabel" select="1"/>
+<xsl:param name="section.label.includes.component.label" select="1"/>
 
 <xsl:param name="segmentedlist.as.table" select="0"/>
 
