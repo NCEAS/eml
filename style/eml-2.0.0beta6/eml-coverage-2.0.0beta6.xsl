@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-13 19:36:14 $'
-  * '$Revision: 1.1 $'
+  *     '$Date: 2003-11-25 22:15:55 $'
+  * '$Revision: 1.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@
   <xsl:template match="geographicCov" mode="resource"/>
  
   <xsl:template match="geographicCov">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Geographic Coverage:</xsl:text></td></tr>  
       <xsl:apply-templates select="./descgeog"/>
       <xsl:apply-templates select="./bounding"/>
@@ -165,7 +165,7 @@
   
   <xsl:template match="temporalCov" mode="resource"/>
   <xsl:template match="temporalCov">
-     <tr class="{$subHeaderStyle}"><td colspan="2">
+     <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Temporal Coverage:</xsl:text></td></tr>
       <xsl:apply-templates select="sngdate"/>
       <xsl:apply-templates select="mdattim"/>
@@ -267,7 +267,7 @@
 
   <xsl:template match="taxonomicCov" mode="resource"/>
   <xsl:template match="taxonomicCov">
-     <tr class="{$subHeaderStyle}"><td colspan="2">
+     <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Taxonomic Coverage:</xsl:text></td></tr>
       <xsl:for-each select="keywtax">
           <xsl:apply-templates select="."/>

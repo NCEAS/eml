@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 21:56:07 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-25 22:15:55 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -80,20 +80,20 @@
   </xsl:template>
   
   <xsl:template match="funding">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Funding:</xsl:text></td></tr>  
       <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
  
   <xsl:template match="siteDescription">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Site Description:</xsl:text></td></tr>  
       <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
 
 
   <xsl:template match="designDescription">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>DESIGN DESCRIPTION:</xsl:text></td></tr> 
       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
         <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;</td></tr>
@@ -112,7 +112,7 @@
           </xsl:if>
       </xsl:for-each>
 
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Literature Citation:</xsl:text></td></tr>
       <xsl:apply-templates select="citation"/>
       
@@ -122,7 +122,7 @@
 
   <xsl:template match="sampling">
 
-    <tr class="{$subHeaderStyle}"><td colspan="2">Sampling:</td></tr>
+    <tr><td colspan="2" class="{$subHeaderStyle}">Sampling:</td></tr>
 
       <xsl:if test="normalize-space(./frequency)!=''">
         <tr><td width="{$firstColWidth}" class="{$firstColStyle}" valign="top">

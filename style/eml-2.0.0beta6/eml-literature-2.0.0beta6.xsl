@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 21:56:07 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-25 22:15:55 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@
     
 	<xsl:template match="citation">
         <xsl:apply-templates select="." mode="resource"/>
-        <tr class="{$subHeaderStyle}"><td colspan="2">Author(s):</td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}">Author(s):</td></tr>
         <xsl:for-each select="originator">
             <xsl:apply-templates select="." mode="party"/>
         </xsl:for-each>
@@ -92,7 +92,7 @@
 
     
     	<xsl:template match="article">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>ARTICLE:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>ARTICLE:</xsl:text></td></tr>
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Journal:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
             <xsl:value-of select="journal"/></td></tr>
@@ -110,7 +110,7 @@
         </xsl:template>    
     
     	<xsl:template match="book">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>BOOK:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>BOOK:</xsl:text></td></tr>
         <xsl:if test="./edition and normalize-space(./edition)!=''">
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Edition:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
@@ -139,7 +139,7 @@
         </xsl:template>
 
     	<xsl:template match="chapter">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>CHAPTER:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>CHAPTER:</xsl:text></td></tr>
         <xsl:if test="./chapterNumber and normalize-space(./chapterNumber)!=''">
            <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
             Chapter Number:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
@@ -173,7 +173,7 @@
 
     
     <xsl:template match="manuscript">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>MANUSCRIPT:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>MANUSCRIPT:</xsl:text></td></tr>
        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         Location:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="location"/></td></tr>
@@ -183,7 +183,7 @@
     </xsl:template>
 
 	<xsl:template match="thesis">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>THESIS:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>THESIS:</xsl:text></td></tr>
        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
         Degree:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
         <xsl:value-of select="degree"/></td></tr>
@@ -199,7 +199,7 @@
        </xsl:template>
 
 	<xsl:template match="report">
-        <tr class="{$subHeaderStyle}"><td colspan="2"><xsl:text>REPORT:</xsl:text></td></tr>
+        <tr><td colspan="2" class="{$subHeaderStyle}"><xsl:text>REPORT:</xsl:text></td></tr>
         <xsl:for-each select="institution">
           <xsl:apply-templates select="."/>
         </xsl:for-each>
@@ -210,7 +210,7 @@
 
 
       <xsl:template match="institution[1]">
-        <tr class="{$subHeaderStyle}"><td colspan="2">
+        <tr><td colspan="2" class="{$subHeaderStyle}">
           <xsl:text>Institution:</xsl:text></td></tr>
           <xsl:apply-templates select="." mode="party"/>
           </xsl:template>

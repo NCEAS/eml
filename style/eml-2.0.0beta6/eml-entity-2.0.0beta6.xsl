@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 21:56:07 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-25 22:15:55 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@
         </center>
         <table class="tabledefault" width="100%"><!-- width needed for NN4 - doesn't recognize width in css -->
           <xsl:apply-templates select="table-entity/identifier" mode="resource"/>
-          <tr class="{$subHeaderStyle}"><td colspan="2">Entity:</td></tr>
+          <tr><td colspan="2" class="{$subHeaderStyle}">Entity:</td></tr>
           <xsl:apply-templates select="table-entity/entityName"/>
           <xsl:apply-templates select="table-entity/entityDescription"/>
           <xsl:apply-templates select="table-entity/caseSensitive"/>

@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: brooke $'
-  *     '$Date: 2003-11-20 21:56:07 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2003-11-25 22:15:55 $'
+  * '$Revision: 1.4 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -76,20 +76,20 @@
 
 
   <xsl:template match="method">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Method:</xsl:text></td></tr>
       <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
 
   
   <xsl:template match="processingStep">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Processing Step:</xsl:text></td></tr>
       <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
 
   <xsl:template match="qualityControl">
-    <tr class="{$subHeaderStyle}"><td colspan="2">
+    <tr><td colspan="2" class="{$subHeaderStyle}">
       <xsl:text>Quality Control Mechanisms:</xsl:text></td></tr>
       <xsl:call-template name="renderParagsCits"/>
   </xsl:template>
