@@ -6,6 +6,7 @@
 <xsl:output method="xml" indent="yes"/>
 <xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN" 
             doctype-system="http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"/>
+
 <xsl:template match="/">
 <book>
   <bookinfo>
