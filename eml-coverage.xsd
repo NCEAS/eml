@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: cjones $'
-          '$Date: 2002-05-10 03:35:01 $'
-      '$Revision: 1.36 $'
+          '$Date: 2002-05-10 04:27:22 $'
+      '$Revision: 1.37 $'
     
       This program is free software; you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -295,7 +295,7 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <xs:element ref="geologicAge"/>
+        <xs:element ref="alternativeTimeScale"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -330,17 +330,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="geologicAge">
+  <xs:element name="alternativeTimeScale">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Geologic age</doc:tooltip>
+        <doc:tooltip>Alternative Time Scale</doc:tooltip>
         <doc:summary>
-          A name, code, or date describing an event or period in geologic
-          time.
+          A name, code, or date describing an event or period in an alternative
+          time scale, such as one of the geologic time scales.
         </doc:summary>
         <doc:description>
-          A name, code, or date describing an event or period in geologic 
-          time, expressed either as an absolute date calculated using a 
+          A name, code, or date describing an event or period in an alternative 
+          time scale, for instance as an absolute date calculated using a 
           named dating method, or as a relative date that is drawn from 
           stratigraphy or biostratigraphy.  Calendar dates as provided in 
           the ISO 8601 dating system used in the standard CSDGM are not 
@@ -370,15 +370,15 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="geologicTimeScale" type="xs:string">
+        <xs:element name="timeScaleName" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Geologic time scale</doc:tooltip>
+              <doc:tooltip>alternative time scale</doc:tooltip>
               <doc:summary>
-                Name of a recognized geologic time scale.
+                Name of a recognized alternative time scale.
               </doc:summary>
               <doc:description>
-                Name of a recognized geologic time scale.  This includes 
+                Name of a recognized alternative time scale.  This includes 
                 'Absolute' as the name of the time scale for
                 measuring geologic dates before the present and names of 
                 geologic dating systems that are arrangements of symbols 
@@ -395,16 +395,16 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geologicAgeEstimate" type="xs:string">
+        <xs:element name="timeScaleAgeEstimate" type="xs:string">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Geologic age estimate</doc:tooltip>
+              <doc:tooltip>Time scale age estimate</doc:tooltip>
               <doc:summary>
               </doc:summary>
               <doc:description>
-                Either an absolute geologic date or a relative geologic 
-                age name describing an event or period in geologic time 
-                based on the Geologic Time Scale.  
+                Either an absolute date or a relative age name describing an 
+                event or period in an alternative time scale such as the 
+                Geologic Time Scale.  
               </doc:description>
               <doc:example>
                 For example, '300 Ma' (300 million years before present) 
@@ -429,20 +429,22 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geologicAgeUncertainty" type="xs:string" 
+        <xs:element name="timeScaleAgeUncertainty" type="xs:string" 
                     minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Geologic age uncertainty</doc:tooltip>
+              <doc:tooltip>Time scale age uncertainty</doc:tooltip>
               <doc:summary>
-                The error estimate for the geologic time.
+                The error estimate for the alternative time scale.
               </doc:summary>  
               <doc:description>
-                The error estimate for the geologic time.  This should 
+                The error estimate for the alternative time.  This should 
                 include the units of measure, a description of what the 
                 error estimate represents and how it was calculated.
               </doc:description>
-              <doc:example/>
+              <doc:example>
+                +/- 5 Ma (Million Years)
+              </doc:example>
               <doc:lineage>
                 NBII FGDC-STD-001.1-1999:
                   /metadata/time_period_information/sngdate/geolage/geolun
@@ -450,20 +452,20 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geologicAgeExplanation" type="xs:string" 
+        <xs:element name="timeScaleAgeExplanation" type="xs:string" 
                     minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Geologic age explanation</doc:tooltip>
+              <doc:tooltip>Time scale age explanation</doc:tooltip>
               <doc:summary>
                 The name and/or description of the method used to 
-                calculate the Geologic age estimate.
+                calculate the time scale age estimate.
               </doc:summary>
               <doc:description>
                 The name and/or description of the method used to 
-                calculate the Geologic age estimate. Detailed information
+                calculate the age estimate. Detailed information
                 about the method may be provided through references
-                contained in the Geologic Citation field.
+                contained in the Time Scale Citation field.
               </doc:description>
               <doc:example/>
               <doc:lineage>
@@ -473,17 +475,17 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="geologicCitation" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="timeScaleCitation" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Geologic citation</doc:tooltip>
+              <doc:tooltip>Time Scale citation</doc:tooltip>
               <doc:summary>
                 Citation for works providing detailed information about 
-                any element of the Geologic age.
+                any element of the time scale age.
               </doc:summary>
               <doc:description>
                 Citation for works providing detailed information about 
-                any element of the Geologic age. 
+                any element of the time scale age. 
               </doc:description>
               <doc:example>
                 For example, a publication describing the methodology used
@@ -586,7 +588,8 @@
             <doc:tooltip>Bounding coordinates</doc:tooltip>
             <doc:summary>
               The 4 points (latitude and longitude pairs) that define a 
-              bounding box on the earth's surface.
+              bounding box on the earth's surface. To define a single point,
+              use the same point in both lat/lon pairs.
             </doc:summary>
             <doc:description>
               The limits of coverage of a data set expressed by latitude 
@@ -596,10 +599,11 @@
               Bounding Coordinate shall be assigned the value -180.0, and 
               the East Bounding Coordinate shall be assigned the value 180.0 
               
-              If your bound area is a single point, use only the 
-              northBoundingCoordinate and eastBoundingCoordinate to define 
-              your point.  westBoundingCoordinate and southBoundingCoordinate 
-              are optional for this purpose.
+              If your bounding area is a single point, use the same values for 
+              northBoundingCoordinate and southBoundingCoordinate, as well as 
+              the same value for westBoundingCoordinate and 
+              eastBoundingCoordinate. This will define the same lat/lon pairs
+              since all four are required.
             </doc:description>
             <doc:example>
               Please see the individual sub-fields for specific examples.
@@ -613,8 +617,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="westBoundingCoordinate" type="xs:string" 
-                        minOccurs="0">
+            <xs:element name="westBoundingCoordinate" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>West bounding coordinate</doc:tooltip>
@@ -734,8 +737,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element> 
-            <xs:element name="southBoundingCoordinate" type="xs:string" 
-                        minOccurs="0">
+            <xs:element name="southBoundingCoordinate" type="xs:string">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>South bounding coordinate</doc:tooltip>
@@ -924,8 +926,10 @@
                </xs:annotation>
                <xs:complexType>
                  <xs:choice>
-                   <xs:element ref="gRingPoint" minOccurs="1" 
+                   <xs:sequence>
+                   <xs:element ref="gRingPoint" minOccurs="3"
                                maxOccurs="unbounded"/>
+                   </xs:sequence>
                    <xs:element ref="gRing"/>
                  </xs:choice>
                </xs:complexType>
