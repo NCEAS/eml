@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-09 23:32:37 $'
-      '$Revision: 1.1 $'
+          '$Date: 2002-09-10 15:02:08 $'
+      '$Revision: 1.2 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,10 +41,11 @@
 <xsl:template match="/">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="default.css"/>
 <title>EML Dependency Table</title>
 </head>
-<body>
-  <table border="1">
+<body class="tabledefault">
+  <table border="1" cellpadding="3">
   <tr>
   <th/>
   <xsl:for-each select="//doc:module">
@@ -56,23 +57,29 @@
         <xsl:value-of select="."/>
       </xsl:variable>
       <tr>
-      <td><xsl:value-of select="."/></td>
+      <td><b><xsl:value-of select="."/></b></td>
         <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
           <xsl:variable name="modName">
             <xsl:value-of select="substring-before(., '.')"/>
           </xsl:variable>
-          <td>
+          <td align="center">
           <xsl:for-each select="document($modFile)//xs:import">
           <xsl:variable name="importedDoc">
             <xsl:value-of select="substring-before(./@schemaLocation, '.')"/>
           </xsl:variable>
-          <xsl:choose>
-            <xsl:when test="normalize-space($importedDoc)=normalize-space($modName)">
-              <xsl:text>X</xsl:text>
-            </xsl:when>
-          </xsl:choose>
+          <xsl:if test="normalize-space($importedDoc)=normalize-space($modName)">
+            <xsl:attribute name="bgcolor">
+              <xsl:text>green</xsl:text>
+            </xsl:attribute>
+            <xsl:text>X</xsl:text>
+          </xsl:if>
+          <xsl:if test="normalize-space($modName)=normalize-space(substring-before($modFile, '.'))">
+            <xsl:attribute name="bgcolor">
+              <xsl:text>black</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
         </xsl:for-each>
-        &#160;
+        &#160; <!--put in a nonbreaking space to create the empty cells-->
         </td>
       </xsl:for-each>
       </tr>
