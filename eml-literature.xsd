@@ -1,9 +1,5 @@
-<?xml version ="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:rp="eml:ResponsibleParty"
-           xmlns:res="eml:resource"
-           targetNamespace="eml:literature">
-
+<?xml version="1.0"?>
+<xs:schema targetNamespace="eml:literature" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rp="eml:ResponsibleParty" xmlns:res="eml:resource" xmlns="eml:literature">
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-literature.xsd,v $'
@@ -12,8 +8,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: jones $'
-          '$Date: 2001-04-14 00:10:04 $'
-      '$Revision: 1.1 $'
+          '$Date: 2001-07-11 00:59:01 $'
+      '$Revision: 1.2 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +26,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
-     <moduleName>
+      <moduleName>
         eml-resource
       </moduleName>
       <moduleDescription>
@@ -41,13 +37,10 @@
       </moduleDescription>
     </xs:appinfo>
   </xs:annotation>
-
   <!-- import the elements from eml-resource -->
   <xs:import namespace="eml:resource" schemaLocation="./eml-resource.xsd"/>
-
   <!-- import the elements from responsible party -->
   <xs:import namespace="eml:ResponsibleParty" schemaLocation="./eml-party.xsd"/>
- 
   <xs:element name="literature" type="LitCitation">
     <xs:annotation>
       <xs:appinfo>
@@ -75,7 +68,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:complexType name="LitCitation">
     <xs:annotation>
       <xs:appinfo>
@@ -106,8 +98,7 @@
     <xs:complexContent>
       <xs:extension base="res:ResourceBase">
         <xs:sequence>
-          <xs:element name="ISBN" type="xs:string" 
-                      minOccurs="0" maxOccurs="1">
+          <xs:element name="ISBN" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
@@ -131,9 +122,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-      
-          <xs:element name="ISSN" type="xs:string" 
-                      minOccurs="0" maxOccurs="1" >
+          <xs:element name="ISSN" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
@@ -157,9 +146,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-     
-          <xs:element name="editor" type="rp:Person" 
-                      minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="editor" type="rp:Person" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
@@ -183,11 +170,9 @@
                   (nbii-fgdc-std-001.1-1999)
                 </lineage>
               </xs:appinfo>
-            </xs:annotation> 
+            </xs:annotation>
           </xs:element>
-    
-          <xs:element name="edition" type="xs:string" 
-                      minOccurs="0" maxOccurs="1">
+          <xs:element name="edition" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
@@ -212,9 +197,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-    
-          <xs:element name="volume" type="xs:string" 
-                      minOccurs="0" maxOccurs="1">
+          <xs:element name="volume" type="xs:string" minOccurs="0">
             <xs:annotation>
               <xs:appinfo>
                 <tooltip>
@@ -240,5 +223,4 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
 </xs:schema>
