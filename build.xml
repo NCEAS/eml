@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: cjones $'
-          '$Date: 2003-12-11 01:24:21 $'
-      '$Revision: 1.67 $'
+        '$Author: berkley $'
+          '$Date: 2004-06-24 16:41:59 $'
+      '$Revision: 1.68 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -306,6 +306,7 @@
          <exclude name="**/emlconversions/*"/>
        </fileset>
      </copy>
+     <delete dir="${build.tests}/emlconversions"/>
      <copy file ="${config.file}" todir="${build.dest}" />
      <javac srcdir="${build.tests}"
             destdir="${build.dest}"
@@ -330,6 +331,7 @@
          <exclude name="**/emlconversions/*"/>
        </fileset>
      </copy>
+     <delete dir="${build.tests}/emlconversions"/>
      <javac srcdir="${build.tests}"
             destdir="${build.dest}"
             classpath="${cpath}"
