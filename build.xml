@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2004-06-24 16:41:59 $'
-      '$Revision: 1.68 $'
+          '$Date: 2004-07-09 16:53:58 $'
+      '$Revision: 1.69 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
     <property name="servletpath" value="/emlparser"/>
     <!-- namespaces that the servlet should auto resolve -->
     <property name="namespaces"
-              value="eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml.xsd"/>
+              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml2.0.0/eml.xsd eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml.xsd"/>
     <!-- the path from the tomcat/bin directory to the config.xml file -->
     <property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
     <property name="servlettempdir" value="/tmp/emlparser"/>
@@ -391,7 +391,7 @@
     <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
     <copy file="lib/sample/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
-    <copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml"/>
+    <copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
     <copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
     <copy file="${configxml}"
           tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
