@@ -14,8 +14,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: berkley $'
-          '$Date: 2002-05-06 18:00:46 $'
-      '$Revision: 1.35 $'
+          '$Date: 2002-05-09 17:49:35 $'
+      '$Revision: 1.36 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -299,11 +299,11 @@
   <xs:complexType name="DataQuality">
     <xs:sequence>
       <xs:element name="accuracyReport" type="xs:string"/>
-      <xs:element name="quantAccReport" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="quantitativeAccuracyReport" minOccurs="0" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="quantAccVal" type="xs:string"/>
-            <xs:element name="quantAccMethod" type="xs:string"/>
+            <xs:element name="quantitativeAccuracyValue" type="xs:string"/>
+            <xs:element name="quantitativeAccuracyMethod" type="xs:string"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
