@@ -10,8 +10,8 @@
      For Details: http://knb.ecoinformatics.org/
   
         '$Author: bojilova $'
-          '$Date: 2001-02-17 00:04:29 $'
-      '$Revision: 1.5 $'
+          '$Date: 2001-02-20 23:52:58 $'
+      '$Revision: 1.6 $'
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -111,29 +111,21 @@
   <xs:element name="attribute">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="attributeName" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
-        <xs:element ref="attributeDefinition" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
-        <xs:element ref="unit" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>	
-        <xs:element ref="storageType" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="codeDefinition"
-                    minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element ref="numericRange"
-                    minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="missingValueCode" type="xs:string"
-                    minOccurs="0" maxOccurs="unbounded"/>	
-        <xs:element ref="precision" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>	
-        <xs:element ref="fieldFormat"
-                    minOccurs="0" maxOccurs="1"/>	
+        <xs:element ref="attributeName"/>	
+        <xs:element ref="attributeDefinition"/>	
+        <xs:element ref="unit"/>	
+        <xs:element ref="storageType"/>
+        <xs:element ref="codeDefinition"/>	
+        <xs:element ref="numericRange"/>
+        <xs:element ref="missingValueCode"/>	
+        <xs:element ref="precision"/>	
+        <xs:element ref="fieldFormat"/>	
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="attributeName">
+  <xs:element name="attributeName" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -154,7 +146,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="attributeDefinition">
+  <xs:element name="attributeDefinition" type="xs:string"
+                    minOccurs="1" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -175,7 +168,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="unit">
+  <xs:element name="unit" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -196,7 +190,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="storageType">
+  <xs:element name="storageType" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -219,7 +214,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="codeDefinition">
+  <xs:element name="codeDefinition"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -241,14 +237,53 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="code" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Code
+              </tooltip>
+              <summary>
+         	    Code associated with the attribute
+              </summary>
+              <description>
+       	    This element specifies a code associated with the attribute.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The code element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>	
         <xs:element name="definition" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Code definition
+              </tooltip>
+              <summary>
+         	    Description of the code associated with the attribute
+              </summary>
+              <description>
+       	    This element describes the code associated with the attribute.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The definition element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="numericRange">
+  <xs:element name="numericRange"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -271,14 +306,55 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="minimum" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>	
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Minimum numeric range
+              </tooltip>
+              <summary>
+         	    Minimum numeric range of attribute
+              </summary>
+              <description>
+       	    This element specifies the minimum value range
+                of numeric attribute.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The minimum element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>	
         <xs:element name="maximum" type="xs:string"
-                    minOccurs="0" maxOccurs="1"/>	
+                    minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Maximum numeric range
+              </tooltip>
+              <summary>
+         	    Maximum numeric range of attribute
+              </summary>
+              <description>
+       	    This element specifies the maximum value range
+                of numeric attribute.
+              </description>
+              <example>
+              </example>
+              <lineage>
+                The maximum element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="missingValueCode">
+  <xs:element name="missingValueCode" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -300,7 +376,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="precision">
+  <xs:element name="precision" type="xs:string"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -324,7 +401,8 @@
     </xs:annotation>
   </xs:element>
 
-  <xs:element name="fieldFormat">
+  <xs:element name="fieldFormat"
+                    minOccurs="0" maxOccurs="1">
     <xs:annotation>
       <xs:appInfo>
         <tooltip>
@@ -438,7 +516,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="delimiter" type="xs:string"
-                    minOccurs="1" maxOccurs="unbounded"/>	
+                    minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Attribute delimiter
+              </tooltip>
+              <summary>
+         	    The end of the field is delimited by a special character
+                called a field delimiter.
+              </summary>
+              <description>
+       	    AttributeWidth fields can vary in their field length,
+                thus the end of the field is delimited by a special character
+                called a field delimiter.
+              </description>
+              <example>
+                comma, tab, white space, etc.
+              </example>
+              <lineage>
+                The delimiter element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -491,7 +592,29 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="fieldWidth" type="xs:string"
-                    minOccurs="1" maxOccurs="1"/>	
+                    minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appInfo>
+              <tooltip>
+	          Field width
+              </tooltip>
+              <summary>
+         	    FieldWidth specification for fixed field length.
+              </summary>
+              <description>
+                FixedWidth fields have a set length, thus the end of
+                the field can always be determined by adding
+                the fieldWidth to the starting column number.
+              </description>
+              <example>
+                any positive integer
+              </example>
+              <lineage>
+                The fieldWidth element was introduced into EML 1.4.
+              </lineage>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
