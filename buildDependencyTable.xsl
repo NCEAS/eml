@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: berkley $'
-          '$Date: 2002-09-10 15:38:29 $'
-      '$Revision: 1.3 $'
+          '$Date: 2002-09-10 15:47:11 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
   <tr>
   <th/>
   <xsl:for-each select="//doc:module">
-    <th>
+    <th valign="bottom">
       <xsl:call-template name="verttext">
         <xsl:with-param name="text" select="."/>
       </xsl:call-template>
