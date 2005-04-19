@@ -6,11 +6,8 @@
 
 <xsl:param name="packageDir" select="''"/>
 
-  <!--<xsl:variable name="pack" select="document('packageStructure.xml')"/>  -->
   <xsl:variable name="pack" select="/"/>
 	<xsl:variable name="acb6" select="document(concat($packageDir,$pack/package/acl))"/>
-<!-- 	<xsl:variable name="projectb6" select="document(concat($packageDir,$pack/package/project))"/> -->
-  
 	<xsl:variable name="dsb6" select="document(concat($packageDir,$pack/package/@id))"/>
   
   <xsl:include href="eml2entphy.xsl"/>
@@ -47,15 +44,15 @@
         <!-- use the 'role' value from emlb6 to detemine where info goes in eml2      -->
         <xsl:for-each select="$dsb6/dataset/originator/role">
           <xsl:choose>
-            <xsl:when test="((.='Originator')or(.='originator'))">
+            <xsl:when test="((.='Originator')or(.='originator')or(.='Principal Investigator')or(.=''))">
               <xsl:element name="creator">
                 <xsl:call-template name="responsibleParty"/>
               </xsl:element>  
             </xsl:when>
             <xsl:otherwise>  <!-- creator is a required element; this put some info there if role is missing -->
-              <xsl:element name="creator">
+           <!--   <xsl:element name="creator">
                 <xsl:call-template name="responsibleParty"/>
-              </xsl:element>  
+              </xsl:element> --> 
             </xsl:otherwise>
           </xsl:choose>  
         </xsl:for-each>
@@ -69,7 +66,7 @@
         </xsl:for-each>
 
           <xsl:for-each select="$dsb6/dataset/originator/role">
-          <xsl:if test="((.!='Metadata Provider')and(.!='Originator'))">
+          <xsl:if test="((.!='Metadata Provider')and(.!='Originator')and(.!='Data Contact')and(.!='Principal Investigator')and(.!=''))">
             <xsl:element name="associatedParty">
               <xsl:call-template name="responsibleParty"/>
               <xsl:element name="role">
@@ -83,7 +80,7 @@
               <xsl:value-of select="$dsb6/dataset/pubDate"/>
             </xsl:element>
           </xsl:if>
-    <!-- Note - b6 has a 'pubPlace' element that occurs later in eml2 -->      
+	    <!-- Note - b6 has a 'pubPlace' element that occurs later in eml2 -->      
 
 
           <xsl:if test="$dsb6/dataset/series!=''">
@@ -102,31 +99,29 @@
             </xsl:element>
           </xsl:if>
 
-          <xsl:if test="$dsb6/dataset/keywordSet!=''">
-            <xsl:for-each select="$dsb6/dataset/keywordSet">
-              <xsl:element name="keywordSet">
-                <xsl:for-each select="./keyword">
-                  <xsl:choose>
-                  <xsl:when test="./@keywordType!=''">
-                   <keyword keywordType="{./@keywordType}">
-                     <xsl:value-of select="."/>
-                   </keyword> 
-                  </xsl:when>
-                  <xsl:otherwise>
-                   <keyword keywordType="theme">
-                     <xsl:value-of select="."/>
-                   </keyword> 
-                  </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:for-each>
-                <xsl:if test="./keywordThesaurus!=''">
-                  <xsl:element name="keywordThesaurus">
-                    <xsl:value-of select="./keywordThesaurus"/>
-                  </xsl:element>
-                </xsl:if>
-              </xsl:element> 
-            </xsl:for-each>
-          </xsl:if>
+          <xsl:for-each select="$dsb6/dataset/keywordSet">
+            <xsl:element name="keywordSet">
+              <xsl:for-each select="./keyword">
+               <xsl:choose>
+               <xsl:when test="./@keywordType!=''">
+                <keyword keywordType="{./@keywordType}">
+                  <xsl:value-of select="."/>
+                </keyword> 
+               </xsl:when>
+               <xsl:otherwise>
+                <keyword>
+                  <xsl:value-of select="."/>
+                </keyword> 
+               </xsl:otherwise>
+               </xsl:choose>
+              </xsl:for-each>
+              <xsl:for-each select="./keywordThesaurus">
+                <xsl:element name="keywordThesaurus">
+                  <xsl:value-of select="."/>
+                </xsl:element>
+              </xsl:for-each>
+            </xsl:element>
+          </xsl:for-each>
 
 
           
@@ -228,20 +223,21 @@
             
           </xsl:element> 
         </xsl:if>  
-         
-        <xsl:for-each select="$dsb6/dataset/originator/role[1]">
-        <xsl:choose>
-          <xsl:when test="$dsb6/dataset/originator/role[contains(.,'ontact')]">
+
+        <xsl:for-each select="$dsb6/dataset/originator/role">
+          <xsl:if test="(.='Data Contact')">                 
+       <!--   <xsl:when test="$dsb6/dataset/originator/role[contains(.,'ontact')]"> -->
               <xsl:element name="contact">
                 <xsl:call-template name="responsibleParty"/>
               </xsl:element>
-          </xsl:when>
+        <!--  </xsl:when>
           <xsl:otherwise>
               <xsl:element name="contact">
                 <xsl:call-template name="responsibleParty"/>
-              </xsl:element>
+              </xsl:element>  
           </xsl:otherwise>
-        </xsl:choose>
+        </xsl:choose> -->
+	</xsl:if>
         </xsl:for-each>
 
           <xsl:if test="$dsb6/dataset/pubPlace!=''">
