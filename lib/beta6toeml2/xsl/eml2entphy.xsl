@@ -72,7 +72,7 @@
           <xsl:element name="distribution">
             <xsl:element name="online">
               <xsl:element name="url">
-                <xsl:value-of select="concat('ecogrid://knb/', $datab6ID)"/>
+                <xsl:value-of select="concat($metacatURL,'?action=read&amp;qformat=knb&amp;docid=',$datab6ID)"/>
               </xsl:element>
             </xsl:element>
           </xsl:element>
