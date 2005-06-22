@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: berkley $'
- *        '$Date: 2003-07-17 17:23:11 $'
- *    '$Revision: 1.9 $'
+ *        '$Date: 2005-06-22 18:58:37 $'
+ *    '$Revision: 1.10 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -275,8 +275,9 @@ public class EMLParserServlet extends HttpServlet
       {
         EMLParser parser = new EMLParser(tempfile,
                            new File("@servletconfigfile@"));
-        html.append("<h2>Document is EML valid.</h2><p>There ");
-        html.append("were no EML errors found in your document.</p>");
+        html.append("<h2>EML specific tests: Passed.</h2><p>The tests which ");
+        html.append("are specific to EML, including validation that IDs are ");
+	html.append("present and properly referenced, have passed.</p>");
       }
       else
       {
@@ -285,7 +286,7 @@ public class EMLParserServlet extends HttpServlet
     }
     catch(Exception e)
     {
-      html.append("<h2>EML Errors Found</h2><p>The following errors were found:");
+      html.append("<h2>EML specific tests: Failed.</h2><p>The following errors were found:");
       html.append("</p><p>").append(e.getMessage()).append("</p>");
     }
 
@@ -293,8 +294,8 @@ public class EMLParserServlet extends HttpServlet
     {
       SAXValidate validator = new SAXValidate(true);
       validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces);
-      html.append("<hr><h2>Document is XML-schema valid.</h2>");
-      html.append("<p>There were no XML errors found in your document.</p>");
+      html.append("<hr><h2>XML specific tests: Passed.</h2>");
+      html.append("<p>Document is XML-schema valid. There were no XML errors found in your document.</p>");
     }
     catch(IOException ioe)
     {
@@ -316,7 +317,7 @@ public class EMLParserServlet extends HttpServlet
       }
       else
       {
-        html.append("<hr><h2>XML-Schema Errors Found</h2><p>");
+        html.append("<hr><h2>XML specific tests: Failed</h2><p>");
         html.append("The following errors were ");
         html.append("found:</p><p>").append(se.getMessage()).append("</p>");
       }
