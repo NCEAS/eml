@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: jones $'
+  *     '$Date: 2005-12-13 20:03:23 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
   * module of the Ecological Metadata Language (EML) into an HTML format
   * suitable for rendering with modern web browsers.
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-function" version="1.0">
   <xsl:import href="eml-access.xsl"/>
   <xsl:import href="eml-additionalmetadata.xsl"/>
   <xsl:import href="eml-attribute.xsl"/>
@@ -203,19 +203,14 @@
 
    <!--*************** Data set diaplay *************-->
    <xsl:template name="datasetpart">
-      <tr><td colspan="2">
-               <h3>Data Set Description</h3>
-      </td></tr>
-       <xsl:call-template name="identifier">
-                <xsl:with-param name="packageID" select="../@packageId"/>
-                <xsl:with-param name="system" select="../@system"/>
-      </xsl:call-template>
+			<xsl:call-template name="identifier"/>
      <tr>
            <td colspan="2">
               <xsl:apply-templates select="." mode="dataset"/>
            </td>
       </tr>
    </xsl:template>
+   
 
    <!--************ Entity diplay *****************-->
    <xsl:template name="entitypart">
@@ -1189,9 +1184,13 @@
    <xsl:template name="xml">
      <xsl:param name="index"/>
      <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
-       <tr><td class="{$linkedHeaderStyle}">
+      <tr><td class="{$subHeaderStyle}" colspan="2">
+           <xsl:text>Metadata downloads:</xsl:text>
+       </td></tr>
+       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
+           <td width="{$secondColWidth}" class="{$firstColStyle}">
               <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
-              <b>Original XML File</b></a>
+              <b>Ecological Metadata Language (EML) File</b></a>
            </td>
        </tr>
      </table>

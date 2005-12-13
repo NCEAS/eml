@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: jones $'
+  *     '$Date: 2005-12-13 20:03:23 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@
   <xsl:template name="resource">
     <xsl:param name="resfirstColStyle"/>
     <xsl:param name="ressubHeaderStyle"/>
+	<xsl:param name="hideCitationInfo"/>
     <xsl:param name="creator">Data Set Owner(s):</xsl:param>
     <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
       <xsl:for-each select="alternateIdentifier">
@@ -55,20 +56,24 @@
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
          </xsl:call-template>
       </xsl:for-each>
+	  
+	  
+	  <xsl:if test="not($hideCitationInfo)">
+      	<xsl:for-each select="title">
+        	<xsl:call-template name="resourcetitle">
+				<xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
+				<xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
+			</xsl:call-template>
+		</xsl:for-each>
 
-      <xsl:for-each select="title">
-        <xsl:call-template name="resourcetitle">
-          <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
-          <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
-        </xsl:call-template>
-      </xsl:for-each>
-
-       <xsl:for-each select="pubDate">
-        <xsl:call-template name="resourcepubDate" >
-          <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
-         </xsl:call-template>
-      </xsl:for-each>
-
+        <xsl:for-each select="pubDate">
+			<xsl:call-template name="resourcepubDate" >
+          		<xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
+			</xsl:call-template>
+		</xsl:for-each>
+	 </xsl:if>
+	 
+	 
       <xsl:for-each select="language">
         <xsl:call-template name="resourcelanguage" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>

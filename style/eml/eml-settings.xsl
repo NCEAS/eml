@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2005-04-18 17:29:09 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: jones $'
+  *     '$Date: 2005-12-13 20:03:23 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -145,7 +145,7 @@
 
     <xsl:param name="styleCommonPath">@style-common-path@</xsl:param>
 
-
+	
 <!--the docid of xml which is processed-->
     <xsl:param name="docid"/>
 <!-- type of entity, data table or spacial raster or others-->
@@ -169,6 +169,16 @@
       <xsl:attribute name="cellpadding">0</xsl:attribute>
       <xsl:attribute name="cellspacing">0</xsl:attribute>
     </xsl:attribute-set>
+	
+	
+	
+
+<!-- determines whether to use metacat or LSID identiers-->
+	<xsl:param name="lsidauthority"></xsl:param>
+<!-- the url for the data registry of the dataset-->
+	<xsl:param name="registryurl"></xsl:param>
+<!-- the name of the data registry of the dataset-->
+	<xsl:param name="registryname"></xsl:param>
 
 
 <!--

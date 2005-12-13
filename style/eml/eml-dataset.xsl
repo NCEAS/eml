@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: jones $'
+  *     '$Date: 2005-12-13 20:03:23 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -83,6 +83,7 @@
           <xsl:call-template name="resource">
             <xsl:with-param name="resfirstColStyle" select="$firstColStyle"/>
             <xsl:with-param name="ressubHeaderStyle" select="$subHeaderStyle"/>
+			<xsl:with-param name="hideCitationInfo" select="true()"/>
           </xsl:call-template>
        </td>
      </tr>

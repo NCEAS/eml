@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: jones $'
+  *     '$Date: 2005-12-13 20:03:23 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -35,25 +35,65 @@
               doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
               doctype-system="http://www.w3.org/TR/html4/loose.dtd"
               indent="yes" />  
-    
-    <xsl:template name="identifier">
-        <xsl:param name="packageID"/>
-        <xsl:param name="system"/>
-        <xsl:if test="normalize-space(.)">
-        <tr><td colspan="2">
-        <table xsl:use-attribute-sets="cellspacing" width="100%"
-                                        class="{$mainContainerTableStyle}">
-           <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-             <xsl:value-of select="$packageID"/></td></tr>
-             <xsl:if test="normalize-space(../@system)!=''">
-                <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-                  Catalog System:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-                  <xsl:value-of select="$system"/></td></tr>
-             </xsl:if>
-         </table>
-         </td></tr>
-        </xsl:if>
-    </xsl:template>
+	
+	<!--*************** displays dataset citation********-->
+   <xsl:template name="identifier">
+        <tr><td colspan="2" class="tablehead">Data Set Citation</td></tr>
+        <tr><td colspan="2" class="citation">
+		   		<xsl:for-each select="creator/individualName">
+					<xsl:call-template name="creatorCitation" />
+				</xsl:for-each>.
+				
+				<xsl:value-of select="substring(string(pubDate),1,4)"/>.
+				<b>
+		   		<xsl:value-of select="title"/>
+				</b>.
+				<xsl:if test="boolean($registryname)">
+					<xsl:value-of select="$registryname"/>: 
+				</xsl:if>
+				
+				
+                <span class="lsid">
+				    <xsl:choose>
+					    <xsl:when test="boolean($lsidauthority)">
+						    <xsl:call-template name="lsid"/>
+					    </xsl:when>
+					    <xsl:otherwise>
+						    <xsl:value-of select="../@packageId"/>
+					    </xsl:otherwise>
+				    </xsl:choose>
+                </span>
+				
+				<xsl:if test="boolean($registryurl)">
+					(<a href="{$registryurl}"><xsl:value-of select="$registryurl"/></a>).
+				</xsl:if>
+				<br /><br />
+        </td></tr>
+   </xsl:template>
+   
+   <!--************** creates lsid dataset id **************-->
+   <xsl:template name="lsid">
+		<xsl:variable name="lsidString" select="concat('urn:lsid:',string($lsidauthority),':')"/>
+		<xsl:variable name="lsidString" select="concat($lsidString, substring-before(string(../@packageId),'.'), ':')"/>
+		<xsl:variable name="lsidString" select="concat($lsidString, substring-before(substring-after(string(../@packageId),'.'),'.'), ':')"/>
+		<xsl:variable name="lsidString" select="concat($lsidString, substring-after(substring-after(string(../@packageId),'.'),'.'))"/>
+		<xsl:value-of select="$lsidString"/>
+   </xsl:template>
+   
+   <!--************** creates citation for a creator in "Last FM" format **************-->
+   <xsl:template name="creatorCitation">
+   		<xsl:if test="position() &gt; 1">
+			<xsl:if test="last() &gt; 2">,</xsl:if>
+			<xsl:if test="position() = last()"> and</xsl:if>
+			<xsl:text> </xsl:text>
+		</xsl:if>
+		<xsl:value-of select="surName"/>
+		<xsl:text> </xsl:text>
+
+   		<xsl:for-each select="givenName">
+			<xsl:value-of select="substring(string(.),1,1)"/>
+		</xsl:for-each>
+   </xsl:template>
+
     
  </xsl:stylesheet>
