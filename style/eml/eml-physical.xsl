@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: sgarg $'
+  *     '$Date: 2005-12-16 20:55:16 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -154,7 +154,7 @@
         <td class="{$secondColStyle}" width="{$secondColWidth}">
           <xsl:value-of select="."/><xsl:text> </xsl:text>
           <xsl:if test="./@method">
-            Caculated By<xsl:text> </xsl:text><xsl:value-of select="./@method"/>
+            Calculated By<xsl:text> </xsl:text><xsl:value-of select="./@method"/>
           </xsl:if>
         </td>
       </tr>
