@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2005-12-13 20:03:23 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: sgarg $'
+  *     '$Date: 2005-12-16 20:54:11 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -270,6 +270,20 @@
       <xsl:call-template name="party">
           <xsl:with-param name="partyfirstColStyle" select="$resfirstColStyle"/>
       </xsl:call-template>
+      <xsl:for-each select="role">
+          <tr><td width="{$firstColWidth}" class="{$resfirstColStyle}">
+              Role:
+          </td>
+          <td width="{$secondColWidth}">
+             <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
+                <tr>
+                   <td width="100%" class="{$secondColStyle}">
+                       <xsl:value-of select="."/>
+                   </td>
+                </tr>
+             </table>
+          </td></tr>
+      </xsl:for-each>
       </td></tr>
   </xsl:template>
 
