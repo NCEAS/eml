@@ -5,9 +5,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: sgarg $'
+  *     '$Date: 2006-06-15 18:18:51 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -295,6 +295,7 @@
                 <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$innercoloddStyle"/></xsl:when>
               </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="attributeindex" select="position()"/>
     <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -306,7 +307,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="position()"/>
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -320,7 +321,7 @@
                       <xsl:with-param name="docid" select="$docid"/>
                       <xsl:with-param name="entitytype" select="$entitytype"/>
                       <xsl:with-param name="entityindex" select="$entityindex"/>
-                      <xsl:with-param name="attributeindex" select="position()"/>
+                      <xsl:with-param name="attributeindex" select="$attributeindex"/>
                       <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -450,7 +451,7 @@
   </xsl:for-each>
   </tr>
 
-  <!-- The nineth row for quality accuracy accessment -->
+  <!-- The ninth row for quality accuracy accessment -->
   <tr><th  class="{$borderStyle}">Accuracy Assessment</th>
      <xsl:for-each select="attribute">
      <xsl:variable name="stripes">
@@ -741,7 +742,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="position()"/>
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -905,7 +906,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="position()"/>
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -1281,7 +1282,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="position()"/>
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
                     <xsl:with-param name="stripes" select="$innercoloddStyle"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -1295,7 +1296,7 @@
                       <xsl:with-param name="docid" select="$docid"/>
                       <xsl:with-param name="entitytype" select="$entitytype"/>
                       <xsl:with-param name="entityindex" select="$entityindex"/>
-                      <xsl:with-param name="attributeindex" select="position()"/>
+                      <xsl:with-param name="attributeindex" select="$attributeindex"/>
                       <xsl:with-param name="stripes" select="$innercoloddStyle"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -1429,7 +1430,7 @@
   </xsl:for-each>
   </tr>
 
-  <!-- The nineth row for quality accuracy accessment -->
+  <!-- The ninth row for quality accuracy accessment -->
   <tr><td width="{$firstColWidth}" class="{$firstColStyle}">Accuracy Assessment</td>
      <xsl:for-each select="attribute">
      <xsl:if test="position() = $attributeindex">
