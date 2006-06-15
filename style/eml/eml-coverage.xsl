@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2005-12-14 23:05:46 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: sgarg $'
+  *     '$Date: 2006-06-15 18:57:05 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -481,32 +481,44 @@
 
 
   <xsl:template match="taxonomicClassification">
-	
-		<tr>
-		<xsl:choose>
-			<xsl:when test="not(boolean(../taxonomicClassification/taxonomicClassification)) and position()=1">
-				<td width="{$firstColWidth}" class="{$firstColStyle}" valign="bottom"><xsl:text>Taxon:</xsl:text></td>
-			</xsl:when>
-			<xsl:otherwise>
-				<td width="{$firstColWidth}" class="{$firstColStyle}"><xsl:text>Taxon:</xsl:text></td>
-			</xsl:otherwise>
-		</xsl:choose><td width="{$secondColWidth}">
+  
+		<xsl:if test="not(boolean(../taxonomicClassification/taxonomicClassification)) and position()=1">
+  		<tr>
+			<td width="{$firstColWidth}" class="{$firstColStyle}"><xsl:text> </xsl:text></td>
+			<td width="{$secondColWidth}">
 		
 		
 		<table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
 		
-		<xsl:if test="../taxonomicClassification/taxonomicClassification or position()=1">
 				<tr>
 					<td class="tablehead" width="30%">Rank Name</td>
 					<td class="tablehead" width="30%">Rank Value</td>
-					<td class="tablehead">Common Names</td>
+					<td class="tablehead" width="40%">Common Names</td>
+				</tr>
+			</table>
+			</td></tr>
+		</xsl:if>	
+	
+			
+		<tr>
+			<td width="{$firstColWidth}" class="{$firstColStyle}"><xsl:text>Taxon:</xsl:text></td>
+			<td width="{$secondColWidth}">
+		
+		
+		<table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+		
+		<xsl:if test="../taxonomicClassification/taxonomicClassification">
+				<tr>
+					<td class="tablehead" width="30%">Rank Name</td>
+					<td class="tablehead" width="30%">Rank Value</td>
+					<td class="tablehead" width="40%">Common Names</td>
 				</tr>
 		</xsl:if>
 		
 				<tr>
 					<td width="30%"><xsl:apply-templates select="./taxonRankName" mode="nest"/></td>
 					<td width="30%"><xsl:apply-templates select="./taxonRankValue" mode="nest"/></td>
-					<td><xsl:apply-templates select="commonName" mode="nest"/></td>
+					<td width="40%"><xsl:apply-templates select="commonName" mode="nest"/></td>
 				</tr>
 				<xsl:apply-templates select="taxonomicClassification" mode="nest"/>
 			</table>
@@ -539,9 +551,9 @@
 
   <xsl:template match="taxonomicClassification" mode="nest">
 		<tr>
-			<td><xsl:apply-templates select="taxonRankName" mode="nest"/></td>
-			<td><xsl:apply-templates select="taxonRankValue" mode="nest"/></td>
-			<td><xsl:apply-templates select="commonName" mode="nest"/></td>
+			<td width="30%"><xsl:apply-templates select="taxonRankName" mode="nest"/></td>
+			<td width="30%"><xsl:apply-templates select="taxonRankValue" mode="nest"/></td>
+			<td width="40%"><xsl:apply-templates select="commonName" mode="nest"/></td>
 		</tr>
 		<xsl:apply-templates select="taxonomicClassification" mode="nest"/>
   </xsl:template>
