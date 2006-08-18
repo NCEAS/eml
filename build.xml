@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2004-08-13 19:54:51 $'
-      '$Revision: 1.74 $'
+        '$Author: tao $'
+          '$Date: 2006-08-18 15:00:40 $'
+      '$Revision: 1.75 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@
     <property name="sample.dir" value="lib/sample"/>
     <property name="build.dir" value="build"/>
     <property name="build.tests" value="${build.dir}/tests"/>
+  	<property name="build.src" value="${build.dir}/src"/>
     <property name="build.dest" value="${build.dir}/classes"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
@@ -113,6 +114,8 @@
     <property name="ver.src" value="${ver.dir}/src"/>
     <property name="ver.tst" value="${ver.dir}/test"/>
     <property name="package.home" value="org/ecoinformatics" />
+  	<property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
+  	<property name="datamanager.name" value="data-manager-lib"/>
 
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
@@ -311,6 +314,7 @@
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
          <exclude name="emlconversions/**"/>
+       	 <exclude name="${datamanager.dir}/**"/>
        </fileset>
      </copy>
      <copy file ="${config.file}" todir="${build.dest}" filtering="yes"/>
@@ -322,8 +326,30 @@
 
   <target name="jar" depends="compile">
     <jar jarfile="${build.dir}/${name}.jar" basedir="${build.dest}"
-          includes="${package.home}/** config.xml" />
+          includes="${package.home}/** config.xml" excludes="${datamanager.dir}/**" />
     <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
+  </target>
+	
+  <target name="compile-datamanager-lib" depends="init">
+	     <mkdir dir="${build.dest}"/>
+	     <mkdir dir="${build.src}"/>
+	     <copy todir="${build.src}" filtering="yes">
+	       <fileset dir="${srcdir}">
+	       	 <!--<include name="${srcdir}/${datamanager.dir}"/>-->
+	         <exclude name="**/CVS*"/>
+	         <exclude name="**/.#*"/>
+	       </fileset>
+	     </copy>
+	     <javac srcdir="${build.src}/${datamanager.dir}"
+	            destdir="${build.dest}"
+	            classpath="${cpath}"
+	            debug="on"/>
+  </target>
+
+  <target name="jar-datamanager-lib" depends="compile-datamanager-lib">
+	    <jar jarfile="${build.dir}/${datamanager.name}.jar" basedir="${build.dest}"
+	          includes="${datamanager.dir}/**" />
+	    <copy file="${build.dir}/${datamanager.name}.jar" tofile="lib/${datamanager.name}.jar"/>
   </target>
 
   <target name="compile-test" depends="jar">
