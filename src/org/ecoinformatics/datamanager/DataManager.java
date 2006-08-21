@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-08-18 20:26:48 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-21 19:14:56 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -68,7 +68,12 @@ public class DataManager {
    * Instance fields
    */
   
+  /* The database adapter name. 
+   * Examples are: "HSQLAdapter", "PostgresAdapter", and "OracleAdapter".
+   */
+  private String databaseAdapterName;
   
+
   /*
    * Constructors
    */
@@ -91,7 +96,24 @@ public class DataManager {
   /*
    * Instance methods
    */
+  
+  
+  /**
+   * Create a database view from one or more entities in an entity list.
+   * 
+   * @param  ANSISQL    ANSI SQL string to create the view.
+   * @param  entityList Array of entities whose table names and attribute
+   *         names are used in creating the view.
+   * @return a boolean value indicating the success of the create view 
+   *         operation. true if successful, else false.
+   */
+  public boolean createDataView(String ANSISQL, Entity[] entityList) {
+    boolean success = true;
+    
+    return success;
+  }
  
+  
   /**
    * Downloads all entities in a data package using the calling application's 
    * data storage interface. This allows the calling application to manage its 
@@ -143,7 +165,17 @@ public class DataManager {
     return success;
   }
   
-  
+
+  /**
+   * Get the value of the databaseAdapterName field.
+   * 
+   * @return  the value of the databaseAdapterName field
+   */
+  public String getDatabaseAdapterName() {
+    return databaseAdapterName;
+  }
+
+
   /**
    * Loads all entities in a data package to the database table cache. This
    * method implements Use Case #3.
@@ -247,6 +279,33 @@ public class DataManager {
     return resultSet;
   }
   
+
+  /**
+   * Runs a database query on a view. The view must already exist in the
+   * database (see createDataView() method).
+   * 
+   * @param  ANSISQL  A string holding the ANSI SQL selection syntax.
+   * @return A ResultSet object holding the query results.
+   */
+  public ResultSet selectDataFromView(String ANSISQL) {
+    ResultSet resultSet = null;
+    
+    return resultSet;
+  }
+  
+  
+  /**
+   * Set the String value of the databaseAdapterName field.
+   * 
+   * This method should probably throw an exception if the value does not
+   * match any members of the recognized set of database adapter names.
+   * 
+   * @param databaseAdapterName
+   */
+  public void setDatabaseAdapterName(String databaseAdapterName) {
+    this.databaseAdapterName = databaseAdapterName;
+  }
+
   
   /**
    * Sets an upper limit on the size of the database table cache. If the limit
