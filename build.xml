@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: tao $'
-          '$Date: 2006-08-18 15:00:40 $'
-      '$Revision: 1.75 $'
+        '$Author: costa $'
+          '$Date: 2006-08-22 17:35:00 $'
+      '$Revision: 1.76 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -335,12 +335,14 @@
 	     <mkdir dir="${build.src}"/>
 	     <copy todir="${build.src}" filtering="yes">
 	       <fileset dir="${srcdir}">
-	       	 <!--<include name="${srcdir}/${datamanager.dir}"/>-->
+	       	 <include name="${datamanager.dir}/**"/>
+	         <exclude name="emlconversions/**"/>
+		     <exclude name="org/ecoinformatics/eml/**"/>
 	         <exclude name="**/CVS*"/>
 	         <exclude name="**/.#*"/>
 	       </fileset>
 	     </copy>
-	     <javac srcdir="${build.src}/${datamanager.dir}"
+	     <javac srcdir="${build.src}"
 	            destdir="${build.dest}"
 	            classpath="${cpath}"
 	            debug="on"/>
