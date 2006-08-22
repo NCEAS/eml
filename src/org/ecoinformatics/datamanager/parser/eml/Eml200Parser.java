@@ -2,8 +2,8 @@
  *    '$RCSfile: Eml200Parser.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:36 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-22 23:19:14 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -524,15 +524,15 @@ public class Eml200Parser
             /******************************************************
              * need to use domaim type to replace data type
              ******************************************************/
-            String resolvedType = null;
+            /*String resolvedType = null;
             //DataType dataType = domain.getDataType();
             //resolvedType = dataType.getName();
         	if(isDebugging) {
         		//log.debug("The final type is " + resolvedType);
-        	}
+        	}*/
            
             Attribute attObj = new Attribute(Integer.toString(elementId), attName, attLabel,
-                            attDefinition, attUnit, attUnitType, resolvedType,
+                            attDefinition, attUnit, attUnitType,
                             attMeasurementScale, domain);
             
             //add missing code into attribute
