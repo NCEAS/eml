@@ -2,8 +2,8 @@
  *    '$RCSfile: DataObjectDescription.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-22 23:16:41 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -43,22 +43,22 @@ public class DataObjectDescription
 {
     protected String id;
     protected String name;
-    protected String dataType;
+    //protected String dataType;
     protected String definition;
     protected Vector missingValueCode = new Vector();
 
     /**
      * Construct a DataObjectDescription.
      */
-    public DataObjectDescription(String id, String name, String dataType)
+    public DataObjectDescription(String id, String name)
     {
-        this(id, name, dataType, null);
+        this(id, name, null);
     }
 
     /**
      * Construct a DataObjectDescription with a description.
      */
-    public DataObjectDescription(String id, String name, String dataType,
+    public DataObjectDescription(String id, String name,
             String definition)
     {
         if (id == null) {
@@ -71,11 +71,7 @@ public class DataObjectDescription
         } else {
             this.name = name.trim();
         }
-        if (dataType == null) {
-            this.dataType = "";
-        } else {
-            this.dataType = dataType;
-        }
+       
         if (definition == null) {
             this.definition = "";
         } else {
@@ -100,14 +96,7 @@ public class DataObjectDescription
         return this.name;
     }
 
-    /**
-     * Return the data type for this data item.
-     */
-    public String getDataType()
-    {
-        return this.dataType;
-    }
-
+   
     /**
      * Return the definition for this data item.
      */
@@ -124,7 +113,6 @@ public class DataObjectDescription
     {
       if(didesc.getId().trim().equals(this.id.trim()) &&
          didesc.getName().trim().equals(this.name.trim()) &&
-         didesc.getDataType().trim().equals(this.dataType.trim()) &&
          didesc.getDefinition().trim().equals(this.definition.trim()))
       {
          return true;
@@ -149,13 +137,7 @@ public class DataObjectDescription
       this.name = name;
     }
 
-    /**
-     * Set the type for this data item.
-     */
-    public void setDataType(String dataType)
-    {
-      this.dataType = dataType;
-    }
+   
 
     /**
      * Set the definition for this data item.
@@ -173,30 +155,7 @@ public class DataObjectDescription
       return name;
     }
     
-    /**
-     * Method to add missing value code into a vector. 
-     * This method will be used to store the missing value code in metadata
-     * @param code
-     */
-    public void addMissingValueCode(String code)
-    {
-        if (code != null )
-        {
-            missingValueCode.add(code);
-        }
-    }
-    
-    /**
-     * Method to return the vector which store the missing value code.
-     * If this attribute doesn't has the missing value code, empty
-     * vector will be returned.
-     * @return
-     */
-    public Vector getMissingValueCode()
-    {
-        return missingValueCode;
-    }
-    
+   
     /**
      * Method to return the vector which store the missing value code.
      * If this attribute doesn't has the missing value code, empty
