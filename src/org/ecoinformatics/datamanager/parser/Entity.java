@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-22 23:17:09 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -53,7 +53,7 @@ public class Entity extends DataObjectDescription
     public static String GZIP        = "gzip";
 
     /**static variable for table type**/
-    public static String TABLEENTITY = "TABLEENTITY";
+    //public static String TABLEENTITY = "TABLEENTITY";
     public static String SPATIALRASTERENTITY = "SPATIALRASTERENTITY";
     public static String SPATIALVECTORENTITY = "SPATIALVECTORENTITY";
     public static String STOREDPROCEDUREENTITY = "STOREDPROCEDUREENTITY";
@@ -116,7 +116,7 @@ public class Entity extends DataObjectDescription
     public Entity(String id, String name, String description,
             AttributeList attributeList)
     {
-        super(id, name, TABLEENTITY, description);
+        super(id, name, description);
         //attributeList = new AttributeList();
         fileName = "";
         this.attributeList = attributeList;
@@ -331,7 +331,7 @@ public class Entity extends DataObjectDescription
         }
         x.append(">\n");
         appendElement(x, "entityName", getName());
-        appendElement(x, "entityType", getDataType());
+        //appendElement(x, "entityType", getDataType());
         appendElement(x, "entityDescription", getDefinition());
         Attribute[] atts = getAttributes();
         for (int i = 0; i < atts.length; i++) {

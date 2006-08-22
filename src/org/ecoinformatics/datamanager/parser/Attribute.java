@@ -2,8 +2,8 @@
  *    '$RCSfile: Attribute.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-22 23:16:15 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -67,33 +67,33 @@ public class Attribute extends DataObjectDescription
   /**
    * Construct a Attribute.
    */
-  public Attribute(String id, String name, String type)
+  public Attribute(String id, String name, Domain dom)
   {
-      this(id, name, type, null, null, null);
+      this(id, name, null, null, dom);
   }
 
   /**
    * Construct a Attribute.
    */
-  public Attribute(String id, String name, String type, String description)
+  public Attribute(String id, String name, String description, Domain dom)
   {
-	  this(id, name, type, description, null, null);
+	  this(id, name, description, null, dom);
   }
 
   /**
    * Construct a Attribute.
    */
-  public Attribute(String id, String name, String type, String description,
+  public Attribute(String id, String name, String description,
           String unit, Domain dom)
   {
-      this(id, name, null, description, unit, null, type, null, dom);
+      this(id, name, null, description, unit, null,null, dom);
   }
   
   /**
    * Constructor for extra local params
    * @param name the name of the attribute
    * @param label the label of the attribute
-   * @param definition the definition of the attribute
+   * @param description the description of the attribute
    * @param unit the unit of the attribute
    * @param unitType the type of the attribute. defined by STANDARDUNIT or
    * CUSTOMUNIT
@@ -101,11 +101,11 @@ public class Attribute extends DataObjectDescription
    * @param measurementScale the scale of the attribute
    * @param precision the number of precise numbers to the right of the decimal
    */
-  public Attribute(String id, String name, String label, String definition, String unit,
-                   String unitType, String dataType, String measurementScale,
+  public Attribute(String id, String name, String label, String description, String unit,
+                   String unitType, String measurementScale,
                    Domain dom)
   {
-    super(id, name, dataType, definition);
+    super(id, name, description);
     if (label == null) {
         this.label = "";
     } else {
@@ -213,7 +213,7 @@ public class Attribute extends DataObjectDescription
         x.append(getId());
         x.append("\">\n");
         appendElement(x, "attributeName", getName());
-        appendElement(x, "dataType", getDataType());
+        //appendElement(x, "dataType", getDataType());
         appendElement(x, "attributeDescription", getDefinition());
         appendElement(x, "unit", getUnit());
         x.append("</attribute>\n");
