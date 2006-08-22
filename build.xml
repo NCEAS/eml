@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-08-22 17:35:00 $'
-      '$Revision: 1.76 $'
+          '$Date: 2006-08-22 21:23:57 $'
+      '$Revision: 1.77 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -330,6 +330,19 @@
     <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
   </target>
 	
+  <!--
+    The following set of targets support the Data Manager library:
+    
+      compile-datamanager-lib
+      jar-datamanager-lib
+      test-datamanager-lib
+      
+    Applications can use this library's API to manage EML data (as well as
+    other types of data). The library is currently housed under the 'eml'
+    module in CVS. At some point in the future, it may be broken out into its
+    own module.
+   -->
+
   <target name="compile-datamanager-lib" depends="init">
 	     <mkdir dir="${build.dest}"/>
 	     <mkdir dir="${build.src}"/>
@@ -350,10 +363,45 @@
 
   <target name="jar-datamanager-lib" depends="compile-datamanager-lib">
 	    <jar jarfile="${build.dir}/${datamanager.name}.jar" basedir="${build.dest}"
-	          includes="${datamanager.dir}/**" />
+	         includes="${datamanager.dir}/**" 
+	         excludes="**/**Test.class" 
+	    />
 	    <copy file="${build.dir}/${datamanager.name}.jar" tofile="lib/${datamanager.name}.jar"/>
   </target>
+    
+  <target name="test-datamanager-lib" depends="compile-datamanager-lib">
+    <!-- copy and compile the data manager tests -->
+    <copy todir="${build.src}" filtering="yes">
+      <fileset dir="${testdir}">
+	    <include name="${datamanager.dir}/**"/>
+        <exclude name="emlconversions/**"/>
+		<exclude name="org/ecoinformatics/eml/**"/>
+        <exclude name="**/CVS*"/>
+        <exclude name="**/.#*"/>
+       </fileset>
+    </copy>
+    <javac srcdir="${build.src}"
+           destdir="${build.dest}"
+           classpath="${cpath}"
+           debug="on"/>
+    <!-- use the ant "junit" task to run JUnit tests. -->
+    <junit printsummary="yes" haltonfailure="no" fork="no"
+           haltonerror="no">
+      <classpath>
+        <pathelement path="${cpath}:${build.dest}" />
+      </classpath>
+      <formatter type="plain" />
+      <batchtest fork="yes" todir="${build.dir}">
+        <fileset dir="${build.src}">
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
 
+  <!-- End of targets for Data Manager library -->
+
+    
   <target name="compile-test" depends="jar">
      <!-- copy and compile the tests into a jar file -->
      <mkdir dir="${build.tests}"/>
