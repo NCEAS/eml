@@ -2,8 +2,8 @@
  *    '$RCSfile: PrimaryKey.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-23 23:04:27 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -43,7 +43,7 @@ package org.ecoinformatics.datamanager.parser;
 
 public class PrimaryKey implements Constraint
 {
-  private int      type = Constraint.PRIMARYKEY;
+  private static final int type = Constraint.PRIMARYKEY;
   private String   name = null;
   private String[] keys = null;
 
