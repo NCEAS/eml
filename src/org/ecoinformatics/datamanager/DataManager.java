@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-08-21 19:14:56 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-08-23 21:52:18 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,6 +38,7 @@ import java.sql.ResultSet;
 
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
 
 /**
  * 
@@ -234,8 +235,13 @@ public class DataManager {
    * @param metadataInputStream  an input stream to the metadata to be parsed.
    * @return a DataPackage object containing the parsed metadata
    */
-  public DataPackage parseMetadata(InputStream metadataInputStream) {
-    DataPackage dataPackage = new DataPackage();
+  public DataPackage parseMetadata(InputStream metadataInputStream) 
+                                  throws Exception {
+    DataPackage dataPackage = null;
+    Eml200Parser eml200Parser = new Eml200Parser();
+    
+    eml200Parser.parse(metadataInputStream);
+    dataPackage = eml200Parser.getDataPackage();
     
     return dataPackage;
   }
