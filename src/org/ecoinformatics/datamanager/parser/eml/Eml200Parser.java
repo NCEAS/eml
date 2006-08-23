@@ -2,8 +2,8 @@
  *    '$RCSfile: Eml200Parser.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-22 23:19:14 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-23 20:41:23 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -44,6 +44,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.xpath.CachedXPathAPI;
 //import org.kepler.objectmanager.data.DataType;
 //import org.kepler.objectmanager.data.DataTypeResolver;
+import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
 import org.ecoinformatics.datamanager.parser.EnumeratedDomain;
@@ -69,7 +70,7 @@ public class Eml200Parser
 {
 
     private static String NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
-    private Hashtable entityHash = new Hashtable();
+    //private Hashtable entityHash = new Hashtable();
     //private Hashtable fileHash = new Hashtable();
     private int numEntities = 0;
     private int numRecords = -1;
@@ -80,9 +81,11 @@ public class Eml200Parser
     private int complexFormatsNumber = 0;
     private Hashtable attributeListHash = new Hashtable();
     private boolean hasMissingValue = false;
+    private DataPackage emlDataPackage = new DataPackage();
     
     //private static Log log;
     private static boolean isDebugging;
+   
 	  
     /*static {
     	log = LogFactory.getLog( "org.ecoinformatics.seek.datasource.eml.eml2.Eml200Parser" );
@@ -175,9 +178,17 @@ public class Eml200Parser
      * returns a hashtable of entity names hashed to the entity description
      * metadata that goes with each entity.
      */
-    public Hashtable getEntityHash()
+    /*public Hashtable getEntityHash()
     {
         return entityHash;
+    }*/
+    
+    /**
+     * Method to get the data package metadata object
+     */
+    public DataPackage getDataPackage()
+    {
+    	return emlDataPackage;
     }
 
     /**
@@ -185,19 +196,19 @@ public class Eml200Parser
      *
      * @param entityId the id of the entity object to get the record count for
      */
-    public int getRecordCount(String entityId)
+    /*public int getRecordCount(String entityId)
     {
         return ((Entity) entityHash.get(entityId)).getNumRecords();
-    }
+    }*/
 
     /**
      * returns the total number of entities in the data item collection that was
      * passed to this class when the object was created.
      */
-    public int getEntityCount()
+    /*public int getEntityCount()
     {
         return numEntities;
-    }
+    }*/
 
     /**
      * returns the number of attributes in the given entity
@@ -205,12 +216,12 @@ public class Eml200Parser
      * @param entityId the id of the entity object that you want the attribute
      *            count for
      */
-    public int getAttributeCount(String entityId)
+    /*public int getAttributeCount(String entityId)
     {
         Attribute[] attArray = ((Entity) entityHash.get(entityId))
                         .getAttributes();
         return attArray.length;
-    }
+    }*/
     
     /**
      * if the entity has missing value declaretion
@@ -808,7 +819,8 @@ public class Eml200Parser
                 throw new Exception("Error parsing attributes: "
                                 + e.getMessage());
             }
-            entityHash.put(Integer.toString(elementId), entityObject);
+            //entityHash.put(Integer.toString(elementId), entityObject);
+            emlDataPackage.add(entityObject);
             //fileHash.put(elementId, physicalFile);
             
         }
