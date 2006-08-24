@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-08-24 21:22:19 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,7 +38,7 @@ public class TableMonitor
 {
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
-	private TableMonitor monitor     = null;
+	private static TableMonitor monitor     = null;
 	
 	private TableMonitor(Connection dbConnection, String dbAdapterName)
 	{
@@ -46,7 +46,7 @@ public class TableMonitor
 		this.dbAdapterName = dbAdapterName;
 	}
 	
-	public TableMonitor getInstance()
+	public static TableMonitor getInstance()
 	{
 		return monitor;
 	}
@@ -91,7 +91,7 @@ public class TableMonitor
 		
 	}
 	
-	public void setTableLifePriority(String talbeName,int priority)
+	public void setTableExpirationPolicy(String tableName, int priority)
 	{
 		
 	}
