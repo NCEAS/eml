@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-08-23 21:52:18 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-08-24 21:23:03 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,6 +36,9 @@ package org.ecoinformatics.datamanager;
 import java.io.InputStream;
 import java.sql.ResultSet;
 
+import org.ecoinformatics.datamanager.database.DatabaseHandler;
+import org.ecoinformatics.datamanager.database.TableMonitor;
+import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
@@ -128,6 +131,11 @@ public class DataManager {
    */
   public boolean downloadData(DataPackage dataPackage) {
     boolean success = true;
+    Entity[] entities = dataPackage.getEntityList();
+    
+    for (int i = 0; i < entities.length; i++) {
+      success = success && downloadData(entities[i]);
+    }
     
     return success;
   }
@@ -144,6 +152,11 @@ public class DataManager {
    */
   public boolean downloadData(Entity entity) {
     boolean success = true;
+    DownloadHandler downloadHandler = null;
+    
+    //downloadHandler = entity.getDownloadHandler();
+    //downloadHandler = new DownloadHandler();
+    success = downloadHandler.download();
     
     return success;
   }
@@ -160,8 +173,12 @@ public class DataManager {
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(InputStream metadataInputStream) {
-    boolean success = true;
+  public boolean downloadData(InputStream metadataInputStream) 
+        throws Exception {
+    boolean success;
+    DataPackage dataPackage = parseMetadata(metadataInputStream);
+    
+    success = downloadData(dataPackage);
     
     return success;
   }
@@ -188,6 +205,11 @@ public class DataManager {
    */
   public boolean loadDataToDB(DataPackage dataPackage) {
     boolean success = true;
+    Entity[] entities = dataPackage.getEntityList();
+    
+    for (int i = 0; i < entities.length; i++) {
+      success = success && loadDataToDB(entities[i]);
+    }
     
     return success;
   }
@@ -204,6 +226,7 @@ public class DataManager {
    */
   public boolean loadDataToDB(Entity entity) {
     boolean success = true;
+    DownloadHandler downloadHander;
     
     return success;
   }
@@ -220,8 +243,11 @@ public class DataManager {
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(InputStream metadataInputStream) {
-    boolean success = true;
+  public boolean loadDataToDB(InputStream metadataInputStream) 
+        throws Exception {
+    boolean success;
+    DataPackage dataPackage = parseMetadata(metadataInputStream);
+    success = loadDataToDB(dataPackage);
     
     return success;
   }
@@ -258,7 +284,10 @@ public class DataManager {
    * @return A ResultSet object holding the query results.
    */
   public ResultSet selectData(String ANSISQL, DataPackage[] packages) {
+    DatabaseHandler databaseHandler;
     ResultSet resultSet = null;
+    
+    //resultSet = databaseHandler.selectData(ANSISQL, packages);
     
     return resultSet;
   }
@@ -279,8 +308,17 @@ public class DataManager {
   *                 data packages.
   * @return A ResultSet object holding the query results.
   */
-  public ResultSet selectData(String ANSISQL, InputStream[] emlInputStreams) {
+  public ResultSet selectData(String ANSISQL, InputStream[] emlInputStreams) 
+        throws Exception {
+    DataPackage[] packages = new DataPackage[emlInputStreams.length];
     ResultSet resultSet = null;
+    
+    for (int i = 0; i < emlInputStreams.length; i++) {
+      DataPackage dataPackage = parseMetadata(emlInputStreams[i]);
+      packages[i] = dataPackage;
+    }
+    
+    resultSet = selectData(ANSISQL, packages);
     
     return resultSet;
   }
@@ -323,7 +361,9 @@ public class DataManager {
    *        cache.
    */
   public void setDatabaseSize(int size) {
+    TableMonitor tableMonitor = TableMonitor.getInstance();
     
+    tableMonitor.setDBSize(size);
   }
   
   
@@ -340,7 +380,9 @@ public class DataManager {
    *                  precise meaning of this value is yet to be determined.)
    */
   public void setTableExpirationPolicy(String tableName, int policy) {
+    TableMonitor tableMonitor = TableMonitor.getInstance();
     
+    tableMonitor.setTableExpirationPolicy(tableName, policy);
   }
 
 }
