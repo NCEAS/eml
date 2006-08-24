@@ -2,8 +2,8 @@
  *    '$RCSfile: TextWidthFixedDataFormat.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-24 00:10:10 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -53,7 +53,7 @@ public class TextWidthFixedDataFormat implements TextComplexDataFormat
      * Set line number
      * @param lineNumber int
      */
-    public void setLineNumber(int lineNumber) {
+    public void setLineNumber(long lineNumber) {
         this.lineNumber = lineNumber;
     }
     
