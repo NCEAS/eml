@@ -24,6 +24,7 @@ public class DataManagerTest extends TestCase {
   
   private DataManager dataManager;
   private final String TEST_DOCUMENT = "knb-lter-mcm.7002.1";
+  private final int ENTITY_NUMBER_EXPECTED = 5;
   private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
   
   
@@ -53,7 +54,7 @@ public class DataManagerTest extends TestCase {
     TestSuite testSuite = new TestSuite();
     
     testSuite.addTest(new DataManagerTest("initialize"));
-    testSuite.addTest(new DataManagerTest("parseMetadata"));
+    testSuite.addTest(new DataManagerTest("testParseMetadata"));
     
     return testSuite;
   }
@@ -71,6 +72,67 @@ public class DataManagerTest extends TestCase {
     assertTrue(1 == 1);
   }
   
+  
+  /**
+   * Establish a testing framework by initializing appropriate objects.
+   */
+  public void setUp() throws Exception {
+    super.setUp();
+    dataManager = DataManager.getInstance();
+  }
+  
+  
+  /**
+   * Release any objects after tests are complete.
+   */
+  public void tearDown() throws Exception {
+    dataManager = null;
+    super.tearDown();
+  }
+ 
+  
+  /**
+   * Unit test for the DataManager.loadDataToDB() methods (Use Case #2).
+   * 
+   * @throws MalformedURLException
+   * @throws IOException
+   * @throws Exception
+   */
+  public void testLoadDataToDB() 
+        throws MalformedURLException, IOException, Exception {
+    String documentURL = TEST_SERVER + 
+                         "?action=read&qformat=xml&docid=" + 
+                         TEST_DOCUMENT;
+    InputStream metadataInputStream;
+    boolean success = false;
+    URL url;
+    
+    try {
+      url = new URL(documentURL);
+      metadataInputStream = url.openStream();
+      success = dataManager.downloadData(metadataInputStream);
+    }
+    catch (MalformedURLException e) {
+      e.printStackTrace();
+      throw(e);
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+      throw(e);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      throw(e);
+    }
+
+    /*
+     * Assert that dataManager.loadDataToDB() returned a 'true' value,
+     * indicating success.
+     */
+    assertTrue("Data download was not successful", success);
+  }
+
+  
 
   /**
    * Unit test for the DataManager.parseMetadata() method (Use Case #1). 
@@ -79,7 +141,7 @@ public class DataManagerTest extends TestCase {
    * @throws IOException
    * @throws Exception
    */
-  public void parseMetadata()
+  public void testParseMetadata()
         throws MalformedURLException, IOException, Exception {
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
@@ -111,22 +173,19 @@ public class DataManagerTest extends TestCase {
      * dataPackage object.
      */
     assertNotNull("Data package is null", dataPackage);
+
+    /*
+     * Compare the number of entities expected in the data package to the
+     * number of entities found by the parser.
+     */
+    if (dataPackage != null) {
+      int entityNumberFound = dataPackage.getEntityNumber();
+      assertEquals("Number of entites does not match expected value: ",
+                   ENTITY_NUMBER_EXPECTED,
+                   entityNumberFound);
+    }
+    
+    
   }
 
-  
-  /**
-   * Establish a testing framework by initializing appropriate objects.
-   */
-  public void setUp() {
-    dataManager = DataManager.getInstance();
-  }
-  
-  
-  /**
-   * Release any objects after tests are complete.
-   */
-  public void tearDown() {
-    dataManager = null;
-  }
-  
 }
