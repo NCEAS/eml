@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-08-22 21:23:57 $'
-      '$Revision: 1.77 $'
+          '$Date: 2006-08-24 18:39:26 $'
+      '$Revision: 1.78 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -76,6 +76,11 @@
     <property name="style.dir" value="./style"/>
     <property name="config.file" value="lib/config.xml"/>
     <property name="configfileinemljar" value="/config.xml"/>
+    
+    <!-- Used by 'test-datamanager-one' target. User is prompted for the name
+         of the test to run. If user enters no value, runs this test by
+         default. -->
+    <property name="default-datamanager-test" value="DataManagerTest" />
 
     <property name="xmlp"
         value="lib/apache/xercesImpl.jar"/>
@@ -335,7 +340,9 @@
     
       compile-datamanager-lib
       jar-datamanager-lib
-      test-datamanager-lib
+      test-datamanager-init (used internally only)
+      test-datamanager-all
+      test-datamanager-one
       
     Applications can use this library's API to manage EML data (as well as
     other types of data). The library is currently housed under the 'eml'
@@ -369,8 +376,8 @@
 	    <copy file="${build.dir}/${datamanager.name}.jar" tofile="lib/${datamanager.name}.jar"/>
   </target>
     
-  <target name="test-datamanager-lib" depends="compile-datamanager-lib">
-    <!-- copy and compile the data manager tests -->
+  <target name="test-datamanager-init" depends="compile-datamanager-lib">
+    <!-- copy and compile the data manager tests prior to running "junit" -->
     <copy todir="${build.src}" filtering="yes">
       <fileset dir="${testdir}">
 	    <include name="${datamanager.dir}/**"/>
@@ -384,7 +391,10 @@
            destdir="${build.dest}"
            classpath="${cpath}"
            debug="on"/>
-    <!-- use the ant "junit" task to run JUnit tests. -->
+  </target>
+
+  <target name="test-datamanager-all" depends="test-datamanager-init">
+    <!-- use the ant "junit" task to run JUnit tests for data manager lib. -->
     <junit printsummary="yes" haltonfailure="no" fork="no"
            haltonerror="no">
       <classpath>
@@ -394,6 +404,32 @@
       <batchtest fork="yes" todir="${build.dir}">
         <fileset dir="${build.src}">
           <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="test-datamanager-one" depends="test-datamanager-init">
+    <!-- Run only one test in the data manager library. -->
+      
+    <!-- Prompt user for the test name.
+         If user enters a null value, use the default-datamanager-test --> 
+    <input 
+       message="Please enter name of test to run: [${default-datamanager-test}]"
+       addproperty="test-to-run"
+       defaultvalue="${default-datamanager-test}"
+    />
+
+    <!-- use the ant "junit" task to run a single test in data manager lib. -->
+    <junit printsummary="yes" haltonfailure="no" fork="no"
+           haltonerror="no">
+      <classpath>
+        <pathelement path="${cpath}:${build.dest}" />
+      </classpath>
+      <formatter type="plain" />
+      <batchtest fork="yes" todir="${build.dir}">
+        <fileset dir="${build.src}">
+          <include name="**/${test-to-run}.java" />
         </fileset>
       </batchtest>
     </junit>
