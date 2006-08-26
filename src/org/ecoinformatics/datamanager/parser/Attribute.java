@@ -2,8 +2,8 @@
  *    '$RCSfile: Attribute.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-22 23:16:15 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-26 01:26:02 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -206,7 +206,7 @@ public class Attribute extends DataObjectDescription
     /**
      * Serialize the data item in XML format.
      */
-    public String toXml()
+    /*public String toXml()
     {
         StringBuffer x = new StringBuffer();
         x.append("<attribute id=\"");
@@ -219,7 +219,7 @@ public class Attribute extends DataObjectDescription
         x.append("</attribute>\n");
 
         return x.toString();
-    }
+    }*/
     
     /**
      * Method to add missing value code into a vector. 
@@ -240,9 +240,23 @@ public class Attribute extends DataObjectDescription
      * vector will be returned.
      * @return
      */
-    public Vector getMissingValueCode()
+    public String[] getMissingValueCode()
     {
-        return missingValueCode;
+    	if (missingValueCode == null || missingValueCode.size() == 0)
+    	{
+    		return null;
+    	}
+    	else
+    	{
+    		int size = missingValueCode.size();
+    		String[] list = new String[size];
+    		for (int i=0; i<size; i++)
+    		{
+    			list[i] = (String)missingValueCode.elementAt(i);
+    		}
+    		return list;
+    	}
+        
     }
     
    
