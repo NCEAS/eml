@@ -87,8 +87,8 @@ public class AttributeListTest extends TestCase
 	  String attributeId   = "id";
 	  Attribute attribute = new Attribute(attributeId, attributeName, domain);
 	  list.add(attribute);
-	  Vector attributes = list.getAttributes();
-	  Attribute gotAttribute = (Attribute) attributes.elementAt(0);
+	  Attribute[] attributes = list.getAttributes();
+	  Attribute gotAttribute = attributes[0];
 	  assertEquals(attribute, gotAttribute);
 	  
   }
