@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-26 01:27:17 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-08-26 23:52:02 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -64,8 +64,8 @@ public class Entity extends DataObjectDescription
     private Boolean      caseSensitive;
     private String       orientation;
     private int          numRecords      = 0;
-    private int          numHeaderLines  = -1;
-    private int          numFooterLines  = -1;
+    private int          numHeaderLines  = 0;
+    private int          numFooterLines  = 0;
     private String       delimiter       = null;
     private String       recordDelimiter = null;
     private boolean      multiple        = false;        // if true, multiple inputs can be mapped to one table
@@ -144,9 +144,9 @@ public class Entity extends DataObjectDescription
      */
     public Attribute[] getAttributes()
     {
-        Vector attrVector = attributeList.getAttributes();
-        Attribute[] atts = new Attribute[attrVector.size()];
-        return (Attribute[]) attrVector.toArray(atts);
+        Attribute[] attrList = attributeList.getAttributes();
+       
+        return attrList;
     }
 
     /**
@@ -383,7 +383,7 @@ public class Entity extends DataObjectDescription
      * Returns a Vector of the fields in the table
      * @return vector
      */
-    public Vector getFields()
+    public Attribute[] getFields()
     {
       return attributeList.getAttributes();
     }
