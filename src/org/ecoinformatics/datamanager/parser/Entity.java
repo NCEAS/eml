@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-22 23:17:09 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-26 01:27:17 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -319,7 +319,7 @@ public class Entity extends DataObjectDescription
     /**
      * Serialize the data item in XML format.
      */
-    public String toXml()
+    /*public String toXml()
     {
         StringBuffer x = new StringBuffer();
         x.append("<table-entity id=\"");
@@ -340,7 +340,7 @@ public class Entity extends DataObjectDescription
         x.append("</table-entity>\n");
 
         return x.toString();
-    }
+    }*/
 
     /**
      * Sets the multiple to true.
@@ -547,5 +547,13 @@ public class Entity extends DataObjectDescription
     public void setAttributeList(AttributeList list)
     {
         this.attributeList = list;
+    }
+    
+    /**
+     * Method to get attributeList
+     */
+    public AttributeList getAttributeList()
+    {
+    	return this.attributeList;
     }
 }
