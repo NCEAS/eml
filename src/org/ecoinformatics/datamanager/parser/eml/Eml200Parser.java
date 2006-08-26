@@ -2,8 +2,8 @@
  *    '$RCSfile: Eml200Parser.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-23 20:41:23 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-08-26 23:52:42 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -85,6 +85,7 @@ public class Eml200Parser
     
     //private static Log log;
     private static boolean isDebugging;
+    private static final String ID = "id";
    
 	  
     /*static {
@@ -227,10 +228,10 @@ public class Eml200Parser
      * if the entity has missing value declaretion
      * @return
      */
-    public boolean hasMissingValue()
+    /*public boolean hasMissingValue()
     {
     	return hasMissingValue;
-    }
+    }*/
     /**
      * Method to get the boolean hasImageEntity. If the eml document has
      * SpatialRaster or SpatialVector entity, this variable should be true;
@@ -254,10 +255,11 @@ public class Eml200Parser
         String idString = null;
         if (idAttribute != null)
         {
-          Node id = idAttribute.getNamedItem("id");
+          Node id = idAttribute.getNamedItem(ID);
           if ( id != null)
           {
             idString = id.getNodeValue();
+            attributeList.setId(idString);
         	if(isDebugging) {
         		//log.debug("The id value for the attributelist is " + idString);
         	}
@@ -296,7 +298,7 @@ public class Eml200Parser
           
         if (!entityObject.isSimpleDelimited())
         {
-           int length = attributeList.getAttributes().size();
+           int length = attributeList.getAttributes().length;
            if (length != complexFormatsNumber || 
                (length == complexFormatsNumber && complexFormatsNumber == 0))
            {
@@ -325,6 +327,8 @@ public class Eml200Parser
         for (int i = 0; i < atts.getLength(); i++) { //go through each
                                                      // attribute
             Node att = atts.item(i);
+            
+            
             NodeList attChildren = att.getChildNodes();
             NamedNodeMap attAttributes = att.getAttributes();
 
@@ -338,7 +342,20 @@ public class Eml200Parser
             String attPrecision = "";
             Domain domain = null;
             Vector missingCodeVector = new Vector();
-
+            String id = null;
+            double numberPrecision = 0;
+            // get attribute id
+            NamedNodeMap attributeNode = att.getAttributes();
+            if (attributeNode != null)
+            {
+               
+                  Node idNode =  attributeNode.getNamedItem(ID);
+                  if (idNode != null)
+                  {
+                	  id = idNode.getNodeValue();
+                  }
+               
+            }
             elementId++;
 
             for (int j = 0; j < attChildren.getLength(); j++) {
@@ -382,6 +399,8 @@ public class Eml200Parser
                                 // empty string
                                 attPrecision = precision.getFirstChild()
                                             .getNodeValue();
+                                numberPrecision = (new Double(attPrecision)).doubleValue();
+                                
                             }
                             Node dNode = xpathapi.selectSingleNode(n, "numericDomain");
                             NodeList numberKids = dNode.getChildNodes();
@@ -440,12 +459,19 @@ public class Eml200Parser
                             }
                             Double minNum = null;
                             Double maxNum = null;
-                            if (!min.trim().equals("") && !max.trim().equals(""))
+                            System.out.println("the min value is "+min);
+                            if (!min.trim().equals(""))
                             {
                                 minNum = new Double(min);
-                                maxNum = new Double(max);
+                                
                             }
-                            domain = new NumericDomain(numberType, minNum, maxNum);
+                            if (!max.trim().equals(""))
+                            {
+                            	maxNum = new Double(max);
+                            }
+                            NumericDomain numDomain = new NumericDomain(numberType, minNum, maxNum);
+                            numDomain.setPrecision(numberPrecision);
+                            domain = numDomain;
                            
                         } else if (name.equals("nominal")
                                         || name.equals("ordinal")) {
@@ -542,7 +568,7 @@ public class Eml200Parser
         		//log.debug("The final type is " + resolvedType);
         	}*/
            
-            Attribute attObj = new Attribute(Integer.toString(elementId), attName, attLabel,
+            Attribute attObj = new Attribute(id, attName, attLabel,
                             attDefinition, attUnit, attUnitType,
                             attMeasurementScale, domain);
             
@@ -605,6 +631,17 @@ public class Eml200Parser
              //go through the entities and put the information into the hash.
             elementId++;
             Node entity = entities.item(i);
+            String id = null;
+            NamedNodeMap attributeNode = entity.getAttributes();
+            if (attributeNode != null) {
+               
+                Node idNode = attributeNode.getNamedItem(ID);
+                if (idNode != null)
+                {
+                   id = idNode.getNodeValue();
+                }
+               
+            }
             NodeList entityChildren = entity.getChildNodes();
             for (int j = 0; j < entityChildren.getLength(); j++) {
                 Node child = entityChildren.item(j);
@@ -726,7 +763,7 @@ public class Eml200Parser
            if ((recDelimiterNL != null) && (recDelimiterNL.getLength() > 0)) {
               recordDelimiter = recDelimiterNL.item(0).getFirstChild().getNodeValue();
            } else {
-              recordDelimiter = "\r\n";
+              recordDelimiter = "\\r\\n";
            }
            //get the distribution information
            NodeList distributionNL = xpathapi.selectNodeList(entity,
@@ -784,7 +821,7 @@ public class Eml200Parser
                 entityCaseSensitive = "false";
             }
 
-            entityObject = new Entity(Integer.toString(elementId), entityName.trim(),
+            entityObject = new Entity(id, entityName.trim(),
                             entityDescription.trim(), new Boolean(
                                             entityCaseSensitive),
                             entityOrientation, new Integer(
@@ -800,7 +837,7 @@ public class Eml200Parser
             }
             entityObject.setCollaplseDelimiter(isCollapseDelimiter);
             
-           
+            //System.out.println("in eml200 parser, the recordDelimiter is "+recordDelimiter);
             entityObject.setRecordDelimiter(recordDelimiter);
             entityObject.setURL(physicalFile);
             entityObject.setCompressionMethod(compressionMethod);
