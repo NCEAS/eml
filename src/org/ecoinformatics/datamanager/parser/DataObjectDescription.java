@@ -2,8 +2,8 @@
  *    '$RCSfile: DataObjectDescription.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-22 23:16:41 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-26 01:26:40 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,7 +45,7 @@ public class DataObjectDescription
     protected String name;
     //protected String dataType;
     protected String definition;
-    protected Vector missingValueCode = new Vector();
+    //protected Vector missingValueCode = new Vector();
 
     /**
      * Construct a DataObjectDescription.
@@ -154,19 +154,6 @@ public class DataObjectDescription
     {
       return name;
     }
-    
-   
-    /**
-     * Method to return the vector which store the missing value code.
-     * If this attribute doesn't has the missing value code, empty
-     * vector will be returned.
-     * @return
-     */
-    public void setMissingValueCode(Vector missingValueVector)
-    {
-       missingValueCode = missingValueVector;
-    }
-    
     
 
     /**
