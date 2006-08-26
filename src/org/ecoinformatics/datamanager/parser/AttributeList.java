@@ -2,8 +2,8 @@
  *    '$RCSfile: AttributeList.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-26 23:51:26 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -57,17 +57,30 @@ public class AttributeList
     /**
      * @return Returns the attributes.
      */
-    public Vector getAttributes()
+    public Attribute[] getAttributes()
     {
-        return attributes;
+    	if (attributes == null || attributes.size() == 0)
+    	{
+    		return null;
+    	}
+    	else
+    	{
+    		int size = attributes.size();
+    		Attribute[] list = new Attribute[size];
+    		for (int i=0; i<size; i++)
+    		{
+    			list[i] = (Attribute)attributes.elementAt(i);
+    		}
+    		return list;
+    	}
     }
     /**
      * @param attributes The attributes to set.
      */
-    public void setAttributes(Vector attributes)
+    /*public void setAttributes(Vector attributes)
     {
         this.attributes = attributes;
-    }
+    }*/
     /**
      * @return Returns the id.
      */
