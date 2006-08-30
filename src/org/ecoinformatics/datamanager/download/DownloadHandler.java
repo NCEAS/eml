@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-30 00:03:18 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-08-30 23:55:21 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -52,8 +52,11 @@ public class DownloadHandler implements Runnable
 	private boolean completed = false;
 	private boolean success = false;
 	private boolean busy = false;
-	private static final String ECOGRIDENDPOINT = "";
-	private static final String SRBENDPOINT     = "";
+	private static final String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
+	private static final String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
+	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
+	private static final String SRBUSERNAME     = "testuser.sdsc";
+	private static final String SRBPASSWD       = "TESTUSER";
 	
 	/**
 	 * Constructor of this class
@@ -127,33 +130,26 @@ public class DownloadHandler implements Runnable
                                  
                                  // Crate a new Cache Filename and write the resultsets directly to the cached file
                                  //File localFile = getFile();
+                        	 OutputStream [] outputStreamList = getOutputStreamList();
                         	 byte [] c = new byte[1024];
                         	 int bread = filestream.read(c, 0, 1024);
                              while (bread != -1) 
                              {   //FileOutputStream osw = new FileOutputStream(localFile);
-	                        	  if (dataStorageClassList != null)
+	                        	  if (outputStreamList != null)
 	                        	  {
-	                        		 for (int i = 0; i<dataStorageClassList.length; i++)
+	                        		 for (int i = 0; i<outputStreamList.length; i++)
 	                        		 {
-	                        			 DataStorageInterface dataStorge = dataStorageClassList[i];
-	                        			 if (dataStorge != null)
+	                        			 OutputStream output = outputStreamList[i];
+	                        			 if (output != null)
 	                        			 {
-	                        				 OutputStream osw = dataStorge.startSerialize(identifier);
-				                             if (osw != null)
-				                             {
-				                                     
-				                                    
-				                                 osw.write(c, 0, bread);
-				                                         
-				                                     
-				                                     osw.close();
-				                                     
-				                              }
+                                             output.write(c, 0, bread);
 	                        			 }
 	                        		 }
 	                        	  }
 	                        	  bread = filestream.read(c, 0, 1024);
                             }
+                            filestream.close();
+                            closeOutputStream(outputStreamList);
                             successFlag = true;
                             return successFlag;
                          }
@@ -271,9 +267,9 @@ public class DownloadHandler implements Runnable
         srbURL = srbURL.trim();
         //log.debug("The srb url is "+srbURL);
         // get user name , passwd and machine namefrom configure file
-        String user = "";//Config.getValue("//ecogridService/srb/user");
-        String passwd = "";//Config.getValue("//ecogridService/srb/passwd");
-        String machineName = "";//Config.getValue("//ecogridService/srb/machineName");
+        String user = SRBUSERNAME;//Config.getValue("//ecogridService/srb/user");
+        String passwd = SRBPASSWD;//Config.getValue("//ecogridService/srb/passwd");
+        String machineName = SRBMACHINE;//Config.getValue("//ecogridService/srb/machineName");
         String replacement = user+":"+passwd+"@"+machineName;
         docid = srbURL.replaceFirst(regex, replacement);
         //log.debug("The srb id is " + docid);
@@ -309,4 +305,22 @@ public class DownloadHandler implements Runnable
      
       return list;
     }
-}
+    
+    /*
+     * Method to close a OutputStream array
+     */
+    private void closeOutputStream(OutputStream[] outputStreamList) throws IOException
+    {
+    	if (outputStreamList != null)
+    	{
+    		for (int i = 0; i<outputStreamList.length; i++)
+   		 {
+   			 OutputStream output = outputStreamList[i];
+   			 if (output != null)
+   			 {
+                    output.close();
+   			 }
+   		 }
+    	}
+    }
+}  
