@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:40:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-08-30 00:04:03 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -44,9 +44,25 @@ public interface DataStorageInterface
 	 */
 	public OutputStream startSerialize(String identifier);
 	
+	/**
+	 * Finish serialize method
+	 * @param indentifier
+	 * @param errorCode
+	 */
 	public void finishSerialize(String indentifier, String errorCode);
 	
+	/**
+	 * Load data from data storage system
+	 * @param identifier
+	 * @return
+	 * @throws DataSourceNotFoundException
+	 */
 	public InputStream load(String identifier) throws DataSourceNotFoundException;
 	
+	/**
+	 * Method to test if data already download or not.
+	 * @param identifier
+	 * @return
+	 */
 	public boolean doesDataExist(String identifier);
 }
