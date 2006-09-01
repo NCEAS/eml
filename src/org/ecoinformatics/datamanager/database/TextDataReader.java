@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextDataReader.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-01 17:19:58 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,31 +34,61 @@ package org.ecoinformatics.datamanager.database;
 import java.io.InputStream;
 import java.util.Vector;
 
-public abstract class TextDataReader 
-{
-   private InputStream reader = null;
+public abstract class TextDataReader {
+
+  /*
+   * Class fields
+   */
+  
+  
+  /*
+   * Instance fields
+   */
+
+  private InputStream reader = null;
+  
+  
+  /*
+   * Constructors
+   */
+  
+  
+  /*
+   * Class methods
+   */
+  
+  
+  /*
+   * Instance methods
+   */
    
-   /**
-    * Method to get a vector which contains one row data.
-    * @return
-    */
-   public abstract Vector getOneRowDataVector() throws Exception;
+  /**
+   * Method to get a vector which contains one row of data.
+   * 
+   * @return
+   */
+  public abstract Vector getOneRowDataVector() throws Exception;
    
-   /**
-    * To get the reader
-    * @return
-    */
-   public InputStream getReader()
-   {
-	   return reader;
-   }
+  
+  /**
+   * Gets the reader.
+   * 
+   * @return
+   */
+  public InputStream getReader()
+  {
+	  return reader;
+  }
    
-   /**
-    * Set a input reader
-    * @param reader
-    */
-   public void setReader(InputStream reader)
-   {
-	   this.reader = reader;
-   }
+  
+  /**
+   * Sets the input reader.
+   * 
+   * @param reader
+   */
+  public void setReader(InputStream reader)
+  {
+	  this.reader = reader;
+  }
+  
 }

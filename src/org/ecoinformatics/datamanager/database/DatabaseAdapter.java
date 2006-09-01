@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-01 17:19:58 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,53 +33,112 @@ package org.ecoinformatics.datamanager.database;
 
 import java.util.Vector;
 import java.util.Map;
+
 import org.ecoinformatics.datamanager.parser.AttributeList;
 
 /**
- * This class provide a bridge between Database handler and a specific db. 
+ * This class provide a bridge between DatabaseHandler and a specific db.
+ * 
  * @author Jing Tao
- *
  */
 
-public interface DatabaseAdapter 
-{
-	public static final String HSQLADAPTER     = "HSQLAdapter";
-	public static final String POSTGRESADAPTER = "PostgresAdapter";
-	public static final String ORACLEADAPTER   = "OracleAdapter";
+public abstract class DatabaseAdapter {
+
+  /*
+   * Class fields
+   */
+
+	public static final String HSQL_ADAPTER     = "HSQLAdapter";
+  public static final String ORACLE_ADAPTER   = "OracleAdapter";
+	public static final String POSTGRES_ADAPTER = "PostgresAdapter";
+  
+  
+  /*
+   * Instance fields
+   */
+  
+  
+  /*
+   * Constructors
+   */
+  
+  
+  /*
+   * Class methods
+   */
+  
+
+  /*
+   * Instance methods
+   */
+  
 	/**
 	 * Create a sql command to generate table
+   * 
 	 * @param attributeList
 	 * @param tableName
 	 * @return
 	 */
-	public String generateDDL(AttributeList attributeList , String tableName);
-	
+	public String generateDDL(AttributeList attributeList , String tableName) {
+   String ddlString = "";
+   
+   return ddlString;
+  }
+
+  
+  /**
+   * Create a drop talbe sql command
+   * 
+   * @param tableName
+   * @return
+   */
+  public String generateDropTableSQL(String tableName) {
+    String sqlString = "";
+    
+    return sqlString;
+  }
+
+  
 	/**
 	 * Create a sql command to insert data
+   * 
 	 * @param attributeList
 	 * @param tableName
 	 * @param oneRowData
 	 * @return
 	 */
-	public String generateInsertSQL(AttributeList attributeList, String tableName , Vector oneRowData);
-	
-	/**
+	public String generateInsertSQL(AttributeList attributeList, 
+                                  String tableName , 
+                                  Vector oneRowData) {
+   String sqlString = "";
+   
+   return sqlString;
+  }
+
+  
+  /**
+   * The map between metadat data type and database native data type
+   * 
+   * @return
+   */
+  public Map getDataTypeMap() {
+    Map typeMap = null;
+    
+    return typeMap;
+  }
+  
+
+  /**
 	 * Transform ANSI selection sql to a native db sql command
+   * 
 	 * @param ANSISQL
 	 * @return
 	 */
-	public String transformSelectionSQL(String ANSISQL);
-	
-	/**
-	 * Create a drop talbe sql command
-	 * @param tableName
-	 * @return
-	 */
-	public String generateDropTableSQL(String tableName);
-	
-	/**
-	 * The map between metadat data type and database native data type
-	 * @return
-	 */
-	public Map getDataTypeMap();
+	public String transformSelectionSQL(String ANSISQL) {
+    String sqlString = "";
+   
+    return sqlString;
+    
+  }
+
 }

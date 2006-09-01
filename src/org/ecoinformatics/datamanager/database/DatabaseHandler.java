@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-01 17:19:58 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -43,76 +43,225 @@ import org.ecoinformatics.datamanager.parser.Entity;
 
 public class DatabaseHandler implements DataStorageInterface
 {
+  /*
+   * Class fields
+   */
+  
+  
+  /*
+   * Instance fields
+   */
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
-	
+  private DatabaseAdapter databaseAdapter;
+
+  
+  /*
+   * Constructors
+   */
 	public DatabaseHandler(Connection dbConnection, String dbAdapterName)
+        throws Exception
 	{
 		this.dbConnection = dbConnection;
 		this.dbAdapterName = dbAdapterName;
+    
+    Class databaseAdapterClass = Class.forName(dbAdapterName);
+    databaseAdapter = (DatabaseAdapter) databaseAdapterClass.newInstance();
 	}
-	
-	
-	
-	/**
-	 * Start to serialize remote inputstream. The OutputStream is 
-	 * the destination.
-	 * @param identifier
-	 * @return
+
+  
+  /*
+   * Class methods
+   */
+
+  
+  /*
+   * Instance methods
+   */
+
+  /**
+   * Determines whether the data table corresponding to a given identifier 
+   * already exists in the database.
+   * 
+   * @param   identifier  the identifier for the data table
+   * @return  true if the data table already exists in the database, else false
+   */
+  public boolean doesDataExist(String identifier) {
+    boolean doesExist = false;
+    
+    String tableName = identifierToTableName(identifier);
+    return doesExist;
+  }
+
+
+  /**
+   * Drops a data table from the database.
+   * 
+   * @param   entity  The entity whose data table is to be dropped.
+   * @return  true if the data table was successfully dropped, else false
+   */
+  public boolean dropTable(Entity entity) {
+    return false;
+  }
+  
+ 
+  /**
+   * Drops data tables from the data for all entities in a data package.
+   * 
+   * @param  dataPackage the data package whose tables are to be dropped
+   * @return true if all data tables were successfully dropped, else false.
+   */
+  public boolean dropTables(DataPackage dataPackage) {
+    boolean success = true;
+    Entity[] entities = dataPackage.getEntityList();
+    
+    for (int i = 0; i < entities.length; i++) {
+      Entity entity = entities[i];
+      success = success && dropTable(entity);
+    }
+    
+    return success;
+  }
+  
+
+  /** 
+   * Finishes serialization of the data to the local store. This method is
+   * required for implementing DataStorageInterface.
+   * 
+   * @param identifier  the identifier for the data whose serialization is done
+   * @param errorCode   a string indicating whether there was an error during
+   *                    the serialization
+   */
+  public void finishSerialize(String identifier, String errorCode) {
+    
+  }
+  
+
+  /**
+   * Generates a table in the database for a given entity.
+   * 
+   * @param   entity  the entity whose table is to be generated in the database
+   * @return  true if the table is successfully generated, else false
+   */
+  public boolean generateTable(Entity entity)
+  {
+    return false;
+  }
+  
+
+  /**
+   * Generates tables in the database for all entities in a data package.
+   * 
+   * @param  dataPackage  the data package whose entities are to have their
+   *                      tables generated
+   * @return true if all tables were successfully generated, else false
+   */
+  public boolean generateTables(DataPackage dataPackage) {
+    boolean success = true;
+    Entity[] entities = dataPackage.getEntityList();
+    
+    for (int i = 0; i < entities.length; i++) {
+      Entity entity = entities[i];
+      success = success && generateTable(entity);
+    }
+    
+    return success;
+  }
+  
+ 
+  /**
+   * Given an identifier string, return its corresponding table name. (For now,
+   * assume that they are equivalent.)
+   * 
+   * @param   identifier   the identifier string for the entity
+   * @return  the corresponding table name
+   */
+  private String identifierToTableName(String identifier) {
+    String tableName = identifier;
+    
+    return tableName;
+  }
+  
+
+  /**
+   * Accesses the data for a given identifier, opening an input stream on it
+   * for loading. This method is required for implementing DataStorageInterface.
+   * 
+   * @param  identifier  An identifier of the data to be loaded.
+   * @throws DataSourceNotFoundException Indicates that the data was not found
+   *         in the local store.
+   */
+  public InputStream load(String identifier) throws DataSourceNotFoundException
+  {
+    InputStream inputStream = null;
+
+    return inputStream;
+  }
+  
+
+  /**
+   * Loads the data for all entities in a data package into the database.
+   * 
+   * @param   dataPackage  A DataPackage containing a list of entities.
+   * @return  true on success, false on failure
+   */
+  public boolean loadData(DataPackage dataPackage) {
+    Entity[] entities = dataPackage.getEntityList();
+    boolean success = true;
+    
+    for (int i = 0; i < entities.length; i++) {
+      Entity entity = entities[i];
+      success = success && loadData(entity);
+    }
+    
+    return success;
+  }
+  
+
+  /**
+   * Loads the data for a single entity into the database.
+   * 
+   * @param   entity  the Entity object whose data is to be loaded.
+   * @return  true on success, false on failure
+   */
+  public boolean loadData(Entity entity)
+  {
+    return true;
+  }
+  
+
+  /**
+   * Runs a selection query on the data contained in one or more data packages.
+   * 
+   * @param ANSISQL
+   * @param dataPackage
+   * @return
+   */
+  public ResultSet selectData(String ANSISQL, DataPackage[] packages)
+  {
+    ResultSet resultSet = null;
+    
+    return resultSet;
+  }
+  
+
+  /**
+	 * Start to serialize a remote inputstream. The OutputStream is 
+	 * the destination in the local store (in this case, the database itself). 
+   * The DownloadHandler reads data from the remote source and writes it to 
+   * the output stream for local storage. For the DatabaseHandler handler class,
+   * the database itself serves as the local store.
+   * 
+	 * @param  identifier  An identifier to the data in the local store that is
+   *                     to be serialized.
+	 * @return An output stream to the location in the local store where the data 
+   *         is to be serialized.
 	 */
 	public OutputStream startSerialize(String identifier)
 	{
-		return null;
+    OutputStream outputStream = null;
+    
+		return outputStream;
 	}
 	
-	public void finishSerialize(String indentifier, String errorCode)
-	{
-		
-	}
-	
-	public boolean generateTables(DataPackage dataPackage)
-	{
-		return false;
-	}
-	
-	public boolean generateTable(Entity entity)
-	{
-		return false;
-	}
-	
-	public boolean loadData(DataPackage dataPackage)
-	{
-		return false;
-	}
-	
-	public boolean loadData(Entity entity)
-	{
-		return false;
-	}
-	
-	public ResultSet selectData(String ANSISQL, DataPackage[] dataPackage)
-	{
-		return null;
-	}
-	
-	public boolean dropTables(DataPackage dataPackage)
-	{
-		return false;
-	}
-	
-	public boolean dropTable(Entity entity)
-	{
-		return false;
-	}
-	
-	
-	public InputStream load(String identifier) throws DataSourceNotFoundException
-	{
-		return null;
-	}
-	
-	public boolean doesDataExist(String identifier)
-	{
-		return false;
-	}
 }

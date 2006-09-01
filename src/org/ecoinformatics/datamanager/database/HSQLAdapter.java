@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-01 17:19:58 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,33 +36,61 @@ import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.AttributeList;
 
-public class HSQLAdapter implements DatabaseAdapter 
-{
-	/**
+public class HSQLAdapter extends DatabaseAdapter {
+
+  /**
 	 * Create a sql command to generate table
+   * 
 	 * @param attributeList
 	 * @param tableName
 	 * @return
 	 */
-	public String generateDDL(AttributeList attributeList , String tableName)
+	public String generateDDL(AttributeList attributeList, String tableName)
 	{
 		return null;
 	}
 	
+  
+  /**
+   * Create a drop talbe sql command
+   * @param tableName
+   * @return
+   */
+  public String generateDropTableSQL(String tableName)
+  {
+    return null;
+  }
+  
+  
 	/**
 	 * Create a sql command to insert data
+   * 
 	 * @param attributeList
 	 * @param tableName
 	 * @param oneRowData
 	 * @return
 	 */
-	public String generateInsertSQL(AttributeList attributeList, String tableName , Vector oneRowData)
+	public String generateInsertSQL(AttributeList attributeList, 
+                                  String tableName, 
+                                  Vector oneRowData)
 	{
 		return null;
 	}
 	
-	/**
+  
+  /**
+   * The map between metadat data type and database native data type
+   * @return
+   */
+  public Map getDataTypeMap()
+  {
+    return null;
+  }
+  
+
+  /**
 	 * Transform ANSI selection sql to a native db sql command
+   * 
 	 * @param ANSISQL
 	 * @return
 	 */
@@ -71,22 +99,4 @@ public class HSQLAdapter implements DatabaseAdapter
 		return null;
 	}
 	
-	/**
-	 * Create a drop talbe sql command
-	 * @param tableName
-	 * @return
-	 */
-	public String generateDropTableSQL(String tableName)
-	{
-		return null;
-	}
-	
-	/**
-	 * The map between metadat data type and database native data type
-	 * @return
-	 */
-	public Map getDataTypeMap()
-	{
-		return null;
-	}
 }

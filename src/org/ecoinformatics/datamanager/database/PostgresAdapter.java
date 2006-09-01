@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-01 17:19:58 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,9 +36,9 @@ import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.AttributeList;
 
-public class PostgresAdapter implements DatabaseAdapter
-{
-	/**
+public class PostgresAdapter extends DatabaseAdapter {
+
+  /**
 	 * Create a sql command to generate table
 	 * @param attributeList
 	 * @param tableName
@@ -46,9 +46,25 @@ public class PostgresAdapter implements DatabaseAdapter
 	 */
 	public String generateDDL(AttributeList attributeList , String tableName)
 	{
-		return null;
+    String ddlString = "";
+    
+		return ddlString;
 	}
-	
+
+  
+  /**
+   * Create a drop talbe sql command
+   * @param tableName
+   * @return
+   */
+  public String generateDropTableSQL(String tableName)
+  {
+    String sqlString = "";
+    
+    return sqlString;
+  }
+  
+  
 	/**
 	 * Create a sql command to insert data
 	 * @param attributeList
@@ -56,38 +72,38 @@ public class PostgresAdapter implements DatabaseAdapter
 	 * @param oneRowData
 	 * @return
 	 */
-	public String generateInsertSQL(AttributeList attributeList, String tableName , Vector oneRowData)
+	public String generateInsertSQL(AttributeList attributeList, 
+                                  String tableName , 
+                                  Vector oneRowData)
 	{
-		return null;
+    String sqlString = "";
+    
+		return sqlString;
 	}
 	
-	/**
+  
+  /**
+   * The map between metadat data type and database native data type
+   * @return
+   */
+  public Map getDataTypeMap()
+  {
+    Map dataTypeMap = null;
+    
+    return dataTypeMap;
+  }
+
+
+  /**
 	 * Transform ANSI selection sql to a native db sql command
 	 * @param ANSISQL
 	 * @return
 	 */
 	public String transformSelectionSQL(String ANSISQL)
 	{
-		return null;
+    String sqlString = "";
+    
+		return sqlString;
 	}
 	
-	/**
-	 * Create a drop talbe sql command
-	 * @param tableName
-	 * @return
-	 */
-	public String generateDropTableSQL(String tableName)
-	{
-		return null;
-	}
-	
-	/**
-	 * The map between metadat data type and database native data type
-	 * @return
-	 */
-	public Map getDataTypeMap()
-	{
-		return null;
-	}
-
 }
