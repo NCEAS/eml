@@ -2,8 +2,11 @@ package org.ecoinformatics.datamanager.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -22,7 +25,6 @@ public class TableMonitorTest extends TestCase {
   static String dbUser = "datamanager";
   static String dbPassword = "datamanager";
     
-    
   /*
    * Instance fields
    */
@@ -30,6 +32,7 @@ public class TableMonitorTest extends TestCase {
   private TableMonitor tableMonitor;  // An instance of the object being tested
   private Connection dbConnection  = null;           // the database connection
   private String  dbAdapterName = "PostgresAdapter";;   // DatabaseAdapter name
+  private final String TEST_TABLE = "COFFEES";
     
     
   /*
@@ -58,6 +61,11 @@ public class TableMonitorTest extends TestCase {
     TestSuite testSuite = new TestSuite();
     
     testSuite.addTest(new TableMonitorTest("initialize"));
+    testSuite.addTest(new TableMonitorTest("testAddTableEntry"));
+    testSuite.addTest(new TableMonitorTest("testDropTableEntry"));
+    testSuite.addTest(new TableMonitorTest("testGetCreationDate"));
+    testSuite.addTest(new TableMonitorTest("testGetLastUsageDate"));
+    testSuite.addTest(new TableMonitorTest("testGetTableList"));
     testSuite.addTest(new TableMonitorTest("testIsTableInDB"));
     
     return testSuite;
@@ -131,11 +139,222 @@ public class TableMonitorTest extends TestCase {
     tableMonitor = null;
     super.tearDown();
   }
+  
+
+  /**
+   * Tests the TableMonitor.addTableEntry() method. Does so by adding a table
+   * entry for a test table and asserting that it has been entered,
+   * and only one record for it exists in the data table registry.
+   * 
+   * @throws SQLException
+   */
+  public void testAddTableEntry() throws SQLException {
+    boolean isPresent = false;
+    int rowCount = 0;
+    String registry = tableMonitor.getDataTableRegistryName();
+    ResultSet rs;
+
+    String selectString = 
+      "SELECT * FROM " +
+      registry +
+      " WHERE TABLE_NAME='" + TEST_TABLE + "'";
+    Statement stmt;
+    
+    String cleanString = 
+      "DELETE FROM " +
+      registry +
+      " WHERE TABLE_NAME='" + TEST_TABLE + "'";
+
+    // First, clean-up any existing entry for the test table
+    try {
+      stmt = dbConnection.createStatement();             
+      stmt.executeUpdate(cleanString);
+      stmt.close();
+    } 
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+
+    // Next, tell TableMonitor to add the table entry for the test table
+    rowCount = tableMonitor.addTableEntry(TEST_TABLE);
+    
+    // Assert that the operation succeeded
+    assertEquals("Failed to add table entry", rowCount, 1);
+
+    // Query the table registry. The table entry should be present, and only
+    // one record of it should exist.
+    try {
+      stmt = dbConnection.createStatement();             
+      rs = stmt.executeQuery(selectString);
+      
+      rowCount = 0;
+      while (rs.next()) {
+        rowCount++;
+        String TABLE_NAME = rs.getString("TABLE_NAME");
+        
+        if (TABLE_NAME.equalsIgnoreCase(TEST_TABLE)) {
+          isPresent = true;
+        }
+      }
+      
+      stmt.close();
+      assertTrue("Table entry not present", isPresent);
+      assertEquals("Multiple table entries found for "+TEST_TABLE, rowCount, 1);
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+    }
+    
+    // Clean-up any existing entries for the test table
+    try {
+      stmt = dbConnection.createStatement();             
+      stmt.executeUpdate(cleanString);
+      stmt.close();
+    } 
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+
+  }
     
  
   /**
-   * Tests the TableMonitor.isTableInDB() method. Does so by creating a bogus
-   * table named 'COFFEES'. First drops the table in case it was already
+   * Tests the TableMonitor.dropTableEntry() method. Does so by adding a table
+   * entry for a test table and asserting that it has been entered,
+   * and only one record for it exists in the data table registry.
+   * 
+   * @throws SQLException
+   */
+  public void testDropTableEntry() throws SQLException {
+    Date now = new Date();
+    String registry = tableMonitor.getDataTableRegistryName();
+    int rowCount = 0;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
+    String insertString = 
+      "INSERT INTO " + 
+      registry +
+      " values(" +
+          "'" + TEST_TABLE + "', " +
+          "'" + simpleDateFormat.format(now) + "', " +
+          "'" + simpleDateFormat.format(now) + "', " +
+          "1" +
+      ")";
+
+    // First, insert an entry for the test table
+    try {
+      Statement stmt = dbConnection.createStatement();             
+      stmt.executeUpdate(insertString);
+      stmt.close();
+    } 
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+
+    // Next, tell TableMonitor to drop the table entry for the test table
+    rowCount = tableMonitor.dropTableEntry(TEST_TABLE);
+    
+    // Assert that one row was deleted
+    assertEquals("Failed to drop table entry", rowCount, 1);
+  }
+  
+
+  /**
+   * Tests the TableMonitor.getCreationDate() method. Adds a data table entry,
+   * retrieves the entry's creation date, and compares it to today's date
+   * (they should be equal). Then cleans up by dropping the data table entry.
+   */
+  public void testGetCreationDate() throws SQLException {
+    Date creationDate;
+    Date now = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    String nowDateString = simpleDateFormat.format(now);
+
+    // Add the test table entry. By default, creation date is today's date.
+    tableMonitor.addTableEntry(TEST_TABLE);
+    
+    // Retrieve the creation date from the data table registry
+    creationDate = tableMonitor.getCreationDate(TEST_TABLE);
+    String creationDateString = simpleDateFormat.format(creationDate);
+
+    // Assert that creation date should be equal to today's date
+    assertTrue("Creation date should equal today's date: " + 
+               creationDateString + " " + nowDateString, 
+               creationDateString.equals(nowDateString));
+    
+    // Clean-up the test table entry
+    tableMonitor.dropTableEntry(TEST_TABLE);
+  }
+    
+ 
+  /**
+   * Tests the TableMonitor.getLastUsageDate() method. Adds a data table entry,
+   * retrieves the entry's last usage date, and compares it to today's date
+   * (they should be equal). Then cleans up by dropping the data table entry.
+   */
+  public void testGetLastUsageDate() throws SQLException {
+    Date lastUsageDate;
+    Date now = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    String nowDateString = simpleDateFormat.format(now);
+
+    // Add the test table entry. By default, creation date is today's date.
+    tableMonitor.addTableEntry(TEST_TABLE);
+    
+    // Retrieve the creation date from the data table registry
+    lastUsageDate = tableMonitor.getCreationDate(TEST_TABLE);
+    String lastUsageDateString = simpleDateFormat.format(lastUsageDate);
+
+    // Assert that last usage date should be equal to today's date
+    assertTrue("Last usage date should equal today's date: " + 
+               lastUsageDateString + " " + nowDateString, 
+               lastUsageDateString.equals(nowDateString));
+    
+    // Clean-up the test table entry
+    tableMonitor.dropTableEntry(TEST_TABLE);
+  }
+  
+
+  /**
+   * Tests the TableMonitor.getTableList() method. Adds a table entry for the
+   * test table, then gets the table list and asserts that the test table has
+   * been found. Then drops the table entry, gets the table list a second time,
+   * and asserts that the test table was not found in the table list.
+   * 
+   * @throws SQLException
+   */
+  public void testGetTableList() throws SQLException {
+    boolean found = false;
+    
+    tableMonitor.addTableEntry(TEST_TABLE);
+    String[] tableList = tableMonitor.getTableList();
+    
+    for (int i = 0; i < tableList.length; i++) {
+      found = found || (tableList[i].equalsIgnoreCase(TEST_TABLE));
+    }
+    
+    assertTrue("Did not find " + TEST_TABLE + " in table list", found);
+
+    found = false;
+    tableMonitor.dropTableEntry(TEST_TABLE);
+    tableList = tableMonitor.getTableList();
+    
+    for (int i = 0; i < tableList.length; i++) {
+      found = found || (tableList[i].equalsIgnoreCase(TEST_TABLE));
+    }
+    
+    assertFalse("Found " + TEST_TABLE + 
+                " in table list, but it should have been dropped" , 
+                found);
+  }
+    
+ 
+  /**
+   * Tests the TableMonitor.isTableInDB() method. Does so by creating a test
+   * table. First drops the table in case it was already
    * present. Then creates the table, calls isTableInDB(), and asserts that
    * the table exists. Then drops the table again, calls isTableInDB(), and
    * asserts that the table does not exist.
@@ -143,13 +362,13 @@ public class TableMonitorTest extends TestCase {
    * @throws SQLException
    */
   public void testIsTableInDB() throws SQLException {
-    String createString = "create table COFFEES " +
+    String createString = "create table " + TEST_TABLE + " " +
                           "(COFFEE_NAME varchar(32), " +
                           "SUPPLIER_ID int, " +
                           "PRICE float, " +
                           "SALES int, " +
                           "TOTAL int)";
-    String dropString = "drop table COFFEES";
+    String dropString = "DROP TABLE " + TEST_TABLE;
     boolean isPresent;
     Statement stmt;
 
@@ -159,15 +378,17 @@ public class TableMonitorTest extends TestCase {
       stmt.close();
     }
     catch(SQLException e) {
-      // Ignore error if COFFEES table can't be dropped at this point.
+      // Ignore error if test table can't be dropped at this point.
     }
 
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(createString);
       stmt.close();
-      isPresent = tableMonitor.isTableInDB("COFFEES");
-      assertTrue("Could not find table COFFEES but should be in db", isPresent);
+      isPresent = tableMonitor.isTableInDB(TEST_TABLE);
+      assertTrue("Could not find table " + 
+                 TEST_TABLE + " but it should be in db", 
+                 isPresent);
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
@@ -178,8 +399,9 @@ public class TableMonitorTest extends TestCase {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(dropString);
       stmt.close();
-      isPresent = tableMonitor.isTableInDB("COFFEES");
-      assertFalse("Found table COFFEES but should not be in db", isPresent);
+      isPresent = tableMonitor.isTableInDB(TEST_TABLE);
+      assertFalse("Found table " + TEST_TABLE + " but it should not be in db", 
+                  isPresent);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
