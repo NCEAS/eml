@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-08-24 21:23:03 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-09-01 17:17:15 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,7 +34,10 @@ package org.ecoinformatics.datamanager;
 
 
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.TableMonitor;
@@ -67,6 +70,12 @@ public class DataManager {
   /* Holds the singleton object for this class */
   private static DataManager dataManager = new DataManager();
   
+  /* During development, hard-code the database settings */
+  static String dbDriver = "org.postgresql.Driver";
+  static String dbURL = "jdbc:postgresql://localhost/datamanager";
+  static String dbUser = "datamanager";
+  static String dbPassword = "datamanager";
+  
   
   /*
    * Instance fields
@@ -74,8 +83,10 @@ public class DataManager {
   
   /* The database adapter name. 
    * Examples are: "HSQLAdapter", "PostgresAdapter", and "OracleAdapter".
+   * For now, hard-code "PostgresAdapter" since it is our first goal.
    */
-  private String databaseAdapterName;
+  private String     databaseAdapterName = "PostgresAdapter";
+  private Connection dbConnection = null;
   
 
   /*
@@ -151,12 +162,11 @@ public class DataManager {
    *         true if successful, else false.
    */
   public boolean downloadData(Entity entity) {
-    boolean success = true;
+    boolean success = false;
     DownloadHandler downloadHandler = null;
     
     //downloadHandler = entity.getDownloadHandler();
-    //downloadHandler = new DownloadHandler();
-    success = downloadHandler.download();
+    //success = downloadHandler.download();
     
     return success;
   }
@@ -185,6 +195,40 @@ public class DataManager {
   
 
   /**
+   * Gets the database connection object. If the dbConnection field hasn't
+   * already been initialized, creates a new connection and initializes the
+   * field.
+   * 
+   * @return
+   */
+  private Connection getConnection() 
+        throws ClassNotFoundException, SQLException {
+    if (dbConnection == null) {
+      try {
+        Class.forName(DataManager.dbDriver);
+      } 
+      catch(java.lang.ClassNotFoundException e) {
+        System.err.print("ClassNotFoundException: "); 
+        System.err.println(e.getMessage());
+        throw(e);
+      }
+
+      try {
+        dbConnection = DriverManager.getConnection(DataManager.dbURL, 
+                                                   DataManager.dbUser, 
+                                                   DataManager.dbPassword);
+      } 
+      catch(SQLException e) {
+        System.err.println("SQLException: " + e.getMessage());
+        throw(e);
+      }
+    }
+    
+    return dbConnection;
+  }
+  
+
+  /**
    * Get the value of the databaseAdapterName field.
    * 
    * @return  the value of the databaseAdapterName field
@@ -203,7 +247,8 @@ public class DataManager {
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(DataPackage dataPackage) {
+  public boolean loadDataToDB(DataPackage dataPackage)
+        throws ClassNotFoundException, SQLException, Exception {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
     
@@ -224,9 +269,20 @@ public class DataManager {
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(Entity entity) {
-    boolean success = true;
-    DownloadHandler downloadHander;
+  public boolean loadDataToDB(Entity entity) 
+        throws ClassNotFoundException, SQLException, Exception {
+    Connection conn = getConnection();
+    DatabaseHandler databaseHandler = new DatabaseHandler(conn, 
+                                                          databaseAdapterName);
+    boolean success;
+
+    // First, generate a table for the entity
+    success = databaseHandler.generateTable(entity);
+    
+    // If we have a table, then load the data for the entity.
+    if (success) {
+      success = databaseHandler.loadData(entity);
+    }
     
     return success;
   }
@@ -283,11 +339,14 @@ public class DataManager {
    *                 queried is contained in these data packages.
    * @return A ResultSet object holding the query results.
    */
-  public ResultSet selectData(String ANSISQL, DataPackage[] packages) {
+  public ResultSet selectData(String ANSISQL, DataPackage[] packages) 
+        throws ClassNotFoundException, SQLException, Exception {
+    Connection conn = getConnection();
     DatabaseHandler databaseHandler;
     ResultSet resultSet = null;
     
-    //resultSet = databaseHandler.selectData(ANSISQL, packages);
+    databaseHandler = new DatabaseHandler(conn, databaseAdapterName);
+    resultSet = databaseHandler.selectData(ANSISQL, packages);
     
     return resultSet;
   }
@@ -360,8 +419,9 @@ public class DataManager {
    * @param size The upper limit, in MB, on the size of the database table
    *        cache.
    */
-  public void setDatabaseSize(int size) {
-    TableMonitor tableMonitor = TableMonitor.getInstance();
+  public void setDatabaseSize(int size) throws SQLException {
+    TableMonitor tableMonitor = 
+                            new TableMonitor(dbConnection, databaseAdapterName);
     
     tableMonitor.setDBSize(size);
   }
@@ -379,8 +439,10 @@ public class DataManager {
    *                  should be expired from the datbase table cache. (The
    *                  precise meaning of this value is yet to be determined.)
    */
-  public void setTableExpirationPolicy(String tableName, int policy) {
-    TableMonitor tableMonitor = TableMonitor.getInstance();
+  public void setTableExpirationPolicy(String tableName, int policy) 
+        throws SQLException {
+    TableMonitor tableMonitor = 
+                            new TableMonitor(dbConnection, databaseAdapterName);
     
     tableMonitor.setTableExpirationPolicy(tableName, policy);
   }
