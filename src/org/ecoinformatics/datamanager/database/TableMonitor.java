@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-01 22:28:48 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,10 +33,12 @@ package org.ecoinformatics.datamanager.database;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 
 /*
  * TableMonitor monitors all data tables in the database. It stores information
@@ -105,15 +107,41 @@ public class TableMonitor {
    * Instance methods
    */
 	
-  
   /**
-   * Adds a new table entry for a given table name.
+   * Adds a new table entry for a given table name. By default, the creation
+   * date and last used date are set to the current date and time. By default,
+   * the expiration policy is set to 1 (may be expired).
    * 
-   * 
+   * @param   tableName  name of the data table to be added
+   * @return  the row count returned by executing the SQL update
    */
-  public boolean addTableEntry(String tableName)
-  {
-    return false;
+  public int addTableEntry(String tableName) throws SQLException {
+    String insertString;
+    Date now = new Date();
+    String priority = "1";
+    int rowCount = -1;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
+    insertString = "INSERT INTO " + 
+                   DATA_TABLE_REGISTRY +
+                   " values(" +
+                       "'" + tableName + "', " +
+                       "'" + simpleDateFormat.format(now) + "', " +
+                       "'" + simpleDateFormat.format(now) + "', " +
+                       priority +
+                   ")";
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      rowCount = stmt.executeUpdate(insertString);
+      stmt.close();
+    }
+    catch(SQLException e) {
+      System.out.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    
+    return rowCount;
   }
   
   
@@ -124,7 +152,7 @@ public class TableMonitor {
    * used, and its priority (expiration policy) setting.
    *
    */
-  private void createDataTableRegistry() {
+  private void createDataTableRegistry() throws SQLException {
     String createString = 
       "create table " + DATA_TABLE_REGISTRY + " " +
       "(" +
@@ -143,6 +171,7 @@ public class TableMonitor {
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
+      throw(e);
     }
   }
   
@@ -151,12 +180,26 @@ public class TableMonitor {
    * Drops a table entry for a given table name.
    * 
    * @param   tableName   the name of the table to be dropped from the database
-   * @return  true if successfully dropped, else false
+   * @return  the row count returned by executing the SQL update
    */
-  public boolean dropTableEntry(String tableName) {
-    boolean success = true;
+  public int dropTableEntry(String tableName) throws SQLException {
+    String deleteString;
+    int rowCount = -1;
+
+    deleteString = "DELETE FROM " + DATA_TABLE_REGISTRY + 
+                   " WHERE TABLE_NAME='" + tableName + "'";
+ 
+    try {
+      Statement stmt = dbConnection.createStatement();
+      rowCount = stmt.executeUpdate(deleteString);
+      stmt.close();
+    }
+    catch(SQLException e) {
+      System.out.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
     
-    return success;
+    return rowCount;
   }
   
 
@@ -174,11 +217,39 @@ public class TableMonitor {
    * @param   tableName   the name of the table whose creation date is returned
    * @return  the creation date, a Date object
    */
-  public Date getCreationDate(String tableName)
-  {
+  public Date getCreationDate(String tableName) throws SQLException {
     Date creationDate = null;
+    String selectString = 
+      "SELECT creation_date FROM " + DATA_TABLE_REGISTRY +
+      " WHERE table_name='" + tableName + "'";
+    
+    try {
+      Statement stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        creationDate = rs.getDate("creation_date");    
+      }
+      
+      stmt.close();
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
     
     return creationDate;
+  }
+  
+ 
+  /**
+   * Returns the name of the data table registry table. Used primarily for 
+   * unit testing.
+   * 
+   * @return   The private constant, DATA_TABLE_REGISTRY.
+   */
+  public String getDataTableRegistryName () {
+    return DATA_TABLE_REGISTRY;
   }
   
 
@@ -189,22 +260,63 @@ public class TableMonitor {
    *                    is returned
    * @return  the last usage date, a Date object
    */
-  public Date getLastUsageDate(String tableName)
-  {
+  public Date getLastUsageDate(String tableName) throws SQLException {
     Date lastUsageDate = null;
+    String selectString = 
+      "SELECT last_usage_date FROM " + DATA_TABLE_REGISTRY +
+      " WHERE table_name='" + tableName + "'";
+    
+    try {
+      Statement stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        lastUsageDate = rs.getDate("last_usage_date");    
+      }
+      
+      stmt.close();
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
     
     return lastUsageDate;
   }
   
 
   /**
-   * Gets a list of all the tables currently in the database.
+   * Gets a list of all the table names currently in the database.
    * 
    * @return  a String array of all tables names currently in the database
    */
-  public String[] getTableList()
-  {
-    return null;
+  public String[] getTableList() throws SQLException {
+    String selectString = "SELECT table_name FROM " + DATA_TABLE_REGISTRY;
+    Vector vector = new Vector();
+    
+    try {
+      Statement stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        String tableName = rs.getString("table_name");
+        vector.add(tableName);
+      }
+      
+      stmt.close();
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    
+    String[] tableList = new String[vector.size()];
+    for (int i = 0; i < vector.size(); i++) {
+      tableList[i] = (String) vector.get(i);
+    }
+
+    System.err.println(tableList.toString());
+    return tableList;
   }
   
 
@@ -244,8 +356,7 @@ public class TableMonitor {
    * 
    * @param size   the maximum size (in Megabytes) of the database
    */
-  public void setDBSize(int size)
-  {
+  public void setDBSize(int size) {
     
   }
   
