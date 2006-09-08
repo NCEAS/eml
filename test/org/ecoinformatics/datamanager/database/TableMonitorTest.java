@@ -67,6 +67,8 @@ public class TableMonitorTest extends TestCase {
     testSuite.addTest(new TableMonitorTest("testGetLastUsageDate"));
     testSuite.addTest(new TableMonitorTest("testGetTableList"));
     testSuite.addTest(new TableMonitorTest("testIsTableInDB"));
+    testSuite.addTest(new TableMonitorTest("testSetLastUsageDate"));
+    testSuite.addTest(new TableMonitorTest("testSetTableExpirationPolicy"));
     
     return testSuite;
   }
@@ -409,4 +411,102 @@ public class TableMonitorTest extends TestCase {
 
   }
 
+  /**
+   * Tests the TableMonitor.setLastUsageDate() method. First adds a table entry 
+   * for a test table, calls setLastUsageDate() for a known date, then queries
+   * the data table registry to check that the found date matches the known
+   * date.
+   * 
+   * @throws SQLException
+   */
+  public void testSetLastUsageDate() throws SQLException {
+    boolean success;
+    long epochMilliseconds = 1156979161000l;
+    String dataTableRegistryName = tableMonitor.getDataTableRegistryName();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    Date testDate = new Date(epochMilliseconds);
+    String selectString = 
+      "SELECT last_usage_date FROM " + dataTableRegistryName +
+      " WHERE table_name ='" + TEST_TABLE + "'";
+    
+    tableMonitor.addTableEntry(TEST_TABLE);
+    success = tableMonitor.setLastUsageDate(TEST_TABLE, testDate);
+    
+    assertTrue("tableMonitor.setLastUsageDate() did not succeed. ", success);
+    
+    // Query the table registry to determine the last_usage_date value for
+    // the test table and compare it to the known value
+    try {
+      Date foundDate = null;
+      Statement stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        foundDate = rs.getDate("last_usage_date");
+      }
+      
+      stmt.close();
+      String twoDates = "testDate = " + simpleDateFormat.format(testDate) 
+                        + ",  "
+                        + "foundDate = " + simpleDateFormat.format(foundDate)
+                        + ". ";
+      assertEquals("Last usage date found does not match test value: " + 
+                   twoDates, 
+                   simpleDateFormat.format(testDate),
+                   simpleDateFormat.format(foundDate));
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+    }
+
+    // Clean-up table entry for test table
+    tableMonitor.dropTableEntry(TEST_TABLE);
+  }
+  
+  
+  /**
+   * Tests the TableMonitor.setTableExpirationPolicy() method. First adds a 
+   * table entry for a test table, calls setTableExpirationPolicy() with a known
+   * priority value, then queries the data table registry to check that the 
+   * found priority value matches the known priority value.
+   * 
+   * @throws SQLException
+   */
+  public void testSetTableExpirationPolicy() throws SQLException {
+    boolean success;
+    int testPriority = 1;
+    String dataTableRegistryName = tableMonitor.getDataTableRegistryName();
+    String selectString = 
+      "SELECT priority FROM " + dataTableRegistryName +
+      " WHERE table_name ='" + TEST_TABLE + "'";
+    
+    tableMonitor.addTableEntry(TEST_TABLE);
+    success = tableMonitor.setTableExpirationPolicy(TEST_TABLE, testPriority);
+    
+    assertTrue("tableMonitor.setTableExpirationPolicy() did not succeed. ", 
+               success);
+    
+    // Query the table registry to determine the priority value for
+    // the test table and compare it to the known priority value
+    try {
+      int foundPriority = -99;
+      Statement stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        foundPriority = rs.getInt("priority");
+      }
+      
+      stmt.close();
+      assertEquals("Priority found does not match test value: ",
+                   foundPriority, testPriority);
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+    }
+
+    // Clean-up table entry for test table
+    tableMonitor.dropTableEntry(TEST_TABLE);
+  }
+  
 }
