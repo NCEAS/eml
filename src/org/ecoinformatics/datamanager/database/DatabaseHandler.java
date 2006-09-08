@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-08 21:39:36 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -12,7 +12,7 @@
  *
  * Permission is hereby granted, without written agreement and without
  * license or royalty fees, to use, copy, modify, and distribute this
- * software and its documentation for any purpose, provided that the
+ * software and its documentation for any purdire, provided that the
  * above copyright notice and the following two paragraphs appear in
  * all copies of this software.
  *
@@ -35,6 +35,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -65,8 +66,18 @@ public class DatabaseHandler implements DataStorageInterface
 		this.dbConnection = dbConnection;
 		this.dbAdapterName = dbAdapterName;
     
-    Class databaseAdapterClass = Class.forName(dbAdapterName);
-    databaseAdapter = (DatabaseAdapter) databaseAdapterClass.newInstance();
+    //Class databaseAdapterClass = Class.forName(dbAdapterName);
+    //databaseAdapter = (DatabaseAdapter) databaseAdapterClass.newInstance();
+    
+    if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
+      databaseAdapter = new PostgresAdapter();
+    }
+    else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
+      databaseAdapter = new HSQLAdapter();
+    }
+    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
+      databaseAdapter = new OracleAdapter();
+    }
 	}
 
   
@@ -81,7 +92,8 @@ public class DatabaseHandler implements DataStorageInterface
 
   /**
    * Determines whether the data table corresponding to a given identifier 
-   * already exists in the database.
+   * already exists in the database. This method is mandated by the
+   * DataStorageInterface.
    * 
    * @param   identifier  the identifier for the data table
    * @return  true if the data table already exists in the database, else false
@@ -89,7 +101,16 @@ public class DatabaseHandler implements DataStorageInterface
   public boolean doesDataExist(String identifier) {
     boolean doesExist = false;
     
-    String tableName = identifierToTableName(identifier);
+    try {
+      TableMonitor tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
+      String tableName = identifierToTableName(identifier);
+      doesExist = tableMonitor.isTableInDB(tableName);
+    }
+    catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+    }
+    
     return doesExist;
   }
 
