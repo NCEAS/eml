@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-26 23:52:02 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-08 00:43:23 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,6 +36,7 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
 import java.util.Vector;
+import org.ecoinformatics.datamanager.download.DownloadHandler;
 
 /**
  * This object represents an TableEntity.  A TableEntity stores
@@ -83,6 +84,8 @@ public class Entity extends DataObjectDescription
     private TextComplexDataFormat[] dataFormatArray = null;
     private String physicalLineDelimiter  = null;
     private boolean collapseDelimiter = false;
+    private DownloadHandler downLoadHandler = null;
+
 
  
     /**
@@ -556,4 +559,6 @@ public class Entity extends DataObjectDescription
     {
     	return this.attributeList;
     }
+    
+    
 }
