@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-30 23:55:21 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-08 00:44:00 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -49,6 +49,7 @@ public class DownloadHandler implements Runnable
 	private String identifier = null;
 	private String url        = null;
 	private DataStorageInterface[] dataStorageClassList = null;
+	private String[] errorMessages = null;
 	private boolean completed = false;
 	private boolean success = false;
 	private boolean busy = false;
@@ -64,11 +65,11 @@ public class DownloadHandler implements Runnable
 	 * @param identifier
 	 * @param dataStorageClassList
 	 */
-	public DownloadHandler(String url, String identifier, DataStorageInterface[] dataStorageClassList)
+	public DownloadHandler(String url, String identifier)
 	{
 		this.url = url;
 		this.identifier = identifier;
-		this.dataStorageClassList = dataStorageClassList;
+		//this.dataStorageClassList = dataStorageClassList;
 	}
 	
 	/**
@@ -76,7 +77,11 @@ public class DownloadHandler implements Runnable
 	 */
     public void run()
     {
-    	
+    	busy = true;
+    	completed = false;
+    	success = getContentFromSource(url);
+    	busy = false;
+    	completed = true;
     }
     
     /**
@@ -108,10 +113,15 @@ public class DownloadHandler implements Runnable
     	return dataStorageClassList;
     }
     
+    public void setDataStorageCladdList(DataStorageInterface[] dataStorageClassList)
+    {
+    	this.dataStorageClassList = dataStorageClassList;
+    }
+    
     /*
      * Method to get content from given source.
      */
-    private boolean getContentFromSource(String resourceName)
+    protected boolean getContentFromSource(String resourceName)
     {
     	 //log.debug("download data from EcogridDataCacheItem URL : " + resourceName);
     	boolean successFlag = false;
@@ -130,27 +140,57 @@ public class DownloadHandler implements Runnable
                                  
                                  // Crate a new Cache Filename and write the resultsets directly to the cached file
                                  //File localFile = getFile();
-                        	 OutputStream [] outputStreamList = getOutputStreamList();
+                        	 NeededOutputStream [] outputStreamList = getOutputStreamList();
                         	 byte [] c = new byte[1024];
                         	 int bread = filestream.read(c, 0, 1024);
+                        	 boolean oneLoopSuccess = true;
                              while (bread != -1) 
                              {   //FileOutputStream osw = new FileOutputStream(localFile);
 	                        	  if (outputStreamList != null)
 	                        	  {
 	                        		 for (int i = 0; i<outputStreamList.length; i++)
 	                        		 {
-	                        			 OutputStream output = outputStreamList[i];
-	                        			 if (output != null)
+	                        			 NeededOutputStream neededOutput = outputStreamList[i];
+	                        			 if (neededOutput != null)
 	                        			 {
-                                             output.write(c, 0, bread);
+	                        				 OutputStream output = neededOutput.getOutputStream();
+	                        				 boolean need = neededOutput.getNeeded();
+		                        			 if (output != null && need)
+		                        			 {
+		                        				 
+	                                             output.write(c, 0, bread);
+	                                             if(oneLoopSuccess)
+	                                             {
+	                                            	 successFlag = true;
+	                                             }
+		                        			 }
+		                        			 else if (output != null)
+		                        			 {
+		                        				 if(oneLoopSuccess)
+	                                             {
+	                                            	 successFlag = true;
+	                                             }
+		                        			 }
+		                        			 else
+		                        			 {
+		                        				 oneLoopSuccess = false;
+		                        			 }
+	                        			 }
+	                        			 else
+	                        			 {
+	                        				 oneLoopSuccess = false;
 	                        			 }
 	                        		 }
+	                        	  }
+	                        	  else
+	                        	  {
+	                        		  successFlag = false;
 	                        	  }
 	                        	  bread = filestream.read(c, 0, 1024);
                             }
                             filestream.close();
                             closeOutputStream(outputStreamList);
-                            successFlag = true;
+                            //successFlag = true;
                             return successFlag;
                          }
                      }
@@ -174,19 +214,19 @@ public class DownloadHandler implements Runnable
                  end = resourceName.length();
              }
              //log.debug("end: " + end);
-             String identifier = resourceName.substring(start, end);
+             String ecogridIdentifier = resourceName.substring(start, end);
              // pass this docid and get data item
-             return getDataItemFromEcoGrid(ECOGRIDENDPOINT, identifier);
+             return getDataItemFromEcoGrid(ECOGRIDENDPOINT, ecogridIdentifier);
          }
          else if (resourceName.startsWith("srb://")) {
              // get srb docid from the url
-             String identifier = transformSRBurlToDocid(resourceName);
+             String srbIdentifier = transformSRBurlToDocid(resourceName);
              // reset endpoint for srb (This is hack we need to figure ou
              // elegent way to do this
              //mEndPoint = Config.getValue("//ecogridService/srb/endPoint");
              // pass this docid and get data item
              //log.debug("before get srb data@@@@@@@@@@@@@@@@@@@@@@@@@@");
-             return getDataItemFromEcoGrid(SRBENDPOINT, identifier);
+             return getDataItemFromEcoGrid(SRBENDPOINT, srbIdentifier);
          }
          else {
         	 successFlag = false;
@@ -278,29 +318,38 @@ public class DownloadHandler implements Runnable
     
     /*
      * Method to get every outputstream for datastorage class.
-     * If dataStorageClassList null will return.
-     * If some dataStrogae object couldn't get an outputstream, null will associate
+     * If dataStorageClassList is null, null will return.
+     * If some dataStrogae object couldn't get an outputstream or
+     * identifier is already in the datastorge object, null will associate
      * with this ojbect
+     * 
      */
-    private OutputStream[] getOutputStreamList()
+    private NeededOutputStream[] getOutputStreamList()
     {
-    	OutputStream[] list = null;
+    	NeededOutputStream[] list = null;
     	if (dataStorageClassList != null)
-    	{
-    		list = new OutputStream[dataStorageClassList.length];
-  		 for (int i = 0; i<dataStorageClassList.length; i++)
-  		 {
-  			 DataStorageInterface dataStorge = dataStorageClassList[i];
-  			 if (dataStorge != null)
-  			 {
-  				 OutputStream osw = dataStorge.startSerialize(identifier);
-                 list[i] = osw;
-  			 }
-  			 else
-  			 {
-  				 list[i] = null;
-  			 }
-  		 }
+    	{ 
+    		 list = new NeededOutputStream[dataStorageClassList.length];
+	  		 for (int i = 0; i<dataStorageClassList.length; i++)
+	  		 {
+	  			 DataStorageInterface dataStorge = dataStorageClassList[i];
+	  			 if (dataStorge != null && !dataStorge.doesDataExist(identifier))
+	  			 {
+	  				 OutputStream osw = dataStorge.startSerialize(identifier);
+	  				 NeededOutputStream stream = new NeededOutputStream(osw, true);
+	                 list[i] = stream;
+	  			 }
+	  			 else if(dataStorge != null)
+	  			 {
+	  				OutputStream osw = dataStorge.startSerialize(identifier);
+	  				 NeededOutputStream stream = new NeededOutputStream(osw, false);
+	                 list[i] = stream;
+	  			 }
+	  			 else
+	  			 {
+	  				 list[i] = null;
+	  			 }
+	  		 }
   	  }
      
       return list;
@@ -309,18 +358,62 @@ public class DownloadHandler implements Runnable
     /*
      * Method to close a OutputStream array
      */
-    private void closeOutputStream(OutputStream[] outputStreamList) throws IOException
+    private void closeOutputStream(NeededOutputStream[] outputStreamList) throws IOException
     {
     	if (outputStreamList != null)
     	{
     		for (int i = 0; i<outputStreamList.length; i++)
    		 {
-   			 OutputStream output = outputStreamList[i];
+   			 NeededOutputStream neededOutput = outputStreamList[i];
+   			 OutputStream output = neededOutput.getOutputStream();
    			 if (output != null)
    			 {
                     output.close();
    			 }
    		 }
+    	}
+    }
+    
+    /**
+     * Get Error messages
+     * @return
+     */
+    public String[] getErorrMessages()
+    {
+    	return errorMessages;
+    }
+    
+    /**
+     * If data storage insterface already download this identifier,
+     * this OuptStream will be marked as NonNeeded. So download would NOT
+     * happen again
+     * @author tao
+     *
+     */
+    private class NeededOutputStream
+    {
+    	private OutputStream stream = null;
+    	private boolean needed      = true;
+    	
+    	/**
+    	 * Constructor
+    	 * @param stream
+    	 * @param needed
+    	 */
+    	public NeededOutputStream(OutputStream stream, boolean needed)
+    	{
+    		this.stream = stream;
+    		this.needed = needed;
+    	}
+    	
+    	public OutputStream getOutputStream()
+    	{
+    		return stream;
+    	}
+    	
+    	public boolean getNeeded()
+    	{
+    		return needed;
     	}
     }
 }  
