@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 22:28:48 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-08 21:37:13 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -158,7 +158,7 @@ public class TableMonitor {
       "(" +
       "  TABLE_NAME varchar(64), " +
       "  CREATION_DATE date, " +
-      "  LAST_USED_DATE date, " +
+      "  LAST_USAGE_DATE date, " +
       "  PRIORITY int" +
       ")";
 
@@ -373,11 +373,26 @@ public class TableMonitor {
   public boolean setLastUsageDate(String tableName, Date date)
         throws SQLException
 	{
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    String dateString = simpleDateFormat.format(date);
+    int rowCount = 0;
 		boolean success = false;
+
+    String updateString = 
+      "UPDATE " + DATA_TABLE_REGISTRY +
+      " SET last_usage_date='" + dateString + "'" +
+      " WHERE table_name='" + tableName + "'";
     
-    if (isTableInDB(tableName)) {
-      // Set the last usage date
-      success = true;
+    // Set the last usage date
+    try {
+      Statement stmt = dbConnection.createStatement();
+      rowCount = stmt.executeUpdate(updateString);
+      success = (rowCount == 1);
+      stmt.close();
+    } 
+    catch (SQLException e) {
+      System.out.println("SQLException: " + e.getMessage());
+      throw (e);
     }
     
     return success;
@@ -400,11 +415,24 @@ public class TableMonitor {
    */
 	public boolean setTableExpirationPolicy(String tableName, int priority) 
         throws SQLException {
-		boolean success = false;
+    int rowCount = 0;
+    boolean success = false;
+
+    String updateString = 
+      "UPDATE " + DATA_TABLE_REGISTRY +
+      " SET priority=" + priority +
+      " WHERE table_name='" + tableName + "'";
     
-    if (isTableInDB(tableName)) {
-      // Set the expiration policy
-      success = true;
+    // Set the last usage date
+    try {
+      Statement stmt = dbConnection.createStatement();
+      rowCount = stmt.executeUpdate(updateString);
+      success = (rowCount == 1);
+      stmt.close();
+    } 
+    catch (SQLException e) {
+      System.out.println("SQLException: " + e.getMessage());
+      throw (e);
     }
     
     return success;
