@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: costa $'
-          '$Date: 2006-09-01 16:47:02 $'
-      '$Revision: 1.79 $'
+        '$Author: tao $'
+          '$Date: 2006-09-09 00:43:19 $'
+      '$Revision: 1.80 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -121,9 +121,14 @@
     <property name="package.home" value="org/ecoinformatics" />
   	<property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
   	<property name="datamanager.name" value="data-manager-lib"/>
-
+    <property name="queryservice" value="lib/datamanager/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
+  	<property name="axis" value="lib/datamanager/axis.jar"/>
+  	<property name="rpc" value="lib/datamanager/jaxrpc.jar"/>
+  	<property name="wsdl" value="lib/datamanager/wsdl4j.jar"/>
+  	<property name="log" value="lib/datamanager/log4j-1.2.8.jar"/>
+  	
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
-    <property name="cpath.datamanager" value="${junit}:${queryservice}:${postgresql-driver}:${build.dir}/${name}.jar"/>
+    <property name="cpath.datamanager" value="${junit}:${queryservice}:${axis}:${rpc}:${wsdl}:${log}:${postgresql-driver}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
     <mkdir dir="${build.docs}/eml-${version}"/>
