@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-08 00:44:00 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-09 00:43:57 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -216,6 +216,9 @@ public class DownloadHandler implements Runnable
              //log.debug("end: " + end);
              String ecogridIdentifier = resourceName.substring(start, end);
              // pass this docid and get data item
+             System.out.println("the endpoint is "+ECOGRIDENDPOINT);
+             System.out.println("The identifier is "+ecogridIdentifier);
+             //return false;
              return getDataItemFromEcoGrid(ECOGRIDENDPOINT, ecogridIdentifier);
          }
          else if (resourceName.startsWith("srb://")) {
@@ -250,6 +253,8 @@ public class DownloadHandler implements Runnable
         
         // create a ecogrid client object and get the full record from the
         // client
+    	//System.out.println("=================the endpoint is "+endPoint);
+    	//System.out.println("=================the identifier is "+identifier);
     	boolean successFlag = false;
     	if (endPoint != null && identifier != null)
     	{
@@ -261,16 +266,45 @@ public class DownloadHandler implements Runnable
 	            //log.debug("This is instance pattern");
 	            
 	            URL endPointURL = new URL(endPoint);
-	            /*EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
+	            EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
 	            
-	            log.debug("Get from EcoGrid: " + identifier);
+	            //log.debug("Get from EcoGrid: " + identifier);
+	            NeededOutputStream [] outputStreamList = getOutputStreamList();
+	            if (outputStreamList != null)
+	            {
+	            	for (int i=0; i<outputStreamList.length; i++)
+	            	{
+	            		boolean oneLoopSuccess = true;
+	            		NeededOutputStream stream = outputStreamList[i];
+	            		if (stream != null && stream.getNeeded())
+	            		{
+		                    BufferedOutputStream bos = new BufferedOutputStream(stream.getOutputStream());
+		                    ecogridClient.get(identifier, bos);
+		                    bos.flush();
+		                    bos.close();
+		                    if (oneLoopSuccess)
+		                    {
+		                    	successFlag = true;
+		                    }
+	            		}
+	            		else if (stream != null)
+	            		{
+	            			if (oneLoopSuccess)
+		                    {
+		                    	successFlag = true;
+		                    }
+	            		}
+	            		else
+	            		{
+	            			oneLoopSuccess = false;
+	            		}
+	            	}
+	            }
+	            else
+	            {
+	            	successFlag = false;
+	            }
 	            
-	            BufferedOutputStream bos = new BufferedOutputStream( new FileOutputStream(getFile()) );
-	            ecogridClient.get(identifier, bos);
-	            bos.flush();
-	            bos.close();*/
-	            
-	            successFlag = true;
                 return successFlag;
 	            
 	        }
@@ -285,7 +319,8 @@ public class DownloadHandler implements Runnable
     	{
     		//System.out.println("in else path of get data from other source");
     		// this is not ecogrid source, we need download by other protocol
-    		return getContentFromSource(identifier);
+    		//return getContentFromSource(identifier);
+    		return false;
     		
     	}
     }
