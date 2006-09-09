@@ -32,7 +32,9 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testDownloadSuccess()
 	  {
-		  testDownload(true);
+		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+		  String identifier = "tao.1.1";
+		  testDownload(true, url, identifier);
 	  }
 	  
 	  /**
@@ -41,16 +43,40 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testDownloadFailed()
 	  {
-		  testDownload(false);
+		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+		  String identifier = "tao.1.1";
+		  testDownload(false, url, identifier);
 	  }
+	  /**
+	   * Test a download success
+	   * @param success
+	   */
+	  public void testEcogridDownloadFailed()
+	  {
+		  String url = "ecogrid://knb/tao.2.1";
+		  String identifier = "tao.2.1";
+		  testDownload(false, url, identifier);
+	  }
+	  
+	  /**
+	   * Test a download success
+	   * @param success
+	   */
+	  public void testEcogridDownloadSuccess()
+	  {
+		  String url = "ecogrid://knb/tao.2.1";
+		  String identifier = "tao.2.1";
+		  testDownload(true, url, identifier);
+	  }
+	  
+	  
 	  
 	  /*
 	   * Test download method
 	   */
-	  private void testDownload(boolean success)
+	  private void testDownload(boolean success, String url, String identifier)
 	  {
-		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
-		  String identifier = "tao.1.1";
+		  
 		  DownloadHandler handler = new DownloadHandler(url, identifier);
 		  System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
@@ -94,7 +120,9 @@ public class DownloadHandlerTest extends TestCase
 	   {
 	     TestSuite suite = new TestSuite();
 	     suite.addTest(new DownloadHandlerTest("testDownloadFailed"));
-	     suite.addTest(new DownloadHandlerTest("testDownloadSuccess"));	     
+	     suite.addTest(new DownloadHandlerTest("testDownloadSuccess"));	 
+	     //suite.addTest(new DownloadHandlerTest("testEcogridDownloadFailed"));
+	     //suite.addTest(new DownloadHandlerTest("testEcogridDownloadSuccess"));
 	     return suite;
 	   }
 }
