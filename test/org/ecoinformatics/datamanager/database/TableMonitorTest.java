@@ -152,7 +152,7 @@ public class TableMonitorTest extends TestCase {
    */
   public void testAddTableEntry() throws SQLException {
     boolean isPresent = false;
-    int rowCount = 0;
+    boolean success = false;
     String registry = tableMonitor.getDataTableRegistryName();
     ResultSet rs;
 
@@ -179,10 +179,10 @@ public class TableMonitorTest extends TestCase {
     }
 
     // Next, tell TableMonitor to add the table entry for the test table
-    rowCount = tableMonitor.addTableEntry(TEST_TABLE);
+    success = tableMonitor.addTableEntry(TEST_TABLE);
     
     // Assert that the operation succeeded
-    assertEquals("Failed to add table entry", rowCount, 1);
+    assertTrue("Failed to add table entry", success);
 
     // Query the table registry. The table entry should be present, and only
     // one record of it should exist.
@@ -190,7 +190,7 @@ public class TableMonitorTest extends TestCase {
       stmt = dbConnection.createStatement();             
       rs = stmt.executeQuery(selectString);
       
-      rowCount = 0;
+      int rowCount = 0;
       while (rs.next()) {
         rowCount++;
         String TABLE_NAME = rs.getString("TABLE_NAME");
@@ -232,7 +232,7 @@ public class TableMonitorTest extends TestCase {
   public void testDropTableEntry() throws SQLException {
     Date now = new Date();
     String registry = tableMonitor.getDataTableRegistryName();
-    int rowCount = 0;
+    boolean success;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 
     String insertString = 
@@ -257,10 +257,10 @@ public class TableMonitorTest extends TestCase {
     }
 
     // Next, tell TableMonitor to drop the table entry for the test table
-    rowCount = tableMonitor.dropTableEntry(TEST_TABLE);
+    success = tableMonitor.dropTableEntry(TEST_TABLE);
     
-    // Assert that one row was deleted
-    assertEquals("Failed to drop table entry", rowCount, 1);
+    // Assert that one row was successfully deleted
+    assertTrue("Failed to drop table entry", success);
   }
   
 
