@@ -2,8 +2,8 @@
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-12 17:15:50 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,27 +39,36 @@ import org.ecoinformatics.datamanager.parser.AttributeList;
 public class PostgresAdapter extends DatabaseAdapter {
 
   /**
-	 * Create a sql command to generate table
-	 * @param attributeList
-	 * @param tableName
-	 * @return
-	 */
-	public String generateDDL(AttributeList attributeList , String tableName)
-	{
-    String ddlString = "";
-    
-		return ddlString;
-	}
+   * Create a SQL command to generate a table
+   * 
+   * @param  attributeList   List of attributes that determine the table columns
+   * @param  tableName       The table name.
+   * @return A string containing the DDL needed to create the table with
+   *         its columns
+   */
+  public String generateDDL(AttributeList attributeList, String tableName) {
+   // For now, return some dummy SQL just to allow for further development
+   String ddlString = 
+     "CREATE TABLE " + tableName + " " +
+       "(COFFEE_NAME varchar(32), " +
+        "SUPPLIER_ID int, " +
+        "PRICE float, " +
+        "SALES int, " +
+        "TOTAL int)";
+   
+   return ddlString;
+  }
 
   
   /**
-   * Create a drop talbe sql command
-   * @param tableName
-   * @return
+   * Create a drop table SQL command.
+   * 
+   * @param tableName  Name of the table to be dropped
+   * @return   A SQL string that can be used to drop the table.
    */
   public String generateDropTableSQL(String tableName)
   {
-    String sqlString = "";
+    String sqlString = "DROP TABLE " + tableName;
     
     return sqlString;
   }
