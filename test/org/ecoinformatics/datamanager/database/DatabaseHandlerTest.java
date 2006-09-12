@@ -1,9 +1,17 @@
 package org.ecoinformatics.datamanager.database;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.ecoinformatics.datamanager.DataManager;
+import org.ecoinformatics.datamanager.parser.DataPackage;
+import org.ecoinformatics.datamanager.parser.Entity;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -28,9 +36,13 @@ public class DatabaseHandlerTest extends TestCase {
     
   private DatabaseHandler databaseHandler;  //An instance of object being tested
   private Connection dbConnection  = null;            // the database connection
-  private String  dbAdapterName = "PostgresAdapter";;    // DatabaseAdapter name
+  private String  dbAdapterName = DatabaseAdapter.POSTGRES_ADAPTER;
   private final String TEST_TABLE = "COFFEES";
     
+  private final String TEST_DOCUMENT = "tao.1.1";
+  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
+  
+  
     
   /*
    * Constructors
@@ -59,6 +71,8 @@ public class DatabaseHandlerTest extends TestCase {
     
     testSuite.addTest(new DatabaseHandlerTest("initialize"));
     testSuite.addTest(new DatabaseHandlerTest("testDoesDataExist"));
+    testSuite.addTest(new DatabaseHandlerTest("testGenerateTable"));
+    testSuite.addTest(new DatabaseHandlerTest("testDropTable"));
     
     return testSuite;
   }
@@ -200,6 +214,132 @@ public class DatabaseHandlerTest extends TestCase {
       System.err.println("SQLException: " + e.getMessage());
     }
 
+  }
+  
+
+  /**
+   * Tests the DatabaseHandler.generateTable() method.
+   * 
+   * @throws MalformedURLException
+   * @throws IOException
+   * @throws SQLException
+   * @throws Exception
+   */
+  public void testGenerateTable() 
+         throws MalformedURLException, IOException, SQLException, Exception {
+    DataManager dataManager = DataManager.getInstance();
+    DataPackage dataPackage = null;
+    InputStream metadataInputStream;
+    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
+        + TEST_DOCUMENT;
+    URL url;
+
+    try {
+      url = new URL(documentURL);
+      metadataInputStream = url.openStream();
+      dataPackage = dataManager.parseMetadata(metadataInputStream);
+    } 
+    catch (MalformedURLException e) {
+      e.printStackTrace();
+      throw (e);
+    } 
+    catch (IOException e) {
+      e.printStackTrace();
+      throw (e);
+    } 
+    catch (Exception e) {
+      e.printStackTrace();
+      throw (e);
+    }
+
+    /*
+     * Assert that dataManager.parseMetadata() returned a non-null dataPackage
+     * object.
+     */
+    assertNotNull("Data package is null", dataPackage);
+   
+    /*
+     * Compare the number of entities expected in the data package to the number
+     * of entities found by the parser.
+     */
+    if (dataPackage != null) {
+      Entity[] entities = dataPackage.getEntityList();
+      Entity entity = entities[0];
+      boolean success = databaseHandler.generateTable(entity);
+      assertTrue("DatabaseHandler did not succeed in generating table",success);
+      // Use a dummy table name until entity.getDBTableName() is implemented
+      // String tableName = entity.getDBTableName();
+      String tableName = "DUMMY_TABLE_NAME";
+      boolean isPresent = databaseHandler.doesDataExist(tableName);
+      assertTrue("Could not find table " + tableName +" but it should be in db", 
+                 isPresent);
+    }
+  }
+
+  
+  /**
+   * Tests the DatabaseHandler.dropTable() method. Does so by creating a test
+   * table. First drops the table in case it was already present. Then creates
+   * the table, calls isTableInDB(), and asserts that the table exists. Then
+   * drops the table again, calls isTableInDB(), and asserts that the table does
+   * not exist.
+   * 
+   * @throws SQLException
+   */
+  public void testDropTable() 
+          throws IOException, MalformedURLException, SQLException, Exception {
+    DataManager dataManager = DataManager.getInstance();
+    DataPackage dataPackage = null;
+    InputStream metadataInputStream;
+    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
+        + TEST_DOCUMENT;
+    URL url;
+
+    try {
+      url = new URL(documentURL);
+      metadataInputStream = url.openStream();
+      dataPackage = dataManager.parseMetadata(metadataInputStream);
+    } 
+    catch (MalformedURLException e) {
+      e.printStackTrace();
+      throw (e);
+    } 
+    catch (IOException e) {
+      e.printStackTrace();
+      throw (e);
+    } 
+    catch (Exception e) {
+      e.printStackTrace();
+      throw (e);
+    }
+
+    /*
+     * Assert that dataManager.parseMetadata() returned a non-null dataPackage
+     * object.
+     */
+    assertNotNull("Data package is null", dataPackage);
+    
+    /*
+     * Compare the number of entities expected in the data package to the number
+     * of entities found by the parser.
+     */
+    if (dataPackage != null) {
+      Entity[] entities = dataPackage.getEntityList();
+      Entity entity = entities[0];
+      boolean success = databaseHandler.generateTable(entity);
+      assertTrue("DatabaseHandler did not succeed in generating table",success);
+      // Use a dummy table name until entity.getDBTableName() is implemented
+      // String tableName = entity.getDBTableName();
+      String tableName = "DUMMY_TABLE_NAME";
+      boolean isPresent = databaseHandler.doesDataExist(tableName);
+      assertTrue("Could not find table " + tableName +" but it should be in db", 
+                 isPresent);
+      success = databaseHandler.dropTable(entity);
+      assertTrue("DatabaseHandler did not succeed in dropping table",success);
+      isPresent = databaseHandler.doesDataExist(tableName);
+      assertFalse("Found table " + tableName + " but it should not be in db", 
+          isPresent);
+    }
   }
 
 }
