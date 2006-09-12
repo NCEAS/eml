@@ -78,7 +78,7 @@ public class DownloadHandlerTest extends TestCase
 	  {
 		  
 		  DownloadHandler handler = new DownloadHandler(url, identifier);
-		  System.out.println("here1");
+		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)
 		  {
@@ -86,13 +86,13 @@ public class DownloadHandlerTest extends TestCase
 			  list[0] = dataStorage;
 			  handler.setDataStorageCladdList(list);
 		  }
-		  System.out.println("here2");
+		  //System.out.println("here2");
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
 		  Thread downloadThread = new Thread(handler);
-		  System.out.println("here3");
+		  //System.out.println("here3");
 		  downloadThread.start();
-		  System.out.println("here4");
+		  //System.out.println("here4");
 		  while(!handler.isCompleted())
 		  {
 			 
@@ -121,8 +121,8 @@ public class DownloadHandlerTest extends TestCase
 	     TestSuite suite = new TestSuite();
 	     suite.addTest(new DownloadHandlerTest("testDownloadFailed"));
 	     suite.addTest(new DownloadHandlerTest("testDownloadSuccess"));	 
-	     //suite.addTest(new DownloadHandlerTest("testEcogridDownloadFailed"));
-	     //suite.addTest(new DownloadHandlerTest("testEcogridDownloadSuccess"));
+	     suite.addTest(new DownloadHandlerTest("testEcogridDownloadFailed"));
+	     suite.addTest(new DownloadHandlerTest("testEcogridDownloadSuccess"));
 	     return suite;
 	   }
 }
