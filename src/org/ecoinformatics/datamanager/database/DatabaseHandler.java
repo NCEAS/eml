@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-08 21:39:36 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-12 17:10:56 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,9 +36,11 @@ import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
+import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -55,6 +57,7 @@ public class DatabaseHandler implements DataStorageInterface
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
   private DatabaseAdapter databaseAdapter;
+  private TableMonitor tableMonitor = null;
 
   
   /*
@@ -70,14 +73,16 @@ public class DatabaseHandler implements DataStorageInterface
     //databaseAdapter = (DatabaseAdapter) databaseAdapterClass.newInstance();
     
     if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
-      databaseAdapter = new PostgresAdapter();
+      this.databaseAdapter = new PostgresAdapter();
     }
     else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
-      databaseAdapter = new HSQLAdapter();
+      this.databaseAdapter = new HSQLAdapter();
     }
     else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
-      databaseAdapter = new OracleAdapter();
+      this.databaseAdapter = new OracleAdapter();
     }
+    
+    this.tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
 	}
 
   
@@ -102,7 +107,6 @@ public class DatabaseHandler implements DataStorageInterface
     boolean doesExist = false;
     
     try {
-      TableMonitor tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
       String tableName = identifierToTableName(identifier);
       doesExist = tableMonitor.isTableInDB(tableName);
     }
@@ -121,8 +125,38 @@ public class DatabaseHandler implements DataStorageInterface
    * @param   entity  The entity whose data table is to be dropped.
    * @return  true if the data table was successfully dropped, else false
    */
-  public boolean dropTable(Entity entity) {
-    return false;
+  public boolean dropTable(Entity entity) throws SQLException {
+    boolean success = false;
+    String tableName;
+    String sqlString;
+    
+    // For now, use a dummy table name until entity.getDBTableName() is
+    // implemented.
+    //tableName = entity.getDBTableName();
+    tableName = "DUMMY_TABLE_NAME";
+    
+    if ((tableName != null) && (!tableName.equals(""))) {
+      sqlString = databaseAdapter.generateDropTableSQL(tableName);
+
+      try {
+        Statement stmt = dbConnection.createStatement();
+        stmt.executeUpdate(sqlString);
+        stmt.close();
+        success = true;
+        
+        /*
+         * Table was dropped, so we need to inform the table monitor that it
+         * should drop the table entry from the data table registry.
+         */
+        success = success && tableMonitor.dropTableEntry(tableName);
+      } 
+      catch (SQLException e) {
+        System.err.println("SQLException: " + e.getMessage());
+        throw (e);
+      }
+    }
+
+    return success;
   }
   
  
@@ -132,10 +166,11 @@ public class DatabaseHandler implements DataStorageInterface
    * @param  dataPackage the data package whose tables are to be dropped
    * @return true if all data tables were successfully dropped, else false.
    */
-  public boolean dropTables(DataPackage dataPackage) {
+  public boolean dropTables(DataPackage dataPackage) throws SQLException {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
-    
+
+    // Drop the table for each entity in the data package.
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
       success = success && dropTable(entity);
@@ -164,9 +199,49 @@ public class DatabaseHandler implements DataStorageInterface
    * @param   entity  the entity whose table is to be generated in the database
    * @return  true if the table is successfully generated, else false
    */
-  public boolean generateTable(Entity entity)
-  {
-    return false;
+  public boolean generateTable(Entity entity) throws SQLException {
+    boolean success = true;
+    String tableName;
+    
+    // For now, use a dummy table name, just to allow for further development
+    // and testing
+    //tableName = entity.getDBTableName();
+    tableName = "DUMMY_TABLE_NAME";
+
+    /*
+     * If the entity can't tell us its table name, then return failure (false).
+     */
+    if (tableName == null || tableName.equals("")) {
+      success = false;
+    }
+    else {
+      boolean doesExist = doesDataExist(tableName);
+      
+      /*
+       * If the table is not already in the database, generate it. If it's
+       * already there, we're done.
+       */
+      if (!doesExist) {
+        System.out.println("Could not find table in db: " + tableName);
+        Statement stmt;
+        AttributeList attributeList = entity.getAttributeList();
+        String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
+
+        try {
+          stmt = dbConnection.createStatement();
+          stmt.executeUpdate(ddlString);
+          stmt.close();
+          // Tell the table monitor to add a new table entry.
+          tableMonitor.addTableEntry(tableName);
+        } 
+        catch (SQLException e) {
+          System.err.println("SQLException: " + e.getMessage());
+          throw (e);
+        }
+      }
+    }
+    
+    return success;
   }
   
 
@@ -177,7 +252,7 @@ public class DatabaseHandler implements DataStorageInterface
    *                      tables generated
    * @return true if all tables were successfully generated, else false
    */
-  public boolean generateTables(DataPackage dataPackage) {
+  public boolean generateTables(DataPackage dataPackage) throws SQLException {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
     
