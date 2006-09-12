@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-08 21:37:13 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-09-12 17:05:50 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -115,12 +115,13 @@ public class TableMonitor {
    * @param   tableName  name of the data table to be added
    * @return  the row count returned by executing the SQL update
    */
-  public int addTableEntry(String tableName) throws SQLException {
+  public boolean addTableEntry(String tableName) throws SQLException {
     String insertString;
     Date now = new Date();
     String priority = "1";
     int rowCount = -1;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    boolean success = false;
 
     insertString = "INSERT INTO " + 
                    DATA_TABLE_REGISTRY +
@@ -135,13 +136,14 @@ public class TableMonitor {
       Statement stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(insertString);
       stmt.close();
+      success = (rowCount == 1);
     }
     catch(SQLException e) {
-      System.out.println("SQLException: " + e.getMessage());
+      System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
     
-    return rowCount;
+    return success;
   }
   
   
@@ -182,7 +184,8 @@ public class TableMonitor {
    * @param   tableName   the name of the table to be dropped from the database
    * @return  the row count returned by executing the SQL update
    */
-  public int dropTableEntry(String tableName) throws SQLException {
+  public boolean dropTableEntry(String tableName) throws SQLException {
+    boolean success = false;
     String deleteString;
     int rowCount = -1;
 
@@ -193,13 +196,14 @@ public class TableMonitor {
       Statement stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(deleteString);
       stmt.close();
+      success = (rowCount == 1);
     }
     catch(SQLException e) {
-      System.out.println("SQLException: " + e.getMessage());
+      System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
     
-    return rowCount;
+    return success;
   }
   
 
@@ -337,10 +341,10 @@ public class TableMonitor {
     
     rs = databaseMetaData.getTables(catalog, schemaPattern, 
                                     tableNamePattern, types);
-    
+
     while (rs.next()) {
       String TABLE_NAME = rs.getString("TABLE_NAME");
-      
+ 
       if (TABLE_NAME.equalsIgnoreCase(tableName)) {
         isPresent = true;
       }
@@ -391,7 +395,7 @@ public class TableMonitor {
       stmt.close();
     } 
     catch (SQLException e) {
-      System.out.println("SQLException: " + e.getMessage());
+      System.err.println("SQLException: " + e.getMessage());
       throw (e);
     }
     
@@ -431,7 +435,7 @@ public class TableMonitor {
       stmt.close();
     } 
     catch (SQLException e) {
-      System.out.println("SQLException: " + e.getMessage());
+      System.err.println("SQLException: " + e.getMessage());
       throw (e);
     }
     
