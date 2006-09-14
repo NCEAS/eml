@@ -2,8 +2,8 @@
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:40:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-09-14 00:42:23 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,51 +33,75 @@ package org.ecoinformatics.datamanager.download;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 public class ZipDataHandler extends CompressedDataHandler
 {
+	/**
+	 * Constructor
+	 * @param url
+	 * @param identifier
+	 */
+    public ZipDataHandler(String url, String identifier)
+    {
+    	super(url, identifier);
+    }
+    /**
+     * This method will uncompress the zip inputstream
+     * and write to datastorage interface
+     */
    public boolean uncompress()
    {
+	   return true;
+   }
+   
+   /**
+    * Overwrite the the method in DownloadHandler in order to uncompressed it.
+    * we only write first file (if have mutiple
+    * @param in
+    * @return
+    */
+   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   {
 	   boolean success = false;
+	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+	   ZipInputStream zipInputStream = null;
 	   try
 	   {
-		 File unCompressedCacheItemDir = null;
-		 File source = null;
-	     //log.debug("At unCompressCacheItem method in Zip ojbect");
-	     ZipFile zipFile = new ZipFile(source);
-	     Enumeration enu = zipFile.entries();
-	     // go though every zip entry
-	     byte[] array = new byte[300 * 1024];
-	     while (enu.hasMoreElements()) 
-	     {
-	       ZipEntry entry = (ZipEntry) enu.nextElement();
-	       // write zipEntry to a local file in Cachedir/unzip/mlocatFilename/
-	       String name = entry.getName();
-	       if (name != null) 
-	       {
-	         //log.debug("Zip entry name is " + name);
-	         File unzipFile = new File(unCompressedCacheItemDir, name);
-	         FileOutputStream fileWriter = new FileOutputStream(unzipFile);
-	         InputStream fileReader = zipFile.getInputStream(entry);
-	         int len;
-	         while ( (len = fileReader.read(array)) >= 0) 
-	         {
-	           fileWriter.write(array, 0, len);
-	         }
-	         fileReader.close();
-	         fileWriter.close();
-	       }
-	     }
-	     //unCompressedFileList = unCompressedCacheItemDir.list();
+		   zipInputStream = new ZipInputStream(in);
+		   ZipEntry entry = zipInputStream.getNextEntry();
+		   int index = 0;
+		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+		   while (entry != null && index <1)
+		   {
+			  //System.out.println("the zip entry name is "+entry.getName());
+			  if (entry.isDirectory())
+			  {
+				  entry = zipInputStream.getNextEntry();
+				  continue;
+			  }
+			  // this method will close the zipInpustream, and zipInpustream is not null!!!
+		      success = super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
+		      //System.out.println("after get succes from super class");
+		      index++;
+		      //System.out.println("end of while ");
+		   }
+		   //System.out.println("zip sucess flag "+success);
+		   return success;
+		   
 	   }
 	   catch (Exception e)
 	   {
-		   
+		   success =false;
+		   System.out.println("the error is "+e.getMessage());
 	   }
+	   //System.out.println("the end of method");
 	   return success;
    }
 }
