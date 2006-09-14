@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-09 00:43:57 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-09-14 00:41:38 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,6 +40,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Vector;
+import java.util.zip.ZipInputStream;
 
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
@@ -50,15 +51,22 @@ public class DownloadHandler implements Runnable
 	private String url        = null;
 	private DataStorageInterface[] dataStorageClassList = null;
 	private String[] errorMessages = null;
-	private boolean completed = false;
-	private boolean success = false;
-	private boolean busy = false;
+	protected boolean completed = false;
+	protected boolean success = false;
+	protected boolean busy = false;
 	private static final String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
 	private static final String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
 	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
 	private static final String SRBUSERNAME     = "testuser.sdsc";
 	private static final String SRBPASSWD       = "TESTUSER";
 	
+	/**
+	 * Constructor of this class
+	 */
+	public DownloadHandler()
+	{
+		
+	}
 	/**
 	 * Constructor of this class
 	 * @param url
@@ -124,76 +132,23 @@ public class DownloadHandler implements Runnable
     protected boolean getContentFromSource(String resourceName)
     {
     	 //log.debug("download data from EcogridDataCacheItem URL : " + resourceName);
+    	//System.out.println("in getContent method!!!!!!!!!!!!!!! " +resourceName);
     	boolean successFlag = false;
-         if (resourceName.startsWith("http://") ||
-                 resourceName.startsWith("file://") ||resourceName.startsWith("ftp://") ) {
+        if (resourceName != null && (resourceName.startsWith("http://") ||
+                 resourceName.startsWith("file://") ||resourceName.startsWith("ftp://") )) {
              // get the data from a URL
+        	//System.out.println("after if !!!!!!!!!!!!!!!!!!11");
              try {
+            	 //System.out.println("start try !!!!!!!!!!!!!!!!!!11");
                  URL url = new URL(resourceName);
+                 //System.out.println("afterURL !!!!!!!!!!!!!!!!!!11");
                  if (url != null) {
-                     URLConnection conn = url.openConnection();
-                     if (conn != null) {
+                	 
                          InputStream filestream = url.openStream();
-                         if (filestream != null) {
-                             
-                                 //String type = conn.getContentType();
-                                 
-                                 // Crate a new Cache Filename and write the resultsets directly to the cached file
-                                 //File localFile = getFile();
-                        	 NeededOutputStream [] outputStreamList = getOutputStreamList();
-                        	 byte [] c = new byte[1024];
-                        	 int bread = filestream.read(c, 0, 1024);
-                        	 boolean oneLoopSuccess = true;
-                             while (bread != -1) 
-                             {   //FileOutputStream osw = new FileOutputStream(localFile);
-	                        	  if (outputStreamList != null)
-	                        	  {
-	                        		 for (int i = 0; i<outputStreamList.length; i++)
-	                        		 {
-	                        			 NeededOutputStream neededOutput = outputStreamList[i];
-	                        			 if (neededOutput != null)
-	                        			 {
-	                        				 OutputStream output = neededOutput.getOutputStream();
-	                        				 boolean need = neededOutput.getNeeded();
-		                        			 if (output != null && need)
-		                        			 {
-		                        				 
-	                                             output.write(c, 0, bread);
-	                                             if(oneLoopSuccess)
-	                                             {
-	                                            	 successFlag = true;
-	                                             }
-		                        			 }
-		                        			 else if (output != null)
-		                        			 {
-		                        				 if(oneLoopSuccess)
-	                                             {
-	                                            	 successFlag = true;
-	                                             }
-		                        			 }
-		                        			 else
-		                        			 {
-		                        				 oneLoopSuccess = false;
-		                        			 }
-	                        			 }
-	                        			 else
-	                        			 {
-	                        				 oneLoopSuccess = false;
-	                        			 }
-	                        		 }
-	                        	  }
-	                        	  else
-	                        	  {
-	                        		  successFlag = false;
-	                        	  }
-	                        	  bread = filestream.read(c, 0, 1024);
-                            }
-                            filestream.close();
-                            closeOutputStream(outputStreamList);
-                            //successFlag = true;
-                            return successFlag;
-                         }
-                     }
+                         //System.out.println("after get inpustream !!!!!!!!!!!!!!!!!!11");
+                         return this.writeRemoteInputStreamIntoDataStorage(filestream);
+                    // }
+                       
                  }
                  //log.debug("EcogridDataCacheItem - error connecting to http/file ");
                  successFlag = false;
@@ -205,7 +160,7 @@ public class DownloadHandler implements Runnable
              }
              // We will use ecogrid client to handle both ecogrid and srb protocol
          }
-         else if (resourceName.startsWith("ecogrid://")) {
+         else if (resourceName != null && resourceName.startsWith("ecogrid://")) {
              // get the docid from url
              int start = resourceName.indexOf("/", 11) + 1;
              //log.debug("start: " + start);
@@ -221,7 +176,7 @@ public class DownloadHandler implements Runnable
              //return false;
              return getDataItemFromEcoGrid(ECOGRIDENDPOINT, ecogridIdentifier);
          }
-         else if (resourceName.startsWith("srb://")) {
+         else if (resourceName != null && resourceName.startsWith("srb://")) {
              // get srb docid from the url
              String srbIdentifier = transformSRBurlToDocid(resourceName);
              // reset endpoint for srb (This is hack we need to figure ou
@@ -396,7 +351,10 @@ public class DownloadHandler implements Runnable
     private void closeOutputStream(NeededOutputStream[] outputStreamList) throws IOException
     {
     	if (outputStreamList != null)
-    	{
+    	{	            //String type = conn.getContentType();
+            
+            // Crate a new Cache Filename and write the resultsets directly to the cached file
+            //File localFile = getFile();
     		for (int i = 0; i<outputStreamList.length; i++)
    		 {
    			 NeededOutputStream neededOutput = outputStreamList[i];
@@ -450,5 +408,85 @@ public class DownloadHandler implements Runnable
     	{
     		return needed;
     	}
+    }
+    
+    /**
+     * Method to get url
+     */
+    public String getUrl()
+    {
+    	return url;
+    }
+    
+    /*
+     * This method will read from remote inputsream and write it
+     * to StorageSystem. It only handle http or ftp protocal. It couldn't
+     * handle ecogrid protocol
+     */
+    protected boolean writeRemoteInputStreamIntoDataStorage(InputStream filestream) throws IOException
+    {
+    	boolean successFlag = false;
+    	//System.out.println("in download method!!!!!!!!!!!!!!!!!!11");
+    	if (filestream != null) 
+    	{
+	            
+	     	 NeededOutputStream [] outputStreamList = getOutputStreamList();
+		   	 byte [] c = new byte[1024];
+		   	 int bread = filestream.read(c, 0, 1024);
+		   	 boolean oneLoopSuccess = true;
+		        while (bread != -1) 
+		        {   //FileOutputStream osw = new FileOutputStream(localFile);
+		       	  if (outputStreamList != null)
+		       	  {
+		       		 for (int i = 0; i<outputStreamList.length; i++)
+		       		 {
+		       			 NeededOutputStream neededOutput = outputStreamList[i];
+		       			 if (neededOutput != null)
+		       			 {
+		       				 OutputStream output = neededOutput.getOutputStream();
+		       				 boolean need = neededOutput.getNeeded();
+		           			 if (output != null && need)
+		           			 {
+		           				 
+		                            output.write(c, 0, bread);
+		                            if(oneLoopSuccess)
+		                            {
+		                           	 successFlag = true;
+		                            }
+		           			 }
+		           			 else if (output != null)
+		           			 {
+		           				 if(oneLoopSuccess)
+		                            {
+		                           	 successFlag = true;
+		                            }
+		           			 }
+		           			 else
+		           			 {
+		           				 oneLoopSuccess = false;
+		           			 }
+		       			 }
+		       			 else
+		       			 {
+		       				 oneLoopSuccess = false;
+		       			 }
+		       		 }
+		       	  }
+		       	  else
+		       	  {
+		       		  successFlag = false;
+		       	  }
+		       	  bread = filestream.read(c, 0, 1024);
+		       }
+		       filestream.close();
+		       closeOutputStream(outputStreamList);
+		       //successFlag = true;
+		       System.out.println("the success is "+successFlag);
+		       return successFlag;
+	    }
+	    else
+	    {
+	    		return successFlag;
+	    }
     }
 }  
