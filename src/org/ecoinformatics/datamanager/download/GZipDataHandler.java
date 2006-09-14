@@ -2,8 +2,8 @@
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:40:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-09-14 00:42:45 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,10 +34,16 @@ package org.ecoinformatics.datamanager.download;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 
 public class GZipDataHandler extends CompressedDataHandler
 {
+   public GZipDataHandler(String url, String identifier)
+   {
+	    	super(url, identifier);
+   }
    public boolean uncompress()
    {
 	   boolean success = false;
@@ -67,5 +73,12 @@ public class GZipDataHandler extends CompressedDataHandler
 	   }
 	   
 	    return success;
+   }
+   
+   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   {
+	   File file = new File("file");
+	   file.mkdir();
+	   return true;
    }
 }

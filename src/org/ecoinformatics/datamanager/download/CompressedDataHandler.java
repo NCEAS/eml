@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:40:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-09-14 00:40:53 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,11 +31,26 @@
  */
 package org.ecoinformatics.datamanager.download;
 
-public abstract class CompressedDataHandler 
+import java.io.IOException;
+import java.io.InputStream;
+
+public abstract class CompressedDataHandler extends DownloadHandler 
 {
-   /**
-    * Method to uncompress data 
-    * @return
-    */
-   public abstract boolean uncompress();
+	 /**
+	  * Constructor
+	  * @param url
+	  * @param identifier
+	  */
+	 public CompressedDataHandler(String url, String identifier)
+	 {
+	    	super(url, identifier);
+	 }
+   
+	 /**
+      * Method to uncompress data 
+      * @return
+      */
+     public abstract boolean uncompress();
+     
+     //public abstract boolean writeRemoteInputStreamInotDataStorage(InputStream in) throws IOException;
 }
