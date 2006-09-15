@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-12 17:10:56 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-15 22:34:38 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -117,31 +117,25 @@ public class DatabaseHandler implements DataStorageInterface
     
     return doesExist;
   }
-
-
+  
+  
   /**
-   * Drops a data table from the database.
+   * Given a table name, drops the data table from the database.
    * 
-   * @param   entity  The entity whose data table is to be dropped.
-   * @return  true if the data table was successfully dropped, else false
+   * @param   tableName  The name of the table that is to be dropped.
+   * @return  true if the data table was successfully dropped, else false.
    */
-  public boolean dropTable(Entity entity) throws SQLException {
+  boolean dropTable(String tableName) throws SQLException {
     boolean success = false;
-    String tableName;
     String sqlString;
     
-    // For now, use a dummy table name until entity.getDBTableName() is
-    // implemented.
-    //tableName = entity.getDBTableName();
-    tableName = "DUMMY_TABLE_NAME";
-    
-    if ((tableName != null) && (!tableName.equals(""))) {
+    if ((tableName != null) && (!tableName.trim().equals(""))) {
+      Statement stmt = null;
       sqlString = databaseAdapter.generateDropTableSQL(tableName);
 
       try {
-        Statement stmt = dbConnection.createStatement();
+        stmt = dbConnection.createStatement();
         stmt.executeUpdate(sqlString);
-        stmt.close();
         success = true;
         
         /*
@@ -154,8 +148,34 @@ public class DatabaseHandler implements DataStorageInterface
         System.err.println("SQLException: " + e.getMessage());
         throw (e);
       }
+      finally {
+        if (stmt != null) stmt.close();
+      }
     }
 
+    return success;
+  }
+
+
+  /**
+   * Given an Entity, drops the correspoding data table from the database.
+   * 
+   * @param   entity  The entity whose data table is to be dropped.
+   * @return  true if the data table was successfully dropped, else false
+   */
+  public boolean dropTable(Entity entity) throws SQLException {
+    boolean success = false;
+    String tableName;
+    
+    tableName = entity.getDBTableName();
+    
+    if ((tableName == null) || (tableName.equals(""))) {
+      throw(new SQLException("Entity does not have a valid name."));
+    }
+    else {
+      success = dropTable(tableName);
+    }
+    
     return success;
   }
   
@@ -203,16 +223,13 @@ public class DatabaseHandler implements DataStorageInterface
     boolean success = true;
     String tableName;
     
-    // For now, use a dummy table name, just to allow for further development
-    // and testing
-    //tableName = entity.getDBTableName();
-    tableName = "DUMMY_TABLE_NAME";
-
+    tableName = entity.getDBTableName();
+    
     /*
      * If the entity can't tell us its table name, then return failure (false).
      */
-    if (tableName == null || tableName.equals("")) {
-      success = false;
+    if ((tableName == null) || (tableName.trim().equals(""))) {
+      throw new SQLException("Entity does not hava a valid name.");
     }
     else {
       boolean doesExist = doesDataExist(tableName);
@@ -222,21 +239,22 @@ public class DatabaseHandler implements DataStorageInterface
        * already there, we're done.
        */
       if (!doesExist) {
-        System.out.println("Could not find table in db: " + tableName);
-        Statement stmt;
+        Statement stmt = null;
         AttributeList attributeList = entity.getAttributeList();
         String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
 
         try {
           stmt = dbConnection.createStatement();
           stmt.executeUpdate(ddlString);
-          stmt.close();
           // Tell the table monitor to add a new table entry.
           tableMonitor.addTableEntry(tableName);
         } 
         catch (SQLException e) {
           System.err.println("SQLException: " + e.getMessage());
           throw (e);
+        }
+        finally {
+          if (stmt != null) stmt.close();
         }
       }
     }
@@ -343,9 +361,9 @@ public class DatabaseHandler implements DataStorageInterface
 
   /**
 	 * Start to serialize a remote inputstream. The OutputStream is 
-	 * the destination in the local store (in this case, the database itself). 
+	 * the destination in the local store.
    * The DownloadHandler reads data from the remote source and writes it to 
-   * the output stream for local storage. For the DatabaseHandler handler class,
+   * the output stream for local storage. For the DatabaseHandler class,
    * the database itself serves as the local store.
    * 
 	 * @param  identifier  An identifier to the data in the local store that is
