@@ -2,8 +2,8 @@
  *    '$RCSfile: TarDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:40:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-09-15 02:42:51 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,11 +31,106 @@
  */
 package org.ecoinformatics.datamanager.download;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import com.ice.tar.TarEntry;
+import com.ice.tar.TarInputStream;
+
+
 public class TarDataHandler extends ArchivedDataHandler
 {
+	/**
+	 * Constructor
+	 * @param url
+	 * @param identifier
+	 */
+    public TarDataHandler(String url, String identifier)
+    {
+    	super(url, identifier);
+    }
+    
     public boolean unarchive()
     {
     	boolean success = false;
     	return success;
     }
+    
+    /**
+     * Overwrite the the method in DownloadHandler in order to uncompressed it.
+     * we only write first file (if have mutiple
+     * @param in
+     * @return
+     */
+    protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+    {
+ 	   boolean success = false;
+ 	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+ 	   TarInputStream tarInputStream = null;
+ 	   if (in == null)
+ 	   {
+ 		   return success;
+ 	   }
+ 	   try
+ 	   {
+ 		   tarInputStream = new TarInputStream(in);
+ 		   TarEntry entry = tarInputStream.getNextEntry();
+ 		   int index = 0;
+ 		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+ 		   while (entry != null && index <1)
+ 		   {
+ 			  //System.out.println("the zip entry name is "+entry.getName());
+ 			  if (entry.isDirectory())
+ 			  {
+ 				  entry = tarInputStream.getNextEntry();
+ 				  continue;
+ 			  }
+ 			  // this method will close the zipInpustream, and zipInpustream is not null!!!
+ 		      success = super.writeRemoteInputStreamIntoDataStorage(tarInputStream);
+ 		      //System.out.println("after get succes from super class");
+ 		      index++;
+ 		      //System.out.println("end of while ");
+ 		   }
+ 		   //System.out.println("zip sucess flag "+success);
+ 		   return success;
+ 		   
+ 	   }
+ 	   catch (Exception e)
+ 	   {
+ 		   success =false;
+ 		   //System.out.println("the error is "+e.getMessage());
+ 	   }
+ 	   //System.out.println("the end of method");
+ 	   return success;
+    }
+    
+    
+    
+    /*
+     *  This method will get data from ecogrid server base on given
+     *  It overwrite the one in DownloadHanlder.java
+     */
+    protected boolean getDataItemFromEcoGrid(String endPoint, String ecogridIdentifier)
+    {
+ 	   boolean success = false;
+        File zipTmp = writeEcoGridArchivedDataIntoTmp(endPoint, ecogridIdentifier, ".tar");
+        try
+        {
+ 	       if (zipTmp != null)
+ 	       {
+ 	    	  InputStream stream = new FileInputStream(zipTmp);
+ 	    	  success = this.writeRemoteInputStreamIntoDataStorage(stream);
+ 	       }
+        }
+        catch(Exception e)
+        {
+     	   System.out.println("Error is "+e.getMessage());
+        }
+        return success;
+      
+    }
+    
+    
 }
