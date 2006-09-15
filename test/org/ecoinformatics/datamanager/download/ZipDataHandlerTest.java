@@ -49,7 +49,7 @@ public class ZipDataHandlerTest extends TestCase
 	   */
 	  public void testEcogridDownloadFailed()
 	  {
-		  String url = "ecogrid://knb/tao.2.1";
+		  String url = "ecogrid://knb/tao.12096.1";
 		  String identifier = "tao.4.1";
 		  testDownload(false, url, identifier);
 	  }
@@ -60,7 +60,7 @@ public class ZipDataHandlerTest extends TestCase
 	   */
 	  public void testEcogridDownloadSuccess()
 	  {
-		  String url = "ecogrid://knb/tao.2.1";
+		  String url = "ecogrid://knb/tao.12096.1";
 		  String identifier = "tao.4.1";
 		  testDownload(true, url, identifier);
 	  }
@@ -117,8 +117,8 @@ public class ZipDataHandlerTest extends TestCase
 	     TestSuite suite = new TestSuite();
 	     suite.addTest(new ZipDataHandlerTest("testDownloadFailed"));
 	     suite.addTest(new ZipDataHandlerTest("testDownloadSuccess"));	 
-	     //suite.addTest(new ZipDataHandlerTest("testEcogridDownloadFailed"));
-	     //suite.addTest(new ZipDataHandlerTest("testEcogridDownloadSuccess"));
+	     suite.addTest(new ZipDataHandlerTest("testEcogridDownloadFailed"));
+	     suite.addTest(new ZipDataHandlerTest("testEcogridDownloadSuccess"));
 	     return suite;
 	   }
 }
