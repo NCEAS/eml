@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-14 00:41:38 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-09-15 00:53:33 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -54,7 +54,7 @@ public class DownloadHandler implements Runnable
 	protected boolean completed = false;
 	protected boolean success = false;
 	protected boolean busy = false;
-	private static final String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
+	private static final String ECOGRIDENDPOINT = "http://pacific.msi.ucsb.edu:8080/knb/services/EcoGridQuery";
 	private static final String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
 	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
 	private static final String SRBUSERNAME     = "testuser.sdsc";
@@ -196,14 +196,11 @@ public class DownloadHandler implements Runnable
      *  This method will get data from ecogrid server base on given
      *  docid. This method will handle the distribution url is ecogrid or
      *  srb protocol
-     */
-    /**
-     *  Gets the dataItemFromEcoGrid attribute of the DataCacheObject object
      *
      *@param  endPoint
      *@param  identifier
      */
-    private boolean getDataItemFromEcoGrid(String endPoint, String identifier)
+    protected boolean getDataItemFromEcoGrid(String endPoint, String identifier)
     {
         
         // create a ecogrid client object and get the full record from the
