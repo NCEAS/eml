@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-08 00:43:23 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-15 22:26:47 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -130,6 +130,11 @@ public class Entity extends DataObjectDescription
         }*/
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
+
+        // For now, set the database table name to the entity name, replacing
+        // spaces with underscores. We need a way to generate a unique name for 
+        // the entity, so this will not be sufficient.
+        this.DBtableName = this.getName().replace(' ', '_').replace('-', '_');
     }
 
     /**
