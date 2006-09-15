@@ -33,8 +33,8 @@ public class DownloadHandlerTest extends TestCase
 	  public void testDownloadSuccess()
 	  {
 		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
-		  String identifier = "tao.1.1";
-		  testDownload(true, url, identifier);
+		  //String identifier = "tao.1.1";
+		  testDownload(true, url, url);
 	  }
 	  
 	  /**
@@ -44,8 +44,8 @@ public class DownloadHandlerTest extends TestCase
 	  public void testDownloadFailed()
 	  {
 		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
-		  String identifier = "tao.1.1";
-		  testDownload(false, url, identifier);
+		  //String identifier = "tao.1.1";
+		  testDownload(false, url, url);
 	  }
 	  /**
 	   * Test a download success
@@ -54,8 +54,8 @@ public class DownloadHandlerTest extends TestCase
 	  public void testEcogridDownloadFailed()
 	  {
 		  String url = "ecogrid://knb/tao.2.1";
-		  String identifier = "tao.2.1";
-		  testDownload(false, url, identifier);
+		  //String identifier = "tao.2.1";
+		  testDownload(false, url, url);
 	  }
 	  
 	  /**
@@ -65,8 +65,7 @@ public class DownloadHandlerTest extends TestCase
 	  public void testEcogridDownloadSuccess()
 	  {
 		  String url = "ecogrid://knb/tao.2.1";
-		  String identifier = "tao.2.1";
-		  testDownload(true, url, identifier);
+		  testDownload(true, url, url);
 	  }
 	  
 	  
@@ -77,7 +76,7 @@ public class DownloadHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  DownloadHandler handler = new DownloadHandler(url, identifier);
+		  DownloadHandler handler = new DownloadHandler(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)

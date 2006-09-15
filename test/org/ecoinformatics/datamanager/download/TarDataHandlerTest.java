@@ -29,8 +29,8 @@ public class TarDataHandlerTest extends TestCase
 	  public void testDownloadSuccess()
 	  {
 		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
-		  String identifier = "tao.7.1";
-		  testDownload(true, url, identifier);
+		  //String identifier = "tao.7.1";
+		  testDownload(true, url, url);
 	  }
 	  
 	  /**
@@ -40,8 +40,8 @@ public class TarDataHandlerTest extends TestCase
 	  public void testDownloadFailed()
 	  {
 		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
-		  String identifier = "tao.7.1";
-		  testDownload(false, url, identifier);
+		  //String identifier = "tao.7.1";
+		  testDownload(false, url, url);
 	  }
 	  /**
 	   * Test a download success
@@ -50,8 +50,8 @@ public class TarDataHandlerTest extends TestCase
 	  public void testEcogridDownloadFailed()
 	  {
 		  String url = "ecogrid://knb/tao.12100.1";
-		  String identifier = "tao.8.1";
-		  testDownload(false, url, identifier);
+		  //String identifier = "tao.8.1";
+		  testDownload(false, url, url);
 	  }
 	  
 	  /**
@@ -61,8 +61,8 @@ public class TarDataHandlerTest extends TestCase
 	  public void testEcogridDownloadSuccess()
 	  {
 		  String url = "ecogrid://knb/tao.12100.1";
-		  String identifier = "tao.8.1";
-		  testDownload(true, url, identifier);
+		  //String identifier = "tao.8.1";
+		  testDownload(true, url, url);
 	  }
 	  
 	  
@@ -73,7 +73,7 @@ public class TarDataHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  TarDataHandler handler = new TarDataHandler(url, identifier);
+		  TarDataHandler handler = new TarDataHandler(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)

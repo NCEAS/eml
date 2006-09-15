@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageTest.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-08 00:45:12 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-09-15 23:26:47 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -62,6 +62,7 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	 */
 	public OutputStream startSerialize(String identifier) 
 	{
+		identifier = transformURLToIdentifier(identifier);
 		File file = new File(tmp, identifier);
 		System.out.println("The tmp dir is "+System.getProperty("java.io.tmpdir"));
 		
@@ -104,6 +105,7 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	 */
 	public InputStream load(String identifier) throws DataSourceNotFoundException
 	{
+		identifier = transformURLToIdentifier(identifier);
 		File file = new File(tmp, identifier);
 		FileInputStream inputStream = null;
 		try
@@ -118,6 +120,16 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		return inputStream;
 	}
 	
+	private String transformURLToIdentifier(String url)
+	{
+		String identifier = null;
+		if (url != null)
+		{
+		   identifier = "tao"+url.hashCode();
+		}
+		return identifier;
+	}
+	
 	/**
 	 * Method to test if data already download or not.
 	 * @param identifier
@@ -126,6 +138,8 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	public boolean doesDataExist(String identifier)
 	{
 		//boolean exist = false;
+		identifier = transformURLToIdentifier(identifier);
+		System.out.println("the identifier is ============ "+identifier);
 		File file = new File(tmp, identifier);
 		return file.exists();
 	}
