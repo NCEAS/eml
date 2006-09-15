@@ -65,6 +65,7 @@ public class TableMonitorTest extends TestCase {
     testSuite.addTest(new TableMonitorTest("testDropTableEntry"));
     testSuite.addTest(new TableMonitorTest("testGetCreationDate"));
     testSuite.addTest(new TableMonitorTest("testGetLastUsageDate"));
+    testSuite.addTest(new TableMonitorTest("testGetOldestTable"));
     testSuite.addTest(new TableMonitorTest("testGetTableList"));
     testSuite.addTest(new TableMonitorTest("testIsTableInDB"));
     testSuite.addTest(new TableMonitorTest("testSetLastUsageDate"));
@@ -160,7 +161,7 @@ public class TableMonitorTest extends TestCase {
       "SELECT * FROM " +
       registry +
       " WHERE TABLE_NAME='" + TEST_TABLE + "'";
-    Statement stmt;
+    Statement stmt = null;
     
     String cleanString = 
       "DELETE FROM " +
@@ -171,11 +172,13 @@ public class TableMonitorTest extends TestCase {
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(cleanString);
-      stmt.close();
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     // Next, tell TableMonitor to add the table entry for the test table
@@ -200,23 +203,27 @@ public class TableMonitorTest extends TestCase {
         }
       }
       
-      stmt.close();
       assertTrue("Table entry not present", isPresent);
       assertEquals("Multiple table entries found for "+TEST_TABLE, rowCount, 1);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
     }
+    finally {
+      if (stmt != null) stmt.close();
+    }
     
     // Clean-up any existing entries for the test table
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(cleanString);
-      stmt.close();
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
   }
@@ -234,6 +241,7 @@ public class TableMonitorTest extends TestCase {
     String registry = tableMonitor.getDataTableRegistryName();
     boolean success;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    Statement stmt = null;
 
     String insertString = 
       "INSERT INTO " + 
@@ -247,13 +255,15 @@ public class TableMonitorTest extends TestCase {
 
     // First, insert an entry for the test table
     try {
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       stmt.executeUpdate(insertString);
-      stmt.close();
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     // Next, tell TableMonitor to drop the table entry for the test table
@@ -321,6 +331,31 @@ public class TableMonitorTest extends TestCase {
   
 
   /**
+   * Tests the TableMonitor.getOldestTable() method. Add two table entries to 
+   * the data table registry. Set the last usage date for the first one 
+   * to a very old date, the other to the current date. Test that 
+   * getOldestTable() returns the name of the table with the very old last
+   * usage date.
+   * 
+   * @throws SQLException
+   */
+  public void testGetOldestTable() throws SQLException {
+    long unixEpoch = 0;
+    Date ancientDate = new Date(unixEpoch);
+    Date now = new Date();
+    
+    tableMonitor.addTableEntry("TEST_TABLE_ANCIENT");
+    tableMonitor.setLastUsageDate("TEST_TABLE_ANCIENT", ancientDate);
+    tableMonitor.addTableEntry("TEST_TABLE_CURRENT");
+    tableMonitor.setLastUsageDate("TEST_TABLE_CURRENT", now);   
+    String oldestTable = tableMonitor.getOldestTable();  
+    tableMonitor.dropTableEntry("TEST_TABLE_ANCIENT");
+    tableMonitor.dropTableEntry("TEST_TABLE_CURRENT");
+    assertEquals("Did not find the oldest table", oldestTable, "TEST_TABLE_ANCIENT");
+  }
+  
+
+  /**
    * Tests the TableMonitor.getTableList() method. Adds a table entry for the
    * test table, then gets the table list and asserts that the test table has
    * been found. Then drops the table entry, gets the table list a second time,
@@ -372,21 +407,22 @@ public class TableMonitorTest extends TestCase {
                           "TOTAL int)";
     String dropString = "DROP TABLE " + TEST_TABLE;
     boolean isPresent;
-    Statement stmt;
+    Statement stmt = null;
 
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(dropString);
-      stmt.close();
     }
     catch(SQLException e) {
       // Ignore error if test table can't be dropped at this point.
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(createString);
-      stmt.close();
       isPresent = tableMonitor.isTableInDB(TEST_TABLE);
       assertTrue("Could not find table " + 
                  TEST_TABLE + " but it should be in db", 
@@ -396,17 +432,22 @@ public class TableMonitorTest extends TestCase {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
+    finally {
+      if (stmt != null) stmt.close();
+    }
    
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(dropString);
-      stmt.close();
       isPresent = tableMonitor.isTableInDB(TEST_TABLE);
       assertFalse("Found table " + TEST_TABLE + " but it should not be in db", 
                   isPresent);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
   }
@@ -428,6 +469,7 @@ public class TableMonitorTest extends TestCase {
     String selectString = 
       "SELECT last_usage_date FROM " + dataTableRegistryName +
       " WHERE table_name ='" + TEST_TABLE + "'";
+    Statement stmt = null;
     
     tableMonitor.addTableEntry(TEST_TABLE);
     success = tableMonitor.setLastUsageDate(TEST_TABLE, testDate);
@@ -438,14 +480,13 @@ public class TableMonitorTest extends TestCase {
     // the test table and compare it to the known value
     try {
       Date foundDate = null;
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
         foundDate = rs.getDate("last_usage_date");
       }
       
-      stmt.close();
       String twoDates = "testDate = " + simpleDateFormat.format(testDate) 
                         + ",  "
                         + "foundDate = " + simpleDateFormat.format(foundDate)
@@ -457,6 +498,9 @@ public class TableMonitorTest extends TestCase {
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     // Clean-up table entry for test table
@@ -479,6 +523,7 @@ public class TableMonitorTest extends TestCase {
     String selectString = 
       "SELECT priority FROM " + dataTableRegistryName +
       " WHERE table_name ='" + TEST_TABLE + "'";
+    Statement stmt = null;
     
     tableMonitor.addTableEntry(TEST_TABLE);
     success = tableMonitor.setTableExpirationPolicy(TEST_TABLE, testPriority);
@@ -490,19 +535,21 @@ public class TableMonitorTest extends TestCase {
     // the test table and compare it to the known priority value
     try {
       int foundPriority = -99;
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
         foundPriority = rs.getInt("priority");
       }
       
-      stmt.close();
       assertEquals("Priority found does not match test value: ",
                    foundPriority, testPriority);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     // Clean-up table entry for test table
