@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:17:15 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-09-15 22:28:40 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,6 +39,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
@@ -85,7 +86,7 @@ public class DataManager {
    * Examples are: "HSQLAdapter", "PostgresAdapter", and "OracleAdapter".
    * For now, hard-code "PostgresAdapter" since it is our first goal.
    */
-  private String     databaseAdapterName = "PostgresAdapter";
+  private String     databaseAdapterName = DatabaseAdapter.POSTGRES_ADAPTER;
   private Connection dbConnection = null;
   
 
@@ -166,7 +167,9 @@ public class DataManager {
     DownloadHandler downloadHandler = null;
     
     //downloadHandler = entity.getDownloadHandler();
-    //success = downloadHandler.download();
+    if (downloadHandler != null) {
+      //success = downloadHandler.download();
+    }
     
     return success;
   }
@@ -185,10 +188,12 @@ public class DataManager {
    */
   public boolean downloadData(InputStream metadataInputStream) 
         throws Exception {
-    boolean success;
+    boolean success = false;
     DataPackage dataPackage = parseMetadata(metadataInputStream);
     
-    success = downloadData(dataPackage);
+    if (dataPackage != null) {
+      success = downloadData(dataPackage);
+    }
     
     return success;
   }
@@ -301,9 +306,13 @@ public class DataManager {
    */
   public boolean loadDataToDB(InputStream metadataInputStream) 
         throws Exception {
-    boolean success;
+    boolean success = false;
+    
     DataPackage dataPackage = parseMetadata(metadataInputStream);
-    success = loadDataToDB(dataPackage);
+    
+    if (dataPackage != null) {
+      success = loadDataToDB(dataPackage);
+    }
     
     return success;
   }
