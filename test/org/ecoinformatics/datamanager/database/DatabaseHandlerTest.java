@@ -165,7 +165,7 @@ public class DatabaseHandlerTest extends TestCase {
                           "TOTAL int)";
     String dropString = "DROP TABLE " + TEST_TABLE;
     boolean isPresent;
-    Statement stmt;
+    Statement stmt = null;
 
     /*
      * First, drop the test table, just in case it got left behind by a
@@ -174,10 +174,12 @@ public class DatabaseHandlerTest extends TestCase {
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(dropString);
-      stmt.close();
     }
     catch(SQLException e) {
       // Ignore error if test table can't be dropped at this point.
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
     /*
@@ -187,7 +189,6 @@ public class DatabaseHandlerTest extends TestCase {
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(createString);
-      stmt.close();
       isPresent = databaseHandler.doesDataExist(TEST_TABLE);
       assertTrue("Could not find table " + 
                  TEST_TABLE + " but it should be in db", 
@@ -197,6 +198,9 @@ public class DatabaseHandlerTest extends TestCase {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
+    finally {
+      if (stmt != null) stmt.close();
+    }
    
     /*
      * Clean-up by dropping the test table a second time. Assert that the
@@ -205,13 +209,15 @@ public class DatabaseHandlerTest extends TestCase {
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(dropString);
-      stmt.close();
       isPresent = databaseHandler.doesDataExist(TEST_TABLE);
       assertFalse("Found table " + TEST_TABLE + " but it should not be in db", 
                   isPresent);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
 
   }
@@ -265,11 +271,9 @@ public class DatabaseHandlerTest extends TestCase {
     if (dataPackage != null) {
       Entity[] entities = dataPackage.getEntityList();
       Entity entity = entities[0];
+      String tableName = entity.getDBTableName(); 
       boolean success = databaseHandler.generateTable(entity);
       assertTrue("DatabaseHandler did not succeed in generating table",success);
-      // Use a dummy table name until entity.getDBTableName() is implemented
-      // String tableName = entity.getDBTableName();
-      String tableName = "DUMMY_TABLE_NAME";
       boolean isPresent = databaseHandler.doesDataExist(tableName);
       assertTrue("Could not find table " + tableName +" but it should be in db", 
                  isPresent);
@@ -328,9 +332,8 @@ public class DatabaseHandlerTest extends TestCase {
       Entity entity = entities[0];
       boolean success = databaseHandler.generateTable(entity);
       assertTrue("DatabaseHandler did not succeed in generating table",success);
-      // Use a dummy table name until entity.getDBTableName() is implemented
-      // String tableName = entity.getDBTableName();
-      String tableName = "DUMMY_TABLE_NAME";
+      
+      String tableName = entity.getDBTableName(); 
       boolean isPresent = databaseHandler.doesDataExist(tableName);
       assertTrue("Could not find table " + tableName +" but it should be in db", 
                  isPresent);
