@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 01:59:59 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-15 23:25:23 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -47,9 +47,9 @@ public abstract class CompressedDataHandler extends DownloadHandler
 	  * @param url
 	  * @param identifier
 	  */
-	 public CompressedDataHandler(String url, String identifier)
+	 public CompressedDataHandler(String url)
 	 {
-	    	super(url, identifier);
+	    	super(url);
 	 }
    
 	 /**

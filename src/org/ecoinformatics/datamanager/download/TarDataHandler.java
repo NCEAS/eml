@@ -2,8 +2,8 @@
  *    '$RCSfile: TarDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 02:42:51 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-15 23:25:23 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,11 +45,10 @@ public class TarDataHandler extends ArchivedDataHandler
 	/**
 	 * Constructor
 	 * @param url
-	 * @param identifier
-	 */
-    public TarDataHandler(String url, String identifier)
+     */
+    public TarDataHandler(String url)
     {
-    	super(url, identifier);
+    	super(url);
     }
     
     public boolean unarchive()

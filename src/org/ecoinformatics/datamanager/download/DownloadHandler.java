@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 00:53:33 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-09-15 23:25:23 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -44,16 +44,31 @@ import java.util.zip.ZipInputStream;
 
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
+/**
+ * This class will read a input stream from remote entity for given URL and
+ * write data into given local storage systems. This is the main class of download
+ * component. The class implements Runnable interface, so the download process
+ * will be ran in another thread.
+ * @author tao
+ *
+ */
 
 public class DownloadHandler implements Runnable 
 {
-	private String identifier = null;
+	/*
+	 * Instance fields
+	 */
+	//private String identifier = null;
 	private String url        = null;
 	private DataStorageInterface[] dataStorageClassList = null;
 	private String[] errorMessages = null;
 	protected boolean completed = false;
 	protected boolean success = false;
 	protected boolean busy = false;
+	
+	/*
+	 * Constants
+	 */
 	private static final String ECOGRIDENDPOINT = "http://pacific.msi.ucsb.edu:8080/knb/services/EcoGridQuery";
 	private static final String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
 	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
@@ -61,22 +76,21 @@ public class DownloadHandler implements Runnable
 	private static final String SRBPASSWD       = "TESTUSER";
 	
 	/**
-	 * Constructor of this class
+	 * Default constructor of this class
 	 */
 	public DownloadHandler()
 	{
 		
 	}
+	
 	/**
 	 * Constructor of this class
 	 * @param url
-	 * @param identifier
-	 * @param dataStorageClassList
 	 */
-	public DownloadHandler(String url, String identifier)
+	public DownloadHandler(String url)
 	{
 		this.url = url;
-		this.identifier = identifier;
+		//this.identifier = identifier;
 		//this.dataStorageClassList = dataStorageClassList;
 	}
 	
@@ -320,15 +334,15 @@ public class DownloadHandler implements Runnable
 	  		 for (int i = 0; i<dataStorageClassList.length; i++)
 	  		 {
 	  			 DataStorageInterface dataStorge = dataStorageClassList[i];
-	  			 if (dataStorge != null && !dataStorge.doesDataExist(identifier))
+	  			 if (dataStorge != null && !dataStorge.doesDataExist(url))
 	  			 {
-	  				 OutputStream osw = dataStorge.startSerialize(identifier);
+	  				 OutputStream osw = dataStorge.startSerialize(url);
 	  				 NeededOutputStream stream = new NeededOutputStream(osw, true);
 	                 list[i] = stream;
 	  			 }
 	  			 else if(dataStorge != null)
 	  			 {
-	  				OutputStream osw = dataStorge.startSerialize(identifier);
+	  				OutputStream osw = dataStorge.startSerialize(url);
 	  				 NeededOutputStream stream = new NeededOutputStream(osw, false);
 	                 list[i] = stream;
 	  			 }

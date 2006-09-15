@@ -2,8 +2,8 @@
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 02:00:44 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-15 23:25:23 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,9 +45,9 @@ import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 public class GZipDataHandler extends CompressedDataHandler
 {
-   public GZipDataHandler(String url, String identifier)
+   public GZipDataHandler(String url)
    {
-	    	super(url, identifier);
+	    	super(url);
    }
    public boolean uncompress()
    {
