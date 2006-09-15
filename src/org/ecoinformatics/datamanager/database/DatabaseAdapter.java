@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-15 22:33:20 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
 import java.util.Vector;
 import java.util.Map;
 
@@ -79,7 +80,8 @@ public abstract class DatabaseAdapter {
 	 * @param tableName
 	 * @return
 	 */
-	public String generateDDL(AttributeList attributeList , String tableName) {
+	public String generateDDL(AttributeList attributeList , String tableName) 
+          throws SQLException {
    String ddlString = "";
    
    return ddlString;
