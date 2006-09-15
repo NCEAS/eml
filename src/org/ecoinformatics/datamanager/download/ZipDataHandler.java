@@ -2,8 +2,8 @@
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 00:54:05 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-15 02:01:09 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -123,7 +123,7 @@ public class ZipDataHandler extends CompressedDataHandler
    protected boolean getDataItemFromEcoGrid(String endPoint, String ecogridIdentifier)
    {
 	   boolean success = false;
-       File zipTmp = writeEcoGridZipDataIntoTmp(endPoint, ecogridIdentifier);
+       File zipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, ecogridIdentifier, ".1");
        try
        {
 	       if (zipTmp != null)
@@ -141,47 +141,5 @@ public class ZipDataHandler extends CompressedDataHandler
    }
    
    
-   /*
-    * Method to download zip file from ecogrid to a cache dir
-    * This is tmp solution, we need figure out to remove this step.
-    * The tmpZip File will be returned. If download failed, null will be return
-    */
-   private File writeEcoGridZipDataIntoTmp(String endPoint, String ecogridIdentifier)
-   {
-       
-    File tmpZip = null;
-   	if (endPoint != null && ecogridIdentifier != null)
-   	{
-	        //log.debug("Get " + identifier + " from " + endPoint);
-	        
-	        try
-	        {
-	            //fatory
-	            //log.debug("This is instance pattern");
-	            
-	            URL endPointURL = new URL(endPoint);
-	            EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
-	            String localIdentifier = ecogridIdentifier+".1";
-	            File tmp = new File(System.getProperty("java.io.tmpdir"));
-	            tmpZip = new File(tmp, localIdentifier);
-	            FileOutputStream stream = new FileOutputStream(tmpZip);
-         		if (stream != null)
-	            {
-                    BufferedOutputStream bos = new BufferedOutputStream(stream);
-                    ecogridClient.get(ecogridIdentifier, bos);
-                    bos.flush();
-                    bos.close();
-                    stream.close();
-		             
-	            }
-	      	            
-	        }
-	        catch(Exception ee)
-	        {
-	            //log.debug("EcogridDataCacheItem - error connecting to Ecogrid ", ee);
-	            System.out.println("Error: "+ee.getMessage());
-	        }
-   	}
-   	return tmpZip;
-   }
+  
 }
