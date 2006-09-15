@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-12 17:05:50 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-09-15 22:37:50 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -68,6 +68,8 @@ public class TableMonitor {
 	private Connection dbConnection  = null;   // the database connection
 	private String     dbAdapterName = null;   // the DatabaseAdapter name
   private final String DATA_TABLE_REGISTRY = "DATA_TABLE_REGISTRY";
+  private final int DEFAULT_DB_SIZE = 100;   // default maximum DB size (in Mb)
+  private int dbSize = DEFAULT_DB_SIZE;
   
   
   /*
@@ -121,6 +123,7 @@ public class TableMonitor {
     String priority = "1";
     int rowCount = -1;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    Statement stmt = null;
     boolean success = false;
 
     insertString = "INSERT INTO " + 
@@ -133,14 +136,16 @@ public class TableMonitor {
                    ")";
 
     try {
-      Statement stmt = dbConnection.createStatement();
+      stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(insertString);
-      stmt.close();
       success = (rowCount == 1);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return success;
@@ -164,20 +169,22 @@ public class TableMonitor {
       "  PRIORITY int" +
       ")";
 
-    Statement stmt;
+    Statement stmt = null;
 
     try {
       stmt = dbConnection.createStatement();             
       stmt.executeUpdate(createString);
-      stmt.close();
     } 
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
+    finally {
+      if (stmt != null) stmt.close();
+    }
   }
   
- 
+  
   /**
    * Drops a table entry for a given table name.
    * 
@@ -188,19 +195,22 @@ public class TableMonitor {
     boolean success = false;
     String deleteString;
     int rowCount = -1;
+    Statement stmt = null;
 
     deleteString = "DELETE FROM " + DATA_TABLE_REGISTRY + 
                    " WHERE TABLE_NAME='" + tableName + "'";
  
     try {
-      Statement stmt = dbConnection.createStatement();
+      stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(deleteString);
-      stmt.close();
       success = (rowCount == 1);
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return success;
@@ -210,8 +220,55 @@ public class TableMonitor {
   /**
    * Frees up table space by dropping one or more old tables.
    */
-  public void freeTableSpace() {
+  public int freeTableSpace(DatabaseHandler databaseHandler)
+          throws SQLException {
+    boolean success;
+    int freedSpace = 0;
+    String oldestTable = getOldestTable();
     
+    success = databaseHandler.dropTable(oldestTable);
+    
+    return freedSpace;
+  }
+  
+ 
+  /**
+   * Find the oldest table in the data table registry (the table whose 
+   * last_usage_date is the oldest) and return its table name.
+   * 
+   * @return the name of the oldest table in the data table registry
+   * @throws SQLException
+   */
+  String getOldestTable() throws SQLException {
+    Date oldestDate = new Date();
+    String oldestTable = null;
+    String selectString = 
+               "SELECT table_name, last_usage_date FROM " + DATA_TABLE_REGISTRY;
+    Statement stmt = null;
+    
+    try {
+      stmt = dbConnection.createStatement();
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        String tableName = rs.getString("table_name");
+        Date lastUsageDate = rs.getDate("last_usage_date");
+        
+        if (lastUsageDate.before(oldestDate)) {
+          oldestDate = lastUsageDate;
+          oldestTable = tableName;
+        }
+      }    
+    }
+    catch (SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
+    }
+    
+    return oldestTable;
   }
 
 
@@ -226,20 +283,22 @@ public class TableMonitor {
     String selectString = 
       "SELECT creation_date FROM " + DATA_TABLE_REGISTRY +
       " WHERE table_name='" + tableName + "'";
+    Statement stmt = null;
     
     try {
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
         creationDate = rs.getDate("creation_date");    
       }
-      
-      stmt.close();
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return creationDate;
@@ -269,20 +328,22 @@ public class TableMonitor {
     String selectString = 
       "SELECT last_usage_date FROM " + DATA_TABLE_REGISTRY +
       " WHERE table_name='" + tableName + "'";
+    Statement stmt = null;
     
     try {
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
         lastUsageDate = rs.getDate("last_usage_date");    
       }
-      
-      stmt.close();
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return lastUsageDate;
@@ -296,22 +357,24 @@ public class TableMonitor {
    */
   public String[] getTableList() throws SQLException {
     String selectString = "SELECT table_name FROM " + DATA_TABLE_REGISTRY;
+    Statement stmt = null;
     Vector vector = new Vector();
     
     try {
-      Statement stmt = dbConnection.createStatement();             
+      stmt = dbConnection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
         String tableName = rs.getString("table_name");
         vector.add(tableName);
       }
-      
-      stmt.close();
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     String[] tableList = new String[vector.size()];
@@ -361,7 +424,14 @@ public class TableMonitor {
    * @param size   the maximum size (in Megabytes) of the database
    */
   public void setDBSize(int size) {
-    
+    int minSize = 1;      // Don't allow dbSize to be set below a minimum value
+
+    if (size < minSize) {
+      dbSize = minSize;
+    }
+    else {
+      dbSize = size;
+    }
   }
   
 
@@ -380,6 +450,7 @@ public class TableMonitor {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
     String dateString = simpleDateFormat.format(date);
     int rowCount = 0;
+    Statement stmt = null;
 		boolean success = false;
 
     String updateString = 
@@ -389,14 +460,16 @@ public class TableMonitor {
     
     // Set the last usage date
     try {
-      Statement stmt = dbConnection.createStatement();
+      stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(updateString);
       success = (rowCount == 1);
-      stmt.close();
     } 
     catch (SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw (e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return success;
@@ -420,6 +493,7 @@ public class TableMonitor {
 	public boolean setTableExpirationPolicy(String tableName, int priority) 
         throws SQLException {
     int rowCount = 0;
+    Statement stmt = null;
     boolean success = false;
 
     String updateString = 
@@ -429,14 +503,16 @@ public class TableMonitor {
     
     // Set the last usage date
     try {
-      Statement stmt = dbConnection.createStatement();
+      stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(updateString);
       success = (rowCount == 1);
-      stmt.close();
     } 
     catch (SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw (e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
     }
     
     return success;
