@@ -2,8 +2,8 @@
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-14 00:42:45 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-15 02:00:44 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,12 +31,17 @@
  */
 package org.ecoinformatics.datamanager.download;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.zip.GZIPInputStream;
+
+
+import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 public class GZipDataHandler extends CompressedDataHandler
 {
@@ -47,38 +52,68 @@ public class GZipDataHandler extends CompressedDataHandler
    public boolean uncompress()
    {
 	   boolean success = false;
+	   return success;
+   }
+   
+   /**
+    * Overwrite the the method in DownloadHandler in order to uncompressed it.
+    * we only write first file (if have mutiple
+    * @param in
+    * @return
+    */
+   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   {
+	   boolean success = false;
+	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+	   GZIPInputStream zipInputStream = null;
+	   if (in == null)
+	   {
+		   return success;
+	   }
 	   try
 	   {
-	      //log.debug("At unCompressCacheItem method in Zip ojbect");
-	      // read the gzip file and ungzip it
-	      String filename = null;
-	      GZIPInputStream gZipFileReader = new GZIPInputStream(new FileInputStream(filename));
-	      String unGZipFileName = null;
-	      String unGZipFilePath = null + File.separator + unGZipFileName;
-	      //log.debug("The unGzip aboslute file path is "+ unGZipFilePath);
-	      File unGzipFile = new File(unGZipFilePath);
-	      FileOutputStream fileWriter = new FileOutputStream(unGzipFile);
-	      byte[] array = new byte[3000 * 1024];
-	      int len;
-	      while ( (len = gZipFileReader.read(array)) >= 0) 
-	      {
-	        fileWriter.write(array, 0, len);
-	      }
-	      gZipFileReader.close();
-	      fileWriter.close();
+		   zipInputStream = new GZIPInputStream(in);
+		   //this method will close the zipInpustream, and zipInpustream is not null!!!
+		   success = super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
+		   //System.out.println("after get succes from super class");
+			    
 	   }
 	   catch (Exception e)
 	   {
-		   
+		   //success = false;
+		   System.err.println("the error is "+e.getMessage());
 	   }
-	   
-	    return success;
+	   //System.out.println("the end of method");
+	   return success;
    }
    
-   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   
+   
+   /*
+    *  This method will get data from ecogrid server base on given
+    *  It overwrite the one in DownloadHanlder.java
+    */
+   protected boolean getDataItemFromEcoGrid(String endPoint, String ecogridIdentifier)
    {
-	   File file = new File("file");
-	   file.mkdir();
-	   return true;
+	   boolean success = false;
+       File gzipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, ecogridIdentifier, ".gz");
+       System.out.println("The gzip file name is "+gzipTmp);
+       try
+       {
+	       if (gzipTmp != null)
+	       {
+	    	  InputStream stream = new FileInputStream(gzipTmp);
+	    	  success = this.writeRemoteInputStreamIntoDataStorage(stream);
+	       }
+       }
+       catch(Exception e)
+       {
+    	   System.out.println("Error is "+e.getMessage());
+       }
+       return success;
+     
    }
+   
+   
+  
 }
