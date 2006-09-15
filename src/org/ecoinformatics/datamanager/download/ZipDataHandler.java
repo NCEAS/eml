@@ -2,8 +2,8 @@
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-14 00:42:23 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-15 00:54:05 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,7 +31,9 @@
  */
 package org.ecoinformatics.datamanager.download;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +42,9 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
+
+
+import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 public class ZipDataHandler extends CompressedDataHandler
 {
@@ -72,6 +77,10 @@ public class ZipDataHandler extends CompressedDataHandler
 	   boolean success = false;
 	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
 	   ZipInputStream zipInputStream = null;
+	   if (in == null)
+	   {
+		   return success;
+	   }
 	   try
 	   {
 		   zipInputStream = new ZipInputStream(in);
@@ -99,9 +108,80 @@ public class ZipDataHandler extends CompressedDataHandler
 	   catch (Exception e)
 	   {
 		   success =false;
-		   System.out.println("the error is "+e.getMessage());
+		   //System.out.println("the error is "+e.getMessage());
 	   }
 	   //System.out.println("the end of method");
 	   return success;
+   }
+   
+   
+   
+   /*
+    *  This method will get data from ecogrid server base on given
+    *  It overwrite the one in DownloadHanlder.java
+    */
+   protected boolean getDataItemFromEcoGrid(String endPoint, String ecogridIdentifier)
+   {
+	   boolean success = false;
+       File zipTmp = writeEcoGridZipDataIntoTmp(endPoint, ecogridIdentifier);
+       try
+       {
+	       if (zipTmp != null)
+	       {
+	    	  InputStream stream = new FileInputStream(zipTmp);
+	    	  success = this.writeRemoteInputStreamIntoDataStorage(stream);
+	       }
+       }
+       catch(Exception e)
+       {
+    	   System.out.println("Error is "+e.getMessage());
+       }
+       return success;
+     
+   }
+   
+   
+   /*
+    * Method to download zip file from ecogrid to a cache dir
+    * This is tmp solution, we need figure out to remove this step.
+    * The tmpZip File will be returned. If download failed, null will be return
+    */
+   private File writeEcoGridZipDataIntoTmp(String endPoint, String ecogridIdentifier)
+   {
+       
+    File tmpZip = null;
+   	if (endPoint != null && ecogridIdentifier != null)
+   	{
+	        //log.debug("Get " + identifier + " from " + endPoint);
+	        
+	        try
+	        {
+	            //fatory
+	            //log.debug("This is instance pattern");
+	            
+	            URL endPointURL = new URL(endPoint);
+	            EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
+	            String localIdentifier = ecogridIdentifier+".1";
+	            File tmp = new File(System.getProperty("java.io.tmpdir"));
+	            tmpZip = new File(tmp, localIdentifier);
+	            FileOutputStream stream = new FileOutputStream(tmpZip);
+         		if (stream != null)
+	            {
+                    BufferedOutputStream bos = new BufferedOutputStream(stream);
+                    ecogridClient.get(ecogridIdentifier, bos);
+                    bos.flush();
+                    bos.close();
+                    stream.close();
+		             
+	            }
+	      	            
+	        }
+	        catch(Exception ee)
+	        {
+	            //log.debug("EcogridDataCacheItem - error connecting to Ecogrid ", ee);
+	            System.out.println("Error: "+ee.getMessage());
+	        }
+   	}
+   	return tmpZip;
    }
 }
