@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-14 00:40:53 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-15 01:59:59 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,8 +31,14 @@
  */
 package org.ecoinformatics.datamanager.download;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+
+import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 public abstract class CompressedDataHandler extends DownloadHandler 
 {
@@ -52,5 +58,48 @@ public abstract class CompressedDataHandler extends DownloadHandler
       */
      public abstract boolean uncompress();
      
-     //public abstract boolean writeRemoteInputStreamInotDataStorage(InputStream in) throws IOException;
+    
+     /*
+      * Method to downloadc compressed file from ecogrid to a tmp dir
+      * This is tmp solution, we need figure out to remove this step.
+      * The tmpZip File will be returned. If download failed, null will be return
+      */
+     protected File writeEcoGridCompressedDataIntoTmp(String endPoint, String ecogridIdentifier, String suffix)
+     {
+         
+        File compressedFile = null;
+     	if (endPoint != null && ecogridIdentifier != null)
+     	{
+  	        //log.debug("Get " + identifier + " from " + endPoint);
+  	        
+  	        try
+  	        {
+  	            //fatory
+  	            //log.debug("This is instance pattern");
+  	            
+  	            URL endPointURL = new URL(endPoint);
+  	            EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
+  	            String localIdentifier = ecogridIdentifier+suffix;
+  	            File tmp = new File(System.getProperty("java.io.tmpdir"));
+  	            compressedFile = new File(tmp, localIdentifier);
+  	            FileOutputStream stream = new FileOutputStream(compressedFile);
+           		if (stream != null)
+  	            {
+                      BufferedOutputStream bos = new BufferedOutputStream(stream);
+                      ecogridClient.get(ecogridIdentifier, bos);
+                      bos.flush();
+                      bos.close();
+                      stream.close();
+  		             
+  	            }
+  	      	            
+  	        }
+  	        catch(Exception ee)
+  	        {
+  	            //log.debug("EcogridDataCacheItem - error connecting to Ecogrid ", ee);
+  	            System.out.println("Error: "+ee.getMessage());
+  	        }
+     	}
+     	return compressedFile;
+     }
 }
