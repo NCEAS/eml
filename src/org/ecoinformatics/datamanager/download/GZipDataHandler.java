@@ -2,8 +2,8 @@
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 23:25:23 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-19 00:10:52 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -93,7 +93,7 @@ public class GZipDataHandler extends CompressedDataHandler
     *  This method will get data from ecogrid server base on given
     *  It overwrite the one in DownloadHanlder.java
     */
-   protected boolean getDataItemFromEcoGrid(String endPoint, String ecogridIdentifier)
+   protected boolean getContentFromEcoGridSource(String endPoint, String ecogridIdentifier)
    {
 	   boolean success = false;
        File gzipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, ecogridIdentifier, ".gz");

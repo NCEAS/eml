@@ -2,8 +2,8 @@
  *    '$RCSfile: ArchivedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 23:25:23 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-19 00:10:52 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,22 +38,24 @@ import java.net.URL;
 
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
+/**
+ * This class is a sub-class of DownloadHandler. It will handle archived data
+ * Entity such as tar file. After downloading, the file will be unarchived and
+ * written to data storage system.
+ * @author tao
+ *
+ */
 public abstract class ArchivedDataHandler extends DownloadHandler
 {
 	/**
 	 * Constructor
-	 * @param url
+	 * @param url  The url of entity which need be downloaded
 	 */
     public ArchivedDataHandler(String url)
     {
     	super(url);
     }
-   /**
-    * Un-archive data
-    * @return
-    */
-   public abstract boolean unarchive();
-   
+  
    /*
     * Method to downloadc compressed file from ecogrid to a tmp dir
     * This is tmp solution, we need figure out to remove this step.

@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 23:25:23 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-19 00:10:52 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,6 +40,13 @@ import java.net.URL;
 
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
+/**
+ * This is the sub-class of DownloadHander class. It will handle download compressed
+ * data entity, such as gzipped or zipped entity. After downloading the compressed entity
+ * will be uncompressed and written to data storage interface.
+ * @author tao
+ *
+ */
 public abstract class CompressedDataHandler extends DownloadHandler 
 {
 	 /**
@@ -52,16 +59,10 @@ public abstract class CompressedDataHandler extends DownloadHandler
 	    	super(url);
 	 }
    
-	 /**
-      * Method to uncompress data 
-      * @return
-      */
-     public abstract boolean uncompress();
-     
-    
+	    
      /*
       * Method to downloadc compressed file from ecogrid to a tmp dir
-      * This is tmp solution, we need figure out to remove this step.
+      * This is a temporary solution, we need figure out to remove this step.
       * The tmpZip File will be returned. If download failed, null will be return
       */
      protected File writeEcoGridCompressedDataIntoTmp(String endPoint, String ecogridIdentifier, String suffix)

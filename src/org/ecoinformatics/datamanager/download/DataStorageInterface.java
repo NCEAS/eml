@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-30 00:04:03 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-19 00:10:52 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,35 +34,41 @@ package org.ecoinformatics.datamanager.download;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * This interface provides API for data storage systems. DownloadHandler can
+ * write remote source into a class which impletements this interface.
+ * @author tao
+ *
+ */
 public interface DataStorageInterface 
 {
 	/**
 	 * Start to serialize remote inputstream. The OutputStream is 
 	 * the destination.
-	 * @param identifier
-	 * @return
+	 * @param identifier  the identifier will be written in data storage system.
+	 * @return The OutputStream which will serialize the remote source.
 	 */
 	public OutputStream startSerialize(String identifier);
 	
 	/**
 	 * Finish serialize method
-	 * @param indentifier
-	 * @param errorCode
+	 * @param indentifier the identifier has been written in data storage system
+	 * @param errorCode   the errorCode will be passed to the storage system
 	 */
 	public void finishSerialize(String indentifier, String errorCode);
 	
 	/**
-	 * Load data from data storage system
-	 * @param identifier
-	 * @return
+	 * Load given entity from data storage system 
+	 * @param identifier  Identifier of the entity which need be loaded
+	 * @return The InputStream from this entity
 	 * @throws DataSourceNotFoundException
 	 */
 	public InputStream load(String identifier) throws DataSourceNotFoundException;
 	
 	/**
-	 * Method to test if data already download or not.
-	 * @param identifier
-	 * @return
+	 * Gets the status if the given entity is already in data storage system.
+	 * @param identifier  Identifier of the entity
+	 * @return The boolean value if the entity is in storage system or not.
 	 */
 	public boolean doesDataExist(String identifier);
 }

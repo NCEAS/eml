@@ -2,8 +2,8 @@
  *    '$RCSfile: DataDownloadNotFinishedException.java,v $'
 *
 *     '$Author: tao $'
-*       '$Date: 2006-08-18 01:40:22 $'
-*   '$Revision: 1.1 $'
+*       '$Date: 2006-09-19 00:10:52 $'
+*   '$Revision: 1.2 $'
 *
 *  For Details: http://kepler.ecoinformatics.org
 *
@@ -31,6 +31,11 @@
 */
 package org.ecoinformatics.datamanager.download;
 
+/**
+ * Signal for data downloading process haven't finished.
+ * @author tao
+ *
+ */
 public class DataDownloadNotFinishedException extends Exception 
 {
 
