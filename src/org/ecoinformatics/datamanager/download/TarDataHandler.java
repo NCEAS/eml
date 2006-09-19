@@ -2,8 +2,8 @@
  *    '$RCSfile: TarDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 00:10:52 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-19 18:35:12 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,29 +39,28 @@ import java.io.InputStream;
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarInputStream;
 
-
+/**
+ * This is a sub-class of ArchiveddDataHandler class. It will handle download tar
+ * data entity. After downloading, the tar entity will be unarchived and written to 
+ * DataStorageInterface transparently.
+ * @author tao
+ *
+ */
 public class TarDataHandler extends ArchivedDataHandler
 {
 	/**
 	 * Constructor
-	 * @param url
+	 * @param url  The url (or identifier) of the tar entity
      */
     public TarDataHandler(String url)
     {
     	super(url);
     }
     
-    public boolean unarchive()
-    {
-    	boolean success = false;
-    	return success;
-    }
-    
-    /**
-     * Overwrite the the method in DownloadHandler in order to uncompressed it.
-     * we only write first file (if have mutiple
-     * @param in
-     * @return
+ 
+    /*
+     * Overwrite the the method in DownloadHandler in order to unarchive it.
+     * It only writes first file (if it have mutiple entities) into DataStorageSystem
      */
     protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
     {
@@ -108,7 +107,8 @@ public class TarDataHandler extends ArchivedDataHandler
     
     
     /*
-     *  This method will get data from ecogrid server base on given
+     *  Get data from Ecogrid server base on given Ecogrid endpoint and identifier.
+     *  This method includes the uncompress process.
      *  It overwrite the one in DownloadHanlder.java
      */
     protected boolean getContentFromEcoGridSource(String endPoint, String ecogridIdentifier)
