@@ -3,6 +3,8 @@ package org.ecoinformatics.datamanager.download;
 import org.ecoinformatics.datamanager.parser.UniqueKey;
 import org.ecoinformatics.datamanager.parser.UniqueKeyTest;
 
+import sun.security.action.GetIntegerAction;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -76,7 +78,7 @@ public class DownloadHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  DownloadHandler handler = new DownloadHandler(url);
+		  DownloadHandler handler = DownloadHandler.getInstance(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)

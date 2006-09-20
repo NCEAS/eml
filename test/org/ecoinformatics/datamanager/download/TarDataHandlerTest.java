@@ -73,7 +73,7 @@ public class TarDataHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  TarDataHandler handler = new TarDataHandler(url);
+		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)

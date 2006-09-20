@@ -73,7 +73,7 @@ public class ZipDataHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  ZipDataHandler handler = new ZipDataHandler(url);
+		  ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)

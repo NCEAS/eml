@@ -73,7 +73,7 @@ public class GZipDataHandlerTest extends TestCase
 	  private void testDownload(boolean success, String url, String identifier)
 	  {
 		  
-		  GZipDataHandler handler = new GZipDataHandler(url);
+		  GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)
