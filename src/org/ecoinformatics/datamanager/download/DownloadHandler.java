@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 00:10:52 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2006-09-20 00:45:51 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.zip.ZipInputStream;
 
@@ -65,6 +66,8 @@ public class DownloadHandler implements Runnable
 	protected boolean completed = false;
 	protected boolean success = false;
 	protected boolean busy = false;
+	protected static Hashtable handlerList = new Hashtable();
+	//protected DownloadHandler handler = null;
 	
 	/*
 	 * Constants
@@ -76,18 +79,25 @@ public class DownloadHandler implements Runnable
 	private static final String SRBPASSWD       = "TESTUSER";
 	
 	/**
-	 * Default constructor of this class
+	 * Gets the DownloadHandler Object.
+	 * @param url The url (or identifier) of entity need be downloaded
+	 * @return  DownloadHandler object with the url
 	 */
-	public DownloadHandler()
+	public static DownloadHandler getInstance(String url)
 	{
-		
+		DownloadHandler handler = (DownloadHandler)handlerList.get(url);
+		if (handler == null)
+		{
+			handler = new DownloadHandler(url);
+		}
+		return handler;
 	}
 	
 	/**
 	 * Constructor of this class
 	 * @param url  the url (or identifier) of entity need be downloaded
 	 */
-	public DownloadHandler(String url)
+	protected DownloadHandler(String url)
 	{
 		this.url = url;
 		//this.identifier = identifier;
@@ -100,10 +110,24 @@ public class DownloadHandler implements Runnable
 	 */
     public void run()
     {
+    	boolean inHash = doesHandlerExistedInHash(this);
+    	if (inHash)
+    	{
+    		// There is a handler which points the same ulr is busy in downloading process,
+    		// so do nothing
+    		return;
+    	}
+    	else
+    	{
+    		// if no handler which points same url, put the handler into hash table for tracking
+    		putDownloadHandlerIntoHash(this);
+    	}
     	busy = true;
     	completed = false;
     	success = getContentFromSource(url);
     	busy = false;
+    	// downloading is done, remove the handler from hash.
+    	removeDownloadHandlerFromHash(this);
     	completed = true;
     }
     
@@ -531,4 +555,58 @@ public class DownloadHandler implements Runnable
 	    		return successFlag;
 	    }
     }
+    
+    /*
+     * Sets the DownloadHandler obj into the hash table. This will be called at the start
+     * of download process. So we can keep track which handler is doing the download job now.
+     * Since it will access a static variable handlerList in different thread, it should 
+     * be static and synchronized
+     */
+    private static synchronized void putDownloadHandlerIntoHash(DownloadHandler downloadHandler)
+    {
+    	if (downloadHandler != null)
+    	{
+    	  String source = downloadHandler.getUrl();
+    	  if (source != null)
+    	  {
+    	    handlerList.put(source, downloadHandler);
+    	  }
+    	}
+    }
+    
+    /*
+     * Removes the downloadHandler obj fromt he hash table. This method will be called at the end
+     * of download process. Since it will access a static variable handlerList in different thread, 
+     * it should be static and synchronized
+     */
+    private static synchronized void removeDownloadHandlerFromHash(DownloadHandler downloadHandler)
+    {
+    	if (downloadHandler != null)
+    	{
+    	  String source = downloadHandler.getUrl();
+    	  if (source != null)
+    	  {
+    	    handlerList.remove(source);
+    	  }
+    	}
+    }
+    
+    /*
+     * Tests if the specified downloadHandler is in the hash
+     */
+    private static synchronized boolean doesHandlerExistedInHash(DownloadHandler downloadHandler)
+    {
+    	boolean existed = false;
+    	if (downloadHandler != null)
+    	{
+    	  String source = downloadHandler.getUrl();
+    	  if (source != null)
+    	  {
+    	    existed = handlerList.containsKey(source);
+    	  }
+    	}
+    	return existed;
+    }
+    
+    
 }  

@@ -2,8 +2,8 @@
  *    '$RCSfile: ArchivedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 00:10:52 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-20 00:45:51 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -51,7 +51,7 @@ public abstract class ArchivedDataHandler extends DownloadHandler
 	 * Constructor
 	 * @param url  The url of entity which need be downloaded
 	 */
-    public ArchivedDataHandler(String url)
+    protected ArchivedDataHandler(String url)
     {
     	super(url);
     }

@@ -2,8 +2,8 @@
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 18:35:12 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-09-20 00:45:51 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -55,11 +55,27 @@ import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
  */
 public class ZipDataHandler extends CompressedDataHandler
 {
+	
+	/**
+	 * Gets the GZipDataHandler Object
+	 * @param url The url (or identifier) of entity need be downloaded
+	 * @return  GZipDataHandler object with the url
+	 */
+	public static ZipDataHandler getZipHandlerInstance(String url)
+	{
+		ZipDataHandler  zipHandler = (ZipDataHandler)handlerList.get(url);
+		if (zipHandler == null)
+		{
+			zipHandler = new ZipDataHandler(url);;
+		}
+		return zipHandler;
+	}
+	
 	/**
 	 * Constructor
 	 * @param url  The url (or identifier) of the zipped entity
 	 */
-    public ZipDataHandler(String url)
+    protected ZipDataHandler(String url)
     {
     	super(url);
     }

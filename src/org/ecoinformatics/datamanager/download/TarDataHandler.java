@@ -2,8 +2,8 @@
  *    '$RCSfile: TarDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 18:35:12 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-09-20 00:45:51 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -49,10 +49,24 @@ import com.ice.tar.TarInputStream;
 public class TarDataHandler extends ArchivedDataHandler
 {
 	/**
+	 * Gets the TarDataHandler object
+	 * @param url The url (or identifier) of entity need be downloaded
+	 * @return  TarDataHandler object with the url
+	 */
+	public static TarDataHandler getTarHandlerInstance(String url)
+	{
+		TarDataHandler  tarHandler = (TarDataHandler)handlerList.get(url);
+		if (tarHandler == null)
+		{
+			tarHandler = new TarDataHandler(url);;
+		}
+		return tarHandler;
+	}
+	/*
 	 * Constructor
 	 * @param url  The url (or identifier) of the tar entity
      */
-    public TarDataHandler(String url)
+    protected TarDataHandler(String url)
     {
     	super(url);
     }
