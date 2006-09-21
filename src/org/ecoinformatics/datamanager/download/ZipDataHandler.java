@@ -2,8 +2,8 @@
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-20 00:45:51 $'
- *   '$Revision: 1.8 $'
+ *       '$Date: 2006-09-21 00:37:12 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -63,7 +63,7 @@ public class ZipDataHandler extends CompressedDataHandler
 	 */
 	public static ZipDataHandler getZipHandlerInstance(String url)
 	{
-		ZipDataHandler  zipHandler = (ZipDataHandler)handlerList.get(url);
+		ZipDataHandler  zipHandler = (ZipDataHandler)getHandlerFromHash(url);
 		if (zipHandler == null)
 		{
 			zipHandler = new ZipDataHandler(url);;
