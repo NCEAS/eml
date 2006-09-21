@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-21 00:38:56 $'
- *   '$Revision: 1.11 $'
+ *       '$Date: 2006-09-21 18:08:59 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -309,9 +309,10 @@ public class DownloadHandler implements Runnable
 	            NeededOutputStream [] outputStreamList = getOutputStreamList();
 	            if (outputStreamList != null)
 	            {
+	            	boolean oneLoopSuccess = true;
 	            	for (int i=0; i<outputStreamList.length; i++)
 	            	{
-	            		boolean oneLoopSuccess = true;
+	            		
 	            		NeededOutputStream stream = outputStreamList[i];
 	            		if (stream != null && stream.getNeeded())
 	            		{
@@ -334,6 +335,7 @@ public class DownloadHandler implements Runnable
 	            		else
 	            		{
 	            			oneLoopSuccess = false;
+	            			successFlag = false;
 	            		}
 	            	}
 	            }
@@ -413,7 +415,7 @@ public class DownloadHandler implements Runnable
 	  			 }
 	  			 else if(dataStorge != null)
 	  			 {
-	  				OutputStream osw = dataStorge.startSerialize(url);
+	  				 OutputStream osw = null;
 	  				 NeededOutputStream stream = new NeededOutputStream(osw, false);
 	                 list[i] = stream;
 	  			 }
@@ -528,8 +530,10 @@ public class DownloadHandler implements Runnable
 		   	 boolean oneLoopSuccess = true;
 		        while (bread != -1) 
 		        {   //FileOutputStream osw = new FileOutputStream(localFile);
+		          //System.out.println("before ouptustreamList is not null");
 		       	  if (outputStreamList != null)
 		       	  {
+		       		 //System.out.println("after ouptustreamList i not null");
 		       		 for (int i = 0; i<outputStreamList.length; i++)
 		       		 {
 		       			 NeededOutputStream neededOutput = outputStreamList[i];
@@ -549,13 +553,21 @@ public class DownloadHandler implements Runnable
 		           			 else if (output != null)
 		           			 {
 		           				 if(oneLoopSuccess)
-		                            {
+		                         {
 		                           	 successFlag = true;
-		                            }
+		                         }
+		           			 }
+		           			 else if (output == null && !need)
+		           			 {
+		           				if(oneLoopSuccess)
+		                         {
+		                           	 successFlag = true;
+		                         }
 		           			 }
 		           			 else
 		           			 {
 		           				 oneLoopSuccess = false;
+		           				 successFlag = false;
 		           			 }
 		       			 }
 		       			 else
