@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-20 00:45:51 $'
- *   '$Revision: 1.10 $'
+ *       '$Date: 2006-09-21 00:38:56 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -77,6 +77,8 @@ public class DownloadHandler implements Runnable
 	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
 	private static final String SRBUSERNAME     = "testuser.sdsc";
 	private static final String SRBPASSWD       = "TESTUSER";
+	private static final int    SLEEPTIME       = 10000;
+	private static final int    MAXLOOPNUMBER   = 2000;
 	
 	/**
 	 * Gets the DownloadHandler Object.
@@ -85,7 +87,7 @@ public class DownloadHandler implements Runnable
 	 */
 	public static DownloadHandler getInstance(String url)
 	{
-		DownloadHandler handler = (DownloadHandler)handlerList.get(url);
+		DownloadHandler handler = getHandlerFromHash(url);
 		if (handler == null)
 		{
 			handler = new DownloadHandler(url);
@@ -104,30 +106,54 @@ public class DownloadHandler implements Runnable
 		//this.dataStorageClassList = dataStorageClassList;
 	}
 	
+		
 	/**
 	 * This method will download data for the given url. It implements 
 	 * from Runnable Interface.
 	 */
     public void run()
     {
-    	boolean inHash = doesHandlerExistedInHash(this);
-    	if (inHash)
+    	DownloadHandler handler = getHandlerFromHash(url);
+    	if (handler != null)
     	{
     		// There is a handler which points the same ulr is busy in downloading process,
-    		// so do nothing
+    		// so do nothing just waiting the the handler finished the download.
+    	    int index = 0;
+    		while (handler.isBusy() && index < MAXLOOPNUMBER)
+    	    {
+    	    	try
+    	    	{
+    	    		Thread.sleep(SLEEPTIME);
+    	    	}
+    	    	catch(Exception e)
+    	    	{
+    	    		break;
+    	    	}
+    	    	index++;
+    	    }
+    	    
+    	    success = handler.isSuccess();
+    	    //System.out.println("after setting success "+success);
+    	    busy =false;
+    	    completed = true;
+    		//System.out.println(" don't need download");
     		return;
     	}
     	else
     	{
     		// if no handler which points same url, put the handler into hash table for tracking
+    		//System.out.println("need download");
     		putDownloadHandlerIntoHash(this);
     	}
     	busy = true;
     	completed = false;
+    	//System.out.println("start get source"+url);
     	success = getContentFromSource(url);
+    	//System.out.println("after get source"+url);
     	busy = false;
     	// downloading is done, remove the handler from hash.
     	removeDownloadHandlerFromHash(this);
+    	//this.notifyAll();
     	completed = true;
     }
     
@@ -199,11 +225,11 @@ public class DownloadHandler implements Runnable
              // get the data from a URL
         	//System.out.println("after if !!!!!!!!!!!!!!!!!!11");
              try {
-            	 //System.out.println("start try !!!!!!!!!!!!!!!!!!11");
+            	 //System.out.println("start try !!!!!!!!!!!!!!!!!!11 "+resourceName);
                  URL url = new URL(resourceName);
                  //System.out.println("afterURL !!!!!!!!!!!!!!!!!!11");
                  if (url != null) {
-                	 
+                	 //System.out.println("before get inpustream !!!!!!!!!!!!!!!!!!11");
                          InputStream filestream = url.openStream();
                          //System.out.println("after get inpustream !!!!!!!!!!!!!!!!!!11");
                          return this.writeRemoteInputStreamIntoDataStorage(filestream);
@@ -231,8 +257,8 @@ public class DownloadHandler implements Runnable
              //log.debug("end: " + end);
              String ecogridIdentifier = resourceName.substring(start, end);
              // pass this docid and get data item
-             System.out.println("the endpoint is "+ECOGRIDENDPOINT);
-             System.out.println("The identifier is "+ecogridIdentifier);
+             //System.out.println("the endpoint is "+ECOGRIDENDPOINT);
+             //System.out.println("The identifier is "+ecogridIdentifier);
              //return false;
              return getContentFromEcoGridSource(ECOGRIDENDPOINT, ecogridIdentifier);
          }
@@ -547,7 +573,7 @@ public class DownloadHandler implements Runnable
 		       filestream.close();
 		       closeOutputStream(outputStreamList);
 		       //successFlag = true;
-		       System.out.println("the success is "+successFlag);
+		       //System.out.println("the success is "+successFlag);
 		       return successFlag;
 	    }
 	    else
@@ -569,6 +595,7 @@ public class DownloadHandler implements Runnable
     	  String source = downloadHandler.getUrl();
     	  if (source != null)
     	  {
+    		//System.out.println("add the source "+source);
     	    handlerList.put(source, downloadHandler);
     	  }
     	}
@@ -586,26 +613,26 @@ public class DownloadHandler implements Runnable
     	  String source = downloadHandler.getUrl();
     	  if (source != null)
     	  {
+    		//System.out.println("remove the source "+source);
     	    handlerList.remove(source);
     	  }
     	}
     }
     
     /*
-     * Tests if the specified downloadHandler is in the hash
+     * Gets a downloadHandler with specified url from the hash.
+     * Null will return if no handler found.
      */
-    private static synchronized boolean doesHandlerExistedInHash(DownloadHandler downloadHandler)
+    protected static synchronized DownloadHandler getHandlerFromHash(String source)
     {
-    	boolean existed = false;
-    	if (downloadHandler != null)
-    	{
-    	  String source = downloadHandler.getUrl();
-    	  if (source != null)
-    	  {
-    	    existed = handlerList.containsKey(source);
-    	  }
-    	}
-    	return existed;
+    	DownloadHandler handler = null;
+	    if (source != null)
+	    {
+	      handler = (DownloadHandler)handlerList.get(source);
+	      // sign download handler to one in List
+	   
+	    }
+    	return handler;
     }
     
     
