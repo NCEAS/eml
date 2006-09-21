@@ -5,17 +5,28 @@ import junit.framework.TestSuite;
 
 public class TarDataHandlerTest extends TestCase
 {
+	/**
+	 * Constructor 
+	 * @param name The name of testing
+	 */
 	  public TarDataHandlerTest (String name)
 	  {
 	    super(name);
 	  }
-
+      
+	  /**
+	   * Establish a testing framework by initializing appropriate objects.
+	   */
 	  protected void setUp() throws Exception
 	  {
 	    super.setUp();
 	    
 	  }
-
+      
+	  /**
+	   * Release any objects and closes database connections after tests 
+	   * are complete.
+	   */
 	  protected void tearDown() throws Exception
 	  {
 	    
@@ -23,8 +34,7 @@ public class TarDataHandlerTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a succssful download process through http protocol 
 	   */
 	  public void testDownloadSuccess()
 	  {
@@ -34,8 +44,7 @@ public class TarDataHandlerTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a failed download process (without storage interface) through http protocol 
 	   */
 	  public void testDownloadFailed()
 	  {
@@ -43,9 +52,9 @@ public class TarDataHandlerTest extends TestCase
 		  //String identifier = "tao.7.1";
 		  testDownload(false, url, url);
 	  }
+	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a succssful download process through ecogrid protocol
 	   */
 	  public void testEcogridDownloadFailed()
 	  {
@@ -55,8 +64,7 @@ public class TarDataHandlerTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a failed download process (without storage interface) through ecogrid protocol 
 	   */
 	  public void testEcogridDownloadSuccess()
 	  {

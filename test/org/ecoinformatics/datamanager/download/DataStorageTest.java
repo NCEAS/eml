@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageTest.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-15 23:26:47 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-21 18:58:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -118,6 +118,20 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		}
 		
 		return inputStream;
+	}
+	
+	/**
+	 * Get a entity size (e.g, file size) for a given identifier
+	 * @param identifier Identifier of a entity
+	 * @return The size of entity. If identifier doesn't exist, returns 0.
+	 */
+	public long getEntitySize(String identifier)
+	{
+		long size = 0;
+		identifier = transformURLToIdentifier(identifier);
+		File file = new File(tmp, identifier);
+		size = file.length();
+		return size;
 	}
 	
 	private String transformURLToIdentifier(String url)

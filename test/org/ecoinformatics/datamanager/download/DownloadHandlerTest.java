@@ -11,17 +11,30 @@ import junit.framework.TestSuite;
 
 public class DownloadHandlerTest extends TestCase
 {
+	private static final String CORRECTURL   = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+	private static final String INCORRECTURL = "http://knb.ecoinformacs.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+	/**
+	 * Constructor 
+	 * @param name The name of testing
+	 */
 	  public DownloadHandlerTest (String name)
 	  {
 	    super(name);
 	  }
-
+      
+	  /**
+	   * Establish a testing framework by initializing appropriate objects.
+	   */
 	  protected void setUp() throws Exception
 	  {
 	    super.setUp();
 	    
 	  }
-
+      
+	  /**
+	   * Release any objects and closes database connections after tests 
+	   * are complete.
+	   */
 	  protected void tearDown() throws Exception
 	  {
 	    
@@ -29,19 +42,19 @@ public class DownloadHandlerTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a downloading from http protocol with successful result
+	   *
 	   */
 	  public void testDownloadSuccess()
 	  {
-		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+		  //String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
 		  //String identifier = "tao.1.1";
-		  testDownload(true, url, url);
+		  testDownload(true, CORRECTURL, CORRECTURL);
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a downloading from http protocol with failed result(no StorageInterface)
+	   * 
 	   */
 	  public void testDownloadFailed()
 	  {
@@ -49,9 +62,20 @@ public class DownloadHandlerTest extends TestCase
 		  //String identifier = "tao.1.1";
 		  testDownload(false, url, url);
 	  }
+	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a downloading from http protocol with failed result(from incorrect url)
+	   * 
+	   */
+	  public void testDownloadFromIncorrectURL()
+	  {
+		  //String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+		  //String identifier = "tao.1.1";
+		  testDownload(false, INCORRECTURL, INCORRECTURL);
+	  }
+	  /**
+	   * Test a downloading from ecogrid protocol with failed result
+	   * 
 	   */
 	  public void testEcogridDownloadFailed()
 	  {
@@ -61,8 +85,8 @@ public class DownloadHandlerTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a download success
-	   * @param success
+	   * Test a downloading from ecogrid protocol with successful result
+	   * 
 	   */
 	  public void testEcogridDownloadSuccess()
 	  {
@@ -103,6 +127,10 @@ public class DownloadHandlerTest extends TestCase
 		  {
 			  assertTrue(dataStorage.doesDataExist(identifier) == true);
 			  assertTrue(handler.isSuccess() == true);
+			  if (identifier == CORRECTURL)
+			  {
+				  assertTrue(dataStorage.getEntitySize(identifier)== 7237);
+			  }
 			  
 		  }
 		  else
@@ -181,6 +209,7 @@ public class DownloadHandlerTest extends TestCase
 	     suite.addTest(new DownloadHandlerTest("testEcogridDownloadFailed"));
 	     suite.addTest(new DownloadHandlerTest("testEcogridDownloadSuccess"));
 	     suite.addTest(new DownloadHandlerTest("tesDownloadHandlerWithSameUrl"));
+	     suite.addTest(new DownloadHandlerTest("testDownloadFromIncorrectURL"));
 	     return suite;
 	   }
 }
