@@ -8,6 +8,10 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.GZipDataHandler;
+import org.ecoinformatics.datamanager.download.TarDataHandler;
+import org.ecoinformatics.datamanager.download.ZipDataHandler;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Constraint;
@@ -77,6 +81,15 @@ public class Eml200ParserTest extends TestCase
 	  assertTrue(hasGZip == false);
 	  boolean hasTar = entity.getHasTarDataFile();
 	  assertTrue(hasTar == false);
+	  DownloadHandler handler = entity.getDownloadHanlder();
+	  boolean isObjectOfDownloadHandler = handler instanceof DownloadHandler;
+	  assertTrue( isObjectOfDownloadHandler == true);
+	  boolean isObjectOfTarHandler = handler instanceof TarDataHandler;
+	  assertTrue(isObjectOfTarHandler == false);
+	  boolean isObjectOfZipHandler = handler instanceof ZipDataHandler;
+	  assertTrue(isObjectOfZipHandler == false);
+	  boolean isObjectOfGzipHandler = handler instanceof GZipDataHandler;
+	  assertTrue(isObjectOfGzipHandler == false);
 	  String id = entity.getId();
 	  assertEquals(id, "xyz");
 	  boolean isImage = entity.getIsImageEntity();
