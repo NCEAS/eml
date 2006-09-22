@@ -2,8 +2,8 @@
  *    '$RCSfile: Eml200Parser.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-26 23:52:42 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-09-22 00:43:07 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -64,7 +64,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * This plugin parses EML 2.0.0 metadata files
+ * This is plugin Parser which parses EML 2.0.0 metadata files to 
+ * get the metadata information which decribes data file
  */
 public class Eml200Parser
 {
@@ -81,7 +82,7 @@ public class Eml200Parser
     private int complexFormatsNumber = 0;
     private Hashtable attributeListHash = new Hashtable();
     private boolean hasMissingValue = false;
-    private DataPackage emlDataPackage = new DataPackage();
+    private DataPackage emlDataPackage = null;
     
     //private static Log log;
     private static boolean isDebugging;
@@ -100,6 +101,7 @@ public class Eml200Parser
     public static final String STOREDPROCEDUREENTITY = "//dataset/storedProcedure";
     public static final String VIEWENTITY            = "//dataset/view";
     public static final String OTHERENTITY           = "//dataset/otherEntity";
+    private static final String PACKAGEIDPATH        ="//eml/@packageId";
     /**
      * returns a hashtable of with the id of the entity as the key and the data
      * file id to which the entity refers as the value. This way, if you want to
@@ -111,9 +113,9 @@ public class Eml200Parser
     {
         return fileHash;
     }*/
-
     /**
-     * parses the EML package using an InputSource
+     * Parses the EML package as InputSource object as input
+     * @param source The InputSource which contains metadata source
      */
     public void parse(InputSource source) throws Exception
     {
@@ -124,7 +126,8 @@ public class Eml200Parser
     }
 
     /**
-     * parses the EML package using an InputStream
+     * Parses the EML package as InputStream object as input
+     * @param is The InputStream which contains medadata source
      */
     public void parse(InputStream is) throws Exception
     {
@@ -146,7 +149,16 @@ public class Eml200Parser
         NodeList otherEntities;
         NodeList viewEntities;
         CachedXPathAPI xpathapi = new CachedXPathAPI();
+        String packageId = null;
         try {
+        	// process packageid
+        	Node packageIdNode = xpathapi.selectSingleNode(doc, PACKAGEIDPATH);
+        	if (packageIdNode != null)
+        	{
+        	   //System.out.println("in packageIdNode is not null");
+        	   packageId          = packageIdNode.getNodeValue();
+        	}
+        	emlDataPackage        = new DataPackage(packageId);
             // now dataTable, spatialRaster and spatialVector are handled
             entities              = xpathapi.selectNodeList(doc, TABLEENTITY);
             spatialRasterEntities = xpathapi.selectNodeList(doc, SPATIALRASTERENTITY);
