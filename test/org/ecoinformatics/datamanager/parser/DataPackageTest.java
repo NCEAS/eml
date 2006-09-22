@@ -16,6 +16,7 @@ import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 public class DataPackageTest extends TestCase
 {
   private DataPackage dataPackage      = null;
+  private String      dataPackageId    = "hello.1.1";
   
   public DataPackageTest (String name)
   {
@@ -25,7 +26,7 @@ public class DataPackageTest extends TestCase
   protected void setUp() throws Exception
   {
     super.setUp();
-    dataPackage = new DataPackage();
+    dataPackage = new DataPackage(dataPackageId);
   }
 
   protected void tearDown() throws Exception
@@ -56,6 +57,16 @@ public class DataPackageTest extends TestCase
 	  
   }
   
+  /**
+   * Test getPackageId method
+   *
+   */
+  public void testGetPackageId()
+  {
+	  String id = dataPackage.getPackageId();
+	  assertEquals(id, dataPackageId);
+  }
+  
   
 
 
@@ -66,6 +77,7 @@ public class DataPackageTest extends TestCase
   {
     TestSuite suite = new TestSuite();
     suite.addTest(new DataPackageTest("testAddEntity"));
+    suite.addTest(new DataPackageTest("testGetPackageId"));
     return suite;
   }
 
