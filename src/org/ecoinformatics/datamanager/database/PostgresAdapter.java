@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:33:20 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-09-22 00:44:10 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -244,6 +244,8 @@ public class PostgresAdapter extends DatabaseAdapter {
     map.put("string", "TEXT");
     map.put("integer", "INTEGER");
     map.put("real", "FLOAT");
+    map.put("whole", "INTEGER");
+    map.put("natural", "INTEGER");
     
     dbDataType = (String) map.get(attributeType);
     
