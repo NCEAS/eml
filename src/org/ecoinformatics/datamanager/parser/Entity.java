@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:26:47 $'
- *   '$Revision: 1.6 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-09-22 18:50:56 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -37,6 +37,9 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
 import java.util.Vector;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.GZipDataHandler;
+import org.ecoinformatics.datamanager.download.TarDataHandler;
+import org.ecoinformatics.datamanager.download.ZipDataHandler;
 
 /**
  * This object represents an TableEntity.  A TableEntity stores
@@ -84,7 +87,7 @@ public class Entity extends DataObjectDescription
     private TextComplexDataFormat[] dataFormatArray = null;
     private String physicalLineDelimiter  = null;
     private boolean collapseDelimiter = false;
-    private DownloadHandler downLoadHandler = null;
+    
 
 
  
@@ -533,6 +536,7 @@ public class Entity extends DataObjectDescription
     }
     
     /**
+     * Gets physical line delimiter
      * @return Returns the physicalLineDelimiter.
      */
     public String getPhysicalLineDelimiter()
@@ -541,6 +545,7 @@ public class Entity extends DataObjectDescription
     }
     
     /**
+     * Sets the physical line delimiter in metadata
      * @param physicalLineDelimiter The physicalLineDelimiter to set.
      */
     public void setPhysicalLineDelimiter(String physicalLineDelimiter)
@@ -563,6 +568,38 @@ public class Entity extends DataObjectDescription
     public AttributeList getAttributeList()
     {
     	return this.attributeList;
+    }
+    
+    /**
+     * Get DownloadHandler associated with this entity. 
+     * The DownlaodHnader obj can be a sub-class of DownloadHandler. 
+     * Currently we only handle one situation, e.g. one of DownloadHanlder,
+     * ZipDataHandler, GZipDataHandler, and TarTataHandler. We will implement in future
+     * for combination of above cases.
+     * @return DownloadHandler object which will do download data task
+     */
+    public DownloadHandler getDownloadHanlder()
+    {
+    	if (hasZipDataFile)
+    	{
+    		ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url);
+    		return handler;
+    	}
+    	
+    	if (hasGZipDataFile)
+    	{
+    		GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url);
+    		return handler;
+    	}
+    	
+    	if (hasTarDataFile)
+    	{
+    		TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+    		return handler;
+    	}
+    		
+        DownloadHandler handler = DownloadHandler.getInstance(url);
+        return handler;
     }
     
     
