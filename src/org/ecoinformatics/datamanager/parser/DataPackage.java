@@ -2,8 +2,8 @@
  *    '$RCSfile: DataPackage.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-08-23 20:42:39 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-22 00:42:28 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,19 +38,20 @@ package org.ecoinformatics.datamanager.parser;
 public class DataPackage 
 {
   private Entity[] entityList = null;
+  private String   packageId  = null;
   
   /**
    * Constructor
-   *
+   * @param packageId  Identifier of this DataPackage
    */
-  public DataPackage()
+  public DataPackage(String packageId)
   {
-	  
+	this.packageId = packageId;  
   }
   
   /**
-   * Add a entity to the object
-   * @param entity
+   * Adds a entity into DataPackage
+   * @param entity The entity which will be added
    */
   public void add(Entity entity)
   {
@@ -58,14 +59,18 @@ public class DataPackage
   }
   
   /**
-   * Get the entity array which is in this obj.
-   * @return
+   * Gets the entity array which is in DataPackage
+   * @return Entity array in the DataPackage
    */
   public Entity[] getEntityList()
   {
 	  return entityList;
   }
   
+  /**
+   * Gets the number of entity in DataPackage
+   * @return number of entity
+   */
   public int getEntityNumber()
   {
 	  if (entityList == null)
@@ -76,6 +81,15 @@ public class DataPackage
 	  {
 		  return entityList.length;
 	  }
+  }
+  
+  /**
+   * Gets package identifier for this DataPackage
+   * @return DataPackage identifier
+   */
+  public String getPackageId()
+  {
+	  return packageId;
   }
   
   /*
