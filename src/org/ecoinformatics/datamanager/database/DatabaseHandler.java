@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:34:38 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-09-28 00:58:55 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,12 +31,18 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -56,8 +62,9 @@ public class DatabaseHandler implements DataStorageInterface
    */
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
-  private DatabaseAdapter databaseAdapter;
-  private TableMonitor tableMonitor = null;
+    private DatabaseAdapter databaseAdapter;
+    private TableMonitor tableMonitor = null;
+    private Hashtable    pipeIOHash = new Hashtable();
 
   
   /*
@@ -209,6 +216,37 @@ public class DatabaseHandler implements DataStorageInterface
    *                    the serialization
    */
   public void finishSerialize(String identifier, String errorCode) {
+	 
+	  PipedIO pipeIO = (PipedIO)pipeIOHash.get(identifier);
+	  PipedInputStream inputStream = null;
+	  PipedOutputStream outputStream = null;
+	  if (pipeIO != null)
+	  {
+		  inputStream = pipeIO.getPipedInputStream();
+		  outputStream = pipeIO.getPipedOutputStream();
+	  }
+	  if (inputStream != null)
+	  {
+		  try
+		  {
+		    inputStream.close();
+		  }
+		  catch (Exception e)
+		  {
+			  
+		  }
+	  }
+	  if (outputStream != null)
+	  {
+		  try
+		  {
+		    outputStream.close();
+		  }
+		  catch (Exception e)
+		  {
+			  
+		  }
+	  }
     
   }
   
@@ -340,6 +378,7 @@ public class DatabaseHandler implements DataStorageInterface
    */
   public boolean loadData(Entity entity)
   {
+	
     return true;
   }
   
@@ -373,9 +412,107 @@ public class DatabaseHandler implements DataStorageInterface
 	 */
 	public OutputStream startSerialize(String identifier)
 	{
-    OutputStream outputStream = null;
+        PipedOutputStream outputStream = null;
+        try
+        {
+        	PipedIO pipe = new PipedIO();
+        	pipeIOHash.put(identifier, pipe);
+        	Thread newThread = new Thread(pipe);
+        	newThread.start();
+        	outputStream = pipe.getPipedOutputStream();
+        }
+        catch(IOException e)
+        {
+        	System.err.println("Error is "+e.getMessage());
+        }
     
 		return outputStream;
+	}
+	
+	/*
+	 * Private class which use PipedInputStream and PipedOutputStream to
+	 * read data from DownloadHandler into database
+	 */
+	private class PipedIO implements Runnable
+	{
+		private PipedInputStream inputStream = null;
+		private PipedOutputStream outputStream = null;
+		private Entity entity = null;
+		
+		/**
+		 * Generate a pair of connected PipedIO 
+		 * @throws IOException
+		 */
+		public PipedIO() throws IOException
+		{
+			
+			outputStream = new PipedOutputStream();
+	        inputStream  = new PipedInputStream();
+	        outputStream.connect(inputStream);
+		}
+		
+		/**
+		 * Gets PipedInputStream Object
+		 * @return PipedInputStream
+		 */
+		public PipedInputStream getPipedInputStream()
+		{
+			return this.inputStream;
+		}
+		
+		/**
+		 * Gets PipedOutputStream Object
+		 * @return PipedOutputStream Object
+		 */
+		public PipedOutputStream getPipedOutputStream()
+		{
+			return this.outputStream;
+		}
+		
+		/**
+		 * Sets entity which will be inserted into data
+		 * @param entity
+		 */
+		public void setEntity(Entity entity)
+		{
+			this.entity = entity;
+		}
+		
+		/**
+		 * Use PipedInputStream which connected the PipedOutputStream in DownloadHandler
+		 * to insert data into db
+		 */
+		public void run()
+		{
+			if (inputStream != null)
+			{
+				System.out.println(" inputStream is NOT null");
+				byte[] array = new byte[1024];
+				File outputFile = new File("/Users/jinsongzhang/dsafa21");
+				FileOutputStream fileOutputStream = null;
+				int size = 0;
+				try
+				{
+				   fileOutputStream = new FileOutputStream(outputFile);
+				   size =inputStream.read(array);
+				   while (size != -1)
+				   {
+					   fileOutputStream.write(array, 0, size);
+					   size =inputStream.read(array);
+				   }
+				}
+				catch (Exception e)
+				{
+					
+				}
+				
+				
+			}
+			else
+			{
+				System.out.println(" input stream is null");
+			}
+		}
 	}
 	
 }
