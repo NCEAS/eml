@@ -2,8 +2,8 @@
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-09-29 21:14:00 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -52,7 +52,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	
   
   /**
-   * Create a drop talbe sql command
+   * Create a drop table sql command
    * @param tableName
    * @return
    */
