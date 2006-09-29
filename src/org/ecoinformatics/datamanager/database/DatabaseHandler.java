@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-29 00:23:33 $'
- *   '$Revision: 1.7 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-29 21:19:07 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,25 +31,16 @@
  */
 package org.ecoinformatics.datamanager.database;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Hashtable;
 
-import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
-import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+
 
 public class DatabaseHandler
 {
@@ -63,11 +54,10 @@ public class DatabaseHandler
    */
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
-    private DatabaseAdapter databaseAdapter;
-    private static TableMonitor tableMonitor = null;
+  private DatabaseAdapter databaseAdapter;
+  private static TableMonitor tableMonitor = null;
  
 
-  
   /*
    * Constructors
    */
@@ -90,7 +80,7 @@ public class DatabaseHandler
       this.databaseAdapter = new OracleAdapter();
     }
     
-    this.tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
+    DatabaseHandler.tableMonitor =new TableMonitor(dbConnection, dbAdapterName);
 	}
 
   
@@ -220,16 +210,20 @@ public class DatabaseHandler
     boolean success = true;
     String tableName;
     
-    tableName = entity.getDBTableName();
-    
+    tableName = tableMonitor.addTableEntry(entity);   
+
     /*
-     * If the entity can't tell us its table name, then return failure (false).
+     * If the table monitor couldn't assign a name, then throw an exception.
      */
     if ((tableName == null) || (tableName.trim().equals(""))) {
-      throw new SQLException("Entity does not hava a valid name.");
+      throw new SQLException("Entity has not been assigned a valid name.");
     }
+    /*
+     * If a table name was assigned for this entity, let's see whether we've 
+     * already got the table in the database.
+     */
     else {
-      boolean doesExist = doesDataExist(tableName);
+      boolean doesExist = isTableInDB(tableName);
       
       /*
        * If the table is not already in the database, generate it. If it's
@@ -243,10 +237,10 @@ public class DatabaseHandler
         try {
           stmt = dbConnection.createStatement();
           stmt.executeUpdate(ddlString);
-          // Tell the table monitor to add a new table entry.
-          tableMonitor.addTableEntry(tableName);
         } 
         catch (SQLException e) {
+          // If something went wrong, drop the table entry from the registry.
+          tableMonitor.dropTableEntry(tableName);
           System.err.println("SQLException: " + e.getMessage());
           throw (e);
         }
@@ -281,22 +275,43 @@ public class DatabaseHandler
   
  
   /**
-   * Given an identifier string, return its corresponding table name. (For now,
-   * assume that they are equivalent.)
+   * Given an identifier string, return its corresponding table name. 
    * 
    * @param   identifier   the identifier string for the entity
    * @return  the corresponding table name
    */
-  private static String identifierToTableName(String identifier) {
-    String tableName = identifier;
+  private static String identifierToTableName(String identifier) 
+          throws SQLException {
+    String tableName;
+    
+    tableName = tableMonitor.identifierToTableName(identifier);
     
     return tableName;
   }
   
 
- 
+  /**
+   * Determines whether the data table exists in the database. 
+   * This is simply a pass-through method to the TableMonitor.
+   * 
+   * @param   tableName  the name of the data table being checked
+   * @return  true if the data table already exists in the database, else false
+   */
+  public boolean isTableInDB(String tableName) {
+    boolean isPresent = false;
+    
+    try {
+      isPresent = tableMonitor.isTableInDB(tableName);
+    }
+    catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+    }
+    
+    return isPresent;
+  }
   
-
+  
   /**
    * Loads the data for all entities in a data package into the database.
    * 
@@ -328,7 +343,7 @@ public class DatabaseHandler
 	if (entity != null)
 	{
 		String identifier = entity.getEntityIdentifier();
-		DownloadHandler downloadHandler = entity.getDownloadHanlder();
+		DownloadHandler downloadHandler = entity.getDownloadHandler();
 		
 	}
     return success;
@@ -348,10 +363,5 @@ public class DatabaseHandler
     
     return resultSet;
   }
-  
 
-  
-	
-	
-	
 }
