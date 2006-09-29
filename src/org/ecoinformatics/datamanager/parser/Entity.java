@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-22 18:50:56 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-09-29 00:24:59 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -496,6 +496,16 @@ public class Entity extends DataObjectDescription
     public void setHasTarDataFile(boolean hasTarDataFile)
     {
       this.hasTarDataFile = hasTarDataFile;
+    }
+    
+    /**
+     * Gets the identifier for this entity. Currently we use distribution url
+     * as entity identifier
+     * @return Identifier of this entity
+     */
+    public String getEntityIdentifier()
+    {
+    	return url;
     }
     
    
