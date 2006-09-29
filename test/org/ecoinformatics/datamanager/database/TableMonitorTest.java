@@ -12,6 +12,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.ecoinformatics.datamanager.parser.Entity;
 
 public class TableMonitorTest extends TestCase {
 
@@ -30,9 +31,27 @@ public class TableMonitorTest extends TestCase {
    */
     
   private TableMonitor tableMonitor;  // An instance of the object being tested
-  private Connection dbConnection  = null;           // the database connection
-  private String  dbAdapterName = "PostgresAdapter";;   // DatabaseAdapter name
-  private final String TEST_TABLE = "COFFEES";
+  private Connection dbConnection     = null;         // the database connection
+  private final String  dbAdapterName ="PostgresAdapter";// DatabaseAdapter name
+  private Entity entity               = null;
+  private final String id             = "001";
+  private final String entityName     = "testEntity";
+  
+  // For testGetOldestTable(). Use an entity whose last usage date is
+  // set to a very old date (near the start of the Unix epoch), and a second
+  // entity whose last usage date is now.
+  private Entity entityAncient           = null;
+  private final String idAncient         = "002";
+  private final String entityNameAncient = "ancientEntity";
+  private Entity entityCurrent           = null;
+  private final String idCurrent         = "003";
+  private final String entityNameCurrent = "currentEntity";
+  
+  private final String description    = "testEntity";
+  private final Boolean caseSensitive = new Boolean(false);
+  private final String  orientation   = "column";
+  private final int     numRecords    = 200;
+  private final String TEST_TABLE = entityName;
     
     
   /*
@@ -128,6 +147,16 @@ public class TableMonitorTest extends TestCase {
   public void setUp() throws Exception {
     super.setUp();
     dbConnection = getConnection();
+
+    entity = new Entity(id, entityName, description,
+                        caseSensitive, orientation, numRecords);
+
+    entityAncient = new Entity(idAncient, entityNameAncient, description,
+        caseSensitive, orientation, numRecords);
+
+    entityCurrent = new Entity(idCurrent, entityNameCurrent, description,
+        caseSensitive, orientation, numRecords);
+
     tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
   }
     
@@ -139,6 +168,9 @@ public class TableMonitorTest extends TestCase {
   public void tearDown() throws Exception {
     dbConnection.close();
     dbConnection = null;
+    entity = null;
+    entityAncient = null;
+    entityCurrent = null;
     tableMonitor = null;
     super.tearDown();
   }
@@ -153,9 +185,9 @@ public class TableMonitorTest extends TestCase {
    */
   public void testAddTableEntry() throws SQLException {
     boolean isPresent = false;
-    boolean success = false;
     String registry = tableMonitor.getDataTableRegistryName();
     ResultSet rs;
+    String tableName;
 
     String selectString = 
       "SELECT * FROM " +
@@ -182,10 +214,10 @@ public class TableMonitorTest extends TestCase {
     }
 
     // Next, tell TableMonitor to add the table entry for the test table
-    success = tableMonitor.addTableEntry(TEST_TABLE);
+    tableName = tableMonitor.addTableEntry(entity);
     
     // Assert that the operation succeeded
-    assertTrue("Failed to add table entry", success);
+    assertNotNull("Failed to add table entry", tableName);
 
     // Query the table registry. The table entry should be present, and only
     // one record of it should exist.
@@ -248,6 +280,8 @@ public class TableMonitorTest extends TestCase {
       registry +
       " values(" +
           "'" + TEST_TABLE + "', " +
+          "'" + id + "', " +
+          "'" + entityName + "', " +
           "'" + simpleDateFormat.format(now) + "', " +
           "'" + simpleDateFormat.format(now) + "', " +
           "1" +
@@ -286,7 +320,7 @@ public class TableMonitorTest extends TestCase {
     String nowDateString = simpleDateFormat.format(now);
 
     // Add the test table entry. By default, creation date is today's date.
-    tableMonitor.addTableEntry(TEST_TABLE);
+    tableMonitor.addTableEntry(entity);
     
     // Retrieve the creation date from the data table registry
     creationDate = tableMonitor.getCreationDate(TEST_TABLE);
@@ -314,7 +348,7 @@ public class TableMonitorTest extends TestCase {
     String nowDateString = simpleDateFormat.format(now);
 
     // Add the test table entry. By default, creation date is today's date.
-    tableMonitor.addTableEntry(TEST_TABLE);
+    tableMonitor.addTableEntry(entity);
     
     // Retrieve the creation date from the data table registry
     lastUsageDate = tableMonitor.getCreationDate(TEST_TABLE);
@@ -344,14 +378,18 @@ public class TableMonitorTest extends TestCase {
     Date ancientDate = new Date(unixEpoch);
     Date now = new Date();
     
-    tableMonitor.addTableEntry("TEST_TABLE_ANCIENT");
-    tableMonitor.setLastUsageDate("TEST_TABLE_ANCIENT", ancientDate);
-    tableMonitor.addTableEntry("TEST_TABLE_CURRENT");
-    tableMonitor.setLastUsageDate("TEST_TABLE_CURRENT", now);   
+    tableMonitor.addTableEntry(entityAncient);
+    tableMonitor.setLastUsageDate(entityNameAncient, ancientDate);
+
+    tableMonitor.addTableEntry(entityCurrent);
+    tableMonitor.setLastUsageDate(entityNameCurrent, now);   
+
     String oldestTable = tableMonitor.getOldestTable();  
-    tableMonitor.dropTableEntry("TEST_TABLE_ANCIENT");
-    tableMonitor.dropTableEntry("TEST_TABLE_CURRENT");
-    assertEquals("Did not find the oldest table", oldestTable, "TEST_TABLE_ANCIENT");
+    tableMonitor.dropTableEntry(entityNameAncient);
+    tableMonitor.dropTableEntry(entityNameCurrent);
+    
+    assertEquals("Did not find the oldest table", 
+                 oldestTable, entityNameAncient);
   }
   
 
@@ -366,7 +404,7 @@ public class TableMonitorTest extends TestCase {
   public void testGetTableList() throws SQLException {
     boolean found = false;
     
-    tableMonitor.addTableEntry(TEST_TABLE);
+    tableMonitor.addTableEntry(entity);
     String[] tableList = tableMonitor.getTableList();
     
     for (int i = 0; i < tableList.length; i++) {
@@ -471,7 +509,7 @@ public class TableMonitorTest extends TestCase {
       " WHERE table_name ='" + TEST_TABLE + "'";
     Statement stmt = null;
     
-    tableMonitor.addTableEntry(TEST_TABLE);
+    tableMonitor.addTableEntry(entity);
     success = tableMonitor.setLastUsageDate(TEST_TABLE, testDate);
     
     assertTrue("tableMonitor.setLastUsageDate() did not succeed. ", success);
@@ -525,7 +563,7 @@ public class TableMonitorTest extends TestCase {
       " WHERE table_name ='" + TEST_TABLE + "'";
     Statement stmt = null;
     
-    tableMonitor.addTableEntry(TEST_TABLE);
+    tableMonitor.addTableEntry(entity);
     success = tableMonitor.setTableExpirationPolicy(TEST_TABLE, testPriority);
     
     assertTrue("tableMonitor.setTableExpirationPolicy() did not succeed. ", 
