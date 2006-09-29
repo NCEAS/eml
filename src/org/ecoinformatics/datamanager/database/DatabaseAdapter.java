@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:33:20 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-09-29 21:15:39 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -67,6 +67,22 @@ public abstract class DatabaseAdapter {
   /*
    * Class methods
    */
+ 
+  /**
+   * Given an entity name, return a well-formed table name. This is a generic
+   * implementation that should work for most databases. This method should be
+   * overridden by a database adapter subclass if it has special rules for the
+   * well-formedness of a table name.
+   */
+  public static String getLegalDBTableName(String entityName) {
+    String legalName = entityName;
+    
+    legalName = legalName.replace(' ', '_');
+    legalName = legalName.replace('-', '_');
+    
+    return legalName;
+  }
+  
   
 
   /*
@@ -89,7 +105,7 @@ public abstract class DatabaseAdapter {
 
   
   /**
-   * Create a drop talbe sql command
+   * Create a drop table sql command
    * 
    * @param tableName
    * @return
