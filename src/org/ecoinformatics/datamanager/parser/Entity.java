@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-29 00:24:59 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-09-29 21:12:41 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -133,11 +133,6 @@ public class Entity extends DataObjectDescription
         }*/
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
-
-        // For now, set the database table name to the entity name, replacing
-        // spaces with underscores. We need a way to generate a unique name for 
-        // the entity, so this will not be sufficient.
-        this.DBtableName = this.getName().replace(' ', '_').replace('-', '_');
     }
 
     /**
@@ -588,7 +583,7 @@ public class Entity extends DataObjectDescription
      * for combination of above cases.
      * @return DownloadHandler object which will do download data task
      */
-    public DownloadHandler getDownloadHanlder()
+    public DownloadHandler getDownloadHandler()
     {
     	if (hasZipDataFile)
     	{
