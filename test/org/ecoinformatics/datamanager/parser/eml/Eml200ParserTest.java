@@ -68,7 +68,7 @@ public class Eml200ParserTest extends TestCase
 	  TextComplexDataFormat[] format = entity.getDataFormatArray();
 	  assertTrue(format == null);
 	  String dbTableName = entity.getDBTableName();
-	  assertTrue(dbTableName != null);
+	  assertTrue(dbTableName == null);
 	  String definition = entity.getDefinition();
 	  assertEquals(definition, "patterns amoung communities at CDR");
 	  String delimiter = entity.getDelimiter();
@@ -81,7 +81,7 @@ public class Eml200ParserTest extends TestCase
 	  assertTrue(hasGZip == false);
 	  boolean hasTar = entity.getHasTarDataFile();
 	  assertTrue(hasTar == false);
-	  DownloadHandler handler = entity.getDownloadHanlder();
+	  DownloadHandler handler = entity.getDownloadHandler();
 	  boolean isObjectOfDownloadHandler = handler instanceof DownloadHandler;
 	  assertTrue( isObjectOfDownloadHandler == true);
 	  boolean isObjectOfTarHandler = handler instanceof TarDataHandler;
@@ -95,7 +95,7 @@ public class Eml200ParserTest extends TestCase
 	  boolean isImage = entity.getIsImageEntity();
 	  assertTrue(isImage == false);
 	  String mappedName = entity.getMappedName();
-	  assertTrue(mappedName != null);
+	  assertTrue(mappedName == null);
 	  String name = entity.getName();
 	  assertEquals(name, "CDR LTER-patterns among communities.txt");
 	  int numOfFooter = entity.getNumFooterLines();
