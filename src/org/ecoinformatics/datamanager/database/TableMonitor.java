@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:37:50 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-09-29 21:23:46 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,6 +39,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+
+import org.ecoinformatics.datamanager.parser.Entity;
 
 /*
  * TableMonitor monitors all data tables in the database. It stores information
@@ -110,45 +112,131 @@ public class TableMonitor {
    */
 	
   /**
-   * Adds a new table entry for a given table name. By default, the creation
+   * Adds a new table entry for a given Entity object. By default, the creation
    * date and last used date are set to the current date and time. By default,
    * the expiration policy is set to 1 (may be expired).
    * 
-   * @param   tableName  name of the data table to be added
-   * @return  the row count returned by executing the SQL update
+   * @param   entity        the Entity object for which a table entry is added
+   * @return  the name of the table that was added, or null if not successful
    */
-  public boolean addTableEntry(String tableName) throws SQLException {
+  public String addTableEntry(Entity entity) throws SQLException {
+    String entityIdentifier = entity.getEntityIdentifier();
+    String entityName = entity.getName();
     String insertString;
     Date now = new Date();
     String priority = "1";
-    int rowCount = -1;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
     Statement stmt = null;
-    boolean success = false;
+    String tableName = assignTableName(entityIdentifier, entityName);
+    
+    boolean inUse = isDBTableNameInUse(tableName);
 
-    insertString = "INSERT INTO " + 
-                   DATA_TABLE_REGISTRY +
-                   " values(" +
-                       "'" + tableName + "', " +
-                       "'" + simpleDateFormat.format(now) + "', " +
-                       "'" + simpleDateFormat.format(now) + "', " +
-                       priority +
-                   ")";
+    /*
+     * If we already have an entry for this entity in the data table registry,
+     * simply update its last usage date to the current date.
+     */
+    if (inUse) {
+      setLastUsageDate(tableName, now);
+    } 
+    /*
+     * Otherwise, this insert a new entry for this entity into the data
+     * table registry.
+     */
+    else {
+      insertString = "INSERT INTO " + DATA_TABLE_REGISTRY + " values(" + "'"
+          + tableName + "', " + "'" + entityIdentifier + "', " + "'" + entityName
+          + "', " + "'" + simpleDateFormat.format(now) + "', " + "'"
+          + simpleDateFormat.format(now) + "', " + priority + ")";
 
+      try {
+        stmt = dbConnection.createStatement();
+        stmt.executeUpdate(insertString);
+      } 
+      catch (SQLException e) {
+        System.err.println("Error inserting record for " + tableName
+            + " into the data table registry (" + DATA_TABLE_REGISTRY + ")");
+        System.err.println("SQLException: " + e.getMessage());
+        tableName = null;
+      } 
+      finally {
+        if (stmt != null)
+          stmt.close();
+      }
+    }
+    
+    entity.setDBTableName(tableName);
+    return tableName;
+  }
+  
+  
+  /**
+   * Assigns a table name to a particular entity name.
+   * 
+   * If the table name has previously been assigned to this entity, simply
+   * return the previously assigned table name.
+   * 
+   * Otherwise, choose a table name to assign. If the table name is already in
+   * use by a different entity, mangle the name, and check again. If still in
+   * use, mangle again, check again, etc.
+   * 
+   * The table name assigned to the entity must be unique, and once we have
+   * assigned a name for this entity we should not need to assign a new one.
+   * 
+   * @param entityIdentifier    the id of the Entity object
+   * @param entityName  the name of the Entity object
+   * @return tableName  the name of the database table assigned to this Entity
+   *         object
+   */
+  private String assignTableName(String entityIdentifier, String entityName) 
+          throws SQLException {
+    String tableName = null;
+    String selectString = "SELECT TABLE_NAME, ENTITY_IDENTIFIER, ENTITY_NAME" +
+                          " FROM " + DATA_TABLE_REGISTRY +
+                          " WHERE ENTITY_IDENTIFIER='" + entityIdentifier + "' AND" +
+                          "       ENTITY_NAME='" + entityName + "'";
+    Statement stmt = null;
+
+    /*
+     * First, determine whether this entity has already been assigned a table
+     * name. If it has, just return the previously assigned table name.
+     */
     try {
       stmt = dbConnection.createStatement();
-      rowCount = stmt.executeUpdate(insertString);
-      success = (rowCount == 1);
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        tableName = rs.getString("table_name");
+      }    
     }
-    catch(SQLException e) {
+    catch (SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
       throw(e);
     }
     finally {
       if (stmt != null) stmt.close();
     }
+
+    /*
+     * If tableName is still null, it means that we have not already assigned
+     * a table name to this entity. Now we have to go through a loop,
+     * trying different candidate table names until we finally
+     * find a name that is not already in use.
+     */
+    if (tableName == null) {
+      String tableNameCandidate = 
+                                DatabaseAdapter.getLegalDBTableName(entityName);
+      
+      while (tableName == null) {
+        if (isDBTableNameInUse(tableNameCandidate)) {
+          tableNameCandidate = mangleName(tableNameCandidate);
+        }
+        else {
+          tableName = tableNameCandidate;
+        }
+      }
+    }
     
-    return success;
+    return tableName;
   }
   
   
@@ -163,10 +251,12 @@ public class TableMonitor {
     String createString = 
       "create table " + DATA_TABLE_REGISTRY + " " +
       "(" +
-      "  TABLE_NAME varchar(64), " +
-      "  CREATION_DATE date, " +
-      "  LAST_USAGE_DATE date, " +
-      "  PRIORITY int" +
+      "  TABLE_NAME varchar(64), " +         // database table name
+      "  ENTITY_IDENTIFIER varchar(256), " + // entity identifier
+      "  ENTITY_NAME varchar(64), " +        // entity name
+      "  CREATION_DATE date, " +             // creation date
+      "  LAST_USAGE_DATE date, " +           // last usage date
+      "  PRIORITY int" +                     // expiration policy
       ")";
 
     Statement stmt = null;
@@ -222,11 +312,8 @@ public class TableMonitor {
    */
   public int freeTableSpace(DatabaseHandler databaseHandler)
           throws SQLException {
-    boolean success;
     int freedSpace = 0;
     String oldestTable = getOldestTable();
-    
-    success = databaseHandler.dropTable(oldestTable);
     
     return freedSpace;
   }
@@ -386,6 +473,63 @@ public class TableMonitor {
     return tableList;
   }
   
+  
+  /**
+   * Given an identifier string, return its corresponding table name. 
+   * 
+   * @param   identifier   the identifier string for the entity
+   * @return  the corresponding table name
+   */
+  String identifierToTableName(String identifier) 
+          throws SQLException {
+    String tableName = null;
+    String selectString = 
+      "SELECT table_name FROM " + DATA_TABLE_REGISTRY +
+      " WHERE entity_identifier='" + identifier + "'";
+    Statement stmt = null;
+    
+    try {
+      stmt = dbConnection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        tableName = rs.getString("table_name");    
+      }
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
+    }
+    
+    return tableName;
+  }
+  
+
+  /**
+   * Checks the data table registry to determine whether a given table name is
+   * already in use. 
+   * 
+   * @param tableName        the table name to be checked 
+   * @return                 true if the table name is in use, else false
+   * @throws SQLException
+   */
+  private boolean isDBTableNameInUse(String tableName) throws SQLException {
+    boolean inUse = false;
+    String[] tableNames = getTableList();
+    
+    for (int i = 0; i < tableNames.length; i++) {
+      if (tableNames[i].equalsIgnoreCase(tableName)) {
+        inUse = true;
+        break;
+      }
+    }
+    
+    return inUse;
+  }
+  
 
   /**
    * Boolean to determine whether a given table name is currently in the
@@ -415,6 +559,50 @@ public class TableMonitor {
     
     return isPresent;
 	}
+  
+
+  /**
+   * Given a table name, return a mangled name. This is done by tagging on a
+   * string pattern followed by an integer. If the table name always contains
+   * the string pattern (i.e. it has already been mangled one or more times
+   * already), mangle it further by incrementing the integer. Eventually, the
+   * integer will be incremented to a value that has not been used before for
+   * this name.
+   * 
+   * Examples:
+   * 
+   * mangleName("Chevy")  -->  "Chevy_XYZXY_1"
+   * mangleName("Chevy_XYZXY_1")  -->  "Chevy_XYZXY_2"
+   * mangleName("Chevy_XYZXY_344")  -->  "Chevy_XYZXY_345"
+   * 
+   * @param  tableName  the table name to be mangled
+   * @return the mangled name
+   */
+  private String mangleName(String tableName) {
+    int index;
+    int tailInt = 0;
+    String mangledName;
+    String patternMatch = "_XYZYX_";  // Used to flag this as a mangled name
+    String rootName = tableName;
+    
+    index = tableName.indexOf(patternMatch);
+
+    /*
+     * Check whether the table name has been previously mangled one or more
+     * times already. If it has (i.e. it contains the pattern)
+     */
+    if (index > -1) {
+      String tail = tableName.substring(index + patternMatch.length());
+      Integer tailInteger = Integer.valueOf(tail);
+      tailInt = tailInteger.intValue();
+      rootName = tableName.substring(0, index);
+    }
+    
+    tailInt++;
+    mangledName = rootName + patternMatch + tailInt;
+    
+    return mangledName;
+  }
 	
 
   /**
