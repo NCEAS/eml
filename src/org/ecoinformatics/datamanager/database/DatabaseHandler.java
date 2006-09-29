@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-28 00:58:55 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-09-29 00:23:33 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -46,11 +46,12 @@ import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
+import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
-public class DatabaseHandler implements DataStorageInterface
+public class DatabaseHandler
 {
   /*
    * Class fields
@@ -63,8 +64,8 @@ public class DatabaseHandler implements DataStorageInterface
 	private Connection dbConnection  = null;
 	private String     dbAdapterName = null;
     private DatabaseAdapter databaseAdapter;
-    private TableMonitor tableMonitor = null;
-    private Hashtable    pipeIOHash = new Hashtable();
+    private static TableMonitor tableMonitor = null;
+ 
 
   
   /*
@@ -110,7 +111,7 @@ public class DatabaseHandler implements DataStorageInterface
    * @param   identifier  the identifier for the data table
    * @return  true if the data table already exists in the database, else false
    */
-  public boolean doesDataExist(String identifier) {
+  public static boolean doesDataExist(String identifier) {
     boolean doesExist = false;
     
     try {
@@ -207,49 +208,7 @@ public class DatabaseHandler implements DataStorageInterface
   }
   
 
-  /** 
-   * Finishes serialization of the data to the local store. This method is
-   * required for implementing DataStorageInterface.
-   * 
-   * @param identifier  the identifier for the data whose serialization is done
-   * @param errorCode   a string indicating whether there was an error during
-   *                    the serialization
-   */
-  public void finishSerialize(String identifier, String errorCode) {
-	 
-	  PipedIO pipeIO = (PipedIO)pipeIOHash.get(identifier);
-	  PipedInputStream inputStream = null;
-	  PipedOutputStream outputStream = null;
-	  if (pipeIO != null)
-	  {
-		  inputStream = pipeIO.getPipedInputStream();
-		  outputStream = pipeIO.getPipedOutputStream();
-	  }
-	  if (inputStream != null)
-	  {
-		  try
-		  {
-		    inputStream.close();
-		  }
-		  catch (Exception e)
-		  {
-			  
-		  }
-	  }
-	  if (outputStream != null)
-	  {
-		  try
-		  {
-		    outputStream.close();
-		  }
-		  catch (Exception e)
-		  {
-			  
-		  }
-	  }
-    
-  }
-  
+ 
 
   /**
    * Generates a table in the database for a given entity.
@@ -328,27 +287,14 @@ public class DatabaseHandler implements DataStorageInterface
    * @param   identifier   the identifier string for the entity
    * @return  the corresponding table name
    */
-  private String identifierToTableName(String identifier) {
+  private static String identifierToTableName(String identifier) {
     String tableName = identifier;
     
     return tableName;
   }
   
 
-  /**
-   * Accesses the data for a given identifier, opening an input stream on it
-   * for loading. This method is required for implementing DataStorageInterface.
-   * 
-   * @param  identifier  An identifier of the data to be loaded.
-   * @throws DataSourceNotFoundException Indicates that the data was not found
-   *         in the local store.
-   */
-  public InputStream load(String identifier) throws DataSourceNotFoundException
-  {
-    InputStream inputStream = null;
-
-    return inputStream;
-  }
+ 
   
 
   /**
@@ -378,8 +324,14 @@ public class DatabaseHandler implements DataStorageInterface
    */
   public boolean loadData(Entity entity)
   {
-	
-    return true;
+	boolean success = false;
+	if (entity != null)
+	{
+		String identifier = entity.getEntityIdentifier();
+		DownloadHandler downloadHandler = entity.getDownloadHanlder();
+		
+	}
+    return success;
   }
   
 
@@ -398,121 +350,8 @@ public class DatabaseHandler implements DataStorageInterface
   }
   
 
-  /**
-	 * Start to serialize a remote inputstream. The OutputStream is 
-	 * the destination in the local store.
-   * The DownloadHandler reads data from the remote source and writes it to 
-   * the output stream for local storage. For the DatabaseHandler class,
-   * the database itself serves as the local store.
-   * 
-	 * @param  identifier  An identifier to the data in the local store that is
-   *                     to be serialized.
-	 * @return An output stream to the location in the local store where the data 
-   *         is to be serialized.
-	 */
-	public OutputStream startSerialize(String identifier)
-	{
-        PipedOutputStream outputStream = null;
-        try
-        {
-        	PipedIO pipe = new PipedIO();
-        	pipeIOHash.put(identifier, pipe);
-        	Thread newThread = new Thread(pipe);
-        	newThread.start();
-        	outputStream = pipe.getPipedOutputStream();
-        }
-        catch(IOException e)
-        {
-        	System.err.println("Error is "+e.getMessage());
-        }
-    
-		return outputStream;
-	}
+  
 	
-	/*
-	 * Private class which use PipedInputStream and PipedOutputStream to
-	 * read data from DownloadHandler into database
-	 */
-	private class PipedIO implements Runnable
-	{
-		private PipedInputStream inputStream = null;
-		private PipedOutputStream outputStream = null;
-		private Entity entity = null;
-		
-		/**
-		 * Generate a pair of connected PipedIO 
-		 * @throws IOException
-		 */
-		public PipedIO() throws IOException
-		{
-			
-			outputStream = new PipedOutputStream();
-	        inputStream  = new PipedInputStream();
-	        outputStream.connect(inputStream);
-		}
-		
-		/**
-		 * Gets PipedInputStream Object
-		 * @return PipedInputStream
-		 */
-		public PipedInputStream getPipedInputStream()
-		{
-			return this.inputStream;
-		}
-		
-		/**
-		 * Gets PipedOutputStream Object
-		 * @return PipedOutputStream Object
-		 */
-		public PipedOutputStream getPipedOutputStream()
-		{
-			return this.outputStream;
-		}
-		
-		/**
-		 * Sets entity which will be inserted into data
-		 * @param entity
-		 */
-		public void setEntity(Entity entity)
-		{
-			this.entity = entity;
-		}
-		
-		/**
-		 * Use PipedInputStream which connected the PipedOutputStream in DownloadHandler
-		 * to insert data into db
-		 */
-		public void run()
-		{
-			if (inputStream != null)
-			{
-				System.out.println(" inputStream is NOT null");
-				byte[] array = new byte[1024];
-				File outputFile = new File("/Users/jinsongzhang/dsafa21");
-				FileOutputStream fileOutputStream = null;
-				int size = 0;
-				try
-				{
-				   fileOutputStream = new FileOutputStream(outputFile);
-				   size =inputStream.read(array);
-				   while (size != -1)
-				   {
-					   fileOutputStream.write(array, 0, size);
-					   size =inputStream.read(array);
-				   }
-				}
-				catch (Exception e)
-				{
-					
-				}
-				
-				
-			}
-			else
-			{
-				System.out.println(" input stream is null");
-			}
-		}
-	}
+	
 	
 }
