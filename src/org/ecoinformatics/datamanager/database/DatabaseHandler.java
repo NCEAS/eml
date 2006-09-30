@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-29 21:19:07 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-09-30 00:19:07 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -101,7 +101,7 @@ public class DatabaseHandler
    * @param   identifier  the identifier for the data table
    * @return  true if the data table already exists in the database, else false
    */
-  public static boolean doesDataExist(String identifier) {
+  public boolean doesDataExist(String identifier) {
     boolean doesExist = false;
     
     try {
@@ -280,7 +280,7 @@ public class DatabaseHandler
    * @param   identifier   the identifier string for the entity
    * @return  the corresponding table name
    */
-  private static String identifierToTableName(String identifier) 
+  private  String identifierToTableName(String identifier) 
           throws SQLException {
     String tableName;
     
