@@ -182,7 +182,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 			{
 				System.out.println(" inputStream is NOT null");
 				byte[] array = new byte[1024];
-				File outputFile = new File("/Users/jinsongzhang/dsafa21");
+				File tmp = new File(System.getProperty("java.io.tmpdir"));
+				File outputFile = new File(tmp, "dsafa21");
 				FileOutputStream fileOutputStream = null;
 				int size = 0;
 				try
@@ -219,7 +220,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		   */
 		  public boolean doesDataExist(String identifier) 
 		  {
-		    boolean doesExist = DatabaseHandler.doesDataExist(identifier);
+		    boolean doesExist = false;
 		    
 		    return doesExist;
 		  }
