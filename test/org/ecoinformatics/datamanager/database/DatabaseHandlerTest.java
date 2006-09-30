@@ -27,8 +27,8 @@ public class DatabaseHandlerTest extends TestCase {
   /* During development, hard-code the database settings */
   static String dbDriver = "org.postgresql.Driver";
   static String dbURL = "jdbc:postgresql://localhost/datamanager";
-  static String dbUser = "datamanager";
-  static String dbPassword = "datamanager";
+  static String dbUser = "postgres";
+  static String dbPassword = "====";
     
   /*
    * Instance fields
@@ -204,11 +204,11 @@ public class DatabaseHandlerTest extends TestCase {
       boolean success = databaseHandler.generateTable(entity);
       assertTrue("DatabaseHandler did not succeed in generating table", success);
       String identifier = entity.getEntityIdentifier();
-      boolean isPresent = DatabaseHandler.doesDataExist(identifier);
+      boolean isPresent = databaseHandler.doesDataExist(identifier);
       assertTrue("Could not find table for identifier " + identifier
           + " but it should be in db", isPresent);
       databaseHandler.dropTable(entity);
-      isPresent = DatabaseHandler.doesDataExist(identifier);
+      isPresent = databaseHandler.doesDataExist(identifier);
       assertFalse("Found table for identifier " + identifier +
                   " but it should NOT be in db", isPresent);
       }
