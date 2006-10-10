@@ -27,7 +27,7 @@ public class DatabaseHandlerTest extends TestCase {
   /* During development, hard-code the database settings */
   static String dbDriver = "org.postgresql.Driver";
   static String dbURL = "jdbc:postgresql://localhost/datamanager";
-  static String dbUser = "postgres";
+  static String dbUser = "tao";
   static String dbPassword = "====";
     
   /*
@@ -68,7 +68,7 @@ public class DatabaseHandlerTest extends TestCase {
     TestSuite testSuite = new TestSuite();
     
     testSuite.addTest(new DatabaseHandlerTest("initialize"));
-    testSuite.addTest(new DatabaseHandlerTest("testDoesDataExist"));
+    //testSuite.addTest(new DatabaseHandlerTest("testDoesDataExist"));
     testSuite.addTest(new DatabaseHandlerTest("testGenerateTable"));
     testSuite.addTest(new DatabaseHandlerTest("testDropTable"));
     
@@ -145,74 +145,7 @@ public class DatabaseHandlerTest extends TestCase {
   }
   
 
-  /**
-   * Tests the DatabaseHandler.doesDataExist() method. Does so by creating a 
-   * test table. First drops the table in case it was already
-   * present. Then creates the table, calls isTableInDB(), and asserts that
-   * the table exists. Then drops the table again, calls isTableInDB(), and
-   * asserts that the table does not exist.
-   * 
-   * @throws SQLException
-   */
-  public void testDoesDataExist()
-          throws MalformedURLException, IOException, SQLException, Exception {
-    DataManager dataManager = DataManager.getInstance();
-    DataPackage dataPackage = null;
-    InputStream metadataInputStream;
-    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
-        + TEST_DOCUMENT;
-    URL url;
-
-    /*
-     * First get a test data package and parse it.
-     */
-    try {
-      url = new URL(documentURL);
-      metadataInputStream = url.openStream();
-      dataPackage = dataManager.parseMetadata(metadataInputStream);
-    } 
-    catch (MalformedURLException e) {
-      e.printStackTrace();
-      throw (e);
-    } 
-    catch (IOException e) {
-      e.printStackTrace();
-      throw (e);
-    } 
-    catch (Exception e) {
-      e.printStackTrace();
-      throw (e);
-    }
-
-    /*
-     * Assert that dataManager.parseMetadata() returned a non-null dataPackage
-     * object.
-     */
-    assertNotNull("Data package is null", dataPackage);
-
-    /*
-     * Generate the table from the entity. Assert that the generateTable()
-     * method succeeded. Assert that entity's database table name has been set,
-     * and that the table can be found in the database. Get the entity's
-     * identifier and assert that data for this identifier does exist in the
-     * database. Drop the table, then assert that the data for this entity
-     * identifier does not exist in the database.
-     */
-    if (dataPackage != null) {
-      Entity[] entities = dataPackage.getEntityList();
-      Entity entity = entities[0];
-      boolean success = databaseHandler.generateTable(entity);
-      assertTrue("DatabaseHandler did not succeed in generating table", success);
-      String identifier = entity.getEntityIdentifier();
-      boolean isPresent = databaseHandler.doesDataExist(identifier);
-      assertTrue("Could not find table for identifier " + identifier
-          + " but it should be in db", isPresent);
-      databaseHandler.dropTable(entity);
-      isPresent = databaseHandler.doesDataExist(identifier);
-      assertFalse("Found table for identifier " + identifier +
-                  " but it should NOT be in db", isPresent);
-      }
-  }
+ 
   
 
   /**
