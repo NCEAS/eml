@@ -7,12 +7,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Hashtable;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
+import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
 /**
@@ -24,15 +28,15 @@ import org.ecoinformatics.datamanager.parser.Entity;
  */
 public class DatabaseLoader implements DataStorageInterface, Runnable 
 {
-	private static Hashtable     pipeIOHash = new Hashtable();
-	private static Hashtable     entityHash = new Hashtable();
-	private PipedInputStream    inputStream = null;
-	private PipedOutputStream  outputStream = null;
-	private Entity                   entity = null;
-	private Connection        dbConnection  = null;
-	private String            dbAdapterName = null;
-    private DatabaseAdapter databaseAdapter = null;
-    private String                errorCode = null;
+	
+	private PipedInputStream     inputStream = null;
+	private PipedOutputStream   outputStream = null;
+	private Entity                    entity = null;
+	private Connection         dbConnection  = null;
+	private String             dbAdapterName = null;
+    private DatabaseAdapter  databaseAdapter = null;
+    private String                 errorCode = null;
+    private static TableMonitor tableMonitor = null;
     
     /**
      * Constructor of this class. In constructor, it will create a pair of
@@ -42,7 +46,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
      * @param entity Metadata information associated with the loader
      * @throws IOException
      */
-    public DatabaseLoader(Connection dbConnection, String dbAdapterName, Entity entity) throws IOException
+    public DatabaseLoader(Connection dbConnection, String dbAdapterName, Entity entity) throws IOException, 
+                                                                                               SQLException
     {
     	outputStream = new PipedOutputStream();
         inputStream  = new PipedInputStream();
@@ -62,7 +67,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	    }
 	    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
 	      this.databaseAdapter = new OracleAdapter();
+	      
 	    }
+	    //tableMonitor =new TableMonitor(dbConnection, dbAdapterName);
     }
 	
 	 
@@ -180,7 +187,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		{
 			if (inputStream != null)
 			{
-				System.out.println(" inputStream is NOT null");
+				//System.out.println(" inputStream is NOT null");
 				byte[] array = new byte[1024];
 				File tmp = new File(System.getProperty("java.io.tmpdir"));
 				File outputFile = new File(tmp, "dsafa21");
@@ -209,20 +216,97 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 			}
 		}
 		
-		
-		/**
+		 /**
+		   * Tests the DatabaseHandler.doesDataExist() method. Does so by creating a 
+		   * test table. First drops the table in case it was already
+		   * present. Then creates the table, calls isTableInDB(), and asserts that
+		   * the table exists. Then drops the table again, calls isTableInDB(), and
+		   * asserts that the table does not exist.
+		   * 
+		   * @throws SQLException
+		   */
+		  /*public void testDoesDataExist()
+		          throws MalformedURLException, IOException, SQLException, Exception {
+		    DataManager dataManager = DataManager.getInstance();
+		    DataPackage dataPackage = null;
+		    InputStream metadataInputStream;
+		    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
+		        + TEST_DOCUMENT;
+		    URL url;
+
+		   
+		    try {
+		      url = new URL(documentURL);
+		      metadataInputStream = url.openStream();
+		      dataPackage = dataManager.parseMetadata(metadataInputStream);
+		    } 
+		    catch (MalformedURLException e) {
+		      e.printStackTrace();
+		      throw (e);
+		    } 
+		    catch (IOException e) {
+		      e.printStackTrace();
+		      throw (e);
+		    } 
+		    catch (Exception e) {
+		      e.printStackTrace();
+		      throw (e);
+		    } 
+		    assertNotNull("Data package is null", dataPackage);
+
+		  
+		    if (dataPackage != null) {
+		      Entity[] entities = dataPackage.getEntityList();
+		      Entity entity = entities[0];
+		      boolean success = databaseHandler.generateTable(entity);
+		      assertTrue("DatabaseHandler did not succeed in generating table", success);
+		      String identifier = entity.getEntityIdentifier();
+		      boolean isPresent = databaseHandler.doesDataExist(identifier);
+		      assertTrue("Could not find table for identifier " + identifier
+		          + " but it should be in db", isPresent);
+		      databaseHandler.dropTable(entity);
+		      isPresent = databaseHandler.doesDataExist(identifier);
+		      assertFalse("Found table for identifier " + identifier +
+		                  " but it should NOT be in db", isPresent);
+		      }
+		  }*/
+		  /**
 		   * Determines whether the data table corresponding to a given identifier 
 		   * already exists in the database. This method is mandated by the
 		   * DataStorageInterface.
-		   * 
+		   * private static Hashtable     pipeIOHash = new Hashtable();
+			private static Hashtable     entityHash = new Hashtable();
 		   * @param   identifier  the identifier for the data table
 		   * @return  true if the data table already exists in the database, else false
 		   */
-		  public boolean doesDataExist(String identifier) 
-		  {
+		  public boolean doesDataExist(String identifier) {
 		    boolean doesExist = false;
 		    
+		    try {
+		      String tableName = identifierToTableName(identifier);
+		      //doesExist = tableMonitor.isTableInDB(tableName);
+		    }
+		    catch (SQLException e) {
+		      System.err.println(e.getMessage());
+		      e.printStackTrace();
+		    }
+		    
 		    return doesExist;
+		  }
+		  
+		  /**
+		   * Given an identifier string, return its corresponding table name. 
+		   * 
+		   * @param   identifier   the identifier string for the entity
+		   * @return  the corresponding table name
+		   */
+		  private  String identifierToTableName(String identifier) 
+		          throws SQLException {
+		    String tableName = "";
+		    
+		    //tableName = tableMonitor.identifierToTableName(identifier);
+		    
+		    return tableName;
 		  }
 		  
 
