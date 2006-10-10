@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-30 00:19:07 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2006-10-10 23:48:47 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -93,28 +93,7 @@ public class DatabaseHandler
    * Instance methods
    */
 
-  /**
-   * Determines whether the data table corresponding to a given identifier 
-   * already exists in the database. This method is mandated by the
-   * DataStorageInterface.
-   * 
-   * @param   identifier  the identifier for the data table
-   * @return  true if the data table already exists in the database, else false
-   */
-  public boolean doesDataExist(String identifier) {
-    boolean doesExist = false;
-    
-    try {
-      String tableName = identifierToTableName(identifier);
-      doesExist = tableMonitor.isTableInDB(tableName);
-    }
-    catch (SQLException e) {
-      System.err.println(e.getMessage());
-      e.printStackTrace();
-    }
-    
-    return doesExist;
-  }
+
   
   
   /**
@@ -274,20 +253,7 @@ public class DatabaseHandler
   }
   
  
-  /**
-   * Given an identifier string, return its corresponding table name. 
-   * 
-   * @param   identifier   the identifier string for the entity
-   * @return  the corresponding table name
-   */
-  private  String identifierToTableName(String identifier) 
-          throws SQLException {
-    String tableName;
-    
-    tableName = tableMonitor.identifierToTableName(identifier);
-    
-    return tableName;
-  }
+ 
   
 
   /**
