@@ -12,6 +12,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Entity;
 
 public class TableMonitorTest extends TestCase {
@@ -20,12 +21,12 @@ public class TableMonitorTest extends TestCase {
    * Class fields
    */
 
-  /* During development, hard-code the database settings */
-  static String dbDriver = "org.postgresql.Driver";
-  static String dbURL = "jdbc:postgresql://localhost/datamanager";
-  static String dbUser = "datamanager";
-  static String dbPassword = "datamanager";
+  static final String dbDriver = DataManager.getDbDriver();
+  static final String dbURL = DataManager.getDbURL();
+  static final String dbUser = DataManager.getDbUser();
+  static final String dbPassword = DataManager.getDbPassword();
     
+  
   /*
    * Instance fields
    */

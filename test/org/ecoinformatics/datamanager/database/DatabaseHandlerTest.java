@@ -24,12 +24,12 @@ public class DatabaseHandlerTest extends TestCase {
    * Class fields
    */
 
-  /* During development, hard-code the database settings */
-  static String dbDriver = "org.postgresql.Driver";
-  static String dbURL = "jdbc:postgresql://localhost/datamanager";
-  static String dbUser = "tao";
-  static String dbPassword = "====";
-    
+  static final String dbDriver = DataManager.getDbDriver();
+  static final String dbURL = DataManager.getDbURL();
+  static final String dbUser = DataManager.getDbUser();
+  static final String dbPassword = DataManager.getDbPassword();
+
+  
   /*
    * Instance fields
    */
