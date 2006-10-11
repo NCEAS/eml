@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-15 22:28:40 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-10-11 22:29:32 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,11 +33,15 @@
 package org.ecoinformatics.datamanager;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import edu.ucsb.nceas.utilities.Options;
 
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
@@ -46,6 +50,7 @@ import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
+
 
 /**
  * 
@@ -63,20 +68,32 @@ import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
  *
  */
 public class DataManager {
+  
+  /*
+   * Initializers
+   */
+  static {
+    loadOptions();
+  }
 
+  
   /*
    * Class fields
    */
 
+  /* Configuration directory and file name for the properties file */
+  private static final String CONFIG_DIR = "lib/datamanager";
+  private static final String CONFIG_NAME = "datamanager.properties";
+  
   /* Holds the singleton object for this class */
   private static DataManager dataManager = new DataManager();
   
-  /* During development, hard-code the database settings */
-  static String dbDriver = "org.postgresql.Driver";
-  static String dbURL = "jdbc:postgresql://localhost/datamanager";
-  static String dbUser = "datamanager";
-  static String dbPassword = "datamanager";
-  
+  private static String dbDriver; // e.g. "org.postgresql.Driver"
+  private static String dbURL; // e.g. "jdbc:postgresql://localhost/datamanager"
+  private static String dbUser;     // database username
+  private static String dbPassword; // database password
+  private static Options options = null;
+ 
   
   /*
    * Instance fields
@@ -98,6 +115,46 @@ public class DataManager {
   /*
    * Class methods
    */
+ 
+  /**
+   * Accessor method.
+   * 
+   * @return  dbDriver class field
+   */
+  public static String getDbDriver() {
+    return dbDriver;
+  }
+  
+  
+  /**
+   * Accessor method.
+   * 
+   * @return  dbURL class field
+   */
+  public static String getDbURL() {
+    return dbURL;
+  }
+  
+  
+  /**
+   * Accessor method.
+   * 
+   * @return  dbUser class field
+   */
+  public static String getDbUser() {
+    return dbUser;
+  }
+  
+  
+  /**
+   * Accessor method.
+   * 
+   * @return  dbPassword class field
+   */
+  public static String getDbPassword() {
+    return dbPassword;
+  }
+  
   
   /**
    * Gets the singleton instance of this class.
@@ -106,6 +163,26 @@ public class DataManager {
    */
   static public DataManager getInstance() {
     return dataManager;
+  }
+  
+  
+  /**
+   * Loads Data Manager options from a configuration file.
+   */
+  public static void loadOptions() {
+    String configDir = CONFIG_DIR;    
+    File propertyFile = new File(configDir, CONFIG_NAME);
+
+    try {
+      options = Options.initialize(propertyFile);
+      dbDriver = options.getOption("dbDriver");
+      dbURL = options.getOption("dbURL");
+      dbUser = options.getOption("dbUser");
+      dbPassword = options.getOption("dbPassword");
+    } 
+    catch (IOException e) {
+      System.out.println("Error in loading options: " + e.getMessage());
+    }
   }
   
   
