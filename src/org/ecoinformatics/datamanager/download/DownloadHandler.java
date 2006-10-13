@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-21 18:08:59 $'
- *   '$Revision: 1.12 $'
+ *       '$Date: 2006-10-13 21:09:14 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -148,7 +148,14 @@ public class DownloadHandler implements Runnable
     	busy = true;
     	completed = false;
     	//System.out.println("start get source"+url);
-    	success = getContentFromSource(url);
+    	try
+    	{
+    	  success = getContentFromSource(url);
+    	}
+    	catch(Exception e)
+    	{
+    	   System.err.println("Error in DownloadHandler run method"+e.getMessage());
+    	}
     	//System.out.println("after get source"+url);
     	busy = false;
     	// downloading is done, remove the handler from hash.
