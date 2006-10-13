@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-11 22:29:32 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-10-13 18:56:04 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -283,9 +283,10 @@ public class DataManager {
    * 
    * @return
    */
-  private Connection getConnection() 
+  public static Connection getConnection() 
         throws ClassNotFoundException, SQLException {
-    if (dbConnection == null) {
+	
+      Connection connection = null;
       try {
         Class.forName(DataManager.dbDriver);
       } 
@@ -296,7 +297,7 @@ public class DataManager {
       }
 
       try {
-        dbConnection = DriverManager.getConnection(DataManager.dbURL, 
+        connection = DriverManager.getConnection(DataManager.dbURL, 
                                                    DataManager.dbUser, 
                                                    DataManager.dbPassword);
       } 
@@ -304,9 +305,9 @@ public class DataManager {
         System.err.println("SQLException: " + e.getMessage());
         throw(e);
       }
-    }
+   
     
-    return dbConnection;
+    return connection;
   }
   
 
@@ -505,9 +506,10 @@ public class DataManager {
    * @param size The upper limit, in MB, on the size of the database table
    *        cache.
    */
-  public void setDatabaseSize(int size) throws SQLException {
+  public void setDatabaseSize(int size) throws SQLException, ClassNotFoundException {
+	Connection connection = getConnection();
     TableMonitor tableMonitor = 
-                            new TableMonitor(dbConnection, databaseAdapterName);
+                            new TableMonitor(connection, databaseAdapterName);
     
     tableMonitor.setDBSize(size);
   }
@@ -526,9 +528,10 @@ public class DataManager {
    *                  precise meaning of this value is yet to be determined.)
    */
   public void setTableExpirationPolicy(String tableName, int policy) 
-        throws SQLException {
+        throws SQLException, ClassNotFoundException {
+	Connection connection = getConnection();
     TableMonitor tableMonitor = 
-                            new TableMonitor(dbConnection, databaseAdapterName);
+                            new TableMonitor(connection, databaseAdapterName);
     
     tableMonitor.setTableExpirationPolicy(tableName, policy);
   }
