@@ -11,11 +11,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
+import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -36,14 +39,15 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	private String             dbAdapterName = null;
     private DatabaseAdapter  databaseAdapter = null;
     private String                 errorCode = null;
-    private static TableMonitor tableMonitor = null;
+    private static TableMonitor tableMonitor = null;             
     
     /**
      * Constructor of this class. In constructor, it will create a pair of
      * PipedOutputStream object and PipedInputStream object.
      * @param dbConnection Connection to database
      * @param dbAdapterName Name of database adapter
-     * @param entity Metadata information associated with the loader
+     * @param entity Metad
+     * ata information associated with the loader
      * @throws IOException
      */
     public DatabaseLoader(Connection dbConnection, String dbAdapterName, Entity entity) throws IOException, 
@@ -70,6 +74,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	      
 	    }
 	    //tableMonitor =new TableMonitor(dbConnection, dbAdapterName);
+	    
     }
 	
 	 
@@ -185,34 +190,79 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	     */
 		public void run()
 		{
+			Vector rowVector = new Vector();
+			AttributeList attributeList = entity.getAttributeList();
+			String tableName = entity.getDBTableName();
+			TextDataReader  dataReader = null;
+			boolean stripHeaderLine = true;
 			if (inputStream != null)
 			{
-				//System.out.println(" inputStream is NOT null");
-				byte[] array = new byte[1024];
-				File tmp = new File(System.getProperty("java.io.tmpdir"));
-				File outputFile = new File(tmp, "dsafa21");
-				FileOutputStream fileOutputStream = null;
-				int size = 0;
 				try
 				{
-				   fileOutputStream = new FileOutputStream(outputFile);
-				   size =inputStream.read(array);
-				   while (size != -1)
-				   {
-					   fileOutputStream.write(array, 0, size);
-					   size =inputStream.read(array);
-				   }
+					if (entity.isSimpleDelimited())
+					{
+						
+						DelimitedReader delimitedReader = new DelimitedReader(inputStream, entity
+								.getAttributes().length, entity.getDelimiter(),
+								entity.getNumHeaderLines(), entity.getRecordDelimiter(),
+								entity.getNumRecords(), stripHeaderLine);
+						delimitedReader.setCollapseDelimiter(entity.getCollapseDelimiter());
+						delimitedReader.setNumFooterLines(entity.getNumFooterLines());
+						dataReader = delimitedReader;
+						
+					}
+					else
+					{
+						dataReader = new TextComplexFormatDataReader(inputStream, entity, stripHeaderLine);
+						
+					}
+					rowVector = dataReader.getOneRowDataVector();
+					//dbConnection.setAutoCommit(false);
 				}
-				catch (Exception e)
+				catch(Exception e)
 				{
-					System.err.println("The error in DatabaseLoader.run() "+e.getMessage());
+					return;
 				}
 				
+				try
+				{
+					while (!rowVector.isEmpty())
+					{
+					   String insertSQL = databaseAdapter.generateInsertSQL(attributeList, tableName, rowVector);
+					   System.out.println("the sql is "+insertSQL);
+					   Statement statement = dbConnection.createStatement();
+					   statement.execute(insertSQL);
+					   rowVector = dataReader.getOneRowDataVector();
+					}
+					dbConnection.commit();
+				}
+				catch(Exception e)
+				{
+					try
+					{
+					   dbConnection.rollback();
+					}
+					catch(Exception ee)
+					{
+						System.err.println(ee.getMessage());
+					}
+				}
+				finally
+				{
+					try
+					{
+					   dbConnection.setAutoCommit(true);
+					}
+					catch(Exception ee)
+					{
+					  System.err.println(ee.getMessage());
+					}
+				}
 				
 			}
 			else
 			{
-				System.out.println(" input stream is null");
+				System.err.println(" input stream is null");
 			}
 		}
 		
@@ -250,6 +300,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		    } 
 		    catch (Exception e) {
 		      e.printStackTrace();
+		      
 		      throw (e);
 		    } 
 		    assertNotNull("Data package is null", dataPackage);
@@ -284,7 +335,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		    
 		    try {
 		      String tableName = identifierToTableName(identifier);
-		      //doesExist = tableMonitor.isTableInDB(tableName);
+		      doesExist = tableMonitor.isTableInDB(tableName);
 		    }
 		    catch (SQLException e) {
 		      System.err.println(e.getMessage());
@@ -304,7 +355,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		          throws SQLException {
 		    String tableName = "";
 		    
-		    //tableName = tableMonitor.identifierToTableName(identifier);
+		    tableName = tableMonitor.identifierToTableName(identifier);
 		    
 		    return tableName;
 		  }
