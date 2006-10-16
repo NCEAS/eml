@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
@@ -108,7 +110,7 @@ public class DatabaseLoaderTest extends TestCase
 	      assertTrue("DatabaseHandler did not succeed in generating table", success);
 		  DatabaseLoader dataStorage = new DatabaseLoader(dbConnection, dbAdaptor, entity);
 		  boolean isPresent = dataStorage.doesDataExist(identifier);
-      assertFalse("Table for identifier " + identifier + " is empty, " + 
+          assertFalse("Table for identifier " + identifier + " is empty, " + 
                   "but doesDataExist() returned true", 
                   isPresent);
 		  DatabaseLoader[] list = new DatabaseLoader[1];
@@ -131,6 +133,21 @@ public class DatabaseLoaderTest extends TestCase
 		  assertTrue(dataStorage.doesDataExist(identifier) == true);
 		  assertTrue(handler.isSuccess() == true);
 		  assertTrue(handler.isBusy() == false);
+		  String sql = "select column_1 from head_linedata where column_2=2;";
+		  Connection connection = DataManager.getConnection();
+		  Statement statement = connection.createStatement();
+		  ResultSet result = statement.executeQuery(sql);
+		  boolean next = result.next();
+		  float col1 = 0;
+		  if (next)
+		  {
+		     col1 = result.getFloat(1);
+		    
+		  }
+		  result.close();
+		  statement.close();
+		  connection.close();
+		  assertTrue (col1==1);
 		  databaseHandler.dropTable(entity);
 	      isPresent = dataStorage.doesDataExist(identifier);
 	      assertFalse("Found table for identifier " + identifier +
