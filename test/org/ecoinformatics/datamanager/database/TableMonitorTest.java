@@ -82,12 +82,16 @@ public class TableMonitorTest extends TestCase {
     
     testSuite.addTest(new TableMonitorTest("initialize"));
     testSuite.addTest(new TableMonitorTest("testAddTableEntry"));
+    testSuite.addTest(new TableMonitorTest("testAssignTableName"));
     testSuite.addTest(new TableMonitorTest("testDropTableEntry"));
     testSuite.addTest(new TableMonitorTest("testGetCreationDate"));
     testSuite.addTest(new TableMonitorTest("testGetLastUsageDate"));
     testSuite.addTest(new TableMonitorTest("testGetOldestTable"));
     testSuite.addTest(new TableMonitorTest("testGetTableList"));
+    testSuite.addTest(new TableMonitorTest("testIdentifierToTableName"));
+    testSuite.addTest(new TableMonitorTest("testIsDBTableNameInUse"));
     testSuite.addTest(new TableMonitorTest("testIsTableInDB"));
+    testSuite.addTest(new TableMonitorTest("testMangleName"));
     testSuite.addTest(new TableMonitorTest("testSetLastUsageDate"));
     testSuite.addTest(new TableMonitorTest("testSetTableExpirationPolicy"));
     
@@ -260,7 +264,41 @@ public class TableMonitorTest extends TestCase {
     }
 
   }
+
+  
+  /**
+   * Tests the TableMonitor.assignTableName() method. First uses a regular
+   * entity name (no spaces or dashes) and then uses an irregular entity name
+   * (containing spaces and dashes).
+   * 
+   * @throws SQLException
+   */
+  public void testAssignTableName() throws SQLException {
+    String entityIdentifier = this.id;
+    String entityName = this.entityName;
+    String assignedTableName = null;
+    String irregularEntityName = "entity With Spaces-And-Dashes";
+    String irregularTableName = "entity_With_Spaces_And_Dashes";
+
+    /* Get the assigned table name from the TableMonitor for a simple
+     * entity name (no spaces or dashes). In this case, the assigned name
+     * should be equal to the entityName.
+     */
+    assignedTableName = tableMonitor.assignTableName(entityIdentifier, 
+                                                     entityName);
+    assertEquals("Error assigning table name: ", entityName, assignedTableName);
     
+    /* Get the assigned table name from the TableMonitor for an entity name
+     * that contains spaces and dashes. In this case, the assigned name
+     * should be equal to irregularName.
+     */
+    assignedTableName = tableMonitor.assignTableName(entityIdentifier, 
+                                                     irregularEntityName);
+    assertEquals("Error assigning table name: ",
+                 irregularTableName, assignedTableName);
+    
+  }
+  
  
   /**
    * Tests the TableMonitor.dropTableEntry() method. Does so by adding a table
@@ -426,6 +464,66 @@ public class TableMonitorTest extends TestCase {
                 " in table list, but it should have been dropped" , 
                 found);
   }
+  
+ 
+  /**
+   * Tests the TableMonitor.identifierToTableName() method. First add a table
+   * entry for an entity, returning a table name. Then check that the entity
+   * identify can be used to retrieve the same table name.
+   *
+   */
+  public void testIdentifierToTableName() throws SQLException {
+    String identifier = entity.getEntityIdentifier();
+    String returnedTableName = null;
+    String addedTableName = null;
+    
+    // First, tell TableMonitor to add the table entry for the test table
+    addedTableName = tableMonitor.addTableEntry(entity);
+    
+    // Assert that the addTableEntry() operation succeeded
+    assertNotNull("Failed to add table entry", addedTableName);
+
+    // Next, get the table name corresponding to this identifier
+    returnedTableName = tableMonitor.identifierToTableName(identifier);
+
+    // Assert that the table name that was added equals the table name
+    // associated with this identifier.
+    //
+    assertEquals("Error getting correct table name from identifier: ",
+                 addedTableName, returnedTableName);
+
+    // Clean-up by dropping the table name that was added.
+    tableMonitor.dropTableEntry(addedTableName);
+  }
+  
+
+  /**
+   * Tests the TableMonitor.isDBTableNameInUse() method. First, add a table
+   * entry then assert that the table name is in use. Next, drop the table
+   * entry and assert that the table name is not in use.
+   * 
+   * @throws SQLException
+   */
+  public void testIsDBTableNameInUse() throws SQLException {
+    boolean inUse;
+    
+    // First, tell TableMonitor to add the table entry for the test table
+    String addedTableName = tableMonitor.addTableEntry(entity);
+    
+    // Assert that the addTableEntry() operation succeeded
+    assertNotNull("Failed to add table entry", addedTableName);
+
+    // Next, assert that the added table name is now in use
+    inUse = tableMonitor.isDBTableNameInUse(addedTableName);
+    assertTrue("inUse is false but should be true: ", inUse);
+
+    // Clean-up by dropping the table name that was added.
+    tableMonitor.dropTableEntry(addedTableName);
+    
+    // Now assert that inUse is false
+    inUse = tableMonitor.isDBTableNameInUse(addedTableName);
+    assertFalse("inUse is true but should be false: ", inUse);
+  }
     
  
   /**
@@ -490,6 +588,29 @@ public class TableMonitorTest extends TestCase {
     }
 
   }
+  
+ 
+  /**
+   * Test the TableMonitor.mangleName() method. Compare the returned 
+   * string value to an expected string value.
+   */
+  public void testMangleName() {
+    String tableName = "aTable";
+    String expectedName = "aTable_XYZYX_1";
+    
+    String mangledName = tableMonitor.mangleName(tableName);
+    assertEquals("Error testing mangleName(): " + 
+                 expectedName + " != " + mangledName + "\n", 
+                 expectedName, mangledName);
+
+    tableName = "aTable_XYZYX_1";
+    expectedName = "aTable_XYZYX_2";
+    mangledName = tableMonitor.mangleName(tableName);
+    assertEquals("Error testing mangleName(): " + 
+        expectedName + " != " + mangledName + "\n", 
+        expectedName, mangledName);
+  }
+  
 
   /**
    * Tests the TableMonitor.setLastUsageDate() method. First adds a table entry 
