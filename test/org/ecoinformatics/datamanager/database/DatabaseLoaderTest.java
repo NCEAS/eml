@@ -26,7 +26,7 @@ import junit.framework.TestSuite;
 public class DatabaseLoaderTest extends TestCase
 {
 	 private Entity entity = null;
-	 private String documentURL = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
+	 private String documentURL = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12103.2";
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -87,62 +87,7 @@ public class DatabaseLoaderTest extends TestCase
 	    super.tearDown();
 	  }
 	  
-	  /**
-	   * Tests the DatabaseHandler.doesDataExist() method. Does so by creating a 
-	   * test table. First drops the table in case it was already
-	   * present. Then creates the table, calls isTableInDB(), and asserts that
-	   * the table exists. Then drops the table again, ca
-	   * lls isTableInDB(), and
-	   * asserts that the table does not exist.
-	   * 
-	   * @throws SQLException
-	   */
-	  /*public void testDoesDataExist()
-	          throws MalformedURLException, IOException, SQLException, Exception {
-	    DataManager dataManager = DataManager.getInstance();
-	    DataPackage dataPackage = null;
-	    InputStream metadataInputStream;
-	    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
-	        + TEST_DOCUMENT;
-	    URL url;
-
-	   
-	    try {
-	      url = new URL(documentURL);
-	      metadataInputStream = url.openStream();
-	      dataPackage = dataManager.parseMetadata(metadataInputStream);
-	    } 
-	    catch (MalformedURLException e) {
-	      e.printStackTrace();
-	      throw (e);
-	    } 
-	    catch (IOException e) {
-	      e.printStackTrace();
-	      throw (e);
-	    } 
-	    catch (Exception e) {
-	      e.printStackTrace();
-	      
-	      throw (e);
-	    } 
-	    assertNotNull("Data package is null", dataPackage);
-
-	  
-	    if (dataPackage != null) {
-	      Entity[] entities = dataPackage.getEntityList();
-	      Entity entity = entities[0];
-	      boolean success = databaseHandler.generateTable(entity);
-	      assertTrue("DatabaseHandler did not succeed in generating table", success);
-	      String identifier = entity.getEntityIdentifier();
-	      boolean isPresent = databaseHandler.doesDataExist(identifier);
-	      assertTrue("Could not find table for identifier " + identifier
-	          + " but it should be in db", isPresent);
-	      databaseHandler.dropTable(entity);
-	      isPresent = databaseHandler.doesDataExist(identifier);
-	      assertFalse("Found table for identifier " + identifier +
-	                  " but it should NOT be in db", isPresent);
-	      }
-	  }*/
+	
 	  
 	  /**
 	   * Test startSerialize and finishSerialize methods.
@@ -153,7 +98,7 @@ public class DatabaseLoaderTest extends TestCase
 	  {
 		  
 		  String identifier = entity.getEntityIdentifier();
-		  System.out.println("The identifier is ======================= "+identifier);
+		  //System.out.println("The identifier is ======================= "+identifier);
 		  DownloadHandler handler = DownloadHandler.getInstance(identifier);
 		  //System.out.println("here1");
 		  Connection dbConnection = DataManager.getConnection();
@@ -173,16 +118,16 @@ public class DatabaseLoaderTest extends TestCase
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
 		  Thread downloadThread = new Thread(handler);
-		  System.out.println("here3");
+		  //System.out.println("here3");
 		  downloadThread.start();
-		  System.out.println("here4");
+		  //System.out.println("here4");
 		  while(!handler.isCompleted())
 		  {
 			 
 		  }
           //Thread.sleep(50000);
 		 
-		  //assertTrue(dataStorage.doesDataExist(identifier) == true);
+		  assertTrue(dataStorage.doesDataExist(identifier) == true);
 		  assertTrue(handler.isSuccess() == true);
 		  assertTrue(handler.isBusy() == false);
 		  databaseHandler.dropTable(entity);
