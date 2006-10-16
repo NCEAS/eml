@@ -287,7 +287,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		    boolean doesExist = false;
 		    
 		    try {
-		      String tableName = identifierToTableName(identifier);
+		      String tableName = tableMonitor.identifierToTableName(identifier);
 		      doesExist = tableMonitor.isTableInDB(tableName);
 		    }
 		    catch (SQLException e) {
@@ -297,22 +297,5 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		    
 		    return doesExist;
 		  }
-		  
-		  /**
-		   * Given an identifier string, return its corresponding table name. 
-		   * 
-		   * @param   identifier   the identifier string for the entity
-		   * @return  the corresponding table name
-		   */
-		  private  String identifierToTableName(String identifier) 
-		          throws SQLException {
-		    String tableName = "";
-		    
-		    tableName = tableMonitor.identifierToTableName(identifier);
-		    
-		    return tableName;
-		  }
-		  
-
-
+      
 }
