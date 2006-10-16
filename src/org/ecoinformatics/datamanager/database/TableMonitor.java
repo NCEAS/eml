@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-29 21:23:46 $'
- *   '$Revision: 1.8 $'
+ *       '$Date: 2006-10-16 18:17:08 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -46,10 +46,13 @@ import org.ecoinformatics.datamanager.parser.Entity;
  * TableMonitor monitors all data tables in the database. It stores information
  * about each table in a data table registry:
  *  
- *   table name
- *   creation date
- *   last usage date
- *   expiration policy
+ *   table name                    the database table name
+ *   entity identifier             the entity identifier (its URL)
+ *   entity name                   the entity name
+ *   creation date                 creation date of the database table
+ *   last usage date               last usage date of the database table
+ *   priority (expiration policy)  controls whether the table can be expired 
+ *                                 from the cache
  *   
  * It also sets the maximum amount of space that the database can use, and
  * attempts to free up space by dropping old tables when necessary.
@@ -70,6 +73,8 @@ public class TableMonitor {
 	private Connection dbConnection  = null;   // the database connection
 	private String     dbAdapterName = null;   // the DatabaseAdapter name
   private final String DATA_TABLE_REGISTRY = "DATA_TABLE_REGISTRY";
+                                             // name of the database table where
+                                             // data tables are registered
   private final int DEFAULT_DB_SIZE = 100;   // default maximum DB size (in Mb)
   private int dbSize = DEFAULT_DB_SIZE;
   
@@ -127,6 +132,8 @@ public class TableMonitor {
     String priority = "1";
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
     Statement stmt = null;
+    
+    // Assign a table name for this entity
     String tableName = assignTableName(entityIdentifier, entityName);
     
     boolean inUse = isDBTableNameInUse(tableName);
@@ -139,14 +146,21 @@ public class TableMonitor {
       setLastUsageDate(tableName, now);
     } 
     /*
-     * Otherwise, this insert a new entry for this entity into the data
+     * Otherwise, insert a new entry for this entity into the data
      * table registry.
      */
     else {
-      insertString = "INSERT INTO " + DATA_TABLE_REGISTRY + " values(" + "'"
-          + tableName + "', " + "'" + entityIdentifier + "', " + "'" + entityName
-          + "', " + "'" + simpleDateFormat.format(now) + "', " + "'"
-          + simpleDateFormat.format(now) + "', " + priority + ")";
+      insertString = 
+        "INSERT INTO " + 
+        DATA_TABLE_REGISTRY + 
+        " values(" + 
+          "'" + tableName + "', " + 
+          "'" + entityIdentifier + "', " + 
+          "'" + entityName + "', " + 
+          "'" + simpleDateFormat.format(now) + "', " + 
+          "'" + simpleDateFormat.format(now) + "', " + 
+          priority + 
+        ")";
 
       try {
         stmt = dbConnection.createStatement();
@@ -187,13 +201,13 @@ public class TableMonitor {
    * @return tableName  the name of the database table assigned to this Entity
    *         object
    */
-  private String assignTableName(String entityIdentifier, String entityName) 
+  String assignTableName(String entityIdentifier, String entityName) 
           throws SQLException {
     String tableName = null;
     String selectString = "SELECT TABLE_NAME, ENTITY_IDENTIFIER, ENTITY_NAME" +
                           " FROM " + DATA_TABLE_REGISTRY +
-                          " WHERE ENTITY_IDENTIFIER='" + entityIdentifier + "' AND" +
-                          "       ENTITY_NAME='" + entityName + "'";
+                          " WHERE ENTITY_IDENTIFIER='" + entityIdentifier + 
+                          "' AND ENTITY_NAME='" + entityName + "'";
     Statement stmt = null;
 
     /*
@@ -320,46 +334,6 @@ public class TableMonitor {
   
  
   /**
-   * Find the oldest table in the data table registry (the table whose 
-   * last_usage_date is the oldest) and return its table name.
-   * 
-   * @return the name of the oldest table in the data table registry
-   * @throws SQLException
-   */
-  String getOldestTable() throws SQLException {
-    Date oldestDate = new Date();
-    String oldestTable = null;
-    String selectString = 
-               "SELECT table_name, last_usage_date FROM " + DATA_TABLE_REGISTRY;
-    Statement stmt = null;
-    
-    try {
-      stmt = dbConnection.createStatement();
-      ResultSet rs = stmt.executeQuery(selectString);
-      
-      while (rs.next()) {
-        String tableName = rs.getString("table_name");
-        Date lastUsageDate = rs.getDate("last_usage_date");
-        
-        if (lastUsageDate.before(oldestDate)) {
-          oldestDate = lastUsageDate;
-          oldestTable = tableName;
-        }
-      }    
-    }
-    catch (SQLException e) {
-      System.err.println("SQLException: " + e.getMessage());
-      throw(e);
-    }
-    finally {
-      if (stmt != null) stmt.close();
-    }
-    
-    return oldestTable;
-  }
-
-
-  /**
    * Gets the creation date of a given table in the database.
    * 
    * @param   tableName   the name of the table whose creation date is returned
@@ -394,7 +368,7 @@ public class TableMonitor {
  
   /**
    * Returns the name of the data table registry table. Used primarily for 
-   * unit testing.
+   * unit testing of this class by the TableMonitorTest class.
    * 
    * @return   The private constant, DATA_TABLE_REGISTRY.
    */
@@ -438,6 +412,46 @@ public class TableMonitor {
   
 
   /**
+   * Find the oldest table in the data table registry (the table whose 
+   * last_usage_date is the oldest) and return its table name.
+   * 
+   * @return the name of the oldest table in the data table registry
+   * @throws SQLException
+   */
+  String getOldestTable() throws SQLException {
+    Date oldestDate = new Date();
+    String oldestTable = null;
+    String selectString = 
+               "SELECT table_name, last_usage_date FROM " + DATA_TABLE_REGISTRY;
+    Statement stmt = null;
+    
+    try {
+      stmt = dbConnection.createStatement();
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      while (rs.next()) {
+        String tableName = rs.getString("table_name");
+        Date lastUsageDate = rs.getDate("last_usage_date");
+        
+        if (lastUsageDate.before(oldestDate)) {
+          oldestDate = lastUsageDate;
+          oldestTable = tableName;
+        }
+      }    
+    }
+    catch (SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
+    }
+    
+    return oldestTable;
+  }
+
+
+  /**
    * Gets a list of all the table names currently in the database.
    * 
    * @return  a String array of all tables names currently in the database
@@ -478,13 +492,15 @@ public class TableMonitor {
    * Given an identifier string, return its corresponding table name. 
    * 
    * @param   identifier   the identifier string for the entity
-   * @return  the corresponding table name
+   * @return  the corresponding table name, or null if there is no entry for
+   *          this identifier
    */
   String identifierToTableName(String identifier) 
           throws SQLException {
     String tableName = null;
     String selectString = 
-      "SELECT table_name FROM " + DATA_TABLE_REGISTRY +
+      "SELECT table_name" +
+      " FROM " + DATA_TABLE_REGISTRY +
       " WHERE entity_identifier='" + identifier + "'";
     Statement stmt = null;
     
@@ -516,7 +532,7 @@ public class TableMonitor {
    * @return                 true if the table name is in use, else false
    * @throws SQLException
    */
-  private boolean isDBTableNameInUse(String tableName) throws SQLException {
+  boolean isDBTableNameInUse(String tableName) throws SQLException {
     boolean inUse = false;
     String[] tableNames = getTableList();
     
@@ -571,14 +587,14 @@ public class TableMonitor {
    * 
    * Examples:
    * 
-   * mangleName("Chevy")  -->  "Chevy_XYZXY_1"
-   * mangleName("Chevy_XYZXY_1")  -->  "Chevy_XYZXY_2"
-   * mangleName("Chevy_XYZXY_344")  -->  "Chevy_XYZXY_345"
+   * mangleName("aTable")  -->  "aTable_XYZXY_1"
+   * mangleName("aTable_XYZXY_1")  -->  "aTable_XYZXY_2"
+   * mangleName("aTable_XYZXY_344")  -->  "aTable_XYZXY_345"
    * 
    * @param  tableName  the table name to be mangled
    * @return the mangled name
    */
-  private String mangleName(String tableName) {
+  String mangleName(String tableName) {
     int index;
     int tailInt = 0;
     String mangledName;
@@ -633,8 +649,7 @@ public class TableMonitor {
    * @return  true if the last usage date is successfully set; else false
    */
   public boolean setLastUsageDate(String tableName, Date date)
-        throws SQLException
-	{
+        throws SQLException {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
     String dateString = simpleDateFormat.format(date);
     int rowCount = 0;
