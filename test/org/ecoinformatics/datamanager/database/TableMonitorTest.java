@@ -83,6 +83,7 @@ public class TableMonitorTest extends TestCase {
     testSuite.addTest(new TableMonitorTest("initialize"));
     testSuite.addTest(new TableMonitorTest("testAddTableEntry"));
     testSuite.addTest(new TableMonitorTest("testAssignTableName"));
+    testSuite.addTest(new TableMonitorTest("testCountRows"));
     testSuite.addTest(new TableMonitorTest("testDropTableEntry"));
     testSuite.addTest(new TableMonitorTest("testGetCreationDate"));
     testSuite.addTest(new TableMonitorTest("testGetLastUsageDate"));
@@ -297,6 +298,75 @@ public class TableMonitorTest extends TestCase {
     assertEquals("Error assigning table name: ",
                  irregularTableName, assignedTableName);
     
+  }
+  
+
+  /**
+   * Tests the TableMonitor.countRows() method. Create a table containing a
+   * known number of rows. Run countRows() on the table and save the returned
+   * value. Drop the table. Then assert that the returned value equals the known
+   * number of rows. (The table should be dropped before the assert, in case the
+   * assert fails.)
+   * 
+   * @throws SQLException
+   */
+  public void testCountRows() throws SQLException {
+    String testTable = "TEST_COUNT_ROWS";
+    String createString = "create table " + testTable + " (  ROW_NUMBER int )";
+    String dropString = "drop table " + testTable;
+    String insertString = "insert into " + testTable + " values ( 0 )";
+    int nRows = 3;
+    int rowCount;
+    Statement stmt = null;
+
+    /* First, create a test table */
+    try {
+      stmt = dbConnection.createStatement();
+      stmt.executeUpdate(createString);
+    } 
+    catch (SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw (e);
+    } 
+    finally {
+      if (stmt != null)
+        stmt.close();
+    }
+
+    /* Next, insert a known number of rows into the test table */
+    for (int i = 0; i < nRows; i++) {
+      try {
+        stmt = dbConnection.createStatement();
+        stmt.executeUpdate(insertString);
+      } 
+      catch (SQLException e) {
+        System.err.println("SQLException: " + e.getMessage());
+        throw (e);
+      } 
+      finally {
+        if (stmt != null)
+          stmt.close();
+      }
+    }
+ 
+    /* Get the row count from tableMonitor.countRows() */
+    rowCount = tableMonitor.countRows(testTable);
+
+    try {
+      stmt = dbConnection.createStatement();
+      stmt.executeUpdate(dropString);
+    } 
+    catch (SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw (e);
+    } 
+    finally {
+      if (stmt != null)
+        stmt.close();
+    }
+    
+    assertEquals("countRows() returned unexpected row count: ", 
+                 nRows, rowCount);
   }
   
  
