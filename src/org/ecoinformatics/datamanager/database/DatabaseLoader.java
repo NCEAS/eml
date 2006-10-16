@@ -190,7 +190,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	     */
 		public void run()
 		{
-			System.out.println("====================== start load data into db");
+			//System.out.println("====================== start load data into db");
 			Vector rowVector = new Vector();
 			if (entity == null)
 			{
