@@ -277,29 +277,37 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 		}
 		
 		
-		
-		  /**
-		   * Determines whether the data table corresponding to a given identifier 
-		   * already exists in the database. This method is mandated by the
-		   * DataStorageInterface.
-		   * private static Hashtable     pipeIOHash = new Hashtable();
-			private static Hashtable     entityHash = new Hashtable();
-		   * @param   identifier  the identifier for the data table
-		   * @return  true if the data table already exists in the database, else false
-		   */
-		  public boolean doesDataExist(String identifier) {
-		    boolean doesExist = false;
+    /**
+     * Determines whether the data table corresponding to a given identifier 
+     * already exists in the database and is loaded with data. This method is
+     * mandated by the DataStorageInterface. 
+     * 
+     * First, check that the data table exists. Second, check that the row 
+     * count is greater than zero. (We want to make sure that the table has 
+     * not only been created, but has also been loaded with data.)
+     * 
+     * @param   identifier  the identifier for the data table
+     * @return  true if the data table has been loaded into the database,
+     *          else false
+     */
+    public boolean doesDataExist(String identifier) {
+      boolean doesExist = false;
 		    
-		    try {
-		      String tableName = tableMonitor.identifierToTableName(identifier);
-		      doesExist = tableMonitor.isTableInDB(tableName);
-		    }
-		    catch (SQLException e) {
-		      System.err.println(e.getMessage());
-		      e.printStackTrace();
-		    }
-		    
-		    return doesExist;
-		  }
+      try {
+        String tableName = tableMonitor.identifierToTableName(identifier);
+        doesExist = tableMonitor.isTableInDB(tableName);
+          
+        if (doesExist) {
+          int rowCount = tableMonitor.countRows(tableName);
+          doesExist = (rowCount > 0);
+        }
+      }
+      catch (SQLException e) {
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+      }
+
+      return doesExist;
+    }
       
 }
