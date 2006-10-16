@@ -222,28 +222,32 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 						
 					}
 					rowVector = dataReader.getOneRowDataVector();
-					//dbConnection.setAutoCommit(false);
+					dbConnection.setAutoCommit(false);
 				}
 				catch(Exception e)
 				{
+					System.err.println("the error message in DatabaseLoader.run is "+e.getMessage());
 					return;
 				}
 				
 				
 				try
 				{
+					//System.out.println("The first row data is "+rowVector);
 					while (!rowVector.isEmpty())
 					{
 					   String insertSQL = databaseAdapter.generateInsertSQL(attributeList, tableName, rowVector);
-					   System.out.println("the sql is "+insertSQL);
+					   //System.out.println("the sql is "+insertSQL);
 					   Statement statement = dbConnection.createStatement();
 					   statement.execute(insertSQL);
 					   rowVector = dataReader.getOneRowDataVector();
+					   //System.out.println("The row data in while loop is "+rowVector);
 					}
 					dbConnection.commit();
 				}
 				catch(Exception e)
 				{
+					System.err.println("the error message is "+e.getStackTrace());
 					try
 					{
 					   dbConnection.rollback();
