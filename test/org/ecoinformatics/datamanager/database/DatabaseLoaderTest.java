@@ -108,8 +108,9 @@ public class DatabaseLoaderTest extends TestCase
 	      assertTrue("DatabaseHandler did not succeed in generating table", success);
 		  DatabaseLoader dataStorage = new DatabaseLoader(dbConnection, dbAdaptor, entity);
 		  boolean isPresent = dataStorage.doesDataExist(identifier);
-		  assertTrue("Could not find table for identifier " + identifier
-		          + " but it should be in db", isPresent);
+      assertFalse("Table for identifier " + identifier + " is empty, " + 
+                  "but doesDataExist() returned true", 
+                  isPresent);
 		  DatabaseLoader[] list = new DatabaseLoader[1];
 		  list[0] = dataStorage;
 		  handler.setDataStorageCladdList(list);
