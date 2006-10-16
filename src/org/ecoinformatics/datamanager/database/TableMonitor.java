@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-10-16 18:17:08 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2006-10-16 22:06:26 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -251,6 +251,42 @@ public class TableMonitor {
     }
     
     return tableName;
+  }
+  
+
+  /**
+   * Counts the number of rows in a table.
+   * 
+   * @param tableName         the table name
+   * @return                  an integer indicating the row count, or -1 if
+   *                          the table is not in the database 
+   * @throws SQLException
+   */
+  public int countRows(String tableName) throws SQLException {
+    int rowCount = -1;
+    
+    if (isTableInDB(tableName)) {
+      String selectString = "SELECT COUNT(*) FROM " + tableName;
+      Statement stmt = null;
+
+      try {
+        stmt = dbConnection.createStatement();
+        ResultSet rs = stmt.executeQuery(selectString);
+        
+        while (rs.next()) {
+          rowCount = rs.getInt("count");
+        }    
+      }
+      catch (SQLException e) {
+        System.err.println("SQLException: " + e.getMessage());
+        throw(e);
+      }
+      finally {
+        if (stmt != null) stmt.close();
+      }
+    }
+    
+    return rowCount;
   }
   
   
