@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-29 21:15:39 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-10-18 19:18:53 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -76,9 +76,12 @@ public abstract class DatabaseAdapter {
    */
   public static String getLegalDBTableName(String entityName) {
     String legalName = entityName;
+    char[] badChars = {' ', '-', '.'};
+    char goodChar = '_';
     
-    legalName = legalName.replace(' ', '_');
-    legalName = legalName.replace('-', '_');
+    for (int i = 0; i < badChars.length; i++) {
+      legalName = legalName.replace(badChars[i], goodChar);
+    }
     
     return legalName;
   }
