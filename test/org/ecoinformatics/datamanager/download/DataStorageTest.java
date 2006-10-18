@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageTest.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-21 18:58:06 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-10-18 20:28:46 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -156,6 +156,26 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		System.out.println("the identifier is ============ "+identifier);
 		File file = new File(tmp, identifier);
 		return file.exists();
+	}
+	
+	/**
+	 * Gets the status of serialize process.
+	 * @param identifier Identifier of the entity which is being serialized
+	 * @return The boolean value if serialize is completed or not
+	 */
+	public boolean isCompleted(String identifier)
+	{
+		return true;
+	}
+	
+	/**
+	 * Gets the result of serialize process - success or failure
+	 * @param identifier Identifier of the entity which has been serialized
+	 * @return sucess or failure
+	 */
+	public boolean isSuccess(String identifier)
+	{
+		return true;
 	}
     
 	 /**
