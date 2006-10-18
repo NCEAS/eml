@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-19 00:10:52 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-10-18 20:27:13 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -51,7 +51,8 @@ public interface DataStorageInterface
 	public OutputStream startSerialize(String identifier);
 	
 	/**
-	 * Finish serialize method
+	 * Finish serialize method. This method will cleanup serialize process, such
+	 * as close output stream.
 	 * @param indentifier the identifier has been written in data storage system
 	 * @param errorCode   the errorCode will be passed to the storage system
 	 */
@@ -71,4 +72,18 @@ public interface DataStorageInterface
 	 * @return The boolean value if the entity is in storage system or not.
 	 */
 	public boolean doesDataExist(String identifier);
+	
+	/**
+	 * Gets the status of serialize process.
+	 * @param identifier Identifier of the entity which is being serialized
+	 * @return The boolean value if serialize is completed or not
+	 */
+	public boolean isCompleted(String identifier);
+	
+	/**
+	 * Gets the result of serialize process - success or failure
+	 * @param identifier Identifier of the entity which has been serialized
+	 * @return sucess or failure
+	 */
+	public boolean isSuccess(String identifier);
 }
