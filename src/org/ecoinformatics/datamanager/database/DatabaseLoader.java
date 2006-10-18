@@ -309,5 +309,25 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 
       return doesExist;
     }
+    
+    /**
+	 * Gets the status of serialize process.
+	 * @param identifier Identifier of the entity which is being serialized
+	 * @return The boolean value if serialize is completed or not
+	 */
+	public boolean isCompleted(String identifier)
+	{
+		return true;
+	}
+	
+	/**
+	 * Gets the result of serialize process - success or failure
+	 * @param identifier Identifier of the entity which has been serialized
+	 * @return sucess or failure
+	 */
+	public boolean isSuccess(String identifier)
+	{
+		return true;
+	}
       
 }
