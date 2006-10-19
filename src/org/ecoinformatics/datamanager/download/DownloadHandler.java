@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-19 00:18:07 $'
- *   '$Revision: 1.14 $'
+ *       '$Date: 2006-10-19 23:00:14 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -215,13 +215,23 @@ public class DownloadHandler implements Runnable
     }
     
     /**
-     * This method will do real download work and will be called by run method
+     * Downloads data into the given DataStorageInterface. This method will
+     * creat, start and wait another thread to download data.
+     * @param dataStorages  The destination of the download data
+     * @return sucess or not
      */
-    /*public boolean download()
+    public boolean download(DataStorageInterface[] dataStorages) throws Exception
     {
-    	
+    	this.setDataStorageCladdList(dataStorages);
+    	Thread loadData = new Thread(this);
+    	loadData.start();
+    	while (!this.isCompleted())
+    	{
+    		Thread.sleep(5000);
+    	}
+        success = this.isSuccess();
     	return success;
-    }*/
+    }
     
     /**
      * Returns the thread status - busy or not 
