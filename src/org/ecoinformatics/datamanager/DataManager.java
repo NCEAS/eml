@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-19 00:31:33 $'
- *   '$Revision: 1.10 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-19 16:21:58 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,8 +45,10 @@ import edu.ucsb.nceas.utilities.Options;
 
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
+import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
@@ -218,12 +220,15 @@ public class DataManager {
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(DataPackage dataPackage) {
+  public boolean downloadData(DataPackage dataPackage, 
+                              DataStorageInterface[] dataStorageList) {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
     
     for (int i = 0; i < entities.length; i++) {
-      success = success && downloadData(entities[i]);
+      Entity entity = entities[i];
+      //System.err.println("Downloading entity name '" + entity.getName() +"'");
+      success = success && downloadData(entity, dataStorageList);
     }
     
     return success;
@@ -239,13 +244,28 @@ public class DataManager {
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(Entity entity) {
+  public boolean downloadData(Entity entity, 
+                              DataStorageInterface[] dataStorageList) {
+    DownloadHandler downloadHandler = entity.getDownloadHandler();
     boolean success = false;
-    DownloadHandler downloadHandler = null;
     
-    //downloadHandler = entity.getDownloadHandler();
     if (downloadHandler != null) {
-      //success = downloadHandler.download();
+      downloadHandler.setDataStorageCladdList(dataStorageList);
+
+      try {
+        Thread loadData = new Thread(downloadHandler);
+        loadData.start();
+        
+        while (!downloadHandler.isCompleted()) {
+        }
+        
+        success = downloadHandler.isSuccess();
+      } 
+      catch (Exception e) {
+        System.err.println("Error downloading entity name '" + 
+                           entity.getName() + "': " + e.getMessage());
+        success = false;
+      }
     }
     
     return success;
@@ -263,14 +283,40 @@ public class DataManager {
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(InputStream metadataInputStream) 
+  public boolean downloadData(InputStream metadataInputStream,
+                              DataStorageInterface[] dataStorageList) 
         throws Exception {
     boolean success = false;
     DataPackage dataPackage = parseMetadata(metadataInputStream);
     
     if (dataPackage != null) {
-      success = downloadData(dataPackage);
+      success = downloadData(dataPackage, dataStorageList);
     }
+    
+    return success;
+  }
+  
+ 
+  /**
+   * Drops all tables in a data package. This is simply a pass-through to the
+   * DatabaseHandler class. It's useful in the DataManager class for cleaning
+   * up tables after unit testing, but not sure that we'd want to expose this
+   * as part of the API.
+   * 
+   * @param dataPackage  the DataPackage object whose tables are to be dropped
+   * @return true if successful, else false
+   * @throws ClassNotFoundException
+   * @throws SQLException
+   * @throws Exception
+   */
+  boolean dropTables(DataPackage dataPackage)
+          throws ClassNotFoundException, SQLException, Exception {
+    boolean success;
+    Connection conn = getConnection();
+    DatabaseHandler databaseHandler = 
+                                 new DatabaseHandler(conn, databaseAdapterName);
+    
+    success = databaseHandler.dropTables(dataPackage);
     
     return success;
   }
