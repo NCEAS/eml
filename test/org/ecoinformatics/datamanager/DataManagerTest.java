@@ -9,6 +9,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.ecoinformatics.datamanager.database.DatabaseLoader;
+import org.ecoinformatics.datamanager.download.DataStorageTest;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 
 public class DataManagerTest extends TestCase {
@@ -23,9 +25,14 @@ public class DataManagerTest extends TestCase {
    */
   
   private DataManager dataManager;
-  private final String TEST_DOCUMENT = "knb-lter-mcm.7002.1";
-  private final int ENTITY_NUMBER_EXPECTED = 5;
-  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
+  
+//  private final String TEST_DOCUMENT = "knb-lter-mcm.7002.1";
+//  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
+//  private final int ENTITY_NUMBER_EXPECTED = 5;
+
+  private final String TEST_DOCUMENT = "tao.1.1";
+  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
+  private final int ENTITY_NUMBER_EXPECTED = 1;
   
   
   /*
@@ -55,6 +62,8 @@ public class DataManagerTest extends TestCase {
     
     testSuite.addTest(new DataManagerTest("initialize"));
     testSuite.addTest(new DataManagerTest("testParseMetadata"));
+    testSuite.addTest(new DataManagerTest("testDownloadData"));
+//    testSuite.addTest(new DataManagerTest("testLoadDataToDB"));
     
     return testSuite;
   }
@@ -89,10 +98,59 @@ public class DataManagerTest extends TestCase {
     dataManager = null;
     super.tearDown();
   }
+  
+  
+  /**
+   * Unit test for the DataManager.downloadData() methods (Use Case #2).
+   * 
+   * @throws MalformedURLException
+   * @throws IOException
+   * @throws Exception
+   */
+  public void testDownloadData() 
+          throws MalformedURLException, IOException, Exception {
+    DataPackage dataPackage = null;
+    String documentURL = TEST_SERVER + 
+                         "?action=read&qformat=xml&docid=" + 
+                         TEST_DOCUMENT;
+    InputStream metadataInputStream;
+    boolean success = false;
+    DataStorageTest[] testStorageList = new DataStorageTest[1];
+    URL url;
+    
+    try {
+      url = new URL(documentURL);
+      metadataInputStream = url.openStream();
+      dataPackage = dataManager.parseMetadata(metadataInputStream);
+    }
+    catch (MalformedURLException e) {
+      e.printStackTrace();
+      throw(e);
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+      throw(e);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      throw(e);
+    }
+    
+    if (dataPackage != null) {
+      testStorageList[0] = new DataStorageTest();
+      success = dataManager.downloadData(dataPackage, testStorageList);
+    }
+    
+    /*
+     * Assert that dataManager.downloadData() returned a 'true' value,
+     * indicating success.
+     */
+    assertTrue("downloadData() was not successful", success);
+  }
  
   
   /**
-   * Unit test for the DataManager.loadDataToDB() methods (Use Case #2).
+   * Unit test for the DataManager.loadDataToDB() methods (Use Case #3).
    * 
    * @throws MalformedURLException
    * @throws IOException
@@ -100,6 +158,7 @@ public class DataManagerTest extends TestCase {
    */
   public void testLoadDataToDB() 
         throws MalformedURLException, IOException, Exception {
+    DataPackage dataPackage = null;
     String documentURL = TEST_SERVER + 
                          "?action=read&qformat=xml&docid=" + 
                          TEST_DOCUMENT;
@@ -110,7 +169,12 @@ public class DataManagerTest extends TestCase {
     try {
       url = new URL(documentURL);
       metadataInputStream = url.openStream();
-      success = dataManager.downloadData(metadataInputStream);
+      success = dataManager.loadDataToDB(metadataInputStream);
+      dataPackage = dataManager.parseMetadata(metadataInputStream);
+      
+      if (dataPackage != null) {
+        dataManager.dropTables(dataPackage);  // Clean-up tables
+      }
     }
     catch (MalformedURLException e) {
       e.printStackTrace();
@@ -129,11 +193,10 @@ public class DataManagerTest extends TestCase {
      * Assert that dataManager.loadDataToDB() returned a 'true' value,
      * indicating success.
      */
-    assertTrue("Data download was not successful", success);
+    assertTrue("loadDataToDB() was not successful", success);
   }
 
   
-
   /**
    * Unit test for the DataManager.parseMetadata() method (Use Case #1). 
    * 
@@ -184,7 +247,6 @@ public class DataManagerTest extends TestCase {
                    ENTITY_NUMBER_EXPECTED,
                    entityNumberFound);
     }
-    
     
   }
 
