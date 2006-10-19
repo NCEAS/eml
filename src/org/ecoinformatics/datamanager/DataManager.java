@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-13 18:56:04 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2006-10-19 00:31:33 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -364,7 +364,7 @@ public class DataManager {
     
     // If we have a table, then load the data for the entity.
     if (success) {
-      success = databaseHandler.loadData(entity);
+      success = databaseHandler.loadDataToDB(entity);
     }
     
     return success;
