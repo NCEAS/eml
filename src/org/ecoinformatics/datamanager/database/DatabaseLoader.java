@@ -35,12 +35,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	private PipedInputStream     inputStream = null;
 	private PipedOutputStream   outputStream = null;
 	private Entity                    entity = null;
-	private Connection         dbConnection  = null;
+	private Connection          dbConnection = null;
 	private String             dbAdapterName = null;
     private DatabaseAdapter  databaseAdapter = null;
     private String                 errorCode = null;
     private static TableMonitor tableMonitor = null;             
-    
+    private boolean                completed = false;
+    private boolean                  success = false;
     /**
      * Constructor of this class. In constructor, it will create a pair of
      * PipedOutputStream object and PipedInputStream object.
@@ -109,7 +110,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	   */
 		public OutputStream startSerialize(String identifier)
 		{
-	        
+	        completed = false;
+	        success   = false;
 	        Thread newThread = new Thread(this);
 	        newThread.start();	        	
 			return outputStream;
@@ -194,6 +196,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 			Vector rowVector = new Vector();
 			if (entity == null)
 			{
+				success = false;
+				completed = true;
 				return;
 			}
 			AttributeList attributeList = entity.getAttributeList();
@@ -227,6 +231,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 				catch(Exception e)
 				{
 					System.err.println("the error message in DatabaseLoader.run is "+e.getMessage());
+					success = false;
+					completed = true;
 					return;
 				}
 				
@@ -244,10 +250,12 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 					   //System.out.println("The row data in while loop is "+rowVector);
 					}
 					dbConnection.commit();
+					success = true;
 				}
 				catch(Exception e)
 				{
 					System.err.println("the error message is "+e.getStackTrace());
+					success = false;
 					try
 					{
 					   dbConnection.rollback();
@@ -273,7 +281,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 			else
 			{
 				System.err.println(" input stream is null");
+				success = false;
 			}
+			completed = true;
 		}
 		
 		
@@ -317,7 +327,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	 */
 	public boolean isCompleted(String identifier)
 	{
-		return true;
+		return completed;
 	}
 	
 	/**
@@ -327,7 +337,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	 */
 	public boolean isSuccess(String identifier)
 	{
-		return true;
+		return success;
 	}
       
 }
