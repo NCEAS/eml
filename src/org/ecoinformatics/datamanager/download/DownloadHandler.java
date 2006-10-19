@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-13 21:09:14 $'
- *   '$Revision: 1.13 $'
+ *       '$Date: 2006-10-19 00:18:07 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -157,11 +157,61 @@ public class DownloadHandler implements Runnable
     	   System.err.println("Error in DownloadHandler run method"+e.getMessage());
     	}
     	//System.out.println("after get source"+url);
-    	busy = false;
+    	// waiting DataStorageInterface to finished serialize( some DataStorageInterface will
+    	// span another thread
+    	waitingStorageInterfaceSerialize();  	  	  	
+    	if (dataStorageClassList != null)
+    	{
+    		int length = dataStorageClassList.length;
+    		for (int i=0; i<length; i++)
+    		{
+    			DataStorageInterface storage = dataStorageClassList[i];
+    			if (storage != null)
+    			{
+    			   success = success && storage.isSuccess(url);
+    			}
+    		}
+    		
+    	}
     	// downloading is done, remove the handler from hash.
     	removeDownloadHandlerFromHash(this);
     	//this.notifyAll();
+    	busy = false; 
     	completed = true;
+    }
+    
+    /*
+     * Waits until DataStorageClass finished serialize. 
+     * Sometimes the outputstream which downloadhandler gets from
+     * DataStorageClass is not in same thread as the main one there.
+     */
+    private void waitingStorageInterfaceSerialize()
+    {
+    	if (dataStorageClassList != null)
+    	{
+    		int length = dataStorageClassList.length;
+    		boolean completedInDataStorageClassList = true;
+    		for (int i=0; i<length; i++)
+    		{
+    			DataStorageInterface storage = dataStorageClassList[i];
+    			if (storage != null)
+    			{
+    			   completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+    			}
+    		}
+    		while (!completedInDataStorageClassList)
+    		{
+    			completedInDataStorageClassList = true;
+        		for (int i=0; i<length; i++)
+        		{
+        			DataStorageInterface storage = dataStorageClassList[i];
+        			if (storage != null)
+        			{
+        			  completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+        			}
+        		}
+    		}
+    	}
     }
     
     /**
@@ -439,22 +489,22 @@ public class DownloadHandler implements Runnable
     /*
      * Method to close a OutputStream array
      */
-    private void closeOutputStream(NeededOutputStream[] outputStreamList) throws IOException
+    private void finishSerialize(String error) throws IOException
     {
-    	if (outputStreamList != null)
-    	{	            //String type = conn.getContentType();
-            
-            // Crate a new Cache Filename and write the resultsets directly to the cached file
-            //File localFile = getFile();
-    		for (int i = 0; i<outputStreamList.length; i++)
-   		 {
-   			 NeededOutputStream neededOutput = outputStreamList[i];
-   			 OutputStream output = neededOutput.getOutputStream();
-   			 if (output != null)
-   			 {
-                    output.close();
-   			 }
-   		 }
+    	if (dataStorageClassList != null)
+    	{
+    		int length = dataStorageClassList.length;
+    		boolean completedInDataStorageClassList = true;
+    		for (int i=0; i<length; i++)
+    		{
+    			DataStorageInterface storage = dataStorageClassList[i];
+    			if (storage != null)
+    			{
+    			  storage.finishSerialize(url, error);
+    			}
+    		}
+    		
+    		
     	}
     }
     
@@ -528,6 +578,7 @@ public class DownloadHandler implements Runnable
     {
     	boolean successFlag = false;
     	//System.out.println("in download method!!!!!!!!!!!!!!!!!!11");
+    	String error = null;
     	if (filestream != null) 
     	{
 	            
@@ -590,8 +641,7 @@ public class DownloadHandler implements Runnable
 		       	  bread = filestream.read(c, 0, 1024);
 		       }
 		       filestream.close();
-		       closeOutputStream(outputStreamList);
-		       //successFlag = true;
+		       finishSerialize(error);
 		       //System.out.println("the success is "+successFlag);
 		       return successFlag;
 	    }
