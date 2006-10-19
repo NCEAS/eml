@@ -30,10 +30,13 @@ public class DataManagerTest extends TestCase {
 //  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
 //  private final int ENTITY_NUMBER_EXPECTED = 5;
 
-  private final String TEST_DOCUMENT = "tao.1.1";
-  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
-  private final int ENTITY_NUMBER_EXPECTED = 1;
+//  private final String TEST_DOCUMENT = "tao.1.1";
+//  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
+//  private final int ENTITY_NUMBER_EXPECTED = 1;
   
+  private final String TEST_DOCUMENT = "tao.12103.2";
+  private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
+  private final int ENTITY_NUMBER_EXPECTED = 1;
   
   /*
    * Constructors
@@ -63,7 +66,7 @@ public class DataManagerTest extends TestCase {
     testSuite.addTest(new DataManagerTest("initialize"));
     testSuite.addTest(new DataManagerTest("testParseMetadata"));
     testSuite.addTest(new DataManagerTest("testDownloadData"));
-//    testSuite.addTest(new DataManagerTest("testLoadDataToDB"));
+    testSuite.addTest(new DataManagerTest("testLoadDataToDB"));
     
     return testSuite;
   }
@@ -169,11 +172,11 @@ public class DataManagerTest extends TestCase {
     try {
       url = new URL(documentURL);
       metadataInputStream = url.openStream();
-      success = dataManager.loadDataToDB(metadataInputStream);
       dataPackage = dataManager.parseMetadata(metadataInputStream);
       
       if (dataPackage != null) {
-        dataManager.dropTables(dataPackage);  // Clean-up tables
+        success = dataManager.loadDataToDB(dataPackage);
+        dataManager.dropTables(dataPackage);  // Clean-up test tables
       }
     }
     catch (MalformedURLException e) {
