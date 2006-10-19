@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-17 23:39:17 $'
- *   '$Revision: 1.11 $'
+ *       '$Date: 2006-10-19 00:30:42 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -285,13 +285,13 @@ public class DatabaseHandler
    * @param   dataPackage  A DataPackage containing a list of entities.
    * @return  true on success, false on failure
    */
-  public boolean loadData(DataPackage dataPackage) {
+  public boolean loadDataToDB(DataPackage dataPackage) {
     Entity[] entities = dataPackage.getEntityList();
     boolean success = true;
     
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
-      success = success && loadData(entity);
+      success = success && loadDataToDB(entity);
     }
     
     return success;
@@ -304,7 +304,7 @@ public class DatabaseHandler
    * @param   entity  the Entity object whose data is to be loaded.
    * @return  true on success, false on failure
    */
-  public boolean loadData(Entity entity)
+  public boolean loadDataToDB(Entity entity)
   {
 	boolean success = false;
 	if (entity != null)
