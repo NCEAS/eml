@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-19 00:30:42 $'
- *   '$Revision: 1.12 $'
+ *       '$Date: 2006-10-20 17:25:22 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -309,7 +309,7 @@ public class DatabaseHandler
 	boolean success = false;
 	if (entity != null)
 	{
-		String identifier = entity.getEntityIdentifier();
+		//String identifier = entity.getEntityIdentifier();
 		DownloadHandler downloadHandler = entity.getDownloadHandler();
 		DatabaseLoader dbLoader = null;
 		try
@@ -317,14 +317,15 @@ public class DatabaseHandler
 			dbLoader = new DatabaseLoader(dbConnection, dbAdapterName, entity);
 			DataStorageInterface[] storage = new DataStorageInterface[1];
 			storage[0] = dbLoader;
-			downloadHandler.setDataStorageCladdList(storage);
+			/*downloadHandler.setDataStorageCladdList(storage);
 			Thread loadData = new Thread(downloadHandler);
 			loadData.start();
 			while (!downloadHandler.isCompleted())
 			{
 				
 			}
-			success = downloadHandler.isSuccess();
+			success = downloadHandler.isSuccess();*/
+			success = downloadHandler.download(storage);
 		}
 		catch(Exception e)
 		{
