@@ -40,7 +40,7 @@ public class TarDataHandlerTest extends TestCase
 	  {
 		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
 		  //String identifier = "tao.7.1";
-		  testDownload(true, url, url);
+		  testDownloadByThread(true, url, url);
 	  }
 	  
 	  /**
@@ -50,7 +50,7 @@ public class TarDataHandlerTest extends TestCase
 	  {
 		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
 		  //String identifier = "tao.7.1";
-		  testDownload(false, url, url);
+		  testDownloadByThread(false, url, url);
 	  }
 	  
 	  /**
@@ -60,7 +60,7 @@ public class TarDataHandlerTest extends TestCase
 	  {
 		  String url = "ecogrid://knb/tao.12100.1";
 		  //String identifier = "tao.8.1";
-		  testDownload(false, url, url);
+		  testDownloadByThread(false, url, url);
 	  }
 	  
 	  /**
@@ -70,7 +70,7 @@ public class TarDataHandlerTest extends TestCase
 	  {
 		  String url = "ecogrid://knb/tao.12100.1";
 		  //String identifier = "tao.8.1";
-		  testDownload(true, url, url);
+		  testDownloadByThread(true, url, url);
 	  }
 	  
 	  
@@ -78,7 +78,7 @@ public class TarDataHandlerTest extends TestCase
 	  /*
 	   * Test download method
 	   */
-	  private void testDownload(boolean success, String url, String identifier)
+	  private void testDownloadByThread(boolean success, String url, String identifier)
 	  {
 		  
 		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
@@ -118,6 +118,32 @@ public class TarDataHandlerTest extends TestCase
 	  }
 	  
 	  /**
+	   * Tests download method by a correct url
+	   * @throws Exception
+	   */
+	  public void testCorrectURLByDowload() throws Exception
+	  {
+		  String url  = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
+		  testDownloadMethod(true, url);
+	  }
+	  
+	  /*
+	  * This method will test download method in DownloadHandler
+	   */
+	  private void testDownloadMethod(boolean success, String url) throws Exception
+	  {
+		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+		  DataStorageTest dataStorage = new DataStorageTest();
+		  DataStorageTest[] list = new DataStorageTest[1];
+		  list[0] = dataStorage;
+		  boolean result = handler.download(list);
+		  assertTrue(handler.isBusy() == false);
+		  assertTrue(result == success);
+		  assertTrue(dataStorage.doesDataExist(url) == success);
+		 
+	  }
+	  
+	  /**
 	   * Create a suite of tests to be run together
 	   */
 	   public static Test suite()
@@ -127,6 +153,7 @@ public class TarDataHandlerTest extends TestCase
 	     suite.addTest(new TarDataHandlerTest("testDownloadSuccess"));	 
 	     suite.addTest(new TarDataHandlerTest("testEcogridDownloadFailed"));
 	     suite.addTest(new TarDataHandlerTest("testEcogridDownloadSuccess"));
+         suite.addTest(new TarDataHandlerTest("testCorrectURLByDowload"));
 	     return suite;
 	   }
 }
