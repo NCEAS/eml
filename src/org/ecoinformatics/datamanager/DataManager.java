@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-20 17:23:53 $'
- *   '$Revision: 1.12 $'
+ *       '$Date: 2006-10-20 18:45:26 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -84,8 +84,8 @@ public class DataManager {
    */
 
   /* Configuration directory and file name for the properties file */
-  private static final String CONFIG_DIR = "lib/datamanager";
-  private static final String CONFIG_NAME = "datamanager.properties";
+  public static final String CONFIG_DIR = "lib/datamanager";
+  public static final String CONFIG_NAME = "datamanager.properties";
   
   /* Holds the singleton object for this class */
   private static DataManager dataManager = new DataManager();
