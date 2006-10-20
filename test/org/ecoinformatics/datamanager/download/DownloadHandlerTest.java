@@ -202,31 +202,50 @@ public class DownloadHandlerTest extends TestCase
 		  assertTrue(handler2.isBusy() == false);
 	  }
 	  
-	  
+	  /**
+	   * Test download method by a correct url
+	   * @throws Exception
+	   */
 	  public void testCorrectURLByDownload() throws Exception
 	  {
 		  String url = CORRECTURL1;
 		  testDownloadMethod(true, url);
 	  }
 	  
+	  /**
+	   * Tests  download method with a incorrect url
+	   * @throws Exception
+	   */
 	  public void testInCorrectURLByDownload() throws Exception
 	  {
 		  String url = INCORRECTURL;
 		  testDownloadMethod(false, url);
 	  }
 	  
+	  /**
+	   * Test download method by a correct ecogrid url
+	   * @throws Exception
+	   */
 	  public void testCorrectEcogridURLByDownload() throws Exception
 	  {
 		  String url = "ecogrid://knb/tao.1.1";
 		  testDownloadMethod(true, url);
 	  }
 	  
+	  /**
+	   * Test download method by a incorrect ecogrid url
+	   * @throws Exception
+	   */
 	  public void testInCorrectEcogridURLByDownload() throws Exception
 	  {
 		  String url = "ecogrid://knb/tao.0.1";
 		  testDownloadMethod(false, url);
 	  }
 	  
+	  /**
+	   * Tests download method by calling download same url.
+	   * @throws Exception
+	   */
 	  public void testSameURLByDownload() throws Exception
 	  {
 		  String url = "http://knb.ecoinformatics.org/knb/metacat?action=read&docid=ALEXXX_015ADCP015R00_19990817.40.1";
