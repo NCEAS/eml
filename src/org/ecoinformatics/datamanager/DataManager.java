@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-19 16:21:58 $'
- *   '$Revision: 1.11 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-10-20 17:23:53 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -250,16 +250,20 @@ public class DataManager {
     boolean success = false;
     
     if (downloadHandler != null) {
-      downloadHandler.setDataStorageCladdList(dataStorageList);
+      
 
       try {
+        
+    	/*downloadHandler.setDataStorageCladdList(dataStorageList);
         Thread loadData = new Thread(downloadHandler);
         loadData.start();
         
         while (!downloadHandler.isCompleted()) {
         }
         
-        success = downloadHandler.isSuccess();
+        success = downloadHandler.isSuccess();*/
+    	success = downloadHandler.download(dataStorageList);
+    	
       } 
       catch (Exception e) {
         System.err.println("Error downloading entity name '" + 
