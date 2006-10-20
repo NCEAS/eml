@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-19 23:00:14 $'
- *   '$Revision: 1.15 $'
+ *       '$Date: 2006-10-20 18:46:15 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.download;
 
+import edu.ucsb.nceas.utilities.Options;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,6 +44,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import java.util.zip.ZipInputStream;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 /**
@@ -67,14 +69,16 @@ public class DownloadHandler implements Runnable
 	protected boolean success = false;
 	protected boolean busy = false;
 	protected static Hashtable handlerList = new Hashtable();
+	private static Options option = null;
+	private static String ECOGRIDENDPOINT = null;
+	private static String SRBENDPOINT     = null;
+	private static String SRBMACHINE      = null;
 	//protected DownloadHandler handler = null;
 	
 	/*
 	 * Constants
 	 */
-	private static final String ECOGRIDENDPOINT = "http://pacific.msi.ucsb.edu:8080/knb/services/EcoGridQuery";
-	private static final String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
-	private static final String SRBMACHINE      = "srb-mcat.sdsc.edu";
+	
 	private static final String SRBUSERNAME     = "testuser.sdsc";
 	private static final String SRBPASSWD       = "TESTUSER";
 	private static final int    SLEEPTIME       = 10000;
@@ -102,9 +106,29 @@ public class DownloadHandler implements Runnable
 	protected DownloadHandler(String url)
 	{
 		this.url = url;
+		loadOptions();
 		//this.identifier = identifier;
 		//this.dataStorageClassList = dataStorageClassList;
 	}
+	
+	 /*
+	   * Loads Data Manager options from a configuration file.
+	   */
+	  private static void loadOptions() {
+	    String configDir = DataManager.CONFIG_DIR;    
+	    File propertyFile = new File(configDir, DataManager.CONFIG_NAME);
+
+	    try {
+	      option = Options.initialize(propertyFile);
+	      ECOGRIDENDPOINT = option.getOption("ecogridEndPoint");
+	      SRBENDPOINT = option.getOption("SRBEndPoint");
+	      SRBMACHINE = option.getOption("SRBMachine");
+	    
+	    } 
+	    catch (IOException e) {
+	      System.out.println("Error in loading options: " + e.getMessage());
+	    }
+	  }
 	
 		
 	/**
