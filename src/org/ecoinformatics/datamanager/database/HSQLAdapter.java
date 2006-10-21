@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-29 21:14:00 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-10-21 00:09:05 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,16 +38,31 @@ import org.ecoinformatics.datamanager.parser.AttributeList;
 
 public class HSQLAdapter extends DatabaseAdapter {
 
-  /**
-	 * Create a sql command to generate table
-   * 
+	private static final String IFEXISTS          = "IF EXISTS";
+	private static final String CREATETABLE       = "CREATE CACHED TABLE";
+	private static final String CREATETEXTTABLE   = "CREATE TEXT TABLE";
+    /**
+	 * Create a sql command to generate table base on attributeList 
+     * information and table
 	 * @param attributeList
 	 * @param tableName
 	 * @return
 	 */
 	public String generateDDL(AttributeList attributeList, String tableName)
 	{
-		return null;
+	   String attributeSQL = null;
+	   StringBuffer stringBuffer = new StringBuffer();
+	   stringBuffer.append(CREATETABLE);
+	   stringBuffer.append(PostgresAdapter.SPACE);
+	   stringBuffer.append(tableName);
+	   stringBuffer.append(PostgresAdapter.LEFTPARENTH);
+	   //attributeSQL = parseAttributeList(attributeList);
+	   stringBuffer.append(attributeSQL);
+	   stringBuffer.append(PostgresAdapter.RIGHTPARENTH);
+	   stringBuffer.append(PostgresAdapter.SEMICOLON);
+	   String sqlStr = stringBuffer.toString();
+	   return sqlStr;
+		
 	}
 	
   
@@ -58,13 +73,16 @@ public class HSQLAdapter extends DatabaseAdapter {
    */
   public String generateDropTableSQL(String tableName)
   {
-    return null;
+	  String sql = PostgresAdapter.DROPTABLE + PostgresAdapter.SPACE + tableName + PostgresAdapter.SPACE + 
+	  IFEXISTS + PostgresAdapter.SEMICOLON;
+	  return sql;
+   
   }
   
   
 	/**
 	 * Create a sql command to insert data
-   * 
+     * 
 	 * @param attributeList
 	 * @param tableName
 	 * @param oneRowData
@@ -78,19 +96,19 @@ public class HSQLAdapter extends DatabaseAdapter {
 	}
 	
   
-  /**
-   * The map between metadat data type and database native data type
-   * @return
-   */
-  public Map getDataTypeMap()
-  {
-    return null;
-  }
+	  /**
+	   * The map between metadat data type and database native data type
+	   * @return
+	   */
+	  public Map getDataTypeMap()
+	  {
+	    return null;
+	  }
   
 
-  /**
+    /**
 	 * Transform ANSI selection sql to a native db sql command
-   * 
+     * 
 	 * @param ANSISQL
 	 * @return
 	 */
