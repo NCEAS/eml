@@ -2,8 +2,8 @@
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-21 00:09:05 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-10-23 18:17:53 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,10 +31,14 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
+import org.ecoinformatics.datamanager.parser.Domain;
+import org.ecoinformatics.datamanager.parser.NumericDomain;
 
 public class HSQLAdapter extends DatabaseAdapter {
 
@@ -104,7 +108,51 @@ public class HSQLAdapter extends DatabaseAdapter {
 	  {
 	    return null;
 	  }
-  
+      
+	  /*
+	   * Gets attribute type for a given attribute. Attribute types include
+	   * text, numeric and et al.
+	   * 
+	   */	
+	  protected String getAttributeType(Attribute attribute) {
+		    String attributeType = "string";
+		    Domain domain = attribute.getDomain();
+		    String className = domain.getClass().getName();
+		    
+		    System.out.println("  className:  " + className);
+
+		    if (className.endsWith("DateTimeDomain") ||
+		        className.endsWith("EnumeratedDomain") ||
+		        className.endsWith("TextDomain")) {
+		      attributeType = "string";
+		    }
+		    else if (className.endsWith("NumericDomain")) {
+		      NumericDomain numericDomain = (NumericDomain) domain;
+		      attributeType = numericDomain.getNumberType();
+		    }
+		    
+		    System.out.println("  attributeType:  " + attributeType);
+		    return attributeType;
+		  }
+		  
+	   
+	  /*
+	   * Gets the HSQL database type base on given attribute type. 
+	   */
+	  protected String mapDataType(String attributeType) {
+	    String dbDataType;
+	    Map map = new HashMap();
+	    
+	    map.put("string", "TEXT");
+	    map.put("integer", "INTEGER");
+	    map.put("real", "FLOAT");
+	    map.put("whole", "INTEGER");
+	    map.put("natural", "INTEGER");
+	    
+	    dbDataType = (String) map.get(attributeType);
+	    
+	    return dbDataType;
+	  }
 
     /**
 	 * Transform ANSI selection sql to a native db sql command
