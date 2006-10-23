@@ -2,8 +2,8 @@
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 18:17:53 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-10-23 22:09:04 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -53,6 +54,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	 * @return
 	 */
 	public String generateDDL(AttributeList attributeList, String tableName)
+	               throws SQLException
 	{
 	   String attributeSQL = null;
 	   StringBuffer stringBuffer = new StringBuffer();
@@ -60,7 +62,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	   stringBuffer.append(PostgresAdapter.SPACE);
 	   stringBuffer.append(tableName);
 	   stringBuffer.append(PostgresAdapter.LEFTPARENTH);
-	   //attributeSQL = parseAttributeList(attributeList);
+	   attributeSQL = parseAttributeList(attributeList);
 	   stringBuffer.append(attributeSQL);
 	   stringBuffer.append(PostgresAdapter.RIGHTPARENTH);
 	   stringBuffer.append(PostgresAdapter.SEMICOLON);
@@ -84,31 +86,6 @@ public class HSQLAdapter extends DatabaseAdapter {
   }
   
   
-	/**
-	 * Create a sql command to insert data
-     * 
-	 * @param attributeList
-	 * @param tableName
-	 * @param oneRowData
-	 * @return
-	 */
-	public String generateInsertSQL(AttributeList attributeList, 
-                                  String tableName, 
-                                  Vector oneRowData)
-	{
-		return null;
-	}
-	
-  
-	  /**
-	   * The map between metadat data type and database native data type
-	   * @return
-	   */
-	  public Map getDataTypeMap()
-	  {
-	    return null;
-	  }
-      
 	  /*
 	   * Gets attribute type for a given attribute. Attribute types include
 	   * text, numeric and et al.
@@ -143,7 +120,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	    String dbDataType;
 	    Map map = new HashMap();
 	    
-	    map.put("string", "TEXT");
+	    map.put("string", "LONGVARCHAR");
 	    map.put("integer", "INTEGER");
 	    map.put("real", "FLOAT");
 	    map.put("whole", "INTEGER");
