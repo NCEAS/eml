@@ -2,8 +2,8 @@
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 18:16:45 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-10-23 22:09:54 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -55,25 +55,23 @@ public class PostgresAdapter extends DatabaseAdapter {
   public static final String DROPTABLE = "DROP TABLE";
   public static final String FLOAT = "Float";
   public static final String FROM = "FROM";
-  public static final String INSERT = "INSERT INTO";
+  
   public static final String INTEGER = "Integer";
   //public static final String IFEXISTS = Config.getValue(IFEXISTSPATH);
-  public static final String LEFTPARENTH = "(";
   public static final String LIKE = "LIKE";
   public static final String LONG = "Long";
   public static final String QUESTION = "?";
   public static final String QUOTE = "\"";
-  public static final String RIGHTPARENTH = ")";
   //public static final String FIELDSEPATATOR = Config.getValue(FIELDSPEPATH);
   public static final String SELECT = "SELECT";
-  public static final String SEMICOLON = ";";
+  
   //public static final String SETTABLE = Config.getValue(SETTABLEPATH);
   //public static final String SOURCE = Config.getValue(SOURCEPATH);
   //public static final String IGNOREFIRST = Config.getValue(IGNOREFIRSTPATH);
   public static final String STRING = "String";
-  public static final String VALUES = "VALUES";
+  
   public static final String WHERE = "WHERE";
-  public static final String SINGLEQUOTE = "'";
+  
   
   
   /*
@@ -143,139 +141,7 @@ public class PostgresAdapter extends DatabaseAdapter {
   }
   
   
-	/**
-	 * Create a sql command to insert data. If some error happens, null will be returned
-	 * @param attributeList  AttributeList which will be inserted
-	 * @param tableName TableName which will be inserted
-	 * @param oneRowData The data vector which contains data need be inserted
-	 * @return A SQL String can be ran to insert one row data into table
-	 */
-	public String generateInsertSQL(AttributeList attributeList, 
-                                  String tableName , 
-                                  Vector oneRowData)
-	{
-		String sqlString = null;
-		int NULLValueCounter = 0;
-		if (attributeList == null)
-        {
-       		 //log.debug("There is no attribute defination in entity");
-           return sqlString;
-        }
-		
-		if (oneRowData == null || oneRowData.isEmpty())
-		{
-			return sqlString;
-		}
-    
-        StringBuffer sqlAttributePart = new StringBuffer();
-        StringBuffer sqlDataPart      = new StringBuffer();
-        sqlAttributePart.append(INSERT);
-        sqlAttributePart.append(SPACE);
-        sqlAttributePart.append(tableName);
-        sqlAttributePart.append(LEFTPARENTH);
-        sqlDataPart.append(SPACE);
-        sqlDataPart.append(VALUES);
-        sqlDataPart.append(SPACE);
-        sqlDataPart.append(LEFTPARENTH);
-        Attribute[] list = attributeList.getAttributes();
-        if (list == null || list.length == 0)
-        {
-       		 //log.debug("There is no attribute defination in entity");
-           return sqlString;
-        }
-        int size = list.length;
-        // cloumna name part
-        boolean firstAttribute = true;
-        for (int i = 0; i< size; i++)
-        {
-          // if data vector
-          Object obj = oneRowData.elementAt(i);
-          String value = null;
-          if (obj == null)
-          {
-        	  NULLValueCounter++;
-        	  continue;
-          }
-          else
-          {
-        	 value = (String)obj;
-          }
-          Attribute attribute = list[i];
-          if (attribute == null)
-          {
-       		 //log.debug("One attribute defination is null attribute list");
-             return sqlString;
-          }
-          String name = attribute.getName();
-          if (!firstAttribute)
-          {
-            sqlAttributePart.append(COMMA);
-            sqlDataPart.append(COMMA);
-          }
-          sqlAttributePart.append(name);
-          Domain domain = attribute.getDomain();
-          //System.out.println("the value in element is "+value);
-          // domain is null or it is not numbericDomain we assign it text type
-          if (domain == null || !(domain instanceof NumericDomain))
-          {
-        	  //System.out.println("in none numbericDomain "+value);
-        	  sqlDataPart.append(SINGLEQUOTE);
-        	  sqlDataPart.append(value);
-        	  sqlDataPart.append(SINGLEQUOTE);
-          }
-          else
-          {
-        	 String attributeType = getAttributeType(attribute);
-        	 String dataType = mapDataType(attributeType);
-        	 
-        	 try
-        	 {
-	        	 if (dataType.equals("FLOAT"))
-	        	 {
-	        		 //System.out.println("in float numbericDomain "+value);
-	        		 Float floatObj = new Float(value);
-	        		 //System.out.println("after generate FloatObj numbericDomain "+value);
-	        		 float floatNum = floatObj.floatValue();
-	        		 //System.out.println("float number "+floatNum);
-	        		 sqlDataPart.append(floatNum);
-	        		 //System.out.println("end of float");
-	        	 }
-	        	 else
-	        	 {
-	        		 //System.out.println("in integer numbericDomain "+value);
-	        		 Integer integerObj = new Integer(value);
-	        		 //System.out.println("after generate Integer Obj numbericDomain "+value);
-	        		 int     integerNum = integerObj.intValue();
-	        		 //System.out.println("the int value is "+integerNum);
-	        		 sqlDataPart.append(integerNum);
-	        		 //System.out.println("end of integer");
-	        	 }
-        	 }
-        	 catch (Exception e)
-        	 {
-        		 System.out.println("the error is "+e.getMessage());
-        		 return sqlString;
-        	 }
-          }
-          
-          firstAttribute = false;
-          // insert
-        }
-        // if all data is null, return null value for sql string
-        if (NULLValueCounter == list.length)
-        {
-        	return sqlString;
-        }
-        sqlAttributePart.append(RIGHTPARENTH);
-        sqlDataPart.append(RIGHTPARENTH);
-        sqlDataPart.append(SEMICOLON);
-        //combine the two parts
-        sqlAttributePart.append(sqlDataPart.toString());
-        
-        sqlString = sqlAttributePart.toString();
-        System.out.println("the sql command is "+sqlString);
-		return sqlString;
-	}
+	
 	
   
 	/*
