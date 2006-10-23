@@ -2,8 +2,8 @@
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-26 05:31:18 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-10-23 18:16:45 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -48,7 +48,6 @@ public class PostgresAdapter extends DatabaseAdapter {
    */
   public static final String AND    = "AND";
   public static final String BOOLEAN = "Boolean";
-  public static final String COMMA = ",";
   public static final String CREATETABLE = "CREATE TABLE";
   public static final String DATETIME = "Timestamp";
   public static final String DELETE = "DELETE";
@@ -68,7 +67,6 @@ public class PostgresAdapter extends DatabaseAdapter {
   //public static final String FIELDSEPATATOR = Config.getValue(FIELDSPEPATH);
   public static final String SELECT = "SELECT";
   public static final String SEMICOLON = ";";
-  public static final String SPACE = " ";
   //public static final String SETTABLE = Config.getValue(SETTABLEPATH);
   //public static final String SOURCE = Config.getValue(SOURCEPATH);
   //public static final String IGNOREFIRST = Config.getValue(IGNOREFIRSTPATH);
@@ -280,98 +278,50 @@ public class PostgresAdapter extends DatabaseAdapter {
 	}
 	
   
-  /*
-   * Add attribute defination in create table command. If one attribute is null
-   * or has same error an exception will be throw
-   */
-  private synchronized String parseAttributeList(AttributeList attributeList) 
-          throws SQLException {
-    Attribute[] list = attributeList.getAttributes();
-    StringBuffer attributeSql = new StringBuffer();
+	/*
+	 * Gets attribute type for a given attribute. Attribute types include
+	 * text, numeric and et al.
+	 * 
+	 */
+	 protected String getAttributeType(Attribute attribute) {
+		    String attributeType = "string";
+		    Domain domain = attribute.getDomain();
+		    String className = domain.getClass().getName();
+		    
+		    System.out.println("  className:  " + className);
 
-    if (list == null || list.length == 0) {
-      //log.debug("There is no attribute defination in entity");
-      throw new SQLException("No attribute definition found in entity");
-    }
-    
-    int size = list.length;
-    //DBDataTypeResolver dataTypeResolver = new DBDataTypeResolver();
-    boolean firstAttribute = true;
+		    if (className.endsWith("DateTimeDomain") ||
+		        className.endsWith("EnumeratedDomain") ||
+		        className.endsWith("TextDomain")) {
+		      attributeType = "string";
+		    }
+		    else if (className.endsWith("NumericDomain")) {
+		      NumericDomain numericDomain = (NumericDomain) domain;
+		      attributeType = numericDomain.getNumberType();
+		    }
+		    
+		    System.out.println("  attributeType:  " + attributeType);
+		    return attributeType;
+		  }
+		  
+	 /*
+	  * Gets the postgresql database type base on attribute type. 
+	  */
+	  protected String mapDataType(String attributeType) {
+	    String dbDataType;
+	    Map map = new HashMap();
+	    
+	    map.put("string", "TEXT");
+	    map.put("integer", "INTEGER");
+	    map.put("real", "FLOAT");
+	    map.put("whole", "INTEGER");
+	    map.put("natural", "INTEGER");
+	    
+	    dbDataType = (String) map.get(attributeType);
+	    
+	    return dbDataType;
+	  }
 
-    for (int i = 0; i < size; i++) {
-      Attribute attribute = list[i];
-
-      if (attribute == null)
-      {
-       //log.debug("One attribute defination is null attribute list");
-        throw new SQLException("One attribute definition is null attribute list");
-      }
-
-      String name = attribute.getName();
-      String attributeType = getAttributeType(attribute);
-      String dbDataType = mapDataType(attributeType);
-        
-      //String dataType = attribute.getDataType();
-      //String dbDataType = "VARCHAR(32)";  // Temporary hack during development
-      //String dbDataType = dataTypeResolv;er.resolveDBType(dataType);
-      //String javaDataType = dataTypeResolver.resolveJavaType(dataType);
-      //dbJavaDataTypeList.add(javaDataType);
-
-      if (!firstAttribute) {
-        attributeSql.append(COMMA);
-      }
-      
-      attributeSql.append(name);
-      attributeSql.append(SPACE);
-      attributeSql.append(dbDataType);
-      firstAttribute = false;
-      
-      System.out.println("Attribute Name: " + name);
-      System.out.println("  dbDataType:   " + dbDataType + "\n");
-    }
-    
-    return attributeSql.toString();
-  }
-  
-  
-  private String getAttributeType(Attribute attribute) {
-    String attributeType = "string";
-    Domain domain = attribute.getDomain();
-    String className = domain.getClass().getName();
-    
-    System.out.println("  className:  " + className);
-
-    if (className.endsWith("DateTimeDomain") ||
-        className.endsWith("EnumeratedDomain") ||
-        className.endsWith("TextDomain")) {
-      attributeType = "string";
-    }
-    else if (className.endsWith("NumericDomain")) {
-      NumericDomain numericDomain = (NumericDomain) domain;
-      attributeType = numericDomain.getNumberType();
-    }
-    
-    System.out.println("  attributeType:  " + attributeType);
-    return attributeType;
-  }
-  
-  
-  private String mapDataType(String attributeType) {
-    String dbDataType;
-    Map map = new HashMap();
-    
-    map.put("string", "TEXT");
-    map.put("integer", "INTEGER");
-    map.put("real", "FLOAT");
-    map.put("whole", "INTEGER");
-    map.put("natural", "INTEGER");
-    
-    dbDataType = (String) map.get(attributeType);
-    
-    return dbDataType;
-  }
-
-  
   /**
 	 * Transform ANSI selection sql to a native db sql command
 	 * @param ANSISQL
