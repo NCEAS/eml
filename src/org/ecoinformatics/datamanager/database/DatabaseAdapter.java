@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-18 19:18:53 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-10-23 18:15:39 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,10 +32,14 @@
 package org.ecoinformatics.datamanager.database;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.Map;
 
+import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
+import org.ecoinformatics.datamanager.parser.Domain;
+import org.ecoinformatics.datamanager.parser.NumericDomain;
 
 /**
  * This class provide a bridge between DatabaseHandler and a specific db.
@@ -50,8 +54,10 @@ public abstract class DatabaseAdapter {
    */
 
 	public static final String HSQL_ADAPTER     = "HSQLAdapter";
-  public static final String ORACLE_ADAPTER   = "OracleAdapter";
+    public static final String ORACLE_ADAPTER   = "OracleAdapter";
 	public static final String POSTGRES_ADAPTER = "PostgresAdapter";
+	public static final String            COMMA = ",";
+	public static final String            SPACE = " ";
   
   
   /*
@@ -161,5 +167,74 @@ public abstract class DatabaseAdapter {
     return sqlString;
     
   }
+	
+	 /*
+	   * Add attribute defination in create table command. If one attribute is null
+	   * or has same error an exception will be throw
+	   */
+	  protected String parseAttributeList(AttributeList attributeList) 
+	          throws SQLException {
+	    Attribute[] list = attributeList.getAttributes();
+	    StringBuffer attributeSql = new StringBuffer();
+
+	    if (list == null || list.length == 0) {
+	      //log.debug("There is no attribute defination in entity");
+	      throw new SQLException("No attribute definition found in entity");
+	    }
+	    
+	    int size = list.length;
+	    //DBDataTypeResolver dataTypeResolver = new DBDataTypeResolver();
+	    boolean firstAttribute = true;
+
+	    for (int i = 0; i < size; i++) {
+	      Attribute attribute = list[i];
+
+	      if (attribute == null)
+	      {
+	       //log.debug("One attribute defination is null attribute list");
+	        throw new SQLException("One attribute definition is null attribute list");
+	      }
+
+	      String name = attribute.getName();
+	      String attributeType = getAttributeType(attribute);
+	      String dbDataType = mapDataType(attributeType);
+	        
+	      //String dataType = attribute.getDataType();
+	      //String dbDataType = "VARCHAR(32)";  // Temporary hack during development
+	      //String dbDataType = dataTypeResolv;er.resolveDBType(dataType);
+	      //String javaDataType = dataTypeResolver.resolveJavaType(dataType);
+	      //dbJavaDataTypeList.add(javaDataType);
+
+	      if (!firstAttribute) {
+	        attributeSql.append(COMMA);
+	      }
+	      
+	      attributeSql.append(name);
+	      attributeSql.append(SPACE);
+	      attributeSql.append(dbDataType);
+	      firstAttribute = false;
+	      
+	      System.out.println("Attribute Name: " + name);
+	      System.out.println("  dbDataType:   " + dbDataType + "\n");
+	    }
+	    
+	    return attributeSql.toString();
+	  }
+	  
+	  /*
+	   * Gets attribute type for a given attribute. Attribute types include
+	   * text, numeric and et al.
+	   * 
+	   */
+	  protected abstract String getAttributeType(Attribute attribute);
+	  
+	  
+	  /*
+	   * Gets the database type base on attribute type. This data type
+	   * varies on different db system.
+	   */
+	  protected abstract String mapDataType(String attributeType);
+
+	  
 
 }
