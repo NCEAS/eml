@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-20 17:25:22 $'
- *   '$Revision: 1.13 $'
+ *       '$Date: 2006-10-24 23:44:45 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -81,7 +81,7 @@ public class DatabaseHandler
       this.databaseAdapter = new OracleAdapter();
     }
     
-    DatabaseHandler.tableMonitor =new TableMonitor(dbConnection, dbAdapterName);
+    DatabaseHandler.tableMonitor =new TableMonitor(dbConnection, databaseAdapter);
 	}
 
   

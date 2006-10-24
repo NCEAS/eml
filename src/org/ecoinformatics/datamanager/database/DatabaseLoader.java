@@ -74,7 +74,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 	      this.databaseAdapter = new OracleAdapter();
 	      
 	    }
-	    tableMonitor =new TableMonitor(dbConnection, dbAdapterName);
+	    tableMonitor =new TableMonitor(dbConnection, databaseAdapter);
 	    
     }
 	
