@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-20 18:45:26 $'
- *   '$Revision: 1.13 $'
+ *       '$Date: 2006-10-24 19:13:50 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -94,18 +94,14 @@ public class DataManager {
   private static String dbURL; // e.g. "jdbc:postgresql://localhost/datamanager"
   private static String dbUser;     // database username
   private static String dbPassword; // database password
+  private static String databaseAdapterName;
   private static Options options = null;
  
   
   /*
    * Instance fields
    */
-  
-  /* The database adapter name. 
-   * Examples are: "HSQLAdapter", "PostgresAdapter", and "OracleAdapter".
-   * For now, hard-code "PostgresAdapter" since it is our first goal.
-   */
-  private String     databaseAdapterName = DatabaseAdapter.POSTGRES_ADAPTER;
+ 
   private Connection dbConnection = null;
   
 
@@ -181,6 +177,7 @@ public class DataManager {
       dbURL = options.getOption("dbURL");
       dbUser = options.getOption("dbUser");
       dbPassword = options.getOption("dbPassword");
+      databaseAdapterName = options.getOption("dbAdapter");
     } 
     catch (IOException e) {
       System.out.println("Error in loading options: " + e.getMessage());
@@ -366,7 +363,7 @@ public class DataManager {
    * 
    * @return  the value of the databaseAdapterName field
    */
-  public String getDatabaseAdapterName() {
+  public static String getDatabaseAdapterName() {
     return databaseAdapterName;
   }
 
