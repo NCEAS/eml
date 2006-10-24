@@ -25,6 +25,7 @@ public class TableMonitorTest extends TestCase {
   static final String dbURL = DataManager.getDbURL();
   static final String dbUser = DataManager.getDbUser();
   static final String dbPassword = DataManager.getDbPassword();
+  static final String dbAdapterName = DataManager.getDatabaseAdapterName();
     
   
   /*
@@ -33,7 +34,6 @@ public class TableMonitorTest extends TestCase {
     
   private TableMonitor tableMonitor;  // An instance of the object being tested
   private Connection dbConnection     = null;         // the database connection
-  private final String  dbAdapterName ="PostgresAdapter";// DatabaseAdapter name
   private Entity entity               = null;
   private final String id             = "001";
   private final String entityName     = "testEntity";

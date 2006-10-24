@@ -29,6 +29,7 @@ public class DatabaseHandlerTest extends TestCase {
   static final String dbURL = DataManager.getDbURL();
   static final String dbUser = DataManager.getDbUser();
   static final String dbPassword = DataManager.getDbPassword();
+  static final String dbAdapterName = DataManager.getDatabaseAdapterName();
 
   
   /*
@@ -37,7 +38,6 @@ public class DatabaseHandlerTest extends TestCase {
     
   private DatabaseHandler databaseHandler;  //An instance of object being tested
   private Connection dbConnection  = null;            // the database connection
-  private String  dbAdapterName = DatabaseAdapter.POSTGRES_ADAPTER;
   private final String TEST_DOCUMENT = "tao.12103.2";
   private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
   
