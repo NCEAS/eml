@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: costa $'
-          '$Date: 2006-10-11 22:12:13 $'
-      '$Revision: 1.83 $'
+        '$Author: tao $'
+          '$Date: 2006-10-24 19:10:06 $'
+      '$Revision: 1.84 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -132,8 +132,9 @@
     <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
     <property name="tar" value="${datamanager.lib}/tar.jar"/>
     <property name="utilities" value="${datamanager.lib}/utilities.jar"/>
+  	<property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
-    <property name="cpath.datamanager" value="${junit}:${queryservice}:${axis}:${tar}:${xml-apis}:${rpc}:${wsdl}:${log}:${soap}:${discover}:${saaj}:${postgresql-driver}:${utilities}:${build.dir}/${name}.jar"/>
+    <property name="cpath.datamanager" value="${junit}:${queryservice}:${axis}:${tar}:${xml-apis}:${rpc}:${wsdl}:${log}:${soap}:${discover}:${saaj}:${postgresql-driver}:${hsql}:${utilities}:${build.dir}/${name}.jar"/>
 
     <mkdir dir="${build.docs}"/>
     <mkdir dir="${build.docs}/eml-${version}"/>
