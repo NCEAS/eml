@@ -53,6 +53,7 @@ public class TableMonitorTest extends TestCase {
   private final String  orientation   = "column";
   private final int     numRecords    = 200;
   private final String TEST_TABLE = entityName;
+  private DatabaseAdapter databaseAdapter = null;
     
     
   /*
@@ -162,8 +163,18 @@ public class TableMonitorTest extends TestCase {
 
     entityCurrent = new Entity(idCurrent, entityNameCurrent, description,
         caseSensitive, orientation, numRecords);
+    if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
+	      databaseAdapter = new PostgresAdapter();
+	    }
+	    else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
+	      databaseAdapter = new HSQLAdapter();
+	    }
+	    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
+	      databaseAdapter = new OracleAdapter();
+	      
+	    }
 
-    tableMonitor = new TableMonitor(dbConnection, dbAdapterName);
+    tableMonitor = new TableMonitor(dbConnection, databaseAdapter);
   }
     
     
@@ -381,7 +392,7 @@ public class TableMonitorTest extends TestCase {
     Date now = new Date();
     String registry = tableMonitor.getDataTableRegistryName();
     boolean success;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Statement stmt = null;
 
     String insertString = 
@@ -425,7 +436,7 @@ public class TableMonitorTest extends TestCase {
   public void testGetCreationDate() throws SQLException {
     Date creationDate;
     Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String nowDateString = simpleDateFormat.format(now);
 
     // Add the test table entry. By default, creation date is today's date.
@@ -453,7 +464,7 @@ public class TableMonitorTest extends TestCase {
   public void testGetLastUsageDate() throws SQLException {
     Date lastUsageDate;
     Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String nowDateString = simpleDateFormat.format(now);
 
     // Add the test table entry. By default, creation date is today's date.
@@ -694,7 +705,7 @@ public class TableMonitorTest extends TestCase {
     boolean success;
     long epochMilliseconds = 1156979161000l;
     String dataTableRegistryName = tableMonitor.getDataTableRegistryName();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date testDate = new Date(epochMilliseconds);
     String selectString = 
       "SELECT last_usage_date FROM " + dataTableRegistryName +
