@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-16 22:06:26 $'
- *   '$Revision: 1.10 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-10-24 23:49:27 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -70,8 +70,8 @@ public class TableMonitor {
    */
 
   private DatabaseMetaData databaseMetaData = null; // For getting db metadata
-	private Connection dbConnection  = null;   // the database connection
-	private String     dbAdapterName = null;   // the DatabaseAdapter name
+  private Connection dbConnection  = null;   // the database connection
+  private DatabaseAdapter    dbAdapter = null;   // the DatabaseAdapter name
   private final String DATA_TABLE_REGISTRY = "DATA_TABLE_REGISTRY";
                                              // name of the database table where
                                              // data tables are registered
@@ -90,11 +90,11 @@ public class TableMonitor {
    * @param   dbAdapterName the DatabaseAdapter name
    * @return  a TableMonitor object
    */
-	public TableMonitor(Connection dbConnection, String dbAdapterName)
+	public TableMonitor(Connection dbConnection, DatabaseAdapter dbAdapter)
         throws SQLException {
 		this.dbConnection = dbConnection;
-		this.dbAdapterName = dbAdapterName;
-    this.databaseMetaData = dbConnection.getMetaData();
+		this.dbAdapter = dbAdapter;
+        this.databaseMetaData = dbConnection.getMetaData();
 
     /*
      * Check for existence of dataTableRegistry table. Create it if it does not
@@ -130,7 +130,7 @@ public class TableMonitor {
     String insertString;
     Date now = new Date();
     String priority = "1";
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Statement stmt = null;
     
     // Assign a table name for this entity
@@ -266,7 +266,7 @@ public class TableMonitor {
     int rowCount = -1;
     
     if (isTableInDB(tableName)) {
-      String selectString = "SELECT COUNT(*) FROM " + tableName;
+      String selectString = dbAdapter.getCountingRowNumberSQL(tableName);
       Statement stmt = null;
 
       try {
@@ -686,7 +686,7 @@ public class TableMonitor {
    */
   public boolean setLastUsageDate(String tableName, Date date)
         throws SQLException {
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String dateString = simpleDateFormat.format(date);
     int rowCount = 0;
     Statement stmt = null;
