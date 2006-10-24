@@ -2,8 +2,8 @@
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 22:09:54 $'
- *   '$Revision: 1.8 $'
+ *       '$Date: 2006-10-24 23:47:49 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -188,16 +188,27 @@ public class PostgresAdapter extends DatabaseAdapter {
 	    return dbDataType;
 	  }
 
-  /**
+    /**
 	 * Transform ANSI selection sql to a native db sql command
 	 * @param ANSISQL
 	 * @return
 	 */
 	public String transformSelectionSQL(String ANSISQL)
 	{
-    String sqlString = "";
+       String sqlString = "";
     
 		return sqlString;
 	}
+	
+	/**
+	 * Get the sql command to count how many rows in a given table
+	 * @param tableName  the given table name
+	 * @return the sql string which can count how many rows
+	 */
+	 public String getCountingRowNumberSQL(String tableName)
+	 {
+		  String selectString = "SELECT COUNT(*) FROM " + tableName;
+		  return selectString;
+	 }
 	
 }
