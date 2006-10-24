@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 22:07:42 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-10-24 23:43:29 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -361,6 +361,13 @@ public abstract class DatabaseAdapter {
 	   * varies on different db system.
 	   */
 	  protected abstract String mapDataType(String attributeType);
+	  
+	  /**
+	   * Get the sql command to count how many rows in a given table
+	   * @param tableName  the given table name
+	   * @return the sql string which can count how many rows
+	   */
+	  public abstract String getCountingRowNumberSQL(String tableName);
 
 	  
 
