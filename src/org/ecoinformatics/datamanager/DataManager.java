@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-24 19:13:50 $'
- *   '$Revision: 1.14 $'
+ *       '$Date: 2006-10-24 23:42:29 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -46,6 +46,9 @@ import edu.ucsb.nceas.utilities.Options;
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
+import org.ecoinformatics.datamanager.database.HSQLAdapter;
+import org.ecoinformatics.datamanager.database.OracleAdapter;
+import org.ecoinformatics.datamanager.database.PostgresAdapter;
 import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -555,8 +558,9 @@ public class DataManager {
    */
   public void setDatabaseSize(int size) throws SQLException, ClassNotFoundException {
 	Connection connection = getConnection();
+	DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
     TableMonitor tableMonitor = 
-                            new TableMonitor(connection, databaseAdapterName);
+                            new TableMonitor(connection, dbAdapter);
     
     tableMonitor.setDBSize(size);
   }
@@ -577,10 +581,31 @@ public class DataManager {
   public void setTableExpirationPolicy(String tableName, int policy) 
         throws SQLException, ClassNotFoundException {
 	Connection connection = getConnection();
+	DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
     TableMonitor tableMonitor = 
-                            new TableMonitor(connection, databaseAdapterName);
+                            new TableMonitor(connection, dbAdapter);
     
     tableMonitor.setTableExpirationPolicy(tableName, policy);
+  }
+  
+  /*
+   * Gets DatabaseAdapter object base on given db adapter name
+   */
+  private DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
+  {
+	  if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
+		  PostgresAdapter databaseAdapter = new PostgresAdapter();
+		  return databaseAdapter;
+	    }
+	    else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
+	      HSQLAdapter databaseAdapter = new HSQLAdapter();
+	      return databaseAdapter;
+	    }
+	    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
+	      OracleAdapter databaseAdapter = new OracleAdapter();
+	      return databaseAdapter;
+	    }
+	    return null;
   }
 
 }
