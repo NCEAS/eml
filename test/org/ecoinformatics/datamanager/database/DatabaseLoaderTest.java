@@ -29,6 +29,7 @@ public class DatabaseLoaderTest extends TestCase
 {
 	 private Entity entity = null;
 	 private String documentURL = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12103.2";
+	 String     dbAdaptor    = null;
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -37,6 +38,7 @@ public class DatabaseLoaderTest extends TestCase
 	  {
 	    super(name);
 	    DataManager dataManager = DataManager.getInstance();
+	    dbAdaptor = DataManager.getDatabaseAdapterName();
 	    DataPackage dataPackage = null;
 	    InputStream metadataInputStream;
 	    URL url;
@@ -104,7 +106,6 @@ public class DatabaseLoaderTest extends TestCase
 		  DownloadHandler handler = DownloadHandler.getInstance(identifier);
 		  //System.out.println("here1");
 		  Connection dbConnection = DataManager.getConnection();
-		  String     dbAdaptor    = DatabaseAdapter.POSTGRES_ADAPTER;
 		  DatabaseHandler databaseHandler = new DatabaseHandler(dbConnection, dbAdaptor);
 		  boolean success = databaseHandler.generateTable(entity);
 	      assertTrue("DatabaseHandler did not succeed in generating table", success);
