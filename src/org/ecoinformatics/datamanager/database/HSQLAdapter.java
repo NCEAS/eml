@@ -2,8 +2,8 @@
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 22:09:04 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-10-24 23:46:13 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -141,5 +141,16 @@ public class HSQLAdapter extends DatabaseAdapter {
 	{
 		return null;
 	}
+	
+	/**
+	 * Get the sql command to count how many rows in a given table
+	 * @param tableName  the given table name
+	 * @return the sql string which can count how many rows
+	 */
+	 public String getCountingRowNumberSQL(String tableName)
+	 {
+		  String selectString = "SELECT COUNT(*) \"count\" FROM " + tableName;
+		  return selectString;
+	 }
 	
 }

@@ -2,8 +2,8 @@
  *    '$RCSfile: OracleAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-23 18:18:38 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-10-24 23:46:58 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -130,15 +130,26 @@ public class OracleAdapter extends DatabaseAdapter {
 
 
 
-  /**
-	 * Transform ANSI selection sql to a native db sql command
-   * 
-	 * @param ANSISQL
-	 * @return
-	 */
+   /**
+	* Transform ANSI selection sql to a native db sql command
+    * 
+	* @param ANSISQL
+	* @return
+	*/
 	public String transformSelectionSQL(String ANSISQL)
 	{
 		return null;
 	}
+	
+	/**
+	 * Get the sql command to count how many rows in a given table
+	 * @param tableName  the given table name
+	 * @return the sql string which can count how many rows
+	 */
+	 public String getCountingRowNumberSQL(String tableName)
+	 {
+		  String selectString = "SELECT COUNT(*) FROM " + tableName;
+		  return selectString;
+	 }
 	
 }
