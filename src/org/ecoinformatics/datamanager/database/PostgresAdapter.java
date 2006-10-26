@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-24 23:47:49 $'
- *   '$Revision: 1.9 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-26 23:02:58 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -141,74 +141,79 @@ public class PostgresAdapter extends DatabaseAdapter {
   }
   
   
-	
-	
-  
-	/*
-	 * Gets attribute type for a given attribute. Attribute types include
-	 * text, numeric and et al.
-	 * 
-	 */
-	 protected String getAttributeType(Attribute attribute) {
-		    String attributeType = "string";
-		    Domain domain = attribute.getDomain();
-		    String className = domain.getClass().getName();
-		    
-		    System.out.println("  className:  " + className);
+  /**
+   * Gets attribute type for a given attribute. Attribute types include text,
+   * numeric and et al.
+   * 
+   * @param  attribute   The Attribute object whose type is being determined.
+   */
+  protected String getAttributeType(Attribute attribute) {
+    String attributeType = "string";
+    Domain domain = attribute.getDomain();
+    String className = domain.getClass().getName();
 
-		    if (className.endsWith("DateTimeDomain") ||
-		        className.endsWith("EnumeratedDomain") ||
-		        className.endsWith("TextDomain")) {
-		      attributeType = "string";
-		    }
-		    else if (className.endsWith("NumericDomain")) {
-		      NumericDomain numericDomain = (NumericDomain) domain;
-		      attributeType = numericDomain.getNumberType();
-		    }
-		    
-		    System.out.println("  attributeType:  " + attributeType);
-		    return attributeType;
-		  }
+    System.out.println("  className:  " + className);
+
+    if (className.endsWith("DateTimeDomain")
+        || className.endsWith("EnumeratedDomain")
+        || className.endsWith("TextDomain")) {
+      attributeType = "string";
+    } 
+    else if (className.endsWith("NumericDomain")) {
+      NumericDomain numericDomain = (NumericDomain) domain;
+      attributeType = numericDomain.getNumberType();
+    }
+
+    System.out.println("  attributeType:  " + attributeType);
+    return attributeType;
+  }
 		  
-	 /*
-	  * Gets the postgresql database type base on attribute type. 
-	  */
-	  protected String mapDataType(String attributeType) {
-	    String dbDataType;
-	    Map map = new HashMap();
-	    
-	    map.put("string", "TEXT");
-	    map.put("integer", "INTEGER");
-	    map.put("real", "FLOAT");
-	    map.put("whole", "INTEGER");
-	    map.put("natural", "INTEGER");
-	    
-	    dbDataType = (String) map.get(attributeType);
-	    
-	    return dbDataType;
-	  }
+	 
+  /**
+   * Gets the postgresql database type based on a given attribute type.
+   * 
+   * @param  attributeType   a string indicating the attribute type
+   * @return  a string indicating the corresponding data type in Postgres
+   */
+  protected String mapDataType(String attributeType) {
+    String dbDataType;
+    Map map = new HashMap();
 
-    /**
-	 * Transform ANSI selection sql to a native db sql command
-	 * @param ANSISQL
-	 * @return
-	 */
-	public String transformSelectionSQL(String ANSISQL)
-	{
-       String sqlString = "";
-    
-		return sqlString;
-	}
+    map.put("string", "TEXT");
+    map.put("integer", "INTEGER");
+    map.put("real", "FLOAT");
+    map.put("whole", "INTEGER");
+    map.put("natural", "INTEGER");
+
+    dbDataType = (String) map.get(attributeType);
+
+    return dbDataType;
+  }
+
+      
+  /**
+   * Transform ANSI selection sql to a native db sql command.
+   * Not yet implemented.
+   * 
+   * @param ANSISQL   ANSI SQL string.
+   * @return          Native Postgres string.
+   */
+  public String transformSelectionSQL(String ANSISQL) {
+    String sqlString = "";
+
+    return sqlString;
+  }
 	
-	/**
-	 * Get the sql command to count how many rows in a given table
-	 * @param tableName  the given table name
-	 * @return the sql string which can count how many rows
-	 */
-	 public String getCountingRowNumberSQL(String tableName)
-	 {
-		  String selectString = "SELECT COUNT(*) FROM " + tableName;
-		  return selectString;
-	 }
+    
+  /**
+   * Get the sql command to count how many rows are in a given table.
+   * 
+   * @param  tableName  the given table name
+   * @return the sql string which can count how many rows
+   */
+  public String getCountingRowNumberSQL(String tableName) {
+    String selectString = "SELECT COUNT(*) FROM " + tableName;
+    return selectString;
+  }
 	
 }

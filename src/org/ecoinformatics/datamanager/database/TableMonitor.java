@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-24 23:49:27 $'
- *   '$Revision: 1.11 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-26 23:02:58 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -90,11 +90,11 @@ public class TableMonitor {
    * @param   dbAdapterName the DatabaseAdapter name
    * @return  a TableMonitor object
    */
-	public TableMonitor(Connection dbConnection, DatabaseAdapter dbAdapter)
+  public TableMonitor(Connection dbConnection, DatabaseAdapter dbAdapter)
         throws SQLException {
-		this.dbConnection = dbConnection;
-		this.dbAdapter = dbAdapter;
-        this.databaseMetaData = dbConnection.getMetaData();
+    this.dbConnection = dbConnection;
+    this.dbAdapter = dbAdapter;
+    this.databaseMetaData = dbConnection.getMetaData();
 
     /*
      * Check for existence of dataTableRegistry table. Create it if it does not
@@ -103,8 +103,8 @@ public class TableMonitor {
     if (!isTableInDB(DATA_TABLE_REGISTRY)) {
       createDataTableRegistry();
     }
-
-	}
+    
+  }
   
   
   /*

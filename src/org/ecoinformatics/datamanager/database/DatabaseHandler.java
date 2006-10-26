@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-24 23:44:45 $'
- *   '$Revision: 1.14 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-26 23:02:58 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,47 +42,66 @@ import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
-
+/**
+ * The DatabaseHandler class is the top-level class for interacting with the
+ * database. It uses the auxiliary classes DatabaseLoader and DatabaseAdapter
+ * (and its children) to accomplish much of what it needs to do.
+ * 
+ * @author dcosta
+ *
+ */
 public class DatabaseHandler
 {
   /*
    * Class fields
    */
+  private static TableMonitor tableMonitor = null;
   
   
   /*
    * Instance fields
    */
-	private Connection dbConnection  = null;
-	private String     dbAdapterName = null;
+  private Connection dbConnection  = null;
+  private String     dbAdapterName = null;
   private DatabaseAdapter databaseAdapter;
-  private static TableMonitor tableMonitor = null;
  
 
   /*
    * Constructors
    */
-	public DatabaseHandler(Connection dbConnection, String dbAdapterName)
-        throws Exception
-	{
-		this.dbConnection = dbConnection;
-		this.dbAdapterName = dbAdapterName;
-    
-    //Class databaseAdapterClass = Class.forName(dbAdapterName);
-    //databaseAdapter = (DatabaseAdapter) databaseAdapterClass.newInstance();
-    
+  
+  /**
+   * Constructs a DatabaseHandler.
+   * 
+   * @param  dbConnection  A database connection object.
+   * @param  dbAdapterName The name of the database adapter subclass.
+   * @return A DatabaseHandler object.
+   */
+  public DatabaseHandler(Connection dbConnection, String dbAdapterName)
+      throws Exception {
+    this.dbConnection = dbConnection;
+    this.dbAdapterName = dbAdapterName;
+
+    /*
+     * Construct the DatabaseAdapter using the appropriate child class, and
+     * assign it to the databaseAdapter field.
+     */
     if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
       this.databaseAdapter = new PostgresAdapter();
-    }
+    } 
     else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
       this.databaseAdapter = new HSQLAdapter();
-    }
+    } 
     else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
       this.databaseAdapter = new OracleAdapter();
     }
-    
-    DatabaseHandler.tableMonitor =new TableMonitor(dbConnection, databaseAdapter);
-	}
+
+    /*
+     * Construct a TableMonitor object and store it.
+     */
+    DatabaseHandler.tableMonitor = new TableMonitor(dbConnection,
+                                                    databaseAdapter);
+  }
 
   
   /*
@@ -95,8 +114,6 @@ public class DatabaseHandler
    */
 
 
-  
-  
   /**
    * Given a table name, drops the data table from the database.
    * 
@@ -254,9 +271,6 @@ public class DatabaseHandler
   }
   
  
- 
-  
-
   /**
    * Determines whether the data table exists in the database. 
    * This is simply a pass-through method to the TableMonitor.
@@ -307,30 +321,27 @@ public class DatabaseHandler
   public boolean loadDataToDB(Entity entity)
   {
 	boolean success = false;
-	if (entity != null)
-	{
-		//String identifier = entity.getEntityIdentifier();
-		DownloadHandler downloadHandler = entity.getDownloadHandler();
-		DatabaseLoader dbLoader = null;
-		try
-		{
-			dbLoader = new DatabaseLoader(dbConnection, dbAdapterName, entity);
-			DataStorageInterface[] storage = new DataStorageInterface[1];
-			storage[0] = dbLoader;
-			/*downloadHandler.setDataStorageCladdList(storage);
-			Thread loadData = new Thread(downloadHandler);
-			loadData.start();
-			while (!downloadHandler.isCompleted())
-			{
-				
-			}
-			success = downloadHandler.isSuccess();*/
-			success = downloadHandler.download(storage);
-		}
-		catch(Exception e)
-		{
-			success = false;
-		}
+    
+	if (entity != null) {
+      // String identifier = entity.getEntityIdentifier();
+      DownloadHandler downloadHandler = entity.getDownloadHandler();
+      DatabaseLoader dbLoader = null;
+      
+      try {
+        dbLoader = new DatabaseLoader(dbConnection, dbAdapterName, entity);
+        DataStorageInterface[] storage = new DataStorageInterface[1];
+        storage[0] = dbLoader;
+        /*
+         * downloadHandler.setDataStorageCladdList(storage); Thread loadData =
+         * new Thread(downloadHandler); loadData.start(); while
+         * (!downloadHandler.isCompleted()) {
+         *  } success = downloadHandler.isSuccess();
+         */
+        success = downloadHandler.download(storage);
+      } 
+      catch (Exception e) {
+        success = false;
+      }
 		
 	}
     return success;
@@ -339,10 +350,11 @@ public class DatabaseHandler
 
   /**
    * Runs a selection query on the data contained in one or more data packages.
+   * Not yet implemented.
    * 
-   * @param ANSISQL
-   * @param dataPackage
-   * @return
+   * @param ANSISQL      The ANSI SQL query string.
+   * @param dataPackage  The data packages to be queried.
+   * @return             A ResultSet object as returned by the database query.
    */
   public ResultSet selectData(String ANSISQL, DataPackage[] packages)
   {

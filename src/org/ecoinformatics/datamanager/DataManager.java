@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-24 23:42:29 $'
- *   '$Revision: 1.15 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-26 23:02:38 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,7 +45,6 @@ import edu.ucsb.nceas.utilities.Options;
 
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
-import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.database.HSQLAdapter;
 import org.ecoinformatics.datamanager.database.OracleAdapter;
 import org.ecoinformatics.datamanager.database.PostgresAdapter;
@@ -105,8 +104,6 @@ public class DataManager {
    * Instance fields
    */
  
-  private Connection dbConnection = null;
-  
 
   /*
    * Constructors
@@ -227,7 +224,6 @@ public class DataManager {
     
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
-      //System.err.println("Downloading entity name '" + entity.getName() +"'");
       success = success && downloadData(entity, dataStorageList);
     }
     
@@ -543,7 +539,7 @@ public class DataManager {
    * @param databaseAdapterName
    */
   public void setDatabaseAdapterName(String databaseAdapterName) {
-    this.databaseAdapterName = databaseAdapterName;
+    DataManager.databaseAdapterName = databaseAdapterName;
   }
 
   
@@ -582,30 +578,37 @@ public class DataManager {
         throws SQLException, ClassNotFoundException {
 	Connection connection = getConnection();
 	DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
-    TableMonitor tableMonitor = 
-                            new TableMonitor(connection, dbAdapter);
+    TableMonitor tableMonitor = new TableMonitor(connection, dbAdapter);
     
     tableMonitor.setTableExpirationPolicy(tableName, policy);
   }
   
-  /*
-   * Gets DatabaseAdapter object base on given db adapter name
+  
+  /** 
+   * Constructs and returns a DatabaseAdapter object based on a given database 
+   * adapter name.
+   * 
+   * @param dbAdapterName   Database adapter name, a string. It should match
+   *                        one of the constants in the DatabaseAdapter class,
+   *                        e.g. DatabaseAdapter.POSTGRES_ADAPTER. If no match
+   *                        is made, returns null.
    */
   private DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
   {
-	  if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
-		  PostgresAdapter databaseAdapter = new PostgresAdapter();
-		  return databaseAdapter;
-	    }
-	    else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
-	      HSQLAdapter databaseAdapter = new HSQLAdapter();
-	      return databaseAdapter;
-	    }
-	    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
-	      OracleAdapter databaseAdapter = new OracleAdapter();
-	      return databaseAdapter;
-	    }
-	    return null;
+    if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
+      PostgresAdapter databaseAdapter = new PostgresAdapter();
+      return databaseAdapter;
+    } 
+    else if (dbAdapterName.equals(DatabaseAdapter.HSQL_ADAPTER)) {
+      HSQLAdapter databaseAdapter = new HSQLAdapter();
+      return databaseAdapter;
+    } 
+    else if (dbAdapterName.equals(DatabaseAdapter.ORACLE_ADAPTER)) {
+      OracleAdapter databaseAdapter = new OracleAdapter();
+      return databaseAdapter;
+    }
+      
+    return null;
   }
 
 }
