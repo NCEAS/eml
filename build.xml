@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: tao $'
-          '$Date: 2006-10-24 19:10:06 $'
-      '$Revision: 1.84 $'
+          '$Date: 2006-10-26 00:03:34 $'
+      '$Revision: 1.85 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -505,9 +505,14 @@
   	            debug="on"/>
     </target>
 
-    <target name="jar-datamanager-lib" depends="compile-datamanager-lib">
+    <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
+    	<unjar dest="${build.dest}">
+    	    	    <fileset dir="./${datamanager.lib}">
+    	    	        <include name="**/*.jar"/>
+    	    	    </fileset>
+    	</unjar>
+    	<copy file="./${datamanager.lib}/datamanager.properties" todir="${build.dest}"/>
   	    <jar jarfile="${build.dir}/${datamanager.name}.jar" basedir="${build.dest}"
-  	         includes="${datamanager.dir}/**" 
   	         excludes="**/**Test.class" 
   	    />
   	    <copy file="${build.dir}/${datamanager.name}.jar" tofile="lib/${datamanager.name}.jar"/>
