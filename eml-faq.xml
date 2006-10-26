@@ -16,9 +16,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2005-04-20 18:31:43 $'
-      '$Revision: 1.21 $'
+        '$Author: tao $'
+          '$Date: 2006-10-26 20:51:44 $'
+      '$Revision: 1.22 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -624,8 +624,24 @@
         </para>
       </answer>
     </qandaentry>
-
+    
     <qandaentry id="id.21">
+      <question>
+        <para>How do the elements of the Dublin Core Metadata Initiative map onto EML?</para>
+      </question>
+
+      <answer>
+        <para>EML attempts to capture the metadata elements of the Dublin Core in its
+        specification, while still maintaining the flexibility to be able to document the full range
+        of ecological resources.  More detailed information on the representation of the Dublin
+        Core elements in EML can be found at 
+        <ulink url="http://knb.ecoinformatics.org/software/eml/eml-2.0.1/eml-dublinCore.html">
+        http://knb.ecoinformatics.org/software/eml/eml-2.0.1/eml-dublinCore.html</ulink>
+        </para>
+      </answer>
+    </qandaentry>
+
+    <qandaentry id="id.22">
       <question>
         <para>I'm interested in contributing to EML. Can I?</para>
       </question>
@@ -650,7 +666,7 @@
       </answer>
     </qandaentry>
 
-    <qandaentry id="id.22">
+    <qandaentry id="id.23">
       <question>
         <para>Where can I get EML?</para>
       </question>
