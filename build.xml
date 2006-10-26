@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: tao $'
-          '$Date: 2006-10-26 00:03:34 $'
-      '$Revision: 1.85 $'
+          '$Date: 2006-10-26 20:48:35 $'
+      '$Revision: 1.86 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -145,8 +145,8 @@
         your CLASSPATH in order for this to work -->
   <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml">
     <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
-           includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
-    <style basedir="." destdir="${build.docs}" style="members.xsl"
+           includes="*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
+    <style basedir="." destdir="${build.docs}" style="members.xsl" classpath="${cpath}" 
            includes="members.xml" processor="trax"/>
     <copy todir="${build.docs}" filtering="yes">
       <fileset dir=".">
@@ -157,6 +157,7 @@
     <copy todir="${build.docs}/eml-${version}" filtering="no">
       <fileset dir=".">
         <include name="*.png"/>
+        <include name="eml-dublinCore.html"/>
       </fileset>
     </copy>
   </target>
@@ -167,7 +168,7 @@
   <target name="stripdocs" depends="init">
     <mkdir dir="${build.stripped}"/>
     <style basedir="." destdir="${build.stripped}" extension=".xsd"
-           style="removeAnnotation.xsl" includes="*.xsd" processor="trax"/>
+           style="removeAnnotation.xsl" includes="*.xsd" classpath="${cpath}" processor="trax"/>
     <echo>
 
            ******************************************
@@ -227,11 +228,11 @@
   <target name="docbook" depends="init">
     <style basedir="." style="buildDocBook.xsl"
            in="eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <style basedir="." style="sortDocBook.xsl"
            in="${build.dir}/eml-docbook-nosort.xml"
            out="${build.dir}/eml-docbook.xml"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <!-- the following copy is needed to do the ant replacement -->
     <copy file="${build.dir}/eml-docbook.xml"
           tofile="${build.docs}/eml-${version}/eml-docbook.xml"
@@ -257,7 +258,7 @@
     <style basedir="." style="${htmldocbook-style}"
            in="${build.docs}/eml-${version}/eml-docbook.xml"
            out="${build.docs}/eml-${version}/index.html"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <copy file="default.css" todir="${build.docs}"/>
     <echo>
       ************************************************
@@ -280,7 +281,7 @@
     <style basedir="." style="${htmldocbook-style}"
            in="eml-faq.xml"
            out="${build.docs}/eml-${version}/eml-faq.html"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <echo>
       ************************************************
         FAQ rendered to HTML.  The html file
@@ -294,7 +295,7 @@
     <style basedir="." style="buildDependencyTable.xsl"
            in="eml.xsd"
            out="${build.docs}/eml-${version}/eml-dependencies.html"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <echo>
       ************************************************
         Dependency Table rendered to HTML.
@@ -307,7 +308,7 @@
     <style basedir="." style="getunits.xsl"
            in="eml-unitDictionary.xml"
            out="${build.docs}/eml-${version}/enumerations.xml"
-           processor="trax"/>
+           classpath="${cpath}" processor="trax"/>
     <echo>
       ************************************************
                     enumerations created.
