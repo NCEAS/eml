@@ -1,0 +1,91 @@
+---------------+---------------------------------+------+--------+-----------+
+Package        |Source File (.java)               Author Reviewer Review Date
+org.            
+ecoinformatics.
+datamanager.
+---------------+---------------------------------+------+--------+-----------+
+                Datamanager                       costa  tao      2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+database        DataNotMatchingMetadataException  tao    costa    2006-1X-XX
+database        DatabaseAdapter                   costa  tao      2006-1X-XX
+database        DatabaseHandler                   costa  tao      2006-1X-XX
+database        DatabaseLoader                    tao    costa    2006-1X-XX
+database        DelimitedReader                   tao    costa    2006-1X-XX
+database        HSQLAdapter                       tao    costa    2006-1X-XX
+database        NoTableSpaceException             tao    costa    2006-1X-XX
+database        OracleAdapter                     tao    costa    2006-1X-XX
+database        PostgresAdapter                   tao    costa    2006-1X-XX
+database        TableMonitor                      costa  tao      2006-1X-XX
+database        TextComplexFormatDataReader       tao    costa    2006-1X-XX
+database        TextDataReader                    costa  tao      2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+download        ArchivedDataHandler               tao    costa    2006-1X-XX
+download        CompressedDataHandler             tao    costa    2006-1X-XX
+download        DataDownloadNotFinishedException  tao    costa    2006-1X-XX
+download        DataSourceNotFoundException       tao    costa    2006-1X-XX
+download        DataStorageInterface              tao    costa    2006-1X-XX
+download        DownloadHandler                   tao    costa    2006-1X-XX
+download        GZipDataHandler                   tao    costa    2006-1X-XX
+download        TarDataHandler                    tao    costa    2006-1X-XX
+download        ZipDataHandler                    tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+parser          Attribute                         tao    costa    2006-1X-XX
+parser          AttributeList                     tao    costa    2006-1X-XX
+parser          Constraint                        tao    costa    2006-1X-XX
+parser          DataObjectDescription             tao    costa    2006-1X-XX
+parser          DataPackage                       tao    costa    2006-1X-XX
+parser          DateTimeDomain                    tao    costa    2006-1X-XX
+parser          Domain                            tao    costa    2006-1X-XX
+parser          Entity                            tao    costa    2006-1X-XX
+parser          EnumeratedDomain                  tao    costa    2006-1X-XX
+parser          ForeignKey                        tao    costa    2006-1X-XX
+parser          JoinConditionConstraint           tao    costa    2006-1X-XX
+parser          NotNullConstraint                 tao    costa    2006-1X-XX
+parser          NumericDomain                     tao    costa    2006-1X-XX
+parser          PrimaryKey                        tao    costa    2006-1X-XX
+parser          TextComplexDataFormat             tao    costa    2006-1X-XX
+parser          TextDelimitedDataFormat           tao    costa    2006-1X-XX
+parser          TextDomain                        tao    costa    2006-1X-XX
+parser          TextWidthFixedDataFormat          tao    costa    2006-1X-XX
+parser          UnWellFormedConstraintException   tao    costa    2006-1X-XX
+parser          UniqueKey                         tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+parser.eml      Eml200Parser                      tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+JUNIT TESTS
+
+---------------+---------------------------------+------+--------+-----------+
+                DataManagerTest                   costa  tao      2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+database        DatabaseAdapterTest               costa  tao      2006-1X-XX
+database        DatabaseHandlerTest               costa  tao      2006-1X-XX
+database        DatabaseLoaderTest                tao    costa    2006-1X-XX
+database        HSQLAdapterTest                   tao    costa    2006-1X-XX
+database        PostgresAdapterTest               tao    costa    2006-1X-XX
+database        TableMonitorTest                  costa  tao      2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+download        DataStorageTest                   tao    costa    2006-1X-XX
+download        DownloadHandlerTest               tao    costa    2006-1X-XX
+download        GZipDataHandlerTest               tao    costa    2006-1X-XX
+download        TarDataHandlerTest                tao    costa    2006-1X-XX
+download        ZipDataHandlerTest                tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+parser          AttributeListTest                 tao    costa    2006-1X-XX
+parser          AttributeTest                     tao    costa    2006-1X-XX
+parser          DataObjectDescriptionTest         tao    costa    2006-1X-XX
+parser          DataPackageTest                   tao    costa    2006-1X-XX
+parser          DateTimeDomainTest                tao    costa    2006-1X-XX
+parser          EntityTest                        tao    costa    2006-1X-XX
+parser          EnumeratedDomainTest              tao    costa    2006-1X-XX
+parser          ForeignKeyTest                    tao    costa    2006-1X-XX
+parser          JoinConditionConstraintTest       tao    costa    2006-1X-XX
+parser          NotNullConstraintTest             tao    costa    2006-1X-XX
+parser          NumericDomainTest                 tao    costa    2006-1X-XX
+parser          PrimaryKeyTest                    tao    costa    2006-1X-XX
+parser          TextDelimitedDataFormatTest       tao    costa    2006-1X-XX
+parser          TextDomainTest                    tao    costa    2006-1X-XX
+parser          TextWidthFixedDataFormatTest      tao    costa    2006-1X-XX
+parser          UniqueKeyTest                     tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
+parser.eml      Eml200ParserTest                  tao    costa    2006-1X-XX
+---------------+---------------------------------+------+--------+-----------+
