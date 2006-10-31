@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Eml200Parser.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-22 00:43:07 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,6 +42,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 import org.apache.xpath.CachedXPathAPI;
+
 //import org.kepler.objectmanager.data.DataType;
 //import org.kepler.objectmanager.data.DataTypeResolver;
 import org.ecoinformatics.datamanager.parser.DataPackage;
@@ -56,6 +57,7 @@ import org.ecoinformatics.datamanager.parser.TextComplexDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDelimitedDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDomain;
 import org.ecoinformatics.datamanager.parser.TextWidthFixedDataFormat;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -65,56 +67,75 @@ import org.xml.sax.SAXException;
 
 /**
  * This is plugin Parser which parses EML 2.0.0 metadata files to 
- * get the metadata information which decribes data file
+ * get the metadata information which decribes data file.
+ * 
+ * @author tao
  */
 public class Eml200Parser
 {
+    /*
+     * Class fields
+     */
 
-    private static String NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
+    // constants
+    public static final String TABLEENTITY = "//dataset/dataTable";
+    public static final String SPATIALRASTERENTITY = "//dataset/spatialRaster";
+    public static final String SPATIALVECTORENTITY = "//dataset/spatialVector";
+    public static final String STOREDPROCEDUREENTITY = 
+                                                    "//dataset/storedProcedure";
+    public static final String VIEWENTITY = "//dataset/view";
+    public static final String OTHERENTITY = "//dataset/otherEntity";
+    private static final String PACKAGEIDPATH = "//eml/@packageId";
+
+    // private static Log log;
+    private static boolean isDebugging;
+    private static final String ID = "id";
+ 
+    /*static {
+      log = LogFactory.getLog( 
+                   "org.ecoinformatics.seek.datasource.eml.eml2.Eml200Parser" );
+      isDebugging = log.isDebugEnabled();
+    }*/
+
+    //private static String NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
+
+    
+    /*
+     * Instance fields
+     */
+    
     //private Hashtable entityHash = new Hashtable();
     //private Hashtable fileHash = new Hashtable();
     private int numEntities = 0;
-    private int numRecords = -1;
+    //private int numRecords = -1;
     private Entity entityObject = null;
     //private DataTypeResolver dtr = DataTypeResolver.instanceOf();
     private int elementId = 0;
     //private boolean hasImageEntity = false;
     private int complexFormatsNumber = 0;
     private Hashtable attributeListHash = new Hashtable();
-    private boolean hasMissingValue = false;
+    //private boolean hasMissingValue = false;
     private DataPackage emlDataPackage = null;
     
-    //private static Log log;
-    private static boolean isDebugging;
-    private static final String ID = "id";
-   
-	  
-    /*static {
-    	log = LogFactory.getLog( "org.ecoinformatics.seek.datasource.eml.eml2.Eml200Parser" );
-    	isDebugging = log.isDebugEnabled();
-    }*/
     
-    //constants
-    public static final String TABLEENTITY           = "//dataset/dataTable";
-    public static final String SPATIALRASTERENTITY   = "//dataset/spatialRaster";
-    public static final String SPATIALVECTORENTITY   = "//dataset/spatialVector";
-    public static final String STOREDPROCEDUREENTITY = "//dataset/storedProcedure";
-    public static final String VIEWENTITY            = "//dataset/view";
-    public static final String OTHERENTITY           = "//dataset/otherEntity";
-    private static final String PACKAGEIDPATH        ="//eml/@packageId";
     /**
-     * returns a hashtable of with the id of the entity as the key and the data
+     * Returns a hashtable of with the id of the entity as the key and the data
      * file id to which the entity refers as the value. This way, if you want to
      * know what data file goes with an entity, you can do a get on this hash
-     * for the id of the entity. note that the entity id is the xml entity id
+     * for the id of the entity. Note that the entity id is the XML entity id
      * from the generated input step, not the id of the entity file itself.
+     * 
+     * @return fileHash, a HashTable of entity ids mapped to data file ids
      */
     /*public Hashtable getDataFilesHash()
     {
         return fileHash;
     }*/
+    
+    
     /**
-     * Parses the EML package as InputSource object as input
+     * Parses the EML package as InputSource object as input.
+     * 
      * @param source The InputSource which contains metadata source
      */
     public void parse(InputSource source) throws Exception
@@ -125,8 +146,10 @@ public class Eml200Parser
         parseDocument(doc);
     }
 
+    
     /**
-     * Parses the EML package as InputStream object as input
+     * Parses the EML package as InputStream object as input.
+     * 
      * @param is The InputStream which contains medadata source
      */
     public void parse(InputStream is) throws Exception
@@ -137,9 +160,12 @@ public class Eml200Parser
         parseDocument(doc);
     }
 
-    /*
-     * parses the EML document. Now except dataTable, spatialRaster and 
+    
+    /**
+     * Parses the EML document. Now except dataTable, spatialRaster and 
      * spatialVector entities are added. 
+     * 
+     * @param doc  the Document object to be parsed
      */
     private void parseDocument(Document doc) throws Exception
     {
@@ -150,25 +176,31 @@ public class Eml200Parser
         NodeList viewEntities;
         CachedXPathAPI xpathapi = new CachedXPathAPI();
         String packageId = null;
+        
         try {
         	// process packageid
         	Node packageIdNode = xpathapi.selectSingleNode(doc, PACKAGEIDPATH);
+            
         	if (packageIdNode != null)
         	{
         	   //System.out.println("in packageIdNode is not null");
         	   packageId          = packageIdNode.getNodeValue();
         	}
+            
         	emlDataPackage        = new DataPackage(packageId);
             // now dataTable, spatialRaster and spatialVector are handled
             entities              = xpathapi.selectNodeList(doc, TABLEENTITY);
-            spatialRasterEntities = xpathapi.selectNodeList(doc, SPATIALRASTERENTITY);
-            spatialVectorEntities = xpathapi.selectNodeList(doc, SPATIALVECTORENTITY);
+            spatialRasterEntities = 
+                              xpathapi.selectNodeList(doc, SPATIALRASTERENTITY);
+            spatialVectorEntities = 
+                              xpathapi.selectNodeList(doc, SPATIALVECTORENTITY);
             otherEntities         = xpathapi.selectNodeList(doc, OTHERENTITY);
             viewEntities          = xpathapi.selectNodeList(doc, VIEWENTITY);
             
             
         } catch (Exception e) {
-            throw new Exception("Error extracting entities from eml2.0.0 package.");
+            throw new Exception(
+                            "Error extracting entities from eml2.0.0 package.");
         }
         
         try {
@@ -177,8 +209,12 @@ public class Eml200Parser
             //TODO: current we still treat them as TableEntity java object, 
             //in future we need add new SpatialRasterEntity and SpatialVector
             // object for them
-            processEntities(xpathapi, spatialRasterEntities, SPATIALRASTERENTITY);
-            processEntities(xpathapi, spatialVectorEntities, SPATIALVECTORENTITY);
+            processEntities(xpathapi, 
+                            spatialRasterEntities, 
+                            SPATIALRASTERENTITY);
+            processEntities(xpathapi, 
+                            spatialVectorEntities, 
+                            SPATIALVECTORENTITY);
             processEntities(xpathapi, otherEntities, OTHERENTITY);
             processEntities(xpathapi, viewEntities, VIEWENTITY);
             //log.debug("Done processing entities");
@@ -187,8 +223,9 @@ public class Eml200Parser
         }
     }
 
+    
     /**
-     * returns a hashtable of entity names hashed to the entity description
+     * Returns a hashtable of entity names hashed to the entity description
      * metadata that goes with each entity.
      */
     /*public Hashtable getEntityHash()
@@ -196,38 +233,48 @@ public class Eml200Parser
         return entityHash;
     }*/
     
+    
     /**
-     * Method to get the data package metadata object
+     * Method to get the data package metadata object.
+     * 
+     * @return the value of the emlDataPackage field, a DataPackage
      */
     public DataPackage getDataPackage()
     {
     	return emlDataPackage;
     }
 
+    
     /**
-     * returns the number of records in this dataItem
+     * Gets the number of records in this dataItem.
      *
-     * @param entityId the id of the entity object to get the record count for
+     * @param   entityId the id of the entity object to get the record count for
+     * @return  the number of records in the entity object
      */
     /*public int getRecordCount(String entityId)
     {
         return ((Entity) entityHash.get(entityId)).getNumRecords();
     }*/
 
+    
     /**
-     * returns the total number of entities in the data item collection that was
+     * Gets the total number of entities in the data item collection that was
      * passed to this class when the object was created.
+     * 
+     * @return  the number of entities in the data item collection
      */
     /*public int getEntityCount()
     {
         return numEntities;
     }*/
 
+    
     /**
-     * returns the number of attributes in the given entity
+     * Gets the number of attributes in the given entity.
      *
-     * @param entityId the id of the entity object that you want the attribute
-     *            count for
+     * @param  entityId the id of the entity object that you want the attribute
+     *         count for
+     * @return the number of attributes in the entity
      */
     /*public int getAttributeCount(String entityId)
     {
@@ -236,18 +283,23 @@ public class Eml200Parser
         return attArray.length;
     }*/
     
+    
     /**
-     * if the entity has missing value declaretion
-     * @return
+     * Boolean to determine whether the entity has a missing value declaration.
+     * 
+     * @return value of hasMissingValue, a boolean
      */
     /*public boolean hasMissingValue()
     {
     	return hasMissingValue;
     }*/
+    
+    
     /**
      * Method to get the boolean hasImageEntity. If the eml document has
-     * SpatialRaster or SpatialVector entity, this variable should be true;
-     * @return boolean
+     * SpatialRaster or SpatialVector entity, this variable should be true.
+     * 
+     * @return boolean, the value of the hasImageEntity field
      */
     /*public boolean getHasImageEntity()
     {
@@ -255,64 +307,85 @@ public class Eml200Parser
       
     }*/
     
-    /*
-     * Porcess the attribute list element
+    
+    /**
+     * Processes the attribute list element.
+     * 
+     * @param  xpathapi  XPath API
+     * @param  attList   a NodeList
+     * @param  entObj    the entity object whose attribute list is processed
      */
-    private void processAttributeList(CachedXPathAPI xpathapi, NodeList attList, Entity entObj) throws Exception
+    private void processAttributeList(CachedXPathAPI xpathapi, 
+                                      NodeList attList, 
+                                      Entity entObj) 
+            throws Exception
     {
         AttributeList attributeList = new AttributeList();
         Node attListNode = attList.item(0);
         // get attributeList element's attribute - id
         NamedNodeMap idAttribute = attListNode.getAttributes();
         String idString = null;
+        
         if (idAttribute != null)
         {
           Node id = idAttribute.getNamedItem(ID);
+          
           if ( id != null)
           {
             idString = id.getNodeValue();
             attributeList.setId(idString);
+            
         	if(isDebugging) {
-        		//log.debug("The id value for the attributelist is " + idString);
+               //log.debug("The id value for the attributelist is " + idString);
         	}
           }
         }
-        NodeList attNodeList = xpathapi.selectNodeList(attListNode, "attribute");
-        NodeList referenceNodeList = xpathapi.selectNodeList(attListNode, "references");
+        
+        NodeList attNodeList = xpathapi.selectNodeList(attListNode, 
+                                                       "attribute");
+        NodeList referenceNodeList = xpathapi.selectNodeList(attListNode, 
+                                                             "references");
+        
         if (attNodeList != null && attNodeList.getLength() > 0) 
         {
-           
             processAttributes(xpathapi, attNodeList, attributeList);
+            
             if (idString != null)
             {
                attributeListHash.put(idString , attributeList);
-              
             }
-        } 
+        }
         else if (referenceNodeList != null && referenceNodeList.getLength() > 0) 
         {
             // get the references id 
             Node referenceNode = referenceNodeList.item(0);
+            
         	if(isDebugging) {
-        		//log.debug("The reference node's name is "+referenceNode.getNodeName());
+                //log.debug("The reference node's name is "+
+                //          referenceNode.getNodeName());
         	}
+            
             String referenceId = referenceNode.getFirstChild().getNodeValue();
+            
         	if(isDebugging) {
         		//log.debug("the reference id is "+ referenceId);
         	}
+            
             attributeList = (AttributeList) attributeListHash.get(referenceId);
         } 
         else
         {
-       		//log.debug("The children name of attribute list couldn't be understood");
+       	    //log.debug(
+            //    "The children name of attribute list couldn't be understood");
             throw new Exception(" couldn't be a child of attributeList");
         }
           
         if (!entityObject.isSimpleDelimited())
         {
            int length = attributeList.getAttributes().length;
+           
            if (length != complexFormatsNumber || 
-               (length == complexFormatsNumber && complexFormatsNumber == 0))
+              (length == complexFormatsNumber && complexFormatsNumber == 0))
            {
                throw new Exception("Complex format elements should have"+
                        " some number as attribute number");
@@ -324,14 +397,20 @@ public class Eml200Parser
         }
        
         entityObject.setAttributeList(attributeList);
-     
-        
     }
 
+    
     /**
-     * process the attributes
+     * Processes the attributes in an attribute list. Called by
+     * processAttributeList().
+     * 
+     * @param  xpathapi          the XPath API
+     * @param  atts              a node list
+     * @param  attributeListObj  an AttributeList
      */
-    private void processAttributes(CachedXPathAPI xpathapi, NodeList atts, AttributeList attributeListObj)
+    private void processAttributes(CachedXPathAPI xpathapi, 
+                                   NodeList atts, 
+                                   AttributeList attributeListObj)
                     throws Exception
     {
         
@@ -339,17 +418,15 @@ public class Eml200Parser
         for (int i = 0; i < atts.getLength(); i++) { //go through each
                                                      // attribute
             Node att = atts.item(i);
-            
-            
             NodeList attChildren = att.getChildNodes();
-            NamedNodeMap attAttributes = att.getAttributes();
+            //NamedNodeMap attAttributes = att.getAttributes();
 
             String attName = "";
             String attLabel = "";
             String attDefinition = "";
             String attUnit = "";
             String attUnitType = "";
-            String attStorageType = "";
+            //String attStorageType = "";
             String attMeasurementScale = "";
             String attPrecision = "";
             Domain domain = null;
@@ -358,23 +435,25 @@ public class Eml200Parser
             double numberPrecision = 0;
             // get attribute id
             NamedNodeMap attributeNode = att.getAttributes();
+            
             if (attributeNode != null)
             {
-               
                   Node idNode =  attributeNode.getNamedItem(ID);
+                  
                   if (idNode != null)
                   {
                 	  id = idNode.getNodeValue();
                   }
-               
             }
+            
             elementId++;
 
             for (int j = 0; j < attChildren.getLength(); j++) {
                 Node child = attChildren.item(j);
                 String childName = child.getNodeName();
                 if (childName.equals("attributeName")) {
-                    attName = child.getFirstChild().getNodeValue().trim().replace('.', '_');
+                    attName = child.getFirstChild().getNodeValue()
+                                   .trim().replace('.', '_');
                 } else if (childName.equals("attributeLabel")) {
                     attLabel = child.getFirstChild().getNodeValue().trim();
                 } else if (childName.equals("attributeDefinition")) {
@@ -384,9 +463,11 @@ public class Eml200Parser
                     //Vector info = new Vector();
                     //int domainType = Domain.DOM_NONE;
                     NodeList msNodeList = child.getChildNodes();
+                    
                     for (int k = 0; k < msNodeList.getLength(); k++) {
                         Node n = msNodeList.item(k);
                         String name = n.getNodeName();
+                        
                         if (name.equals("interval") || name.equals("ratio")) {
                             String numberType = null;
                             String min = "", max = "";
@@ -394,6 +475,7 @@ public class Eml200Parser
                                             "unit/standardUnit");
                             Node cUnit = xpathapi.selectSingleNode(n,
                                             "unit/customUnit");
+                            
                             if (sUnit != null) {
                                 attUnit = sUnit.getFirstChild().getNodeValue();
                                 attUnitType = Attribute.STANDARDUNIT;
@@ -403,29 +485,40 @@ public class Eml200Parser
                             } else {
                                 System.err.println("xpath didn't work");
                             }
+                            
                             Node precision = xpathapi.selectSingleNode(n,
                                             "precision");
+                            
                             if (precision != null) {
                                 // precision is optional in EML201 so if it is
                                 // not provided, the attPrecision will be the
                                 // empty string
                                 attPrecision = precision.getFirstChild()
-                                            .getNodeValue();
-                                numberPrecision = (new Double(attPrecision)).doubleValue();
+                                                        .getNodeValue();
+                                numberPrecision = 
+                                       (new Double(attPrecision)).doubleValue();
                                 
                             }
-                            Node dNode = xpathapi.selectSingleNode(n, "numericDomain");
+                            
+                            Node dNode = 
+                                  xpathapi.selectSingleNode(n, "numericDomain");
                             NodeList numberKids = dNode.getChildNodes();
-                            for (int index = 0; index < numberKids.getLength(); index++)
+                            
+                            for (int index = 0; index < numberKids.getLength(); 
+                                 index++)
                             {
-                  
-                                String dName = numberKids.item(index).getNodeName();
+                                String dName = 
+                                           numberKids.item(index).getNodeName();
+                                
                                 if (dName.equals("numberType")) // got number
                                                                 // type
                                 {
-                                    numberType = numberKids.item(index).getFirstChild().getNodeValue();
-                                	if(isDebugging) {
-                                		//log.debug("The number type is "+ numberType);
+                                    numberType = 
+                                          numberKids.item(index).getFirstChild()
+                                                    .getNodeValue();
+                                    
+                                	if (isDebugging) {
+                                 //log.debug("The number type is "+ numberType);
                                 	}
                                 }
                                 else if (dName.equals("boundsGroup"))
@@ -433,12 +526,13 @@ public class Eml200Parser
                                 {
                                     NodeList boundsList = xpathapi
                                             .selectNodeList(dNode, "./bounds");
+                                    
                                     for (i = 0; i < boundsList.getLength(); i++)
                                     {
                                         NodeList nl;
                                         Node bound;
 
-                                        String exclMin = null, exclMax = null;
+                                        //String exclMin = null, exclMax = null;
                                         try
                                         {
                                             nl = xpathapi.selectNodeList(
@@ -447,131 +541,158 @@ public class Eml200Parser
                                             bound = nl.item(0);
                                             min = bound.getFirstChild()
                                                     .getNodeValue();
-                                            exclMin = bound.getAttributes()
+                                            /*exclMin = bound.getAttributes()
                                                     .getNamedItem("exclusive")
-                                                    .getNodeValue();
+                                                    .getNodeValue();*/
                                             nl = xpathapi.selectNodeList(
                                                     boundsList.item(0),
                                                     "./maximum");
                                             bound = nl.item(0);
                                             max = bound.getFirstChild()
                                                     .getNodeValue();
-                                            exclMax = bound.getAttributes()
+                                            /*exclMax = bound.getAttributes()
                                                     .getNamedItem("exclusive")
-                                                    .getNodeValue();
+                                                    .getNodeValue();*/
                                         }
                                         catch (Exception e)
                                         {
                                         	//log.debug("Error in handle bound ", e);
                                         }
                                      }
-                   
-                                   }
-                                   
+                                 }
                             }
+                            
                             Double minNum = null;
                             Double maxNum = null;
                             System.out.println("the min value is "+min);
+                            
                             if (!min.trim().equals(""))
                             {
                                 minNum = new Double(min);
-                                
                             }
+                            
                             if (!max.trim().equals(""))
                             {
                             	maxNum = new Double(max);
                             }
-                            NumericDomain numDomain = new NumericDomain(numberType, minNum, maxNum);
+                            
+                            NumericDomain numDomain = 
+                                  new NumericDomain(numberType, minNum, maxNum);
                             numDomain.setPrecision(numberPrecision);
                             domain = numDomain;
                            
                         } else if (name.equals("nominal")
                                         || name.equals("ordinal")) {
-                            NodeList list = xpathapi.selectSingleNode(n,"nonNumericDomain").getChildNodes();
-                            for (int m =0; m <list.getLength(); m++)
+                            NodeList list = 
+                              xpathapi.selectSingleNode(n, "nonNumericDomain")
+                                .getChildNodes();
+                            
+                            for (int m = 0; m < list.getLength(); m++)
                             {
                                 Node dNode = list.item(m);
                                 String dName = dNode.getNodeName();
+                                
                                 if (dName.equals("textDomain")) {
                                     TextDomain textDomain = new TextDomain();
-                                    NodeList definitionL = xpathapi.selectNodeList(dNode, "./definition");
+                                    NodeList definitionL = 
+                                      xpathapi.selectNodeList(
+                                                         dNode, "./definition");
                                     Node defintionNode = definitionL.item(0);
-                                    String definition = defintionNode.getFirstChild().getNodeValue();
-                                	if(isDebugging) {
-                                		//log.debug("The definition value is "+definition);
+                                    String definition = 
+                                      defintionNode.getFirstChild().
+                                                                 getNodeValue();
+                                	
+                                    if(isDebugging) {
+                                      //log.debug(
+                                      // "The definition value is "+definition);
                                 	}
+                                    
                                     textDomain.setDefinition(definition);
                                     NodeList nl = xpathapi.selectNodeList(dNode,
                                                     "./pattern");
-                                    String[] patternList = new String[nl.getLength()]; 
+                                    
+                                    String[] patternList = 
+                                                     new String[nl.getLength()]; 
+                                    
                                     for (int l = 0; l < nl.getLength(); l++) {
-                                      patternList[l] = nl.item(l).getFirstChild().getNodeValue();
+                                      patternList[l] = nl.item(l).
+                                                       getFirstChild().
+                                                       getNodeValue();
                                     }
+                                    
                                     if (patternList.length > 0)
                                     {
                                       textDomain.setPattern(patternList);
                                     }
+                                    
                                     domain = textDomain;
                                    
                                 } else if (dName.equals("enumeratedDomain")) {
-                                    EnumeratedDomain enumerDomain = new EnumeratedDomain();
+                                    EnumeratedDomain enumerDomain = 
+                                                         new EnumeratedDomain();
                                     Vector info = new Vector();
                                     NodeList nl = xpathapi.selectNodeList(dNode,
                                                     "./codeDefinition");
+                                    
                                     for (int l = 0; l < nl.getLength(); l++) {
                                         info.add(nl.item(l).getFirstChild()
                                                         .getNodeValue());
                                     }
+                                    
                                     enumerDomain.setInfo(info);
                                     domain = enumerDomain;
-                                  
                                 }
                             }
-                            
                         } else if (name.equals("datetime")) {
                             DateTimeDomain date = new DateTimeDomain();
                             String formatString = 
-                                (xpathapi.selectSingleNode(n,"./formatString")).getFirstChild().getNodeValue();
+                                (xpathapi.selectSingleNode(n,"./formatString")).
+                                          getFirstChild().
+                                          getNodeValue();
+                            
                         	if(isDebugging) {
-                        		//log.debug("The format string in date time is " +formatString);
+                        	  //log.debug(
+                              //          "The format string in date time is " 
+                              //          + formatString);
                         	}
                             date.setFormatString(formatString);
                             domain = date;
-                           
                         }
                     }
-                    
                 }
                 else if (childName.equals("missingValueCode"))
                 {
                		//log.debug("in missilng valueCode");
                     NodeList missingNodeList = child.getChildNodes();
+                    
                     for (int k = 0; k < missingNodeList.getLength(); k++) 
                     {
                         Node n = missingNodeList.item(k);
                         String name = n.getNodeName();
+                        
                         if (name.equals("code"))
                         {
-                        	
                             Node missingCodeTextNode = n.getFirstChild();
+                            
                             if (missingCodeTextNode != null)
                             {
-	                            String missingCode = missingCodeTextNode.getNodeValue();
+	                            String missingCode = 
+                                             missingCodeTextNode.getNodeValue();
+                                
 	                        	if(isDebugging) {
-	                        		//log.debug("the missing code is "+missingCode);
+	                        	//log.debug("the missing code is "+missingCode);
 	                        	}
+                                
 	                            missingCodeVector.add(missingCode);
-	                            hasMissingValue = true;
+	                            //hasMissingValue = true;
                             }
                         }
                     }
-                    
-                    
                 }
             }
             
             /******************************************************
-             * need to use domaim type to replace data type
+             * need to use domain type to replace data type
              ******************************************************/
             /*String resolvedType = null;
             //DataType dataType = domain.getDataType();
@@ -587,30 +708,36 @@ public class Eml200Parser
             //add missing code into attribute
             for (int k=0; k<missingCodeVector.size(); k++)
             {
-                
-                String missingCodeValue = (String)missingCodeVector.elementAt(k);
+                String missingCodeValue = 
+                                        (String) missingCodeVector.elementAt(k);
             	if(isDebugging) {
-            		//log.debug("the mssing value code " + missingCodeValue + " was added to attribute");
+            		//log.debug("the mssing value code " + missingCodeValue + 
+                    //          " was added to attribute");
             	}
+                
                 attObj.addMissingValueCode(missingCodeValue);
             }
             
             attributeListObj.add(attObj);
-            
         }
     }
+    
 
     /**
-     * pulls the entity information out of the xml and stores it in a hashtable
+     * Pulls the entity information out of the XML and stores it in a hashtable.
      */
-    private void processEntities(CachedXPathAPI xpathapi, NodeList entities, String xpath) throws SAXException,
-                    javax.xml.transform.TransformerException, Exception
+    private void processEntities(CachedXPathAPI xpathapi, 
+                                 NodeList entities, String xpath) 
+            throws SAXException,
+                   javax.xml.transform.TransformerException, 
+                   Exception
     { 
         //make sure that entities is not null
         if(entities == null)
         {
           return;
         }
+        
         int entityNodeListLength = entities.getLength();
         numEntities = numEntities + entityNodeListLength;
         String entityName = "";
@@ -640,21 +767,24 @@ public class Eml200Parser
             {
               isImageEntity = true;
             }
+            
              //go through the entities and put the information into the hash.
             elementId++;
             Node entity = entities.item(i);
             String id = null;
             NamedNodeMap attributeNode = entity.getAttributes();
-            if (attributeNode != null) {
-               
+            
+            if (attributeNode != null) {        
                 Node idNode = attributeNode.getNamedItem(ID);
+                
                 if (idNode != null)
                 {
                    id = idNode.getNodeValue();
                 }
-               
             }
+            
             NodeList entityChildren = entity.getChildNodes();
+            
             for (int j = 0; j < entityChildren.getLength(); j++) {
                 Node child = entityChildren.item(j);
                 String childName = child.getNodeName();
@@ -668,87 +798,108 @@ public class Eml200Parser
                 } else if (childName.equals("numberOfRecords")) {
                     entityNumberOfRecords = child.getFirstChild()
                                     .getNodeValue();
-                    numRecords = (new Integer(entityNumberOfRecords))
-                                    .intValue();
+                    /*numRecords = (new Integer(entityNumberOfRecords))
+                                    .intValue();*/
                 }                
                
             }
             
             NodeList orientationNodeList = xpathapi.selectNodeList(entity,
                        "physical/dataFormat/textFormat/attributeOrientation");
-            if (orientationNodeList != null && orientationNodeList.getLength() >0) {
-                    entityOrientation = orientationNodeList.item(0).getFirstChild().getNodeValue();
+            
+            if (orientationNodeList != null && 
+                orientationNodeList.getLength() > 0) {
+                entityOrientation = orientationNodeList.
+                                      item(0).getFirstChild().getNodeValue();
 
                }
 
             NodeList headerLinesNL = xpathapi.selectNodeList(entity,
                        "physical/dataFormat/textFormat/numHeaderLines");
+            
             if ((headerLinesNL != null) && (headerLinesNL.getLength() > 0)) {
                    Node headerLinesNode = headerLinesNL.item(0);
+                   
                    if (headerLinesNode != null) {
                        numHeaderLines = headerLinesNode.getFirstChild()
                                        .getNodeValue();
                    }
                }
             
-            
             NodeList footerLinesNL = xpathapi.selectNodeList(entity,
                           "physical/dataFormat/textFormat/numFooterLines");
-             if ((footerLinesNL != null) && (footerLinesNL.getLength() > 0)) {
+            
+            if ((footerLinesNL != null) && (footerLinesNL.getLength() > 0)) {
                 Node footerLinesNode = footerLinesNL.item(0);
-                   if (footerLinesNode != null) {
-                         String footerLineStr = footerLinesNode.getFirstChild().getNodeValue();
-                         numFooterLines = (new Integer(footerLineStr.trim())).intValue();
+            
+                if (footerLinesNode != null) {
+                         String footerLineStr = footerLinesNode.getFirstChild().
+                                                getNodeValue();
+                         numFooterLines = (new Integer(footerLineStr.trim())).
+                                                       intValue();
                        }
             }
            
            // Here is the simple delimited data file
-           NodeList delimiterNL = xpathapi.selectNodeList(entity,
-                       "physical/dataFormat/textFormat/simpleDelimited/fieldDelimiter");
+           NodeList delimiterNL = 
+             xpathapi.selectNodeList(entity,
+               "physical/dataFormat/textFormat/simpleDelimited/fieldDelimiter");
+           
            if (delimiterNL != null && delimiterNL.getLength() >0) {
-                   fieldDelimiter = delimiterNL.item(0).getFirstChild().getNodeValue();
-               }
+                   fieldDelimiter = delimiterNL.item(0).getFirstChild().
+                                                        getNodeValue();
+           }
            
 //         Here is the simple delimited data file
            NodeList collapseDelimiterNL = xpathapi.selectNodeList(entity,
-                       "physical/dataFormat/textFormat/simpleDelimited/collapseDelimiters");
-           if (collapseDelimiterNL != null && collapseDelimiterNL.getLength() >0) {
-                   String collapseDelimiter = collapseDelimiterNL.item(0).getFirstChild().getNodeValue();
-                   if (collapseDelimiter.equalsIgnoreCase("yes"))
-                   {
-                	   isCollapseDelimiter = true;
-                   }
-                   
-               }
+           "physical/dataFormat/textFormat/simpleDelimited/collapseDelimiters");
+           
+           if (collapseDelimiterNL != null && 
+               collapseDelimiterNL.getLength() > 0) {
+             
+               String collapseDelimiter = 
+                     collapseDelimiterNL.item(0).getFirstChild().getNodeValue();
+               
+               if (collapseDelimiter.equalsIgnoreCase("yes"))
+               {
+                   isCollapseDelimiter = true;
+               } 
+           }
            
            // for complex format data file
            NodeList complexFormatNL = xpathapi.selectNodeList(entity,
                                       "physical/dataFormat/textFormat/complex");
+           
            if (complexFormatNL != null && complexFormatNL.getLength() > 0)
            {
-        	//log.debug("in handle complex text data format");
+        	 //log.debug("in handle complex text data format");
              isSimpleDelimited = false;
              Node complexFormatNode = complexFormatNL.item(0);
              NodeList complexFormatChildren = complexFormatNode.getChildNodes();
              int childrenLength = complexFormatChildren.getLength();
              Vector formatVector = new Vector();
+             
              for (int k=0; k<childrenLength; k++)
              {
                  Node node = complexFormatChildren.item(k);
+                 
                  if (node != null && node.getNodeName().equals("textFixed"))
                  {
-                     TextWidthFixedDataFormat textFixedFormat = handleTextFixedDataFormatNode(node);
+                     TextWidthFixedDataFormat textFixedFormat = 
+                                            handleTextFixedDataFormatNode(node);
+                     
                      if ( textFixedFormat != null)
                      {
                         formatVector.add(textFixedFormat);
                         //complexFormatsNumber++;
                      }
-                     
                  }
-                 else if (node != null && node.getNodeName().equals("textDelimited"))
+                 else if (node != null && 
+                          node.getNodeName().equals("textDelimited"))
                  {
                      TextDelimitedDataFormat delimitedFormat = 
                                      handleComplexDelimitedDataFormatNode(node);
+                     
                      if (delimitedFormat != null)
                      {
                          formatVector.add(delimitedFormat);
@@ -756,243 +907,297 @@ public class Eml200Parser
                      }
                  }
               }
+             
              //transfer vector to array
              complexFormatsNumber = formatVector.size();
              formatArray = new TextComplexDataFormat[complexFormatsNumber];
              for (int j=0; j< complexFormatsNumber; j++)
              {
-                 formatArray[j] =(TextComplexDataFormat)formatVector.elementAt(j);  
+                 formatArray[j] =
+                               (TextComplexDataFormat)formatVector.elementAt(j);  
              }
-             
-             
            }
            
-           
-           
-           
            NodeList recDelimiterNL = xpathapi.selectNodeList(entity,
-                       "physical/dataFormat/textFormat/recordDelimiter");
+                              "physical/dataFormat/textFormat/recordDelimiter");
+           
            if ((recDelimiterNL != null) && (recDelimiterNL.getLength() > 0)) {
-              recordDelimiter = recDelimiterNL.item(0).getFirstChild().getNodeValue();
+              recordDelimiter = 
+                          recDelimiterNL.item(0).getFirstChild().getNodeValue();
            } else {
               recordDelimiter = "\\r\\n";
            }
+           
            //get the distribution information
            NodeList distributionNL = xpathapi.selectNodeList(entity,
-                               "physical/distribution/online/url");
+                                            "physical/distribution/online/url");
+           
            if (distributionNL != null && distributionNL.getLength() >0)
            {
-              physicalFile = distributionNL.item(0).getFirstChild().getNodeValue();
-          	if(isDebugging) {
+              physicalFile = 
+                          distributionNL.item(0).getFirstChild().getNodeValue();
+              
+          	  if(isDebugging) {
         		//log.debug("The url is "+ physicalFile);
-        	}
+        	  }
            }
 
            //get the compressionMethod information
            NodeList compressionNL = xpathapi.selectNodeList(entity,
-                                  "physical/compressionMethod");
+                                                  "physical/compressionMethod");
+           
            if (compressionNL != null && compressionNL.getLength() >0)
            {
-              compressionMethod = compressionNL.item(0).getFirstChild().getNodeValue();
-          	if(isDebugging) {
+              compressionMethod = 
+                           compressionNL.item(0).getFirstChild().getNodeValue();
+              
+          	  if (isDebugging) {
         		//log.debug("Compression method is "+compressionMethod);
-        	}
-              if (compressionMethod != null && compressionMethod.equals(Entity.GZIP))
+        	  }
+              
+              if (compressionMethod != null && 
+                  compressionMethod.equals(Entity.GZIP))
               {
                 isGZipDataFile = true;
               }
-              else if (compressionMethod != null && compressionMethod.equals(Entity.ZIP))
+              else if (compressionMethod != null && 
+                       compressionMethod.equals(Entity.ZIP))
               {
                 isZipDataFile = true;
               }
           }
           
           // get encoding method info (mainly for tar file)
-          NodeList encodingNL = xpathapi.selectNodeList(entity, "physical/encodingMethod");
+          NodeList encodingNL = 
+                     xpathapi.selectNodeList(entity, "physical/encodingMethod");
+          
           if(encodingNL != null && encodingNL.getLength() > 0)
           {
             encodingMethod = encodingNL.item(0).getFirstChild().getNodeValue();
+            
         	if(isDebugging) {
         		//log.debug("encoding method is "+encodingMethod);
         	}
+            
             if (encodingMethod != null && encodingMethod.equals(Entity.TAR))
             {
                isTarDataFile = true;
             }
           }
 
-            if (entityOrientation.trim().equals("column")) {
-                entityOrientation = Entity.COLUMNMAJOR;
-            } else {
-                entityOrientation = Entity.ROWMAJOR;
-            }
+          if (entityOrientation.trim().equals("column")) {
+              entityOrientation = Entity.COLUMNMAJOR;
+          } else {
+              entityOrientation = Entity.ROWMAJOR;
+          }
 
-            if (entityCaseSensitive.equals("yes")) {
-                entityCaseSensitive = "true";
-            } else {
-                entityCaseSensitive = "false";
-            }
+          if (entityCaseSensitive.equals("yes")) {
+              entityCaseSensitive = "true";
+          } else {
+              entityCaseSensitive = "false";
+          }
 
-            entityObject = new Entity(id, entityName.trim(),
-                            entityDescription.trim(), new Boolean(
-                                            entityCaseSensitive),
-                            entityOrientation, new Integer(
-                                            entityNumberOfRecords).intValue());
-            entityObject.setNumHeaderLines((new Integer(numHeaderLines))
-                            .intValue());
-            entityObject.setNumFooterLines(numFooterLines);
-            entityObject.setSimpleDelimited(isSimpleDelimited);
-            // for simple dimited data file
-            if (fieldDelimiter != null)
-            {
-               entityObject.setDelimiter(fieldDelimiter);
-            }
-            entityObject.setCollaplseDelimiter(isCollapseDelimiter);
+          entityObject = new Entity(id, 
+                                    entityName.trim(),
+                                    entityDescription.trim(), 
+                                    new Boolean(entityCaseSensitive),
+                                    entityOrientation, 
+                                    new Integer(entityNumberOfRecords).
+                                                                    intValue());
+          
+          entityObject.setNumHeaderLines((new Integer(numHeaderLines))
+                                                                   .intValue());
+          entityObject.setNumFooterLines(numFooterLines);
+          entityObject.setSimpleDelimited(isSimpleDelimited);
+          
+          // for simple dimited data file
+          if (fieldDelimiter != null)
+          {
+             entityObject.setDelimiter(fieldDelimiter);
+          }
+          
+          entityObject.setCollaplseDelimiter(isCollapseDelimiter);
             
-            //System.out.println("in eml200 parser, the recordDelimiter is "+recordDelimiter);
-            entityObject.setRecordDelimiter(recordDelimiter);
-            entityObject.setURL(physicalFile);
-            entityObject.setCompressionMethod(compressionMethod);
-            entityObject.setIsImageEntity(isImageEntity);
-            entityObject.setHasGZipDataFile(isGZipDataFile);
-            entityObject.setHasZipDataFile(isZipDataFile);
-            entityObject.setHasTarDataFile(isTarDataFile);
+          //System.out.println("in eml200 parser, the recordDelimiter is "+
+          //                   recordDelimiter);
+          
+          entityObject.setRecordDelimiter(recordDelimiter);
+          entityObject.setURL(physicalFile);
+          entityObject.setCompressionMethod(compressionMethod);
+          entityObject.setIsImageEntity(isImageEntity);
+          entityObject.setHasGZipDataFile(isGZipDataFile);
+          entityObject.setHasZipDataFile(isZipDataFile);
+          entityObject.setHasTarDataFile(isTarDataFile);
             
-            try {
-                NodeList attNL = xpathapi.selectNodeList(entity,
-                                "attributeList");
-                processAttributeList(xpathapi, attNL, entityObject);
-                entityObject.setDataFormatArray(formatArray);
-                
-            } catch (Exception e) {
+          try {
+              NodeList attNL = xpathapi.selectNodeList(entity, "attributeList");
+              processAttributeList(xpathapi, attNL, entityObject);
+              entityObject.setDataFormatArray(formatArray);  
+          } catch (Exception e) {
                 throw new Exception("Error parsing attributes: "
                                 + e.getMessage());
-            }
-            //entityHash.put(Integer.toString(elementId), entityObject);
-            emlDataPackage.add(entityObject);
-            //fileHash.put(elementId, physicalFile);
-            
-        }
+          }
+          
+          //entityHash.put(Integer.toString(elementId), entityObject);
+          emlDataPackage.add(entityObject);
+          //fileHash.put(elementId, physicalFile); 
+        } // end for loop
         
-      
     }
     
-    /*
+    
+    /**
      * This method will digest a text fixed data format node and return
      * a TextFixedDataFormat object.
+     * 
+     * @param  node the Node object to be processed
      */
-    private TextWidthFixedDataFormat handleTextFixedDataFormatNode(Node node) throws Exception
+    private TextWidthFixedDataFormat handleTextFixedDataFormatNode(Node node) 
+            throws Exception
     {
        TextWidthFixedDataFormat format = null;
+       
        if (node == null)
        {
            return format;
        }
+       
        NodeList children = node.getChildNodes();
        int length = children.getLength();
+       
        for (int i = 0; i<length; i++)
        {
            Node kid = children.item(i);
            String elementName = kid.getNodeName();
+           
            if (elementName != null && elementName.equals("fieldWidth"))
            {
               String fieldWidthStr = kid.getFirstChild().getNodeValue();
               
               int fieldWidth = (new Integer(fieldWidthStr)).intValue();
-          	if(isDebugging) {
-        		//log.debug("The filed width for fix width in eml is "+ fieldWidth);
-        	}
+              
+          	  if(isDebugging) {
+        		//log.debug("The filed width for fix width in eml is "
+                //          + fieldWidth);
+        	  }
+              
               format = new TextWidthFixedDataFormat(fieldWidth);
            }
-           else if (elementName != null && elementName.equals("fieldStartColumn") 
-                   && format != null)
+           else if (elementName != null && 
+                    elementName.equals("fieldStartColumn") && 
+                    format != null)
            {
                String startColumnStr = kid.getFirstChild().getNodeValue();
                int startColumn  = (new Integer(startColumnStr)).intValue();
-           	if(isDebugging) {
+               
+           	   if(isDebugging) {
         		//log.debug("The start cloumn is "+startColumn);
-        	}
+        	   }
+               
                format.setFieldStartColumn(startColumn);
            }
-           else if (elementName != null && elementName.equals("lineNumber") 
-                   && format != null)
+           else if (elementName != null && 
+                    elementName.equals("lineNumber") && 
+                    format != null)
            {
                String lineNumberStr = kid.getFirstChild().getNodeValue();
                int lineNumber  = (new Integer(lineNumberStr)).intValue();
-           	if(isDebugging) {
+               
+           	   if(isDebugging) {
         		//log.debug("The start cloumn is "+lineNumber);
-        	}
+        	   }
+               
                format.setLineNumber(lineNumber);
            }
        }
+       
        return format;
     }
+    
     
     /*
      * This method will digest a delimited data format node and return
      * a DelimitedFixedFormat object.
      */
-    private TextDelimitedDataFormat handleComplexDelimitedDataFormatNode(Node node) throws Exception
+    private TextDelimitedDataFormat handleComplexDelimitedDataFormatNode(
+                                                                      Node node) 
+            throws Exception
     {
        TextDelimitedDataFormat format = null;
+       
        if (node == null)
        {
            return format;
        }
+       
        NodeList children = node.getChildNodes();
        int length = children.getLength();
        Vector quoteList = new Vector();
+       
        for (int i = 0; i<length; i++)
        {
            Node kid = children.item(i);
            String elementName = kid.getNodeName();
+           
            if (elementName != null && elementName.equals("fieldDelimiter"))
            {
               String fieldDelimiter = kid.getFirstChild().getNodeValue();
-          	if(isDebugging) {
-        		//log.debug("The filed delimiter for complex format in eml is "+ fieldDelimiter);
-        	}
+              
+          	  if(isDebugging) {
+        		//log.debug("The filed delimiter for complex format in eml is "+
+                //          fieldDelimiter);
+        	  }
+              
               format = new TextDelimitedDataFormat(fieldDelimiter);
            }
-           else if (elementName != null && elementName.equals("lineNumber") 
-                   && format != null)
+           else if (elementName != null && 
+                    elementName.equals("lineNumber") && 
+                    format != null)
            {
                String lineNumberStr = kid.getFirstChild().getNodeValue();
                int lineNumber = (new Integer(lineNumberStr)).intValue();
-           	if(isDebugging) {
+               
+           	   if(isDebugging) {
         		//log.debug("The line number is "+lineNumber);
-        	}
+        	   }
+               
                format.setLineNumber(lineNumber);
            }
-           else if (elementName != null && elementName.equals("collapseDelimiter") 
-                   && format != null)
+           else if (elementName != null && 
+                    elementName.equals("collapseDelimiter") && 
+                    format != null)
            {
                String collapse = kid.getFirstChild().getNodeValue();
-           	if(isDebugging) {
+               
+           	   if(isDebugging) {
         		//log.debug("The collapse delimiter "+collapse);
-        	}
+        	   }
+               
                format.setCollapseDelimiter(collapse);
            }
-           else if (elementName != null && elementName.equals("quoteCharacter") 
-                   && format != null)
+           else if (elementName != null && 
+                    elementName.equals("quoteCharacter") && 
+                    format != null)
            {
                String quote = kid.getFirstChild().getNodeValue();
-                quoteList.add(quote);
-               
+               quoteList.add(quote); 
            }
-           
-       }
+       } // end for loop
+       
        // set up quoteList
        if (format != null)
        {
            int size = quoteList.size();
            String[] quoteArray = new String[size];
+           
            for (int i=0; i<size; i++)
            {
                quoteArray[i] = (String)quoteList.elementAt(i);
            }
+           
            format.setQuoteCharater(quoteArray);
        }
+       
        return format;
     }
 }

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextDelimitedDataFormat.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,20 +33,29 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * @author tao
- * This class will contain the info about TextDelimitedFormat
+ * 
+ * This class will contain the info about TextDelimitedDataFormat.
  */
 public class TextDelimitedDataFormat implements TextComplexDataFormat
 {
-    private String fieldDelimiter;
-    private String collapseDelimiter;//treat the consecutive delimters as 
-                                     //single or not
-    private long   lineNumber;//the physical line number
-    private String[] quoteCharater;//for escape delimiter
+    /*
+     * Instance fields
+     */
+    private String fieldDelimiter;   //string that separates fields in text
+    private String collapseDelimiter; //treat the consecutive delimters as 
+                                      //single or not
+    private long   lineNumber;       //the physical line number
+    private String[] quoteCharater;  //for escape delimiter
   
+    
+    /*
+     * Constructors
+     */
 
     /**
      * Constructor
-     * @param fieldDelimiter  the delimiter for field
+     * 
+     * @param fieldDelimiter  the delimiter for field, a String
      */
     public TextDelimitedDataFormat(String fieldDelimiter)
     {
@@ -54,60 +63,96 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
         this.fieldDelimiter = fieldDelimiter;
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
     /**
-     * @return Returns the collapseDelimiter.
+     * Gets the value of the collapseDelimiter field.
+     * 
+     * @return the collapseDelimiter value
      */
     public String getCollapseDelimiter()
     {
         return collapseDelimiter;
     }
+    
+    
     /**
-     * @param collapseDelimiter The collapseDelimiter to set.
+     * Sets the value of the collapseDelimiter field.
+     * 
+     * @param collapseDelimiter The collapseDelimiter value to set
      */
     public void setCollapseDelimiter(String collapseDelimiter)
     {
         this.collapseDelimiter = collapseDelimiter;
     }
+    
+    
     /**
-     * @return Returns the fieldDelimiter.
+     * Gets the value of the fieldDelimiter field.
+     * 
+     * @return the fieldDelimiter value
      */
     public String getFieldDelimiter()
     {
         return fieldDelimiter;
     }
+    
+    
     /**
-     * @param fieldDelimiter The fieldDelimiter to set.
+     * Sets the value of the fieldDelimiter field.
+     * 
+     * @param fieldDelimiter the fieldDelimiter value to set
      */
     public void setFieldDelimiter(String fieldDelimiter)
     {
         this.fieldDelimiter = fieldDelimiter;
     }
+    
+    
     /**
-     * @return Returns the lineNumber.
+     * Gets the value of the lineNumber field.
+     * 
+     * @return the lineNumber
      */
     public long getLineNumber()
     {
         return lineNumber;
     }
+    
+    
     /**
-     * @param lineNumber The lineNumber to set.
+     * Sets the value of the lineNumber field.
+     * 
+     * @param lineNumber The lineNumber value to set
      */
     public void setLineNumber(long lineNumber)
     {
         this.lineNumber = lineNumber;
     }
+    
+    
     /**
-     * @return Returns the quoteCharater.
+     * Gets the value of the quoteCharacter field.
+     * 
+     * @return Returns the quoteCharater value, a String[]
      */
     public String[] getQuoteCharater()
     {
         return quoteCharater;
     }
+    
+    
     /**
-     * @param quoteCharater The quoteCharater to set.
+     * Sets the value of the quoteCharacter field to a list of Strings.
+     * 
+     * @param quoteCharater The quoteCharater value to set, a String[]
      */
     public void setQuoteCharater(String[] quoteCharater)
     {
         this.quoteCharater = quoteCharater;
     }
+    
 }

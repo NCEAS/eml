@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: JoinConditionConstraint.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -35,15 +35,18 @@ package org.ecoinformatics.datamanager.parser;
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 
-/**
- * This class represents a join condtion (join two tables without
- * primary/foreign key) in table level
- * @author Jing Tao
- *
- */
 
+/**
+ * This class represents a join condition (join two tables without
+ * primary/foreign key) in table level.
+ * 
+ * @author tao
+ */
 public class JoinConditionConstraint implements Constraint
 {
+  /*
+   * Instance fields
+   */
   private int type = Constraint.JOINCONDITIONCONSTRAINT;
   private String name = null;
   private String[] keys = null;
@@ -56,6 +59,10 @@ public class JoinConditionConstraint implements Constraint
 	 log = LogFactory.getLog( "org.kepler.objectmanager.data.db.JoinConditionConstraint" );
   }*/
 
+  /*
+   * Constructors
+   */
+  
   /**
    * Default constructor
    */
@@ -63,82 +70,104 @@ public class JoinConditionConstraint implements Constraint
   {
 
   }
+  
+  
+  /*
+   * Instance methods
+   */
 
   /**
-   * Method to get type
-   * @return int
+   * Method to get type.
+   * 
+   * @return an int representing the constraint type (see Constraint interface)
    */
   public int getType()
   {
     return type;
   }
+  
 
   /**
-   * Method to get constraint name
-   * @return String
+   * Method to get constraint name.
+   * 
+   * @return the value of the name field, a String
    */
   public String getName()
   {
     return name;
   }
 
+  
   /**
-   * Method to get keys
-   * @return String[]
+   * Method to get keys.
+   * 
+   * @return the value of the keys field, a String[]
    */
   public String[] getKeys()
   {
     return keys;
   }
 
+  
   /**
-   * Method to get referenced entity(parent table)
-   * @return String
+   * Method to get referenced entity (parent table).
+   * 
+   * @return String  the name of the entity referenced by this constraint
    */
   public String getEntityReference()
   {
     return entityReference;
   }
+  
 
   /**
-   * Method to get referenced key in parent table
-   * @return String[]
+   * Method to get referenced keys in parent table.
+   * 
+   * @return   the keys referenced by this constraint, a String[] 
    */
   public String[] getReferencedKeys()
   {
     return referencedKeys;
   }
 
+  
   /**
-   * Method to set constraint name
-   * @param constraintName String
+   * Method to set constraint name.
+   * 
+   * @param constraintName, the name value to set for this constraint, a String
    */
   public void setName(String constraintName)
   {
     name = constraintName;
   }
 
+  
   /**
-   * Method to set keys
-   * @param constraintKeys String[]
+   * Method to set keys.
+   * 
+   * @param constraintKeys, the array of keys to set, a String[]
    */
   public void setKeys(String[] constraintKeys)
   {
     keys = constraintKeys;
   }
 
+  
   /**
-   * Method to set referenced entity name
-   * @param referencedEntity String
+   * Method to set referenced entity name.
+   * 
+   * @param referencedEntity, the entityReference value to set, a String
    */
   public void setEntityReference(String referencedEntity)
   {
     entityReference = referencedEntity;
   }
 
+  
   /**
-   * Method to set up referenced key in parent table(referencedEntity)
-   * @param keyList String[]
+   * Method to set up referenced key in parent table (referencedEntity).
+   * 
+   * @param keyList, the referencedKeys value to set, a String[]
    */
 
   public void setReferencedKeys(String[] keyList)
@@ -148,22 +177,25 @@ public class JoinConditionConstraint implements Constraint
 
 
   /**
-   * Method to print out a part sql command about joincondition.
+   * Method to print out a partial sql command about join condition.
    * In joinCondition, we need to specify the referenced entity's column
    * name. It is same as foreign key except to specify referenced key name in
    * parent table
-   * @return String
+   * 
+   * @return  a partial SQL command about the join condition, a String
    */
   public String printString() throws UnWellFormedConstraintException
   {
     String sql = null;
+    
     if (referencedKeys == null || referencedKeys.length ==0)
     {
       throw new UnWellFormedConstraintException("The refrenced key in parent "+
                        "table is empty in join condition constaint");
     }
-    //in joincondition the first part is as same as foreign key
-    // so we can first create a foreginkey object and print out the sql
+    
+    // In joincondition the first part is as same as foreign key,
+    // so we can first create a foreginkey object and print out the sql.
     ForeignKey foreignKey = new ForeignKey();
     foreignKey.setName(name);
     foreignKey.setKeys(keys);
@@ -172,31 +204,38 @@ public class JoinConditionConstraint implements Constraint
 
     StringBuffer buffer = new StringBuffer(foreignKeySql);
 
-    // add referencedkey  list in parent table
+    // add referencedkey list in parent table
     buffer.append(Constraint.LEFTPARENTH);
+    
     // add keys into parenthesis
     boolean firstKey = true;
+    
     for (int i = 0; i< referencedKeys.length; i++)
     {
       String keyName = keys[i];
+      
       // if any key is null or empty, we will throw a exception
       if (keyName == null || keyName.trim().equals(""))
       {
         throw new UnWellFormedConstraintException("refernced key name in " +
                               "parent table is empty or null in join condition");
       }
+      
       // if this is not the first key, we need add a comma
       if (!firstKey)
       {
          buffer.append(Constraint.COMMA);
       }
+      
       buffer.append(keyName);
       firstKey = false;
     }//for
+    
     buffer.append(Constraint.RIGHTPARENTH);
     buffer.append(Constraint.SPACESTRING);
     sql = buffer.toString();
     //log.debug("The foreign key part of sql is " + sql);
+    
     return sql;
   }
 

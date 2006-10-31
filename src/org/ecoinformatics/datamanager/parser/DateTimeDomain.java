@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DateTimeDomain.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,84 +34,117 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * @author tao
- * This class will handle DateTimeDomain
+ * 
+ * This class will handle DateTimeDomain.
  */
 public class DateTimeDomain implements Domain
 {
-   
-   //private DataType dataType;
-   //private DataTypeResolver resolver = DataTypeResolver.instanceOf();
-   private String formatString;
-   private double dateTimePrecision;
-   private double minimum;
-   private double maxmum;
+   /*
+    * Instance fields
+    */
+  
+  //private DataType dataType;
+  //private DataTypeResolver resolver = DataTypeResolver.instanceOf();
+  private String formatString;
+  private double dateTimePrecision;
+  private double minimum;
+  private double maximum;
    
 
-   /**
-    * Constructor  setup numberType for this domain
-    *
-    */
-   public DateTimeDomain() 
-   {
-       
-   }
+  /*
+   * Constructors
+   */
+  
+  /**
+   * Constructor setup numberType for this domain
+   * 
+   */
+  public DateTimeDomain() {
+
+  }
    
   
-   
-   /**
-    * @return Returns the dateTimePrecision.
-    */
-   public double getDateTimePrecision()
-   {
-       return dateTimePrecision;
-   }
-   /**
-    * @param dateTimePrecision The dateTimePrecision to set.
-    */
-   public void setDateTimePrecision(double dateTimePrecision)
-   {
-       this.dateTimePrecision = dateTimePrecision;
-   }
-   /**
-    * @return Returns the formatString.
-    */
-   public String getFormatString()
-   {
-       return formatString;
-   }
-   /**
-    * @param formatString The formatString to set.
-    */
-   public void setFormatString(String formatString)
-   {
-       this.formatString = formatString;
-   }
-   /**
-    * @return Returns the maxmum.
-    */
-   public double getMaxmum()
-   {
-       return maxmum;
-   }
-   /**
-    * @param maxmum The maxmum to set.
-    */
-   public void setMaxmum(double maxmum)
-   {
-       this.maxmum = maxmum;
-   }
-   /**
-    * @return Returns the minimum.
-    */
-   public double getMinimum()
-   {
-       return minimum;
-   }
-   /**
-    * @param minimum The minimum to set.
-    */
-   public void setMinimum(double minimum)
-   {
-       this.minimum = minimum;
-   }
+  /*
+   * Instance methods
+   */
+  
+  /**
+   * Gets the dataTimePrecision value.
+   * 
+   * @return Returns the dateTimePrecision, a double.
+   */
+  public double getDateTimePrecision() {
+    return dateTimePrecision;
+  }
+
+
+  /**
+   * Sets the dataTimePrecision value.
+   * 
+   * @param dateTimePrecision The dateTimePrecision to set
+   */
+  public void setDateTimePrecision(double dateTimePrecision) {
+    this.dateTimePrecision = dateTimePrecision;
+  }
+
+
+  /**
+   * Gets the formatString value.
+   * 
+   * @return Returns the formatString.
+   */
+  public String getFormatString() {
+    return formatString;
+  }
+
+
+  /**
+   * Sets the formatString value.
+   * 
+   * @param formatString The formatString value to set.
+   */
+  public void setFormatString(String formatString) {
+    this.formatString = formatString;
+  }
+
+
+  /**
+   * Gets the maximum value.
+   * 
+   * @return  the maximum value, a double
+   */
+  public double getMaximum() {
+    return maximum;
+  }
+
+
+  /**
+   * Sets the maximum value.
+   * 
+   * @param maximum   The maximum value to set.
+   */
+  public void setMaximum(double maximum) {
+    this.maximum = maximum;
+  }
+
+
+  /**
+   * Gets the minimum value.
+   * 
+   * @return  the minimum value, a double
+   */
+  public double getMinimum() {
+    return minimum;
+  }
+
+
+  /**
+   * Sets the minimum value.
+   * 
+   * @param minimum The minimum value to set.
+   */
+  public void setMinimum(double minimum) {
+    this.minimum = minimum;
+  }
+  
 }

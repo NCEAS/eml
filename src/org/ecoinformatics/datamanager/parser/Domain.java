@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Domain.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -35,10 +35,15 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * This object represents an Attribute Domain, a set of restrictions
- * on legal values that the attribute can contain
+ * on legal values that the attribute can contain.
+ * 
+ * @author tao
  */
 public interface Domain
 {
+  /*
+   * Class fields
+   */
   public static final int DOM_NONE = 0;
   public static final int DOM_NUMBERTYPE = 1;
   public static final int DOM_BOUNDED = 2;
@@ -58,6 +63,11 @@ public interface Domain
     "DateTime",
     "Reference"
   };
+  
+  
+  /*
+   * Instance methods
+   */
   
   /**
    * Method to get DataType

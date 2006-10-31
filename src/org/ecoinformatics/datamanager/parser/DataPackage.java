@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataPackage.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-22 00:42:28 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,17 +31,29 @@
  */
 package org.ecoinformatics.datamanager.parser;
 
+
 /**
  * This class reprents a metadata package information to describe entity
- * @author Jing Tao
+ * 
+ * @author tao
  */
 public class DataPackage 
 {
+  /*
+   * Instance fields
+   */
+  
   private Entity[] entityList = null;
   private String   packageId  = null;
   
+  
+  /*
+   * Constructors
+   */
+  
   /**
-   * Constructor
+   * Constructs a DataPackage object.
+   * 
    * @param packageId  Identifier of this DataPackage
    */
   public DataPackage(String packageId)
@@ -49,71 +61,77 @@ public class DataPackage
 	this.packageId = packageId;  
   }
   
+  
   /**
-   * Adds a entity into DataPackage
+   * Adds an entity into the DataPackage
+   * 
    * @param entity The entity which will be added
    */
   public void add(Entity entity)
   {
-	  addEntityIntoArray(entity);
+    addEntityIntoArray(entity);
   }
   
+  
   /**
-   * Gets the entity array which is in DataPackage
+   * Gets the entity array which is in this DataPackage.
+   * 
    * @return Entity array in the DataPackage
    */
   public Entity[] getEntityList()
   {
-	  return entityList;
+    return entityList;
   }
   
+  
   /**
-   * Gets the number of entity in DataPackage
-   * @return number of entity
+   * Gets the number of entities in this DataPackage.
+   * 
+   * @return  an int representing the number of entities
    */
   public int getEntityNumber()
   {
-	  if (entityList == null)
-	  {
-		  return 0;
-	  }
-	  else
-	  {
-		  return entityList.length;
-	  }
+    if (entityList == null) {
+      return 0;
+    } 
+    else {
+      return entityList.length;
+    }
   }
   
+  
   /**
-   * Gets package identifier for this DataPackage
-   * @return DataPackage identifier
+   * Gets the package identifier for this DataPackage.
+   * 
+   * @return a string representing the DataPackage identifier
    */
   public String getPackageId()
   {
-	  return packageId;
+    return packageId;
   }
   
+  
   /*
-   * Add a entity into a array
+   * Add an entity into the entityList array.
    * 
+   * @param   entity   the entity object to be added to the array
    */
-   private void addEntityIntoArray(Entity entity)
-   {
-	   if (entityList == null)
-	   {
-		  entityList = new Entity[1];
-		  entityList[0] = entity;
-	   }
-	   else
-	   {
-		  int size = entityList.length;
-		  Entity[] tmp = new Entity[size+1];
-		  for (int i=0; i<size; i++)
-		  {
-			  tmp[i] = entityList[i];
-		  }
-		  tmp[size] = entity;
-		  entityList = tmp;
-	   }
-	   
-   }
+  private void addEntityIntoArray(Entity entity) {
+    if (entityList == null) {
+      entityList = new Entity[1];
+      entityList[0] = entity;
+    } 
+    else {
+      int size = entityList.length;
+      Entity[] tmp = new Entity[size + 1];
+      
+      for (int i = 0; i < size; i++) {
+        tmp[i] = entityList[i];
+      }
+      
+      tmp[size] = entity;
+      entityList = tmp;
+    }
+  }
+  
 }

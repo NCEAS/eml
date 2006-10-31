@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataObjectDescription.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-26 01:26:40 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,146 +33,175 @@
 package org.ecoinformatics.datamanager.parser;
 
 //import org.kepler.objectmanager.data.db.DSTableFieldIFace;
-import java.util.Vector;
+
 
 /**
- * This object represents an DataObjectDescription.  A DataObjectDescription
- * stores information about a DataItem that is used in a Step in the pipeline.
+ * A DataObjectDescription stores information about a DataItem that is used 
+ * in a Step in the pipeline. It is the parent class of Attribute and Entity.
+ * 
+ * @author tao
  */
 public class DataObjectDescription 
 {
-    protected String id;
-    protected String name;
-    //protected String dataType;
-    protected String definition;
-    //protected Vector missingValueCode = new Vector();
+  /*
+   * Instance fields
+   */
+  
+  protected String id;
+  protected String name;
+  // protected String dataType;
+  protected String definition;
+  // protected Vector missingValueCode = new Vector();
 
-    /**
-     * Construct a DataObjectDescription.
-     */
-    public DataObjectDescription(String id, String name)
-    {
-        this(id, name, null);
-    }
+  
+  /*
+   * Constructors
+   */
+  
+  /*
+   * Construct a DataObjectDescription, specifying its id and name.
+   */
+  public DataObjectDescription(String id, String name) {
+    this(id, name, null);
+  }
 
-    /**
-     * Construct a DataObjectDescription with a description.
-     */
-    public DataObjectDescription(String id, String name,
-            String definition)
-    {
-        if (id == null) {
-            this.id = "";
-        } else {
-            this.id = id;
-        }
-        if (name == null) {
-            this.name = "";
-        } else {
-            this.name = name.trim();
-        }
-       
-        if (definition == null) {
-            this.definition = "";
-        } else {
-            this.definition = definition;
-        }
-    }
 
-    /**
-     * Return the unique ID for this data item. It is unique within the
-     * scope of the Step in which it is described.
-     */
-    public String getId()
-    {
-        return this.id;
-    }
-
-    /**
-     * Return the name for this data item.
-     */
-    public String getName()
-    {
-        return this.name;
-    }
-
-   
-    /**
-     * Return the definition for this data item.
-     */
-    public String getDefinition()
-    {
-        return this.definition;
-    }
-
-    /**
-     * returns true if all of the fields of didesc are equal to the fields
-     * of this object.
-     */
-    public boolean equals(DataObjectDescription didesc)
-    {
-      if(didesc.getId().trim().equals(this.id.trim()) &&
-         didesc.getName().trim().equals(this.name.trim()) &&
-         didesc.getDefinition().trim().equals(this.definition.trim()))
-      {
-         return true;
-      }
-
-      return false;
-    }
-
-    /**
-     * Set the identifier for this data item.
-     */
-    public void setId(String id)
-    {
+  /**
+   * Construct a DataObjectDescription, specifying its id, name, and 
+   * definition.
+   */
+  public DataObjectDescription(String id, String name, String definition) {
+    if (id == null) {
+      this.id = "";
+    } 
+    else {
       this.id = id;
     }
-
-    /**
-     * Set the name for this data item.
-     */
-    public void setName(String name)
-    {
-      this.name = name;
+    
+    if (name == null) {
+      this.name = "";
+    } 
+    else {
+      this.name = name.trim();
     }
 
-   
-
-    /**
-     * Set the definition for this data item.
-     */
-    public void setDefinition(String definition)
-    {
+    if (definition == null) {
+      this.definition = "";
+    } 
+    else {
       this.definition = definition;
     }
+  }
 
-    /**
-     * Produce a string view of the item, just the name.
-     */
-    public String toString()
-    {
-      return name;
+  
+  /**
+   * Gets the unique ID for this data object.
+   * 
+   * @return  a string representing the id for this data object
+   */
+  public String getId() {
+    return this.id;
+  }
+
+  
+  /**
+   * Gets the name for this data object.
+   * 
+   * @return  a string representing the name for this data object
+   */
+  public String getName() {
+    return this.name;
+  }
+
+   
+  /**
+   * Gets the definition for this data object.
+   * 
+   * @return  a string representing the definition for this data object
+   */
+  public String getDefinition() {
+    return this.definition;
+  }
+
+  
+  /**
+   * Boolean to determine whether this data object is equal to another data
+   * object.
+   * 
+   * @param  didesc   the other DataObjectDescription to which this one is
+   *                  being compared
+   * @return          true if all of the fields of didesc are equal to the 
+   *                  fields of this object, else false
+   */
+  public boolean equals(DataObjectDescription didesc) {
+    if (didesc.getId().trim().equals(this.id.trim()) && 
+        didesc.getName().trim().equals(this.name.trim()) && 
+        didesc.getDefinition().trim().equals(this.definition.trim())
+       ) {
+      return true;
     }
+
+    return false;
+  }
+  
+
+  /**
+   * Sets the identifier for this data item.
+   * 
+   * @param  id  the identifier value to be set
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  
+  /**
+   * Sets the name for this data item.
+   * 
+   * @param  name  the name value to be set
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+   
+  /**
+   * Sets the definition for this data item.
+   * 
+   * @param  definition  the definition value to be set
+   */
+  public void setDefinition(String definition) {
+    this.definition = definition;
+  }
+
+  
+  /**
+   * Produces a string representation of the data object, using just its name.
+   * 
+   * @return  the name of the data object
+   */
+  public String toString() {
+    return name;
+  }
     
 
-    /**
-     * Utility for writing out XML elements
-     *
-     * @param StringBuffer the buffer to write to
-     * @param the name of the element to create
-     * @param the value for the element
-     */
-    protected static void appendElement(StringBuffer x,
-                                        String name, String value)
-    {
-        x.append("<");
-        x.append(name);
-        x.append(">");
-        x.append(value);
-        x.append("</");
-        x.append(name);
-        x.append(">\n");
-    }
+  /**
+   * Utility method for writing out XML elements.
+   * 
+   * @param x     the string buffer to append to
+   * @param name  the name of the element to create
+   * @param value the value for the element
+   */
+  protected static void appendElement(StringBuffer x, 
+                                      String name, 
+                                      String value) {
+    x.append("<");
+    x.append(name);
+    x.append(">");
+    x.append(value);
+    x.append("</");
+    x.append(name);
+    x.append(">\n");
+  }
 
 }

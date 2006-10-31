@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Constraint.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,13 +34,17 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * This intergace represents an abstract Constraint in eml2
- * @author Jing Tao
+ * 
+ * @author tao
  *
  */
 
 public interface Constraint
 {
-  //constant
+  /*
+   * Class fields (constants)
+   */
+  
   public static final int      PRIMARYKEY              = 0;
   public static final int      UNIQUEKEY               = 1;
   public static final int      FOREIGNKEY              = 2;
@@ -56,9 +60,16 @@ public interface Constraint
   public static final String   FOREIGNKEYSTRING        = "FOREIGN KEY";
   public static final String   REFERENCESTRING         = "REFERENCES";
   public static final String   NOTNULLSTRING           = " NOT NULL ";
+  
+  
+  /*
+   * Instance methods
+   */
+  
   // abtract method to get constraint type
   public int getType();
 
   // abtract method to transfer a constraint to a string
   public String printString() throws UnWellFormedConstraintException;
+  
 }

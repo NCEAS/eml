@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: NotNullConstraint.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,18 +34,25 @@ package org.ecoinformatics.datamanager.parser;
 
 
 /**
- * This class represents no null constraint in column level
- * @author Jing Tao
- *
+ * This class represents a not null constraint in column level.
+ * 
+ * @author tao
  */
 
 public class NotNullConstraint implements Constraint
 {
+  /*
+   * Instance fields
+   */
+  
   private int type = Constraint.NOTNULLCONSTRAINT;
   private String[] keys = null;
 
 
-
+  /*
+   * Constructors
+   */
+  
   /**
    * Default constructor
    */
@@ -54,41 +61,52 @@ public class NotNullConstraint implements Constraint
 
   }
 
+  /*
+   * Instance methods
+   */
+  
   /**
-   * method to get type
-   * @return int
+   * Method to get type.
+   * 
+   * @return the constraint type, an int. (See Constraint class)
    */
   public int getType()
   {
     return type;
   }
 
+  
   /**
-   * Method to get keys
-   * @return String[]
+   * Method to get keys.
+   * 
+   * @return the keys field, a String[]
    */
   public String[] getKeys()
   {
     return keys;
   }
+  
 
   /**
-   * Method to set keys
-   * @param myKeys String[]
+   * Method to set keys.
+   * 
+   * @param myKeys the value to which the keys field should be set, a String[]
    */
   public void setKeys(String[] myKeys)
   {
     keys = myKeys;
   }
 
+  
   /**
-   * Method to print not null key words in sql cmommand
-   * @throws UnWellFormedConstraintException
+   * Method to print not null key words in sql cmommand.
+   * 
    * @return String
    */
-  public String printString() throws UnWellFormedConstraintException
+  public String printString()
   {
     String sql = Constraint.NOTNULLSTRING;
+    
     return sql;
   }
 

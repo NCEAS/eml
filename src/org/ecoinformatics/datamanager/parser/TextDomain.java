@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextDomain.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,10 +38,14 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * @author tao
- * This class will store info for text domain type
+ * 
+ * This class will store info for text domain type.
  */
 public class TextDomain implements Domain
 {
+    /*
+     * Instance fields
+     */
     
     //private DataType dataType;
     //private DataTypeResolver resolver = DataTypeResolver.instanceOf();
@@ -50,8 +54,13 @@ public class TextDomain implements Domain
     private String source;
     
     
+    /*
+     * Constructors
+     */
+    
     /**
-     * Constructor for text domain
+     * Constructor for TextDomain class.
+     * 
      * @throws UnresolvableTypeException
      */
     public TextDomain() 
@@ -60,46 +69,73 @@ public class TextDomain implements Domain
     }
     
   
+    /*
+     * Instance methods
+     */
+    
     /**
-     * @return Returns the definition.
+     * Gets the value of the definition field.
+     * 
+     * @return the definition value, a String
      */
     public String getDefinition()
     {
         return definition;
     }
+    
+    
     /**
-     * @param definition The definition to set.
+     * Sets the value of the definition field.
+     * 
+     * @param definition, the definition value to set.
      */
     public void setDefinition(String definition)
     {
         this.definition = definition;
     }
+    
+    
     /**
-     * @return Returns the pattern.
+     * Gets the value of the pattern field.
+     * 
+     * @return pattern, a String[]
      */
     public String[] getPattern()
     {
         return pattern;
     }
+    
+    
     /**
-     * @param pattern The pattern to set.
+     * Sets the value of the pattern field to a list of Strings.
+     * 
+     * @param pattern, the pattern to set, a String[]
      */
     public void setPattern(String[] pattern)
     {
         this.pattern = pattern;
     }
+    
+    
     /**
-     * @return Returns the source.
+     * Gets the value of the source field.
+     * 
+     * @return source, a String
      */
     public String getSource()
     {
         return source;
     }
+    
+    
     /**
-     * @param source The source to set.
+     * Sets the value of the source field to a String.
+     * 
+     * @param source, the String value to set
      */
     public void setSource(String source)
     {
         this.source = source;
     }
+    
 }

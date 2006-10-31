@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-09-29 21:12:41 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -35,34 +35,46 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.data.DataObjectDescription;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
-import java.util.Vector;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
 import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
 
+
 /**
- * This object represents an TableEntity.  A TableEntity stores
- * information about a table of Attributes that is used in a Step
- * in the pipeline.
+ * This object represents an Entity.  An Entity stores
+ * information about a table of Attributes.
+ * 
+ * @author  tao
  */
 public class Entity extends DataObjectDescription 
 {
-    /**static variable for ROWMAJOR tables**/
+    /*
+     * Class fields
+     */
+  
+    /** static variable for ROWMAJOR tables **/
     public static String ROWMAJOR = "ROWMAJOR";
-    /**static variable for COLUMNMAJOR tables**/
+    
+    /** static variable for COLUMNMAJOR tables **/
     public static String COLUMNMAJOR = "COLUMNMAJOR";
+    
     public static String ZIP         = "zip";
     public static String TAR         = "application/x-tar";
     public static String GZIP        = "gzip";
 
     /**static variable for table type**/
     //public static String TABLEENTITY = "TABLEENTITY";
+    
     public static String SPATIALRASTERENTITY = "SPATIALRASTERENTITY";
     public static String SPATIALVECTORENTITY = "SPATIALVECTORENTITY";
     public static String STOREDPROCEDUREENTITY = "STOREDPROCEDUREENTITY";
     public static String VIEWENTITY = "VIEWENTITY";
     public static String OTHERENTITY = "OTHERENTITY";
+    
+    /*
+     * Instance fields
+     */
     
     private AttributeList attributeList = new AttributeList();
     private Boolean      caseSensitive;
@@ -72,11 +84,12 @@ public class Entity extends DataObjectDescription
     private int          numFooterLines  = 0;
     private String       delimiter       = null;
     private String       recordDelimiter = null;
-    private boolean      multiple        = false;        // if true, multiple inputs can be mapped to one table
+    private boolean      multiple        = false; // if true, multiple inputs 
+                                                  // can be mapped to one table
 
-    private String fileName;    // filename where TableEntity data is stored
-    private String url;  // distribution url for this entity
-    private String DBtableName; // the unique table name will be stored in DB
+    private String fileName;       // filename where Entity data is stored
+    private String url;            // distribution url for this entity
+    private String DBtableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
     private boolean isImageEntity    = false;
     private boolean hasGZipDataFile  = false;
@@ -89,17 +102,15 @@ public class Entity extends DataObjectDescription
     private boolean collapseDelimiter = false;
     
 
-
- 
     /**
-     * construct this object with some extra parameters
-     * @param name the name of the tableEntity
-     * @param description the description of the tableEntity
-     * @param caseSensitive indicates whether this tableEntity is caseSensitive
-     * or not.
-     * @param orientation indicates whether this tableEntity is column or row
-     * major
-     * @param numRecords the number of records in this tableEntity
+     * Constructs this object with some extra parameters.
+     * 
+     * @param name          the name of the Entity
+     * @param description   the description of the Entity
+     * @param caseSensitive indicates whether this Entity is caseSensitive
+     * @param orientation   indicates whether this Entity is column or row
+     *                      major
+     * @param numRecords    the number of records in this Entity
      */
     public Entity(String id, String name, String description,
                        Boolean caseSensitive, String orientation,
@@ -107,17 +118,21 @@ public class Entity extends DataObjectDescription
     {
         this(id, name, description, null);
         attributeList = new AttributeList();
+        
         if (caseSensitive != null) {
             this.caseSensitive = caseSensitive;
         }
+        
         if (orientation != null) {
             this.orientation = orientation;
         }
+        
         this.numRecords = numRecords;
     }
+    
 
     /**
-     * Construct a TableEntity, setting the list of attributes.
+     * Construct an Entity, setting the list of attributes.
      */
     public Entity(String id, String name, String description,
             AttributeList attributeList)
@@ -126,27 +141,34 @@ public class Entity extends DataObjectDescription
         //attributeList = new AttributeList();
         fileName = "";
         this.attributeList = attributeList;
+        
         /*if (attributeList != null) {
             for (int i=0; i<attributeList.length; i++) {
                 this.add(attributeList[i]);
             }
         }*/
+        
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
     }
 
+    
     /**
      * Add an Attribute to this table.
+     * 
+     * @param  a  the Attribute object to be added.
      */
     public void add(Attribute a)
     {
       this.attributeList.add(a);
-     
       //a.setParent(this);
     }
 
+    
     /**
-     * Return the unit for this TableEntity
+     * Gets the list of attributes for this Entity. 
+     * 
+     * @return  an array of Attribute objects
      */
     public Attribute[] getAttributes()
     {
@@ -155,133 +177,196 @@ public class Entity extends DataObjectDescription
         return attrList;
     }
 
+    
     /**
-     * indicates whether the tableEntity is caseSensitive or not
+     * Indicates whether the Entity is case sensitive or not.
+     * 
+     * @return  true if case sensitive, else false.
      */
     public Boolean getCaseSensitive()
     {
       return caseSensitive;
     }
 
+    
     /**
-     * gets the orientation of the table entity
+     * Gets the orientation of the table entity.
+     * 
+     * @return   a string representing the orientation
      */
     public String getOrientation()
     {
       return orientation;
     }
 
+    
     /**
-     * gets the number of records in the table entity
+     * Gets the number of records in the entity.
+     * 
+     * @return  the number of records, an int
      */
     public int getNumRecords()
     {
       return numRecords;
     }
 
+    
     /**
-     * sets the number of header lines in the entity
+     * Sets the number of header lines in the entity.
+     * 
+     * @param  numHeaderLines  the value of the number of header lines to be set
      */
     public void setNumHeaderLines(int numHeaderLines)
     {
       this.numHeaderLines = numHeaderLines;
     }
     
+    
     /**
-     * set the number of footer lines in the entity
-     * @param numFooterLines
+     * Sets the number of footer lines in the entity.
+     * 
+     * @param numFooterLines  the value of the number of footer lines to be set
      */
     public void setNumFooterLines(int numFooterLines)
     {
     	this.numFooterLines = numFooterLines;
     }
 
+    
     /**
-     * get the number of header lines in the entity
+     * Gets the number of header lines in the entity.
+     * 
+     * @return  a value indicating the number of header lines
      */
     public int getNumHeaderLines()
     {
       return this.numHeaderLines;
     }
     
+    
     /**
-     * get the number of footer lines in the entity
-     * @return
+     * Gets the number of footer lines in the entity.
+     * 
+     * @return   a value indication the number of footer lines
      */
     public int getNumFooterLines()
     {
     	return this.numFooterLines;
     }
 
+    
     /**
-     * set the delimiter used with this entity
+     * Sets the delimiter used with this entity.
+     * 
+     * @param  delim   the delimiter string to be set
      */
     public void setDelimiter(String delim)
     {
       this.delimiter = delim;
     }
 
+    
     /**
-     * get the delimiter used with this entity
+     * Gets the delimiter used with this entity.
+     * 
+     * @return  the delimiter string value
      */
     public String getDelimiter()
     {
       return this.delimiter;
     }
 
+    
     /**
-     * set the record delimiter used with this entity
+     * Sets the record delimiter used with this entity.
+     * 
+     * @param  delim  the record delimiter string value to be set
      */
     public void setRecordDelimiter(String delim)
     {
       this.recordDelimiter = delim;
     }
 
+    
     /**
-     * get the recordDelimiter used with this entity
+     * Gets the recordDelimiter used with this entity.
+     * 
+     * @return  the recordDelimiter string value for this entity
      */
     public String getRecordDelimiter()
     {
       return this.recordDelimiter;
     }
 
+    
+    /**
+     * Sets the url value for this entity.
+     * 
+     * @param url    the url string value to be set
+     */
     public void setURL(String url)
     {
       this.url = url;
     }
 
+    
+    /**
+     * Gets the url value for this entity.
+     * 
+     * @return  the url string value for this entity.
+     */
     public String getURL()
     {
       return this.url;
     }
 
+    
+    /**
+     * Sets the database table name for this entity.
+     * 
+     * @param DBtableName  the database table name string value to be set.
+     */
     public void setDBTableName(String DBtableName)
     {
       this.DBtableName = DBtableName;
     }
 
+    
+    /**
+     * Gets the database table name for this entity.
+     * 
+     * @return  the database table name string value
+     */
     public String getDBTableName()
     {
       return this.DBtableName;
     }
     
+    
     /**
-     * Method to get if this entity can collapse consecutive delimiter
-     * @return
+     * Boolean to determine whether this entity can collapse consecutive 
+     * delimiters.
+     * 
+     * @return  true if can collapse consecutive delimiters, else false.
      */
     public boolean getCollapseDelimiter()
     {
     	return this.collapseDelimiter;
     }
+  
     
     /**
-     * Method to set collapse delimiter
-     * @param collapseDelimiter
+     * Sets the collapse delimiter value.
+     * 
+     * @param collapseDelimiter  the value to set for collapseDelimiter, a
+     *                           boolean
      */
     public void setCollaplseDelimiter(boolean collapseDelimiter)
     {
     	this.collapseDelimiter = collapseDelimiter;
     }
+    
+    
     /*
     public String toString()
     {
@@ -304,26 +389,31 @@ public class Entity extends DataObjectDescription
     }
     */
 
+    
     /**
-     * Returns the fileName.
-     * @return String
+     * Gets the file name for this entity.
+     * 
+     * @return   a string holding the file name
      */
     public String getFileName()
     {
       return fileName;
     }
 
+    
     /**
-     * Sets the fileName.
-     * @param fileName The fileName to set
+     * Sets the fileName for this entity.
+     * 
+     * @param fileName   The fileName value to set
      */
     public void setFileName(String fileName)
     {
       this.fileName = fileName;
     }
 
+    
     /**
-     * Serialize the data item in XML format.
+     * Serializes the data item in XML format.
      */
     /*public String toXml()
     {
@@ -348,136 +438,167 @@ public class Entity extends DataObjectDescription
         return x.toString();
     }*/
 
+    
     /**
-     * Sets the multiple to true.
+     * Sets the multiple value to true.
      */
     public void setMultiple()
     {
       this.multiple = true;
     }
 
+    
     /**
-     * Returns multiple.
-     * @return boolean
+     * Gets the multiple value.
+     * 
+     * @return   the multiple value, a boolean
      */
     public boolean isMultiple()
     {
       return multiple;
     }
 
+    
     //-----------------------------------------------------------------
     //-- DSTableIFace
     //-----------------------------------------------------------------
     
-
+    
     /**
      * Returns the name of the table
      * @return name as string 
      */
     // This is imlemented in the base class
     //public String getName();
+
     
     /**
-     * Return the name for this data item.
+     * Gets the database table name for this entity.
+     * 
+     * @return  the database table name string
      */
     public String getMappedName()
     {
         return this.DBtableName;
     }
 
+    
     /**
-     * Returns a Vector of the fields in the table
-     * @return vector
+     * Gets the attribute list for this entity.
+     * 
+     * @return vector  an array of Attribute objects
      */
     public Attribute[] getFields()
     {
       return attributeList.getAttributes();
     }
     
+    
     /**
-     * Returns a the Primary Key Definition for the table
-     * @return object
+     * Gets the Primary Key Definition for the table.
+     * 
+     * @return   A primary key Constraint object. (Currently always null)
      */
     public Constraint getPrimaryKey()
     {
       return null;
     }
     
+    
     /**
-     * Method to get compression method for distribution file
-     * @return String
+     * Gets the compression method for the entity distribution file.
+     * 
+     * @return the compressionMethod string value
      */
     public String getCompressionMethod()
     {
       return this.compressionMethod;
     }
     
+    
     /**
-     * Method to set compression method for distribution file
-     * @param compressionMethod String
+     * Sets the compression method for the entity distribution file.
+     * 
+     * @param compressionMethod  A string representing the compression method.
      */
     public void setCompressionMethod(String compressionMethod)
     {
       this.compressionMethod = compressionMethod;
     }
     
+    
     /**
-     * If this entity for SpatialRaster or SpatialVector
-     * @return boolean
+     * Boolean to determine if this entity is an image entity for SpatialRaster 
+     * or SpatialVector
+     * 
+     * @return boolean  true if this is an image entity, else false
      */
     public boolean getIsImageEntity()
     {
       return this.isImageEntity;
     }
     
+    
     /**
-     * Set if this is a Image entity
-     * @param isImageEntity boolean
+     * Sets the isImageEntity field to store whether this is an image entity
+     * 
+     * @param isImageEntity   the boolean value to set. true if this is an
+     *                        image entity, else false
      */
     public void setIsImageEntity(boolean isImageEntity)
     {
       this.isImageEntity = isImageEntity;
     }
     
+    
     /**
-     * Method get if the data file is zip file
-     * @return boolean
+     * Boolean to determine if the data file is zip file.
+     * 
+     * @return  true if the entity data is in a zip file, else false.
      */
     public boolean getHasZipDataFile()
     {
       return this.hasZipDataFile;
     }
     
+    
     /**
-     * Method to set if the data file is zip file
-     * @param isZipDataFile boolean
+     * Sets the isZipDataFile boolean field.
+     * 
+     * @param isZipDataFile the boolean value to set.
      */
     public void setHasZipDataFile(boolean isZipDataFile)
     {
       this.hasZipDataFile = isZipDataFile;
     }
     
+    
     /**
-     * Method to get if the data file is gzip
-     * @return boolean
+     * Gets the value of the hasGZipDataFile field.
+     * 
+     * @return true if this entity has a gzip data file, else false
      */
     public boolean getHasGZipDataFile()
     {
       return this.hasGZipDataFile;
     }
     
+    
     /**
-     * Method to set if the data file is gzip
-     * @param hasGZipDataFile boolean
+     * Sets the boolean value of the hasGZipDataFile field.
+     * 
+     * @param hasGZipDataFile  the boolean value to set
      */
     public void setHasGZipDataFile(boolean hasGZipDataFile)
     {
       this.hasGZipDataFile = hasGZipDataFile;
     }
     
+    
     /**
-     * Method to get if this has a tar data file
-     * @return boolean
+     * Gets the value of the hasTarDataFile field.
+     * 
+     * @return boolean  the boolean value of the hasTarDataFile field
      */
     public boolean getHasTarDataFile()
     {
@@ -485,18 +606,21 @@ public class Entity extends DataObjectDescription
     }
     
     /**
-     * Method to set if this has a tar data file
-     * @param hasTarDataFile boolean
+     * Sets a boolean value to determine if this entity has a tar data file
+     * 
+     * @param hasTarDataFile true if this entity has a tar data file, else false
      */
     public void setHasTarDataFile(boolean hasTarDataFile)
     {
       this.hasTarDataFile = hasTarDataFile;
     }
     
+    
     /**
      * Gets the identifier for this entity. Currently we use distribution url
-     * as entity identifier
-     * @return Identifier of this entity
+     * as entity identifier.
+     * 
+     * @return identifier of this entity, a string holding the distribution url
      */
     public String getEntityIdentifier()
     {
@@ -504,108 +628,127 @@ public class Entity extends DataObjectDescription
     }
     
    
-    
     /**
-     * If data file in this entity is simple delimited
-     * @return Returns the simpleDelimited.
+     * Boolean to determine if data file in this entity is simple delimited.
+     * 
+     * @return Returns the simpleDelimited boolean value
      */
     public boolean isSimpleDelimited()
     {
         return simpleDelimited;
     }
     
+    
     /**
-     * @param simpleDelimited The simpleDelimited to set.
+     * Sets the value of the simpleDelimited field.
+     * 
+     * @param simpleDelimited The simpleDelimited boolean value to set.
      */
     public void setSimpleDelimited(boolean simpleDelimited)
     {
         this.simpleDelimited = simpleDelimited;
     }
     
+    
     /**
-     * Get the complex data format array 
-     * @return Returns the dataFormatArray.
+     * Gets the complex data format array for this entity.
+     * 
+     * @return An array of TextComplexDataFormat objects
      */
     public TextComplexDataFormat[] getDataFormatArray()
     {
         return dataFormatArray;
     }
     
+    
     /**
-     * Set DataFormatArray
-     * @param dataFormatArray The dataFormatArray to set.
+     * Sets the value of the DataFormatArray field.
+     * 
+     * @param dataFormatArray An array of TextComplexDataFormat objects
      */
     public void setDataFormatArray(TextComplexDataFormat[] dataFormatArray)
     {
         this.dataFormatArray = dataFormatArray;
     }
     
+    
     /**
-     * Gets physical line delimiter
-     * @return Returns the physicalLineDelimiter.
+     * Gets the physical line delimiter string value.
+     * 
+     * @return Returns the physicalLineDelimiter value, a string
      */
     public String getPhysicalLineDelimiter()
     {
         return physicalLineDelimiter;
     }
     
+    
     /**
-     * Sets the physical line delimiter in metadata
-     * @param physicalLineDelimiter The physicalLineDelimiter to set.
+     * Sets the physical line delimiter string value that was found 
+     * in the metadata.
+     * 
+     * @param physicalLineDelimiter The physicalLineDelimiter string to set.
      */
     public void setPhysicalLineDelimiter(String physicalLineDelimiter)
     {
         this.physicalLineDelimiter = physicalLineDelimiter;
     }
     
+    
     /**
-     * Method to set attribute list
-     * @param list
+     * Sets the attribute list for this entity.
+     * 
+     * @param list   the AttributeList object to set
      */
     public void setAttributeList(AttributeList list)
     {
         this.attributeList = list;
     }
     
+    
     /**
-     * Method to get attributeList
+     * Gets the attributeList field.
+     * 
+     * @return  the AttributeList object stored in the attributeList field
      */
     public AttributeList getAttributeList()
     {
     	return this.attributeList;
     }
     
+    
     /**
-     * Get DownloadHandler associated with this entity. 
-     * The DownlaodHnader obj can be a sub-class of DownloadHandler. 
-     * Currently we only handle one situation, e.g. one of DownloadHanlder,
-     * ZipDataHandler, GZipDataHandler, and TarTataHandler. We will implement in future
-     * for combination of above cases.
-     * @return DownloadHandler object which will do download data task
+     * Get the DownloadHandler associated with this entity, which may be a 
+     * sub-class of DownloadHandler. Currently we only handle one situation, 
+     * e.g. one of DownloadHandler, ZipDataHandler, GZipDataHandler, and 
+     * TarDataHandler. In the future we will implement to allow for a 
+     * combination of the above cases.
+     * 
+     * @return the DownloadHandler object which will download data for this
+     *         entity
      */
     public DownloadHandler getDownloadHandler()
     {
-    	if (hasZipDataFile)
-    	{
-    		ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url);
-    		return handler;
-    	}
-    	
-    	if (hasGZipDataFile)
-    	{
-    		GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url);
-    		return handler;
-    	}
-    	
-    	if (hasTarDataFile)
-    	{
-    		TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
-    		return handler;
-    	}
-    		
+        if (hasZipDataFile)
+        {
+            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url);
+            return handler;
+        }
+        
+        if (hasGZipDataFile)
+        {
+            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url);
+            return handler;
+        }
+        
+        if (hasTarDataFile)
+        {
+            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+            return handler;
+        }
+            
         DownloadHandler handler = DownloadHandler.getInstance(url);
         return handler;
     }
-    
-    
+
 }

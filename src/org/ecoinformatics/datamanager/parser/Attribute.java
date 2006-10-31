@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Attribute.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-26 01:26:02 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,129 +33,165 @@
 package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
-
 //import org.kepler.objectmanager.data.DataObjectDescription;
 import org.ecoinformatics.datamanager.parser.Domain;
-
 //import src.org.kepler.objectmanager.data.DataObjectDescription;
 
 
-
 /**
+ * @author tao
+ * 
  * This object represents an Attribute.  A Attribute stores information about
  * a scalar value that is used in a Step in the pipeline.
  */
 public class Attribute extends DataObjectDescription
 {
+  
+  /*
+   * Class fields
+   */
+
   /**unit type for standard stmml units**/
   public static String STANDARDUNIT = "STANDARDUNIT";
   /**unit type for custom units**/
   public static String CUSTOMUNIT = "CUSTOMUNIT";
 
+  
+  /*
+   * Instance fields
+   */
+  
   private String label;
   private String unit;
   private String unitType;
   private String measurementScale;
-  private String precision;
+  //private String precision;
   private Domain domain;
   private Vector missingValueCode = new Vector();
 
   
- 
-
+  /*
+   * Constructors
+   */
   
   /**
-   * Construct a Attribute.
+   * Constructs an Attribute, specifying its id, name, and domain.
    */
   public Attribute(String id, String name, Domain dom)
   {
       this(id, name, null, null, dom);
   }
 
+  
   /**
-   * Construct a Attribute.
+   * Constructs an Attribute, specifying its id, name, description, and
+   * domain.
    */
   public Attribute(String id, String name, String description, Domain dom)
   {
 	  this(id, name, description, null, dom);
   }
 
+  
   /**
-   * Construct a Attribute.
+   * Constructs an Attribute, specifying its id, name, description, unit, and
+   * domain.
    */
   public Attribute(String id, String name, String description,
-          String unit, Domain dom)
+                   String unit, Domain dom)
   {
-      this(id, name, null, description, unit, null,null, dom);
+      this(id, name, null, description, unit, null, null, dom);
   }
+  
   
   /**
    * Constructor for extra local params
-   * @param name the name of the attribute
+   * 
+   * @param id    the id of the attribute
+   * @param name  the name of the attribute
    * @param label the label of the attribute
    * @param description the description of the attribute
-   * @param unit the unit of the attribute
+   * @param unit  the unit of the attribute
    * @param unitType the type of the attribute. defined by STANDARDUNIT or
-   * CUSTOMUNIT
-   * @param storageType the data type of the attribute
-   * @param measurementScale the scale of the attribute
-   * @param precision the number of precise numbers to the right of the decimal
+   *              CUSTOMUNIT
+   * @param measurementScale the measurement scale of the attribute
+   * @param dom   the Domain of the attribute
    */
-  public Attribute(String id, String name, String label, String description, String unit,
-                   String unitType, String measurementScale,
+  public Attribute(String id, String name, String label, String description, 
+                   String unit, String unitType, String measurementScale,
                    Domain dom)
   {
     super(id, name, description);
+    
     if (label == null) {
         this.label = "";
     } else {
         this.label = label;
     }
+    
     if (unit == null) {
         this.unit = "";
     } else {
         this.unit = unit;
     }
+    
     if (unitType == null) {
         this.unitType = "";
     } else {
         this.unitType = unitType;
     }
+    
     if (measurementScale == null) {
         this.measurementScale = "";
     } else {
         this.measurementScale = measurementScale;
-    }    
+    } 
+    
     domain = dom;
   }
 
 
+  /*
+   * Instance methods
+   */
+  
   /**
-   * Return the unit for this Attribute
+   * Gets the unit for this attribute
+   * 
+   * @return  a string representing the unit
    */
   public String getUnit()
   {
       return this.unit;
   }
 
+  
   /**
-   * accessor method
+   * Gets the label for this attribute.
+   * 
+   * @return  a string representing the label
    */
   public String getLabel()
   {
     return label;
   }
 
+  
   /**
-   * accessor method
+   * Gets the unit type for this attribute.
+   * 
+   * @return  a string representing the unit type
    */
   public String getUnitType()
   {
     return unitType;
   }
 
+  
   /**
-   * accessor method
+   * Gets the measurementScale for this attribute
+   * 
+   * @return  a string representing the measurement scale.
    */
   public String getMeasurementScale()
   {
@@ -163,10 +199,12 @@ public class Attribute extends DataObjectDescription
   }
 
  
-  /**public void setParent(Entity p)
+  /**
+  public void setParent(Entity p)
   {
     parentTable = p;
   }
+
 
   public Entity getParent()
   {
@@ -174,9 +212,11 @@ public class Attribute extends DataObjectDescription
   }
   */
 
+  
   /**
-   * Returns the domain.
-   * @return Domain
+   * Gets the Domain for this Attribute
+   * 
+   * @return  the Domain object for the attribute
    */
   public Domain getDomain()
   {
@@ -184,7 +224,6 @@ public class Attribute extends DataObjectDescription
   }
   
  
-
   /*
   public String toString()
   {
@@ -203,10 +242,11 @@ public class Attribute extends DataObjectDescription
   }
   */
 
-    /**
-     * Serialize the data item in XML format.
-     */
-    /*public String toXml()
+  
+  /**
+   * Serialize the data item in XML format.
+   */
+  /*public String toXml()
     {
         StringBuffer x = new StringBuffer();
         x.append("<attribute id=\"");
@@ -221,44 +261,42 @@ public class Attribute extends DataObjectDescription
         return x.toString();
     }*/
     
-    /**
-     * Method to add missing value code into a vector. 
-     * This method will be used to store the missing value code in metadata
-     * @param code
-     */
-    public void addMissingValueCode(String code)
-    {
-        if (code != null )
-        {
-            missingValueCode.add(code);
-        }
+  
+  /**
+   * Method to add missing value code into a vector. This method will be used 
+   * to store the missing value code found in the metadata.
+   * 
+   * @param code   a string representing the missing value code found in the
+   *               metadata
+   */
+  public void addMissingValueCode(String code) {
+    if (code != null) {
+      missingValueCode.add(code);
     }
+  }
     
-    /**
-     * Method to return the vector which store the missing value code.
-     * If this attribute doesn't has the missing value code, empty
-     * vector will be returned.
-     * @return
-     */
-    public String[] getMissingValueCode()
-    {
-    	if (missingValueCode == null || missingValueCode.size() == 0)
-    	{
-    		return null;
-    	}
-    	else
-    	{
-    		int size = missingValueCode.size();
-    		String[] list = new String[size];
-    		for (int i=0; i<size; i++)
-    		{
-    			list[i] = (String)missingValueCode.elementAt(i);
-    		}
-    		return list;
-    	}
-        
+  
+  /**
+   * Method to return an array which stores missing value codes. If this
+   * attribute doesn't contain any missing value codes, an empty array will be
+   * returned.
+   * 
+   * @return  a string array holding the missing value codes
+   */
+  public String[] getMissingValueCode() {
+    if (missingValueCode == null || missingValueCode.size() == 0) {
+      return null;
+    } 
+    else {
+      int size = missingValueCode.size();
+      String[] list = new String[size];
+      
+      for (int i = 0; i < size; i++) {
+        list[i] = (String) missingValueCode.elementAt(i);
+      }
+      
+      return list;
     }
-    
-   
-    
+  }
+
 }

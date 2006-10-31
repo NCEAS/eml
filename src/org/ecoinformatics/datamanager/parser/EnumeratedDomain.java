@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: EnumeratedDomain.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,16 +33,27 @@ package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
 
+
 /**
  * @author tao
- * This class store the info for Enumerated domain info
+ * 
+ * This class stores the info for Enumerated domain.
  */
 public class EnumeratedDomain implements Domain
 {
+    /*
+     * Instance fields
+     */
+  
     //private String numberType;
     //private DataType dataType;
     //private DataTypeResolver resolver = DataTypeResolver.instanceOf();
     private Vector info;
+    
+    
+    /*
+     * Constructors
+     */
     
     /**
      * Constructor for this domain
@@ -52,37 +63,50 @@ public class EnumeratedDomain implements Domain
        
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
     /**
-     * @param info The info to set.
+     * Sets the info field.
+     * 
+     * @param info The info Vector value to set.
      */
     public void setInfo(Vector info)
     {
         this.info = info;
     }
     
+    
     /**
-     * Method getDomainInfo.
-     * get the ith domain info item,
-     * or an empty string if i is greater than the number of items
-     * @param i
-     * @return String
+     * Method getDomainInfo gets the ith domain info item,
+     * or an empty string if i is greater than the number of items.
+     * 
+     * @param i  the index into the info vector
+     * @return   the string value of the object found at that index, or an 
+     *           empty string if i is greater than the number of items in the 
+     *           vector
      */
     public String getDomainInfo(int i)
     {
       if( i < info.size() )
       {
         Object o = info.get(i);
+        
         if( o != null ) {
           return o.toString();
         }
       }
+      
       return "";
     }
 
+    
     /**
-     * Method getDomainInfoCount.
-     * get the number of items in the info vector
-     * @return int
+     * Gets the number of items in the info vector.
+     * 
+     * @return  the number of items in the info vector
      */
     public int getDomainInfoCount()
     {

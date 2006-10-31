@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextComplexDataFormat.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,8 +33,9 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * @author tao
+ * 
  * This interface is for data file which has complex data format, such as
- * text fixed width or text delimitered
+ * text fixed width or text delimited.
  */
 public interface TextComplexDataFormat
 {

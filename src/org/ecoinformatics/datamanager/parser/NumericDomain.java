@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: NumericDomain.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:41:10 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,89 +34,121 @@ package org.ecoinformatics.datamanager.parser;
 
 /**
  * @author tao
- * This class represents a numberic domain
+ * 
+ * This class represents a numeric domain.
  */
 public class NumericDomain implements Domain
 {
+  /*
+   * Instance fields
+   */
    private String numberType = null;
    //private DataType dataType = null;
    private double precision  = 0;
    private Double minimum    = null;
-   private Double maxmum     = null;
+   private Double maximum     = null;
    //private DataTypeResolver resolver = DataTypeResolver.instanceOf();
+
+   
+   /*
+    * Constructors
+    */
    
    /**
     * Constructor of numeric domain
-    * @param numberType
-    * @param minimum
-    * @param maxmum
+    * 
+    * @param numberType  the number type of the numeric domain. In EML, a 
+    *                    measurement’s numberType should be defined as real, 
+    *                    natural, whole or integer.
+    * @param minimum     lower bound for values this numeric domain
+    * @param maximum     upper bound for values in this numeric domain
     */
-   public NumericDomain(String numberType, Double minimum, Double maxmum) 
+   public NumericDomain(String numberType, Double minimum, Double maximum) 
    {
        this.numberType = numberType;
        this.minimum    = minimum;
-       this.maxmum     = maxmum;
-       //dataType        = resolver.resolveDataType(this.numberType, this.minimum, this.maxmum);
+       this.maximum     = maximum;
+       //dataType        = resolver.resolveDataType(this.numberType, 
+       //                                           this.minimum, 
+       //                                           this.maximum);
    }
    
+   
    /**
-    * Method to get data type
+    * Method to get the numberType value.
+    * 
+    * @return  the numberType, a String. In EML, a measurement’s numberType 
+    *          should be defined as real, natural, whole or integer.
     */
    public String getNumberType()
    {
       return numberType;
    }
    
+   
    /**
-     * @return Returns the maxmum.
-     */
-    public Double getMaxmum()
+    * Gets the maximum (upper bound) value for this numeric domain.
+    * 
+    * @return the value of the maximum field
+    */
+    public Double getMaximum()
     {
-        return maxmum;
+        return maximum;
     }
 
+    
     /**
-     * @param maxmum
-     *            The maxmum to set.
+     * Sets the maximum (upper bound) value for this numeric domain.
+     * 
+     * @param maximum  The maximum value to set
      */
-    public void setMaxmum(Double maxmum)
+    public void setMaximum(Double maximum)
     {
-        this.maxmum = maxmum;
+        this.maximum = maximum;
     }
 
+    
     /**
-     * @return Returns the minimum.
+     * Gets the minumum (lower bound) value for this numeric domain.
+     * 
+     * @return the value of the minimum field
      */
     public Double getMinimum()
     {
         return minimum;
     }
 
+    
     /**
-     * @param minimum
-     *            The minimum to set.
+     * Sets the minimum (lower bound) value for this numeric domain.
+     * 
+     * @param minimum  The minimum value to set
      */
     public void setMinimum(Double minimum)
     {
         this.minimum = minimum;
     }
 
+    
     /**
-     * @return Returns the precision.
+     * Gets the value of the precision field.
+     * 
+     * @return the value of the precision field
      */
     public double getPrecision()
     {
         return precision;
     }
 
+    
     /**
-     * @param precision
-     *            The precision to set.
+     * Sets the value of the precision field.
+     * 
+     * @param  The precision value to set
      */
     public void setPrecision(double precision)
     {
         this.precision = precision;
     }
 
-   
 }

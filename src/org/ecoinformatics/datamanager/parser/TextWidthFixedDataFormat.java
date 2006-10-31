@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextWidthFixedDataFormat.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-24 00:10:10 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,72 +32,96 @@
 package org.ecoinformatics.datamanager.parser;
 
 /**
- * This class express a width-fixed text format
- * @author Jing Tao
+ * This class expresses a fixed-width text format.
+ * 
+ * @author tao
  */
 public class TextWidthFixedDataFormat implements TextComplexDataFormat
 {
-    private long lineNumber = -1;// this for a record expand couple physical lines
-    private int fieldWidth = 0;// width of filed(in character number)
-    private int fieldStartColumn = -1;// start the field column number
+    /*
+     * Instance fields
+     */
+    private long lineNumber = -1;  
+                                // for records that span a couple physical lines
+    private int fieldWidth = 0;         // width of field (in character number)
+    private int fieldStartColumn = -1;  // start the field column number
+    
+    
+    /*
+     * Constructors
+     */
     
     /**
-     * Constructor with field width
-     * @param fieldWidth int
+     * Constructor with field width specified.
+     * 
+     * @param fieldWidth the field width, an int
      */
     public TextWidthFixedDataFormat(int fieldWidth) {
         this.fieldWidth = fieldWidth;
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
     /**
-     * Set line number
-     * @param lineNumber int
+     * Sets line number.
+     * 
+     * @param lineNumber the lineNumber value to set
      */
     public void setLineNumber(long lineNumber) {
         this.lineNumber = lineNumber;
     }
     
+    
     /**
-     * Get line number
-     * @return long
+     * Gets line number.
+     * 
+     * @return lineNumber, the value of the lineNumber field
      */
     public long getLineNumber() {
         return lineNumber;
     }
     
+    
     /**
-     * Set field width
-     * @param fieldWidth int
+     * Sets field width.
+     * 
+     * @param fieldWidth the fieldWidth value to set, an int
      */
     public void setFieldWidth(int fieldWidth) {
         this.fieldWidth = fieldWidth;
     }
     
+    
     /**
-     * Get field width
-     * @return int
+     * Gets the field width.
+     *
+     * @return fieldWidth, the fieldWidth value, an int
      */
     public int getFieldWidth() {
         return fieldWidth;
     }
     
+    
     /**
-     * Set field start column number
-     * @param fieldStartColumn long
+     * Sets the fieldStartColumn value.
+     * 
+     * @param fieldStartColumn, the value to set, an int
      */
     public void setFieldStartColumn(int fieldStartColumn) {
         this.fieldStartColumn = fieldStartColumn;
     }
   
-    /**
-     * Get field start column
-     * @return long
-     */
     
+    /**
+     * Gets the field start column.
+     * 
+     * @return fieldStartColumn, a long
+     */
     public int getFieldStartColumn() {
         return fieldStartColumn;
     }
 
-
-    
 }

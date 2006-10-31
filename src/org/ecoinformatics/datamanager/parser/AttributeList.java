@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: AttributeList.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-26 23:51:26 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-10-31 21:00:40 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,6 +33,7 @@ package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
 
+
 /**
  * @author tao
  *
@@ -40,116 +41,153 @@ import java.util.Vector;
  */
 public class AttributeList
 {
+  /*
+   * Instance Fields
+   */
    private Vector attributes   = new Vector();
    private String id           = null;
    private boolean isReference = false;
    private String referenceId  = null;
    private Entity parentTable  = null;
    
-   /**
-    * Constructor
-    *
-    */
-   public AttributeList()
-   {
-       attributes = new Vector();
-   }
-    /**
-     * @return Returns the attributes.
-     */
-    public Attribute[] getAttributes()
-    {
-    	if (attributes == null || attributes.size() == 0)
-    	{
-    		return null;
-    	}
-    	else
-    	{
-    		int size = attributes.size();
-    		Attribute[] list = new Attribute[size];
-    		for (int i=0; i<size; i++)
-    		{
-    			list[i] = (Attribute)attributes.elementAt(i);
-    		}
-    		return list;
-    	}
-    }
-    /**
-     * @param attributes The attributes to set.
-     */
-    /*public void setAttributes(Vector attributes)
-    {
-        this.attributes = attributes;
-    }*/
-    /**
-     * @return Returns the id.
-     */
-    public String getId()
-    {
-        return id;
-    }
-    /**
-     * @param id The id to set.
-     */
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-    /**
-     * @return Returns the isReference.
-     */
-    public boolean isReference()
-    {
-        return isReference;
-    }
-    /**
-     * @param isReference The isReference to set.
-     */
-    public void setReference(boolean isReference)
-    {
-        this.isReference = isReference;
-    }
-    /**
-     * @return Returns the referenceId.
-     */
-    public String getReferenceId()
-    {
-        return referenceId;
-    }
-    /**
-     * @param referenceId The referenceId to set.
-     */
-    public void setReferenceId(String referenceId)
-    {
-        this.referenceId = referenceId;
-    }
-    
-    /**
-     * set partent entity
-     * @param p
-     */
-    public void setParent(Entity p)
-    {
-      parentTable = p;
-    }
-    
-    /**
-     * get parent entity
-     * @return
-     */
-    public Entity getParent()
-    {
-      return parentTable;
-    }
-    
-    /**
-     * Add an Attribute to this attribute list.
-     */
-    public void add(Attribute a)
-    {
-     
-      attributes.addElement(a);
+   
+  /*
+   * Constructors
+   */
+   
+  /**
+   * Constructs an AttributeList object
+   */
+  public AttributeList() {
+    attributes = new Vector();
+  }
+   
+  
+  /*
+   * Instance methods
+   */
+   
+  /**
+   * Gets the attribute field
+   * 
+   * @return   an array of Attribute objects, or null if there are no
+   *           attributes in the list
+   */
+  public Attribute[] getAttributes() {
+    if (attributes == null || attributes.size() == 0) {
+      return null;
+    } 
+    else {
+      int size = attributes.size();
+      Attribute[] list = new Attribute[size];
       
+      for (int i = 0; i < size; i++) {
+        list[i] = (Attribute) attributes.elementAt(i);
+      }
       
+      return list;
     }
+  }
+  
+  
+  /**
+   * @param attributes   The attributes to set.
+   */
+  /*
+   * public void setAttributes(Vector attributes) { 
+   *   this.attributes = attributes; 
+   * }
+   */
+  
+  
+  /**
+   * Gets the id.
+   * 
+   * @return  a string representing the id
+   */
+  public String getId() {
+    return id;
+  }
+    
+    
+  /**
+   * Sets the id
+   * 
+   * @param id  the id to set.
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+    
+    
+  /**
+   * Gets the isReference field
+   * 
+   * @return a boolean, the value of the isReference field
+   */
+  public boolean isReference() {
+    return isReference;
+  }
+    
+    
+  /**
+   * Sets the isReference field.
+   * 
+   * @param isReference  The isReference value to set, a boolean
+   */
+  public void setReference(boolean isReference) {
+    this.isReference = isReference;
+  }
+    
+    
+  
+  /**
+   * Gets the referenceId field.
+   * 
+   * @return  a string representing the referenceId
+   */
+  public String getReferenceId() {
+    return referenceId;
+  }
+    
+
+  /**
+   * Sets the referenceId field.
+   * 
+   * @param referenceId   a string representing the referenceId value to set
+   */
+  public void setReferenceId(String referenceId) {
+    this.referenceId = referenceId;
+  }
+    
+    
+  /**
+   * Sets parentTable entity for this AttributeList.
+   * 
+   * @param  entity    the parent Entity for this attribute list.
+   */
+  public void setParent(Entity entity) {
+    parentTable = entity;
+  }
+    
+    
+  /**
+   * Gets the parent entity for this AtttributeList.
+   * 
+   * @return  an Entity, the parent entity for this attribute list
+   */
+  public Entity getParent() {
+    return parentTable;
+  }
+    
+    
+  /**
+   * Adds an Attribute to this attribute list.
+   * 
+   * @param  a  the Attribute to be added to the 'attributes' field
+   */
+  public void add(Attribute a) {
+    attributes.addElement(a);
+  }
+  
 }
