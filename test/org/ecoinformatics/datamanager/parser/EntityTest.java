@@ -1,22 +1,21 @@
 package org.ecoinformatics.datamanager.parser;
 
-import java.util.Vector;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
+ * 
+ * JUnit tests for the Entity class.
  *
  */
-
 public class EntityTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private Entity entity         = null;
   private String id             = "001";
   private String name           = "newEntity";
@@ -24,23 +23,66 @@ public class EntityTest extends TestCase
   private Boolean caseSensitive = new Boolean(false);
   private String  orientation   = "column";
   private int     numRecords    = 200;
+
+  
+  /*
+   * Constructors
+   */
+  
   public EntityTest (String name)
   {
     super(name);
   }
 
+  /*
+   * Class methods
+   */
+
+  /**
+   * Creates a suite of tests to be run together
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new EntityTest("initialize"));
+     suite.addTest(new EntityTest("testGetterMethod"));
+     suite.addTest(new EntityTest("testURLSetterAndGetter"));
+     suite.addTest(new EntityTest("testAddAttirubte"));
+     suite.addTest(new EntityTest("testAddAttirubteListGetterAndSetter"));
+     suite.addTest(new EntityTest("testIsSimpleDelimited"));
+     suite.addTest(new EntityTest("testDelimiter"));
+     return suite;
+   }
+ 
+ 
+  /*
+   * Instance methods 
+   */
+
+  
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     entity = new Entity(id, name, description,caseSensitive,orientation,numRecords);
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     entity = null;
     super.tearDown();
   }
   
+  
+  /**
+   * Tests a number of different getter methods in the Entity class.
+   */
   public void testGetterMethod()
   {
 	  String gotId = entity.getId();
@@ -56,7 +98,11 @@ public class EntityTest extends TestCase
 	  int gotNumberRecords = entity.getNumRecords();
 	  assertEquals(gotNumberRecords, numRecords);
   }
+
   
+  /**
+   * Tests the getURL() and setURL() methods.
+   */
   public void testURLSetterAndGetter()
   {
 	  String url="http;//knb.ecoinformatics.org";
@@ -65,6 +111,10 @@ public class EntityTest extends TestCase
 	  assertEquals(url, gotURL);
   }
   
+  
+  /**
+   * Tests the add() method for adding an attribute to the entity.
+   */
   public void testAddAttirubte()
   {
 	  TextDomain domain = new TextDomain();
@@ -77,6 +127,10 @@ public class EntityTest extends TestCase
 	  assertEquals(attribute, gotAttribute);
   }
   
+  
+  /**
+   * Tests the getAttributeList() and setAttributeList() methods.
+   */
   public void testAddAttirubteListGetterAndSetter()
   {
 	  TextDomain domain = new TextDomain();
@@ -89,7 +143,11 @@ public class EntityTest extends TestCase
 	  AttributeList gotList = entity.getAttributeList();
 	  assertEquals(list, gotList);
   }
+ 
   
+  /**
+   * Tests the isSimpleDelimited() method.
+   */
   public void testIsSimpleDelimited()
   {
 	  boolean isSimple = false;
@@ -98,7 +156,11 @@ public class EntityTest extends TestCase
 	  assertTrue(isSimple == gotIsSimple);
   }
    
-  
+
+  /**
+   * Tests the setDelimiter() and getDelimiter() methods.
+   *
+   */
   public void testDelimiter()
   {
 	  String delimiter = ".";
@@ -106,6 +168,7 @@ public class EntityTest extends TestCase
 	  String gotDelimiter = entity.getDelimiter();
 	  assertEquals(delimiter, gotDelimiter);
   }
+  
   
   /**
   * Run an initial test that always passes to check that the test
@@ -115,23 +178,5 @@ public class EntityTest extends TestCase
   {
     assertTrue(1 == 1);
   }
-
-
-  /**TextDomainTest
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new EntityTest("initialize"));
-    suite.addTest(new EntityTest("testGetterMethod"));
-    suite.addTest(new EntityTest("testURLSetterAndGetter"));
-    suite.addTest(new EntityTest("testAddAttirubte"));
-    suite.addTest(new EntityTest("testAddAttirubteListGetterAndSetter"));
-    suite.addTest(new EntityTest("testIsSimpleDelimited"));
-    suite.addTest(new EntityTest("testDelimiter"));
-    return suite;
-  }
-
 
 }

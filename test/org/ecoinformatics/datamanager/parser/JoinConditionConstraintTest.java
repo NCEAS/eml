@@ -5,26 +5,61 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.PrimaryKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
  *
  */
 
 public class JoinConditionConstraintTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
+  
   private JoinConditionConstraint joinConstraint = null;
-  private String CONSTRAINTNAME = "joint_constraint";
+  //private String CONSTRAINTNAME = "joint_constraint";
   private String KEY1           = "id1";
   private String KEY2           = "id2";
 
+  
+  /*
+   * Constructors
+   */
+  
   public JoinConditionConstraintTest (String name)
   {
     super(name);
   }
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Create a suite of tests to be run together
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new JoinConditionConstraintTest("initialize"));
+     suite.addTest(new JoinConditionConstraintTest("testNameGetterAndSetter"));
+     suite.addTest(new JoinConditionConstraintTest("testTypeGetter"));
+     suite.addTest(new JoinConditionConstraintTest("testKeysGetterAndSetter"));
+     suite.addTest(new JoinConditionConstraintTest("testReferenceEntityGetterAndSetter"));
+     suite.addTest(new JoinConditionConstraintTest("testReferenceKeysGetterAndSetter"));
+     return suite;
+   }
 
+  
+  /*
+   * Instance methods
+   */
+
+  
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
@@ -32,6 +67,10 @@ public class JoinConditionConstraintTest extends TestCase
     
   }
 
+
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
 	joinConstraint = null;
@@ -39,12 +78,8 @@ public class JoinConditionConstraintTest extends TestCase
   }
 
   
-
-  
-  
   /**
-   * Method to test getter and Setter for name
-   *
+   * Method to test getter and setter for name.
    */
   public void testNameGetterAndSetter()
   {
@@ -52,12 +87,11 @@ public class JoinConditionConstraintTest extends TestCase
 	  joinConstraint.setName(name);
 	  String gotName = joinConstraint.getName();
 	  assertEquals(name, gotName);
-	  
   }
   
+  
   /**
-   * Test getter method for type
-   *
+   * Tests getter method for type.
    */
   public void testTypeGetter()
   {
@@ -65,8 +99,9 @@ public class JoinConditionConstraintTest extends TestCase
 	  assertEquals(type, Constraint.JOINCONDITIONCONSTRAINT);
   }
   
+  
   /**
-   * Test getter and setter method for keys
+   * Tests getter and setter method for keys.
    *
    */
   public void testKeysGetterAndSetter()
@@ -79,9 +114,9 @@ public class JoinConditionConstraintTest extends TestCase
 	  assertEquals(keys, gotKeys);
   }
   
+  
   /**
-   * Method to test getter and Setter for reference entity
-   *
+   * Method to test getter and Setter for entityReference.
    */
   public void testReferenceEntityGetterAndSetter()
   {
@@ -89,12 +124,11 @@ public class JoinConditionConstraintTest extends TestCase
 	  joinConstraint.setEntityReference(entity);
 	  String gotEntity = joinConstraint.getEntityReference();
 	  assertEquals(entity, gotEntity);
-	  
   }
   
+  
   /**
-   * Method to test getter and Setter for reference entity
-   *
+   * Tests getReferencedKeys() and setReferencedKeys() methods.
    */
   public void testReferenceKeysGetterAndSetter()
   {
@@ -107,6 +141,7 @@ public class JoinConditionConstraintTest extends TestCase
 	  
   }
 
+  
   /**
   * Run an initial test that always passes to check that the test
   * harness is working.
@@ -116,24 +151,5 @@ public class JoinConditionConstraintTest extends TestCase
     assertTrue(1 == 1);
   }
   
-  
-
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new JoinConditionConstraintTest("initialize"));
-    suite.addTest(new JoinConditionConstraintTest("testNameGetterAndSetter"));
-    suite.addTest(new JoinConditionConstraintTest("testTypeGetter"));
-    suite.addTest(new JoinConditionConstraintTest("testKeysGetterAndSetter"));
-    suite.addTest(new JoinConditionConstraintTest("testReferenceEntityGetterAndSetter"));
-    suite.addTest(new JoinConditionConstraintTest("testReferenceKeysGetterAndSetter"));
-    return suite;
-  }
-
-
 }
 

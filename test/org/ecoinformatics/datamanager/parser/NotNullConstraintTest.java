@@ -5,26 +5,38 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
 import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
+ * 
+ * JUnit tests for the NotNullConstraint class.
  *
  */
-
 public class NotNullConstraintTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private NotNullConstraint notNull = null;
-  private String CONSTRAINTNAME = "unique_key";
+  //private String CONSTRAINTNAME = "unique_key";
   private String KEY1           = "id1";
   private String KEY2           = "id2";
 
+  
+  /*
+   * Constructors
+   */
+  
   public NotNullConstraintTest (String name)
   {
     super(name);
   }
 
+  
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
@@ -32,6 +44,10 @@ public class NotNullConstraintTest extends TestCase
     
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     notNull = null;

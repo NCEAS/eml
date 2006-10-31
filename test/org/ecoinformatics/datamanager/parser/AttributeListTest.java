@@ -1,41 +1,80 @@
 package org.ecoinformatics.datamanager.parser;
 
-import java.util.Vector;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
  * @author Jing Tao
  *
+ * JUnit tests for the AttributeList class.
  */
 
 public class AttributeListTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private AttributeList list      = null;
   
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Creates a suite of tests to be run together.
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new AttributeListTest("testIdSetterAndGetter"));
+     suite.addTest(new AttributeListTest("testIsReference"));
+     suite.addTest(new AttributeListTest("testReferenceIdGetterAndSetter"));
+     suite.addTest(new AttributeListTest("testParentEntityGetterAndSetter"));
+     suite.addTest(new AttributeListTest("testAddAttribute"));
+     return suite;
+   }
+   
+   
+  /*
+   * Constructors
+   */
+   
   public AttributeListTest (String name)
   {
     super(name);
   }
+  
+  
+  /*
+   * Instance methods
+   */
 
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     list = new AttributeList();
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
 	list = null;
     super.tearDown();
   }
   
+
+  /**
+   * Tests the getId() and setId methods.
+   */
   public void testIdSetterAndGetter()
   {
 	  String id = "1";
@@ -44,6 +83,10 @@ public class AttributeListTest extends TestCase
 	  assertEquals(id, gotId);
   }
   
+
+  /**
+   * Tests the isReference() method.
+   */
   public void testIsReference()
   {
 	  boolean reference = false;
@@ -52,6 +95,10 @@ public class AttributeListTest extends TestCase
 	  assertTrue(reference == getReference);
   }
   
+
+  /**
+   * Tests the getReferenceId() and setReferenceId() methods.
+   */
   public void testReferenceIdGetterAndSetter()
   {
 	  String referenceId= "2";
@@ -60,6 +107,10 @@ public class AttributeListTest extends TestCase
 	  assertEquals(referenceId, gotReferenceId);
   }
   
+
+  /**
+   * Tests the getParent() and setParent() methods.
+   */
   public void testParentEntityGetterAndSetter()
   {
 	  Entity entity         = null;
@@ -77,7 +128,7 @@ public class AttributeListTest extends TestCase
 
 
   /**
-   * Method to test getter and Setter for LineNumber
+   * Tests the getAttributes() method.
    *
    */
   public void testAddAttribute()
@@ -89,27 +140,8 @@ public class AttributeListTest extends TestCase
 	  list.add(attribute);
 	  Attribute[] attributes = list.getAttributes();
 	  Attribute gotAttribute = attributes[0];
-	  assertEquals(attribute, gotAttribute);
-	  
+	  assertEquals(attribute, gotAttribute);  
   }
-  
-  
-
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new AttributeListTest("testIdSetterAndGetter"));
-    suite.addTest(new AttributeListTest("testIsReference"));
-    suite.addTest(new AttributeListTest("testReferenceIdGetterAndSetter"));
-    suite.addTest(new AttributeListTest("testParentEntityGetterAndSetter"));
-    suite.addTest(new AttributeListTest("testAddAttribute"));
-    return suite;
-  }
-
 
 }
 

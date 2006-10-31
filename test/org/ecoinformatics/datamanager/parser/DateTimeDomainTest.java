@@ -4,31 +4,67 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
  *
+ * JUnit tests for the DateTimeDomain class.
  */
-
 public class DateTimeDomainTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private DateTimeDomain   domain  = null;
   
 
+  /*
+   * Constructors
+   */
+  
   public DateTimeDomainTest (String name)
   {
     super(name);
   }
 
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Create a suite of tests to be run together
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new DateTimeDomainTest("initialize"));
+     suite.addTest(new DateTimeDomainTest("testMinGetterAndSetter"));
+     suite.addTest(new DateTimeDomainTest("testMaxGetterAndSetter"));
+     suite.addTest(new DateTimeDomainTest("testTimePrecisionGetterAndSetter"));
+     suite.addTest(new DateTimeDomainTest("testFormatStringGetterAndSetter"));
+     return suite;
+   }
+
+   
+  /*
+   * Instance methods
+   */
+   
+
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     domain = new DateTimeDomain();
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     domain = null;
@@ -37,8 +73,7 @@ public class DateTimeDomainTest extends TestCase
 
 
   /**
-   * Method to test getter and Setter for LineNumber
-   *
+   * Tests getMinimum() and setMinimum() methods.
    */
   public void testMinGetterAndSetter()
   {
@@ -49,22 +84,22 @@ public class DateTimeDomainTest extends TestCase
 	  
   }
   
+  
   /**
-   * Method to test getter and Setter for LineNumber
-   *
+   * Tests getMaximum() and setMaximum() methods.
    */
   public void testMaxGetterAndSetter()
   {
 	  double max = 1;
-	  domain.setMaxmum(max);
-	  double gotMax = domain.getMaxmum();
+	  domain.setMaximum(max);
+	  double gotMax = domain.getMaximum();
 	  assertTrue(max == gotMax);
 	  
   }
   
+  
   /**
-   * Method to test getter and Setter for LineNumber
-   *
+   * Tests the getDateTimePrecision() and setDateTimePrecision() methods.
    */
   public void testTimePrecisionGetterAndSetter()
   {
@@ -76,8 +111,7 @@ public class DateTimeDomainTest extends TestCase
   
   
   /**
-   * Test getter and setter method for field start column number
-   *
+   * Tests the getFormatString() method.
    */
   public void testFormatStringGetterAndSetter()
   {
@@ -87,31 +121,15 @@ public class DateTimeDomainTest extends TestCase
 	  assertEquals(format, gotFormat);
   }
   
- 
 
   /**
-  * Run an initial test that always passes to check that the test
-  * harness is working.
-  */
+   * Run an initial test that always passes to check that the test
+   * harness is working.
+   */
   public void initialize()
   {
     assertTrue(1 == 1);
   }
-
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new DateTimeDomainTest("testMinGetterAndSetter"));
-    suite.addTest(new DateTimeDomainTest("testMaxGetterAndSetter"));
-    suite.addTest(new DateTimeDomainTest("testTimePrecisionGetterAndSetter"));
-    suite.addTest(new DateTimeDomainTest("testFormatStringGetterAndSetter"));
-    return suite;
-  }
-
 
 }
 

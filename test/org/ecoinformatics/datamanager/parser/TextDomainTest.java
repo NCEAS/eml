@@ -4,32 +4,68 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
  *
+ * JUnit tests for the TextDomain class.
  */
 
 public class TextDomainTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private TextDomain domain      = null;
-  private int                      fieldWidth1 = 10;
-  private int                      fieldWidth2 = 20;
+  //private int                      fieldWidth1 = 10;
+  //private int                      fieldWidth2 = 20;
 
+  
+  /*
+   * Constructors
+   */
+  
   public TextDomainTest (String name)
   {
     super(name);
   }
+  
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Create a suite of tests to be run together
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new TextDomainTest("initialize"));
+     suite.addTest(new TextDomainTest("testDefinitionGetterAndSetter"));
+     suite.addTest(new TextDomainTest("testSourceGetterAndSetter"));
+     suite.addTest(new TextDomainTest("testPatternGetterAndSetter"));
+     return suite;
+   }
 
+  
+  /*
+   * Instance methods
+   */
+
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     domain = new TextDomain();
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     domain = null;
@@ -38,8 +74,7 @@ public class TextDomainTest extends TestCase
 
 
   /**
-   * Method to test getter and Setter for LineNumber
-   *
+   * Tests getter and setter methods for the definition field.
    */
   public void testDefinitionGetterAndSetter()
   {
@@ -52,8 +87,7 @@ public class TextDomainTest extends TestCase
   
   
   /**
-   * Test getter and setter method for field start column number
-   *
+   * Tests getter and setter methods for the source field.
    */
   public void testSourceGetterAndSetter()
   {
@@ -63,9 +97,9 @@ public class TextDomainTest extends TestCase
 	  assertEquals(source, gotSource);
   }
   
+  
   /**
-   * Test getter and setter method for field width
-   *
+   * Tests getter and setter methods for the pattern field.
    */
   public void testPatternGetterAndSetter()
   {
@@ -76,6 +110,7 @@ public class TextDomainTest extends TestCase
 	  String[] gotPattern = domain.getPattern();
 	  assertEquals(pattern, gotPattern);
   }
+  
 
   /**
   * Run an initial test that always passes to check that the test
@@ -85,21 +120,6 @@ public class TextDomainTest extends TestCase
   {
     assertTrue(1 == 1);
   }
-
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new TextDomainTest("initialize"));
-    suite.addTest(new TextDomainTest("testDefinitionGetterAndSetter"));
-    suite.addTest(new TextDomainTest("testSourceGetterAndSetter"));
-    suite.addTest(new TextDomainTest("testPatternGetterAndSetter"));
-    return suite;
-  }
-
 
 }
 

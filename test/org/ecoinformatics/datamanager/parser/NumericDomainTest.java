@@ -4,33 +4,68 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
-
 /**
  * @author Jing Tao
  *
+ * JUnit tests for the NumericDomain class.
  */
 
 public class NumericDomainTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private NumericDomain domain      = null;
   private String numberType         = "nature";
   private Double min                = new Double(1);
   private Double max                = new Double(900);
 
+  
+  /*
+   * Constructors
+   */
+  
   public NumericDomainTest(String name)
   {
     super(name);
   }
 
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Create a suite of tests to be run together.
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new NumericDomainTest("testNumberTypeGetter"));
+     suite.addTest(new NumericDomainTest("testMinGetterAndSetter"));
+     suite.addTest(new NumericDomainTest("testMaxGetterAndSetter"));
+     suite.addTest(new NumericDomainTest("testPrecisionGetterAndSetter"));
+     return suite;
+   }
+  
+  
+  /*
+   * Instance methods
+   */
+   
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     domain = new NumericDomain(numberType, min , max);
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     domain = null;
@@ -39,7 +74,7 @@ public class NumericDomainTest extends TestCase
 
 
   /**
-   * Method to test getter NumberType
+   * Tests getNumberType() method.
    *
    */
   public void testNumberTypeGetter()
@@ -47,13 +82,11 @@ public class NumericDomainTest extends TestCase
 	  
 	  String gotNumberType = domain.getNumberType();
 	  assertEquals(numberType, gotNumberType);
-	  
   }
   
   
   /**
-   * Test getter and setter method for Minimium 
-   *
+   * Tests getter and setter methods for minimum field.
    */
   public void testMinGetterAndSetter()
   {
@@ -67,21 +100,21 @@ public class NumericDomainTest extends TestCase
   
   
   /**
-   * Test getter and setter method for Maxmium 
-   *
+   * Tests getter and setter methods for maximum field.
    */
   public void testMaxGetterAndSetter()
   {
-	  Double gotMax = domain.getMaxmum();
+	  Double gotMax = domain.getMaximum();
 	  assertEquals(gotMax, max);
 	  Double newMax = new Double(2);
-	  domain.setMaxmum(newMax);
-	  Double newGotMax = domain.getMaxmum();
+	  domain.setMaximum(newMax);
+	  Double newGotMax = domain.getMaximum();
 	  assertEquals(newMax, newGotMax);
   }
+  
+  
   /**
-   * Test getter and setter method for precision
-   *
+   * Tests getter and setter method for precision field.
    */
   public void testPrecisionGetterAndSetter()
   {
@@ -91,6 +124,7 @@ public class NumericDomainTest extends TestCase
 	  assertTrue(precision == gotPrecision);
   }
 
+  
   /**
   * Run an initial test that always passes to check that the test
   * harness is working.
@@ -100,20 +134,4 @@ public class NumericDomainTest extends TestCase
     assertTrue(1 == 1);
   }
 
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new NumericDomainTest("testNumberTypeGetter"));
-    suite.addTest(new NumericDomainTest("testMinGetterAndSetter"));
-    suite.addTest(new NumericDomainTest("testMaxGetterAndSetter"));
-    suite.addTest(new NumericDomainTest("testPrecisionGetterAndSetter"));
-    return suite;
-  }
-
-
 }
-

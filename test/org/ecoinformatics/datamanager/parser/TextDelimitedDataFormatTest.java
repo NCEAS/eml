@@ -4,31 +4,68 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
+ * 
+ * JUnit tests for the TextDelimitedDataFormat class.
  *
  */
-
 public class TextDelimitedDataFormatTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private TextDelimitedDataFormat format      = null;
   private String delimiter                    = ";";
 
+  
+  /*
+   * Constructors
+   */
+  
   public TextDelimitedDataFormatTest (String name)
   {
     super(name);
   }
 
+  
+  /*
+   * Class methods
+   */
+  
+  /**
+   * Create a suite of tests to be run together
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new TextDelimitedDataFormatTest("testLineNumberGetterAndSetter"));
+     suite.addTest(new TextDelimitedDataFormatTest("testCollapseDelimiterGetterAndSetter"));
+     suite.addTest(new TextDelimitedDataFormatTest("testQuoteCharaterGetterAndSetter"));
+     suite.addTest(new TextDelimitedDataFormatTest("testFieldDelimiterGetterAndSetter"));
+     return suite;
+   }
+  
+  
+  /*
+   * Instance methods
+   */
+  
+
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
     format = new TextDelimitedDataFormat(delimiter);
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
     format = null;
@@ -37,8 +74,7 @@ public class TextDelimitedDataFormatTest extends TestCase
 
 
   /**
-   * Method to test getter and Setter for LineNumber
-   *
+   * Method to test getter and setter methods for the lineNumber field.
    */
   public void testLineNumberGetterAndSetter()
   {
@@ -49,11 +85,9 @@ public class TextDelimitedDataFormatTest extends TestCase
 	  
   }
   
-  
-  
+
   /**
-   * Test getter and setter method for CollapseDelimiter
-   *
+   * Test getter and setter methods for the collapseDelimiter field.
    */
   public void testCollapseDelimiterGetterAndSetter()
   {
@@ -63,9 +97,9 @@ public class TextDelimitedDataFormatTest extends TestCase
 	  assertEquals(collapseDelimiter, gotCollapseDelimiter);
   }
   
+  
   /**
-   * Test getter and setter method for QuoteCharater
-   *
+   * Test getter and setter methods for the quoteCharacter field.
    */
   public void testQuoteCharaterGetterAndSetter()
   {
@@ -79,9 +113,9 @@ public class TextDelimitedDataFormatTest extends TestCase
 	  assertEquals(quote, gotQuote);
   }
   
+  
   /**
-   * Test getter and setter method for CollapseDelimiter
-   *
+   * Test getter and setter methods for the fieldDelimiter field.
    */
   public void testFieldDelimiterGetterAndSetter()
   {
@@ -93,6 +127,7 @@ public class TextDelimitedDataFormatTest extends TestCase
 	  assertEquals(newDelimiter, gotDelimiter2);
   }
 
+  
   /**
   * Run an initial test that always passes to check that the test
   * harness is working.
@@ -102,21 +137,4 @@ public class TextDelimitedDataFormatTest extends TestCase
     assertTrue(1 == 1);
   }
 
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new TextDelimitedDataFormatTest("testLineNumberGetterAndSetter"));
-    suite.addTest(new TextDelimitedDataFormatTest("testCollapseDelimiterGetterAndSetter"));
-    suite.addTest(new TextDelimitedDataFormatTest("testQuoteCharaterGetterAndSetter"));
-    suite.addTest(new TextDelimitedDataFormatTest("testFieldDelimiterGetterAndSetter"));
-    return suite;
-  }
-
-
 }
-
-

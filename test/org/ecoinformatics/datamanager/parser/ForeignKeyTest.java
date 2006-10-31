@@ -5,25 +5,60 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.PrimaryKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
+ * 
+ * JUnit tests for the ForeignKey class.
  *
  */
-
 public class ForeignKeyTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
   private ForeignKey foreignKey = null;
   private String KEY1           = "id1";
   private String KEY2           = "id2";
 
+
+  /*
+   * Constructors
+   */
+  
   public ForeignKeyTest (String name)
   {
     super(name);
   }
 
+  
+  /*
+   * Class methods 
+   */
+  
+  /**
+   * Create a suite of tests to be run together.
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new ForeignKeyTest("initialize"));
+     suite.addTest(new ForeignKeyTest("testNameGetterAndSetter"));
+     suite.addTest(new ForeignKeyTest("testTypeGetter"));
+     suite.addTest(new ForeignKeyTest("testKeysGetterAndSetter"));
+     suite.addTest(new ForeignKeyTest("testReferenceEntityGetterAndSetter"));
+     return suite;
+   }
+  
+  
+  /*
+   * Instance methods
+   */
+
+   
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
@@ -31,6 +66,10 @@ public class ForeignKeyTest extends TestCase
     
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
 	foreignKey = null;
@@ -38,24 +77,20 @@ public class ForeignKeyTest extends TestCase
   }
 
   
-
-  
-  
   /**
-   * Method to test getter and Setter for name
-   *
+   * Method to test getter and setter for name.
    */
   public void testNameGetterAndSetter()
   {
 	  String name = "newName";
 	  foreignKey.setName(name);
 	  String gotName = foreignKey.getName();
-	  assertEquals(name, gotName);
-	  
+	  assertEquals(name, gotName); 
   }
   
+  
   /**
-   * Test getter method for type
+   * Tests getter method for type.
    *
    */
   public void testTypeGetter()
@@ -64,8 +99,9 @@ public class ForeignKeyTest extends TestCase
 	  assertEquals(type, Constraint.FOREIGNKEY);
   }
   
+  
   /**
-   * Test getter and setter method for keys
+   * Tests getter and setter methods for keys.
    *
    */
   public void testKeysGetterAndSetter()
@@ -78,9 +114,9 @@ public class ForeignKeyTest extends TestCase
 	  assertEquals(keys, gotKeys);
   }
   
+  
   /**
-   * Method to test getter and Setter for reference entity
-   *
+   * Tests getEntityReference() and setEntityReference() methods.
    */
   public void testReferenceEntityGetterAndSetter()
   {
@@ -92,7 +128,6 @@ public class ForeignKeyTest extends TestCase
   }
   
  
-
   /**
   * Run an initial test that always passes to check that the test
   * harness is working.
@@ -102,24 +137,4 @@ public class ForeignKeyTest extends TestCase
     assertTrue(1 == 1);
   }
   
-  
-
-
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new ForeignKeyTest("initialize"));
-    suite.addTest(new ForeignKeyTest("testNameGetterAndSetter"));
-    suite.addTest(new ForeignKeyTest("testTypeGetter"));
-    suite.addTest(new ForeignKeyTest("testKeysGetterAndSetter"));
-    suite.addTest(new ForeignKeyTest("testReferenceEntityGetterAndSetter"));
-    return suite;
-  }
-
-
 }
-
-

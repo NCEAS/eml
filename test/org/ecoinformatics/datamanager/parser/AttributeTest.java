@@ -1,22 +1,22 @@
 package org.ecoinformatics.datamanager.parser;
 
-import java.util.Vector;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.ecoinformatics.datamanager.parser.Constraint;
-import org.ecoinformatics.datamanager.parser.UniqueKey;
-import org.ecoinformatics.datamanager.parser.UnWellFormedConstraintException;
 
 /**
- * @author Jing Tao
+ * @author tao
  *
+ * JUnit tests for the Attribute class. 
  */
 
 public class AttributeTest extends TestCase
 {
+  /*
+   * Instance fields
+   */
+  
   private Attribute attribute     = null;
   private TextDomain domain = new TextDomain();
   private String name = "name";
@@ -26,11 +26,39 @@ public class AttributeTest extends TestCase
   private String unit = "unit";
   private String unitType = "unitType";
   private String measurementScale = "scale";
+  
+  /*
+   * Constructors
+   */
+  
   public AttributeTest (String name)
   {
     super(name);
   }
+  
+  /*
+   * Class methods
+   */
 
+  /**
+   * Creates a suite of tests to be run together.
+   */
+   public static Test suite()
+   {
+     TestSuite suite = new TestSuite();
+     suite.addTest(new AttributeTest("testIdGetterMethod"));
+     suite.addTest(new AttributeTest("testMissingValueSetterAndGetter"));
+     return suite;
+   }
+   
+   
+  /*
+   * Instance methods
+   */
+   
+  /**
+   * Establishes a testing framework by initializing appropriate objects.
+   */
   protected void setUp() throws Exception
   {
     super.setUp();
@@ -38,12 +66,21 @@ public class AttributeTest extends TestCase
                        unitType, measurementScale, domain);
   }
 
+  
+  /**
+   * Releases any objects after tests are complete.
+   */
   protected void tearDown() throws Exception
   {
 	attribute = null;
     super.tearDown();
   }
   
+
+  /**
+   * Tests a number of different getter and setter methods.
+   *
+   */
   public void testIdGetterMethod()
   {
 	  String gotId = attribute.getId();
@@ -64,6 +101,10 @@ public class AttributeTest extends TestCase
 	  assertEquals(domain, gotDomain);
   }
   
+  
+  /**
+   * Tests the getMissingValueCode() method.
+   */
   public void testMissingValueSetterAndGetter()
   {
 	  String[] list1 = attribute.getMissingValueCode();
@@ -77,18 +118,5 @@ public class AttributeTest extends TestCase
 	  assertEquals(list2[1], missingValue2);
   }
   
- 
-  /**
-  * Create a suite of tests to be run together
-  */
-  public static Test suite()
-  {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new AttributeTest("testIdGetterMethod"));
-    suite.addTest(new AttributeTest("testMissingValueSetterAndGetter"));
-    return suite;
-  }
-
-
 }
 
