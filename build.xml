@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-11-01 20:16:05 $'
-      '$Revision: 1.88 $'
+          '$Date: 2006-11-01 21:28:41 $'
+      '$Revision: 1.89 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,11 +78,6 @@
     <property name="config.file" value="lib/config.xml"/>
     <property name="configfileinemljar" value="/config.xml"/>
     
-    <!-- Used by 'test-datamanager-one' target. User is prompted for the name
-         of the test to run. If user enters no value, runs this test by
-         default. -->
-    <property name="default-datamanager-test" value="DataManagerTest" />
-
     <property name="xmlp"
         value="lib/apache/xercesImpl.jar"/>
     <property name="api"
@@ -119,26 +114,19 @@
     <property name="ver.src" value="${ver.dir}/src"/>
     <property name="ver.tst" value="${ver.dir}/test"/>
     <property name="package.home" value="org/ecoinformatics" />
-    <property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
-    <property name="datamanager.lib" value="lib/datamanager"/>
-    <property name="datamanager.name" value="datamanager"/>
-    <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
-    <property name="axis" value="${datamanager.lib}/axis.jar"/>
-    <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
-    <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
-    <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
-    <property name="soap" value="${datamanager.lib}/soap.jar"/>
-    <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
-    <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
-    <property name="tar" value="${datamanager.lib}/tar.jar"/>
-    <property name="utilities" value="${datamanager.lib}/utilities.jar"/>
-  	<property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
-    <property name="cpath.datamanager" value="${junit}:${queryservice}:${axis}:${tar}:${xml-apis}:${rpc}:${wsdl}:${log}:${soap}:${discover}:${saaj}:${postgresql-driver}:${hsql}:${utilities}:${build.dir}/${name}.jar"/>
+
+    <!-- These two Data Manager Library properties need to be declared here
+         so that the Data Manager Library can be excluded from the default eml
+         distribution. Other Data Manager properties are declared in
+         the init-datamanager-lib target below. -->
+    <property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
+    <property name="datamanager.name" value="datamanager"/>
 
     <mkdir dir="${build.docs}/eml-${version}"/>
   </target>
-
+    
+    
   <!-- Generate HTML documentation using an XSLT transform -->
   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
@@ -482,14 +470,17 @@
     </delete>
     <delete dir="${build.docs}/eml-${version}"/>
     <delete dir="./dist"/>
-    <delete file="*.zip"/>
-    <delete file="*.gz"/>
+    <delete file="${eml-version}.zip"/>
+    <delete file="${eml-version}.tar.gz"/>
+    <delete file="${datamanager.name}.zip"/>
+    <delete file="${datamanager.name}.tar.gz"/>
     <delete file="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
   </target>
     
     <!--
       The following set of targets support the Data Manager library:
-      
+
+        init-datamanager-lib      
         compile-datamanager-lib
         dist-datamanager-lib
         jar-datamanager-lib
@@ -501,9 +492,30 @@
       other types of data). The library is currently housed under the 'eml'
       module in CVS. At some point in the future, it may be broken out into its
       own module.
-     -->
+    -->
 
-    <target name="compile-datamanager-lib" depends="init">
+    <target name="init-datamanager-lib" depends="init">
+        <!-- Used by 'test-datamanager-one' target. User is prompted for the name
+             of the test to run. If user enters no value, runs this test by
+             default. -->
+        <property name="default-datamanager-test" value="DataManagerTest" />
+
+        <property name="datamanager.lib" value="lib/datamanager"/>
+        <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
+        <property name="axis" value="${datamanager.lib}/axis.jar"/>
+        <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
+        <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
+        <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
+        <property name="soap" value="${datamanager.lib}/soap.jar"/>
+        <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
+        <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
+        <property name="tar" value="${datamanager.lib}/tar.jar"/>
+        <property name="utilities" value="${datamanager.lib}/utilities.jar"/>
+        <property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
+        <property name="cpath.datamanager" value="${junit}:${queryservice}:${axis}:${tar}:${xml-apis}:${rpc}:${wsdl}:${log}:${soap}:${discover}:${saaj}:${postgresql-driver}:${hsql}:${utilities}:${build.dir}/${name}.jar"/>
+    </target>
+
+    <target name="compile-datamanager-lib" depends="init-datamanager-lib">
   	     <mkdir dir="${build.dest}"/>
   	     <mkdir dir="${build.src}"/>
   	     <copy todir="${build.src}" filtering="yes">
@@ -522,7 +534,7 @@
     </target>
     
     <!--
-    Under development
+
     <target name="dist-datamanager-lib" depends="jar-datamanager-lib">
         <mkdir dir="${dist.dir}"/>
         <delete dir="${ver.dir}"/>
