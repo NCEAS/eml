@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-10-27 23:17:40 $'
-      '$Revision: 1.87 $'
+          '$Date: 2006-11-01 20:16:05 $'
+      '$Revision: 1.88 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -121,7 +121,7 @@
     <property name="package.home" value="org/ecoinformatics" />
     <property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
     <property name="datamanager.lib" value="lib/datamanager"/>
-    <property name="datamanager.name" value="data-manager-lib"/>
+    <property name="datamanager.name" value="datamanager"/>
     <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
     <property name="axis" value="${datamanager.lib}/axis.jar"/>
     <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
@@ -199,18 +199,25 @@
       </fileset>
     </copy>
     <copy todir="${ver.lib}" filtering="no">
-      <fileset dir="./lib"/>
+      <fileset dir="./lib">
+          <exclude name="${datamanager.name}/**"/>
+      </fileset>
     </copy>
     <copy todir="${ver.docs}" filtering="no">
-      <fileset dir="./docs"/>
+        <fileset dir="./docs">
+            <exclude name="${datamanager.name}/**"/>
+        </fileset>
     </copy>
     <copy todir="${ver.src}" filtering="yes">
       <fileset dir="./src">
          <exclude name="emlconversions/**"/>
+         <exclude name="${datamanager.dir}/**"/>
       </fileset>
     </copy>
     <copy todir="${ver.tst}" filtering="yes">
-      <fileset dir="./test"/>
+        <fileset dir="./test">
+           <exclude name="${datamanager.dir}/**"/>
+        </fileset>
     </copy>
     <copy todir="${ver.dir}/style">
       <fileset dir="${style.dir}"/>
@@ -484,6 +491,7 @@
       The following set of targets support the Data Manager library:
       
         compile-datamanager-lib
+        dist-datamanager-lib
         jar-datamanager-lib
         test-datamanager-init (used internally only)
         test-datamanager-all
@@ -512,6 +520,54 @@
   	            classpath="${cpath.datamanager}"
   	            debug="on"/>
     </target>
+    
+    <!--
+    Under development
+    <target name="dist-datamanager-lib" depends="jar-datamanager-lib">
+        <mkdir dir="${dist.dir}"/>
+        <delete dir="${ver.dir}"/>
+        <mkdir dir="${ver.dir}"/>
+        <mkdir dir="${ver.lib}"/>
+        <mkdir dir="${ver.docs}"/>
+        <mkdir dir="${ver.src}"/>
+        <mkdir dir="${ver.tst}"/>
+        <mkdir dir="${ver.dir}/style"/>
+        <copy file="./build.xml" todir="${ver.dir}"/>
+        <copy file="./LICENSE" todir="${ver.dir}"/>
+        <copy file="./README" todir="${ver.dir}"/>
+        <copy todir="${ver.dir}" filtering="no">
+          <fileset dir=".">
+            <include name="*.xsd"/>
+            <include name="eml-unitDictionary.xml"/>
+            <include name="eml-spatialReferenceDictionary.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${ver.lib}" filtering="no">
+          <fileset dir="./lib"/>
+        </copy>
+        <copy todir="${ver.docs}" filtering="no">
+          <fileset dir="./docs"/>
+        </copy>
+        <copy todir="${ver.src}" filtering="yes">
+          <fileset dir="./src">
+             <exclude name="emlconversions/**"/>
+          </fileset>
+        </copy>
+        <copy todir="${ver.tst}" filtering="yes">
+          <fileset dir="./test"/>
+        </copy>
+        <copy todir="${ver.dir}/style">
+          <fileset dir="${style.dir}"/>
+        </copy>
+
+        <delete file="./eml-${version}.zip"/>
+        <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
+        <delete file="./eml-${version}.tar.gz"/>
+        <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
+        <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
+        <delete file="./eml-${version}.tar"/>
+    </target>
+     -->
 
     <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
     	<unjar dest="${build.dest}">
