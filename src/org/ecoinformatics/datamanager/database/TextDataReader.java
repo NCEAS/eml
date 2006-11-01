@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextDataReader.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-09-01 17:19:58 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-01 00:28:24 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,6 +34,11 @@ package org.ecoinformatics.datamanager.database;
 import java.io.InputStream;
 import java.util.Vector;
 
+/**
+ * 
+ * An abract class which can read row data from a text data input stream.
+ *
+ */
 public abstract class TextDataReader {
 
   /*
@@ -63,9 +68,13 @@ public abstract class TextDataReader {
    */
    
   /**
-   * Method to get a vector which contains one row of data.
+   * Gets a vector which contains one row of data. The first row data will
+   * be got in the first time calling this method. After calling this
+   * method, the cursor will go to next row. At the end of the input stream,
+   * an empty vector will be returned. The data will be stored as String
+   * element in the Vector
    * 
-   * @return
+   * @return Vector constains one row data
    */
   public abstract Vector getOneRowDataVector() throws Exception;
    
@@ -73,7 +82,7 @@ public abstract class TextDataReader {
   /**
    * Gets the reader.
    * 
-   * @return
+   * @return the inpustream from text data
    */
   public InputStream getReader()
   {
@@ -82,9 +91,9 @@ public abstract class TextDataReader {
    
   
   /**
-   * Sets the input reader.
+   * Sets the input stream of text data.
    * 
-   * @param reader
+   * @param reader the input stream of text data
    */
   public void setReader(InputStream reader)
   {

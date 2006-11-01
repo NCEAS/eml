@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-26 23:02:38 $'
- *   '$Revision: 1.16 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-01 00:28:24 $'
+ *   '$Revision: 1.17 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -197,7 +197,8 @@ public class DataManager {
    * @param  entityList Array of entities whose table names and attribute
    *         names are used in creating the view.
    * @return a boolean value indicating the success of the create view 
-   *         operation. true if successful, else false.
+   *         operation. True will be returned if successful, else false
+   *         will be returned.
    */
   public boolean createDataView(String ANSISQL, Entity[] entityList) {
     boolean success = true;
@@ -214,6 +215,7 @@ public class DataManager {
    * Use Case #2.
    * 
    * @param  dataPackage the data package containing a list of entities
+   * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
@@ -237,6 +239,7 @@ public class DataManager {
    * in its own way. This method implements Use Case #2.
    * 
    * @param  the entity whose data is to be downloaded
+   * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
@@ -280,6 +283,7 @@ public class DataManager {
    * package are downloaded. This method implements Use Case #2.
    * 
    * @param  metadataInputStream an input stream to the metadata. 
+   * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
@@ -327,7 +331,7 @@ public class DataManager {
    * already been initialized, creates a new connection and initializes the
    * field.
    * 
-   * @return
+   * @return the Connection object which connects database
    */
   public static Connection getConnection() 
         throws ClassNotFoundException, SQLException {

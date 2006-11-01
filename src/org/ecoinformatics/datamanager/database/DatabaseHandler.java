@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-26 23:02:58 $'
- *   '$Revision: 1.15 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-01 00:28:24 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -176,7 +176,7 @@ public class DatabaseHandler
   
  
   /**
-   * Drops data tables from the data for all entities in a data package.
+   * Drops data tables from the database for all entities in a data package.
    * 
    * @param  dataPackage the data package whose tables are to be dropped
    * @return true if all data tables were successfully dropped, else false.

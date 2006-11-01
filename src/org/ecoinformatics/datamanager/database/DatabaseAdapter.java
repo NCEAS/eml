@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-26 23:02:58 $'
- *   '$Revision: 1.9 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-01 00:28:24 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -109,11 +109,11 @@ public abstract class DatabaseAdapter {
    */
   
   /**
-   * Create a sql command to generate table.
+   * Creates a sql command to generate table.
    * 
    * @param  attributeList   An AttributeList object holding the entity 
    *                         attributes.
-   * @param  tableName       The table name.
+   * @param  tableName       The name of the table to be generated
    * @return the DDL string. In the parent DatabaseAdapter class, the string is
    *                         empty.
    */
@@ -126,7 +126,7 @@ public abstract class DatabaseAdapter {
 
   
   /**
-   * Create a drop table sql command.
+   * Creates a drop table sql command.
    * 
    * @param  tableName       The name of the table to be dropped.
    * @return the SQL string. In the parent DatabaseAdapter class, the string is
@@ -219,11 +219,11 @@ public abstract class DatabaseAdapter {
 	  
 	  
   /**
-   * Create a SQL command to insert data. If some error happens, null will be
+   * Creates a SQL command to insert data. If some error happens, null will be
    * returned.
    * 
    * @param attributeList  AttributeList which will be inserted
-   * @param tableName      The name of the table which will be inserted into
+   * @param tableName      The name of the table which the data will be inserted into
    * @param oneRowData     The data vector which contains data to be inserted
    * @return A SQL String that can be run to insert one row of data into table
    */

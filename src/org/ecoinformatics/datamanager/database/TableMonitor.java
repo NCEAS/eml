@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-26 23:02:58 $'
- *   '$Revision: 1.12 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-01 00:28:24 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,7 +42,7 @@ import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.Entity;
 
-/*
+/**
  * TableMonitor monitors all data tables in the database. It stores information
  * about each table in a data table registry:
  *  
@@ -359,6 +359,8 @@ public class TableMonitor {
 
   /**
    * Frees up table space by dropping one or more old tables.
+   * @param  databaseHandler  the databaseHandler which will free space
+   * @return  the size of table which has been freed
    */
   public int freeTableSpace(DatabaseHandler databaseHandler)
           throws SQLException {
