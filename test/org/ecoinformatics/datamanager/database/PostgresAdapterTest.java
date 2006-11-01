@@ -41,7 +41,7 @@ public class PostgresAdapterTest extends TestCase
 	  }
 	  
 	  /**
-	   * Test a successful download process through http protocol
+	   * Tests generating insertSQL method
 	   */
 	  public void testgenerateInsertSQL()
 	  {
