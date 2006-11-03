@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-01 00:28:24 $'
- *   '$Revision: 1.16 $'
+ *       '$Date: 2006-11-03 23:17:09 $'
+ *   '$Revision: 1.17 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -55,7 +55,7 @@ public class DatabaseHandler
   /*
    * Class fields
    */
-  private static TableMonitor tableMonitor = null;
+  private TableMonitor tableMonitor = null;
   
   
   /*
@@ -99,7 +99,7 @@ public class DatabaseHandler
     /*
      * Construct a TableMonitor object and store it.
      */
-    DatabaseHandler.tableMonitor = new TableMonitor(dbConnection,
+    tableMonitor = new TableMonitor(dbConnection,
                                                     databaseAdapter);
   }
 
