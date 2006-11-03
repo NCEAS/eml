@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseConnectionPoolInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-03 00:22:58 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-11-03 01:00:13 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -48,7 +48,7 @@ public interface DatabaseConnectionPoolInterface
 	* @return checked out connection
     * @throws SQLException
     */
-   public Connection getConnection() throws SQLException;
+   public Connection getConnection() throws SQLException, ConnectionNotAvailableException;
    
    /**
     * Returns checked out dabase connection to the pool
