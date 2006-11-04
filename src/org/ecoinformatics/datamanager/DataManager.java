@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-01 00:28:24 $'
- *   '$Revision: 1.17 $'
+ *       '$Date: 2006-11-04 01:36:13 $'
+ *   '$Revision: 1.18 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -41,9 +41,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import edu.ucsb.nceas.utilities.Options;
 
+
+import org.ecoinformatics.datamanager.database.ConnectionNotAvailableException;
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
+import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.HSQLAdapter;
 import org.ecoinformatics.datamanager.database.OracleAdapter;
@@ -73,116 +75,58 @@ import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
  */
 public class DataManager {
   
-  /*
-   * Initializers
-   */
-  static {
-    loadOptions();
-  }
-
   
   /*
    * Class fields
    */
 
-  /* Configuration directory and file name for the properties file */
-  public static final String CONFIG_DIR = "lib/datamanager";
-  public static final String CONFIG_NAME = "datamanager.properties";
+ 
   
   /* Holds the singleton object for this class */
-  private static DataManager dataManager = new DataManager();
+  private static DataManager dataManager = null;
+  private static String databaseAdapterName = null;
+  private static DatabaseConnectionPoolInterface connectionPool = null;
   
-  private static String dbDriver; // e.g. "org.postgresql.Driver"
-  private static String dbURL; // e.g. "jdbc:postgresql://localhost/datamanager"
-  private static String dbUser;     // database username
-  private static String dbPassword; // database password
-  private static String databaseAdapterName;
-  private static Options options = null;
+  
+  // Constance
+  private static final int MAXMUMNU_NUMBER_TO_ACCESS_CONNECTIONPOOL = 10;
+  private static final int SLEEP_TIME = 2000;
+  
+ 
  
   
-  /*
-   * Instance fields
-   */
  
-
-  /*
-   * Constructors
-   */
-  
-  
-  /*
-   * Class methods
-   */
- 
-  /**
-   * Accessor method.
-   * 
-   * @return  dbDriver class field
-   */
-  public static String getDbDriver() {
-    return dbDriver;
-  }
-  
-  
-  /**
-   * Accessor method.
-   * 
-   * @return  dbURL class field
-   */
-  public static String getDbURL() {
-    return dbURL;
-  }
-  
-  
-  /**
-   * Accessor method.
-   * 
-   * @return  dbUser class field
-   */
-  public static String getDbUser() {
-    return dbUser;
-  }
-  
-  
-  /**
-   * Accessor method.
-   * 
-   * @return  dbPassword class field
-   */
-  public static String getDbPassword() {
-    return dbPassword;
-  }
-  
   
   /**
    * Gets the singleton instance of this class.
    * 
    * @return  the single instance of the DataManager class.
    */
-  static public DataManager getInstance() {
+  static public DataManager getInstance(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName) {
+	if (dataManager == null)
+	{
+		dataManager = new DataManager(connectionPool, databaseAdapterName);
+	}
+	else if (dataManager.databaseAdapterName != null && !dataManager.databaseAdapterName.equals(databaseAdapterName))
+	{
+		dataManager = new DataManager(connectionPool, databaseAdapterName);
+	}
+	
     return dataManager;
   }
   
-  
-  /**
-   * Loads Data Manager options from a configuration file.
+  /*
+   * This is singleton class, so constructor is private
    */
-  public static void loadOptions() {
-    String configDir = CONFIG_DIR;    
-    File propertyFile = new File(configDir, CONFIG_NAME);
-
-    try {
-      options = Options.initialize(propertyFile);
-      dbDriver = options.getOption("dbDriver");
-      dbURL = options.getOption("dbURL");
-      dbUser = options.getOption("dbUser");
-      dbPassword = options.getOption("dbPassword");
-      databaseAdapterName = options.getOption("dbAdapter");
-    } 
-    catch (IOException e) {
-      System.out.println("Error in loading options: " + e.getMessage());
-    }
+  
+  private DataManager(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName)
+  {
+	  this.connectionPool = connectionPool;
+	  this.databaseAdapterName = databaseAdapterName;
   }
+  
+  
+ 
   
   
   /*
@@ -317,10 +261,21 @@ public class DataManager {
           throws ClassNotFoundException, SQLException, Exception {
     boolean success;
     Connection conn = getConnection();
-    DatabaseHandler databaseHandler = 
-                                 new DatabaseHandler(conn, databaseAdapterName);
-    
-    success = databaseHandler.dropTables(dataPackage);
+    if (conn == null)
+    {
+    	throw new Exception("DBConnection is not available");
+    }
+    try
+    {
+	    DatabaseHandler databaseHandler = 
+	                                 new DatabaseHandler(conn, databaseAdapterName);
+	    
+	    success = databaseHandler.dropTables(dataPackage);
+    }
+    finally
+    {
+    	returnConnection(conn);
+    }
     
     return success;
   }
@@ -333,31 +288,54 @@ public class DataManager {
    * 
    * @return the Connection object which connects database
    */
-  public static Connection getConnection() 
+  /*public static Connection getConnection() 
         throws ClassNotFoundException, SQLException {
 	
-      Connection connection = null;
-      try {
-        Class.forName(DataManager.dbDriver);
-      } 
-      catch(java.lang.ClassNotFoundException e) {
-        System.err.print("ClassNotFoundException: "); 
-        System.err.println(e.getMessage());
-        throw(e);
-      }
-
-      try {
-        connection = DriverManager.getConnection(DataManager.dbURL, 
-                                                   DataManager.dbUser, 
-                                                   DataManager.dbPassword);
-      } 
-      catch(SQLException e) {
-        System.err.println("SQLException: " + e.getMessage());
-        throw(e);
-      }
-   
-    
-    return connection;
+     
+  }*/
+  
+  /*
+   * Gets DBConnection from connection pool. If no connection available, it will
+   * sleep and try again. If ceiling times reachs, null will return.
+   * 
+   */
+  private static Connection getConnection()
+  {
+	  Connection connection = null;
+	  int index = 0;
+	  while (index <MAXMUMNU_NUMBER_TO_ACCESS_CONNECTIONPOOL)
+	  {
+		  try
+		  {
+			  connection = connectionPool.getConnection();
+			  break;
+		  }
+		  catch (ConnectionNotAvailableException cna)
+		  {
+			  try
+			  {
+			     Thread.sleep(SLEEP_TIME);
+			  }
+			  catch(Exception e)
+			  {
+				 System.err.println("Error in DataManager.getConnection "+e.getMessage());
+			  }
+		  }
+		  catch (SQLException sql)
+		  {
+			  break;
+		  }
+		  index++;
+	  }
+	  return connection;
+  }
+  
+  /*
+   * Returns checked out connection to connection pool
+   */
+  private static void returnConnection(Connection connection)
+  {
+	  connectionPool.returnConnection(connection);
   }
   
 
@@ -369,6 +347,15 @@ public class DataManager {
   public static String getDatabaseAdapterName() {
     return databaseAdapterName;
   }
+  
+  /**
+   * Gets the object of the database connection pool
+   *  @retrun the object of dababase connection pool
+   */
+   public static DatabaseConnectionPoolInterface getDatabaseConnectionPool()
+   {
+	   return connectionPool;
+   }
 
 
   /**
@@ -405,18 +392,29 @@ public class DataManager {
   public boolean loadDataToDB(Entity entity) 
         throws ClassNotFoundException, SQLException, Exception {
     Connection conn = getConnection();
-    DatabaseHandler databaseHandler = new DatabaseHandler(conn, 
-                                                          databaseAdapterName);
-    boolean success;
-
-    // First, generate a table for the entity
-    success = databaseHandler.generateTable(entity);
-    
-    // If we have a table, then load the data for the entity.
-    if (success) {
-      success = databaseHandler.loadDataToDB(entity);
+    boolean success = false;
+    if (conn == null)
+    {
+    	throw new Exception("DBConnection is not available");
     }
-    
+    try
+    {
+	    DatabaseHandler databaseHandler = new DatabaseHandler(conn, 
+	                                                          databaseAdapterName);
+	    
+	
+	    // First, generate a table for the entity
+	    success = databaseHandler.generateTable(entity);
+	    
+	    // If we have a table, then load the data for the entity.
+	    if (success) {
+	      success = databaseHandler.loadDataToDB(entity);
+	    }
+    }
+    finally
+    {
+    	returnConnection(conn);
+    }
     return success;
   }
   
@@ -479,11 +477,21 @@ public class DataManager {
   public ResultSet selectData(String ANSISQL, DataPackage[] packages) 
         throws ClassNotFoundException, SQLException, Exception {
     Connection conn = getConnection();
+    if (conn == null)
+    {
+    	throw new Exception("DBConnection is not available");
+    }
     DatabaseHandler databaseHandler;
     ResultSet resultSet = null;
-    
-    databaseHandler = new DatabaseHandler(conn, databaseAdapterName);
-    resultSet = databaseHandler.selectData(ANSISQL, packages);
+    try
+    {
+      databaseHandler = new DatabaseHandler(conn, databaseAdapterName);
+      resultSet = databaseHandler.selectData(ANSISQL, packages);
+    }
+    finally
+    {
+    	returnConnection(conn);
+    }
     
     return resultSet;
   }
@@ -558,11 +566,22 @@ public class DataManager {
    */
   public void setDatabaseSize(int size) throws SQLException, ClassNotFoundException {
 	Connection connection = getConnection();
-	DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
-    TableMonitor tableMonitor = 
-                            new TableMonitor(connection, dbAdapter);
-    
-    tableMonitor.setDBSize(size);
+	if (connection == null)
+    {
+    	throw new SQLException("DBConnection is not available");
+    }
+	try
+	{
+		DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
+	    TableMonitor tableMonitor = 
+	                            new TableMonitor(connection, dbAdapter);
+	    
+	    tableMonitor.setDBSize(size);
+	}
+	finally
+	{
+		returnConnection(connection);
+	}
   }
   
   
@@ -581,10 +600,21 @@ public class DataManager {
   public void setTableExpirationPolicy(String tableName, int policy) 
         throws SQLException, ClassNotFoundException {
 	Connection connection = getConnection();
-	DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
-    TableMonitor tableMonitor = new TableMonitor(connection, dbAdapter);
+	if (connection == null)
+    {
+    	throw new SQLException("DBConnection is not available");
+    }
+	try
+	{
+	   DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
+       TableMonitor tableMonitor = new TableMonitor(connection, dbAdapter);
     
-    tableMonitor.setTableExpirationPolicy(tableName, policy);
+       tableMonitor.setTableExpirationPolicy(tableName, policy);
+	}
+	finally
+	{
+		returnConnection(connection);
+	}
   }
   
   
