@@ -9,6 +9,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterfaceTest;
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.download.DataStorageTest;
 import org.ecoinformatics.datamanager.parser.DataPackage;
@@ -90,7 +91,9 @@ public class DataManagerTest extends TestCase {
    */
   public void setUp() throws Exception {
     super.setUp();
-    dataManager = DataManager.getInstance();
+    DatabaseConnectionPoolInterfaceTest connectionPool = new DatabaseConnectionPoolInterfaceTest();
+    String dbAdapterName = connectionPool.getDBAdapterName();
+    dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
   }
   
   

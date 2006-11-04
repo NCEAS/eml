@@ -17,16 +17,7 @@ import org.ecoinformatics.datamanager.parser.Entity;
 
 public class TableMonitorTest extends TestCase {
 
-  /*
-   * Class fields
-   */
-
-  static final String dbDriver = DataManager.getDbDriver();
-  static final String dbURL = DataManager.getDbURL();
-  static final String dbUser = DataManager.getDbUser();
-  static final String dbPassword = DataManager.getDbPassword();
-  static final String dbAdapterName = DataManager.getDatabaseAdapterName();
-    
+ 
   
   /*
    * Instance fields
@@ -37,6 +28,8 @@ public class TableMonitorTest extends TestCase {
   private Entity entity               = null;
   private final String id             = "001";
   private final String entityName     = "testEntity";
+  private String dbAdapterName        = null;
+  private DatabaseConnectionPoolInterfaceTest connectionPool = null;
   
   // For testGetOldestTable(). Use an entity whose last usage date is
   // set to a very old date (near the start of the Unix epoch), and a second
@@ -114,38 +107,7 @@ public class TableMonitorTest extends TestCase {
   }
     
     
-  /**
-   * Gets the database connection object. If the dbConnection field hasn't
-   * already been initialized, creates a new connection and initializes the
-   * field.
-   * 
-   * @return
-   */
-  private Connection getConnection() 
-        throws ClassNotFoundException, SQLException {
-    if (dbConnection == null) {
-      try {
-        Class.forName(TableMonitorTest.dbDriver);
-      } 
-      catch(java.lang.ClassNotFoundException e) {
-        System.err.print("ClassNotFoundException: "); 
-        System.err.println(e.getMessage());
-        throw(e);
-      }
-
-      try {
-        dbConnection = DriverManager.getConnection(TableMonitorTest.dbURL, 
-                                                   TableMonitorTest.dbUser, 
-                                                   TableMonitorTest.dbPassword);
-      } 
-      catch(SQLException e) {
-        System.err.println("SQLException: " + e.getMessage());
-        throw(e);
-      }
-    }
-      
-    return dbConnection;
-  }
+ 
 
     
   /**
@@ -153,7 +115,9 @@ public class TableMonitorTest extends TestCase {
    */
   public void setUp() throws Exception {
     super.setUp();
-    dbConnection = getConnection();
+    connectionPool = new DatabaseConnectionPoolInterfaceTest();
+    dbConnection = connectionPool.getConnection();
+    dbAdapterName = connectionPool.getDBAdapterName();
 
     entity = new Entity(id, entityName, description,
                         caseSensitive, orientation, numRecords);

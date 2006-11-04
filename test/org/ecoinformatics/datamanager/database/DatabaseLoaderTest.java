@@ -29,7 +29,8 @@ public class DatabaseLoaderTest extends TestCase
 {
 	 private Entity entity = null;
 	 private String documentURL = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12103.2";
-	 String     dbAdaptor    = null;
+	 private String dbAdaptor = null;
+	 private DatabaseConnectionPoolInterfaceTest connectionPool = null;
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -37,8 +38,10 @@ public class DatabaseLoaderTest extends TestCase
 	  public DatabaseLoaderTest (String name) throws Exception
 	  {
 	    super(name);
-	    DataManager dataManager = DataManager.getInstance();
-	    dbAdaptor = DataManager.getDatabaseAdapterName();
+	    connectionPool = new DatabaseConnectionPoolInterfaceTest();
+	    dbAdaptor = connectionPool.getDBAdapterName();
+	    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdaptor);
+	    
 	    DataPackage dataPackage = null;
 	    InputStream metadataInputStream;
 	    URL url;
@@ -105,7 +108,7 @@ public class DatabaseLoaderTest extends TestCase
 		  //System.out.println("The identifier is ======================= "+identifier);
 		  DownloadHandler handler = DownloadHandler.getInstance(identifier);
 		  //System.out.println("here1");
-		  Connection dbConnection = DataManager.getConnection();
+		  Connection dbConnection = connectionPool.getConnection();
 		  DatabaseHandler databaseHandler = new DatabaseHandler(dbConnection, dbAdaptor);
 		  boolean success = databaseHandler.generateTable(entity);
 	      assertTrue("DatabaseHandler did not succeed in generating table", success);
@@ -135,7 +138,7 @@ public class DatabaseLoaderTest extends TestCase
 		  assertTrue(handler.isSuccess() == true);
 		  assertTrue(handler.isBusy() == false);
 		  String sql = "select column_1 from head_linedata where column_2=2;";
-		  Connection connection = DataManager.getConnection();
+		  Connection connection = connectionPool.getConnection();
 		  Statement statement = connection.createStatement();
 		  ResultSet result = statement.executeQuery(sql);
 		  boolean next = result.next();

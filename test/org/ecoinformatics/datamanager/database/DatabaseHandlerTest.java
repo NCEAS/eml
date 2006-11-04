@@ -21,15 +21,7 @@ import junit.framework.TestSuite;
 
 public class DatabaseHandlerTest extends TestCase {
 
-  /*
-   * Class fields
-   */
-
-  static final String dbDriver = DataManager.getDbDriver();
-  static final String dbURL = DataManager.getDbURL();
-  static final String dbUser = DataManager.getDbUser();
-  static final String dbPassword = DataManager.getDbPassword();
-  static final String dbAdapterName = DataManager.getDatabaseAdapterName();
+ 
 
   
   /*
@@ -38,6 +30,8 @@ public class DatabaseHandlerTest extends TestCase {
     
   private DatabaseHandler databaseHandler;  //An instance of object being tested
   private Connection dbConnection  = null;            // the database connection
+  private DatabaseConnectionPoolInterfaceTest connectionPool = null;
+  private String dbAdapterName = null;
   private final String TEST_DOCUMENT = "tao.12103.2";
   private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
   
@@ -89,38 +83,7 @@ public class DatabaseHandlerTest extends TestCase {
   }
     
     
-  /**
-   * Gets the database connection object. If the dbConnection field hasn't
-   * already been initialized, creates a new connection and initializes the
-   * field.
-   * 
-   * @return
-   */
-  private Connection getConnection() 
-        throws ClassNotFoundException, SQLException {
-    if (dbConnection == null) {
-      try {
-        Class.forName(DatabaseHandlerTest.dbDriver);
-      } 
-      catch(java.lang.ClassNotFoundException e) {
-        System.err.print("ClassNotFoundException: "); 
-        System.err.println(e.getMessage());
-        throw(e);
-      }
-
-      try {
-        dbConnection = DriverManager.getConnection(DatabaseHandlerTest.dbURL, 
-                                                DatabaseHandlerTest.dbUser, 
-                                                DatabaseHandlerTest.dbPassword);
-      } 
-      catch(SQLException e) {
-        System.err.println("SQLException: " + e.getMessage());
-        throw(e);
-      }
-    }
-      
-    return dbConnection;
-  }
+ 
 
     
   /**
@@ -128,7 +91,9 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void setUp() throws Exception {
     super.setUp();
-    dbConnection = getConnection();
+    connectionPool = new DatabaseConnectionPoolInterfaceTest();
+    dbConnection = connectionPool.getConnection();
+    dbAdapterName = connectionPool.getDBAdapterName();
     databaseHandler = new DatabaseHandler(dbConnection, dbAdapterName);
   }
     
@@ -158,7 +123,7 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testGenerateTable() 
          throws MalformedURLException, IOException, SQLException, Exception {
-    DataManager dataManager = DataManager.getInstance();
+    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
     String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -223,7 +188,7 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testDropTable() 
           throws IOException, MalformedURLException, SQLException, Exception {
-    DataManager dataManager = DataManager.getInstance();
+    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
     String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -287,7 +252,7 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testLoadDataToDB() throws IOException, MalformedURLException, SQLException, Exception
   {
-	  DataManager dataManager = DataManager.getInstance();
+	  DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 	    DataPackage dataPackage = null;
 	    InputStream metadataInputStream;
 	    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -340,7 +305,7 @@ public class DatabaseHandlerTest extends TestCase {
 	      boolean successLoadingData = databaseHandler.loadDataToDB(dataPackage);
 	      assertTrue("Couldn't load data, but it shoud be sucessful", successLoadingData);
 	      String sql = "select column_1 from head_linedata where column_2=2;";
-		  Connection connection = DataManager.getConnection();
+		  Connection connection = connectionPool.getConnection();
 		  Statement statement = connection.createStatement();
 		  ResultSet result = statement.executeQuery(sql);
 		  boolean next = result.next();
