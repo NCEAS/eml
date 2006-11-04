@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-20 18:46:15 $'
- *   '$Revision: 1.16 $'
+ *       '$Date: 2006-11-04 01:37:09 $'
+ *   '$Revision: 1.17 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -73,6 +73,10 @@ public class DownloadHandler implements Runnable
 	private static String ECOGRIDENDPOINT = null;
 	private static String SRBENDPOINT     = null;
 	private static String SRBMACHINE      = null;
+	
+	/* Configuration directory and file name for the properties file */
+    private static final String CONFIG_DIR = "lib/datamanager";
+    private static final String CONFIG_NAME = "datamanager.properties";
 	//protected DownloadHandler handler = null;
 	
 	/*
@@ -115,8 +119,8 @@ public class DownloadHandler implements Runnable
 	   * Loads Data Manager options from a configuration file.
 	   */
 	  private static void loadOptions() {
-	    String configDir = DataManager.CONFIG_DIR;    
-	    File propertyFile = new File(configDir, DataManager.CONFIG_NAME);
+	    String configDir = CONFIG_DIR;    
+	    File propertyFile = new File(configDir, CONFIG_NAME);
 
 	    try {
 	      option = Options.initialize(propertyFile);
