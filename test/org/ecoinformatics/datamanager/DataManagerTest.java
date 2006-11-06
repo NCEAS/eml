@@ -12,6 +12,7 @@ import junit.framework.TestSuite;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterfaceTest;
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.download.DataStorageTest;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 
 public class DataManagerTest extends TestCase {
@@ -26,6 +27,7 @@ public class DataManagerTest extends TestCase {
    */
   
   private DataManager dataManager;
+  private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
   
 //  private final String TEST_DOCUMENT = "knb-lter-mcm.7002.1";
 //  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
@@ -38,6 +40,7 @@ public class DataManagerTest extends TestCase {
   private final String TEST_DOCUMENT = "tao.12103.2";
   private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
   private final int ENTITY_NUMBER_EXPECTED = 1;
+  
   
   /*
    * Constructors
@@ -144,7 +147,7 @@ public class DataManagerTest extends TestCase {
     
     if (dataPackage != null) {
       testStorageList[0] = new DataStorageTest();
-      success = dataManager.downloadData(dataPackage, testStorageList);
+      success = dataManager.downloadData(dataPackage, endPointInfo,testStorageList);
     }
     
     /*
@@ -178,7 +181,7 @@ public class DataManagerTest extends TestCase {
       dataPackage = dataManager.parseMetadata(metadataInputStream);
       
       if (dataPackage != null) {
-        success = dataManager.loadDataToDB(dataPackage);
+        success = dataManager.loadDataToDB(dataPackage, endPointInfo);
         dataManager.dropTables(dataPackage);  // Clean-up test tables
       }
     }

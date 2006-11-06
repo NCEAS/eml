@@ -14,6 +14,7 @@ public class DownloadHandlerTest extends TestCase
 	private static final String CORRECTURL   = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=knb-lter-bes.14.3";
 	private static final String INCORRECTURL = "http://knb.ecoinformacs.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
 	private static final String CORRECTURL1   = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=knb-lter-arc.1424.1";
+	private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -103,7 +104,7 @@ public class DownloadHandlerTest extends TestCase
 	  private void testDownloadByThread(boolean success, String url, String identifier, boolean hasDataStorage)
 	  {
 		  
-		  DownloadHandler handler = DownloadHandler.getInstance(url);
+		  DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (hasDataStorage)
@@ -162,7 +163,7 @@ public class DownloadHandlerTest extends TestCase
 	  private void processDownloadHandlersWithSameUrl(String url)
 	  {
 		  
-		  DownloadHandler handler = DownloadHandler.getInstance(url);
+		  DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
      	  DataStorageTest[] list = new DataStorageTest[1];
@@ -176,7 +177,7 @@ public class DownloadHandlerTest extends TestCase
 		  //System.out.println("here3");
 		  downloadThread.start();
 		  // start the second handler
-		  DownloadHandler handler2 = DownloadHandler.getInstance(url);
+		  DownloadHandler handler2 = DownloadHandler.getInstance(url, endPointInfo);
 		  handler2.setDataStorageCladdList(list);
 		  Thread downloadThread2 = new Thread(handler2);
 		  downloadThread2.start();
@@ -252,8 +253,8 @@ public class DownloadHandlerTest extends TestCase
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
-		  DownloadHandler handler = DownloadHandler.getInstance(url);
-		  DownloadHandler handler1 = DownloadHandler.getInstance(url);
+		  DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
+		  DownloadHandler handler1 = DownloadHandler.getInstance(url, endPointInfo);
 		  boolean result1 = handler.download(list);
 		  boolean result2 = handler1.download(list);
 		  assertTrue(result1 == true);
@@ -267,7 +268,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  private void testDownloadMethod(boolean success, String url) throws Exception
 	  {
-		  DownloadHandler handler = DownloadHandler.getInstance(url);
+		  DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;

@@ -5,6 +5,7 @@ import junit.framework.TestSuite;
 
 public class TarDataHandlerTest extends TestCase
 {
+	private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -81,7 +82,7 @@ public class TarDataHandlerTest extends TestCase
 	  private void testDownloadByThread(boolean success, String url, String identifier)
 	  {
 		  
-		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  if (success)
@@ -132,7 +133,7 @@ public class TarDataHandlerTest extends TestCase
 	   */
 	  private void testDownloadMethod(boolean success, String url) throws Exception
 	  {
-		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;

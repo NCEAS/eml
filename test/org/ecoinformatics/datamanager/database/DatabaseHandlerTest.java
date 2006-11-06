@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.ecoinformatics.datamanager.DataManager;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -252,7 +253,8 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testLoadDataToDB() throws IOException, MalformedURLException, SQLException, Exception
   {
-	  DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
+	    EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
+	    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 	    DataPackage dataPackage = null;
 	    InputStream metadataInputStream;
 	    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -302,7 +304,7 @@ public class DatabaseHandlerTest extends TestCase {
 	      assertTrue("Could not find table " + tableName +" but it should be in db", 
 	                 isPresent);
 	      
-	      boolean successLoadingData = databaseHandler.loadDataToDB(dataPackage);
+	      boolean successLoadingData = databaseHandler.loadDataToDB(dataPackage, endPointInfo);
 	      assertTrue("Couldn't load data, but it shoud be sucessful", successLoadingData);
 	      String sql = "select column_1 from head_linedata where column_2=2;";
 		  Connection connection = connectionPool.getConnection();

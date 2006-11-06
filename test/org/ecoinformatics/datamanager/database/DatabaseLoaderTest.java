@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
@@ -30,6 +31,7 @@ public class DatabaseLoaderTest extends TestCase
 	 private Entity entity = null;
 	 private String documentURL = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12103.2";
 	 private String dbAdaptor = null;
+	 private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
 	 private DatabaseConnectionPoolInterfaceTest connectionPool = null;
 	/**
 	 * Constructor 
@@ -106,7 +108,7 @@ public class DatabaseLoaderTest extends TestCase
 		  
 		  String identifier = entity.getEntityIdentifier();
 		  //System.out.println("The identifier is ======================= "+identifier);
-		  DownloadHandler handler = DownloadHandler.getInstance(identifier);
+		  DownloadHandler handler = DownloadHandler.getInstance(identifier, endPointInfo);
 		  //System.out.println("here1");
 		  Connection dbConnection = connectionPool.getConnection();
 		  DatabaseHandler databaseHandler = new DatabaseHandler(dbConnection, dbAdaptor);

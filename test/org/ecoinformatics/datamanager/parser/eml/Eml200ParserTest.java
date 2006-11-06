@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
 import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
@@ -74,6 +75,7 @@ public class Eml200ParserTest extends TestCase
    */
   public void testParse() throws Exception
   {
+	  EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
 	  File emlFile = new File(EMLSAMPLELOCATION);
 	  FileInputStream emlStream = new FileInputStream(emlFile);
 	  Eml200Parser parser = new Eml200Parser();
@@ -122,7 +124,7 @@ public class Eml200ParserTest extends TestCase
       boolean hasTar = entity.getHasTarDataFile();
 	  assertTrue(hasTar == false);
 
-      DownloadHandler handler = entity.getDownloadHandler();
+      DownloadHandler handler = entity.getDownloadHandler(endPointInfo);
 	  boolean isObjectOfDownloadHandler = handler instanceof DownloadHandler;
 	  assertTrue( isObjectOfDownloadHandler == true);
 
