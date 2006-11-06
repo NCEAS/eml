@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseConnectionPoolInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-03 01:00:13 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-11-06 18:56:14 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -56,4 +56,10 @@ public interface DatabaseConnectionPoolInterface
     * @return indicator if the connection was returned successfully
     */
    public boolean returnConnection(Connection conn);
+   
+   /**
+    * Get dabase adpater name.
+    * @return database adapter name
+    */
+   public String getDBAdapterName();
 }
