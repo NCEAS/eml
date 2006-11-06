@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TextComplexFormatDataReader.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-06 21:18:34 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,6 +45,7 @@ import org.ecoinformatics.datamanager.parser.TextWidthFixedDataFormat;
 
 /**
  * @author tao
+ * 
  * This class will read a data inputstream and split them into a row vectors base
  * on the given ComplexDataFormat array. This class have a public method -
  * getRowVector.After reach the end of stream, empty vector 
@@ -54,6 +55,23 @@ import org.ecoinformatics.datamanager.parser.TextWidthFixedDataFormat;
  */
 public class TextComplexFormatDataReader extends TextDataReader
 {
+   /*
+    * Class fields
+    */
+  
+   /*private static Log log;
+  
+   static {
+      log = LogFactory.getLog( "org.kepler.objectmanager.data.text.TextComplexFormatDataReader" );
+   }*/
+
+   //constants
+   public static final String DEFAULTVALUE = "";
+  
+   
+   /*
+    * Instance fields
+    */
    private InputStream dataStream = null;
    private Entity entity = null;
    private boolean stripHeader = true;
@@ -64,33 +82,35 @@ public class TextComplexFormatDataReader extends TextDataReader
    private int physicalLineDelimiterLength = 0;
    private int headLineNumberCount = 0;
    
-   /*private static Log log;
    
-   static {
- 	  log = LogFactory.getLog( "org.kepler.objectmanager.data.text.TextComplexFormatDataReader" );
-   }*/
-
-   //constants
-   public static final String DEFAULTVALUE = "";
+   /*
+    * Constructors
+    */
    
    /**
-    * Consturctor with default stripHeader value - true
-    * @param dataStream
-    * @param entity
+    * Consturctor with default stripHeader value - true.
+    * 
+    * @param dataStream  the data input stream
+    * @param enity       the entity metadata to describe the data stream
     */
-   public TextComplexFormatDataReader(InputStream dataStream, Entity entity) throws Exception
+   public TextComplexFormatDataReader(InputStream dataStream, Entity entity) 
+           throws Exception
    {
       this(dataStream, entity, true);
    }
    
+   
    /**
-    * Constructor with assigned stripHeader value
+    * Constructor with assigned stripHeader value.
+    * 
     * @param dataStream  the data input stream
     * @param enity       the entity metadata to describe the data stream
     * @param stripHeader if strip header when we hand read the input stream
     */
    public TextComplexFormatDataReader(InputStream dataStream, 
-                                     Entity entity, boolean stripHeader) throws Exception
+                                      Entity entity, 
+                                      boolean stripHeader) 
+           throws Exception
    {
        if (dataStream == null || entity == null)
        {
@@ -103,13 +123,15 @@ public class TextComplexFormatDataReader extends TextDataReader
      
    }
    
+   
    /*
     * Method to set up other parameter will be used in the reader.
-    * Sucha as numberOfArributes, physicalLineDelimiter. 
+    * Such as numberOfArributes, physicalLineDelimiter. 
     */
    private void getParameterFromEntity() throws Exception
    {
        Attribute[] attributeList = entity.getAttributes();
+       
        if (attributeList == null)
        {
            throw new Exception("Attribute in entity metadata is null");
@@ -120,6 +142,7 @@ public class TextComplexFormatDataReader extends TextDataReader
        }
        
        numberOfHeaderLines = entity.getNumHeaderLines();
+       
        if (numberOfHeaderLines == -1)
        {
            numberOfHeaderLines = 0;
@@ -128,15 +151,18 @@ public class TextComplexFormatDataReader extends TextDataReader
        //physicalLineDelmiter will get from physicalDelimiter elements
        // if no physicalDelimiter element, we will try record delimter
        physicalLineDelimiter = entity.getPhysicalLineDelimiter();
+       
        if (physicalLineDelimiter == null )
        {
            physicalLineDelimiter = entity.getRecordDelimiter();
        }
+       
        physicalLineDelimiter = 
                    DelimitedReader.unescapeDelimiter(physicalLineDelimiter);
        physicalLineDelimiterLength = physicalLineDelimiter.length();
        
        formats = entity.getDataFormatArray();
+       
        if (formats == null)
        {
            throw new Exception("Complext format is null in metadata entity");
@@ -144,6 +170,7 @@ public class TextComplexFormatDataReader extends TextDataReader
        else
        {
            int length = formats.length;
+           
            if (length != numberOfAttirbute)
            {
                throw new Exception("Complex formats should have same number as attribute number"); 
@@ -151,12 +178,14 @@ public class TextComplexFormatDataReader extends TextDataReader
        }
    }
    
+   
    /**
-    * This method will read one row from inputstream and return a data vector which element is String
-    * and the value is field data. After reach the end of stream, empty vector 
-    * will be returned. So this method can be iterated by a while loop until
-    * a empty vector hited. During the iteration, every data in the stream will
-    * be pulled out.
+    * This method will read one row from inputstream and return a data vector 
+    * which element is String and the value is field data. After reach the end 
+    * of stream, empty vector will be returned. So this method can be iterated 
+    * by a while loop until a empty vector hited. During the iteration, every 
+    * data in the stream will be pulled out.
+    * 
     * @return Vector
     */
    public Vector getOneRowDataVector() throws Exception
@@ -220,16 +249,19 @@ public class TextComplexFormatDataReader extends TextDataReader
                   }
                   else if (format instanceof TextWidthFixedDataFormat)
                   {
-                     TextWidthFixedDataFormat widthFormat = (TextWidthFixedDataFormat) format;
+                     TextWidthFixedDataFormat widthFormat = 
+                                              (TextWidthFixedDataFormat) format;
                      width = widthFormat.getFieldWidth();
-                     startColumnNumberFromFormat = widthFormat.getFieldStartColumn();
+                     startColumnNumberFromFormat = 
+                                              widthFormat.getFieldStartColumn();
                      isWidthFix = true;
                      startWidthCount = false;
 
                    }
                    else if (format instanceof TextDelimitedDataFormat)
                    {
-                      TextDelimitedDataFormat delimitedFormat = (TextDelimitedDataFormat) format;
+                      TextDelimitedDataFormat delimitedFormat = 
+                                               (TextDelimitedDataFormat) format;
                       fieldDelimiter = delimitedFormat.getFieldDelimiter();
                       isWidthFix = false;
                    }
@@ -238,7 +270,8 @@ public class TextComplexFormatDataReader extends TextDataReader
                if (isWidthFix)
                {
                   // find start cloumn if metadata specify it
-                  if (startColumnNumberFromFormat != -1 && startColumnNumberFromFormat == columnCount)
+                  if (startColumnNumberFromFormat != -1 && 
+                      startColumnNumberFromFormat == columnCount)
                   {
                       fieldValueBuffer = new StringBuffer();
                       fieldValueBuffer.append(charactor);
@@ -274,7 +307,8 @@ public class TextComplexFormatDataReader extends TextDataReader
                    if (fieldValueBuffer.toString().endsWith(fieldDelimiter))
                    {
                        String value = fieldValueBuffer.toString();
-                       value = value.substring(0, value.length() - fieldDelimiter.length());
+                       value = value.substring(0, value.length() - 
+                               fieldDelimiter.length());
                        //log.debug("Add delimited attribute value " + value +
                        //        " to the vector" );
                        oneRowDataVector.add(value.trim());
@@ -287,14 +321,16 @@ public class TextComplexFormatDataReader extends TextDataReader
                columnCount++;
                
                // reset columnCount to 1 when hit a physical line delimiter
-               if (lineDelimiterBuffer.length() == physicalLineDelimiterLength && 
-                       lineDelimiterBuffer.toString().equals(physicalLineDelimiter))
+               if (lineDelimiterBuffer.length() == physicalLineDelimiterLength 
+                   && 
+                   lineDelimiterBuffer.toString().equals(physicalLineDelimiter))
                {
                    //reset the delimiter buffer
                    lineDelimiterBuffer = new StringBuffer();
                    columnCount = 1;
                }
-               else if (lineDelimiterBuffer.length() == physicalLineDelimiterLength)
+               else if 
+                   (lineDelimiterBuffer.length() == physicalLineDelimiterLength)
                {
                    // reset the delimiter buffer
                    lineDelimiterBuffer = new StringBuffer();
@@ -306,55 +342,68 @@ public class TextComplexFormatDataReader extends TextDataReader
                    break;
                }
            }
+           
            singleCharactor = dataStream.read();
          }
-       
      }
-     // if row vector is not empty and its length less than number of attribute,
-     // we should add "" string to make its' length equals attribute length;
-     if (! oneRowDataVector.isEmpty() && oneRowDataVector.size() <  numberOfAttirbute)
+     
+     // if row vector is not empty and its length less than number of 
+     // attributes, we should add "" string to make its length equal to
+     // the attribute length.
+     if (! oneRowDataVector.isEmpty() && 
+           oneRowDataVector.size() <  numberOfAttirbute)
      {
          int size = oneRowDataVector.size();
+         
          for (int i = size ; i< numberOfAttirbute; i++)
          {
              oneRowDataVector.add(DEFAULTVALUE);
          }
      }
+     
      return oneRowDataVector;
    }
   
-  
+   
     /**
-     * @return Returns the dataStream.
+     * @return Returns the dataStream field.
      */
     public InputStream getDataStream()
     {
         return dataStream;
     }
 
+    
     /**
-     * @param dataStream
-     *            The dataStream to set.
+     * Sets the dataStream field to a given input stream.
+     * 
+     * @param dataStream The InputStream value to set.
      */
     public void setDataStream(InputStream dataStream)
     {
         this.dataStream = dataStream;
     }
 
+    
     /**
-     * @return Returns the entity.
+     * Gets the value of the entity field.
+     * 
+     * @return Returns the entity field.
      */
     public Entity getEntity()
     {
         return entity;
     }
 
+    
     /**
-     * @param entity
-     *            The entity to set.
+     * Sets the value of the entity field to the specified Entity object.
+     * 
+     * @param entity  The Entity value to set.
      */
     public void setEntity(Entity entity)
     {
         this.entity = entity;
     }
+    
 }

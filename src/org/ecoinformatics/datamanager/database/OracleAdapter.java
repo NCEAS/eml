@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: OracleAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-10-24 23:46:58 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-06 21:18:34 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,55 +40,70 @@ import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Domain;
 import org.ecoinformatics.datamanager.parser.NumericDomain;
 
+/**
+ * This class extends the DatabaseAdapter class for the Oracle database.
+ * 
+ * @author tao
+ *
+ */
 public class OracleAdapter extends DatabaseAdapter {
+  
+  /*
+   * Instance methods
+   */
 
   /**
-	 * Create a sql command to generate table
+   * Create a sql command to generate table based on attributeList 
+   * information and table. (Not yet implemented)
    * 
-	 * @param attributeList
-	 * @param tableName
-	 * @return
-	 */
+   * @param attributeList    The AttributeList object that determines the 
+   *                         fields in the table.
+   * @param tableName        The table name String.
+   * @return                 A String holding the DDL that can be executed
+   *                         to create the table in the database.
+   */
 	public String generateDDL(AttributeList attributeList , String tableName)
 	{
 		return null;
 	}
 	
 
-  /**
-   * Create a drop table sql command
-   * 
-   * @param tableName
-   * @return
-   */
-  public String generateDropTableSQL(String tableName)
-  {
-    return null;
-  }
+    /**
+     * Create a drop table sql command. (Not yet implemented)
+     * 
+     * @param   tableName   the name of the table to be dropped
+     * @return  a String holding the SQL which can be executed to drop the table
+     */
+    public String generateDropTableSQL(String tableName)
+    {
+      return null;
+    }
   
 
-  /**
-	 * Create a sql command to insert data
-   * 
-	 * @param attributeList
-	 * @param tableName
-	 * @param oneRowData
-	 * @return
-	 */
+    /**
+     * Create a sql command to insert data. (Not yet implemented)
+     * 
+     * @param attributeList  The AttributeList holding the table fields
+     * @param tableName      The table name
+     * @param oneRowData     The values to be inserted
+     * @return
+     */
 	public String generateInsertSQL(AttributeList attributeList, 
-                                  String tableName , 
-                                  Vector oneRowData)
+                                    String tableName , 
+                                    Vector oneRowData)
 	{
 		return null;
 	}
 	
 
   
-  /*
-	 * Gets attribute type for a given attribute. Attribute types include
-	 * text, numeric and et al.
-	 * 
-	 */
+    /**
+     * Gets attribute type for a given attribute. Attribute types include
+     * text, numeric and et al.
+     * 
+     * @param   attribute  the Attribute whose type we are getting
+     * @return  the attribute type, a String
+     */
 	 protected String getAttributeType(Attribute attribute) {
 		    String attributeType = "string";
 		    Domain domain = attribute.getDomain();
@@ -108,8 +123,9 @@ public class OracleAdapter extends DatabaseAdapter {
 		    
 		    System.out.println("  attributeType:  " + attributeType);
 		    return attributeType;
-		  }
-		  
+     }
+		
+     
 	 /*
 	  * Gets the Oracle database type base on attribute type. 
 	  */
@@ -129,23 +145,25 @@ public class OracleAdapter extends DatabaseAdapter {
 	  }
 
 
-
-   /**
-	* Transform ANSI selection sql to a native db sql command
-    * 
-	* @param ANSISQL
-	* @return
-	*/
+    /**
+     * Transform ANSI selection sql to a native db sql command. Not yet
+     * implemented.
+     * 
+     * @param ANSISQL The ANSI selection SQL string.
+     * @return A String holding the native SQL command.
+     */
 	public String transformSelectionSQL(String ANSISQL)
 	{
 		return null;
 	}
 	
-	/**
-	 * Get the sql command to count how many rows in a given table
-	 * @param tableName  the given table name
-	 * @return the sql string which can count how many rows
-	 */
+    
+    /**
+     * Gets the sql command to count how many rows in a given table.
+     * 
+     * @param tableName  the given table name
+     * @return the sql string which can count how many rows
+     */
 	 public String getCountingRowNumberSQL(String tableName)
 	 {
 		  String selectString = "SELECT COUNT(*) FROM " + tableName;

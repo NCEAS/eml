@@ -18,7 +18,7 @@ import org.ecoinformatics.datamanager.parser.Entity;
 /**
  * This class implments the DataStorageInterface to load data into db.
  * In this class, PipedOutputStream and PipedInputStream are used in order
- * to remove temporary files.
+ * to eliminate the need to use temporary files on disk.
  * 
  * @author Jing Tao
  *
@@ -193,7 +193,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
   /**
    * Reads the data from PipedInputStream which connects the PipedOutputStream
    * which was returned to DownloadHandler. The read data will be loaded into 
-   * db. This is real procedure to load data into db.
+   * db. This is the real procedure to load data into db.
    */
   public void run() {
     // System.out.println("====================== start load data into db");

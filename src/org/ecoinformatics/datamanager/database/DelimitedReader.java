@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DelimitedReader.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-06 21:18:34 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,6 +45,11 @@ import java.util.Vector;
  */
 public class DelimitedReader extends TextDataReader
 {
+  
+  /*
+   * Instance fields
+   */
+  
   private String data;
   private InputStreamReader dataReader;
   private Vector[] lines;
@@ -52,11 +57,11 @@ public class DelimitedReader extends TextDataReader
   private int numHeaderLines;
   private int numRecords;
   private boolean stripHeader = false;
-  private int currentRecord = 0;
+  //private int currentRecord = 0;
   private int numCols;
   private String delimiter;
   private String lineEnding;
-  private boolean collapseDilimiter = false;
+  private boolean collapseDelimiter = false;
   private int numFooterLines = 0;
   private Vector footerBuffer = new Vector();
   private boolean initializedFooterBuffer = false;
@@ -67,18 +72,26 @@ public class DelimitedReader extends TextDataReader
   static {
 	  log = LogFactory.getLog("org.ecoinformatics.util.DelimitedReader");
   }*/
+  
+  
+  /*
+   * Constructors
+   */
 
   /**
-   * constructor. reads the csv stream.
-   * @param delimString the delimited stream to read
-   * @param numCols the number of columns in the stream
-   * @param delimiter the delimiter to tokenize on
+   * Constructor. Reads the csv (comma-separated values) stream.
+   * 
+   * @param data           the delimited stream to read as a string
+   * @param numCols        the number of columns in the stream
+   * @param delimiter      the delimiter string to tokenize on
    * @param numHeaderLines the number of lines to skip at the top of the file
-   * @param lineEnding the line ending char(s)...either "\n"lo (unix),
-   * "\r\n" (windoze) or "\r" (mac)
+   * @param lineEnding     the line ending char(s)...either "\n" (Unix),
+   *                       "\r\n" (Windows) or "\r" (Mac)
+   * @param numRecords     the number of rows in the data string
    */
   public DelimitedReader(String data, int numCols, String delimiter,
-    int numHeaderLines, String lineEnding, int numRecords) throws Exception
+                         int numHeaderLines, String lineEnding, int numRecords) 
+          throws Exception
   {
     this.numHeaderLines = numHeaderLines;
     this.data = data;
@@ -95,26 +108,31 @@ public class DelimitedReader extends TextDataReader
     int begin = 0;
     int end = 0;
 //    int i = 0;
+    
     while(end < data.length())
     { //add each line of the string as an element in a vector
       end = data.indexOf(this.lineEnding, begin); //DFH 'this.' added
+      
       if(end == -1)
       {
         end = data.length();
       }
+      
       String line = data.substring(begin, end);
+      
       if(!line.trim().equals(""))
       {
         //take off the line ending
-        // MBJ: I commented out the next line as it was improperly truncating lines
-        // I'm not sure why it was there in the first place, as the previous substring
-        // removed the delimiter
+        // MBJ: I commented out the next line as it was improperly truncating 
+        // lines. I'm not sure why it was there in the first place, as the 
+        // previous substring removed the delimiter
         //line = line.substring(0, line.length() - lineEnding.length());
 
         //split the line based on the delimiter
         Vector v = splitDelimitedRowStringIntoVector(line);
         /*String[] s = line.split(delimiter.trim(), numCols);
         Vector v = new Vector();
+        
         for(int j=0; j<s.length; j++)
         {
           v.addElement(s[j]);
@@ -129,20 +147,25 @@ public class DelimitedReader extends TextDataReader
             v.addElement("");
           }
         }*/
+        
         //lines[i] = v;
         linesVector.add(v);
 //        i++;
       }
+      
       //go to the next line
       begin = end + this.lineEnding.length();   //DFH  'this.' added
     }
     
     int records = linesVector.size();
+    
     if (records != this.numRecords) {
         this.numRecords = records;
         //log.warn("Metadata disagrees with actual data. Changing number of records to: " + records);
     }
+    
     lines = new Vector[records];
+    
     for (int k=0; k < records; k++) {
         lines[k] = (Vector)linesVector.get(k);
     }
@@ -158,17 +181,22 @@ public class DelimitedReader extends TextDataReader
     
   }
   
+  
   /**
-   * This constructor will read delimitered data from stream rather a string
-   * @param dataStream InputStream  The input stream
-   * @param numCols int  the number of columns
-   * @param delimiter String  delimiter the delimiter to tokenize on
-   * @param numHeaderLines int numHeaderLines the number of lines to skip at the top of the file
-   * @param lineEnding String  lineEnding the line ending char(s)...either "\n" (unix),"\r\n" (windoze) or "\r" (mac)
-   * @param numRecords int number of rows in the input stream
+   * This constructor will read delimited data from stream rather a string.
+   * 
+   * @param dataStream     InputStream  The input stream
+   * @param numCols        int the number of columns
+   * @param delimiter      String the delimiter to tokenize on
+   * @param numHeaderLines int numHeaderLines the number of lines to skip at the
+   *                       top of the file
+   * @param lineEnding     String lineEnding the line ending char(s)...either 
+   *                       "\n" (Unix),"\r\n" (Windows) or "\r" (Mac)
+   * @param numRecords     int number of rows in the input stream
    */
   public DelimitedReader(InputStream dataStream, int numCols, String delimiter,
-    int numHeaderLines, String lineEnding, int numRecords, boolean stripHeader)
+                         int numHeaderLines, String lineEnding, int numRecords, 
+                         boolean stripHeader)
   {
     this.dataReader = new InputStreamReader(dataStream);
     this.numHeaderLines = numHeaderLines;
@@ -181,273 +209,15 @@ public class DelimitedReader extends TextDataReader
     this.stripHeader = stripHeader;
 
   }
- 
- /**
-  * Method to set up data stream as source
-  * @param dataStream InputStream
-  */
-  public void setInputStream(InputStream dataStream)
-  {
-    this.dataReader = new InputStreamReader(dataStream);
-  }
   
-  /**
-   * Method to set up collapseDelimiter. If it is yes, consecutive dilimiters will be
-   * consider as single dilimiter.
-   * @param collapseDelimiter
-   */
-  public void setCollapseDelimiter(boolean collapseDelimiter)
-  {
-	  this.collapseDilimiter = collapseDelimiter;
-  }
-  
-  /**
-   * Set up the footer line number.
-   * @param numFooterLines
-   */
-  public void setNumFooterLines(int numFooterLines)
-  {
-	  this.numFooterLines = numFooterLines;
-  }
-  /**
-   * This method is from data source as a input stream
-   * This method will read one row from and return a data vector which element is String
-   * and the value is field data. After reach the end of stream, empty vector 
-   * will be returned. So this method can be iterated by a while loop until
-   * a empty vector hited. During the iteration, every data in the stream will
-   * be pulled out.
-   * @return Vector
-   */
-  public Vector getOneRowDataVector() throws Exception
-  {
-	 //System.out.println("the numFootLines is "+numFooterLines);
-	 if (!initializedFooterBuffer)
-	 {
-		 for (int i=0; i< numFooterLines; i++)
-		 {
-			 //System.out.println("the initialize with footer lines");
-			 String rowData = readOneRowDataString();
-			 //System.out.println("the data vector in initailize is "+rowData.toString());
-			 footerBuffer.add(rowData);
-		 }
-		 // this is for no footer lines
-		 if (numFooterLines == 0)
-		 {
-			 //System.out.println("the initialize without footer lines");
-			 String rowData = readOneRowDataString();
-			 //System.out.println("The initial buffere vector is "+rowData.toString());
-			 footerBuffer.add(rowData);
-		 }
-		 initializedFooterBuffer = true;
-	 }
-	 String nextRowData = readOneRowDataString();
-	 //System.out.println("the row string data from next row "+nextRowData.toString());
-     String oneRowDataString = null;
-     Vector oneRowDataVector = new Vector();
-     
-     if (nextRowData != null)
-     {
-    	 //System.out.println("before nextRowData is empty and nextRowData is "+nextRowData.toString());
-    	 oneRowDataString = (String)footerBuffer.remove(0);
-         reIndexFooterBufferVector();
-    	 footerBuffer.add(nextRowData);
-     }
-     else if (numFooterLines==0 && !footerBuffer.isEmpty())
-     {
-    	 //System.out.println("find the last line in fottlines num is 0!!!!!!!!");
-    	 oneRowDataString = (String)footerBuffer.remove(0);
-     }
-     //System.out.println("helere!!!");
-     if (oneRowDataString != null)
-	 {
-	      //log.debug("in dataReader is not null");
-	      oneRowDataVector = splitDelimitedRowStringIntoVector(oneRowDataString);
-	 }
-     //System.out.println("the row data from buffer "+oneRowDataVector.toString());
-     return oneRowDataVector;
-  }
   
   /*
-   * This method will read a row data from vector. It
-   * discard the head lines. but it doesn't dsicard footer lines
-   * This method will be called by getRowDataVectorFromStream
+   * Class methods
    */
-  private String readOneRowDataString()
-  {
-	    //Vector oneRowDataVector = new Vector();
-	    StringBuffer rowData = new StringBuffer();
-	    String rowDataString = null;
-	    int singleCharactor = -2;
-	    
-	    if (dataReader != null)
-	    {
-	      //log.debug("in dataReader is not null");
-	      try
-	      {
-	        while (singleCharactor != -1)
-	        {
-	          //log.debug("in singleCharactor is not null");
-	          singleCharactor = dataReader.read();
-	          char charactor = (char)singleCharactor;
-	          rowData.append(charactor);
-	          // find string - line ending in the row data
-	          if (rowData.indexOf(lineEnding) != -1)
-	          {
-	        	//log.debug("found line ending");
-	            // strip the header lines
-	            if (stripHeader && numHeaderLines >0 && headLineNumberCount < numHeaderLines)
-	            {
-	               // reset string buffer(descard the header line)
-	               rowData = null;
-	               rowData = new StringBuffer();
-	               
-	            }
-	            else
-	            {
-	              rowDataString = rowData.toString();
-	              //log.debug("The row data is " + rowDataString);
-	              break;
-	            }
-	            headLineNumberCount++;
-	          }
-	        }
-	      }
-	      catch (Exception e)
-	      {
-	        //log.debug("Couldn't read data from input stream");
-	        rowData = new StringBuffer();
-	      }
-	    }
-	    //System.out.println("the row data before reutrn is "+rowDataString);
-	    return rowDataString;
-  }
-  
-  /*
-   * This method will forward one index for every element, 1 -> 0, 2->1
-   */
-  private void reIndexFooterBufferVector()
-  {
-	  for (int i=0; i<numFooterLines-2; i++)
-	  {
-		  Vector element = (Vector)footerBuffer.elementAt(i+1);
-		  footerBuffer.add(i, element);
-	  }
-  }
-  
-  /*
-   * This method will read a delimitered string and put a delimitered part into
-   * an element in a vector. If the vector size is less than the column number
-   * empty string will be added.
-   */
-  private Vector splitDelimitedRowStringIntoVector(String data) throws Exception
-  {
-    Vector result = new Vector();
-    if (data == null)
-    {
-      return result;
-    }
-    String[] s = null;
-    if (!collapseDilimiter)
-    {
-    	s = data.split(delimiter);
-    }
-    else
-    {
-    	String newDelimiterWithRegExpress = delimiter+"+";
-    	s = data.split(newDelimiterWithRegExpress);
-    	
-    }
-    
-    
-    if( s != null)
-    {
-    	int columnCounter = s.length;
-    	if ( columnCounter > numCols)
-    	{
-    		throw new Exception("Metadata sees data has "+ numCols +
-    				            "columns but actually data has "+columnCounter+
-    				            "columns. Please make sure metadata is correct!");
-    	}
-        for (int j = 0; j < s.length; j++) 
-        {
-          
-          if (s[j] != null)
-          {
-            result.addElement(s[j].trim());
-          }
-          else
-          {
-              result.addElement("");
-          }
-        }
-        //add any elements that aren't there so that all the records have the
-        //same number of cols
-        if (result.size() < numCols) 
-        {
-          int vsize = result.size();
-          for (int j = 0; j < numCols - vsize; j++) 
-          {
-            result.addElement("");
-          }
-        }
-    }
-    return result;
-  }
-  
-  
   
   /**
-   * returns the data as an array of vectors.  each vector will have the same
-   * number of elements as there are columns in the data.
-   * @param stripHeaderLines true if the header lines should not be included
-   * in the returned data, false otherwise
-   */
-  public Vector[] getTokenizedData(boolean stripHeaderLines)
-  {
-    if(stripHeaderLines)
-    {
-      Vector[] strip = null;
-      if (numRecords > numHeaderLines)
-      {
-        strip = new Vector[numRecords-numHeaderLines];
-        for(int i=numHeaderLines; i<lines.length; i++)
-        {
-          strip[i-numHeaderLines] = lines[i];
-        }
-      }
-      return strip;
-    }
-    else
-    {
-      return lines;
-    }
-  }
-
-  /**
-   * returns a string representation of the data
-   */
-  public String toString()
-  {
-    StringBuffer sb = new StringBuffer();
-    for(int i=0; i<lines.length; i++)
-    {
-      //log.debug("line[" + (i + 1) + "]: " + lines[i].toString());
-      for(int j=0; j<lines[i].size(); j++)
-      {
-        sb.append((String)lines[i].elementAt(j));
-        if(j != lines[i].size() - 1)
-        {
-          sb.append(" || ");
-        }
-      }
-      sb.append(lineEnding);
-    }
-    return sb.toString();
-  }
-  
-  /**
-   * Convert a string escaped representation of a delimiter character into
-   * an the actual String for that delimiter.  This is used for translating
+   * Convert a string-escaped representation of a delimiter character into
+   * an actual String for that delimiter.  This is used for translating
    * escaped versions of tab, newline, and carriage return characters to
    * their real character values.
    * 
@@ -490,22 +260,31 @@ public class DelimitedReader extends TextDataReader
       }
       else if (delimiter.startsWith("0x") || delimiter.startsWith("0X"))
       {
-    	  int radix = 16;
-    	  String digits = delimiter.substring(2, delimiter.length());
-    	  //log.debug("Int value of  delimiter is "+digits);
-    	  newDelimiter = transferDigitsToCharString(radix, digits);
+          int radix = 16;
+          String digits = delimiter.substring(2, delimiter.length());
+          //log.debug("Int value of  delimiter is "+digits);
+          newDelimiter = transferDigitsToCharString(radix, digits);
       }
       
       return newDelimiter;
   }
   
+  
+  /**
+   * Auxiliary method called by unescapeDelimiter(). Transforms digits for a 
+   * given radix into the equivalent character value.
+   * 
+   * @param radix        the radix value, e.g. 8 or 16
+   * @param digits       a string holding the digits to be transformed
+   * @return             a string holiding the equivalent character value
+   */
   private static String transferDigitsToCharString(int radix, String digits)
   {
-	  if (digits == null )
-	  {
-		  return null;
-	  }
-	  Integer integer = Integer.valueOf(digits, radix);
+      if (digits == null )
+      {
+          return null;
+      }
+      Integer integer = Integer.valueOf(digits, radix);
       int inter = integer.intValue();
       //log.debug("The decimal value of char is "+ inter);
       char charactor =(char)inter;
@@ -513,4 +292,310 @@ public class DelimitedReader extends TextDataReader
       //log.debug("The new delimter is "+newDelimiter);
       return newDelimiter;
   }
+    
+  
+  /*
+   * Instance methods
+   */
+ 
+ /**
+  * Method to set up data stream as source
+  * 
+  * @param dataStream InputStream
+  */
+  public void setInputStream(InputStream dataStream)
+  {
+    this.dataReader = new InputStreamReader(dataStream);
+  }
+  
+  
+  /**
+   * Method to set collapseDilimiter boolean value.
+   * 
+   * @param collapseDelimiter   if true, consecutive delimiters are collapsed
+   *                            into a single delimiter
+   */
+  public void setCollapseDelimiter(boolean collapseDelimiter)
+  {
+	  this.collapseDelimiter = collapseDelimiter;
+  }
+  
+  
+  /**
+   * Set up the footer line number.
+   * 
+   * @param numFooterLines
+   */
+  public void setNumFooterLines(int numFooterLines)
+  {
+	  this.numFooterLines = numFooterLines;
+  }
+  
+  
+  /**
+   * This method is used when data source is an input stream.
+   * Reads one row from the input stream and returns a data vector where element 
+   * is String and the value is field data. After reaching the end of stream, 
+   * empty vector will be returned. So this method can be iterated by a while 
+   * loop until a empty vector is hit. During the iteration, all data in the 
+   * stream will be pulled out.
+   * 
+   * @return Vector
+   */
+  public Vector getOneRowDataVector() throws Exception
+  {
+	 //System.out.println("the numFootLines is "+numFooterLines);
+	 if (!initializedFooterBuffer)
+	 {
+		 for (int i=0; i< numFooterLines; i++)
+		 {
+			 //System.out.println("the initialize with footer lines");
+			 String rowData = readOneRowDataString();
+			 //System.out.println("the data vector in initailize is "+rowData.toString());
+			 footerBuffer.add(rowData);
+		 }
+         
+		 // this is for no footer lines
+		 if (numFooterLines == 0)
+		 {
+			 //System.out.println("the initialize without footer lines");
+			 String rowData = readOneRowDataString();
+			 //System.out.println("The initial buffere vector is "+rowData.toString());
+			 footerBuffer.add(rowData);
+		 }
+         
+		 initializedFooterBuffer = true;
+	 }
+     
+	 String nextRowData = readOneRowDataString();
+	 //System.out.println("the row string data from next row "+nextRowData.toString());
+     String oneRowDataString = null;
+     Vector oneRowDataVector = new Vector();
+     
+     if (nextRowData != null)
+     {
+    	 //System.out.println("before nextRowData is empty and nextRowData is "+nextRowData.toString());
+    	 oneRowDataString = (String)footerBuffer.remove(0);
+         reIndexFooterBufferVector();
+    	 footerBuffer.add(nextRowData);
+     }
+     else if (numFooterLines==0 && !footerBuffer.isEmpty())
+     {
+    	 //System.out.println("find the last line in fottlines num is 0!!!!!!!!");
+    	 oneRowDataString = (String)footerBuffer.remove(0);
+     }
+     
+     //System.out.println("helere!!!");
+     if (oneRowDataString != null)
+	 {
+	      //log.debug("in dataReader is not null");
+	      oneRowDataVector = splitDelimitedRowStringIntoVector(oneRowDataString);
+	 }
+     //System.out.println("the row data from buffer "+oneRowDataVector.toString());
+     return oneRowDataVector;
+  }
+  
+  
+  /*
+   * This method will read a row data from vector. It
+   * discard the header lines. but it doesn't discard footer lines
+   * This method will be called by getRowDataVectorFromStream
+   * 
+   * @return   A string holding one row of data.
+   */
+  private String readOneRowDataString()
+  {
+	    //Vector oneRowDataVector = new Vector();
+	    StringBuffer rowData = new StringBuffer();
+	    String rowDataString = null;
+	    int singleCharactor = -2;
+	    
+	    if (dataReader != null)
+	    {
+	      //log.debug("in dataReader is not null");
+	      try
+	      {
+	        while (singleCharactor != -1)
+	        {
+	          //log.debug("in singleCharactor is not null");
+	          singleCharactor = dataReader.read();
+	          char charactor = (char)singleCharactor;
+	          rowData.append(charactor);
+              
+	          // find string - line ending in the row data   
+	          if (rowData.indexOf(lineEnding) != -1)
+	          {
+	        	//log.debug("found line ending");
+	            // strip the header lines
+	            if (stripHeader && numHeaderLines >0 && headLineNumberCount < numHeaderLines)
+	            {
+	               // reset string buffer(descard the header line)
+	               rowData = null;
+	               rowData = new StringBuffer();
+	               
+	            }
+	            else
+	            {
+	              rowDataString = rowData.toString();
+	              //log.debug("The row data is " + rowDataString);
+	              break;
+	            }
+                
+	            headLineNumberCount++;
+	          }
+	        }
+	      }
+	      catch (Exception e)
+	      {
+	        //log.debug("Couldn't read data from input stream");
+	        rowData = new StringBuffer();
+	      }
+	    }
+        
+	    //System.out.println("the row data before reutrn is "+rowDataString);
+	    return rowDataString;
+  }
+  
+  
+  /*
+   * This method will forward one index for every element, 1 -> 0, 2->1
+   */
+  private void reIndexFooterBufferVector()
+  {
+	  for (int i=0; i<numFooterLines-2; i++)
+	  {
+		  Vector element = (Vector)footerBuffer.elementAt(i+1);
+		  footerBuffer.add(i, element);
+	  }
+  }
+  
+  
+  /*
+   * This method will read a delimitered string and put a delimitered part into
+   * an element in a vector. If the vector size is less than the column number
+   * empty string will be added.
+   * 
+   */
+  private Vector splitDelimitedRowStringIntoVector(String data) throws Exception
+  {
+    Vector result = new Vector();
+    
+    if (data == null)
+    {
+      return result;
+    }
+    
+    String[] s = null;
+    
+    if (!collapseDelimiter)
+    {
+    	s = data.split(delimiter);
+    }
+    else
+    {
+    	String newDelimiterWithRegExpress = delimiter+"+";
+    	s = data.split(newDelimiterWithRegExpress);
+    	
+    }
+    
+    if( s != null)
+    {
+    	int columnCounter = s.length;
+        
+    	if ( columnCounter > numCols)
+    	{
+    		throw new Exception("Metadata sees data has "+ numCols +
+    				            "columns but actually data has "+columnCounter+
+    				            "columns. Please make sure metadata is correct!");
+    	}
+        
+        for (int j = 0; j < s.length; j++) 
+        {
+          
+          if (s[j] != null)
+          {
+            result.addElement(s[j].trim());
+          }
+          else
+          {
+              result.addElement("");
+          }
+        }
+        
+        //add any elements that aren't there so that all the records have the
+        //same number of cols
+        if (result.size() < numCols) 
+        {
+          int vsize = result.size();
+          for (int j = 0; j < numCols - vsize; j++) 
+          {
+            result.addElement("");
+          }
+        }
+    }
+    
+    return result;
+  }
+  
+  
+  /**
+   * Returns the data as an array of vectors.  Each vector will have the same
+   * number of elements as there are columns in the data.
+   * 
+   * @param stripHeaderLines true if the header lines should not be included
+   *                         in the returned data, false otherwise
+   */
+  public Vector[] getTokenizedData(boolean stripHeaderLines)
+  {
+    if(stripHeaderLines)
+    {
+      Vector[] strip = null;
+      
+      if (numRecords > numHeaderLines)
+      {
+        strip = new Vector[numRecords-numHeaderLines];
+        
+        for(int i=numHeaderLines; i<lines.length; i++)
+        {
+          strip[i-numHeaderLines] = lines[i];
+        }
+      }
+      
+      return strip;
+    }
+    else
+    {
+      return lines;
+    }
+  }
+
+  
+  /**
+   * Returns a string representation of the data.
+   * 
+   * @return the String representation of the data
+   */
+  public String toString()
+  {
+    StringBuffer sb = new StringBuffer();
+    
+    for(int i=0; i<lines.length; i++)
+    {
+      //log.debug("line[" + (i + 1) + "]: " + lines[i].toString());
+      
+      for(int j=0; j<lines[i].size(); j++)
+      {
+        sb.append((String)lines[i].elementAt(j));
+        if(j != lines[i].size() - 1)
+        {
+          sb.append(" || ");
+        }
+      }
+      
+      sb.append(lineEnding);
+    }
+    
+    return sb.toString();
+  }
+  
 }

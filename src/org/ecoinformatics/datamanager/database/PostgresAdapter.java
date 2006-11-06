@@ -2,8 +2,8 @@
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-10-26 23:02:58 $'
- *   '$Revision: 1.10 $'
+ *       '$Date: 2006-11-06 21:18:34 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,7 +34,6 @@ package org.ecoinformatics.datamanager.database;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;

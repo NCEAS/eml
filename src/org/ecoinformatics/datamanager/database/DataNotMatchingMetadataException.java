@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataNotMatchingMetadataException.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-08-18 01:39:42 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-06 21:18:34 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,14 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+/**
+ * 
+ * @author tao
+ * 
+ * This type of exception is thrown when the Data Manager Library finds that the
+ * description of the data (i.e. the metadata) does not match the actual data.
+ *
+ */
 public class DataNotMatchingMetadataException extends Exception {
-
+  
 }
