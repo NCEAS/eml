@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-04 01:36:13 $'
- *   '$Revision: 1.18 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-06 18:58:33 $'
+ *   '$Revision: 1.19 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,11 +33,8 @@
 package org.ecoinformatics.datamanager;
 
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -80,23 +77,35 @@ public class DataManager {
    * Class fields
    */
 
- 
-  
   /* Holds the singleton object for this class */
   private static DataManager dataManager = null;
   private static String databaseAdapterName = null;
   private static DatabaseConnectionPoolInterface connectionPool = null;
   
-  
-  // Constance
-  private static final int MAXMUMNU_NUMBER_TO_ACCESS_CONNECTIONPOOL = 10;
+  // Constants
+  private static final int MAXIMUM_NUMBER_TO_ACCESS_CONNECTIONPOOL = 10;
   private static final int SLEEP_TIME = 2000;
   
  
- 
+  /*
+   * Constructors
+   */
   
- 
+  /*
+   * This is singleton class, so constructor is private
+   */
   
+  private DataManager(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName)
+  {
+    DataManager.connectionPool = connectionPool;
+    DataManager.databaseAdapterName = databaseAdapterName;
+  }
+  
+  
+  /*
+   * Class methods
+   */
+
   /**
    * Gets the singleton instance of this class.
    * 
@@ -107,7 +116,7 @@ public class DataManager {
 	{
 		dataManager = new DataManager(connectionPool, databaseAdapterName);
 	}
-	else if (dataManager.databaseAdapterName != null && !dataManager.databaseAdapterName.equals(databaseAdapterName))
+	else if (DataManager.databaseAdapterName != null && !DataManager.databaseAdapterName.equals(databaseAdapterName))
 	{
 		dataManager = new DataManager(connectionPool, databaseAdapterName);
 	}
@@ -115,24 +124,90 @@ public class DataManager {
     return dataManager;
   }
   
+
   /*
-   * This is singleton class, so constructor is private
+   * Gets DBConnection from connection pool. If no connection available, it will
+   * sleep and try again. If ceiling times reachs, null will return.
+   * 
    */
-  
-  private DataManager(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName)
+  private static Connection getConnection()
   {
-	  this.connectionPool = connectionPool;
-	  this.databaseAdapterName = databaseAdapterName;
+      Connection connection = null;
+      int index = 0;
+      while (index <MAXIMUM_NUMBER_TO_ACCESS_CONNECTIONPOOL)
+      {
+          try
+          {
+              connection = connectionPool.getConnection();
+              break;
+          }
+          catch (ConnectionNotAvailableException cna)
+          {
+              try
+              {
+                 Thread.sleep(SLEEP_TIME);
+              }
+              catch(Exception e)
+              {
+                 System.err.println("Error in DataManager.getConnection "+e.getMessage());
+              }
+          }
+          catch (SQLException sql)
+          {
+              break;
+          }
+          index++;
+      }
+      return connection;
   }
   
   
- 
+  /**
+   * Gets the database connection object. If the dbConnection field hasn't
+   * already been initialized, creates a new connection and initializes the
+   * field.
+   * 
+   * @return the Connection object which connects database
+   */
+  /*public static Connection getConnection() 
+        throws ClassNotFoundException, SQLException {
+    
+     
+  }*/
+  
+
+  /*
+   * Returns checked out connection to connection pool
+   */
+  private static void returnConnection(Connection connection)
+  {
+      connectionPool.returnConnection(connection);
+  }
+  
+
+  /**
+   * Get the value of the databaseAdapterName field.
+   * 
+   * @return  the value of the databaseAdapterName field
+   */
+  public static String getDatabaseAdapterName() {
+    return databaseAdapterName;
+  }
   
   
+  /**
+   * Gets the object of the database connection pool
+   *  @retrun the object of dababase connection pool
+   */
+   public static DatabaseConnectionPoolInterface getDatabaseConnectionPool()
+   {
+       return connectionPool;
+   }
+
+
   /*
    * Instance methods
    */
-  
   
   /**
    * Create a database view from one or more entities in an entity list.
@@ -280,83 +355,6 @@ public class DataManager {
     return success;
   }
   
-
-  /**
-   * Gets the database connection object. If the dbConnection field hasn't
-   * already been initialized, creates a new connection and initializes the
-   * field.
-   * 
-   * @return the Connection object which connects database
-   */
-  /*public static Connection getConnection() 
-        throws ClassNotFoundException, SQLException {
-	
-     
-  }*/
-  
-  /*
-   * Gets DBConnection from connection pool. If no connection available, it will
-   * sleep and try again. If ceiling times reachs, null will return.
-   * 
-   */
-  private static Connection getConnection()
-  {
-	  Connection connection = null;
-	  int index = 0;
-	  while (index <MAXMUMNU_NUMBER_TO_ACCESS_CONNECTIONPOOL)
-	  {
-		  try
-		  {
-			  connection = connectionPool.getConnection();
-			  break;
-		  }
-		  catch (ConnectionNotAvailableException cna)
-		  {
-			  try
-			  {
-			     Thread.sleep(SLEEP_TIME);
-			  }
-			  catch(Exception e)
-			  {
-				 System.err.println("Error in DataManager.getConnection "+e.getMessage());
-			  }
-		  }
-		  catch (SQLException sql)
-		  {
-			  break;
-		  }
-		  index++;
-	  }
-	  return connection;
-  }
-  
-  /*
-   * Returns checked out connection to connection pool
-   */
-  private static void returnConnection(Connection connection)
-  {
-	  connectionPool.returnConnection(connection);
-  }
-  
-
-  /**
-   * Get the value of the databaseAdapterName field.
-   * 
-   * @return  the value of the databaseAdapterName field
-   */
-  public static String getDatabaseAdapterName() {
-    return databaseAdapterName;
-  }
-  
-  /**
-   * Gets the object of the database connection pool
-   *  @retrun the object of dababase connection pool
-   */
-   public static DatabaseConnectionPoolInterface getDatabaseConnectionPool()
-   {
-	   return connectionPool;
-   }
-
 
   /**
    * Loads all entities in a data package to the database table cache. This
