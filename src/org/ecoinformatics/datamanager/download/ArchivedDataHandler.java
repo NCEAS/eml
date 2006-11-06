@@ -2,8 +2,8 @@
  *    '$RCSfile: ArchivedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-20 00:45:51 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -50,10 +50,11 @@ public abstract class ArchivedDataHandler extends DownloadHandler
 	/**
 	 * Constructor
 	 * @param url  The url of entity which need be downloaded
+	 * @param endPoint the object which provides ecogrid endpoint information
 	 */
-    protected ArchivedDataHandler(String url)
+    protected ArchivedDataHandler(String url, EcogridEndPointInterface endPoint)
     {
-    	super(url);
+    	super(url, endPoint);
     }
   
    /*

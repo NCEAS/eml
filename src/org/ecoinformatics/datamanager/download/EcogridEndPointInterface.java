@@ -2,8 +2,8 @@
  *    '$RCSfile: EcogridEndPointInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-06 18:17:19 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -41,20 +41,20 @@ public interface EcogridEndPointInterface
 {
    /**
     * Gets the end point which Metacat implements ecogrid interface.
-    * This end point will be used to handle ecogrid protocal
+    * This end point will be used to handle ecogrid protocol
     * @return end point url string
     */
    public String getMetacatEcogridEndPoint();
    
    /**
     * Gets the end point which SRB implements ecogrid interface
-    * This end point will be used to handle srb protocal
+    * This end point will be used to handle srb protocol
     * @return end point url string
     */
    public String getSRBEcogridEndPoint();
    
    /**
-    * Gets the machine name which srb protocal will be used.
+    * Gets the machine name which srb protocol will be used.
     * The default value for this class is "srb-mcat.sdsc.edu"
     * @return the machine name of srb server
     */

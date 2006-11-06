@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-31 21:00:40 $'
- *   '$Revision: 1.10 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,6 +36,7 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
 import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
@@ -724,30 +725,31 @@ public class Entity extends DataObjectDescription
      * TarDataHandler. In the future we will implement to allow for a 
      * combination of the above cases.
      * 
+     * @param  endPointInfo  the object provides ecogrid end point information
      * @return the DownloadHandler object which will download data for this
      *         entity
      */
-    public DownloadHandler getDownloadHandler()
+    public DownloadHandler getDownloadHandler(EcogridEndPointInterface endPointInfo)
     {
         if (hasZipDataFile)
         {
-            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url);
+            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url, endPointInfo);
             return handler;
         }
         
         if (hasGZipDataFile)
         {
-            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url);
+            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url, endPointInfo);
             return handler;
         }
         
         if (hasTarDataFile)
         {
-            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url);
+            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
             return handler;
         }
             
-        DownloadHandler handler = DownloadHandler.getInstance(url);
+        DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
         return handler;
     }
 

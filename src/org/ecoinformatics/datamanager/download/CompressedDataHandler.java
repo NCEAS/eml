@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-20 00:45:51 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -53,12 +53,12 @@ public abstract class CompressedDataHandler extends DownloadHandler
 	
 	 /**
 	  * Constructor
-	  * @param url
-	  * @param identifier
+	  * @param url url of entity
+	  * @param endPoint the object which provides ecogrid endpoint information
 	  */
-	 protected CompressedDataHandler(String url)
+	 protected CompressedDataHandler(String url, EcogridEndPointInterface endPoint)
 	 {
-	    	super(url);
+	    	super(url, endPoint);
 	 }
 	  
 	    

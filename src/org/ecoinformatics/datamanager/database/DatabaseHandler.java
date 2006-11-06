@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-03 23:17:09 $'
- *   '$Revision: 1.17 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.18 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -38,6 +38,7 @@ import java.sql.Statement;
 
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
@@ -297,15 +298,16 @@ public class DatabaseHandler
    * Loads the data for all entities in a data package into the database.
    * 
    * @param   dataPackage  A DataPackage containing a list of entities.
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @return  true on success, false on failure
    */
-  public boolean loadDataToDB(DataPackage dataPackage) {
+  public boolean loadDataToDB(DataPackage dataPackage, EcogridEndPointInterface endInfo) {
     Entity[] entities = dataPackage.getEntityList();
     boolean success = true;
     
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
-      success = success && loadDataToDB(entity);
+      success = success && loadDataToDB(entity, endInfo);
     }
     
     return success;
@@ -316,15 +318,16 @@ public class DatabaseHandler
    * Loads the data for a single entity into the database.
    * 
    * @param   entity  the Entity object whose data is to be loaded.
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @return  true on success, false on failure
    */
-  public boolean loadDataToDB(Entity entity)
+  public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo)
   {
 	boolean success = false;
     
 	if (entity != null) {
       // String identifier = entity.getEntityIdentifier();
-      DownloadHandler downloadHandler = entity.getDownloadHandler();
+      DownloadHandler downloadHandler = entity.getDownloadHandler(endPointInfo);
       DatabaseLoader dbLoader = null;
       
       try {

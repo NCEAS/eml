@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-04 01:37:09 $'
- *   '$Revision: 1.17 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.18 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,7 +31,7 @@
  */
 package org.ecoinformatics.datamanager.download;
 
-import edu.ucsb.nceas.utilities.Options;
+//import edu.ucsb.nceas.utilities.Options;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -69,10 +69,10 @@ public class DownloadHandler implements Runnable
 	protected boolean success = false;
 	protected boolean busy = false;
 	protected static Hashtable handlerList = new Hashtable();
-	private static Options option = null;
-	private static String ECOGRIDENDPOINT = null;
-	private static String SRBENDPOINT     = null;
-	private static String SRBMACHINE      = null;
+	//private static Options option = null;
+	private static String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
+	private static String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
+	private static String SRBMACHINE      = "srb-mcat.sdsc.edu";
 	
 	/* Configuration directory and file name for the properties file */
     private static final String CONFIG_DIR = "lib/datamanager";
@@ -91,14 +91,16 @@ public class DownloadHandler implements Runnable
 	/**
 	 * Gets the DownloadHandler Object.
 	 * @param url The url (or identifier) of entity need be downloaded
+	 * @param endPoint the object which provides ecogrid endpoint information
 	 * @return  DownloadHandler object with the url
+	 * 
 	 */
-	public static DownloadHandler getInstance(String url)
+	public static DownloadHandler getInstance(String url, EcogridEndPointInterface endPoint)
 	{
 		DownloadHandler handler = getHandlerFromHash(url);
 		if (handler == null)
 		{
-			handler = new DownloadHandler(url);
+			handler = new DownloadHandler(url, endPoint);
 		}
 		return handler;
 	}
@@ -107,10 +109,16 @@ public class DownloadHandler implements Runnable
 	 * Constructor of this class
 	 * @param url  the url (or identifier) of entity need be downloaded
 	 */
-	protected DownloadHandler(String url)
+	protected DownloadHandler(String url, EcogridEndPointInterface endPoint)
 	{
 		this.url = url;
-		loadOptions();
+		if (endPoint != null)
+		{
+			ECOGRIDENDPOINT = endPoint.getMetacatEcogridEndPoint();
+		    SRBENDPOINT = endPoint.getSRBEcogridEndPoint();
+		    SRBMACHINE = endPoint.getSRBMachineName();
+		}
+		//loadOptions();
 		//this.identifier = identifier;
 		//this.dataStorageClassList = dataStorageClassList;
 	}
@@ -118,7 +126,7 @@ public class DownloadHandler implements Runnable
 	 /*
 	   * Loads Data Manager options from a configuration file.
 	   */
-	  private static void loadOptions() {
+	  /*private static void loadOptions() {
 	    String configDir = CONFIG_DIR;    
 	    File propertyFile = new File(configDir, CONFIG_NAME);
 
@@ -132,7 +140,7 @@ public class DownloadHandler implements Runnable
 	    catch (IOException e) {
 	      System.out.println("Error in loading options: " + e.getMessage());
 	    }
-	  }
+	  }*/
 	
 		
 	/**

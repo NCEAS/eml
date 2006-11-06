@@ -2,8 +2,8 @@
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-21 00:38:17 $'
- *   '$Revision: 1.8 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -57,12 +57,12 @@ public class GZipDataHandler extends CompressedDataHandler
 	 * @param url The url (or identifier) of entity need be downloaded
 	 * @return  ZipDataHandler object with the url
 	 */
-	public static GZipDataHandler getGZipHandlerInstance(String url)
+	public static GZipDataHandler getGZipHandlerInstance(String url, EcogridEndPointInterface endPoint)
 	{
 		GZipDataHandler  gzipHandler = (GZipDataHandler)getHandlerFromHash(url);
 		if (gzipHandler == null)
 		{
-			gzipHandler = new GZipDataHandler(url);
+			gzipHandler = new GZipDataHandler(url, endPoint);
 		}
 		return gzipHandler;
 	}
@@ -70,10 +70,11 @@ public class GZipDataHandler extends CompressedDataHandler
 	/**
 	 * Constructor
 	 * @param url  the url (or identifier) of Gzipped data entity
+	 * @param endPoint the object which provides ecogrid endpoint information
 	 */
-   protected GZipDataHandler(String url)
+   protected GZipDataHandler(String url, EcogridEndPointInterface endPoint)
    {
-	    	super(url);
+	    	super(url, endPoint);
    }
   
    

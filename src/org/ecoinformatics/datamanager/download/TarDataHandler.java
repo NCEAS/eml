@@ -2,8 +2,8 @@
  *    '$RCSfile: TarDataHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-09-21 00:37:46 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -51,24 +51,26 @@ public class TarDataHandler extends ArchivedDataHandler
 	/**
 	 * Gets the TarDataHandler object
 	 * @param url The url (or identifier) of entity need be downloaded
+	 * @param endPoint the object which provides ecogrid endpoint information
 	 * @return  TarDataHandler object with the url
 	 */
-	public static TarDataHandler getTarHandlerInstance(String url)
+	public static TarDataHandler getTarHandlerInstance(String url, EcogridEndPointInterface endPoint)
 	{
 		TarDataHandler  tarHandler = (TarDataHandler)getHandlerFromHash(url);
 		if (tarHandler == null)
 		{
-			tarHandler = new TarDataHandler(url);;
+			tarHandler = new TarDataHandler(url, endPoint);;
 		}
 		return tarHandler;
 	}
 	/*
 	 * Constructor
 	 * @param url  The url (or identifier) of the tar entity
+	 * @param endPoint the object which provides ecogrid endpoint information
      */
-    protected TarDataHandler(String url)
+    protected TarDataHandler(String url, EcogridEndPointInterface endPoint)
     {
-    	super(url);
+    	super(url, endPoint);
     }
     
  

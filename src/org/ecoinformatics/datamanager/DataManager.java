@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-06 18:58:33 $'
- *   '$Revision: 1.19 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-06 19:57:54 $'
+ *   '$Revision: 1.20 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -50,6 +50,7 @@ import org.ecoinformatics.datamanager.database.PostgresAdapter;
 import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
@@ -234,18 +235,19 @@ public class DataManager {
    * Use Case #2.
    * 
    * @param  dataPackage the data package containing a list of entities
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(DataPackage dataPackage, 
+  public boolean downloadData(DataPackage dataPackage, EcogridEndPointInterface endPointInfo,
                               DataStorageInterface[] dataStorageList) {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
     
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
-      success = success && downloadData(entity, dataStorageList);
+      success = success && downloadData(entity, endPointInfo, dataStorageList);
     }
     
     return success;
@@ -258,13 +260,14 @@ public class DataManager {
    * in its own way. This method implements Use Case #2.
    * 
    * @param  the entity whose data is to be downloaded
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(Entity entity, 
+  public boolean downloadData(Entity entity, EcogridEndPointInterface endPointInfo,
                               DataStorageInterface[] dataStorageList) {
-    DownloadHandler downloadHandler = entity.getDownloadHandler();
+    DownloadHandler downloadHandler = entity.getDownloadHandler(endPointInfo);
     boolean success = false;
     
     if (downloadHandler != null) {
@@ -302,18 +305,19 @@ public class DataManager {
    * package are downloaded. This method implements Use Case #2.
    * 
    * @param  metadataInputStream an input stream to the metadata. 
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
    *         true if successful, else false.
    */
-  public boolean downloadData(InputStream metadataInputStream,
+  public boolean downloadData(InputStream metadataInputStream, EcogridEndPointInterface endPointInfo,
                               DataStorageInterface[] dataStorageList) 
         throws Exception {
     boolean success = false;
     DataPackage dataPackage = parseMetadata(metadataInputStream);
     
     if (dataPackage != null) {
-      success = downloadData(dataPackage, dataStorageList);
+      success = downloadData(dataPackage, endPointInfo, dataStorageList);
     }
     
     return success;
@@ -362,16 +366,17 @@ public class DataManager {
    * 
    * @param  dataPackage the data package containing a list of entities whose
    *         data is to be loaded into the database table cache.
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(DataPackage dataPackage)
+  public boolean loadDataToDB(DataPackage dataPackage, EcogridEndPointInterface endPointInfo)
         throws ClassNotFoundException, SQLException, Exception {
     boolean success = true;
     Entity[] entities = dataPackage.getEntityList();
     
     for (int i = 0; i < entities.length; i++) {
-      success = success && loadDataToDB(entities[i]);
+      success = success && loadDataToDB(entities[i],endPointInfo);
     }
     
     return success;
@@ -384,10 +389,11 @@ public class DataManager {
    * 
    * @param  entity  the entity whose data is to be loaded into the database 
    *                 table cache.
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(Entity entity) 
+  public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
         throws ClassNotFoundException, SQLException, Exception {
     Connection conn = getConnection();
     boolean success = false;
@@ -406,7 +412,7 @@ public class DataManager {
 	    
 	    // If we have a table, then load the data for the entity.
 	    if (success) {
-	      success = databaseHandler.loadDataToDB(entity);
+	      success = databaseHandler.loadDataToDB(entity, endPointInfo);
 	    }
     }
     finally
@@ -425,17 +431,18 @@ public class DataManager {
    * 
    * @param  metadataInputStream the metadata input stream to be parsed into
    *         a DataPackage object.
+   * @param  endPointInfo which provides ecogrid endpoint information
    * @return a boolean value indicating the success of the load-data operation.
    *         true if successful, else false.
    */
-  public boolean loadDataToDB(InputStream metadataInputStream) 
+  public boolean loadDataToDB(InputStream metadataInputStream, EcogridEndPointInterface endPointInfo) 
         throws Exception {
     boolean success = false;
     
     DataPackage dataPackage = parseMetadata(metadataInputStream);
     
     if (dataPackage != null) {
-      success = loadDataToDB(dataPackage);
+      success = loadDataToDB(dataPackage, endPointInfo);
     }
     
     return success;
