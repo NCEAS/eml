@@ -1,4 +1,5 @@
 package org.ecoinformatics.datamanager.database;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.Attribute;
@@ -43,15 +44,23 @@ public class PostgresAdapterTest extends TestCase
 	  /**
 	   * Tests generating insertSQL method
 	   */
-	  public void testgenerateInsertSQL()
+	  public void testgenerateInsertSQL() throws SQLException
 	  {
 		  PostgresAdapter adapter = new PostgresAdapter();
 		  AttributeList attributeList = null;
           String tableName = "table1"; 
           Vector oneRowData = new Vector();
-          String sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-          // test attribute list is null
-          assertTrue(sql == null);
+          String sql = null;
+          try
+          {
+             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             // test attribute list is null
+             assertTrue(1 == 2);
+          }
+          catch(SQLException e)
+          {
+        	  assertTrue(1 == 1);
+          }
           Attribute attribute1     = null;
           TextDomain domain = new TextDomain();
           String name1 = "name1";
@@ -95,18 +104,32 @@ public class PostgresAdapterTest extends TestCase
           attributeList.add(attribute1);
           attributeList.add(attribute2);
           attributeList.add(attribute3);
-          sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-          // test sql should be null if no data in data vector
-          assertTrue(sql == null);
+          try
+          {
+             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             // test attribute list is null
+             assertTrue(1 == 2);
+          }
+          catch(SQLException e)
+          {
+        	  assertTrue(1 == 1);
+          }
           String value1= "data1";
           String value2 = "1";
           String value3 = "data2";
           oneRowData.add(value1);
           oneRowData.add(value2);
           oneRowData.add(value3);
-          sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-          // test sql should be null if a data value doesn't match data type
-          assertTrue(sql == null);
+          try
+          {
+             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             // test attribute list is null
+             assertTrue(1 == 2);
+          }
+          catch(SQLException e)
+          {
+        	  assertTrue(1 == 1);
+          }
           oneRowData.remove(2);
           String correctValue = "2.2";
           oneRowData.add(correctValue);
