@@ -251,8 +251,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
                                                                tableName, 
                                                                rowVector);
           // System.out.println("the sql is "+insertSQL);
-          Statement statement = dbConnection.createStatement();
-          statement.execute(insertSQL);
+          
+          if (insertSQL != null)
+          {
+        	  Statement statement = dbConnection.createStatement();
+        	  statement.execute(insertSQL);
+          }
+            
           rowVector = dataReader.getOneRowDataVector();
           // System.out.println("The row data in while loop is "+rowVector);
         }
