@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-01 00:28:24 $'
- *   '$Revision: 1.10 $'
+ *       '$Date: 2006-11-07 01:25:13 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -229,17 +229,18 @@ public abstract class DatabaseAdapter {
    */
   public String generateInsertSQL(AttributeList attributeList,
                                   String tableName, 
-                                  Vector oneRowData) {
+                                  Vector oneRowData) throws SQLException{
     String sqlString = null;
     int NULLValueCounter = 0;
     
     if (attributeList == null) {
       //log.debug("There is no attribute defination in entity");
-      return sqlString;
+      throw new SQLException("The attribute list is null and couldn't generate insert sql statement");
     }
 
     if (oneRowData == null || oneRowData.isEmpty()) {
-      return sqlString;
+      //return sqlString;
+    	throw new SQLException("The the data is null and couldn't generte insert sql statement");
     }
 
     StringBuffer sqlAttributePart = new StringBuffer();
@@ -256,7 +257,8 @@ public abstract class DatabaseAdapter {
     
     if (list == null || list.length == 0) {
       //log.debug("There is no attribute definition in entity");
-      return sqlString;
+      //return sqlString;
+    	throw new SQLException("The attributes is null and couldn't generate insert sql statement");
     }
     
     int size = list.length;
@@ -279,9 +281,15 @@ public abstract class DatabaseAdapter {
       
       if (attribute == null) {
         //log.debug("One attribute definition is null attribute list");
-        return sqlString;
+        //return null;
+    	  throw new SQLException("Attribute list contains a null attribute");
       }
-      
+      String[] missingValues = attribute.getMissingValueCode();
+      boolean isMissingValue = isMissingValue(value, missingValues);
+      if (isMissingValue)
+      {
+    	  continue;
+      }
       String name = attribute.getName();
       
       if (!firstAttribute) {
@@ -334,7 +342,8 @@ public abstract class DatabaseAdapter {
         catch (Exception e) {
           System.out.println("Error determining numeric value: " + 
                              e.getMessage());
-          return sqlString;
+          //return sqlString;
+          throw new SQLException("Error to determining numeric value "+e.getMessage());
         }
       }
 
@@ -345,6 +354,7 @@ public abstract class DatabaseAdapter {
     // If all data is null, return null value for sql string.
     if (NULLValueCounter == list.length) {
       return sqlString;
+    	//throw new SQLException("All data is null and couldn't generate insert data statement");
     }
     
     sqlAttributePart.append(RIGHTPARENTH);
@@ -354,9 +364,32 @@ public abstract class DatabaseAdapter {
     // Combine the two parts
     sqlAttributePart.append(sqlDataPart.toString());
     sqlString = sqlAttributePart.toString();
-    System.out.println("the sql command is " + sqlString);
+    //System.out.println("the sql command is " + sqlString);
     
     return sqlString;
+  }
+  
+  
+  /*
+   * Determins if the value is in the missValue list
+   */
+  private boolean isMissingValue(String value, String[] missValues)
+  {
+	  boolean isMissingValue = false;
+	  if (missValues != null && value!=null)
+	  {
+		  int size = missValues.length;
+		  for (int i=0; i<size; i++)
+		  {
+			  String missValue = missValues[i];
+			  if (value.equals(missValue))
+			  {
+				  isMissingValue = true;
+				  break;
+			  }
+		  }
+	  }
+	  return isMissingValue;
   }
   
   
