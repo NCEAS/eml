@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-07 01:25:13 $'
- *   '$Revision: 1.11 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-07 22:27:47 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,6 +32,7 @@
 package org.ecoinformatics.datamanager.database;
 
 import java.sql.SQLException;
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Map;
 
@@ -109,6 +110,40 @@ public abstract class DatabaseAdapter {
    */
   
   /**
+   * Assigns database field names to all Attribute objects in the AttributeList.
+   * The assigned field names comply with the following criteria:
+   *   (1) each is a legal database field name
+   *   (2) each is unique within this attribute list
+   *   
+   * @param  attributeList  the AttributeList object containing the Attributes
+   *                        that correspond to the fields in the database 
+   *                        table
+   */
+  public void assignDbFieldNames(AttributeList attributeList) {
+    Attribute[] list = attributeList.getAttributes();
+    TreeMap usedNames = new TreeMap();
+    
+    int size = list.length;
+
+    for (int i = 0; i < size; i++) {
+      Attribute attribute = list[i];
+      String attributeName = attribute.getName();
+      String legalDbFieldName = getLegalDbFieldName(attributeName);
+      String foundName = (String) usedNames.get(legalDbFieldName);
+      
+      while (foundName != null) {
+        String mangledName = mangleFieldName(legalDbFieldName);
+        legalDbFieldName = mangledName;
+        foundName = (String) usedNames.get(legalDbFieldName);
+      }
+      
+      usedNames.put(legalDbFieldName, legalDbFieldName);
+      attribute.setDbFieldName(legalDbFieldName);
+    }
+  }
+
+  
+  /**
    * Creates a sql command to generate table.
    * 
    * @param  attributeList   An AttributeList object holding the entity 
@@ -140,85 +175,6 @@ public abstract class DatabaseAdapter {
 
   
   /**
-   * The map between metadat data type and database native data type.
-   * 
-   * @return   In the parent DatabaseAdapter class, returns null.
-   */
-  public Map getDataTypeMap() {
-    Map typeMap = null;
-    
-    return typeMap;
-  }
-  
-
-  /**
-   * Transforms ANSI selection SQL to a native db SQL command.
-   * 
-   * @param   ANSISQL       The ANSI SQL string.
-   * @return  The native SQL string. In the parent DatabaseAdapter class, the
-   *          string is empty.
-   */
-  public String transformSelectionSQL(String ANSISQL) {
-    String sqlString = "";
-
-    return sqlString;
-  }
-	
-  
-  /*
-   * Adds the attribute definitions to a create table command.
-   * If one attribute is null or has some error an exception will be thrown.
-   */
-  protected String parseAttributeList(AttributeList attributeList)
-      throws SQLException {
-    Attribute[] list = attributeList.getAttributes();
-    StringBuffer attributeSql = new StringBuffer();
-
-    if (list == null || list.length == 0) {
-      // log.debug("There is no attribute definition in entity");
-      throw new SQLException("No attribute definition found in entity");
-    }
-
-    int size = list.length;
-    // DBDataTypeResolver dataTypeResolver = new DBDataTypeResolver();
-    boolean firstAttribute = true;
-
-    for (int i = 0; i < size; i++) {
-      Attribute attribute = list[i];
-
-      if (attribute == null) {
-        // log.debug("One attribute definition is null attribute list");
-        throw new SQLException("Attribute list contains a null attribute");
-      }
-
-      String name = attribute.getName();
-      String attributeType = getAttributeType(attribute);
-      String dbDataType = mapDataType(attributeType);
-
-      // String dataType = attribute.getDataType();
-      // String dbDataType = "VARCHAR(32)";
-      // String dbDataType = dataTypeResolver.resolveDBType(dataType);
-      // String javaDataType = dataTypeResolver.resolveJavaType(dataType);
-      // dbJavaDataTypeList.add(javaDataType);
-
-      if (!firstAttribute) {
-        attributeSql.append(COMMA);
-      }
-
-      attributeSql.append(name);
-      attributeSql.append(SPACE);
-      attributeSql.append(dbDataType);
-      firstAttribute = false;
-
-      System.out.println("Attribute Name: " + name);
-      System.out.println("  dbDataType:   " + dbDataType + "\n");
-    }
-
-    return attributeSql.toString();
-  }
-	  
-	  
-  /**
    * Creates a SQL command to insert data. If some error happens, null will be
    * returned.
    * 
@@ -240,7 +196,7 @@ public abstract class DatabaseAdapter {
 
     if (oneRowData == null || oneRowData.isEmpty()) {
       //return sqlString;
-    	throw new SQLException("The the data is null and couldn't generte insert sql statement");
+        throw new SQLException("The the data is null and couldn't generte insert sql statement");
     }
 
     StringBuffer sqlAttributePart = new StringBuffer();
@@ -258,7 +214,7 @@ public abstract class DatabaseAdapter {
     if (list == null || list.length == 0) {
       //log.debug("There is no attribute definition in entity");
       //return sqlString;
-    	throw new SQLException("The attributes is null and couldn't generate insert sql statement");
+        throw new SQLException("The attributes is null and couldn't generate insert sql statement");
     }
     
     int size = list.length;
@@ -282,13 +238,13 @@ public abstract class DatabaseAdapter {
       if (attribute == null) {
         //log.debug("One attribute definition is null attribute list");
         //return null;
-    	  throw new SQLException("Attribute list contains a null attribute");
+          throw new SQLException("Attribute list contains a null attribute");
       }
       String[] missingValues = attribute.getMissingValueCode();
       boolean isMissingValue = isMissingValue(value, missingValues);
       if (isMissingValue)
       {
-    	  continue;
+          continue;
       }
       String name = attribute.getName();
       
@@ -354,7 +310,7 @@ public abstract class DatabaseAdapter {
     // If all data is null, return null value for sql string.
     if (NULLValueCounter == list.length) {
       return sqlString;
-    	//throw new SQLException("All data is null and couldn't generate insert data statement");
+        //throw new SQLException("All data is null and couldn't generate insert data statement");
     }
     
     sqlAttributePart.append(RIGHTPARENTH);
@@ -370,29 +326,6 @@ public abstract class DatabaseAdapter {
   }
   
   
-  /*
-   * Determins if the value is in the missValue list
-   */
-  private boolean isMissingValue(String value, String[] missValues)
-  {
-	  boolean isMissingValue = false;
-	  if (missValues != null && value!=null)
-	  {
-		  int size = missValues.length;
-		  for (int i=0; i<size; i++)
-		  {
-			  String missValue = missValues[i];
-			  if (value.equals(missValue))
-			  {
-				  isMissingValue = true;
-				  break;
-			  }
-		  }
-	  }
-	  return isMissingValue;
-  }
-  
-  
   /**
    * Gets attribute type for a given attribute. Attribute types include
    * text, numeric and et al.
@@ -404,6 +337,90 @@ public abstract class DatabaseAdapter {
 
 
   /**
+   * Gets the sql command to count the rows in a given table.
+   * 
+   * @param tableName  the given table name
+   * @return the sql string which can count how many rows
+   */
+  public abstract String getCountingRowNumberSQL(String tableName);
+
+
+  /**
+   * The map between metadat data type and database native data type.
+   * 
+   * @return   In the parent DatabaseAdapter class, returns null.
+   */
+  public Map getDataTypeMap() {
+    Map typeMap = null;
+    
+    return typeMap;
+  }
+  
+
+  /**
+   * Given an attribute name, return a legal database field name. This is the
+   * generic implementation, but child classes may need to override this with
+   * their own database-specific implementation.
+   * 
+   * @param  attributeName   the attribute name
+   * @return legalName, a String containing a legal field name for this 
+   *         attribute name
+   */
+  private String getLegalDbFieldName(String attributeName) {
+    String legalName = attributeName;
+    
+    char[] badChars = {' ', '-', '.'};
+    char goodChar = '_';
+    
+    for (int i = 0; i < badChars.length; i++) {
+      legalName = legalName.replace(badChars[i], goodChar);
+    }
+    
+    return legalName;
+  }
+
+  
+  /*
+   * Determins if the value is in the missValue list
+   */
+  private boolean isMissingValue(String value, String[] missValues)
+  {
+      boolean isMissingValue = false;
+      if (missValues != null && value!=null)
+      {
+          int size = missValues.length;
+          for (int i=0; i<size; i++)
+          {
+              String missValue = missValues[i];
+              if (value.equals(missValue))
+              {
+                  isMissingValue = true;
+                  break;
+              }
+          }
+      }
+      return isMissingValue;
+  }
+  
+  
+  /**
+   * Mangles a field name by appending a string to it. The purpose is to
+   * handle the case where a field name has already been found in the table,
+   * so a unique field name needs to be generated.
+   * 
+   * @param originalName  the original field name
+   * @return the mangled field name
+   */
+  private String mangleFieldName(String originalName) {
+    StringBuffer stringBuffer = new StringBuffer(originalName);
+    
+    stringBuffer.append("_Prime");
+    
+    return stringBuffer.toString();
+  }
+    
+  
+  /**
    * Gets the database type based on attribute type. This data type
    * varies on different db system.
    * 
@@ -413,12 +430,80 @@ public abstract class DatabaseAdapter {
   protected abstract String mapDataType(String attributeType);
 
 
-  /**
-   * Gets the sql command to count the rows in a given table.
-   * 
-   * @param tableName  the given table name
-   * @return the sql string which can count how many rows
+  /*
+   * Adds the attribute definitions to a create table command.
+   * If one attribute is null or has some error an exception will be thrown.
    */
-  public abstract String getCountingRowNumberSQL(String tableName);
+  protected String parseAttributeList(AttributeList attributeList)
+      throws SQLException {
+    Attribute[] list = attributeList.getAttributes();
+    StringBuffer attributeSql = new StringBuffer();
 
+    if (list == null || list.length == 0) {
+      // log.debug("There is no attribute definition in entity");
+      throw new SQLException("No attribute definition found in entity");
+    }
+    
+    /*
+     * Determine a legal, unique field name to assign to each attribute in this
+     * attribute list.
+     */
+    assignDbFieldNames(attributeList);
+
+    int size = list.length;
+    // DBDataTypeResolver dataTypeResolver = new DBDataTypeResolver();
+    boolean firstAttribute = true;
+
+    for (int i = 0; i < size; i++) {
+      Attribute attribute = list[i];
+
+      if (attribute == null) {
+        // log.debug("One attribute definition is null attribute list");
+        throw new SQLException("Attribute list contains a null attribute");
+      }
+
+      // Get this attribute's database field name, which was assigned in the
+      // call to assignDbFieldNames(attributeList) above.
+      String attributeName = attribute.getName();
+      String fieldName = attribute.getDbFieldName();
+      String attributeType = getAttributeType(attribute);
+      String dbDataType = mapDataType(attributeType);
+
+      // String dataType = attribute.getDataType();
+      // String dbDataType = "VARCHAR(32)";
+      // String dbDataType = dataTypeResolver.resolveDBType(dataType);
+      // String javaDataType = dataTypeResolver.resolveJavaType(dataType);
+      // dbJavaDataTypeList.add(javaDataType);
+
+      if (!firstAttribute) {
+        attributeSql.append(COMMA);
+      }
+
+      attributeSql.append(fieldName);
+      attributeSql.append(SPACE);
+      attributeSql.append(dbDataType);
+      firstAttribute = false;
+
+      System.out.println("Attribute Name: " + attributeName);
+      System.out.println("DB Field Name : " + fieldName);
+      System.out.println("dbDataType    : " + dbDataType + "\n");
+    }
+
+    return attributeSql.toString();
+  }
+	  
+	  
+  /**
+   * Transforms ANSI selection SQL to a native db SQL command.
+   * 
+   * @param   ANSISQL       The ANSI SQL string.
+   * @return  The native SQL string. In the parent DatabaseAdapter class, the
+   *          string is empty.
+   */
+  public String transformSelectionSQL(String ANSISQL) {
+    String sqlString = "";
+
+    return sqlString;
+  }
+  
 }
