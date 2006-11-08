@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-01 00:28:24 $'
- *   '$Revision: 1.13 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-08 22:48:08 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -127,6 +127,7 @@ public class TableMonitor {
   public String addTableEntry(Entity entity) throws SQLException {
     String entityIdentifier = entity.getEntityIdentifier();
     String entityName = entity.getName();
+    String packageId = entity.getPackageId();
     String insertString;
     Date now = new Date();
     String priority = "1";
@@ -155,6 +156,7 @@ public class TableMonitor {
         DATA_TABLE_REGISTRY + 
         " values(" + 
           "'" + tableName + "', " + 
+          "'" + packageId + "', " + 
           "'" + entityIdentifier + "', " + 
           "'" + entityName + "', " + 
           "'" + simpleDateFormat.format(now) + "', " + 
@@ -302,6 +304,7 @@ public class TableMonitor {
       "create table " + DATA_TABLE_REGISTRY + " " +
       "(" +
       "  TABLE_NAME varchar(64), " +         // database table name
+      "  PACKAGE_ID varchar(64), " +         // package id
       "  ENTITY_IDENTIFIER varchar(256), " + // entity identifier
       "  ENTITY_NAME varchar(64), " +        // entity name
       "  CREATION_DATE date, " +             // creation date

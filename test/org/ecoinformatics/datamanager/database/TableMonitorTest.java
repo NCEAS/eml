@@ -25,6 +25,7 @@ public class TableMonitorTest extends TestCase {
     
   private TableMonitor tableMonitor;  // An instance of the object being tested
   private Connection dbConnection     = null;         // the database connection
+  private final String packageId      = "test.1.1";
   private Entity entity               = null;
   private final String id             = "001";
   private final String entityName     = "testEntity";
@@ -364,6 +365,7 @@ public class TableMonitorTest extends TestCase {
       registry +
       " values(" +
           "'" + TEST_TABLE + "', " +
+          "'" + packageId + "', " +
           "'" + id + "', " +
           "'" + entityName + "', " +
           "'" + simpleDateFormat.format(now) + "', " +
