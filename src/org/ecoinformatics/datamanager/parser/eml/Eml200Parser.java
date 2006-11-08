@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Eml200Parser.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-31 21:00:40 $'
- *   '$Revision: 1.6 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-08 01:04:45 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -205,18 +205,18 @@ public class Eml200Parser
         
         try {
             //log.debug("Processing entities");
-            processEntities(xpathapi, entities, TABLEENTITY);
+            processEntities(xpathapi, entities, TABLEENTITY, packageId);
             //TODO: current we still treat them as TableEntity java object, 
             //in future we need add new SpatialRasterEntity and SpatialVector
             // object for them
             processEntities(xpathapi, 
                             spatialRasterEntities, 
-                            SPATIALRASTERENTITY);
+                            SPATIALRASTERENTITY, packageId);
             processEntities(xpathapi, 
                             spatialVectorEntities, 
-                            SPATIALVECTORENTITY);
-            processEntities(xpathapi, otherEntities, OTHERENTITY);
-            processEntities(xpathapi, viewEntities, VIEWENTITY);
+                            SPATIALVECTORENTITY, packageId);
+            processEntities(xpathapi, otherEntities, OTHERENTITY, packageId);
+            processEntities(xpathapi, viewEntities, VIEWENTITY, packageId);
             //log.debug("Done processing entities");
         } catch (Exception e) {
             throw new Exception("Error processing entities: " + e.getMessage());
@@ -727,7 +727,7 @@ public class Eml200Parser
      * Pulls the entity information out of the XML and stores it in a hashtable.
      */
     private void processEntities(CachedXPathAPI xpathapi, 
-                                 NodeList entities, String xpath) 
+                                 NodeList entities, String xpath, String packageId) 
             throws SAXException,
                    javax.xml.transform.TransformerException, 
                    Exception
@@ -1028,6 +1028,7 @@ public class Eml200Parser
           entityObject.setHasGZipDataFile(isGZipDataFile);
           entityObject.setHasZipDataFile(isZipDataFile);
           entityObject.setHasTarDataFile(isTarDataFile);
+          entityObject.setPackageId(packageId);
             
           try {
               NodeList attNL = xpathapi.selectNodeList(entity, "attributeList");
