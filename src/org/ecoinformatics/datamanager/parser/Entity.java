@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.11 $'
+ *       '$Date: 2006-11-08 01:04:07 $'
+ *   '$Revision: 1.12 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -101,7 +101,7 @@ public class Entity extends DataObjectDescription
     private TextComplexDataFormat[] dataFormatArray = null;
     private String physicalLineDelimiter  = null;
     private boolean collapseDelimiter = false;
-    
+    private String packageId = null;
 
     /**
      * Constructs this object with some extra parameters.
@@ -715,6 +715,24 @@ public class Entity extends DataObjectDescription
     public AttributeList getAttributeList()
     {
     	return this.attributeList;
+    }
+    
+    /**
+     * Sets the entity package id which it belongs to.
+     * @param packageId the package id which the entity belongs to
+     */
+    public void setPackageId(String packageId)
+    {
+    	this.packageId = packageId;
+    }
+    
+    /**
+     * Gets the package id this entity belongs to 
+     * @return pacakge id
+     */
+    public String getPackageId()
+    {
+    	return this.packageId;
     }
     
     
