@@ -1,4 +1,5 @@
 package org.ecoinformatics.datamanager.database;
+
 import java.sql.SQLException;
 import java.util.Vector;
 
@@ -15,13 +16,43 @@ public class PostgresAdapterTest extends TestCase
 {
 	/**
 	 * Constructor 
-	 * @param name The name of testing
+	 * @param name The name of test suite
 	 */
 	  public PostgresAdapterTest (String name)
 	  {
 	    super(name);
 	  }
       
+      
+      /*
+       * Class methods
+       */
+      
+      /**
+       * Create a suite of tests to be run together
+       */
+       public static Test suite()
+       {
+         TestSuite suite = new TestSuite();
+         suite.addTest(new PostgresAdapterTest("initialize"));
+         suite.addTest(new PostgresAdapterTest("testGenerateInsertSQL"));
+         return suite;
+       }
+
+       
+      /*
+       * Instance methods
+       */
+      
+       /**
+        * Run an initial test that always passes to check that the test harness
+        * is working.
+        */
+       public void initialize() {
+         assertTrue(1 == 1);
+       }
+       
+       
 	  /**
 	   * Establish a testing framework by initializing appropriate objects.
 	   */
@@ -30,6 +61,7 @@ public class PostgresAdapterTest extends TestCase
 	    super.setUp();
 	    
 	  }
+      
       
 	  /**
 	   * Release any objects and closes database connections after tests 
@@ -41,26 +73,29 @@ public class PostgresAdapterTest extends TestCase
 	    super.tearDown();
 	  }
 	  
+      
 	  /**
 	   * Tests generating insertSQL method
 	   */
-	  public void testgenerateInsertSQL() throws SQLException
+	  public void testGenerateInsertSQL() throws SQLException
 	  {
 		  PostgresAdapter adapter = new PostgresAdapter();
 		  AttributeList attributeList = null;
           String tableName = "table1"; 
           Vector oneRowData = new Vector();
           String sql = null;
+
+          // Test that a null attribute list throws a SQLException
           try
           {
              sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-             // test attribute list is null
              assertTrue(1 == 2);
           }
           catch(SQLException e)
           {
         	  assertTrue(1 == 1);
           }
+
           Attribute attribute1     = null;
           TextDomain domain = new TextDomain();
           String name1 = "name1";
@@ -104,6 +139,8 @@ public class PostgresAdapterTest extends TestCase
           attributeList.add(attribute1);
           attributeList.add(attribute2);
           attributeList.add(attribute3);
+
+          // Test that generateInsertSQL() fails when the data vector is empty
           try
           {
              sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
@@ -114,12 +151,16 @@ public class PostgresAdapterTest extends TestCase
           {
         	  assertTrue(1 == 1);
           }
+
           String value1= "data1";
           String value2 = "1";
           String value3 = "data2";
           oneRowData.add(value1);
           oneRowData.add(value2);
           oneRowData.add(value3);
+
+          // Test that generateInsertSQL() fails when one of the data values
+          // is the wrong type
           try
           {
              sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
@@ -130,24 +171,14 @@ public class PostgresAdapterTest extends TestCase
           {
         	  assertTrue(1 == 1);
           }
+
+          // Test that generateInsertSQL() generates the correct INSERT
+          // statement when given good values
           oneRowData.remove(2);
           String correctValue = "2.2";
           oneRowData.add(correctValue);
           sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
           assertEquals(sql, "INSERT INTO table1(name1,name2,name3) VALUES ('data1',1,2.2);");
-          // test correct sql command
-          
-          
 	  }
 	  
-
-	  /**
-	   * Create a suite of tests to be run together
-	   */
-	   public static Test suite()
-	   {
-	     TestSuite suite = new TestSuite();
-	     suite.addTest(new PostgresAdapterTest("testgenerateInsertSQL"));
-	     return suite;
-	   }
 }
