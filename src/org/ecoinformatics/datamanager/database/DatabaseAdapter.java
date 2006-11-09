@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-07 22:27:47 $'
- *   '$Revision: 1.12 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-09 01:06:31 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -188,6 +189,7 @@ public abstract class DatabaseAdapter {
                                   Vector oneRowData) throws SQLException{
     String sqlString = null;
     int NULLValueCounter = 0;
+    int hasValueCounter = 0;
     
     if (attributeList == null) {
       //log.debug("There is no attribute defination in entity");
@@ -231,6 +233,11 @@ public abstract class DatabaseAdapter {
         continue;
       } else {
         value = (String) obj;
+        if (value.trim().equals(""))
+        {
+        	continue;
+        }
+       
       }
       
       Attribute attribute = list[i];
@@ -265,11 +272,13 @@ public abstract class DatabaseAdapter {
         sqlDataPart.append(SINGLEQUOTE);
         sqlDataPart.append(value);
         sqlDataPart.append(SINGLEQUOTE);
+        hasValueCounter++;
       } 
       /* Else we have a NumericDomain. Determine whether it is a float or
        * integer.
        */
       else {
+    	
         String attributeType = getAttributeType(attribute);
         String dataType = mapDataType(attributeType);
 
@@ -301,6 +310,7 @@ public abstract class DatabaseAdapter {
           //return sqlString;
           throw new SQLException("Error to determining numeric value "+e.getMessage());
         }
+        hasValueCounter++;
       }
 
       firstAttribute = false;
@@ -308,7 +318,7 @@ public abstract class DatabaseAdapter {
     }
     
     // If all data is null, return null value for sql string.
-    if (NULLValueCounter == list.length) {
+    if (NULLValueCounter == list.length || hasValueCounter==0) {
       return sqlString;
         //throw new SQLException("All data is null and couldn't generate insert data statement");
     }
@@ -324,6 +334,9 @@ public abstract class DatabaseAdapter {
     
     return sqlString;
   }
+  
+  
+  
   
   
   /**
