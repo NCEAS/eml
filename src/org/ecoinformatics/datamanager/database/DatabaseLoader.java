@@ -235,7 +235,6 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         }
         
         rowVector = dataReader.getOneRowDataVector();
-        dbConnection.setAutoCommit(false);
       } 
       catch (Exception e) {
         System.err.println("the error message in DatabaseLoader.run is "
@@ -247,6 +246,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
 
       try {
         // System.out.println("The first row data is "+rowVector);
+    	dbConnection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
           String insertSQL = databaseAdapter.generateInsertSQL(attributeList,
                                                                tableName, 
@@ -336,7 +336,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * @return             true if complete, false if not complete
    */
   public boolean isCompleted(String identifier) {
-    return completed;
+    return completed || doesDataExist(identifier);
   }
 	
   
@@ -347,7 +347,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * @return              true if success, else false
    */
   public boolean isSuccess(String identifier) {
-    return success;
+    return success ||doesDataExist(identifier);
   }
       
 }

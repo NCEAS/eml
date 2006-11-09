@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-08 22:48:08 $'
- *   '$Revision: 1.14 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-09 23:34:49 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -278,12 +278,14 @@ public class TableMonitor {
         while (rs.next()) {
           rowCount = rs.getInt("count");
         }    
+        if (rs != null)rs.close();
       }
       catch (SQLException e) {
         System.err.println("SQLException: " + e.getMessage());
         throw(e);
       }
       finally {
+    	
         if (stmt != null) stmt.close();
       }
     }
@@ -342,10 +344,11 @@ public class TableMonitor {
 
     deleteString = "DELETE FROM " + DATA_TABLE_REGISTRY + 
                    " WHERE TABLE_NAME='" + tableName + "'";
- 
+    
     try {
       stmt = dbConnection.createStatement();
       rowCount = stmt.executeUpdate(deleteString);
+      dbConnection.commit();
       success = (rowCount == 1);
     }
     catch(SQLException e) {
@@ -552,6 +555,7 @@ public class TableMonitor {
       while (rs.next()) {
         tableName = rs.getString("table_name");    
       }
+      if(rs != null)rs.close();
     }
     catch(SQLException e) {
       System.err.println("SQLException: " + e.getMessage());
@@ -613,8 +617,10 @@ public class TableMonitor {
         isPresent = true;
       }
     }
+    if (rs != null)rs.close();
     
     return isPresent;
+    
 	}
   
 

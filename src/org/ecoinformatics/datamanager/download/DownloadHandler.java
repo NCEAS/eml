@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.18 $'
+ *       '$Date: 2006-11-09 23:34:49 $'
+ *   '$Revision: 1.19 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -232,9 +232,17 @@ public class DownloadHandler implements Runnable
     			DataStorageInterface storage = dataStorageClassList[i];
     			if (storage != null)
     			{
-    			   completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+    			   if (storage.doesDataExist(url))
+    			   {
+    				   
+    			   }
+    			   else
+    			   {
+    			      completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+    			   }
     			}
     		}
+    		
     		while (!completedInDataStorageClassList)
     		{
     			completedInDataStorageClassList = true;
@@ -243,7 +251,14 @@ public class DownloadHandler implements Runnable
         			DataStorageInterface storage = dataStorageClassList[i];
         			if (storage != null)
         			{
-        			  completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+        			   if (storage.doesDataExist(url))
+          			   {
+          				   
+          			   }
+          			   else
+          			   {
+          			      completedInDataStorageClassList = completedInDataStorageClassList && storage.isCompleted(url);
+          			   }
         			}
         		}
     		}
