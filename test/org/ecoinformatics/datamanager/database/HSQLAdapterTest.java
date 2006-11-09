@@ -13,6 +13,10 @@ import junit.framework.TestSuite;
 
 public class HSQLAdapterTest extends TestCase
 {
+    /*
+     * Constructors
+     */
+  
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -22,44 +26,76 @@ public class HSQLAdapterTest extends TestCase
 	    super(name);
 	  }
       
+      
+      /*
+       * Class methods
+       */
+      
+      /**
+       * Create a suite of tests to be run together
+       */
+       public static Test suite()
+       {
+         TestSuite suite = new TestSuite();
+         suite.addTest(new HSQLAdapterTest("initialize"));
+         suite.addTest(new HSQLAdapterTest("testGenerateInsertSQL"));
+         return suite;
+       }
+      
+      
+      /*
+       * Instance methods
+       */
+      
+       /**
+        * Run an initial test that always passes to check that the test harness
+        * is working.
+        */
+       public void initialize() {
+         assertTrue(1 == 1);
+       }
+       
+       
 	  /**
 	   * Establish a testing framework by initializing appropriate objects.
 	   */
 	  protected void setUp() throws Exception
 	  {
-	    super.setUp();
-	    
+	    super.setUp();	    
 	  }
+      
       
 	  /**
 	   * Release any objects and closes database connections after tests 
 	   * are complete.
 	   */
 	  protected void tearDown() throws Exception
-	  {
-	    
+	  {	    
 	    super.tearDown();
 	  }
 	  
+      
 	  /**
 	   * Test a successful download process through http protocol
 	   */
-	  public void testgenerateInsertSQL() throws SQLException
+	  public void testGenerateInsertSQL() throws SQLException
 	  {
 		  HSQLAdapter adapter = new HSQLAdapter();
 		  AttributeList attributeList = null;
           String tableName = "table1"; 
           Vector oneRowData = new Vector();
           String sql = null;
+          
+          // Test that a null attribute list throws a SQLException
           try
           {
-             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-             // test attribute list is null
-             assertTrue(1 == 2);
+             sql = 
+               adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             assertTrue(false);
           }
           catch(SQLException e)
           {
-        	  assertTrue(1 == 1);
+        	  assertTrue(true);
           }
           
           Attribute attribute1     = null;
@@ -105,51 +141,48 @@ public class HSQLAdapterTest extends TestCase
           attributeList.add(attribute1);
           attributeList.add(attribute2);
           attributeList.add(attribute3);
+          
+          // Test that generateInsertSQL() fails when the data vector is empty
           try
           {
-             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-             // test attribute list is null
-             assertTrue(1 == 2);
+             sql = 
+                adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             assertTrue(false);
           }
           catch(SQLException e)
           {
-        	  assertTrue(1 == 1);
+        	  assertTrue(true);
           }
+          
           String value1= "data1";
           String value2 = "1";
           String value3 = "data2";
           oneRowData.add(value1);
           oneRowData.add(value2);
           oneRowData.add(value3);
+          
+          // Test that generateInsertSQL() fails when one of the data values
+          // is the wrong type
           try
           {
-             sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-             // test attribute list is null
-             assertTrue(1 == 2);
+             sql = 
+                adapter.generateInsertSQL(attributeList, tableName, oneRowData);
+             assertTrue(false);
           }
           catch(SQLException e)
           {
-        	  assertTrue(1 == 1);
+        	  assertTrue(true);
           }
+
+          // Test that generateInsertSQL() generates the correct INSERT
+          // statement when given good values
           oneRowData.remove(2);
           String correctValue = "2.2";
           oneRowData.add(correctValue);
           sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-          assertEquals(sql, "INSERT INTO table1(name1,name2,name3) VALUES ('data1',1,2.2);");
-          // test correct sql command
-          
-          
+          assertEquals(sql, 
+               "INSERT INTO table1(name1,name2,name3) VALUES ('data1',1,2.2);");
 	  }
 	  
-
-	  /**
-	   * Create a suite of tests to be run together
-	   */
-	   public static Test suite()
-	   {
-	     TestSuite suite = new TestSuite();
-	     suite.addTest(new HSQLAdapterTest("testgenerateInsertSQL"));
-	     return suite;
-	   }
 }
 
