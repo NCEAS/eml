@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
@@ -254,8 +255,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           
           if (insertSQL != null)
           {
-        	  Statement statement = dbConnection.createStatement();
-        	  statement.execute(insertSQL);
+        	  PreparedStatement statement = dbConnection.prepareStatement(insertSQL);
+        	  statement.execute();
           }
             
           rowVector = dataReader.getOneRowDataVector();
