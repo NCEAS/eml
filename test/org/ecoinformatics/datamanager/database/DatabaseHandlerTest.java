@@ -173,7 +173,8 @@ public class DatabaseHandlerTest extends TestCase {
       boolean isPresent = databaseHandler.isTableInDB(tableName);
       assertTrue("Could not find table " + tableName +" but it should be in db", 
                  isPresent);
-      databaseHandler.dropTable(entity);
+      boolean successDrop = databaseHandler.dropTable(entity);
+      assertTrue("Couldn't drop table, but it shoud be sucessful", successDrop);
     }
   }
 
@@ -321,7 +322,8 @@ public class DatabaseHandlerTest extends TestCase {
 		  statement.close();
 		  connection.close();
 		  assertTrue (col1==1);
-	      databaseHandler.dropTable(entity);
+	      boolean successDrop = databaseHandler.dropTable(entity);
+	      assertTrue("Couldn't drop table, but it shoud be sucessful", successDrop);
 	    }
   }
 
