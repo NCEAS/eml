@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.18 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-10 19:18:18 $'
+ *   '$Revision: 1.19 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,6 +36,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
@@ -62,7 +63,7 @@ public class DatabaseHandler
   /*
    * Instance fields
    */
-  private Connection dbConnection  = null;
+  
   private String     dbAdapterName = null;
   private DatabaseAdapter databaseAdapter;
  
@@ -78,9 +79,8 @@ public class DatabaseHandler
    * @param  dbAdapterName The name of the database adapter subclass.
    * @return A DatabaseHandler object.
    */
-  public DatabaseHandler(Connection dbConnection, String dbAdapterName)
+  public DatabaseHandler(String dbAdapterName)
       throws Exception {
-    this.dbConnection = dbConnection;
     this.dbAdapterName = dbAdapterName;
 
     /*
@@ -100,8 +100,7 @@ public class DatabaseHandler
     /*
      * Construct a TableMonitor object and store it.
      */
-    tableMonitor = new TableMonitor(dbConnection,
-                                                    databaseAdapter);
+    tableMonitor = new TableMonitor(databaseAdapter);
   }
 
   
@@ -122,6 +121,7 @@ public class DatabaseHandler
    * @return  true if the data table was successfully dropped, else false.
    */
   boolean dropTable(String tableName) throws SQLException {
+    Connection connection = DataManager.getConnection();
     boolean success = false;
     String sqlString;
     
@@ -130,7 +130,7 @@ public class DatabaseHandler
       sqlString = databaseAdapter.generateDropTableSQL(tableName);
 
       try {
-        stmt = dbConnection.createStatement();
+        stmt = connection.createStatement();
         stmt.executeUpdate(sqlString);
         success = true;
         
@@ -146,6 +146,7 @@ public class DatabaseHandler
       }
       finally {
         if (stmt != null) stmt.close();
+        DataManager.returnConnection(connection);
       }
     }
 
@@ -205,6 +206,7 @@ public class DatabaseHandler
    * @return  true if the table is successfully generated, else false
    */
   public boolean generateTable(Entity entity) throws SQLException {
+    Connection connection = DataManager.getConnection();
     boolean success = true;
     String tableName;
     
@@ -233,7 +235,7 @@ public class DatabaseHandler
         String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
 
         try {
-          stmt = dbConnection.createStatement();
+          stmt = connection.createStatement();
           stmt.executeUpdate(ddlString);
         } 
         catch (SQLException e) {
@@ -244,6 +246,7 @@ public class DatabaseHandler
         }
         finally {
           if (stmt != null) stmt.close();
+          DataManager.returnConnection(connection);
         }
       }
     }
@@ -331,7 +334,7 @@ public class DatabaseHandler
       DatabaseLoader dbLoader = null;
       
       try {
-        dbLoader = new DatabaseLoader(dbConnection, dbAdapterName, entity);
+        dbLoader = new DatabaseLoader(dbAdapterName, entity);
         DataStorageInterface[] storage = new DataStorageInterface[1];
         storage[0] = dbLoader;
         /*

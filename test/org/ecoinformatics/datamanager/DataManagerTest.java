@@ -94,7 +94,8 @@ public class DataManagerTest extends TestCase {
    */
   public void setUp() throws Exception {
     super.setUp();
-    DatabaseConnectionPoolInterfaceTest connectionPool = new DatabaseConnectionPoolInterfaceTest();
+    DatabaseConnectionPoolInterfaceTest connectionPool = 
+                                      new DatabaseConnectionPoolInterfaceTest();
     String dbAdapterName = connectionPool.getDBAdapterName();
     dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
   }
@@ -147,7 +148,9 @@ public class DataManagerTest extends TestCase {
     
     if (dataPackage != null) {
       testStorageList[0] = new DataStorageTest();
-      success = dataManager.downloadData(dataPackage, endPointInfo,testStorageList);
+      success = dataManager.downloadData(dataPackage, 
+                                         endPointInfo,
+                                         testStorageList);
     }
     
     /*

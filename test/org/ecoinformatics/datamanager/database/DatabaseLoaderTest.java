@@ -167,13 +167,11 @@ public class DatabaseLoaderTest extends TestCase
 		  DownloadHandler handler = 
                           DownloadHandler.getInstance(identifier, endPointInfo);
 		  dbConnection = connectionPool.getConnection();
-		  DatabaseHandler databaseHandler = 
-                                   new DatabaseHandler(dbConnection, dbAdaptor);
+		  DatabaseHandler databaseHandler = new DatabaseHandler(dbAdaptor);
 		  boolean success = databaseHandler.generateTable(entity);
 	      assertTrue("DatabaseHandler did not succeed in generating table", 
                      success);
-		  DatabaseLoader dataStorage = 
-                            new DatabaseLoader(dbConnection, dbAdaptor, entity);
+		  DatabaseLoader dataStorage = new DatabaseLoader(dbAdaptor, entity);
 		  boolean isPresent = dataStorage.doesDataExist(identifier);
           assertFalse("Table for identifier " + identifier + " is empty, " + 
                       "but doesDataExist() returned true", 
@@ -201,6 +199,7 @@ public class DatabaseLoaderTest extends TestCase
 		  assertTrue(handler.isSuccess() == true);
 		  assertTrue(handler.isBusy() == false);
 		  String sql = "select column_1 from head_linedata where column_2=2;";
+          connectionPool.returnConnection(dbConnection);
 		  connection = connectionPool.getConnection();
 		  Statement statement = connection.createStatement();
 		  ResultSet result = statement.executeQuery(sql);
@@ -214,7 +213,6 @@ public class DatabaseLoaderTest extends TestCase
           
 		  result.close();
 		  statement.close();
-		  connection.close();
 		  assertTrue("Unexpected value found in table", col1==1);
           
           // Clean up
@@ -222,7 +220,6 @@ public class DatabaseLoaderTest extends TestCase
 	      isPresent = dataStorage.doesDataExist(identifier);
 	      assertFalse("Found table for identifier " + identifier +
 	                  " but it should NOT be in db", isPresent);
-          connectionPool.returnConnection(dbConnection);
           connectionPool.returnConnection(connection);
 	  }
 

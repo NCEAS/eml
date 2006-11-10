@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseConnectionPoolInterfaceTest.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-04 01:37:48 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-10 19:18:18 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,15 +34,10 @@ package org.ecoinformatics.datamanager.database;
 import edu.ucsb.nceas.utilities.Options;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -55,7 +50,8 @@ import junit.framework.TestSuite;
  * @author tao
  *
  */
-public class DatabaseConnectionPoolInterfaceTest extends TestCase implements DatabaseConnectionPoolInterface
+public class DatabaseConnectionPoolInterfaceTest 
+        extends TestCase implements DatabaseConnectionPoolInterface
 {
 	  /* Configuration directory and file name for the properties file */
 	    private static final String CONFIG_DIR = "lib/datamanager";
@@ -110,9 +106,11 @@ public class DatabaseConnectionPoolInterfaceTest extends TestCase implements Dat
 		* @return checked out connection
 	    * @throws SQLException
 	    */
-	   public Connection getConnection() throws SQLException, ConnectionNotAvailableException
+	   public Connection getConnection() 
+               throws SQLException, ConnectionNotAvailableException
 	   {
 		      Connection connection = null;
+              
 		      try {
 		        Class.forName(dbDriver);
 		      } 
@@ -131,11 +129,11 @@ public class DatabaseConnectionPoolInterfaceTest extends TestCase implements Dat
 		        System.err.println("SQLException: " + e.getMessage());
 		        throw(e);
 		      }
-		   
-		    
+		   		    
 		    return connection;
 	   }
 	   
+       
 	   /**
 	    * Returns checked out dabase connection to the pool
 	    * @param conn Connection needs to be returned.
@@ -144,6 +142,7 @@ public class DatabaseConnectionPoolInterfaceTest extends TestCase implements Dat
 	   public boolean returnConnection(Connection conn)
 	   {
 		   boolean success = false;
+           
 		   try
 		   {
 			   conn.close();
@@ -153,6 +152,7 @@ public class DatabaseConnectionPoolInterfaceTest extends TestCase implements Dat
 		   {
 			   success = false;   
 		   }
+           
 		   return success;
 	   }
 	

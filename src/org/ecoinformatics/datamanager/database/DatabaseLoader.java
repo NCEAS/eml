@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
@@ -40,13 +41,16 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
   private PipedInputStream inputStream = null;
   private PipedOutputStream outputStream = null;
   private Entity entity = null;
-  private Connection dbConnection = null;
   private DatabaseAdapter databaseAdapter = null;
   private String errorCode = null;
   private boolean completed = false;
   private boolean success = false;
   
   
+  /*
+   * Constructors
+   */
+
   /**
    * Constructor of this class. In constructor, it will create a pair of
    * PipedOutputStream object and PipedInputStream object.
@@ -56,16 +60,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * @param entity          Metadata information associated with the loader
    * @throws IOException
    */
-  public DatabaseLoader(Connection dbConnection, 
-                        String dbAdapterName, 
-                        Entity entity)
+  public DatabaseLoader(String dbAdapterName, Entity entity)
           throws IOException, SQLException
   {
     outputStream = new PipedOutputStream();
     inputStream = new PipedInputStream();
     outputStream.connect(inputStream);
     
-    this.dbConnection = dbConnection;
     this.entity = entity;
 
     /* Initialize the databaseAdapter and tableMonitor fields */
@@ -79,7 +80,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       this.databaseAdapter = new OracleAdapter();
     }
     
-    tableMonitor = new TableMonitor(dbConnection, databaseAdapter);
+    tableMonitor = new TableMonitor(databaseAdapter);
   }
 	
 	 
@@ -244,9 +245,11 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         return;
       }
 
+      Connection connection = DataManager.getConnection();
+
       try {
         // System.out.println("The first row data is "+rowVector);
-    	dbConnection.setAutoCommit(false);
+    	connection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
           String insertSQL = databaseAdapter.generateInsertSQL(attributeList,
                                                                tableName, 
@@ -255,7 +258,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           
           if (insertSQL != null)
           {
-        	  PreparedStatement statement = dbConnection.prepareStatement(insertSQL);
+        	  PreparedStatement statement = connection.prepareStatement(insertSQL);
         	  statement.execute();
           }
             
@@ -263,7 +266,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           // System.out.println("The row data in while loop is "+rowVector);
         }
         
-        dbConnection.commit();
+        connection.commit();
         success = true;
       } 
       catch (Exception e) {
@@ -271,7 +274,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         success = false;
         
         try {
-          dbConnection.rollback();
+          connection.rollback();
         } 
         catch (Exception ee) {
           System.err.println(ee.getMessage());
@@ -279,11 +282,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       } 
       finally {
         try {
-          dbConnection.setAutoCommit(true);
+          connection.setAutoCommit(true);
         } 
         catch (Exception ee) {
           System.err.println(ee.getMessage());
         }
+
+        DataManager.returnConnection(connection);
       }
     } 
     else {

@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +27,8 @@ public class DatabaseHandlerTest extends TestCase {
   /*
    * Instance fields
    */
-    
+
+  private DataManager dataManager = null;
   private DatabaseHandler databaseHandler;  //An instance of object being tested
   private Connection dbConnection  = null;            // the database connection
   private DatabaseConnectionPoolInterfaceTest connectionPool = null;
@@ -84,9 +84,6 @@ public class DatabaseHandlerTest extends TestCase {
   }
     
     
- 
-
-    
   /**
    * Establish a testing framework by initializing appropriate objects.
    */
@@ -95,7 +92,8 @@ public class DatabaseHandlerTest extends TestCase {
     connectionPool = new DatabaseConnectionPoolInterfaceTest();
     dbConnection = connectionPool.getConnection();
     dbAdapterName = connectionPool.getDBAdapterName();
-    databaseHandler = new DatabaseHandler(dbConnection, dbAdapterName);
+    dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
+    databaseHandler = new DatabaseHandler(dbAdapterName);
   }
     
     
@@ -104,9 +102,11 @@ public class DatabaseHandlerTest extends TestCase {
    * are complete.
    */
   public void tearDown() throws Exception {
-    dbConnection.close();
+    connectionPool.returnConnection(dbConnection);
     dbConnection = null;
+    connectionPool = null;
     databaseHandler = null;
+    dataManager = null;
     super.tearDown();
   }
   
@@ -320,7 +320,7 @@ public class DatabaseHandlerTest extends TestCase {
 		  }
 		  result.close();
 		  statement.close();
-		  connection.close();
+		  connectionPool.returnConnection(connection);
 		  assertTrue (col1==1);
 	      boolean successDrop = databaseHandler.dropTable(entity);
 	      assertTrue("Couldn't drop table, but it shoud be sucessful", successDrop);

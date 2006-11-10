@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.20 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-10 19:18:18 $'
+ *   '$Revision: 1.21 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -96,7 +96,8 @@ public class DataManager {
    * This is singleton class, so constructor is private
    */
   
-  private DataManager(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName)
+  private DataManager(DatabaseConnectionPoolInterface connectionPool, 
+                      String databaseAdapterName)
   {
     DataManager.connectionPool = connectionPool;
     DataManager.databaseAdapterName = databaseAdapterName;
@@ -112,12 +113,16 @@ public class DataManager {
    * 
    * @return  the single instance of the DataManager class.
    */
-  static public DataManager getInstance(DatabaseConnectionPoolInterface connectionPool, String databaseAdapterName) {
+  static public DataManager getInstance(
+                                 DatabaseConnectionPoolInterface connectionPool, 
+                                 String databaseAdapterName) {
 	if (dataManager == null)
 	{
 		dataManager = new DataManager(connectionPool, databaseAdapterName);
 	}
-	else if (DataManager.databaseAdapterName != null && !DataManager.databaseAdapterName.equals(databaseAdapterName))
+	else if (DataManager.databaseAdapterName != null && 
+             !DataManager.databaseAdapterName.equals(databaseAdapterName)
+            )
 	{
 		dataManager = new DataManager(connectionPool, databaseAdapterName);
 	}
@@ -131,10 +136,11 @@ public class DataManager {
    * sleep and try again. If ceiling times reachs, null will return.
    * 
    */
-  private static Connection getConnection()
+  public static Connection getConnection()
   {
       Connection connection = null;
       int index = 0;
+      
       while (index <MAXIMUM_NUMBER_TO_ACCESS_CONNECTIONPOOL)
       {
           try
@@ -148,39 +154,31 @@ public class DataManager {
               {
                  Thread.sleep(SLEEP_TIME);
               }
-              catch(Exception e)
+              catch(Exception e) 
               {
-                 System.err.println("Error in DataManager.getConnection "+e.getMessage());
+                 System.err.println("Error in DataManager.getConnection(): " +
+                                    e.getMessage());
               }
           }
           catch (SQLException sql)
           {
-              break;
+            System.err.println("Error in DataManager.getConnection(): " +
+                               sql.getMessage());
           }
+          
           index++;
       }
+      
       return connection;
   }
   
   
   /**
-   * Gets the database connection object. If the dbConnection field hasn't
-   * already been initialized, creates a new connection and initializes the
-   * field.
+   * Returns checked out connection to connection pool.
    * 
-   * @return the Connection object which connects database
+   * @param  the Connection to be returned to the pool
    */
-  /*public static Connection getConnection() 
-        throws ClassNotFoundException, SQLException {
-    
-     
-  }*/
-  
-
-  /*
-   * Returns checked out connection to connection pool
-   */
-  private static void returnConnection(Connection connection)
+  public static void returnConnection(Connection connection)
   {
       connectionPool.returnConnection(connection);
   }
@@ -339,22 +337,9 @@ public class DataManager {
   boolean dropTables(DataPackage dataPackage)
           throws ClassNotFoundException, SQLException, Exception {
     boolean success;
-    Connection conn = getConnection();
-    if (conn == null)
-    {
-    	throw new Exception("DBConnection is not available");
-    }
-    try
-    {
-	    DatabaseHandler databaseHandler = 
-	                                 new DatabaseHandler(conn, databaseAdapterName);
-	    
-	    success = databaseHandler.dropTables(dataPackage);
-    }
-    finally
-    {
-    	returnConnection(conn);
-    }
+
+    DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
+	success = databaseHandler.dropTables(dataPackage);
     
     return success;
   }
@@ -395,18 +380,18 @@ public class DataManager {
    */
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
         throws ClassNotFoundException, SQLException, Exception {
-    Connection conn = getConnection();
+    Connection conn = DataManager.getConnection();
     boolean success = false;
+    
     if (conn == null)
     {
     	throw new Exception("DBConnection is not available");
     }
     try
     {
-	    DatabaseHandler databaseHandler = new DatabaseHandler(conn, 
-	                                                          databaseAdapterName);
+	    DatabaseHandler databaseHandler = 
+                                       new DatabaseHandler(databaseAdapterName);
 	    
-	
 	    // First, generate a table for the entity
 	    success = databaseHandler.generateTable(entity);
 	    
@@ -417,8 +402,9 @@ public class DataManager {
     }
     finally
     {
-    	returnConnection(conn);
+    	DataManager.returnConnection(conn);
     }
+    
     return success;
   }
   
@@ -481,21 +467,24 @@ public class DataManager {
    */
   public ResultSet selectData(String ANSISQL, DataPackage[] packages) 
         throws ClassNotFoundException, SQLException, Exception {
-    Connection conn = getConnection();
+    Connection conn = DataManager.getConnection();
+    
     if (conn == null)
     {
     	throw new Exception("DBConnection is not available");
     }
+    
     DatabaseHandler databaseHandler;
     ResultSet resultSet = null;
+    
     try
     {
-      databaseHandler = new DatabaseHandler(conn, databaseAdapterName);
+      databaseHandler = new DatabaseHandler(databaseAdapterName);
       resultSet = databaseHandler.selectData(ANSISQL, packages);
     }
     finally
     {
-    	returnConnection(conn);
+    	DataManager.returnConnection(conn);
     }
     
     return resultSet;
@@ -570,7 +559,7 @@ public class DataManager {
    *        cache.
    */
   public void setDatabaseSize(int size) throws SQLException, ClassNotFoundException {
-	Connection connection = getConnection();
+	Connection connection = DataManager.getConnection();
 	if (connection == null)
     {
     	throw new SQLException("DBConnection is not available");
@@ -578,14 +567,12 @@ public class DataManager {
 	try
 	{
 		DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
-	    TableMonitor tableMonitor = 
-	                            new TableMonitor(connection, dbAdapter);
-	    
+	    TableMonitor tableMonitor = new TableMonitor(dbAdapter);	    
 	    tableMonitor.setDBSize(size);
 	}
 	finally
 	{
-		returnConnection(connection);
+		DataManager.returnConnection(connection);
 	}
   }
   
@@ -604,7 +591,8 @@ public class DataManager {
    */
   public void setTableExpirationPolicy(String tableName, int policy) 
         throws SQLException, ClassNotFoundException {
-	Connection connection = getConnection();
+	Connection connection = DataManager.getConnection();
+    
 	if (connection == null)
     {
     	throw new SQLException("DBConnection is not available");
@@ -612,13 +600,13 @@ public class DataManager {
 	try
 	{
 	   DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
-       TableMonitor tableMonitor = new TableMonitor(connection, dbAdapter);
+       TableMonitor tableMonitor = new TableMonitor(dbAdapter);
     
        tableMonitor.setTableExpirationPolicy(tableName, policy);
 	}
 	finally
 	{
-		returnConnection(connection);
+		DataManager.returnConnection(connection);
 	}
   }
   

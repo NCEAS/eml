@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-09 23:34:49 $'
- *   '$Revision: 1.15 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-10 19:18:18 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Entity;
 
 /**
@@ -69,14 +70,12 @@ public class TableMonitor {
    * Instance fields
    */
 
-  private DatabaseMetaData databaseMetaData = null; // For getting db metadata
-  private Connection dbConnection  = null;   // the database connection
   private DatabaseAdapter    dbAdapter = null;   // the DatabaseAdapter name
   private final String DATA_TABLE_REGISTRY = "DATA_TABLE_REGISTRY";
                                              // name of the database table where
                                              // data tables are registered
   private final int DEFAULT_DB_SIZE = 100;   // default maximum DB size (in Mb)
-  private int dbSize = DEFAULT_DB_SIZE;
+  private int dbSize = DEFAULT_DB_SIZE;      // maximum DB size (in Mb)
   
   
   /*
@@ -90,11 +89,9 @@ public class TableMonitor {
    * @param   dbAdapterName the DatabaseAdapter name
    * @return  a TableMonitor object
    */
-  public TableMonitor(Connection dbConnection, DatabaseAdapter dbAdapter)
+  public TableMonitor(DatabaseAdapter dbAdapter)
         throws SQLException {
-    this.dbConnection = dbConnection;
     this.dbAdapter = dbAdapter;
-    this.databaseMetaData = dbConnection.getMetaData();
 
     /*
      * Check for existence of dataTableRegistry table. Create it if it does not
@@ -125,6 +122,7 @@ public class TableMonitor {
    * @return  the name of the table that was added, or null if not successful
    */
   public String addTableEntry(Entity entity) throws SQLException {
+    Connection connection = DataManager.getConnection();
     String entityIdentifier = entity.getEntityIdentifier();
     String entityName = entity.getName();
     String packageId = entity.getPackageId();
@@ -165,7 +163,7 @@ public class TableMonitor {
         ")";
 
       try {
-        stmt = dbConnection.createStatement();
+        stmt = connection.createStatement();
         stmt.executeUpdate(insertString);
       } 
       catch (SQLException e) {
@@ -175,8 +173,8 @@ public class TableMonitor {
         tableName = null;
       } 
       finally {
-        if (stmt != null)
-          stmt.close();
+        if (stmt != null) stmt.close();
+        DataManager.returnConnection(connection);
       }
     }
     
@@ -205,6 +203,7 @@ public class TableMonitor {
    */
   String assignTableName(String entityIdentifier, String entityName) 
           throws SQLException {
+    Connection connection = DataManager.getConnection();
     String tableName = null;
     String selectString = "SELECT TABLE_NAME, ENTITY_IDENTIFIER, ENTITY_NAME" +
                           " FROM " + DATA_TABLE_REGISTRY +
@@ -217,7 +216,7 @@ public class TableMonitor {
      * name. If it has, just return the previously assigned table name.
      */
     try {
-      stmt = dbConnection.createStatement();
+      stmt = connection.createStatement();
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -230,6 +229,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
 
     /*
@@ -265,6 +265,7 @@ public class TableMonitor {
    * @throws SQLException
    */
   public int countRows(String tableName) throws SQLException {
+    Connection connection = DataManager.getConnection();
     int rowCount = -1;
     
     if (isTableInDB(tableName)) {
@@ -272,7 +273,7 @@ public class TableMonitor {
       Statement stmt = null;
 
       try {
-        stmt = dbConnection.createStatement();
+        stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(selectString);
         
         while (rs.next()) {
@@ -284,9 +285,9 @@ public class TableMonitor {
         System.err.println("SQLException: " + e.getMessage());
         throw(e);
       }
-      finally {
-    	
+      finally {	
         if (stmt != null) stmt.close();
+        DataManager.returnConnection(connection);
       }
     }
     
@@ -302,6 +303,7 @@ public class TableMonitor {
    *
    */
   private void createDataTableRegistry() throws SQLException {
+    Connection connection = DataManager.getConnection();
     String createString = 
       "create table " + DATA_TABLE_REGISTRY + " " +
       "(" +
@@ -317,7 +319,7 @@ public class TableMonitor {
     Statement stmt = null;
 
     try {
-      stmt = dbConnection.createStatement();             
+      stmt = connection.createStatement();             
       stmt.executeUpdate(createString);
     } 
     catch(SQLException e) {
@@ -326,6 +328,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
   }
   
@@ -337,6 +340,7 @@ public class TableMonitor {
    * @return  the row count returned by executing the SQL update
    */
   public boolean dropTableEntry(String tableName) throws SQLException {
+    Connection connection = DataManager.getConnection();
     boolean success = false;
     String deleteString;
     int rowCount = -1;
@@ -346,9 +350,9 @@ public class TableMonitor {
                    " WHERE TABLE_NAME='" + tableName + "'";
     
     try {
-      stmt = dbConnection.createStatement();
+      stmt = connection.createStatement();
       rowCount = stmt.executeUpdate(deleteString);
-      dbConnection.commit();
+      connection.commit();
       success = (rowCount == 1);
     }
     catch(SQLException e) {
@@ -357,6 +361,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return success;
@@ -371,7 +376,7 @@ public class TableMonitor {
   public int freeTableSpace(DatabaseHandler databaseHandler)
           throws SQLException {
     int freedSpace = 0;
-    String oldestTable = getOldestTable();
+    //String oldestTable = getOldestTable();
     
     return freedSpace;
   }
@@ -384,6 +389,7 @@ public class TableMonitor {
    * @return  the creation date, a Date object
    */
   public Date getCreationDate(String tableName) throws SQLException {
+    Connection connection = DataManager.getConnection();
     Date creationDate = null;
     String selectString = 
       "SELECT creation_date FROM " + DATA_TABLE_REGISTRY +
@@ -391,7 +397,7 @@ public class TableMonitor {
     Statement stmt = null;
     
     try {
-      stmt = dbConnection.createStatement();             
+      stmt = connection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -404,6 +410,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return creationDate;
@@ -429,6 +436,7 @@ public class TableMonitor {
    * @return  the last usage date, a Date object
    */
   public Date getLastUsageDate(String tableName) throws SQLException {
+    Connection connection = DataManager.getConnection();
     Date lastUsageDate = null;
     String selectString = 
       "SELECT last_usage_date FROM " + DATA_TABLE_REGISTRY +
@@ -436,7 +444,7 @@ public class TableMonitor {
     Statement stmt = null;
     
     try {
-      stmt = dbConnection.createStatement();             
+      stmt = connection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -449,6 +457,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return lastUsageDate;
@@ -463,6 +472,7 @@ public class TableMonitor {
    * @throws SQLException
    */
   String getOldestTable() throws SQLException {
+    Connection connection = DataManager.getConnection();
     Date oldestDate = new Date();
     String oldestTable = null;
     String selectString = 
@@ -470,7 +480,7 @@ public class TableMonitor {
     Statement stmt = null;
     
     try {
-      stmt = dbConnection.createStatement();
+      stmt = connection.createStatement();
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -489,6 +499,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return oldestTable;
@@ -501,12 +512,13 @@ public class TableMonitor {
    * @return  a String array of all tables names currently in the database
    */
   public String[] getTableList() throws SQLException {
+    Connection connection = DataManager.getConnection();
     String selectString = "SELECT table_name FROM " + DATA_TABLE_REGISTRY;
     Statement stmt = null;
     Vector vector = new Vector();
     
     try {
-      stmt = dbConnection.createStatement();             
+      stmt = connection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -520,6 +532,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     String[] tableList = new String[vector.size()];
@@ -541,6 +554,7 @@ public class TableMonitor {
    */
   String identifierToTableName(String identifier) 
           throws SQLException {
+    Connection connection = DataManager.getConnection();
     String tableName = null;
     String selectString = 
       "SELECT table_name" +
@@ -549,7 +563,7 @@ public class TableMonitor {
     Statement stmt = null;
     
     try {
-      stmt = dbConnection.createStatement();             
+      stmt = connection.createStatement();             
       ResultSet rs = stmt.executeQuery(selectString);
       
       while (rs.next()) {
@@ -563,6 +577,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return tableName;
@@ -601,12 +616,15 @@ public class TableMonitor {
    */
   public boolean isTableInDB(String tableName) throws SQLException {
     String catalog = null;          // A catalog name (may be null)
+    Connection connection = DataManager.getConnection();
+    DatabaseMetaData databaseMetaData = null; // For getting db metadata
     boolean isPresent = false;  
     ResultSet rs;
     String schemaPattern = null;    // A schema name pattern (may be null)
     String tableNamePattern = "%";  // Matches all table names in the db
     String[] types = {"TABLE"};     // A list of table types to include
     
+    databaseMetaData = connection.getMetaData();
     rs = databaseMetaData.getTables(catalog, schemaPattern, 
                                     tableNamePattern, types);
 
@@ -617,11 +635,12 @@ public class TableMonitor {
         isPresent = true;
       }
     }
-    if (rs != null)rs.close();
+    
+    if (rs != null) rs.close();
+    DataManager.returnConnection(connection);
     
     return isPresent;
-    
-	}
+  }
   
 
   /**
@@ -697,6 +716,7 @@ public class TableMonitor {
    */
   public boolean setLastUsageDate(String tableName, Date date)
         throws SQLException {
+    Connection connection = DataManager.getConnection();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String dateString = simpleDateFormat.format(date);
     int rowCount = 0;
@@ -710,7 +730,7 @@ public class TableMonitor {
     
     // Set the last usage date
     try {
-      stmt = dbConnection.createStatement();
+      stmt = connection.createStatement();
       rowCount = stmt.executeUpdate(updateString);
       success = (rowCount == 1);
     } 
@@ -720,6 +740,7 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return success;
@@ -740,8 +761,9 @@ public class TableMonitor {
    *                     expired
    * @return  true if the expiration policy was successfully set, else false
    */
-	public boolean setTableExpirationPolicy(String tableName, int priority) 
+  public boolean setTableExpirationPolicy(String tableName, int priority) 
         throws SQLException {
+    Connection connection = DataManager.getConnection();
     int rowCount = 0;
     Statement stmt = null;
     boolean success = false;
@@ -753,7 +775,7 @@ public class TableMonitor {
     
     // Set the last usage date
     try {
-      stmt = dbConnection.createStatement();
+      stmt = connection.createStatement();
       rowCount = stmt.executeUpdate(updateString);
       success = (rowCount == 1);
     } 
@@ -763,9 +785,10 @@ public class TableMonitor {
     }
     finally {
       if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
     }
     
     return success;
-	}
+  }
 	
 }

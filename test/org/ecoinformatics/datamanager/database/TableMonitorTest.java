@@ -1,7 +1,6 @@
 package org.ecoinformatics.datamanager.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -48,6 +47,7 @@ public class TableMonitorTest extends TestCase {
   private final int     numRecords    = 200;
   private final String TEST_TABLE = entityName;
   private DatabaseAdapter databaseAdapter = null;
+  private DataManager dataManager = null;
     
     
   /*
@@ -107,10 +107,7 @@ public class TableMonitorTest extends TestCase {
     assertTrue(1 == 1);
   }
     
-    
- 
 
-    
   /**
    * Establish a testing framework by initializing appropriate objects.
    */
@@ -119,6 +116,7 @@ public class TableMonitorTest extends TestCase {
     connectionPool = new DatabaseConnectionPoolInterfaceTest();
     dbConnection = connectionPool.getConnection();
     dbAdapterName = connectionPool.getDBAdapterName();
+    dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 
     entity = new Entity(id, entityName, description,
                         caseSensitive, orientation, numRecords);
@@ -128,6 +126,7 @@ public class TableMonitorTest extends TestCase {
 
     entityCurrent = new Entity(idCurrent, entityNameCurrent, description,
         caseSensitive, orientation, numRecords);
+    
     if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
 	      databaseAdapter = new PostgresAdapter();
 	    }
@@ -139,7 +138,7 @@ public class TableMonitorTest extends TestCase {
 	      
 	    }
 
-    tableMonitor = new TableMonitor(dbConnection, databaseAdapter);
+    tableMonitor = new TableMonitor(databaseAdapter);
   }
     
     
@@ -148,8 +147,10 @@ public class TableMonitorTest extends TestCase {
    * are complete.
    */
   public void tearDown() throws Exception {
-    dbConnection.close();
+    connectionPool.returnConnection(dbConnection);
+    connectionPool = null;
     dbConnection = null;
+    dataManager = null;
     entity = null;
     entityAncient = null;
     entityCurrent = null;
