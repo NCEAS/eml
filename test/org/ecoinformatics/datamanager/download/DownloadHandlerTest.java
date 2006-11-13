@@ -272,7 +272,19 @@ public class DownloadHandlerTest extends TestCase
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
-		  boolean result = handler.download(list);
+		  boolean result = false;
+		  try
+		  {
+	        result = handler.download(list);
+		  }
+		  catch (Exception e)
+		  {
+			  if (url == INCORRECTURL)
+			  {
+				  assertTrue("The exception should be an instance of DataSourceNotFoundException", 
+						     e instanceof DataSourceNotFoundException);
+			  }
+		  }
 		  if (url == CORRECTURL1)
 		  {
 			  assertTrue(dataStorage.getEntitySize(url)== 8052);
