@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-09 23:34:49 $'
- *   '$Revision: 1.19 $'
+ *       '$Date: 2006-11-13 22:40:44 $'
+ *   '$Revision: 1.20 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -68,6 +68,8 @@ public class DownloadHandler implements Runnable
 	protected boolean completed = false;
 	protected boolean success = false;
 	protected boolean busy = false;
+	private Exception exception = null;
+	
 	protected static Hashtable handlerList = new Hashtable();
 	//private static Options option = null;
 	private static String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
@@ -271,16 +273,22 @@ public class DownloadHandler implements Runnable
      * @param dataStorages  The destination of the download data
      * @return sucess or not
      */
-    public boolean download(DataStorageInterface[] dataStorages) throws Exception
+    public boolean download(DataStorageInterface[] dataStorages) throws DataSourceNotFoundException, Exception
     {
     	this.setDataStorageCladdList(dataStorages);
     	Thread loadData = new Thread(this);
     	loadData.start();
-    	while (!this.isCompleted())
+    	int index = 0;
+    	while (!this.isCompleted() && index < MAXLOOPNUMBER)
     	{
-    		Thread.sleep(5000);
+    		Thread.sleep(SLEEPTIME);
+    		index++;
     	}
         success = this.isSuccess();
+        if (exception != null)
+        {
+        	throw exception;
+        }
     	return success;
     }
     
@@ -350,16 +358,28 @@ public class DownloadHandler implements Runnable
                 	 //System.out.println("before get inpustream !!!!!!!!!!!!!!!!!!11");
                          InputStream filestream = url.openStream();
                          //System.out.println("after get inpustream !!!!!!!!!!!!!!!!!!11");
-                         return this.writeRemoteInputStreamIntoDataStorage(filestream);
+                         try
+                         {
+                            successFlag = this.writeRemoteInputStreamIntoDataStorage(filestream);
+                         }
+                         catch (Exception e)
+                         {
+                        	 successFlag = false;
+                        	 exception = e;
+                         }
+                         return successFlag;
                     // }
                        
                  }
                  //log.debug("EcogridDataCacheItem - error connecting to http/file ");
                  successFlag = false;
+                 exception = new DataSourceNotFoundException("The url is null");
                  return successFlag;
              }
              catch (IOException ioe) {
             	 successFlag = false;
+            	 exception = new DataSourceNotFoundException("The url "+resourceName+ 
+            			                                     " is not reachable");
                  return successFlag;
              }
              // We will use ecogrid client to handle both ecogrid and srb protocol
