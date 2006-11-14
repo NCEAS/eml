@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DelimitedReader.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-06 21:18:34 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-14 00:39:51 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -504,7 +504,7 @@ public class DelimitedReader extends TextDataReader
         
     	if ( columnCounter > numCols)
     	{
-    		throw new Exception("Metadata sees data has "+ numCols +
+    		throw new DataNotMatchingMetadataException("Metadata sees data has "+ numCols +
     				            "columns but actually data has "+columnCounter+
     				            "columns. Please make sure metadata is correct!");
     	}
