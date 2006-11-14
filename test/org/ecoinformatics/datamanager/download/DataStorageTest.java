@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageTest.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-18 20:28:46 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-11-14 00:43:11 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -186,4 +186,13 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	     TestSuite suite = new TestSuite();
 	     return suite;
 	   }
+	   
+	   /**
+		 * Gets the Exception happend in serialization
+		 * @return Exception happend in serialization
+		 */
+		public Exception getException()
+		{
+			return null;
+		}
 }
