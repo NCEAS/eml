@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-09 01:06:31 $'
- *   '$Revision: 1.13 $'
+ *       '$Date: 2006-11-14 00:38:16 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -186,7 +186,7 @@ public abstract class DatabaseAdapter {
    */
   public String generateInsertSQL(AttributeList attributeList,
                                   String tableName, 
-                                  Vector oneRowData) throws SQLException{
+                                  Vector oneRowData) throws DataNotMatchingMetadataException, SQLException{
     String sqlString = null;
     int NULLValueCounter = 0;
     int hasValueCounter = 0;
@@ -308,7 +308,8 @@ public abstract class DatabaseAdapter {
           System.out.println("Error determining numeric value: " + 
                              e.getMessage());
           //return sqlString;
-          throw new SQLException("Error to determining numeric value "+e.getMessage());
+          throw new DataNotMatchingMetadataException("Data "+ value + " is NOT a "+
+        		                                     dataType +" : "+e.getMessage());
         }
         hasValueCounter++;
       }
