@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-13 22:40:44 $'
- *   '$Revision: 1.20 $'
+ *       '$Date: 2006-11-14 00:41:31 $'
+ *   '$Revision: 1.21 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -45,6 +45,7 @@ import java.util.Vector;
 import java.util.zip.ZipInputStream;
 
 import org.ecoinformatics.datamanager.DataManager;
+import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
 
 /**
@@ -207,6 +208,10 @@ public class DownloadHandler implements Runnable
     			if (storage != null)
     			{
     			   success = success && storage.isSuccess(url);
+    			   if (storage instanceof DatabaseLoader)
+    			   {
+    				   exception = storage.getException();
+    			   }
     			}
     		}
     		
