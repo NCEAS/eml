@@ -2,8 +2,8 @@
  *    '$RCSfile: DataStorageInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-10-18 20:27:13 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2006-11-14 00:40:53 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -86,4 +86,10 @@ public interface DataStorageInterface
 	 * @return sucess or failure
 	 */
 	public boolean isSuccess(String identifier);
+	
+	/**
+	 * Gets the Exception happend in serialization
+	 * @return Exception happend in serialization
+	 */
+	public Exception getException();
 }
