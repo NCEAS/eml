@@ -78,7 +78,7 @@ public class HSQLAdapterTest extends TestCase
 	  /**
 	   * Test a successful download process through http protocol
 	   */
-	  public void testGenerateInsertSQL() throws SQLException
+	  public void testGenerateInsertSQL() throws SQLException, DataNotMatchingMetadataException
 	  {
 		  HSQLAdapter adapter = new HSQLAdapter();
 		  AttributeList attributeList = null;
@@ -96,6 +96,10 @@ public class HSQLAdapterTest extends TestCase
           catch(SQLException e)
           {
         	  assertTrue(true);
+          }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
           }
           
           Attribute attribute1     = null;
@@ -153,6 +157,10 @@ public class HSQLAdapterTest extends TestCase
           {
         	  assertTrue(true);
           }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
+          }
           
           String value1= "data1";
           String value2 = "1";
@@ -172,6 +180,10 @@ public class HSQLAdapterTest extends TestCase
           catch(SQLException e)
           {
         	  assertTrue(true);
+          }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
           }
 
           // Test that generateInsertSQL() generates the correct INSERT

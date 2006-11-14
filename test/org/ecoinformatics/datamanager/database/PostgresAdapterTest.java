@@ -77,7 +77,7 @@ public class PostgresAdapterTest extends TestCase
 	  /**
 	   * Tests generating insertSQL method
 	   */
-	  public void testGenerateInsertSQL() throws SQLException
+	  public void testGenerateInsertSQL() throws SQLException, DataNotMatchingMetadataException
 	  {
 		  PostgresAdapter adapter = new PostgresAdapter();
 		  AttributeList attributeList = null;
@@ -94,6 +94,10 @@ public class PostgresAdapterTest extends TestCase
           catch(SQLException e)
           {
         	  assertTrue(1 == 1);
+          }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
           }
 
           Attribute attribute1     = null;
@@ -151,6 +155,10 @@ public class PostgresAdapterTest extends TestCase
           {
         	  assertTrue(1 == 1);
           }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
+          }
 
           String value1= "data1";
           String value2 = "1";
@@ -170,6 +178,10 @@ public class PostgresAdapterTest extends TestCase
           catch(SQLException e)
           {
         	  assertTrue(1 == 1);
+          }
+          catch(DataNotMatchingMetadataException e)
+          {
+        	  System.err.println("The error is "+e.getMessage());
           }
 
           // Test that generateInsertSQL() generates the correct INSERT
