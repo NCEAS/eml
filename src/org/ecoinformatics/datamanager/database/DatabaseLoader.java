@@ -45,6 +45,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
   private String errorCode = null;
   private boolean completed = false;
   private boolean success = false;
+  private Exception exception = null;
   
   
   /*
@@ -242,6 +243,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
                            + e.getMessage());
         success = false;
         completed = true;
+        exception = e;
         return;
       }
 
@@ -272,6 +274,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       catch (Exception e) {
         System.err.println("the error message is " + e.getStackTrace());
         success = false;
+        exception = e;
         
         try {
           connection.rollback();
@@ -354,5 +357,14 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
   public boolean isSuccess(String identifier) {
     return success ||doesDataExist(identifier);
   }
+  
+    /**
+	 * Gets the Exception happend in serialization
+	 * @return Exception happend in serialization
+	 */
+	public Exception getException()
+	{
+		return exception;
+	}
       
 }
