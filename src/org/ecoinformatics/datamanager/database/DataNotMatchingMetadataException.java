@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataNotMatchingMetadataException.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-06 21:18:34 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-14 00:37:30 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,5 +40,14 @@ package org.ecoinformatics.datamanager.database;
  *
  */
 public class DataNotMatchingMetadataException extends Exception {
+	
+	/**
+	 * Consctor
+	 * @param message information of error
+	 */
+	public DataNotMatchingMetadataException(String message)
+	{
+		super(message);
+	}
   
 }
