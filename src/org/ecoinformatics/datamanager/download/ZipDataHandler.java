@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ZipDataHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.10 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.11 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,77 +31,94 @@
  */
 package org.ecoinformatics.datamanager.download;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 
-import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
-
 /**
- * This is a sub-class of CompressedDataHandler class. It will handle download Zipped
- * data entity. After downloading, the compressed entity will be uncompressed and written to 
- * DatastorageInterface transparently.
+ * This is a sub-class of CompressedDataHandler class. It will handle 
+ * download Zipped data entity. After downloading, the compressed entity 
+ * will be uncompressed and written to DatastorageInterface transparently.
+ * 
  * @author tao
  *
  */
 public class ZipDataHandler extends CompressedDataHandler
 {
-	
+    /*
+     * Constructors
+     */
+  
+    /**
+     * Constructor
+     * 
+     * @param url  The url (or identifier) of the zipped entity
+     * @param endPoint the object which provides ecogrid endpoint information
+     */
+    protected ZipDataHandler(String url, EcogridEndPointInterface endPoint)
+    {
+      super(url, endPoint);
+    }
+
+ 
+	/*
+     * Class methods
+	 */
+  
 	/**
-	 * Gets the GZipDataHandler Object
+	 * Gets the GZipDataHandler Object.
+     * 
 	 * @param url The url (or identifier) of entity need be downloaded
 	 * @param endPoint the object which provides ecogrid endpoint information
 	 * @return  GZipDataHandler object with the url
 	 */
-	public static ZipDataHandler getZipHandlerInstance(String url, EcogridEndPointInterface endPoint)
+	public static ZipDataHandler getZipHandlerInstance(
+                                             String url, 
+                                             EcogridEndPointInterface endPoint)
 	{
 		ZipDataHandler  zipHandler = (ZipDataHandler)getHandlerFromHash(url);
+        
 		if (zipHandler == null)
 		{
 			zipHandler = new ZipDataHandler(url, endPoint);;
 		}
 		return zipHandler;
 	}
+    
+    
+    /*
+     * Instance methods
+     */
 	
-	/**
-	 * Constructor
-	 * @param url  The url (or identifier) of the zipped entity
-	 * @param endPoint the object which provides ecogrid endpoint information
-	 */
-    protected ZipDataHandler(String url, EcogridEndPointInterface endPoint)
-    {
-    	super(url, endPoint);
-    }
-  
-   
+    
    /*
-    * Overwrite the method in DownloadHandler in order to uncompressed entity first.
-    * We only write first file (if it has mutiple entities) to DataStorageInterface
+    * Overwrite the method in DownloadHandler in order to uncompressed 
+    * entity first. We only write first file (if it has mutiple entities) 
+    * to DataStorageInterface.
     */
-   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) 
+           throws IOException
    {
 	   boolean success = false;
 	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
 	   ZipInputStream zipInputStream = null;
+       
 	   if (in == null)
 	   {
 		   return success;
 	   }
+       
 	   try
 	   {
 		   zipInputStream = new ZipInputStream(in);
 		   ZipEntry entry = zipInputStream.getNextEntry();
 		   int index = 0;
 		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+           
 		   while (entry != null && index <1)
 		   {
 			  //System.out.println("the zip entry name is "+entry.getName());
@@ -110,36 +127,41 @@ public class ZipDataHandler extends CompressedDataHandler
 				  entry = zipInputStream.getNextEntry();
 				  continue;
 			  }
+              
 			  // this method will close the zipInpustream, and zipInpustream is not null!!!
-		      success = super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
+		      success = 
+                    super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
 		      //System.out.println("after get succes from super class");
 		      index++;
 		      //System.out.println("end of while ");
 		   }
+           
 		   //System.out.println("zip sucess flag "+success);
-		   return success;
-		   
+		   return success;		   
 	   }
 	   catch (Exception e)
 	   {
 		   success =false;
 		   //System.out.println("the error is "+e.getMessage());
 	   }
+       
 	   //System.out.println("the end of method");
 	   return success;
    }
    
-   
-   
+     
    /*
-    *  Get data from Ecogrid server base on given Ecogrid endpoint and identifier.
-    *  This method includes the uncompress process.
+    *  Gets data from Ecogrid server base on given Ecogrid endpoint and 
+    *  identifier. This method includes the uncompress process.
     *  It overwrite the one in DownloadHanlder.java
     */
-   protected boolean getContentFromEcoGridSource(String endPoint, String ecogridIdentifier)
+   protected boolean getContentFromEcoGridSource(String endPoint, 
+                                                 String ecogridIdentifier)
    {
 	   boolean success = false;
-       File zipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, ecogridIdentifier, ".1");
+       File zipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, 
+                                                       ecogridIdentifier, 
+                                                       ".1");
        try
        {
 	       if (zipTmp != null)
@@ -152,10 +174,8 @@ public class ZipDataHandler extends CompressedDataHandler
        {
     	   System.out.println("Error is "+e.getMessage());
        }
-       return success;
-     
+       
+       return success;   
    }
-   
-   
-  
+
 }

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: EcogridEndPointInterface.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,8 +32,10 @@
 package org.ecoinformatics.datamanager.download;
 
 /**
- * This interface provides a API for Data Manager to get Ecogrid endpoint information.
- * Any application which will use Data Manager Library should implement this interface.
+ * This interface provides a API for Data Manager to get Ecogrid endpoint 
+ * information. Any application which will use Data Manager Library should 
+ * implement this interface.
+ * 
  * @author tao
  *
  */
@@ -41,21 +43,26 @@ public interface EcogridEndPointInterface
 {
    /**
     * Gets the end point which Metacat implements ecogrid interface.
-    * This end point will be used to handle ecogrid protocol
+    * This end point will be used to handle ecogrid protocol.
+    * 
     * @return end point url string
     */
    public String getMetacatEcogridEndPoint();
    
+   
    /**
     * Gets the end point which SRB implements ecogrid interface
-    * This end point will be used to handle srb protocol
+    * This end point will be used to handle srb protocol.
+    * 
     * @return end point url string
     */
    public String getSRBEcogridEndPoint();
    
+   
    /**
     * Gets the machine name which srb protocol will be used.
-    * The default value for this class is "srb-mcat.sdsc.edu"
+    * The default value for this class is "srb-mcat.sdsc.edu".
+    * 
     * @return the machine name of srb server
     */
    public String getSRBMachineName();

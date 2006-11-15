@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ArchivedDataHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.6 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -47,6 +47,11 @@ import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
  */
 public abstract class ArchivedDataHandler extends DownloadHandler
 {
+  
+  /*
+   * Constructors
+   */
+  
 	/**
 	 * Constructor
 	 * @param url  The url of entity which need be downloaded
@@ -56,16 +61,29 @@ public abstract class ArchivedDataHandler extends DownloadHandler
     {
     	super(url, endPoint);
     }
-  
-   /*
-    * Method to downloadc compressed file from ecogrid to a tmp dir
-    * This is tmp solution, we need figure out to remove this step.
-    * The tmpZip File will be returned. If download failed, null will be return
+
+    
+  /*
+   * Instance methods
+   */
+    
+   /**
+    * Method to download compressed file from ecogrid to a tmp dir.
+    * This is a temporary solution, we need figure out how to remove this step.
+    * The tmpZip File will be returned. If download failed, null will be 
+    * returned.
+    * 
+    * @param endPoint             EcoGrid end point value
+    * @param ecogridIdentifier    EcoGrid identifier value
+    * @param suffix               suffix of the local identifier     
+    * @return  compressedFile, the temporary File object         
     */
-   protected File writeEcoGridArchivedDataIntoTmp(String endPoint, String ecogridIdentifier, String suffix)
-   {
-       
+   protected File writeEcoGridArchivedDataIntoTmp(String endPoint, 
+                                                  String ecogridIdentifier, 
+                                                  String suffix)
+   {      
         File compressedFile = null;
+        
 		if (endPoint != null && ecogridIdentifier != null)
 		{
 		        //log.debug("Get " + identifier + " from " + endPoint);
@@ -76,28 +94,34 @@ public abstract class ArchivedDataHandler extends DownloadHandler
 		            //log.debug("This is instance pattern");
 		            
 		            URL endPointURL = new URL(endPoint);
-		            EcogridGetToStreamClient ecogridClient = new EcogridGetToStreamClient(endPointURL);
-		            String localIdentifier = ecogridIdentifier+suffix;
+		            EcogridGetToStreamClient ecogridClient = 
+                                      new EcogridGetToStreamClient(endPointURL);
+		            String localIdentifier = ecogridIdentifier + suffix;
 		            File tmp = new File(System.getProperty("java.io.tmpdir"));
 		            compressedFile = new File(tmp, localIdentifier);
-		            FileOutputStream stream = new FileOutputStream(compressedFile);
+		            FileOutputStream stream = 
+                                           new FileOutputStream(compressedFile);
+                    
 		     		if (stream != null)
 		            {
-		                BufferedOutputStream bos = new BufferedOutputStream(stream);
+		                BufferedOutputStream bos = 
+                                               new BufferedOutputStream(stream);
 		                ecogridClient.get(ecogridIdentifier, bos);
 		                bos.flush();
 		                bos.close();
-		                stream.close();
-			             
+		                stream.close();			             
 		            }
 		      	            
 		        }
 		        catch(Exception ee)
 		        {
-		            //log.debug("EcogridDataCacheItem - error connecting to Ecogrid ", ee);
-		            System.out.println("Error: "+ee.getMessage());
+		          //log.debug(
+                  //"EcogridDataCacheItem - error connecting to Ecogrid ", ee);
+		            System.out.println("Error: " + ee.getMessage());
 		        }
 		}
+        
 		return compressedFile;
    }
+   
 }

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataStorageInterface.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-14 00:40:53 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -44,52 +44,69 @@ public interface DataStorageInterface
 {
 	/**
 	 * Start to serialize remote inputstream. The OutputStream is 
-	 * the destination.
-	 * @param identifier  the identifier will be written in data storage system.
-	 * @return The OutputStream which will serialize the remote source.
+	 * the destination where the DataStorageInterface implementation will
+     * store its data.
+     * 
+	 * @param identifier  the identifier will be written in data storage system
+	 * @return The OutputStream which will serialize the remote source
 	 */
 	public OutputStream startSerialize(String identifier);
-	
+
+    
 	/**
 	 * Finish serialize method. This method will cleanup serialize process, such
 	 * as close output stream.
+     * 
 	 * @param indentifier the identifier has been written in data storage system
 	 * @param errorCode   the errorCode will be passed to the storage system
 	 */
 	public void finishSerialize(String indentifier, String errorCode);
 	
+    
 	/**
-	 * Load given entity from data storage system 
+	 * Load given entity from data storage system. Returns an input stream from
+     * which the data for this entity can be read.
+     * 
 	 * @param identifier  Identifier of the entity which need be loaded
 	 * @return The InputStream from this entity
 	 * @throws DataSourceNotFoundException
 	 */
-	public InputStream load(String identifier) throws DataSourceNotFoundException;
+	public InputStream load(String identifier) 
+            throws DataSourceNotFoundException;
 	
+    
 	/**
 	 * Gets the status if the given entity is already in data storage system.
+     * 
 	 * @param identifier  Identifier of the entity
 	 * @return The boolean value if the entity is in storage system or not.
 	 */
 	public boolean doesDataExist(String identifier);
 	
+    
 	/**
 	 * Gets the status of serialize process.
+     * 
 	 * @param identifier Identifier of the entity which is being serialized
 	 * @return The boolean value if serialize is completed or not
 	 */
 	public boolean isCompleted(String identifier);
 	
+    
 	/**
-	 * Gets the result of serialize process - success or failure
+	 * Gets the result of serialize process - success or failure.
+     * 
 	 * @param identifier Identifier of the entity which has been serialized
-	 * @return sucess or failure
+	 * @return true if success, false if failure
 	 */
 	public boolean isSuccess(String identifier);
 	
+    
 	/**
-	 * Gets the Exception happend in serialization
-	 * @return Exception happend in serialization
+	 * Gets the Exception that happened in serialization.
+     * 
+	 * @return an Exception that happened in serialization
 	 */
 	public Exception getException();
+    
 }

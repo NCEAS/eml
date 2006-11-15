@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataSourceNotFoundException.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-09-19 00:10:52 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,15 +32,17 @@
 package org.ecoinformatics.datamanager.download;
 
 /**
- * Signals that data source couldn't be found
+ * Signals that data source couldn't be found.
+ * 
  * @author tao
- *
  */
 public class DataSourceNotFoundException extends Exception 
 {
 	/**
 	 * Constructor
-	 * @param error The error message in data source couldn't be found exception
+     * 
+	 * @param error The error message in data source couldn't be found 
+     *              exception
 	 */
     public DataSourceNotFoundException(String error)
     {

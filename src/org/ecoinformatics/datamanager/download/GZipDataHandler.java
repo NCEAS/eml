@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: GZipDataHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.9 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,66 +31,75 @@
  */
 package org.ecoinformatics.datamanager.download;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.zip.GZIPInputStream;
 
 
-import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
-
 /**
- * This is a sub-class of CompressedDataHandler class. It will handle download GZipped
- * data entity. After downloading, the compressed entity will be uncompressed and written to 
- * data storage interface transparently.
+ * This is a sub-class of CompressedDataHandler class. It will handle download
+ * of GZipped data entity. After downloading, the compressed entity will be 
+ * uncompressed and written to data storage interface transparently.
+ * 
  * @author tao
  *
  */
 public class GZipDataHandler extends CompressedDataHandler
 {
+    /**
+     * Constructor
+     * @param url  the url (or identifier) of Gzipped data entity
+     * @param endPoint the object which provides ecogrid endpoint information
+     */
+     protected GZipDataHandler(String url, EcogridEndPointInterface endPoint)
+     {
+            super(url, endPoint);
+     }
+
+ 
+  /*
+   * Class methods
+   */
+  
 	/**
-	 * Gets the ZipDataHandler Object
+	 * Gets the GZipDataHandler Object
+     * 
 	 * @param url The url (or identifier) of entity need be downloaded
-	 * @return  ZipDataHandler object with the url
+     * @param endPoint  the EcogridEndPointInterface object
+	 * @return  GZipDataHandler object associated with the url
 	 */
-	public static GZipDataHandler getGZipHandlerInstance(String url, EcogridEndPointInterface endPoint)
+	public static GZipDataHandler getGZipHandlerInstance(
+                                  String url, EcogridEndPointInterface endPoint)
 	{
 		GZipDataHandler  gzipHandler = (GZipDataHandler)getHandlerFromHash(url);
+        
 		if (gzipHandler == null)
 		{
 			gzipHandler = new GZipDataHandler(url, endPoint);
 		}
+        
 		return gzipHandler;
 	}
 	
-	/**
-	 * Constructor
-	 * @param url  the url (or identifier) of Gzipped data entity
-	 * @param endPoint the object which provides ecogrid endpoint information
-	 */
-   protected GZipDataHandler(String url, EcogridEndPointInterface endPoint)
-   {
-	    	super(url, endPoint);
-   }
-  
-   
+    
    /*
-    * Overwrite the the method in DownloadHandler in order to uncompressed it.
+    * Overwrites the the method in DownloadHandler in order to uncompressed it.
     * It only writes the first file (if have mutiple) into DataStorageInterface
     */
-   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+   protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) 
+           throws IOException
    {
 	   boolean success = false;
 	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
 	   GZIPInputStream zipInputStream = null;
+       
 	   if (in == null)
 	   {
 		   return success;
 	   }
+       
 	   try
 	   {
 		   zipInputStream = new GZIPInputStream(in);
@@ -104,6 +113,7 @@ public class GZipDataHandler extends CompressedDataHandler
 		   //success = false;
 		   System.err.println("the error is "+e.getMessage());
 	   }
+       
 	   //System.out.println("the end of method");
 	   return success;
    }
@@ -111,15 +121,19 @@ public class GZipDataHandler extends CompressedDataHandler
    
    
    /*
-    *  Get data from Ecogrid server base on given Ecogrid endpoint and identifier.
-    *  This method includes the uncompress process.
-    *  It overwrite the one in DownloadHanlder.java
+    *  Gets data from Ecogrid server based on given Ecogrid endpoint
+    *  and identifier. This method includes the uncompress process.
+    *  It overwrites the one in DownloadHanlder.java
     */
-   protected boolean getContentFromEcoGridSource(String endPoint, String ecogridIdentifier)
+   protected boolean getContentFromEcoGridSource(String endPoint, 
+                                                 String ecogridIdentifier)
    {
 	   boolean success = false;
-       File gzipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, ecogridIdentifier, ".gz");
+       File gzipTmp = writeEcoGridCompressedDataIntoTmp(endPoint, 
+                                                        ecogridIdentifier, 
+                                                        ".gz");
        System.out.println("The gzip file name is "+gzipTmp);
+       
        try
        {
 	       if (gzipTmp != null)
@@ -130,12 +144,10 @@ public class GZipDataHandler extends CompressedDataHandler
        }
        catch(Exception e)
        {
-    	   System.out.println("Error is "+e.getMessage());
+    	   System.out.println("Error is " + e.getMessage());
        }
+       
        return success;
-     
    }
-   
-   
-  
+
 }

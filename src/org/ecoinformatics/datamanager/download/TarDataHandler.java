@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TarDataHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:57:54 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-15 22:49:35 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,49 +40,67 @@ import com.ice.tar.TarEntry;
 import com.ice.tar.TarInputStream;
 
 /**
- * This is a sub-class of ArchiveddDataHandler class. It will handle download tar
- * data entity. After downloading, the tar entity will be unarchived and written to 
- * DataStorageInterface transparently.
+ * This is a sub-class of ArchiveddDataHandler class. It will handle 
+ * download tar data entity. After downloading, the tar entity will be 
+ * unarchived and written to DataStorageInterface transparently.
+ * 
  * @author tao
  *
  */
 public class TarDataHandler extends ArchivedDataHandler
 {
+  /*
+   * Constructors
+   */
+  
+    /*
+     * Constructor
+     * @param url  The url (or identifier) of the tar entity
+     * @param endPoint the object which provides ecogrid endpoint information
+   */
+  protected TarDataHandler(String url, EcogridEndPointInterface endPoint)
+  {
+    super(url, endPoint);
+  }
+  
+  /*
+   * Class methods
+   */  
+  
 	/**
 	 * Gets the TarDataHandler object
-	 * @param url The url (or identifier) of entity need be downloaded
-	 * @param endPoint the object which provides ecogrid endpoint information
-	 * @return  TarDataHandler object with the url
+     * 
+	 * @param   url The url (or identifier) of entity need be downloaded
+	 * @param   endPoint the object which provides ecogrid endpoint information
+	 * @return  TarDataHandler object associated with this url
 	 */
-	public static TarDataHandler getTarHandlerInstance(String url, EcogridEndPointInterface endPoint)
+	public static TarDataHandler getTarHandlerInstance(
+                                              String url, 
+                                              EcogridEndPointInterface endPoint)
 	{
 		TarDataHandler  tarHandler = (TarDataHandler)getHandlerFromHash(url);
+        
 		if (tarHandler == null)
 		{
 			tarHandler = new TarDataHandler(url, endPoint);;
 		}
+        
 		return tarHandler;
 	}
-	/*
-	 * Constructor
-	 * @param url  The url (or identifier) of the tar entity
-	 * @param endPoint the object which provides ecogrid endpoint information
-     */
-    protected TarDataHandler(String url, EcogridEndPointInterface endPoint)
-    {
-    	super(url, endPoint);
-    }
-    
  
+    
     /*
      * Overwrite the the method in DownloadHandler in order to unarchive it.
-     * It only writes first file (if it have mutiple entities) into DataStorageSystem
+     * It only writes first file (if it have mutiple entities) into 
+     * DataStorageSystem.
      */
-    protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) throws IOException
+    protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) 
+            throws IOException
     {
  	   boolean success = false;
  	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
  	   TarInputStream tarInputStream = null;
+       
  	   if (in == null)
  	   {
  		   return success;
@@ -93,6 +111,7 @@ public class TarDataHandler extends ArchivedDataHandler
  		   TarEntry entry = tarInputStream.getNextEntry();
  		   int index = 0;
  		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
+           
  		   while (entry != null && index <1)
  		   {
  			  //System.out.println("the zip entry name is "+entry.getName());
@@ -101,36 +120,40 @@ public class TarDataHandler extends ArchivedDataHandler
  				  entry = tarInputStream.getNextEntry();
  				  continue;
  			  }
+              
  			  // this method will close the zipInpustream, and zipInpustream is not null!!!
  		      success = super.writeRemoteInputStreamIntoDataStorage(tarInputStream);
  		      //System.out.println("after get succes from super class");
  		      index++;
  		      //System.out.println("end of while ");
  		   }
+           
  		   //System.out.println("zip sucess flag "+success);
- 		   return success;
- 		   
+ 		   return success;		   
  	   }
  	   catch (Exception e)
  	   {
  		   success =false;
  		   //System.out.println("the error is "+e.getMessage());
  	   }
+       
  	   //System.out.println("the end of method");
  	   return success;
     }
     
-    
-    
+       
     /*
-     *  Get data from Ecogrid server base on given Ecogrid endpoint and identifier.
-     *  This method includes the uncompress process.
-     *  It overwrite the one in DownloadHanlder.java
+     *  Get data from Ecogrid server base on given Ecogrid endpoint and 
+     *  identifier. This method includes the uncompress process.
+     *  It overwrites the one in DownloadHandler.java
      */
-    protected boolean getContentFromEcoGridSource(String endPoint, String ecogridIdentifier)
+    protected boolean getContentFromEcoGridSource(String endPoint, 
+                                                  String ecogridIdentifier)
     {
  	   boolean success = false;
-        File zipTmp = writeEcoGridArchivedDataIntoTmp(endPoint, ecogridIdentifier, ".tar");
+        File zipTmp = writeEcoGridArchivedDataIntoTmp(endPoint, 
+                                                      ecogridIdentifier, 
+                                                      ".tar");
         try
         {
  	       if (zipTmp != null)
@@ -141,11 +164,10 @@ public class TarDataHandler extends ArchivedDataHandler
         }
         catch(Exception e)
         {
-     	   System.out.println("Error is "+e.getMessage());
+     	   System.out.println("Error is " + e.getMessage());
         }
+        
         return success;
-      
     }
-    
-    
+
 }
