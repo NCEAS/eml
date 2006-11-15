@@ -37,7 +37,8 @@ public class DataManagerTest extends TestCase {
 //  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
 //  private final int ENTITY_NUMBER_EXPECTED = 1;
   
-  private final String TEST_DOCUMENT = "tao.12103.2";
+  //private final String TEST_DOCUMENT = "tao.12103.2";
+  private final String TEST_DOCUMENT = "tao.12106.2";
   private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
   private final int ENTITY_NUMBER_EXPECTED = 1;
   
