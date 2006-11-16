@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-10 19:18:18 $'
- *   '$Revision: 1.16 $'
+ *       '$Date: 2006-11-16 21:38:30 $'
+ *   '$Revision: 1.17 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -414,6 +414,95 @@ public class TableMonitor {
     }
     
     return creationDate;
+  }
+  
+
+  /**
+   * Gets a list of database field names for the specified packageID and entity
+   * name.
+   * 
+   * @param packageID    the packageID for this entity
+   * @param entityName   the entity name
+   * @return  a String array holding the field names for this entity, or null
+   *          if there was no match for this packageID and entity name in the
+   *          database.
+   * @throws SQLException
+   */
+  public String[] getDBFieldNames(String packageID, String entityName) 
+        throws SQLException{
+    String catalog = null;          // A catalog name (may be null)
+    String columnNamePattern = "%"; // Matches all column names in the table
+    DatabaseMetaData databaseMetaData = null; // For getting db metadata
+    String[] fieldNames = null;
+    ResultSet rs;
+    String schemaPattern = null;    // A schema name pattern (may be null)
+    String tableName = getDBTableName(packageID, entityName);
+    
+    if (tableName != null ) {
+      Vector vector = new Vector();
+      Connection connection = DataManager.getConnection();
+      String tableNamePattern = tableName;
+      databaseMetaData = connection.getMetaData();
+      rs = databaseMetaData.getColumns(catalog, 
+                                       schemaPattern, 
+                                       tableNamePattern,
+                                       columnNamePattern);
+      while (rs.next()) {
+        String fieldName = rs.getString("COLUMN_NAME");
+        vector.add(fieldName);
+      }
+      
+      fieldNames = new String[vector.size()];
+
+      for (int i = 0; i < fieldNames.length; i++) {
+        fieldNames[i] = (String) vector.elementAt(i);
+      }
+      
+      if (rs != null) rs.close();
+      DataManager.returnConnection(connection);
+    }
+    
+    return fieldNames;
+  }
+
+
+  /**
+   * Gets the database table name for a specified packageID and entity name.
+   * 
+   * @param packageID    the packageID for this entity
+   * @param entityName   the entity name
+   * @return tableName   the database table name for this entity, or null if
+   *                     no match to the packageID and entity name is found
+   * @throws SQLException
+   */
+  public String getDBTableName(String packageID, String entityName) 
+          throws SQLException {
+    String tableName = null;
+    
+    Connection connection = DataManager.getConnection();
+    String selectString = "SELECT table_name FROM " + DATA_TABLE_REGISTRY +
+                          " WHERE package_id ='" + packageID + "'" +
+                          "   AND entity_name ='" + entityName + "'";
+    Statement stmt = null;
+      
+    try {
+      stmt = connection.createStatement();             
+      ResultSet rs = stmt.executeQuery(selectString);
+      
+      if (rs.next()) {
+        tableName = rs.getString("table_name");
+      }
+    }
+    catch(SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    finally {
+      if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
+    }
+          
+    return tableName;
   }
   
  
