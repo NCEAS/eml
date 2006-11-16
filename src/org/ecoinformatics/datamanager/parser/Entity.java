@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-08 01:04:07 $'
- *   '$Revision: 1.12 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 21:44:25 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -90,7 +90,7 @@ public class Entity extends DataObjectDescription
 
     private String fileName;       // filename where Entity data is stored
     private String url;            // distribution url for this entity
-    private String DBtableName;    // the unique table name will be stored in DB
+    private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
     private boolean isImageEntity    = false;
     private boolean hasGZipDataFile  = false;
@@ -323,13 +323,30 @@ public class Entity extends DataObjectDescription
 
     
     /**
+     * Gets the database field names for the attributes in this entity.
+     * 
+     * @return   an array of Strings objects, or null if there are no
+     *           attributes in the entity's attribute list. 
+     */
+    public String[] getDBFieldNames()
+    {
+      if (attributeList != null) {
+        return attributeList.getDBFieldNames();
+      }
+      else {
+        return null;
+      }
+    }
+
+    
+    /**
      * Sets the database table name for this entity.
      * 
-     * @param DBtableName  the database table name string value to be set.
+     * @param dbTableName  the database table name string value to be set.
      */
-    public void setDBTableName(String DBtableName)
+    public void setDBTableName(String dbTableName)
     {
-      this.DBtableName = DBtableName;
+      this.dbTableName = dbTableName;
     }
 
     
@@ -340,7 +357,7 @@ public class Entity extends DataObjectDescription
      */
     public String getDBTableName()
     {
-      return this.DBtableName;
+      return this.dbTableName;
     }
     
     
@@ -480,7 +497,7 @@ public class Entity extends DataObjectDescription
      */
     public String getMappedName()
     {
-        return this.DBtableName;
+        return this.dbTableName;
     }
 
     
