@@ -41,6 +41,11 @@ public class DataManagerTest extends TestCase {
   private final String TEST_DOCUMENT = "tao.12106.2";
   private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
   private final int ENTITY_NUMBER_EXPECTED = 1;
+  private final String ENTITY_NAME = "head-line.data";
+  private final String TABLE_NAME = "head_line_data";
+  private final int NUMBER_OF_COLUMNS = 2;
+  private final String COLUMN_1 = "column1";
+  private final String COLUMN_2 = "column2";
   
   
   /*
@@ -164,6 +169,10 @@ public class DataManagerTest extends TestCase {
   
   /**
    * Unit test for the DataManager.loadDataToDB() methods (Use Case #3).
+   * This methods also tests two additional methods in the API:
+   * 
+   *   getDBFieldNames()
+   *   getDBTableName()
    * 
    * @throws MalformedURLException
    * @throws IOException
@@ -186,6 +195,30 @@ public class DataManagerTest extends TestCase {
       
       if (dataPackage != null) {
         success = dataManager.loadDataToDB(dataPackage, endPointInfo);
+        
+        /*
+         * Test that we can access the correct database table name and field 
+         * names for this packageID and entity name.
+         */
+        if (success) {
+          String packageID = TEST_DOCUMENT;
+          String entityName = ENTITY_NAME;
+          String tableName = dataManager.getDBTableName(packageID, entityName);
+          assertNotNull("null value for tableName", tableName);
+          assertEquals("tableName does not equal expected value", 
+                       tableName, 
+                       TABLE_NAME);
+          String[] fieldNames = 
+                             dataManager.getDBFieldNames(packageID, entityName);         
+          assertNotNull("null value for fieldNames array", fieldNames);   
+          assertEquals("Incorrect number of columns found", 
+                       fieldNames.length, NUMBER_OF_COLUMNS);
+          assertEquals("First field name does not equal expected value",
+                       fieldNames[0], COLUMN_1);
+          assertEquals("Second field name does not equal expected value",
+                       fieldNames[1], COLUMN_2);
+        }
+        
         dataManager.dropTables(dataPackage);  // Clean-up test tables
       }
     }
