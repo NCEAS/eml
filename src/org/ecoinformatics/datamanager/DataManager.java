@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-10 19:18:18 $'
- *   '$Revision: 1.21 $'
+ *       '$Date: 2006-11-16 21:34:03 $'
+ *   '$Revision: 1.22 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -342,6 +342,51 @@ public class DataManager {
 	success = databaseHandler.dropTables(dataPackage);
     
     return success;
+  }
+  
+  
+  /**
+   * Gets a list of database field names for the specified packageID and entity
+   * name. This is a pass-through to the same method in the TableMonitor class.
+   * 
+   * @param packageID    the packageID for this entity
+   * @param entityName   the entity name
+   * @return  a String array holding the field names for this entity, or null
+   *          if there was no match for this packageID and entity name in the
+   *          database.
+   * @throws SQLException
+   */
+  public String[] getDBFieldNames(String packageID, String entityName)
+          throws SQLException {
+    String[] dbFieldNames = null;
+
+    DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
+    TableMonitor tableMonitor = new TableMonitor(dbAdapter);        
+    dbFieldNames = tableMonitor.getDBFieldNames(packageID, entityName);
+
+    return dbFieldNames;
+  }
+
+
+  /**
+   * Gets the database table name for a specified packageID and entity name.
+   * This is a pass-through to the same method in the TableMonitor class.
+   * 
+   * @param packageID    the packageID for this entity
+   * @param entityName   the entity name
+   * @return tableName   the database table name for this entity, or null if
+   *                     no match to the packageID and entity name is found
+   * @throws SQLException
+   */
+  public String getDBTableName(String packageID, String entityName)
+          throws SQLException {
+    String dbTableName = null;
+
+    DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
+    TableMonitor tableMonitor = new TableMonitor(dbAdapter);        
+    dbTableName = tableMonitor.getDBTableName(packageID, entityName);
+    
+    return dbTableName;
   }
   
 
