@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Condition.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-16 21:33:17 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 21:50:19 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -89,7 +89,7 @@ public class Condition implements ConditionInterface
 		//attribute part
 		if (attribute != null)
 		{
-			String attributeName = attribute.getDbFieldName();
+			String attributeName = attribute.getDBFieldName();
 			if (attributeName != null && !attributeName.trim().equals(BLANK))
 			{
 				conditionBuffer.append(attributeName);

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: SelectionItem.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-16 21:34:13 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 21:50:19 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -84,7 +84,7 @@ public class SelectionItem
 		// get attribute name. If attribute is null, throw a exception
 		if (attribute != null)
 		{
-			attributeName = attribute.getDbFieldName();
+			attributeName = attribute.getDBFieldName();
 			if (attributeName != null && !attributeName.trim().equals(BLANKSTR))
 			{
 				selectionItem = selectionItem + attributeName;
