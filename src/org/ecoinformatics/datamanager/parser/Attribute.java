@@ -2,8 +2,8 @@
  *    '$RCSfile: Attribute.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-07 22:09:41 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2006-11-16 21:45:07 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -306,7 +306,7 @@ public class Attribute extends DataObjectDescription
    * 
    * @return  dbFieldName field, a String
    */
-  public String getDbFieldName() {
+  public String getDBFieldName() {
     return dbFieldName;
   }
 
@@ -316,7 +316,7 @@ public class Attribute extends DataObjectDescription
    * 
    * @param  name, the String value to set
    */
-  public void setDbFieldName(String name) {
+  public void setDBFieldName(String name) {
     dbFieldName = name;
   }
 

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-14 00:38:16 $'
- *   '$Revision: 1.14 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 21:41:07 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -139,7 +139,7 @@ public abstract class DatabaseAdapter {
       }
       
       usedNames.put(legalDbFieldName, legalDbFieldName);
-      attribute.setDbFieldName(legalDbFieldName);
+      attribute.setDBFieldName(legalDbFieldName);
     }
   }
 
@@ -479,7 +479,7 @@ public abstract class DatabaseAdapter {
       // Get this attribute's database field name, which was assigned in the
       // call to assignDbFieldNames(attributeList) above.
       String attributeName = attribute.getName();
-      String fieldName = attribute.getDbFieldName();
+      String fieldName = attribute.getDBFieldName();
       String attributeType = getAttributeType(attribute);
       String dbDataType = mapDataType(attributeType);
 
