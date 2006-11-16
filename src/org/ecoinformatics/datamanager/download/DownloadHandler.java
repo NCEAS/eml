@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-15 22:49:35 $'
- *   '$Revision: 1.22 $'
+ *       '$Date: 2006-11-16 00:04:11 $'
+ *   '$Revision: 1.23 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -391,7 +391,7 @@ public class DownloadHandler implements Runnable
     public boolean download(DataStorageInterface[] dataStorages) 
             throws DataSourceNotFoundException, Exception
     {
-    	this.setDataStorageCladdList(dataStorages);
+    	this.setDataStorageClassList(dataStorages);
     	Thread loadData = new Thread(this);
     	loadData.start();
     	int index = 0;
@@ -463,7 +463,8 @@ public class DownloadHandler implements Runnable
      * @param dataStorageClassList  The array of DataStorageInterface which 
      *                              will be associcated to this class
      */
-    public void setDataStorageCladdList(DataStorageInterface[] dataStorageClassList)
+    public void setDataStorageClassList(
+                                    DataStorageInterface[] dataStorageClassList)
     {
     	this.dataStorageClassList = dataStorageClassList;
     }
