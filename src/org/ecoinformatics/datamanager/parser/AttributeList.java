@@ -2,8 +2,8 @@
  *    '$RCSfile: AttributeList.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-10-31 21:00:40 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-11-16 21:45:59 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -98,6 +98,30 @@ public class AttributeList
    *   this.attributes = attributes; 
    * }
    */
+  
+  
+  /**
+   * Gets the database field names for the attributes in this AttributeList.
+   * 
+   * @return   an array of Strings objects, or null if there are no
+   *           attributes in the list. 
+   */
+  public String[] getDBFieldNames() {
+    if (attributes == null || attributes.size() == 0) {
+      return null;
+    } 
+    else {
+      int size = attributes.size();
+      String[] list = new String[size];
+      
+      for (int i = 0; i < size; i++) {
+        Attribute attribute = (Attribute) attributes.elementAt(i);
+        list[i] = attribute.getDBFieldName();
+      }
+      
+      return list;
+    }
+  }
   
   
   /**
