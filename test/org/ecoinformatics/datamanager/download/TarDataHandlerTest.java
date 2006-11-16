@@ -1,11 +1,20 @@
 package org.ecoinformatics.datamanager.download;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+/**
+ * JUnit test suite for the TarDataHandler class.
+ * 
+ * @author tao
+ *
+ */
 public class TarDataHandlerTest extends TestCase
 {
-	private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
+	private EcogridEndPointInterfaceTest endPointInfo = 
+                                             new EcogridEndPointInterfaceTest();
+    
 	/**
 	 * Constructor 
 	 * @param name The name of testing
@@ -14,6 +23,29 @@ public class TarDataHandlerTest extends TestCase
 	  {
 	    super(name);
 	  }
+      
+      /*
+       * Class methods
+       */
+      
+      /**
+       * Create a suite of tests to be run together
+       */
+       public static Test suite()
+       {
+         TestSuite suite = new TestSuite();
+         suite.addTest(new TarDataHandlerTest("testDownloadFailed"));
+         suite.addTest(new TarDataHandlerTest("testDownloadSuccess"));   
+         suite.addTest(new TarDataHandlerTest("testEcogridDownloadFailed"));
+         suite.addTest(new TarDataHandlerTest("testEcogridDownloadSuccess"));
+         suite.addTest(new TarDataHandlerTest("testCorrectURLByDowload"));
+         return suite;
+       }
+
+       
+      /*
+       * Instance methods
+       */
       
 	  /**
 	   * Establish a testing framework by initializing appropriate objects.
@@ -24,38 +56,44 @@ public class TarDataHandlerTest extends TestCase
 	    
 	  }
       
+      
 	  /**
 	   * Release any objects and closes database connections after tests 
 	   * are complete.
 	   */
 	  protected void tearDown() throws Exception
 	  {
-	    
 	    super.tearDown();
 	  }
 	  
+      
 	  /**
-	   * Test a succssful download process through http protocol 
+	   * Test a succssful download process through http protocol.
 	   */
 	  public void testDownloadSuccess()
 	  {
-		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
+		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?" +
+                       "action=read&qformat=xml&docid=tao.12100.1";
 		  //String identifier = "tao.7.1";
 		  testDownloadByThread(true, url, url);
 	  }
 	  
+      
 	  /**
-	   * Test a failed download process (without storage interface) through http protocol 
+	   * Test a failed download process (without storage interface) 
+       * through http protocol.
 	   */
 	  public void testDownloadFailed()
 	  {
-		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
+		  String url = "http://pacific.msi.ucsb.edu:8080/knb/metacat?" + 
+                       "action=read&qformat=xml&docid=tao.12100.1";
 		  //String identifier = "tao.7.1";
 		  testDownloadByThread(false, url, url);
 	  }
 	  
+      
 	  /**
-	   * Test a succssful download process through ecogrid protocol
+	   * Test a succssful download process through ecogrid protocol.
 	   */
 	  public void testEcogridDownloadFailed()
 	  {
@@ -64,8 +102,10 @@ public class TarDataHandlerTest extends TestCase
 		  testDownloadByThread(false, url, url);
 	  }
 	  
+      
 	  /**
-	   * Test a failed download process (without storage interface) through ecogrid protocol 
+	   * Test a failed download process (without storage interface) 
+       * through ecogrid protocol.
 	   */
 	  public void testEcogridDownloadSuccess()
 	  {
@@ -75,22 +115,25 @@ public class TarDataHandlerTest extends TestCase
 	  }
 	  
 	  
-	  
 	  /*
-	   * Test download method
+	   * Test download method.
 	   */
-	  private void testDownloadByThread(boolean success, String url, String identifier)
+	  private void testDownloadByThread(boolean success, 
+                                        String url, 
+                                        String identifier)
 	  {
-		  
-		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
+		  TarDataHandler handler = 
+                        TarDataHandler.getTarHandlerInstance(url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
+          
 		  if (success)
 		  {
 			  DataStorageTest[] list = new DataStorageTest[1];
 			  list[0] = dataStorage;
-			  handler.setDataStorageCladdList(list);
+			  handler.setDataStorageClassList(list);
 		  }
+          
 		  //System.out.println("here2");
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
@@ -98,10 +141,12 @@ public class TarDataHandlerTest extends TestCase
 		  //System.out.println("here3");
 		  downloadThread.start();
 		  //System.out.println("here4");
+          
 		  while(!handler.isCompleted())
 		  {
 			 
 		  }
+          
 		  //assertTrue(handler.isSuccess() == true);
 		  if (success)
 		  {
@@ -115,25 +160,32 @@ public class TarDataHandlerTest extends TestCase
 			  assertTrue(handler.isSuccess() == false);
 			  
 		  }
+          
 		  assertTrue(handler.isBusy() == false);
 	  }
 	  
+      
 	  /**
-	   * Tests download method by a correct url
+	   * Tests download method by a correct url.
+       * 
 	   * @throws Exception
 	   */
 	  public void testCorrectURLByDowload() throws Exception
 	  {
-		  String url  = "http://pacific.msi.ucsb.edu:8080/knb/metacat?action=read&qformat=xml&docid=tao.12100.1";
+		  String url  = "http://pacific.msi.ucsb.edu:8080/knb/metacat?" + 
+                        "action=read&qformat=xml&docid=tao.12100.1";
 		  testDownloadMethod(true, url);
 	  }
 	  
+      
 	  /*
-	  * This method will test download method in DownloadHandler
+	  * This method will test download method in DownloadHandler.
 	   */
-	  private void testDownloadMethod(boolean success, String url) throws Exception
+	  private void testDownloadMethod(boolean success, String url) 
+              throws Exception
 	  {
-		  TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
+		  TarDataHandler handler = 
+                        TarDataHandler.getTarHandlerInstance(url, endPointInfo);
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
@@ -144,17 +196,4 @@ public class TarDataHandlerTest extends TestCase
 		 
 	  }
 	  
-	  /**
-	   * Create a suite of tests to be run together
-	   */
-	   public static Test suite()
-	   {
-	     TestSuite suite = new TestSuite();
-	     suite.addTest(new TarDataHandlerTest("testDownloadFailed"));
-	     suite.addTest(new TarDataHandlerTest("testDownloadSuccess"));	 
-	     suite.addTest(new TarDataHandlerTest("testEcogridDownloadFailed"));
-	     suite.addTest(new TarDataHandlerTest("testEcogridDownloadSuccess"));
-         suite.addTest(new TarDataHandlerTest("testCorrectURLByDowload"));
-	     return suite;
-	   }
 }

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataStorageTest.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-14 00:43:11 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 00:05:03 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -43,28 +43,40 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * This is a class which implemnt DataStorageInterface in 
- * order for testing
+ * This class implements DataStorageInterface in for testing. It does not
+ * have a test suite of its own, but is used by other test suites.
+ * 
  * @author tao
  *
  */
 public class DataStorageTest extends TestCase implements DataStorageInterface 
 {
-	
-	private File tmp = new File(System.getProperty("java.io.tmpdir"));
-	
+
+  /*
+   * Instance fields
+   */
+  
+	private File tmp = new File(System.getProperty("java.io.tmpdir"));	
 	FileOutputStream stream = null;
+    
+    
+   /*
+    * Instance methods
+    */
+    
 	/**
 	 * Start to serialize remote inputstream. The OutputStream is 
 	 * the destination.
-	 * @param identifier
-	 * @return
+     * 
+	 * @param identifier  the URL of the stream to be serialized.
+	 * @return  the OutputStream to be serialized
 	 */
 	public OutputStream startSerialize(String identifier) 
 	{
 		identifier = transformURLToIdentifier(identifier);
 		File file = new File(tmp, identifier);
-		System.out.println("The tmp dir is "+System.getProperty("java.io.tmpdir"));
+		System.out.println("The tmp dir is "+ 
+                           System.getProperty("java.io.tmpdir"));
 		
 		try
 		{
@@ -74,13 +86,18 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		{
 			System.err.println("Erorr: "+e.getMessage());
 		}
+        
 		return stream;
 	}
 	
+    
 	/**
-	 * Finish serialize method
-	 * @param indentifier
-	 * @param errorCode
+	 * Finish serialize method. Closes the OutputStream after serialization
+     * has completed.
+     * 
+	 * @param indentifier  the URL of the stream that has finished serializing
+	 * @param errorCode    the error code string was generated during
+     *                     serialization
 	 */
 	public void finishSerialize(String indentifier, String errorCode)
 	{
@@ -92,22 +109,27 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 			}
 			catch(Exception e)
 			{
-				System.err.println("Erorr: "+e.getMessage());
+				System.err.println("Erorr: "+ e.getMessage());
 			}
 		}
 	}
 	
+    
 	/**
-	 * Load data from data storage system
-	 * @param identifier
-	 * @return
+	 * Load data from data storage system. Returns an input stream from which
+     * the data can be loaded.
+     * 
+	 * @param identifier   the URL of the data source to be loaded
+	 * @return inputStream, an input stream from which the data can be loaded
 	 * @throws DataSourceNotFoundException
 	 */
-	public InputStream load(String identifier) throws DataSourceNotFoundException
+	public InputStream load(String identifier) 
+            throws DataSourceNotFoundException
 	{
 		identifier = transformURLToIdentifier(identifier);
 		File file = new File(tmp, identifier);
 		FileInputStream inputStream = null;
+        
 		try
 		{
 		   inputStream = new FileInputStream(file);
@@ -120,8 +142,10 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		return inputStream;
 	}
 	
+    
 	/**
-	 * Get a entity size (e.g, file size) for a given identifier
+	 * Gets an entity size (e.g, file size) for a given identifier.
+     * 
 	 * @param identifier Identifier of a entity
 	 * @return The size of entity. If identifier doesn't exist, returns 0.
 	 */
@@ -131,36 +155,52 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		identifier = transformURLToIdentifier(identifier);
 		File file = new File(tmp, identifier);
 		size = file.length();
+        
 		return size;
 	}
 	
+    
+    /**
+     * Transforms a URL to an identifier used by this test class.
+     * 
+     * @param   url   the URL to be transformed
+     * @return  identifier, a string
+     */
 	private String transformURLToIdentifier(String url)
 	{
 		String identifier = null;
+        
 		if (url != null)
 		{
-		   identifier = "tao"+url.hashCode();
+		   identifier = "tao" + url.hashCode();
 		}
+        
 		return identifier;
 	}
 	
+    
 	/**
-	 * Method to test if data already download or not.
-	 * @param identifier
-	 * @return
+	 * Method to test if data already been downloaded or not.
+     * 
+	 * @param identifier   the URL to the data
+	 * @return  true if the data has been downloaded, else false
 	 */
 	public boolean doesDataExist(String identifier)
 	{
 		//boolean exist = false;
 		identifier = transformURLToIdentifier(identifier);
-		System.out.println("the identifier is ============ "+identifier);
+		System.out.println("the identifier is ============ " + identifier);
 		File file = new File(tmp, identifier);
+        
 		return file.exists();
 	}
 	
+    
 	/**
-	 * Gets the status of serialize process.
-	 * @param identifier Identifier of the entity which is being serialized
+	 * Gets the status of the serialize process to determine whether it
+     * has completed or not.
+     * 
+	 * @param  identifier Identifier of the entity which is being serialized
 	 * @return The boolean value if serialize is completed or not
 	 */
 	public boolean isCompleted(String identifier)
@@ -168,8 +208,10 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 		return true;
 	}
 	
+    
 	/**
-	 * Gets the result of serialize process - success or failure
+	 * Gets the result of serialize process - success or failure.
+     * 
 	 * @param identifier Identifier of the entity which has been serialized
 	 * @return sucess or failure
 	 */
@@ -177,6 +219,7 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	{
 		return true;
 	}
+    
     
 	 /**
 	   * This is not a test class, so it is empty here.
@@ -187,12 +230,15 @@ public class DataStorageTest extends TestCase implements DataStorageInterface
 	     return suite;
 	   }
 	   
+       
 	   /**
-		 * Gets the Exception happend in serialization
-		 * @return Exception happend in serialization
+		 * Gets the Exception that happened during serialization.
+         * 
+		 * @return Exception that happened in serialization
 		 */
 		public Exception getException()
 		{
 			return null;
 		}
+        
 }

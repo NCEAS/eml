@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: EcogridEndPointInterfaceTest.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 19:56:37 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-16 00:05:03 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,30 +31,25 @@
  */
 package org.ecoinformatics.datamanager.download;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+
 /**
- * This is a class which implemnt DataStorageInterface in 
- * order for testing
+ * This class implemnts EcogridEndPointInterface for testing. It does not
+ * contain a test suite of its own, but is used by other test suites.
+ * 
  * @author tao
  *
  */
-public class EcogridEndPointInterfaceTest extends TestCase implements EcogridEndPointInterface 
-{
-	
-	  
+public class EcogridEndPointInterfaceTest extends TestCase 
+                                          implements EcogridEndPointInterface 
+{  
 	 /**
 	    * Gets the end point which Metacat implements ecogrid interface.
 	    * This end point will be used to handle ecogrid protocol
+        * 
 	    * @return end point url string
 	    */
 	   public String getMetacatEcogridEndPoint()
@@ -62,19 +57,24 @@ public class EcogridEndPointInterfaceTest extends TestCase implements EcogridEnd
 		   return "http://pacific.msi.ucsb.edu:8080/knb/services/EcoGridQuery";
 	   }
 	   
+       
 	   /**
-	    * Gets the end point which SRB implements ecogrid interface
-	    * This end point will be used to handle srb protocol
+	    * Gets the end point which SRB implements ecogrid interface.
+	    * This end point will be used to handle srb protocol.
+        * 
 	    * @return end point url string
 	    */
 	   public String getSRBEcogridEndPoint()
 	   {
-		   return "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
+		   return 
+              "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
 	   }
-	   
+
+       
 	   /**
 	    * Gets the machine name which srb protocol will be used.
-	    * The default value for this class is "srb-mcat.sdsc.edu"
+	    * The default value for this class is "srb-mcat.sdsc.edu".
+        * 
 	    * @return the machine name of srb server
 	    */
 	   public String getSRBMachineName()
@@ -82,13 +82,15 @@ public class EcogridEndPointInterfaceTest extends TestCase implements EcogridEnd
 		   return "srb-mcat.sdsc.edu";
 	   }
     
-	 /**
-	   * This is not a test class, so it is empty here.
-	   */
+       
+	  /**
+	    * This is not a test class, so it is empty here.
+	    */
 	   public static Test suite()
 	   {
 	     TestSuite suite = new TestSuite();
 	     return suite;
 	   }
+       
 }
 

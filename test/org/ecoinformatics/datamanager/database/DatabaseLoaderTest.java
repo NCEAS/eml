@@ -178,7 +178,7 @@ public class DatabaseLoaderTest extends TestCase
                       isPresent);
 		  DatabaseLoader[] list = new DatabaseLoader[1];
 		  list[0] = dataStorage;
-		  handler.setDataStorageCladdList(list);
+		  handler.setDataStorageClassList(list);
 		 
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
