@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-11-03 22:18:42 $'
-      '$Revision: 1.90 $'
+          '$Date: 2006-11-16 00:08:40 $'
+      '$Revision: 1.91 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -509,18 +509,20 @@
              default. -->
         <property name="default-datamanager-test" value="DataManagerTest" />
 
-        <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
         <property name="axis" value="${datamanager.lib}/axis.jar"/>
-        <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
-        <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
-        <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
-        <property name="soap" value="${datamanager.lib}/soap.jar"/>
-        <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
         <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
+        <property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
+        <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
+        <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
+        <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
+        <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
+        <property name="soap" value="${datamanager.lib}/soap.jar"/>
         <property name="tar" value="${datamanager.lib}/tar.jar"/>
         <property name="utilities" value="${datamanager.lib}/utilities.jar"/>
-        <property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
-        <property name="cpath.datamanager" value="${queryservice}:${axis}:${tar}:${xml-apis}:${rpc}:${wsdl}:${log}:${soap}:${discover}:${saaj}:${postgresql-driver}:${hsql}:${utilities}:./${datamanager.name}.jar"/>
+        <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
+
+        <property name="cpath.datamanager" 
+                  value="${axis}:${discover}:${hsql}:${log}:${postgresql-driver}:${queryservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}:${datamanager.name}.jar"/>
     </target>
 
     <target name="compile-datamanager-lib" depends="init-datamanager-lib">
@@ -542,6 +544,26 @@
   	            debug="on"/>
     </target>
        
+    <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
+    	<unjar dest="${build.dest}">
+    	    	    <fileset dir="./${datamanager.lib}">
+    	    	        <include name="**/*.jar"/>
+    	    	    </fileset>
+    	</unjar>
+    	<unjar dest="${build.dest}">
+    	    	    <fileset dir="./lib/apache">
+    	    	        <include name="**/xalan.jar"/>
+    	    	        <include name="**/xml-apis.jar"/>
+    	    	    </fileset>
+    	</unjar>
+    	<copy file="./${datamanager.lib}/datamanager.properties" 
+    	      todir="${build.dest}"/>
+  	    <jar jarfile="${build.dir}/${datamanager.name}.jar" 
+  	         basedir="${build.dest}"
+  	         excludes="**/**Test.class" 
+  	    />
+    </target>
+      
     <target name="dist-datamanager-lib" depends="jar-datamanager-lib">
         <mkdir dir="${dist.dir}"/>
         <delete dir="${ver.dir}"/>
@@ -582,12 +604,6 @@
           </fileset>
         </copy>
         
-        <copy todir="${ver.dir.datamanager}/lib/apache" filtering="no">
-          <fileset dir="lib/apache">
-              <include name="xml-apis.jar"/>
-          </fileset>
-        </copy>
-        
         <copy todir="${ver.dir.datamanager}/lib/sample" filtering="no">
           <fileset dir="lib/sample">
               <include name="eml-sample.xml"/>
@@ -614,21 +630,6 @@
     </target>
 
 
-    <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
-    	<unjar dest="${build.dest}">
-    	    	    <fileset dir="./${datamanager.lib}">
-    	    	        <include name="**/*.jar"/>
-    	    	    </fileset>
-    	</unjar>
-    	<copy file="./${datamanager.lib}/datamanager.properties" 
-    	      todir="${build.dest}"/>
-  	    <jar jarfile="${build.dir}/${datamanager.name}.jar" 
-  	         basedir="${build.dest}"
-  	         excludes="**/**Test.class" 
-  	    />
-    </target>
-      
-
     <target name="test-datamanager-init" depends="compile-datamanager-lib">
       <!-- copy and compile the data manager tests prior to running "junit" -->
       <copy todir="${build.src}" filtering="yes">
@@ -654,7 +655,7 @@
           <pathelement path="${cpath.datamanager}:${build.dest}" />
         </classpath>
         <formatter type="plain" />
-        <batchtest fork="yes" todir="${build.dir}">
+        <batchtest fork="no" todir="${build.dir}">
           <fileset dir="${build.src}">
             <include name="**/*Test.java" />
           </fileset>
@@ -680,7 +681,7 @@
           <pathelement path="${cpath.datamanager}:${build.dest}" />
         </classpath>
         <formatter type="plain" />
-        <batchtest fork="yes" todir="${build.dir}">
+        <batchtest fork="no" todir="${build.dir}">
           <fileset dir="${build.src}">
             <include name="**/${test-to-run}.java" />
           </fileset>
