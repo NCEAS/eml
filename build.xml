@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-11-16 00:08:40 $'
-      '$Revision: 1.91 $'
+          '$Date: 2006-11-17 17:29:29 $'
+      '$Revision: 1.92 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -502,7 +502,6 @@
         <property name="ver.docs.datamanager" value="${ver.dir.datamanager}/docs"/>
         <property name="ver.lib.datamanager" value="${ver.dir.datamanager}/${datamanager.lib}"/>
         <property name="ver.src.datamanager" value="${ver.dir.datamanager}/src"/>
-        <property name="ver.tst.datamanager" value="${ver.dir.datamanager}/test"/>
 
         <!-- Used by 'test-datamanager-one' target. User is prompted for the name
              of the test to run. If user enters no value, runs this test by
@@ -574,7 +573,6 @@
         <mkdir dir="${ver.lib.datamanager}"/>
         <mkdir dir="${ver.docs.datamanager}"/>
         <mkdir dir="${ver.src.datamanager}/${datamanager.dir}"/>
-        <mkdir dir="${ver.tst.datamanager}/${datamanager.dir}"/>
         <copy file="./build.properties" todir="${ver.dir.datamanager}"/>
         <copy file="./build.xml" todir="${ver.dir.datamanager}"/>
         <!--
@@ -615,11 +613,6 @@
           <fileset dir="${srcdir}/${datamanager.dir}"/>
         </copy>
         
-        <!-- Copy datamanager test code to the distribution test directory -->
-        <copy todir="${ver.tst.datamanager}/${datamanager.dir}" filtering="yes">
-          <fileset dir="${testdir}/${datamanager.dir}"/>
-        </copy>
-
         <!-- zip and tar/gzip the datamanager distribution -->
         <delete file="./${datamanager-version}.zip"/>
         <zip zipfile="./${datamanager-version}.zip" basedir="${ver.dir.datamanager}"/>
