@@ -2,8 +2,8 @@
  *    '$RCSfile: WhereClause.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:06:18 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-11-17 21:04:11 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -48,13 +48,32 @@ public class WhereClause
     //Constants
     private static final String WHERE = "where";
     
+    
     /**
-     * Default Constructor
-     *
+     * Initailizes a where clause base on given condtion
+     * @param condition the condtion will be set in where clause
      */
-    public WhereClause()
+    public WhereClause(ConditionInterface condition)
     {
-    	
+    	this.condition = condition;
+    }
+    
+    /**
+     * Initializes a where clause base on given ANDRelation
+     * @param and the ANDRelation will be set in where clause
+     */
+    public WhereClause(ANDRelation and)
+    {
+    	this.and = and;
+    }
+    
+    /**
+     * Initializes a where clause base on given ORRelation
+     * @param or the ORRelation will be set in where clause
+     */
+    public WhereClause(ORRelation or)
+    {
+    	this.or = or;
     }
     
     /**
