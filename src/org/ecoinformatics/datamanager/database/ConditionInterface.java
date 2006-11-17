@@ -2,8 +2,8 @@
  *    '$RCSfile: ConditionInterface.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-16 21:33:45 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-11-17 02:02:33 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -51,6 +51,8 @@ public interface ConditionInterface
 	public static final String GREATER_THANOR_EQUALS_OPERATOR = ">=";
 	public static final String SPACE  = " ";
 	public static final String SINGLEQUOTE = "'";
+	public static final String BLANK = "";
+	public static final String SEPERATER = ".";
 	
 	public static final String[] STRING_OPERATOR_LIST = {LIKE_OPERATOR, NOT_LIKE_OPERATOR, EQUAL_PERATOR, NOT_EQUAL_PERATOR};
     public static final String[] NUMBER_OPERATOR_LIST = {LESS_THAN_OPERATOR, LESS_THAN_OR_EQUALS_OPERATOR, GREATER_THAN_OPERATOR, GREATER_THANOR_EQUALS_OPERATOR};
