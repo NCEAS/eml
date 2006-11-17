@@ -2,8 +2,8 @@
  *    '$RCSfile: UnWellFormedQueryException.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:01:58 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-11-17 20:16:26 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -57,6 +57,11 @@ public class UnWellFormedQueryException extends Exception
 	public static final String LOGICALREALTION_HAS_ONE_SUBCOMPOENT = "There is only one sub components in logical relation";
 	public static final String WHERECLAUSE_IS_NULL = "There is no component in where clause";
 	public static final String QUERY_SELECTION_OR_TABLE_IS_NULL = "Selection item or From table item is null in query";
+	public static final String SUBQUERY_ATTRIBUTE_IS_NULL = "Attribute part in sub query couldn't be null";
+	public static final String SUBQUERY_ATTRIBUTE_NAME_IS_NULL = "Attribute name in sub query couldn't be null";
+	public static final String SUBQUERY_OPERATOR_IS_ILLEGLE = "Operator in sub query should be IN or NOT IN";
+	public static final String SUBQUERY_QUERY_IS_NULL = "Query part shouldn't be null in sub query";
+	
 	/**
     * Constructor
     * @param error  error message in this exception
