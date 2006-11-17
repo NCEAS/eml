@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Condition.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:50:19 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-17 02:03:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -46,9 +46,7 @@ public class Condition implements ConditionInterface
 	private String operator = null;
 	private Object value    = null;
 	
-	//Constants
-	private static final String BLANK = "";
-	private static final String SEPERATER = ".";
+	
 	
 	
 	/**
