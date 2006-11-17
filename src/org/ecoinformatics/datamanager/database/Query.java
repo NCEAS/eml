@@ -2,8 +2,8 @@
  *    '$RCSfile: Query.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:06:48 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2006-11-17 20:13:54 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -46,7 +46,7 @@ public class Query
 	//constants
 	private static final String SELECT = "SELECT";
 	private static final String FROM = "FROM";
-	private static final String SEMICOLON = ";";
+	public static final String SEMICOLON = ";";
 	private static final String COMMA = ",";
 	
 	/**
