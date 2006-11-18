@@ -2,8 +2,8 @@
  *    '$RCSfile: Condition.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:03:06 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-11-18 03:04:15 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -189,7 +189,7 @@ public class Condition implements ConditionInterface
 				for (int i=0; i<length; i++)
 				{
 					String operatorInList = operatorList[i];
-					if (operatorInList != null && operator.equalsIgnoreCase(operator))
+					if (operatorInList != null && operatorInList.equalsIgnoreCase(operator))
 					{
 						inList = true;
 						break;
