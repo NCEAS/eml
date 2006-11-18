@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:34:03 $'
- *   '$Revision: 1.22 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-11-18 03:02:52 $'
+ *   '$Revision: 1.23 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -47,6 +47,7 @@ import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.HSQLAdapter;
 import org.ecoinformatics.datamanager.database.OracleAdapter;
 import org.ecoinformatics.datamanager.database.PostgresAdapter;
+import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -504,13 +505,13 @@ public class DataManager {
    * Runs a database query on one or more data packages. This method
    * implements Use Case #4.
    * 
-   * @param ANSISQL  A string holding the ANSI SQL selection syntax.
+   * @param query    A Query java object hold query information.
    * @param packages The data packages holding the entities to be queried. 
    *                 Metadata about the data types of the attributes being
    *                 queried is contained in these data packages.
    * @return A ResultSet object holding the query results.
    */
-  public ResultSet selectData(String ANSISQL, DataPackage[] packages) 
+  public ResultSet selectData(Query query, DataPackage[] packages) 
         throws ClassNotFoundException, SQLException, Exception {
     Connection conn = DataManager.getConnection();
     
@@ -525,6 +526,7 @@ public class DataManager {
     try
     {
       databaseHandler = new DatabaseHandler(databaseAdapterName);
+      String ANSISQL = query.toSQLString();
       resultSet = databaseHandler.selectData(ANSISQL, packages);
     }
     finally
@@ -543,7 +545,7 @@ public class DataManager {
   * about the data types of the attributes being queried. This method 
   * implements Use Case #4.
   * 
-  * @param ANSISQL  A string holding the ANSI SQL selection syntax.
+  * @param ANSISQL  A Java object hold the sql information.
   * @param packages An array of input streams that need to be parsed into a 
   *                 list of data packages. The data packages hold the lists of
   *                 entities to be queried. Metadata about the data types of the
@@ -551,7 +553,7 @@ public class DataManager {
   *                 data packages.
   * @return A ResultSet object holding the query results.
   */
-  public ResultSet selectData(String ANSISQL, InputStream[] emlInputStreams) 
+  public ResultSet selectData(Query query, InputStream[] emlInputStreams) 
         throws Exception {
     DataPackage[] packages = new DataPackage[emlInputStreams.length];
     ResultSet resultSet = null;
@@ -561,7 +563,7 @@ public class DataManager {
       packages[i] = dataPackage;
     }
     
-    resultSet = selectData(ANSISQL, packages);
+    resultSet = selectData(query, packages);
     
     return resultSet;
   }
