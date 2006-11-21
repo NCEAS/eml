@@ -1,8 +1,6 @@
 package org.ecoinformatics.datamanager.database;
 
-import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
-import org.ecoinformatics.datamanager.parser.TextDomain;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -11,17 +9,17 @@ import junit.framework.TestSuite;
 
 public class TableItemTest extends TestCase {
 	  private Entity entity          = null;
-	  private Attribute attribute    = null;
+	  //private Attribute attribute    = null;
 	  private String id              = "001";
 	  private String name            = "newEntity";
 	  private String description     = "test";
 	  private Boolean caseSensitive  = new Boolean(false);
 	  private String  orientation    = "column";
 	  private int     numRecords     = 200;
-	  private String attributeName   = "name";
-	  private String attributeId     = "id";
+	  //private String attributeName   = "name";
+	  //private String attributeId     = "id";
 	  private String dbTableName     = "table1";
-	  private String dbAttributeName = "attribute1";
+	  //private String dbAttributeName = "attribute1";
 	 
 
   /**
