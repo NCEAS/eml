@@ -124,7 +124,6 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testGenerateTable() 
          throws MalformedURLException, IOException, SQLException, Exception {
-    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
     String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -190,7 +189,6 @@ public class DatabaseHandlerTest extends TestCase {
    */
   public void testDropTable() 
           throws IOException, MalformedURLException, SQLException, Exception {
-    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
     String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
@@ -255,7 +253,6 @@ public class DatabaseHandlerTest extends TestCase {
   public void testLoadDataToDB() throws IOException, MalformedURLException, SQLException, Exception
   {
 	    EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
-	    DataManager dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 	    DataPackage dataPackage = null;
 	    InputStream metadataInputStream;
 	    String documentURL = TEST_SERVER + "?action=read&qformat=xml&docid="
