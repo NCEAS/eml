@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ANDRelation.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:04:15 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-21 21:47:14 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -30,10 +30,6 @@
  * UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 package org.ecoinformatics.datamanager.database;
-
-import java.util.Vector;
-
-import org.ecoinformatics.datamanager.parser.Attribute;
 
 /**
  * This class reprents an AND relation on it sub-components. Sub-components
