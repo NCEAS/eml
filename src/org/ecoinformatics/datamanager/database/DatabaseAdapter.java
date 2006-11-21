@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:41:07 $'
- *   '$Revision: 1.15 $'
+ *       '$Date: 2006-11-21 21:48:12 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,7 +31,6 @@
  */
 package org.ecoinformatics.datamanager.database;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -95,7 +94,7 @@ public abstract class DatabaseAdapter {
    */
   public static String getLegalDBTableName(String entityName) {
     String legalName = entityName;
-    char[] badChars = {' ', '-', '.'};
+    char[] badChars = {' ', '-', '.', '/'};
     char goodChar = '_';
     
     for (int i = 0; i < badChars.length; i++) {
@@ -383,7 +382,7 @@ public abstract class DatabaseAdapter {
   private String getLegalDbFieldName(String attributeName) {
     String legalName = attributeName;
     
-    char[] badChars = {' ', '-', '.'};
+    char[] badChars = {' ', '-', '.', '/'};
     char goodChar = '_';
     
     for (int i = 0; i < badChars.length; i++) {
