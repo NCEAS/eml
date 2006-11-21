@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-18 03:02:52 $'
- *   '$Revision: 1.23 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-11-21 21:41:56 $'
+ *   '$Revision: 1.24 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -246,7 +246,7 @@ public class DataManager {
     
     for (int i = 0; i < entities.length; i++) {
       Entity entity = entities[i];
-      success = success && downloadData(entity, endPointInfo, dataStorageList);
+      success = downloadData(entity, endPointInfo, dataStorageList) && success;
     }
     
     return success;
@@ -335,7 +335,7 @@ public class DataManager {
    * @throws SQLException
    * @throws Exception
    */
-  boolean dropTables(DataPackage dataPackage)
+  public boolean dropTables(DataPackage dataPackage)
           throws ClassNotFoundException, SQLException, Exception {
     boolean success;
 
@@ -407,7 +407,7 @@ public class DataManager {
     Entity[] entities = dataPackage.getEntityList();
     
     for (int i = 0; i < entities.length; i++) {
-      success = success && loadDataToDB(entities[i],endPointInfo);
+      success = loadDataToDB(entities[i],endPointInfo) && success;
     }
     
     return success;
