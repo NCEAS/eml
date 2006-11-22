@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-21 21:41:56 $'
- *   '$Revision: 1.24 $'
+ *       '$Date: 2006-11-22 21:18:32 $'
+ *   '$Revision: 1.25 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -545,12 +545,12 @@ public class DataManager {
   * about the data types of the attributes being queried. This method 
   * implements Use Case #4.
   * 
-  * @param ANSISQL  A Java object hold the sql information.
-  * @param packages An array of input streams that need to be parsed into a 
-  *                 list of data packages. The data packages hold the lists of
-  *                 entities to be queried. Metadata about the data types of the
-  *                 attributes in the select statement is contained in these 
-  *                 data packages.
+  * @param query    A Query java object hold query information.
+  * @param emlInputStreams An array of input streams that need to be parsed 
+  *                 into a list of data packages. The data packages hold the 
+  *                 lists of entities to be queried. Metadata about the data 
+  *                 types of the attributes in the select statement is 
+  *                 contained in these data packages.
   * @return A ResultSet object holding the query results.
   */
   public ResultSet selectData(Query query, InputStream[] emlInputStreams) 
