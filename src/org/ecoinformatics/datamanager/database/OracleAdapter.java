@@ -2,8 +2,8 @@
  *    '$RCSfile: OracleAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-06 21:18:34 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2006-11-22 21:20:52 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -109,8 +109,6 @@ public class OracleAdapter extends DatabaseAdapter {
 		    Domain domain = attribute.getDomain();
 		    String className = domain.getClass().getName();
 		    
-		    System.out.println("  className:  " + className);
-
 		    if (className.endsWith("DateTimeDomain") ||
 		        className.endsWith("EnumeratedDomain") ||
 		        className.endsWith("TextDomain")) {
@@ -121,7 +119,6 @@ public class OracleAdapter extends DatabaseAdapter {
 		      attributeType = numericDomain.getNumberType();
 		    }
 		    
-		    System.out.println("  attributeType:  " + attributeType);
 		    return attributeType;
      }
 		
