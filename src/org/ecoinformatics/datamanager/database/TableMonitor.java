@@ -2,8 +2,8 @@
  *    '$RCSfile: TableMonitor.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:38:30 $'
- *   '$Revision: 1.17 $'
+ *       '$Date: 2006-11-22 00:10:59 $'
+ *   '$Revision: 1.18 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -441,15 +441,29 @@ public class TableMonitor {
     if (tableName != null ) {
       Vector vector = new Vector();
       Connection connection = DataManager.getConnection();
-      String tableNamePattern = tableName;
+      String tableNamePattern = tableName.toUpperCase();
       databaseMetaData = connection.getMetaData();
-      rs = databaseMetaData.getColumns(catalog, 
-                                       schemaPattern, 
-                                       tableNamePattern,
-                                       columnNamePattern);
+      rs = databaseMetaData.getColumns(catalog, schemaPattern, 
+                                       tableNamePattern, columnNamePattern);
       while (rs.next()) {
         String fieldName = rs.getString("COLUMN_NAME");
         vector.add(fieldName);
+      }
+
+      /* 
+       * Deal with case sensitivity issues in table names. If the uppercase
+       * version of the table name pattern didn't return any columns, try
+       * matching against the lowercase version.
+       */
+      if (vector.size() == 0) {
+        if (rs != null) rs.close();
+        tableNamePattern = tableName.toLowerCase();
+        rs = databaseMetaData.getColumns(catalog, schemaPattern,
+                                         tableNamePattern, columnNamePattern);
+        while (rs.next()) {
+          String fieldName = rs.getString("COLUMN_NAME");
+          vector.add(fieldName);
+        }
       }
       
       fieldNames = new String[vector.size()];
