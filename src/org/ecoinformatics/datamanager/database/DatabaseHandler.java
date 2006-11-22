@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-10 19:18:18 $'
- *   '$Revision: 1.19 $'
+ *       '$Date: 2006-11-22 21:19:47 $'
+ *   '$Revision: 1.20 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -224,6 +224,14 @@ public class DatabaseHandler
      */
     else {
       boolean doesExist = isTableInDB(tableName);
+      AttributeList attributeList = entity.getAttributeList();
+      
+      /*
+       * Even if we aren't going to execute the DDL, we still need to generate
+       * it here because it has the side effect of initializing the database
+       * field names for the attributes.
+       */
+      String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
       
       /*
        * If the table is not already in the database, generate it. If it's
@@ -231,8 +239,6 @@ public class DatabaseHandler
        */
       if (!doesExist) {
         Statement stmt = null;
-        AttributeList attributeList = entity.getAttributeList();
-        String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
 
         try {
           stmt = connection.createStatement();
@@ -363,10 +369,25 @@ public class DatabaseHandler
    * @return             A ResultSet object as returned by the database query.
    */
   public ResultSet selectData(String ANSISQL, DataPackage[] packages)
-  {
-    ResultSet resultSet = null;
+          throws SQLException {
+    Connection connection = DataManager.getConnection();
+    ResultSet rs = null;
+    Statement stmt = null;
     
-    return resultSet;
+    try {
+      stmt = connection.createStatement();
+      rs = stmt.executeQuery(ANSISQL);
+    }
+    catch (SQLException e) {
+      System.err.println("SQLException: " + e.getMessage());
+      throw(e);
+    }
+    finally {
+      //if (stmt != null) stmt.close();
+      DataManager.returnConnection(connection);
+    }
+    
+    return rs;
   }
 
 }
