@@ -9,7 +9,18 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
+/**
+ * JUnit test suite for the Condition class.
+ * 
+ * @author tao
+ *
+ */
 public class ConditionTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
+  
 	  private Entity entity          = null;
 	  private Attribute attribute    = null;
 	  private String id              = "001";
@@ -28,41 +39,59 @@ public class ConditionTest extends TestCase {
 
   /**
    * Constructor 
+   * 
    * @param name The name of testing
    */
   public ConditionTest(String name) {
     super(name);
   }
+  
+  
+  /*
+   * Class methods
+   */
 
+  /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new ConditionTest("testToSQLStringMethod"));
+    return suite;
+  }
 
+  
+  /*
+   * Instance methods
+   */
+  
   /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
     super.setUp();
-    
-
   }
 
 
   /**
-   * Release any objects and closes database connections after tests 
+   * Release any objects and close database connections after tests 
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
    
+  
   /**
-   * Tests toSQLString method. The situation includes entity is null, attribute is null,
-   * attribute doesn't has dbName, both entity and attribute has dbname, and only attribute
-   * has dbname
+   * Tests toSQLString method. The situation includes entity is null, 
+   * attribute is null, attribute doesn't have dbName, both entity and attribute 
+   * have dbname, and only attribute has dbname.
    *
    */
   public void testToSQLStringMethod()
   {
 	   Condition item1 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   item1.toSQLString();
@@ -72,9 +101,11 @@ public class ConditionTest extends TestCase {
 	   {
 		   assertTrue("attribute is null, should catch exception", 1==1);
 	   }
+       
 	   TextDomain domain = new TextDomain();
 	   attribute = new Attribute(attributeId, attributeName, domain);
 	   Condition item2 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   item2.toSQLString();
@@ -84,8 +115,10 @@ public class ConditionTest extends TestCase {
 	   {
 		   assertTrue("attribute dbname is null, should catch exception", 1==1);
 	   }
+       
 	   attribute.setDBFieldName(dbAttributeName);
 	   Condition item3 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   String sql1 = item3.toSQLString();
@@ -99,6 +132,7 @@ public class ConditionTest extends TestCase {
 	   operator = "&";
 	   value = "er";
 	   Condition item4 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   String sql1 = item4.toSQLString();
@@ -112,6 +146,7 @@ public class ConditionTest extends TestCase {
 	   operator = "<=";
 	   value = "er";
 	   Condition item5 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   String sql1 = item5.toSQLString();
@@ -125,6 +160,7 @@ public class ConditionTest extends TestCase {
 	   
 	   value = new Integer("2");	   
 	   Condition item6 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   String sql1 = item6.toSQLString();
@@ -143,6 +179,7 @@ public class ConditionTest extends TestCase {
        entity.setDBTableName(dbTableName);
 	   entity.add(attribute);
 	   Condition item7 = new Condition(entity, attribute, operator, value);
+       
 	   try
 	   {
 		   String sql1 = item7.toSQLString();
@@ -153,18 +190,6 @@ public class ConditionTest extends TestCase {
 	   {
 		   assertTrue("should not catch exception", 1==2);
 	   }
-	   
-  }
-
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new ConditionTest("testToSQLStringMethod"));
-    return suite;
   }
   
 }

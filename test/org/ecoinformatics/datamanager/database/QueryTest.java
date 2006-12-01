@@ -9,7 +9,17 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
+/**
+ * JUnit test for the Query class.
+ * 
+ * @author tao
+ *
+ */
 public class QueryTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
 	  private Entity entity1          = null;
 	  private Entity entity2          = null;
 	  private Attribute attribute1    = null;
@@ -39,12 +49,27 @@ public class QueryTest extends TestCase {
 
   /**
    * Constructor 
+   * 
    * @param name The name of testing
    */
   public QueryTest(String name) {
     super(name);
   }
 
+
+  /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new QueryTest("testToSQLStringBaseOnEverythingIsNull"));
+    suite.addTest(new QueryTest("testToSQLStringBaseOnSelection"));
+    suite.addTest(new QueryTest("testToSQLStringHasWhereClauseBaseOnCondition"));
+    suite.addTest(new QueryTest("testToSQLStringHasWhereCaluseBaseOnANDRelation"));
+    suite.addTest(new QueryTest("testToSQLStringHasWhereClauseBaseOnORRelation"));
+    return suite;
+  }
+  
 
   /**
    * Establish a testing framework by initializing appropriate objects.
@@ -77,13 +102,13 @@ public class QueryTest extends TestCase {
     super.tearDown();
   }
   
+  
   /**
    * query with nothing, will catch a exception
    *
    */
   public void testToSQLStringBaseOnEverythingIsNull()
   {
-	 
 	 try
 	 {
 		   query.toSQLString();
@@ -95,6 +120,7 @@ public class QueryTest extends TestCase {
 	 }
   }
   
+  
   /**
    * Query only has selection, no where clause
    *
@@ -105,6 +131,7 @@ public class QueryTest extends TestCase {
 	query.addSelectionItem(select2);
 	query.addTableItem(table1);
 	query.addTableItem(table2);
+    
 	try
 	{
 		 String sql = query.toSQLString();
@@ -131,6 +158,7 @@ public class QueryTest extends TestCase {
 	  query.addTableItem(table1);
 	  query.addTableItem(table2);
 	  query.setWhereClause(where);
+      
 	  try
 	  {
 		 String sql = query.toSQLString();
@@ -142,6 +170,7 @@ public class QueryTest extends TestCase {
 		assertTrue("Should have a sql", 1==2);
 	  }
   }
+  
   
   /**
    * test toSQLString based on where clause constructor with ANDRelation
@@ -172,6 +201,7 @@ public class QueryTest extends TestCase {
 	   }
   }
    
+  
   /**
    * test toSQLString based on where clause constructor with ORRelation
    *
@@ -189,6 +219,7 @@ public class QueryTest extends TestCase {
 	   query.addTableItem(table1);
 	   query.addTableItem(table2);
 	   query.setWhereClause(where);
+       
 	   try
 	   {
 		 String sql = query.toSQLString();
@@ -201,20 +232,5 @@ public class QueryTest extends TestCase {
 	   }
   }
  
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new QueryTest("testToSQLStringBaseOnEverythingIsNull"));
-    suite.addTest(new QueryTest("testToSQLStringBaseOnSelection"));
-    suite.addTest(new QueryTest("testToSQLStringHasWhereClauseBaseOnCondition"));
-    suite.addTest(new QueryTest("testToSQLStringHasWhereCaluseBaseOnANDRelation"));
-    suite.addTest(new QueryTest("testToSQLStringHasWhereClauseBaseOnORRelation"));
-    return suite;
-  }
-  
 }
 

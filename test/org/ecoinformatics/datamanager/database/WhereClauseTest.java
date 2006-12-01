@@ -10,6 +10,11 @@ import junit.framework.TestSuite;
 
 
 public class WhereClauseTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
+  
 	  private Entity entity1          = null;
 	  private Entity entity2          = null;
 	  private Attribute attribute1    = null;
@@ -42,12 +47,23 @@ public class WhereClauseTest extends TestCase {
 
 
   /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new WhereClauseTest("testToSQLStringWhenEverythingIsNull"));
+    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnCondition"));
+    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnANDRelation"));
+    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnORRelation"));
+    return suite;
+  }
+
+  
+  /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
     super.setUp();
-    
-
   }
 
 
@@ -56,9 +72,9 @@ public class WhereClauseTest extends TestCase {
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
+  
   
   /**
    * Everything is null and should catch a exception
@@ -68,6 +84,7 @@ public class WhereClauseTest extends TestCase {
   {
 	 Condition con = null;
 	 WhereClause where = new WhereClause(con);
+     
 	 try
 	 {
 		   where.toSQLString();
@@ -78,6 +95,7 @@ public class WhereClauseTest extends TestCase {
 		   assertTrue("all list is null, should catch exception", 1==1);
 	 }
   }
+  
   
   /**
    * test toSQLString based on where clause constructor with condition
@@ -92,6 +110,7 @@ public class WhereClauseTest extends TestCase {
 	  attribute1.setDBFieldName(dbAttributeName1);
 	  Condition con = new Condition(entity1, attribute1, operator, value);
 	  WhereClause where = new WhereClause(con);
+      
 	  try
 	  {
 		 String sql = where.toSQLString();
@@ -103,6 +122,7 @@ public class WhereClauseTest extends TestCase {
 		assertTrue("Should have a sql", 1==2);
 	  }
   }
+  
   
   /**
    * test toSQLString based on where clause constructor with ANDRelation
@@ -127,6 +147,7 @@ public class WhereClauseTest extends TestCase {
 	   relation.addCondtionInterface(cond2);
 	   
 	   WhereClause where = new WhereClause(relation);
+       
 	   try
 	   {
 		 String sql = where.toSQLString();
@@ -162,6 +183,7 @@ public class WhereClauseTest extends TestCase {
 	   relation.addCondtionInterface(cond2);
 	   
 	   WhereClause where = new WhereClause(relation);
+       
 	   try
 	   {
 		 String sql = where.toSQLString();
@@ -173,20 +195,6 @@ public class WhereClauseTest extends TestCase {
 		 assertTrue("Should have a sql", 1==2);
 	   }
   }
- 
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new WhereClauseTest("testToSQLStringWhenEverythingIsNull"));
-    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnCondition"));
-    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnANDRelation"));
-    suite.addTest(new WhereClauseTest("testToSQLStringBaseOnORRelation"));
-    return suite;
-  }
-  
+   
 }
 

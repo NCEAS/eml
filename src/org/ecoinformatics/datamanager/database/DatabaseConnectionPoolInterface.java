@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseConnectionPoolInterface.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-06 18:56:14 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -35,31 +35,44 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * This interface provides an API how the application class should manage
+ * This interface provides an API for how the application class should manage
  * its database connection pool. Any application which will use this library
  * should implement this interface.
+ * 
  * @author tao
  *
  */
 public interface DatabaseConnectionPoolInterface 
 {
+   /*
+    * Instance methods
+    */
+  
    /**
-    * Gets a database connection from the pool
-	* @return checked out connection
+    * Gets a database connection from the pool.
+    * 
+	* @return checked out Connection object
     * @throws SQLException
     */
-   public Connection getConnection() throws SQLException, ConnectionNotAvailableException;
+   public Connection getConnection() 
+           throws SQLException, ConnectionNotAvailableException;
+  
    
    /**
-    * Returns checked out dabase connection to the pool
-    * @param conn Connection needs to be returned.
-    * @return indicator if the connection was returned successfully
+    * Returns checked out dabase connection to the pool.
+    * 
+    * @param conn the Connection that needs to be returned
+    * @return true if the connection was returned successfully, else false
     */
    public boolean returnConnection(Connection conn);
    
+   
    /**
-    * Get dabase adpater name.
+    * Get the database adpater name that this connection pool uses for its
+    * connections.
+    * 
     * @return database adapter name
     */
    public String getDBAdapterName();
+   
 }

@@ -2,8 +2,8 @@
  *    '$RCSfile: ConnectionNotAvailableException.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-06 21:18:34 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,19 +31,32 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+
 /**
- * Exception indicate there is no connection available in connection
- * pool. Data manager class should be wait.
+ * Exception to indicate there is no connection available in connection
+ * pool. Upon catching this exception, Data manager class should wait and 
+ * try again.
+ * 
  * @author tao
  *
  */
 public class ConnectionNotAvailableException extends Exception 
 {
-     static final long serialVersionUID = 0;  // Needed for compiler warning
-	 private static final String errorMessage = "There is no database connection "+
-	                                            "available in pool, please wait and try again";
+     /*
+      * Class fields
+      */
+     
+	 private static final String errorMessage = 
+       "There is no database connection " +
+	   "available in pool, please wait and try again";
+     
+     
+     /*
+      * Constructor
+      */
      public ConnectionNotAvailableException()
      {
     	 super(errorMessage);
      }
+     
 }

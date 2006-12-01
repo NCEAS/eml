@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableItem.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-16 21:34:41 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,17 +34,23 @@ package org.ecoinformatics.datamanager.database;
 
 import org.ecoinformatics.datamanager.parser.Entity;
 
+
 /**
- * This class reprents one of entity in "From" clause in sql query.
+ * This class reprents one entity in a "FROM" clause in SQL query.
+ * 
  * @author tao
- *
  */
 public class TableItem 
 {
+    /*
+     * Instance fields
+     */
 	private Entity entity = null;
 	
+    
 	/**
 	 * Constructor
+     * 
 	 * @param entity entity object which will be in "From" clause
 	 */
     public TableItem(Entity entity)
@@ -52,26 +58,35 @@ public class TableItem
     	this.entity = entity;
     }
     
+    
     /**
-     * Gets the table name in DB
+     * Gets the table name in DB.
+     * 
      * @return table name string in DB
-     * @throws UnWellFormedQueryException if entity is null or table name is null will throw exception
+     * @throws UnWellFormedQueryException if entity is null or table name is 
+     *         null will throw exception
      */
     public String toSQLString() throws UnWellFormedQueryException
     {
     	String tableName = null;
+        
     	if (entity != null)
     	{
     		tableName = entity.getDBTableName();
+            
     		if (tableName == null || tableName.trim().equals(""))
     		{
-    			throw new UnWellFormedQueryException(UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
+    			throw new UnWellFormedQueryException(
+                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
     		}
     	}
     	else
     	{
-    		throw new UnWellFormedQueryException(UnWellFormedQueryException.TABLEITEM_ENTITY_IS_NULL);
+    		throw new UnWellFormedQueryException(
+                           UnWellFormedQueryException.TABLEITEM_ENTITY_IS_NULL);
     	}
+        
     	return tableName;
     }
+    
 }

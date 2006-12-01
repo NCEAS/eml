@@ -10,6 +10,11 @@ import junit.framework.TestSuite;
 
 
 public class ANDRelationTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
+  
 	  private Entity entity1          = null;
 	  private Entity entity2          = null;
 	  private Attribute attribute1    = null;
@@ -38,14 +43,30 @@ public class ANDRelationTest extends TestCase {
     super(name);
   }
 
+  
+  /*
+   * Class methods
+   */
+
+  /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new ANDRelationTest("testToSQLStringMethod"));
+    return suite;
+  }
+  
+  
+  /*
+   * Instance methods
+   */
 
   /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
     super.setUp();
-    
-
   }
 
 
@@ -54,21 +75,21 @@ public class ANDRelationTest extends TestCase {
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
+  
    
   /**
-   * Tests toSQLString method. The situation includes entity is null, attribute is null,
-   * attribute doesn't has dbName, both entity and attribute has dbname, and only attribute
-   * has dbname
-   *
+   * Tests toSQLString method. The situation includes entity is null, 
+   * attribute is null, attribute doesn't has dbName, both entity and 
+   * attribute has dbname, and only attribute has dbname.
    */
   public void testToSQLStringMethod()
   {
 	   String operator = "=";
 	   Object value    = "hello";
 	   ANDRelation relation = new ANDRelation();
+       
 	   try
 	   {
 		   relation.toSQLString();
@@ -78,10 +99,16 @@ public class ANDRelationTest extends TestCase {
 	   {
 		   assertTrue("all list is null, should catch exception", 1==1);
 	   }
-	   entity1 = new Entity(id, name1, description,caseSensitive,orientation,numRecords);
+       
+	   entity1 = 
+        new Entity(id, name1, description,caseSensitive,orientation,numRecords);
+       
 	   TextDomain domain = new TextDomain();
 	   attribute1 = new Attribute(attributeId, attributeName1, domain);
-	   entity2 = new Entity(id, name2, description,caseSensitive,orientation,numRecords);
+       
+	   entity2 = 
+        new Entity(id, name2, description,caseSensitive,orientation,numRecords);
+       
 	   attribute2 = new Attribute(attributeId, attributeName2, domain);
 	   entity1.setDBTableName(dbTableName1);
 	   entity2.setDBTableName(dbTableName2);
@@ -89,6 +116,7 @@ public class ANDRelationTest extends TestCase {
 	   attribute2.setDBFieldName(dbAttributeName2);
 	   Condition con1 = new Condition(entity1, attribute1, operator, value);
 	   relation.addCondtionInterface(con1);
+       
 	   try
 	   {
 		   relation.toSQLString();
@@ -98,14 +126,29 @@ public class ANDRelationTest extends TestCase {
 	   {
 		   assertTrue("Only has one condition, should catch exception", 1==1);
 	   }
+       
 	   Condition cond2 = new Condition(entity2, attribute2, operator, value);
 	   relation.addCondtionInterface(cond2);
+       
 	   try
 	   {
 		   String sql = relation.toSQLString();
-		   System.out.println("sql is " +sql);
-		   assertTrue("Should have a sql ", sql.equals(" "+dbTableName1+"."+dbAttributeName1+" = '"+
-				   value+"' AND "+dbTableName2+"."+dbAttributeName2+" = '"+value+"' "));
+		   System.out.println("sql is " + sql);
+		   assertTrue("Should have a sql ", 
+                      sql.equals(" " +
+                                 dbTableName1 +
+                                 "." +
+                                 dbAttributeName1 +
+                                 " = '" +
+				                 value +
+                                 "' AND " +
+                                 dbTableName2 +
+                                 "." +
+                                 dbAttributeName2 +
+                                 " = '" +
+                                 value +
+                                 "' "
+                                ));
 	   }
 	   catch (UnWellFormedQueryException e)
 	   {
@@ -126,7 +169,8 @@ public class ANDRelationTest extends TestCase {
 	   {
 		   String sql = relation.toSQLString();
 		   System.out.println("sql is " +sql);
-		   assertTrue("Should have a sql ", sql.equals(" table1.attribute1 = 'hello' AND table2.attribute2 = 'hello' AND ( table1.attribute1 = 'hello' AND table2.attribute2 = 'hello' ) AND ( table1.attribute1 = 'hello' OR table2.attribute2 = 'hello' ) "));
+		   assertTrue("Should have a sql ", 
+                      sql.equals(" table1.attribute1 = 'hello' AND table2.attribute2 = 'hello' AND ( table1.attribute1 = 'hello' AND table2.attribute2 = 'hello' ) AND ( table1.attribute1 = 'hello' OR table2.attribute2 = 'hello' ) "));
 	   }
 	   catch (UnWellFormedQueryException e)
 	   {
@@ -134,6 +178,7 @@ public class ANDRelationTest extends TestCase {
 	   }
 	   
 	   relation1.addORRelation(relation2);
+       
 	   try
 	   {
 		   String sql = relation.toSQLString();
@@ -146,16 +191,5 @@ public class ANDRelationTest extends TestCase {
 	   }
   }
 
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new ANDRelationTest("testToSQLStringMethod"));
-    return suite;
-  }
-  
 }
 

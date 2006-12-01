@@ -10,6 +10,10 @@ import junit.framework.TestSuite;
 
 
 public class SubQueryClauseTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
 	  private Entity entity1          = null;
 	  private Entity entity2          = null;
 	  private Attribute attribute1    = null;
@@ -49,6 +53,20 @@ public class SubQueryClauseTest extends TestCase {
 
 
   /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new SubQueryClauseTest("testToSQLStringBaseOnEverythingIsNull"));
+    suite.addTest(new SubQueryClauseTest("testToSQLStringWithIllegalInClause"));
+    suite.addTest(new SubQueryClauseTest("testToSQLStringBaseOnSelection"));
+    //suite.addTest(new SubQueryClauseTest("testToSQLStringHasWhereCaluseBaseOnANDRelation"));
+    //suite.addTest(new SubQueryClauseTest("testToSQLStringHasWhereClauseBaseOnORRelation"));
+    return suite;
+  }
+  
+
+  /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
@@ -75,9 +93,9 @@ public class SubQueryClauseTest extends TestCase {
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
+  
   
   /**
    * sub-query with nothing, will catch a exception
@@ -88,6 +106,7 @@ public class SubQueryClauseTest extends TestCase {
 	 Entity entiy = null;
 	 Attribute att = null;
 	 subQuery = new SubQueryClause(entiy, att, inClause, query);
+     
 	 try
 	 {
 		   subQuery.toSQLString();
@@ -99,6 +118,7 @@ public class SubQueryClauseTest extends TestCase {
 	 }
   }
   
+  
   /**
    * sub query has illegal inClause, will catch a exception
    *
@@ -109,6 +129,7 @@ public class SubQueryClauseTest extends TestCase {
 	 query.addSelectionItem(select1);
 	 query.addTableItem(table1);
 	 subQuery = new SubQueryClause(entity1, attribute1, inClause, query);
+     
 	 try
 	 {
 		   subQuery.toSQLString();
@@ -120,9 +141,9 @@ public class SubQueryClauseTest extends TestCase {
 	 }
   }
   
+  
   /**
    * Query only has selection, no where clause
-   *
    */
   public void testToSQLStringBaseOnSelection()
   {
@@ -130,6 +151,7 @@ public class SubQueryClauseTest extends TestCase {
 	query.addSelectionItem(select1);
 	query.addTableItem(table1);
 	subQuery = new SubQueryClause(entity1, attribute1, inClause, query);
+    
 	try
 	{
 		 String sql = subQuery.toSQLString();
@@ -156,6 +178,7 @@ public class SubQueryClauseTest extends TestCase {
 	  query.addTableItem(table1);
 	  query.addTableItem(table2);
 	  query.setWhereClause(where);
+      
 	  try
 	  {
 		 String sql = query.toSQLString();
@@ -167,6 +190,7 @@ public class SubQueryClauseTest extends TestCase {
 		assertTrue("Should have a sql", 1==2);
 	  }
   }
+  
   
   /**
    * test toSQLString based on where clause constructor with ANDRelation
@@ -185,6 +209,7 @@ public class SubQueryClauseTest extends TestCase {
 	   query.addTableItem(table1);
 	   query.addTableItem(table2);
 	   query.setWhereClause(where);
+       
 	   try
 	   {
 		 String sql = query.toSQLString();
@@ -197,6 +222,7 @@ public class SubQueryClauseTest extends TestCase {
 	   }
   }
    
+  
   /**
    * test toSQLString based on where clause constructor with ORRelation
    *
@@ -214,6 +240,7 @@ public class SubQueryClauseTest extends TestCase {
 	   query.addTableItem(table1);
 	   query.addTableItem(table2);
 	   query.setWhereClause(where);
+       
 	   try
 	   {
 		 String sql = query.toSQLString();
@@ -226,21 +253,6 @@ public class SubQueryClauseTest extends TestCase {
 	   }
   }
  
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new SubQueryClauseTest("testToSQLStringBaseOnEverythingIsNull"));
-    suite.addTest(new SubQueryClauseTest("testToSQLStringWithIllegalInClause"));
-    suite.addTest(new SubQueryClauseTest("testToSQLStringBaseOnSelection"));
-    //suite.addTest(new SubQueryClauseTest("testToSQLStringHasWhereCaluseBaseOnANDRelation"));
-    //suite.addTest(new SubQueryClauseTest("testToSQLStringHasWhereClauseBaseOnORRelation"));
-    return suite;
-  }
-  
 }
 
 

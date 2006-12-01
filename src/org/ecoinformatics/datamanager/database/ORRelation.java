@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ORRelation.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:05:02 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,8 +32,9 @@
 package org.ecoinformatics.datamanager.database;
 
 /**
- * This class reprents an OR relation on it sub-components. Sub-components
- * can be conditions, ANDRelations and ORRelations
+ * This class reprents an OR relation on its sub-components. Sub-components
+ * can be conditions, ANDRelations and other ORRelations.
+ * 
  * @author tao
  *
  */
@@ -48,8 +49,14 @@ public class ORRelation extends LogicalRelation
     	
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
     /**
-     * Transfer a ORRelation to sql string
+     * Transfer a ORRelation to sql string.
+     * 
      * @return sql string of ORRelation
      * @throws UnWellFormedQueryException
      */
@@ -57,4 +64,5 @@ public class ORRelation extends LogicalRelation
     {
     	return transferToString(OR);
     }
+    
 }

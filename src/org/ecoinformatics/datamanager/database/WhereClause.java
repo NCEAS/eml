@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: WhereClause.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 21:04:11 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,53 +32,71 @@
 package org.ecoinformatics.datamanager.database;
 
 /**
- * This class represents a where clause in sql query. toSQLString can
- * transfer this object to a sql string. This class can one component -
- * one of ConditionInterface, ANDRelation, or ORRelation
+ * This class represents a WHERE clause in a sql query. toSQLString can
+ * transfer this object to a sql string. This class can have one component -
+ * one of ConditionInterface, ANDRelation, or ORRelation.
+ * 
  * @author tao
- *
  */
 public class WhereClause 
 {
-	//class fields
+	// Instance fields
+
     private ConditionInterface condition = null;
     private ANDRelation and = null;
     private ORRelation or = null;
     
-    //Constants
+    
+    // Class fields, Constants
     private static final String WHERE = "where";
     
     
+    /*
+     * Constructors
+     */
+    
     /**
-     * Initailizes a where clause base on given condtion
-     * @param condition the condtion will be set in where clause
+     * Initializes a where clause based on a given condtion.
+     * 
+     * @param condition, the condtion that will be set in the WHERE clause
      */
     public WhereClause(ConditionInterface condition)
     {
     	this.condition = condition;
     }
     
+    
     /**
-     * Initializes a where clause base on given ANDRelation
-     * @param and the ANDRelation will be set in where clause
+     * Initializes a WHERE clause based on a given ANDRelation.
+     * 
+     * @param and, the ANDRelation that will be set in the WHERE clause
      */
     public WhereClause(ANDRelation and)
     {
     	this.and = and;
     }
     
+    
     /**
-     * Initializes a where clause base on given ORRelation
-     * @param or the ORRelation will be set in where clause
+     * Initializes a WHERE clause base on a given ORRelation.
+     * 
+     * @param or, the ORRelation that will be set in the WHERE clause
      */
     public WhereClause(ORRelation or)
     {
     	this.or = or;
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
+ 
     /**
-     * Sets condtion to where clause. Since where clause can have only
+     * Sets condition to the WHERE clause. Since WHERE clause can have only
      * one component, ANDRelation and ORRelation will be reset to null.
+     * 
      * @param condition condition be set
      */
     public void setConditionInterface(ConditionInterface condition)
@@ -88,10 +106,12 @@ public class WhereClause
     	this.or        = null;
     }
     
+    
     /**
-     * Sets ANDRelation to where clause. Since where clause can have only
+     * Sets ANDRelation to WHERE clause. Since WHERE clause can have only
      * one component, Condtion and ORRelation will be reset to null.
-     * @param and ANDRelation be set
+     * 
+     * @param and, ANDRelation be set
      */
     public void setANDRelation(ANDRelation and)
     {
@@ -100,10 +120,12 @@ public class WhereClause
     	this.or        = null;
     }
     
+    
     /**
-     * Sets ORRelation to where clause. Since where clause can have only
+     * Sets ORRelation to WHERE clause. Since WHERE clause can have only
      * one component, Condtion and ANDRelation will be reset to null.
-     * @param or ORRelation be set
+     * 
+     * @param or, ORRelation be set
      */
     public void setORRelation(ORRelation or)
     {
@@ -112,8 +134,10 @@ public class WhereClause
     	this.and       = null;
     }
     
+    
     /**
-     * Gets the sql string from the where clause java object
+     * Gets the sql string from the WHERE clause object.
+     * 
      * @return sql string
      * @throws UnWellFormedQueryException
      */
@@ -121,19 +145,22 @@ public class WhereClause
     {
     	if (condition == null && or == null && and == null)
     	{
-    		throw new UnWellFormedQueryException(UnWellFormedQueryException.WHERECLAUSE_IS_NULL);
+    		throw new UnWellFormedQueryException(
+                                UnWellFormedQueryException.WHERECLAUSE_IS_NULL);
     	}
+        
     	StringBuffer sql = new StringBuffer();
     	sql.append(ConditionInterface.SPACE);
 		sql.append(WHERE);
 		sql.append(ConditionInterface.SPACE);  	
+        
     	if (condition != null)
     	{  		
     		sql.append(condition.toSQLString());
     	}
     	else if (and != null)
     	{
-    	  sql.append(and.toSQLString());
+    	    sql.append(and.toSQLString());
     	}
     	else if (or != null)
     	{
@@ -142,4 +169,5 @@ public class WhereClause
     	
     	return sql.toString();
     }
+    
 }

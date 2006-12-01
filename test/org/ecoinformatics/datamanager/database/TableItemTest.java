@@ -8,6 +8,10 @@ import junit.framework.TestSuite;
 
 
 public class TableItemTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
 	  private Entity entity          = null;
 	  //private Attribute attribute    = null;
 	  private String id              = "001";
@@ -32,6 +36,16 @@ public class TableItemTest extends TestCase {
 
 
   /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new TableItemTest("testToSQLStringMethod"));
+    return suite;
+  }
+  
+
+  /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
@@ -46,10 +60,10 @@ public class TableItemTest extends TestCase {
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
    
+  
   /**
    * Tests toSQLString method. The situation includes entity is null, entity dbname is null
    * and entity name is not null
@@ -58,6 +72,7 @@ public class TableItemTest extends TestCase {
   public void testToSQLStringMethod()
   {
 	   TableItem item1 = new TableItem(entity);
+       
 	   try
 	   {
 		   item1.toSQLString();
@@ -67,8 +82,10 @@ public class TableItemTest extends TestCase {
 	   {
 		   assertTrue("entity is null, should catch exception", 1==1);
 	   }
+       
 	   entity = new Entity(id, name, description,caseSensitive,orientation,numRecords);
 	   TableItem item2 = new TableItem(entity);
+       
 	   try
 	   {
 		   item2.toSQLString();
@@ -78,8 +95,10 @@ public class TableItemTest extends TestCase {
 	   {
 		   assertTrue("entity dbname is null, should catch exception", 1==1);
 	   }
+       
 	   entity.setDBTableName(dbTableName);
 	   TableItem item4 = new TableItem(entity);
+       
 	   try
 	   {
 		   String sql1 = item4.toSQLString();
@@ -90,20 +109,8 @@ public class TableItemTest extends TestCase {
 	   {
 		   assertTrue("should not catch exception", 1==2);
 	   }
-	   
   }
 
- 
-
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new TableItemTest("testToSQLStringMethod"));
-    return suite;
-  }
-  
 }
 
 

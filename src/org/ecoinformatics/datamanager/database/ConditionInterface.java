@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ConditionInterface.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:02:33 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -40,11 +40,11 @@ package org.ecoinformatics.datamanager.database;
  */
 public interface ConditionInterface 
 {
-	//Constants
+	//Constants, Class fields
 	public static final String LIKE_OPERATOR = "LIKE";
 	public static final String NOT_LIKE_OPERATOR = "NOT LIKE";
-	public static final String EQUAL_PERATOR = "=";
-	public static final String NOT_EQUAL_PERATOR = "!=";
+	public static final String EQUAL_OPERATOR = "=";
+	public static final String NOT_EQUAL_OPERATOR = "!=";
 	public static final String LESS_THAN_OPERATOR = "<";
 	public static final String LESS_THAN_OR_EQUALS_OPERATOR = "<=";
 	public static final String GREATER_THAN_OPERATOR = ">";
@@ -54,14 +54,32 @@ public interface ConditionInterface
 	public static final String BLANK = "";
 	public static final String SEPERATER = ".";
 	
-	public static final String[] STRING_OPERATOR_LIST = {LIKE_OPERATOR, NOT_LIKE_OPERATOR, EQUAL_PERATOR, NOT_EQUAL_PERATOR};
-    public static final String[] NUMBER_OPERATOR_LIST = {LESS_THAN_OPERATOR, LESS_THAN_OR_EQUALS_OPERATOR, GREATER_THAN_OPERATOR, GREATER_THANOR_EQUALS_OPERATOR};
-   /**
-	* Transfers a Condition object to sql string which 
-	* has real entity and attribute name in db.
-	* @return condition sql string
-    * @throws UnWellFormedQueryException
-    */
+	public static final String[] STRING_OPERATOR_LIST = { 
+                                                         LIKE_OPERATOR, 
+                                                         NOT_LIKE_OPERATOR, 
+                                                         EQUAL_OPERATOR, 
+                                                         NOT_EQUAL_OPERATOR
+                                                        };
+    
+    public static final String[] NUMBER_OPERATOR_LIST = {
+                                                  LESS_THAN_OPERATOR, 
+                                                  LESS_THAN_OR_EQUALS_OPERATOR, 
+                                                  GREATER_THAN_OPERATOR, 
+                                                  GREATER_THANOR_EQUALS_OPERATOR
+                                                        };
+    
+    /*
+     * Instance methods
+     */
+
+    /**
+     * Transfers a Condition object to a SQL string which 
+     * contains the entity's table name and the attributes field names
+     * as they are stored in the DB.
+     * 
+     * @return SQL string for this Condition object
+     * @throws UnWellFormedQueryException
+     */
    public String toSQLString() throws UnWellFormedQueryException;
    
 }

@@ -2,8 +2,8 @@
  *    '$RCSfile: UnWellFormedConstraintException.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-10-31 21:00:40 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-12-01 22:02:07 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,17 +33,14 @@
 package org.ecoinformatics.datamanager.parser;
 
 /**
- * This exception is thrown when a constraint is missing some requried fields.
+ * This exception is thrown when a constraint is missing some of its
+ * required fields.
  * 
  * @author tao
  */
 public class UnWellFormedConstraintException extends Exception
 {
-  /*
-   * Class fields
-   */
-  static final long serialVersionUID = 0;  // Needed for Eclipse warning
-  
+
   /*
    * Constructors
    */

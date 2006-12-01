@@ -8,8 +8,17 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-
+/**
+ * JUnit test suite for the Join class.
+ * 
+ * @author tao
+ *
+ */
 public class JoinTest extends TestCase {
+  
+      /*
+       * Instance fields
+       */
 	  private Entity entity1          = null;
 	  private Entity entity2          = null;
 	  private Attribute attribute1    = null;
@@ -38,14 +47,30 @@ public class JoinTest extends TestCase {
     super(name);
   }
 
+  
+  /*
+   * Class methods
+   */
 
+  /**
+   * Create a suite of tests to be run together
+   */
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new JoinTest("testToSQLStringMethod"));
+    return suite;
+  }
+  
+  
+  /*
+   * Instance methods
+   */
+  
   /**
    * Establish a testing framework by initializing appropriate objects.
    */
   protected void setUp() throws Exception {
     super.setUp();
-    
-
   }
 
 
@@ -54,19 +79,20 @@ public class JoinTest extends TestCase {
    * are complete.
    */
   protected void tearDown() throws Exception {
-
     super.tearDown();
   }
    
+  
   /**
-   * Tests toSQLString method. The situation includes entity is null, attribute is null,
-   * attribute doesn't has dbName, both entity and attribute has dbname, and only attribute
-   * has dbname
+   * Tests toSQLString method. The situation includes entity is null, 
+   * attribute is null, attribute doesn't have dbName, both entity and attribute
+   * have dbname, and only attribute has dbname.
    *
    */
   public void testToSQLStringMethod()
   {
 	   Join item1 = new Join(entity1, attribute1, entity2, attribute2);
+       
 	   try
 	   {
 		   item1.toSQLString();
@@ -76,10 +102,12 @@ public class JoinTest extends TestCase {
 	   {
 		   assertTrue("both entity attribute is null, should catch exception", 1==1);
 	   }
+       
 	   entity1 = new Entity(id, name1, description,caseSensitive,orientation,numRecords);
 	   TextDomain domain = new TextDomain();
 	   attribute1 = new Attribute(attributeId, attributeName1, domain);
 	   Join item2 = new Join(entity1, attribute1, entity2, attribute2);
+       
 	   try
 	   {
 		   item2.toSQLString();
@@ -89,8 +117,10 @@ public class JoinTest extends TestCase {
 	   {
 		   assertTrue("both entity attribute is null, should catch exception", 1==1);
 	   }
+       
 	   entity2 = new Entity(id, name2, description,caseSensitive,orientation,numRecords);
 	   Join item3 = new Join(entity1, attribute1, entity2, attribute2);
+       
 	   try
 	   {
 		   String sql1 = item3.toSQLString();
@@ -100,8 +130,10 @@ public class JoinTest extends TestCase {
 	   {
 		   assertTrue("attribute is null, should catch exception", 1==1);
 	   }
+       
 	   attribute2 = new Attribute(attributeId, attributeName2, domain);
 	   Join item4 = new Join(entity1, attribute1, entity2, attribute2);
+       
 	   try
 	   {
 		   String sql1 = item4.toSQLString();
@@ -111,11 +143,13 @@ public class JoinTest extends TestCase {
 	   {
 		   assertTrue("attribute and entity dbname is null, should catch exception", 1==1);
 	   }
+       
 	   entity1.setDBTableName(dbTableName1);
 	   entity2.setDBTableName(dbTableName2);
 	   attribute1.setDBFieldName(dbAttributeName1);
 	   attribute2.setDBFieldName(dbAttributeName2);
 	   Join item5 = new Join(entity1, attribute1, entity2, attribute2);
+       
 	   try
 	   {
 		   String sql1 = item5.toSQLString();
@@ -129,16 +163,6 @@ public class JoinTest extends TestCase {
 	   
   }
 
- 
 
-  /**
-   * Create a suite of tests to be run together
-   */
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new JoinTest("testToSQLStringMethod"));
-    return suite;
-  }
-  
 }
 

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: LogicalRelation.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:03:47 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -33,19 +33,35 @@ package org.ecoinformatics.datamanager.database;
 
 import java.util.Vector;
 
+/**
+ * This is the parent class of ANDRelation and ORRelation. It represents a
+ * logical relation that can be placed inside the condition of a where clause.
+ * 
+ * @author tao
+ *
+ */
 public class LogicalRelation 
 {
-	
+
+    /*
+     * Class fields
+     */
+  
 	protected static final String AND = "AND";
 	protected static final String OR  = "OR";
 	private static final String LEFT_PARENSIS = "(";
 	private static final String RIGHT_PARENSIS = ")";
+ 
+    
+    /*
+     * Instance fields
+     */
+    
 	private Vector ANDRelationList = new Vector();
     private Vector conditionList   = new Vector();
     private Vector ORRelationList  = new Vector();
     
 	
-    
     /**
      * Default Constructor
      *
@@ -55,11 +71,16 @@ public class LogicalRelation
     	
     }
     
+    
+    /*
+     * Instance methods
+     */
+    
     /**
-     * Gets the conditions list in this LogicalRelation
+     * Gets the conditions list in this LogicalRelation.
      * 
-     * @return   an array of ConditionInterface, or null if there are no
-     *           ConditionInterface in the list
+     * @return   an array of ConditionInterface objects, or null if there are no
+     *           ConditionInterface objects in the list
      */
     public ConditionInterface[] getConditionInterfaceList() {
       if (conditionList == null || conditionList.size() == 0) {
@@ -77,11 +98,12 @@ public class LogicalRelation
       }
     }
     
+    
     /**
-     * Gets the ANDRelation list in this LogicalRelation
+     * Gets the ANDRelation list in this LogicalRelation.
      * 
-     * @return   an array of ANDRelation, or null if there are no
-     *           ANDRelation in the list
+     * @return   an array of ANDRelation objects, or null if there are no
+     *           ANDRelation objects in the list
      */
     public ANDRelation[] getANDRelationList() {
       if (ANDRelationList == null || ANDRelationList.size() == 0) {
@@ -99,11 +121,12 @@ public class LogicalRelation
       }
     }
     
+    
     /**
      * Gets the ORRelation list in this LogicalRelation
      * 
-     * @return   an array of ORRelation, or null if there are no
-     *           ORRelation in the list
+     * @return   an array of ORRelation objects, or null if there are no
+     *           ORRelation objects in the list
      */
     public ORRelation[] getORRelationList() {
       if (ORRelationList == null || ORRelationList.size() == 0) {
@@ -121,49 +144,68 @@ public class LogicalRelation
       }
     }
     
+    
     /**
-     * Adds a condtion into this LogicalRelation
-     * @param condition  the added condition
+     * Adds a condtion into this LogicalRelation.
+     * 
+     * @param condition, the added condition
      */
     public void addCondtionInterface(ConditionInterface condition)
     {
     	conditionList.add(condition);
-    	
     }
     
+    
     /**
-     * Adds an ANDRelation into this LogicalRelation
-     * @param and the added ANDRelation
+     * Adds an ANDRelation into this LogicalRelation.
+     * 
+     * @param and, the added ANDRelation
      */
     public void addANDRelation(ANDRelation and)
     {
     	ANDRelationList.add(and);
-    	
     }
     
+    
     /**
-     * Adds a ORRelation into this LogicalRelation
-     * @param or the added ORRelation
+     * Adds an ORRelation into this LogicalRelation.
+     * 
+     * @param or, the added ORRelation
      */
     public void addORRelation(ORRelation or)
     {
     	ORRelationList.add(or);
     }
     
+    
     /*
-     * Transfer this LogicalRelation to sql String
+     * Transfer this LogicalRelation to a SQL string.
      */
-    protected String transferToString(String operator) throws UnWellFormedQueryException
+    protected String transferToString(String operator) 
+            throws UnWellFormedQueryException
     {
     	StringBuffer sql = new StringBuffer();
-    	if((conditionList == null && ANDRelationList == null && ORRelationList == null) ||
-    			(conditionList.isEmpty() && ANDRelationList.isEmpty() && ORRelationList.isEmpty()))
+        
+    	if(
+           (conditionList == null && 
+            ANDRelationList == null && 
+            ORRelationList == null
+           ) 
+           ||
+    	   (conditionList.isEmpty() && 
+            ANDRelationList.isEmpty() && 
+            ORRelationList.isEmpty()
+           )
+          )
     	{
-    		throw new UnWellFormedQueryException(UnWellFormedQueryException.LOGICALREALTION_IS_NULL);
+    		throw new UnWellFormedQueryException(
+                            UnWellFormedQueryException.LOGICALREALTION_IS_NULL);
     	}
+        
     	int conditionLength = 0;
     	int ANDRelationLength = 0;
     	int ORRelationLength = 0;
+        
     	// Gets length of vector
     	if (conditionList != null)
     	{
@@ -173,24 +215,32 @@ public class LogicalRelation
     	if (ANDRelationList != null)
     	{
     		ANDRelationLength = ANDRelationList.size();
-    	}sql.append(ConditionInterface.SPACE);
+    	}
+        
+        sql.append(ConditionInterface.SPACE);
     	
     	if (ORRelationList != null)
     	{
     		ORRelationLength = ORRelationList.size();
     	}
     	
-    	int length = conditionLength +  ANDRelationLength + ORRelationLength;
+    	int length = conditionLength + ANDRelationLength + ORRelationLength;
+        
     	// There is only one element in LogicalRelation, it is illegal syntax
     	if (length == 1)
     	{
-    		throw new UnWellFormedQueryException(UnWellFormedQueryException.LOGICALREALTION_HAS_ONE_SUBCOMPOENT);
+    		throw new UnWellFormedQueryException(
+                UnWellFormedQueryException.LOGICALREALTION_HAS_ONE_SUBCOMPOENT);
     	}
+        
     	// Goes through conditon
     	boolean firstElement = true;
+        
     	for (int i=0; i<conditionLength; i++)
     	{
-    		ConditionInterface condition = (ConditionInterface)conditionList.elementAt(i);
+    		ConditionInterface condition = 
+                                 (ConditionInterface)conditionList.elementAt(i);
+            
     		if (firstElement)
     		{
     			sql.append(condition.toSQLString());
@@ -203,13 +253,14 @@ public class LogicalRelation
         		sql.append(ConditionInterface.SPACE);
         		sql.append(condition.toSQLString());
         		sql.append(ConditionInterface.SPACE);
-    		}   		 		
-    		
+    		} 		 		
     	}
+        
     	//Goes through ANDRelation
     	for (int i=0; i<ANDRelationLength; i++)
     	{
     		ANDRelation and = (ANDRelation)ANDRelationList.elementAt(i);
+            
     		if (firstElement)
     		{
     			sql.append(LEFT_PARENSIS);
@@ -228,10 +279,12 @@ public class LogicalRelation
         		sql.append(ConditionInterface.SPACE);
     		}
     	}
+        
         // Goes through ORRelation
     	for (int i=0; i<ORRelationLength; i++)
     	{
     		ORRelation or = (ORRelation)ORRelationList.elementAt(i);
+            
     		if (firstElement)
     		{
     			sql.append(LEFT_PARENSIS);
@@ -250,8 +303,8 @@ public class LogicalRelation
         		sql.append(ConditionInterface.SPACE);
     		}
     	}
+        
     	return sql.toString();
     }
-    
-   
+
 }

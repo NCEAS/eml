@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Join.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 02:05:39 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,27 +34,37 @@ package org.ecoinformatics.datamanager.database;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 
+
 /**
- * This class represents a join relation in query. Currently we only
- * support natural joint
+ * This class represents a join relation in a query. Currently we only
+ * support natural join.
+ * 
  * @author tao
- *
  */
 public class Join implements ConditionInterface
 {
+    /*
+     * Instance fields
+     */
+  
 	private Entity entity1 = null;
 	private Entity entity2 = null;
 	private Attribute attribute1 = null;
 	private Attribute attribute2 = null;
 	
+    
 	/**
 	 * Constructor of Join
+     * 
 	 * @param entity1 first entity 
 	 * @param attribute1 attribute in entity 1
 	 * @param entity2 second entity
 	 * @param attribute2 attribute in entity 2
 	 */
-	public Join (Entity entity1,Attribute attribute1, Entity entity2, Attribute attribute2)
+	public Join (Entity entity1,
+                 Attribute attribute1, 
+                 Entity entity2, 
+                 Attribute attribute2)
 	{
 		this.entity1 = entity1;
 		this.entity2 = entity2;
@@ -62,9 +72,15 @@ public class Join implements ConditionInterface
 		this.attribute2 = attribute2;
 	}
 	
+    
+   /*
+    * Instance methods
+    */ 
+    
    /**
 	* Transfers a Condition object to sql string which 
 	* has real entity and attribute name in db.
+    * 
 	* @return condition sql string
     * @throws UnWellFormedQueryException
     */
@@ -72,12 +88,14 @@ public class Join implements ConditionInterface
    {
 	  if (entity1 == null || entity2 == null)
 	  {
-		  throw new UnWellFormedQueryException(UnWellFormedQueryException.JOIN_ENTITY_IS_NULL);
+		  throw new UnWellFormedQueryException(
+                                UnWellFormedQueryException.JOIN_ENTITY_IS_NULL);
 	  }
 	  
 	  if (attribute1 == null || attribute2 == null)
 	  {
-		  throw new UnWellFormedQueryException(UnWellFormedQueryException.JOIN_ATTRIBUTE_IS_NULL);
+		  throw new UnWellFormedQueryException(
+                             UnWellFormedQueryException.JOIN_ATTRIBUTE_IS_NULL);
 	  }
 	  
 	  String entity1Name = entity1.getDBTableName();
@@ -85,16 +103,22 @@ public class Join implements ConditionInterface
 	  String entity2Name = entity2.getDBTableName();
 	  String attribute2Name = attribute2.getDBFieldName();
 	  
-	  if (entity1Name == null || entity2Name == null ||
-			  entity1Name.trim().equals(BLANK)|| entity2Name.trim().equals(BLANK))
+	  if (entity1Name == null || 
+          entity2Name == null ||
+          entity1Name.trim().equals(BLANK)|| 
+          entity2Name.trim().equals(BLANK))
 	  {
-		  throw new UnWellFormedQueryException(UnWellFormedQueryException.JOIN_ENTITY_NAME_IS_NULL);
+		  throw new UnWellFormedQueryException(
+                           UnWellFormedQueryException.JOIN_ENTITY_NAME_IS_NULL);
 	  }
 	  
-	  if (attribute2Name == null || attribute1Name == null ||
-			  attribute1Name.trim().equals(BLANK) || attribute2Name.trim().equals(BLANK))
+      if (attribute2Name == null || 
+          attribute1Name == null ||
+          attribute1Name.trim().equals(BLANK) || 
+          attribute2Name.trim().equals(BLANK))
 	  {
-		  throw new UnWellFormedQueryException(UnWellFormedQueryException.JOIN_ATTRIBUTE_NAME_IS_NULL);
+		  throw new UnWellFormedQueryException(
+                        UnWellFormedQueryException.JOIN_ATTRIBUTE_NAME_IS_NULL);
 	  }
 	  
 	  StringBuffer sql = new StringBuffer();
@@ -102,11 +126,12 @@ public class Join implements ConditionInterface
 	  sql.append(SEPERATER);
 	  sql.append(attribute1Name);
 	  sql.append(SPACE);
-	  sql.append(EQUAL_PERATOR);
+	  sql.append(EQUAL_OPERATOR);
 	  sql.append(SPACE);
 	  sql.append(entity2Name);
 	  sql.append(SEPERATER);
 	  sql.append(attribute2Name);
+      
 	  return sql.toString();
    }
 }

@@ -2,8 +2,8 @@
  *    '$RCSfile: ANDRelation.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-21 21:47:14 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,10 +32,10 @@
 package org.ecoinformatics.datamanager.database;
 
 /**
- * This class reprents an AND relation on it sub-components. Sub-components
+ * This class reprents an AND relation on its sub-components. Sub-components
  * can be conditions, ANDRelations and ORRelations
+ * 
  * @author tao
- *
  */
 public class ANDRelation extends LogicalRelation
 {
@@ -47,7 +47,12 @@ public class ANDRelation extends LogicalRelation
 	{
 		
 	}
-	
+    
+    
+    /*
+     * Instance methods
+     */
+	 
 	/**
 	 * Transfer an ANDRelation to sql string
 	 * @return sql string of ANDRelation

@@ -2,8 +2,8 @@
  *    '$RCSfile: SelectionItem.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:50:19 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -34,25 +34,30 @@ package org.ecoinformatics.datamanager.database;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 
+
 /**
- * On selection field in sql query. It has two parts:
- * entity name and attribute name. Those names are real name in DB
+ * Represents a table and field that can be selected on in a SQL query. 
+ * It has two parts: entity name and attribute name. Those names are real names
+ * in DB.
+ * 
  * @author tao
  *
  */
 public class SelectionItem 
 {
-	// class field
+    // Class fields, constants
+    private static final String SEPERATOR = ".";
+    private static final String  BLANKSTR = "";     
+
+    
+    // Instance fields
 	private Entity       entity = null;
 	private Attribute attribute = null;
-	
-	//constant
-	private static final String SEPERATOR = ".";
-	private static final String  BLANKSTR = "";     
 	
 	
 	/**
 	 * Constructor
+     * 
 	 * @param entity
 	 * @param attribute
 	 */
@@ -62,8 +67,10 @@ public class SelectionItem
 		this.attribute = attribute;
 	}
 	
+    
 	/**
-	 * Gets one selection item string (real name in DB) in sql query string
+	 * Gets one selection item string (real name in DB) in sql query string.
+     * 
 	 * @return string constains one selection item
 	 * @throws UnWellFormedQueryException
 	 */
@@ -72,31 +79,37 @@ public class SelectionItem
 		String selectionItem = "";
 		String entityName = null;
 		String attributeName = null;
+        
 		// get entity name first
 		if (entity != null)
 		{
 			entityName = entity.getDBTableName();
+            
 			if (entityName != null && !entityName.trim().equals(BLANKSTR))
 			{
 				selectionItem = entityName + SEPERATOR;
 			}
 		}
-		// get attribute name. If attribute is null, throw a exception
+        
+		// get attribute name. If attribute is null, throw an exception
 		if (attribute != null)
 		{
 			attributeName = attribute.getDBFieldName();
+            
 			if (attributeName != null && !attributeName.trim().equals(BLANKSTR))
 			{
 				selectionItem = selectionItem + attributeName;
 			}
 			else
 			{
-				throw new UnWellFormedQueryException(UnWellFormedQueryException.SELECTION_ATTRIBUTE_NAME_IS_NULL);
+				throw new UnWellFormedQueryException(
+                   UnWellFormedQueryException.SELECTION_ATTRIBUTE_NAME_IS_NULL);
 			}
 		}
 		else
 		{
-			throw new UnWellFormedQueryException(UnWellFormedQueryException.SELECTION_ATTRIBUTE_IS_NULL);
+			throw new UnWellFormedQueryException(
+                        UnWellFormedQueryException.SELECTION_ATTRIBUTE_IS_NULL);
 		}
 		return selectionItem;
 	}

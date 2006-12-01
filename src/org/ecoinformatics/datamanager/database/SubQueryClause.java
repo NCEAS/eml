@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: SubQueryClause.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 20:16:59 $'
- *   '$Revision: 1.1 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-01 22:02:06 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,27 +42,33 @@ import org.ecoinformatics.datamanager.parser.Entity;
  */
 public class SubQueryClause implements ConditionInterface 
 {
-	//class fields
+    // Class fields, constants
+    private static final String IN = "IN";
+    private static final String NOT_IN = "NOT IN";
+    private static final String LEFT_PARENSIS = "(";
+    private static final String RIGHT_PARENSIS = ")";
+    
+    
+	// Instance fields
 	private String operator = null;
 	private Entity entity = null;
 	private Attribute attribute = null;
 	private Query query = null;
 	
-	//constants
-	private static final String IN = "IN";
-	private static final String NOT_IN = "NOT IN";
-	private static final String LEFT_PARENSIS = "(";
-	private static final String RIGHT_PARENSIS = ")";
-	
 	/**
-	 * Constructor. Initializes a sub-query clause with given entity, attribute, operator and
-	 * query. 
-	 * @param entity  the entity information (It can be null if only has one entity in query)
+	 * Constructor. Initializes a sub-query clause with given entity, attribute,
+     * operator and query. 
+     * 
+	 * @param entity    the entity information (It can be null if only 
+     *                  has one entity in query)
 	 * @param attribute the attribute information
-	 * @param operator operatro should be IN or NOT IN
+	 * @param operator  operator should be IN or NOT IN
 	 * @param query the query part
 	 */
-	public SubQueryClause(Entity entity, Attribute attribute, String operator, Query query)
+	public SubQueryClause(Entity entity, 
+                          Attribute attribute, 
+                          String operator, 
+                          Query query)
 	{
 		this.entity = entity;
 		this.attribute = attribute;
@@ -70,62 +76,86 @@ public class SubQueryClause implements ConditionInterface
 		this.query = query;
 	}
 	
+    
 	/**
-	 * Transfer a sub-query clause into a sql string
+	 * Transform a sub-query clause into a SQL string.
 	 */
 	public String toSQLString() throws UnWellFormedQueryException
 	{
 		if (attribute == null)
 		{
-			throw new UnWellFormedQueryException(UnWellFormedQueryException.SUBQUERY_ATTRIBUTE_IS_NULL);
+			throw new UnWellFormedQueryException(
+                         UnWellFormedQueryException.SUBQUERY_ATTRIBUTE_IS_NULL);
 		}
-		if (operator == null || (!operator.equalsIgnoreCase(IN) && !operator.equalsIgnoreCase(NOT_IN)))
+        
+		if (operator == null || 
+            (!operator.equalsIgnoreCase(IN) && 
+             !operator.equalsIgnoreCase(NOT_IN)
+            )
+           )
 		{
-			throw new UnWellFormedQueryException(UnWellFormedQueryException.SUBQUERY_OPERATOR_IS_ILLEGLE);
+			throw new UnWellFormedQueryException(
+                       UnWellFormedQueryException.SUBQUERY_OPERATOR_IS_ILLEGAL);
 		}
+        
 		if (query == null)
 		{
-			throw new UnWellFormedQueryException(UnWellFormedQueryException.SUBQUERY_QUERY_IS_NULL);
+			throw new UnWellFormedQueryException(
+                             UnWellFormedQueryException.SUBQUERY_QUERY_IS_NULL);
 		}
 		
 		StringBuffer sql = new StringBuffer();
+        
 		if (entity != null)
 		{
 			String entityName = entity.getDBTableName();
-			if (entityName != null && !entityName.trim().equals(ConditionInterface.BLANK))
+            
+			if (entityName != null && 
+                !entityName.trim().equals(ConditionInterface.BLANK)
+               )
 			{
 			  sql.append(entityName);
 			  sql.append(ConditionInterface.SEPERATER);
 			}
 		}
+        
 		String attributeName = attribute.getDBFieldName();
-		if (attributeName == null || attributeName.trim().equals(ConditionInterface.BLANK))
+        
+		if (attributeName == null || 
+            attributeName.trim().equals(ConditionInterface.BLANK))
 		{
-			throw new UnWellFormedQueryException(UnWellFormedQueryException.SUBQUERY_ATTRIBUTE_NAME_IS_NULL);
+			throw new UnWellFormedQueryException(
+                    UnWellFormedQueryException.SUBQUERY_ATTRIBUTE_NAME_IS_NULL);
 		}
 		else
 		{
 			sql.append(attributeName);
 		}
+        
 		sql.append(ConditionInterface.SPACE);
 		sql.append(operator);
 		sql.append(ConditionInterface.SPACE);
 		sql.append(LEFT_PARENSIS);
 		sql.append(removeSemicolon(query.toSQLString()));
 		sql.append(RIGHT_PARENSIS);
+        
 		return sql.toString();
 	}
 	
+    
 	/*
 	 * Replaces the semicolon by space in the query string 
 	 */
 	private String removeSemicolon(String query)
 	{
 		String queryWithoutSemiconlon = null;
+        
 		if (query != null)
 		{
-			queryWithoutSemiconlon = query.replaceAll(Query.SEMICOLON, ConditionInterface.SPACE);
+			queryWithoutSemiconlon = query.replaceAll(
+                                     Query.SEMICOLON, ConditionInterface.SPACE);
 		}
+        
 		return queryWithoutSemiconlon;
 	}
 	
