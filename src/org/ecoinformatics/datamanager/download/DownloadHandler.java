@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-16 00:04:11 $'
- *   '$Revision: 1.23 $'
+ *       '$Date: 2006-12-05 23:43:14 $'
+ *   '$Revision: 1.24 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -160,26 +160,6 @@ public class DownloadHandler implements Runnable
 	}
 	
     
-     /*
-      * Loads Data Manager options from a configuration file.
-      */
-      /*private static void loadOptions() {
-        String configDir = CONFIG_DIR;    
-        File propertyFile = new File(configDir, CONFIG_NAME);
-
-        try {
-          option = Options.initialize(propertyFile);
-          ECOGRIDENDPOINT = option.getOption("ecogridEndPoint");
-          SRBENDPOINT = option.getOption("SRBEndPoint");
-          SRBMACHINE = option.getOption("SRBMachine");
-        
-        } 
-        catch (IOException e) {
-          System.out.println("Error in loading options: " + e.getMessage());
-        }
-      }*/
-    
-  
     /**
      * Sets the DownloadHandler object into the hash table. This will be called
      * at the start of download process. So we can keep track which handler is 
