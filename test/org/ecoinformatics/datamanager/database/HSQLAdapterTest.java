@@ -142,9 +142,13 @@ public class HSQLAdapterTest extends TestCase
           attribute3 = new Attribute(id3, name3, label3, description3, unit3,
                                unitType3, measurementScale3, domain3);
           attributeList = new AttributeList();
+          attribute1.setDBFieldName(attribute1.getName());
+          attribute2.setDBFieldName(attribute2.getName());
+          attribute3.setDBFieldName(attribute3.getName());
           attributeList.add(attribute1);
           attributeList.add(attribute2);
           attributeList.add(attribute3);
+          
           
           // Test that generateInsertSQL() fails when the data vector is empty
           try
@@ -192,8 +196,10 @@ public class HSQLAdapterTest extends TestCase
           String correctValue = "2.2";
           oneRowData.add(correctValue);
           sql = adapter.generateInsertSQL(attributeList, tableName, oneRowData);
-          assertEquals(sql, 
-               "INSERT INTO table1(name1,name2,name3) VALUES ('data1',1,2.2);");
+          assertEquals(
+                       "INSERT INTO table1(name1,name2,name3) VALUES ('data1',1,2.2);", 
+                       sql
+                      );
 	  }
 	  
 }
