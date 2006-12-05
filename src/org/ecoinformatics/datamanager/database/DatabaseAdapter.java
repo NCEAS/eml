@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-11-21 21:48:12 $'
- *   '$Revision: 1.16 $'
+ *       '$Date: 2006-12-05 23:41:03 $'
+ *   '$Revision: 1.17 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -252,7 +252,7 @@ public abstract class DatabaseAdapter {
       {
           continue;
       }
-      String name = attribute.getName();
+      String name = attribute.getDBFieldName();
       
       if (!firstAttribute) {
         sqlAttributePart.append(COMMA);
