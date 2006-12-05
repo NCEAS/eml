@@ -198,6 +198,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * db. This is the real procedure to load data into db.
    */
   public void run() {
+    String insertSQL = "";
     // System.out.println("====================== start load data into db");
     Vector rowVector = new Vector();
     
@@ -238,7 +239,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         rowVector = dataReader.getOneRowDataVector();
       } 
       catch (Exception e) {
-        System.err.println("the error message in DatabaseLoader.run is "
+        System.err.println("Error message in DatabaseLoader.run() is "
                            + e.getMessage());
         success = false;
         completed = true;
@@ -252,11 +253,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         // System.out.println("The first row data is "+rowVector);
     	connection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
-          String insertSQL = databaseAdapter.generateInsertSQL(attributeList,
-                                                               tableName, 
-                                                               rowVector);
-          // System.out.println("the sql is "+insertSQL);
-          
+          insertSQL = databaseAdapter.generateInsertSQL(attributeList,
+                                                        tableName, 
+                                                        rowVector);
           if (insertSQL != null)
           {
         	  PreparedStatement statement = connection.prepareStatement(insertSQL);
@@ -271,7 +270,12 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         success = true;
       } 
       catch (Exception e) {
-        System.err.println("the error message is " + e.getStackTrace());
+        System.err.println("DatabaseLoader.run(): Error message: " + 
+                           e.getMessage());
+        System.err.println("Stack trace:");
+        e.printStackTrace();
+        System.err.println("SQL string to insert row:\n" + insertSQL);
+        
         success = false;
         exception = e;
         

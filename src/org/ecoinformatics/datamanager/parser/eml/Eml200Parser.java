@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Eml200Parser.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-08 01:04:45 $'
- *   '$Revision: 1.7 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-05 23:43:59 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -564,7 +564,6 @@ public class Eml200Parser
                             
                             Double minNum = null;
                             Double maxNum = null;
-                            System.out.println("the min value is "+min);
                             
                             if (!min.trim().equals(""))
                             {
