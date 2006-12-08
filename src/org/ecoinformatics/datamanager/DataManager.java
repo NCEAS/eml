@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-12-08 00:20:05 $'
- *   '$Revision: 1.26 $'
+ *     '$Author: costa $'
+ *       '$Date: 2006-12-08 22:16:54 $'
+ *   '$Revision: 1.27 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -85,6 +85,7 @@ public class DataManager {
   private static DatabaseConnectionPoolInterface connectionPool = null;
   
   // Constants
+  private static final String  BLANKSTR = "";     
   private static final int MAXIMUM_NUMBER_TO_ACCESS_CONNECTIONPOOL = 10;
   private static final int SLEEP_TIME = 2000;
   
@@ -378,7 +379,7 @@ public class DataManager {
    * 
    * @param packageID    the packageID for this entity
    * @param entityName   the entity name
-   * @return tableName   the database table name for this entity, or null if
+   * @return dbTableName the database table name for this entity, or null if
    *                     no match to the packageID and entity name is found
    * @throws SQLException
    */
@@ -389,6 +390,40 @@ public class DataManager {
     DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
     TableMonitor tableMonitor = new TableMonitor(dbAdapter);        
     dbTableName = tableMonitor.getDBTableName(packageID, entityName);
+    
+    return dbTableName;
+  }
+  
+
+  /**
+   * Gets the database table name for a specified Entity.
+   * This is an alternative signature that uses an Entity object instead of
+   * string parameters. First we ask the Entity to tell us its table name,
+   * but if it doesn't know, we check to see whether the table name for this
+   * entity is persistent in the database.
+   * 
+   * @param entity       the Entity object whose table name is being determined
+   * @return dbTableName the database table name for this entity, or null if
+   *                     no match to the packageID and entity name is found
+   * @throws SQLException
+   */
+  public static String getDBTableName(Entity entity) throws SQLException {
+    String dbTableName = null;
+
+    // First, try to get the dbTableName directly from the Entity object
+    if (entity != null) {
+      dbTableName = entity.getDBTableName();
+      
+      /* If the entity doesn't know its dbTableName value, use the entity's
+       * packageID and name fields to query the database for the entity's
+       * table_name field value.
+       */
+      if (dbTableName == null || dbTableName.trim().equals(BLANKSTR)) {
+        String packageID = entity.getPackageId();
+        String entityName = entity.getName();
+        dbTableName = DataManager.getDBTableName(packageID, entityName);
+      }
+    }
     
     return dbTableName;
   }
