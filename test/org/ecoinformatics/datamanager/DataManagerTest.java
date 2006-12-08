@@ -207,21 +207,26 @@ public class DataManagerTest extends TestCase {
       
       if (dataPackage != null) {
         success = dataManager.loadDataToDB(dataPackage, endPointInfo);
+        Entity[] entityList = dataPackage.getEntityList();
+        Entity entity = entityList[0];
         
         /*
          * Test that we can access the correct database table name and field 
-         * names for this packageID and entity name.
+         * names for this packageID and entity name using
+         * DataManager.getDBTableName(packageID, entityName) and
+         * DataManager.getDBFieldNames(packageID, entityName)
          */
         if (success) {
           String packageID = TEST_DOCUMENT;
           String entityName = ENTITY_NAME;
-          String tableName = dataManager.getDBTableName(packageID, entityName);
-          assertNotNull("null value for tableName", tableName);
+          String tableName = DataManager.getDBTableName(packageID, entityName);
+          assertNotNull("null value for tableName (case 1)", tableName);
           assertEquals("tableName does not equal expected value", 
                        tableName, 
                        TABLE_NAME);
+          
           String[] fieldNames = 
-                             dataManager.getDBFieldNames(packageID, entityName);         
+                             DataManager.getDBFieldNames(packageID, entityName);         
           assertNotNull("null value for fieldNames array", fieldNames);   
           assertEquals("Incorrect number of columns found", 
                        fieldNames.length, NUMBER_OF_COLUMNS);
@@ -229,6 +234,32 @@ public class DataManagerTest extends TestCase {
                        fieldNames[0], COLUMN_1);
           assertEquals("Second field name does not equal expected value",
                        fieldNames[1], COLUMN_2);
+          
+          // Test alternative signature of DataManager.getDBTableName(entity).
+          // First, when entity.getDBTableName() is non-null, the method should
+          // find the table name stored in the entity object itself.
+          //
+          assertNotNull("null value for entity.getDBTableName()",
+                        entity.getDBTableName());
+          tableName = DataManager.getDBTableName(entity);
+          assertNotNull("null value for tableName (case 2)", tableName);
+          assertEquals("tableName does not equal expected value", 
+                       tableName, 
+                       TABLE_NAME);
+          
+          // Test alternative signature of DataManager.getDBTableName(entity).
+          // Second, when entity.getDBTableName() is set to null. In this case,
+          // the method will need to query the database to find the persistent
+          // table_name value, instead of relying on the Entity object itself.
+          //
+          entity.setDBTableName(null);
+          tableName = DataManager.getDBTableName(entity);
+          assertNotNull("null value for tableName (case 3)", tableName);
+          assertEquals("tableName does not equal expected value", 
+                       tableName, 
+                       TABLE_NAME);
+          // Need to reset the tableName prior to dropping the table
+          entity.setDBTableName(tableName);
         }
         
         dataManager.dropTables(dataPackage);  // Clean-up test tables
