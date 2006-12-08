@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: costa $'
- *       '$Date: 2006-12-08 22:16:54 $'
- *   '$Revision: 1.27 $'
+ *       '$Date: 2006-12-08 23:48:25 $'
+ *   '$Revision: 1.28 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -52,6 +52,7 @@ import org.ecoinformatics.datamanager.database.TableMonitor;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
+import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
@@ -347,6 +348,50 @@ public class DataManager {
 	success = databaseHandler.dropTables(dataPackage);
     
     return success;
+  }
+  
+
+  /**
+   * Gets the database field name for a given entity attribute. First, we
+   * ask the Attribute object for its dbFieldName value. If it doesn't know,
+   * we check to see if it persists in the database.
+   * 
+   * @param   entity  the Entity that holds this attribute
+   * @param   attribute  the Attribute whose database field name we want to get
+   * @return  dbFieldName the database field name for this attribute, or null
+   *          if no database field name can be found
+   */
+  public static String getDBFieldName(Entity entity, Attribute attribute) 
+          throws SQLException {
+    String dbFieldName = null;
+
+    // First, access the dbFieldName directly from the attribute object
+    dbFieldName = attribute.getDBFieldName();
+
+    /*
+     * If the attribute doesn't contain a value, get it from the database
+     * field names stored in the entity's database table.
+     */
+    if (dbFieldName == null || dbFieldName.trim().equals(BLANKSTR)) {
+    
+      if (entity != null && attribute != null) {
+        Attribute[] attributeArray = entity.getAttributes();
+        String packageID = entity.getPackageId();
+        String entityName = entity.getName();
+        String[] dbFieldNames = getDBFieldNames(packageID, entityName);
+
+        if (attributeArray.length == dbFieldNames.length) {
+          for (int i = 0; i < attributeArray.length; i++) {
+            Attribute arrayAttribute = attributeArray[i];
+            if (attribute.equals(arrayAttribute)) {
+              dbFieldName = dbFieldNames[i];
+            }
+          }
+        }
+      }
+    }
+    
+    return dbFieldName;
   }
   
   
