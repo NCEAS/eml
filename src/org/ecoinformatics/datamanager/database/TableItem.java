@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableItem.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-01 22:02:06 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-12-08 00:22:41 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,6 +32,9 @@
 
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
+
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Entity;
 
 
@@ -47,11 +50,11 @@ public class TableItem
      */
 	private Entity entity = null;
 	
+	
     
 	/**
 	 * Constructor
-     * 
-	 * @param entity entity object which will be in "From" clause
+     * @param entity entity object which will be in "From" clause
 	 */
     public TableItem(Entity entity)
     {
@@ -72,12 +75,24 @@ public class TableItem
         
     	if (entity != null)
     	{
-    		tableName = entity.getDBTableName();
-            
+    		tableName = entity.getDBTableName();           
     		if (tableName == null || tableName.trim().equals(""))
     		{
-    			throw new UnWellFormedQueryException(
-                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
+    			try
+    			{
+    			  String packageId = entity.getPackageId();
+    			  tableName = DataManager.getDBTableName(packageId, entity.getURL());
+    			}
+    			catch (SQLException e)
+    			{
+    			   throw new UnWellFormedQueryException(
+                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL+ " "+e.getMessage());
+    			}
+    			if (tableName == null || tableName.trim().equals(""))
+    			{
+    				throw new UnWellFormedQueryException(
+    	                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
+    			}
     		}
     	}
     	else
