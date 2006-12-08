@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-22 21:18:32 $'
- *   '$Revision: 1.25 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-12-08 00:20:05 $'
+ *   '$Revision: 1.26 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -137,11 +137,14 @@ public class DataManager {
    * sleep and try again. If ceiling times reachs, null will return.
    * 
    */
-  public static Connection getConnection()
+  public static Connection getConnection() throws SQLException
   {
       Connection connection = null;
       int index = 0;
-      
+      if (connectionPool == null)
+      {
+    	  throw new SQLException("The Connection Pool is null");
+      }
       while (index <MAXIMUM_NUMBER_TO_ACCESS_CONNECTIONPOOL)
       {
           try
@@ -357,7 +360,7 @@ public class DataManager {
    *          database.
    * @throws SQLException
    */
-  public String[] getDBFieldNames(String packageID, String entityName)
+  public static String[] getDBFieldNames(String packageID, String entityName)
           throws SQLException {
     String[] dbFieldNames = null;
 
@@ -379,7 +382,7 @@ public class DataManager {
    *                     no match to the packageID and entity name is found
    * @throws SQLException
    */
-  public String getDBTableName(String packageID, String entityName)
+  public static String getDBTableName(String packageID, String entityName)
           throws SQLException {
     String dbTableName = null;
 
@@ -667,8 +670,12 @@ public class DataManager {
    *                        e.g. DatabaseAdapter.POSTGRES_ADAPTER. If no match
    *                        is made, returns null.
    */
-  private DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
+  private static DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
   {
+	if (dbAdapterName == null)
+	{
+		return null;
+	}
     if (dbAdapterName.equals(DatabaseAdapter.POSTGRES_ADAPTER)) {
       PostgresAdapter databaseAdapter = new PostgresAdapter();
       return databaseAdapter;
