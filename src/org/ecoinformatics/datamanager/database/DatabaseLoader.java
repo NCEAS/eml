@@ -247,10 +247,18 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         return;
       }
 
-      Connection connection = DataManager.getConnection();
+      Connection connection = null;
 
       try {
         // System.out.println("The first row data is "+rowVector);
+    	connection = DataManager.getConnection();
+    	if (connection == null)
+    	{
+    		success = false;
+    		exception = new Exception("The connection to db is null");
+    		completed = true;
+    		return;
+    	}
     	connection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
           insertSQL = databaseAdapter.generateInsertSQL(attributeList,
