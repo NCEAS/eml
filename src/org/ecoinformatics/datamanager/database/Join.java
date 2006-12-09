@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Join.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-01 22:02:06 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-12-09 01:15:32 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,9 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
+
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -98,10 +101,22 @@ public class Join implements ConditionInterface
                              UnWellFormedQueryException.JOIN_ATTRIBUTE_IS_NULL);
 	  }
 	  
-	  String entity1Name = entity1.getDBTableName();
-	  String attribute1Name = attribute1.getDBFieldName();
-	  String entity2Name = entity2.getDBTableName();
-	  String attribute2Name = attribute2.getDBFieldName();
+	  String entity1Name = null;
+	  String attribute1Name = null;
+	  String entity2Name = null;
+	  String attribute2Name = null;
+	  
+	  try
+	  {
+		  entity1Name = DataManager.getDBTableName(entity1);
+		  entity2Name = DataManager.getDBTableName(entity2);
+		  attribute1Name = DataManager.getDBFieldName(entity1, attribute1);
+		  attribute2Name = DataManager.getDBFieldName(entity2, attribute2);
+	  }
+	  catch(SQLException sql)
+	  {
+		  System.out.println("Entity or Atribute name is null "+sql.getMessage());
+	  }
 	  
 	  if (entity1Name == null || 
           entity2Name == null ||
