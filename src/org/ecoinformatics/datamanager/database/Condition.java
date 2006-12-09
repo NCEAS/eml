@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Condition.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-01 22:02:06 $'
- *   '$Revision: 1.5 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-12-09 01:14:50 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,9 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
+
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -88,7 +91,15 @@ public class Condition implements ConditionInterface
 		//entity part
 		if (entity != null)
 		{
-			String entityName = entity.getDBTableName();
+			String entityName = null;
+			try
+			{
+			   entityName = DataManager.getDBTableName(entity);
+			}
+			catch(SQLException sqle)
+			{
+			   System.err.println("entity name is null "+sqle.getMessage());
+			}
             
 			if (entityName != null && !entityName.trim().equals(BLANK))
 			{
@@ -100,7 +111,15 @@ public class Condition implements ConditionInterface
 		//attribute part
 		if (attribute != null)
 		{
-			String attributeName = attribute.getDBFieldName();
+			String attributeName = null;
+			try
+			{
+				attributeName = DataManager.getDBFieldName(entity, attribute);
+			}
+			catch(SQLException sqle)
+			{
+				System.err.println("attribute name is null "+sqle.getMessage());
+			}
             
 			if (attributeName != null && !attributeName.trim().equals(BLANK))
 			{
