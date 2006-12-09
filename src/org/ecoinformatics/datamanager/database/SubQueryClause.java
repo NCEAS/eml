@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: SubQueryClause.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-01 22:02:06 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: tao $'
+ *       '$Date: 2006-12-09 01:17:19 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -31,6 +31,9 @@
  */
 package org.ecoinformatics.datamanager.database;
 
+import java.sql.SQLException;
+
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -108,8 +111,16 @@ public class SubQueryClause implements ConditionInterface
         
 		if (entity != null)
 		{
-			String entityName = entity.getDBTableName();
-            
+			String entityName = null;
+			try
+    		{
+    		   entityName = DataManager.getDBTableName(entity); 
+    		}
+    		catch (SQLException sqle)
+    		{
+    			System.err.println("entity name is null "+sqle.getMessage());
+    		}
+    		
 			if (entityName != null && 
                 !entityName.trim().equals(ConditionInterface.BLANK)
                )
@@ -119,7 +130,15 @@ public class SubQueryClause implements ConditionInterface
 			}
 		}
         
-		String attributeName = attribute.getDBFieldName();
+		String attributeName = null;
+		try
+		{
+			attributeName = DataManager.getDBFieldName(entity, attribute);
+		}
+		catch(SQLException sqle)
+		{
+			System.err.println("attribute name is null "+sqle.getMessage());
+		}
         
 		if (attributeName == null || 
             attributeName.trim().equals(ConditionInterface.BLANK))
