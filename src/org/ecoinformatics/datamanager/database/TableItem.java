@@ -2,8 +2,8 @@
  *    '$RCSfile: TableItem.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-12-08 00:22:41 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2006-12-09 01:17:59 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -75,24 +75,21 @@ public class TableItem
         
     	if (entity != null)
     	{
-    		tableName = entity.getDBTableName();           
+    		try
+    		{
+    		   tableName = DataManager.getDBTableName(entity); 
+    		}
+    		catch (SQLException sqle)
+    		{
+    			System.err.println("entity name is null "+sqle.getMessage());
+    		}
+    		
     		if (tableName == null || tableName.trim().equals(""))
     		{
-    			try
-    			{
-    			  String packageId = entity.getPackageId();
-    			  tableName = DataManager.getDBTableName(packageId, entity.getURL());
-    			}
-    			catch (SQLException e)
-    			{
-    			   throw new UnWellFormedQueryException(
-                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL+ " "+e.getMessage());
-    			}
-    			if (tableName == null || tableName.trim().equals(""))
-    			{
-    				throw new UnWellFormedQueryException(
-    	                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
-    			}
+    			
+    		   throw new UnWellFormedQueryException(
+                      UnWellFormedQueryException.TABLEITEM_ENTITY_NAME_IS_NULL);
+    		
     		}
     	}
     	else
