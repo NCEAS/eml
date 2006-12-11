@@ -260,6 +260,37 @@ public class DataManagerTest extends TestCase {
                        TABLE_NAME);
           // Need to reset the tableName prior to dropping the table
           entity.setDBTableName(tableName);
+          
+          /*
+           * Test the getDBFieldName() method. First, get the dbFieldName
+           * value directly from the Attribute itself.
+           */
+          Attribute[] attributeArray = entity.getAttributes();
+          Attribute firstAttribute = attributeArray[0];
+          Attribute secondAttribute = attributeArray[1];
+          assertNotNull(firstAttribute.getDBFieldName());
+          assertNotNull(secondAttribute.getDBFieldName());
+          assertEquals("First field name does not equal expected value",
+                       firstAttribute.getDBFieldName().toLowerCase(), 
+                       COLUMN_1);
+          assertEquals("Second field name does not equal expected value",
+                       secondAttribute.getDBFieldName().toLowerCase(),
+                       COLUMN_2);
+          
+          /*
+           * Next, set the dbFieldName value to null. The only way to get it now
+           * is if it persists in the database.
+           */
+          firstAttribute.setDBFieldName(null);
+          secondAttribute.setDBFieldName(null);
+          String firstFieldName = 
+                             DataManager.getDBFieldName(entity, firstAttribute);
+          String secondFieldName = 
+                            DataManager.getDBFieldName(entity, secondAttribute);
+          assertEquals("First field name does not equal expected value",
+                       firstFieldName.toLowerCase(), COLUMN_1);
+          assertEquals("Second field name does not equal expected value",
+                       secondFieldName.toLowerCase(), COLUMN_2);
         }
         
         dataManager.dropTables(dataPackage);  // Clean-up test tables
