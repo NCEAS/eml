@@ -145,7 +145,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
     success = success && dmm.testLoadDataToDB();    // Use Case #3
     success = success && dmm.testSelectData();      // Use Case #4
     success = success && dmm.testEnumerationMethods();  // Miscellaneous other
-    System.err.println("Finished all tests, success = " + success);
+    System.err.println("Finished all tests, success = " + success + "\n");
     dmm.tearDown();  // clean-up tables
     System.exit(0);
   }
@@ -294,7 +294,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       Exception {
     if (dataPackage != null) {
       dataManager.dropTables(dataPackage); // Clean-up test tables
-      System.err.println("Finished dropping tables.");
+      System.err.println("Finished dropping tables.\n");
     }
   }
   
@@ -320,7 +320,8 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       success = dataManager.downloadData(dataPackage, eepi, dataStorageList);
     }
  
-    System.err.println("Finished testDownloadData(), success = " + success);
+    System.err.println("Finished testDownloadData(), success = " + success + 
+                       "\n");
     return success;
   }
 
@@ -359,7 +360,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
     // We succeeded if we found both a table name and a list of field names
     success = ((tableName != null) && (fieldNames != null));
     System.err.println("Finished testEnumerationMethods(), success = " + 
-                       success);
+                       success + "\n");
 
     return success;
   }
@@ -384,7 +385,8 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       success = dataManager.loadDataToDB(dataPackage, eepi);
     }
  
-    System.err.println("Finished testLoadDataToDB(), success = " + success);
+    System.err.println("Finished testLoadDataToDB(), success = " + success
+                       + "\n");
     return success;
   }
   
@@ -409,7 +411,8 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       }
     }
     
-    System.err.println("Finished testParseMetadata(), success = " + success);
+    System.err.println("Finished testParseMetadata(), success = " + success
+                       + "\n");
     return success;
   }
 
@@ -498,7 +501,8 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       }
     } 
     
-    System.err.println("Finished testSelectData(), success = " + success);
+    System.err.println("Finished testSelectData(), success = " + success
+                       + "\n");
     return success;
   }
   
