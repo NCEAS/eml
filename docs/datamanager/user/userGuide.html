@@ -133,26 +133,190 @@ The Calling Application is required to provide class implementations of the foll
 <UL>
 
 <LI>org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface
-<br><br>
-The Calling Application must implement a class containing methods to get a database connection
+<p>
+The Calling Application is required to implement a class containing methods to get a database connection
 from a connection pool, return a database connection to the connection pool, and get the database 
-adapter name corresponding to the RDBMS being used by the application. An example of an 
-implementing class can be found in the Code Examples section below.
+adapter name corresponding to the RDBMS being used by the application.
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/SampleCallingApp.java
+described in the Sample Calling Application section below.
 </LI>
-<br><br>
+
+<LI>org.ecoinformatics.datamanager.download.DataStorageInterface
+<p>
+The Calling Application is required to implement a class containing methods to interact with the
+Data Manager Library to download data to the local data store. Although the Data Manager Library is 
+responsible for downloading data from the remote site to the local data store, it makes no assumptions
+about where to store data in the local data store or how the data store should be managed.
+The Data Manager Library relies on the Calling Application to provide it with a set of methods
+that can be called to start serialization of the data, finish serialization of the data, 
+and determine whether the data already exists in the local store.
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/SampleDataStorage.java
+described in the Sample Calling Application section below.
+</LI>
+
 <LI>org.ecoinformatics.datamanager.download.EcogridEndPointInterface
-<br><br>
-The Calling Application must implement a class containing methods to provide a Metacat Ecogrid
-end point, provide a SRB Ecogrid end point, and provide a SRB machine name. An example of an implementing
-class can be found in the Code Examples section below.
+<p>
+The Calling Application is required to implement a class containing methods to provide a Metacat Ecogrid
+end point, provide a SRB Ecogrid end point, and provide a SRB machine name. 
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/EcogridEndPoint.java
+described in the Sample Calling Application section below.
 </LI>
 
 </UL>
   
   
-<H3>Code Examples</H3>
+<H3>Sample Calling Application</H3>
 
-<em>To Be Completed</em>
+A sample Calling Application is provided with the distribution in package
+<code>org.ecoinformatics.datamanager.sample</code>. It is configured to
+load database connectivity properties and other properties at run-time
+from file lib/datamanager/datamanager.properties. The user may edit this
+file and modify these properties in accordance with local database settings.
+
+<p>
+The sample Calling Application consists of three classes, 
+described in the table below:
+
+<TABLE border=true>
+  <TR>
+    <TH>
+    Class
+    </TH>
+    <TH>
+    Purpose
+    </TH>
+    <TH>
+    Implements Interface
+    </TH>
+  </TR>
+  <TR>
+    <TD>
+    <code>SampleCallingApp</code>
+    </TD>
+    <TD>
+    Main program for the sample Calling Application. Executes a number of small tests to demonstrate
+    the use cases supported by the Data Manager Library API.
+    </TD>
+    <TD>
+    <code>DatabaseConnectionPoolInterface</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    <code>SampleDataStorage</code>
+    </TD>
+    <TD>
+    Demonstrates implementation of DataStorageInterface
+    </TD>
+    <TD>
+    <code>DataStorageInterface</code>
+    </TD>
+  <TR>
+    <TD>
+    <code>EcogridEndPoint</code>
+    </TD>
+    <TD>
+    Demonstrates implementation of EcogridEndPointInterface
+    </TD>
+    <TD>
+    <code>EcogridEndPointInterface</code>
+    </TD>
+  </TR>
+</TABLE>
+
+<p>
+To run the sample Calling Application, change directory to the top-level of the Data Manager Library
+distribution (the directory that contains the datamanager.jar file). For example:
+<pre><code>
+cd C:\datamanager-1.0.0
+</code></pre>
+Next, run the following command:
+<pre><code>
+java -cp "datamanager.jar" org.ecoinformatics.datamanager.sample.SampleCallingApp
+</code></pre>
+<p>
+If it executes successfully, the output of the sample Calling Application will look similar to the following:
+<pre><code>
+Finished testParseMetadata(), success = true
+
+Constructing DownloadHandler for URL: http://gce-lter.marsci.uga.edu/lter/asp/db/send_file.asp?name=metacat-user&email=none&affiliation=LNO&notify=0&accession=INS-GCEM-0011&filename=INS-GCEM-0011_1_3.TXT
+
+the identifier is ============ tao2075037663
+the identifier is ============ tao2075037663
+Finished testDownloadData(), success = true
+
+[Ljava.lang.String;@16cd7d5
+[Ljava.lang.String;@cdedfd
+Attribute Name: Site
+DB Field Name : Site
+dbDataType    : TEXT
+
+Attribute Name: Year
+DB Field Name : Year
+dbDataType    : TEXT
+
+Attribute Name: Month
+DB Field Name : Month
+dbDataType    : TEXT
+
+Attribute Name: Day
+DB Field Name : Day
+dbDataType    : TEXT
+
+Attribute Name: Transect
+DB Field Name : Transect
+dbDataType    : TEXT
+
+Attribute Name: Species_Code
+DB Field Name : Species_Code
+dbDataType    : TEXT
+
+Attribute Name: Count
+DB Field Name : Count
+dbDataType    : INTEGER
+
+Constructing DownloadHandler for URL: http://gce-lter.marsci.uga.edu/lter/asp/db/send_file.asp?name=metacat-user&email=none&affiliation=LNO&notify=0&accession=INS-GCEM-0011&filename=INS-GCEM-0011_1_3.TXT
+Finished testLoadDataToDB(), success = true
+
+Query SQL = 'SELECT INS_GCEM_0011_1_3_TXT.Count FROM INS_GCEM_0011_1_3_TXT  where INS_GCEM_0011_1_3_TXT.Count > 1;'
+Printing all records with 'count' value greater than 1
+resultSet[1], count =  2
+resultSet[2], count =  3
+resultSet[3], count =  2
+resultSet[4], count =  2
+resultSet[5], count =  2
+resultSet[6], count =  4
+resultSet[7], count =  2
+resultSet[8], count =  3
+resultSet[9], count =  5
+resultSet[10], count =  8
+resultSet[11], count =  5
+resultSet[12], count =  8
+resultSet[13], count =  5
+resultSet[14], count =  9
+resultSet[15], count =  7
+Finished testSelectData(), success = true
+
+tableName: INS_GCEM_0011_1_3_TXT
+  fieldNames[0]: site
+  fieldNames[1]: year
+  fieldNames[2]: month
+  fieldNames[3]: day
+  fieldNames[4]: transect
+  fieldNames[5]: species_code
+  fieldNames[6]: count
+Finished testEnumerationMethods(), success = true
+
+Finished all tests, success = true
+
+Finished dropping tables.
+</code></pre>
 
 <H3>Future Enhancements</H3>
 
