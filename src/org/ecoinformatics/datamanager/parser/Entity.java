@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:44:25 $'
- *   '$Revision: 1.13 $'
+ *     '$Author: tao $'
+ *       '$Date: 2007-01-20 00:15:40 $'
+ *   '$Revision: 1.14 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -102,6 +102,8 @@ public class Entity extends DataObjectDescription
     private String physicalLineDelimiter  = null;
     private boolean collapseDelimiter = false;
     private String packageId = null;
+    private String quoteCharacter = null;
+    
 
     /**
      * Constructs this object with some extra parameters.
@@ -275,6 +277,28 @@ public class Entity extends DataObjectDescription
     public String getDelimiter()
     {
       return this.delimiter;
+    }
+    
+    /**
+     * Gets the value of quote character. Quote character specifies a character 
+     * to be used in the data file for quoting values so that field delimeters can 
+     * be used within the value.
+     * 
+     * @return  a value indicating the value of quote character.
+     */
+    public String getQuoteCharacter()
+    {
+      return this.quoteCharacter;
+    }
+    
+    /**
+     * Sets the quote character in the entity.
+     * 
+     * @param quoteCharater  the value of quote character to be set
+     */
+    public void setQuoteCharacter(String quoteCharacter)
+    {
+    	this.quoteCharacter = quoteCharacter;
     }
 
     
