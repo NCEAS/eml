@@ -227,6 +227,10 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
                                );
           delimitedReader.setCollapseDelimiter(entity.getCollapseDelimiter());
           delimitedReader.setNumFooterLines(entity.getNumFooterLines());
+          if (entity.getQuoteCharacter() != null)
+          {
+            delimitedReader.setQuoteCharacter(entity.getQuoteCharacter());
+          }
           dataReader = delimitedReader;
         } 
         else {
