@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Eml200Parser.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-05 23:43:59 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: tao $'
+ *       '$Date: 2007-01-22 22:04:02 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -384,6 +384,7 @@ public class Eml200Parser
         {
            int length = attributeList.getAttributes().length;
            
+           
            if (length != complexFormatsNumber || 
               (length == complexFormatsNumber && complexFormatsNumber == 0))
            {
@@ -751,6 +752,8 @@ public class Eml200Parser
         String recordDelimiter = "";
         String compressionMethod = "";
         String encodingMethod = "";
+        String quoteCharacter = null;
+        String literalCharacter = null;
         boolean isImageEntity   = false;
         boolean isGZipDataFile  = false;
         boolean isZipDataFile   = false;
@@ -863,6 +866,30 @@ public class Eml200Parser
                {
                    isCollapseDelimiter = true;
                } 
+           }
+           
+           //Here is the simple delimited data file
+           NodeList quoteCharacterNL = xpathapi.selectNodeList(entity,
+           "physical/dataFormat/textFormat/simpleDelimited/quoteCharacter");
+           
+           if (quoteCharacterNL != null && 
+        		   quoteCharacterNL.getLength() > 0) {
+             
+                quoteCharacter = quoteCharacterNL.item(0).getFirstChild().getNodeValue();
+               
+              
+           }
+           
+//         Here is the simple delimited data file
+           NodeList literalCharacterNL = xpathapi.selectNodeList(entity,
+           "physical/dataFormat/textFormat/simpleDelimited/literalCharacter");
+           
+           if (literalCharacterNL != null && 
+        		   literalCharacterNL.getLength() > 0) {
+             
+                literalCharacter = literalCharacterNL.item(0).getFirstChild().getNodeValue();
+               
+              
            }
            
            // for complex format data file
@@ -1013,6 +1040,16 @@ public class Eml200Parser
           if (fieldDelimiter != null)
           {
              entityObject.setDelimiter(fieldDelimiter);
+          }
+          
+          if (quoteCharacter != null)
+          {
+        	  entityObject.setQuoteCharacter(quoteCharacter);
+          }
+          
+          if (literalCharacter != null)
+          {
+        	  entityObject.setLiteralCharacter(literalCharacter);
           }
           
           entityObject.setCollaplseDelimiter(isCollapseDelimiter);
