@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DelimitedReader.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-05 23:42:17 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: tao $'
+ *       '$Date: 2007-01-22 23:31:02 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -66,6 +66,7 @@ public class DelimitedReader extends TextDataReader
   private Vector footerBuffer = new Vector();
   private boolean initializedFooterBuffer = false;
   private int headLineNumberCount = 0;
+  private String quoteCharacter = null;
   
 
   /*private static Log log;
@@ -329,6 +330,16 @@ public class DelimitedReader extends TextDataReader
   public void setNumFooterLines(int numFooterLines)
   {
 	  this.numFooterLines = numFooterLines;
+  }
+  
+  
+  /**
+   * Set quote character for this reader
+   * @param quoteCharacter
+   */
+  public void setQuoteCharacter(String quoteCharacter)
+  {
+	  this.quoteCharacter = quoteCharacter;
   }
   
   
