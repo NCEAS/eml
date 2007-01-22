@@ -2,8 +2,8 @@
  *    '$RCSfile: Entity.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2007-01-20 00:15:40 $'
- *   '$Revision: 1.14 $'
+ *       '$Date: 2007-01-22 22:02:47 $'
+ *   '$Revision: 1.15 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -103,6 +103,7 @@ public class Entity extends DataObjectDescription
     private boolean collapseDelimiter = false;
     private String packageId = null;
     private String quoteCharacter = null;
+    private String literalCharacter = null;
     
 
     /**
@@ -299,6 +300,29 @@ public class Entity extends DataObjectDescription
     public void setQuoteCharacter(String quoteCharacter)
     {
     	this.quoteCharacter = quoteCharacter;
+    }
+    
+    
+    /**
+     * Gets the value of literal character. Literal character specifies a 
+     * character to be used for escaping special character values so that 
+     * they are treated as literal values 
+     * 
+     * @return  a value indicating the value of quote character.
+     */
+    public String getLiteralCharacter()
+    {
+      return this.literalCharacter;
+    }
+    
+    /**
+     * Sets the literal character in the entity.
+     * 
+     * @param literalCharater  the value of literal character to be set
+     */
+    public void setLiteralCharacter(String literalCharacter)
+    {
+    	this.literalCharacter = literalCharacter;
     }
 
     
