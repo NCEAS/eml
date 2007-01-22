@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DownloadHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-05 23:43:14 $'
- *   '$Revision: 1.24 $'
+ *     '$Author: tao $'
+ *       '$Date: 2007-01-22 19:18:13 $'
+ *   '$Revision: 1.25 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -378,6 +378,10 @@ public class DownloadHandler implements Runnable
         
     	while (!this.isCompleted() && index < MAXLOOPNUMBER)
     	{
+    		if (exception != null)
+            {
+            	throw exception;
+            }
     		Thread.sleep(SLEEPTIME);
     		index++;
     	}
