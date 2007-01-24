@@ -2,8 +2,8 @@
  *    '$RCSfile: DelimitedReader.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2007-01-22 23:31:02 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2007-01-24 18:29:44 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -67,6 +67,8 @@ public class DelimitedReader extends TextDataReader
   private boolean initializedFooterBuffer = false;
   private int headLineNumberCount = 0;
   private String quoteCharacter = null;
+  private String literalCharacter = null;
+  private boolean includeLiteralCharacter = false;
   
 
   /*private static Log log;
@@ -335,11 +337,20 @@ public class DelimitedReader extends TextDataReader
   
   /**
    * Set quote character for this reader
-   * @param quoteCharacter
+   * @param quoteCharacter  the quote chacater value
    */
   public void setQuoteCharacter(String quoteCharacter)
   {
 	  this.quoteCharacter = quoteCharacter;
+  }
+  
+  /**
+   * Set literal character for this reader
+   * @param literalCharacter  the literal character value
+   */
+  public void setLiteralCharacter(String literalCharacter)
+  {
+	  this.literalCharacter = literalCharacter; 
   }
   
   
@@ -497,16 +508,24 @@ public class DelimitedReader extends TextDataReader
     }
     
     String[] s = null;
-    
-    if (!collapseDelimiter)
+    if (quoteCharacter == null && literalCharacter == null)
     {
-    	s = data.split(delimiter);
+    	//In this path, there is no quote character, we can spit data directly
+	    if (!collapseDelimiter)
+	    {
+	    	s = data.split(delimiter);
+	    }
+	    else
+	    {
+	    	String newDelimiterWithRegExpress = delimiter+"+";
+	    	s = data.split(newDelimiterWithRegExpress);
+	    	
+	    }
     }
     else
     {
-    	String newDelimiterWithRegExpress = delimiter+"+";
-    	s = data.split(newDelimiterWithRegExpress);
-    	
+    	//In this path, we should skip any field delimiter in quote charcter.
+    	s = processQuoteCharacterOneRowData(data);
     }
     
     if( s != null)
@@ -552,6 +571,204 @@ public class DelimitedReader extends TextDataReader
     return result;
   }
   
+  
+  /*
+   * In oneRowData, there are quote character in it. Any field delimiter in the
+   * quotes should be skiped.
+   */
+  private String[] processQuoteCharacterOneRowData(String oneRowData) throws Exception
+  {
+	  String[] elements = null;
+	  Vector elementsVector = new Vector();
+	  if (oneRowData == null)
+	  {
+		  return elements;
+	  }
+	  quoteCharacter = transferQuoteCharacter(quoteCharacter);
+	  char quote = '#';
+	  boolean quoted = false;
+	  if (quoteCharacter != null)
+	  {
+		  quoted = true;
+		  quote = quoteCharacter.charAt(0);
+	  }
+	  char literal = '/';
+	  boolean literaled = false;
+	  if (literalCharacter != null)
+	  {
+		  literaled = true;
+		  literal = literalCharacter.charAt(0);
+	  }	  
+	  if (literaled && literalCharacter.length() !=1)
+	  {
+		  throw new Exception("Literal Character length should be 1 character in EML");
+	  }
+	  char currentChar  ='2';
+	  StringBuffer fieldData = new StringBuffer();	  
+	  int length = oneRowData.length();
+	  int priviousDelimiterIndex = 0;
+	  int currentDelimiterIndex = 0;
+	  int delimiterLength = delimiter.length();
+	  boolean startQuote = false;
+	  for (int i=0; i<length; i++)
+	  {
+		  currentChar = oneRowData.charAt(i);
+          // we should check if there is quoteCharacter in the string.
+		  if (quoted && currentChar == quote)
+		  {
+			  char previousChar = '1';
+			  boolean escapingQuote = false;
+			  // check if this quote is escaped
+			  if (literaled)
+			  {
+				  if ((i-1) >= 0)
+				  {
+					  previousChar = oneRowData.charAt(i-1);
+					  if (previousChar == literal)
+					  {
+					     escapingQuote = true;
+					  }
+				  }
+			  }
+			  if (!startQuote && !escapingQuote)
+			  {
+				  startQuote = true;
+			  }
+			  else if (startQuote && !escapingQuote)
+			  {
+				  startQuote = false;
+			  }
+			  
+			  if (quote == '"' && !escapingQuote)
+			  {
+				  // add backslash in front of double quotes
+				  char backslash = '\\';
+				  fieldData.append(backslash);
+				  fieldData.append(currentChar);
+			  }
+			  else
+			  {
+				  fieldData.append(currentChar);
+			  }
+		  }
+		  else
+		  {		  
+		    fieldData.append(currentChar);
+		  }
+		  
+		  //found a delimiter
+		  if (fieldData.indexOf(delimiter) != -1 && !startQuote)
+		  {
+			  
+			  //check if there is literal character before the delimiter,
+			  //if does, this we should skip this delmiter
+			  int indexOfCharBeforeDelimiter = i - delimiterLength;
+			  if (literaled && indexOfCharBeforeDelimiter >= 0)
+			  {
+				  char charBeforeDelimiter = oneRowData.charAt(indexOfCharBeforeDelimiter);
+				  ////there is a literal character before delimiter we should skip this demlimiter
+				  if (charBeforeDelimiter == literal)
+				  {
+	     			  if (!includeLiteralCharacter)
+					  {
+						  //if we don't want literal character in the data,
+						  //we should delete literal character.
+						  int fieldLength = fieldData.length();
+						  if ((fieldLength - delimiterLength -1) >=0)
+						  {
+							  fieldData.deleteCharAt(fieldLength-delimiterLength-1);
+						  }
+					  }
+					  continue;				  
+				  }
+			  }
+
+			  ////here we should treat sequential delimiter as single delimiter
+			  if (collapseDelimiter)
+			  {
+				  priviousDelimiterIndex = currentDelimiterIndex;
+				  currentDelimiterIndex = i;
+				  //there is nothing between two delimiter, should skip it.
+				  if ((currentDelimiterIndex - priviousDelimiterIndex) == delimiterLength)
+				  {
+					  continue;
+				  }
+			  }
+			  
+			  String value ="";
+			  int delimiterIndex = fieldData.indexOf(delimiter);
+			  if (delimiterIndex ==0)
+			  {
+				  //this path means field data on has delimiter, no real data
+				  value ="";
+			  }
+			  else
+			  {
+			      value = fieldData.substring(0, delimiterIndex);
+			   
+			  }
+			  elementsVector.add(value);
+			  //reset string buffer fieldData
+			  fieldData = new StringBuffer();
+		  }
+	  }
+	  // if startQuote is true at the end, which means there is no close quote character in this row,
+	  // code should throw an exception
+	  if (startQuote)
+	  {
+		  throw new Exception("There is a un-closed quote in data file");
+	  }
+	  //transform vector to string array
+	  int size = elementsVector.size();
+	  for (int i=0; i<size; i++)
+	  {
+		  elements[i] =(String)elementsVector.elementAt(i);
+	  }
+	  return elements;
+  }
+  
+  /*
+   * If quote character is specified by hex number, we should transfer it
+   * to a character. If quote character is longer than 1 character, it
+   * should be throw an exception
+   */
+  private String transferQuoteCharacter(String quote) throws Exception
+  {
+	  	  String newQuote = quote;
+	  	  if (newQuote == null)
+	  	  {
+	  		  return newQuote;
+	  	  }
+	      else if (newQuote.startsWith("#"))
+	      {
+             //log.debug("XML entity charactor.");
+	          String digits = newQuote.substring(1, newQuote.length());
+	          int radix = 10;
+	          if (digits.startsWith("x"))
+	          {
+	              //log.debug("Radix is "+ 16);
+	              radix = 16;
+	              digits = digits.substring(1, digits.length());
+	          }
+	          //log.debug("Int value of  delimiter is "+digits);
+          
+             newQuote = transferDigitsToCharString(radix, digits);
+          
+	      }
+	      else if (newQuote.startsWith("0x") || newQuote.startsWith("0X"))
+	      {
+	          int radix = 16;
+	          String digits = newQuote.substring(2, newQuote.length());
+	          //log.debug("Int value of  delimiter is "+digits);
+	          newQuote = transferDigitsToCharString(radix, digits);
+	      }
+          
+	  	  if (newQuote.length() > 1)
+	  	  {
+	  		  throw new Exception("Quote Character length should be 1 character in EML");
+	  	  }
+          return newQuote;
+  }
   
   /**
    * Returns the data as an array of vectors.  Each vector will have the same
