@@ -2,8 +2,8 @@
  *    '$RCSfile: DelimitedReader.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2007-01-24 18:29:44 $'
- *   '$Revision: 1.6 $'
+ *       '$Date: 2007-01-25 01:36:16 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -606,13 +606,30 @@ public class DelimitedReader extends TextDataReader
 	  char currentChar  ='2';
 	  StringBuffer fieldData = new StringBuffer();	  
 	  int length = oneRowData.length();
-	  int priviousDelimiterIndex = 0;
-	  int currentDelimiterIndex = 0;
+	  int priviousDelimiterIndex = -2;
+	  int currentDelimiterIndex = -2;
 	  int delimiterLength = delimiter.length();
 	  boolean startQuote = false;
+	  boolean delimiterAtEnd = false;
+	  //this string buffer is only for deleting if hit a delimiter
+	  StringBuffer delimiterStorage = new StringBuffer(delimiter.length());
+	  int numberOfDelimitersInOneField = 0;
 	  for (int i=0; i<length; i++)
 	  {
 		  currentChar = oneRowData.charAt(i);
+		  //System.out.println("current char is "+currentChar);
+		  fieldData.append(currentChar);
+		  if (i < delimiterLength)
+		  {
+			 delimiterStorage.append(currentChar);
+		  }
+		  else
+		  {			  
+		    //delimiterStorage.deleteCharAt(position);
+		    delimiterStorage = shiftBuffer(delimiterStorage, currentChar);
+		  }
+		  //System.out.println("current delimiter storage content is "+delimiterStorage.toString());
+		  //System.out.println("currnet value in the string buffer is "+fieldData.toString());
           // we should check if there is quoteCharacter in the string.
 		  if (quoted && currentChar == quote)
 		  {
@@ -630,39 +647,34 @@ public class DelimitedReader extends TextDataReader
 					  }
 				  }
 			  }
-			  if (!startQuote && !escapingQuote)
+			  if (!escapingQuote)
 			  {
-				  startQuote = true;
-			  }
-			  else if (startQuote && !escapingQuote)
-			  {
-				  startQuote = false;
+				  if (!startQuote)
+				  {
+					  //System.out.println("start quote");
+					  startQuote = true;
+				  }
+				  else 
+				  {
+					  //System.out.println("end quote");
+					  // at end of quote
+					  //put string buffers value into vector and reset string buffer
+					  startQuote = false;
+					 
+				  }
 			  }
 			  
-			  if (quote == '"' && !escapingQuote)
-			  {
-				  // add backslash in front of double quotes
-				  char backslash = '\\';
-				  fieldData.append(backslash);
-				  fieldData.append(currentChar);
-			  }
-			  else
-			  {
-				  fieldData.append(currentChar);
-			  }
+			 
 		  }
-		  else
-		  {		  
-		    fieldData.append(currentChar);
-		  }
-		  
+		 
 		  //found a delimiter
-		  if (fieldData.indexOf(delimiter) != -1 && !startQuote)
+		  if (delimiterStorage.indexOf(delimiter) != -1 && !startQuote)
 		  {
 			  
 			  //check if there is literal character before the delimiter,
 			  //if does, this we should skip this delmiter
 			  int indexOfCharBeforeDelimiter = i - delimiterLength;
+			  boolean escapeDelimiter = false;
 			  if (literaled && indexOfCharBeforeDelimiter >= 0)
 			  {
 				  char charBeforeDelimiter = oneRowData.charAt(indexOfCharBeforeDelimiter);
@@ -679,8 +691,15 @@ public class DelimitedReader extends TextDataReader
 							  fieldData.deleteCharAt(fieldLength-delimiterLength-1);
 						  }
 					  }
+	     			  escapeDelimiter = true;
 					  continue;				  
 				  }
+			  }
+			  
+			  // check if the delimiter is in the end of the string
+			  if (i == (length-1) && !startQuote && !escapeDelimiter)
+			  {
+				  delimiterAtEnd = true;
 			  }
 
 			  ////here we should treat sequential delimiter as single delimiter
@@ -691,12 +710,14 @@ public class DelimitedReader extends TextDataReader
 				  //there is nothing between two delimiter, should skip it.
 				  if ((currentDelimiterIndex - priviousDelimiterIndex) == delimiterLength)
 				  {
+					  //delete sequnced delimiter
+					  fieldData = new StringBuffer();
 					  continue;
 				  }
-			  }
+			  }			  
 			  
 			  String value ="";
-			  int delimiterIndex = fieldData.indexOf(delimiter);
+			  int delimiterIndex = fieldData.lastIndexOf(delimiter);
 			  if (delimiterIndex ==0)
 			  {
 				  //this path means field data on has delimiter, no real data
@@ -710,6 +731,7 @@ public class DelimitedReader extends TextDataReader
 			  elementsVector.add(value);
 			  //reset string buffer fieldData
 			  fieldData = new StringBuffer();
+			 
 		  }
 	  }
 	  // if startQuote is true at the end, which means there is no close quote character in this row,
@@ -718,13 +740,53 @@ public class DelimitedReader extends TextDataReader
 	  {
 		  throw new Exception("There is a un-closed quote in data file");
 	  }
+	  // add last field. If this string end of delimiter, we need add a ""
+	  // else, we need to add the value in string buffer.
+	  String lastFieldValue = null;
+	  if (delimiterAtEnd == true)
+	  {
+		  //this path means field data on has delimiter, no real data
+		  lastFieldValue ="";
+	  }
+	  else 
+	  {
+		  lastFieldValue = fieldData.toString();
+	   
+	  }
+	  elementsVector.add(lastFieldValue);
 	  //transform vector to string array
 	  int size = elementsVector.size();
+	  elements = new String[size];
 	  for (int i=0; i<size; i++)
 	  {
 		  elements[i] =(String)elementsVector.elementAt(i);
 	  }
 	  return elements;
+  }
+  
+  /*
+   * This method will delete the most left char in the given buffer,
+   * and append the new charact at the end. So the buffer size will 
+   * keep same
+   */
+  private static StringBuffer shiftBuffer(StringBuffer buffer, char newChar)
+  {
+	  StringBuffer newBuffer = new StringBuffer();
+	  if (buffer == null)
+	  {
+		  return newBuffer;
+	  }
+	  int size = buffer.length();
+	  for (int i=0; i<size; i++)
+	  {
+		 char oldChar = buffer.charAt(i);
+		 if (i>0)
+		 {
+			 newBuffer.append(oldChar);
+		 }
+	  }
+	  newBuffer.append(newChar);
+	  return newBuffer;
   }
   
   /*
@@ -739,7 +801,7 @@ public class DelimitedReader extends TextDataReader
 	  	  {
 	  		  return newQuote;
 	  	  }
-	      else if (newQuote.startsWith("#"))
+	      else if (newQuote.startsWith("#") && newQuote.length() >1)
 	      {
              //log.debug("XML entity charactor.");
 	          String digits = newQuote.substring(1, newQuote.length());
@@ -755,7 +817,7 @@ public class DelimitedReader extends TextDataReader
              newQuote = transferDigitsToCharString(radix, digits);
           
 	      }
-	      else if (newQuote.startsWith("0x") || newQuote.startsWith("0X"))
+	      else if ((newQuote.startsWith("0x") || newQuote.startsWith("0X")) && newQuote.length() >2)
 	      {
 	          int radix = 16;
 	          String digits = newQuote.substring(2, newQuote.length());
