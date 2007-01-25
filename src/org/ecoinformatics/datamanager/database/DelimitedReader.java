@@ -2,8 +2,8 @@
  *    '$RCSfile: DelimitedReader.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2007-01-25 01:36:16 $'
- *   '$Revision: 1.7 $'
+ *       '$Date: 2007-01-25 18:06:32 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -613,7 +613,6 @@ public class DelimitedReader extends TextDataReader
 	  boolean delimiterAtEnd = false;
 	  //this string buffer is only for deleting if hit a delimiter
 	  StringBuffer delimiterStorage = new StringBuffer(delimiter.length());
-	  int numberOfDelimitersInOneField = 0;
 	  for (int i=0; i<length; i++)
 	  {
 		  currentChar = oneRowData.charAt(i);
@@ -644,6 +643,17 @@ public class DelimitedReader extends TextDataReader
 					  if (previousChar == literal)
 					  {
 					     escapingQuote = true;
+					     // delette the literal character
+					     if (!includeLiteralCharacter)
+						  {
+							  //if we don't want literal character in the data,
+							  //we should delete literal character.
+							  int fieldLength = fieldData.length();
+							  if ((fieldLength -1-1) >=0)
+							  {
+								  fieldData.deleteCharAt(fieldLength-1-1);
+							  }
+						  }
 					  }
 				  }
 			  }
