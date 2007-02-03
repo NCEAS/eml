@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-05 23:41:03 $'
- *   '$Revision: 1.17 $'
+ *     '$Author: tao $'
+ *       '$Date: 2007-02-03 02:41:13 $'
+ *   '$Revision: 1.18 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -268,6 +268,7 @@ public abstract class DatabaseAdapter {
        */
       if (domain == null || !(domain instanceof NumericDomain)) {
         //System.out.println("in non NumericDomain " + value);
+    	value = escapeSpecialCharacterInData(value);
         sqlDataPart.append(SINGLEQUOTE);
         sqlDataPart.append(value);
         sqlDataPart.append(SINGLEQUOTE);
@@ -517,6 +518,29 @@ public abstract class DatabaseAdapter {
     String sqlString = "";
 
     return sqlString;
+  }
+  
+  /*
+   * This method will escape special character, e.g. single quote ('), in the string data 
+   * value. If the string has a single quote without escape, it will cause a problem.
+   * For example: insert into table (comment) values ('here's it') will cause a problem.
+   * However, insert into table (comment) values ('here\'s it') will be fine.
+   */
+  protected String escapeSpecialCharacterInData(String data)
+  {
+	  String[] specialArray = {"'"};
+	  String escape = "\\";
+	  if (data == null)
+	  {
+		  return data;
+	  }
+	  int size = specialArray.length;
+	  for (int i=0; i<size; i++)
+	  {
+		  String special = specialArray[i];
+		  data = data.replaceAll(special, escape+special);
+	  }
+	  return data;
   }
   
 }
