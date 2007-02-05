@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2007-02-03 02:41:13 $'
- *   '$Revision: 1.18 $'
+ *       '$Date: 2007-02-05 19:20:57 $'
+ *   '$Revision: 1.19 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -529,7 +529,7 @@ public abstract class DatabaseAdapter {
   protected String escapeSpecialCharacterInData(String data)
   {
 	  String[] specialArray = {"'"};
-	  String escape = "\\";
+	  String escape = "\\\\";
 	  if (data == null)
 	  {
 		  return data;
