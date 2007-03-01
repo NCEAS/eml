@@ -10,8 +10,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: jones $'
-  *     '$Date: 2006-03-20 17:24:35 $'
-  * '$Revision: 1.22 $'
+  *     '$Date: 2007-03-01 17:00:22 $'
+  * '$Revision: 1.23 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -110,6 +110,11 @@
 ***
 *** Chris Lindsley found a critical bug on <spdoinfo> tree nodes. Some node xsl oeprations are not permitted on temporary subtree nodes (from variables). Changes made around line 1705.
 *** 
+** October 2006
+**  
+** inline data tweaked: transformation was faulty there were distribution references in a <physical> group. Now it is contemplated well for all three options of EML distribution.
+** TODOs: multiple tables in one EML.
+**              taxonomic keywords not mapped correctly. 
 ***
 -->
 
@@ -147,6 +152,9 @@ version="1.0">
     <xsl:element name="metadata">
       <!-- only the 'idinfo' and 'metainfo' elements are required -->
       <!-- start the 'idinfo' branch -->      
+	 <xsl:variable name="packageID">
+				<xsl:value-of select="/eml:eml/@packageId"/>
+	 </xsl:variable>
       <xsl:element name="idinfo">
         <xsl:element name="citation">
           <xsl:element name="citeinfo">
@@ -2307,7 +2315,7 @@ version="1.0">
         </xsl:element><!-- end distrib -->
          
          <xsl:element name="resdesc">
-            <xsl:value-of select="/eml:eml/@packageId"/>
+			  <xsl:value-of select="$packageID"/>
          </xsl:element>
          <xsl:element name="distliab">
             <xsl:value-of select="'distribution liability information is not available'"/> <!-- may put here some along the lines that LTER is not responsible for it. -->
@@ -2418,7 +2426,7 @@ version="1.0">
 							  </xsl:element>
 							</xsl:element>
 							<xsl:element name="formcont">
-							 <xsl:value-of select="'See Entity/Attribute element (eainfo)'"/>
+							 <xsl:value-of select="'See Entity/Attribute element '"/>
 							</xsl:element>
 							<xsl:element name="filedec">
 								<xsl:choose>
@@ -2450,96 +2458,188 @@ version="1.0">
 						  </xsl:element> <!-- end digitinfo (digital transfer info box) -->
 						  <xsl:element name="digtopt"> <!-- group digital transfer option (including URL) -->
 							<xsl:choose>
-							  <xsl:when test="xalan:nodeset($cc-phys)//distribution/online/url!=''">
-								<xsl:element name="onlinopt">
-								  <xsl:element name="computer">
-									<xsl:element name="networka">
-									  <xsl:element name="networkr">
-										<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/online/url"/>
+								<xsl:when test="xalan:nodeset($cc-phys)//distribution/references!=''">
+								<!-- references to a previous <distribution> most likely in the root distributionHERE-->
+								    <xsl:variable name="cc-distr">
+										  <xsl:variable name="dist_ref_id" select="xalan:nodeset($cc-phys)//distribution/references"/>
+										  <xsl:copy-of select="$ids[@id=$dist_ref_id]"/>
+									</xsl:variable>
+									<xsl:choose>  <!-- bizarre enough, this is the same choice within the choice but with different variable -->
+										<xsl:when test="xalan:nodeset($cc-distr)//online/url!=''">
+											<xsl:element name="onlinopt">
+											  <xsl:element name="computer">
+												<xsl:element name="networka">
+												  <xsl:element name="networkr">
+													<xsl:value-of select="xalan:nodeset($cc-distr)//online/url"/>
+												  </xsl:element>
+												</xsl:element>
+											  </xsl:element>
+											</xsl:element>	
+										</xsl:when>
+										<xsl:when test="xalan:nodeset($cc-distr)//inline!=''">
+											<xsl:element name="onlinopt">
+											  <xsl:element name="computer">
+												<xsl:element name="networka">
+												  <xsl:element name="networkr">
+													 <xsl:value-of select="concat('http://metacat.lternet.edu/knb/metacat?action=read&amp;qformat=lter&amp;docid=',$packageID,'&amp;displaymodule=inlinedata&amp;distributionlevel=entitylevel&amp;entitytype=dataTable&amp;entityindex=1&amp;physicalindex=1&amp;distributionindex=1' )"/>
+												  </xsl:element>
+												</xsl:element>
+											  </xsl:element>
+											</xsl:element>
+									    </xsl:when>
+                                        <xsl:otherwise><!-- offline -->
+											<xsl:element name="offoptn">
+											  <xsl:element name="offmedia">
+												<xsl:choose>
+												  <xsl:when test="xalan:nodeset($cc-distr)//offline/mediumName!=''">
+													<xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumName"/>
+												  </xsl:when>
+												  <xsl:otherwise>
+													<xsl:value-of select="'N/A'"/>
+												  </xsl:otherwise>
+												</xsl:choose>
+											  </xsl:element>
+											  <xsl:element name="reccap">
+												<xsl:choose>
+												  <xsl:when test="xalan:nodeset($cc-distr)//offline/mediumVolume!=''">
+													<xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumVolume"/>
+												  </xsl:when>
+												  <xsl:otherwise>
+													<xsl:value-of select="'N/A'"/>
+												  </xsl:otherwise>
+												</xsl:choose>
+											  </xsl:element>
+											  <xsl:element name="recfmt">
+												<xsl:element name="recden">
+												  <xsl:choose>
+													<xsl:when test="xalan:nodeset($cc-distr)//offline/mediumDensity!=''">
+													  <xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumDensity"/>
+													</xsl:when>
+													<xsl:otherwise>
+													  <xsl:value-of select="'N/A'"/>
+													</xsl:otherwise>
+												  </xsl:choose>
+												</xsl:element>
+												<xsl:element name="recdenu">
+												  <xsl:choose>
+													<xsl:when test="xalan:nodeset($cc-distr)//offline/mediumDensityUnits!=''">
+													  <xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumDensityUnits"/>
+													</xsl:when>
+													<xsl:otherwise>
+													  <xsl:value-of select="'N/A'"/>
+													</xsl:otherwise>
+												  </xsl:choose>
+												</xsl:element>
+											  </xsl:element>
+											  <xsl:element name="recfmt">
+												<xsl:choose>
+												  <xsl:when test="xalan:nodeset($cc-distr)//offline/mediumFormat!=''">
+													<xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumFormat"/>
+												  </xsl:when>
+												  <xsl:otherwise>
+													<xsl:value-of select="'N/A'"/>
+												  </xsl:otherwise>
+												</xsl:choose>
+											  </xsl:element>
+											  <xsl:if test="xalan:nodeset($cc-distr)//offline/mediumNote!=''">
+												<xsl:element name="compat">
+												  <xsl:value-of select="xalan:nodeset($cc-distr)//offline/mediumNote"/>
+												</xsl:element>
+											  </xsl:if>
+											</xsl:element>
+										</xsl:otherwise>
+    								</xsl:choose> <!-- end of references within the references for the distribution-->
+								  </xsl:when>
+								  <xsl:when test="xalan:nodeset($cc-phys)//distribution/online/url!=''">
+									<xsl:element name="onlinopt">
+									  <xsl:element name="computer">
+										<xsl:element name="networka">
+										  <xsl:element name="networkr">
+											<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/online/url"/>
+										  </xsl:element>
+										</xsl:element>
 									  </xsl:element>
 									</xsl:element>
-								  </xsl:element>
-								</xsl:element>
-							  </xsl:when>
-							  <xsl:when test="xalan:nodeset($cc-phys)//distribution/inline!=''">
-								<xsl:element name="onlinopt">
-								  <xsl:element name="computer">
-									<xsl:element name="networka">
-									  <xsl:element name="networkr">
-										<xsl:value-of select="'data is inline (inside) eml2 document -- included with the original metadata document-- '"/>
+								  </xsl:when>
+								  <xsl:when test="xalan:nodeset($cc-phys)//distribution/inline!=''">
+									<xsl:element name="onlinopt">
+									  <xsl:element name="computer">
+										<xsl:element name="networka">
+										  <xsl:element name="networkr">
+											<xsl:value-of select="'data is inline (inside) eml2 document -- included with the original metadata document-- '"/>
+										  </xsl:element>
+										</xsl:element>
 									  </xsl:element>
 									</xsl:element>
-								  </xsl:element>
-								</xsl:element>
-							  </xsl:when>
-							  <xsl:otherwise><!-- offline -->
-								<xsl:element name="offoptn">
-								  <xsl:element name="offmedia">
-									<xsl:choose>
-									  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumName!=''">
-										<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumName"/>
-									  </xsl:when>
-									  <xsl:otherwise>
-										<xsl:value-of select="'N/A'"/>
-									  </xsl:otherwise>
-									</xsl:choose>
-								  </xsl:element>
-								  <xsl:element name="reccap">
-									<xsl:choose>
-									  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume!=''">
-										<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume"/>
-									  </xsl:when>
-									  <xsl:otherwise>
-										<xsl:value-of select="'N/A'"/>
-									  </xsl:otherwise>
-									</xsl:choose>
-								  </xsl:element>
-								  <xsl:element name="recfmt">
-									<xsl:element name="recden">
-									  <xsl:choose>
-										<xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity!=''">
-										  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity"/>
-										</xsl:when>
-										<xsl:otherwise>
-										  <xsl:value-of select="'N/A'"/>
-										</xsl:otherwise>
-									  </xsl:choose>
+								  </xsl:when>
+								  <xsl:otherwise><!-- offline -->
+									<xsl:element name="offoptn">
+									  <xsl:element name="offmedia">
+										<xsl:choose>
+										  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumName!=''">
+											<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumName"/>
+										  </xsl:when>
+										  <xsl:otherwise>
+											<xsl:value-of select="'N/A'"/>
+										  </xsl:otherwise>
+										</xsl:choose>
+									  </xsl:element>
+									  <xsl:element name="reccap">
+										<xsl:choose>
+										  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume!=''">
+											<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumVolume"/>
+										  </xsl:when>
+										  <xsl:otherwise>
+											<xsl:value-of select="'N/A'"/>
+										  </xsl:otherwise>
+										</xsl:choose>
+									  </xsl:element>
+									  <xsl:element name="recfmt">
+										<xsl:element name="recden">
+										  <xsl:choose>
+											<xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity!=''">
+											  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensity"/>
+											</xsl:when>
+											<xsl:otherwise>
+											  <xsl:value-of select="'N/A'"/>
+											</xsl:otherwise>
+										  </xsl:choose>
+										</xsl:element>
+										<xsl:element name="recdenu">
+										  <xsl:choose>
+											<xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits!=''">
+											  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits"/>
+											</xsl:when>
+											<xsl:otherwise>
+											  <xsl:value-of select="'N/A'"/>
+											</xsl:otherwise>
+										  </xsl:choose>
+										</xsl:element>
+									  </xsl:element>
+									  <xsl:element name="recfmt">
+										<xsl:choose>
+										  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat!=''">
+											<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat"/>
+										  </xsl:when>
+										  <xsl:otherwise>
+											<xsl:value-of select="'N/A'"/>
+										  </xsl:otherwise>
+										</xsl:choose>
+									  </xsl:element>
+									  <xsl:if test="xalan:nodeset($cc-phys)//distribution/offline/mediumNote!=''">
+										<xsl:element name="compat">
+										  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumNote"/>
+										</xsl:element>
+									  </xsl:if>
 									</xsl:element>
-								    <xsl:element name="recdenu">
-									  <xsl:choose>
-										<xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits!=''">
-										  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumDensityUnits"/>
-										</xsl:when>
-										<xsl:otherwise>
-										  <xsl:value-of select="'N/A'"/>
-										</xsl:otherwise>
-									  </xsl:choose>
-									</xsl:element>
-								  </xsl:element>
-								  <xsl:element name="recfmt">
-									<xsl:choose>
-									  <xsl:when test="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat!=''">
-										<xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumFormat"/>
-									  </xsl:when>
-									  <xsl:otherwise>
-										<xsl:value-of select="'N/A'"/>
-									  </xsl:otherwise>
-									</xsl:choose>
-								  </xsl:element>
-								  <xsl:if test="xalan:nodeset($cc-phys)//distribution/offline/mediumNote!=''">
-									<xsl:element name="compat">
-									  <xsl:value-of select="xalan:nodeset($cc-phys)//distribution/offline/mediumNote"/>
-									</xsl:element>
-								  </xsl:if>
-								</xsl:element>
-							  </xsl:otherwise>
-							</xsl:choose>
-						  </xsl:element>
-						 </xsl:element>
-					   </xsl:for-each>
-					   <xsl:element name="fees">
-						 <xsl:value-of select="'N/A'"/>
-					   </xsl:element>
+								  </xsl:otherwise>
+								</xsl:choose>
+							  </xsl:element>
+							 </xsl:element>
+						   </xsl:for-each>
+						   <xsl:element name="fees">
+							 <xsl:value-of select="'N/A'"/>
+						   </xsl:element>
 					</xsl:element>  <!-- end stdorder element, for the case we have a physical element -->
 				</xsl:when>
 				<xsl:when test="/eml:eml/dataset/distribution!=''">
