@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: jones $'
-  *     '$Date: 2005-12-13 20:03:23 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2007-04-20 06:03:46 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,7 @@
   <xsl:template match="/">
     <html>
       <head>
+        <title><xsl:value-of select="./eml:eml/dataset/title"/></title>
         <link rel="stylesheet" type="text/css"
               href="{$stylePath}/{$qformat}/{$qformat}.css"></link>
         <script language="Javascript" type="text/JavaScript"
