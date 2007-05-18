@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: costa $'
-          '$Date: 2006-12-07 19:10:13 $'
-      '$Revision: 1.94 $'
+          '$Date: 2007-05-18 14:20:13 $'
+      '$Revision: 1.95 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -560,7 +560,7 @@
     	      todir="${build.dest}"/>
   	    <jar jarfile="${build.dir}/${datamanager.name}.jar" 
   	         basedir="${build.dest}"
-  	         excludes="**/**Test.class" 
+  	         excludes="org/ecoinformatics/datamanager/**/**Test.class"
   	    />
     </target>
       
