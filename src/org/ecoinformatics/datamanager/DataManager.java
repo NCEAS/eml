@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-12 18:53:49 $'
- *   '$Revision: 1.29 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2007-10-02 20:56:39 $'
+ *   '$Revision: 1.30 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -49,6 +49,7 @@ import org.ecoinformatics.datamanager.database.OracleAdapter;
 import org.ecoinformatics.datamanager.database.PostgresAdapter;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.TableMonitor;
+import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
@@ -655,6 +656,28 @@ public class DataManager {
     
     return resultSet;
   }
+  
+  public ResultSet selectData(Union union, DataPackage[] packages)
+			throws ClassNotFoundException, SQLException, Exception {
+		Connection conn = DataManager.getConnection();
+
+		if (conn == null) {
+			throw new Exception("DBConnection is not available");
+		}
+
+		DatabaseHandler databaseHandler;
+		ResultSet resultSet = null;
+
+		try {
+			databaseHandler = new DatabaseHandler(databaseAdapterName);
+			String ANSISQL = union.toSQLString();
+			resultSet = databaseHandler.selectData(ANSISQL, packages);
+		} finally {
+			DataManager.returnConnection(conn);
+		}
+
+		return resultSet;
+	}
   
 
   /**
