@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DownloadHandler.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2007-01-22 19:18:13 $'
- *   '$Revision: 1.25 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2007-10-02 20:43:50 $'
+ *   '$Revision: 1.26 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -61,8 +61,8 @@ public class DownloadHandler implements Runnable
      */   
     private static final String SRBUSERNAME     = "testuser.sdsc";
     private static final String SRBPASSWD       = "TESTUSER";
-    private static final int    SLEEPTIME       = 10000;
-    private static final int    MAXLOOPNUMBER   = 200;
+    private static final int    SLEEPTIME       = 100;
+    private static final int    MAXLOOPNUMBER   = 20000;
     
     protected static Hashtable handlerList = new Hashtable();
     private static String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
