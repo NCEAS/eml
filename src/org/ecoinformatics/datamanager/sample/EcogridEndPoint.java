@@ -27,7 +27,7 @@ public class EcogridEndPoint implements EcogridEndPointInterface
         */
        public String getMetacatEcogridEndPoint()
        {
-           return "http://pacific.msi.ucsb.edu:8080/knb/services/EcoGridQuery";
+           return "http://localhost:8080/knb/services/EcoGridQuery";
        }
        
        /**
