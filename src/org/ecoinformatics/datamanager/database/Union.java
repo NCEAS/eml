@@ -2,8 +2,8 @@
  *    '$RCSfile: Union.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2007-09-28 23:21:36 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2007-10-02 20:26:21 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -47,8 +47,8 @@ public class Union
 	private String unionType = null;
 	
 	//constants
-	private static final String UNION = "UNION";
-	private static final String UNION_ALL = "UNION ALL";
+	public static final String UNION = "UNION";
+	public static final String UNION_ALL = "UNION ALL";
 	
 	/**
 	 * Constructor - uses UNION ALL option as default
