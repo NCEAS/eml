@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: costa $'
-          '$Date: 2007-05-18 14:20:13 $'
-      '$Revision: 1.95 $'
+        '$Author: leinfelder $'
+          '$Date: 2007-10-02 23:08:57 $'
+      '$Revision: 1.96 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@
     <property name="cos" value="lib/cos.jar"/>
     <property name="servlet" value="lib/apache/servlet.jar"/>
     <property name="configxml" value="lib/configxml.jar"/>
-    <property name="junit" value="/usr/local/devtools/junit3.7/junit.jar"/>
+    <property name="junit" value="lib/junit.jar"/>
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
@@ -512,8 +512,10 @@
         <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
         <property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
         <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
-        <property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
-        <property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/>
+        <property name="log4j" value="${datamanager.lib}/log4j-1.2.8.jar"/>
+    	<property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
+        <property name="putservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridPutInterfaceLevelOne-stub.jar"/>
+    	<property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/>
         <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
         <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
         <property name="soap" value="${datamanager.lib}/soap.jar"/>
@@ -522,7 +524,7 @@
         <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
         <property name="cpath.datamanager" 
-                  value="${axis}:${discover}:${hsql}:${log}:${postgresql-driver}:${queryservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}:${datamanager.name}.jar"/>
+                  value="${junit}:${axis}:${discover}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}:${datamanager.name}.jar"/>
     </target>
 
     <target name="compile-datamanager-lib" depends="init-datamanager-lib">
@@ -670,7 +672,7 @@
 
       <!-- use the ant "junit" task to run a single test in data manager lib. -->
       <junit printsummary="yes" haltonfailure="no" fork="no"
-             haltonerror="no">
+             haltonerror="no" showoutput="true" >
         <classpath>
           <pathelement path="${cpath.datamanager}:${build.dest}" />
         </classpath>
