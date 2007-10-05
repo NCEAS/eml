@@ -11,12 +11,13 @@ import junit.framework.TestSuite;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.database.Condition;
-import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterfaceTest;
+import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
 import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.database.WhereClause;
+import org.ecoinformatics.datamanager.database.pooling.DatabaseConnectionPoolFactory;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
@@ -28,7 +29,7 @@ public class UnionPerformanceTest extends TestCase {
 	/*
 	 * Class fields
 	 */
-	public Log log = LogFactory.getLog(UnionPerformanceTest.class);
+	public static Log log = LogFactory.getLog(UnionPerformanceTest.class);
 	
 	private final String QUERY_TEST_DOCUMENT = "leinfelder.5.8";
 	private final String QUERY_TEST_SERVER = "http://localhost:8080/knb/metacat";
@@ -39,6 +40,7 @@ public class UnionPerformanceTest extends TestCase {
 	 * Instance fields
 	 */
 	private DataManager dataManager;
+	private DatabaseConnectionPoolInterface connectionPool = null;
 	private EcogridEndPointInterfaceTest endPointInfo = null;
 	private int conditionColumnIndex = 3;
 	
@@ -90,7 +92,9 @@ public class UnionPerformanceTest extends TestCase {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		DatabaseConnectionPoolInterfaceTest connectionPool = new DatabaseConnectionPoolInterfaceTest();
+		connectionPool = 
+			DatabaseConnectionPoolFactory.getDatabaseConnectionPoolInterface();
+			//new PostgresDatabaseConnectionPool();
 		String dbAdapterName = connectionPool.getDBAdapterName();
 		dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 		endPointInfo = new EcogridEndPointInterfaceTest();
@@ -100,6 +104,7 @@ public class UnionPerformanceTest extends TestCase {
 	 * Release any objects after tests are complete.
 	 */
 	public void tearDown() throws Exception {
+		connectionPool = null;
 		dataManager = null;
 		endPointInfo = null;
 		super.tearDown();
@@ -140,22 +145,26 @@ public class UnionPerformanceTest extends TestCase {
 		// First create the DataPackage object that will be used in the query.
 		url = new URL(documentURL);
 		inputStream = url.openStream();
-		log.debug("about to parse datapackage");
 		
+		log.debug("parsing datapackage");
 		dataPackage = dataManager.parseMetadata(inputStream);
 		log.debug("parsed datapackage!");
+		
+		//check if this has been loaded before
 		String testDbTable = DataManager.getDBTableName(dataPackage.getEntityList()[0]);
 		log.debug("testDbTable=" + testDbTable);
+		
 		if (testDbTable == null ) {
 			//load the package
 			success = dataManager.loadDataToDB(dataPackage, endPointInfo);
+			log.debug("loadedDataToDB completed");
 		}
 		else {
 			//don't try to get the data again
 			success = true;
 		}
 		
-		log.debug("loaded data to db");
+		log.debug("loaded data to db, success=" + success);
 
 		union = new Union();
 
@@ -171,6 +180,9 @@ public class UnionPerformanceTest extends TestCase {
 			if (success && dataPackage != null) {
 				dataPackages = new DataPackage[1];
 				dataPackages[0] = dataPackage;
+				
+				//log.debug("creating Query");
+				
 				Query query = new Query();
 				/* SELECT clause */
 				SelectionItem selectionItem = 
@@ -184,8 +196,8 @@ public class UnionPerformanceTest extends TestCase {
 					new Condition(entity, conditionAttribute, operator, value);
 				WhereClause whereClause = new WhereClause(condition);
 				query.setWhereClause(whereClause);
-				
-				log.debug("Query SQL = " + query.toSQLString());
+								
+				//log.debug("Query SQL = " + query.toSQLString());
 
 				//add the query to the union
 				union.addQuery(query);
@@ -193,13 +205,21 @@ public class UnionPerformanceTest extends TestCase {
 			}//dp success
 			
 		} //for loop
+				
+		log.debug("created Union object: time check: " + (System.currentTimeMillis() - startTime));
 		
-		log.info("Union Query SQL = " + union.toSQLString());
-
+		log.debug("Union Query SQL = " + union.toSQLString());
+		
+		log.debug("time check: " + (System.currentTimeMillis() - startTime));
+		
 		try {
 			//try to get the results
+			log.debug("about to select data");
+			
 			resultSet = dataManager.selectData(union, dataPackages);
-
+			
+			log.debug("got resultset: time check: " + (System.currentTimeMillis() - startTime));
+			
 			if (resultSet != null) {
 
 				int j = 1;
@@ -208,6 +228,8 @@ public class UnionPerformanceTest extends TestCase {
 					int column0 = resultSet.getInt(1);
 					log.debug("resultSet[" + j + "], column0 =  " + column0);
 					j++;
+					//just the first one
+					break;
 				}
 			} 
 			else {
@@ -241,7 +263,6 @@ public class UnionPerformanceTest extends TestCase {
 			upt.testSelectData();
 			upt.tearDown();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
