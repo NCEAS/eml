@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2007-10-02 20:56:39 $'
- *   '$Revision: 1.30 $'
+ *       '$Date: 2007-10-18 00:47:07 $'
+ *   '$Revision: 1.31 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -57,6 +57,7 @@ import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
+import org.ecoinformatics.datamanager.parser.generic.DataPackageParserInterface;
 
 
 /**
@@ -588,6 +589,27 @@ public class DataManager {
     
     return dataPackage;
   }
+  
+  /**
+   * Parses metadata using the passed parser parameter. The return value is
+   * a DataPackage object containing the parsed metadata. This method
+   * implements Use Case #1.
+   * 
+   * @param metadataInputStream  an input stream to the metadata to be parsed.
+   * @param genericParser the appropriate parser implementation for the metadataInputStream
+   * @return a DataPackage object containing the parsed metadata
+   * 
+   * @throws Exception
+   */
+  public DataPackage parseMetadata(InputStream metadataInputStream, DataPackageParserInterface genericParser)
+			throws Exception {
+	  
+		DataPackage dataPackage = null;
+		genericParser.parse(metadataInputStream);
+		dataPackage = genericParser.getDataPackage();
+
+		return dataPackage;
+	}
   
   
   /**
