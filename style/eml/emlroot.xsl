@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2007-09-12 07:34:03 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:44:22 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -1142,9 +1142,10 @@
       <tr><td class="{$subHeaderStyle}" colspan="2">
            <xsl:text>Metadata downloads:</xsl:text>
        </td></tr>
-       <tr><td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
-           <td width="{$secondColWidth}" class="{$firstColStyle}">
-              <a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
+       <tr>
+           
+	       <td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
+	<td width="{$secondColWidth}"><a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
               <b>Ecological Metadata Language (EML) File</b></a>
            </td>
        </tr>
