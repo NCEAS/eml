@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:43:30 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -49,6 +49,8 @@
       <xsl:param name="physicalindex"/>
       <xsl:param name="distributionindex"/>
       <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+		
+    
        <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -95,7 +97,7 @@
             </xsl:apply-templates>
         </xsl:otherwise>
        </xsl:choose>
-      </table>
+       </table> 
   </xsl:template>
 
   <!-- ********************************************************************* -->
@@ -121,16 +123,15 @@
   <xsl:template match="url">
     <xsl:param name="disfirstColStyle"/>
     <xsl:variable name="URL" select="."/>
-    <tr>
-      <td width="{$firstColWidth}" class="{$disfirstColStyle}">
-        <xsl:text>&#160;</xsl:text>
-      </td>
-      <td width="{$secondColWidth}" class="{$secondColStyle}">
+    <tr><td class="{$disfirstColStyle}" width="{$firstColWidth}">
+        <xsl:text>Download File:  </xsl:text>
+	 </td>
+	 <td  class="{$secondColStyle}" width="{$secondColWidth}"> 
          <xsl:if test="$withHTMLLinks='1'">
           <a>
           <xsl:choose>
            <xsl:when test="starts-with($URL,'ecogrid')">
-		<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
+		   	<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/> 
 		<xsl:variable name="docID" select="substring-after($URL1, '/')"/>
 		<xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docID"/></xsl:attribute>
            </xsl:when>
@@ -138,14 +139,22 @@
 		<xsl:attribute name="href"><xsl:value-of select="$URL"/></xsl:attribute>
            </xsl:otherwise>
           </xsl:choose>
-          <xsl:attribute name="target">_blank</xsl:attribute>
-          <xsl:value-of select="."/>
+		  <xsl:attribute name="target">_blank</xsl:attribute>
+
+		  <xsl:choose>
+			  <xsl:when test="../../../objectName">
+					  <xsl:value-of select="../../../objectName"/>
+			  </xsl:when>
+			  <xsl:otherwise>
+					  <xsl:value-of select="." />
+			  </xsl:otherwise>
+	      </xsl:choose>
           </a>
          </xsl:if>
          <xsl:if test="$withHTMLLinks='0'">
             <xsl:value-of select="."/>
-         </xsl:if>
-       </td>
+    </xsl:if>
+ </td> 
     </tr>
   </xsl:template>
 
