@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:47:34 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2007-12-03 23:58:57 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@
 				<b>
 		   		<xsl:value-of select="title"/>
 				</b>.
+				<br/>
 				<xsl:if test="boolean($registryname)">
 					<xsl:value-of select="$registryname"/>: 
 				</xsl:if>
@@ -67,7 +68,7 @@
 				<xsl:if test="boolean($registryurl)">
 					(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/knb/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).
 				</xsl:if>
-				<br /><br />
+				<br />
         </td></tr>
    </xsl:template>
    
