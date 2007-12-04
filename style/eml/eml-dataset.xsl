@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:48:15 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2007-12-04 00:00:37 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@
       indent="yes" />
 
 <xsl:template match="dataset" mode="dataset">
+<table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
 <xsl:choose>
  <xsl:when test="references!=''">
   <xsl:variable name="ref_id" select="references"/>
@@ -74,7 +75,7 @@
      <xsl:call-template name="datasetproject"/>
 </xsl:otherwise>
 </xsl:choose>
-
+</table>
 </xsl:template>
 
 <xsl:template name="datasetresource">
@@ -131,10 +132,10 @@
 <xsl:template name="mantenancedescription">
 <xsl:for-each select="description">
 <tr>
-  <td width="{$firstColWidth}"  class="{$firstColStyle}">
+	<td width="{$firstColWidth}" class="{$firstColStyle}" >
   Description:
   </td>
-  <td  width="220px">
+  <td  width="{$secondColWidth}" >
     <xsl:call-template name="text">
        <xsl:with-param name="textfirstColStyle" select="$firstColStyle"/>
      </xsl:call-template>
@@ -271,8 +272,8 @@
 <tr><td class="{$subHeaderStyle}" colspan="2">
 <xsl:text>Data Tables, Images, and Other Entities:</xsl:text>
 </td></tr>
-
 </xsl:if>
+<xsl:call-template name="xml"/>
 <xsl:choose>
 <xsl:when test="$displaymodule!='printall'">
 <xsl:for-each select="dataTable">
