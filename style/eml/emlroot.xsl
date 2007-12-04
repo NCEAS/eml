@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:44:22 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2007-12-04 00:02:06 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -1136,19 +1136,15 @@
      <!--********************************************************
                    download xml part
        ********************************************************-->
-   <xsl:template name="xml">
+        <xsl:template name="xml">
      <xsl:param name="index"/>
-     <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
-      <tr><td class="{$subHeaderStyle}" colspan="2">
-           <xsl:text>Metadata downloads:</xsl:text>
-       </td></tr>
-       <tr>
-           
-	       <td width="{$firstColWidth}" class="{$firstColStyle}">&#160;</td>
-	<td width="{$secondColWidth}"><a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
+<table   width="100%">
+        <tr>
+           <td  width="{$firstColWidth}" class="highlight" >Metadata download:</td>
+           <td  width="{$secondColWidth}" class="secondCol"><a><xsl:attribute name="href"><xsl:value-of select="$xmlURI"/><xsl:value-of select="$docid"/></xsl:attribute>
               <b>Ecological Metadata Language (EML) File</b></a>
            </td>
        </tr>
-     </table>
+       </table>
    </xsl:template>
 </xsl:stylesheet>
