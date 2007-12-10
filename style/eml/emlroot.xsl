@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-12-04 00:02:06 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2007-12-10 19:08:29 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -65,6 +65,38 @@
        <xsl:for-each select="dataset">
          <xsl:call-template name="emldataset"/>
        </xsl:for-each>
+        <!-- Additinal metadata-->
+       <xsl:choose>
+               <xsl:when test="$displaymodule='additionalmetadata' or $displaymodule='printall'">
+                   <xsl:for-each select="additionalMetadata">
+                     <xsl:if test="$displaymodule='additionalmetadata' and $additionalmetadataindex=position()">
+                        <tr><td>
+                            <xsl:call-template name="additionalmetadata">
+                               <xsl:with-param name="additionalmetadataindex" select="position()"/>
+                            </xsl:call-template>
+                         </td></tr>
+                     </xsl:if>
+                     <xsl:if test="$displaymodule='printall'">
+                        <tr><td>
+                            <xsl:call-template name="additionalmetadata">
+                               <xsl:with-param name="additionalmetadataindex" select="position()"/>
+                            </xsl:call-template>
+                         </td></tr>
+                     </xsl:if>
+                  </xsl:for-each>
+               </xsl:when>
+               <xsl:otherwise>
+                 <xsl:if test="$displaymodule='dataset'">
+                   <xsl:if test="$withAdditionalMetadataLink='1'">
+                     <xsl:for-each select="additionalMetadata">
+                         <xsl:call-template name="additionalmetadataURL">
+                             <xsl:with-param name="additionalmetadataindex" select="position()"/>
+                          </xsl:call-template>
+                     </xsl:for-each>
+                   </xsl:if>
+                 </xsl:if>
+              </xsl:otherwise>
+     </xsl:choose>
        <xsl:for-each select="citation">
          <xsl:call-template name="emlcitation"/>
        </xsl:for-each>
@@ -76,48 +108,14 @@
        </xsl:for-each>
       </td></tr>
 
-       <!-- Additinal metadata-->
-       <xsl:choose>
-               <xsl:when test="$displaymodule='additionalmetadata' or $displaymodule='printall'">
-                   <xsl:for-each select="additionalMetadata">
-                     <xsl:if test="$displaymodule='additionalmetadata' and $additionalmetadataindex=position()">
-                        <tr><td>
-                            <xsl:call-template name="additionalmetadata">
-		               <xsl:with-param name="additionalmetadataindex" select="position()"/>
-                            </xsl:call-template>
-                         </td></tr>
-                     </xsl:if>
-                     <xsl:if test="$displaymodule='printall'">
-                        <tr><td>
-                            <xsl:call-template name="additionalmetadata">
-		               <xsl:with-param name="additionalmetadataindex" select="position()"/>
-                            </xsl:call-template>
-                         </td></tr>
-                     </xsl:if>
-                  </xsl:for-each>
-               </xsl:when>
-               <xsl:otherwise>
-                 <xsl:if test="$displaymodule='dataset'">
-		   <xsl:if test="$withAdditionalMetadataLink='1'">
-                     <xsl:for-each select="additionalMetadata">
-                       <tr><td>
-                         <xsl:call-template name="additionalmetadataURL">
-                             <xsl:with-param name="index" select="position()"/>
-                          </xsl:call-template>
-                       </td></tr>
-                     </xsl:for-each>
-                   </xsl:if>
-                 </xsl:if>
-              </xsl:otherwise>
-     </xsl:choose>
-     <!-- xml format-->
+     <!-- xml format
      <xsl:if test="$displaymodule='dataset'">
        <xsl:if test="$withOriginalXMLLink='1'">
          <tr><td>
             <xsl:call-template name="xml"/>
          </td></tr>
        </xsl:if>
-     </xsl:if>
+     </xsl:if-->
    </xsl:template>
 
    <!--********************************************************
@@ -1124,15 +1122,22 @@
                    additionalmetadata part
        ********************************************************-->
    <xsl:template name="additionalmetadataURL">
-     <xsl:param name="index"/>
-     <table xsl:use-attribute-sets="cellspacing"  class="{$tabledefaultStyle}" width="100%">
-       <tr><td class="{$linkedHeaderStyle}">
-              <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$index"/></xsl:attribute>
-              <b>Additional Metadata</b></a>
+     <xsl:param name="additionalmetadataindex"/>
+<table  class="defaulttable" width="100%"
+ ><xsl:if test="$additionalmetadataindex=1">
+ <tr><td  class="tablehead" colspan="2">Additional Metadata</td></tr></xsl:if>
+<tr><td>
+<table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+     <tr><td width="{$firstColWidth}" class="highlight">Additional Metadata:</td><td width="{$secondColWidth}" class="secondCol">
+                     <xsl:text>Item </xsl:text> <xsl:value-of select="$additionalmetadataindex"/><xsl:text>&#160;</xsl:text> <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=additionalmetadata&amp;additionalmetadataindex=<xsl:value-of select="$additionalmetadataindex"/></xsl:attribute>
+              <b>(View)</b></a>
            </td>
        </tr>
-     </table>
+</table>
+</td></tr>
+</table>
    </xsl:template>
+
      <!--********************************************************
                    download xml part
        ********************************************************-->
