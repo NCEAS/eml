@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableMonitor.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-22 00:10:59 $'
- *   '$Revision: 1.18 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-01-03 23:32:10 $'
+ *   '$Revision: 1.19 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -122,7 +122,6 @@ public class TableMonitor {
    * @return  the name of the table that was added, or null if not successful
    */
   public String addTableEntry(Entity entity) throws SQLException {
-    Connection connection = DataManager.getConnection();
     String entityIdentifier = entity.getEntityIdentifier();
     String entityName = entity.getName();
     String packageId = entity.getPackageId();
@@ -161,6 +160,8 @@ public class TableMonitor {
           "'" + simpleDateFormat.format(now) + "', " + 
           priority + 
         ")";
+
+      Connection connection = DataManager.getConnection();
 
       try {
         stmt = connection.createStatement();
@@ -265,12 +266,13 @@ public class TableMonitor {
    * @throws SQLException
    */
   public int countRows(String tableName) throws SQLException {
-    Connection connection = DataManager.getConnection();
     int rowCount = -1;
     
     if (isTableInDB(tableName)) {
       String selectString = dbAdapter.getCountingRowNumberSQL(tableName);
       Statement stmt = null;
+      
+      Connection connection = DataManager.getConnection();
 
       try {
         stmt = connection.createStatement();

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-22 21:19:47 $'
- *   '$Revision: 1.20 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-01-03 23:31:50 $'
+ *   '$Revision: 1.21 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -206,7 +206,7 @@ public class DatabaseHandler
    * @return  true if the table is successfully generated, else false
    */
   public boolean generateTable(Entity entity) throws SQLException {
-    Connection connection = DataManager.getConnection();
+    
     boolean success = true;
     String tableName;
     
@@ -239,6 +239,7 @@ public class DatabaseHandler
        */
       if (!doesExist) {
         Statement stmt = null;
+        Connection connection = DataManager.getConnection();
 
         try {
           stmt = connection.createStatement();
