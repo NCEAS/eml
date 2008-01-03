@@ -2,8 +2,8 @@
  *    '$RCSfile: DataManager.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2007-10-18 00:47:07 $'
- *   '$Revision: 1.31 $'
+ *       '$Date: 2008-01-03 23:29:11 $'
+ *   '$Revision: 1.32 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -511,13 +511,8 @@ public class DataManager {
    */
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
         throws ClassNotFoundException, SQLException, Exception {
-    Connection conn = DataManager.getConnection();
     boolean success = false;
     
-    if (conn == null)
-    {
-    	throw new Exception("DBConnection is not available");
-    }
     try
     {
 	    DatabaseHandler databaseHandler = 
@@ -537,9 +532,7 @@ public class DataManager {
 	    }
     }
     finally
-    {
-    	DataManager.returnConnection(conn);
-    }
+    {}
     
     return success;
   }
@@ -624,13 +617,8 @@ public class DataManager {
    */
   public ResultSet selectData(Query query, DataPackage[] packages) 
         throws ClassNotFoundException, SQLException, Exception {
-    Connection conn = DataManager.getConnection();
-    
-    if (conn == null)
-    {
-    	throw new Exception("DBConnection is not available");
-    }
-    
+
+
     DatabaseHandler databaseHandler;
     ResultSet resultSet = null;
     
@@ -641,9 +629,7 @@ public class DataManager {
       resultSet = databaseHandler.selectData(ANSISQL, packages);
     }
     finally
-    {
-    	DataManager.returnConnection(conn);
-    }
+    {}
     
     return resultSet;
   }
@@ -681,11 +667,7 @@ public class DataManager {
   
   public ResultSet selectData(Union union, DataPackage[] packages)
 			throws ClassNotFoundException, SQLException, Exception {
-		Connection conn = DataManager.getConnection();
 
-		if (conn == null) {
-			throw new Exception("DBConnection is not available");
-		}
 
 		DatabaseHandler databaseHandler;
 		ResultSet resultSet = null;
@@ -694,9 +676,7 @@ public class DataManager {
 			databaseHandler = new DatabaseHandler(databaseAdapterName);
 			String ANSISQL = union.toSQLString();
 			resultSet = databaseHandler.selectData(ANSISQL, packages);
-		} finally {
-			DataManager.returnConnection(conn);
-		}
+		} finally {}
 
 		return resultSet;
 	}
@@ -739,11 +719,6 @@ public class DataManager {
    *        cache.
    */
   public void setDatabaseSize(int size) throws SQLException, ClassNotFoundException {
-	Connection connection = DataManager.getConnection();
-	if (connection == null)
-    {
-    	throw new SQLException("DBConnection is not available");
-    }
 	try
 	{
 		DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
@@ -751,9 +726,7 @@ public class DataManager {
 	    tableMonitor.setDBSize(size);
 	}
 	finally
-	{
-		DataManager.returnConnection(connection);
-	}
+	{}
   }
   
   
@@ -771,12 +744,7 @@ public class DataManager {
    */
   public void setTableExpirationPolicy(String tableName, int policy) 
         throws SQLException, ClassNotFoundException {
-	Connection connection = DataManager.getConnection();
     
-	if (connection == null)
-    {
-    	throw new SQLException("DBConnection is not available");
-    }
 	try
 	{
 	   DatabaseAdapter dbAdapter = getDatabaseAdapterObject(databaseAdapterName);
@@ -785,9 +753,7 @@ public class DataManager {
        tableMonitor.setTableExpirationPolicy(tableName, policy);
 	}
 	finally
-	{
-		DataManager.returnConnection(connection);
-	}
+	{}
   }
   
   
