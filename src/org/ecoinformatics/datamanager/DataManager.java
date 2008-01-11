@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: leinfelder $'
- *       '$Date: 2008-01-03 23:29:11 $'
- *   '$Revision: 1.32 $'
+ *     '$Author: jones $'
+ *       '$Date: 2008-01-11 21:55:55 $'
+ *   '$Revision: 1.33 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -184,7 +184,7 @@ public class DataManager {
   /**
    * Returns checked out connection to connection pool.
    * 
-   * @param  the Connection to be returned to the pool
+   * @param  connection the Connection to be returned to the pool
    */
   public static void returnConnection(Connection connection)
   {
@@ -204,7 +204,7 @@ public class DataManager {
   
   /**
    * Gets the object of the database connection pool
-   *  @retrun the object of dababase connection pool
+   *  @return the object of dababase connection pool
    */
    public static DatabaseConnectionPoolInterface getDatabaseConnectionPool()
    {
@@ -265,7 +265,7 @@ public class DataManager {
    * interface. This allows the calling application to manage its data store
    * in its own way. This method implements Use Case #2.
    * 
-   * @param  the entity whose data is to be downloaded
+   * @param  entity the entity whose data is to be downloaded
    * @param  endPointInfo which provides ecogrid endpoint information
    * @param  dataStorageList the destination (data storage) of the downloading
    * @return a boolean value indicating the success of the download operation.
