@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2005-12-15 23:52:56 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:45:17 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -223,7 +223,7 @@
              <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
                <tr><td width="100%" class="{$secondColStyle}">
                  <xsl:if test="$withHTMLLinks='1'">
-                   <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                   <a><xsl:attribute name="href"><xsl:if test="not(contains(.,':/'))">http://</xsl:if><xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
                    <xsl:value-of select="."/></a>
                  </xsl:if>
                  <xsl:if test="$withHTMLLinks='0'">

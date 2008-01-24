@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:41:29 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -101,16 +101,16 @@
        <xsl:when test="$permission='allow'">
            <xsl:for-each select="allow">
            <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
-            ALLOW:<br/></td><td width="{$secondColWidth}">
-                    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-                        <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
+            ALLOW:<br/></td><td>
+	            <table xsl:use-attribute-sets="cellspacing">
+			 <tr><td >
                         <xsl:for-each select="./permission">
                             <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text><br/>
                         </xsl:for-each></td>
-                        <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
+			<td style="padding-left: 5px;">
                         <xsl:for-each select="principal">
                             <xsl:value-of select="."/><br/>
-                        </xsl:for-each>
+		    </xsl:for-each>
                         </td></tr>
                     </table></td></tr>
           </xsl:for-each>
@@ -118,13 +118,14 @@
        <xsl:otherwise>
            <xsl:for-each select="deny">
         <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
-	     DENY:<br/></td><td width="{$secondColWidth}">
-           <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-              <tr><td width="{$firstColWidth}" class="{$accessfirstColStyle}">
+	     DENY:<br/></td><td >
+           <table xsl:use-attribute-sets="cellspacing" >
+              <tr><td>
                 <xsl:for-each select="permission">
                     <xsl:text>[</xsl:text><xsl:value-of select="."/><xsl:text>] </xsl:text><br/>
                 </xsl:for-each></td>
-                <td class="{$accessfirstColStyle}" width="{$secondColWidth}">
+		<td style="padding-left: 5px;">
+			
                 <xsl:for-each select="principal">
                     <xsl:value-of select="."/><br/>
                 </xsl:for-each>

@@ -5,9 +5,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: sgarg $'
-  *     '$Date: 2006-06-15 18:18:51 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:49:05 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   *
   * This is an XSLT (http://www.w3.org/TR/xslt) stylesheet designed to
-  * convert an XML file that is valid with respect to the eml-variable.dtd
+  
   * module of the Ecological Metadata Language (EML) into an HTML format
   * suitable for rendering with modern web browsers.
 -->
@@ -49,7 +49,8 @@
           <xsl:variable name="ref_id" select="references"/>
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
-            <xsl:call-template name="attributecommon">
+		  <!-- changed template name from attributecommon to attributecommonvertical -->
+            <xsl:call-template name="attributecommonvertical">
                <xsl:with-param name="docid" select="$docid"/>
                <xsl:with-param name="entitytype" select="$entitytype"/>
                <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -57,7 +58,7 @@
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="attributecommon">
+          <xsl:call-template name="attributecommonvertical">
                <xsl:with-param name="docid" select="$docid"/>
                <xsl:with-param name="entitytype" select="$entitytype"/>
                <xsl:with-param name="entityindex" select="$entityindex"/>
@@ -65,6 +66,7 @@
         </xsl:otherwise>
       </xsl:choose>
      </xsl:when>
+     <!-- Comment out redundent call
      <xsl:otherwise>
      <xsl:choose>
          <xsl:when test="references!=''">
@@ -87,16 +89,15 @@
         </xsl:otherwise>
       </xsl:choose>
      </xsl:otherwise>
+     -->
     </xsl:choose>
   </table>
 </xsl:template>
-
 
 <xsl:template name="attributecommon">
    <xsl:param name="docid"/>
    <xsl:param name="entitytype"/>
    <xsl:param name="entityindex"/>
-
 
   <!-- First row for attribute name-->
   <tr><th  class="{$borderStyle}">Attribute Name</th>
@@ -251,6 +252,7 @@
   <!-- The fifth row for meaturement type-->
   <tr><th  class="{$borderStyle}">Measurement Type</th>
    <xsl:for-each select="attribute">
+	   <xsl:if test="position() =$attributeindex">
     <xsl:variable name="stripes">
               <xsl:choose>
                 <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
@@ -277,6 +279,7 @@
            </td>
         </xsl:otherwise>
      </xsl:choose>
+     </xsl:if>
    </xsl:for-each>
   </tr>
 
@@ -650,24 +653,38 @@
  </xsl:template>
 
 
-
-
 <xsl:template name="attributecommonvertical">
    <xsl:param name="docid"/>
    <xsl:param name="entitytype"/>
    <xsl:param name="entityindex"/>
-
-  <tr><th  class="{$firstColStyle}">Attribute Name</th>
-      <th  class="{$firstColStyle}">Column Label</th>
-      <th  class="{$firstColStyle}">Definition</th>
-      <th  class="{$firstColStyle}">Type of Value</th>
-      <th  class="{$firstColStyle}">Measurement Type</th>
-      <th  class="{$firstColStyle}">Measurement Domain</th>
-      <th  class="{$firstColStyle}">Missing Value Code</th>
-      <th  class="{$firstColStyle}">Accuracy Report</th>
-      <th  class="{$firstColStyle}">Accuracy Assessment</th>
-      <th  class="{$firstColStyle}">Coverage</th>
-      <th  class="{$firstColStyle}">Method</th>
+   
+   <tr><th  class="highlightAttrib">Attribute Description<br>(label and definition)</br></th> 
+      <xsl:choose>
+	      <xsl:when test="./attribute/storageType"><th  class="highlightAttrib">Type of Value</th> </xsl:when>
+	 <xsl:otherwise><td class="emptycolumn"></td></xsl:otherwise>         
+      </xsl:choose>
+      <th class="highlightAttrib" >Measurement Type and Domain</th>
+      <xsl:choose>
+	      <xsl:when test="./attribute/missingValueCode"><th class="highlightAttrib">Missing Value Code</th></xsl:when>
+        <xsl:otherwise><td></td></xsl:otherwise>
+      </xsl:choose>
+      <xsl:choose>
+	      <xsl:when test="./attribute/quantitativeAccuracyReport"><th  class="highlightAttrib">Accuracy Report</th></xsl:when>
+	<xsl:otherwise><td></td></xsl:otherwise>
+      </xsl:choose>
+      <xsl:choose>
+	      <xsl:when test="./attribute/quantitativeAccuracyMethod"><th class="highlightAttrib">Accuracy Assessment</th></xsl:when>
+      	<xsl:otherwise><td></td></xsl:otherwise>
+       </xsl:choose>
+       <xsl:choose>
+	       <xsl:when test="./attribute/coverage"><th  class="highlightAttrib">Coverage</th></xsl:when>
+         <xsl:otherwise><td></td></xsl:otherwise>
+       </xsl:choose>
+       <xsl:choose>	
+	       <xsl:when test="./attribute/method"><th  class="highlightAttrib">Method</th></xsl:when>  
+         <xsl:otherwise><td></td></xsl:otherwise>
+       </xsl:choose>
+     
   </tr>
 
   <xsl:for-each select="attribute">
@@ -691,25 +708,27 @@
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
             <tr>
-              <th  align="center"  class="{$borderStyle}"><xsl:value-of select="attributeName"/></th>
-
+		    <td  align="center"  class="{$borderStyle}">
+			    <xsl:value-of select="attributeName"/>
+          <xsl:for-each select="$references">
              <xsl:choose>
                 <xsl:when test="attributeLabel!=''">
-                  <td  align="center" class="{$colevenStyle}">
+                  <td  >
                      <xsl:for-each select="attributeLabel">
                        <xsl:value-of select="."/>
-                         &#160;<br />
+                        &#160;<br />
                        </xsl:for-each>
                   </td>
                 </xsl:when>
                 <xsl:otherwise>
-                   <td  align="center" class="{$colevenStyle}">
+                   <td  >
                        &#160;<br />
                    </td>
                 </xsl:otherwise>
               </xsl:choose>
+          </xsl:for-each>
+ 
 
-             <td  align="center" class="{$coloddStyle}">
                <xsl:value-of select="attributeDefinition"/>
              </td>
 
@@ -742,7 +761,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="attributeindex" select="$index"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -855,26 +874,13 @@
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
+		<!-- edited for column merge -->
 	 <tr>
-          <th  align="center"  class="{$borderStyle}"><xsl:value-of select="attributeName"/></th>
+		 <td  align="left"  width="50%" class="{$borderStyle}"><b><xsl:value-of select="attributeName"/>
+		 <xsl:text>  </xsl:text> 
+		 <xsl:value-of select="attributeLabel"/></b>
+		  <xsl:text> - </xsl:text>
 
-             <xsl:choose>
-                <xsl:when test="attributeLabel!=''">
-                  <td  align="center" class="{$colevenStyle}">
-                     <xsl:for-each select="attributeLabel">
-                       <xsl:value-of select="."/>
-                         &#160;<br />
-                       </xsl:for-each>
-                  </td>
-                </xsl:when>
-                <xsl:otherwise>
-                   <td  align="center" class="{$colevenStyle}">
-                       &#160;<br />
-                   </td>
-                </xsl:otherwise>
-              </xsl:choose>
-
-             <td  align="center" class="{$coloddStyle}">
                <xsl:value-of select="attributeDefinition"/>
              </td>
 
@@ -893,20 +899,19 @@
                    </td>
               </xsl:otherwise>
             </xsl:choose>
+	    <!--end merged columns -->
 
     <td  align="center" class="{$coloddStyle}">
               <xsl:for-each select="measurementScale">
                  <xsl:value-of select="local-name(./*)"/>
               </xsl:for-each>
-            </td>
 
-	<td  align="center" class="{$coloddStyle}">
               <xsl:for-each select="measurementScale">
                 <xsl:call-template name="measurementscale">
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+                    <xsl:with-param name="attributeindex" select="$index"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -1726,7 +1731,7 @@
             <td width="{$secondColWidth}" class="{$stripes}"><xsl:value-of select="textDomain/definition"/>
             </td>
         </tr>
-        <xsl:for-each select="textDomain/parttern">
+        <xsl:for-each select="textDomain/pattern">
           <tr><td width="{$firstColWidth}" class="{$firstColStyle}"><b>Pattern</b></td>
             <td width="{$secondColWidth}" class="{$stripes}"><xsl:value-of select="."/>
             </td>
@@ -1742,9 +1747,9 @@
       <xsl:otherwise>
        <tr><td colspan="2" align="center" class="{$stripes}" >
        <xsl:if test="$withHTMLLinks='1'">
-           <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=attributedomain&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;attributeindex=<xsl:value-of select="$attributeindex"/></xsl:attribute>
-           <b>Domain Info</b>
-           </a>
+	       <a><xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=attributedomain&amp;entitytype=<xsl:value-of select="$entitytype"/>&amp;entityindex=<xsl:value-of select="$entityindex"/>&amp;attributeindex=<xsl:value-of select="$attributeindex"/></xsl:attribute>
+		                  <b>Domain Info</b>
+				             </a>
        </xsl:if>
        <xsl:if test="$withHTMLLinks='0' and $displaymodule!='printall'">
          <xsl:call-template name="nonNumericDomain">

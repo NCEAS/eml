@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:49:40 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
       <xsl:param name="datatablesubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="850px">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -68,6 +68,7 @@
       </xsl:choose>
       </table>
   </xsl:template>
+
 
   <xsl:template name="datatablecommon">
     <xsl:param name="datatablefirstColStyle"/>
@@ -94,6 +95,16 @@
           <xsl:with-param name="entityfirstColStyle" select="$datatablefirstColStyle"/>
        </xsl:call-template>
     </xsl:for-each>
+   <xsl:for-each select="physical">
+       <xsl:call-template name="showdistribution">
+          <xsl:with-param name="docid" select="$docid"/>
+          <xsl:with-param name="entityindex" select="$entityindex"/>
+          <xsl:with-param name="physicalindex" select="position()"/>
+          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
+          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
+       </xsl:call-template>
+    </xsl:for-each>
+  
     <!-- call physical moduel without show distribution(we want see it later)-->
     <xsl:if test="physical">
        <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
@@ -165,16 +176,7 @@
        </xsl:call-template>
       </xsl:for-each>
      </xsl:if>
-     <!-- Here to display distribution info-->
-    <xsl:for-each select="physical">
-       <xsl:call-template name="showdistribution">
-          <xsl:with-param name="docid" select="$docid"/>
-          <xsl:with-param name="entityindex" select="$entityindex"/>
-          <xsl:with-param name="physicalindex" select="position()"/>
-          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
-          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
-       </xsl:call-template>
-    </xsl:for-each>
+     <!-- Here to display distribution info (the physical selection was moved near the top-->
   </xsl:template>
 
 
@@ -230,12 +232,14 @@
     <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
         <xsl:text>Attribute(s) Info:</xsl:text>
     </td></tr>
-    <tr><td colspan="2">
+    <tr><td colspan="2"> 
+		    <div style="overflow:auto; height:100%; width:850px;">
          <xsl:call-template name="attributelist">
            <xsl:with-param name="docid" select="$docid"/>
            <xsl:with-param name="entitytype" select="$entitytype"/>
            <xsl:with-param name="entityindex" select="$entityindex"/>
          </xsl:call-template>
+                   </div>
        </td>
     </tr>
   </xsl:template>

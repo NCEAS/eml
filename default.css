@@ -8,9 +8,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *     Authors: Matt Jones
   *
-  *    '$Author: jones $'
-  *      '$Date: 2005-12-13 20:03:23 $'
-  *  '$Revision: 1.27 $'
+  *    '$Author: tao $'
+  *      '$Date: 2007-12-04 00:03:13 $'
+  *  '$Revision: 1.30 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ h3 {
   font-size: 16px;
   font-family: Georgia, Times New Roman, Times, serif;
   text-align: center;
-}
+  }
 
 td {
     font-size: 12px; 
@@ -192,7 +192,24 @@ p.contact {
     background-color: #dddddd; 
     font-size: 12px;
     border: solid #ffffff 1px;
+    padding-right: 4px;
+    text-align: right;
+    
 }
+
+.highlightAttrib {
+    background-color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: solid #cccccc  2px;
+    padding-left: 4px;
+
+}
+
+.searchresultsdivider {
+	background-color: #dddddd;
+}
+
 
 .citation  {
     color: black;
@@ -208,37 +225,41 @@ p.contact {
 .secondCol {
     background-color: #ffffff; 
     font-size: 12px; 
+    padding-left: 2px;
+    padding-right: 2px;
+
 }
 
 .bordered {
-    background-color: #dddddd; 
-    font-size: 11px; 
+    background-color: #ffffff; 
+    font-size: 12px; 
     text-align: left;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: solid #ffffff 1px;
+    padding: 5px;
+    border-bottom: solid #dddddd 1px;
+    width: 350px;
 }
 
 .coleven {
-    background-color: #e0e0e0; 
+    background-color: #ffffff; 
     font-size: 12px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
     text-align: left;
-    border-top: solid #ffffff 1px;
-    border-bottom: solid #ffffff 1px;
+    border-bottom: solid #dddddd 1px;
 }
 
 .colodd {
     background-color: #ffffff; 
     font-size: 12px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
     text-align: left;
+    border-bottom: solid #dddddd 1px;
 }
+.emptycolumn {
+    width: 1px; 
+    border: 1px solid #ffffff;
+    }
 
 .innercolodd {
-    border: solid #bbbbbb 1px;
     font-size: 10px;
     padding-left: 2px;
     padding-right: 2px;
@@ -246,8 +267,6 @@ p.contact {
 }
 
 .innercoleven {
-    border: solid #aaaaaa 1px;
-    background-color: #e0e0e0; 
     font-size: 10px; 
     padding-left: 2px;
     padding-right: 2px;

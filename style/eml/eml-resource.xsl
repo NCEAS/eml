@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: sgarg $'
-  *     '$Date: 2005-12-16 20:54:11 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: tao $'
+  *     '$Date: 2007-11-01 22:42:31 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -86,6 +86,17 @@
         </xsl:call-template>
       </xsl:for-each>
 
+        <xsl:for-each select="distribution">
+        <xsl:call-template name="resourcedistribution">
+          <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
+          <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
+          <xsl:with-param name="index" select="position()"/>
+          <xsl:with-param name="docid" select="$docid"/>
+        </xsl:call-template>
+      </xsl:for-each>
+
+
+      
       <xsl:if test="creator">
         <tr><td class="{$ressubHeaderStyle}" colspan="2">
         <xsl:value-of select="$creator"/>
@@ -147,15 +158,6 @@
         <xsl:call-template name="resourceintellectualRights" >
           <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
           <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
-        </xsl:call-template>
-      </xsl:for-each>
-
-      <xsl:for-each select="distribution">
-        <xsl:call-template name="resourcedistribution">
-          <xsl:with-param name="resfirstColStyle" select="$resfirstColStyle"/>
-          <xsl:with-param name="ressubHeaderStyle" select="$ressubHeaderStyle"/>
-          <xsl:with-param name="index" select="position()"/>
-          <xsl:with-param name="docid" select="$docid"/>
         </xsl:call-template>
       </xsl:for-each>
 
