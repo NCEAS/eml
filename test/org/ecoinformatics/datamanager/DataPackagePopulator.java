@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.ecogrid.EcogridObjType;
-import org.ecoinformatics.ecogrid.client.EcogridPutClient;
+import org.ecoinformatics.ecogrid.client.PutServiceClient;
 
 public class DataPackagePopulator extends TestCase {
 
@@ -23,19 +23,19 @@ public class DataPackagePopulator extends TestCase {
 	//data file generation constants
 	private static final String EOLCharacter = "\n";
 	private static final String RECORD_SEP = ",";
-	private static final String DOCID_PREFIX = "leinfelder";
-	private static final int DOCID_SEED = 130;
+	private static final String DOCID_PREFIX = "union";
+	private static final int DOCID_SEED = 13;
 	private static final String DATA_FILE_DIR = "/Users/leinfelder/temp";
 
-	private final int fileCount = 1;
-	private final int recordCount = 500;
+	private final int fileCount = 100;
+	private final int recordCount = 5000;
 	private final int columnCount = 6;
 	
 	//metadata file vars
-	private static final String DOC_ID = "leinfelder.5.9";
+	private static final String DOC_ID = "leinfelder.252.2";
 	private static final String ATTR_LIST_ID = "FIRST1234";
 	
-	private String sessionId = "7375DAA5A8B2987BDB528CBEB7F69CF4";
+	private String sessionId = "4C87FB06241B30A6D26C7B9503FF5F0C";
 	
 	private EcogridEndPointInterfaceTest endPointInfo = null;
 	/*
@@ -110,7 +110,7 @@ public class DataPackagePopulator extends TestCase {
 	    log.debug("sessionId=" + sessionId);
 		//String sessionId = null;
 
-	    EcogridPutClient putClient = new EcogridPutClient(endPointInfo.getMetacatEcogridPutEndPoint());
+	    PutServiceClient putClient = new PutServiceClient(endPointInfo.getMetacatEcogridPutEndPoint());
 	    
 	    log.debug("created put client=" + putClient);
 
@@ -127,6 +127,14 @@ public class DataPackagePopulator extends TestCase {
 			}
 		}
 		return fileMap;
+	}
+	
+	private void deleteFiles(Map files) {
+		Iterator fileIter = files.values().iterator();
+		while (fileIter.hasNext()) {
+			File f = (File) fileIter.next();
+			f.delete();
+		}
 	}
 	
 	private void generateDataFiles(File dir) throws Exception {
@@ -166,7 +174,7 @@ public class DataPackagePopulator extends TestCase {
 	}
 	
 	private void uploadMetadataXML(String xml) throws Exception {
-		EcogridPutClient putClient = new EcogridPutClient(endPointInfo.getMetacatEcogridPutEndPoint());
+		PutServiceClient putClient = new PutServiceClient(endPointInfo.getMetacatEcogridPutEndPoint());
 		putClient.put(xml.getBytes(), DOC_ID, EcogridObjType.METADATA, sessionId);
 	}
 	
@@ -190,6 +198,8 @@ public class DataPackagePopulator extends TestCase {
 		log.debug("metadatadoc=" + metadataXML);
 		
 		this.uploadMetadataXML(metadataXML);
+		
+		this.deleteFiles(fileMap);
 		
 		endTime = System.currentTimeMillis();
 		log.debug("time to run in millis: " + (endTime - startTime));

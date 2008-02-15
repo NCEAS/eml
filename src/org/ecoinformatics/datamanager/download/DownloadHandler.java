@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2007-10-02 20:43:50 $'
- *   '$Revision: 1.26 $'
+ *       '$Date: 2008-02-15 01:48:47 $'
+ *   '$Revision: 1.27 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,7 +39,7 @@ import java.net.URL;
 import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
-import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
+import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
 
 /**
@@ -578,8 +578,8 @@ public class DownloadHandler implements Runnable
 	            //log.debug("This is instance pattern");
 	            
 	            URL endPointURL = new URL(endPoint);
-	            EcogridGetToStreamClient ecogridClient = 
-                                      new EcogridGetToStreamClient(endPointURL);
+	            QueryServiceGetToStreamClient ecogridClient = 
+                                      new QueryServiceGetToStreamClient(endPointURL);
 	            
 	            //log.debug("Get from EcoGrid: " + identifier);
 	            NeededOutputStream [] outputStreamList = getOutputStreamList();

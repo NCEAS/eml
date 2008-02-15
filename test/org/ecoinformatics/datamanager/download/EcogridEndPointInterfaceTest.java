@@ -2,8 +2,8 @@
  *    '$RCSfile: EcogridEndPointInterfaceTest.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2007-10-02 23:05:51 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2008-02-15 01:48:47 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -54,21 +54,21 @@ public class EcogridEndPointInterfaceTest extends TestCase
 	    */
 	   public String getMetacatEcogridEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/EcoGridQuery";
+		   return "http://localhost:8080/knb/services/QueryService";
 	   }
 	   
 	   public String getMetacatEcogridAuthEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/EcoGridAuthLevelOneService";
+		   return "http://localhost:8080/knb/services/AuthenticationService";
 	   }
 	   
 	   public String getMetacatEcogridPutEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/EcogridPutService";
+		   return "http://localhost:8080/knb/services/PutService";
 	   }
 	   
 	   public String getMetacatEcogridIdentifierEndPoint() {
-			return "http://localhost:8080/knb/services/EcoGridIdentifierService";
+			return "http://localhost:8080/knb/services/IdentifierService";
 		}
 	   
        

@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: ArchivedDataHandler.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-15 22:49:35 $'
- *   '$Revision: 1.7 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-02-15 01:48:47 $'
+ *   '$Revision: 1.8 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,7 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 
-import org.ecoinformatics.ecogrid.queryservice.EcogridGetToStreamClient;
+import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
 /**
  * This class is a sub-class of DownloadHandler. It will handle archived data
@@ -94,8 +94,8 @@ public abstract class ArchivedDataHandler extends DownloadHandler
 		            //log.debug("This is instance pattern");
 		            
 		            URL endPointURL = new URL(endPoint);
-		            EcogridGetToStreamClient ecogridClient = 
-                                      new EcogridGetToStreamClient(endPointURL);
+		            QueryServiceGetToStreamClient ecogridClient = 
+                                      new QueryServiceGetToStreamClient(endPointURL);
 		            String localIdentifier = ecogridIdentifier + suffix;
 		            File tmp = new File(System.getProperty("java.io.tmpdir"));
 		            compressedFile = new File(tmp, localIdentifier);
