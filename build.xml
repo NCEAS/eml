@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: leinfelder $'
-          '$Date: 2008-02-15 01:50:02 $'
-      '$Revision: 1.99 $'
+          '$Date: 2008-02-15 17:48:28 $'
+      '$Revision: 1.100 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -549,6 +549,7 @@
 	</target>
 
 	<target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
+		<!--
 		<unjar dest="${build.dest}">
 			<fileset dir="./${datamanager.lib}">
 				<include name="**/*.jar"/>
@@ -561,8 +562,11 @@
 				<include name="**/xml-apis.jar"/>
 			</fileset>
 		</unjar>
+		-->
+		<!--
 		<copy file="./${datamanager.lib}/datamanager.properties" 
     	      todir="${build.dest}"/>
+		-->
 		<jar jarfile="${build.dir}/${datamanager.name}.jar" 
   	         basedir="${build.dest}"
   	         excludes="org/ecoinformatics/datamanager/**/**Test.class"
