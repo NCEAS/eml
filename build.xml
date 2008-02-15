@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2008-01-11 21:55:55 $'
-      '$Revision: 1.98 $'
+        '$Author: leinfelder $'
+          '$Date: 2008-02-15 01:50:02 $'
+      '$Revision: 1.99 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -515,8 +515,8 @@
 		<property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
 		<property name="log" value="${datamanager.lib}/commons-logging.jar"/>
 		<property name="log4j" value="${datamanager.lib}/log4j-1.2.8.jar"/>
-		<property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
-		<property name="putservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridPutInterfaceLevelOne-stub.jar"/>
+		<property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.QueryService-stub.jar"/>
+		<property name="putservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.PutService-stub.jar"/>
 		<property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/>
 		<property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
 		<property name="saaj" value="${datamanager.lib}/saaj.jar"/>
