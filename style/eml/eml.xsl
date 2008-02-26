@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2007-09-13 01:03:33 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: leinfelder $'
+  *     '$Date: 2008-02-26 19:00:18 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -54,10 +54,10 @@
         <div id="{$mainTableAligmentStyle}">
           <script language="JavaScript" type="text/JavaScript">
 	     <xsl:if test="$insertTemplate='0'">
-                 <xsl:comment>insertTemplateOpening();//</xsl:comment>
+                 <xsl:comment>insertTemplateOpening('<xsl:value-of select="$contextURL" />');//</xsl:comment>
              </xsl:if>
 	     <xsl:if test="$insertTemplate='1'">
-                 insertTemplateOpening();
+                 insertTemplateOpening('<xsl:value-of select="$contextURL" />');
              </xsl:if>
           </script>
 
@@ -68,10 +68,10 @@
 
 	  <script language="JavaScript" type="text/JavaScript">
 	     <xsl:if test="$insertTemplate='0'">
-               <xsl:comment>insertTemplateClosing();//</xsl:comment>
+               <xsl:comment>insertTemplateClosing('<xsl:value-of select="$contextURL" />');//</xsl:comment>
              </xsl:if>
 	     <xsl:if test="$insertTemplate='1'">
-                 insertTemplateClosing();
+                 insertTemplateClosing('<xsl:value-of select="$contextURL" />');
              </xsl:if>
           </script>
         </div>
