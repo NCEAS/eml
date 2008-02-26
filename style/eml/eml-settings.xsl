@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2005-12-13 20:03:23 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: leinfelder $'
+  *     '$Date: 2008-02-26 18:59:32 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -180,7 +180,11 @@
 <!-- the name of the data registry of the dataset-->
 	<xsl:param name="registryname"></xsl:param>
 
-
+  
+<!-- for getting the server context and cgi locations -->  
+  <xsl:param name="contextURL"/>
+  <xsl:param name="cgi-prefix"/>
+  
 <!--
     /**
     *   The base URI to be used for the href link to each document in a
