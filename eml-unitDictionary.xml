@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2004-07-03 00:13:55 $'
-      '$Revision: 1.40 $'
+        '$Author: leinfelder $'
+          '$Date: 2008-02-27 21:10:37 $'
+      '$Revision: 1.41 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,8 +52,8 @@
     <dimension name="mass"/>
   </unitType>
 
-  <unitType id="charge" name="charge"> <!--coulomb-->
-    <dimension name="charge"/>
+  <unitType id="current" name="current"> <!--ampere-->
+    <dimension name="current"/>
   </unitType>
 
   <unitType id="temperature" name="temperature"> <!--kelvin-->
@@ -85,20 +85,18 @@
     <dimension name="time" power="-2"/>
   </unitType>
 
-  <unitType id="current" name="current"> <!--ampere-->
-    <dimension name="charge"/>
-    <dimension name="time" power="-1"/>
+  <unitType id="charge" name="charge"> <!--coulomb-->
+    <dimension name="current"/>
+    <dimension name="time" power="1"/>
   </unitType>
 
   <unitType id="magneticFieldStrength" name="magneticFieldStrength"> <!--amperePerMeter-->
-    <dimension name="charge"/>
-    <dimension name="time" power="-1"/>
-    <dimension name="length"/>
+    <dimension name="current"/>
+    <dimension name="length" power="-1"/>
   </unitType>
 
   <unitType id="currentDensity" name="currentDensity"> <!--amperePerSquareMeter-->
-    <dimension name="charge"/>
-    <dimension name="time" power="-1"/>
+    <dimension name="current"/>
     <dimension name="length" power="-2"/>
   </unitType>
 
@@ -232,55 +230,56 @@
   <unitType id="potentialDifference" name="potentialDifference"> <!--volt-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-2"/>
-    <dimension name="charge" power="-1"/>
+    <dimension name="time" power="-3"/>
+    <dimension name="current" power="-1"/>
   </unitType>
 
   <unitType id="capacitance" name="capacitance"> <!--farad-->
     <dimension name="mass" power="-1"/>
     <dimension name="length" power="-2"/>
-    <dimension name="time" power="2"/>
-    <dimension name="charge" power="2"/>
+    <dimension name="time" power="4"/>
+    <dimension name="current" power="2"/>
   </unitType>
 
   <unitType id="resistance" name="resistance"> <!--ohm-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-1"/>
-    <dimension name="charge" power="-2"/>
+    <dimension name="time" power="-3"/>
+    <dimension name="current" power="-2"/>
   </unitType>
 
   <unitType id="resistivity" name="resistivity"> <!--ohmMeters-->
     <dimension name="mass"/>
     <dimension name="length" power="3"/>
-    <dimension name="time" power="-1"/>
-    <dimension name="charge" power="-2"/>
+    <dimension name="time" power="-3"/>
+    <dimension name="current" power="-2"/>
   </unitType>
 
   <unitType id="conductance" name="conductance"> <!--siemens-->
     <dimension name="mass" power="-1"/>
     <dimension name="length" power="-2"/>
-    <dimension name="time" power="1"/>
-    <dimension name="charge" power="2"/>
+    <dimension name="time" power="3"/>
+    <dimension name="current" power="2"/>
   </unitType>
 
   <unitType id="magneticFlux" name="magneticFlux"> <!--weber-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="time" power="-1"/>
-    <dimension name="charge" power="-1"/>
+    <dimension name="time" power="-2"/>
+    <dimension name="current" power="-1"/>
   </unitType>
 
   <unitType id="magneticFluxDensity" name="magneticFluxDensity"> <!--tesla-->
     <dimension name="mass"/>
-    <dimension name="time" power="-1"/>
-    <dimension name="charge" power="-1"/>
+    <dimension name="time" power="-2"/>
+    <dimension name="current" power="-1"/>
   </unitType>
 
   <unitType id="inductance" name="inductance"> <!--henry-->
     <dimension name="mass"/>
     <dimension name="length" power="2"/>
-    <dimension name="charge" power="-2"/>
+    <dimension name="time" power="-2"/>
+    <dimension name="current" power="-2"/>
   </unitType>
 
   <unitType id="illuminance" name="illuminance"> <!--lux-->
