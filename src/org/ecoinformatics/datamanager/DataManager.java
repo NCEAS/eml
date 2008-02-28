@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataManager.java,v $'
  *
- *     '$Author: jones $'
- *       '$Date: 2008-01-11 21:55:55 $'
- *   '$Revision: 1.33 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-02-28 23:40:53 $'
+ *   '$Revision: 1.34 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -766,7 +766,7 @@ public class DataManager {
    *                        e.g. DatabaseAdapter.POSTGRES_ADAPTER. If no match
    *                        is made, returns null.
    */
-  private static DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
+  public static DatabaseAdapter getDatabaseAdapterObject(String dbAdapterName)
   {
 	if (dbAdapterName == null)
 	{
