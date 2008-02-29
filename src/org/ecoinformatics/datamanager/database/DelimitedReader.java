@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DelimitedReader.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2007-01-25 18:06:32 $'
- *   '$Revision: 1.8 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-02-29 23:23:36 $'
+ *   '$Revision: 1.9 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -430,17 +430,18 @@ public class DelimitedReader extends TextDataReader
 	    //Vector oneRowDataVector = new Vector();
 	    StringBuffer rowData = new StringBuffer();
 	    String rowDataString = null;
-	    int singleCharactor = -2;
+	    int singleCharactor; // = -2;
 	    
 	    if (dataReader != null)
 	    {
 	      //log.debug("in dataReader is not null");
 	      try
 	      {
+	    	//read the first character to start things off  
+	    	singleCharactor = dataReader.read();
 	        while (singleCharactor != -1)
 	        {
-	          //log.debug("in singleCharactor is not null");
-	          singleCharactor = dataReader.read();
+	          //log.debug("singleCharactor is not EOF");
 	          char charactor = (char)singleCharactor;
 	          rowData.append(charactor);
               
@@ -451,7 +452,7 @@ public class DelimitedReader extends TextDataReader
 	            // strip the header lines
 	            if (stripHeader && numHeaderLines >0 && headLineNumberCount < numHeaderLines)
 	            {
-	               // reset string buffer(descard the header line)
+	               // reset string buffer(discard the header line)
 	               rowData = null;
 	               rowData = new StringBuffer();
 	               
@@ -465,6 +466,8 @@ public class DelimitedReader extends TextDataReader
                 
 	            headLineNumberCount++;
 	          }
+	          //read the next character before looping back
+	          singleCharactor = dataReader.read();
 	        }
 	      }
 	      catch (Exception e)
@@ -473,8 +476,12 @@ public class DelimitedReader extends TextDataReader
 	        rowData = new StringBuffer();
 	      }
 	    }
-        
-	    //System.out.println("the row data before reutrn is "+rowDataString);
+
+	    //if we have data for the row, then return it
+	    if (rowData != null && rowData.length() > 0) {
+	    	rowDataString = rowData.toString();
+	    }
+	    //System.out.println("the row data before return is "+rowDataString);
 	    return rowDataString;
   }
   
