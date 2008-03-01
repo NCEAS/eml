@@ -18,7 +18,8 @@ import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.database.WhereClause;
 import org.ecoinformatics.datamanager.database.pooling.DatabaseConnectionPoolFactory;
-import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
+import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
@@ -30,19 +31,20 @@ public class UnionPerformanceTest extends TestCase {
 	 * Class fields
 	 */
 	public static Log log = LogFactory.getLog(UnionPerformanceTest.class);
-	
-	private final String QUERY_TEST_DOCUMENT = "leinfelder.5.8";
-	private final String QUERY_TEST_SERVER = "http://localhost:8080/knb/metacat";
-	//private final String QUERY_TEST_SERVER = "http://fred.msi.ucsb.edu:8080/knb/metacat";
 
+	private final String QUERY_TEST_DOCUMENT = "cburt.5.2";
+	private final String QUERY_TEST_SERVER = "http://data.piscoweb.org/catalog/metacat";
+	
+	//private final String QUERY_TEST_DOCUMENT = "leinfelder.253.6";
+	//private final String QUERY_TEST_SERVER = "http://localhost:8080/knb/metacat";
 	
 	/*
 	 * Instance fields
 	 */
 	private DataManager dataManager;
 	private DatabaseConnectionPoolInterface connectionPool = null;
-	private EcogridEndPointInterfaceTest endPointInfo = null;
-	private int conditionColumnIndex = 3;
+	private EcogridEndPointInterface endPointInfo = null;
+	private int conditionColumnIndex = 0;
 	
 	/*
 	 * Constructors
@@ -97,7 +99,7 @@ public class UnionPerformanceTest extends TestCase {
 			//new PostgresDatabaseConnectionPool();
 		String dbAdapterName = connectionPool.getDBAdapterName();
 		dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
-		endPointInfo = new EcogridEndPointInterfaceTest();
+		endPointInfo = new ConfigurableEcogridEndPoint();
 	}
 
 	/**
@@ -136,9 +138,9 @@ public class UnionPerformanceTest extends TestCase {
 			+ QUERY_TEST_DOCUMENT;
 		
 		InputStream inputStream = null;
-		String operator = ">";
+		String operator = "like";
 		boolean success;
-		Integer value = new Integer(990);
+		String value = new String("%");
 		ResultSet resultSet = null;
 		URL url;
 
@@ -173,7 +175,6 @@ public class UnionPerformanceTest extends TestCase {
 			entity = entityList[i];
 			attributeList = entity.getAttributeList();
 			Attribute[] attributes = attributeList.getAttributes();
-			attribute = attributes[0];
 			conditionAttribute = attributes[conditionColumnIndex];
 			
 			//build some queries from each entity
@@ -185,9 +186,12 @@ public class UnionPerformanceTest extends TestCase {
 				
 				Query query = new Query();
 				/* SELECT clause */
-				SelectionItem selectionItem = 
-					new SelectionItem(entity,attribute);
-				query.addSelectionItem(selectionItem);
+				for (int j=0; j < attributes.length; j++) {
+					attribute = attributes[j];
+					SelectionItem selectionItem = 
+						new SelectionItem(entity,attribute);
+					query.addSelectionItem(selectionItem);
+				}
 				/* FROM clause */
 				TableItem tableItem = new TableItem(entity);
 				query.addTableItem(tableItem);
@@ -225,18 +229,20 @@ public class UnionPerformanceTest extends TestCase {
 				int j = 1;
 
 				while (resultSet.next()) {
-					int column0 = resultSet.getInt(1);
+					Object column0 = resultSet.getObject(1);
+					Object column1 = resultSet.getObject(2);
 					log.debug("resultSet[" + j + "], column0 =  " + column0);
+					log.debug("resultSet[" + j + "], column1 =  " + column1);
 					j++;
 					//just the first one
-					break;
+					//break;
 				}
 			} 
 			else {
 				throw new Exception("resultSet is null");
 			}
 			log.info("about to drop tables");
-			//dataManager.dropTables(dataPackage); // Clean-up test tables
+			dataManager.dropTables(dataPackage); // Clean-up test tables
 		} 
 		catch (Exception e) {
 			System.err.println("Exception: "
