@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: HSQLAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-22 21:20:52 $'
- *   '$Revision: 1.9 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-03-01 00:31:48 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -32,13 +32,20 @@
 package org.ecoinformatics.datamanager.database;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
+import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
+import org.ecoinformatics.datamanager.parser.EnumeratedDomain;
 import org.ecoinformatics.datamanager.parser.NumericDomain;
+import org.ecoinformatics.datamanager.parser.TextDomain;
 
 /**
  * This class extends the DatabaseAdapter class for the HSQL database.
@@ -56,6 +63,39 @@ public class HSQLAdapter extends DatabaseAdapter {
 	//private static final String CREATETEXTTABLE   = "CREATE TEXT TABLE";
     
     
+	/**
+	 * A custom static class for use by the HSQLDB instance for converting stings to dates
+	 */
+	public static Timestamp to_timestamp(String value, String formatString) throws ParseException {
+		//take care of differences between EML (ISO 8601) format strings and java format strings
+		// year
+		formatString = formatString.replaceAll("Y", "y");
+		// day in month
+		formatString = formatString.replaceAll("D", "d");
+		// abbreviated month name
+		formatString = formatString.replaceAll("W", "M");
+		// AM or PM?
+		formatString = formatString.replaceAll("A", "a");
+		formatString = formatString.replaceAll("P", "p");
+		//TODO: this may not be an exhaustive list for dealing with the conversion
+
+		Timestamp timestamp = null;
+		SimpleDateFormat sdf = new SimpleDateFormat(formatString);
+		Date temp = sdf.parse(value);
+		timestamp = new Timestamp(temp.getTime());
+		
+		return timestamp;
+		
+	}
+	
+	/*
+	 * Constructors
+	 */
+	public HSQLAdapter() {
+		//for invocation within HSQLDB
+		this.TO_DATE_FUNCTION = "\"" + this.getClass().getName() + ".to_timestamp\"";
+	}
+	
     /*
      * Instance methods
      */
@@ -112,14 +152,15 @@ public class HSQLAdapter extends DatabaseAdapter {
 	  protected String getAttributeType(Attribute attribute) {
 		    String attributeType = "string";
 		    Domain domain = attribute.getDomain();
-		    String className = domain.getClass().getName();
 		    
-		    if (className.endsWith("DateTimeDomain") ||
-		        className.endsWith("EnumeratedDomain") ||
-		        className.endsWith("TextDomain")) {
-		      attributeType = "string";
+		    if (domain instanceof DateTimeDomain) {
+		    	attributeType = "datetime";
 		    }
-		    else if (className.endsWith("NumericDomain")) {
+		    else if (domain instanceof EnumeratedDomain ||
+		    		domain instanceof TextDomain) {
+			      attributeType = "string";
+			}
+		    else if (domain instanceof NumericDomain) {
 		      NumericDomain numericDomain = (NumericDomain) domain;
 		      attributeType = numericDomain.getNumberType();
 		    }
@@ -140,6 +181,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	    map.put("real", "FLOAT");
 	    map.put("whole", "INTEGER");
 	    map.put("natural", "INTEGER");
+	    map.put("datetime", "TIMESTAMP");
 	    
 	    dbDataType = (String) map.get(attributeType);
 	    

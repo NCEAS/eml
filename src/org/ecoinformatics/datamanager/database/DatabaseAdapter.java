@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2007-02-05 19:20:57 $'
- *   '$Revision: 1.19 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-03-01 00:31:48 $'
+ *   '$Revision: 1.20 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,8 +36,11 @@ import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
+import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
 import org.ecoinformatics.datamanager.parser.NumericDomain;
 
@@ -52,6 +55,8 @@ public abstract class DatabaseAdapter {
   /*
    * Class fields
    */
+	
+	public static Log log = LogFactory.getLog(DatabaseAdapter.class);
 
 	public static final String HSQL_ADAPTER     = "HSQLAdapter";
     public static final String ORACLE_ADAPTER   = "OracleAdapter";
@@ -69,6 +74,8 @@ public abstract class DatabaseAdapter {
   /*
    * Instance fields
    */
+	//subclasses can override this rather than reimplementing entire methods
+	protected String TO_DATE_FUNCTION = "to_timestamp";
   
   
   /*
@@ -263,10 +270,35 @@ public abstract class DatabaseAdapter {
       Domain domain = attribute.getDomain();
       //System.out.println("the value in element is "+value);
       
+      /* If DateTimeDomain we assign it text type and use to_timestamp to convert
+       * and wrap single quotes around the value.
+       * But only if we have a format string!
+       */
+      if (domain instanceof DateTimeDomain) {
+      	String formatString = ((DateTimeDomain)domain).getFormatString();
+        //System.out.println("in DateTimeDomain " + value);
+    	value = escapeSpecialCharacterInData(value);
+    	sqlDataPart.append(TO_DATE_FUNCTION);
+    	sqlDataPart.append(LEFTPARENTH);
+       
+        sqlDataPart.append(SINGLEQUOTE);
+        sqlDataPart.append(value);
+        sqlDataPart.append(SINGLEQUOTE);
+        
+        sqlDataPart.append(COMMA);
+        
+    	sqlDataPart.append(SINGLEQUOTE);
+        sqlDataPart.append(formatString);
+        sqlDataPart.append(SINGLEQUOTE);
+        
+        sqlDataPart.append(RIGHTPARENTH);
+        hasValueCounter++;
+        log.debug("datetime value expression= " + sqlDataPart.toString());
+      } 
       /* If domain is null or it is not NumericDomain we assign it text type
        * and wrap single quotes around the value.
        */
-      if (domain == null || !(domain instanceof NumericDomain)) {
+      else if (domain == null || !(domain instanceof NumericDomain)) {
         //System.out.println("in non NumericDomain " + value);
     	value = escapeSpecialCharacterInData(value);
         sqlDataPart.append(SINGLEQUOTE);
@@ -498,9 +530,9 @@ public abstract class DatabaseAdapter {
       attributeSql.append(dbDataType);
       firstAttribute = false;
 
-      System.out.println("Attribute Name: " + attributeName);
-      System.out.println("DB Field Name : " + fieldName);
-      System.out.println("dbDataType    : " + dbDataType + "\n");
+      log.info("Attribute Name: " + attributeName);
+      log.info("DB Field Name : " + fieldName);
+      log.info("dbDataType    : " + dbDataType + "\n");
     }
 
     return attributeSql.toString();

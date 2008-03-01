@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: PostgresAdapter.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-22 21:20:52 $'
- *   '$Revision: 1.12 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-03-01 00:31:48 $'
+ *   '$Revision: 1.13 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -37,8 +37,11 @@ import java.util.Map;
 
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
+import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
+import org.ecoinformatics.datamanager.parser.EnumeratedDomain;
 import org.ecoinformatics.datamanager.parser.NumericDomain;
+import org.ecoinformatics.datamanager.parser.TextDomain;
 
 public class PostgresAdapter extends DatabaseAdapter {
   
@@ -81,6 +84,11 @@ public class PostgresAdapter extends DatabaseAdapter {
   /*
    * Constructors
    */
+  public PostgresAdapter() {
+	  super();
+	  //override the superclass version
+	  this.TO_DATE_FUNCTION = "to_timestamp";
+  }
   
   
   /*
@@ -149,14 +157,15 @@ public class PostgresAdapter extends DatabaseAdapter {
   protected String getAttributeType(Attribute attribute) {
     String attributeType = "string";
     Domain domain = attribute.getDomain();
-    String className = domain.getClass().getName();
 
-    if (className.endsWith("DateTimeDomain")
-        || className.endsWith("EnumeratedDomain")
-        || className.endsWith("TextDomain")) {
-      attributeType = "string";
-    } 
-    else if (className.endsWith("NumericDomain")) {
+    if (domain instanceof DateTimeDomain) {
+    	attributeType = "datetime";
+    }
+    else if (domain instanceof EnumeratedDomain
+            || domain instanceof TextDomain) {
+          attributeType = "string";
+        } 
+    else if (domain instanceof NumericDomain) {
       NumericDomain numericDomain = (NumericDomain) domain;
       attributeType = numericDomain.getNumberType();
     }
@@ -180,6 +189,7 @@ public class PostgresAdapter extends DatabaseAdapter {
     map.put("real", "FLOAT");
     map.put("whole", "INTEGER");
     map.put("natural", "INTEGER");
+    map.put("datetime", "TIMESTAMP");
 
     dbDataType = (String) map.get(attributeType);
 
