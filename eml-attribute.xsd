@@ -34,9 +34,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: leinfelder $'
-          '$Date: 2008-02-27 01:11:49 $'
-      '$Revision: 1.108 $'
+        '$Author: obrien $'
+          '$Date: 2008-03-31 23:21:02 $'
+      '$Revision: 1.109 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -77,8 +77,9 @@
             allows an attribute document to be described once, and then
             used as a reference in other locations within the EML document
             via its ID.
-          </para>
-            <sidebar>
+            </para>
+            </section>
+            <section>
               <title>Philosophy of Attribute Units</title>
               <para>The concept of "unit" represents one of the most fundamental
             categories of metadata. The classic example of data entropy is the
@@ -162,7 +163,7 @@
             attributes that contain Gregorian date and time values, and allows
             them to provide the information needed to parse these values into
             their appropriate components (e.g., days, months, years)./</para>
-            </sidebar>
+            
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>any dataset that uses dataTable, spatialRaster,
@@ -1788,8 +1789,6 @@
       <xs:enumeration value="gramsPerLiter"/>
       <xs:enumeration value="milligramsPerCubicMeter"/>
       <xs:enumeration value="microgramsPerLiter"/>
-      <xs:enumeration value="milligramsPerLiter"/>
-      <xs:enumeration value="numberPerLiter"/>
       <xs:enumeration value="gramsPerCubicCentimeter"/>
       <xs:enumeration value="gramsPerMilliliter"/>
       <xs:enumeration value="numberPerMilliliter"/>
