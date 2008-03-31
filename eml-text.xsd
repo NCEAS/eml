@@ -24,9 +24,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2003-11-06 20:15:21 $'
-      '$Revision: 1.16 $'
+        '$Author: obrien $'
+          '$Date: 2008-03-31 22:19:36 $'
+      '$Revision: 1.17 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name="TextType">
+  <xs:complexType name="TextType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Text</doc:tooltip>
@@ -99,7 +99,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
-      <xs:element name="section" type="SectionType">
+      <xs:element name="section" type="SectionType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Section</doc:tooltip>
@@ -112,7 +112,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="para" type="ParagraphType">
+      <xs:element name="para" type="ParagraphType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Paragraph</doc:tooltip>
@@ -218,6 +218,36 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      
+      
+      <!--
+        
+      -->
+      <xs:element name="ulink" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>ulink</doc:tooltip>
+            <doc:summary>include urls</doc:summary>
+            <doc:description>this element and its children allow paragraphs to contain
+              urls and titles for anchor tags</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="citetitle"/>
+          </xs:sequence>
+          <xs:attribute name="url" use="optional"/>
+        </xs:complexType>
+      </xs:element>
+      <!--
+        
+        
+      -->
+      
+      
+      
+      
+      
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="SectionType">
