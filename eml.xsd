@@ -38,9 +38,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2006-06-30 15:50:32 $'
-      '$Revision: 1.49 $'
+        '$Author: obrien $'
+          '$Date: 2008-03-31 22:12:14 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -268,7 +268,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="metadata" type="xs:string" maxOccurs="1">
+              <xs:element name="metadata" maxOccurs="1">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Additional metadata</doc:tooltip>
