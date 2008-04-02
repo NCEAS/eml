@@ -14,9 +14,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: jones $'
- *        '$Date: 2003-11-06 20:15:20 $'
- *    '$Revision: 1.47 $'
+ *      '$Author: obrien $'
+ *        '$Date: 2008-04-02 21:44:49 $'
+ *    '$Revision: 1.48 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -162,8 +162,9 @@
     <xsl:apply-templates mode="docbook"/>
   </xsl:template>
 
+	
   <xsl:template match="title" mode="docbook">
-    <!-- do nothing -->
+	<div class="sectiontitle"><xsl:value-of select="."/></div>	
   </xsl:template>
 
   <!-- Build the Detail Table after the Module documentation description -->
