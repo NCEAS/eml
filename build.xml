@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: leinfelder $'
-          '$Date: 2008-02-15 17:48:28 $'
-      '$Revision: 1.100 $'
+        '$Author: obrien $'
+          '$Date: 2008-04-09 21:31:40 $'
+      '$Revision: 1.101 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,7 +50,11 @@
 		<property name="servletpath" value="/emlparser"/>
 		<!-- namespaces that the servlet should auto resolve -->
 		<property name="namespaces"
-              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd eml://ecoinformatics.org/eml-2.0.1 ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.0/stmml.xsd"/>
+              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
+              eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
+			  eml://ecoinformatics.org/eml-2.1.0rc1 eml.xsd
+              http://www.xml-cml.org/schema/stmml stmml.xsd"/>
+
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
 		<property name="servlettempdir" value="/tmp/emlparser"/>
@@ -64,7 +68,7 @@
 
 	<target name="init" depends="config">
 		<property name="name" value="eml"/>
-		<property name="version" value="2.0.1"/>
+		<property name="version" value="2.1.0rc1"/>
 		<property name="eml-version" value="eml-${version}"/>
 		<property name="testdir" value="./test" />
 		<property name="srcdir" value="./src" />
@@ -324,6 +328,11 @@
 				<exclude name="emlconversions/**"/>
 			</fileset>
 		</copy>
+        <echo>
+      ************************************************
+                    copied some stuff to ${build.tests}
+      ************************************************
+    </echo>
 		<copy todir="${build.tests}" filtering="yes">
 			<fileset dir="${srcdir}">
 				<exclude name="**/CVS*"/>
@@ -381,10 +390,19 @@
 				<exclude name="**/.#*"/>
 			</fileset>
 		</copy>
-
+        <echo>
+         ************************************************
+            copied from ${sample.dir}
+      ************************************************
+    </echo>
 		<!--copy the unit dictionary so it will get validated-->
 		<copy file="eml-unitDictionary.xml" tofile="test/eml-unitDictionary.xml"/>
-
+    <echo>
+         ************************************************
+            copied the unitDictionary
+      ************************************************
+    </echo>
+    
 		<!-- use the ant "junit" task to run JUnit tests. -->
 		<junit printsummary="yes" haltonfailure="no" fork="no"
             haltonerror="no">
