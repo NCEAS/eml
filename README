@@ -12,9 +12,9 @@
 #                  The David and Lucile Packard Foundation
 #     For Details: http://knb.ecoinformatics.org/
 #
-#        '$Author: jones $'
-#          '$Date: 2004-08-10 21:21:04 $'
-#      '$Revision: 1.33 $'
+#        '$Author: obrien $'
+#          '$Date: 2008-04-10 18:18:46 $'
+#      '$Revision: 1.34 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 EML: Ecological Metadata Language
 ---------------------------------
 
-Version: 2.0.1
+Version: 2.1.0
 
 Feedback and bugs to: eml-dev@ecoinformatics.org
                       http://bugzilla.ecoinformatics.org
@@ -55,7 +55,10 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Tim Bergsma (tbergsma@kbs.msu.edu)
               Ken Ramsey (kramsey@jornada.nmsu.edu)
               Saurabh Garg (sgarg@nceas.ucsb.edu)
-
+              Margaret O'Brien (mob@msi.ucsb.edu)
+			  Mark Servilla (servilla@lternet.edu)
+			  James Brunt (brunt@lternet.edu)
+			  
 Web site: http://knb.ecoinformatics.org/software/eml
 
 The Ecological Metadata Language consists of a number of modules that define
@@ -96,7 +99,11 @@ the rules associated with the Ecological Metadata Language.
 
 FILES
 -----
-The files in this distribution are a part of the final release of EML 2.0.1.
+############
+The files in this distribution are a part of the first release candidate 
+of EML 2.1.0.
+############
+
 
 The files in this directory include a "docs" directory that contains the
 EML Specification and all documentation for the modules, and an XML Schema
@@ -107,24 +114,33 @@ document illustrating the use of EML. The "test" directory contains a number
 of sample instance documents used for testing the schemas, and an application
 for checking document validity under JUnit (see http://junit.org).
 
-This release of EML can be retrieved from CVS using the 
-tag "RELEASE_EML_2_0_1".  Previous versions of EML (such as 1.4) 
-are available from this repository using the appropriate release tag 
-(i.e. RELEASE_EML_1_4).
+############
+This RELEASE CANDIDATE of EML can be retrieved from CVS using the
+tag "RELEASE_EML_2_1_0rc1".  Previous versions of EML (such as 2.0.1) 
+are available from this repository using the analagous release tag
+(e.g., RELEASE_EML_2_0_1).
+############
+
 
 HIGHLIGHTS IN THIS RELEASE
 --------------------------
-This is a bug fix and documentation release.  No changes were made that are
-incompatible with the earlier 2.0.0 release.  A new set of XSLT stylesheets
-has been included to show how EML can be transformed into an HTML display. 
-Significant changes were made to the definition of access control elements
-to substantially simplify the access control model and make it easier for
-systems storing EML to implement.  In addition, the precision field has 
-now been made optional to accomodate data sets that have varying precision
-across the records in a single attribute.  Finally, we fixed a bug in the 
-"inline" element that had prevented it from being used as intended as a
-place to store data inline in an EML document. The reminaing issues are 
-largely changes in documentation.
+This release addresses 2 bugs which caused the schema to be invalid with 
+respect to the W3C specifications using the XSV validator 
+(http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor, 
+one was incompatible with 2.0 releases, which necessitated the version 
+number "2.1". In the 2.0 series, the content model for additionalMetadata 
+included an element <describes> whose cardinality was 0..many, alongside 
+<xs:any>. This construct is non-deterministic, and so a child element 
+was added to the additionalMetadata section to contain the <xs:any> content.
+Additionally, several elements of txt:TypeText required additional 
+definition so that mixed content could be accommodated. These errors 
+were not apparent with validation software available in 2004-2005, but 
+were brought to light more recently. Several small changes were made to 
+the enumeration list and unitTypes for standard units and stmml descriptions 
+of customUnits. Two elements in the literature schema were allowed to be 
+optional so that articles-in-press could be described.  No changes were 
+made to xsl stylesheets.
+
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
@@ -133,6 +149,13 @@ a backwards-incompatible release in the future.  See bug 1000 and 1605.
 
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
+2.1.0 Changes - (numbers refer to the corresponding Bugzilla bug)
+2054: added the <metadata> tag to additionalMetadata
+2083: in stmml.xsd, dimension 'current' was wrongly entered as 'charge' 
+2703: elements changed in txt:TypeText for ulink, citetitle, para, section 
+3051: missing units were added to exclusion list to match eml-unitDitionary
+3163: in literature.xsd, cardinality of volume and pageRange now 0..1
+
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
  249: Update XSLT stylesheets for EML 2.0 modules
  939: spelling errors for 'its' in index
