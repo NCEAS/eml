@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc1"
-    xmlns="eml://ecoinformatics.org/spatialReference-2.1.0rc1"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc1"
-    targetNamespace="eml://ecoinformatics.org/spatialReference-2.1.0rc1"
+    xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc2"
+    xmlns="eml://ecoinformatics.org/spatialReference-2.1.0rc2"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc2"
+    targetNamespace="eml://ecoinformatics.org/spatialReference-2.1.0rc2"
     elementFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc2"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc2"
   schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -27,8 +27,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-04-09 21:31:41 $'
-      '$Revision: 1.36 $'
+          '$Date: 2008-04-16 18:04:17 $'
+      '$Revision: 1.37 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

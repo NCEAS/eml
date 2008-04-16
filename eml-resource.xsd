@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.1.0rc1" 
+<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.1.0rc2" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc1" 
-	xmlns:txt="eml://ecoinformatics.org/text-2.1.0rc1" 
-	xmlns:rp="eml://ecoinformatics.org/party-2.1.0rc1" 
-	xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0rc1" 
-	xmlns="eml://ecoinformatics.org/resource-2.1.0rc1">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0rc1" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0rc1" schemaLocation="eml-text.xsd"/>
+	xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc2" 
+	xmlns:txt="eml://ecoinformatics.org/text-2.1.0rc2" 
+	xmlns:rp="eml://ecoinformatics.org/party-2.1.0rc2" 
+	xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0rc2" 
+	xmlns="eml://ecoinformatics.org/resource-2.1.0rc2">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc2" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0rc2" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0rc2" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0rc2" schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -27,8 +27,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-04-09 21:31:41 $'
-      '$Revision: 1.81 $'
+          '$Date: 2008-04-16 18:04:17 $'
+      '$Revision: 1.82 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

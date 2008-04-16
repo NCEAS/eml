@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-  targetNamespace="eml://ecoinformatics.org/methods-2.1.0rc1" 
-  xmlns:txt="eml://ecoinformatics.org/text-2.1.0rc1" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc1" 
-  xmlns:sw="eml://ecoinformatics.org/software-2.1.0rc1" 
-  xmlns:pro="eml://ecoinformatics.org/protocol-2.1.0rc1" 
-  xmlns:rp="eml://ecoinformatics.org/party-2.1.0rc1" 
-  xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0rc1" 
-  xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0rc1" 
-  xmlns:cit="eml://ecoinformatics.org/literature-2.1.0rc1" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc1" 
-  xmlns="eml://ecoinformatics.org/methods-2.1.0rc1" 
+  targetNamespace="eml://ecoinformatics.org/methods-2.1.0rc2" 
+  xmlns:txt="eml://ecoinformatics.org/text-2.1.0rc2" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc2" 
+  xmlns:sw="eml://ecoinformatics.org/software-2.1.0rc2" 
+  xmlns:pro="eml://ecoinformatics.org/protocol-2.1.0rc2" 
+  xmlns:rp="eml://ecoinformatics.org/party-2.1.0rc2" 
+  xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0rc2" 
+  xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0rc2" 
+  xmlns:cit="eml://ecoinformatics.org/literature-2.1.0rc2" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc2" 
+  xmlns="eml://ecoinformatics.org/methods-2.1.0rc2" 
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc1" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataset-2.1.0rc1" schemaLocation="eml-dataset.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc1" schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/software-2.1.0rc1" schemaLocation="eml-software.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.1.0rc1" schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0rc1" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0rc1" schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0rc1" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0rc1" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc2" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataset-2.1.0rc2" schemaLocation="eml-dataset.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc2" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/software-2.1.0rc2" schemaLocation="eml-software.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.1.0rc2" schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0rc2" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0rc2" schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0rc2" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0rc2" schemaLocation="eml-literature.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-methods.xsd,v $'
@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-04-09 21:31:41 $'
-      '$Revision: 1.24 $'
+          '$Date: 2008-04-16 18:04:17 $'
+      '$Revision: 1.25 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="eml://ecoinformatics.org/protocol-2.1.0rc1"
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc1"
-    xmlns:md="eml://ecoinformatics.org/methods-2.1.0rc1"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc1"
-    xmlns:acc="eml://ecoinformatics.org/access-2.1.0rc1"
-    targetNamespace="eml://ecoinformatics.org/protocol-2.1.0rc1"
+    xmlns="eml://ecoinformatics.org/protocol-2.1.0rc2"
+    xmlns:res="eml://ecoinformatics.org/resource-2.1.0rc2"
+    xmlns:md="eml://ecoinformatics.org/methods-2.1.0rc2"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc2"
+    xmlns:acc="eml://ecoinformatics.org/access-2.1.0rc2"
+    targetNamespace="eml://ecoinformatics.org/protocol-2.1.0rc2"
     elementFormDefault="unqualified"
     attributeFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0rc2"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0rc2"
   schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc2"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.1.0rc1"
+  <xs:import namespace="eml://ecoinformatics.org/access-2.1.0rc2"
   schemaLocation="eml-access.xsd"/>
 
   <xs:annotation>
@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-04-09 21:31:41 $'
-      '$Revision: 1.56 $'
+          '$Date: 2008-04-16 18:04:17 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
