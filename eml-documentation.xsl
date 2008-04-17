@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2008-04-16 18:04:17 $'
- *    '$Revision: 1.50 $'
+ *        '$Date: 2008-04-17 16:30:50 $'
+ *    '$Revision: 1.51 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc2"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc3"
                 version="1.0">
   <xsl:output method="html"/>
   <xsl:template match="/">

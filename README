@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-04-16 18:04:17 $'
-#      '$Revision: 1.35 $'
+#          '$Date: 2008-04-17 16:30:50 $'
+#      '$Revision: 1.36 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ the rules associated with the Ecological Metadata Language.
 FILES
 -----
 ############
-The files in this distribution are a part of the second release candidate 
+The files in this distribution are a part of the third release candidate 
 of EML 2.1.0.
 ############
 
@@ -116,7 +116,7 @@ for checking document validity under JUnit (see http://junit.org).
 
 ############
 This RELEASE CANDIDATE of EML can be retrieved from CVS using the
-tag "RELEASE_EML_2_1_0rc2".  Previous versions of EML (such as 2.0.1) 
+tag "RELEASE_EML_2_1_0rc3".  Previous versions of EML (such as 2.0.1) 
 are available from this repository using the analagous release tag
 (e.g., RELEASE_EML_2_0_1).
 ############
@@ -138,8 +138,9 @@ were not apparent with validation software available in 2004-2005, but
 were brought to light more recently. Several small changes were made to 
 the enumeration list and unitTypes for standard units and stmml descriptions 
 of customUnits. Two elements in the literature schema were allowed to be 
-optional so that articles-in-press could be described.  No changes were 
-made to xsl stylesheets.
+optional so that articles-in-press could be described.  The named type for 
+element gRing was changed to GRingType. No changes were made to xsl 
+stylesheets.
 
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
@@ -155,6 +156,7 @@ BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 2703: refined element declarations in txt:TypeText for para, section; added ulink, citetitle 
 3051: missing units were added to exclusion list to match eml-unitDitionary
 3163: in literature.xsd, cardinality of volume and pageRange now 0..1
+3227: gRing is declared as GRingPointType, but should be GRingType
 
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
  249: Update XSLT stylesheets for EML 2.0 modules
