@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-04-18 21:58:43 $'
-  * '$Revision: 1.5 $'
+  *     '$Date: 2008-05-05 16:52:43 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,6 @@
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-
 
 <!--
     /**
@@ -196,10 +195,10 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><![CDATA[{$contextURL}/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
+    <xsl:param name="tripleURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
 
     <!-- URL for xmlformat-->
-    <xsl:param name="xmlURI"><![CDATA[{$contextURL}/metacat?action=read&qformat=xml&docid=]]></xsl:param>
+    <xsl:param name="xmlURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=xml&docid=]]></xsl:param>
 
 
 <!--
