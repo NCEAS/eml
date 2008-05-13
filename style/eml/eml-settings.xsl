@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-05-05 16:52:43 $'
-  * '$Revision: 1.6 $'
+  *   '$Author: leinfelder $'
+  *     '$Date: 2008-05-13 19:30:47 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -179,6 +179,10 @@
   <xsl:param name="contextURL"/>
   <xsl:param name="cgi-prefix"/>
   
+<!-- for access to "protected" documents/files -->  
+  <xsl:param name="sessionid"/>
+  
+  
 <!--
     /**
     *   The base URI to be used for the href link to each document in a
@@ -195,7 +199,7 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
+  <xsl:param name="tripleURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&sessionid=]]><xsl:value-of select="$sessionid" /><![CDATA[&docid=]]></xsl:param>
 
     <!-- URL for xmlformat-->
     <xsl:param name="xmlURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=xml&docid=]]></xsl:param>
