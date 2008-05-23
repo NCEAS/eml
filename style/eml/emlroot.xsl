@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-01-24 02:07:26 $'
-  * '$Revision: 1.5 $'
+  *     '$Date: 2008-05-23 22:50:32 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -1002,13 +1002,13 @@
                   <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                   <xsl:for-each select="$references">
                      <xsl:for-each select="inline">
-                        <xsl:value-of select="."/>
+                        <pre><xsl:value-of select="."/></pre>
                       </xsl:for-each>
                   </xsl:for-each>
                </xsl:when>
                <xsl:otherwise>
                   <xsl:for-each select="inline">
-                    <xsl:value-of select="."/>
+                    <pre><xsl:value-of select="."/></pre>
                   </xsl:for-each>
               </xsl:otherwise>
            </xsl:choose>
