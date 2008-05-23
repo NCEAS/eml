@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: jones $'
-  *     '$Date: 2005-12-13 20:03:23 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: leinfelder $'
+  *     '$Date: 2008-05-13 19:30:47 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,11 +33,6 @@
   * transformation of xml files that are valid with respect to the
   * applicable dtd of the Ecological Metadata Language (EML).
 
-  * Some of these paths incorporate values of the form: @token-name@; these are
-  * intended to allow an Ant (http://jakarta.apache.org/ant/index.html) build
-  * script to replace the tokens automatically with the correct values at build/
-  * install time.  If Ant is not used, the tokens may simply be edited by hand
-  * to point to the correct resources.
   * Note that the values given below may be overridden by passing parameters to
   * the XSLT processor programatically, although the procedure for doing so is
   * vendor-specific.  Note also that these parameter definitions will be overridden
@@ -48,7 +43,6 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-
 <!--
     /**
     *   The filename of the default css stylesheet to be used
@@ -58,7 +52,7 @@
     */
 -->
 
-  <xsl:param name="qformat">@default-style@</xsl:param>
+  <xsl:param name="qformat">default</xsl:param>
 
 
 <!--
@@ -128,7 +122,7 @@
     */
 -->
 
-    <xsl:param name="stylePath">@style-skins-path@</xsl:param>
+    <xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
 
 
 <!--
@@ -143,7 +137,7 @@
     */
 -->
 
-    <xsl:param name="styleCommonPath">@style-common-path@</xsl:param>
+    <xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>
 
 	
 <!--the docid of xml which is processed-->
@@ -180,7 +174,15 @@
 <!-- the name of the data registry of the dataset-->
 	<xsl:param name="registryname"></xsl:param>
 
-
+  
+<!-- for getting the server context and cgi locations -->  
+  <xsl:param name="contextURL"/>
+  <xsl:param name="cgi-prefix"/>
+  
+<!-- for access to "protected" documents/files -->  
+  <xsl:param name="sessionid"/>
+  
+  
 <!--
     /**
     *   The base URI to be used for the href link to each document in a
@@ -197,10 +199,10 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><![CDATA[@servlet-path@?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
+  <xsl:param name="tripleURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&sessionid=]]><xsl:value-of select="$sessionid" /><![CDATA[&docid=]]></xsl:param>
 
     <!-- URL for xmlformat-->
-    <xsl:param name="xmlURI"><![CDATA[@servlet-path@?action=read&qformat=xml&docid=]]></xsl:param>
+    <xsl:param name="xmlURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=xml&docid=]]></xsl:param>
 
 
 <!--

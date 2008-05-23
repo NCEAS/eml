@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:43:30 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2008-05-23 21:58:49 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@
 		<xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docID"/></xsl:attribute>
            </xsl:when>
            <xsl:otherwise>
-		<xsl:attribute name="href"><xsl:value-of select="$URL"/></xsl:attribute>
+		   <xsl:attribute name="href"><xsl:if test="not(contains(.,':/'))">http://</xsl:if><xsl:value-of select="$URL"/></xsl:attribute>
            </xsl:otherwise>
           </xsl:choose>
 		  <xsl:attribute name="target">_blank</xsl:attribute>
