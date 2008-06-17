@@ -2,8 +2,8 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-03-01 00:31:48 $'
- *   '$Revision: 1.20 $'
+ *       '$Date: 2008-06-17 23:21:28 $'
+ *   '$Revision: 1.21 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -415,7 +415,7 @@ public abstract class DatabaseAdapter {
   private String getLegalDbFieldName(String attributeName) {
     String legalName = attributeName;
     
-    char[] badChars = {' ', '-', '.', '/'};
+    char[] badChars = {' ', '-', '.', '/', ':', '@', '[', ']'};
     char goodChar = '_';
     
     for (int i = 0; i < badChars.length; i++) {
