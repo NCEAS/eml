@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Entity.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2007-01-22 22:02:47 $'
- *   '$Revision: 1.15 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-06-18 00:22:13 $'
+ *   '$Revision: 1.16 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -691,6 +691,17 @@ public class Entity extends DataObjectDescription
     public String getEntityIdentifier()
     {
     	return url;
+    }
+    
+    /**
+     * Sets the identifier for this entity. Currently we use distribution url
+     * as entity identifier.
+     * 
+     * @param identifier of this entity, a string holding the distribution url
+     */
+    public void setEntityIdentifier(String url)
+    {
+    	this.url = url;
     }
     
    
