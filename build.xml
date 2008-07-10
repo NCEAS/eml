@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: obrien $'
-          '$Date: 2008-04-17 16:30:50 $'
-      '$Revision: 1.103 $'
+        '$Author: tao $'
+          '$Date: 2008-07-10 22:35:47 $'
+      '$Revision: 1.104 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,12 +48,15 @@
 		<property name="servletdir" value="emlparser"/>
 		<!-- the path to the servlet from the servletdir -->
 		<property name="servletpath" value="/emlparser"/>
+		<property name="version" value="2.1.0rc3"/>
 		<!-- namespaces that the servlet should auto resolve -->
 		<property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
               eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
-			  eml://ecoinformatics.org/eml-2.1.0rc3 eml.xsd
-              http://www.xml-cml.org/schema/stmml stmml.xsd"/>
+			  eml://ecoinformatics.org/eml-2.1.0rc3 ${server}/${servletdir}/schema/eml-2.1.0rc3/eml.xsd 
+			  eml://ecoinformatics.org/literature-2.1.0rc3 ${server}/${servletdir}/schema/eml-2.1.0rc3/eml-literature.xsd
+			  eml://ecoinformatics.org/project-2.1.0rc3 ${server}/${servletdir}/schema/eml-2.1.0rc3/eml-project.xsd
+              http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.1.0rc3/stmml.xsd"/>
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
@@ -64,11 +67,11 @@
 		<echo>Using ${cvsroot}"</echo>
 		<property name="eml-module" value="eml"/>
 		<property name="eml2_0_0-tag" value="RELEASE_EML_2_0_0_UPDATE_1"/>
+		<property name="eml2_0_1-tag" value="RELEASE_EML_2_0_1"/>
 	</target>
 
 	<target name="init" depends="config">
 		<property name="name" value="eml"/>
-		<property name="version" value="2.1.0rc3"/>
 		<property name="eml-version" value="eml-${version}"/>
 		<property name="testdir" value="./test" />
 		<property name="srcdir" value="./src" />
@@ -457,7 +460,7 @@
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
 		<copy file="${api}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
-		<copy todir="${servlet.install.dir}/schema/eml-2.0.1">
+		<copy todir="${servlet.install.dir}/schema/${eml-version}">
 			<fileset dir=".">
 				<include name="*.xsd"/>
 			</fileset>
@@ -475,6 +478,19 @@
 				<include name="*.xsd"/>
 			</fileset>
 		</copy>
+		
+		<!-- Copy eml-2.0.1 schema. Add code here for copying any other schemas. -->
+				<echo>Enter CVS password: </echo>
+				<cvs cvsRoot="${cvsroot}"
+		          package="${eml-module}"
+		          tag="${eml2_0_1-tag}"
+		          dest="${servlettempdir}/eml_${eml2_0_1-tag}" />
+				<mkdir dir="${servlet.install.dir}/schema/eml-2.0.1" />
+				<copy todir="${servlet.install.dir}/schema/eml-2.0.1" filtering="yes">
+					<fileset dir="${servlettempdir}/eml_${eml2_0_1-tag}/${eml-module}">
+						<include name="*.xsd"/>
+					</fileset>
+				</copy>
 
 	</target>
 
