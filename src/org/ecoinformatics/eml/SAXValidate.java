@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2004-07-09 16:44:35 $'
- *    '$Revision: 1.7 $'
+ *      '$Author: tao $'
+ *        '$Date: 2008-07-10 22:33:15 $'
+ *    '$Revision: 1.8 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -174,6 +174,9 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
         parser.setFeature(
             "http://apache.org/xml/features/validation/schema",
             true);
+        parser.setFeature(
+                "http://apache.org/xml/features/validation/schema-full-checking",
+                true);
     }
     // Parse the document
     parser.parse(new InputSource(xml));
