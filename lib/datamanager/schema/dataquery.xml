@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!-- sample data query specification instance for the datamanager library -->
+<dataquery>
+	<union>
+		<query>
+			<selection>
+				<datapackage id="leinfelder.1.1">
+					<!-- For metadata items -->
+					<entity id="leinfelder.1.1">
+						<attribute id="0">
+							<name>id</name>
+							<pathexpr>assessment/@id</pathexpr>
+						</attribute>
+						<attribute id="1">
+							<name>title</name>
+							<pathexpr>assessment/@title</pathexpr>
+						</attribute>
+						<attribute id="2">
+							<name>type</name>
+							<pathexpr>assessment/@type</pathexpr>
+						</attribute>
+					</entity>
+					<!-- dataTable items in same package-->
+					<entity id="table_1">
+						<attribute id="0" />
+						<attribute id="1" />
+						<attribute id="n" />
+					</entity>
+				</datapackage>
+				<!-- query across datapackages -->
+				<datapackage id="leinfelder.2.1">
+					<entity id="table_1">
+						<attribute id="0" />
+					</entity>
+				</datapackage>
+			</selection>
+			<where>
+				<and>
+					<!-- joins -->
+					<!--metadata to data-->
+					<condition>
+						<left>
+							<datapackage id="leinfelder.1.1">
+								<entity id="leinfelder.1.1">
+									<attribute id="0" />
+								</entity>
+							</datapackage>
+						</left>
+						<right>
+							<datapackage id="leinfelder.1.1">
+								<entity id="table_1">
+									<attribute id="0" />
+								</entity>
+							</datapackage>
+						</right>
+						<operator>EQUALS</operator>
+					</condition>
+					<!-- data to additional data (in different datapackage) -->
+					<condition>
+						<left>
+							<datapackage id="leinfelder.1.1">
+								<entity id="table_1">
+									<attribute id="0" />
+								</entity>
+							</datapackage>
+						</left>
+						<right>
+							<datapackage id="leinfelder.2.1">
+								<entity id="table_1">
+									<attribute id="0" />
+								</entity>
+							</datapackage>
+						</right>
+						<operator>EQUALS</operator>
+					</condition>
+
+					<!--compound value comparision -->
+					<or>
+						<condition>
+							<left>
+								<datapackage id="leinfelder.1.1">
+									<entity id="table_1">
+										<attribute id="1" />
+									</entity>
+								</datapackage>
+							</left>
+							<right>%grande%</right>
+							<operator>LIKE</operator>
+						</condition>
+						<condition>
+							<left>
+								<datapackage id="leinfelder.1.1">
+									<entity id="table_1">
+										<attribute id="1" />
+									</entity>
+								</datapackage>
+							</left>
+							<right>%venti%</right>
+							<operator>LIKE</operator>
+						</condition>
+					</or>
+					<!-- subquery -->
+					<condition>
+						<left>
+							<datapackage id="leinfelder.1.1">
+								<entity id="table_1">
+									<attribute id="1" />
+								</entity>
+							</datapackage>
+						</left>
+						<right>
+							<query />
+						</right>
+						<operator>NOT IN</operator>
+					</condition>
+				</and>
+			</where>
+		</query>
+	</union>
+</dataquery>
