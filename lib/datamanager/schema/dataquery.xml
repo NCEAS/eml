@@ -1,36 +1,42 @@
 <?xml version="1.0"?>
 <!-- sample data query specification instance for the datamanager library -->
-<dataquery>
+<dq:dataquery 
+	xmlns:dq="eml://ecoinformatics.org/dataquery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="eml://ecoinformatics.org/dataquery dataquery.xsd ">
 	<union>
 		<query>
 			<selection>
 				<datapackage id="leinfelder.1.1">
+					<entity id="">
+						<attribute index="0"></attribute>
+					</entity>
 					<!-- For metadata items -->
 					<entity id="leinfelder.1.1">
-						<attribute id="0">
+						<attribute index="0">
 							<name>id</name>
 							<pathexpr>assessment/@id</pathexpr>
 						</attribute>
-						<attribute id="1">
+						<attribute index="1">
 							<name>title</name>
 							<pathexpr>assessment/@title</pathexpr>
 						</attribute>
-						<attribute id="2">
+						<attribute index="2">
 							<name>type</name>
 							<pathexpr>assessment/@type</pathexpr>
 						</attribute>
 					</entity>
 					<!-- dataTable items in same package-->
 					<entity id="table_1">
-						<attribute id="0" />
-						<attribute id="1" />
-						<attribute id="n" />
+						<attribute index="0" />
+						<attribute index="1" />
+						<attribute index="2" />
 					</entity>
 				</datapackage>
 				<!-- query across datapackages -->
 				<datapackage id="leinfelder.2.1">
 					<entity id="table_1">
-						<attribute id="0" />
+						<attribute index="0" />
 					</entity>
 				</datapackage>
 			</selection>
@@ -42,14 +48,14 @@
 						<left>
 							<datapackage id="leinfelder.1.1">
 								<entity id="leinfelder.1.1">
-									<attribute id="0" />
+									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</left>
 						<right>
 							<datapackage id="leinfelder.1.1">
 								<entity id="table_1">
-									<attribute id="0" />
+									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</right>
@@ -60,61 +66,73 @@
 						<left>
 							<datapackage id="leinfelder.1.1">
 								<entity id="table_1">
-									<attribute id="0" />
+									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</left>
 						<right>
 							<datapackage id="leinfelder.2.1">
 								<entity id="table_1">
-									<attribute id="0" />
+									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</right>
 						<operator>EQUALS</operator>
 					</condition>
-
+					<!-- subquery -->
+					<condition>
+						<left>
+							<datapackage id="leinfelder.1.1">
+								<entity id="table_1">
+									<attribute index="1" />
+								</entity>
+							</datapackage>
+						</left>
+						<right>
+							<subquery>
+								<selection>
+									<datapackage id="">
+										<entity id="">
+											<attribute index="0"/>
+										</entity>
+									</datapackage>
+								</selection>
+							</subquery>
+						</right>
+						<operator>NOT IN</operator>
+					</condition>
 					<!--compound value comparision -->
 					<or>
 						<condition>
 							<left>
 								<datapackage id="leinfelder.1.1">
 									<entity id="table_1">
-										<attribute id="1" />
+										<attribute index="1" />
 									</entity>
 								</datapackage>
 							</left>
-							<right>%grande%</right>
+							<right>
+								<value>%grande%</value>
+							</right>
 							<operator>LIKE</operator>
 						</condition>
 						<condition>
 							<left>
 								<datapackage id="leinfelder.1.1">
 									<entity id="table_1">
-										<attribute id="1" />
+										<attribute index="1" />
 									</entity>
 								</datapackage>
 							</left>
-							<right>%venti%</right>
+							<right>
+								<value>%venti%</value>
+							</right>
 							<operator>LIKE</operator>
 						</condition>
 					</or>
-					<!-- subquery -->
-					<condition>
-						<left>
-							<datapackage id="leinfelder.1.1">
-								<entity id="table_1">
-									<attribute id="1" />
-								</entity>
-							</datapackage>
-						</left>
-						<right>
-							<query />
-						</right>
-						<operator>NOT IN</operator>
-					</condition>
+					
 				</and>
 			</where>
 		</query>
 	</union>
-</dataquery>
+</dq:dataquery>
