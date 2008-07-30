@@ -8,11 +8,11 @@
 		<query>
 			<selection>
 				<datapackage id="leinfelder.1.1">
-					<entity id="">
+					<entity index="0">
 						<attribute index="0"></attribute>
 					</entity>
 					<!-- For metadata items -->
-					<entity id="leinfelder.1.1">
+					<entity id="leinfelder.1.1" index="0">
 						<attribute index="0">
 							<name>id</name>
 							<pathexpr>assessment/@id</pathexpr>
@@ -27,7 +27,7 @@
 						</attribute>
 					</entity>
 					<!-- dataTable items in same package-->
-					<entity id="table_1">
+					<entity index="1">
 						<attribute index="0" />
 						<attribute index="1" />
 						<attribute index="2" />
@@ -35,7 +35,7 @@
 				</datapackage>
 				<!-- query across datapackages -->
 				<datapackage id="leinfelder.2.1">
-					<entity id="table_1">
+					<entity index="1">
 						<attribute index="0" />
 					</entity>
 				</datapackage>
@@ -47,14 +47,14 @@
 					<condition>
 						<left>
 							<datapackage id="leinfelder.1.1">
-								<entity id="leinfelder.1.1">
+								<entity id="leinfelder.1.1" index="0">
 									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</left>
 						<right>
 							<datapackage id="leinfelder.1.1">
-								<entity id="table_1">
+								<entity index="1">
 									<attribute index="0" />
 								</entity>
 							</datapackage>
@@ -65,14 +65,14 @@
 					<condition>
 						<left>
 							<datapackage id="leinfelder.1.1">
-								<entity id="table_1">
+								<entity index="1">
 									<attribute index="0" />
 								</entity>
 							</datapackage>
 						</left>
 						<right>
 							<datapackage id="leinfelder.2.1">
-								<entity id="table_1">
+								<entity index="1">
 									<attribute index="0" />
 								</entity>
 							</datapackage>
@@ -83,7 +83,7 @@
 					<condition>
 						<left>
 							<datapackage id="leinfelder.1.1">
-								<entity id="table_1">
+								<entity index="1">
 									<attribute index="1" />
 								</entity>
 							</datapackage>
@@ -92,7 +92,7 @@
 							<subquery>
 								<selection>
 									<datapackage id="">
-										<entity id="">
+										<entity index="0">
 											<attribute index="0"/>
 										</entity>
 									</datapackage>
@@ -106,7 +106,7 @@
 						<condition>
 							<left>
 								<datapackage id="leinfelder.1.1">
-									<entity id="table_1">
+									<entity index="0">
 										<attribute index="1" />
 									</entity>
 								</datapackage>
@@ -119,7 +119,7 @@
 						<condition>
 							<left>
 								<datapackage id="leinfelder.1.1">
-									<entity id="table_1">
+									<entity index="0">
 										<attribute index="1" />
 									</entity>
 								</datapackage>

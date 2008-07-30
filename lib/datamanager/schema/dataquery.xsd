@@ -75,7 +75,8 @@
         <xs:sequence>
             <xs:element name="attribute" type="attributeType" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="index" type="xs:int"/>
+        <xs:attribute name="id" type="xs:string" use="optional"/>
     </xs:complexType>
     
     <xs:complexType name="attributeType">
