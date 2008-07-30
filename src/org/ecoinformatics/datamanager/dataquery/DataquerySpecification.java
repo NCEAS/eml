@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-30 00:31:56 $'
- * '$Revision: 1.1 $'
+ *     '$Date: 2008-07-30 18:31:04 $'
+ * '$Revision: 1.2 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,15 +29,23 @@
 
 package org.ecoinformatics.datamanager.dataquery;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.Stack;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
+import org.ecoinformatics.datamanager.DataManager;
+import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.Union;
+import org.ecoinformatics.datamanager.database.pooling.PostgresDatabaseConnectionPool;
+import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
+import org.ecoinformatics.datamanager.download.DocumentHandler;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
@@ -57,6 +65,8 @@ import org.xml.sax.helpers.XMLReaderFactory;
  */
 public class DataquerySpecification extends DefaultHandler
 {
+	private DatabaseConnectionPoolInterface connectionPool;
+	private EcogridEndPointInterface ecogridEndPoint;
 
     /** Identifier for this query document */
     private String meta_file_id;
@@ -71,15 +81,15 @@ public class DataquerySpecification extends DefaultHandler
     private StringBuffer xml = new StringBuffer();
 
     // Query data structures used temporarily during XML parsing
-    private Stack elementStack;
+    private Stack elementStack = new Stack();
 
-    private Stack queryStack;
+    private Stack queryStack = new Stack();
     
-    private Stack datapackageStack;
+    private Stack datapackageStack = new Stack();
     
-    private Stack attributeStack;
+    private Stack attributeStack = new Stack();
     
-    private Stack entityStack;
+    private Stack entityStack = new Stack();
 
     private String currentValue;
 
@@ -111,15 +121,19 @@ public class DataquerySpecification extends DefaultHandler
      *            the fully qualified name of a Java Class implementing the
      *            org.xml.sax.XMLReader interface
      */
-    public DataquerySpecification(Reader queryspec, String parserName) throws IOException
+    public DataquerySpecification(
+    		Reader queryspec, 
+    		String parserName, 
+    		DatabaseConnectionPoolInterface connectionPool,
+    		EcogridEndPointInterface ecogridEndPoint) throws IOException
     {
         super();
+        
+        //for the DM
+        this.connectionPool = connectionPool;
+        this.ecogridEndPoint = ecogridEndPoint;
 
         // Initialize the class variables
-        elementStack = new Stack();
-        queryStack = new Stack();
-        entityStack = new Stack();
-        attributeStack = new Stack();
         this.parserName = parserName;
 
         // Initialize the parser and read the queryspec
@@ -146,23 +160,13 @@ public class DataquerySpecification extends DefaultHandler
      *            the fully qualified name of a Java Class implementing the
      *            org.xml.sax.Parser interface
      */
-    public DataquerySpecification(String queryspec, String parserName) throws IOException
+    public DataquerySpecification(
+    		String queryspec, 
+    		String parserName, 
+    		DatabaseConnectionPoolInterface connectionPool,
+    		EcogridEndPointInterface ecogridEndPoint) throws IOException
     {
-        this(new StringReader(queryspec), parserName);
-    }
-
-    /**
-     * construct an instance of the QuerySpecification class which don't need
-     * to parser a xml document
-     *
-     * @param accNumberSeparator
-     *            the separator between doc version
-     */
-    public DataquerySpecification(String accNumberSeparator) throws IOException
-    {
-        // Initialize the class variables
-        elementStack = new Stack();
-        queryStack = new Stack();
+        this(new StringReader(queryspec), parserName, connectionPool, ecogridEndPoint);
     }
 
     /**
@@ -224,7 +228,7 @@ public class DataquerySpecification extends DefaultHandler
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException
     {
-        logMetacat.debug("start at startElement "+localName);
+        logMetacat.debug("start at startElement " + localName);
         BasicNode currentNode = new BasicNode(localName);
         //write element name into xml buffer.
         xml.append("<");
@@ -251,8 +255,33 @@ public class DataquerySpecification extends DefaultHandler
             queryStack.push(query);
         }
         if (currentNode.getTagName().equals("datapackage")) {
-        	DataPackage datapackage = new DataPackage(currentNode.getAttribute("id"));
-        	//TODO parse and load the datapackage
+        	
+        	String docId = currentNode.getAttribute("id");
+        	
+        	//read metadata doc
+        	DocumentHandler dh = new DocumentHandler();
+        	dh.setDocId(docId);
+        	dh.setEcogridEndPointInterface(ecogridEndPoint);
+        	InputStream metadataInputStream = null;
+			try {
+				metadataInputStream = dh.downloadDocument();
+			} catch (Exception e1) {
+				logMetacat.error("could not download document: " + docId);
+				e1.printStackTrace();
+			}
+        	
+        	//parse as DP
+        	DataPackage datapackage = null;
+        	try {
+	        	datapackage =
+	        		DataManager.getInstance(
+	        				connectionPool, 
+	        				connectionPool.getDBAdapterName()).parseMetadata(
+	        						metadataInputStream);
+        	} catch (Exception e) {
+				logMetacat.error(
+						"could not parse metadata given by docid: " + docId);
+			}
         	
         	//save it for later
         	datapackageStack.push(datapackage);
@@ -261,7 +290,10 @@ public class DataquerySpecification extends DefaultHandler
         if (currentNode.getTagName().equals("entity")) {
         	//TODO lookup by name rather than index?
         	DataPackage datapackage = (DataPackage) datapackageStack.peek();
-        	int index = Integer.parseInt(currentNode.getAttribute("index"));
+        	int index = 0;
+        	if (currentNode.getAttribute("index") != null ) {
+        		index = Integer.parseInt(currentNode.getAttribute("index"));
+        	}
         	Entity entity = datapackage.getEntityList()[index];
         	entityStack.push(entity);
         }
@@ -272,7 +304,7 @@ public class DataquerySpecification extends DefaultHandler
         	Attribute attribute = entity.getAttributes()[index];
         	attributeStack.push(attribute);
         }
-        logMetacat.debug("end in startElement "+localName);
+        logMetacat.debug("end in startElement " + localName);
     }
 
     /**
@@ -398,6 +430,25 @@ public class DataquerySpecification extends DefaultHandler
         logMetacat.info("The attirbute name from path: "
                 + attributeName);
         return attributeName;
+    }
+    
+    public static void main(String[] args) {
+    	try {
+	    	String parserName = "org.apache.xerces.parsers.SAXParser";
+	    	String fileName = args[0];
+	    	DataquerySpecification ds = 
+	    		new DataquerySpecification(
+	    				new FileReader(fileName),
+	    				parserName,
+	    				new PostgresDatabaseConnectionPool(),
+	    				new ConfigurableEcogridEndPoint());
+	    	logMetacat.debug(ds);
+	    	
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+			// TODO: handle exception
+		}
     }
 
 }
