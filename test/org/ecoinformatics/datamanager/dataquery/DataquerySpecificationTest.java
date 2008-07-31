@@ -119,7 +119,8 @@ public class DataquerySpecificationTest extends TestCase {
     assertNotNull("Query is null", specification.getQuery());
 
     if (specification.getQuery() != null) {
-    	System.out.println(specification.getQuery().toSQLString());
+    	//System.out.println(specification.getQuery().toSQLString());
+    	System.out.println(specification.getUnion().toSQLString());
     	//TODO more tests!
     } 
   }

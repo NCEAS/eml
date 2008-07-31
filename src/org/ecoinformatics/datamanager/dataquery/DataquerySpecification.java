@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-31 17:47:14 $'
- * '$Revision: 1.5 $'
+ *     '$Date: 2008-07-31 19:40:29 $'
+ * '$Revision: 1.6 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@
 
 package org.ecoinformatics.datamanager.dataquery;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -41,13 +40,16 @@ import java.util.Stack;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.DataManager;
+import org.ecoinformatics.datamanager.database.ANDRelation;
+import org.ecoinformatics.datamanager.database.Condition;
+import org.ecoinformatics.datamanager.database.ConditionInterface;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
+import org.ecoinformatics.datamanager.database.ORRelation;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
 import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
-import org.ecoinformatics.datamanager.database.pooling.DatabaseConnectionPoolFactory;
-import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
+import org.ecoinformatics.datamanager.database.WhereClause;
 import org.ecoinformatics.datamanager.download.DocumentHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
@@ -90,6 +92,8 @@ public class DataquerySpecification extends DefaultHandler
     private Stack queryStack = new Stack();
             
     private Stack entityStack = new Stack();
+    
+    private Stack conditionStack = new Stack();
     
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
         
@@ -301,6 +305,12 @@ public class DataquerySpecification extends DefaultHandler
         	entityStack.push(entity);
         }
         
+        if (currentNode.getTagName().equals("condition")) {
+        	//indicates we are in a condition
+        	ConditionInterface condition = null;
+        	conditionStack.push(condition);
+        }
+        
         log.debug("end in startElement " + localName);
     }
 
@@ -330,23 +340,100 @@ public class DataquerySpecification extends DefaultHandler
         	queryList.add(query);
         }
         if (leaving.getTagName().equals("entity")) {
-        	//pop, done with the entity
-        	Entity entity = (Entity) entityStack.pop();
-        	Query query = (Query) queryStack.peek();
-        	query.addTableItem(new TableItem(entity));
+        	//in selection
+        	if (conditionStack.isEmpty()) {
+	        	//pop, done with the entity
+	        	Entity entity = (Entity) entityStack.pop();
+	        	
+	        	//add to query
+	        	Query query = (Query) queryStack.peek();
+	        	query.addTableItem(new TableItem(entity));
+        	}
+        	else {
+        		//anything?
+        	}
         }
         if (leaving.getTagName().equals("attribute")) {
+        	Query query = (Query) queryStack.peek();
         	Entity entity = (Entity) entityStack.peek();
         	int index = Integer.parseInt(leaving.getAttribute("index"));
         	Attribute attribute = entity.getAttributes()[index];
         	
-        	//create the selectionItem and add to the query
-        	SelectionItem selection = new SelectionItem(entity, attribute);
-        	Query query = (Query) queryStack.peek();
-        	query.addSelectionItem(selection);
+        	//condition?
+        	if (!conditionStack.isEmpty()) {
+        		//intitial part of the condition
+        		conditionStack.pop();
+            	ConditionInterface condition = new Condition(entity, attribute, null, null);
+            	conditionStack.push(condition);
+        	}
+        	else {
+        		//create the selectionItem and add to the query
+	        	SelectionItem selection = new SelectionItem(entity, attribute);
+	        	query.addSelectionItem(selection);
+        	}
         }
         
+        if (leaving.getTagName().equals("operator")) {
+        	String operator = textBuffer.toString().trim();
+        	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
+        	if (condition instanceof Condition) {
+				((Condition) condition).setOperator(operator);
+				
+			}
+        	//TODO Joins?
+        }
+        if (leaving.getTagName().equals("value")) {
+        	String value = textBuffer.toString().trim();
+        	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
+        	if (condition instanceof Condition) {
+				((Condition) condition).setValue(value);
+				
+			}
+        	//TODO Joins?
+        }
+        if (leaving.getTagName().equals("where")) {
+        	if (!conditionStack.isEmpty()) {
+	        	//done with the condition now, we can pop it
+	        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+	        	WhereClause where = new WhereClause(condition);
+	        	
+	        	Query query = (Query) queryStack.peek();
+	        	query.setWhereClause(where);
+        	}
+        }
+        if (leaving.getTagName().equals("and")) {
+
+        	//done with the conditions now, we can pop them all
+        	ANDRelation and = new ANDRelation();
+        	while (!conditionStack.isEmpty()) {
+        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();        	
+        		and.addCondtionInterface(condition);
+        	}
+        	WhereClause where = new WhereClause(and);
+
+        	//set the where clause
+        	//FIXME need to handle compound AND/OR constructs
+        	Query query = (Query) queryStack.peek();
+        	query.setWhereClause(where);
+        	
+        }
         
+        if (leaving.getTagName().equals("or")) {
+
+        	//done with the conditions now, we can pop them all
+        	ORRelation or = new ORRelation();
+        	while (!conditionStack.isEmpty()) {
+        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();        	
+        		or.addCondtionInterface(condition);
+        	}
+        	WhereClause where = new WhereClause(or);
+
+        	//set the where clause
+        	//FIXME need to handle compound AND/OR constructs
+        	Query query = (Query) queryStack.peek();
+        	query.setWhereClause(where);
+        	
+        }
         
         String normalizedXML = textBuffer.toString().trim();
         log.debug("================xml "+normalizedXML);
