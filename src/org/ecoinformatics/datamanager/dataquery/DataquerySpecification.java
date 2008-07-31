@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-31 19:40:29 $'
- * '$Revision: 1.6 $'
+ *     '$Date: 2008-07-31 22:08:01 $'
+ * '$Revision: 1.7 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,9 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import org.apache.commons.logging.Log;
@@ -44,9 +46,11 @@ import org.ecoinformatics.datamanager.database.ANDRelation;
 import org.ecoinformatics.datamanager.database.Condition;
 import org.ecoinformatics.datamanager.database.ConditionInterface;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
+import org.ecoinformatics.datamanager.database.Join;
 import org.ecoinformatics.datamanager.database.ORRelation;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
+import org.ecoinformatics.datamanager.database.SubQueryClause;
 import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.database.WhereClause;
@@ -96,7 +100,9 @@ public class DataquerySpecification extends DefaultHandler
     private Stack conditionStack = new Stack();
     
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
-        
+    
+    private Map fetchedDatapackages = new HashMap(); 
+    
     private List queryList = new ArrayList();
     
     private Union union = null;
@@ -252,44 +258,51 @@ public class DataquerySpecification extends DefaultHandler
         	
         	String docId = currentNode.getAttribute("id");
         	
-        	//read metadata document
-        	DocumentHandler dh = new DocumentHandler();
-        	dh.setDocId(docId);
-        	dh.setEcogridEndPointInterface(ecogridEndPoint);
-        	InputStream metadataInputStream = null;
-			try {
-				metadataInputStream = dh.downloadDocument();
-			} catch (Exception e1) {
-				log.error("could not download document: " + docId);
-				e1.printStackTrace();
-			}
+        	DataPackage datapackage = (DataPackage) fetchedDatapackages.get(docId);
         	
-        	//parse as DataPackage
-        	DataPackage datapackage = null;
-        	try {
-	        	datapackage =
-	        		DataManager.getInstance(
-	        				connectionPool, 
-	        				connectionPool.getDBAdapterName()).parseMetadata(
-	        						metadataInputStream);
-        	} catch (Exception e) {
-				log.error(
-						"could not parse metadata given by docid: " + docId);
-			}
+        	if (datapackage == null) {
         	
-        	//prime the data?
-        	try {
-				DataManager.getInstance(
-						connectionPool, 
-						connectionPool.getDBAdapterName()).loadDataToDB(
-								datapackage, 
-								ecogridEndPoint);
-			} catch (Exception e) {
-				log.error(
-						"could not load data given by docid: " + docId);
-			}
+	        	//read metadata document
+	        	DocumentHandler dh = new DocumentHandler();
+	        	dh.setDocId(docId);
+	        	dh.setEcogridEndPointInterface(ecogridEndPoint);
+	        	InputStream metadataInputStream = null;
+				try {
+					metadataInputStream = dh.downloadDocument();
+				} catch (Exception e1) {
+					log.error("could not download document: " + docId);
+					e1.printStackTrace();
+				}
+	        	
+	        	//parse as DataPackage
+	        	try {
+		        	datapackage =
+		        		DataManager.getInstance(
+		        				connectionPool, 
+		        				connectionPool.getDBAdapterName()).parseMetadata(
+		        						metadataInputStream);
+	        	} catch (Exception e) {
+					log.error(
+							"could not parse metadata given by docid: " + docId);
+				}
+	        	
+	        	//prime the data?
+	        	try {
+					DataManager.getInstance(
+							connectionPool, 
+							connectionPool.getDBAdapterName()).loadDataToDB(
+									datapackage, 
+									ecogridEndPoint);
+				} catch (Exception e) {
+					log.error(
+							"could not load data given by docid: " + docId);
+				}
+				
+				//save for later
+				fetchedDatapackages.put(docId, datapackage);
+        	}
         	
-        	//save it for later
+        	//save it for later - preserving order/nesting
         	datapackageStack.push(datapackage);
         	
         }
@@ -308,6 +321,15 @@ public class DataquerySpecification extends DefaultHandler
         if (currentNode.getTagName().equals("condition")) {
         	//indicates we are in a condition
         	ConditionInterface condition = null;
+        	if (currentNode.getAttribute("type").equals("subquery")) {
+        		condition = new SubQueryClause(null, null, null, null);
+        	}
+        	else if (currentNode.getAttribute("type").equals("join")) {
+        		condition = new Join(null, null, null, null);
+        	}
+        	else {
+        		condition = new Condition(null, null, null, null);
+        	}
         	conditionStack.push(condition);
         }
         
@@ -359,11 +381,24 @@ public class DataquerySpecification extends DefaultHandler
         	int index = Integer.parseInt(leaving.getAttribute("index"));
         	Attribute attribute = entity.getAttributes()[index];
         	
-        	//condition?
+        	//conditions here
         	if (!conditionStack.isEmpty()) {
         		//intitial part of the condition
-        		conditionStack.pop();
-            	ConditionInterface condition = new Condition(entity, attribute, null, null);
+        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+            	if (condition instanceof Condition) {
+            		condition = new Condition(entity, attribute, null, null);
+    			}
+            	else if (condition instanceof SubQueryClause) {
+            		condition = new SubQueryClause(entity, attribute, null, null);
+    			}
+            	else if (condition instanceof Join) {
+            		if (!((Join)condition).isLeftSet()) {
+            			((Join)condition).setLeft(entity, attribute);
+            		}
+            		else if (!((Join)condition).isRightSet()) {
+            			((Join)condition).setRight(entity, attribute);
+            		}
+            	}
             	conditionStack.push(condition);
         	}
         	else {
@@ -378,7 +413,6 @@ public class DataquerySpecification extends DefaultHandler
         	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
         	if (condition instanceof Condition) {
 				((Condition) condition).setOperator(operator);
-				
 			}
         	//TODO Joins?
         }
