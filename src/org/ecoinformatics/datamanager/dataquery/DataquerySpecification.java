@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-31 00:30:00 $'
- * '$Revision: 1.4 $'
+ *     '$Date: 2008-07-31 17:47:14 $'
+ * '$Revision: 1.5 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -331,7 +331,9 @@ public class DataquerySpecification extends DefaultHandler
         }
         if (leaving.getTagName().equals("entity")) {
         	//pop, done with the entity
-        	entityStack.pop();
+        	Entity entity = (Entity) entityStack.pop();
+        	Query query = (Query) queryStack.peek();
+        	query.addTableItem(new TableItem(entity));
         }
         if (leaving.getTagName().equals("attribute")) {
         	Entity entity = (Entity) entityStack.peek();
@@ -342,7 +344,6 @@ public class DataquerySpecification extends DefaultHandler
         	SelectionItem selection = new SelectionItem(entity, attribute);
         	Query query = (Query) queryStack.peek();
         	query.addSelectionItem(selection);
-        	query.addTableItem(new TableItem(entity));
         }
         
         
