@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-31 00:07:11 $'
- * '$Revision: 1.3 $'
+ *     '$Date: 2008-07-31 00:30:00 $'
+ * '$Revision: 1.4 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -389,26 +389,6 @@ public class DataquerySpecification extends DefaultHandler
     public String toString()
     {
         return xml.toString();
-    }  
-    
-    public static void main(String[] args) {
-    	try {
-	    	String parserName = "org.apache.xerces.parsers.SAXParser";
-	    	String fileName = args[0];
-	    	DataquerySpecification ds = 
-	    		new DataquerySpecification(
-	    				new FileReader(fileName),
-	    				parserName,
-	    				DatabaseConnectionPoolFactory.getDatabaseConnectionPoolInterface(),
-	    				//new PostgresDatabaseConnectionPool(),
-	    				new ConfigurableEcogridEndPoint());
-	    	log.debug(ds.getQuery().toSQLString());
-	    	
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-			// TODO: handle exception
-		}
     }
 
 }
