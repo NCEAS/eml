@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Join.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-12-09 01:15:32 $'
- *   '$Revision: 1.3 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-07-31 22:05:00 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -75,7 +75,24 @@ public class Join implements ConditionInterface
 		this.attribute2 = attribute2;
 	}
 	
-    
+	public void setLeft(Entity entity1, Attribute attribute1) {
+		this.entity1 = entity1;
+		this.attribute1 = attribute1;
+	}
+	
+	public void setRight(Entity entity2, Attribute attribute2) {
+		this.entity2 = entity2;
+		this.attribute2 = attribute2;
+	}
+	
+	public boolean isLeftSet() {
+		return (entity1 != null) && (attribute1 != null);
+	}
+	
+	public boolean isRightSet() {
+		return (entity2 != null) && (attribute2 != null);
+	}
+	
    /*
     * Instance methods
     */ 
