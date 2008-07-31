@@ -38,6 +38,18 @@
         <xs:sequence>
             <xs:choice>
                 <xs:sequence>
+                    <xs:element name="condition" type="conditionType" minOccurs="0"/>
+                    <xs:element name="or" type="logicalRelationType" minOccurs="0"/>
+                    <xs:element name="and" type="logicalRelationType" minOccurs="0"/>
+                </xs:sequence>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="logicalRelationType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:sequence>
                     <xs:element name="condition" type="conditionType" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element name="or" type="whereType" minOccurs="0"/>
                     <xs:element name="and" type="whereType" minOccurs="0"/>
