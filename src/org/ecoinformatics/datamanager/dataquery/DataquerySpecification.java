@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-30 18:31:04 $'
- * '$Revision: 1.2 $'
+ *     '$Date: 2008-07-31 00:07:11 $'
+ * '$Revision: 1.3 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,15 +34,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
-import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.Query;
+import org.ecoinformatics.datamanager.database.SelectionItem;
+import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
-import org.ecoinformatics.datamanager.database.pooling.PostgresDatabaseConnectionPool;
+import org.ecoinformatics.datamanager.database.pooling.DatabaseConnectionPoolFactory;
 import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
 import org.ecoinformatics.datamanager.download.DocumentHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
@@ -57,57 +61,39 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
- * A Class that represents a structured query, and can be constructed from an
+ * A Class that represents a data query, and can be constructed from an
  * XML serialization conforming to
  *
- * @see pathquery.dtd. The printSQL() method can be used to print a SQL
- *      serialization of the query.
+ * @see dataquery.xsd. The Data Manager Library should be used to execute the 
+ * Query or Union provided by this class.
+ * Note that the Datapackages involved in the Query are given by the getDataPackages() method
  */
 public class DataquerySpecification extends DefaultHandler
 {
 	private DatabaseConnectionPoolInterface connectionPool;
+	
 	private EcogridEndPointInterface ecogridEndPoint;
 
-    /** Identifier for this query document */
-    private String meta_file_id;
-
-    /** Title of this query */
-    private String queryTitle;
-
-    /** A string buffer to stored normalized query (Sometimes, the query have 
-     * a value like "&", it will cause problem in html transform). So we need a
-     * normalized query xml string.
+    /** A string buffer to store query
      */
     private StringBuffer xml = new StringBuffer();
+
+    private StringBuffer textBuffer = new StringBuffer();
+    
+    private String parserName = null;
 
     // Query data structures used temporarily during XML parsing
     private Stack elementStack = new Stack();
 
-    private Stack queryStack = new Stack();
-    
     private Stack datapackageStack = new Stack();
-    
-    private Stack attributeStack = new Stack();
-    
+
+    private Stack queryStack = new Stack();
+            
     private Stack entityStack = new Stack();
-
-    private String currentValue;
-
-    private String currentPathexpr;
-
-    private String parserName = null;
-
-    public static final String ATTRIBUTESYMBOL = "@";
-
-    public static final char PREDICATE_START = '[';
-
-    public static final char PREDICATE_END = ']';
-
-    private StringBuffer textBuffer = new StringBuffer();
     
-    private static Logger logMetacat = Logger.getLogger(DataquerySpecification.class);
-    
-    private Query query = null;
+    private static Log log = LogFactory.getLog(DataquerySpecification.class);
+        
+    private List queryList = new ArrayList();
     
     private Union union = null;
 
@@ -116,10 +102,10 @@ public class DataquerySpecification extends DefaultHandler
      *
      * @param queryspec
      *            the XML representation of the query (should conform to
-     *            pathquery.dtd) as a Reader
+     *            dataquery.xsd) as a Reader
      * @param parserName
      *            the fully qualified name of a Java Class implementing the
-     *            org.xml.sax.XMLReader interface
+     *            org.xml.sax.Parser interface
      */
     public DataquerySpecification(
     		Reader queryspec, 
@@ -129,7 +115,7 @@ public class DataquerySpecification extends DefaultHandler
     {
         super();
         
-        //for the DM
+        //for the DataManager
         this.connectionPool = connectionPool;
         this.ecogridEndPoint = ecogridEndPoint;
 
@@ -139,23 +125,23 @@ public class DataquerySpecification extends DefaultHandler
         // Initialize the parser and read the queryspec
         XMLReader parser = initializeParser();
         if (parser == null) {
-            System.err.println("SAX parser not instantiated properly.");
+            log.error("SAX parser not instantiated properly.");
         }
         try {
             parser.parse(new InputSource(queryspec));
         } catch (SAXException e) {
-            System.err.println("error parsing data in "
-                    + "QuerySpecification.QuerySpecification");
-            System.err.println(e.getMessage());
+        	log.error("error parsing data in "
+                    + "DataquerySpecification.DataquerySpecification");
+        	log.error(e.getMessage());
         }
     }
 
     /**
-     * construct an instance of the QuerySpecification class
+     * construct an instance of the DataquerySpecification class
      *
      * @param queryspec
      *            the XML representation of the query (should conform to
-     *            pathquery.dtd) as a String
+     *            dataquery.xsd) as a String
      * @param parserName
      *            the fully qualified name of a Java Class implementing the
      *            org.xml.sax.Parser interface
@@ -170,29 +156,33 @@ public class DataquerySpecification extends DefaultHandler
     }
 
     /**
-     * Accessor method to return the identifier of this Query
+     * Returns the Query generated after parsing XML.
+     * In cases where a Union is requested, this method will return only the first
+     * Query used in the Union.
+     * @return a single query object that can be used with the DataManager 
      */
-    public String getIdentifier()
-    {
-        return meta_file_id;
+    public Query getQuery() {
+    	return (Query) queryList.get(0);
     }
-
+    
     /**
-     * Accessor method to return the title of this Query
+     * Returns the Union (if any) generated after parsing XML.
+     * In cases where a Union is requested, this method will return only the first
+     * Query used in the Union.
+     * @return a single query object that can be used with the DataManager 
      */
-    public String getQueryTitle()
-    {
-        return queryTitle;
+    public Union getUnion() {
+    	return union;
     }
-
+    
     /**
-     * method to set the title of this query
+     * Needed when using the DataManager to select data using a generated Query or Union
+     * @return
      */
-    public void setQueryTitle(String title)
-    {
-        this.queryTitle = title;
+    public DataPackage[] getDataPackages() {
+    	return (DataPackage[]) datapackageStack.toArray(new DataPackage[0]);
     }
-
+    
     /**
      * Set up the SAX parser for reading the XML serialized query
      */
@@ -228,7 +218,7 @@ public class DataquerySpecification extends DefaultHandler
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException
     {
-        logMetacat.debug("start at startElement " + localName);
+        log.debug("start at startElement " + localName);
         BasicNode currentNode = new BasicNode(localName);
         //write element name into xml buffer.
         xml.append("<");
@@ -258,7 +248,7 @@ public class DataquerySpecification extends DefaultHandler
         	
         	String docId = currentNode.getAttribute("id");
         	
-        	//read metadata doc
+        	//read metadata document
         	DocumentHandler dh = new DocumentHandler();
         	dh.setDocId(docId);
         	dh.setEcogridEndPointInterface(ecogridEndPoint);
@@ -266,11 +256,11 @@ public class DataquerySpecification extends DefaultHandler
 			try {
 				metadataInputStream = dh.downloadDocument();
 			} catch (Exception e1) {
-				logMetacat.error("could not download document: " + docId);
+				log.error("could not download document: " + docId);
 				e1.printStackTrace();
 			}
         	
-        	//parse as DP
+        	//parse as DataPackage
         	DataPackage datapackage = null;
         	try {
 	        	datapackage =
@@ -279,8 +269,20 @@ public class DataquerySpecification extends DefaultHandler
 	        				connectionPool.getDBAdapterName()).parseMetadata(
 	        						metadataInputStream);
         	} catch (Exception e) {
-				logMetacat.error(
+				log.error(
 						"could not parse metadata given by docid: " + docId);
+			}
+        	
+        	//prime the data?
+        	try {
+				DataManager.getInstance(
+						connectionPool, 
+						connectionPool.getDBAdapterName()).loadDataToDB(
+								datapackage, 
+								ecogridEndPoint);
+			} catch (Exception e) {
+				log.error(
+						"could not load data given by docid: " + docId);
 			}
         	
         	//save it for later
@@ -288,23 +290,18 @@ public class DataquerySpecification extends DefaultHandler
         	
         }
         if (currentNode.getTagName().equals("entity")) {
-        	//TODO lookup by name rather than index?
+        	//get the entity and save it for later
         	DataPackage datapackage = (DataPackage) datapackageStack.peek();
         	int index = 0;
         	if (currentNode.getAttribute("index") != null ) {
         		index = Integer.parseInt(currentNode.getAttribute("index"));
         	}
         	Entity entity = datapackage.getEntityList()[index];
+        	//save for later
         	entityStack.push(entity);
         }
-        if (currentNode.getTagName().equals("attribute")) {
-        	DataPackage datapackage = (DataPackage) datapackageStack.peek();
-        	Entity entity = (Entity) entityStack.peek();
-        	int index = Integer.parseInt(currentNode.getAttribute("index"));
-        	Attribute attribute = entity.getAttributes()[index];
-        	attributeStack.push(attribute);
-        }
-        logMetacat.debug("end in startElement " + localName);
+        
+        log.debug("end in startElement " + localName);
     }
 
     /**
@@ -315,27 +312,43 @@ public class DataquerySpecification extends DefaultHandler
     public void endElement(String uri, String localName, String qName)
             throws SAXException
     {
-    	logMetacat.debug("start in endElement "+localName);
+    	log.debug("start in endElement "+localName);
         BasicNode leaving = (BasicNode) elementStack.pop();
         
+        if (leaving.getTagName().equals("union")) {
+        	//only instantiate it when it is used
+        	union = new Union();
+        	
+        	//add all the queries
+        	for (int i = 0; i < queryList.size(); i++) {
+        		union.addQuery((Query) queryList.get(i));
+        	}
+        }
+        if (leaving.getTagName().equals("query")) {
+        	//pop, done with the query, add to the union 9even for single query)
+        	Query query = (Query) queryStack.pop();
+        	queryList.add(query);
+        }
         if (leaving.getTagName().equals("entity")) {
+        	//pop, done with the entity
+        	entityStack.pop();
+        }
+        if (leaving.getTagName().equals("attribute")) {
         	Entity entity = (Entity) entityStack.peek();
-        	//assemble all the attributes
-        	while (!attributeStack.empty()) {
-        		Attribute attribute = (Attribute) attributeStack.pop();
-        		entity.add(attribute);
-        	}
-        } 
-        else if (leaving.getTagName().equals("datapackage")) {
-        	DataPackage dataPackage = (DataPackage) datapackageStack.peek();
-        	//assemble all the attributes
-        	while (!entityStack.empty()) {
-            	Entity entity = (Entity) entityStack.pop();
-        		dataPackage.add(entity);
-        	}
-        } 
+        	int index = Integer.parseInt(leaving.getAttribute("index"));
+        	Attribute attribute = entity.getAttributes()[index];
+        	
+        	//create the selectionItem and add to the query
+        	SelectionItem selection = new SelectionItem(entity, attribute);
+        	Query query = (Query) queryStack.peek();
+        	query.addSelectionItem(selection);
+        	query.addTableItem(new TableItem(entity));
+        }
+        
+        
+        
         String normalizedXML = textBuffer.toString().trim();
-        logMetacat.debug("================xml "+normalizedXML);
+        log.debug("================xml "+normalizedXML);
         xml.append(normalizedXML);
         xml.append("</");
         xml.append(localName);
@@ -346,12 +359,10 @@ public class DataquerySpecification extends DefaultHandler
     }
     
     /**
-     * Gets normailized query string in xml format, which can be transformed
-     * to html
+     * Gets query string in xml format (original form)
      */
-    public String getNormalizedXMLQuery()
+    public String getXML()
     {
-    	//System.out.println("normailized xml \n"+xml.toString());
     	return xml.toString();
     }
     
@@ -366,29 +377,9 @@ public class DataquerySpecification extends DefaultHandler
       // buffer all text nodes for same element. This is for text was splited
       // into different nodes
       String text = new String(ch, start, length);
-      logMetacat.debug("the text in characters "+text);
+      log.debug("the text in characters "+text);
       textBuffer.append(text);
 
-    }
-
-   public static String printRelationSQL(String docid)
-    {
-        StringBuffer self = new StringBuffer();
-        self.append("select subject, relationship, object, subdoctype, ");
-        self.append("objdoctype from xml_relation ");
-        self.append("where docid like '").append(docid).append("'");
-        return self.toString();
-    }
-
-    public static String printGetDocByDoctypeSQL(String docid)
-    {
-        StringBuffer self = new StringBuffer();
-
-        self.append("SELECT docid,docname,doctype,");
-        self.append("date_created, date_updated ");
-        self.append("FROM xml_documents WHERE docid IN (");
-        self.append(docid).append(")");
-        return self.toString();
     }
 
     /**
@@ -397,40 +388,8 @@ public class DataquerySpecification extends DefaultHandler
      */
     public String toString()
     {
-        return "meta_file_id=" + meta_file_id + "\n" + query;
-        //DOCTITLE attr cleared from the db
-        //return "meta_file_id=" + meta_file_id + "\n" +
-        //"querytitle=" + querytitle + "\n" + query;
-    }
-
-    /** A method to get rid of attribute part in path expression */
-    public static String newPathExpressionWithOutAttribute(String pathExpression)
-    {
-        if (pathExpression == null) { return null; }
-        int index = pathExpression.lastIndexOf(ATTRIBUTESYMBOL);
-        String newExpression = null;
-        if (index != 0) {
-            newExpression = pathExpression.substring(0, index - 1);
-        }
-        logMetacat.info("The path expression without attributes: "
-                + newExpression);
-        return newExpression;
-    }
-
-    /** A method to get attribute name from path */
-    public static String getAttributeName(String path)
-    {
-        if (path == null) { return null; }
-        int index = path.lastIndexOf(ATTRIBUTESYMBOL);
-        int size = path.length();
-        String attributeName = null;
-        if (index != 1) {
-            attributeName = path.substring(index + 1, size);
-        }
-        logMetacat.info("The attirbute name from path: "
-                + attributeName);
-        return attributeName;
-    }
+        return xml.toString();
+    }  
     
     public static void main(String[] args) {
     	try {
@@ -440,9 +399,10 @@ public class DataquerySpecification extends DefaultHandler
 	    		new DataquerySpecification(
 	    				new FileReader(fileName),
 	    				parserName,
-	    				new PostgresDatabaseConnectionPool(),
+	    				DatabaseConnectionPoolFactory.getDatabaseConnectionPoolInterface(),
+	    				//new PostgresDatabaseConnectionPool(),
 	    				new ConfigurableEcogridEndPoint());
-	    	logMetacat.debug(ds);
+	    	log.debug(ds.getQuery().toSQLString());
 	    	
     	}
     	catch (Exception e) {
