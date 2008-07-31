@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Condition.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-12-09 01:14:50 $'
- *   '$Revision: 1.6 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-07-31 19:36:11 $'
+ *   '$Revision: 1.7 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -145,6 +145,26 @@ public class Condition implements ConditionInterface
 	}
 	
     
+	public String getOperator() {
+		return operator;
+	}
+
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+
+
+	public Object getValue() {
+		return value;
+	}
+
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
+
+
 	/*
 	 * Transfer operator and value part into SQL string.
 	 */
