@@ -7,131 +7,85 @@
 	<union>
 		<query>
 			<selection>
-				<datapackage id="leinfelder.1.1">
+				<datapackage id="tao.1.1">
 					<entity index="0">
-						<attribute index="0"></attribute>
-					</entity>
-					<!-- For metadata items -->
-					<entity id="leinfelder.1.1" index="0">
-						<attribute index="0">
-							<name>id</name>
-							<pathexpr>assessment/@id</pathexpr>
-						</attribute>
-						<attribute index="1">
-							<name>title</name>
-							<pathexpr>assessment/@title</pathexpr>
-						</attribute>
-						<attribute index="2">
-							<name>type</name>
-							<pathexpr>assessment/@type</pathexpr>
-						</attribute>
-					</entity>
-					<!-- dataTable items in same package-->
-					<entity index="1">
-						<attribute index="0" />
-						<attribute index="1" />
-						<attribute index="2" />
+						<attribute index="0"/>
+						<attribute index="1"/>
 					</entity>
 				</datapackage>
-				<!-- query across datapackages -->
-				<datapackage id="leinfelder.2.1">
-					<entity index="1">
-						<attribute index="0" />
+			</selection>
+		</query>	
+		<query>
+			<selection>
+				<datapackage id="tao.1.1">
+					<entity index="0">
+						<attribute index="0"/>
+						<attribute index="1"/>
 					</entity>
 				</datapackage>
 			</selection>
 			<where>
 				<and>
-					<!-- joins -->
-					<!--metadata to data-->
-					<condition>
+					<condition type="join">
 						<left>
-							<datapackage id="leinfelder.1.1">
-								<entity id="leinfelder.1.1" index="0">
-									<attribute index="0" />
+							<datapackage id="tao.1.1">
+								<entity index="0">
+									<attribute index="0"/>
 								</entity>
 							</datapackage>
 						</left>
 						<right>
-							<datapackage id="leinfelder.1.1">
-								<entity index="1">
-									<attribute index="0" />
+							<datapackage id="tao.1.1">
+								<entity index="0">
+									<attribute index="1"/>
 								</entity>
 							</datapackage>
 						</right>
-						<operator>EQUALS</operator>
+						<operator>=</operator>
 					</condition>
-					<!-- data to additional data (in different datapackage) -->
-					<condition>
+					<condition type="condition">
 						<left>
-							<datapackage id="leinfelder.1.1">
-								<entity index="1">
-									<attribute index="0" />
+							<datapackage id="tao.1.1">
+								<entity index="0">
+									<attribute index="1"/>
 								</entity>
 							</datapackage>
 						</left>
 						<right>
-							<datapackage id="leinfelder.2.1">
-								<entity index="1">
-									<attribute index="0" />
-								</entity>
-							</datapackage>
+							<value>happy</value>
 						</right>
-						<operator>EQUALS</operator>
+						<operator>=</operator>
 					</condition>
-					<!-- subquery -->
-					<condition>
-						<left>
-							<datapackage id="leinfelder.1.1">
-								<entity index="1">
-									<attribute index="1" />
-								</entity>
-							</datapackage>
-						</left>
-						<right>
-							<subquery>
-								<selection>
-									<datapackage id="">
-										<entity index="0">
-											<attribute index="0"/>
-										</entity>
-									</datapackage>
-								</selection>
-							</subquery>
-						</right>
-						<operator>NOT IN</operator>
-					</condition>
-					<!--compound value comparision -->
+					
 					<or>
-						<condition>
+						<condition type="condition">
 							<left>
-								<datapackage id="leinfelder.1.1">
+								<datapackage id="tao.1.1">
 									<entity index="0">
-										<attribute index="1" />
+										<attribute index="0"/>
 									</entity>
 								</datapackage>
 							</left>
 							<right>
-								<value>%grande%</value>
+								<value>1234</value>
 							</right>
-							<operator>LIKE</operator>
+							<operator>=</operator>
 						</condition>
-						<condition>
+						<condition type="condition">
 							<left>
-								<datapackage id="leinfelder.1.1">
+								<datapackage id="tao.1.1">
 									<entity index="0">
-										<attribute index="1" />
+										<attribute index="0"/>
 									</entity>
 								</datapackage>
 							</left>
 							<right>
-								<value>%venti%</value>
+								<value>5678</value>
 							</right>
-							<operator>LIKE</operator>
+							<operator>=</operator>
 						</condition>
 					</or>
-					
-				</and>
+				</and>	
 			</where>
 		</query>
 	</union>

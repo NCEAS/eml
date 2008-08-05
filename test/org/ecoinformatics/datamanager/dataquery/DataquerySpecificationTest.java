@@ -26,7 +26,7 @@ public class DataquerySpecificationTest extends TestCase {
   
   private DataManager dataManager;
   
-  private String fileName = "lib/datamanager/schema/dataquery_simple.xml";
+  private String fileName = "lib/datamanager/schema/dataquery.xml";
   
   private String parserName = "org.apache.xerces.parsers.SAXParser";
   

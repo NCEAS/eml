@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-07-31 22:08:01 $'
- * '$Revision: 1.7 $'
+ *     '$Date: 2008-08-05 00:58:25 $'
+ * '$Revision: 1.8 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@ import org.ecoinformatics.datamanager.database.Condition;
 import org.ecoinformatics.datamanager.database.ConditionInterface;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.Join;
+import org.ecoinformatics.datamanager.database.LogicalRelation;
 import org.ecoinformatics.datamanager.database.ORRelation;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
@@ -99,6 +100,10 @@ public class DataquerySpecification extends DefaultHandler
     
     private Stack conditionStack = new Stack();
     
+    private Stack logicalStack = new Stack();
+        
+    private LogicalRelation currentLogical = null;
+        
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
     
     private Map fetchedDatapackages = new HashMap(); 
@@ -331,6 +336,25 @@ public class DataquerySpecification extends DefaultHandler
         		condition = new Condition(null, null, null, null);
         	}
         	conditionStack.push(condition);
+
+        }
+        if (currentNode.getTagName().equals("and")) {
+        	//create new AND and add it to the current relation (for nesting)
+        	ANDRelation and = new ANDRelation();
+        	if (currentLogical != null) {
+        		currentLogical.addANDRelation(and);
+        	}
+        	//then set the current logical to the new AND
+        	currentLogical = and;
+            logicalStack.push(currentLogical);
+        }
+        if (currentNode.getTagName().equals("or")) {
+        	ORRelation or = new ORRelation();
+        	if (currentLogical != null) {
+        		currentLogical.addORRelation(or);
+        	}
+        	currentLogical = or;
+            logicalStack.push(currentLogical);
         }
         
         log.debug("end in startElement " + localName);
@@ -382,7 +406,7 @@ public class DataquerySpecification extends DefaultHandler
         	Attribute attribute = entity.getAttributes()[index];
         	
         	//conditions here
-        	if (!conditionStack.isEmpty()) {
+        	if (!conditionStack.isEmpty()) {	
         		//intitial part of the condition
         		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
             	if (condition instanceof Condition) {
@@ -400,6 +424,7 @@ public class DataquerySpecification extends DefaultHandler
             		}
             	}
             	conditionStack.push(condition);
+            	
         	}
         	else {
         		//create the selectionItem and add to the query
@@ -426,47 +451,43 @@ public class DataquerySpecification extends DefaultHandler
         	//TODO Joins?
         }
         if (leaving.getTagName().equals("where")) {
+        	
+        	//set up the shell
+        	WhereClause where = new WhereClause((ConditionInterface)null);
+        	
         	if (!conditionStack.isEmpty()) {
 	        	//done with the condition now, we can pop it
 	        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-	        	WhereClause where = new WhereClause(condition);
-	        	
-	        	Query query = (Query) queryStack.peek();
-	        	query.setWhereClause(where);
+	        	where = new WhereClause(condition);
         	}
-        }
-        if (leaving.getTagName().equals("and")) {
-
-        	//done with the conditions now, we can pop them all
-        	ANDRelation and = new ANDRelation();
-        	while (!conditionStack.isEmpty()) {
-        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();        	
-        		and.addCondtionInterface(condition);
+        	if (currentLogical != null) {
+        		
+        		if (currentLogical instanceof ANDRelation) {
+        			where = new WhereClause((ANDRelation)currentLogical);
+        		}
+        		else {
+        			where = new WhereClause((ORRelation)currentLogical);
+        		}
         	}
-        	WhereClause where = new WhereClause(and);
-
+        	
         	//set the where clause
-        	//FIXME need to handle compound AND/OR constructs
         	Query query = (Query) queryStack.peek();
         	query.setWhereClause(where);
-        	
+        }
+        
+        if (leaving.getTagName().equals("condition")) {
+        	if (currentLogical != null) {
+        		currentLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
+        	}
+        }
+        
+        if (leaving.getTagName().equals("and")) {
+        	//set the current logical to what's on the stack
+        	currentLogical = (LogicalRelation) logicalStack.pop();
         }
         
         if (leaving.getTagName().equals("or")) {
-
-        	//done with the conditions now, we can pop them all
-        	ORRelation or = new ORRelation();
-        	while (!conditionStack.isEmpty()) {
-        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();        	
-        		or.addCondtionInterface(condition);
-        	}
-        	WhereClause where = new WhereClause(or);
-
-        	//set the where clause
-        	//FIXME need to handle compound AND/OR constructs
-        	Query query = (Query) queryStack.peek();
-        	query.setWhereClause(where);
-        	
+        	currentLogical = (LogicalRelation) logicalStack.pop();
         }
         
         String normalizedXML = textBuffer.toString().trim();
