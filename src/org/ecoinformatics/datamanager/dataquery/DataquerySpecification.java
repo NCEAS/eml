@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-05 21:52:13 $'
- * '$Revision: 1.9 $'
+ *     '$Date: 2008-08-05 23:09:29 $'
+ * '$Revision: 1.10 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,6 +105,8 @@ public class DataquerySpecification extends DefaultHandler
     private Stack subQueryStack = new Stack();
         
     private LogicalRelation currentLogical = null;
+    
+    private LogicalRelation currentSubQueryLogical = null;
         
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
     
@@ -347,20 +349,40 @@ public class DataquerySpecification extends DefaultHandler
         if (currentNode.getTagName().equals("and")) {
         	//create new AND and add it to the current relation (for nesting)
         	ANDRelation and = new ANDRelation();
-        	if (currentLogical != null) {
-        		currentLogical.addANDRelation(and);
+        	if (subQueryStack.isEmpty()) {
+	        	if (currentLogical != null) {
+	        		currentLogical.addANDRelation(and);
+	        	}
+	        	//then set the current logical to the new AND
+	        	currentLogical = and;
+	            logicalStack.push(currentLogical);
         	}
-        	//then set the current logical to the new AND
-        	currentLogical = and;
-            logicalStack.push(currentLogical);
+        	else {
+        		if (currentSubQueryLogical != null) {
+        			currentSubQueryLogical.addANDRelation(and);
+            	}
+            	//then set the current logical to the new AND
+        		currentSubQueryLogical = and;
+                logicalStack.push(currentSubQueryLogical);
+        	}
         }
         if (currentNode.getTagName().equals("or")) {
         	ORRelation or = new ORRelation();
-        	if (currentLogical != null) {
-        		currentLogical.addORRelation(or);
+        	if (subQueryStack.isEmpty()) {
+	        	if (currentLogical != null) {
+	        		currentLogical.addORRelation(or);
+	        	}
+	        	currentLogical = or;
+	            logicalStack.push(currentLogical);
         	}
-        	currentLogical = or;
-            logicalStack.push(currentLogical);
+        	else {
+        		if (currentSubQueryLogical != null) {
+        			currentSubQueryLogical.addORRelation(or);
+            	}
+            	//then set the current logical to the new AND
+        		currentSubQueryLogical = or;
+                logicalStack.push(currentSubQueryLogical);
+        	}
         }
         
         log.debug("end in startElement " + localName);
@@ -483,8 +505,21 @@ public class DataquerySpecification extends DefaultHandler
         	//in subquery?
         	if (!subQueryStack.isEmpty()) {
         		WhereClause where = new WhereClause((ConditionInterface)null);
-        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-	        	where = new WhereClause(condition);
+        		
+	        	if (currentSubQueryLogical != null) {
+	        		
+	        		if (currentSubQueryLogical instanceof ANDRelation) {
+	        			where = new WhereClause((ANDRelation)currentSubQueryLogical);
+	        		}
+	        		else {
+	        		}
+	        	}
+	        	else if (!conditionStack.isEmpty()) {
+		        	//done with the condition now, we can pop it
+		        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+		        	where = new WhereClause(condition);
+	        	}
+	        	
         		Query subQuery = (Query) subQueryStack.peek();
 	        	subQuery.setWhereClause(where);
         	}
@@ -515,7 +550,10 @@ public class DataquerySpecification extends DefaultHandler
         
         if (leaving.getTagName().equals("condition")) {
         	if (!subQueryStack.isEmpty()) {
-        		//do something?
+        		if (currentSubQueryLogical != null) {
+	        		//do something?
+	        		currentSubQueryLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
+        		}
         	}
         	else if (currentLogical != null) {
         		currentLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
@@ -523,12 +561,24 @@ public class DataquerySpecification extends DefaultHandler
         }
         
         if (leaving.getTagName().equals("and")) {
-        	//set the current logical to what's on the stack
-        	currentLogical = (LogicalRelation) logicalStack.pop();
+        	if (!subQueryStack.isEmpty()) {
+        		//set the current logical to what's on the stack
+	        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
+        	}
+        	else {
+	        	//set the current logical to what's on the stack
+	        	currentLogical = (LogicalRelation) logicalStack.pop();
+        	}
         }
         
         if (leaving.getTagName().equals("or")) {
-        	currentLogical = (LogicalRelation) logicalStack.pop();
+        	if (!subQueryStack.isEmpty()) {
+        		//set the current logical to what's on the stack
+	        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
+        	}
+        	else {
+        		currentLogical = (LogicalRelation) logicalStack.pop();
+        	}
         }
         
         String normalizedXML = textBuffer.toString().trim();
