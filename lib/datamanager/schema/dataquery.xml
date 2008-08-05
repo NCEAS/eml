@@ -5,6 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="eml://ecoinformatics.org/dataquery dataquery.xsd ">
 	<union>
+		<!-- first query in UNION -->
 		<query>
 			<selection>
 				<datapackage id="tao.1.1">
@@ -14,7 +15,23 @@
 					</entity>
 				</datapackage>
 			</selection>
-		</query>	
+			<where>
+				<condition type="condition">
+					<left>
+						<datapackage id="tao.1.1">
+							<entity index="0">
+								<attribute index="0"/>
+							</entity>
+						</datapackage>
+					</left>
+					<right>
+						<value>1</value>
+					</right>
+					<operator>=</operator>
+				</condition>
+			</where>
+		</query>
+		<!-- second query in UNION -->
 		<query>
 			<selection>
 				<datapackage id="tao.1.1">
@@ -57,6 +74,45 @@
 						<operator>=</operator>
 					</condition>
 					
+					<!-- subquery clause-->
+					<condition type="subquery">
+						<left>
+							<datapackage id="tao.1.1">
+								<entity index="0">
+									<attribute index="1"/>
+								</entity>
+							</datapackage>
+						</left>
+						<right>
+							<subquery>
+								<selection>
+									<datapackage id="tao.1.1">
+										<entity index="0">
+											<attribute index="1"/>
+										</entity>
+									</datapackage>
+								</selection>
+								<where>
+									<condition type="condition">
+										<left>
+											<datapackage id="tao.1.1">
+												<entity index="0">
+													<attribute index="1"/>
+												</entity>
+											</datapackage>
+										</left>
+										<right>
+											<value>100</value>
+										</right>
+										<operator>=</operator>
+									</condition>
+								</where>
+							</subquery>
+						</right>
+						<operator>IN</operator>
+					</condition>
+					
+					<!-- nested OR relation --> 
 					<or>
 						<condition type="condition">
 							<left>

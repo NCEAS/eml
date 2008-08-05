@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-05 00:58:25 $'
- * '$Revision: 1.8 $'
+ *     '$Date: 2008-08-05 21:52:13 $'
+ * '$Revision: 1.9 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,6 +101,8 @@ public class DataquerySpecification extends DefaultHandler
     private Stack conditionStack = new Stack();
     
     private Stack logicalStack = new Stack();
+    
+    private Stack subQueryStack = new Stack();
         
     private LogicalRelation currentLogical = null;
         
@@ -259,6 +261,10 @@ public class DataquerySpecification extends DefaultHandler
             Query query = new Query();
             queryStack.push(query);
         }
+        if (currentNode.getTagName().equals("subquery")) {
+            Query query = new Query();
+            subQueryStack.push(query);
+        }
         if (currentNode.getTagName().equals("datapackage")) {
         	
         	String docId = currentNode.getAttribute("id");
@@ -381,9 +387,13 @@ public class DataquerySpecification extends DefaultHandler
         	}
         }
         if (leaving.getTagName().equals("query")) {
-        	//pop, done with the query, add to the union 9even for single query)
+        	//pop, done with the query, add to the union (even for single query)
         	Query query = (Query) queryStack.pop();
         	queryList.add(query);
+        }
+        if (leaving.getTagName().equals("subquery")) {
+        	//pop, done with the subquery
+        	subQueryStack.pop();
         }
         if (leaving.getTagName().equals("entity")) {
         	//in selection
@@ -395,17 +405,22 @@ public class DataquerySpecification extends DefaultHandler
 	        	Query query = (Query) queryStack.peek();
 	        	query.addTableItem(new TableItem(entity));
         	}
-        	else {
-        		//anything?
+        	
+        	if (!subQueryStack.isEmpty()) {
+	        	//pop, done with the entity
+	        	Entity entity = (Entity) entityStack.pop();
+
+        		Query subQuery = (Query) subQueryStack.peek();
+        		subQuery.addTableItem(new TableItem(entity));
         	}
         }
         if (leaving.getTagName().equals("attribute")) {
-        	Query query = (Query) queryStack.peek();
+        	//look up the attribute from this entity
         	Entity entity = (Entity) entityStack.peek();
         	int index = Integer.parseInt(leaving.getAttribute("index"));
         	Attribute attribute = entity.getAttributes()[index];
         	
-        	//conditions here
+        	//process conditions here
         	if (!conditionStack.isEmpty()) {	
         		//intitial part of the condition
         		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
@@ -413,7 +428,16 @@ public class DataquerySpecification extends DefaultHandler
             		condition = new Condition(entity, attribute, null, null);
     			}
             	else if (condition instanceof SubQueryClause) {
-            		condition = new SubQueryClause(entity, attribute, null, null);
+            		Query subQuery = null;
+            		if (subQueryStack.isEmpty()) {
+            			subQuery = new Query();
+            		}
+            		else {
+            			subQuery = (Query) subQueryStack.peek();
+            		}
+            		SelectionItem selection = new SelectionItem(entity, attribute);
+            		subQuery.addSelectionItem(selection);
+            		condition = new SubQueryClause(entity, attribute, null, subQuery);
     			}
             	else if (condition instanceof Join) {
             		if (!((Join)condition).isLeftSet()) {
@@ -427,6 +451,8 @@ public class DataquerySpecification extends DefaultHandler
             	
         	}
         	else {
+            	Query query = (Query) queryStack.peek();
+
         		//create the selectionItem and add to the query
 	        	SelectionItem selection = new SelectionItem(entity, attribute);
 	        	query.addSelectionItem(selection);
@@ -439,6 +465,9 @@ public class DataquerySpecification extends DefaultHandler
         	if (condition instanceof Condition) {
 				((Condition) condition).setOperator(operator);
 			}
+        	if (condition instanceof SubQueryClause) {
+				((SubQueryClause) condition).setOperator(operator);
+			}
         	//TODO Joins?
         }
         if (leaving.getTagName().equals("value")) {
@@ -448,35 +477,47 @@ public class DataquerySpecification extends DefaultHandler
 				((Condition) condition).setValue(value);
 				
 			}
-        	//TODO Joins?
         }
         if (leaving.getTagName().equals("where")) {
         	
-        	//set up the shell
-        	WhereClause where = new WhereClause((ConditionInterface)null);
-        	
-        	if (!conditionStack.isEmpty()) {
-	        	//done with the condition now, we can pop it
-	        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+        	//in subquery?
+        	if (!subQueryStack.isEmpty()) {
+        		WhereClause where = new WhereClause((ConditionInterface)null);
+        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
 	        	where = new WhereClause(condition);
+        		Query subQuery = (Query) subQueryStack.peek();
+	        	subQuery.setWhereClause(where);
         	}
-        	if (currentLogical != null) {
-        		
-        		if (currentLogical instanceof ANDRelation) {
-        			where = new WhereClause((ANDRelation)currentLogical);
-        		}
-        		else {
-        			where = new WhereClause((ORRelation)currentLogical);
-        		}
+        	else {
+	        	//set up the shell
+	        	WhereClause where = new WhereClause((ConditionInterface)null);
+	        	
+	        	if (!conditionStack.isEmpty()) {
+		        	//done with the condition now, we can pop it
+		        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+		        	where = new WhereClause(condition);
+	        	}
+	        	else if (currentLogical != null) {
+	        		
+	        		if (currentLogical instanceof ANDRelation) {
+	        			where = new WhereClause((ANDRelation)currentLogical);
+	        		}
+	        		else {
+	        			where = new WhereClause((ORRelation)currentLogical);
+	        		}
+	        	}
+	        	
+	        	//set the where clause
+	       		Query query = (Query) queryStack.peek();
+	        	query.setWhereClause(where);
         	}
-        	
-        	//set the where clause
-        	Query query = (Query) queryStack.peek();
-        	query.setWhereClause(where);
         }
         
         if (leaving.getTagName().equals("condition")) {
-        	if (currentLogical != null) {
+        	if (!subQueryStack.isEmpty()) {
+        		//do something?
+        	}
+        	else if (currentLogical != null) {
         		currentLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
         	}
         }
