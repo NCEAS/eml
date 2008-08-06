@@ -3,6 +3,7 @@ package org.ecoinformatics.datamanager.dataquery;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -119,10 +120,34 @@ public class DataquerySpecificationTest extends TestCase {
     assertNotNull("Query is null", specification.getQuery());
 
     if (specification.getQuery() != null) {
-    	//System.out.println(specification.getQuery().toSQLString());
-    	System.out.println(specification.getUnion().toSQLString());
+    	System.out.println(specification.getQuery().toSQLString());
+    	//System.out.println(specification.getUnion().toSQLString());
     	//TODO more tests!
+    	ResultSet rs = dataManager.selectData(specification.getQuery(), specification.getDataPackages());
+    	printResultSet(rs);
     } 
+  }
+  
+  public static void printResultSet(ResultSet resultSet) throws Exception {
+	  if (resultSet != null) {
+
+			int columns = resultSet.getMetaData().getColumnCount();
+			for (int i=1; i <= columns; i++) {
+				String column = resultSet.getMetaData().getColumnName(i);
+				System.out.print(column);
+				System.out.print("\t");
+			}
+			System.out.println();
+
+			while (resultSet.next()) {
+				for (int i=1; i <= columns; i++) {
+					Object value = resultSet.getString(i);
+					System.out.print(value);
+					System.out.print("\t");
+				}
+				System.out.println();
+			}
+		} 
   }
   
 }
