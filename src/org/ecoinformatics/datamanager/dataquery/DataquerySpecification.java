@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-06 23:05:37 $'
- * '$Revision: 1.11 $'
+ *     '$Date: 2008-08-06 23:25:43 $'
+ * '$Revision: 1.12 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -237,7 +237,7 @@ public class DataquerySpecification extends DefaultHandler
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException
     {
-        log.debug("start at startElement " + localName);
+        log.debug("<" + localName + ">");
         BasicNode currentNode = new BasicNode(localName);
         //write element name into xml buffer.
         xml.append("<");
@@ -385,7 +385,7 @@ public class DataquerySpecification extends DefaultHandler
         	}
         }
         
-        log.debug("end in startElement " + localName);
+        //log.debug("done: " + localName);
     }
 
     /**
@@ -396,7 +396,7 @@ public class DataquerySpecification extends DefaultHandler
     public void endElement(String uri, String localName, String qName)
             throws SAXException
     {
-    	log.debug("start in endElement "+localName);
+        //log.debug("leaving: " + localName);
         BasicNode leaving = (BasicNode) elementStack.pop();
         
         if (leaving.getTagName().equals("union")) {
@@ -595,13 +595,15 @@ public class DataquerySpecification extends DefaultHandler
         }
         
         String normalizedXML = textBuffer.toString().trim();
-        log.debug("================xml "+normalizedXML);
+        //log.debug("================xml "+normalizedXML);
         xml.append(normalizedXML);
         xml.append("</");
         xml.append(localName);
         xml.append(">");
         //rest textBuffer
         textBuffer = new StringBuffer();
+        
+        log.debug("</" + localName + ">");
 
     }
     
@@ -624,8 +626,13 @@ public class DataquerySpecification extends DefaultHandler
       // buffer all text nodes for same element. This is for text was splited
       // into different nodes
       String text = new String(ch, start, length);
-      log.debug("the text in characters "+text);
       textBuffer.append(text);
+      
+      //clean up fro debug
+      text=text.trim();
+      if (text != null && text.length() > 0) {
+    	  log.debug(text);
+      }
 
     }
 
