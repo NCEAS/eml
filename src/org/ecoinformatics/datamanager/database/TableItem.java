@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: TableItem.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-12-09 01:17:59 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-08-06 00:01:15 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -99,6 +99,15 @@ public class TableItem
     	}
         
     	return tableName;
+    }
+    
+    public boolean equals(Object obj) {
+    	if (obj instanceof TableItem) {
+    		TableItem tableItem = (TableItem) obj;
+    		return tableItem.entity.equals(this.entity);
+    	}
+    
+    	return false;
     }
     
 }

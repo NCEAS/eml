@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: Query.java,v $'
  *
- *     '$Author: tao $'
- *       '$Date: 2006-11-17 20:13:54 $'
- *   '$Revision: 1.2 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-08-06 00:01:15 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -89,6 +89,10 @@ public class Query
 	 */
 	public void addTableItem(TableItem table)
 	{
+		if (containsTableItem(table)) {
+			return;
+		}
+		
 		if (tableList == null)
 		{
 			tableList = new TableItem[1];
@@ -106,6 +110,21 @@ public class Query
 			tableList[size] = table;
 			
 		}
+	}
+	
+	public boolean containsTableItem(TableItem table)
+	{
+		if (tableList != null)
+		{
+			int size = tableList.length;
+			for(int i=0; i<size; i++)
+			{
+				if (tableList[i].equals(table)) {
+					return true;
+				}
+			}			
+		}
+		return false;
 	}
 	
 	/**
