@@ -9,6 +9,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterfaceTest;
 import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
@@ -17,6 +19,8 @@ import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 
 public class DataquerySpecificationTest extends TestCase {
   
+    private static Log log = LogFactory.getLog(DataquerySpecificationTest.class);
+
   /*
    * Instance fields
    */
@@ -120,8 +124,8 @@ public class DataquerySpecificationTest extends TestCase {
     assertNotNull("Query is null", specification.getQuery());
 
     if (specification.getQuery() != null) {
-    	System.out.println(specification.getQuery().toSQLString());
-    	//System.out.println(specification.getUnion().toSQLString());
+    	log.debug(specification.getQuery().toSQLString());
+    	//log.debug(specification.getUnion().toSQLString());
     	//TODO more tests!
     	ResultSet rs = dataManager.selectData(specification.getQuery(), specification.getDataPackages());
     	printResultSet(rs);
@@ -132,20 +136,22 @@ public class DataquerySpecificationTest extends TestCase {
 	  if (resultSet != null) {
 
 			int columns = resultSet.getMetaData().getColumnCount();
+			String row = "";
 			for (int i=1; i <= columns; i++) {
 				String column = resultSet.getMetaData().getColumnName(i);
-				System.out.print(column);
-				System.out.print("\t");
+				row += column;
+				row += "\t";
 			}
-			System.out.println();
+			log.debug(row);
 
 			while (resultSet.next()) {
+				row = "";
 				for (int i=1; i <= columns; i++) {
 					Object value = resultSet.getString(i);
-					System.out.print(value);
-					System.out.print("\t");
+					row += value;
+					row += "\t";
 				}
-				System.out.println();
+				log.debug(row);
 			}
 		} 
   }
