@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-05 23:09:29 $'
- * '$Revision: 1.10 $'
+ *     '$Date: 2008-08-06 23:05:37 $'
+ * '$Revision: 1.11 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -493,7 +493,20 @@ public class DataquerySpecification extends DefaultHandler
         	//TODO Joins?
         }
         if (leaving.getTagName().equals("value")) {
-        	String value = textBuffer.toString().trim();
+        	Object value = textBuffer.toString().trim();
+        	//try some numeric options
+        	//TODO incorporate type information from metadata into these decisions.
+        	try {
+        		value = Integer.parseInt((String) value);
+        	}
+        	catch (Exception e) {
+        		try {
+        			value = Double.parseDouble((String) value);
+        		}
+        		catch (Exception e2) {
+					// do nothing - treat it as a String
+				}
+			}
         	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
         	if (condition instanceof Condition) {
 				((Condition) condition).setValue(value);
