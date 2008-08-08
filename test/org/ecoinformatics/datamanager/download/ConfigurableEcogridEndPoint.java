@@ -2,8 +2,8 @@
  *    '$RCSfile: ConfigurableEcogridEndPoint.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-08-08 21:40:51 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2008-08-08 21:44:24 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://ecoinformatics.org
  *

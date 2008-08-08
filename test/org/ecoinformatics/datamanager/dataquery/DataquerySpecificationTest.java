@@ -136,7 +136,7 @@ public class DataquerySpecificationTest extends TestCase {
   
   private String login(String username, String password) throws Exception {
 	   String sessionId = null;
-	   String metacatEcogridAuthEndPoint = ((ConfigurableEcogridEndPoint)endPointInfo).getMetacatAuthenticatedEcogridEndPoint();
+	   String metacatEcogridAuthEndPoint = ((ConfigurableEcogridEndPoint)endPointInfo).getMetacatEcogridAuthEndPoint();
 	   AuthenticationServiceClient authClient = 
 		   new AuthenticationServiceClient(metacatEcogridAuthEndPoint);
 	   sessionId = authClient.login_action(username, password);
@@ -144,7 +144,7 @@ public class DataquerySpecificationTest extends TestCase {
   }
   
   private void logout(String sessionId) throws Exception {
-	  String metacatEcogridAuthEndPoint = ((ConfigurableEcogridEndPoint)endPointInfo).getMetacatAuthenticatedEcogridEndPoint();
+	  String metacatEcogridAuthEndPoint = ((ConfigurableEcogridEndPoint)endPointInfo).getMetacatEcogridAuthEndPoint();
 	   AuthenticationServiceClient authClient = 
 		   new AuthenticationServiceClient(metacatEcogridAuthEndPoint); 
 	   authClient.logout_action(sessionId);
