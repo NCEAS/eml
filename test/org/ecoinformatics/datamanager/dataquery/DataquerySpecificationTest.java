@@ -36,9 +36,9 @@ public class DataquerySpecificationTest extends TestCase {
   
   private String parserName = "org.apache.xerces.parsers.SAXParser";
   
-  private String username = "uid=leinfelder,o=NCEAS,dc=ecoinformatics,dc=org";
+  private String username = "uid=xxx,o=NCEAS,dc=ecoinformatics,dc=org";
   
-  private String password = "cielo1635";
+  private String password = "xxx";
   
   /**
    * Because DataqueryTest is a subclass of TestCase, it must provide a
