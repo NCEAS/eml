@@ -4,7 +4,7 @@
     xmlns:eml="eml://ecoinformatics.org/eml-2.1.0rc3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:stmml="http://www.xml-cml.org/schema/stmml"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0rc3 eml.xsd">
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0rc3 ../eml.xsd">
 
 <dataset>
   <title>Data from Cedar Creek LTER on productivity and species richness
@@ -326,9 +326,20 @@
   <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml"
     xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
     <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
-    <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
+    <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001">
+        <stmml:description>a description of the unit Grams per Square Meter</stmml:description>
+        <stmml:annotation>
+            <stmml:documentation>
+                STMML intended this section to be used like XSD annotations. 
+                Useful for some complex or arcane units, although not necessarily this one
+            </stmml:documentation>
+            <stmml:appinfo>
+                Put info or code here about the deriviation of a domain-specific unit.
+            </stmml:appinfo>
+        </stmml:annotation>
+    </stmml:unit>
     <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
-  </stmml:unitList>
+</stmml:unitList>
   </metadata>
 </additionalMetadata>
 </eml:eml>
