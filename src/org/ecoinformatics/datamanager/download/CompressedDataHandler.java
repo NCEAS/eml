@@ -2,8 +2,8 @@
  *    '$RCSfile: CompressedDataHandler.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-02-15 01:48:47 $'
- *   '$Revision: 1.9 $'
+ *       '$Date: 2008-08-08 21:40:51 $'
+ *   '$Revision: 1.10 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 
+import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
 /**
@@ -93,10 +94,6 @@ public abstract class CompressedDataHandler extends DownloadHandler
   	        {
   	            //fatory
   	            //log.debug("This is instance pattern");
-  	            
-  	            URL endPointURL = new URL(endPoint);
-  	          QueryServiceGetToStreamClient ecogridClient = 
-                                      new QueryServiceGetToStreamClient(endPointURL);
   	            String localIdentifier = ecogridIdentifier+suffix;
   	            File tmp = new File(System.getProperty("java.io.tmpdir"));
   	            compressedFile = new File(tmp, localIdentifier);
@@ -105,7 +102,19 @@ public abstract class CompressedDataHandler extends DownloadHandler
            		if (stream != null)
   	            {
                     BufferedOutputStream bos = new BufferedOutputStream(stream);
-                    ecogridClient.get(ecogridIdentifier, bos);
+                    
+                    URL endPointURL = new URL(endPoint);
+      	            if (sessionId != null) {
+      	            	AuthenticatedQueryServiceGetToStreamClient authenticatedEcogridClient = 
+                            new AuthenticatedQueryServiceGetToStreamClient(endPointURL);
+      	            	authenticatedEcogridClient.get(ecogridIdentifier, sessionId, bos);
+      	            }
+      	            else {
+      	            	QueryServiceGetToStreamClient ecogridClient = 
+                                          new QueryServiceGetToStreamClient(endPointURL);
+      	            	ecogridClient.get(ecogridIdentifier, bos);
+      	            }
+                    
                     bos.flush();
                     bos.close();
                     stream.close();

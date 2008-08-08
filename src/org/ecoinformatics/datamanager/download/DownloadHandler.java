@@ -2,8 +2,8 @@
  *    '$RCSfile: DownloadHandler.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-02-15 01:48:47 $'
- *   '$Revision: 1.27 $'
+ *       '$Date: 2008-08-08 21:40:51 $'
+ *   '$Revision: 1.28 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -39,6 +39,7 @@ import java.net.URL;
 import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
+import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
 
@@ -65,11 +66,9 @@ public class DownloadHandler implements Runnable
     private static final int    MAXLOOPNUMBER   = 20000;
     
     protected static Hashtable handlerList = new Hashtable();
-    private static String ECOGRIDENDPOINT = "http://ecogrid.ecoinformatics.org/knb/services/EcoGridQuery";
     private static String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
     private static String SRBMACHINE      = "srb-mcat.sdsc.edu";
  
-    
 	/*
 	 * Instance fields
 	 */
@@ -83,6 +82,9 @@ public class DownloadHandler implements Runnable
 	protected boolean success = false;
 	protected boolean busy = false;
 	private Exception exception = null;
+	
+	protected String ecogridEndPoint = "http://ecogrid.ecoinformatics.org/knb/services/QueryService";
+	protected String sessionId      = null;
     
     
     /*
@@ -98,9 +100,18 @@ public class DownloadHandler implements Runnable
         this.url = url;
         if (endPoint != null)
         {
-            ECOGRIDENDPOINT = endPoint.getMetacatEcogridEndPoint();
+            ecogridEndPoint = endPoint.getMetacatEcogridEndPoint();
             SRBENDPOINT = endPoint.getSRBEcogridEndPoint();
             SRBMACHINE = endPoint.getSRBMachineName();
+            
+            //do we have authenticated version?
+            if (endPoint instanceof AuthenticatedEcogridEndPointInterface) {
+            	sessionId = ((AuthenticatedEcogridEndPointInterface)endPoint).getSessionId();
+            	//can we actually use it?
+            	if (sessionId != null) {
+            		ecogridEndPoint = ((AuthenticatedEcogridEndPointInterface)endPoint).getMetacatAuthenticatedEcogridEndPoint();
+            	}
+            }
         }
         //loadOptions();
         //this.identifier = identifier;
@@ -531,7 +542,7 @@ public class DownloadHandler implements Runnable
              //System.out.println("the endpoint is "+ECOGRIDENDPOINT);
              //System.out.println("The identifier is "+ecogridIdentifier);
              //return false;
-             return getContentFromEcoGridSource(ECOGRIDENDPOINT, 
+             return getContentFromEcoGridSource(ecogridEndPoint, 
                                                 ecogridIdentifier);
          }
          else if (resourceName != null && resourceName.startsWith("srb://")) {
@@ -576,11 +587,7 @@ public class DownloadHandler implements Runnable
 	        {
 	            //fatory
 	            //log.debug("This is instance pattern");
-	            
-	            URL endPointURL = new URL(endPoint);
-	            QueryServiceGetToStreamClient ecogridClient = 
-                                      new QueryServiceGetToStreamClient(endPointURL);
-	            
+	            	            
 	            //log.debug("Get from EcoGrid: " + identifier);
 	            NeededOutputStream [] outputStreamList = getOutputStreamList();
                 
@@ -596,8 +603,19 @@ public class DownloadHandler implements Runnable
 	            		{
 		                    BufferedOutputStream bos = 
                              new BufferedOutputStream(stream.getOutputStream());
-                            
-		                    ecogridClient.get(identifier, bos);
+		                    
+		                    //use the appropriate client
+		                    URL endPointURL = new URL(endPoint);
+		                    if (sessionId != null) {
+		                    	AuthenticatedQueryServiceGetToStreamClient authenticatedEcogridClient = 
+		        	            	new AuthenticatedQueryServiceGetToStreamClient(endPointURL);
+		                    	authenticatedEcogridClient.get(identifier, sessionId, bos);
+		                    }
+		                    else {
+		                    	QueryServiceGetToStreamClient ecogridClient = 
+                                    new QueryServiceGetToStreamClient(endPointURL);
+		                    	ecogridClient.get(identifier, bos);
+		                    }
 		                    bos.flush();
 		                    bos.close();
                             

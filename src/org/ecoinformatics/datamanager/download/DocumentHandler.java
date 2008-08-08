@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentHandler.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-07-30 18:31:04 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2008-08-08 21:40:51 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://ecoinformatics.org
  *
@@ -35,26 +35,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Map;
-import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.axis.AxisFault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
-import org.ecoinformatics.datamanager.database.DatabaseHandler;
-import org.ecoinformatics.datamanager.database.SimpleDatabaseLoader;
-import org.ecoinformatics.datamanager.database.VectorReader;
-import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
-import org.ecoinformatics.datamanager.parser.DataPackage;
-import org.ecoinformatics.datamanager.parser.Entity;
-import org.ecoinformatics.datamanager.parser.document.DocumentDataPackage;
-import org.ecoinformatics.datamanager.parser.document.DocumentDataPackageParser;
+import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
 public class DocumentHandler {
@@ -95,24 +83,27 @@ public class DocumentHandler {
 			new Runnable() {
 				public void run() {
 					//get from the ecogrid
-					QueryServiceGetToStreamClient ecogridClient = null;
 					try {
-						ecogridClient = 
-							new QueryServiceGetToStreamClient(
-			            		new URL(
-			            				endpoint.getMetacatEcogridEndPoint()));
-					} catch (AxisFault e) {
-						log.error("Error constructing ecogrid client: " + e.getMessage());
-						e.printStackTrace();
-					} catch (MalformedURLException e) {
-						log.error("Error constructing ecogrid client URL: " + e.getMessage());
-						e.printStackTrace();
-					}
-					
-					try {
-						ecogridClient.get(id, outputStream);
+						if (ecogridEndPointInterface instanceof AuthenticatedEcogridEndPointInterface) {
+							AuthenticatedQueryServiceGetToStreamClient authenticatedEcogridClient = 
+								new AuthenticatedQueryServiceGetToStreamClient(
+				            		new URL(
+				            				((AuthenticatedEcogridEndPointInterface)endpoint).getMetacatAuthenticatedEcogridEndPoint()));
+							authenticatedEcogridClient.get(
+									id,
+									((AuthenticatedEcogridEndPointInterface)endpoint).getSessionId(),
+									outputStream);
+						}
+						else {
+							QueryServiceGetToStreamClient ecogridClient = 
+								new QueryServiceGetToStreamClient(
+				            		new URL(
+				            				endpoint.getMetacatEcogridEndPoint()));
+							ecogridClient.get(id, outputStream);
+						}
 						outputStream.close();
 						log.debug("Done downloading id=" + id);
+						
 					} catch (Exception e) {
 						log.error("Error getting document from ecogrid: " + e.getMessage());
 						e.printStackTrace();

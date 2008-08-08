@@ -2,8 +2,8 @@
  *    '$RCSfile: ConfigurableEcogridEndPoint.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-06-20 17:47:12 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2008-08-08 21:40:51 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://ecoinformatics.org
  *
@@ -33,8 +33,6 @@ package org.ecoinformatics.datamanager.download;
 
 import java.util.ResourceBundle;
 
-import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
-
 /**
  * This class implements EcogridEndPointInterface and is configurable using a properties file.
  * Should be useful for switching to remote endpoints etc.
@@ -42,20 +40,23 @@ import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
  * @author leinfelder
  *
  */
-public class ConfigurableEcogridEndPoint implements EcogridEndPointInterface 
+public class ConfigurableEcogridEndPoint implements AuthenticatedEcogridEndPointInterface 
 {  
 		
 	private String metacatEcogridEndPoint = null;
+	private String metacatAuthenticatedEcogridEndPoint = null;
 	private String metacatEcogridAuthEndPoint = null;
 	private String metacatEcogridPutEndPoint = null;
 	private String metacatEcogridIdentifierEndPoint = null;
 	private String srbEcogridEndPoint = null;
 	private String srbMachineName = null;
+	private String sessionId = null;
 	
 	public ConfigurableEcogridEndPoint() {
 		
 		ResourceBundle props = ResourceBundle.getBundle("endpoint");
 		metacatEcogridEndPoint 				= props.getString("metacatEcogridEndPoint");
+		metacatAuthenticatedEcogridEndPoint = props.getString("metacatAuthenticatedEcogridEndPoint");
 		metacatEcogridAuthEndPoint 			= props.getString("metacatEcogridAuthEndPoint");
 		metacatEcogridPutEndPoint 			= props.getString("metacatEcogridPutEndPoint");
 		metacatEcogridIdentifierEndPoint 	= props.getString("metacatEcogridIdentifierEndPoint");
@@ -72,6 +73,11 @@ public class ConfigurableEcogridEndPoint implements EcogridEndPointInterface
 	   public String getMetacatEcogridEndPoint()
 	   {
 		   return metacatEcogridEndPoint;
+	   }
+	   
+	   public String getMetacatAuthenticatedEcogridEndPoint()
+	   {
+		   return metacatAuthenticatedEcogridEndPoint;
 	   }
 	   
 	   public String getMetacatEcogridAuthEndPoint()
@@ -111,6 +117,14 @@ public class ConfigurableEcogridEndPoint implements EcogridEndPointInterface
 	   public String getSRBMachineName()
 	   {
 		   return srbMachineName;
+	   }
+	   
+	   public String getSessionId() {
+		   return sessionId;
+	   }
+	   
+	   public void setSessionId(String id) {
+		   sessionId = id;
 	   }
        
 }
