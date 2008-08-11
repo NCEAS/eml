@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: AttributeList.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-11-16 21:45:59 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-08-11 18:27:05 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -212,6 +212,41 @@ public class AttributeList
    */
   public void add(Attribute a) {
     attributes.addElement(a);
+  }
+  
+  /**
+   * Look up the Attribute(s) by given name
+   * @param name of the Attribute(s) to return
+   * @return array of Attribute(s) that match the name parameter
+   */
+  public Attribute[] getAttributes(String name) {
+	  if (attributes == null || attributes.size() == 0) {
+	      return null;
+	  } 
+	  else {
+		  
+	      Vector list = new Vector();
+		  for (int i = 0; i < attributes.size(); i++) {
+			  Attribute a = (Attribute) attributes.elementAt(i);
+			  if (a.getName().equals(name)) {
+				  list.add(a);
+			  }
+		  }
+		  return (Attribute[]) list.toArray(new Attribute[0]);
+	  }
+  }
+  
+  /**
+   * Look up only the _first_ Attribute matching the name parameter
+   * @param name Attribute name to match (first) on
+   * @return first Attribute matching the name parameter
+   */
+  public Attribute getAttribute(String name) {
+	  Attribute[] list = getAttributes(name);
+	  if (list != null && list.length > 0) {
+		  return list[0];
+	  }
+	  return null;
   }
   
 }

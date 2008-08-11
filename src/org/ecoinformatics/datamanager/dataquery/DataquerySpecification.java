@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-06 23:25:43 $'
- * '$Revision: 1.12 $'
+ *     '$Date: 2008-08-11 18:27:06 $'
+ * '$Revision: 1.13 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -322,11 +322,20 @@ public class DataquerySpecification extends DefaultHandler
         if (currentNode.getTagName().equals("entity")) {
         	//get the entity and save it for later
         	DataPackage datapackage = (DataPackage) datapackageStack.peek();
-        	int index = 0;
-        	if (currentNode.getAttribute("index") != null ) {
-        		index = Integer.parseInt(currentNode.getAttribute("index"));
+        	Entity entity = null;
+        	
+        	String indexAttribute = currentNode.getAttribute("index");
+        	if (indexAttribute != null) {
+        		int index = Integer.parseInt(indexAttribute);
+        		entity = datapackage.getEntityList()[index];
         	}
-        	Entity entity = datapackage.getEntityList()[index];
+        	else {
+	        	String nameAttribute = currentNode.getAttribute("name");
+	        	if (nameAttribute != null) {
+	        		entity = datapackage.getEntity(nameAttribute);
+	        	}
+        	}
+        	
         	//save for later
         	entityStack.push(entity);
         }
@@ -439,8 +448,18 @@ public class DataquerySpecification extends DefaultHandler
         if (leaving.getTagName().equals("attribute")) {
         	//look up the attribute from this entity
         	Entity entity = (Entity) entityStack.peek();
-        	int index = Integer.parseInt(leaving.getAttribute("index"));
-        	Attribute attribute = entity.getAttributes()[index];
+        	Attribute attribute = null;
+        	
+        	String indexAttribute = leaving.getAttribute("index");
+        	if (indexAttribute != null) {
+	        	int index = Integer.parseInt(indexAttribute);
+	        	attribute = entity.getAttributes()[index];
+        	}
+        	else {
+        		//TODO allow multiple matches on "name"?
+        		String nameAttribute = leaving.getAttribute("name");
+        		attribute = entity.getAttributeList().getAttribute(nameAttribute);
+        	}
         	
         	//process conditions here
         	if (!conditionStack.isEmpty()) {	

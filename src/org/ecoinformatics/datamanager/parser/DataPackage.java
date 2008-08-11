@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: DataPackage.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-10-31 21:00:40 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2008-08-11 18:27:05 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -30,6 +30,8 @@
  * UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 package org.ecoinformatics.datamanager.parser;
+
+import java.util.Vector;
 
 
 /**
@@ -61,6 +63,25 @@ public class DataPackage
 	this.packageId = packageId;  
   }
   
+  public Entity[] getEntities(String name)
+  {
+	  Vector list = new Vector();
+	  if (entityList != null) {
+		  for (int i=0; i < entityList.length; i++) {
+			  if (entityList[i].getName().equals(name)) {
+				  list.add(entityList[i]);
+			  }
+		  }
+	  }
+	  return (Entity[]) list.toArray(new Entity[0]);
+  }
+  
+  public Entity getEntity(String name) {
+	  if (getEntities(name).length > 0) {
+		  return getEntities(name)[0];
+	  }
+	  return null;
+  }
   
   /**
    * Adds an entity into the DataPackage
