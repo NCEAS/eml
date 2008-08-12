@@ -2,8 +2,8 @@
  *    '$RCSfile: DataPackage.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-08-11 18:27:05 $'
- *   '$Revision: 1.5 $'
+ *       '$Date: 2008-08-12 23:28:18 $'
+ *   '$Revision: 1.6 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -153,6 +153,13 @@ public class DataPackage
       tmp[size] = entity;
       entityList = tmp;
     }
+  }
+  
+  /***
+   * Removes ALL previously added Entity objects from the DataPackage
+   */
+  public void clearEntityList() {
+	  entityList = null;
   }
   
 }
