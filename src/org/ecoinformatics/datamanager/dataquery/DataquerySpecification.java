@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-11 18:27:06 $'
- * '$Revision: 1.13 $'
+ *     '$Date: 2008-08-12 23:31:32 $'
+ * '$Revision: 1.14 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,6 +57,7 @@ import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.database.WhereClause;
 import org.ecoinformatics.datamanager.download.DocumentHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
+import org.ecoinformatics.datamanager.download.document.DocumentDataPackageHandler;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
@@ -66,6 +67,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
+
+import edu.ucsb.nceas.utilities.OrderedMap;
 
 /**
  * A Class that represents a data query, and can be constructed from an
@@ -107,6 +110,8 @@ public class DataquerySpecification extends DefaultHandler
     private LogicalRelation currentLogical = null;
     
     private LogicalRelation currentSubQueryLogical = null;
+    
+    private DocumentDataPackageHandler ddpHandler = null;
         
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
     
@@ -324,21 +329,35 @@ public class DataquerySpecification extends DefaultHandler
         	DataPackage datapackage = (DataPackage) datapackageStack.peek();
         	Entity entity = null;
         	
+        	String idAttribute = currentNode.getAttribute("id");
         	String indexAttribute = currentNode.getAttribute("index");
-        	if (indexAttribute != null) {
+        	String nameAttribute = currentNode.getAttribute("name");
+        	
+        	//metadata
+        	if (idAttribute != null) {
+        		ddpHandler = 
+        			new DocumentDataPackageHandler(connectionPool);
+        		ddpHandler.setDocId(idAttribute);
+        		ddpHandler.setEcogridEndPointInterface(ecogridEndPoint);
+        		ddpHandler.setAttributeMap(new OrderedMap()); //set it up for attributes
+        	}
+        	//indexed data
+        	else if (indexAttribute != null) {
         		int index = Integer.parseInt(indexAttribute);
         		entity = datapackage.getEntityList()[index];
         	}
-        	else {
-	        	String nameAttribute = currentNode.getAttribute("name");
-	        	if (nameAttribute != null) {
-	        		entity = datapackage.getEntity(nameAttribute);
-	        	}
+        	//named data
+        	else if (nameAttribute != null) {
+	        	entity = datapackage.getEntity(nameAttribute);
         	}
         	
         	//save for later
         	entityStack.push(entity);
         }
+//        if (currentNode.getTagName().equals("pathexpr")) {
+//        	String labelAttribute = currentNode.getAttribute("label");
+//        	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());        	
+//        }
         
         if (currentNode.getTagName().equals("condition")) {
         	//indicates we are in a condition
@@ -427,6 +446,13 @@ public class DataquerySpecification extends DefaultHandler
         	subQueryStack.pop();
         }
         if (leaving.getTagName().equals("entity")) {
+        	
+        	//reset the document datapackage handler
+        	if (ddpHandler != null) {
+        		//done with this
+        		ddpHandler = null;
+        	}
+
         	//in selection
         	if (conditionStack.isEmpty()) {
 	        	//pop, done with the entity
@@ -445,7 +471,29 @@ public class DataquerySpecification extends DefaultHandler
         		subQuery.addTableItem(new TableItem(entity));
         	}
         }
+        if (leaving.getTagName().equals("pathexpr")) {
+        	String labelAttribute = leaving.getAttribute("label");
+        	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());        	
+        }
         if (leaving.getTagName().equals("attribute")) {
+        	
+        	//try to load the metadata if we need to
+			if (ddpHandler != null) {
+	    		try {
+					DataPackage metadataPackage = ddpHandler.loadDataToDB();
+					fetchedDatapackages.put(
+							metadataPackage.getPackageId() + ".metadata", 
+							metadataPackage);
+					//out with the null, in with the new
+					entityStack.pop(); 
+					entityStack.push(metadataPackage.getEntityList()[0]);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        	
         	//look up the attribute from this entity
         	Entity entity = (Entity) entityStack.peek();
         	Attribute attribute = null;
