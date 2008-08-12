@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentDataPackageHandler.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-06-23 23:47:16 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2008-08-12 23:30:27 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://ecoinformatics.org
  *
@@ -63,14 +63,20 @@ public class DocumentDataPackageHandler {
 	private String docId = null;
 	private EcogridEndPointInterface ecogridEndPointInterface = null;
 	private Map attributeMap = null;
+	private boolean loaded = false;
 	
 	private DatabaseConnectionPoolInterface connectionPool = null;
 	private DatabaseHandler databaseHandler = null;
+	
+	private DocumentDataPackageParser ddpp = null;
 	
 	private PipedInputStream inputStream = null;
 	private PipedOutputStream outputStream = null;
 	
 	public DocumentDataPackageHandler(DatabaseConnectionPoolInterface pool) {
+		
+		ddpp = new DocumentDataPackageParser();
+		
 		//initialize the streams for reading the document from server
 		outputStream = new PipedOutputStream();
 	    inputStream = new PipedInputStream();
@@ -93,12 +99,10 @@ public class DocumentDataPackageHandler {
 		}
 	}
 
-	public DataPackage downloadDocumentDataToDB() throws Exception {
+	private void downloadDocument() throws Exception {
 		
 		log.info("starting the download");
-		
-		boolean success = true;
-		
+				
 		final String id = docId;
 		final EcogridEndPointInterface endpoint = ecogridEndPointInterface;
 		
@@ -136,14 +140,30 @@ public class DocumentDataPackageHandler {
 		//wait for the download to complete
 		service.shutdown();
 		service.awaitTermination(0, TimeUnit.SECONDS);
+					
+		//set up the parser, and parse
+		ddpp.setAttributeXPathMap(attributeMap);
+		ddpp.parse(inputStream);
+		
+		loaded = true;
+		
+		log.debug("downloaded data");
+		
+	}
+		
+	public DataPackage loadDataToDB() throws Exception {
+		
+		//do the download/parsing if need be
+		if (!isLoaded()) {
+			downloadDocument();
+		}
+		
+		//[re]generate the entity from the current attribute map
+		ddpp.generateEntity();
 		
 		//construct the datapackage with an Entity
 		DataPackage dataPackage = null;
 		Entity entity = null;
-					
-		DocumentDataPackageParser ddpp = new DocumentDataPackageParser();
-		ddpp.setAttributeXPathMap(attributeMap);
-		ddpp.parse(inputStream);
 		
 		dataPackage = ddpp.getDataPackage();
 		entity = dataPackage.getEntityList()[0];
@@ -167,8 +187,8 @@ public class DocumentDataPackageHandler {
 			databaseLoader.run(); //yes, this is Runnable
 		}
 		
-		log.debug("loaded data to db, success=" + success);
-			
+		log.debug("loaded data to db");
+					
 		return dataPackage;
 	}
 
@@ -195,6 +215,10 @@ public class DocumentDataPackageHandler {
 
 	public void setAttributeMap(Map attributeMap) {
 		this.attributeMap = attributeMap;
+	}
+	
+	public boolean isLoaded() {
+		return loaded;
 	}
 
 }

@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentDataPackageParser.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-06-23 23:44:22 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2008-08-12 23:30:27 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -87,6 +87,7 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
     private DocumentDataPackage dataPackage = null;
     private Map attributeXPathMap = null;
     private Map record = null;
+    private Document doc = null;
     
     /**
      * Default constructor - no custom xpath parameter
@@ -127,8 +128,8 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
     {
         DocumentBuilder builder = 
         	DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = builder.parse(source);
-        parseDocument(doc);
+        doc = builder.parse(source);
+        parseDocument();
     }
 
     
@@ -139,10 +140,9 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
     {
         DocumentBuilder builder = 
         	DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = builder.parse(is);
-        parseDocument(doc);
+        doc = builder.parse(is);
+        parseDocument();
     }
-
     
     /**
      * Parses the document. Uses the attributeMap to determine the
@@ -150,7 +150,7 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
      * 
      * @param doc  the Document object to be parsed
      */
-    private void parseDocument(Document doc) throws Exception {
+    private void parseDocument() throws Exception {
     	CachedXPathAPI xpathapi = new CachedXPathAPI();
     	String packageId = null;
     	try {
@@ -165,18 +165,23 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
             throw new Exception(
             		"Error extracting packageId from root of document.");
         }
-        if (this.attributeXPathMap == null) {
+    }
+    
+    public void generateEntity() throws Exception {
+    	
+    	if (this.attributeXPathMap == null) {
         	throw new Exception(
         			"Must specify attribute xPaths for document->record parsing.");
         }
-        //now get the flattened document as a map
+    	
+    	//now get the flattened document as a map
         this.record = document2Map(doc, this.attributeXPathMap);
-        //this.record = XMLUtilities.getDOMTreeAsXPathMap(doc.getDocumentElement());
         
         //convert the map to an entity
-        Entity entity = map2Entity(this.record, packageId);
+        Entity entity = map2Entity(this.record, dataPackage.getPackageId());
         
         //add the entity to the datapackage
+        this.dataPackage.clearEntityList();
         this.dataPackage.add(entity);
         
         //set the row record data

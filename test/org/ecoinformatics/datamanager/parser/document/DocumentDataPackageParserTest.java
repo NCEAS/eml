@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentDataPackageParserTest.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-06-23 23:51:58 $'
- *   '$Revision: 1.1 $'
+ *       '$Date: 2008-08-12 23:30:27 $'
+ *   '$Revision: 1.2 $'
  *
  *  For Details: http://ecoinformatics.org
  *
@@ -168,7 +168,7 @@ public class DocumentDataPackageParserTest extends TestCase {
 		DataPackage metadataPackage = null;
 		try {
 			dataPackage = loadDataPackage();
-			metadataPackage = ddph.downloadDocumentDataToDB();
+			metadataPackage = ddph.loadDataToDB();
 			mergeDataPackages(dataPackage, metadataPackage);
 		}
 		catch (Exception e) {
