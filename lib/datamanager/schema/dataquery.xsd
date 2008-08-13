@@ -95,7 +95,15 @@
     
     <xs:complexType name="attributeType">
         <xs:sequence>
-            <xs:element name="pathexpr" type="xs:string" minOccurs="0"/>
+            <xs:element name="pathexpr" minOccurs="0">
+            	<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="label" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>           	
+            	</xs:complexType>
+            </xs:element>
         </xs:sequence>
 		<xs:attribute name="index" type="xs:int" use="optional"></xs:attribute>
 		<xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
