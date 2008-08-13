@@ -61,8 +61,8 @@
     <xs:complexType name="conditionType">
         <xs:sequence>
             <xs:element name="left" type="conditionMemberType"/>
+            <xs:element name="operator" type="xs:string"/>            
             <xs:element name="right" type="conditionMemberType"/>
-            <xs:element name="operator" type="xs:string"/>
         </xs:sequence>
         <xs:attribute name="type" type="xs:string" use="required"/>
     </xs:complexType>

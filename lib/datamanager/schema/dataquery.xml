@@ -49,10 +49,10 @@
 							</entity>
 						</datapackage>
 					</left>
+					<operator>>=</operator>					
 					<right>
 						<value>15</value>
 					</right>
-					<operator>>=</operator>
 				</condition>
 			</where>
 		</query>
@@ -76,6 +76,7 @@
 								</entity>
 							</datapackage>
 						</left>
+						<operator>=</operator>
 						<right>
 							<datapackage id="tao.1.1">
 								<entity index="0">
@@ -83,7 +84,6 @@
 								</entity>
 							</datapackage>
 						</right>
-						<operator>=</operator>
 					</condition>
 					<condition type="condition">
 						<left>
@@ -93,10 +93,10 @@
 								</entity>
 							</datapackage>
 						</left>
+						<operator>=</operator>
 						<right>
 							<value>happy</value>
 						</right>
-						<operator>=</operator>
 					</condition>
 					
 					<!-- subquery clause-->
@@ -108,6 +108,7 @@
 								</entity>
 							</datapackage>
 						</left>
+						<operator>IN</operator>						
 						<right>
 							<subquery>
 								<selection>
@@ -127,10 +128,10 @@
 													</entity>
 												</datapackage>
 											</left>
+											<operator>=</operator>
 											<right>
 												<value>100</value>
 											</right>
-											<operator>=</operator>
 										</condition>
 										<condition type="condition">
 											<left>
@@ -140,16 +141,15 @@
 													</entity>
 												</datapackage>
 											</left>
+											<operator>=</operator>											
 											<right>
 												<value>200</value>
 											</right>
-											<operator>=</operator>
 										</condition>
 									</and>	
 								</where>
 							</subquery>
 						</right>
-						<operator>IN</operator>
 					</condition>
 					
 					<!-- nested OR relation --> 
@@ -162,10 +162,10 @@
 									</entity>
 								</datapackage>
 							</left>
+							<operator>=</operator>
 							<right>
 								<value>1234</value>
 							</right>
-							<operator>=</operator>
 						</condition>
 						<condition type="condition">
 							<left>
@@ -175,10 +175,10 @@
 									</entity>
 								</datapackage>
 							</left>
+							<operator>=</operator>
 							<right>
 								<value>5678</value>
 							</right>
-							<operator>=</operator>
 						</condition>
 					</or>
 				</and>	
