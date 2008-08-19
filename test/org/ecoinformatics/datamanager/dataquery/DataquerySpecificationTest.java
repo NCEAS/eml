@@ -125,13 +125,18 @@ public class DataquerySpecificationTest extends TestCase {
     
     assertNotNull("Query is null", specification.getQuery());
 
-    if (specification.getQuery() != null) {
+    ResultSet rs = null;
+    if (specification.getUnion() != null) {
+    	log.debug(specification.getUnion().toSQLString());
+    	rs = dataManager.selectData(specification.getUnion(), specification.getDataPackages());
+    }
+    else if (specification.getQuery() != null) {
     	log.debug(specification.getQuery().toSQLString());
-    	//log.debug(specification.getUnion().toSQLString());
     	//TODO more tests!
-    	ResultSet rs = dataManager.selectData(specification.getQuery(), specification.getDataPackages());
-    	printResultSet(rs);
-    } 
+    	rs = dataManager.selectData(specification.getQuery(), specification.getDataPackages());
+    }
+	printResultSet(rs);
+
   }
   
   private String login(String username, String password) throws Exception {
