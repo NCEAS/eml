@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentDataPackageParser.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-08-12 23:30:27 $'
- *   '$Revision: 1.2 $'
+ *       '$Date: 2008-08-19 22:13:01 $'
+ *   '$Revision: 1.3 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -83,7 +83,8 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
      */
     
     // previously these were constants, now member variables with defaults
-    protected String packageIdPath = null;    
+    protected String packageIdPath = null;
+	protected String packageId = null;
     private DocumentDataPackage dataPackage = null;
     private Map attributeXPathMap = null;
     private Map record = null;
@@ -109,15 +110,14 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
     }
     
     /**
-     * Constructor that accepts only the packageIdPath.
-     * Allows packageId to be located anywhere in schema,
-     * but assumes default (EML) placement of dataset
-     * @param packageIdPath path expression specifying where to look for packageId
+     * Constructor that accepts a packageId
+     * Allows packageId supplied by external caller
+     * @param packageId specifying the desired id for the resulting data package
      */
-    public DocumentDataPackageParser(String packageIdPath) {
+    public DocumentDataPackageParser(String packageId) {
     	this();
     	//set the param
-		this.packageIdPath = packageIdPath;
+		this.packageId = packageId;
     }
 
     
@@ -151,20 +151,22 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
      * @param doc  the Document object to be parsed
      */
     private void parseDocument() throws Exception {
-    	CachedXPathAPI xpathapi = new CachedXPathAPI();
-    	String packageId = null;
-    	try {
-    		// process packageid
-    		Node packageIdNode = xpathapi.selectSingleNode(doc, packageIdPath);
-    		if (packageIdNode != null) {
-    			packageId = packageIdNode.getNodeValue();
-    		}
-    		dataPackage = new DocumentDataPackage(packageId);
-        } 
-        catch (Exception e) {
-            throw new Exception(
-            		"Error extracting packageId from root of document.");
-        }
+    	//look up the packageId if not set
+    	if (packageId == null) {
+	    	CachedXPathAPI xpathapi = new CachedXPathAPI();
+	    	try {
+	    		// process packageid
+	    		Node packageIdNode = xpathapi.selectSingleNode(doc, packageIdPath);
+	    		if (packageIdNode != null) {
+	    			packageId = packageIdNode.getNodeValue();
+	    		}
+	        } 
+	        catch (Exception e) {
+	            throw new Exception(
+	            		"Error extracting packageId from root of document.");
+	        }
+    	}
+        dataPackage = new DocumentDataPackage(packageId);
     }
     
     public void generateEntity() throws Exception {
