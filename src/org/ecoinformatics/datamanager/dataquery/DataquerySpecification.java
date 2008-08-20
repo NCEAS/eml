@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-20 16:43:54 $'
- * '$Revision: 1.15 $'
+ *     '$Date: 2008-08-20 17:37:11 $'
+ * '$Revision: 1.16 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -240,6 +240,155 @@ public class DataquerySpecification extends DefaultHandler
         return parser;
     }
 
+    private void startQuery(BasicNode currentNode) {
+    	Query query = new Query();
+        queryStack.push(query);
+    }
+    private void startSubquery(BasicNode currentNode) {
+    	Query query = new Query();
+        subQueryStack.push(query);
+    }
+    private void startDatapackage(BasicNode currentNode) {
+    	String docId = currentNode.getAttribute("id");
+    	
+    	DataPackage datapackage = (DataPackage) fetchedDatapackages.get(docId);
+    	
+    	if (datapackage == null) {
+    	
+        	//read metadata document
+        	DocumentHandler dh = new DocumentHandler();
+        	dh.setDocId(docId);
+        	dh.setEcogridEndPointInterface(ecogridEndPoint);
+        	InputStream metadataInputStream = null;
+			try {
+				metadataInputStream = dh.downloadDocument();
+			} catch (Exception e1) {
+				log.error("could not download document: " + docId);
+				e1.printStackTrace();
+			}
+        	
+        	//parse as DataPackage
+        	try {
+	        	datapackage =
+	        		DataManager.getInstance(
+	        				connectionPool, 
+	        				connectionPool.getDBAdapterName()).parseMetadata(
+	        						metadataInputStream);
+        	} catch (Exception e) {
+				log.error(
+						"could not parse metadata given by docid: " + docId);
+			}
+        	
+        	//prime the data?
+        	try {
+				DataManager.getInstance(
+						connectionPool, 
+						connectionPool.getDBAdapterName()).loadDataToDB(
+								datapackage, 
+								ecogridEndPoint);
+			} catch (Exception e) {
+				log.error(
+						"could not load data given by docid: " + docId);
+			}
+			
+			//save for later
+			fetchedDatapackages.put(docId, datapackage);
+    	}
+    	
+    	//save it for later - preserving order/nesting
+    	datapackageStack.push(datapackage);
+    }
+    private void startEntity(BasicNode currentNode) {
+    	//get the entity and save it for later
+    	DataPackage datapackage = (DataPackage) datapackageStack.peek();
+    	Entity entity = null;
+    	
+    	String idAttribute = currentNode.getAttribute("id");
+    	String indexAttribute = currentNode.getAttribute("index");
+    	String nameAttribute = currentNode.getAttribute("name");
+    	
+    	//metadata
+    	if (idAttribute != null) {
+    		ddpHandler = 
+    			new DocumentDataPackageHandler(connectionPool);
+    		ddpHandler.setDocId(idAttribute);
+    		ddpHandler.setEcogridEndPointInterface(ecogridEndPoint);
+    		ddpHandler.setAttributeMap(new OrderedMap()); //set it up for attributes
+    		
+    		//place holder for items in condition/joins
+    		if (inCondition) {
+    			metadataPackage = new DataPackage(idAttribute);
+    		}
+    	}
+    	//indexed data
+    	else if (indexAttribute != null) {
+    		int index = Integer.parseInt(indexAttribute);
+    		entity = datapackage.getEntityList()[index];
+    	}
+    	//named data
+    	else if (nameAttribute != null) {
+        	entity = datapackage.getEntity(nameAttribute);
+    	}
+    	
+    	//save for later
+    	entityStack.push(entity);
+    }
+    private void startCondition(BasicNode currentNode) {
+    	inCondition = true;
+    	
+    	//indicates we are in a condition
+    	ConditionInterface condition = null;
+    	if (currentNode.getAttribute("type").equals("subquery")) {
+    		condition = new SubQueryClause(null, null, null, null);
+    	}
+    	else if (currentNode.getAttribute("type").equals("join")) {
+    		condition = new Join(null, null, null, null);
+    	}
+    	else {
+    		condition = new Condition(null, null, null, null);
+    	}
+    	conditionStack.push(condition);
+    }
+    
+    private void startAnd(BasicNode currentNode) {
+    	//create new AND and add it to the current relation (for nesting)
+    	ANDRelation and = new ANDRelation();
+    	if (subQueryStack.isEmpty()) {
+        	if (currentLogical != null) {
+        		currentLogical.addANDRelation(and);
+        	}
+        	//then set the current logical to the new AND
+        	currentLogical = and;
+            logicalStack.push(currentLogical);
+    	}
+    	else {
+    		if (currentSubQueryLogical != null) {
+    			currentSubQueryLogical.addANDRelation(and);
+        	}
+        	//then set the current logical to the new AND
+    		currentSubQueryLogical = and;
+            logicalStack.push(currentSubQueryLogical);
+    	}
+    }    
+    private void startOr(BasicNode currentNode) {
+    	ORRelation or = new ORRelation();
+    	if (subQueryStack.isEmpty()) {
+        	if (currentLogical != null) {
+        		currentLogical.addORRelation(or);
+        	}
+        	currentLogical = or;
+            logicalStack.push(currentLogical);
+    	}
+    	else {
+    		if (currentSubQueryLogical != null) {
+    			currentSubQueryLogical.addORRelation(or);
+        	}
+        	//then set the current logical to the new AND
+    		currentSubQueryLogical = or;
+            logicalStack.push(currentSubQueryLogical);
+    	}
+    }
+    
     /**
      * callback method used by the SAX Parser when the start tag of an element
      * is detected. Used in this context to parse and store the query
@@ -271,165 +420,276 @@ public class DataquerySpecification extends DefaultHandler
         
         //process the nodes
         if (currentNode.getTagName().equals("query")) {
-            Query query = new Query();
-            queryStack.push(query);
+            startQuery(currentNode);
         }
         if (currentNode.getTagName().equals("subquery")) {
-            Query query = new Query();
-            subQueryStack.push(query);
+            startSubquery(currentNode);
         }
         if (currentNode.getTagName().equals("datapackage")) {
-        	
-        	String docId = currentNode.getAttribute("id");
-        	
-        	DataPackage datapackage = (DataPackage) fetchedDatapackages.get(docId);
-        	
-        	if (datapackage == null) {
-        	
-	        	//read metadata document
-	        	DocumentHandler dh = new DocumentHandler();
-	        	dh.setDocId(docId);
-	        	dh.setEcogridEndPointInterface(ecogridEndPoint);
-	        	InputStream metadataInputStream = null;
-				try {
-					metadataInputStream = dh.downloadDocument();
-				} catch (Exception e1) {
-					log.error("could not download document: " + docId);
-					e1.printStackTrace();
-				}
-	        	
-	        	//parse as DataPackage
-	        	try {
-		        	datapackage =
-		        		DataManager.getInstance(
-		        				connectionPool, 
-		        				connectionPool.getDBAdapterName()).parseMetadata(
-		        						metadataInputStream);
-	        	} catch (Exception e) {
-					log.error(
-							"could not parse metadata given by docid: " + docId);
-				}
-	        	
-	        	//prime the data?
-	        	try {
-					DataManager.getInstance(
-							connectionPool, 
-							connectionPool.getDBAdapterName()).loadDataToDB(
-									datapackage, 
-									ecogridEndPoint);
-				} catch (Exception e) {
-					log.error(
-							"could not load data given by docid: " + docId);
-				}
-				
-				//save for later
-				fetchedDatapackages.put(docId, datapackage);
-        	}
-        	
-        	//save it for later - preserving order/nesting
-        	datapackageStack.push(datapackage);
-        	
+        	startDatapackage(currentNode);
         }
         if (currentNode.getTagName().equals("entity")) {
-        	//get the entity and save it for later
-        	DataPackage datapackage = (DataPackage) datapackageStack.peek();
-        	Entity entity = null;
-        	
-        	String idAttribute = currentNode.getAttribute("id");
-        	String indexAttribute = currentNode.getAttribute("index");
-        	String nameAttribute = currentNode.getAttribute("name");
-        	
-        	//metadata
-        	if (idAttribute != null) {
-        		ddpHandler = 
-        			new DocumentDataPackageHandler(connectionPool);
-        		ddpHandler.setDocId(idAttribute);
-        		ddpHandler.setEcogridEndPointInterface(ecogridEndPoint);
-        		ddpHandler.setAttributeMap(new OrderedMap()); //set it up for attributes
-        		
-        		//place holder for items in condition/joins
-        		if (inCondition) {
-        			metadataPackage = new DataPackage(idAttribute);
-        		}
-        	}
-        	//indexed data
-        	else if (indexAttribute != null) {
-        		int index = Integer.parseInt(indexAttribute);
-        		entity = datapackage.getEntityList()[index];
-        	}
-        	//named data
-        	else if (nameAttribute != null) {
-	        	entity = datapackage.getEntity(nameAttribute);
-        	}
-        	
-        	//save for later
-        	entityStack.push(entity);
+        	startEntity(currentNode);
         }
-//        if (currentNode.getTagName().equals("pathexpr")) {
-//        	String labelAttribute = currentNode.getAttribute("label");
-//        	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());        	
-//        }
-        
         if (currentNode.getTagName().equals("condition")) {
-        	
-        	inCondition = true;
-        	
-        	//indicates we are in a condition
-        	ConditionInterface condition = null;
-        	if (currentNode.getAttribute("type").equals("subquery")) {
-        		condition = new SubQueryClause(null, null, null, null);
-        	}
-        	else if (currentNode.getAttribute("type").equals("join")) {
-        		condition = new Join(null, null, null, null);
-        	}
-        	else {
-        		condition = new Condition(null, null, null, null);
-        	}
-        	conditionStack.push(condition);
-
+        	startCondition(currentNode);
         }
         if (currentNode.getTagName().equals("and")) {
-        	//create new AND and add it to the current relation (for nesting)
-        	ANDRelation and = new ANDRelation();
-        	if (subQueryStack.isEmpty()) {
-	        	if (currentLogical != null) {
-	        		currentLogical.addANDRelation(and);
-	        	}
-	        	//then set the current logical to the new AND
-	        	currentLogical = and;
-	            logicalStack.push(currentLogical);
-        	}
-        	else {
-        		if (currentSubQueryLogical != null) {
-        			currentSubQueryLogical.addANDRelation(and);
-            	}
-            	//then set the current logical to the new AND
-        		currentSubQueryLogical = and;
-                logicalStack.push(currentSubQueryLogical);
-        	}
+        	startAnd(currentNode);
         }
         if (currentNode.getTagName().equals("or")) {
-        	ORRelation or = new ORRelation();
-        	if (subQueryStack.isEmpty()) {
-	        	if (currentLogical != null) {
-	        		currentLogical.addORRelation(or);
-	        	}
-	        	currentLogical = or;
-	            logicalStack.push(currentLogical);
-        	}
-        	else {
-        		if (currentSubQueryLogical != null) {
-        			currentSubQueryLogical.addORRelation(or);
-            	}
-            	//then set the current logical to the new AND
-        		currentSubQueryLogical = or;
-                logicalStack.push(currentSubQueryLogical);
-        	}
+        	startOr(currentNode);
         }
         
-        //log.debug("done: " + localName);
     }
 
+    private void endUnion(BasicNode leaving) {
+    	//only instantiate it when it is used
+    	union = new Union();
+    	
+    	//add all the queries
+    	for (int i = 0; i < queryList.size(); i++) {
+    		union.addQuery((Query) queryList.get(i));
+    	}
+    }
+    
+    private void endQuery(BasicNode leaving) {
+    	//pop, done with the query, add to the union (even for single query)
+    	Query query = (Query) queryStack.pop();
+    	queryList.add(query);
+    }
+    
+    private void endSubquery(BasicNode leaving) {
+    	//pop, done with the subquery
+    	subQueryStack.pop();
+    }
+    
+    private void endEntity(BasicNode leaving) {
+    	//reset the document datapackage handler
+    	if (ddpHandler != null) {
+    		//done with this
+    		ddpHandler = null;
+    	}
+
+    	//in selection
+    	if (conditionStack.isEmpty()) {
+        	//pop, done with the entity
+        	Entity entity = (Entity) entityStack.pop();
+        	
+        	//add to query
+        	Query query = (Query) queryStack.peek();
+        	query.addTableItem(new TableItem(entity));
+    	}
+    	
+    	if (!subQueryStack.isEmpty()) {
+        	//pop, done with the entity
+        	Entity entity = (Entity) entityStack.pop();
+
+    		Query subQuery = (Query) subQueryStack.peek();
+    		subQuery.addTableItem(new TableItem(entity));
+    	}
+    }
+    
+    private void endPathexpr(BasicNode leaving) {
+    	String labelAttribute = leaving.getAttribute("label");
+    	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());
+    }
+    
+    private void endAttribute(BasicNode leaving) {
+    	//try to load the metadata if we need to
+		if (ddpHandler != null) {
+    		try {
+				
+				//if this part of the selection area, then continue constructing it
+				if (!inCondition) {
+					metadataPackage = ddpHandler.loadDataToDB();
+					metadataDatapackages.put(
+							metadataPackage.getPackageId(), 
+							metadataPackage);
+				}
+				
+				//look up the existing one
+				metadataPackage = (DataPackage) metadataDatapackages.get(metadataPackage.getPackageId());
+				
+				//out with the null, in with the new
+				entityStack.pop(); 
+				entityStack.push(metadataPackage.getEntityList()[0]);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	//look up the attribute from this entity
+    	Entity entity = (Entity) entityStack.peek();
+    	Attribute attribute = null;
+    	
+    	String indexAttribute = leaving.getAttribute("index");
+    	if (indexAttribute != null) {
+        	int index = Integer.parseInt(indexAttribute);
+        	attribute = entity.getAttributes()[index];
+    	}
+    	else {
+    		//TODO allow multiple matches on "name"?
+    		String nameAttribute = leaving.getAttribute("name");
+    		attribute = entity.getAttributeList().getAttribute(nameAttribute);
+    	}
+    	
+    	//process conditions here
+    	if (!conditionStack.isEmpty()) {	
+    		//intitial part of the condition
+    		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+        	if (condition instanceof Condition) {
+        		condition = new Condition(entity, attribute, null, null);
+			}
+        	else if (condition instanceof SubQueryClause) {
+        		Query subQuery = null;
+        		if (subQueryStack.isEmpty()) {
+        			subQuery = new Query();
+        		}
+        		else {
+        			subQuery = (Query) subQueryStack.peek();
+        		}
+        		SelectionItem selection = new SelectionItem(entity, attribute);
+        		subQuery.addSelectionItem(selection);
+        		condition = new SubQueryClause(entity, attribute, null, subQuery);
+			}
+        	else if (condition instanceof Join) {
+        		if (!((Join)condition).isLeftSet()) {
+        			((Join)condition).setLeft(entity, attribute);
+        		}
+        		else if (!((Join)condition).isRightSet()) {
+        			((Join)condition).setRight(entity, attribute);
+        		}
+        	}
+        	conditionStack.push(condition);
+        	
+    	}
+    	else {
+        	Query query = (Query) queryStack.peek();
+
+    		//create the selectionItem and add to the query
+        	SelectionItem selection = new SelectionItem(entity, attribute);
+        	query.addSelectionItem(selection);
+    	}
+    }
+    
+    private void endOperator(BasicNode leaving) {
+    	String operator = textBuffer.toString().trim();
+    	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
+    	if (condition instanceof Condition) {
+			((Condition) condition).setOperator(operator);
+		}
+    	if (condition instanceof SubQueryClause) {
+			((SubQueryClause) condition).setOperator(operator);
+		}
+    }
+    
+    private void endValue(BasicNode leaving) {
+    	Object value = textBuffer.toString().trim();
+    	//try some numeric options
+    	//TODO incorporate type information from metadata into these decisions.
+    	try {
+    		value = Integer.parseInt((String) value);
+    	}
+    	catch (Exception e) {
+    		try {
+    			value = Double.parseDouble((String) value);
+    		}
+    		catch (Exception e2) {
+				// do nothing - treat it as a String
+			}
+		}
+    	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
+    	if (condition instanceof Condition) {
+			((Condition) condition).setValue(value);
+			
+		}
+    }
+    
+    private void endWhere(BasicNode leaving) {
+    	//in subquery?
+    	if (!subQueryStack.isEmpty()) {
+    		WhereClause where = new WhereClause((ConditionInterface)null);
+    		
+        	if (currentSubQueryLogical != null) {
+        		
+        		if (currentSubQueryLogical instanceof ANDRelation) {
+        			where = new WhereClause((ANDRelation)currentSubQueryLogical);
+        		}
+        		else {
+        		}
+        	}
+        	else if (!conditionStack.isEmpty()) {
+	        	//done with the condition now, we can pop it
+	        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+	        	where = new WhereClause(condition);
+        	}
+        	
+    		Query subQuery = (Query) subQueryStack.peek();
+        	subQuery.setWhereClause(where);
+    	}
+    	else {
+        	//set up the shell
+        	WhereClause where = new WhereClause((ConditionInterface)null);
+        	
+        	if (!conditionStack.isEmpty()) {
+	        	//done with the condition now, we can pop it
+	        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+	        	where = new WhereClause(condition);
+        	}
+        	else if (currentLogical != null) {
+        		
+        		if (currentLogical instanceof ANDRelation) {
+        			where = new WhereClause((ANDRelation)currentLogical);
+        		}
+        		else {
+        			where = new WhereClause((ORRelation)currentLogical);
+        		}
+        	}
+        	
+        	//set the where clause
+       		Query query = (Query) queryStack.peek();
+        	query.setWhereClause(where);
+    	}
+    }
+    
+    private void endCondition(BasicNode leaving) {
+    	inCondition = false;
+    	
+    	if (!subQueryStack.isEmpty()) {
+    		if (currentSubQueryLogical != null) {
+        		//do something?
+        		currentSubQueryLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
+    		}
+    	}
+    	else if (currentLogical != null) {
+    		currentLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
+    	}
+    }
+    
+    private void endAnd(BasicNode leaving) {
+    	if (!subQueryStack.isEmpty()) {
+    		//set the current logical to what's on the stack
+        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
+    	}
+    	else {
+        	//set the current logical to what's on the stack
+        	currentLogical = (LogicalRelation) logicalStack.pop();
+    	}
+    }
+    
+    private void endOr(BasicNode leaving) {
+    	if (!subQueryStack.isEmpty()) {
+    		//set the current logical to what's on the stack
+        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
+    	}
+    	else {
+    		currentLogical = (LogicalRelation) logicalStack.pop();
+    	}
+    }
+    
     /**
      * callback method used by the SAX Parser when the end tag of an element is
      * detected. Used in this context to parse and store the query information
@@ -442,248 +702,40 @@ public class DataquerySpecification extends DefaultHandler
         BasicNode leaving = (BasicNode) elementStack.pop();
         
         if (leaving.getTagName().equals("union")) {
-        	//only instantiate it when it is used
-        	union = new Union();
-        	
-        	//add all the queries
-        	for (int i = 0; i < queryList.size(); i++) {
-        		union.addQuery((Query) queryList.get(i));
-        	}
+        	endUnion(leaving);
         }
         if (leaving.getTagName().equals("query")) {
-        	//pop, done with the query, add to the union (even for single query)
-        	Query query = (Query) queryStack.pop();
-        	queryList.add(query);
+        	endQuery(leaving);
         }
         if (leaving.getTagName().equals("subquery")) {
-        	//pop, done with the subquery
-        	subQueryStack.pop();
+        	endSubquery(leaving);
         }
         if (leaving.getTagName().equals("entity")) {
-        	
-        	//reset the document datapackage handler
-        	if (ddpHandler != null) {
-        		//done with this
-        		ddpHandler = null;
-        	}
-
-        	//in selection
-        	if (conditionStack.isEmpty()) {
-	        	//pop, done with the entity
-	        	Entity entity = (Entity) entityStack.pop();
-	        	
-	        	//add to query
-	        	Query query = (Query) queryStack.peek();
-	        	query.addTableItem(new TableItem(entity));
-        	}
-        	
-        	if (!subQueryStack.isEmpty()) {
-	        	//pop, done with the entity
-	        	Entity entity = (Entity) entityStack.pop();
-
-        		Query subQuery = (Query) subQueryStack.peek();
-        		subQuery.addTableItem(new TableItem(entity));
-        	}
+        	endEntity(leaving);
         }
         if (leaving.getTagName().equals("pathexpr")) {
-        	String labelAttribute = leaving.getAttribute("label");
-        	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());        	
+        	endPathexpr(leaving);        	
         }
         if (leaving.getTagName().equals("attribute")) {
-        	
-        	//try to load the metadata if we need to
-			if (ddpHandler != null) {
-	    		try {
-					
-					//if this part of the selection area, then continue constructing it
-					if (!inCondition) {
-						metadataPackage = ddpHandler.loadDataToDB();
-						metadataDatapackages.put(
-								metadataPackage.getPackageId(), 
-								metadataPackage);
-					}
-					
-					//look up the existing one
-					metadataPackage = (DataPackage) metadataDatapackages.get(metadataPackage.getPackageId());
-					
-					//out with the null, in with the new
-					entityStack.pop(); 
-					entityStack.push(metadataPackage.getEntityList()[0]);
-					
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        	}
-        	
-        	//look up the attribute from this entity
-        	Entity entity = (Entity) entityStack.peek();
-        	Attribute attribute = null;
-        	
-        	String indexAttribute = leaving.getAttribute("index");
-        	if (indexAttribute != null) {
-	        	int index = Integer.parseInt(indexAttribute);
-	        	attribute = entity.getAttributes()[index];
-        	}
-        	else {
-        		//TODO allow multiple matches on "name"?
-        		String nameAttribute = leaving.getAttribute("name");
-        		attribute = entity.getAttributeList().getAttribute(nameAttribute);
-        	}
-        	
-        	//process conditions here
-        	if (!conditionStack.isEmpty()) {	
-        		//intitial part of the condition
-        		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-            	if (condition instanceof Condition) {
-            		condition = new Condition(entity, attribute, null, null);
-    			}
-            	else if (condition instanceof SubQueryClause) {
-            		Query subQuery = null;
-            		if (subQueryStack.isEmpty()) {
-            			subQuery = new Query();
-            		}
-            		else {
-            			subQuery = (Query) subQueryStack.peek();
-            		}
-            		SelectionItem selection = new SelectionItem(entity, attribute);
-            		subQuery.addSelectionItem(selection);
-            		condition = new SubQueryClause(entity, attribute, null, subQuery);
-    			}
-            	else if (condition instanceof Join) {
-            		if (!((Join)condition).isLeftSet()) {
-            			((Join)condition).setLeft(entity, attribute);
-            		}
-            		else if (!((Join)condition).isRightSet()) {
-            			((Join)condition).setRight(entity, attribute);
-            		}
-            	}
-            	conditionStack.push(condition);
-            	
-        	}
-        	else {
-            	Query query = (Query) queryStack.peek();
-
-        		//create the selectionItem and add to the query
-	        	SelectionItem selection = new SelectionItem(entity, attribute);
-	        	query.addSelectionItem(selection);
-        	}
+        	endAttribute(leaving);
         }
-        
         if (leaving.getTagName().equals("operator")) {
-        	String operator = textBuffer.toString().trim();
-        	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
-        	if (condition instanceof Condition) {
-				((Condition) condition).setOperator(operator);
-			}
-        	if (condition instanceof SubQueryClause) {
-				((SubQueryClause) condition).setOperator(operator);
-			}
-        	//TODO Joins?
+        	endOperator(leaving);
         }
         if (leaving.getTagName().equals("value")) {
-        	Object value = textBuffer.toString().trim();
-        	//try some numeric options
-        	//TODO incorporate type information from metadata into these decisions.
-        	try {
-        		value = Integer.parseInt((String) value);
-        	}
-        	catch (Exception e) {
-        		try {
-        			value = Double.parseDouble((String) value);
-        		}
-        		catch (Exception e2) {
-					// do nothing - treat it as a String
-				}
-			}
-        	ConditionInterface condition = (ConditionInterface) conditionStack.peek();
-        	if (condition instanceof Condition) {
-				((Condition) condition).setValue(value);
-				
-			}
+        	endValue(leaving);
         }
         if (leaving.getTagName().equals("where")) {
-        	
-        	//in subquery?
-        	if (!subQueryStack.isEmpty()) {
-        		WhereClause where = new WhereClause((ConditionInterface)null);
-        		
-	        	if (currentSubQueryLogical != null) {
-	        		
-	        		if (currentSubQueryLogical instanceof ANDRelation) {
-	        			where = new WhereClause((ANDRelation)currentSubQueryLogical);
-	        		}
-	        		else {
-	        		}
-	        	}
-	        	else if (!conditionStack.isEmpty()) {
-		        	//done with the condition now, we can pop it
-		        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-		        	where = new WhereClause(condition);
-	        	}
-	        	
-        		Query subQuery = (Query) subQueryStack.peek();
-	        	subQuery.setWhereClause(where);
-        	}
-        	else {
-	        	//set up the shell
-	        	WhereClause where = new WhereClause((ConditionInterface)null);
-	        	
-	        	if (!conditionStack.isEmpty()) {
-		        	//done with the condition now, we can pop it
-		        	ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-		        	where = new WhereClause(condition);
-	        	}
-	        	else if (currentLogical != null) {
-	        		
-	        		if (currentLogical instanceof ANDRelation) {
-	        			where = new WhereClause((ANDRelation)currentLogical);
-	        		}
-	        		else {
-	        			where = new WhereClause((ORRelation)currentLogical);
-	        		}
-	        	}
-	        	
-	        	//set the where clause
-	       		Query query = (Query) queryStack.peek();
-	        	query.setWhereClause(where);
-        	}
+        	endWhere(leaving);
         }
-        
         if (leaving.getTagName().equals("condition")) {
-        	
-        	inCondition = false;
-        	
-        	if (!subQueryStack.isEmpty()) {
-        		if (currentSubQueryLogical != null) {
-	        		//do something?
-	        		currentSubQueryLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
-        		}
-        	}
-        	else if (currentLogical != null) {
-        		currentLogical.addCondtionInterface((ConditionInterface) conditionStack.pop());
-        	}
+        	endCondition(leaving);
         }
-        
         if (leaving.getTagName().equals("and")) {
-        	if (!subQueryStack.isEmpty()) {
-        		//set the current logical to what's on the stack
-	        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
-        	}
-        	else {
-	        	//set the current logical to what's on the stack
-	        	currentLogical = (LogicalRelation) logicalStack.pop();
-        	}
+        	endAnd(leaving);
         }
-        
         if (leaving.getTagName().equals("or")) {
-        	if (!subQueryStack.isEmpty()) {
-        		//set the current logical to what's on the stack
-	        	currentSubQueryLogical = (LogicalRelation) logicalStack.pop();
-        	}
-        	else {
-        		currentLogical = (LogicalRelation) logicalStack.pop();
-        	}
+        	endOr(leaving);
         }
         
         String normalizedXML = textBuffer.toString().trim();
