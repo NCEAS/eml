@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-12 23:31:32 $'
- * '$Revision: 1.14 $'
+ *     '$Date: 2008-08-20 16:43:54 $'
+ * '$Revision: 1.15 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,10 +112,16 @@ public class DataquerySpecification extends DefaultHandler
     private LogicalRelation currentSubQueryLogical = null;
     
     private DocumentDataPackageHandler ddpHandler = null;
+    
+    private DataPackage metadataPackage = null;
+     
+    private boolean inCondition = false;
         
     private static Log log = LogFactory.getLog(DataquerySpecification.class);
     
     private Map fetchedDatapackages = new HashMap(); 
+    
+    private Map metadataDatapackages = new HashMap(); 
     
     private List queryList = new ArrayList();
     
@@ -340,6 +346,11 @@ public class DataquerySpecification extends DefaultHandler
         		ddpHandler.setDocId(idAttribute);
         		ddpHandler.setEcogridEndPointInterface(ecogridEndPoint);
         		ddpHandler.setAttributeMap(new OrderedMap()); //set it up for attributes
+        		
+        		//place holder for items in condition/joins
+        		if (inCondition) {
+        			metadataPackage = new DataPackage(idAttribute);
+        		}
         	}
         	//indexed data
         	else if (indexAttribute != null) {
@@ -360,6 +371,9 @@ public class DataquerySpecification extends DefaultHandler
 //        }
         
         if (currentNode.getTagName().equals("condition")) {
+        	
+        	inCondition = true;
+        	
         	//indicates we are in a condition
         	ConditionInterface condition = null;
         	if (currentNode.getAttribute("type").equals("subquery")) {
@@ -480,10 +494,18 @@ public class DataquerySpecification extends DefaultHandler
         	//try to load the metadata if we need to
 			if (ddpHandler != null) {
 	    		try {
-					DataPackage metadataPackage = ddpHandler.loadDataToDB();
-					fetchedDatapackages.put(
-							metadataPackage.getPackageId() + ".metadata", 
-							metadataPackage);
+					
+					//if this part of the selection area, then continue constructing it
+					if (!inCondition) {
+						metadataPackage = ddpHandler.loadDataToDB();
+						metadataDatapackages.put(
+								metadataPackage.getPackageId(), 
+								metadataPackage);
+					}
+					
+					//look up the existing one
+					metadataPackage = (DataPackage) metadataDatapackages.get(metadataPackage.getPackageId());
+					
 					//out with the null, in with the new
 					entityStack.pop(); 
 					entityStack.push(metadataPackage.getEntityList()[0]);
@@ -629,6 +651,9 @@ public class DataquerySpecification extends DefaultHandler
         }
         
         if (leaving.getTagName().equals("condition")) {
+        	
+        	inCondition = false;
+        	
         	if (!subQueryStack.isEmpty()) {
         		if (currentSubQueryLogical != null) {
 	        		//do something?
