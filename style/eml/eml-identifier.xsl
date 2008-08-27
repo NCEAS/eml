@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2007-12-03 23:58:57 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: leinfelder $'
+  *     '$Date: 2008-08-27 19:12:14 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,11 +40,18 @@
    <xsl:template name="identifier">
         <tr><td colspan="2" class="tablehead">Data Set Citation</td></tr>
         <tr><td colspan="2" class="citation">
-		   		<xsl:for-each select="creator/individualName">
-					<xsl:call-template name="creatorCitation" />
-				</xsl:for-each>.
-				
-				<xsl:value-of select="substring(string(pubDate),1,4)"/>.
+	        	<xsl:for-each select="creator">
+	        		<xsl:if test="position() &gt; 1">
+	        			<xsl:if test="last() &gt; 2">,</xsl:if>
+	        			<xsl:if test="position() = last()"> and</xsl:if>
+	        			<xsl:text> </xsl:text>
+	        		</xsl:if>
+	        		<xsl:call-template name="creatorCitation" />
+	        		<xsl:if test="position() = last()">.</xsl:if>	        		
+	        	</xsl:for-each>
+	        	
+	        	<xsl:value-of select="substring(string(pubDate),1,4)"/>
+	        	<xsl:if test="substring(string(pubDate),1,4) != ''">.</xsl:if>
 				<b>
 		   		<xsl:value-of select="title"/>
 				</b>.
@@ -65,9 +72,14 @@
 				    </xsl:choose>
                 </span>
 				
-				<xsl:if test="boolean($registryurl)">
-					(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/knb/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).
-				</xsl:if>
+	        	<xsl:choose>
+	        		<xsl:when test="boolean($registryurl)">
+	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).
+	        		</xsl:when>
+	        		<xsl:otherwise>
+	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).				
+	        		</xsl:otherwise>
+	        	</xsl:choose>
 				<br />
         </td></tr>
    </xsl:template>
@@ -83,17 +95,23 @@
    
    <!--************** creates citation for a creator in "Last FM" format **************-->
    <xsl:template name="creatorCitation">
-   		<xsl:if test="position() &gt; 1">
-			<xsl:if test="last() &gt; 2">,</xsl:if>
-			<xsl:if test="position() = last()"> and</xsl:if>
-			<xsl:text> </xsl:text>
-		</xsl:if>
-		<xsl:value-of select="surName"/>
-		<xsl:text> </xsl:text>
-
-   		<xsl:for-each select="givenName">
-			<xsl:value-of select="substring(string(.),1,1)"/>
-		</xsl:for-each>
+	   	<xsl:for-each select="individualName">	
+	   		
+	   		<xsl:value-of select="surName"/>
+	   		<xsl:text> </xsl:text>
+	   		
+	   		<xsl:for-each select="givenName">
+	   			<xsl:value-of select="substring(string(.),1,1)"/>
+	   		</xsl:for-each>
+	   	</xsl:for-each>
+	   	
+	   	<xsl:if test="string(individualName/surName) != ''"> 
+	   		<xsl:if test="string(organizationName) != ''"> of </xsl:if>
+	   	</xsl:if>
+	   	
+	   	<xsl:for-each select="organizationName">
+	   		<xsl:value-of select="."/>
+	   	</xsl:for-each>
    </xsl:template>
 
     
