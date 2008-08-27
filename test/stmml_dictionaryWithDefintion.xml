@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dictionary xmlns="http://www.xml-cml.org/schema/stmml" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.xml-cml.org/schema/stmml
-stmml.xsd">
-  <entry term="myterm">
+<dictionary xmlns="http://www.xml-cml.org/schema/stmml-1.1" 
+	xmlns:sch="http://www.ascc.net/xml/schematron" 	
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
+<!-- mob added this doc to test fixes to bug 3445. eml currently does not use
+this section of the stmml schema. 
+-->
+<entry term="myterm">
     <definition>a definition of my term</definition>
     <alternative>myterm1</alternative>
     <description>description of myterm</description>

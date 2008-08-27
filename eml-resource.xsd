@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="eml://ecoinformatics.org/resource-2.1.0rc3" 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0rc3" 
-	xmlns:txt="eml://ecoinformatics.org/text-2.1.0rc3" 
-	xmlns:rp="eml://ecoinformatics.org/party-2.1.0rc3" 
-	xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0rc3" 
-	xmlns="eml://ecoinformatics.org/resource-2.1.0rc3">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0rc3" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0rc3" schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0rc3" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0rc3" schemaLocation="eml-text.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:txt="eml://ecoinformatics.org/text-2.1.0" xmlns:rp="eml://ecoinformatics.org/party-2.1.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" xmlns="eml://ecoinformatics.org/resource-2.1.0" targetNamespace="eml://ecoinformatics.org/resource-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -27,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-04-17 16:30:50 $'
-      '$Revision: 1.83 $'
+          '$Date: 2008-08-27 21:30:04 $'
+      '$Revision: 1.84 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -300,8 +294,7 @@
               <xs:complexType>
                 <xs:simpleContent>
                   <xs:extension base="xs:string">
-                    <xs:attribute name="keywordType" type="KeyTypeCode" 
-                                  use="optional">
+                    <xs:attribute name="keywordType" type="KeyTypeCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Keyword type</doc:tooltip>
@@ -805,8 +798,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inline" type="InlineType">
-        </xs:element>
+        <xs:element name="inline" type="InlineType"/>
       </xs:choice>
       <xs:group ref="ReferencesGroup"/>
     </xs:choice>

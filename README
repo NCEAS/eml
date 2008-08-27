@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-04-17 16:30:50 $'
-#      '$Revision: 1.36 $'
+#          '$Date: 2008-08-27 21:30:04 $'
+#      '$Revision: 1.37 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -100,8 +100,7 @@ the rules associated with the Ecological Metadata Language.
 FILES
 -----
 ############
-The files in this distribution are a part of the third release candidate 
-of EML 2.1.0.
+The files in this distribution are a part of the EML 2.1.0 release.
 ############
 
 
@@ -115,8 +114,8 @@ of sample instance documents used for testing the schemas, and an application
 for checking document validity under JUnit (see http://junit.org).
 
 ############
-This RELEASE CANDIDATE of EML can be retrieved from CVS using the
-tag "RELEASE_EML_2_1_0rc3".  Previous versions of EML (such as 2.0.1) 
+This RELEASE of EML can be retrieved from CVS using the
+tag "RELEASE_EML_2_1_0".  Previous versions of EML (such as 2.0.1) 
 are available from this repository using the analagous release tag
 (e.g., RELEASE_EML_2_0_1).
 ############
@@ -124,7 +123,7 @@ are available from this repository using the analagous release tag
 
 HIGHLIGHTS IN THIS RELEASE
 --------------------------
-This release addresses 2 bugs which caused the schema to be invalid with 
+This release addresses bugs in which caused the schema to be invalid with 
 respect to the W3C specifications using the XSV validator 
 (http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor, 
 one was incompatible with 2.0 releases, which necessitated the version 
@@ -142,21 +141,34 @@ optional so that articles-in-press could be described.  The named type for
 element gRing was changed to GRingType. No changes were made to xsl 
 stylesheets.
 
+EML makes use of the STMML schema (stmml.xsd) for describing custom units
+and describing its included list of standardUnits (unitList). The STMML
+schema was also found to be non-deterministic, and the most reasonable fix 
+for this bug was not compatible with earlier versions. This error 
+was related to elements used by EML (unitList or unitType). However, 
+given that authors of EML instance documents may have made use of other 
+parts of stmml.xsd, it was decided to the advance the namespace used for 
+stmml-related files to "stmml-1.1", in keeping with the pattern of version
+naming in EML. The stmml authors have been contacted, but have not commented
+on possible fixes to this bug. 
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
 Some problems with unit dictionary remain and will be solved in 
-a backwards-incompatible release in the future.  See bug 1000 and 1605.
+a backwards-incompatible release in the future.  See bugs 1000 and 1605.
 
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.1.0 Changes - (numbers refer to the corresponding Bugzilla bug)
+1132: access rule ambiguities --TO BE COMPLETED--
 2054: added the <metadata> tag to additionalMetadata
 2083: in stmml.xsd, dimension 'current' was wrongly entered as 'charge' 
 2703: refined element declarations in txt:TypeText for para, section; added ulink, citetitle 
-3051: missing units were added to exclusion list to match eml-unitDitionary
-3163: in literature.xsd, cardinality of volume and pageRange now 0..1
+3051: missing units were added to enumeration list to match eml-unitDitionary
+3163: in literature.xsd, cardinality of volume and pageRange is now 0..1
 3227: gRing is declared as GRingPointType, but should be GRingType
+3232: EML parser -- JING --?
+3445: stmml.xsd non-deterministic
 
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
  249: Update XSLT stylesheets for EML 2.0 modules

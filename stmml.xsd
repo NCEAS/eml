@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.xml-cml.org/schema/stmml" xmlns:sch="http://www.ascc.net/xml/schematron" targetNamespace="http://www.xml-cml.org/schema/stmml" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://www.xml-cml.org/schema/stmml-1.1"   
+  xmlns:sch="http://www.ascc.net/xml/schematron"  
+  targetNamespace="http://www.xml-cml.org/schema/stmml-1.1" 
+  elementFormDefault="qualified">
   <xsd:annotation>
     <xsd:documentation xml:lang="en">
       <div class="curation">
@@ -15,7 +19,7 @@
   <xsd:annotation>
     <xsd:appinfo>
       <sch:title>Schematron validation</sch:title>
-      <sch:ns uri="http://www.xml-cml.org/schema/stmml"/>
+      <sch:ns uri="http://www.xml-cml.org/schema/stmml-1.1"/>
     </xsd:appinfo>
   </xsd:annotation>
   <xsd:annotation>
@@ -1606,7 +1610,7 @@
         </div>
         <div class="example">
           <pre>
-&lt;stm:dictionary xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+&lt;stm:dictionary xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
   &lt;stm:entry id="a001" term="Amplitude for charge density mixing"
     dataType="stm:decimal"
     units="arbitrary"&gt;
@@ -2122,7 +2126,7 @@ it is a de-activator or inhibitor.
         <div class="example">
           <pre>
 &lt;stm:documentation id="source"
-xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
 Transcribed from IUPAC website
 &lt;/stm:documentation&gt;
 
@@ -2204,7 +2208,7 @@ Transcribed from IUPAC website
           </div>
           <div class="example">
             <pre>
-&lt;stm:list xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+&lt;stm:list xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
   &lt;stm:observation&gt;
     &lt;p&gt;We observed &lt;object count="3" dictRef="#p1"/&gt;
       constructing dwellings of different material&lt;/p&gt;
@@ -2692,7 +2696,7 @@ Transcribed from IUPAC website
         <div class="summary">A container for several unit entries</div>
         <div class="description">Usually forms the complete units dictionary (along with metadata)</div>
         <div class="example">
-          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
 
 &lt;!-- ======================================================================= --&gt;
 &lt;!-- ========================= fundamental types =========================== --&gt;
@@ -2800,7 +2804,7 @@ Transcribed from IUPAC website
         </div>
         <div class="example">
           <pre>&lt;stm:unitList
-    xmlns:stm="http://www.xml-cml.org/schema/stmml"
+    xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"
     dictRef="unit" href="units.xml" /&gt;
 </pre>
         </div>
@@ -2841,7 +2845,7 @@ Transcribed from IUPAC website
           carry</p>
         </div>
         <div class="example">
-          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
 
 &lt;!-- ======================================================================= --&gt;
 &lt;!-- ========================= fundamental types =========================== --&gt;
@@ -3056,7 +3060,7 @@ Transcribed from IUPAC website
           </p>
         </div>
         <div class="example">
-          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml"&gt;
+          <pre>&lt;stm:unitList xmlns:stm="http://www.xml-cml.org/schema/stmml-1.1"&gt;
 
 &lt;!-- ======================================================================= --&gt;
 &lt;!-- ========================= fundamental types =========================== --&gt;
