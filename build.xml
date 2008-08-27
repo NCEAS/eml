@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: leinfelder $'
-          '$Date: 2007-10-19 16:09:55 $'
-      '$Revision: 1.97 $'
+        '$Author: jones $'
+          '$Date: 2004-08-13 19:54:51 $'
+      '$Revision: 1.74 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,7 +35,6 @@
 <project name="eml" default="docs" basedir=".">
 
   <target name="config">
-    <property file="build.properties"/>  <!-- User specified properties -->
     <!-- These are properties you'll need to change to install the parser
       servlet on your system. -->
     <!-- where to install the servlet -->
@@ -70,14 +69,13 @@
     <property name="sample.dir" value="lib/sample"/>
     <property name="build.dir" value="build"/>
     <property name="build.tests" value="${build.dir}/tests"/>
-  	<property name="build.src" value="${build.dir}/src"/>
     <property name="build.dest" value="${build.dir}/classes"/>
     <property name="build.docs" value="docs"/>
     <property name="build.stripped" value="stripped"/>
     <property name="style.dir" value="./style"/>
     <property name="config.file" value="lib/config.xml"/>
     <property name="configfileinemljar" value="/config.xml"/>
-    
+
     <property name="xmlp"
         value="lib/apache/xercesImpl.jar"/>
     <property name="api"
@@ -90,7 +88,8 @@
     <property name="cos" value="lib/cos.jar"/>
     <property name="servlet" value="lib/apache/servlet.jar"/>
     <property name="configxml" value="lib/configxml.jar"/>
-    <property name="junit" value="lib/junit.jar"/>
+    <property name="junit" value="/usr/local/devtools/junit3.7/junit.jar"/>
+
     <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
     <filter token="server" value="http://knb.ecoinformatics.org"/>
@@ -114,26 +113,20 @@
     <property name="ver.src" value="${ver.dir}/src"/>
     <property name="ver.tst" value="${ver.dir}/test"/>
     <property name="package.home" value="org/ecoinformatics" />
+
     <property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
-    <!-- These two Data Manager Library properties need to be declared here
-         so that the Data Manager Library can be excluded from the default eml
-         distribution. Other Data Manager properties are declared in
-         the init-datamanager-lib target below. -->
-    <property name="datamanager.dir" value="org/ecoinformatics/datamanager"/>
-    <property name="datamanager.name" value="datamanager"/>
-
+    <mkdir dir="${build.docs}"/>
     <mkdir dir="${build.docs}/eml-${version}"/>
   </target>
-    
-    
+
   <!-- Generate HTML documentation using an XSLT transform -->
   <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
   <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml">
     <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
-           includes="*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
-    <style basedir="." destdir="${build.docs}" style="members.xsl" classpath="${cpath}" 
+           includes="*.xsd" excludes="eml-documentation.xsd" processor="trax"/>
+    <style basedir="." destdir="${build.docs}" style="members.xsl"
            includes="members.xml" processor="trax"/>
     <copy todir="${build.docs}" filtering="yes">
       <fileset dir=".">
@@ -144,7 +137,6 @@
     <copy todir="${build.docs}/eml-${version}" filtering="no">
       <fileset dir=".">
         <include name="*.png"/>
-        <include name="eml-dublinCore.html"/>
       </fileset>
     </copy>
   </target>
@@ -155,7 +147,7 @@
   <target name="stripdocs" depends="init">
     <mkdir dir="${build.stripped}"/>
     <style basedir="." destdir="${build.stripped}" extension=".xsd"
-           style="removeAnnotation.xsl" includes="*.xsd" classpath="${cpath}" processor="trax"/>
+           style="removeAnnotation.xsl" includes="*.xsd" processor="trax"/>
     <echo>
 
            ******************************************
@@ -187,25 +179,18 @@
       </fileset>
     </copy>
     <copy todir="${ver.lib}" filtering="no">
-      <fileset dir="./lib">
-          <exclude name="${datamanager.name}/**"/>
-      </fileset>
+      <fileset dir="./lib"/>
     </copy>
     <copy todir="${ver.docs}" filtering="no">
-        <fileset dir="./docs">
-            <exclude name="${datamanager.name}/**"/>
-        </fileset>
+      <fileset dir="./docs"/>
     </copy>
     <copy todir="${ver.src}" filtering="yes">
       <fileset dir="./src">
          <exclude name="emlconversions/**"/>
-         <exclude name="${datamanager.dir}/**"/>
       </fileset>
     </copy>
     <copy todir="${ver.tst}" filtering="yes">
-        <fileset dir="./test">
-           <exclude name="${datamanager.dir}/**"/>
-        </fileset>
+      <fileset dir="./test"/>
     </copy>
     <copy todir="${ver.dir}/style">
       <fileset dir="${style.dir}"/>
@@ -222,11 +207,11 @@
   <target name="docbook" depends="init">
     <style basedir="." style="buildDocBook.xsl"
            in="eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <style basedir="." style="sortDocBook.xsl"
            in="${build.dir}/eml-docbook-nosort.xml"
            out="${build.dir}/eml-docbook.xml"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <!-- the following copy is needed to do the ant replacement -->
     <copy file="${build.dir}/eml-docbook.xml"
           tofile="${build.docs}/eml-${version}/eml-docbook.xml"
@@ -252,7 +237,7 @@
     <style basedir="." style="${htmldocbook-style}"
            in="${build.docs}/eml-${version}/eml-docbook.xml"
            out="${build.docs}/eml-${version}/index.html"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <copy file="default.css" todir="${build.docs}"/>
     <echo>
       ************************************************
@@ -275,7 +260,7 @@
     <style basedir="." style="${htmldocbook-style}"
            in="eml-faq.xml"
            out="${build.docs}/eml-${version}/eml-faq.html"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <echo>
       ************************************************
         FAQ rendered to HTML.  The html file
@@ -289,7 +274,7 @@
     <style basedir="." style="buildDependencyTable.xsl"
            in="eml.xsd"
            out="${build.docs}/eml-${version}/eml-dependencies.html"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <echo>
       ************************************************
         Dependency Table rendered to HTML.
@@ -302,7 +287,7 @@
     <style basedir="." style="getunits.xsl"
            in="eml-unitDictionary.xml"
            out="${build.docs}/eml-${version}/enumerations.xml"
-           classpath="${cpath}" processor="trax"/>
+           processor="trax"/>
     <echo>
       ************************************************
                     enumerations created.
@@ -318,7 +303,6 @@
        <fileset dir="${testdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="${datamanager.dir}/**"/>
          <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
@@ -326,7 +310,6 @@
        <fileset dir="${srcdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="${datamanager.dir}/**"/>
          <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
@@ -338,15 +321,11 @@
   </target>
 
   <target name="jar" depends="compile">
-    <jar jarfile="${build.dir}/${name}.jar" 
-         basedir="${build.dest}"
-         includes="${package.home}/** config.xml" 
-         excludes="${datamanager.dir}/**" />
+    <jar jarfile="${build.dir}/${name}.jar" basedir="${build.dest}"
+          includes="${package.home}/** config.xml" />
     <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
   </target>
-	
 
-    
   <target name="compile-test" depends="jar">
      <!-- copy and compile the tests into a jar file -->
      <mkdir dir="${build.tests}"/>
@@ -355,7 +334,6 @@
        <fileset dir="${testdir}">
          <exclude name="**/CVS*"/>
          <exclude name="**/.#*"/>
-         <exclude name="${datamanager.dir}/**"/>
          <exclude name="emlconversions/**"/>
        </fileset>
      </copy>
@@ -371,7 +349,6 @@
 
   <!-- use the ant "junit" task to run JUnit tests. -->
   <target name="test" depends="compile-test">
-
      <!--copy the sample docs into the test directory so they get validated-->
      <copy todir="${testdir}">
        <fileset dir="${sample.dir}">
@@ -379,10 +356,8 @@
          <exclude name="**/.#*"/>
        </fileset>
      </copy>
-
      <!--copy the unit dictionary so it will get validated-->
      <copy file="eml-unitDictionary.xml" tofile="test/eml-unitDictionary.xml"/>
-
      <!-- use the ant "junit" task to run JUnit tests. -->
      <junit printsummary="yes" haltonfailure="no" fork="no"
             haltonerror="no">
@@ -395,7 +370,6 @@
        <batchtest fork="yes" todir="${build.dir}">
          <fileset dir="${build.tests}">
            <include name="**/*Test.java" />
-           <exclude name="${datamanager.dir}/**" />
          </fileset>
        </batchtest>
     </junit>
@@ -458,234 +432,12 @@
 
   </target>
 
-  <target name="clean" depends="init">
+  <target name="clean">
     <delete dir="./build"/>
-    <delete>
-      <fileset dir="${build.docs}">
-        <include name="**/*.*"/>
-        <exclude name="datamanager/**/*"/>
-        <exclude name="**/CVS*"/>
-        <exclude name="**/.#*"/>
-      </fileset>
-    </delete>
-    <delete dir="${build.docs}/eml-${version}"/>
+    <delete dir="./docs"/>
     <delete dir="./dist"/>
-    <delete file="${eml-version}.zip"/>
-    <delete file="${eml-version}.tar.gz"/>
-    <delete file="${datamanager.name}.zip"/>
-    <delete file="${datamanager.name}.tar.gz"/>
+    <delete file="*.zip"/>
+    <delete file="*.gz"/>
     <delete file="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
   </target>
-    
-    <!--
-      The following set of targets support the Data Manager library:
-
-        init-datamanager-lib      
-        compile-datamanager-lib
-        dist-datamanager-lib
-        jar-datamanager-lib
-        test-datamanager-init (used internally only)
-        test-datamanager-all
-        test-datamanager-one
-        
-      Applications can use this library's API to manage EML data (as well as
-      other types of data). The library is currently housed under the 'eml'
-      module in CVS. At some point in the future, it may be broken out into its
-      own module.
-    -->
-
-    <target name="init-datamanager-lib" depends="init">
-        <property name="datamanager.lib" value="lib/datamanager"/>
-        <property name="version.datamanager" value="1.0.0"/>
-        <property name="datamanager-version" value="${datamanager.name}-${version.datamanager}"/>
-        <property name="ver.dir.datamanager" value="${dist.dir}/${datamanager-version}"/>
-        <property name="ver.docs.datamanager" value="${ver.dir.datamanager}/docs"/>
-        <property name="ver.lib.datamanager" value="${ver.dir.datamanager}/${datamanager.lib}"/>
-        <property name="ver.src.datamanager" value="${ver.dir.datamanager}/src"/>
-
-        <!-- Used by 'test-datamanager-one' target. User is prompted for the name
-             of the test to run. If user enters no value, runs this test by
-             default. -->
-        <property name="default-datamanager-test" value="DataManagerTest" />
-
-        <property name="axis" value="${datamanager.lib}/axis.jar"/>
-        <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
-        <property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
-        <property name="log" value="${datamanager.lib}/commons-logging.jar"/>
-        <property name="log4j" value="${datamanager.lib}/log4j-1.2.8.jar"/>
-    	<property name="queryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridQueryInterfaceLevelOne-stub.jar"/>
-        <property name="putservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.EcoGridPutInterfaceLevelOne-stub.jar"/>
-    	<property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/>
-        <property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
-        <property name="saaj" value="${datamanager.lib}/saaj.jar"/>
-        <property name="soap" value="${datamanager.lib}/soap.jar"/>
-        <property name="tar" value="${datamanager.lib}/tar.jar"/>
-        <property name="utilities" value="${datamanager.lib}/utilities.jar"/>
-        <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
-
-        <property name="cpath.datamanager" 
-                  value="${junit}:${axis}:${discover}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}:${datamanager.name}.jar"/>
-    </target>
-
-    <target name="compile-datamanager-lib" depends="init-datamanager-lib">
-  	     <mkdir dir="${build.dest}"/>
-  	     <mkdir dir="${build.src}"/>
-  	     <copy todir="${build.src}" filtering="yes">
-  	       <fileset dir="${srcdir}">
-  	       	 <include name="${datamanager.dir}/**"/>
-  	         <exclude name="emlconversions/**"/>
-  		     <exclude name="org/ecoinformatics/eml/**"/>
-  	         <exclude name="**/CVS*"/>
-  	         <exclude name="**/.#*"/>
-  	       </fileset>
-  	     </copy>
-         <echo>"cpath.datamanager = ${cpath.datamanager}"</echo>
-  	     <javac srcdir="${build.src}"
-  	            destdir="${build.dest}"
-  	            classpath="${cpath.datamanager}"
-  	            debug="on"/>
-    </target>
-       
-    <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
-    	<unjar dest="${build.dest}">
-    	    	    <fileset dir="./${datamanager.lib}">
-    	    	        <include name="**/*.jar"/>
-    	    	    	<exclude name="log4j*.jar"/>
-    	    	    </fileset>
-    	</unjar>
-    	<unjar dest="${build.dest}">
-    	    	    <fileset dir="./lib/apache">
-    	    	        <include name="**/xalan.jar"/>
-    	    	        <include name="**/xml-apis.jar"/>
-    	    	    </fileset>
-    	</unjar>
-    	<copy file="./${datamanager.lib}/datamanager.properties" 
-    	      todir="${build.dest}"/>
-  	    <jar jarfile="${build.dir}/${datamanager.name}.jar" 
-  	         basedir="${build.dest}"
-  	         excludes="org/ecoinformatics/datamanager/**/**Test.class"
-  	    />
-    </target>
-      
-    <target name="dist-datamanager-lib" depends="jar-datamanager-lib">
-        <mkdir dir="${dist.dir}"/>
-        <delete dir="${ver.dir}"/>
-        <delete dir="${ver.dir.datamanager}"/>
-        <mkdir dir="${ver.dir.datamanager}"/>
-        <mkdir dir="${ver.dir.datamanager}/lib/apache"/>
-        <mkdir dir="${ver.dir.datamanager}/lib/sample"/>
-        <mkdir dir="${ver.lib.datamanager}"/>
-        <mkdir dir="${ver.docs.datamanager}"/>
-        <mkdir dir="${ver.src.datamanager}/${datamanager.dir}"/>
-        <copy file="./build.properties" todir="${ver.dir.datamanager}"/>
-        <copy file="./build.xml" todir="${ver.dir.datamanager}"/>
-        <!--
-        <copy file="./docs/datamanager/LICENSE" todir="${ver.dir.datamanager}"/>
-        <copy file="./docs/datamanager/README" todir="${ver.dir.datamanager}"/>
-        -->
-        
-        <!-- Copy datamanager jar file to the top-level 
-             distribution directory -->
-  	    <copy file="${build.dir}/${datamanager.name}.jar"  filtering="no"
-  	          todir="${ver.dir.datamanager}"/>
-        
-        <!-- Copy datamanager documents, excluding project management, to
-             the distribution documents directory -->
-        <copy todir="${ver.docs.datamanager}" filtering="no">
-          <fileset dir="docs/${datamanager.name}">
-              <exclude name="projectManagement/**"/>
-          </fileset>
-        </copy>
-        
-        <!-- Copy datamanager jar files and properties file to 
-             the distribution lib directory -->
-        <copy todir="${ver.lib.datamanager}" filtering="no">
-          <fileset dir="${datamanager.lib}">
-              <exclude name="*.jar"/>
-              <include name="datamanager.properties"/>
-          </fileset>
-        </copy>
-        
-        <copy todir="${ver.dir.datamanager}/lib/sample" filtering="no">
-          <fileset dir="lib/sample">
-              <include name="eml-sample.xml"/>
-          </fileset>
-        </copy>
-        
-        <!-- Copy datamanager source code to the distribution source directory -->
-        <copy todir="${ver.src.datamanager}/${datamanager.dir}" filtering="yes">
-          <fileset dir="${srcdir}/${datamanager.dir}"/>
-        </copy>
-        
-        <!-- zip and tar/gzip the datamanager distribution -->
-        <delete file="./${datamanager-version}.zip"/>
-        <zip zipfile="./${datamanager-version}.zip" basedir="${ver.dir.datamanager}"/>
-        <delete file="./${datamanager-version}.tar.gz"/>
-        <tar tarfile="./${datamanager-version}.tar" basedir="${ver.dir.datamanager}"/>
-        <gzip zipfile="./${datamanager-version}.tar.gz" src="./${datamanager-version}.tar"/>
-        <delete file="./${datamanager-version}.tar"/>
-    </target>
-
-
-    <target name="test-datamanager-init" depends="compile-datamanager-lib">
-      <!-- copy and compile the data manager tests prior to running "junit" -->
-      <copy todir="${build.src}" filtering="yes">
-        <fileset dir="${testdir}">
-          <include name="${datamanager.dir}/**"/>
-          <exclude name="emlconversions/**"/>
-          <exclude name="org/ecoinformatics/eml/**"/>
-          <exclude name="**/CVS*"/>
-          <exclude name="**/.#*"/>
-        </fileset>
-      </copy>
-      <javac srcdir="${build.src}"
-             destdir="${build.dest}"
-             classpath="${cpath.datamanager}"
-             debug="on"/>
-    </target>
-
-    <target name="test-datamanager-all" depends="test-datamanager-init">
-      <!-- use the ant "junit" task to run JUnit tests for data manager lib. -->
-      <junit printsummary="yes" haltonfailure="no" fork="no"
-             haltonerror="no">
-        <classpath>
-          <pathelement path="${cpath.datamanager}:${build.dest}" />
-        </classpath>
-        <formatter type="plain" />
-        <batchtest fork="no" todir="${build.dir}">
-          <fileset dir="${build.src}">
-            <include name="**/*Test.java" />
-          </fileset>
-        </batchtest>
-      </junit>
-    </target>
-
-    <target name="test-datamanager-one" depends="test-datamanager-init">
-      <!-- Run only one test in the data manager library. -->
-        
-      <!-- Prompt user for the test name.
-           If user enters a null value, use the default-datamanager-test --> 
-      <input 
-         message="Please enter name of test to run: [${default-datamanager-test}]"
-         addproperty="test-to-run"
-         defaultvalue="${default-datamanager-test}"
-      />
-
-      <!-- use the ant "junit" task to run a single test in data manager lib. -->
-      <junit printsummary="yes" haltonfailure="no" fork="no"
-             haltonerror="no" showoutput="true" >
-        <classpath>
-          <pathelement path="${cpath.datamanager}:${build.dest}" />
-        </classpath>
-        <formatter type="plain" />
-        <batchtest fork="no" todir="${build.dir}">
-          <fileset dir="${build.src}">
-            <include name="**/${test-to-run}.java" />
-          </fileset>
-        </batchtest>
-      </junit>
-    </target>
-
-    <!-- End of targets for Data Manager library -->
-
 </project>

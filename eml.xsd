@@ -39,8 +39,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: jones $'
-          '$Date: 2006-06-30 15:50:32 $'
-      '$Revision: 1.49 $'
+          '$Date: 2004-07-01 22:06:51 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -268,69 +268,31 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="metadata" type="xs:string" maxOccurs="1">
+              <xs:any processContents="lax">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>Additional metadata</doc:tooltip>
-                    <doc:summary>This element contains the additional
-                    metadata that is to be included in the document.  The 
-                    content of this field can be any well-formed XML fragment.
+                    <doc:tooltip>Any Metadata</doc:tooltip>
+                    <doc:summary>Any well-formed XML-formatted metadata may
+                    be inserted at this location in the EML document.  If
+                    an element inserted here contains a reference to its
+                    namespace, and if there is an association between that
+                    namespace and an XML Schema that can be located by the
+                    processing application, then the processing application
+                    must validate the metadata element.  If these conditions
+                    are not met, then validation need not occur.
                     </doc:summary>
-                    <doc:description>This element contains the additional
-                    metadata to be included in the document.  This element
-                    should be used for extending EML to include metadata
-                    that is not already available in another part of the EML
-                    specification, or to include site- or system-specific
-                    extensions that are needed beyond the core metadata.  The
-                    additional metadata contained in this field describes the
-                    element referenced in the 'describes' element preceding it.
-                    The content of this field is any well-formed XML fragment.
-                    If that content contains namespace declarations, and if
-                    the namespace declaration can be resolved to a schema
-                    defniition, then the content will be validated against
-                    that schema definition.  If no namespace is present,
-                    or if no schema can be resolved, validation for this
-                    fragment will be skipped (validation is "lax").
+                    <doc:description>Any well-formed XML-formatted metadata may
+                    be inserted at this location in the EML document.  If
+                    an element inserted here contains a reference to its
+                    namespace, and if there is an association between that
+                    namespace and an XML Schema that can be located by the
+                    processing application, then the processing application
+                    must validate the metadata element.  If these conditions
+                    are not met, then validation need not occur.
                     </doc:description>
-                    <doc:example>
-                      <![CDATA[
-                      <embargoDate>2006-10-10</embargoDate>
-                      ]]>
-                    </doc:example>
                   </xs:appinfo>
                 </xs:annotation>
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:any processContents="lax">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Any Metadata</doc:tooltip>
-                          <doc:summary>Any well-formed XML-formatted metadata
-                          may be inserted at this location in the EML document.
-                          If an element inserted here contains a reference
-                          to its namespace, and if there is an association
-                          between that namespace and an XML Schema that
-                          can be located by the processing application,
-                          then the processing application must validate the
-                          metadata element.  If these conditions are not met,
-                          then validation need not occur.
-                          </doc:summary>
-                          <doc:description>Any well-formed XML-formatted
-                          metadata may be inserted at this location in the
-                          EML document.  If an element inserted here contains
-                          a reference to its namespace, and if there is an
-                          association between that namespace and an XML Schema
-                          that can be located by the processing application,
-                          then the processing application must validate the
-                          metadata element.  If these conditions are not met,
-                          then validation need not occur.
-                          </doc:description>
-                        </xs:appinfo>
-                      </xs:annotation>
-                    </xs:any>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element> 
+              </xs:any>
             </xs:sequence>
             <xs:attribute name="id" type="res:IDType" use="optional"/>
           </xs:complexType>
