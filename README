@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-08-27 21:30:04 $'
-#      '$Revision: 1.37 $'
+#          '$Date: 2008-08-29 19:17:42 $'
+#      '$Revision: 1.38 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -145,7 +145,7 @@ EML makes use of the STMML schema (stmml.xsd) for describing custom units
 and describing its included list of standardUnits (unitList). The STMML
 schema was also found to be non-deterministic, and the most reasonable fix 
 for this bug was not compatible with earlier versions. This error 
-was related to elements used by EML (unitList or unitType). However, 
+was NOT related to elements used by EML (unitList or unitType). However, 
 given that authors of EML instance documents may have made use of other 
 parts of stmml.xsd, it was decided to the advance the namespace used for 
 stmml-related files to "stmml-1.1", in keeping with the pattern of version
@@ -161,6 +161,7 @@ BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.1.0 Changes - (numbers refer to the corresponding Bugzilla bug)
 1132: access rule ambiguities --TO BE COMPLETED--
+1154: required element offline has no required children -- PENDING BUG 3480
 2054: added the <metadata> tag to additionalMetadata
 2083: in stmml.xsd, dimension 'current' was wrongly entered as 'charge' 
 2703: refined element declarations in txt:TypeText for para, section; added ulink, citetitle 
@@ -169,6 +170,8 @@ BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 3227: gRing is declared as GRingPointType, but should be GRingType
 3232: EML parser -- JING --?
 3445: stmml.xsd non-deterministic
+3480: duplicate complexTypes: DistributionType --TBD -- 
+
 
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
  249: Update XSLT stylesheets for EML 2.0 modules
