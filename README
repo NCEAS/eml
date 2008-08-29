@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-08-29 19:17:42 $'
-#      '$Revision: 1.38 $'
+#          '$Date: 2008-08-29 23:16:27 $'
+#      '$Revision: 1.39 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -160,7 +160,7 @@ a backwards-incompatible release in the future.  See bugs 1000 and 1605.
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.1.0 Changes - (numbers refer to the corresponding Bugzilla bug)
-1132: access rule ambiguities --TO BE COMPLETED--
+1132: access rule ambiguities --TO BE COMPLETED, pending 3480 --
 1154: required element offline has no required children -- PENDING BUG 3480
 2054: added the <metadata> tag to additionalMetadata
 2083: in stmml.xsd, dimension 'current' was wrongly entered as 'charge' 
@@ -170,7 +170,7 @@ BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 3227: gRing is declared as GRingPointType, but should be GRingType
 3232: EML parser -- JING --?
 3445: stmml.xsd non-deterministic
-3480: duplicate complexTypes: DistributionType --TBD -- 
+3480: duplicate complexTypes: DistributionType --PENDING -- 
 
 
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
