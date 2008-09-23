@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.0.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:stmml="http://www.xml-cml.org/schema/stmml"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.0.1 eml.xsd">
+    xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd">
 
 <dataset>
   <title>Data from Cedar Creek LTER on productivity and species richness
@@ -322,11 +322,13 @@
   </dataTable>
 </dataset>
 <additionalMetadata>
-  <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml"
-    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml stmml.xsd">
+<metadata>
+<stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
     <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
     <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
     <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
   </stmml:unitList>
+  </metadata>
 </additionalMetadata>
 </eml:eml>
