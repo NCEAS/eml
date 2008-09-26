@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/spatialRaster-2.1.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.1.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.1.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.1.0" 
-    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.1.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.1.0" 
-  schemaLocation="eml-spatialReference.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" 
-  schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.1.0" 
-  schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.1.0" 
-  schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.1.0" 
-  schemaLocation="eml-constraint.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns="eml://ecoinformatics.org/spatialRaster-2.1.0" 
+xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
+xmlns:con="eml://ecoinformatics.org/constraint-2.1.0" 
+xmlns:att="eml://ecoinformatics.org/attribute-2.1.0" 
+xmlns:ent="eml://ecoinformatics.org/entity-2.1.0" 
+xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" 
+xmlns:spref="eml://ecoinformatics.org/spatialReference-2.1.0" 
+xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
+targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.1.0" schemaLocation="eml-spatialReference.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.1.0" schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.1.0" schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.1.0" schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
     Copyright: 1997-2002 Regents of the University of California,
@@ -39,8 +32,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:05 $'
-      '$Revision: 1.46 $'
+          '$Date: 2008-09-26 23:59:46 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -318,21 +311,20 @@
                 </xs:complexType>
               </xs:element>
               <xs:element name="bilinearFit">
-                      <xs:annotation>
-                        <xs:appinfo>
-                          <doc:tooltip>Bilinear Fit</doc:tooltip>
-                          <doc:summary>Terms of a bilinear model to fit the grid to the coordinate system.
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Bilinear Fit</doc:tooltip>
+                    <doc:summary>Terms of a bilinear model to fit the grid to the coordinate system.
                           </doc:summary>
-                          <doc:description>Intercept and slope terms to describe the orientation and position of the
+                    <doc:description>Intercept and slope terms to describe the orientation and position of the
                           grid to the coordinate system based on corner point identified in the rasterOrigin element.
                       defined in the spatial Reference module.</doc:description>
-                        </xs:appinfo>
-                      </xs:annotation>
-              
+                  </xs:appinfo>
+                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="xIntercept" type="xs:float">
-                                          <xs:annotation>
+                      <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>X Intercept</doc:tooltip>
                           <doc:summary>Location of the rasterOrigin point on the x axis of the the coordinate system.
@@ -342,9 +334,9 @@
                           <doc:example>3455000</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
-</xs:element>
+                    </xs:element>
                     <xs:element name="xSlope" type="xs:float">
-                                          <xs:annotation>
+                      <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>X slope</doc:tooltip>
                           <doc:summary>Slope describing transformation of grid cell distances into x coorinates. 
@@ -356,7 +348,7 @@
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="yIntercept" type="xs:float">
-                                                              <xs:annotation>
+                      <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Y Intercept</doc:tooltip>
                           <doc:summary>Location of the rasterOrigin point on the y axis of the the coordinate 
@@ -366,10 +358,9 @@
                           <doc:example>455000</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
-
                     </xs:element>
                     <xs:element name="ySlope" type="xs:float">
-                                            <xs:annotation>
+                      <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>X slope</doc:tooltip>
                           <doc:summary>Slope describing transformation of grid cell distances into y axis 
@@ -379,7 +370,7 @@
                           <doc:example>5.0123</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
-</xs:element>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -466,7 +457,7 @@
               (y) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               ordinate (y) axis</doc:description>
-             <doc:example>455</doc:example>
+              <doc:example>455</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -478,8 +469,7 @@
               (x) axis</doc:summary>
               <doc:description>Maximum number of raster objects along the
               abscissa (x) axis</doc:description>
-                           <doc:example>455</doc:example>
-
+              <doc:example>455</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -570,7 +560,7 @@
                     clockwise from the target plane at intersection of the
                     optical line of sight with the earth's
                     surface.</doc:description>
-                   <doc:example>45.5</doc:example>
+                    <doc:example>45.5</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -584,7 +574,7 @@
                     <doc:description>Illumitation azimuth measured in degrees
                     clockwise from true north at the time the image is
                     taken.</doc:description>
-             <doc:example>45.5</doc:example>
+                    <doc:example>45.5</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -596,7 +586,7 @@
                     north in degrees, clockwise.</doc:summary>
                     <doc:description>Angle from the first row of the image to
                     true north in degrees, clockwise.</doc:description>
-             <doc:example>45.5</doc:example>
+                    <doc:example>45.5</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -608,8 +598,7 @@
                     the quality of the image.</doc:summary>
                     <doc:description>Code which indicates conditions which
                     affect the quality of the image.</doc:description>
-                                 <doc:example>cloud</doc:example>
-
+                    <doc:example>cloud</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -620,8 +609,7 @@
                     <doc:summary>Specifies the image quality.</doc:summary>
                     <doc:description>Specifies the image
                     quality.</doc:description>
-                                 <doc:example>Excellent</doc:example>
-
+                    <doc:example>Excellent</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -635,7 +623,7 @@
                     <doc:description>Area of the dataset obscured by clouds,
                     expressed as a percentage of the spatial
                     extent.</doc:description>
-             <doc:example>12</doc:example>
+                    <doc:example>12</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -661,8 +649,7 @@
                     performed on the image.</doc:summary>
                     <doc:description>Counts the number of lossy compression
                     cycles performed on the image.</doc:description>
-                                 <doc:example>2</doc:example>
-
+                    <doc:example>2</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -676,7 +663,7 @@
                     <doc:description>Code which indicates whether or not
                     triangulation has been performed upon the
                     image.</doc:description>
-             <doc:example>false</doc:example>
+                    <doc:example>false</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -689,7 +676,7 @@
                     <doc:description>Code which indicates whether or not
                     Standard Radiometric Product data is
                     available.</doc:description>
-             <doc:example>false</doc:example>
+                    <doc:example>false</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -704,7 +691,7 @@
                     <doc:description>Code which indicates whether or not
                     constants are available which allow for camera calibration
                     corrections.</doc:description>
-             <doc:example>false</doc:example>
+                    <doc:example>false</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -718,7 +705,7 @@
                     <doc:description>Code which indicates whether or not
                     Calibration Reseau information is
                     available</doc:description>
-             <doc:example>true</doc:example>
+                    <doc:example>true</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -733,7 +720,7 @@
                     <doc:description>Code which indicates whether or not lens
                     aberration correction information is
                     available</doc:description>
-             <doc:example>true</doc:example>
+                    <doc:example>true</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -745,7 +732,6 @@
                     in.</doc:summary>
                     <doc:description>Description of the wavelength domain that the sensor operates
                     in</doc:description>
-
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -777,7 +763,7 @@
             <doc:description>Number that uniquely identifies instances of bands
             of wavelengths on which a sensor operates.</doc:description>
             <doc:example>3</doc:example>
-            </xs:appinfo>
+          </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element name="highWavelength" type="xs:float" minOccurs="0">

@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/eml-2.1.0"
-  xmlns:res="eml://ecoinformatics.org/resource-2.1.0"
-  xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0"
-  xmlns:prot="eml://ecoinformatics.org/protocol-2.1.0"
-  xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0"
-  xmlns:cit="eml://ecoinformatics.org/literature-2.1.0"
-  xmlns:sw="eml://ecoinformatics.org/software-2.1.0"
-  targetNamespace="eml://ecoinformatics.org/eml-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0"
-    schemaLocation="eml-documentation.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/eml-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:acc="eml://ecoinformatics.org/access-2.1.0" xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:prot="eml://ecoinformatics.org/protocol-2.1.0" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0" xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" xmlns:sw="eml://ecoinformatics.org/software-2.1.0" targetNamespace="eml://ecoinformatics.org/eml-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/dataset-2.1.0" schemaLocation="eml-dataset.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0"
-    schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/software-2.1.0"
-    schemaLocation="eml-software.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.1.0"
-    schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0"
-    schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/software-2.1.0" schemaLocation="eml-software.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.1.0" schemaLocation="eml-protocol.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.1.0" schemaLocation="eml-access.xsd"/>
   <xs:annotation>
     <xs:documentation> '$RCSfile: eml.xsd,v $' Copyright: 1997-2002 Regents of the University of
       California, University of New Mexico, and Arizona State University Sponsors: National Center
@@ -27,7 +15,7 @@
       University of New Mexico Center for Environmental Studies, Arizona State University Other
       funding: National Science Foundation (see README for details) The David and Lucile Packard
       Foundation For Details: http://knb.ecoinformatics.org/ '$Author: obrien $' '$Date: 2008/04/09
-      21:31:41 $' '$Revision: 1.55 $' This program is free software; you can redistribute it and/or
+      21:31:41 $' '$Revision: 1.56 $' This program is free software; you can redistribute it and/or
       modify it under the terms of the GNU General Public License as published by the Free Software
       Foundation; either version 2 of the License, or (at your option) any later version. This
       program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
@@ -109,11 +97,21 @@
           to the EML spatialRaster element to indicate that the FGDC metadata is providing
           supplemental documentation about that particular image entity. There is no validity
           constraint that restricts what metadata may be present in additionalMetadata. </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
+      
+        <xs:element name="access" type="acc:AccessType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Access</doc:tooltip>
+              <doc:summary>Access control rules for the entire resource, which can be overridden by access rules in distribution trees</doc:summary>
+              <doc:description>An optional access tree at this location controls access to the entire metadata document. If this access element is ommitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access. </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+          
         <xs:choice>
           <xs:element name="dataset" type="ds:DatasetType">
             <xs:annotation>
@@ -166,6 +164,7 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
+        
         <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -199,7 +198,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="metadata" maxOccurs="1">
+              <xs:element name="metadata">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Additional metadata</doc:tooltip>
@@ -217,11 +216,9 @@
                       resolved to a schema defniition, then the content will be validated against
                       that schema definition. If no namespace is present, or if no schema can be
                       resolved, validation for this fragment will be skipped (validation is "lax"). </doc:description>
-                    <doc:example>
-                      <![CDATA[
+                    <doc:example><![CDATA[
                       <embargoDate>2006-10-10</embargoDate>
-                      ]]>
-                    </doc:example>
+                      ]]></doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>

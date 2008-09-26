@@ -1,47 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:v="eml://ecoinformatics.org/view-2.1.0" 
-    xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.1.0" 
-    xmlns:sv="eml://ecoinformatics.org/spatialVector-2.1.0" 
-    xmlns:md="eml://ecoinformatics.org/methods-2.1.0" 
-    xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.1.0" 
-    xmlns:proj="eml://ecoinformatics.org/project-2.1.0" 
-    xmlns:dat="eml://ecoinformatics.org/dataTable-2.1.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.1.0" 
-    xmlns:acc="eml://ecoinformatics.org/access-2.1.0" 
-    xmlns="eml://ecoinformatics.org/dataset-2.1.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.1.0" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.1.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/dataset-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" 
-  schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/access-2.1.0" 
-  schemaLocation="eml-access.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.1.0" 
-  schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.1.0" 
-  schemaLocation="eml-dataTable.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/project-2.1.0" 
-  schemaLocation="eml-project.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" 
-  schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.1.0" 
-  schemaLocation="eml-spatialRaster.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.1.0" 
-  schemaLocation="eml-spatialVector.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.1.0" 
-  schemaLocation="eml-storedProcedure.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" 
-  schemaLocation="eml-text.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/view-2.1.0" 
-  schemaLocation="eml-view.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:v="eml://ecoinformatics.org/view-2.1.0" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.1.0" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.1.0" xmlns:md="eml://ecoinformatics.org/methods-2.1.0" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.1.0" xmlns:proj="eml://ecoinformatics.org/project-2.1.0" xmlns:dat="eml://ecoinformatics.org/dataTable-2.1.0" xmlns:ent="eml://ecoinformatics.org/entity-2.1.0" xmlns:acc="eml://ecoinformatics.org/access-2.1.0" xmlns="eml://ecoinformatics.org/dataset-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:rp="eml://ecoinformatics.org/party-2.1.0" xmlns:txt="eml://ecoinformatics.org/text-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" targetNamespace="eml://ecoinformatics.org/dataset-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.1.0" schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.1.0" schemaLocation="eml-entity.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/dataTable-2.1.0" schemaLocation="eml-dataTable.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.1.0" schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialRaster-2.1.0" schemaLocation="eml-spatialRaster.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/spatialVector-2.1.0" schemaLocation="eml-spatialVector.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.1.0" schemaLocation="eml-storedProcedure.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/view-2.1.0" schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -59,8 +30,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.55 $'
+          '$Date: 2008-09-26 23:59:46 $'
+      '$Revision: 1.56 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -128,7 +99,6 @@
         time series or remote sensing application)
         or it could be just one actual collection
         (a day in the field).</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -146,7 +116,6 @@
         time series or remote sensing application)
         or it could be just one actual collection
         (a day in the field).</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -174,7 +143,6 @@
               resource. This includes information about the frequency of
               update, and whether there is ongoing data
               collection.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -187,7 +155,6 @@
               for this dataset. This is the
               person or institution to contact with questions about the use,
               interpretation of a data set.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -200,7 +167,6 @@
               a traditional publishing house, but it may also simply be an
               institution that is making the data available in a published (ie,
               citable) format.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -215,7 +181,6 @@
               resource was created.</doc:description>
               <doc:example>San Francisco, CA, USA</doc:example>
               <doc:example>New Yor, NY, USA</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -243,20 +208,6 @@
               information such as project personell, funding, study area,
               project design and related projects.  The project description
               can also contain documentation on subprojects.</doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="access" type="acc:AccessType" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>access</doc:tooltip>
-              <doc:summary>The access field defines access control rules
-              for this dataset.</doc:summary>
-              <doc:description>The access field defines access control rules
-              for this dataset.  Any access control rules defined here will
-              apply to the entire dataset.  Access allows you to define who
-              can access this dataset if it is stored in an online storage
-              system that is EML compliant.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -372,7 +323,6 @@
             <doc:description>A text description of the maintenance of this data
               resource.  Note that this field must be marked up using DocBook
               like tagging.  See eml-text for more information.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -387,7 +337,6 @@
             to the datset
             after the initial dataset is completed.  The values for this
             field must come from the enumeration MaintUpFreqType.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -399,7 +348,6 @@
             release.</doc:summary>
             <doc:description>A description of changes made to the data since
             its release.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -414,7 +362,6 @@
                   <doc:description>The expression should unambigously identify
                   the entity(s) and attribute(s) that were
                   changed.</doc:description>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -427,7 +374,6 @@
                   <doc:description>The previous value or an expression that
                   describes the previous value of the
                   data.</doc:description>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -438,7 +384,6 @@
                   <doc:summary>The date the changes were applied.</doc:summary>
                   <doc:description>The date the changes were
                   applied.</doc:description>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -450,7 +395,6 @@
                   made to the data.</doc:summary>
                   <doc:description>Explanation or justification for the change
                   made to the data.</doc:description>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
