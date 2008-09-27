@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-23 20:42:00 $'
-      '$Revision: 1.23 $'
+          '$Date: 2008-09-27 00:13:25 $'
+      '$Revision: 1.24 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -728,9 +728,31 @@ The optional &lt;describes&gt; element may still be included to reference a part
       
 		</para>
 	
-		<para>2. Access Control: In EML 2.0.1 access to the metadata was controlled by an access tree that was a child of each top-level module (dataset, citation, software, protocol). Additionally, authors could have put access trees into additonalMetadata sections. This practice (and the optional  &lt;describes&gt; element implied that access rules could be applied to any node. Iin reality, node-level access control is too problematic to implement, and only access trees that referenced data entity distribution nodes were recognized.  A better solution is to locate access trees above or nearer to [the thing they control]. In EML 2.1.0, the access tree controlling the entire document 
+		<para>2. Access Control: In EML 2.0.1 access to the metadata was controlled by an access tree that was a child of each top-level module (dataset, citation, software, protocol). Additionally, authors could have put access trees into additonalMetadata sections. This practice (and the optional  &lt;describes&gt; element implied that access rules could be applied to any node. Iin reality, node-level access control is too problematic to implement, and only access trees that referenced data entity distribution nodes were recognized.  A better solution is to locate access trees above or nearer to [the thing they control]. In EML 2.1.0, the access tree controlling the entire document.
 
-		</para>
+In EML 2.1.0 Access can be specified in following places:</para>
+				<programlisting>
+      	<![CDATA[
+      	//eml/access
+      	//eml/..../distribution/access
+       ]]>
+      </programlisting>
+      <para>
+Permissions in //eml/access will be applied to all the metadata and by default 
+to the data. So all the metadata has same permissions overall. However, access 
+rules can still be specified for any data attached to the metadata by using an /access tree in the distribution tag. e.g., </para>
+				<programlisting>
+      	<![CDATA[
+      	...
+      	<distribution>
+      	 <access>
+      	 ...
+      	 <access>
+      	</distribution>
+      	...
+       ]]>
+      </programlisting>
+      <para>If no access is specified in distribution then //eml/access rules are applied.  		</para>
 
 		<para>3. Two elements (volume and pageRange) describing citations (eml-literature.xsd) are now optional so that articles-in-press can be described with EML.</para>
 
@@ -748,7 +770,7 @@ The optional &lt;describes&gt; element may still be included to reference a part
 	<para>5. In EML-2.0.1, an author could describe an offline data resource, but include no information about the resource's distribution. In EML-2.1.0, minimal content (one element) is now required.  
 				</para>
 			<para>
-			In EML 2.1.0, the element mediumName is required:
+			In EML 2.1.0, the element mediumName is required:</para>
       <programlisting>
 	      <![CDATA[
 	      ...
@@ -760,7 +782,6 @@ The optional &lt;describes&gt; element may still be included to reference a part
 	      ...
         ]]>
       </programlisting>
-				</para>
 
 
 		<para>6. STMML: EML makes use of the Scientific Technical and Medical Markup Language schema (stmml.xsd) for describing

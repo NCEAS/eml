@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-08-29 23:16:27 $'
-#      '$Revision: 1.39 $'
+#          '$Date: 2008-09-27 00:13:25 $'
+#      '$Revision: 1.40 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,18 +159,22 @@ a backwards-incompatible release in the future.  See bugs 1000 and 1605.
 
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
-2.1.0 Changes - (numbers refer to the corresponding Bugzilla bug)
-1132: access rule ambiguities --TO BE COMPLETED, pending 3480 --
-1154: required element offline has no required children -- PENDING BUG 3480
-2054: added the <metadata> tag to additionalMetadata
-2083: in stmml.xsd, dimension 'current' was wrongly entered as 'charge' 
-2703: refined element declarations in txt:TypeText for para, section; added ulink, citetitle 
-3051: missing units were added to enumeration list to match eml-unitDitionary
-3163: in literature.xsd, cardinality of volume and pageRange is now 0..1
-3227: gRing is declared as GRingPointType, but should be GRingType
-3232: EML parser -- JING --?
-3445: stmml.xsd non-deterministic
-3480: duplicate complexTypes: DistributionType --PENDING -- 
+2.1.0  Changes (numbers refer to the corresponding Bugzilla bug)
+Schema changes:
+1132: eml.xsd, physical.xsd; access rule ambiguities 
+1154: resource.xsd; required element offline has no required children 
+2054: eml.xsd; added the <metadata> tag to additionalMetadata
+2083: stmml.xsd; dimension 'current' was wrongly entered as 'charge' 
+2703: text.xsd; refined element declarations in txt:TextType for para, section; added ulink, citetitle 
+3051: attribute.xsd; missing units were added to enumeration list to match eml-unitDitionary
+3163: literature.xsd, cardinality of volume and pageRange is now 0..1
+3227: coverage.xsd; gRing is declared as GRingPointType, but should be GRingType
+3232: EML parser should use full-schema-checking 
+3445: stmml.xsd; non-deterministic
+3480: resource.xsd, physical.xsd; duplicate complexTypes: DistributionType and PhysicalDistributionType 
+
+Stylesheet Changes:
+To be completed
 
 
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
