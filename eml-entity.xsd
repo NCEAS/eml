@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.1.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" 
-    xmlns:phys="eml://ecoinformatics.org/physical-2.1.0" 
-    xmlns:md="eml://ecoinformatics.org/methods-2.1.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.1.0" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.1.0" 
-    xmlns="eml://ecoinformatics.org/entity-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/entity-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" 
-  schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.1.0" 
-  schemaLocation="eml-physical.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" 
-  schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.1.0" 
-  schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.1.0" 
-  schemaLocation="eml-constraint.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" 
-  schemaLocation="eml-text.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:con="eml://ecoinformatics.org/constraint-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" xmlns:phys="eml://ecoinformatics.org/physical-2.1.0" xmlns:md="eml://ecoinformatics.org/methods-2.1.0" xmlns:att="eml://ecoinformatics.org/attribute-2.1.0" xmlns:txt="eml://ecoinformatics.org/text-2.1.0" xmlns="eml://ecoinformatics.org/entity-2.1.0" targetNamespace="eml://ecoinformatics.org/entity-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.1.0" schemaLocation="eml-physical.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.1.0" schemaLocation="eml-attribute.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.1.0" schemaLocation="eml-constraint.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-entity.xsd,v $'
@@ -44,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.85 $'
+          '$Date: 2008-10-02 21:05:20 $'
+      '$Revision: 1.86 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -111,7 +92,6 @@
         type.</doc:description>
         <doc:example>Photograph of rocky intertidal plot 12 from Santa Cruz
         Island</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -156,7 +136,6 @@
                 want to specify the kind of "other" entity this
                 is.</doc:description>
                 <doc:example>Photograph</doc:example>
-                
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -181,7 +160,6 @@
         columns and rows, but can also represent an image or other type of
         data. See 'eml-attribute' for descriptions of the required attribute
         fields.</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -196,7 +174,6 @@
             from different data management systems, can be listed
             here.</doc:description>
             <doc:example>VCR3465</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -217,7 +194,6 @@
                     system.</doc:description>
                     <doc:example>
                     http://knb.ecoinformatics.org/knb/</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:attribute>
@@ -233,7 +209,6 @@
             <doc:description>The name identifies the entity in the dataset:
             file name, name of database table, etc.</doc:description>
             <doc:example>SpeciesAbundance1996</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -248,12 +223,10 @@
             entity.</doc:description>
             <doc:example>Species abundance data for 1996 at the VCR LTER
             site</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0"
-      maxOccurs="unbounded">
+      <xs:element name="physical" type="phys:PhysicalType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>physical descriptors</doc:tooltip>
@@ -283,7 +256,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="method" type="md:MethodsType" minOccurs="0">
+      <xs:element name="methods" type="md:MethodsType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>method descriptions</doc:tooltip>
@@ -305,7 +278,6 @@
             characterized by the other entity metadata
             fields.</doc:description>
             <doc:example>Multiple sampling events represented</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
