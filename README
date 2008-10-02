@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-09-27 00:13:25 $'
-#      '$Revision: 1.40 $'
+#          '$Date: 2008-10-02 23:30:45 $'
+#      '$Revision: 1.41 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -161,17 +161,26 @@ BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.1.0  Changes (numbers refer to the corresponding Bugzilla bug)
 Schema changes:
-1132: eml.xsd, physical.xsd; access rule ambiguities 
-1154: resource.xsd; required element offline has no required children 
-2054: eml.xsd; added the <metadata> tag to additionalMetadata
-2083: stmml.xsd; dimension 'current' was wrongly entered as 'charge' 
-2703: text.xsd; refined element declarations in txt:TextType for para, section; added ulink, citetitle 
-3051: attribute.xsd; missing units were added to enumeration list to match eml-unitDitionary
-3163: literature.xsd, cardinality of volume and pageRange is now 0..1
-3227: coverage.xsd; gRing is declared as GRingPointType, but should be GRingType
-3232: EML parser should use full-schema-checking 
-3445: stmml.xsd; non-deterministic
-3480: resource.xsd, physical.xsd; duplicate complexTypes: DistributionType and PhysicalDistributionType 
+1132: eml.xsd, physical.xsd: access rule ambiguities 
+2054: eml.xsd: added the <metadata> tag to additionalMetadata
+1154: resource.xsd: required element offline has no required children
+3480: resource.xsd, physical.xsd: duplicate complexTypes, DistributionType and PhysicalDistributionType
+3165: resource.xsd: TBA
+3227: coverage.xsd: gRing was declared as GRingPointType, is now GRingType
+1019: coverage.xsd: TBA
+3500: coverage.xsd: TBA
+1152: attribute.xsd: dateTime elements are named inconsistently; standarized on dateTime
+2272: attribute.xsd: base types in BoundsGroup changed to xs:float 
+3051: attribute.xsd: missing units were added to enumeration list to match eml-unitDitionary
+2568: attribute.xsd, entity.xsd: inconsistent naming of methods elements, standardized to <methods>
+2703: text.xsd: refined element declarations in txt:TextType for para, section; added ulink, citetitle 
+3163: literature.xsd: cardinality of volume and pageRange is now 0..1
+3164: literature.xsd: TBA
+3445: stmml.xsd: non-deterministic
+2083: stmml.xsd: dimension 'current' was wrongly entered as 'charge'
+
+Parser Changes:
+3232: EML parser should use full-schema-checking
 
 Stylesheet Changes:
 To be completed
