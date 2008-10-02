@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-10-02 19:16:45 $'
-      '$Revision: 1.116 $'
+          '$Date: 2008-10-02 19:23:26 $'
+      '$Revision: 1.117 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1406,7 +1406,7 @@
               </xs:annotation>
               <xs:complexType>
                 <xs:simpleContent>
-                  <xs:extension base="xs:decimal">
+                  <xs:extension base="xs:float">
                     <xs:attribute name="exclusive" type="xs:boolean" use="required">
                       <xs:annotation>
                         <xs:appinfo>
@@ -1446,7 +1446,7 @@
               </xs:annotation>
               <xs:complexType>
                 <xs:simpleContent>
-                  <xs:extension base="xs:decimal">
+                  <xs:extension base="xs:float">
                     <xs:attribute name="exclusive" type="xs:boolean" use="required">
                       <xs:annotation>
                         <xs:appinfo>
