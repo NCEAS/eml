@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-  targetNamespace="eml://ecoinformatics.org/attribute-2.1.0" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-  xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" 
-  xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" 
-  xmlns:md="eml://ecoinformatics.org/methods-2.1.0" 
-  xmlns="eml://ecoinformatics.org/attribute-2.1.0" 
-  xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" 
-  schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" 
-  schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0" 
-  schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
+<xs:schema xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" xmlns:md="eml://ecoinformatics.org/methods-2.1.0" xmlns="eml://ecoinformatics.org/attribute-2.1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="eml://ecoinformatics.org/attribute-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/methods-2.1.0" schemaLocation="eml-methods.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-attribute.xsd,v $'
@@ -35,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.115 $'
+          '$Date: 2008-10-02 19:16:45 $'
+      '$Revision: 1.116 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,7 +65,6 @@
             used as a reference in other locations within the EML document
             via its ID.
             </para>
-           
             <section>
               <title>Philosophy of Attribute Units</title>
               <para>The concept of "unit" represents one of the most fundamental
@@ -149,7 +135,7 @@
             databases might use different types for columns, even though the
             domain of the attribute is the same regardless of which database
             is used).</para>
-            <para>Attributes representing dates, times, or combinations thereof
+              <para>Attributes representing dates, times, or combinations thereof
             (hereafter "dateTime") were the most difficult to model in EML. Is
             dateTime of type interval or ordinal? Does it have units or not?
             Strong cases can be made on each side of the issue. The confusion
@@ -163,7 +149,7 @@
             attributes that contain Gregorian date and time values, and allows
             them to provide the information needed to parse these values into
             their appropriate components (e.g., days, months, years)./</para>
-          </section>
+            </section>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>any dataset that uses dataTable, spatialRaster,
@@ -452,8 +438,7 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
-                    <xs:element name="precision" type="PrecisionType" 
-                                minOccurs="0"/>
+                    <xs:element name="precision" type="PrecisionType" minOccurs="0"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -480,33 +465,39 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="unit" type="UnitType"/>
-                    <xs:element name="precision" type="PrecisionType"
-                                minOccurs="0"/>
+                    <xs:element name="precision" type="PrecisionType" minOccurs="0"/>
                     <xs:element name="numericDomain" type="NumericDomainType"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="datetime">
+              <xs:element name="dateTime">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Date/Time scale</doc:tooltip>
                     <doc:summary>Characteristics used to define date and 
                     time attributes</doc:summary>
-                    <doc:description>This field is used for defining the
-                    characteristics of this attribute if it contains
-                    date and time values. Datetime is used when the values
-                    fall on the Gregorian calendar system.  Datetime values
+                    <doc:description>
+                      <para xmlns="">The dateTime field is used for defining the
+                    characteristics of the attribute if it contains
+                    date and time values. DateTime is used when the values
+                    fall on the Gregorian calendar system.  DateTime values
                     are special because the have properties of interval
                     values (most of the time it is legitimate to treat them
                     as interval values by converting them to a duration from
                     a fixed point) but they sometimes only behave as ordinals
                     (because the calendar is not predetermined, for some
-                    datetime values one can only find out the order of
+                    dateTime values one can only find out the order of
                     the points and not the magnitude of the duration 
-                    between those points).  Thus, the datetime scale provides
+                    between those points).  Thus, the dateTime scale provides
                     the information necessary to properly understand and
                     parse date and time values without improperly 
-                    labeling them under one of the more traditional scales.
+                    labeling them under one of the more traditional scales.</para>
+                      <para xmlns="">Date and time values are unlike any other measured values.  
+                      Note that the dateTime field would not be used if
+              one is recording time durations.  In that case, one should use a
+              standard unit such as seconds, nominalMinute or nominalDay, or a
+              customUnit that defines the unit in terms of its relationship to
+              SI second.</para>
                     </doc:description>
                   </xs:appinfo>
                 </xs:annotation>
@@ -521,18 +512,18 @@
                           calendar.</doc:summary>
                           <doc:description>
                             <para xmlns="">A format string that describes
-                            the format for a date-time value from the
-                            Gregorian calendar.  Datetime values should be
+                            the format for a dateTime value from the
+                            Gregorian calendar.  DateTime values should be
                             expressed in a format that conforms to the ISO
                             8601 standard.  This field allows one to specify
                             the format string that should be used to decode
                             the date or time value.  To describe the format
-                            of an attribute containing date-time values,
+                            of an attribute containing dateTime values,
                             construct a string representation of the format
                             using the following symbols:
                             </para>
                             <para xmlns="">
-              <literalLayout>
+                              <literalLayout>
               Y   year
               M   month
               W   month abbreviation (e.g., JAN)
@@ -548,14 +539,14 @@
               -   indicates a separator between date components
               A/P am or pm designator
               </literalLayout>
-              </para>
-              <para xmlns="">
+                            </para>
+                            <para xmlns="">
               Any other character in the format string is interpreted as a
               separator character.  Here are some examples of the format
               strings that can be constructed.
               </para>
-              <para xmlns="">
-              <literalLayout>
+                            <para xmlns="">
+                              <literalLayout>
                                  Format string          Example value
                                  -------------------    ------------------
                   ISO Date       YYYY-MM-DD             2002-10-14
@@ -570,8 +561,8 @@
                   Non-standard   YYYYWWWDD              2002OCT14
                   Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
               </literalLayout>
-              </para>
-              <para xmlns="">
+                            </para>
+                            <para xmlns="">
               Some notes about these examples.  First, the ISO 8601 standard is
               strict about the order of date components and the separators that
               are legal.  Best practice is to follow the ISO 8601 format
@@ -587,8 +578,8 @@
               these formats can be described using the format string to
               accommodate existing data.
               </para>
-              <para xmlns="">
-              Decimal date-time values can be extended by indicating in
+                            <para xmlns="">
+              Decimal dateTime values can be extended by indicating in
               the format that additional decimals can be used.  Only the final
               unit (e.g., seconds in a time value) can use the extended digits
               according to the ISO 8601 standard.  For example, to show
@@ -598,21 +589,17 @@
               record the value, and not the precision of the measurement
               (see dateTimePrecision for that).
               </para>
-              <para xmlns="">
-              Date/time values are from an interval scale, but it is extremely
+                            <para xmlns="">
+              Date and time values are from an interval scale, but it is extremely
               complex because of the vagaries of the calendar (e.g., leap
-              years, and leap seconds).  The duration between date-time values
+              years, and leap seconds).  The duration between date and time values
               in the future is not even deterministic because leap seconds are
               based on current measurements of the earth's orbit. Consequently,
-              date-time values are unlike any other measured values.  The format
-              string for date-time values allows one to accurately calculate the
-              duration in SI second units between two measured date-time values,
+              date and time values are unlike any other measured values.  The format
+              string for dateTime values allows one to accurately calculate the
+              duration in SI second units between two measured dateTime values,
               assuming that the conversion software has a detailed knowledge of
-              the Gregorian calendar. Note that this field would not be used if
-              one is recording time durations.  In that case, one should use a
-              standard unit such as seconds, nominalMinute or nominalDay, or a
-              customUnit that defines the unit in terms of its relationship to
-              SI second.
+              the Gregorian calendar. 
               </para>
                           </doc:description>
                           <doc:example>YYYY-MM-DDThh:mm:ss</doc:example>
@@ -632,8 +619,8 @@
                           <doc:description>A quantitative indication of
                           the precision of a date or time measurement.
                           The precision should be interpreted in the
-                          smallest units represented by the datetime format.
-                          For example, if a datetime value has a format of
+                          smallest units represented by the dateTime format.
+                          For example, if a dateTime value has a format of
                           "hh:mm:ss.sss", then "seconds" are the smallest unit
                           and the precision should be expressed in seconds.
                           Thus, a precision value of "0.01" would mean that
@@ -646,8 +633,15 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="dateTimeDomain" type="DateTimeDomainType"
-                                minOccurs="0"/>
+                    <xs:element name="dateTimeDomain" type="DateTimeDomainType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>DateTime Domain</doc:tooltip>
+                          <doc:summary>See the summary for the type: DateTimeDomainType</doc:summary>
+                          <doc:description>See the description for the type: DateTimeDomainType</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -765,8 +759,7 @@
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" 
-                  default="document"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:complexType name="Accuracy">
     <xs:sequence>
@@ -785,8 +778,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" 
-                  maxOccurs="unbounded">
+      <xs:element name="quantitativeAttributeAccuracyAssessment" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Quantitative Attribute Accuracy
@@ -1032,22 +1024,22 @@
                       </xs:annotation>
                     </xs:element>
                   </xs:sequence>
-		  <xs:attribute name="order" type="xs:long" use="optional">
-		    <xs:annotation>
-		      <xs:appinfo>
-			<doc:tooltip>Order</doc:tooltip>
-			<doc:summary>Mechanism for specifying what the 
+                  <xs:attribute name="order" type="xs:long" use="optional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <doc:tooltip>Order</doc:tooltip>
+                        <doc:summary>Mechanism for specifying what the 
 			order of the code-definitions included should 
 			be</doc:summary>
-			<doc:description>Ordinal scale measurements have a discrete list 
+                        <doc:description>Ordinal scale measurements have a discrete list 
 			of values with a specific ordering of those values. This attributes 
 			specifies that order from low to high. For example, for LOW, 
             MEDIUM, HIGH, the order attribute might be "LOW=1, MEDIUM=2 and 
             HIGH=3".
                   	</doc:description>
-		      </xs:appinfo>
-		    </xs:annotation>
-		  </xs:attribute>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:attribute>
                 </xs:complexType>
               </xs:element>
               <xs:element name="externalCodeSet">
@@ -1164,8 +1156,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="definitionAttributeReference" 
-                                type="xs:string">
+                    <xs:element name="definitionAttributeReference" type="xs:string">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Definition Attribute
@@ -1183,8 +1174,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="orderAttributeReference" type="xs:string"
-                                minOccurs="0">
+                    <xs:element name="orderAttributeReference" type="xs:string" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Order Attribute
@@ -1372,15 +1362,15 @@
   <xs:complexType name="DateTimeDomainType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Date-Time Domain</doc:tooltip>
-        <doc:summary>Date-Time domain of attribute specifying allowed
+        <doc:tooltip>DateTime Domain</doc:tooltip>
+        <doc:summary>DateTime domain of attribute specifying allowed
         values.</doc:summary>
-        <doc:description>The date-time domain specifies the
-        minimum and maximum values of a date-time attribute. These
+        <doc:description>The DateTimeDomain specifies the
+        minimum and maximum values of a dateTime attribute. These
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
         a given data set (descriptive). The domain expressions should
-        be in the same date-time format as is used in the "formatString"
+        be in the same dateTime format as is used in the "formatString"
         description for the attribute.  For example, if the format
         string is "YYYY-MM-DD", then a valid minimum in the domain
         would be "2001-05-29".  The "bounds" element is optional, and
@@ -1400,32 +1390,31 @@
   </xs:complexType>
   <xs:group name="BoundsGroup">
     <xs:sequence>
-    <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="minimum" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Minimum numeric bound</doc:tooltip>
-                <doc:summary>Minimum numeric bound of
+      <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="minimum" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Minimum numeric bound</doc:tooltip>
+                  <doc:summary>Minimum numeric bound of
                 attribute</doc:summary>
-                <doc:description>The minimum element specifies the
+                  <doc:description>The minimum element specifies the
                 minimum permitted value of a numeric
                 attribute.</doc:description>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:simpleContent>
-                <xs:extension base="xs:decimal">
-                  <xs:attribute name="exclusive" type="xs:boolean" 
-                  use="required">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>Exclusive
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:decimal">
+                    <xs:attribute name="exclusive" type="xs:boolean" use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
                         </doc:tooltip>
-                        <doc:summary>Exclusive bounds flag
+                          <doc:summary>Exclusive bounds flag
                         </doc:summary>
-                        <doc:description>If exclusive is set to true, then
+                          <doc:description>If exclusive is set to true, then
                         the value specifies a lower bound not including
                         the value itself.  Setting exclusive to true is
                         the equivalent of using a less-than or greater-than
@@ -1437,36 +1426,35 @@
                         all values must be greater than 5 (not including
                         5.0 itself).
                         </doc:description>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:attribute>
-                </xs:extension>
-              </xs:simpleContent>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="maximum" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Maximum numeric bound</doc:tooltip>
-                <doc:summary>Maximum numeric bound of
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="maximum" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Maximum numeric bound</doc:tooltip>
+                  <doc:summary>Maximum numeric bound of
                 attribute</doc:summary>
-                <doc:description>The maximum element specifies the
+                  <doc:description>The maximum element specifies the
                 maximum permitted value of a numeric
                 attribute.</doc:description>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:simpleContent>
-                <xs:extension base="xs:decimal">
-                  <xs:attribute name="exclusive" type="xs:boolean" 
-                  use="required">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>Exclusive
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:decimal">
+                    <xs:attribute name="exclusive" type="xs:boolean" use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
                         </doc:tooltip>
-                        <doc:summary>Exclusive bounds flag
+                          <doc:summary>Exclusive bounds flag
                         </doc:summary>
-                        <doc:description>If exclusive is set to true, then
+                          <doc:description>If exclusive is set to true, then
                         the value specifies a lower bound not including
                         the value itself.  Setting exclusive to true is
                         the equivalent of using a less-than or greater-than
@@ -1478,46 +1466,45 @@
                         all values must be greater than 5 (not including
                         5.0 itself).
                         </doc:description>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:attribute>
-                </xs:extension>
-              </xs:simpleContent>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:group>
   <xs:group name="BoundsDateGroup">
     <xs:sequence>
-    <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="minimum" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Minimum date bound</doc:tooltip>
-                <doc:summary>Minimum date bound of
+      <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="minimum" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Minimum date bound</doc:tooltip>
+                  <doc:summary>Minimum date bound of
                 attribute</doc:summary>
-                <doc:description>The minimum element specifies the
+                  <doc:description>The minimum element specifies the
                 minimum permitted value of a date
                 attribute.</doc:description>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:simpleContent>
-                <xs:extension base="xs:string">
-                  <xs:attribute name="exclusive" type="xs:boolean" 
-                  use="required">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>Exclusive
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="exclusive" type="xs:boolean" use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
                         </doc:tooltip>
-                        <doc:summary>Exclusive bounds flag
+                          <doc:summary>Exclusive bounds flag
                         </doc:summary>
-                        <doc:description>If exclusive is set to true, then
+                          <doc:description>If exclusive is set to true, then
                         the value specifies a lower bound not including
                         the value itself.  Setting exclusive to true is
                         the equivalent of using a less-than or greater-than
@@ -1529,36 +1516,35 @@
                         all values must be greater than 5 (not including
                         5.0 itself).
                         </doc:description>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:attribute>
-                </xs:extension>
-              </xs:simpleContent>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="maximum" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:appinfo>
-                <doc:tooltip>Maximum date bound</doc:tooltip>
-                <doc:summary>Maximum date bound of
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="maximum" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <doc:tooltip>Maximum date bound</doc:tooltip>
+                  <doc:summary>Maximum date bound of
                 attribute</doc:summary>
-                <doc:description>The maximum element specifies the
+                  <doc:description>The maximum element specifies the
                 maximum permitted value of a date
                 attribute.</doc:description>
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:simpleContent>
-                <xs:extension base="xs:string">
-                  <xs:attribute name="exclusive" type="xs:boolean" 
-                  use="required">
-                    <xs:annotation>
-                      <xs:appinfo>
-                        <doc:tooltip>Exclusive
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="exclusive" type="xs:boolean" use="required">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>Exclusive
                         </doc:tooltip>
-                        <doc:summary>Exclusive bounds flag
+                          <doc:summary>Exclusive bounds flag
                         </doc:summary>
-                        <doc:description>If exclusive is set to true, then
+                          <doc:description>If exclusive is set to true, then
                         the value specifies a lower bound not including
                         the value itself.  Setting exclusive to true is
                         the equivalent of using a less-than or greater-than
@@ -1570,16 +1556,16 @@
                         all values must be greater than 5 (not including
                         5.0 itself).
                         </doc:description>
-                      </xs:appinfo>
-                    </xs:annotation>
-                  </xs:attribute>
-                </xs:extension>
-              </xs:simpleContent>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:group>
   <xs:simpleType name="NumberType">
@@ -1864,4 +1850,3 @@
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
-
