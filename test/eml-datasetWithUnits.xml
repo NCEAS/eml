@@ -107,7 +107,7 @@
         </attributeDefinition>
         <storageType>gYear</storageType>
         <measurementScale>
-          <datetime>
+          <dateTime>
             <formatString>YYYY</formatString>
             <dateTimePrecision>1</dateTimePrecision>
             <dateTimeDomain id="dd.2">
@@ -115,7 +115,7 @@
                 <minimum exclusive="false">1944</minimum>
               </bounds>
             </dateTimeDomain>
-          </datetime>
+          </dateTime>
         </measurementScale>
       </attribute>
       <attribute  id="att.3">
@@ -304,7 +304,7 @@
         </attributeDefinition>
         <storageType>time</storageType>
         <measurementScale>
-          <datetime>
+          <dateTime>
             <formatString>hh:mm:ss.s</formatString>
             <dateTimePrecision>0.1</dateTimePrecision>
             <dateTimeDomain id="dd.3">
@@ -313,7 +313,7 @@
                 <maximum exclusive="true">19:00:00.0</maximum>
               </bounds>
             </dateTimeDomain>
-          </datetime>
+          </dateTime>
         </measurementScale>
       </attribute>
     </attributeList>
