@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-xmlns="eml://ecoinformatics.org/software-2.1.0" 
-xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-xmlns:proj="eml://ecoinformatics.org/project-2.1.0" 
-xmlns:acc="eml://ecoinformatics.org/access-2.1.0" 
-xmlns:phys="eml://ecoinformatics.org/physical-2.1.0" 
-targetNamespace="eml://ecoinformatics.org/software-2.1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/software-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:proj="eml://ecoinformatics.org/project-2.1.0" xmlns:acc="eml://ecoinformatics.org/access-2.1.0" xmlns:phys="eml://ecoinformatics.org/physical-2.1.0" targetNamespace="eml://ecoinformatics.org/software-2.1.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/access-2.1.0" schemaLocation="eml-access.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/project-2.1.0" schemaLocation="eml-project.xsd"/>
-    <xs:import namespace="eml://ecoinformatics.org/physical-2.1.0" schemaLocation="eml-physical.xsd"/>
-
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.1.0" schemaLocation="eml-physical.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-software.xsd,v $'
@@ -30,8 +22,8 @@ targetNamespace="eml://ecoinformatics.org/software-2.1.0">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-26 23:59:46 $'
-      '$Revision: 1.46 $'
+          '$Date: 2008-10-07 15:56:56 $'
+      '$Revision: 1.47 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -346,16 +338,6 @@ targetNamespace="eml://ecoinformatics.org/software-2.1.0">
               packaged.</doc:summary>
               <doc:description>String value corresponding to the major, minor,
               custom, and build version.</doc:description>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="access" type="acc:AccessType" minOccurs="0">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>access</doc:tooltip>
-              <doc:summary>The access control rule descriptors.</doc:summary>
-              <doc:description>The access control rule descriptors.  Please
-            see the eml-access module for more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
