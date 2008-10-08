@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-26 23:59:46 $'
-      '$Revision: 1.57 $'
+          '$Date: 2008-10-08 21:19:36 $'
+      '$Revision: 1.58 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -98,6 +98,16 @@
     <xs:choice>
       <xs:sequence>
         <xs:group ref="res:ResourceGroup"/>
+        <xs:element name="contact" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Contact</doc:tooltip>
+              <doc:summary>An optional contact individual for this citation</doc:summary>
+              <doc:description>The contact field contains information about an alternate person to be contacted 
+              about this citation. Ususally, the first author serves as the contact for a citation resource, e.g., a reprint request. In some cases, an altnernate individual(s) may serve that function, and can be indicated here. Since contact is of the type rp:ResponsibleParty, a reference may be used.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:choice>
           <xs:element name="article" type="Article">
             <xs:annotation>
