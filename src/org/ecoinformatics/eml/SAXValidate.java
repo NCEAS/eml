@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: tao $'
- *        '$Date: 2008-07-10 22:33:15 $'
- *    '$Revision: 1.8 $'
+ *        '$Date: 2008-10-09 00:01:59 $'
+ *    '$Revision: 1.9 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -108,13 +108,13 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
    * @exception SAXException
    * @exception SAXParserException
    */
-  public void runTest(Reader xml) throws IOException, ClassNotFoundException,
+  public void runTest(Reader xml, String namespaceInDoc) throws IOException, ClassNotFoundException,
                                   SAXException, SAXParseException
   {
-    runTest(xml, DEFAULT_PARSER);
+    runTest(xml, DEFAULT_PARSER, namespaceInDoc);
   }
 
-  public void runTest(Reader xml, String parserName)throws IOException,
+  public void runTest(Reader xml, String parserName, String namespaceIndoc)throws IOException,
                                   ClassNotFoundException,
                                   SAXException, SAXParseException
   {
@@ -130,8 +130,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     {
       throw new SAXException("Config file not found: " + e.getMessage());
     }
-    
-    runTest(xml, parserName, namespaces);
+    System.out.println("===========namespace"+namespaces);
+    runTest(xml, parserName, namespaces, namespaceIndoc);
   }
 
   /**
@@ -145,7 +145,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
    * @exception SAXException
    * @exception SAXParserException
    */
-  public void runTest(Reader xml, String parserName, String schemaLocation)
+  public void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
            throws IOException, ClassNotFoundException,
            SAXException, SAXParseException
   {
@@ -160,7 +160,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     {
       parser = XMLReaderFactory.createXMLReader(parserName);
     }
-
+    System.out.println("namespace in doc is "+namespaceInDoc);
     // Set Handlers in the parser
     parser.setContentHandler((ContentHandler)this);
     parser.setErrorHandler((ErrorHandler)this);
@@ -174,9 +174,15 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
         parser.setFeature(
             "http://apache.org/xml/features/validation/schema",
             true);
-        parser.setFeature(
+        //eml201 and eml200 xml couldn't be done a schema-full-checking. The schemas have problem :(
+        if (namespaceInDoc != null &&  !namespaceInDoc.equals(EMLParserServlet.EML2_0_0NAMESPACE)
+        	 && !namespaceInDoc.equals(EMLParserServlet.EML2_0_1NAMESPACE))
+        {
+        	System.out.println("schema-full-checking");
+        	parser.setFeature(
                 "http://apache.org/xml/features/validation/schema-full-checking",
                 true);
+        }
     }
     // Parse the document
     parser.parse(new InputSource(xml));
