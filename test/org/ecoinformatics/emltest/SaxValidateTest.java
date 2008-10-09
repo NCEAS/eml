@@ -5,9 +5,9 @@
  *    Authors: @authors@
  *    Release: @release@
  *
- *   '$Author: berkley $'
- *     '$Date: 2002-10-30 19:26:43 $'
- * '$Revision: 1.8 $'
+ *   '$Author: tao $'
+ *     '$Date: 2008-10-09 00:03:43 $'
+ * '$Revision: 1.9 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,9 @@
 
 package org.ecoinformatics.emltest;
 
+
 import org.ecoinformatics.eml.SAXValidate;
+import org.ecoinformatics.eml.EMLParserServlet;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -114,7 +116,10 @@ public class SaxValidateTest extends TestCase
             File testFile = (File)fileList.elementAt(i);
             try {
                 System.err.println("Validating file: " + testFile.getName());
-                test.runTest(new FileReader(testFile), DEFAULT_PARSER);
+                FileReader reader = new FileReader(testFile);
+                String namespace= EMLParserServlet.findNamespace(reader);
+                reader.close();
+                test.runTest(new FileReader(testFile), namespace);
             } catch (Exception e) {
                 if (e instanceof SAXParseException) {
                     SAXParseException spe = (SAXParseException)e;
