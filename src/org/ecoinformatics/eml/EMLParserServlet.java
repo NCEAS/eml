@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2005-06-22 18:58:37 $'
- *    '$Revision: 1.10 $'
+ *      '$Author: tao $'
+ *        '$Date: 2008-10-09 00:00:40 $'
+ *    '$Revision: 1.11 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -71,6 +71,10 @@ public class EMLParserServlet extends HttpServlet
   private static PrintWriter out = null;
   private Hashtable params = new Hashtable();
   private static final String namespaces = "@namespaces@";
+  private static final String NAMESPACEKEYWORD = "xmlns";
+  public static final String EML2_1_0NAMESPACE = "eml://ecoinformatics.org/eml-2.1.0";
+  public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
+  public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
 
   /**
    * Initialize the servlet
@@ -292,8 +296,12 @@ public class EMLParserServlet extends HttpServlet
 
     try
     {
+      Reader xmlReader = new FileReader(tempfile);
+      String namespaceInDoc = findNamespace(xmlReader);
+      xmlReader.close();
+      System.out.println("The namespace in xml is "+namespaceInDoc);
       SAXValidate validator = new SAXValidate(true);
-      validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces);
+      validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces, namespaceInDoc);
       html.append("<hr><h2>XML specific tests: Passed.</h2>");
       html.append("<p>Document is XML-schema valid. There were no XML errors found in your document.</p>");
     }
@@ -369,5 +377,191 @@ public class EMLParserServlet extends HttpServlet
     //out of the zip file.
     FilePart fp = (FilePart)fileList.get("filename");
     return fp.getInputStream();
+  }
+  
+  /**
+   * Gets namespace from the xml source
+   */
+  public static String findNamespace(Reader xml) throws IOException {
+     
+      String namespace = null;
+      
+      String eml2_0_0NameSpace = EML2_0_0NAMESPACE;
+      String eml2_0_1NameSpace = EML2_0_1NAMESPACE;
+      String eml2_1_0NameSpace = EML2_1_0NAMESPACE;
+      
+      if (xml == null) {
+          //System.out.println("Validation for schema is "+ namespace);
+          return namespace;
+      }
+      String targetLine = getSchemaLine(xml);
+      
+      if (targetLine != null) {
+          
+          // find if the root element has prefix
+          String prefix = getPrefix(targetLine);
+          //System.out.println("prefix is:" + prefix);
+          int startIndex = 0;
+          
+          
+          if(prefix != null) {
+              // if prefix found then look for xmlns:prefix
+              // element to find the ns
+              String namespaceWithPrefix = NAMESPACEKEYWORD
+                      + ":" + prefix;
+              startIndex = targetLine.indexOf(namespaceWithPrefix);
+              //System.out.println("namespaceWithPrefix is:" + namespaceWithPrefix+":");
+              //System.out.println("startIndex is:" + startIndex);
+              
+          } else {
+              // if prefix not found then look for xmlns
+              // attribute to find the ns
+              startIndex = targetLine.indexOf(NAMESPACEKEYWORD);
+              //System.out.println("startIndex is:" + startIndex);
+          }
+          
+          int start = 1;
+          int end = 1;
+          String namespaceString = null;
+          int count = 0;
+          if (startIndex != -1) {
+              for (int i = startIndex; i < targetLine.length(); i++) {
+                  if (targetLine.charAt(i) == '"') {
+                      count++;
+                  }
+                  if (targetLine.charAt(i) == '"' && count == 1) {
+                      start = i;
+                  }
+                  if (targetLine.charAt(i) == '"' && count == 2) {
+                      end = i;
+                      break;
+                  }
+              }
+          }
+          // else: xmlns not found. namespace = null will be returned
+          
+          //System.out.println("targetLine is " + targetLine);
+          //System.out.println("start is " + end);
+          //System.out.println("end is " + end);
+          
+          if(start < end){
+              namespaceString = targetLine.substring(start + 1, end);
+              //System.out.println("namespaceString is " + namespaceString);
+          }
+          //System.out.println("namespace in xml is: "+ namespaceString);
+          if(namespaceString != null){
+              if (namespaceString.indexOf(eml2_0_0NameSpace) != -1) {
+                  namespace = eml2_0_0NameSpace;
+              } else if (namespaceString.indexOf(eml2_0_1NameSpace) != -1) {
+                  namespace = eml2_0_1NameSpace;
+              } else if (namespaceString.indexOf(eml2_1_0NameSpace) != -1) {
+                  namespace = eml2_1_0NameSpace;
+              } else {
+                  namespace = namespaceString;
+              }
+          }
+      }
+      
+      //System.out.println("Validation for eml is " + namespace);
+      
+      return namespace;
+      
+  }
+  
+  /*
+   * Gets the string which contains schema declaration info
+   */
+  private static String getSchemaLine(Reader xml) throws IOException {
+      
+      // find the line
+      String secondLine = null;
+      int count = 0;
+      int endIndex = 0;
+      int startIndex = 0;
+      final int TARGETNUM = 1;
+      StringBuffer buffer = new StringBuffer();
+      boolean comment = false;
+      boolean processingInstruction = false;
+      char thirdPreviousCharacter = '?';
+      char secondPreviousCharacter = '?';
+      char previousCharacter = '?';
+      char currentCharacter = '?';
+      int tmp = xml.read();
+      while (tmp != -1) {
+          currentCharacter = (char)tmp;
+          //in a comment
+          if (currentCharacter == '-' && previousCharacter == '-'
+                  && secondPreviousCharacter == '!'
+                  && thirdPreviousCharacter == '<') {
+              comment = true;
+          }
+          //out of comment
+          if (comment && currentCharacter == '>' && previousCharacter == '-'
+                  && secondPreviousCharacter == '-') {
+              comment = false;
+          }
+          
+          //in a processingInstruction
+          if (currentCharacter == '?' && previousCharacter == '<') {
+              processingInstruction = true;
+          }
+          
+          //out of processingInstruction
+          if (processingInstruction && currentCharacter == '>'
+                  && previousCharacter == '?') {
+              processingInstruction = false;
+          }
+          
+          //this is not comment or a processingInstruction
+          if (currentCharacter != '!' && previousCharacter == '<'
+                  && !comment && !processingInstruction) {
+              count++;
+          }
+          
+          // get target line
+          if (count == TARGETNUM && currentCharacter != '>') {
+              buffer.append(currentCharacter);
+          }
+          if (count == TARGETNUM && currentCharacter == '>') {
+              break;
+          }
+          thirdPreviousCharacter = secondPreviousCharacter;
+          secondPreviousCharacter = previousCharacter;
+          previousCharacter = currentCharacter;
+          tmp = xml.read();
+      }
+      secondLine = buffer.toString();
+      //System.out.println("the second line string is: " + secondLine);
+      
+      //xml.reset();
+      return secondLine;
+  }
+  
+  /*
+   * Gets the prefix of this eml document. E.g eml for eml:eml
+   */
+  private static String getPrefix(String schemaLine) {
+    
+      String prefix = null;
+      
+      if(schemaLine.indexOf(" ") > 0){
+          String rootElement = "";
+          try {
+              rootElement = schemaLine.substring(0, schemaLine.indexOf(" "));
+          } catch (StringIndexOutOfBoundsException sioobe) {
+              rootElement = schemaLine;
+          }
+          
+          //System.out.println("rootElement:" + rootElement);
+          
+          if(rootElement.indexOf(":") > 0){
+              prefix = rootElement.substring(0, rootElement.indexOf(":"));
+          }
+          
+          if(prefix != null){
+              return prefix.trim();
+          }
+      }
+      return null;
   }
 }
