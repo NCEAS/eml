@@ -55,22 +55,11 @@
         </connectionDefinition>
       </online>
     </distribution>
-    <distribution>
-      <online>
-        <connection>
-          <connectionDefinition>
-            <references>def.1</references>
-          </connectionDefinition>
-          <parameter>
-            <name>databaseName</name>
-            <value>landuse95</value>
-          </parameter>
-          <parameter>
-            <name>owner</name>
-            <value>sde</value>
-          </parameter>
-        </connection>
-      </online>
+    <distribution id="data_table_1">
+              <inline>line, of, data 
+more, data, data,
+  and, more, data
+</inline>
     </distribution>
     <purpose>
       <para>Provide data to the whole world.</para>
@@ -97,10 +86,7 @@
           </textFormat>
         </dataFormat>
         <distribution>
-          <inline>line, of, data 
-more, data, data,
-  and, more, data
-</inline>
+<references>data_table_1</references>
           <access authSystem="knb" order="allowFirst" id="brooke.124.1" scope="document">
             <allow>
               <principal>uid=brooke,o=NCEAS,dc=ecoinformatics,dc=org</principal>
