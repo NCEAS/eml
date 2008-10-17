@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.17 $'
+          '$Date: 2008-10-17 23:32:59 $'
+      '$Revision: 1.18 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@
     to be using at least a small subset of the other modules nodes within
     the module that you want to use.  This can be seen clearly by looking
     at the diagrams associated with each
-    <a href="eml-docbook.html#moduleDescriptions">module</a>.
+    <a href="index.html#moduleDescriptions">module</a>.
   </p>
   <table border="1" cellpadding="3">
   <tr>
@@ -78,8 +78,9 @@
     </th>
   </xsl:for-each>
   </tr>
+  
     <!--loop through each module to do the rows-->
-    <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
+    <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:module">
       <xsl:variable name="modFile">
         <xsl:value-of select="."/>
       </xsl:variable>
@@ -99,9 +100,9 @@
       </xsl:variable>
 
       <td class="tablehead2"><xsl:value-of select="."/></td> <!--the row header-->
-        <!--go through each module again, this time comparing its imported
+        <!--go through the list of modules again, this time comparing its imported
             modules to the module name from the outer loop-->
-        <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:moduleDocs/doc:module">
+        <xsl:for-each select="/xs:schema/xs:annotation/xs:appinfo/doc:module">
           <xsl:variable name="modName">
             <xsl:value-of select="substring-before(., '.')"/>
           </xsl:variable>
