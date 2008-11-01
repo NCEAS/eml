@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-10-02 23:30:45 $'
-#      '$Revision: 1.41 $'
+#          '$Date: 2008-11-01 18:12:24 $'
+#      '$Revision: 1.42 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -138,8 +138,7 @@ were brought to light more recently. Several small changes were made to
 the enumeration list and unitTypes for standard units and stmml descriptions 
 of customUnits. Two elements in the literature schema were allowed to be 
 optional so that articles-in-press could be described.  The named type for 
-element gRing was changed to GRingType. No changes were made to xsl 
-stylesheets.
+element gRing was changed to GRingType.  
 
 EML makes use of the STMML schema (stmml.xsd) for describing custom units
 and describing its included list of standardUnits (unitList). The STMML
@@ -149,33 +148,37 @@ was NOT related to elements used by EML (unitList or unitType). However,
 given that authors of EML instance documents may have made use of other 
 parts of stmml.xsd, it was decided to the advance the namespace used for 
 stmml-related files to "stmml-1.1", in keeping with the pattern of version
-naming in EML. The stmml authors have been contacted, but have not commented
-on possible fixes to this bug. 
+naming in EML. The stmml authors have been contacted. 
 
 KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
 -----------------------------------------------------------
-Some problems with unit dictionary remain and will be solved in 
-a backwards-incompatible release in the future.  See bugs 1000 and 1605.
+Some areas of EML remain problematic for particular data types, and these 
+are being addressed by sub-groups of the EML development group. These 
+will be addressed in a backwards-incompatible release in the future. Areas
+of future development include: 
+1. use of external (or multiple) dictionaries 
+2. handling of ongoing data, (e.g.,use of temporal coverage elements)
+3. spatial datasets and map projections
 
 BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
 2.1.0  Changes (numbers refer to the corresponding Bugzilla bug)
 Schema changes:
-1132: eml.xsd, physical.xsd: access rule ambiguities 
+1132: eml.xsd, physical.xsd: fix access rule ambiguities 
 2054: eml.xsd: added the <metadata> tag to additionalMetadata
 1154: resource.xsd: required element offline has no required children
-3480: resource.xsd, physical.xsd: duplicate complexTypes, DistributionType and PhysicalDistributionType
-3165: resource.xsd: TBA
+3480: resource.xsd, physical.xsd: nearly duplicate complexTypes, DistributionType and PhysicalDistributionType
+3165: resource.xsd: provide a place for a url description
 3227: coverage.xsd: gRing was declared as GRingPointType, is now GRingType
-1019: coverage.xsd: TBA
-3500: coverage.xsd: TBA
+1019: coverage.xsd: altitudeUnits should use eml-unitDictionary
+3500: coverage.xsd: restrict boundingCoordinates to realistic lat/lon ranges
 1152: attribute.xsd: dateTime elements are named inconsistently; standarized on dateTime
 2272: attribute.xsd: base types in BoundsGroup changed to xs:float 
 3051: attribute.xsd: missing units were added to enumeration list to match eml-unitDitionary
 2568: attribute.xsd, entity.xsd: inconsistent naming of methods elements, standardized to <methods>
 2703: text.xsd: refined element declarations in txt:TextType for para, section; added ulink, citetitle 
 3163: literature.xsd: cardinality of volume and pageRange is now 0..1
-3164: literature.xsd: TBA
+3164: literature.xsd: literature needs a contact tree
 3445: stmml.xsd: non-deterministic
 2083: stmml.xsd: dimension 'current' was wrongly entered as 'charge'
 
