@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="foo.xsl"?>
-<eml:eml xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml" xmlns:sw="eml://ecoinformatics.org/software-2.1.0" xmlns:prot="eml://ecoinformatics.org/protocol-2.1.0" xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd" packageId="knb-lter-cdr.958608.1" system="knb" scope="system">
+<eml:eml xmlns:ds="eml://ecoinformatics.org/dataset-2.1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml" xmlns:sw="eml://ecoinformatics.org/software-2.1.0" xmlns:prot="eml://ecoinformatics.org/protocol-2.1.0" xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 ../eml.xsd" packageId="knb-lter-cdr.958608.1" system="knb" scope="system">
   <access scope="document" order="allowFirst" authSystem="knb">
     <allow>
       <principal>uid=CDR,o=lter,dc=ecoinformatics,dc=org</principal>
@@ -379,22 +379,22 @@ Clip strips are 10cm wide and 3m long.
         </temporalCoverage>
       </coverage>
       <methods>
-            <methodStep>
-              <description>this is a description of the first methodStep in a dataTable-level methods tree</description>
-            </methodStep>
-            <methodStep>
-              <description>this is a description of the second methodStep in a dataTable-level l methods tree</description>
-            </methodStep>
-            <sampling>
-              <studyExtent>
-                <description>this is a description of the studyExtent in a dataTable-level l methods tree</description>
-              </studyExtent>
-              <samplingDescription>this is a description of the samplingDescription in a dataTable-level  methods tree</samplingDescription>
-            </sampling>
-            <qualityControl>
-              <description>this is a description of the quality control in a dataTable-level l methods tree</description>
-            </qualityControl>
-          </methods>
+        <methodStep>
+          <description>this is a description of the first methodStep in a dataTable-level methods tree</description>
+        </methodStep>
+        <methodStep>
+          <description>this is a description of the second methodStep in a dataTable-level l methods tree</description>
+        </methodStep>
+        <sampling>
+          <studyExtent>
+            <description>this is a description of the studyExtent in a dataTable-level l methods tree</description>
+          </studyExtent>
+          <samplingDescription>this is a description of the samplingDescription in a dataTable-level  methods tree</samplingDescription>
+        </sampling>
+        <qualityControl>
+          <description>this is a description of the quality control in a dataTable-level l methods tree</description>
+        </qualityControl>
+      </methods>
       <attributeList>
         <attribute scope="document">
           <attributeName> field    </attributeName>
