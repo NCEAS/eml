@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2008-08-27 21:30:04 $'
- *    '$Revision: 1.52 $'
+ *        '$Date: 2008-11-01 20:24:06 $'
+ *    '$Revision: 1.53 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -654,7 +654,7 @@
   <xsl:template match="xs:simpleType" mode="documentation">
     <xsl:if test="./@name">
     <tr>
-      <td colspan="2" class="tablehead">
+     <td colspan="2" class="tablehead">
         <h3>
           <a class="sitelink">
             <xsl:attribute name="name">
@@ -675,8 +675,8 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="xs:simpleType" mode="embedded">
-    <tr>
+  <xsl:template match="xs:simpleType" mode="embedded"> 
+    <!-- <tr> 
       <td colspan="2" class="tablehead">
         <h3>
           <a class="sitelink">
@@ -687,12 +687,12 @@
           </a>
         </h3>
       </td>
-    </tr>
+    </tr> -->
     <tr>
-      <td class="tablepanel">
+      <td class="tablepanel"> 
         <xsl:apply-templates select="xs:extension|xs:restriction"
                              mode="contentmodel"/>
-      </td>
+      </td> 
       <xsl:apply-templates select="xs:annotation" mode="helpinfo"/>
     </tr>
   </xsl:template>
@@ -742,7 +742,9 @@
         <span class="boldtext">Allowed values: </span>
         <ul>
           <xsl:apply-templates select="xs:enumeration" mode="contentmodel" />
-        </ul>
+		  <xsl:apply-templates select="xs:minInclusive" mode="contentmodel" />
+		  <xsl:apply-templates select="xs:maxInclusive" mode="contentmodel" />
+		</ul>
         </p>
       </xsl:when>
       <xsl:otherwise>
@@ -756,6 +758,17 @@
   <xsl:template match="xs:enumeration" mode="contentmodel">
     <li><xsl:value-of select="./@value"/></li>
   </xsl:template>
+
+  <!-- format the minInclusive content model -->
+  <xsl:template match="xs:minInclusive" mode="contentmodel">
+     <li><span class="boldtext">Minimum: </span><xsl:value-of select="./@value"/></li>
+   </xsl:template>
+
+  <!-- format the maxInclusive content model -->
+  <xsl:template match="xs:maxInclusive" mode="contentmodel">
+	 <li><span class="boldtext">Maximum: </span><xsl:value-of select="./@value"/></li>
+  </xsl:template>
+			
 
   <!-- This template formats the various types of help information
        that are provided in the xsd file -->
@@ -946,6 +959,16 @@
           <xsl:value-of select="$typename"/>
         </a>
       </xsl:when>
+      <xsl:when test="$namespaceprefix = 'unit'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-unitTypeDefinitions.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"/>
+        </a>
+      </xsl:when>
+																
       <xsl:otherwise>
         <a class="sitelink">
           <xsl:attribute name="href">
