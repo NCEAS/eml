@@ -15,7 +15,7 @@
       University of New Mexico Center for Environmental Studies, Arizona State University Other
       funding: National Science Foundation (see README for details) The David and Lucile Packard
       Foundation For Details: http://knb.ecoinformatics.org/ '$Author: obrien $' '$Date: 2008/04/09
-      21:31:41 $' '$Revision: 1.56 $' This program is free software; you can redistribute it and/or
+      21:31:41 $' '$Revision: 1.57 $' This program is free software; you can redistribute it and/or
       modify it under the terms of the GNU General Public License as published by the Free Software
       Foundation; either version 2 of the License, or (at your option) any later version. This
       program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
@@ -76,6 +76,7 @@
       <doc:module>eml-spatialVector.xsd</doc:module>
       <doc:module>eml-storedProcedure.xsd</doc:module>
       <doc:module>eml-text.xsd</doc:module>
+      <doc:module>eml-unitTypeDefinitions.xsd</doc:module>
       <doc:module>eml-view.xsd</doc:module>
     </xs:appinfo>
   </xs:annotation>
@@ -101,7 +102,6 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-      
         <xs:element name="access" type="acc:AccessType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
@@ -111,7 +111,6 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-          
         <xs:choice>
           <xs:element name="dataset" type="ds:DatasetType">
             <xs:annotation>
@@ -164,7 +163,6 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
-        
         <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
