@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" 
-    xmlns:rp="eml://ecoinformatics.org/party-2.1.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns="eml://ecoinformatics.org/coverage-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/coverage-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0" 
-  schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" 
-  schemaLocation="eml-party.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cit="eml://ecoinformatics.org/literature-2.1.0" xmlns:rp="eml://ecoinformatics.org/party-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns="eml://ecoinformatics.org/coverage-2.1.0" xmlns:unit="eml://ecoinformatics.org/units-2.1.0" targetNamespace="eml://ecoinformatics.org/coverage-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.0" schemaLocation="eml-literature.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/units-2.1.0" schemaLocation="eml-unitTypeDefinitions.xsd"/>
   <xs:annotation>
     <xs:documentation>
                '$RCSfile: eml-coverage.xsd,v $'
@@ -32,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.81 $'
+          '$Date: 2008-11-01 19:50:59 $'
+      '$Revision: 1.82 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,12 +43,12 @@
       <doc:moduleDocs>
         <doc:moduleName>eml-coverage</doc:moduleName>
         <doc:moduleDescription>
-        <section xmlns="">
-          <title>
+          <section xmlns="">
+            <title>
             The eml-coverage module - Geographic, temporal, and taxonomic extents
             of resources
           </title>
-          <para>
+            <para>
             The eml-coverage module contains fields for describing the coverage
             of a resource in terms of time, space, and taxonomy. These
             coverages (temporal, spatial, and taxonomic) represent the extent
@@ -74,7 +64,7 @@
             "inner G-Ring" that defines one or more
             "cut-outs" in the area, i.e. the donut hole concept.
           </para>
-          <para>
+            <para>
             The temporal coverage section allows for the definition of either a
             single date/time, or a range of dates/times. These date/times may be
             expressed as a calendar date according to the ISO 8601 Date and Time
@@ -84,7 +74,7 @@
             scale fields with a value of "ongoing", whereas the begin
             date would use the specific calendar date fields.
           </para>
-          <para>
+            <para>
             The taxonomic coverage section allows for detailed description of
             the taxonomic extent of the dataset or resource.  The taxonomic
             classification consists of a recursive set of taxon rank names,
@@ -95,13 +85,13 @@
             module also allows for the definition of the classification system
             in cases where alternative systems are used.
           </para>
-          <para>
+            <para>
             The eml-coverage module, like other modules, may be
             "referenced" via the &lt;references&gt; tag.  This allows
             the coverage extent to be described once, and then used as a
             reference in other locations within the EML document via its ID.
           </para>
-        </section>
+          </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets where spatial, temporal or taxonomic
         coverage is important</doc:recommendedUsage>
@@ -123,7 +113,6 @@
         </doc:description>
         <doc:example>Please see the individual sub fields for specific
         examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -140,7 +129,6 @@
               exclusions.</doc:description>
               <doc:example>Please see the individual sub fields for specific
               examples.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -155,7 +143,6 @@
               calander dates and geologic dating systems.</doc:description>
               <doc:example>Please see the individual sub fields for specific
               examples.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -178,7 +165,6 @@
               ranks) from one or more classification systems.</doc:description>
               <doc:example>Please see the individual sub fields for specific
               examples.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -208,7 +194,6 @@
         range of date/times.</doc:description>
         <doc:example>Please see the individual sub fields for specific
         examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -226,63 +211,59 @@
               age.</doc:description>
               <doc:example>Please see the individual sub-elements for
               example.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-  <xs:element name="rangeOfDates">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Range of dates/times</doc:tooltip>
-        <doc:summary>Means of encoding a range of dates and
+        <xs:element name="rangeOfDates">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Range of dates/times</doc:tooltip>
+              <doc:summary>Means of encoding a range of dates and
         times.</doc:summary>
-        <doc:description>The 'RangeOfDatesType' field is intended to be used for
+              <doc:description>The 'RangeOfDatesType' field is intended to be used for
         describing a range of dates and/or times. It may be used multiple times
         to document multiple date ranges. It allows for two 'singleDateTime'
         fields, the first to be used as the beginning dateTime, and the second
         to be used as the ending dateTime of the range.</doc:description>
-        <doc:example>Please see the examples from the 'singleDateTime'
+              <doc:example>Please see the examples from the 'singleDateTime'
         field for specific examples.</doc:example>
-        
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
-    <xs:sequence>
-        <xs:element name="beginDate" type="SingleDateTimeType">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Begin Date</doc:tooltip>
-              <doc:summary>A single time stamp signifying the beginning of
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="beginDate" type="SingleDateTimeType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Begin Date</doc:tooltip>
+                    <doc:summary>A single time stamp signifying the beginning of
               some time period</doc:summary>
-              <doc:description>A single time stamp signifying the beginning of
+                    <doc:description>A single time stamp signifying the beginning of
               some time period.  There is a choice between two
               options: a calendar date with a time, or a geologic
               age.</doc:description>
-              <doc:example>Please see the individual sub-elements for
+                    <doc:example>Please see the individual sub-elements for
               example.</doc:example>
-              
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="endDate" type="SingleDateTimeType">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>End Date</doc:tooltip>
-              <doc:summary>A single time stamp signifying the end of
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="endDate" type="SingleDateTimeType">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>End Date</doc:tooltip>
+                    <doc:summary>A single time stamp signifying the end of
               some time period</doc:summary>
-              <doc:description>A single time stamp signifying the end of
+                    <doc:description>A single time stamp signifying the end of
               some time period.  There is a choice between two
               options: a calendar date with a time, or a geologic
               age.</doc:description>
-              <doc:example>Please see the individual sub-elements for
+                    <doc:example>Please see the individual sub-elements for
               example.</doc:example>
-              
-            </xs:appinfo>
-          </xs:annotation>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
         </xs:element>
-    </xs:sequence>
-    </xs:complexType>
-  </xs:element>
       </xs:choice>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
@@ -299,7 +280,6 @@
         age.</doc:description>
         <doc:example>Please see the individual sub-elements for
         example.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -318,9 +298,9 @@
               the month (01 - 31). This field can also be used to enter just 
 	      the year portion of a date.</doc:description>
               <doc:example>2001-01-01</doc:example>
-	      <doc:example>2001-10-12</doc:example>
-	      <doc:example>2001</doc:example>
-	      <doc:example>1895</doc:example>
+              <doc:example>2001-10-12</doc:example>
+              <doc:example>2001</doc:example>
+              <doc:example>1895</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -350,7 +330,6 @@
               Mean Time). 2) 14:06:09-08:00 , which means six minutes, nine
               seconds past two o'clock p.m., Pacific Standard Time (which is
               offset eight hours behind UTC)</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -384,7 +363,6 @@
             </doc:description>
             <doc:example>Please see the individual sub-fields for specific
             examples.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -403,7 +381,6 @@
                   <doc:example>'Absolute', 'Geomagnetic Polarity Time Scale',
                   'International Geological Time Scale',
                   'Oxygen-Isotope'</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -429,7 +406,6 @@
                   documenting this event using the International Geological
                   Time Scale, both 'Maastrichtian' and 'Danian' should be
                   included here.</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -444,7 +420,6 @@
                   what the error estimate represents and how it was
                   calculated.</doc:description>
                   <doc:example>+/- 5 Ma (Million Years)</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -458,7 +433,6 @@
                   used to calculate the age estimate. Detailed information
                   about the method may be provided through references
                   contained in the Time Scale Citation field.</doc:description>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -475,7 +449,6 @@
                   methodology used for carbon dating or describing the basic
                   geologic time scale in more detail could be cited
                   here.</doc:example>
-                  
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
@@ -491,10 +464,11 @@
         <doc:summary>Geographic coverage information.</doc:summary>
         <doc:description>Geographic Coverage is a container for spatial
         information about a a project, a resource, or an entity within a
-        resource.</doc:description>
+        resource. It is meant for general information and not for accurate
+mapping.  More specific information, including mapping projections, is covered by EML in
+the spatialReference schema.</doc:description>
         <doc:example>Please see the individual sub-elements for specific
         examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -503,41 +477,41 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Description of geographic extent</doc:tooltip>
-              <doc:summary>Short description of the geographic areal domain of
+              <doc:summary>Short text description of the geographic areal domain of
               the data set.</doc:summary>
-              <doc:description>A geographic extent description is especially
-              important when the extent of the data set is not well described
-              by the "Bounding_Rectangle_Coordinates", or in the case of data
-              which are not specifically geospatial, to provide a geographic
-              setting for the item being documented. Assuming the
-              "Bounding_Rectangle_Coordinates" do not adequately describe the
+              <doc:description>geographicDescription is a short text description of a dataset's 
+              geographic areal domain. A text description is especially important to 
+              provide a geographic                           setting 
+               when the extent of the data set is not well described
+              by the "boundingCoordinates", or in the case of data
+              which are not specifically geospatial. Assuming the
+              "boundingCoordinates" do not adequately describe the
               extent of the data set, the discrepancy can be identified and
-              described in this data element. If the item being documented is
-              not specifically geospatial, the "Bounding_Rectangle_Coordinates"
-              can define a general polygon, such as a rectangle around a
-              country, with this "Description_of_Geographic_Extent" element
-              containing a disclaimer concerning the
-              "Bounding_Rectangle_Coordinates" and/or further detail concerning
-              the geographic area of concern for the item being documented. For
-              example, a study of the diseases of salmon may not have a
+              described here. The coordinates may define a rectangle around a
+              country, with this geographicDescription element
+              containing a disclaimer  
+               and/or further details concerning the border.
+             A study of the diseases of salmon may not have a
               specific geographic extent associated with it, but the salmon
-              involved in the study were collected in Washington and Oregon
-              states, thus the "Bounding_Rectangle_Coordinates" might form a
+               were collected in the states of Washington and Oregon.
+              The "boundingCoordinates" might form a
               general rectangle around the states of Washington and Oregon, but
-              the "Description_of_Geographic_Extent" might describe the fact
-              that the extent within Washington and Oregon included only
+              the "geographicDescription" might describe the fact
+              that the study took place only along
               certain rivers within those states. This data element differs
               from the standard data element "Place_Keyword" in that it allows
               a free text description of the geographic extent, rather than
               just a list of words or phrases useful as an index of location
-              names associated with the data set.</doc:description>
-              <doc:example>Examples include, "Manistee River watershed",
+              names associated with the data set.   This element can also contain information
+              about the collection of the boundingCoordinates, e.g., an altitude value that is referenced
+              to Mean Lower Low Water. 
+              </doc:description>
+              <doc:example>"Manistee River watershed"</doc:example>
+              <doc:example>
               "extent of 7 1/2 minute quads containing any property belonging
-              to Yellowstone National Park", or "ponds and reservoirs larger
-              than 2 acres in Jefferson County, Colorado". This is especially
-              important when the extent of the data set is not well described
-              by the "Bounding_Rectangle_Coordinates".</doc:example>
-              
+              to Yellowstone National Park"</doc:example>
+              <doc:example> "ponds and reservoirs larger
+              than 2 acres in Jefferson County, Colorado". </doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -545,160 +519,162 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Bounding coordinates</doc:tooltip>
-              <doc:summary>The 4 points (latitude and longitude pairs) that
-              define a bounding box on the earth's surface. To define a single
-              point, use the same point in both lat/lon pairs.</doc:summary>
-              <doc:description>The limits of coverage of a data set expressed
-              by latitude and longitude values in the order western-most,
-              eastern-most, northern-most, and southern-most. For data sets
-              that include a complete band of latitude around the earth, the
-              West Bounding Coordinate shall be assigned the value -180.0, and
-              the East Bounding Coordinate shall be assigned the value 180.0 If
-              your bounding area is a single point, use the same values for
-              northBoundingCoordinate and southBoundingCoordinate, as well as
-              the same value for westBoundingCoordinate and
-              eastBoundingCoordinate. This will define the same lat/lon pairs
-              since all four are required.</doc:description>
-              <doc:example>Please see the individual sub-fields for specific
-              examples.</doc:example>
-              
+              <doc:summary>The four margins (N, S, E, W) of a bounding box on the earth's surface, 
+              or when considered in lat-lon pairs, the corners of the box. To define a single
+              point, use the same value in each lat or lon pair.  These elements are meant to convey general 
+              information and are not for accurate mapping.  More specific information may be
+              included by using the elements in the spatialReference schema.</doc:summary>
+              <doc:description>
+                <section>
+                  <para>Boundind Coordinates are the four margins (N, S, E, W) of a bounding box, 
+              or when considered in lat-lon pairs, the corners of the box. These elements are meant to convey general 
+              information and are not for accurate mapping.  More specific information may be
+              included by using the elements in the spatialReference schema.</para>
+                  <para>The limits of coverage of a data set should be expressed
+              as decimal latitudes and longitudes, and in the order western-most,
+              eastern-most, northern-most, and southern-most. By convention, 
+              latitudes and longitudes are referenced to the  Equator and to the Prime Meridian
+              (the datums), respectively. 
+              By definition, the 0 and 180 meridians themselves do not belong in either hemisphere, 
+              but local conventions may place them in either. All coordinates are typed as decimals. 
+              Since all four elements are required, a bounding area that is a 
+              single point should use the same values for
+              northBoundingCoordinate and southBoundingCoordinate, and likewise
+             for westBoundingCoordinate and eastBoundingCoordinate. </para>
+                  <para>In the case of a data set that comprises 
+                    all longtudes (e.g., a horizontal band between 2 parallels that fully 
+                    encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
+                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    also be interpreted as only the  meridian itself, so this is not recommended</para>
+                </section>
+              </doc:description>
+              <doc:example>Please see the individual sub-fields.</doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="westBoundingCoordinate" type="xs:string">
+              <xs:element name="westBoundingCoordinate">
                 <xs:annotation>
                   <xs:appinfo>
-                    <doc:tooltip>West bounding coordinate</doc:tooltip>
-                    <doc:summary>Western-most coordinate of the limit of
-                    coverage for a bounding box, expressed in degrees of
+                    <doc:tooltip>West bounding coordinate, in decimal degrees</doc:tooltip>
+                    <doc:summary>Western-most limit of a bounding box, expressed in degrees of
                     longitude.</doc:summary>
-                    <doc:description>The west bounding coordinate field defines
-                    the western-most point of the bounding box that is being
-                    described. This longitude coordinate should be expressed in
-                    decimal fractions of degrees. Whole degrees of longitude
-                    shall be represented by a three-digit decimal number
-                    ranging from 0 through 180. When a decimal fraction of a
-                    degree is specified, it should be separated from the whole
-                    number of degrees by a decimal point. Decimal fractions of
-                    a degree may be expressed to the precision desired.
-                    Longitudes east of the prime meridian shall be specified by
-                    a plus sign (+), or by the absence of a minus sign (-),
-                    preceding the three digits designating degrees of
-                    longitude. Longitudes west of the meridian shall be
-                    designated by minus sign (-) preceding the three digits
-                    designating degrees. A point on the prime meridian shall be
-                    assigned to the Eastern Hemisphere. A point on the 180th
-                    meridian shall be assigned to the Western Hemisphere. One
-                    exception to this last convention is permitted. For the
-                    special condition of describing a band of latitude around
-                    the earth, the East Bounding Coordinate data element shall
-                    be assigned the value +180 (180) degrees.</doc:description>
-                    <doc:example>'-118.25', '+25', '45.247'</doc:example>
-                    
+                    <doc:description>The westBoundingCoordinate field defines
+                    the longitude of the western-most point of the bounding box that is being
+                    described. A longitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    not allowed. Longitudes east of the prime meridian must be specified by
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
+                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises 
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
+                    encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
+                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
+                    <doc:example>'-118.25', '+25', '45.24755'</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:decimal">
+                    <xs:minInclusive value="-180.0"/>
+                    <xs:maxInclusive value="180.0"/>
+                  </xs:restriction>
+                </xs:simpleType>
               </xs:element>
-              <xs:element name="eastBoundingCoordinate" type="xs:string">
+              <xs:element name="eastBoundingCoordinate">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>East bounding coordinate</doc:tooltip>
-                    <doc:summary>Eastern-most coordinate of the limit of
-                    coverage of a bounding box, expressed in degrees of
+                    <doc:summary>Eastern-most limit of a bounding box, expressed in degrees of
                     longitude.</doc:summary>
-                    <doc:description>The east bounding coordinate field defines
-                    the eastern-most point of the bounding box that is being
-                    described. This longitude coordinate should be expressed in
-                    decimal fractions of degrees. Whole degrees of longitude
-                    shall be represented by a three-digit decimal number
-                    ranging from 0 through 180. When a decimal fraction of a
-                    degree is specified, it should be separated from the whole
-                    number of degrees by a decimal point. Decimal fractions of
-                    a degree may be expressed to the precision desired.
-                    Longitudes east of the prime meridian shall be specified by
-                    a plus sign (+), or by the absence of a minus sign (-),
-                    preceding the three digits designating degrees of
-                    longitude. Longitudes west of the meridian shall be
-                    designated by minus sign (-) preceding the three digits
-                    designating degrees. A point on the prime meridian shall be
-                    assigned to the Eastern Hemisphere. A point on the 180th
-                    meridian shall be assigned to the Western Hemisphere. One
-                    exception to this last convention is permitted. For the
-                    special condition of describing a band of latitude around
-                    the earth, the East Bounding Coordinate data element shall
-                    be assigned the value +180 (180) degrees.</doc:description>
-                    <doc:example>'-118.25', '+25', '45.247'</doc:example>
-                    
+                    <doc:description>The eastBoundingCoordinate field defines
+                    the longitude of the eastern-most point of the bounding box that is being
+                    described. A longitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    not allowed. Longitudes east of the prime meridian must be specified by
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
+                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises 
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
+                    encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
+                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
+                    <doc:example>'-118.25', '+25', '45.24755'</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:decimal">
+                    <xs:minInclusive value="-180.0"/>
+                    <xs:maxInclusive value="180.0"/>
+                  </xs:restriction>
+                </xs:simpleType>
               </xs:element>
-              <xs:element name="northBoundingCoordinate" type="xs:string">
+              <xs:element name="northBoundingCoordinate">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>North bounding coordinate</doc:tooltip>
-                    <doc:summary>Northern-most coordinate of the limit of
-                    coverage expressed in latitude.</doc:summary>
-                    <doc:description>The north bounding coordinate field
-                    defines the northern-most point of the bounding box that is
-                    being described. This latitude coordinate should be
-                    expressed in decimal fractions of degrees. Whole degrees of
-                    latitude shall be represented by a two-digit decimal number
-                    ranging from 0 through 90. When a decimal fraction of a
-                    degree is specified, it shall be separated from the whole
-                    number of degrees by a decimal point. Decimal fractions of
-                    a degree may be expressed to the precision desired.
-                    Latitudes north of the equator shall be specified by a plus
-                    sign (+), or by the absence of a minus sign (-), preceding
-                    the two digits designating degrees. Latitudes south of the
-                    Equator shall be designated by a minus sign (-) preceding
-                    the two digits designating degrees. A point on the Equator
-                    shall be assigned to the Northern Hemisphere. Any spatial
-                    address with a latitude of +90 (90) or -90 degrees will
-                    specify the position at the North or South Pole,
+                    <doc:summary>Northern-most lilmit of a bounding box expressed in latitude.</doc:summary>
+                    <doc:description>The northBoundingCoordinate field defines
+                    the latitude of the northern-most point of the bounding box that is being
+                    described. A latitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are 
+                    not allowed. Latitudes north of the equator must be denoted by
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
+                     or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
                     <doc:example>'-18.44', '+44.35', '86'</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:decimal">
+                    <xs:minInclusive value="-90.0"/>
+                    <xs:maxInclusive value="90.0"/>
+                  </xs:restriction>
+                </xs:simpleType>
               </xs:element>
-              <xs:element name="southBoundingCoordinate" type="xs:string">
+              <xs:element name="southBoundingCoordinate">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>South bounding coordinate</doc:tooltip>
-                    <doc:summary>Southern-most coordinate of the limit of
-                    coverage expressed in latitude.</doc:summary>
-                    <doc:description>The south bounding coordinate field
-                    defines the southern-most point of the bounding box that is
-                    being described. This latitude coordinate should be
-                    expressed in decimal fractions of degrees. Whole degrees of
-                    latitude shall be represented by a two-digit decimal number
-                    ranging from 0 through 90. When a decimal fraction of a
-                    degree is specified, it shall be separated from the whole
-                    number of degrees by a decimal point. Decimal fractions of
-                    a degree may be expressed to the precision desired.
-                    Latitudes north of the equator shall be specified by a plus
-                    sign (+), or by the absence of a minus sign (-), preceding
-                    the two digits designating degrees. Latitudes south of the
-                    Equator shall be designated by a minus sign (-) preceding
-                    the two digits designating degrees. A point on the Equator
-                    shall be assigned to the Northern Hemisphere. Any spatial
-                    address with a latitude of +90 (90) or -90 degrees will
-                    specify the position at the North or South Pole,
+                    <doc:summary>Southern-most limit of the bounding box expressed in latitude.</doc:summary>
+                    <doc:description>The southBoundingCoordinate field defines
+                    the latitude of the southern-most point of the bounding box that is being
+                    described. A latitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are 
+                    not allowed. Latitudes north of the equator must be denoted by
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
+                     or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
                     <doc:example>'-18.44', '+44.35', '86'</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:decimal">
+                    <xs:minInclusive value="-90.0"/>
+                    <xs:maxInclusive value="90.0"/>
+                  </xs:restriction>
+                </xs:simpleType>
               </xs:element>
               <xs:element name="boundingAltitudes" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Bounding altitudes</doc:tooltip>
-                    <doc:summary>The limits of coverage of a data set expressed
+                    <doc:summary>The vertical limits of a data set expressed
                     by altitude.</doc:summary>
                     <doc:description>The bounding altitude field is intended to
-                    contain altitudinal (elevation) measurements in relation to
-                    the bounding box being described. It allows for minimum and
+                    contain altitudinal (elevation) measurements for
+                    the bounding box being described. It als for minimum and
                     maximum altitude fields, as well as a field for the units
                     of measure. The combination of these fields provide the
                     vertical extent information for the bounding box. The units
@@ -706,7 +682,6 @@
                     baseline.</doc:description>
                     <doc:example>Please see the individual sub-fields for
                     specific examples.</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -720,11 +695,9 @@
                           <doc:description>The minimum altitude extent of
                           coverage for the bounding box that is being
                           described. The minimum altitude should be in
-                          reference to a known datum, which should be described
-                          in the altitude units field.</doc:description>
-                          <doc:example>'12', '100.6' (e.g meters above Mean
-                          Lowest Low Water)</doc:example>
-                          
+                          reference to a known datum (e.g., Mean Sea Level), which should be part of the geographicDescription.</doc:description>
+                          <doc:example>100.6 </doc:example>
+                          <doc:example>12 </doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -737,26 +710,16 @@
                           <doc:description>The maximum altitude extent of
                           coverage for the bounding box that is being
                           described. The maximum altitude should be in
-                          reference to a known datum, which should be described
-                          in the altitude units field.</doc:description>
+                          reference to a known datum, which should be part of the geographicDescription.</doc:description>
                           <doc:example>'12', '100.6' (e.g meters above Mean
                           Lowest Low Water)</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitudeUnits" type="xs:string">
+                    <xs:element name="altitudeUnits" type="unit:LengthUnitType">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>Units of altitude</doc:tooltip>
-                          <doc:summary>Units in which altitude is
-                          measured.</doc:summary>
-                          <doc:description>Units in which altitude is measured.
-                          This field should be in relation to a known datum
-                          which is described in the units.</doc:description>
-                          <doc:example>Meters (above Mean Lowest Low
-                          Water)</doc:example>
-                          
+                          <doc:tooltip>The unit that the altitude is expressed in. See the description under the Type definition</doc:tooltip>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -781,7 +744,6 @@
               the shore excluding the pond itself.</doc:description>
               <doc:example>Please see the individual sub-fields for specific
               examples.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -797,7 +759,6 @@
                     datasetGPolygon.  This is the outer part of the doughnut
                     shape that encompasses the broadest area of coverage
                     </doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -822,7 +783,6 @@
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).  This is the center of the doughnut
                     shape created by the datasetGPolygon.</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -852,7 +812,6 @@
         <doc:description>A single geographic location.  This is useful if you
         register your datasets by a single geospatial point, such as the
         lat/long of your research station.</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -863,7 +822,6 @@
             <doc:summary/>
             <doc:description>The latitude of a point of the
             g-ring.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -874,7 +832,6 @@
             <doc:summary/>
             <doc:description>The longitude of a point of the
             g-ring.</doc:description>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -896,7 +853,6 @@
         5,101
         -111,45
         </doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
   </xs:complexType>
@@ -910,7 +866,6 @@
         resource.</doc:description>
         <doc:example>Please see the individual sub-fields for specific
         examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -923,7 +878,6 @@
               treatments.</doc:summary>
               <doc:description>Documentation of taxonomic sources, procedures,
               and treatments.</doc:description>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -937,7 +891,6 @@
                     <doc:description>Information about the classification
                     system or authority used.</doc:description>
                     <doc:example>Flora of North America</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -949,7 +902,6 @@
                           <doc:summary/>
                           <doc:description>Relevant literature for documenting
                           the used classification system.</doc:description>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -962,7 +914,6 @@
                           <doc:description>A description of any modifications
                           or exceptions made to the classification system or
                           authority used.</doc:description>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -977,7 +928,6 @@
                     <doc:description>Information on any nonauthoritative
                     materials (e.g. field guides) useful for reconstructing the
                     actual identification process.</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -989,7 +939,6 @@
                     <doc:description>Information about the individual(s)
                     responsible for the identification(s) of the specimens or
                     sightings, etc.</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1003,7 +952,6 @@
                     <doc:example>specimen processing, comparison with museum
                     materials, keys and key characters, chemical or genetic
                     analyses</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1020,7 +968,6 @@
                     of field workers.</doc:description>
                     <doc:example>materials sent to experts, and not yet
                     determined</doc:example>
-                    
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -1032,7 +979,6 @@
                     <doc:description>Information on the types of specimen, the
                     repository, and the individuals who identified the
                     vouchers.</doc:description>
-                    
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -1046,7 +992,6 @@
                           of specimen collected.</doc:description>
                           <doc:example>herbarium specimens, blood samples,
                           photographs, individuals, or batches</doc:example>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -1059,7 +1004,6 @@
                           <doc:description>Information about the curator or
                           contact person and/or agency responsible for the
                           specimens.</doc:description>
-                          
                         </xs:appinfo>
                       </xs:annotation>
                       <xs:complexType>
@@ -1081,7 +1025,6 @@
                                 <doc:example>Please see the examples within the
                                 sub fields for the responsible
                                 party.</doc:example>
-                                
                               </xs:appinfo>
                             </xs:annotation>
                           </xs:element>
@@ -1105,7 +1048,6 @@
               <doc:example>"All vascular plants were identified to family or
               species, mosses and lichens were identified as moss or
               lichen."</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1134,7 +1076,6 @@
         of 4 fields: taxonomic rank, taxonomic rank value, common name, and
         finally Taxonomic Classification (self-referencing). Please see the
         sub-fields for specific examples.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -1149,7 +1090,6 @@
             of the accepted levels of Taxa.</doc:description>
             <doc:example>'Kingdom', 'Division/Phylum', 'Class', 'Order',
             'Family', 'Genus', and 'Species'</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -1171,7 +1111,6 @@
             indicating the common name of red maple. It is recommended to
             start with Kingdom and include ranks down to the most detailed
             level possible.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -1186,7 +1125,6 @@
             if appropriate.</doc:description>
             <doc:example>insects, vertebrate, grasses, waterfowl, vascular
             plants, red maple.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
