@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-09-16 23:23:24 $'
-      '$Revision: 1.73 $'
+          '$Date: 2008-11-05 01:49:22 $'
+      '$Revision: 1.74 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1147,9 +1147,8 @@
               <doc:summary>Information on how the resource is distributed
               online and offline</doc:summary>
               <doc:description>This element provides information on how the
-              resource is distributed online and offline. Connections to online
-              systems can be described as URLs and as a list of relevant
-              connection parameters.</doc:description>
+              resource is distributed. Connections to online
+              systems can be described as URLs or as a list of connection parameters.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1161,15 +1160,40 @@
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <!-- 
-PysicalDistributionType is is now an extension of physical type in resource
+
+physical distribution type built from resource, access and local components 
 -->
   <xs:complexType name="PhysicalDistributionType">
-    <xs:complexContent>
-      <xs:extension base="res:DistributionType">
-        <xs:sequence>
-          <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>this type specifically for physical connections.</doc:tooltip>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:choice>
+          <xs:element name="online" type="PhysicalOnlineType"/>
+          <xs:element name="offline" type="res:OfflineType"/>
+          <xs:element name="inline" type="res:InlineType"/>
+        </xs:choice>
+        <xs:group ref="res:ReferencesGroup"/>
+      </xs:choice>
+      <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <!--
+
+phys:online type -->
+  <xs:complexType name="PhysicalOnlineType">
+    <xs:sequence>
+      <xs:element name="onlineDescription" type="xs:string" minOccurs="0"/>
+      <xs:choice>
+        <xs:element name="url" type="res:UrlType"/>
+        <xs:element name="connection" type="res:ConnectionType"/>
+      </xs:choice>
+    </xs:sequence>
   </xs:complexType>
 </xs:schema>
