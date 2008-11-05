@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-05 01:44:08 $'
-      '$Revision: 1.86 $'
+          '$Date: 2008-11-05 21:08:29 $'
+      '$Revision: 1.87 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1082,4 +1082,23 @@ connectionType -->
     <xs:attribute name="system" type="SystemType" use="optional"/>
     <xs:attribute name="scope" type="ScopeType" use="optional" default="document"/>
   </xs:complexType>
+  <xs:simpleType name="NonEmptyStringType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Non Empty String Type</doc:tooltip>
+        <doc:summary>Non Empty String Type</doc:summary>
+        <doc:description>This type specifies a content pattern for all elements 
+          that are required by EML to ensure that there is actual content (i.e., 
+          not just whitespace). The pattern described can be interpreted as
+          "at least one non-whitespace character, followed
+          by any number of whitespace plus not-whitespace characters. "
+          Leading and/or trailing whitespace is allowed, and whitespace 
+          may include carriage returns and newlines.</doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:pattern value="[\s]*[\S][\s\S]*"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
