@@ -13,9 +13,9 @@
  *                The David and Lucile Packard Foundation
  *   For Details: http://knb.ecoinformatics.org/
  *
- *      '$Author: berkley $'
- *        '$Date: 2003-12-18 22:20:14 $'
- *    '$Revision: 1.15 $'
+ *      '$Author: walbridge $'
+ *        '$Date: 2008-11-05 21:08:45 $'
+ *    '$Revision: 1.16 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -355,7 +355,7 @@ public class EMLParser
           }
           else
           { //the field is an element
-            idval = id.getFirstChild().getNodeValue();
+            idval = id.getFirstChild().getNodeValue().trim();
           }
 
           int keyindex;
