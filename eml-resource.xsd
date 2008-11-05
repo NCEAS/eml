@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-05 21:08:29 $'
-      '$Revision: 1.87 $'
+          '$Date: 2008-11-05 22:55:06 $'
+      '$Revision: 1.88 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -594,9 +594,39 @@
     </xs:annotation>
     <xs:choice>
       <xs:choice>
-        <xs:element name="online" type="OnlineType"/>
-        <xs:element name="offline" type="OfflineType"/>
-        <xs:element name="inline" type="InlineType"/>
+        <xs:element name="online" type="OnlineType">
+           <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>distribution/online</doc:tooltip>
+        <doc:summary>Online distribution information</doc:summary>
+        <doc:description>This element contains information for accessing the
+              resource online, represented either as a URL a connection, or 
+              a connectionDefinition which may be referenced in other parts of
+              the EML document. See the Type definition for more information. </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+         </xs:element>
+        <xs:element name="offline" type="OfflineType">
+                <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Offline distribution</doc:tooltip>
+        <doc:summary>data are available offline</doc:summary>
+        <doc:description>This element is for data which are distributed offline, 
+         generally by request. See the Type 
+        definition for more information.         </doc:description>
+        </xs:appinfo>
+        </xs:annotation>
+</xs:element>        
+               <xs:element name="inline" type="InlineType">
+                 <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Inline distribution</doc:tooltip>
+        <doc:summary>data distributed inline in the metadata.</doc:summary>
+        <doc:description>The data are distributed inline, with the metadata. See the Type 
+        definition for more information.         </doc:description>
+        </xs:appinfo>
+        </xs:annotation>
+               </xs:element>
       </xs:choice>
       <xs:group ref="ReferencesGroup"/>
     </xs:choice>
@@ -888,7 +918,7 @@ inline type -->
   <xs:complexType name="OnlineType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>Online Distribution Information</doc:tooltip>
+        <doc:tooltip>Online Distribution Type</doc:tooltip>
         <doc:summary>Distribution information for accessing the
               resource online.</doc:summary>
         <doc:description>Distribution information for accessing the
@@ -919,14 +949,26 @@ inline type -->
         <xs:element name="url" type="UrlType">
           <xs:annotation>
             <xs:appinfo>
-info about the use of the URL in the res:OnlineType
+              <doc:tooltip>URL</doc:tooltip>
+              <doc:summary>A URL or this resource.</doc:summary>
+              <doc:description>A URL (Uniform Resource Locator) from which this additional 
+              information can be obtained, or from which the resource can be downloaded 
+              directly. In the resource module, the distribution URL is generally meant for 
+              informaitonal purposes, and the "function" attribute should be set to "information". 
+              However, if the URL returns the data stream itself, then the "function" attribute 
+              should be set to "download".  See the Type Defintion for more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
         <xs:element name="connection" type="ConnectionType">
           <xs:annotation>
             <xs:appinfo>
-any specific info for using connection in the context of a res:OnlineTyp?
+              <doc:tooltip>Connection</doc:tooltip>
+              <doc:summary>A connection to a data service</doc:summary>
+              <doc:description>A description of the information needed to make an application 
+              connection to a data service. The connection contains a connectionDefinition 
+              and optional parameters for overriding defaults. See the Type Defintion for 
+              more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1027,7 +1069,15 @@ connectionType -->
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="connectionDefinition" type="ConnectionDefinitionType"/>
+        <xs:element name="connectionDefinition" type="ConnectionDefinitionType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Connection Definition</doc:tooltip>
+              <doc:summary>Connection Definition</doc:summary>
+              <doc:description>In a ConnectionType, the connectionDefinition element provides the definition of the protocol and its parameters. The definition has a "scheme" which identifies the protocol by name, with a detailed description and its required parameters. A connectionDefinition lists all of the parameters needed for the connection and possible default values for each.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
