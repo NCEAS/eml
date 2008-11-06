@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-01 19:50:59 $'
-      '$Revision: 1.82 $'
+          '$Date: 2008-11-06 17:44:34 $'
+      '$Revision: 1.83 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -574,7 +574,9 @@ the spatialReference schema.</doc:description>
                     eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
                     appropriate to specify both values as "180" (or any other meridian), but this could 
                     also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
-                    <doc:example>'-118.25', '+25', '45.24755'</doc:example>
+                    <doc:example>-118.25</doc:example>
+                    <doc:example>+25</doc:example>
+                    <doc:example>45.24755</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -604,7 +606,9 @@ the spatialReference schema.</doc:description>
                     eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
                     appropriate to specify both values as "180" (or any other meridian), but this could 
                     also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
-                    <doc:example>'-118.25', '+25', '45.24755'</doc:example>
+                    <doc:example>-118.25</doc:example>
+                    <doc:example>+25</doc:example>
+                    <doc:example>45.24755</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -630,7 +634,9 @@ the spatialReference schema.</doc:description>
                     the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
                      or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
-                    <doc:example>'-18.44', '+44.35', '86'</doc:example>
+                    <doc:example>-18.25</doc:example>
+                    <doc:example>+25</doc:example>
+                    <doc:example>65.24755</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -656,7 +662,9 @@ the spatialReference schema.</doc:description>
                     the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
                      or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
-                    <doc:example>'-18.44', '+44.35', '86'</doc:example>
+                    <doc:example>-118.25</doc:example>
+                    <doc:example>+25</doc:example>
+                    <doc:example>84.24755</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:simpleType>
@@ -686,7 +694,7 @@ the spatialReference schema.</doc:description>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="altitudeMinimum" type="xs:string">
+                    <xs:element name="altitudeMinimum" type="xs:decimal">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Minimum altitude</doc:tooltip>
@@ -697,11 +705,11 @@ the spatialReference schema.</doc:description>
                           described. The minimum altitude should be in
                           reference to a known datum (e.g., Mean Sea Level), which should be part of the geographicDescription.</doc:description>
                           <doc:example>100.6 </doc:example>
-                          <doc:example>12 </doc:example>
+                          <doc:example>-12 </doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitudeMaximum" type="xs:string">
+                    <xs:element name="altitudeMaximum" type="xs:decimal">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Maximum altitude</doc:tooltip>
@@ -711,15 +719,17 @@ the spatialReference schema.</doc:description>
                           coverage for the bounding box that is being
                           described. The maximum altitude should be in
                           reference to a known datum, which should be part of the geographicDescription.</doc:description>
-                          <doc:example>'12', '100.6' (e.g meters above Mean
-                          Lowest Low Water)</doc:example>
+                          <doc:example>100.6</doc:example>
+                          <doc:example>-10</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
                     <xs:element name="altitudeUnits" type="unit:LengthUnitType">
                       <xs:annotation>
                         <xs:appinfo>
-                          <doc:tooltip>The unit that the altitude is expressed in. See the description under the Type definition</doc:tooltip>
+                          <doc:tooltip>Altitude Units</doc:tooltip>
+                          <doc:summary>The unit of altitude </doc:summary>
+                          <doc:description>The unit that the altitude is expressed in. See the description under the Type definition</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -764,9 +774,32 @@ the spatialReference schema.</doc:description>
                 <xs:complexType>
                   <xs:choice>
                     <xs:sequence>
-                      <xs:element name="gRingPoint" type="GRingPointType" minOccurs="3" maxOccurs="unbounded"/>
+                      <xs:element name="gRingPoint" type="GRingPointType" minOccurs="3" maxOccurs="unbounded">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <doc:tooltip>G Ring Point</doc:tooltip>
+                            <doc:summary>A single geographic location</doc:summary>
+                            <doc:description>A single geographic location.  This is useful if you
+        register your datasets by a single geospatial point, such as the
+        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information</doc:description>
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:element>
                     </xs:sequence>
-                    <xs:element name="gRing" type="GRingType"/>
+                    <xs:element name="gRing" type="GRingType">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>G-Ring</doc:tooltip>
+                          <doc:description>A set of ordered pairs of floating-point numbers,
+        See the Type for more information</doc:description>
+                          <doc:example>
+        12.453,15.0
+        5,101
+        -111,45
+        </doc:example>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
@@ -787,8 +820,26 @@ the spatialReference schema.</doc:description>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:choice>
-                    <xs:element name="gRingPoint" type="GRingPointType" maxOccurs="unbounded"/>
-                    <xs:element name="gRing" type="GRingType"/>
+                    <xs:element name="gRingPoint" type="GRingPointType" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>G Ring Point</doc:tooltip>
+                          <doc:summary>A single geographic location</doc:summary>
+                          <doc:description>A single geographic location.  This is useful if you
+        register your datasets by a single geospatial point, such as the
+        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="gRing" type="GRingType">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <doc:tooltip>G-Ring</doc:tooltip>
+                          <doc:description>A set of ordered pairs of floating-point numbers,
+        See the Type for more information</doc:description>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
                   </xs:choice>
                 </xs:complexType>
               </xs:element>
@@ -815,25 +866,56 @@ the spatialReference schema.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="gRingLatitude" type="xs:string">
+      <xs:element name="gRingLatitude">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>G-Ring Latitude</doc:tooltip>
-            <doc:summary/>
-            <doc:description>The latitude of a point of the
-            g-ring.</doc:description>
+            <doc:summary>
+            The latitude of a point of the
+            g-ring.</doc:summary>
+            <doc:description> A latitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -90 to 90, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'S' or 'south') are 
+                    not allowed. Latitudes north of the equator must be specified by
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    the equator shall be  prefixed with minus sign (-). </doc:description>
+            <doc:example>34.123</doc:example>
+            <doc:example>-18.25</doc:example>
+            <doc:example>+78.25</doc:example>
           </xs:appinfo>
         </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90.0"/>
+            <xs:maxInclusive value="90.0"/>
+          </xs:restriction>
+        </xs:simpleType>
       </xs:element>
-      <xs:element name="gRingLongitude" type="xs:string">
+      <xs:element name="gRingLongitude">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>G-Ring Longitude</doc:tooltip>
             <doc:summary/>
             <doc:description>The longitude of a point of the
-            g-ring.</doc:description>
+            g-ring A longitude coordinate is typed as a decimal, i.e.,
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
+                    any precision desired. Fractions of a degree in minutes and seconds should be 
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    not allowed. Longitudes east of the prime meridian must be specified by
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
+                    the meridian shall be  prefixed with minus sign (-).</doc:description>
+            <doc:example>-118.25</doc:example>
+            <doc:example>+25</doc:example>
+            <doc:example>45.24755</doc:example>
           </xs:appinfo>
         </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180.0"/>
+            <xs:maxInclusive value="180.0"/>
+          </xs:restriction>
+        </xs:simpleType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
