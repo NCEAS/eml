@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-06 17:44:34 $'
-      '$Revision: 1.83 $'
+          '$Date: 2008-11-07 00:09:09 $'
+      '$Revision: 1.84 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -919,7 +919,7 @@ the spatialReference schema.</doc:description>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="GRingType">
+  <xs:simpleType name="GRingType">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>G-Ring</doc:tooltip>
@@ -937,7 +937,8 @@ the spatialReference schema.</doc:description>
         </doc:example>
       </xs:appinfo>
     </xs:annotation>
-  </xs:complexType>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
   <xs:complexType name="TaxonomicCoverage">
     <xs:annotation>
       <xs:appinfo>
