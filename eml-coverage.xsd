@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-07 16:34:55 $'
-      '$Revision: 1.85 $'
+          '$Date: 2008-11-07 17:02:38 $'
+      '$Revision: 1.86 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -480,7 +480,8 @@ the spatialReference schema.</doc:description>
               <doc:summary>Short text description of the geographic areal domain of
               the data set.</doc:summary>
               <doc:description>
-                <doc:para>geographicDescription is a short text description of a dataset's 
+                <section xmlns="">
+                  <para>geographicDescription is a short text description of a dataset's 
               geographic areal domain. A text description is especially important to 
               provide a geographic                           setting 
                when the extent of the data set cannot be well described
@@ -499,15 +500,18 @@ the spatialReference schema.</doc:description>
               general rectangle around the states of Washington and Oregon, but
               the "geographicDescription" might describe the fact
               that the study took place only along
-              certain rivers within those states. </doc:para>This data element differs
+              certain rivers within those states. </para>
+                <para>
+              This data element differs
               from the standard data element "Place_Keyword" in that it allows
               a free text description of the geographic extent, rather than
               just a list of words or phrases useful as an index of location
-              names associated with the data set.  
-              <doc:para>This element can also contain information
+              names associated with the data set.  </para>
+              <para>This element can also contain information
               about the collection of the boundingCoordinates, e.g., an altitude value that is referenced
               to Mean Lower Low Water, or the projection system that the latitude and 
-              longitude coordinates were taken from.</doc:para>
+              longitude coordinates were taken from.</para>
+                </section>
               </doc:description>
               <doc:example>"Manistee River watershed"</doc:example>
               <doc:example>
