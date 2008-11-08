@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-05 22:55:06 $'
-      '$Revision: 1.88 $'
+          '$Date: 2008-11-08 20:18:27 $'
+      '$Revision: 1.89 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -123,7 +123,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="title" type="xs:string" maxOccurs="unbounded">
+      <xs:element name="title" type="NonEmptyStringType" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Title</doc:tooltip>
@@ -140,7 +140,6 @@
             1990-1996.</doc:example>
           </xs:appinfo>
         </xs:annotation>
-        <!--    <xs:element name="title" type="NonEmptyString" maxOccurs="unbounded"> -->
       </xs:element>
       <xs:element name="creator" type="rp:ResponsibleParty" maxOccurs="unbounded">
         <xs:annotation>
@@ -294,7 +293,7 @@
               </xs:annotation>
               <xs:complexType>
                 <xs:simpleContent>
-                  <xs:extension base="xs:string">
+                  <xs:extension base="NonEmptyStringType">
                     <xs:attribute name="keywordType" type="KeyTypeCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
@@ -595,38 +594,38 @@
     <xs:choice>
       <xs:choice>
         <xs:element name="online" type="OnlineType">
-           <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>distribution/online</doc:tooltip>
-        <doc:summary>Online distribution information</doc:summary>
-        <doc:description>This element contains information for accessing the
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>distribution/online</doc:tooltip>
+              <doc:summary>Online distribution information</doc:summary>
+              <doc:description>This element contains information for accessing the
               resource online, represented either as a URL a connection, or 
               a connectionDefinition which may be referenced in other parts of
               the EML document. See the Type definition for more information. </doc:description>
-      </xs:appinfo>
-    </xs:annotation>
-         </xs:element>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="offline" type="OfflineType">
-                <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Offline distribution</doc:tooltip>
-        <doc:summary>data are available offline</doc:summary>
-        <doc:description>This element is for data which are distributed offline, 
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Offline distribution</doc:tooltip>
+              <doc:summary>data are available offline</doc:summary>
+              <doc:description>This element is for data which are distributed offline, 
          generally by request. See the Type 
         definition for more information.         </doc:description>
-        </xs:appinfo>
-        </xs:annotation>
-</xs:element>        
-               <xs:element name="inline" type="InlineType">
-                 <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Inline distribution</doc:tooltip>
-        <doc:summary>data distributed inline in the metadata.</doc:summary>
-        <doc:description>The data are distributed inline, with the metadata. See the Type 
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="inline" type="InlineType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Inline distribution</doc:tooltip>
+              <doc:summary>data distributed inline in the metadata.</doc:summary>
+              <doc:description>The data are distributed inline, with the metadata. See the Type 
         definition for more information.         </doc:description>
-        </xs:appinfo>
-        </xs:annotation>
-               </xs:element>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:choice>
       <xs:group ref="ReferencesGroup"/>
     </xs:choice>
@@ -739,7 +738,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="name" type="xs:string">
+              <xs:element name="name" type="NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Parameter Name</doc:tooltip>
@@ -751,7 +750,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="definition" type="xs:string">
+              <xs:element name="definition" type="NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Parameter Definition</doc:tooltip>
@@ -839,7 +838,7 @@ inline type -->
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="mediumName" type="xs:string">
+      <xs:element name="mediumName" type="NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Medium name</doc:tooltip>
@@ -1093,7 +1092,7 @@ connectionType -->
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="name" type="xs:string">
+              <xs:element name="name" type="NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Parameter Name</doc:tooltip>
@@ -1106,7 +1105,7 @@ connectionType -->
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="value" type="xs:string">
+              <xs:element name="value" type="NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Parameter Value</doc:tooltip>
