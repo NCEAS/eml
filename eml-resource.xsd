@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-08 20:18:27 $'
-      '$Revision: 1.89 $'
+          '$Date: 2008-11-10 19:21:02 $'
+      '$Revision: 1.90 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -932,7 +932,7 @@ inline type -->
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="description" type="xs:string" minOccurs="0">
+      <xs:element name="onlineDescription" type="xs:string" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Description of online information</doc:tooltip>
