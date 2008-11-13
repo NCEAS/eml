@@ -3,7 +3,10 @@
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xsl:output method="xml" indent="yes"></xsl:output>
-  <!--<xsl:strip-space elements="*"></xsl:strip-space> -->
+  <xsl:strip-space elements="*"></xsl:strip-space> 
+
+  <xsl:key name="describes_key" match="additionalMetadata" use="describes"></xsl:key>
+
 
   <xsl:template match="/* ">
     <!--handle top level element-->
@@ -52,9 +55,9 @@
           </xsl:when>
 
           <xsl:when test="name()='additionalMetadata'">
-            <!--    <xsl:apply-templates mode="handle-additionalMetadata-TEST" select="."
-            ></xsl:apply-templates> -->
-            <xsl:call-template name="handle-additionalMetadata-TEST"></xsl:call-template>
+             <!-- TEST template tries for the logic to handle describes and access. 
+            <xsl:call-template name="handle-additionalMetadata-TEST"></xsl:call-template> -->
+            <xsl:call-template name="default-additionalMetadata-add-metadata-element"></xsl:call-template>
           </xsl:when>
 
         </xsl:choose>
@@ -140,13 +143,78 @@
     </xsl:element>
   </xsl:template>
 
-
-
-
   <!-- copy access tree under dataset(or protocol, software and citation) to the top level -->
   <xsl:template mode="copy-top-access-tree" match="*">
-    <xsl:apply-templates mode="copy-no-ns" select="."></xsl:apply-templates>
+    <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
   </xsl:template>
+
+<!-- template to pull the appopriate access tree into the distribution trees  -->
+  <xsl:template match="//physical">
+    <xsl:param name="access_to_drop" select="foo"></xsl:param>
+    <xsl:param name="describes_to_drop" select="foo1"></xsl:param>
+    
+    <xsl:element name="physical" namespace="{namespace-uri(.)}">
+      <xsl:copy-of select="@*"></xsl:copy-of>
+      <xsl:apply-templates mode="copy-no-ns" select="node()[not(self::distribution)]"></xsl:apply-templates>
+   
+      
+    
+    <xsl:for-each select="distribution">
+      <xsl:variable name="distribution_id" select="@id"></xsl:variable>
+      
+      <!-- put the distribution back, with it's other children -->
+      <xsl:element name="distribution" namespace="{namespace-uri(.)}">
+        <xsl:copy-of select="@*"></xsl:copy-of>
+        <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
+        
+      <xsl:choose>
+        <xsl:when test="not(access)">
+          <!-- no access tree there, look in additionalMetadata for a match -->
+          <!-- how many additionalMetadata access trees have a describes that matches this id?  -->
+          <xsl:variable name="access_nodes"
+            select="//additionalMetadata/descendant::access[ancestor::additionalMetadata/descendant::describes=$distribution_id]"></xsl:variable>
+          <xsl:choose>
+            <xsl:when test="count($access_nodes) = 0">
+              <!-- no access tree, nothing to do -->
+            </xsl:when>
+            <xsl:when test="count($access_nodes) > 1">
+              <!-- more than one access node, copy the first? last? merge? -->
+              <xsl:copy-of select="key('describes_key', $distribution_id)[1]/descendant::access"></xsl:copy-of>
+              <!-- clean them out of additionalMetadata (if access had no more describes sibs) -->
+   <!--            <xsl:call-template name="remove_describes">
+                <xsl:with-param name="discribes_to_drop" select="key('describes_key', $distribution_id)[1]/descendant::describes"></xsl:with-param>
+              </xsl:call-template> 
+   -->
+              <xsl:apply-templates mode="do-nothing" select="key('describes_key', $distribution_id)[1]/descendant::describes"></xsl:apply-templates>
+ 
+              
+              <!--<xsl:with-param name="access_to_drop" select="key('describes_key', $distribution_id)[1]/descendant::access"></xsl:with-param> -->
+              <!-- output a message - only first was copied. -->
+            </xsl:when>
+            <xsl:otherwise>
+              <!-- just one, copy it  -->
+              <xsl:copy-of select="key('describes_key', $distribution_id)/descendant::access"></xsl:copy-of>
+              <!-- grab the nodes for describes and access that were used -->
+              <!-- clean them out of additionalMetadata -->
+              <!-- remove the describes element with the reference  -->
+              <!--  remove the access tree that was copied - unless it jas another describes sib -->
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <!--  this distribution node has an access tree already, cant add another one. -->
+          <!--  choices: create an additionalMetadata section with this describes and the access sib
+            or look at the next key? -->
+        </xsl:otherwise>
+      </xsl:choose>
+              </xsl:element> <!--  closes distribution -->
+    </xsl:for-each>
+      
+    </xsl:element> <!-- closes <physical>  -->
+  </xsl:template>
+
+
+
 
   <!-- do nothing for this element (removing it)-->
   <xsl:template mode="do-nothing" match="*"> </xsl:template>
@@ -159,6 +227,17 @@
     </xsl:element>
   </xsl:template>
 
+
+  <xsl:template name="remove_describes">
+    <xsl:param name="discribes_to_drop"/>
+    <!--  empty template, do nothing -->
+    
+    <!-- <asdfasfasfaf>
+      <xsl:value-of select="$access_to_drop"/>
+      <xsl:value-of select="$discribes_to_drop"/>
+      </asdfasfasfaf> -->
+  </xsl:template>
+  
 
   <!--  
   handle additionalMetadata. 
@@ -193,27 +272,24 @@ this template is the logic, and calls other templates to do the actual work. -->
             <!--  it has a describes -->
             <!-- look at each describes. if content matches a physical/distribution or 
               software/implementation/idstribution, then copy access tree there and remove the describes. 
-              -->
+              
             <xsl:for-each select="describes">
               <xsl:variable name="describes-content">
                 <xsl:value-of select="."></xsl:value-of>
               </xsl:variable>
-              <xsl:text>test -------------% </xsl:text>
+              <xsl:text>test -% </xsl:text>
               <xsl:value-of select="$describes-content"></xsl:value-of>
-              <xsl:text> %---------------test                         </xsl:text>
-              <!-- look for a matching distribution id -->
-              <!-- call a template that matches physical/distribution, pass the variable $describes-content
-                  2 checks: 
-                    1. distribution node does not already have an access tree, 
-                    2. its id content matches the $describes-content 
-                  then copy the describes sibling::access or sibling::metadata[child::access] -->
-
-
-
-
-            </xsl:for-each>
-
-
+              <xsl:text> % test                         </xsl:text>
+              </xsl:for-each>
+            
+            -->
+            <!-- look for a matching distribution id -->
+            <!-- call a template that matches physical/distribution, pass the variable $describes-content
+              2 checks: 
+              1. distribution node does not already have an access tree, 
+              2. its id content matches the $describes-content 
+              then copy the describes sibling::access or sibling::metadata[child::access] -->
+        <xsl:call-template name="copy-to-distribution"></xsl:call-template>
 
           </xsl:when>
           <xsl:otherwise>
@@ -257,8 +333,8 @@ wrap the content (except <describes>) in <metadata> tags  unless it has been don
   </xsl:template>
 
 
-<xsl:template name="copy-access-tree" match="physical/distribution|software/implementation/distribution">
-  
+<xsl:template name="copy-to-distribution">
+  <!--  nothing here yet  -->
   
 </xsl:template>
 
