@@ -26,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.76 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.77 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -297,7 +297,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="principal" type="xs:string" maxOccurs="unbounded">
+      <xs:element name="principal" type="res:NonEmptyStringType" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>User or group</doc:tooltip>

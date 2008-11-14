@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-10-07 15:56:56 $'
-      '$Revision: 1.47 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -151,7 +151,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="LanguageValue" type="xs:string">
+                    <xs:element name="LanguageValue" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Language Value</doc:tooltip>
@@ -311,7 +311,7 @@
           </xs:annotation>
         </xs:element>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element name="licenseURL" type="xs:string">
+          <xs:element name="licenseURL" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>URL for License</doc:tooltip>
@@ -320,7 +320,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="license" type="xs:string">
+          <xs:element name="license" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>License</doc:tooltip>
@@ -330,7 +330,7 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
-        <xs:element name="version" type="xs:string">
+        <xs:element name="version" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Version</doc:tooltip>

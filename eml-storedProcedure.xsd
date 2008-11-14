@@ -44,8 +44,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:05 $'
-      '$Revision: 1.44 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.45 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -174,7 +174,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="name" type="xs:string">
+      <xs:element name="name" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Parameter Name</doc:tooltip>
@@ -186,7 +186,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="domainDescription" type="xs:string">
+      <xs:element name="domainDescription" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Domain Description</doc:tooltip>

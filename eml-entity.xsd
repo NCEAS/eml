@@ -25,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-10-02 21:05:20 $'
-      '$Revision: 1.86 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.87 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -123,7 +123,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="entityType" type="xs:string">
+          <xs:element name="entityType" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Entity type</doc:tooltip>
@@ -201,7 +201,7 @@
           </xs:simpleContent>
         </xs:complexType>
       </xs:element>
-      <xs:element name="entityName" type="xs:string">
+      <xs:element name="entityName" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Entity name</doc:tooltip>

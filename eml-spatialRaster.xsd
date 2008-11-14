@@ -32,8 +32,8 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-26 23:59:46 $'
-      '$Revision: 1.47 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.48 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -449,7 +449,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="rows" type="xs:string">
+        <xs:element name="rows" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Rows</doc:tooltip>
@@ -461,7 +461,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="columns" type="xs:string">
+        <xs:element name="columns" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Columns</doc:tooltip>
@@ -890,7 +890,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="accuracyReport" type="xs:string">
+      <xs:element name="accuracyReport" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Accuracy Report</doc:tooltip>
@@ -911,7 +911,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="quantitativeAccuracyValue" type="xs:string">
+            <xs:element name="quantitativeAccuracyValue" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Value</doc:tooltip>
@@ -922,7 +922,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="quantitativeAccuracyMethod" type="xs:string">
+            <xs:element name="quantitativeAccuracyMethod" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Method</doc:tooltip>

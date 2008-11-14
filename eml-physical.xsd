@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-11-14 01:03:59 $'
-      '$Revision: 1.75 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.76 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@
   <xs:complexType name="PhysicalType">
     <xs:choice>
       <xs:sequence>
-        <xs:element name="objectName" type="xs:string">
+        <xs:element name="objectName" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Data object name</doc:tooltip>
@@ -181,7 +181,7 @@
           </xs:complexType>
         </xs:element>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element name="compressionMethod" type="xs:string">
+          <xs:element name="compressionMethod" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Compression Method</doc:tooltip>
@@ -201,7 +201,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="encodingMethod" type="xs:string">
+          <xs:element name="encodingMethod" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Encoding Method</doc:tooltip>
@@ -446,7 +446,7 @@
                         </xs:annotation>
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded">
+                            <xs:element name="fieldDelimiter" type="res:NonEmptyStringType" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Field Delimiter character
@@ -711,7 +711,7 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldDelimiter" type="xs:string">
+                                  <xs:element name="fieldDelimiter" type="res:NonEmptyStringType">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field Delimiter character
@@ -912,7 +912,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="formatName" type="xs:string">
+                    <xs:element name="formatName" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Name</doc:tooltip>
@@ -1019,7 +1019,7 @@
                               </xs:appinfo>
                             </xs:annotation>
                           </xs:element>
-                          <xs:element name="layout" type="xs:string">
+                          <xs:element name="layout" type="res:NonEmptyStringType">
                             <xs:annotation>
                               <xs:appinfo>
                                 <doc:tooltip>Layout</doc:tooltip>
@@ -1058,7 +1058,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="byteorder" type="xs:string">
+                    <xs:element name="byteorder" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Byte Order</doc:tooltip>

@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-01 19:42:42 $'
-      '$Revision: 1.119 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.120 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -218,7 +218,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="attributeName" type="xs:string">
+        <xs:element name="attributeName" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute name</doc:tooltip>
@@ -261,7 +261,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="attributeDefinition" type="xs:string">
+        <xs:element name="attributeDefinition" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute definition</doc:tooltip>
@@ -504,7 +504,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="formatString" type="xs:string">
+                    <xs:element name="formatString" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Date/Time Format</doc:tooltip>
@@ -667,7 +667,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="code" type="xs:string">
+              <xs:element name="code" type="res:NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>The missing value code itself.</doc:tooltip>
@@ -684,7 +684,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="codeExplanation" type="xs:string">
+              <xs:element name="codeExplanation" type="res:NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Explanation of Missing value Code</doc:tooltip>
@@ -764,7 +764,7 @@
   </xs:complexType>
   <xs:complexType name="Accuracy">
     <xs:sequence>
-      <xs:element name="attributeAccuracyReport" type="xs:string">
+      <xs:element name="attributeAccuracyReport" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Attribute Accuracy Report</doc:tooltip>
@@ -794,7 +794,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="attributeAccuracyValue" type="xs:string">
+            <xs:element name="attributeAccuracyValue" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Attribute Accuracy Value</doc:tooltip>
@@ -807,7 +807,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="attributeAccuracyExplanation" type="xs:string">
+            <xs:element name="attributeAccuracyExplanation" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Attribute Accuracy Explanation</doc:tooltip>
@@ -873,7 +873,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="customUnit" type="xs:string">
+      <xs:element name="customUnit" type="res:NonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Custom Unit</doc:tooltip>
@@ -974,7 +974,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="code" type="xs:string">
+                    <xs:element name="code" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Code</doc:tooltip>
@@ -990,7 +990,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="definition" type="xs:string">
+                    <xs:element name="definition" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Code definition</doc:tooltip>
@@ -1066,7 +1066,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="codesetName" type="xs:string">
+                    <xs:element name="codesetName" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Code Set Name</doc:tooltip>
@@ -1125,7 +1125,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="entityReference" type="xs:string">
+                    <xs:element name="entityReference" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Entity Reference</doc:tooltip>
@@ -1141,7 +1141,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="valueAttributeReference" type="xs:string">
+                    <xs:element name="valueAttributeReference" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Value Attribute
@@ -1158,7 +1158,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="definitionAttributeReference" type="xs:string">
+                    <xs:element name="definitionAttributeReference" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Definition Attribute
@@ -1250,7 +1250,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="definition" type="xs:string">
+              <xs:element name="definition" type="res:NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Text domain definition</doc:tooltip>

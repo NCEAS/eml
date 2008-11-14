@@ -27,8 +27,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:05 $'
-      '$Revision: 1.39 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.40 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -2188,7 +2188,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="altitudeDatumName" type="xs:string">
+                    <xs:element name="altitudeDatumName" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Datum Name</doc:tooltip>
@@ -2200,7 +2200,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitudeResolution" type="xs:string" maxOccurs="unbounded">
+                    <xs:element name="altitudeResolution" type="res:NonEmptyStringType" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Resolution</doc:tooltip>
@@ -2212,7 +2212,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitudeDistanceUnits" type="xs:string">
+                    <xs:element name="altitudeDistanceUnits" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Distance Units</doc:tooltip>
@@ -2223,7 +2223,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="altitudeEncodingMethod" type="xs:string">
+                    <xs:element name="altitudeEncodingMethod" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Altitude Encoding Method</doc:tooltip>
@@ -2247,7 +2247,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="depthDatumName" type="xs:string">
+                    <xs:element name="depthDatumName" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Datum Name</doc:tooltip>
@@ -2258,7 +2258,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depthResolution" type="xs:string" maxOccurs="unbounded">
+                    <xs:element name="depthResolution" type="res:NonEmptyStringType" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Resolution</doc:tooltip>
@@ -2270,7 +2270,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depthDistanceUnits" type="xs:string">
+                    <xs:element name="depthDistanceUnits" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Distance Units</doc:tooltip>
@@ -2281,7 +2281,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="depthEncodingMethod" type="xs:string">
+                    <xs:element name="depthEncodingMethod" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Depth Encoding Method</doc:tooltip>

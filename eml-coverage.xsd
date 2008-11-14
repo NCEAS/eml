@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-07 17:02:38 $'
-      '$Revision: 1.86 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.87 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -367,7 +367,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="timeScaleName" type="xs:string">
+            <xs:element name="timeScaleName" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>alternative time scale</doc:tooltip>
@@ -384,7 +384,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="timeScaleAgeEstimate" type="xs:string">
+            <xs:element name="timeScaleAgeEstimate" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Time scale age estimate</doc:tooltip>
@@ -473,7 +473,7 @@ the spatialReference schema.</doc:description>
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="geographicDescription" type="xs:string">
+        <xs:element name="geographicDescription" type="res:NonEmptyStringType">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Description of geographic extent</doc:tooltip>
@@ -1032,7 +1032,7 @@ the spatialReference schema.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="taxonomicProcedures" type="xs:string">
+              <xs:element name="taxonomicProcedures" type="res:NonEmptyStringType">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Taxonomic procedures</doc:tooltip>
@@ -1073,7 +1073,7 @@ the spatialReference schema.</doc:description>
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="specimen" type="xs:string">
+                    <xs:element name="specimen" type="res:NonEmptyStringType">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Specimen type</doc:tooltip>

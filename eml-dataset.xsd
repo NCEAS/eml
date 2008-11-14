@@ -30,8 +30,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-26 23:59:46 $'
-      '$Revision: 1.56 $'
+          '$Date: 2008-11-14 23:50:13 $'
+      '$Revision: 1.57 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -352,7 +352,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="changeScope" type="xs:string">
+            <xs:element name="changeScope" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Change Scope</doc:tooltip>
@@ -365,7 +365,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="oldValue" type="xs:string">
+            <xs:element name="oldValue" type="res:NonEmptyStringType">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Old Value</doc:tooltip>
