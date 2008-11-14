@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-11-05 01:49:22 $'
-      '$Revision: 1.74 $'
+          '$Date: 2008-11-14 01:03:59 $'
+      '$Revision: 1.75 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1169,17 +1169,17 @@ physical distribution type built from resource, access and local components
         <doc:tooltip>this type specifically for physical connections.</doc:tooltip>
       </xs:appinfo>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice>
+    <xs:choice>
+      <xs:sequence>
         <xs:choice>
           <xs:element name="online" type="PhysicalOnlineType"/>
           <xs:element name="offline" type="res:OfflineType"/>
           <xs:element name="inline" type="res:InlineType"/>
         </xs:choice>
-        <xs:group ref="res:ReferencesGroup"/>
-      </xs:choice>
-      <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
-    </xs:sequence>
+        <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
