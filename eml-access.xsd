@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns="eml://ecoinformatics.org/access-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/access-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns="eml://ecoinformatics.org/access-2.1.0" targetNamespace="eml://ecoinformatics.org/access-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -26,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.77 $'
+          '$Date: 2008-11-17 02:03:35 $'
+      '$Revision: 1.78 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,7 +44,7 @@
             <title>
               The eml-access module - Access control rules for resources
             </title>
-             <para>
+            <para>
               The eml-access module describes the level of access that is
               to be granted or denied to a resource (including both metadata and
               data) for a particular user or group of users.  The eml-access
@@ -62,7 +55,7 @@
               user or group has a particular access permission, thereby making
               it easier to specify that anonymous access is allowed.
              </para>
-             <para>
+            <para>
               The rules specified in this module will determine the level
               of access to a resource for specific users and groups.
               There are two mechanisms for including access control information
@@ -96,7 +89,7 @@
               rules found in '/eml/dataset/methods/methodStep/citation/access'
               would be completely ignored.
              </para>
-             <para>
+            <para>
               For describing access to different data entities,  one can
               either provide multiple &lt;describes&gt; elements within
               a single additionalMetadata element, or provide multiple
@@ -106,7 +99,7 @@
               besides the describes tags (e.g., only one &lt;access&gt; 
               element).
              </para>
-             <para>
+            <para>
               The values that can be assigned to the &lt;permission&gt;
               element are: "read", "write", "changePermission", and
               "all". Users given read permission can view the resource;
@@ -114,7 +107,7 @@
               access rules; changePermission can change access rules; and
               all has all of read, write, and changePermission.
              </para>
-             <para>
+            <para>
               An example is given below, with non-critical sections elided:
 <literalLayout>
   &lt;eml&gt;
@@ -184,13 +177,12 @@
         <doc:tooltip>Access control rules</doc:tooltip>
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
-        <doc:description>The access element contains a list of rules that define
-        the level of access for a given data package, including both metadata
-        and data.  Because the access element is declared to be of
-        complex type 'AccessType', an instance must contain the elements defined
-        for accessType.</doc:description>
-        <doc:example>See the description of individual elements defined in
-        AccessType to review each component element's rules.</doc:example>
+        <doc:description>The access element contains a list of rules defining
+        permissions for this resource. For descriptions of the individual elements, 
+        see the AccessType.The permission rules defined here can be overridden 
+         by rules added to an access tree in the PhysicalDistributionType  
+        at the entity level. </doc:description>
+        <doc:example>See the description of the AccessType.</doc:example>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -201,9 +193,15 @@
         <doc:summary>The rules defined in this element will determine the level
         of access to a resource for the defined users and groups.</doc:summary>
         <doc:description>The access element contains a list of rules that define
-        the level of access for a given data package, including both metadata
-        and data. The access element must contain the elements defined
-        in the AccessType type.</doc:description>
+        the level of access for a resource. There are two uses of access trees: to
+        control access to either metadata or data. To control access to metadata 
+        use the eml/access tree. By default, these rules will also apply to the contained 
+        data. To override the default controls for specific data entities, use the 
+        access element available in the entity's physical/distribution tree.  A 
+        combination of access trees and their "order rules" (see description of 
+        the "order" attribute) allows EML authors
+        to have fine control over permissions for individuals and groups.
+        </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -245,13 +243,12 @@
           <doc:tooltip>Rule order</doc:tooltip>
           <doc:summary>The order in which the allow and deny rules should be
           applied.</doc:summary>
-          <doc:description>The order attribute defines which rules should be
-          applied first to obtain the desired access control. The acceptable
+          <doc:description>To obtain the desired access control, use the order 
+          attribute to define which rules should be applied first. The acceptable
           values are 'allowFirst' and 'denyFirst'. If 'allowFirst' is
           specified, then all 'allow' rules are processed, and then overridden
           by all 'deny' rules.  If 'denyFirst' is specified, then all 'deny'
-          rules are processed, and then overridden by all 'allow' rules.  This
-          allows users to efficiently express their desired rules.
+          rules are processed, and then overridden by all 'allow' rules.  
           </doc:description>
           <doc:example>allowFirst</doc:example>
         </xs:appinfo>
@@ -321,17 +318,25 @@
             <doc:tooltip>Type of permission</doc:tooltip>
             <doc:summary>The type of permission being granted or denied.
             </doc:summary>
-            <doc:description>The permission that is being granted or denied
+            <doc:description>
+              <doc:section xmlns="">
+                <para>
+            The permission that is being granted or denied
             to a particular user or group for a given resource. The list of
-            permissions come from a predetermined list: 'read' (allow/deny
-            viewing of the resource), 'write' (allow/deny modification of the
-            resource excluding access rules), 'changePermission' (ability to
-            modify access rules) and 'all' (allow all of read, write, and
-            changePermission). This element also allows other permission values
+            permissions come from a predetermined list:
+            </para>
+                <para>'read' - allow or deny viewing of the resource, </para>
+                <para>'write' - allow or deny modification of the resource (except for access rules),  </para>
+                <para>'changePermission' - modifications including access rules, and  </para>
+                <para>'all' - all of the above. </para>
+                <para>
+                This element could be extended to specify other permission values
             that may be applicable to some other authentication systems but
-            are not defined in this specification (if these other values
+            are not defined in this specification. If these other values
             are used, access rule enforcement is indeterminate outside of
-            the originating system).</doc:description>
+            the originating system.</para>
+              </doc:section>
+            </doc:description>
             <doc:example>read</doc:example>
           </xs:appinfo>
         </xs:annotation>
