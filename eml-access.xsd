@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-17 02:03:35 $'
-      '$Revision: 1.78 $'
+          '$Date: 2008-11-17 04:18:31 $'
+      '$Revision: 1.79 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,72 +46,64 @@
             </title>
             <para>
               The eml-access module describes the level of access that is
-              to be granted or denied to a resource (including both metadata and
-              data) for a particular user or group of users.  The eml-access
-              module uses references to a particular authentication system
-              to determine the set of principals (users + groups) that can be
-              specified in access rules, and the membership of users in groups.
+              to be allowed or denied to a resource for a particular user or 
+              group of users, and can be described independently for metadata 
+              and data.  The eml-access
+              module uses a reference to a particular authentication system
+              to determine the set of principals (users or groups) that can be
+              specified in the access rules.
               The special principal 'public' can be used to indicate that any
-              user or group has a particular access permission, thereby making
-              it easier to specify that anonymous access is allowed.
+              user or group has access permission, thereby making
+              it easier to specify that anonymous access is allowed. 
              </para>
-            <para>
-              The rules specified in this module will determine the level
-              of access to a resource for specific users and groups.
-              There are two mechanisms for including access control information
+            <para>        
+              There are two mechanisms for including access control 
               via the eml-access module: 1) Each top-level resource module
               (eml-dataset, eml-literature, eml-software, and eml-protocol)
-              includes an optional &lt;access&gt; element 
-              that is used to define the default access
-              control at the resource level for all metadata and data in
-              the EML package.  If this access element is ommitted from the
-              document, then by definition the package submitter should be
+              may be accompanied by an optional &lt;access&gt; element 
+              that is used to establish the default access
+              control at the resource level for the entire EML package.  
+              If this access element is ommitted from the
+              document, then the package submitter should be
               given full access to the package but all other users should
-              be denied all access.  2) Exceptions for particular data
+              be denied all access.  To allow the package to be publicly viewable,
+              the EML author must explicitly include a rule stating so.
+              2) Exceptions for particular entity-level
               components of the package can be controlled at a finer grain by
-              using an access description in the &lt;additionalMetadata&gt;
-              element that points at a particular &lt;distribution&gt;
-              element by referencing its unique id.  An access control
-              document may be defined, or referenced, from this location,
-              and the &lt;describes&gt; element is used to point to the
-              distribution that is to be controlled via its "id" attribute.
-              When access control rules are specified this way, they apply
-              to the data in the distribution element, and not the metadata.
-              Thus, it controls access to the content of the &lt;inline&gt;
+              using an access description in that entity's physical/distribution
+              tree.  
+              When access control rules are specified at this level, they apply
+              only to the data in the parent distribution element, and not to the metadata.
+              Thus, it will control access to the content of the &lt;inline&gt;
               element, as well as resources that are referenced by the
               &lt;online/url&gt; and &lt;online/connection&gt; elements.
-              These exceptions to access to particular data resources are
-              applied after the default access rules from (1) are applied, so
-              they effectively override the default rules when they overlap.
-              Any access rules that are specified in locations other than the
-              top-level 'access' element or in 'additionalMetadata' pointing
-              at only a distribution id are completely ignored.  For example,
-              rules found in '/eml/dataset/methods/methodStep/citation/access'
-              would be completely ignored.
+              These exceptions to access for particular data resources are
+              applied after the default access rules at the package-level have been
+               applied, 
+              so  they effectively override the default rules when they overlap.
+              </para><para>In previous versions of EML access rules for entity-level
+              distribution were contained
+              in &lt;additionalMetadata&gt; sections and referenced via the 
+              &lt;describes&gt; tag. Although in theory these could have referenced 
+             any node, in application such node-level access control is problematic. 
+             Since the most common uses of access control rules were to limit access
+             to specific data entities, the access tree has been placed there explicitly
+             in EML 2.1.0. </para>
+            
+            <para>
+            Access is specified with a choice of child elements, either &lt;allow&gt;
+              or &lt;deny&gt;. Within these rules, values can be assigned for each
+              &lt;principal&gt; using the &lt;permission&gt;
+              element. Users given "read" permission can view the resource;
+              "write" allows changes to the resource excluding changes to the
+              access rules; "changePermission" includes "write" plus the
+              changing of access rules. Users allowed "all" permissions; may do all
+              of the above.
              </para>
             <para>
-              For describing access to different data entities,  one can
-              either provide multiple &lt;describes&gt; elements within
-              a single additionalMetadata element, or provide multiple
-              additionalMetadata elements, each of which describes access
-              exceptions for a particular distribution. Note that each
-              'additionalMetadata' element can only contain one child element
-              besides the describes tags (e.g., only one &lt;access&gt; 
-              element).
-             </para>
-            <para>
-              The values that can be assigned to the &lt;permission&gt;
-              element are: "read", "write", "changePermission", and
-              "all". Users given read permission can view the resource;
-              write can make changes to the resource excluding changes to
-              access rules; changePermission can change access rules; and
-              all has all of read, write, and changePermission.
-             </para>
-            <para>
-              An example is given below, with non-critical sections elided:
+              An example is given below, with non-critical sections deleted:
 <literalLayout>
   &lt;eml&gt;
-    &lt;dataset&gt;
       &lt;access 
           authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
           order="allowFirst"&gt;
@@ -121,48 +113,66 @@
           &lt;permission&gt;write&lt;/permission&gt;
         &lt;allow&gt;
       &lt;/access&gt;
+      &lt;dataset&gt;
       ...
+      ...
+      &lt;dataTable id="entity123"&gt;
+      ...
+        &lt;physical&gt;
+        ...
+          &lt;distribution&gt;
+          ...
+            &lt;access 
+            authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
+            order="allowFirst"&gt;
+              &lt;deny&gt;
+                &lt;principal&gt;uid=alice,o=NASA,dc=ecoinformatics,dc=org&lt;/principal&gt;
+                &lt;permission&gt;write&lt;/permission&gt;
+            &lt;/deny&gt;
+          &lt;/access&gt;
+         &lt;/distribution&gt;
+       &lt;/physical&gt;
+      &lt;/dataTable&gt;
+      &lt;dataTable id="entity234"&gt;
+        ...
+        &lt;physical&gt;
+        ...
+          &lt;distribution&gt;
+            ...
+            &lt;access&gt;
+              &lt;references&gt;entity123&lt;/references&gt;
+            &lt;/access&gt;
+          &lt;/distribution&gt;
+        &lt;/physical&gt;
+      &lt;/dataTable&gt;
+      ...    
     &lt;/dataset&gt;
-    &lt;additonalMetadata&gt;
-      &lt;describes&gt;entity123&lt;/describes&gt;
-      &lt;describes&gt;entity234&lt;/describes&gt;
-      &lt;access 
-          authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
-          order="allowFirst"&gt;
-        &lt;deny&gt;
-          &lt;principal&gt;uid=alice,o=NASA,dc=ecoinformatics,dc=org&lt;/principal&gt;
-          &lt;permission&gt;write&lt;/permission&gt;
-        &lt;/deny&gt;
-      &lt;/access&gt;
-    &lt;/additionalMetadata&gt;
   &lt;eml&gt;
 </literalLayout>
-              In this example, the overall default access is for the 
-              user alice to be able to read and write all metadata and data, 
-              but nobody else has any access beside the submitter.  However,
-              for entity123 and entity234, there is an additional rule
-              saying that user alice does not have write permission.  The net
-              effect is that alice can read and make changes to the metadata,
-              but can only read the two data entities.
+              In this example, the overall default access is to allow the 
+              user=alice (but no one else) to read and write all metadata and data.
+              However,
+              under "entity123" and "entity234", there is an additional rule
+              saying that user=alice does not have write permission.  The net
+              effect is that Alice can read and make changes to the metadata,
+              but cannot make changes to the two data entities. In addition, Alice 
+              cannot change these access rules; although the submitter can.
             </para>
             <para>
-              The eml-access module, like other modules, may be
-              "referenced" via the &lt;references&gt; tag.  This
+              This example also shows how the eml-access module, like other modules,
+              may be "referenced" via the &lt;references&gt; tag.  This
               allows an access control document to be described once, and then
               used as a reference in other locations within the EML document
               via its ID.
             </para>
             <para>
             In summary, access rules can be applied in two places in an
-            eml document, and all other 'access' elements in the document
-            are completely ignored. Default access rules are established
-            in the top 'access' element for the main eml resource (e.g.,
-            "/eml/dataset/access").  These default rules can be overridden
-            for particular data entities by providing an additional "access"
-            element in &lt;additionalMetadata&gt; with a &lt;describes&gt;
-            element that points at the id of the distribution for the
-            data entity.
-            </para>
+            eml document. Default access rules are established
+            in the top &lt;access&gt; element for the main eml resource (e.g.,
+            "/eml/access").  These default rules can be overridden
+            for particular data entities by adding additional &lt;access&gt;
+            elements in the physical/distribution trees of those entities.
+           </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all data where controlling user access to the
@@ -330,11 +340,8 @@
                 <para>'changePermission' - modifications including access rules, and  </para>
                 <para>'all' - all of the above. </para>
                 <para>
-                This element could be extended to specify other permission values
-            that may be applicable to some other authentication systems but
-            are not defined in this specification. If these other values
-            are used, access rule enforcement is indeterminate outside of
-            the originating system.</para>
+               
+                This element also allows other permission values that may be applicable to some other authentication systems but are not defined in this specification (if these other values are used, access rule enforcement is indeterminate outside of the originating system).</para>
               </doc:section>
             </doc:description>
             <doc:example>read</doc:example>
