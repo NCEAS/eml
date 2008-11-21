@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
-    xmlns="eml://ecoinformatics.org/party-2.1.0" 
-    targetNamespace="eml://ecoinformatics.org/party-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
-  schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
-  schemaLocation="eml-resource.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns="eml://ecoinformatics.org/party-2.1.0" targetNamespace="eml://ecoinformatics.org/party-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-party.xsd,v $'
@@ -26,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.51 $'
+          '$Date: 2008-11-21 16:48:45 $'
+      '$Revision: 1.52 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,11 +40,11 @@
       <doc:moduleDocs>
         <doc:moduleName>eml-party</doc:moduleName>
         <doc:moduleDescription>
-        <section xmlns="">
-          <title>
+          <section xmlns="">
+            <title>
             The eml-party module - People and organization information
           </title>
-          <para>
+            <para>
             The eml-party module describes a responsible party (person or
             organization), and is typically used to name the originator of a
             resource or metadata document. It contains detailed contact
@@ -60,13 +53,13 @@
             eml-party module is used throughout the other EML modules where
             detailed contact information is needed.
           </para>
-          <para>
+            <para>
             The eml-party module, like other modules, may be
             "referenced" via the &lt;references&gt; tag.  This allows
             a party to be described once, and then used as a reference in
             other locations within the EML document via its ID.
           </para>
-        </section>
+          </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -87,7 +80,6 @@
         steward, curator, etc.</doc:description>
         <doc:example>Please see the examples for the particular
         subfields.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -101,24 +93,24 @@
                 described</doc:summary>
                 <doc:description>The responsible party field contains the full
                 name of the person that is associated with the resource. This
-                field contains subfields that break the persons name down into
-                first and last name, and the values are entered into those
-                field containers. Note that this field, used in conjunction
-                with 'organizationName' and 'positionName' make up a single
-                logical originator. Because of this, an originator with only
+                field contains subfields so that  the persons name can be broken
+                down into
+               parts. Note that this field may be used in conjunction
+                with 'organizationName' and/or 'positionName' to make up a single
+                logical party. For example, with this construct a creator with only
                 the individualName of 'Joe Smith' is NOT the same as an
-                originator with the name of 'Joe Smith' and the
-                organizationName of 'NSF'. Also, the positionName should not be
-                used in conjunction with individualName unless only that
-                individual at that position would be considered an originator
-                for the data package. If a positionName is used in conjunction
-                with an organizationName, then that implies that any person who
+                creator with the name of 'Joe Smith' and the
+                organizationName of 'NSF'. To use a positionName is used in conjunction
+                with an organizationName  implies that any person who
                 currently occupies said positionName at organizationName is the
-                originator of the data package.</doc:description>
+                creator of the data package.
+                This implies that the positionName should not be
+                used in conjunction with individualName unless only that
+                individual at that position would be considered a creator
+                for the resource. </doc:description>
                 <doc:example>Because this is an 'elementOnly' field, please
                 look at the examples for the subfields 'givenName' and
                 'surName'.</doc:example>
-                
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -146,7 +138,6 @@
                 package.</doc:description>
                 <doc:example>National Center for Ecological Analysis and
                 Synthesis</doc:example>
-                
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -172,7 +163,6 @@
                 currently occupies said positionName at organizationName is the
                 originator of the data package.</doc:description>
                 <doc:example>Niwot Ridge Data Manager</doc:example>
-                
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -187,7 +177,6 @@
               subfields that describe the physical or electronic address of the
               responsible party for a resource.</doc:description>
               <doc:example>Please see the subfield examples.</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -217,7 +206,6 @@
                       to which this number applies. By default, this is assumed
                       to be of type "voice", but other possibilities include
                       "facsimile" and "tdd".</doc:description>
-                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -236,7 +224,6 @@
               symbol, followd by the email server domain name address. Other
               address types are allowable.</doc:description>
               <doc:example>my-email@mydomain.edu</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -253,7 +240,6 @@
               personal web site or other related online information about the
               party.</doc:description>
               <doc:example>http://www.yourdomain.edu/~doe</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -271,7 +257,6 @@
               more current, information about the party.
               </doc:description>
               <doc:example>uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -292,7 +277,6 @@
                       <doc:example>
                         ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org
                       </doc:example>
-                      
                     </xs:appinfo>
                   </xs:annotation>
                 </xs:attribute>
@@ -313,13 +297,35 @@
         <doc:tooltip>Person</doc:tooltip>
         <doc:summary>The full name of the individual associated with the
         resource.</doc:summary>
-        <doc:description>The person field is used to enter the salutation,
-        first name, and last name of the individual associated with the
-        resource. It uses three subfields in order to help parse the person's
-        entire name.</doc:description>
+        <doc:description>
+          <doc:section>
+            <para>The person field is used to enter the salutation, and 
+        two types of name parts of the individual associated with the
+        resource. It uses these three subfields to help parse the person's
+        entire name.</para>
+            <para> Two tokens should be sufficient to allow parsing of many types of names.
+        The &lt;givenName&gt; field should be used for parts of the name that are often
+        shortened to a first initial, or are not used for ordering.
+        The &lt;surName&gt; field should be used for the part of the name that
+        is generally displayed in its entirety and/or alphabetized. Note that only one
+        &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are 
+       optional and unbounded.    </para>
+       <para>The arrangement of names and name-parts for a resource is entirely 
+       up to the document 
+       author. For example, if element position is important (e.g., the list of a book's 
+       authors), then
+       EML authors should put the creators in that order. If it is appropriate for a
+       resource to have its creators displayed alphabetically, then the EML author
+       should insert the name parts so that the&lt;surName&gt; field may be used for
+       this purpose. The conventions of different cultures vary in that name parts 
+       may be displayed either as "&lt;givenName&gt; &lt;surName&gt;" or 
+       "&lt;surName&gt; &lt;givenName&gt;". A future version of EML may allow
+       language to dictate which of these is appropriate for an individual. 
+     </para>
+          </doc:section>
+        </doc:description>
         <doc:example>Please see the examples within each
         subfield.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -333,7 +339,6 @@
             individual with a particular title, such as Dr., Ms., Mrs., Mr.,
             etc.</doc:description>
             <doc:example>Dr.</doc:example>
-            
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -342,10 +347,11 @@
           <xs:appinfo>
             <doc:tooltip>Given name</doc:tooltip>
             <doc:summary>The given name of the individual.</doc:summary>
-            <doc:description>The given name field is used for the first name of
-            the individual associated with the resource.</doc:description>
-            <doc:example>Jane</doc:example>
-            
+            <doc:description>The given name field can be used for first name of
+            the individual associated with the resource, or for any other names
+            that are not intended to be alphabetized, (as appropriate).</doc:description>
+            <doc:example>Juan</doc:example>
+            <doc:example>Luis</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -357,7 +363,8 @@
             <doc:description>The surname field is used for the last name of the
             individual associated with the resource.</doc:description>
             <doc:example>Doe</doc:example>
-            
+            <doc:example>San GIl</doc:example>
+            <doc:example>Curtis-Ainsworth</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -372,7 +379,6 @@
         communicating with a party contact via electronic mail or postal mail,
         including the physical delivery location.</doc:description>
         <doc:example>Please see the examples for each subfield</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -387,7 +393,6 @@
               accomodate the many different international conventions that are
               the equivalent to a U.S. 'street address'.</doc:description>
               <doc:example>7209 Coast Drive, Building 44</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -399,7 +404,6 @@
               <doc:description>The city field is used for the city name of the
               contact associated with a particular resource.</doc:description>
               <doc:example>San Francisco</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -413,7 +417,6 @@
               intended to accomodate the many types of international
               administrative areas.</doc:description>
               <doc:example>Colorado</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -428,7 +431,6 @@
               The U.S. postal code should include the 5 digit code plus the 4
               digit extension.</doc:description>
               <doc:example>93106-2231</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -441,7 +443,6 @@
               <doc:description>The country field is used for the name of the
               contact's country.</doc:description>
               <doc:example>U.S.A</doc:example>
-              
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -464,11 +465,9 @@
         It is intended to be used to fully document contact
         information for many types of associations, such as owner, manager,
         steward, curator, etc.</doc:description>
-        
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
   <xs:simpleType name="RoleType">
     <xs:annotation>
       <xs:appinfo>
@@ -484,7 +483,6 @@
         <doc:example>author, contentProvider, custodianSteward, distributor,
         editor, metadataProvider, originator, pointOfContact,
         principalInvestigator, processor, publisher, or user.</doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:union>
