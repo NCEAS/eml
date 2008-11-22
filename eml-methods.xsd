@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.27 $'
+          '$Date: 2008-11-22 00:47:40 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -388,7 +388,7 @@
           </xs:element>
         </xs:choice>
       </xs:sequence>
-      <xs:element name="instrumentation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="instrumentation" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Instrumentation</doc:tooltip>

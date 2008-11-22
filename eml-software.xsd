@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.48 $'
+          '$Date: 2008-11-22 00:47:41 $'
+      '$Revision: 1.49 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="size" type="xs:string" minOccurs="0">
+              <xs:element name="size" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Physical Size</doc:tooltip>
@@ -164,7 +164,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="LanguageCodeStandard" type="xs:string" minOccurs="0">
+                    <xs:element name="LanguageCodeStandard" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Language Code Standard</doc:tooltip>
@@ -180,7 +180,7 @@
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="operatingSystem" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="operatingSystem" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Operating System</doc:tooltip>
@@ -197,7 +197,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="machineProcessor" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="machineProcessor" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Machine Processor</doc:tooltip>
@@ -212,7 +212,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="virtualMachine" type="xs:string" minOccurs="0">
+              <xs:element name="virtualMachine" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Virtual Machine</doc:tooltip>
@@ -224,7 +224,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="diskUsage" type="xs:string" minOccurs="0">
+              <xs:element name="diskUsage" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Disk Usage</doc:tooltip>
@@ -238,7 +238,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="runtimeMemoryUsage" type="xs:string" minOccurs="0">
+              <xs:element name="runtimeMemoryUsage" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Runtime Memory Usage</doc:tooltip>
@@ -251,7 +251,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="programmingLanguage" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="programmingLanguage" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Programming Language</doc:tooltip>
@@ -273,7 +273,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="checksum" type="xs:string" minOccurs="0">
+              <xs:element name="checksum" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Checksum</doc:tooltip>

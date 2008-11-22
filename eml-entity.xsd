@@ -25,8 +25,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.87 $'
+          '$Date: 2008-11-22 00:47:40 $'
+      '$Revision: 1.88 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -212,7 +212,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="entityDescription" type="xs:string" minOccurs="0">
+      <xs:element name="entityDescription" type="res:NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Entity description</doc:tooltip>

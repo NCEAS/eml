@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.76 $'
+          '$Date: 2008-11-22 00:47:41 $'
+      '$Revision: 1.77 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -222,7 +222,7 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
-        <xs:element name="characterEncoding" type="xs:string" minOccurs="0">
+        <xs:element name="characterEncoding" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Character Encoding</doc:tooltip>
@@ -304,7 +304,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="recordDelimiter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Record delimiter character</doc:tooltip>
@@ -519,7 +519,7 @@
                                 </xs:restriction>
                               </xs:simpleType>
                             </xs:element>
-                            <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="quoteCharacter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Quote character</doc:tooltip>
@@ -545,7 +545,7 @@
                                 </xs:appinfo>
                               </xs:annotation>
                             </xs:element>
-                            <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="literalCharacter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Literal character</doc:tooltip>
@@ -823,7 +823,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="quoteCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:element name="quoteCharacter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Quote character
@@ -854,7 +854,7 @@
                                       </xs:appinfo>
                                     </xs:annotation>
                                   </xs:element>
-                                  <xs:element name="literalCharacter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:element name="literalCharacter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Literal character
@@ -924,7 +924,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="formatVersion" type="xs:string" minOccurs="0">
+                    <xs:element name="formatVersion" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Format Version</doc:tooltip>
@@ -1076,7 +1076,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="skipbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="skipbytes" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Skip Bytes</doc:tooltip>
@@ -1092,7 +1092,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bandrowbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="bandrowbytes" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes per band per row</doc:tooltip>
@@ -1107,7 +1107,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="totalrowbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="totalrowbytes" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Total bytes of data per row</doc:tooltip>
@@ -1121,7 +1121,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="bandgapbytes" type="xs:string" minOccurs="0">
+                    <xs:element name="bandgapbytes" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Bytes between bands</doc:tooltip>
@@ -1189,7 +1189,7 @@ physical distribution type built from resource, access and local components
 phys:online type -->
   <xs:complexType name="PhysicalOnlineType">
     <xs:sequence>
-      <xs:element name="onlineDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="onlineDescription" type="res:NonEmptyStringType" minOccurs="0"/>
       <xs:choice>
         <xs:element name="url" type="res:UrlType"/>
         <xs:element name="connection" type="res:ConnectionType"/>

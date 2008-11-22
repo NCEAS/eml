@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-21 23:49:23 $'
-      '$Revision: 1.53 $'
+          '$Date: 2008-11-22 00:47:40 $'
+      '$Revision: 1.54 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -253,7 +253,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="electronicMailAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="electronicMailAddress" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Email address</doc:tooltip>
@@ -375,7 +375,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="salutation" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="salutation" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Salutation</doc:tooltip>
@@ -388,7 +388,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="givenName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="givenName" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Given name</doc:tooltip>
@@ -436,7 +436,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="deliveryPoint" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="deliveryPoint" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Delivery point</doc:tooltip>
@@ -449,7 +449,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="city" type="xs:string" minOccurs="0">
+        <xs:element name="city" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>City</doc:tooltip>
@@ -460,7 +460,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="administrativeArea" type="xs:string" minOccurs="0">
+        <xs:element name="administrativeArea" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Administrative area</doc:tooltip>
@@ -473,7 +473,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="postalCode" type="xs:string" minOccurs="0">
+        <xs:element name="postalCode" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Postal code</doc:tooltip>
@@ -487,7 +487,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="country" type="xs:string" minOccurs="0">
+        <xs:element name="country" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Country</doc:tooltip>

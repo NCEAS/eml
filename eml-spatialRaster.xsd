@@ -32,8 +32,8 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.48 $'
+          '$Date: 2008-11-22 00:47:41 $'
+      '$Revision: 1.49 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -507,7 +507,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="scaleFactor" type="xs:string" minOccurs="0">
+        <xs:element name="scaleFactor" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Scale Factor</doc:tooltip>
@@ -521,7 +521,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="offset" type="xs:string" minOccurs="0">
+        <xs:element name="offset" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Offset</doc:tooltip>
@@ -602,7 +602,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="imageQualityCode" type="xs:string" minOccurs="0">
+              <xs:element name="imageQualityCode" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Image Quality Code</doc:tooltip>
@@ -627,7 +627,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="preProcessingTypeCode" type="xs:string" minOccurs="0">
+              <xs:element name="preProcessingTypeCode" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Preprocessing Type Code</doc:tooltip>
@@ -754,7 +754,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sequenceIdentifier" type="xs:string" minOccurs="0">
+      <xs:element name="sequenceIdentifier" type="res:NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Sequence Identifier</doc:tooltip>

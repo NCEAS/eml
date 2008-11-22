@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.87 $'
+          '$Date: 2008-11-22 00:47:40 $'
+      '$Revision: 1.88 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -409,7 +409,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="timeScaleAgeUncertainty" type="xs:string" minOccurs="0">
+            <xs:element name="timeScaleAgeUncertainty" type="res:NonEmptyStringType" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Time scale age uncertainty</doc:tooltip>
@@ -423,7 +423,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="timeScaleAgeExplanation" type="xs:string" minOccurs="0">
+            <xs:element name="timeScaleAgeExplanation" type="res:NonEmptyStringType" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Time scale age explanation</doc:tooltip>
@@ -995,7 +995,7 @@ the spatialReference schema.</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="classificationSystemModifications" type="xs:string" minOccurs="0">
+                    <xs:element name="classificationSystemModifications" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Classification system
@@ -1045,7 +1045,7 @@ the spatialReference schema.</doc:description>
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="taxonomicCompleteness" type="xs:string" minOccurs="0">
+              <xs:element name="taxonomicCompleteness" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Taxonomic completeness</doc:tooltip>
@@ -1127,7 +1127,7 @@ the spatialReference schema.</doc:description>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="generalTaxonomicCoverage" type="xs:string" minOccurs="0">
+        <xs:element name="generalTaxonomicCoverage" type="res:NonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>General taxonomic coverage</doc:tooltip>
@@ -1169,7 +1169,7 @@ the spatialReference schema.</doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="taxonRankName" type="xs:string" minOccurs="0">
+      <xs:element name="taxonRankName" type="res:NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Taxon rank name</doc:tooltip>
@@ -1183,7 +1183,7 @@ the spatialReference schema.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="taxonRankValue" type="xs:string" minOccurs="0">
+      <xs:element name="taxonRankValue" type="res:NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Taxon rank value</doc:tooltip>
@@ -1204,7 +1204,7 @@ the spatialReference schema.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="commonName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="commonName" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Common name</doc:tooltip>

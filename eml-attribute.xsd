@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.120 $'
+          '$Date: 2008-11-22 00:47:40 $'
+      '$Revision: 1.121 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -241,7 +241,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="attributeLabel" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="attributeLabel" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Attribute label</doc:tooltip>
@@ -611,7 +611,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="dateTimePrecision" type="xs:string" minOccurs="0">
+                    <xs:element name="dateTimePrecision" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>DateTime Precision</doc:tooltip>
@@ -1005,7 +1005,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="source" type="xs:string" minOccurs="0">
+                    <xs:element name="source" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Source of code</doc:tooltip>
@@ -1176,7 +1176,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="orderAttributeReference" type="xs:string" minOccurs="0">
+                    <xs:element name="orderAttributeReference" type="res:NonEmptyStringType" minOccurs="0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Order Attribute
@@ -1270,7 +1270,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="pattern" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="pattern" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Text pattern</doc:tooltip>
@@ -1295,7 +1295,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="source" type="xs:string" minOccurs="0">
+              <xs:element name="source" type="res:NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Source of text domain</doc:tooltip>
