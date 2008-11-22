@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-10 19:21:02 $'
-      '$Revision: 1.90 $'
+          '$Date: 2008-11-22 00:49:20 $'
+      '$Revision: 1.91 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@
           </xs:simpleContent>
         </xs:complexType>
       </xs:element>
-      <xs:element name="shortName" type="xs:string" minOccurs="0">
+      <xs:element name="shortName" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Short Name</doc:tooltip>
@@ -222,7 +222,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="language" type="xs:string" minOccurs="0">
+      <xs:element name="language" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Language</doc:tooltip>
@@ -235,7 +235,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="series" type="xs:string" minOccurs="0">
+      <xs:element name="series" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Series</doc:tooltip>
@@ -313,7 +313,7 @@
                 </xs:simpleContent>
               </xs:complexType>
             </xs:element>
-            <xs:element name="keywordThesaurus" type="xs:string" minOccurs="0">
+            <xs:element name="keywordThesaurus" type="NonEmptyStringType" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Keyword thesaurus</doc:tooltip>
@@ -766,7 +766,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="defaultValue" type="xs:string" minOccurs="0">
+              <xs:element name="defaultValue" type="NonEmptyStringType" minOccurs="0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Default Parameter Value</doc:tooltip>
@@ -853,7 +853,7 @@ inline type -->
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="mediumDensity" type="xs:string" minOccurs="0">
+      <xs:element name="mediumDensity" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>density of the digital medium</doc:tooltip>
@@ -867,7 +867,7 @@ inline type -->
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="mediumDensityUnits" type="xs:string" minOccurs="0">
+      <xs:element name="mediumDensityUnits" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>units of a numerical density</doc:tooltip>
@@ -878,7 +878,7 @@ inline type -->
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="mediumVolume" type="xs:string" minOccurs="0">
+      <xs:element name="mediumVolume" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>storage volume</doc:tooltip>
@@ -890,7 +890,7 @@ inline type -->
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="mediumFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="mediumFormat" type="NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>medium format</doc:tooltip>
@@ -902,7 +902,7 @@ inline type -->
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="mediumNote" type="xs:string" minOccurs="0">
+      <xs:element name="mediumNote" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>note about the media</doc:tooltip>
@@ -932,7 +932,7 @@ inline type -->
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="onlineDescription" type="xs:string" minOccurs="0">
+      <xs:element name="onlineDescription" type="NonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Description of online information</doc:tooltip>
