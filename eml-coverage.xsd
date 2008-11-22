@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.88 $'
+          '$Date: 2008-11-22 19:01:53 $'
+      '$Revision: 1.89 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -501,13 +501,13 @@ the spatialReference schema.</doc:description>
               the "geographicDescription" might describe the fact
               that the study took place only along
               certain rivers within those states. </para>
-                <para>
+                  <para>
               This data element differs
               from the standard data element "Place_Keyword" in that it allows
               a free text description of the geographic extent, rather than
               just a list of words or phrases useful as an index of location
               names associated with the data set.  </para>
-              <para>This element can also contain information
+                  <para>This element can also contain information
               about the collection of the boundingCoordinates, e.g., an altitude value that is referenced
               to Mean Lower Low Water, or the projection system that the latitude and 
               longitude coordinates were taken from.</para>
@@ -772,9 +772,27 @@ the spatialReference schema.</doc:description>
                     <doc:summary>
                       The outer containment loop of a datasetGPolygon.
                     </doc:summary>
-                    <doc:description>The outer containment loop of a
+                    <doc:description>
+                      <section xmlns="">
+                        <para>The outer containment loop of a
                     datasetGPolygon.  This is the outer part of the doughnut
-                    shape that encompasses the broadest area of coverage
+                    shape that encompasses the broadest area of coverage. 
+                    It can be created either by a gRing (list of points) or 3 or more gRingPoints. 
+                    See the subelements and their Type definintions for more specific 
+                    information.</para>
+                        <para>
+                    This element is generally analogous to the FGDC outer ring although
+                    somewhat differently specified.  Documentation for an FGCD G-Ring 
+                    states that 4 points are required 
+                    to define a polygon, and the first and last should be identical. 
+                    However this is not enforceable in XML Schema, and so in EML
+                    a minimum of 3 &lt;gRingPoint&gt;s is required to define a polygon, and
+                    it can be assumed that a polygon is closed by joining the last point to the
+                    first.
+                    XSL stylesheets that transform EML instances to the FGDC specification 
+                    should repeat the first gRingPoint node as the last when creating a list of points.
+                    </para>
+                      </section>
                     </doc:description>
                   </xs:appinfo>
                 </xs:annotation>
@@ -786,9 +804,8 @@ the spatialReference schema.</doc:description>
                           <xs:appinfo>
                             <doc:tooltip>G Ring Point</doc:tooltip>
                             <doc:summary>A single geographic location</doc:summary>
-                            <doc:description>A single geographic location.  This is useful if you
-        register your datasets by a single geospatial point, such as the
-        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information</doc:description>
+                            <doc:description>A single geographic location.  As a child of &lt;datasetGPolygonOuterGRing&gt;
+                            a minimum of 3 are required to define a polygon. The polygon is presumed to be closed. Please see the sub elements and the Type descriptionfor more information about creating a point location.</doc:description>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
@@ -798,12 +815,10 @@ the spatialReference schema.</doc:description>
                         <xs:appinfo>
                           <doc:tooltip>G-Ring</doc:tooltip>
                           <doc:description>A set of ordered pairs of floating-point numbers,
-        See the Type for more information</doc:description>
-                          <doc:example>
-        12.453,15.0
-        5,101
-        -111,45
-        </doc:example>
+        The number of points in the string is not enforced by EML. 
+        However, authors should note that in order for this field is to be directly translated to FGCD, 4 points should
+        be included in the string. See the Type for more information on constructing the string. </doc:description>
+                          <!--  <doc:example> 12.453,15.0 5,101 -111,45</doc:example> -->
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -819,10 +834,25 @@ the spatialReference schema.</doc:description>
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).
                     </doc:summary>
-                    <doc:description>Data Set G-Polygon Exclusion G-Ring, the
+                    <doc:description>
+                      <section xmlns="">
+                        <para> the
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).  This is the center of the doughnut
-                    shape created by the datasetGPolygon.</doc:description>
+                    shape created by the datasetGPolygon. It can be created either by
+                    a gRing (list of points) or one or more gRingPoints. See the subelements and their 
+                    Type definintions for more information.</para>
+                        <para>
+                        This element is generally analogous to an FGDC exclusion ring "Data Set G-Polygon 
+                        Exclusion G-Ring", although it's children are
+                    somewhat differently described.  Documentation for the FGCD component states that
+                    4 points are required to define a polygon, and the first and last should be identical. 
+                    However this EML element requires only one point so that a single point can be
+                    excluded,  presumably, a single station.  If multiple single stations are to be 
+                    excluded, then authors should include mutlple &lt;datasetGPolygonExclusionGRing&gt;s.
+                                                </para>
+                      </section>
+                    </doc:description>
                   </xs:appinfo>
                 </xs:annotation>
                 <xs:complexType>
@@ -834,7 +864,7 @@ the spatialReference schema.</doc:description>
                           <doc:summary>A single geographic location</doc:summary>
                           <doc:description>A single geographic location.  This is useful if you
         register your datasets by a single geospatial point, such as the
-        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information</doc:description>
+        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information on constructing a gRingPoint</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -931,16 +961,39 @@ the spatialReference schema.</doc:description>
       <xs:appinfo>
         <doc:tooltip>G-Ring</doc:tooltip>
         <doc:summary/>
-        <doc:description>A set of ordered pairs of floating-point numbers,
+        <doc:description>
+          <section xmlns="">
+            <para>A set of ordered pairs of floating-point numbers,
         separated by commas, in which the first number in each pair is the
         longitude of a point and the second is the latitude of the point.
         Longitude and latitude are specified in decimal degrees with north
         latitudes positive and south negative, east longitude positive and west
-        negative</doc:description>
+        negative</para>
+            <para>Note on the relationship to FGCD:
+        This element is generally analogous to the FGDC component for ring, 
+        although implemented somewhat differently. Documentation for FGCD
+        states that 4 points are required to define a polygon, and the first and last 
+        should be identical, although this is not enforceable in XML Schema. In addition,
+        EML does not enforce any pattern on the string used for a GRingType, so that
+        it may be used differently as a child of EML's &lt;datasetGPolygonOuterGRing&gt;  
+        or &lt;datasetGPolygonExclusionGRing&gt; elements.
+        If authors of EML instance documents wish the conents of this element  to be 
+        directly translated to FGCD, they should comply with the example below when
+        constructing their strings. Alternatively, in most cases, a sequence of gRingPoints 
+        can be used in EML instances, which can be processed into content for an 
+        FDGC Data Set G-Polygon G-Ring.</para>
+          </section>
+        </doc:description>
+        <doc:example>For FGDC, construct a string like this:
+        -119.453,35.0
+        -125,37.5555
+        -122,40
+        -119.453,35.0
+        </doc:example>
         <doc:example>
-        12.453,15.0
-        5,101
-        -111,45
+        12, 2.0987
+        12, -7.5555
+        34.345,10.40
         </doc:example>
       </xs:appinfo>
     </xs:annotation>
@@ -1141,7 +1194,17 @@ the spatialReference schema.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded"/>
+        <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxonomic classification</doc:tooltip>
+              <doc:summary>Information about the range of taxa addressed in the data
+        set or collection.</doc:summary>
+              <doc:description>Information about the range of taxa addressed in the
+        data set or collection. See the Type definition for more information.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
@@ -1218,7 +1281,31 @@ the spatialReference schema.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Taxonomic classification</doc:tooltip>
+            <doc:summary>Information about the range of taxa addressed in the data
+        set or collection.</doc:summary>
+            <doc:description>Information about the range of taxa addressed in the
+        data set or collection. See the Type definition for more information.</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <!--
+<xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Taxonomic classification</doc:tooltip>
+              <doc:summary>Information about the range of taxa addressed in the data
+        set or collection.</doc:summary>
+              <doc:description>Information about the range of taxa addressed in the
+        data set or collection. See the Type definition for more information.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+
+-->
 </xs:schema>
