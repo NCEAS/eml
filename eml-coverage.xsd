@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 19:01:53 $'
-      '$Revision: 1.89 $'
+          '$Date: 2008-11-22 19:43:44 $'
+      '$Revision: 1.90 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,10 +69,18 @@
             single date/time, or a range of dates/times. These date/times may be
             expressed as a calendar date according to the ISO 8601 Date and Time
             Specification, or or by using an alternate time scale, such as the
-            geologic time scale. In order to express an "ongoing" time
-            frame, the end date in the range would likely use the alternate time
-            scale fields with a value of "ongoing", whereas the begin
-            date would use the specific calendar date fields.
+            geologic time scale. Currently, EML does not have specific fields to indicate
+            that a data source may be "ongoing". Two examples are 
+            resources that are expected to be added to in the future, or resources 
+            with complex connection definitions which may return data beyond
+            the date given in a temporalCoverage tag. It is important that EML be 
+            able to  handle data from both the "producer" and "consumer" points fo view,
+            although currently, the temporal coverage modules are designed for the latter.
+            There is no universally acceptable solution for describing "ongoing" data
+            within EML. Some groups have chosen to use the &lt;alternateTimeScale&gt; 
+            node for the end date, with a value of "ongoing", although this practice
+            is not endorsed by the EML authors. A future version of EML will 
+            accomodate such data types with coverage elements specific to their needs.
           </para>
             <para>
             The taxonomic coverage section allows for detailed description of
