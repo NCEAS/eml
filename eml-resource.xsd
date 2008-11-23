@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:49:20 $'
-      '$Revision: 1.91 $'
+          '$Date: 2008-11-23 03:24:16 $'
+      '$Revision: 1.92 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -585,10 +585,25 @@
         <doc:tooltip>Distribution Information</doc:tooltip>
         <doc:summary>Distribution information for accessing the
               resource.</doc:summary>
-        <doc:description>Distribution information for accessing the
+        <doc:description>
+          <section xmlns="">
+            <para>Distribution information for accessing the
               resource by one of three methods: online, offline or inline. Generally, 
-              this Type is intended to be informational, although elements are
-              included to describe a complex connection protocol.</doc:description>
+              the Type at the resource level is intended to be informational, although 
+              elements are
+              included to describe a complex connection protocol.
+             </para>
+            <para>For more information, see the sub-elements. Also
+             compare to 
+             <ulink url="./eml-physical.html#PhysicalDistributionType">
+                <citetitle>
+             phys:PhysicalDistributionType</citetitle>
+              </ulink>.
+             
+             
+             </para>
+          </section>
+        </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -920,15 +935,27 @@ inline type -->
         <doc:tooltip>Online Distribution Type</doc:tooltip>
         <doc:summary>Distribution information for accessing the
               resource online.</doc:summary>
-        <doc:description>Distribution information for accessing the
+        <doc:description>
+          <section xmlns="">
+            <para>Distribution information for accessing the
               resource online, represented either as a URL or as the series of
               named parameters needed to connect. The URL field can contain 
               a simple web address or an entire query string. The connection
                element allows the components of a complex protocol to 
                be desribed individually. The connectionDefinition element 
-               allows the connection parameters to be listed apart from the 
-               actual connection.
-             </doc:description>
+               can also be appear outside of the connection elements, 
+               so that it can be defined once and referenced by several connections. 
+               </para>
+            <para>
+               Also see the 
+               <ulink url="./eml-physical.html#PhysicalOnlineType">
+                <citetitle>phys:PhysicalOnlineType</citetitle></ulink>, 
+               which may be more
+               appropriate for describing the online connections to a specific entity
+               described by this metadata document.
+               </para>
+          </section>
+        </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
