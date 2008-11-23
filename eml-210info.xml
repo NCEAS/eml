@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!--
+       '$RCSfile: eml-210info.xml,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: obrien $'
+          '$Date: 2008-11-23 03:29:35 $'
+      '$Revision: 1.1 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+<article class="faq">
+  <title>Features and Changes in EML 2.1.0</title>
+  <para></para>
+  <para>
+    <ulink url="./index.html">Back to EML Contents</ulink>
+  </para>
+   <para>
+    <ulink url="./eml-faq.html">Back to EML FAQs</ulink>
+  </para>
+  <qandaset>
+  <qandaentry id="id.1">
+      <question>
+        <para>Schema validity</para>
+      </question>
+<answer>
+  <para>The 2.1.0 release addresses several issues in EML 2.0.0/1 that 
+			caused the schema to be invalid with respect to the W3C specifications. The 
+			changes are actually small, but they are incompatible with the 2.0 series, and 
+			so the version was advanced to "2.1".  Instance documents written against 2.1.0 will differ from 2.0.1 documents in these ways:</para>
+  <para>1. additionalMetadata sections: These sections now must include 
+			an element &lt;metadata&gt; that may contain any valid xml.  In EML 2.0.1, an 
+			additionalMetadata section looked like this:
+				<programlisting><![CDATA[
+        ...
+        <additionalMetadata>
+         <unitList>
+          <unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
+         </unitList>
+        </additionalMetadata>
+        ...
+				]]></programlisting>
+  </para>
+  <para>
+			In EML 2.1.0, the markup is wrapped in &lt;metadata&gt; tags:
+      <programlisting><![CDATA[
+	  ...
+		<additionalMetadata>
+		 <metadata>
+		  <unitList>
+		   <unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
+		  </unitList>
+		 </metadata>
+		</additionalMetadata>
+	  ...
+        ]]></programlisting>
+  </para>
+  <para>
+The optional &lt;describes&gt; element may still be included to reference a particular node of the document.      
+      
+		</para>
+</answer>
+</qandaentry>
+<qandaentry>
+    <question>
+    <para>Access Control</para>
+  </question>
+<answer>
+<para>2. Access Control: In EML 2.0.1 access to the metadata was controlled by an access tree that was a child of each top-level module (dataset, citation, software, protocol). Additionally, authors could have put access trees into additonalMetadata sections. This practice (and the optional  &lt;describes&gt; element implied that access rules could be applied to any node. Iin reality, node-level access control is too problematic to implement, and only access trees that referenced data entity distribution nodes were recognized.  A better solution is to locate access trees above or nearer to [the thing they control]. In EML 2.1.0, the access tree controlling the entire document.
+
+In EML 2.1.0 Access can be specified in following places:</para>
+  <programlisting><![CDATA[
+      	//eml/access
+      	//eml/..../distribution/access
+       ]]></programlisting>
+  <para>
+Permissions in //eml/access will be applied to all the metadata and by default 
+to the data. So all the metadata has same permissions overall. However, access 
+rules can still be specified for any data attached to the metadata by using an /access tree in the distribution tag. e.g., </para>
+  <programlisting><![CDATA[
+      	...
+      	<distribution>
+      	 <access>
+      	 ...
+      	 <access>
+      	</distribution>
+      	...
+       ]]></programlisting>
+  <para>If no access is specified in distribution then //eml/access rules are applied.  		</para>
+
+</answer>  
+
+</qandaentry>		
+		
+		<qandaentry>
+    <question>
+    <para>literature, volume and pageRange</para>
+    </question>
+<answer>
+ <para>3. Two elements (volume and pageRange) describing citations (eml-literature.xsd) are now optional so that articles-in-press can be described with EML.</para>
+
+</answer>    
+    
+  </qandaentry>
+		
+  <qandaentry>
+    <question>
+     <para>gRing</para>
+    </question>
+<answer>
+ <para>4. The content of the element gRing was retyped, making these nodes more usable. Markup looks
+		like: 
+			<programlisting><![CDATA[
+        ...
+       put some markup here
+      ...
+				]]></programlisting>
+  </para>
+</answer>    
+    
+  </qandaentry>
+ <qandaentry>
+  <question>
+   <para>offline/mediumName</para>
+  </question>
+<answer>
+ <para>5. In EML-2.0.1, an author could describe an offline data resource, but include no information about the resource's distribution. In EML-2.1.0, minimal content (one element) is now required.  
+				</para>
+  <para>
+			In EML 2.1.0, the element mediumName is required:</para>
+  <programlisting><![CDATA[
+	      ...
+	      <distribution>
+	       <offline>
+	        <mediumName>my medium</mediumName>
+	       </offline>
+	      </distribution>
+	      ...
+        ]]></programlisting>
+
+</answer>  
+  
+</qandaentry>
+ <qandaentry>
+  <question>
+  <para>StMML validity</para>
+    
+    
+    
+  </question>
+  <answer>
+   <para>6. STMML: EML makes use of the Scientific Technical and Medical Markup Language schema (stmml.xsd) for describing
+		units. The STMML schema was also found to be invalid, and as with EML, the repair was not compatible with earlier STMML documents. This error
+		was not related to elements used directly by EML (unitList or unitType).	However some authors may have used of other parts of stmml.xsd in 
+		their documents.  It was decided to the advance the namespace used for stmml-related files to "stmml-1.1", in keeping with the pattern of version
+		naming in EML. We are working with the STMML developers on this issue. To import stmml.xsd into one of your EML-2.1.0 documents:
+		<programlisting><![CDATA[
+		<?xml version="1.0"?>
+		<eml:eml
+		 packageId="eml.1.1" system="knb"
+		 xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+		 xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd">
+		 	<dataset>
+			...
+			</dataset>
+			<additionalMetadata>
+	  		<metadata>
+		  		<stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+			    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
+						<stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001">			
+						...
+					</stmml:unitList>
+				</metadata>
+			</additionalMetadata>
+		</eml:eml>
+		]]></programlisting>
+  </para>
+  
+  
+  </answer>
+  
+  
+    </qandaentry>
+  </qandaset>
+</article>
+
