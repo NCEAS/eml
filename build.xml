@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: tao $'
-          '$Date: 2008-11-07 03:55:43 $'
-      '$Revision: 1.108 $'
+        '$Author: obrien $'
+          '$Date: 2008-11-23 03:37:48 $'
+      '$Revision: 1.109 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,10 +53,10 @@
 		<property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
               eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
-			  eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd 
-			  eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
-			  eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
-              http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd"/>
+			  eml://ecoinformatics.org/eml-2.1.0 eml.xsd 
+			  eml://ecoinformatics.org/literature-2.1.0 eml-literature.xsd
+			  eml://ecoinformatics.org/project-2.1.0 eml-project.xsd
+              http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd"/>
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
@@ -292,6 +292,28 @@
       ************************************************
         FAQ rendered to HTML.  The html file
         is docs/eml-${version}/eml-faq.html.
+      ************************************************
+    </echo>
+	</target>
+	
+	<target name="eml210infohtml" depends="docbookhtml">
+		<echo>
+      ************************************************
+        Note that if this does not work for you,
+        you need to check the newest version of
+        Xalan out from the Apache CVS server and
+        put the new xalan.jar file in your classpath.
+        This will not work with Xalan 2.3.1!
+      ************************************************
+    </echo>
+		<style basedir="." style="${htmldocbook-style}"
+           in="eml-210info.xml"
+           out="${build.docs}/eml-${version}/eml-210info.html"
+           classpath="${cpath}" processor="trax"/>
+		<echo>
+      ************************************************
+        EML-210info has been rendered to HTML.  The html file
+        is docs/eml-${version}/eml-info210.html.
       ************************************************
     </echo>
 	</target>
