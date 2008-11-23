@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:41 $'
-      '$Revision: 1.77 $'
+          '$Date: 2008-11-23 03:23:22 $'
+      '$Revision: 1.78 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -93,6 +93,33 @@
     </xs:annotation>
   </xs:element>
   <xs:complexType name="PhysicalType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Physical structure</doc:tooltip>
+        <doc:summary>Physical structure of an entity or entities.</doc:summary>
+        <doc:description>
+          <section xmlns="">
+            <para>The eml-physical module describes the physical characteristics of a 
+            data object 
+        and the information required for its distribution. External physical characteristics
+        include  the filename, size, compression, encoding methods, and authentication 
+        of a file or byte stream. Internal physical characteristics describe the format of 
+        the data object. Proprietary formats can be cited (e.g., Microsoft Access 2000), 
+        or text formats can be precisely described (e.g., ASCII text delimited with commas). 
+        The module includes the information needed to parse the text data object to extract 
+        the entity and its attributes. Distribution information describes how to retrieve the 
+        data object, either as online (a URL or connection definition), offline (e.g., a data 
+        object residing on an archival tape), or inline (i.e., the data are included with the 
+        metadata).</para>
+            <para>Like many other EML elements, a physical Type can
+        contain a reference to another physical element defined elsewhere in the document
+        iInstead of a description of the resource.        Using
+        a reference means that the referenced physical is identical, not just
+        in name but identical in its complete description.  </para>
+          </section>
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:choice>
       <xs:sequence>
         <xs:element name="objectName" type="res:NonEmptyStringType">
@@ -1148,7 +1175,8 @@
               online and offline</doc:summary>
               <doc:description>This element provides information on how the
               resource is distributed. Connections to online
-              systems can be described as URLs or as a list of connection parameters.</doc:description>
+              systems can be described as URLs or as a list of connection parameters.
+               Please see the Type definition for complete information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -1166,17 +1194,86 @@ physical distribution type built from resource, access and local components
   <xs:complexType name="PhysicalDistributionType">
     <xs:annotation>
       <xs:appinfo>
-        <doc:tooltip>this type specifically for physical connections.</doc:tooltip>
+        <doc:tooltip>PhysicalDistributionType</doc:tooltip>
+        <doc:summary>PhysicalDistributionType</doc:summary>
+        <doc:description>
+          <section xmlns="">
+            <para>The PhysicalDistributionType contains the information required
+            for retrieving the resource.
+             </para>
+            <para>
+             It differs from the 
+             <ulink url="eml-resource.html#DistribtutionType">
+                <citetitle>res:DistributionType</citetitle></ulink>:
+              </para>
+            <itemizedlist>
+              <listitem>
+                <para>Generally, the PhysicalDisribtutionType is intended for download
+              whereas the Type at the resource level is intended primarily
+              for information.</para>
+              </listitem>
+              <listitem>
+                <para>The phys:PhysicalDistributionType includes an optional access tree
+              which can be used to override access rules applied at the resource
+              level. Access for the documents included entities can then be managed
+              individually.</para>
+              </listitem>
+              <listitem>
+                <para>Also see individual sub elements for more information.</para>
+              </listitem>
+            </itemizedlist>
+          </section>
+        </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
         <xs:choice>
-          <xs:element name="online" type="PhysicalOnlineType"/>
-          <xs:element name="offline" type="res:OfflineType"/>
-          <xs:element name="inline" type="res:InlineType"/>
+          <xs:element name="online" type="PhysicalOnlineType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>online</doc:tooltip>
+                <doc:summary>online</doc:summary>
+                <doc:description>Information for a resource that is distributed online.
+              Please see the Type definition for complete information.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="offline" type="res:OfflineType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>offline</doc:tooltip>
+                <doc:summary>offline</doc:summary>
+                <doc:description>Information for a resource that is distributed offline.
+              Please see the Type definition for complete information.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="inline" type="res:InlineType">
+            <xs:annotation>
+              <xs:appinfo>
+                <doc:tooltip>inline</doc:tooltip>
+                <doc:summary>inline</doc:summary>
+                <doc:description>Information for a resource that is distributed inline, i.e., along
+              with the metadata.
+              Please see the Type definition for complete information.</doc:description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
         </xs:choice>
-        <xs:element name="access" type="acc:AccessType" minOccurs="0"/>
+        <xs:element name="access" type="acc:AccessType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>access</doc:tooltip>
+              <doc:summary>access</doc:summary>
+              <doc:description>When this element occurs in a distribution module,
+              it controls access only to the resource being described by the same
+              distribution parent. 
+              Please see the Type definition for complete information on constructing
+              an access tree.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
@@ -1188,11 +1285,62 @@ physical distribution type built from resource, access and local components
 
 phys:online type -->
   <xs:complexType name="PhysicalOnlineType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>PhysicalOnlineType</doc:tooltip>
+        <doc:summary>PhysicalOnlineType</doc:summary>
+        <doc:description>
+          <section xmlns="">
+            <para>Distribution information for accessing the resource online, 
+            represented either as a URL or as the series of named parameters 
+            needed to connect. The URL field can contain a simple web address 
+            or an entire query string. The connection element allows the components 
+            of a complex protocol to be desribed individually.   </para>
+            <para>The PhysicalOnlineType differs from the
+            <ulink url="eml-resource.html#OnlineType">
+                <citetitle>res:OnlineType </citetitle>
+              </ulink>
+          in that this type only allows a connectionDefinition 
+             to appear as the child of a connection. In other words, in a 
+             PhysicalOnlineType, the connectionDefinition cannot be abstracted, and
+             must be included as part of an actual connection..
+             </para>
+          </section>
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
-      <xs:element name="onlineDescription" type="res:NonEmptyStringType" minOccurs="0"/>
+      <xs:element name="onlineDescription" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>onlineDescription</doc:tooltip>
+            <doc:summary>onlineDescription</doc:summary>
+            <doc:description>The onlineDescirption element can hold a brief description of the content of the online element's online|offline|inline child. This description element could supply content for an html anchor tag.  
+              </doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:choice>
-        <xs:element name="url" type="res:UrlType"/>
-        <xs:element name="connection" type="res:ConnectionType"/>
+        <xs:element name="url" type="res:UrlType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>url</doc:tooltip>
+              <doc:summary>url</doc:summary>
+              <doc:description>The URL of the resource that is available online. 
+              Please see the Type definition for complete information.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="connection" type="res:ConnectionType">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>connection</doc:tooltip>
+              <doc:summary>connection</doc:summary>
+              <doc:description>A connection to a resource that is available online.  
+              Please see the Type definition for complete information.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
