@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-09-27 00:13:25 $'
-      '$Revision: 1.24 $'
+          '$Date: 2008-11-23 03:31:04 $'
+      '$Revision: 1.25 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,14 +36,14 @@
 -->
 <article class="faq">
   <title>EML Frequently Asked Questions</title>
-  <para><ulink url="./index.html">Back to EML Contents</ulink></para>
-
+  <para>
+    <ulink url="./index.html">Back to EML Contents</ulink>
+  </para>
   <qandaset>
     <qandaentry id="id.1">
       <question>
         <para>What is EML?</para>
       </question>
-
       <answer>
         <para>EML stands for Ecological Metadata Language. It exists as a set
         of XML Schema documents that allow for the structural expression of
@@ -51,12 +51,10 @@
         sciences.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.2">
       <question>
         <para>Who is responsible for EML?</para>
       </question>
-
       <answer>
         <para>The first two released versions of EML, EML 1.0 and EML 1.4.1
         were developed at the National Center for Ecological Analysis and
@@ -70,8 +68,7 @@
         <ulink url="../members.html">voluntary project members</ulink> 
         who donate their time and experience in order to advance
         information management for ecology. Project decisions are made by
-        concensus according to the voting procedures described in the <ulink
-        url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+        concensus according to the voting procedures described in the <ulink url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
         Charter</ulink>.  Significant contributions for these recent releases
         have come from individuals at NCEAS, the Long Term Ecological
         Research Program (CAP, NET, KBS, JRN), and the Joseph W. Jones
@@ -79,17 +76,14 @@
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.3">
       <question>
         <para>Why would I want to use EML when FGDC now supports biological
         data through the CSDGM?</para>
       </question>
-
       <answer>
         <para>EML is modular and extensible.</para>
       </answer>
-
       <answer>
         <para>The Content Standard for Digital Geospatial Metadata (CSDGM)
         developed by the Federal Geographic Data Committee (FGDC) is a
@@ -117,12 +111,10 @@
         (&gt;&gt;&gt;5000, very few sensor derived).</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.4">
       <question>
         <para>Is there documentation for EML in English?</para>
       </question>
-
       <answer>
         <para>Yes, there is a <ulink url="index.html">formal
         specification</ulink> of EML describing its development history,
@@ -133,12 +125,10 @@
         provide examples on usage.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.5">
       <question>
         <para>Why is EML such an important development?</para>
       </question>
-
       <answer>
         <para>The last decade has witnessed a tremendous explosion of
         ecological and environmental data, catalyzed by societal concerns and
@@ -153,12 +143,10 @@
         discovery, access, integration and synthesis.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.6">
       <question>
         <para>How do I get EML?</para>
       </question>
-
       <answer>
         <para>All the documents associated with the EML development effort are
         available via the project web server at
@@ -169,14 +157,12 @@
         agreement and can be freely distributed and modified.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.7">
       <question>
         <para>The EML Schema documents are quite complex. An average ecologist
         probably cannot and more likely does not want to mark up content in an
         XML editor. How then do you get content into EML?</para>
       </question>
-
       <answer>
         <para>The Knowledge Network for Biocomplexity project has developed a
         software client specifically to address this need.
@@ -191,22 +177,18 @@
         supports the EML 2.0.0beta6 release, although the Morpho developers
         will update it to support the EML 2.0.0 release as soon as it has
         stabilized.</para>
-        <para>In addition, the <ulink
-        url="http://ces.asu.edu/bdi/Subjects/xylographa/">Xylographa</ulink>
-        and <ulink
-        url="http://ces.asu.edu/bdi/Subjects/Xanthoria/">Xanthoria
+        <para>In addition, the <ulink url="http://ces.asu.edu/bdi/Subjects/xylographa/">Xylographa</ulink>
+        and <ulink url="http://ces.asu.edu/bdi/Subjects/Xanthoria/">Xanthoria
         systems</ulink> are designed to assist in editing EML documents and
         in producing EML-compliant metadata from existing database systems.
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.8">
       <question>
         <para>EML contains provisions for communication. Is it possible to
         document in EML dynamic online data resources?</para>
       </question>
-
       <answer>
         <para>Yes, there are provisions in the eml-physical module for
         descriptions of online data resources.. The eml-physical module
@@ -223,12 +205,10 @@
         with the distribution information.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.9">
       <question>
         <para>Do I need to download special software to use EML?</para>
       </question>
-
       <answer>
         <para>No, but there is software available to work with EML. See
         <link linkend="id.7">FAQ 7</link>
@@ -236,36 +216,31 @@
         .</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.10">
       <question>
         <para>How can I get my existing metadata into EML?</para>
       </question>
-
       <answer>
         <para>There are several approaches that can be used to convert existing
         metadata into EML depending on what form your existing metadata
         take.</para>
-
         <itemizedlist>
           <listitem>
-            <para >Case 1: If your metadata is currently in a text format
+            <para>Case 1: If your metadata is currently in a text format
             (not stored in a database) use the following conversion methods.
 
             <orderedlist>
-              <listitem>
-                <para>Write a script (PERL, PHP, JAVA, etc.) to convert the
+                <listitem>
+                  <para>Write a script (PERL, PHP, JAVA, etc.) to convert the
                 text into EML compliant XML.</para>
-              </listitem>
-
-              <listitem>
-                <para>Convert the text metadata into XHTML (HTML that is XML
+                </listitem>
+                <listitem>
+                  <para>Convert the text metadata into XHTML (HTML that is XML
                 compliant). Write an XSLT script to transform the XHTML file
                 into EML compliant XML.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use an special purpose XML editor that generates EML (
+                </listitem>
+                <listitem>
+                  <para>Use an special purpose XML editor that generates EML (
                 <ulink url="http://knb.ecoinformatics.org/software">
                 Morpho</ulink>
 
@@ -274,51 +249,45 @@
                 Xylographa</ulink>
 
                 ) and manually retype the metadata.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use a general purpose XML development tool such as XML
+                </listitem>
+                <listitem>
+                  <para>Use a general purpose XML development tool such as XML
                 Spy that can create a sample document from an XML Schema and
                 retype the metadata manually.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use a simple text editor and do everything from
+                </listitem>
+                <listitem>
+                  <para>Use a simple text editor and do everything from
                 scratch.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use specialized data transformation software such as the
+                </listitem>
+                <listitem>
+                  <para>Use specialized data transformation software such as the
                 Data Junction suite to extract text data and then map it into
                 an EML structure.</para>
-              </listitem>
-            </orderedlist>
+                </listitem>
+              </orderedlist>
             </para>
           </listitem>
-
           <listitem>
             <para>Case 2: If your metadata is stored in a relational database
             use the following conversion methods.
             <orderedlist>
-              <listitem>
-                <para>Both Microsoft SQL Server and Oracle have utilities to
+                <listitem>
+                  <para>Both Microsoft SQL Server and Oracle have utilities to
                 generate XML from their database. If you use a tool like that,
                 then you will have to write an XSLT script to transform the
                 generated XML into EML.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use a vendor neutral Database-to-XML generator such as
+                </listitem>
+                <listitem>
+                  <para>Use a vendor neutral Database-to-XML generator such as
                 <ulink url="http://xml.apache.org/cocoon/">Cocoon</ulink>
 
                 (an Apache open source free tool). Cocoon can query the
                 database, generate XML, and has a tool for creating the XSL
                 Transformation scripts to convert the first stage XML output
                 into EML format.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use a specialized tool such as
+                </listitem>
+                <listitem>
+                  <para>Use a specialized tool such as
                 <ulink url="http://ces.asu.edu/bdi/Subjects/Xanthoria/">
                 Xanthoria</ulink>
 
@@ -326,30 +295,27 @@
                 XML from the database. Then use a tool such as XML Spy or
                 Stylus Studio to develop the XSLT script to convert the
                 generated XML into EML compliant XML.</para>
-              </listitem>
-
-              <listitem>
-                <para>Use specialized data transformation software such as the
+                </listitem>
+                <listitem>
+                  <para>Use specialized data transformation software such as the
                 Data Junction query the database and map it into an EML
                 structure.</para>
-              </listitem>
-            </orderedlist>
+                </listitem>
+              </orderedlist>
             </para>
           </listitem>
-
           <listitem>
             <para>Case 3: If your metadata is already in XML but in some other
             form such as NBII or FGDC use the following conversion method.
             <orderedlist>
-              <listitem>
-                <para>Write an XSLT script to convert from the current format
+                <listitem>
+                  <para>Write an XSLT script to convert from the current format
                 to EML (e.g. FGDC to EML).</para>
-              </listitem>
-            </orderedlist>
+                </listitem>
+              </orderedlist>
             </para>
           </listitem>
         </itemizedlist>
-
         <para>NOTE: In each of the cases it may be necessary to add some
         additional metadata in order to produce EML compliant documents.
         <ulink url="http://knb.ecoinformatics.org/software">Morpho</ulink>
@@ -358,14 +324,12 @@
         for you or indicating that certain fields are mandatory.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.11">
       <question>
         <para>Once I convert my metadata into EML, what do I do with it? If I
         am storing all my metadata in text-based EML files, how am I supposed
         to query them or use them for data management?</para>
       </question>
-
       <answer>
         <para>EML is an exchange standard for communication of metadata but it
         can be used as the framework for a data management system.
@@ -389,13 +353,11 @@
         activities, yet also have their metadata exposed via EML.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.12">
       <question>
         <para>Does the modularity of EML mean that one description can be
         shared by many documents?</para>
       </question>
-
       <answer>
         <para>In a previous version, EML packages (via RDF like triples)
         supported linking across packages, so you could re-use the same
@@ -410,12 +372,10 @@
         costs (access control, ownership, and multiple update problems).</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.13">
       <question>
         <para>How are EML modules linked together?</para>
       </question>
-
       <answer>
         <para>With "id" attributes and "references" elements
         in each module. Certain modules within EML allow you to
@@ -423,7 +383,6 @@
         identifier can then be used in place of content in other parts 
         of the EML document by placing it in a "references" element.</para>
       </answer>
-
       <answer>
         <para>Our general approach in EML has been to create ComplexTypes (CT)
         when we wanted a particular block to be reusable. This concept was
@@ -450,8 +409,7 @@
         "EML Parser").
         
         Here's a fragemnt of an example xml doc to illustrate:
-        <programlisting>
-        <![CDATA[
+        <programlisting><![CDATA[
             ...
             <creator id="id.p1">
               <individualName><surName>Jones</surName></individualName>
@@ -464,22 +422,18 @@
               <references>id.p1</references>
             </contact>
             ...
-        ]]>
-        </programlisting>
+        ]]></programlisting>
         </para>
-
         <para>This even works for types that extend other types as long as the
         subclass is the one that does the referencing (e.g., associatedParty
         can reference creator, but not vice versa). 
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.14">
       <question>
         <para>Can I put data into EML as well as metadata?</para>
       </question>
-
       <answer>
         <para>Yes, there are provisions in the eml-physical module for
         inclusion of data. The module describes the structural characteristics
@@ -498,12 +452,10 @@
         Binary data files can be included using Base64 encoding.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.15">
       <question>
         <para>What can I do with my EML structured metadata?</para>
       </question>
-
       <answer>
         <para>Tools are currently being developed to allow automated
         heterogeneous data integration, analytical processing and quality
@@ -512,12 +464,10 @@
         you and others in the future.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.16">
       <question>
         <para>Can I validate my EML documents against the DTD?</para>
       </question>
-
       <answer>
         <para>No. As of EML 2.0.0 we are no longer creating DTDs as part of
         the EML release. Only
@@ -529,12 +479,10 @@
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.17">
       <question>
         <para>Are there required elements in EML?</para>
       </question>
-
       <answer>
         <para>Yes, although we've made every attempt to limit required elements
         in the cause of flexibility there are a number of pieces of information
@@ -547,14 +495,12 @@
         required for that purpose.</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.18">
       <question>
         <para>There appear to be multiple places to put some types of metadata
         in EML. How do I know which of these places is the right place for my
         information?</para>
       </question>
-
       <answer>
         <para>The <ulink url="index.html">EML Specification</ulink>
         describes each element in a detailed normative manner. EML is
@@ -571,14 +517,12 @@
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.19">
       <question>
         <para>The differences between "method" and "protocol" seem
         to be very subtle in EML. How do I distinguish between
         the two?</para>
       </question>
-
       <answer>
         <para> The eml-methods module describes the methods followed
         in the creation of the dataset being described, including
@@ -609,12 +553,10 @@
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.20">
       <question>
         <para>How can 'references' be treated in XSLT transformations of EML?</para>
       </question>
-
       <answer>
         <para>XSLT can be used to transform EML to other formats, but the treatment
         of 'references' elements is somewhat complicated. A text file describing the
@@ -624,12 +566,10 @@
         </para>
       </answer>
     </qandaentry>
-    
     <qandaentry id="id.21">
       <question>
         <para>How do the elements of the Dublin Core Metadata Initiative map onto EML?</para>
       </question>
-
       <answer>
         <para>EML attempts to capture the metadata elements of the Dublin Core in its
         specification, while still maintaining the flexibility to be able to document the full range
@@ -640,19 +580,16 @@
         </para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.22">
       <question>
         <para>I'm interested in contributing to EML. Can I?</para>
       </question>
-
       <answer>
         <para>We welcome contributions to this work in any form.
         Individuals who invest substantial amounts of time and make valuable
         contributions to the development and maintenance of EML (in the
         opinion of current project members) will be invited to become EML
-        project members according to the rules set forth in the <ulink
-        url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+        project members according to the rules set forth in the <ulink url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
         Charter</ulink>. Contributions can take many forms, including the
         development of the EML schemas, writing documentation, and helping
         with maintenance, among others.
@@ -665,12 +602,10 @@
         we want all of the help we can get!</para>
       </answer>
     </qandaentry>
-
     <qandaentry id="id.23">
       <question>
         <para>Where can I get EML?</para>
       </question>
-
       <answer>
         <para>You can download archived releases from
         <ulink url="http://knb.ecoinformatics.org/software/eml/">
@@ -682,21 +617,21 @@
         server.</para>
       </answer>
     </qandaentry>
-
-	<qandaentry id="id.24">
-		<question>
-			<para>What is the difference between EML versions 2.0.0/1 and 2.1.0?</para>  
-		</question>
-		<answer>
-			<para>The 2.1.0 release addresses several issues in EML 2.0.0/1 that 
+    <qandaentry id="id.24">
+      <question>
+        <para>What is the difference between EML versions 2.0.0/1 and 2.1.0?</para>
+      </question>
+      <answer>
+      <para>See the EML 2.1.0 Info page: <ulink url="./eml-210info.html"><citetitle>What's new in EML 2.1</citetitle></ulink></para>
+      <!--
+              <para>The 2.1.0 release addresses several issues in EML 2.0.0/1 that 
 			caused the schema to be invalid with respect to the W3C specifications. The 
 			changes are actually small, but they are incompatible with the 2.0 series, and 
 			so the version was advanced to "2.1".  Instance documents written against 2.1.0 will differ from 2.0.1 documents in these ways:</para>
-			<para>1. additionalMetadata sections: These sections now must include 
+        <para>1. additionalMetadata sections: These sections now must include 
 			an element &lt;metadata&gt; that may contain any valid xml.  In EML 2.0.1, an 
 			additionalMetadata section looked like this:
-				<programlisting>
-      	<![CDATA[
+				<programlisting><![CDATA[
         ...
         <additionalMetadata>
          <unitList>
@@ -704,13 +639,11 @@
          </unitList>
         </additionalMetadata>
         ...
-				]]>
-				</programlisting>
-				</para>
-			<para>
+				]]></programlisting>
+        </para>
+        <para>
 			In EML 2.1.0, the markup is wrapped in &lt;metadata&gt; tags:
-      <programlisting>
-	      <![CDATA[
+      <programlisting><![CDATA[
 	  ...
 		<additionalMetadata>
 		 <metadata>
@@ -720,29 +653,24 @@
 		 </metadata>
 		</additionalMetadata>
 	  ...
-        ]]>
-      </programlisting>
-				</para>
-			<para>
+        ]]></programlisting>
+        </para>
+        <para>
 The optional &lt;describes&gt; element may still be included to reference a particular node of the document.      
       
 		</para>
-	
-		<para>2. Access Control: In EML 2.0.1 access to the metadata was controlled by an access tree that was a child of each top-level module (dataset, citation, software, protocol). Additionally, authors could have put access trees into additonalMetadata sections. This practice (and the optional  &lt;describes&gt; element implied that access rules could be applied to any node. Iin reality, node-level access control is too problematic to implement, and only access trees that referenced data entity distribution nodes were recognized.  A better solution is to locate access trees above or nearer to [the thing they control]. In EML 2.1.0, the access tree controlling the entire document.
+        <para>2. Access Control: In EML 2.0.1 access to the metadata was controlled by an access tree that was a child of each top-level module (dataset, citation, software, protocol). Additionally, authors could have put access trees into additonalMetadata sections. This practice (and the optional  &lt;describes&gt; element implied that access rules could be applied to any node. Iin reality, node-level access control is too problematic to implement, and only access trees that referenced data entity distribution nodes were recognized.  A better solution is to locate access trees above or nearer to [the thing they control]. In EML 2.1.0, the access tree controlling the entire document.
 
 In EML 2.1.0 Access can be specified in following places:</para>
-				<programlisting>
-      	<![CDATA[
+        <programlisting><![CDATA[
       	//eml/access
       	//eml/..../distribution/access
-       ]]>
-      </programlisting>
-      <para>
+       ]]></programlisting>
+        <para>
 Permissions in //eml/access will be applied to all the metadata and by default 
 to the data. So all the metadata has same permissions overall. However, access 
 rules can still be specified for any data attached to the metadata by using an /access tree in the distribution tag. e.g., </para>
-				<programlisting>
-      	<![CDATA[
+        <programlisting><![CDATA[
       	...
       	<distribution>
       	 <access>
@@ -750,29 +678,22 @@ rules can still be specified for any data attached to the metadata by using an /
       	 <access>
       	</distribution>
       	...
-       ]]>
-      </programlisting>
-      <para>If no access is specified in distribution then //eml/access rules are applied.  		</para>
-
-		<para>3. Two elements (volume and pageRange) describing citations (eml-literature.xsd) are now optional so that articles-in-press can be described with EML.</para>
-
-		<para>4. The content of the element gRing was retyped, making these nodes more usable. Markup looks
+       ]]></programlisting>
+        <para>If no access is specified in distribution then //eml/access rules are applied.  		</para>
+        <para>3. Two elements (volume and pageRange) describing citations (eml-literature.xsd) are now optional so that articles-in-press can be described with EML.</para>
+        <para>4. The content of the element gRing was retyped, making these nodes more usable. Markup looks
 		like: 
-			<programlisting>
-        <![CDATA[
+			<programlisting><![CDATA[
         ...
        put some markup here
       ...
-				]]>
-			</programlisting>
-		</para>
-
-	<para>5. In EML-2.0.1, an author could describe an offline data resource, but include no information about the resource's distribution. In EML-2.1.0, minimal content (one element) is now required.  
+				]]></programlisting>
+        </para>
+        <para>5. In EML-2.0.1, an author could describe an offline data resource, but include no information about the resource's distribution. In EML-2.1.0, minimal content (one element) is now required.  
 				</para>
-			<para>
+        <para>
 			In EML 2.1.0, the element mediumName is required:</para>
-      <programlisting>
-	      <![CDATA[
+        <programlisting><![CDATA[
 	      ...
 	      <distribution>
 	       <offline>
@@ -780,17 +701,13 @@ rules can still be specified for any data attached to the metadata by using an /
 	       </offline>
 	      </distribution>
 	      ...
-        ]]>
-      </programlisting>
-
-
-		<para>6. STMML: EML makes use of the Scientific Technical and Medical Markup Language schema (stmml.xsd) for describing
+        ]]></programlisting>
+        <para>6. STMML: EML makes use of the Scientific Technical and Medical Markup Language schema (stmml.xsd) for describing
 		units. The STMML schema was also found to be invalid, and as with EML, the repair was not compatible with earlier STMML documents. This error
 		was not related to elements used directly by EML (unitList or unitType).	However some authors may have used of other parts of stmml.xsd in 
 		their documents.  It was decided to the advance the namespace used for stmml-related files to "stmml-1.1", in keeping with the pattern of version
 		naming in EML. We are working with the STMML developers on this issue. To import stmml.xsd into one of your EML-2.1.0 documents:
-		<programlisting>
-		<![CDATA[
+		<programlisting><![CDATA[
 		<?xml version="1.0"?>
 		<eml:eml
 		 packageId="eml.1.1" system="knb"
@@ -811,13 +728,10 @@ rules can still be specified for any data attached to the metadata by using an /
 				</metadata>
 			</additionalMetadata>
 		</eml:eml>
-		]]>
-		</programlisting>
-				
-				</para>
-		</answer>
-	  </qandaentry>
+		]]></programlisting>
+        </para>-->
+      </answer>
+
+    </qandaentry>
   </qandaset>
 </article>
-
-
