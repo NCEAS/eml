@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 19:43:44 $'
-      '$Revision: 1.90 $'
+          '$Date: 2008-11-24 02:29:39 $'
+      '$Revision: 1.91 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -697,12 +697,10 @@ the spatialReference schema.</doc:description>
                     by altitude.</doc:summary>
                     <doc:description>The bounding altitude field is intended to
                     contain altitudinal (elevation) measurements for
-                    the bounding box being described. It als for minimum and
+                    the bounding box being described. It allows for minimum and
                     maximum altitude fields, as well as a field for the units
                     of measure. The combination of these fields provide the
-                    vertical extent information for the bounding box. The units
-                    should refer to an accepted datum as the
-                    baseline.</doc:description>
+                    vertical extent information for the bounding box. </doc:description>
                     <doc:example>Please see the individual sub-fields for
                     specific examples.</doc:example>
                   </xs:appinfo>
@@ -992,17 +990,21 @@ the spatialReference schema.</doc:description>
         FDGC Data Set G-Polygon G-Ring.</para>
           </section>
         </doc:description>
-        <doc:example>For FGDC, construct a string like this:
-        -119.453,35.0
-        -125,37.5555
-        -122,40
-        -119.453,35.0
-        </doc:example>
+                <doc:example>This is an acceptable gRing:
+</doc:example>
         <doc:example>
         12, 2.0987
         12, -7.5555
         34.345,10.40
         </doc:example>
+        <doc:example>However, for translation to FGDC, construct your string like this:</doc:example>
+        <doc:example>
+        -119.453,35.0
+        -125,37.5555
+        -122,40
+        -119.453,35.0
+        </doc:example>
+        
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string"/>
