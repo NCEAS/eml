@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-24 02:33:03 $'
-      '$Revision: 1.2 $'
+          '$Date: 2008-11-24 04:35:31 $'
+      '$Revision: 1.3 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -85,17 +85,17 @@
         <para>In the EML 2.0 series, the content model for additionalMetadata  
      included an element &lt;describes&gt; which was optional, and could be 
      included multiple times, alongside any other XML content. 
-     This construct is not allowed in XML Schema. In EML 2.1, a
-      child element has been       added to the additionalMetadata section to
-      contain the "&lt;xs:any&gt; XML";      content. Instance documents written
-      against 2.1.0 will differ from 2.0.1 documents in the following
-      ways:</para>
+     This construct is not allowed in XML Schema, and the error was not caught
+     by parsers available at the time. In EML 2.1.0, a
+      child element has been added to the &lt;additionalMetadata&gt; section to
+      contain the "&lt;xs:any&gt;" XML content. Instance documents written
+      against 2.1.0 will differ from 2.0.1 documents as follows:</para>
         <para>&lt;additionalMetadata&gt; sections now must include a child
 	&lt;metadata&gt; to contain the additional xml.  In EML 2.0.1, an 
 	additionalMetadata section looked like this:
-				<programlisting>
-<![CDATA[...
+	<programlisting><![CDATA[...
  <additionalMetadata>
+ <describes>123</describes>
   <unitList>
    <unit name="speciesPerSquareMeter" 
          unitType="arealDensity" 
@@ -103,15 +103,13 @@
 	 parentSI="numberPerSquareMeter" 
 	 multiplierToSI="1"/>
   </unitList>
- </additionalMetadata>...]]>
- </programlisting>
+ </additionalMetadata>...]]> </programlisting>
         </para>
-        <para>
-			In EML 2.1.0, the markup must be wrapped in &lt;metadata&gt; tags:
-      <programlisting>
-      <![CDATA[
+        <para> In EML 2.1.0, the markup must be wrapped in &lt;metadata&gt; tags:
+      <programlisting><![CDATA[
 ...
 <additionalMetadata>
+<describes>123</describes>
  <metadata>
   <unitList>
    <unit name="speciesPerSquareMeter" 
@@ -123,13 +121,11 @@
  </metadata>
 </additionalMetadata>
 ...
-        ]]>
-        </programlisting>
+        ]]></programlisting>
         </para>
         <para>The optional &lt;describes&gt; element may still be included to
 	reference a particular node of the document.  Multiple 
-	&lt;describes&gt; elements can be included if needed.      	
-	</para>
+	&lt;describes&gt; elements can be included if needed. 	</para>
       </answer>
     </qandaentry>
     <qandaentry id="id.2">
@@ -142,13 +138,14 @@
 	units. The STMML schema was also found to be invalid, and the
 	repair was not compatible with earlier STMML documents. This error
 	was not related to elements used directly by EML (i.e., unitList or
-	unitType). However some authors may have used of other parts of
-	stmml.xsd in their documents.  It was decided to the advance the
-	namespace used for stmml-related files to "stmml-1.1". We are working
+	unitType). However some authors may have used other parts of
+	stmml.xsd in their documents.  It was decided to advance the
+	namespace used for stmml-related files to "stmml-1.1". The EML development
+ group is working
 	with the STMML developers on this issue. To import stmml.xsd into one of
-	your EML-2.1.0 documents see the XML namespace declaration for stmml in
+	your EML 2.1.0 documents see the XML namespace declaration for stmml in
 	the code below:
-		<programlisting><![CDATA[
+	<programlisting><![CDATA[
 <?xml version="1.0"?>
 <eml:eml
  packageId="eml.1.1" system="knb"
@@ -185,28 +182,29 @@
         <para>In EML 2.0.1 access to the metadata was controlled by an access 
         tree that was a child of each top-level module: dataset,
 	citation,software,  or protocol. Additionally, authors could have put
-	access trees into additonalMetadata sections with a &lt;describes&gt;
+	access trees into &lt;additonalMetadata&gt; sections with a &lt;describes&gt;
 	element referencing the distribution node to which the access tree
 	applied. This practice might have implied that access rules could be
 	applied to any node. In reality however, node-level access control is
 	too problematic to implement, and only access trees  that referenced
 	data entity distribution nodes were recognized (as was stated in
-	EML2.0.1 documentation).  A better solution is to locate access trees
-	above or near the node whose access it controls.</para>
-        <para> In EML 2.1.0,  access trees can be placed in 2 places. To 
-	control the entire metadata document, place an &lt;access&gt; tree as 
+	EML 2.0.1 documentation).  A better solution is to locate access trees
+	above or near the node whose access it controls, and this has been
+	added to EML 2.1.0.</para>
+        <para> In EML 2.1.0,  access trees can be placed in 2 locations. To 
+	control the entire metadata document (i.e., "document-level access"),
+	place an &lt;access&gt; tree as 
 	a child of the root element. If a metadata author wishes to override 
 	the document-level control for a specific entity, an additional access
-	tree may be placed as child of a &lt;distributioin&gt; element within
+	tree may be placed as child of a &lt;distribution&gt; element within
 	the &lt;physical&gt; tree of that entity.</para>
-        <para>To control access to all the metadata and by default to the data,
+        <para>Example 1. To control access to all the metadata and by default to the data,
 	use an &lt;access&gt; element at the top level:
-        <programlisting>
-        <![CDATA[
+        <programlisting><![CDATA[
 <eml:eml>
  <access>
   ...
- <access>
+ </access>
  <dataset>
    ...
  </dataset>
@@ -214,14 +212,13 @@
    ...
  </additionalMetadata>
 </eml:eml>  
-      	]]>
-      	</programlisting>
+      	]]></programlisting>
         </para>
-        <para>Access rules can still be specified for any data entity by 
+        <para>Example 2. Access rules can still be specified for any data entity by 
 	placing an access tree under that entity's physical/distribution
-	element. The following example shows a dataTable's access tree that may
-	overrides permissions set at the document level. If no access is
-	specified in distribution then /eml/access rules are applied.  </para>
+	element. The following example shows a dataTable's access tree that can
+	override permissions set at the document level. If no access is
+	specified in distribution then the document-level access rules are applied.  </para>
         <programlisting><![CDATA[
 <eml:eml>
  <dataset>
@@ -242,64 +239,67 @@
  </dataset>
 </eml:eml>
        ]]></programlisting>
-        <para>		</para>
-      </answer>
+     </answer>
     </qandaentry>
     <qandaentry id="id.4">
       <question>
-        <para>Typing of gRing</para>
+        <para>Typing of &lt;gRing&gt; corrected</para>
       </question>
       <answer>
         <para>The content of the element gRing was retyped, making these 
         nodes more usable. This element is generally analogous to the FGDC
 	component for ring. Markup should be a string comprised of a sequence 
 	of lon-lat pairs, as in: 
-	<programlisting>
-<![CDATA[
+	<programlisting><![CDATA[
 ..
  <gRing>-119.453,35.0 -125,37.5555 -122,40 -119.453,35.0 </gRing>
 ..
-]]>
-	</programlisting>
+]]></programlisting>
        </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.5">
       <question>
-        <para>attribute.xsd:  bounds/minimum and bounds/maximum are of
+        <para>Entity Attributes: &lt;bounds&gt; minimum and maximum are of
 	type xs:float</para>
       </question>
       <answer>
-        <para/>
-        <para/>
-<programlisting>
-<![CDATA[
+        <para>In EML 2.0.1, these elements were typed to xs:decimal, and did
+	not support scientific notation. Changing the
+base data type to 'xs:float' accomodates both decimal and scientific
+notations and is backward compatible. Authors should keep in mind that there are
+advanges to using a decimal, i.e., it maintains precision during storage that
+xs:float does not. An alternative may be available in the next version of XML
+Schema (v1.1, a working draft as of late 2008). There is another data type planned, 
+called  "precisionDecimal" which corresponds to an IEEE type, "floating-point decimal".
+ It has features of both decimals and floats, i.e., it has the values and notation of
+a  float, but should be treated as decimal in arithmetic and storage. The typing 
+this element may be changed to this new type at some time in the future.
+        </para>
+<programlisting><![CDATA[
 ...
 <attribute>
  ...
  <bounds>
   <minimum>0</minimum>
-  <maximum>120</maximum>
+  <maximum>0.234E15</maximum>
 </bounds>
 ...
-]]>
-   </programlisting>        
+]]>   </programlisting>        
  </answer>
     </qandaentry>
     <qandaentry id="id.6">
       <question>
-        <para>coverage.xsd: of geographicCoverage/*/altitudeUnits use
-	standardUnits of LengthType</para>
+        <para>Geographic Coverage: &lt;altitudeUnits&gt; use Standard Units of LengthType</para>
       </question>
       <answer>
-        <para>In EML-2.0.1, altitude units were typed as a string, and the
-	authors told to include a vertical datum
-        with the unit. In EML-2.1.0, this has been revised. Altitudes are now
+        <para>In EML 2.0.1, altitude units were typed as a xs:string, and the
+	authors told to include a vertical datum along
+        with the unit. In EML 2.1.0, this has been revised. Altitudes are now
 	limited to Standard Units 
         which are lengths (meter, foot, etc), and the datum should be placed in
 	the geographicDescription.  
-<programlisting>
-<![CDATA[
+<programlisting><![CDATA[
 ..
 <boundingCoordinates>
  ...
@@ -307,33 +307,31 @@
   <altitudeMinimum>0</altitudeMinimum>
   <altitudeMaximum>120</altitudeMaximum>
   <altitudeUnits>meter</altitudeUnits>
+ </boundngAltitudes>
 </boundingCoordinates>
 ..
-]]>
-	</programlisting>        
+]]>	</programlisting>        
 	</para>
        </answer>
     </qandaentry>
     <qandaentry id="id.7">
       <question>
-        <para>coverage.xsd: latitude and longitide are type xs:decimal, with
-	appropriate ranges</para>
+        <para>Geographic Coverage: Latitude and Longitide are type xs:decimal, with appropriate ranges</para>
       </question>
         <answer>
-        <para>In EML-2.0.1, latitude and longitude were typed as a string. In
-	EML-2.1.0, these have been restricted  to decimal number with realistic
-	ranges for each (-90 to 90 and 180 to 180, respectively). Fractions of 
+        <para>In EML 2.0.1, latitude and longitude were typed as a xs:string. In
+	EML 2.1.0, these have been restricted  to decimal numbers with 
+	realistic ranges for each (-90 to 90, and 180 to 180, respectively).
+	Fractions of 
 	a degree in minutes and seconds should be converted to degree 
-	fractions, and srings denoting direction or hemisphere (e.g., 'S' or
-	'south') are not allowed. Latitudes north of the equator must be
-	specified by a plus sign (+), or by the absence of a minus sign (-), 
-	and latitudes south of the equator should be prefixed with minus sign
-	(-).These constraints are consistent with the intended use of this
+	fractions, and strings denoting direction or hemisphere (e.g., 'S' or
+	'south') are not allowed. South latitudes and west longitudes
+	are to be indicated by a minus	sign (-). These constraints are
+	consistent with the intended use of this
         field: to provide general mapping of EML resources. Authors should 
 	keep in mind that very specific descriptions of spatial data can be
-	described by modules dedicated to that purpose.
-<programlisting>
-<![CDATA[
+	accomodated by modules dedicated to that purpose.
+<programlisting><![CDATA[
 ..
 <boundingCoordinates>
  <westBoundingCoordinate>-120.2534</westBoundingCoordinate>
@@ -342,155 +340,160 @@
  <southBoundingCoordinate>34.1231</southBoundingCoordinate>
 </boundingCoordinates>
 ..
-]]>
-	</programlisting>        
+]]></programlisting>        
 	</para>
        </answer>
     </qandaentry>
     <qandaentry id="id.8">
       <question>
-        <para>Typing of strings to NonEmptyStrings </para>
+        <para>Element content must be Non-empty</para>
       </question>
         <answer>
-        <para>In EML-2.0.1, strings were allowed to be empty, even for required
-	elements. In EML-2.1.0, elements are required to have minimal content.
-	Where as this would be allowed in EML 2.0.1:
-<programlisting>
-<![CDATA[
+        <para>In EML 2.0.1, strings were allowed to be empty or simply
+	whitespace, even for required	elements. In EML 2.1.0, elements are
+	now typed as "NonEmptyString" and are required to have minimal string
+	content. So, whereas this would be allowed in EML 2.0.1:
+<programlisting><![CDATA[
 ...
-<distribution>
- <offline>
-  <mediumName>my medium</mediumName>
- </offline>
-</distribution>
+  <mediumName> </mediumName>
 ...
 ]]>
-	</programlisting>
+or 
+<![CDATA[
+...
+  <attributeName/>
+...
+]]></programlisting>
         </para>
-        <para>In EML 2.1.0, empty (or whitespace) content is not allowed.
-        <programlisting>
-<![CDATA[
+        <para>In EML 2.1.0, empty (or whitespace) content is not allowed. 
+	Actual content must be provided.
+        <programlisting><![CDATA[
 ...
-<distribution>
- <offline>
-  <mediumName>my medium</mediumName>
- </offline>
-</distribution>
+  <attributeName>approx. temperature</attributeName>
 ...
-]]>
-	</programlisting>        
+]]></programlisting>        
         </para>
        </answer>
     </qandaentry>
     <qandaentry id="id.9">
       <question>
-        <para>offline/mediumName</para>
+        <para>An offline resource has a minimum of one element required (&lt;mediumName&gt;) </para>
       </question>
       <answer>
-        <para>In EML-2.0.1, an author could describe an offline data resource,
+        <para>In EML 2.0.1, an author could describe an offline data resource,
 	but include no information about the resource's distribution. In
 	EML-2.1.0, minimal content (one element) is now required.  
 	</para>
-        <para>	In EML 2.1.0, the element mediumName is required:</para>
-        <programlisting>
-<![CDATA[
+	 <para>	In EML 2.0.1, the distribution tree for an offline resource
+	 could have ended with no content:
+        <programlisting><![CDATA[
+...
+<distribution>
+ <offline/>
+</distribution>
+...
+]]></programlisting>
+</para>
+        <para>	In EML 2.1.0, the element &lt;mediumName&gt; is required:
+        <programlisting><![CDATA[
 ...
 <distribution>
  <offline>
-  <mediumName>my medium</mediumName>
+  <mediumName>DVD Atlas of Lake Erie Shorelines</mediumName>
  </offline>
 </distribution>
 ...
-]]>
-	</programlisting>
+]]></programlisting>
+</para>
       </answer>
     </qandaentry>
     <qandaentry id="id.10">
       <question>
-        <para>method is now methods</para>
+        <para>Methods elements are standardized to &lt;methods&gt;</para>
       </question>
        <answer>
-        <para>In EML-2.0.1, elements named both "method" and "methods" were
-	used,which caused confusion for some authors. In EML 2.1.0, instances 
-	of the MethodsType have been standarized to "methods".   </para>
+        <para>In EML 2.0.1, elements named both "&lt;method&gt;" and
+	"&lt;methods&gt;" occurred, 
+	which caused confusion for some authors. In EML 2.1.0, instances 
+	of the MethodsType have been standarized to the collective noun
+	"methods".   </para>
         <para>In EML 2.0.1, this path existed:
         <programlisting><![CDATA[
 ...
-/eml/__________________________________________________/method/
+/eml/dataset/dataTable/attribute/method/
 ...
-]]>
-	</programlisting>
+]]>	</programlisting>
         </para>
         <para>In EML 2.1.0, this path is now properly constructed as:
-        <programlisting>
-<![CDATA[
+        <programlisting><![CDATA[
 ...
-/eml/__________________________________________________/methods/
+/eml/dataset/dataTable/attribute/methods/
 ...
-]]>
-</programlisting>
+]]></programlisting>
         </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.11">
       <question>
-        <para>datetime is now dateTime</para>
+        <para>Elements for date-time have been standardized to &lt;dateTime&gt;</para>
       </question>
       <answer>
-       <para>In EML-2.0.1, elements named both "datetime" and "dateTime" were
+       <para>In EML 2.0.1, elements named both "&lt;datetime&gt;" and
+       "&lt;dateTime&gt;" were
        used, which caused confusion for some authors. In EML 2.1.0, instances 
        of the MethodsType have been standarized to "dateTime".   
        </para>
         <para>In EML 2.0.1, this path existed:
-        <programlisting>
-	<![CDATA[
+        <programlisting><![CDATA[
 ...
-/eml/__________________________________________________/datetime/
+/eml/dataset/dataTable/attribute/measurementScale/datetime/
 ...
-]]>
-</programlisting>
+]]></programlisting>
         </para>
         <para>In EML 2.1.0, this path is now properly constructed as:
         <programlisting><![CDATA[
 ...
-/eml/__________________________________________________/dateTime/
+/eml/dataset/dataTable/attribute/measurementScale/dateTime/
 ...
-]]>
-</programlisting>
+]]></programlisting>
         </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.12">
       <question>
-        <para>literature, volume and pageRange are optional</para>
+        <para>For journal articles, the elements &lt;volume&gt; and &lt;pageRange&gt;
+	are now optional</para>
       </question>
       <answer>
-        <para>3. Two elements (volume and pageRange) describing citations
-	(eml-literature.xsd) are now optional so that articles-in-press can be
+        <para>Two elements (&lt;volume&gt; and &lt;pageRange&gt;) 
+	describing citations (journal articles) in the literature schema (eml-literature.xsd) 
+	are	now optional so that articles-in-press can be
 	described with EML.</para>
       </answer>
     </qandaentry>
     <qandaentry id="id.13">
       <question>
-        <para>literature has contact tree</para>
+        <para>A Citation may have an optional &lt;contact&gt; tree</para>
       </question>
       <answer>
-        <para>so that an author onther than the first can be designated as the
-	contact author for the publication, for example in reprint requests or
-	inquiries for more information.
+        <para>Also in eml-literature.xsd, an optional &lt;contact&gt; element
+	has been added so that an author other than the first can be designated
+	as the contact author for the publication, for example in reprint
+	requests or	inquiries for more information.
           <programlisting/>
         </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.14">
       <question>
-        <para>new element &lt;onlineDescription&gt; for a description of a URL</para>
+        <para>New optional element (&lt;onlineDescription&gt;) for a description
+	of an online resource</para>
       </question>
       <answer>
         <para>The new element, &lt;onlineDescription&gt;, can hold a brief
 	description of the content of the online element's 
 	online|offline|inline child. This description element could supply
-	content for an html anchor tag. 
+	content for an html anchor tag for a  URL. 
           <programlisting/>
         </para>
       </answer>
