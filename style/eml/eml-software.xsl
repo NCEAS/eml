@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2008-11-24 23:12:16 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -101,10 +101,10 @@
               <xsl:with-param name="softwarefirstColStyle" select="$softwarefirstColStyle"/>
               <xsl:with-param name="softwaresubHeaderStyle" select="$softwaresubHeaderStyle"/>
         </xsl:call-template>
-        <xsl:call-template name="softwareAccess">
+        <!--<xsl:call-template name="softwareAccess">
               <xsl:with-param name="softwarefirstColStyle" select="$softwarefirstColStyle"/>
               <xsl:with-param name="softwaresubHeaderStyle" select="$softwaresubHeaderStyle"/>
-        </xsl:call-template>
+        </xsl:call-template>-->
         <xsl:call-template name="softwareProject">
               <xsl:with-param name="softwarefirstColStyle" select="$softwarefirstColStyle"/>
               <xsl:with-param name="softwaresubHeaderStyle" select="$softwaresubHeaderStyle"/>
@@ -283,7 +283,7 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="softwareAccess">
+  <!--<xsl:template name="softwareAccess">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
     <xsl:for-each select="access">
@@ -295,7 +295,7 @@
          </td>
        </tr>
     </xsl:for-each>
-  </xsl:template>
+  </xsl:template>-->
 
   <xsl:template name="softwareProject">
     <xsl:param name="softwarefirstColStyle"/>

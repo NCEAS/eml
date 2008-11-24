@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-05-23 21:58:49 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2008-11-24 23:12:16 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,10 @@
           <xsl:variable name="ref_id" select="references"/>
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
+			 <xsl:apply-templates mode="entityaccess" select="access">
+               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
+            </xsl:apply-templates>
             <xsl:apply-templates select="online">
               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
@@ -77,6 +81,10 @@
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
+			 <xsl:apply-templates mode="entityaccess" select="access">
+               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
+             </xsl:apply-templates>
             <xsl:apply-templates select="online">
               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
@@ -374,6 +382,20 @@
       </xsl:if>
      </td></tr>
   </xsl:template>
+	
+	<!-- handle entity access level-->
+	<xsl:template mode="entityaccess" match="access">
+		<xsl:param name="disfirstColStyle"/>
+		<xsl:param name="dissubHeaderStyle"/>
+		<tr>
+		<td colspan="2">
+			<xsl:call-template name="access">
+			<xsl:with-param name="accessfirstColStyle" select="$disfirstColStyle"/>
+			  <xsl:with-param name="accesssubHeaderStyle" select="$dissubHeaderStyle"/>
+			</xsl:call-template>
+		</td>
+		</tr>
+	</xsl:template>
 
 
 </xsl:stylesheet>

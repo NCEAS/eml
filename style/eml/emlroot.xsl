@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-05-23 22:50:32 $'
-  * '$Revision: 1.6 $'
+  *     '$Date: 2008-11-24 23:12:16 $'
+  * '$Revision: 1.7 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,9 @@
  <xsl:variable name="ids" select="//*[@id!='']"/>
   
  <xsl:template match="*[local-name()='eml']">
+	 <xsl:for-each select="access">
+		   <xsl:call-template name="topaccess"/>
+	  </xsl:for-each>
      <tr><td>
        <xsl:for-each select="dataset">
          <xsl:call-template name="emldataset"/>
@@ -818,7 +821,7 @@
               </xsl:for-each>
            </xsl:if>
            <xsl:if test="$displaymodule='attributemethod'">
-              <xsl:for-each select="method">
+              <xsl:for-each select="methods">
                 <xsl:call-template name="method">
                     <xsl:with-param name="methodfirstColStyle" select="$firstColStyle"/>
                     <xsl:with-param name="methodsubHeaderStyle" select="$firstColStyle"/>
@@ -1152,4 +1155,20 @@
        </tr>
        </table>
    </xsl:template>
+	
+	<!--********************************************************
+                   access part
+       ********************************************************-->
+	<xsl:template name="topaccess">
+		<xsl:if test="$displaymodule='dataset' or $displaymodule='printall'">
+			<tr>
+			<td colspan="2">
+				<xsl:call-template name="access">
+				<xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
+				  <xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
+				</xsl:call-template>
+			</td>
+			</tr>
+		</xsl:if>
+	</xsl:template>
 </xsl:stylesheet>

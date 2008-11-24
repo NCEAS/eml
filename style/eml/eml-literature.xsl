@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2008-11-24 23:12:16 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -165,7 +165,7 @@
        </xsl:call-template>
     </xsl:for-each>
 
-    <xsl:if test="access and normalize-space(access)!=''">
+    <!--<xsl:if test="access and normalize-space(access)!=''">
       <tr><td colspan="2">
         <xsl:for-each select="access">
           <xsl:call-template name="access">
@@ -175,7 +175,7 @@
         </xsl:for-each>
       </td>
      </tr>
-   </xsl:if>
+   </xsl:if>-->
   </xsl:template>
 
 
