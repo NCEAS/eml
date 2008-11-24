@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-24 04:35:31 $'
-      '$Revision: 1.3 $'
+          '$Date: 2008-11-24 17:00:12 $'
+      '$Revision: 1.4 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@
   <para>
    The EML2.1.0 release addresses bugs which caused the schema to be invalid 
    with respect to  W3C specifications  (http://www.w3.org/2001/03/webdata/xsv). 
-   Although the changes were small, one was incompatible with EML 2.0 releases, 
+   Although the changes were small, they were incompatible with EML 2.0 releases, 
    which necessitated advancing     the version number to "2.1".
      The STMML schema was also found to be invalid with respect to XML Schema
      language, and the most reasonable fix for this bug also was incompatible
@@ -72,7 +72,7 @@
      The names of two elements      were changed make them consistent throughout
      EML. The cardinality of two elements      in the literature schema were
      allowed to be optional so that EML could accomodate      articles-in-press.
-     An optional "contact tree" was also added to the literature schema.
+     Two new optional elements were added: a "contact" tree to the literature schema, and a descriptive element to the distribution tree.
      </para>
   <para>
   </para>
@@ -103,7 +103,7 @@
 	 parentSI="numberPerSquareMeter" 
 	 multiplierToSI="1"/>
   </unitList>
- </additionalMetadata>...]]> </programlisting>
+ </additionalMetadata>...]]></programlisting>
         </para>
         <para> In EML 2.1.0, the markup must be wrapped in &lt;metadata&gt; tags:
       <programlisting><![CDATA[
@@ -239,7 +239,7 @@
  </dataset>
 </eml:eml>
        ]]></programlisting>
-     </answer>
+      </answer>
     </qandaentry>
     <qandaentry id="id.4">
       <question>
@@ -255,7 +255,7 @@
  <gRing>-119.453,35.0 -125,37.5555 -122,40 -119.453,35.0 </gRing>
 ..
 ]]></programlisting>
-       </para>
+        </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.5">
@@ -276,7 +276,7 @@ called  "precisionDecimal" which corresponds to an IEEE type, "floating-point de
 a  float, but should be treated as decimal in arithmetic and storage. The typing 
 this element may be changed to this new type at some time in the future.
         </para>
-<programlisting><![CDATA[
+        <programlisting><![CDATA[
 ...
 <attribute>
  ...
@@ -285,8 +285,8 @@ this element may be changed to this new type at some time in the future.
   <maximum>0.234E15</maximum>
 </bounds>
 ...
-]]>   </programlisting>        
- </answer>
+]]></programlisting>
+      </answer>
     </qandaentry>
     <qandaentry id="id.6">
       <question>
@@ -310,15 +310,15 @@ this element may be changed to this new type at some time in the future.
  </boundngAltitudes>
 </boundingCoordinates>
 ..
-]]>	</programlisting>        
-	</para>
-       </answer>
+]]></programlisting>
+        </para>
+      </answer>
     </qandaentry>
     <qandaentry id="id.7">
       <question>
         <para>Geographic Coverage: Latitude and Longitide are type xs:decimal, with appropriate ranges</para>
       </question>
-        <answer>
+      <answer>
         <para>In EML 2.0.1, latitude and longitude were typed as a xs:string. In
 	EML 2.1.0, these have been restricted  to decimal numbers with 
 	realistic ranges for each (-90 to 90, and 180 to 180, respectively).
@@ -340,15 +340,15 @@ this element may be changed to this new type at some time in the future.
  <southBoundingCoordinate>34.1231</southBoundingCoordinate>
 </boundingCoordinates>
 ..
-]]></programlisting>        
-	</para>
-       </answer>
+]]></programlisting>
+        </para>
+      </answer>
     </qandaentry>
     <qandaentry id="id.8">
       <question>
         <para>Element content must be Non-empty</para>
       </question>
-        <answer>
+      <answer>
         <para>In EML 2.0.1, strings were allowed to be empty or simply
 	whitespace, even for required	elements. In EML 2.1.0, elements are
 	now typed as "NonEmptyString" and are required to have minimal string
@@ -371,9 +371,9 @@ or
 ...
   <attributeName>approx. temperature</attributeName>
 ...
-]]></programlisting>        
+]]></programlisting>
         </para>
-       </answer>
+      </answer>
     </qandaentry>
     <qandaentry id="id.9">
       <question>
@@ -384,7 +384,7 @@ or
 	but include no information about the resource's distribution. In
 	EML-2.1.0, minimal content (one element) is now required.  
 	</para>
-	 <para>	In EML 2.0.1, the distribution tree for an offline resource
+        <para>	In EML 2.0.1, the distribution tree for an offline resource
 	 could have ended with no content:
         <programlisting><![CDATA[
 ...
@@ -393,7 +393,7 @@ or
 </distribution>
 ...
 ]]></programlisting>
-</para>
+        </para>
         <para>	In EML 2.1.0, the element &lt;mediumName&gt; is required:
         <programlisting><![CDATA[
 ...
@@ -404,14 +404,14 @@ or
 </distribution>
 ...
 ]]></programlisting>
-</para>
+        </para>
       </answer>
     </qandaentry>
     <qandaentry id="id.10">
       <question>
         <para>Methods elements are standardized to &lt;methods&gt;</para>
       </question>
-       <answer>
+      <answer>
         <para>In EML 2.0.1, elements named both "&lt;method&gt;" and
 	"&lt;methods&gt;" occurred, 
 	which caused confusion for some authors. In EML 2.1.0, instances 
@@ -422,7 +422,7 @@ or
 ...
 /eml/dataset/dataTable/attribute/method/
 ...
-]]>	</programlisting>
+]]></programlisting>
         </para>
         <para>In EML 2.1.0, this path is now properly constructed as:
         <programlisting><![CDATA[
@@ -438,7 +438,7 @@ or
         <para>Elements for date-time have been standardized to &lt;dateTime&gt;</para>
       </question>
       <answer>
-       <para>In EML 2.0.1, elements named both "&lt;datetime&gt;" and
+        <para>In EML 2.0.1, elements named both "&lt;datetime&gt;" and
        "&lt;dateTime&gt;" were
        used, which caused confusion for some authors. In EML 2.1.0, instances 
        of the MethodsType have been standarized to "dateTime".   
@@ -465,8 +465,8 @@ or
 	are now optional</para>
       </question>
       <answer>
-        <para>Two elements (&lt;volume&gt; and &lt;pageRange&gt;) 
-	describing citations (journal articles) in the literature schema (eml-literature.xsd) 
+        <para>Two elements, &lt;volume&gt; and &lt;pageRange&gt;, 
+	describing journal articles in the literature schema (eml-literature.xsd) 
 	are	now optional so that articles-in-press can be
 	described with EML.</para>
       </answer>
