@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-11-01 18:12:24 $'
-#      '$Revision: 1.42 $'
+#          '$Date: 2008-11-24 02:29:00 $'
+#      '$Revision: 1.43 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,8 +56,8 @@ Contributors: Matt Jones (jones@nceas.ucsb.edu)
               Ken Ramsey (kramsey@jornada.nmsu.edu)
               Saurabh Garg (sgarg@nceas.ucsb.edu)
               Margaret O'Brien (mob@msi.ucsb.edu)
-			  Mark Servilla (servilla@lternet.edu)
-			  James Brunt (brunt@lternet.edu)
+	      Mark Servilla (servilla@lternet.edu)
+	      James Brunt (brunt@lternet.edu)
 			  
 Web site: http://knb.ecoinformatics.org/software/eml
 
@@ -123,9 +123,9 @@ are available from this repository using the analagous release tag
 
 HIGHLIGHTS IN THIS RELEASE
 --------------------------
-This release addresses bugs in which caused the schema to be invalid with 
-respect to the W3C specifications using the XSV validator 
-(http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor, 
+This release addresses bugs which caused the schema to be invalid with 
+respect to the W3C specifications using modern validators 
+(e.g., http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor, 
 one was incompatible with 2.0 releases, which necessitated the version 
 number "2.1". In the 2.0 series, the content model for additionalMetadata 
 included an element <describes> whose cardinality was 0..many, alongside 
