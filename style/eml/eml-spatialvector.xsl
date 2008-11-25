@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: tao $'
+  *     '$Date: 2008-11-25 01:57:45 $'
+  * '$Revision: 1.2 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -120,12 +120,12 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="method">
+    <xsl:if test="methods">
        <tr><td class="{$spatialvectorsubHeaderStyle}" colspan="2">
         Method Description:
       </td></tr>
     </xsl:if>
-    <xsl:for-each select="method">
+    <xsl:for-each select="methods">
       <tr><td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$spatialvectorfirstColStyle"/>
