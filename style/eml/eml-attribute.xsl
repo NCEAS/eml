@@ -6,8 +6,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:49:05 $'
-  * '$Revision: 1.3 $'
+  *     '$Date: 2008-11-25 01:49:32 $'
+  * '$Revision: 1.4 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -606,9 +606,9 @@
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
             <xsl:choose>
-               <xsl:when test="method!=''">
+               <xsl:when test="methods!=''">
                  <td  align="center" class="{$stripes}">
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -628,9 +628,9 @@
         </xsl:when>
         <xsl:otherwise>
            <xsl:choose>
-               <xsl:when test="method!=''">
+               <xsl:when test="methods!=''">
                  <td  align="center" class="{$stripes}">
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -681,7 +681,7 @@
          <xsl:otherwise><td></td></xsl:otherwise>
        </xsl:choose>
        <xsl:choose>	
-	       <xsl:when test="./attribute/method"><th  class="highlightAttrib">Method</th></xsl:when>  
+	       <xsl:when test="./attribute/methods"><th  class="highlightAttrib">Method</th></xsl:when>  
          <xsl:otherwise><td></td></xsl:otherwise>
        </xsl:choose>
      
@@ -852,9 +852,9 @@
 
 
 	    	<xsl:choose>
-               	<xsl:when test="method!=''">
+               	<xsl:when test="methods!=''">
                  <td  align="center" class="{$coloddStyle}">
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -1000,9 +1000,9 @@
 
 
 	    	<xsl:choose>
-               	<xsl:when test="method!=''">
+               	<xsl:when test="methods!=''">
                  <td  align="center" class="{$colevenStyle}">
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -1592,9 +1592,9 @@
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
             <xsl:choose>
-               <xsl:when test="method!=''">
+               <xsl:when test="methods!=''">
                  <td  >
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -1614,9 +1614,9 @@
         </xsl:when>
         <xsl:otherwise>
            <xsl:choose>
-               <xsl:when test="method!=''">
+               <xsl:when test="methods!=''">
                  <td  >
-                   <xsl:for-each select="method">
+                   <xsl:for-each select="methods">
                      <xsl:call-template name="attributemethod">
                        <xsl:with-param name="docid" select="$docid"/>
                        <xsl:with-param name="entitytype" select="$entitytype"/>
@@ -1675,7 +1675,7 @@
          <xsl:with-param name="stripes" select="$stripes"/>
        </xsl:call-template>
     </xsl:for-each>
-    <xsl:for-each select="datetime">
+    <xsl:for-each select="dateTime">
        <xsl:call-template name="datetime">
           <xsl:with-param name="stripes" select="$stripes"/>
        </xsl:call-template>
