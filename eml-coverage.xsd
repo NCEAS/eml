@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-24 02:29:39 $'
-      '$Revision: 1.91 $'
+          '$Date: 2008-11-30 22:45:59 $'
+      '$Revision: 1.92 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -990,7 +990,7 @@ the spatialReference schema.</doc:description>
         FDGC Data Set G-Polygon G-Ring.</para>
           </section>
         </doc:description>
-                <doc:example>This is an acceptable gRing:
+        <doc:example>This is an acceptable gRing:
 </doc:example>
         <doc:example>
         12, 2.0987
@@ -1004,7 +1004,6 @@ the spatialReference schema.</doc:description>
         -122,40
         -119.453,35.0
         </doc:example>
-        
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string"/>
@@ -1291,7 +1290,7 @@ the spatialReference schema.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded">
+      <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Taxonomic classification</doc:tooltip>
