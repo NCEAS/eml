@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: tao $'
-          '$Date: 2008-12-01 18:27:44 $'
-      '$Revision: 1.110 $'
+          '$Date: 2008-12-01 19:52:58 $'
+      '$Revision: 1.111 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -56,7 +56,8 @@
 			  eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
 			  eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
 			  eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
-              http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd"/>
+              http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
+			  http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
