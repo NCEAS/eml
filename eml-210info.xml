@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-24 17:00:12 $'
-      '$Revision: 1.4 $'
+          '$Date: 2008-12-03 21:22:30 $'
+      '$Revision: 1.5 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@
    which necessitated advancing     the version number to "2.1".
      The STMML schema was also found to be invalid with respect to XML Schema
      language, and the most reasonable fix for this bug also was incompatible
-     with earlier versions. Authors should note that the schema error was NOT
+     with earlier versions. Authors should note that the STMML schema error was NOT
      related to elements used directly by EML (i.e., unitList or unitType).  
      However, EML imports all of STMML, and authors of EML instance documents 
      may have made use of other parts of the STMML schema. Therefore,
@@ -72,7 +72,8 @@
      The names of two elements      were changed make them consistent throughout
      EML. The cardinality of two elements      in the literature schema were
      allowed to be optional so that EML could accomodate      articles-in-press.
-     Two new optional elements were added: a "contact" tree to the literature schema, and a descriptive element to the distribution tree.
+     Two new optional elements were added: a "contact" tree to the literature schema, 
+     and a descriptive element to the distribution tree.
      </para>
   <para>
   </para>
@@ -90,8 +91,12 @@
       child element has been added to the &lt;additionalMetadata&gt; section to
       contain the "&lt;xs:any&gt;" XML content. Instance documents written
       against 2.1.0 will differ from 2.0.1 documents as follows:</para>
-        <para>&lt;additionalMetadata&gt; sections now must include a child
-	&lt;metadata&gt; to contain the additional xml.  In EML 2.0.1, an 
+              <para>&lt;additionalMetadata&gt; sections now must include a child
+	&lt;metadata&gt; to contain the additional XML markup. 
+	The optional &lt;describes&gt; element may still be included to
+	reference a particular node of the document.  Multiple 
+	&lt;describes&gt; elements can be included if needed. 	</para>
+        <para> In EML 2.0.1, an 
 	additionalMetadata section looked like this:
 	<programlisting><![CDATA[...
  <additionalMetadata>
@@ -123,9 +128,7 @@
 ...
         ]]></programlisting>
         </para>
-        <para>The optional &lt;describes&gt; element may still be included to
-	reference a particular node of the document.  Multiple 
-	&lt;describes&gt; elements can be included if needed. 	</para>
+
       </answer>
     </qandaentry>
     <qandaentry id="id.2">
@@ -187,7 +190,7 @@
 	applied. This practice might have implied that access rules could be
 	applied to any node. In reality however, node-level access control is
 	too problematic to implement, and only access trees  that referenced
-	data entity distribution nodes were recognized (as was stated in
+	distribution nodes were recognized (as was stated in
 	EML 2.0.1 documentation).  A better solution is to locate access trees
 	above or near the node whose access it controls, and this has been
 	added to EML 2.1.0.</para>
@@ -196,7 +199,7 @@
 	place an &lt;access&gt; tree as 
 	a child of the root element. If a metadata author wishes to override 
 	the document-level control for a specific entity, an additional access
-	tree may be placed as child of a &lt;distribution&gt; element within
+	tree may be placed as the last child of a &lt;distribution&gt; element within
 	the &lt;physical&gt; tree of that entity.</para>
         <para>Example 1. To control access to all the metadata and by default to the data,
 	use an &lt;access&gt; element at the top level:
@@ -268,23 +271,26 @@
 	not support scientific notation. Changing the
 base data type to 'xs:float' accomodates both decimal and scientific
 notations and is backward compatible. Authors should keep in mind that there are
-advanges to using a decimal, i.e., it maintains precision during storage that
-xs:float does not. An alternative may be available in the next version of XML
-Schema (v1.1, a working draft as of late 2008). There is another data type planned, 
-called  "precisionDecimal" which corresponds to an IEEE type, "floating-point decimal".
+advanges to using a decimal, i.e., a decimal maintains precision during storage that a
+floating point number does not. An alternative datatype may be available in the next 
+version of XML
+Schema (v1.1, a working draft as of late 2008). Another data type is planned
+(called "precisionDecimal") which corresponds to an IEEE type, "floating-point decimal."
  It has features of both decimals and floats, i.e., it has the values and notation of
-a  float, but should be treated as decimal in arithmetic and storage. The typing 
+a  float, but is to be treated as decimal in arithmetic and storage. The typing 
 this element may be changed to this new type at some time in the future.
         </para>
         <programlisting><![CDATA[
-...
 <attribute>
  ...
- <bounds>
-  <minimum>0</minimum>
-  <maximum>0.234E15</maximum>
-</bounds>
-...
+ <numericDomain>
+  <numberType>real</numberType>
+  <bounds>
+   <minimum>0</minimum>
+   <maximum>1.234E15</maximum>
+ </bounds>
+</numericDomain>
+</attribute>
 ]]></programlisting>
       </answer>
     </qandaentry>
@@ -293,12 +299,13 @@ this element may be changed to this new type at some time in the future.
         <para>Geographic Coverage: &lt;altitudeUnits&gt; use Standard Units of LengthType</para>
       </question>
       <answer>
-        <para>In EML 2.0.1, altitude units were typed as a xs:string, and the
+        <para>In EML 2.0.1, altitude units were typed as a xs:string, and instance
 	authors told to include a vertical datum along
         with the unit. In EML 2.1.0, this has been revised. Altitudes are now
 	limited to Standard Units 
         which are lengths (meter, foot, etc), and the datum should be placed in
-	the geographicDescription.  
+	the geographicDescription.  Instance authors should note that to include any additional content
+	in the  &lt;altitudeUnits&gt; element (such as the datum) will be an error in EML 2.1.0.
 <programlisting><![CDATA[
 ..
 <boundingCoordinates>
@@ -321,14 +328,14 @@ this element may be changed to this new type at some time in the future.
       <answer>
         <para>In EML 2.0.1, latitude and longitude were typed as a xs:string. In
 	EML 2.1.0, these have been restricted  to decimal numbers with 
-	realistic ranges for each (-90 to 90, and 180 to 180, respectively).
+	realistic ranges for each (-90 to 90, and -180 to 180, respectively).
 	Fractions of 
 	a degree in minutes and seconds should be converted to degree 
 	fractions, and strings denoting direction or hemisphere (e.g., 'S' or
 	'south') are not allowed. South latitudes and west longitudes
 	are to be indicated by a minus	sign (-). These constraints are
 	consistent with the intended use of this
-        field: to provide general mapping of EML resources. Authors should 
+        field, which is to provide general mapping of EML resources. Instance authors should 
 	keep in mind that very specific descriptions of spatial data can be
 	accomodated by modules dedicated to that purpose.
 <programlisting><![CDATA[
@@ -399,7 +406,7 @@ or
 ...
 <distribution>
  <offline>
-  <mediumName>DVD Atlas of Lake Erie Shorelines</mediumName>
+  <mediumName>Atlas of Lake Erie Shorelines</mediumName>
  </offline>
 </distribution>
 ...
@@ -440,8 +447,8 @@ or
       <answer>
         <para>In EML 2.0.1, elements named both "&lt;datetime&gt;" and
        "&lt;dateTime&gt;" were
-       used, which caused confusion for some authors. In EML 2.1.0, instances 
-       of the MethodsType have been standarized to "dateTime".   
+       used, which caused confusion for some authors. In EML 2.1.0, these instances 
+       have been standarized to "dateTime".   
        </para>
         <para>In EML 2.0.1, this path existed:
         <programlisting><![CDATA[
@@ -476,10 +483,10 @@ or
         <para>A Citation may have an optional &lt;contact&gt; tree</para>
       </question>
       <answer>
-        <para>Also in eml-literature.xsd, an optional &lt;contact&gt; element
-	has been added so that an author other than the first can be designated
-	as the contact author for the publication, for example in reprint
-	requests or	inquiries for more information.
+        <para>Also in eml-literature.xsd, an optional &lt;contact&gt; tree
+	has been added so that anyone (or one of the creators by reference) can be designated
+	as a contact for the publication. One use of this element could be for reprint
+	requests.
           <programlisting/>
         </para>
       </answer>
@@ -491,9 +498,11 @@ or
       </question>
       <answer>
         <para>The new element, &lt;onlineDescription&gt;, can hold a brief
-	description of the content of the online element's 
-	online|offline|inline child. This description element could supply
-	content for an html anchor tag for a  URL. 
+	description of the content of an online element's child. This optional element is available 
+	for both resource-level	and physical-level distribution nodes, and its 
+	content is a NonEmptyString.
+ One possible use for the description is to provide optional content
+		for the HTML anchor element that accompanies a  URL. 
           <programlisting/>
         </para>
       </answer>
