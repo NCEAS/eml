@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-30 22:45:59 $'
-      '$Revision: 1.92 $'
+          '$Date: 2008-12-03 19:37:03 $'
+      '$Revision: 1.93 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -70,16 +70,19 @@
             expressed as a calendar date according to the ISO 8601 Date and Time
             Specification, or or by using an alternate time scale, such as the
             geologic time scale. Currently, EML does not have specific fields to indicate
-            that a data source may be "ongoing". Two examples are 
-            resources that are expected to be added to in the future, or resources 
-            with complex connection definitions which may return data beyond
-            the date given in a temporalCoverage tag. It is important that EML be 
-            able to  handle data from both the "producer" and "consumer" points fo view,
-            although currently, the temporal coverage modules are designed for the latter.
-            There is no universally acceptable solution for describing "ongoing" data
+            that a data resource may be "ongoing." Two examples are data tables 
+			that are planned to be appended in the future, or resources 
+            with complex connection definitions (such as to a database) which may return 
+			data in real time. It is important that EML be 
+            able to  handle data from both the "producer" and "consumer" points of view,
+            although currently the temporal coverage modules are designed for the latter.
+            There is no universally acceptable recommendation for describing "ongoing" data
             within EML. Some groups have chosen to use the &lt;alternateTimeScale&gt; 
-            node for the end date, with a value of "ongoing", although this practice
-            is not endorsed by the EML authors. A future version of EML will 
+            node for the end date, with a value of "ongoing," although this practice
+            is not endorsed by the EML authors. A better solution could be to use very
+			general content for the endDate (such as only the current year) so that the 
+			data are accurately described, and searches return datasets as expected.
+			A future version of EML will 
             accomodate such data types with coverage elements specific to their needs.
           </para>
             <para>
