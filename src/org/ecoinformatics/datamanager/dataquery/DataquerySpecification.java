@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-08-20 17:37:11 $'
- * '$Revision: 1.16 $'
+ *     '$Date: 2008-12-05 23:35:18 $'
+ * '$Revision: 1.17 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@ import org.ecoinformatics.datamanager.database.LogicalRelation;
 import org.ecoinformatics.datamanager.database.ORRelation;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
+import org.ecoinformatics.datamanager.database.StaticSelectionItem;
 import org.ecoinformatics.datamanager.database.SubQueryClause;
 import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
@@ -690,6 +691,14 @@ public class DataquerySpecification extends DefaultHandler
     	}
     }
     
+    private void endStaticItem(BasicNode leaving) {
+    	String name = leaving.getAttribute("name");
+    	String value = leaving.getAttribute("value");
+    	StaticSelectionItem selection = new StaticSelectionItem(name, value);
+    	Query query = (Query) queryStack.peek();
+    	query.addSelectionItem(selection);
+    }
+    
     /**
      * callback method used by the SAX Parser when the end tag of an element is
      * detected. Used in this context to parse and store the query information
@@ -736,6 +745,9 @@ public class DataquerySpecification extends DefaultHandler
         }
         if (leaving.getTagName().equals("or")) {
         	endOr(leaving);
+        }
+        if (leaving.getTagName().equals("staticItem")) {
+        	endStaticItem(leaving);
         }
         
         String normalizedXML = textBuffer.toString().trim();

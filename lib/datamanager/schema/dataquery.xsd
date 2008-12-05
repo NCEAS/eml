@@ -30,7 +30,8 @@
     
     <xs:complexType name="selectionType">
         <xs:sequence>
-            <xs:element name="datapackage" type="datapackageType" maxOccurs="unbounded"/>
+			<xs:element name="datapackage" type="datapackageType" maxOccurs="unbounded"/>
+			<xs:element name="staticItem" type="staticItemType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -109,8 +110,9 @@
 		<xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
     </xs:complexType>
     
-    
-    
-    
+    <xs:complexType name="staticItemType">
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="value" type="xs:string" use="optional" />
+	</xs:complexType>	    
     
 </xs:schema>
