@@ -171,15 +171,35 @@
   <xsl:template match="attribute/method">
     <xsl:element name="methods" namespace="{namespace-uri(.)}">
       <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
+      <xsl:apply-templates mode="copy-no-ns-with-access-move" select="./*"></xsl:apply-templates>
     </xsl:element>
   </xsl:template>
+	
+	<!-- since under element "method", it can have distribution access movement, so this template will handle that-->
+    <!-- copy node and children without namespace -->
+  <xsl:template mode="copy-no-ns-with-access-move" match="*">
+	 <xsl:choose>
+		 <xsl:when test="name()='distribution' and name(parent::node())='implementation' and name(../..)='software'">			  
+			 <xsl:call-template name="move-access"/>
+		  </xsl:when>
+		 <xsl:otherwise>
+		      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+                <xsl:copy-of select="@*"></xsl:copy-of>
+                <xsl:apply-templates mode="copy-no-ns-with-access-move"></xsl:apply-templates>
+              </xsl:element>
+		 </xsl:otherwise>
+	 </xsl:choose>   
+  </xsl:template>
 
-
+     <!--template to match physical/distribution and software/implementation/distribution which need to move around access module-->
+	<xsl:template match="physical/distribution | software/implementation/distribution">
+		<xsl:call-template name="move-access"/>
+	</xsl:template>
+	
   <!-- Move the access tree of data file level from additionalMetadata part to physical/distribution or software/implementation/distribution part.
            If we find the id of physical/distribution is in aditionalMetadata/describe and it 
              has sibling of access subtree, copy the subtree to physical/distribution -->
-  <xsl:template match="physical/distribution | software/implementation/distribution">
+  <xsl:template name="move-access">
     <xsl:element name="distribution" namespace="{namespace-uri(.)}">
       <xsl:copy-of select="@*"></xsl:copy-of>
       <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
