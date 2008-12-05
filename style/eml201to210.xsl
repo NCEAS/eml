@@ -120,50 +120,11 @@
   </xsl:template>
 
   <!-- change the name of element form method to methods -->
-  <xsl:template match="dataTable/method">
+  <xsl:template match="dataTable/method | spatialRaster/method | spatialVector/method 
+	  | view/method | storedProcedure/method | otherEntity/method">
     <xsl:element name="methods" namespace="{namespace-uri(.)}">
       <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
-    </xsl:element>
-  </xsl:template>
-
-  <!-- change the name of element form method to methods -->
-  <xsl:template match="spatialRaster/method">
-    <xsl:element name="methods" namespace="{namespace-uri(.)}">
-      <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
-    </xsl:element>
-  </xsl:template>
-
-  <!-- change the name of element form method to methods -->
-  <xsl:template match="spatialVector/method">
-    <xsl:element name="methods" namespace="{namespace-uri(.)}">
-      <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
-    </xsl:element>
-  </xsl:template>
-
-  <!-- change the name of element form method to methods -->
-  <xsl:template match="view/method">
-    <xsl:element name="methods" namespace="{namespace-uri(.)}">
-      <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
-    </xsl:element>
-  </xsl:template>
-
-  <!-- change the name of element form method to methods -->
-  <xsl:template match="storedProcedure/method">
-    <xsl:element name="methods" namespace="{namespace-uri(.)}">
-      <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
-    </xsl:element>
-  </xsl:template>
-
-  <!-- change the name of element form method to methods -->
-  <xsl:template match="otherEntity/method">
-    <xsl:element name="methods" namespace="{namespace-uri(.)}">
-      <xsl:copy-of select="@*"></xsl:copy-of>
-      <xsl:apply-templates mode="copy-no-ns" select="./*"></xsl:apply-templates>
+      <xsl:apply-templates mode="copy-no-ns-with-access-move" select="./*"></xsl:apply-templates>
     </xsl:element>
   </xsl:template>
 
