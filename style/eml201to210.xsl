@@ -7,7 +7,7 @@
   <xsl:template match="/* ">
     <!--handle top level element-->
     <xsl:element name="eml:eml">
-      <xsl:copy-of select="@*"></xsl:copy-of>
+      <!--<xsl:copy-of select="@*"></xsl:copy-of>-->
       <!--<xsl:attribute name="xsi:schemaLocation">eml://ecoinformatics.org/eml-2.1.0 eml.xsd</xsl:attribute>-->
       <xsl:for-each select="@*">
         <xsl:attribute name="{name()}" namespace="{namespace-uri(.)}">
