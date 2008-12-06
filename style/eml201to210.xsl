@@ -6,11 +6,15 @@
   
   <xsl:template match="/* ">
     <!--handle top level element-->
-    <xsl:element name="eml:eml">
+    <xsl:element name="eml:eml">   
       <!--<xsl:copy-of select="@*"></xsl:copy-of>-->
       <!--<xsl:attribute name="xsi:schemaLocation">eml://ecoinformatics.org/eml-2.1.0 eml.xsd</xsl:attribute>-->
+
+	  <!--<xsl:copy-of select="namespace::*[not(starts-with(.,'eml://ecoinformatics.org/')) or . != 'http://www.w3.org/2001/XMLSchema-instance']"/>-->
       <xsl:for-each select="@*">
-        <xsl:attribute name="{name()}" namespace="{namespace-uri(.)}">
+	   <xsl:choose>
+	    <xsl:when test="namespace-uri()='http://www.w3.org/2001/XMLSchema-instance'">
+        <xsl:attribute name="xsi:{local-name()}" namespace="{namespace-uri()}">
           <xsl:variable name="value" select="."></xsl:variable>
           <xsl:choose>
             <!--change eml201 to eml210 in attribute-->
@@ -36,6 +40,13 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:attribute name="{name()}" namespace="{namespace-uri()}">
+			  <xsl:value-of select="."/>
+			</xsl:attribute>
+		</xsl:otherwise>
+       </xsl:choose>
       </xsl:for-each>
       <!--<xsl:attribute name="xsi:schemaLocation">
 		  <xsl:value-of select='translate(@xsi:schemaLocation, "eml-2.0.1", "eml-2.1.0")'/>
