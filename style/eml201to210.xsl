@@ -10,7 +10,7 @@
       <xsl:copy-of select="@*"></xsl:copy-of>
       <!--<xsl:attribute name="xsi:schemaLocation">eml://ecoinformatics.org/eml-2.1.0 eml.xsd</xsl:attribute>-->
       <xsl:for-each select="@*">
-        <xsl:attribute name="{name()}">
+        <xsl:attribute name="{name()}" namespace="{namespace-uri(.)}">
           <xsl:variable name="value" select="."></xsl:variable>
           <xsl:choose>
             <!--change eml201 to eml210 in attribute-->
