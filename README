@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-11-24 02:29:00 $'
-#      '$Revision: 1.43 $'
+#          '$Date: 2008-12-09 19:19:10 $'
+#      '$Revision: 1.44 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -160,9 +160,10 @@ of future development include:
 2. handling of ongoing data, (e.g.,use of temporal coverage elements)
 3. spatial datasets and map projections
 
-BUGS FIXED AND NEW FEATURES (see also http://bugzilla.ecoinformatics.org/)
+BUGS FIXED AND NEW FEATURES IN CURRENT RELEASE
+(see also http://bugzilla.ecoinformatics.org/)
 --------------------------------------------------------------------------
-2.1.0  Changes (numbers refer to the corresponding Bugzilla bug)
+2.1.0   (numbers refer to the corresponding Bugzilla bug)
 Schema changes:
 1132: eml.xsd, physical.xsd: fix access rule ambiguities 
 2054: eml.xsd: added the <metadata> tag to additionalMetadata
@@ -182,13 +183,21 @@ Schema changes:
 3445: stmml.xsd: non-deterministic
 2083: stmml.xsd: dimension 'current' was wrongly entered as 'charge'
 
-Parser Changes:
+Parser :
 3232: EML parser should use full-schema-checking
 
-Stylesheet Changes:
-To be completed
+Stylesheets :
+3508: create a stylesheet for EML2.0.x to EML 2.1.0
+3590: eml-documentation stylesheet problem with derived content.
+2048: param attributeindex defined twice in eml-settings.xsl
+2085: Access ontrol rules adapted for 2.0.1 and 2.1 (currently not shown)
+2147: EML Stylesheet problem with web address URL's
+2226: EML2 style sheet double the number of complex delimited f...
+3492: the word 'unit' should be pluralized by default
 
 
+PREVIOUS RELEASES
+--------------------------------------------------------------------------
 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
  249: Update XSLT stylesheets for EML 2.0 modules
  939: spelling errors for 'its' in index
