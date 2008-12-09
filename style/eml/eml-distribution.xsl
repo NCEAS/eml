@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-11-24 23:12:16 $'
-  * '$Revision: 1.4 $'
+  *     '$Date: 2008-12-09 22:44:43 $'
+  * '$Revision: 1.5 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -56,10 +56,6 @@
           <xsl:variable name="ref_id" select="references"/>
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
-			 <xsl:apply-templates mode="entityaccess" select="access">
-               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
-               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
-            </xsl:apply-templates>
             <xsl:apply-templates select="online">
               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
@@ -78,13 +74,13 @@
                <xsl:with-param name="physicalindex" select="$physicalindex"/>
                <xsl:with-param name="distributionindex" select="$distributionindex"/>
              </xsl:apply-templates>
+			  <xsl:apply-templates mode="entityaccess" select="access">
+               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
+            </xsl:apply-templates>
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
-			 <xsl:apply-templates mode="entityaccess" select="access">
-               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
-               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
-             </xsl:apply-templates>
             <xsl:apply-templates select="online">
               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />
@@ -103,6 +99,10 @@
                <xsl:with-param name="physicalindex" select="$physicalindex"/>
                <xsl:with-param name="distributionindex" select="$distributionindex"/>
             </xsl:apply-templates>
+			<xsl:apply-templates mode="entityaccess" select="access">
+               <xsl:with-param name="dissubHeaderStyle" select="$dissubHeaderStyle"/>
+               <xsl:with-param name="disfirstColStyle" select="$disfirstColStyle" />  
+             </xsl:apply-templates>
         </xsl:otherwise>
        </xsl:choose>
        </table> 
