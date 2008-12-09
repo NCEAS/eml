@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-12-08 23:45:24 $'
-      '$Revision: 1.7 $'
+          '$Date: 2008-12-09 00:03:11 $'
+      '$Revision: 1.8 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -477,16 +477,16 @@ or
 converting your eml -->
   <section>
     <title>Converting your EML documents from v2.0.0/1 to v2.1.0</title>
-    <para>An XSL stylesheet, "eml201to210.xsl" is available which converts valid EML 2.0-series
-      documents into EML 2.1.0 (see ./style in the EML 2.1.0 distribution). All the element name
-      changes described above are included. It is not the intent of this document to provide
+    <para>An XSL stylesheet, 'eml201to210.xsl' is available which converts valid EML 2.0-series
+      documents into EML 2.1.0 (see the 'style' directory in the EML 2.1.0 distribution). It is not the intent 
+      of this document to provide
       comprehensive instructions for using transforming XML documents; adequate information is
-      available in such places as Wikipedia, xmlschools, w3c, and many printed books. However, afew
+      available in such places as Wikipedia, W3Schools, W3C, and many printed books. However, a few
       specific examples will be given here, along with recommended practices and discussion of
       issues likely to occur when transforming EML 2.0 to v2.1. </para>
     <para>You will need a program capable of transforming XML using a stylesheet, which are
-      available in most languages, and many processing systems. For example the linux/unix command
-      line utility is called "xsltproc." There is also a utility written in Java from the
+      available in most languages, and many processing systems. For example the linux command
+      line utility is called 'xsltproc.' There is also a utility written in Java from the
       ecoinformatics project: http://FIND_A_URL_TO_UTILITIES. 
       <orderedlist>
         <listitem><para>From a linux command line:
@@ -515,7 +515,7 @@ converting your eml -->
           <para>Move access trees:</para>
           <orderedlist>
             <listitem>
-              <para>if an access tree was a child of a dataset|citation|software|protocol, it will be
+              <para>if an access tree was a child of a dataset, citation, software or protocol, it will be
                 moved to the eml-level.</para>
             </listitem>
             <listitem>
@@ -524,11 +524,14 @@ converting your eml -->
             </listitem>
           </orderedlist>
         </listitem>
-      </orderedlist> Since additionalMetadata sections are parsed laxly, it is possible for
+      </orderedlist> it is recommended that document authors check the validity of their
+      stylesheet output with the EML parser after transformation. First, additionalMetadata sections 
+      are parsed laxly, and so it is possible for
       additionalMetadata content in EML-2.0.0/1 to contain markup that when moved, would result in 
-      be invalid EML 2.1.0.
-       Therefore, it is recommended that document authors check the validity of their
-      stylesheet output with the EML parser after transformation. This can be done in 2 ways: <orderedlist>
+      be invalid EML 2.1.0. Secondly, in EML 2.1.0, the content of several elements has been more tightly 
+      constrained (e.g., latitude and longitude), and so some content that was valid in EML 2.0.1 
+      will not be valid EML 2.1.0.
+      EML instance documents can be validated in 2 ways: <orderedlist>
         <listitem>
           <para>With the <ulink url="http://knb.ecoinformatics.org/emlparser/ ">online EML Parser.   </ulink> </para>
         </listitem>
@@ -539,8 +542,8 @@ converting your eml -->
         </listitem>  </orderedlist>
            If you are planning to insert your EML 2.1.0 instance document into Metacat, it will be checked
            for validity as part of this process. Metacat submitters should be aware that some EML
-           instances have packageId attribute content which is intended to match Metacat's docid. The 
-           stylesheet  does not update the content of the packageId to increase the revision number. 
+           instances have content in their 'packageId' attribute which is intended to match Metacat's docid. 
+           The stylesheet  does not alter the content of the 'packageId' attribute. 
     </para>
   </section>
 
