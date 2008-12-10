@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-12-09 18:33:35 $'
-      '$Revision: 1.9 $'
+          '$Date: 2008-12-10 23:34:05 $'
+      '$Revision: 1.10 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,18 +36,18 @@
 -->
 <article class="faq">
   <title>Information for EML 2.1.0 Document Authors</title>
-  <para></para>
+  <para/>
   <para>
     <ulink url="./index.html">EML Schema Documentation</ulink>
   </para>
   <para>
     <ulink url="./eml-faq.html">EML FAQs</ulink>
   </para>
-  <para> Several changes to EML 2.1.0 will require changes to instance documents, which
-    are highlighted here. Document authors should also refer to the EML documentation for the
-    affected sections for complete usage information and examples. Existing EML 2.0-series documents
-    can be converted to EML 2.1.0 using the XSL style sheet that accompanies this release. See that
-    section (below) for further instructions. </para>
+  <para> Several changes to EML 2.1.0 will require changes to instance documents, and these are
+    highlighted here. Document authors should also refer to the EML documentation for the affected
+    sections for complete usage information and examples. Existing EML 2.0-series documents can be
+    converted to EML 2.1.0 using the XSL style sheet that accompanies this release. See that section
+    (below) for further instructions. </para>
   <para> The EML2.1.0 release addresses bugs which caused the schema to be invalid with respect to
     W3C specifications (http://www.w3.org/2001/03/webdata/xsv). Although the changes were small,
     they were incompatible with EML 2.0 releases, which necessitated advancing the version number to
@@ -59,7 +59,7 @@
     Therefore, it was decided to advance the namespace used for STMML-related imports to
     "stmml-1.1", in keeping with the pattern of version naming in EML. The STMML authors have been
     contacted, and are interested in our development and use of STMML. </para>
-  <para> Other features and enhancements were added to this release, and represent significan
+  <para> Other features and enhancements were added to this release, and represent significant
     improvements. Several elements were retyped, in some cases to constrain their content, and in
     other cases to increase flexiblilty. The names of two elements were changed make them consistent
     throughout EML. In the literature schema two elements were made optional so that EML could
@@ -67,8 +67,8 @@
     elements were added: a 'contact' tree to the literature schema, and a descriptive element to the
     distribution tree. </para>
   <para> For the most part, EML 2.1 does not include major new features, or require a shift in use
-    or implementation. This was a deliberate decision to balance the impact on instance authors,
-    while still maintaining a high-quality metadata specification and to prepare the schema for the
+    or implementation. This was a deliberate decision to balance the impact on instance authors
+    with necessary schema maintenance,  and to prepare the schema for the
     next phase of planned improvements and features. Some of the changes to EML 2.1 are invisible to
     document authors; see the 'Readme' that accompanies the distribution for a complete list of the
     bugs addressed, and for information of interest to developers.</para>
@@ -85,13 +85,13 @@ whats new in 2.1 -->
           <para>EML Schema validity</para>
         </question>
         <answer>
-          <para>EML allows authors to place additional XML markup in
+          <para>EML allows authors to place any XML markup in
             &lt;additionalMetadata&gt; sections at the end of the document. The content
             model for &lt;additionalMetadata&gt; includes an optional element
             &lt;describes&gt; so that the section can be referenced to EML nodes as needed.
             In EML 2.0, this element was placed alongside the additional XML content. However, this
             construct is not allowed in XML Schema, and the error was not caught by parsers
-            available at the time. In EML 2.1.0, the error has been corrected addint a child element
+            available at the time. In EML 2.1.0, the error has been corrected by adding a child element
             to the &lt;additionalMetadata&gt; section to contain the
             "&lt;xs:any&gt;" XML content. Instance documents written against 2.1.0 will
             differ from 2.0.1 documents as follows:</para>
@@ -140,10 +140,12 @@ whats new in 2.1 -->
             repair was not compatible with earlier STMML documents. This error was not related to
             elements used directly by EML (i.e., &lt;unitList&gt; or
             &lt;unitType&gt;). However some authors may have used other parts of stmml.xsd
-            in their documents. It was decided to advance the namespace used for stmml-related files
-            to "stmml-1.1". The EML development group is working with the STMML developers on this
-            issue. To import stmml.xsd into one of your EML 2.1.0 documents use the XML namespace
-            declaration for STMML in the code below: <programlisting><![CDATA[
+            in their documents. The required schema changes were not compatible with STMML-1.0, and
+            the EML development group is working with the STMML developers on this
+            issue. Since EML now imports a version of STMML that is not identical to that available
+            from its authors, it was decided to advance the namespace the EML 2.1.0 uses for stmml-related 
+            files to "stmml-1.1". To import stmml.xsd into one of your EML 2.1.0 documents use the XML 
+            namespace            declaration for STMML in the code below: <programlisting><![CDATA[
 <?xml version="1.0"?>
 <eml:eml
  packageId="eml.1.1" system="knb"
@@ -266,7 +268,7 @@ whats new in 2.1 -->
             type is planned (called "precisionDecimal") which corresponds to an IEEE type,
             "floating-point decimal." It has features of both decimals and floats; it has the values
             and notation of a float, but is to be treated as decimal in arithmetic and storage. The
-            typing this element may be changed to this new type at some time in the future. </para>
+            typing of this element may be changed to this new type at some time in the future. </para>
           <para>In EML 2.1.0, bounds can be written as: <programlisting><![CDATA[
 <attribute>
  ...
@@ -278,7 +280,8 @@ whats new in 2.1 -->
  </bounds>
 </numericDomain>
 </attribute>
-]]></programlisting></para>
+]]></programlisting>
+          </para>
         </answer>
       </qandaentry>
       <qandaentry id="id.6">
@@ -340,8 +343,8 @@ whats new in 2.1 -->
         </question>
         <answer>
           <para>In EML 2.0.1, strings were allowed to be empty or simply whitespace, even for
-            required elements. In EML 2.1.0, elements are now typed as "NonEmptyString" and are
-            required to have minimal string content. So, whereas this would be allowed in 
+            required elements. In EML 2.1.0, string-content is now typed as "NonEmptyString" and are
+            required to have minimal string content. So, whereas this would have been allowed in 
             EML 2.0.1: <programlisting><![CDATA[
 ...
   <mediumName> </mediumName>
@@ -457,7 +460,7 @@ or
           <para>Also in eml-literature.xsd, an optional &lt;contact&gt; tree has been added
             so that anyone (or one of the creators by reference) can be designated as a contact for
             the publication. One use of this element could be for reprint requests.
-            <programlisting></programlisting>
+            <programlisting/>
           </para>
         </answer>
       </qandaentry>
@@ -471,12 +474,11 @@ or
             the content of an online element's child. This optional element is available for both
             resource-level and physical-level distribution nodes, and its content is a
             NonEmptyString. One possible use for the description is to provide optional content for
-            the HTML anchor element that accompanies a URL. <programlisting></programlisting>
+            the HTML anchor element that accompanies a URL. <programlisting/>
           </para>
         </answer>
       </qandaentry>
     </qandaset>
-
   </section>
   <!--
 
@@ -485,11 +487,10 @@ or
 converting your eml -->
   <section>
     <title>Converting EML documents from v2.0.0/1 to v2.1.0</title>
-
     <qandaset>
       <qandaentry>
         <question>
-          <para>Converting EML instances using the XSL stylesheet</para>
+          <para>About the EML conversion stylesheet</para>
         </question>
         <answer>
           <para>An XSL stylesheet, 'eml201to210.xsl' is available which converts valid EML
@@ -499,33 +500,14 @@ converting your eml -->
             places as Wikipedia, W3Schools, W3C, and many printed books. However, a few specific
             examples will be given here, along with recommended practices and discussion of issues
             likely to occur when transforming EML 2.0 to v2.1. </para>
-          <para>You will need a program capable of transforming XML using a stylesheet, which are
-            available in most languages, and many processing systems. For example the linux command
-            line utility is called 'xsltproc.' There is also a utility written in Java from the
-            ecoinformatics project: <ulink url="http://knb.ecoinformatics.org"
-              >http://knb.ecoinformatics.org</ulink>. <orderedlist>
-              <listitem>
-                <para>From a linux command line:
-                  <programlisting>
- xsltproc eml201to210.xsl eml201_instance_doc.xml > eml210_instance_doc.xml
-                  </programlisting></para>
-              </listitem>
-              <listitem>
-                <para>or with the java program:
-                  <programlisting>
-  java -cp ./XSLTransform XSLTransform eml201_instance_doc.xml eml210210.xsl > eml210_instance_doc.xml
-                  </programlisting></para>
-              </listitem>
 
-            </orderedlist>
-          </para>
           <para>The stylesheet performs these basic tasks: <orderedlist>
               <listitem>
                 <para>Update namespaces to eml-2.1.0 and stmml-1.1</para>
               </listitem>
               <listitem>
                 <para>Wrap XML markup in &lt;additionalMetadata&gt; sections in
-                  &lt;metadata&gt; tags.</para>
+                  &lt;metadata&gt; tags</para>
               </listitem>
               <listitem>
                 <para>Rename elements &lt;method&gt; and &lt;datetime&gt;</para>
@@ -544,8 +526,61 @@ converting your eml -->
                   </listitem>
                 </orderedlist>
               </listitem>
+            <listitem>
+              <para>Replace the content of the "packageId" attribute (see
+                the root element, &lt;eml:eml&gt;) when a parameter named "package-id"
+                is passed to it. Without the parameter, the packageId's content is left alone.</para>
+            </listitem>
             </orderedlist>
           </para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Converting EML instances using the XSL stylesheet</para>
+        </question>
+        <answer>
+          <para>You will need a program capable of transforming XML using a stylesheet, which is
+            available in most languages and many processing systems. For example the linux command
+            line utility is called 'xsltproc.' 
+            <!-- There is also a utility written in Java from the
+            ecoinformatics project: <ulink url="http://knb.ecoinformatics.org"
+            >http://knb.ecoinformatics.org</ulink>. -->
+            <orderedlist>
+              <listitem>
+                <para>Here is a sample linux command line. The redirect operator is used to send the 
+                  output to a directory appropriate for the location of the schema files.
+                  <programlisting>
+ xsltproc eml201to210.xsl eml201_doc.xml > eml210_doc.xml
+                  </programlisting>
+                To include a new value for the packageId attribute, the stylesheet will accept a parameter 
+                 called 'package-id' from the calling program:
+                  <programlisting>
+ xsltproc -stringparam package-id knb-lter-sbc.1006.4 eml201to210.xsl eml201_doc.xml > eml210_doc.xml 
+                  </programlisting>
+                </para>
+              </listitem>
+                <listitem>
+                  <para>From some other system:
+                    <programlisting>
+SOMEOTHERCOMMAND arg 1 arg2 ...
+                    </programlisting>
+                    To pass a parameter for the packageId attribute:
+                    <programlisting>
+another example here?                    </programlisting>
+                  </para>
+                </listitem>
+            </orderedlist>
+          </para>
+          <!-- 
+          <para>or with the java program:
+                  <programlisting>
+  java -cp ./XSLTransform XSLTransform eml201_instance_doc.xml eml210210.xsl > eml210_instance_doc.xml
+                  </programlisting>
+                </para>
+            -->
+
+
         </answer>
       </qandaentry>
       <qandaentry>
@@ -570,11 +605,10 @@ converting your eml -->
                   directory of the EML release and run the 'runEMLParser' script passing your EML
                   instance file as a parameter. </para>
               </listitem>
-            </orderedlist></para>
+            </orderedlist>
+          </para>
         </answer>
       </qandaentry>
-
-
       <qandaentry>
         <question>
           <para>Notes regarding EML and Metacat</para>
@@ -588,21 +622,15 @@ converting your eml -->
                 </para>
               </listitem>
               <listitem>
-                <para>Metacat submitters should be aware that some EML instances have content in
-                  the 'packageId' attribute which is intended to match Metacat's docid. The
-                  stylesheet does not alter the content of the 'packageId' attribute.</para>
+                <para>Metacat submitters should be aware that some EML instances have content in the
+                  'packageId' attribute which is intended to match Metacat's docid. In this case, it is 
+                  recommended that you make use of the stylesheet's 'package-id' parameter.</para>
               </listitem>
             </orderedlist>
           </para>
         </answer>
       </qandaentry>
-
-
     </qandaset>
-
-
-
     <para>&nbsp;</para>
   </section>
-
 </article>
