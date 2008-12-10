@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2008-11-25 01:59:24 $'
-  * '$Revision: 1.2 $'
+  *     '$Date: 2008-12-10 01:42:28 $'
+  * '$Revision: 1.3 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -119,12 +119,12 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="methods">
+    <xsl:if test="methods | method">
        <tr><td class="{$storedproceduresubHeaderStyle}" colspan="2">
         Method Description:
       </td></tr>
     </xsl:if>
-    <xsl:for-each select="methods">
+    <xsl:for-each select="methods | method">
       <tr><td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$storedprocedurefirstColStyle"/>
