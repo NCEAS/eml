@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-12-10 23:34:05 $'
-      '$Revision: 1.10 $'
+          '$Date: 2008-12-11 18:25:36 $'
+      '$Revision: 1.11 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
     sections for complete usage information and examples. Existing EML 2.0-series documents can be
     converted to EML 2.1.0 using the XSL style sheet that accompanies this release. See that section
     (below) for further instructions. </para>
-  <para> The EML2.1.0 release addresses bugs which caused the schema to be invalid with respect to
+  <para> The EML 2.1.0 release addresses bugs which caused the schema to be invalid with respect to
     W3C specifications (http://www.w3.org/2001/03/webdata/xsv). Although the changes were small,
     they were incompatible with EML 2.0 releases, which necessitated advancing the version number to
     "2.1". The STMML schema was also found to be invalid with respect to XML Schema language, and
@@ -61,9 +61,9 @@
     contacted, and are interested in our development and use of STMML. </para>
   <para> Other features and enhancements were added to this release, and represent significant
     improvements. Several elements were retyped, in some cases to constrain their content, and in
-    other cases to increase flexiblilty. The names of two elements were changed make them consistent
+    other cases to increase flexibility. The names of two elements were changed make them consistent
     throughout EML. In the literature schema two elements were made optional so that EML could
-    accomodate articles-in-press (and the volume and page range not yet known). Two new optional
+    accommodate articles-in-press (and the volume and page range not yet known). Two new optional
     elements were added: a 'contact' tree to the literature schema, and a descriptive element to the
     distribution tree. </para>
   <para> For the most part, EML 2.1 does not include major new features, or require a shift in use
@@ -182,7 +182,7 @@ whats new in 2.1 -->
           <para>In EML 2.0.1 access to the metadata was controlled by an access tree that was a
             child of each top-level module: dataset, citation,software, or protocol. Additionally,
             to control access to entities, authors put access trees into
-            &lt;additonalMetadata&gt; sections with a &lt;describes&gt; element
+            &lt;additionalMetadata&gt; sections with a &lt;describes&gt; element
             referencing the appropriate distribution node. This practice might have implied that
             access rules could be applied to any node. In reality however, node-level access control
             is problematic to implement, and only access trees that referenced distribution nodes
@@ -260,7 +260,7 @@ whats new in 2.1 -->
         </question>
         <answer>
           <para>In EML 2.0.1, these elements were typed to xs:decimal, and did not support
-            scientific notation. Changing the base data type to 'xs:float' accomodates both decimal
+            scientific notation. Changing the base data type to 'xs:float' accommodates both decimal
             and scientific notations and is backward compatible. Authors should keep in mind that
             there are advantages to using a decimal, i.e., a decimal maintains precision during
             storage that a floating point number does not. An alternative datatype may be available
@@ -299,11 +299,11 @@ whats new in 2.1 -->
 ..
 <boundingCoordinates>
  ...
- <boundngAltitudes>
+ <boundingAltitudes>
   <altitudeMinimum>0</altitudeMinimum>
   <altitudeMaximum>120</altitudeMaximum>
   <altitudeUnits>meter</altitudeUnits>
- </boundngAltitudes>
+ </boundingAltitudes>
 </boundingCoordinates>
 ..
 ]]></programlisting>
@@ -312,7 +312,7 @@ whats new in 2.1 -->
       </qandaentry>
       <qandaentry id="id.7">
         <question>
-          <para>Geographic Coverage: Latitude and Longitide are type xs:decimal, with appropriate
+          <para>Geographic Coverage: Latitude and Longitude are type xs:decimal, with appropriate
             ranges</para>
         </question>
         <answer>
@@ -323,7 +323,7 @@ whats new in 2.1 -->
             are not allowed. South latitudes and west longitudes are to be indicated by a minus sign
             (-). These constraints are consistent with the intended use of this field, which is to
             provide general mapping of EML resources. Instance authors should keep in mind that very
-            specific descriptions of spatial data can be accomodated by EML modules dedicated to
+            specific descriptions of spatial data can be accommodated by EML modules dedicated to
             that purpose. <programlisting><![CDATA[
 ..
 <boundingCoordinates>
@@ -403,7 +403,7 @@ or
         <answer>
           <para>In EML 2.0.1, elements named both "&lt;method&gt;" and
             "&lt;methods&gt;" occurred, which caused confusion for some authors. In EML
-            2.1.0, instances of the MethodsType have been standarized to the collective noun
+            2.1.0, instances of the MethodsType have been standardized to the collective noun
             "methods". </para>
           <para>In EML 2.0.1, this path existed: <programlisting><![CDATA[
 ...
@@ -426,7 +426,7 @@ or
         <answer>
           <para>In EML 2.0.1, elements named both "&lt;datetime&gt;" and
             "&lt;dateTime&gt;" were used, which caused confusion for some authors. In EML
-            2.1.0, these instances have been standarized to "dateTime". </para>
+            2.1.0, these instances have been standardized to "dateTime". </para>
           <para>In EML 2.0.1, this path existed: <programlisting><![CDATA[
 ...
 /eml/dataset/dataTable/attribute/measurementScale/datetime/
@@ -561,25 +561,28 @@ converting your eml -->
                 </para>
               </listitem>
                 <listitem>
-                  <para>From some other system:
+                  <para>From a linux, Macintosh or Windows use this command line with Java and Apache Xalan. 
+                  This program accepts stylesheet parameters with a '-PARAM name value' argument added.
+                   For more information see 
+                  <ulink url="http://xml.apache.org/xalan-j/commandline.html">http://xml.apache.org/xalan-j/commandline.html</ulink>.
+                  
                     <programlisting>
-SOMEOTHERCOMMAND arg 1 arg2 ...
-                    </programlisting>
-                    To pass a parameter for the packageId attribute:
-                    <programlisting>
-another example here?                    </programlisting>
-                  </para>
+java org.apache.xalan.xslt.Process -IN eml201_doc.xml -XSL eml201to210.xsl -OUT eml210_doc.xml 
+               </programlisting>
+                                 </para>
                 </listitem>
+                
+                               <listitem>
+                  <para>Windows users can also use Microsoft MSXML and the msxsl.exe command line utility, 
+                  which is freely available
+                  from sources such as  <ulink url="http://www.download.com/windows/">CNET</ulink>.
+                    <programlisting>
+msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programlisting>
+                                 </para>
+                </listitem>
+                
             </orderedlist>
           </para>
-          <!-- 
-          <para>or with the java program:
-                  <programlisting>
-  java -cp ./XSLTransform XSLTransform eml201_instance_doc.xml eml210210.xsl > eml210_instance_doc.xml
-                  </programlisting>
-                </para>
-            -->
-
 
         </answer>
       </qandaentry>
@@ -624,7 +627,8 @@ another example here?                    </programlisting>
               <listitem>
                 <para>Metacat submitters should be aware that some EML instances have content in the
                   'packageId' attribute which is intended to match Metacat's docid. In this case, it is 
-                  recommended that you make use of the stylesheet's 'package-id' parameter.</para>
+                  recommended that you make use of the stylesheet's 'package-id' parameter to increment
+                  the revision number.</para>
               </listitem>
             </orderedlist>
           </para>
