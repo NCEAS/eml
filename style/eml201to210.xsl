@@ -3,7 +3,8 @@
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" version="1.0">
   <xsl:output method="xml" indent="yes"></xsl:output>
   <xsl:strip-space elements="*"></xsl:strip-space>
-  
+  <xsl:param name="package-id" select="'newID'"/>
+	
   <xsl:template match="/* ">
     <!--handle top level element-->
     <xsl:element name="eml:eml">   
@@ -60,9 +61,26 @@
         </xsl:attribute>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:attribute name="{name()}" namespace="{namespace-uri()}">
-			  <xsl:value-of select="."/>
-			</xsl:attribute>
+            <xsl:choose>
+               <xsl:when test="name()='packageId'">
+				   <!-- handle package id: if there is no given packageid, it will use the old one. Otherwise, using the given id-->
+			       <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
+					    <xsl:choose>
+							<xsl:when test="$package-id='newID'">
+								<xsl:value-of select="."/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$package-id"/>
+							</xsl:otherwise>
+						</xsl:choose>
+			       </xsl:attribute>
+               </xsl:when>
+               <xsl:otherwise>
+				  <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
+                        <xsl:value-of select="."/>
+                   </xsl:attribute> 
+               </xsl:otherwise>
+            </xsl:choose>
 		</xsl:otherwise>
        </xsl:choose>
       </xsl:for-each>

@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-12-03 19:37:03 $'
-      '$Revision: 1.79 $'
+          '$Date: 2008-12-12 00:49:34 $'
+      '$Revision: 1.80 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -331,7 +331,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="recordDelimiter" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="recordDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Record delimiter character</doc:tooltip>
@@ -354,7 +354,7 @@
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="physicalLineDelimiter" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="physicalLineDelimiter" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>Physical line delimiter character
@@ -473,7 +473,7 @@
                         </xs:annotation>
                         <xs:complexType>
                           <xs:sequence>
-                            <xs:element name="fieldDelimiter" type="res:NonEmptyStringType" maxOccurs="unbounded">
+                            <xs:element name="fieldDelimiter" type="xs:string" maxOccurs="unbounded">
                               <xs:annotation>
                                 <xs:appinfo>
                                   <doc:tooltip>Field Delimiter character
@@ -738,7 +738,7 @@
                               </xs:annotation>
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="fieldDelimiter" type="res:NonEmptyStringType">
+                                  <xs:element name="fieldDelimiter" type="xs:string">
                                     <xs:annotation>
                                       <xs:appinfo>
                                         <doc:tooltip>Field Delimiter character
@@ -1204,7 +1204,8 @@ physical distribution type built from resource, access and local components
             <para>
              It differs from the 
              <ulink url="eml-resource.html#DistribtutionType">
-                <citetitle>res:DistributionType</citetitle></ulink>:
+                <citetitle>res:DistributionType</citetitle>
+              </ulink>:
               </para>
             <itemizedlist>
               <listitem>
