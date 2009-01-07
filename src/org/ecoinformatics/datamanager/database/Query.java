@@ -2,8 +2,8 @@
  *    '$RCSfile: Query.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-08-06 00:01:15 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2009-01-07 18:55:06 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,9 +42,11 @@ public class Query
 	private SelectionItem[] selectionList = null;
 	private TableItem[] tableList = null;
 	private WhereClause whereClause = null;
+	private boolean distinct = false;
 	
 	//constants
 	private static final String SELECT = "SELECT";
+	private static final String DISTINCT = "DISTINCT";
 	private static final String FROM = "FROM";
 	public static final String SEMICOLON = ";";
 	private static final String COMMA = ",";
@@ -136,7 +138,22 @@ public class Query
 		this.whereClause = where;
 	}
 	
-	
+	/**
+	 * 
+	 * @return true when query should return only distinct records
+	 */
+	public boolean isDistinct() {
+		return distinct;
+	}
+
+	/**
+	 * 
+	 * @param distinct set to true to return only distinct records
+	 */
+	public void setDistinct(boolean distinct) {
+		this.distinct = distinct;
+	}
+
 	/**
 	 * Gets a sql string from query object
 	 * @return sql string
@@ -152,6 +169,10 @@ public class Query
 		// select part
 		sql.append(SELECT);
 		sql.append(ConditionInterface.SPACE);
+		if (distinct) {
+			sql.append(DISTINCT);
+			sql.append(ConditionInterface.SPACE);
+		}
 		int selectionLength = selectionList.length;
 		boolean firstSelection = true;
 		for (int i=0; i<selectionLength; i++)
