@@ -26,6 +26,7 @@
             <xs:element name="selection" type="selectionType" maxOccurs="unbounded"/>
             <xs:element name="where" type="whereType" minOccurs="0"/>
         </xs:sequence>
+        <xs:attribute name="distinct" type="xs:boolean" use="optional" default="false"/>
     </xs:complexType>
     
     <xs:complexType name="selectionType">

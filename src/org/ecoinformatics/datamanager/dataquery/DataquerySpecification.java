@@ -9,8 +9,8 @@
  *    Authors: Matt Jones
  *
  *   '$Author: leinfelder $'
- *     '$Date: 2008-12-05 23:35:18 $'
- * '$Revision: 1.17 $'
+ *     '$Date: 2009-01-08 18:51:48 $'
+ * '$Revision: 1.18 $'
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -243,6 +243,8 @@ public class DataquerySpecification extends DefaultHandler
 
     private void startQuery(BasicNode currentNode) {
     	Query query = new Query();
+    	boolean distinct = Boolean.parseBoolean(currentNode.getAttribute("distinct"));
+    	query.setDistinct(distinct);
         queryStack.push(query);
     }
     private void startSubquery(BasicNode currentNode) {
