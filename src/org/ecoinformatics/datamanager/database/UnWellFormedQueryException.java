@@ -1,9 +1,9 @@
 /**
  *    '$RCSfile: UnWellFormedQueryException.java,v $'
  *
- *     '$Author: costa $'
- *       '$Date: 2006-12-01 22:02:06 $'
- *   '$Revision: 1.4 $'
+ *     '$Author: leinfelder $'
+ *       '$Date: 2009-01-08 01:24:08 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -43,6 +43,8 @@ public class UnWellFormedQueryException extends Exception
       "Selected attribute couldn't be null";
 	public static final String SELECTION_ATTRIBUTE_NAME_IS_NULL = 
       "Selected attribute name couldn't be null or blank";
+	public static final String AGGREGATE_SELECTION_FUNCTION_IS_NULL = 
+	      "Aggregate selection function cannot be null or blank";
 	public static final String TABLEITEM_ENTITY_IS_NULL = 
       "Entity couldn't be null in \"From clause\"";
 	public static final String TABLEITEM_ENTITY_NAME_IS_NULL = 

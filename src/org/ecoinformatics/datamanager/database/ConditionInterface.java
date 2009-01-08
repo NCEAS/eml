@@ -2,8 +2,8 @@
  *    '$RCSfile: ConditionInterface.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-12-05 23:35:17 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2009-01-08 01:24:08 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -54,6 +54,8 @@ public interface ConditionInterface
 	public static final String BLANK = "";
 	public static final String SEPERATER = ".";
 	public static final String AS = "AS";
+	public static final String LEFT_PARENSIS = "(";
+	public static final String RIGHT_PARENSIS = ")";
 	
 	public static final String[] STRING_OPERATOR_LIST = { 
                                                          LIKE_OPERATOR, 

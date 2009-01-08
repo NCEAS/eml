@@ -2,8 +2,8 @@
  *    '$RCSfile: Query.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2009-01-07 18:55:06 $'
- *   '$Revision: 1.4 $'
+ *       '$Date: 2009-01-08 01:24:08 $'
+ *   '$Revision: 1.5 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -42,6 +42,7 @@ public class Query
 	private SelectionItem[] selectionList = null;
 	private TableItem[] tableList = null;
 	private WhereClause whereClause = null;
+	private GroupBy groupBy = null;
 	private boolean distinct = false;
 	
 	//constants
@@ -49,7 +50,7 @@ public class Query
 	private static final String DISTINCT = "DISTINCT";
 	private static final String FROM = "FROM";
 	public static final String SEMICOLON = ";";
-	private static final String COMMA = ",";
+	public static final String COMMA = ",";
 	
 	/**
 	 * Default constructor
@@ -139,6 +140,15 @@ public class Query
 	}
 	
 	/**
+	 * Set group by clause to the query
+	 * @param groupBy clause for grouping
+	 */
+	public void setGroupBy(GroupBy groupBy)
+	{
+		this.groupBy = groupBy;
+	}
+	
+	/**
 	 * 
 	 * @return true when query should return only distinct records
 	 */
@@ -214,6 +224,12 @@ public class Query
 		{
 			sql.append(ConditionInterface.SPACE);
 			sql.append(whereClause.toSQLString());
+		}
+		// group by part
+		if (groupBy != null)
+		{
+			sql.append(ConditionInterface.SPACE);
+			sql.append(groupBy.toSQLString());
 		}
 		sql.append(SEMICOLON);
 		return sql.toString();
