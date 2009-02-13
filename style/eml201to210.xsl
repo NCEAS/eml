@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" version="1.0">
   <xsl:output method="xml" indent="yes"></xsl:output>
-  <xsl:strip-space elements="*"></xsl:strip-space>
+  <!--<xsl:strip-space elements="*"></xsl:strip-space>-->
   <xsl:param name="package-id" select="'newID'"/>
 	
   <xsl:template match="/* ">
@@ -183,6 +183,7 @@
     </xsl:element>
   </xsl:template>
 	
+	
 	<!-- since under element "method", it can have distribution access movement, so this template will handle that-->
     <!-- copy node and children without namespace -->
   <xsl:template mode="copy-no-ns-with-access-move" match="*">
@@ -328,6 +329,35 @@
          </xsl:element>
      </xsl:otherwise>
    </xsl:choose>
+  </xsl:template>
+	
+	<!-- if the element has no element child and value is empty string or whitespace and element name is not recordDelimiter, physicalLineDelimiter and fieldDelimiter,
+      the tranformation will be terminated. -->
+  <xsl:template match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
+       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:message terminate="yes">
+        <xsl:call-template name="output_message3_fail">
+          <xsl:with-param name="current_node" select="name(.)"/>
+        </xsl:call-template>
+      </xsl:message>
+  </xsl:template>
+    
+  <xsl:template mode="copy-no-ns-with-access-move" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
+       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:message terminate="yes">
+        <xsl:call-template name="output_message3_fail">
+          <xsl:with-param name="current_node" select="name(.)"/>
+        </xsl:call-template>
+      </xsl:message>
+  </xsl:template>
+    
+  <xsl:template mode="copy-no-ns" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
+       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:message terminate="yes">
+        <xsl:call-template name="output_message3_fail">
+          <xsl:with-param name="current_node" select="name(.)"/>
+        </xsl:call-template>
+      </xsl:message>
   </xsl:template>
 
 
@@ -541,6 +571,14 @@
       Example content to help locate a potential problem:     </xsl:text>
     <xsl:value-of select="$current_node"/>
   </xsl:template>
+	
+  <xsl:template name="output_message3_fail">
+    <xsl:param name="current_node"/>
+    <xsl:text>
+      Conversion to EML2.1 failed:
+      The EML 2.0.1 document has empty string value in some elements which shouldn't be empty string in EML 2.1.0 sepcification - </xsl:text>
+    <xsl:value-of select="$current_node"/>
+</xsl:template>    
   <!-- 
     
     end of user message templates -->
