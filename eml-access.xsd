@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-17 04:18:31 $'
-      '$Revision: 1.79 $'
+          '$Date: 2009-02-23 23:27:55 $'
+      '$Revision: 1.80 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,17 +58,25 @@
              </para>
             <para>        
               There are two mechanisms for including access control 
-              via the eml-access module: 1) Each top-level resource module
+              via the eml-access module: 
+			  <orderedlist>
+			  <listitem>
+			  <para>
+			  1) Each top-level resource module
               (eml-dataset, eml-literature, eml-software, and eml-protocol)
               may be accompanied by an optional &lt;access&gt; element 
               that is used to establish the default access
-              control at the resource level for the entire EML package.  
+              control for the entire EML package.  
               If this access element is ommitted from the
               document, then the package submitter should be
               given full access to the package but all other users should
               be denied all access.  To allow the package to be publicly viewable,
               the EML author must explicitly include a rule stating so.
-              2) Exceptions for particular entity-level
+              </para>
+			  </listitem>
+			  <listitem>
+			  <para>
+			  2) Exceptions for particular entity-level
               components of the package can be controlled at a finer grain by
               using an access description in that entity's physical/distribution
               tree.  
@@ -81,7 +89,9 @@
               applied after the default access rules at the package-level have been
                applied, 
               so  they effectively override the default rules when they overlap.
-              </para><para>In previous versions of EML access rules for entity-level
+			  </para></listitem></orderedlist>
+              </para>
+			  <para>In previous versions of EML access rules for entity-level
               distribution were contained
               in &lt;additionalMetadata&gt; sections and referenced via the 
               &lt;describes&gt; tag. Although in theory these could have referenced 
