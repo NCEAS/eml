@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.121 $'
+          '$Date: 2009-02-24 01:07:31 $'
+      '$Revision: 1.122 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1391,8 +1391,36 @@
     <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
   <xs:group name="BoundsGroup">
+     <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Bounds</doc:tooltip>
+        <doc:summary>Elements for specifying allowed
+        values range.</doc:summary>
+        <doc:description>The bounds element contains the
+        minimum and maximum values of a numeric attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). 
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+           <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Bounds</doc:tooltip>
+        <doc:summary>Elements for specifying allowed
+        values range.</doc:summary>
+        <doc:description>The bounds element in the BoundsGroup contains the
+        minimum and maximum values of a numeric attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). Either or both a minimum and maximum may 
+        be set, and each has an attribute "exclusive" to define how the value should
+        be interpreted.
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="minimum" minOccurs="0">
@@ -1481,8 +1509,43 @@
     </xs:sequence>
   </xs:group>
   <xs:group name="BoundsDateGroup">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>BoundsDateGroup</doc:tooltip>
+        <doc:summary>Elements for specifying allowed
+        value ranges.</doc:summary>
+        <doc:description>The BoundsDateGroup specifies the
+        minimum and maximum dates allowed for a dateTime attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). The domain expressions should
+        be in the same dateTime format as is used in the attribute's "formatString".
+        For example, if the format
+        string is "YYYY-MM-DD", then a valid minimum in the domain
+        would be "2001-05-29".  The "bounds" element is optional, and
+        if it is missing then any legitimate value from the Gregorian 
+        calendar system is allowed in the attribute as long as its
+        representation matches its corresponding formatString.
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="bounds" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Bounds</doc:tooltip>
+        <doc:summary>Elements for specifying allowed
+        date range.</doc:summary>
+        <doc:description>The bounds element in the BoundsDateGroup contains the
+        minimum and maximum dates of a dateTime attribute. These
+        are theoretical or permitted values (ie. prescriptive), and
+        not necessarily the actual minimum and maximum observed in
+        a given data set (descriptive). Either or both a minimum and maximum may 
+        be set, and each has an attribute "exclusive" to define how the value should
+        be interpreted.
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="minimum" minOccurs="0">
