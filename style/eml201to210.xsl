@@ -335,7 +335,7 @@
       the tranformation will be terminated. -->
   <xsl:template match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
-      <xsl:message terminate="yes">
+      <xsl:message terminate="no">
         <xsl:call-template name="output_message3_fail">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
@@ -344,7 +344,7 @@
     
   <xsl:template mode="copy-no-ns-with-access-move" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
-      <xsl:message terminate="yes">
+      <xsl:message terminate="no">
         <xsl:call-template name="output_message3_fail">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
@@ -353,7 +353,7 @@
     
   <xsl:template mode="copy-no-ns" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
-      <xsl:message terminate="yes">
+      <xsl:message terminate="no">
         <xsl:call-template name="output_message3_fail">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
@@ -575,7 +575,7 @@
   <xsl:template name="output_message3_fail">
     <xsl:param name="current_node"/>
     <xsl:text>
-      Conversion to EML2.1 failed:
+      Warning:
       The EML 2.0.1 document has empty string value in some elements which shouldn't be empty string in EML 2.1.0 sepcification - </xsl:text>
     <xsl:value-of select="$current_node"/>
 </xsl:template>    
