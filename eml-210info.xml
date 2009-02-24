@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-22 23:58:01 $'
-      '$Revision: 1.12 $'
+          '$Date: 2009-02-24 01:09:11 $'
+      '$Revision: 1.13 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,14 +45,14 @@
   </para>
   <para> Several modifications to the EML schema made in version 2.1.0 will require changes to how 
   EML documents are structured, and these changes are highlighted here. EML authors should also 
-  refer to the complete schema documentation for the affected sections for complete usage 
+  refer to the affected sections in the normative schema documents for complete usage 
   information and examples. Existing EML 2.0-series documents can be converted to EML 2.1.0 
-  using the XSL style sheet that accompanies this release, as described in section 2 below. </para>
+  using the XSL stylesheet that accompanies this release, as described in section 2 below. </para>
   <para> The EML 2.1.0 release addresses several errors with respect to W3C specifications 
   for XML schema (http://www.w3.org/2001/03/webdata/xsv). Although the changes are small, 
   they are incompatible with EML 2.0.0 and 2.0.1 schemas, which necessitated advancing the 
   version number to "2.1". The STMML schema was also found to be invalid with respect to XML 
-  Schema language, and the most reasonable fix for this bug also is incompatible with earlier 
+  Schema language, and the most reasonable fix for this bug also is incompatible with its earlier 
   versions. EML users should note that the STMML schema error was <emphasis>not</emphasis> 
   related to elements used directly by EML (i.e., &lt;unitList&gt; or &lt;unitType&gt;). However, 
   EML imports all of STMML, and 
@@ -64,14 +64,14 @@
   improvements. The XML data type requirements for several elements were changed, in some 
   cases to constrain their content, and in other cases to increase flexibility. The names of two 
   elements were changed make them consistent throughout EML. In the literature schema two 
-  elements were made optional so that EML could accommodate in-press publications where 
+  elements became optional so that EML could accommodate in-press publications where 
   the volume and page range are not yet known. Support for two new optional elements was 
   also added: a 'contact' tree can now be used in the literature module, and a ‘descriptive’ element 
   can be used in the distribution tree.</para>
-  <para> For the most part, EML 2.1 does not include introduce major new features, or require a 
-  shift in use or implementation. This There was a deliberate decision to balance the impact on 
+  <para> For the most part, EML 2.1.0 does not include introduce major new features, or require a 
+  shift in use or implementation. There was a deliberate decision to balance the impact on 
   instance document authors with necessary schema maintenance, and to prepare the schema 
-  for the next phase of planned improvements and features. Some of the changes to EML 2.1 
+  for the next phase of planned improvements and features. Some of the changes to EML 2.1.0 
   are invisible to document authors; see the 'Readme' that accompanies the distribution for a 
   complete list of the bugs addressed, and for information of interest to developers.</para>
   
@@ -95,15 +95,17 @@ whats new in 2.1 -->
             In EML 2.0 this element was placed alongside the additional XML content; 
             however, this construct is not allowed in XML Schema, and the error was 
             not reported by XML parsers available at the time EML 2.0 was released. 
-            In EML 2.1.0, the error has been corrected by adding a child element
+            In EML 2.1.0, the error has been corrected by adding a required child element
             to the &lt;additionalMetadata&gt; section to contain the
-            "&lt;xs:any&gt;" XML content. Documents written against 2.1.0 will
-            differ from 2.0.1 documents as follows:</para>
+            "&lt;xs:any&gt;" XML content. </para>
             
-          <para>&lt;additionalMetadata&gt; sections now must include the child
+          <para>&lt;additionalMetadata&gt; sections must include the child
             &lt;metadata&gt; to contain the additional XML markup. The optional
             &lt;describes&gt; element may still be included to reference a particular node
-            of the document. Multiple &lt;describes&gt; elements can be included if needed. </para>
+            of the document. Multiple &lt;describes&gt; elements can be included if needed. 
+            Examples of documents written against 2.1.0 and 2.0.1 are below. Also see 
+            (<ulink url="eml.html#additionalMetadata">additionalMetadata documentation</ulink>.)
+            </para>
           <para> In EML 2.0.1, an additionalMetadata section looked like this: <programlisting><![CDATA[...
  <additionalMetadata>
  <describes>123</describes>
@@ -148,7 +150,7 @@ whats new in 2.1 -->
             in their documents. The required schema changes were not compatible with STMML-1.0, and
             the EML development group is working with the STMML developers on this
             issue. Since EML now imports a version of STMML that is not identical to that available
-            from its authors, it was decided to advance the namespace the EML 2.1.0 uses for stmml-related 
+            from its authors, it was decided to advance the namespace used by EML 2.1.0 for stmml-related 
             files to "stmml-1.1". To import stmml.xsd into one of your EML 2.1.0 documents use the XML 
             namespace            declaration for STMML in the code below: <programlisting><![CDATA[
 <?xml version="1.0"?>
@@ -184,16 +186,17 @@ whats new in 2.1 -->
           <para>Location of Access Control Trees</para>
         </question>
         <answer>
-          <para>In EML 2.0.1 an access tree could be included in each top-level module (i.e. dataset, 
-          citation, software, or protocol) to control access to the metadata document. Additionally, 
-          some authors put access trees in &lt;additionalMetadata&gt; sections and used
-          &lt;describes&gt; elements to reference different nodes in the EML document to 
-          control access to individual entities. Authors may have assumed that access 
-          rules could be applied to any node with this practice. However, node-level access 
+          <para>In EML 2.0.1 an &lt;access&gt; tree could be included in each top-level module (i.e. dataset, 
+          citation, software, or protocol) to control access to the entire metadata document. Additionally, to 
+          control access to individual entities, 
+          some authors put &lt;access&gt; trees in &lt;additionalMetadata&gt; sections and used
+          &lt;describes&gt; elements to reference their &lt;distribution&gt; nodes. 
+          Authors may have inferred that access 
+          control could  be applied to any node with this practice. However, node-level access 
           control is problematic to implement, and in practice only access trees that reference 
           distribution nodes are recognized (as was stated in EML 2.0.1 documentation). 
           A better solution is to locate &lt;access&gt; nodes above or near the node to 
-          which the access control should be applied, and this feature has been added to 
+          which the access rules should be applied. This feature has been added to 
           EML 2.1.0. </para>
             
           <para> In EML 2.1.0, access trees can be placed in 2 locations. To control the entire
@@ -201,7 +204,10 @@ whats new in 2.1 -->
             be placed as a child of the root element (<ulink url="eml.png">EML image</ulink>). If a
             metadata author wishes to override the document-level control for a specific entity, an
             additional access tree may be placed as the last child of a &lt;distribution&gt;
-            element within the &lt;physical&gt; tree of that entity(<ulink url="eml-physicalDistribution.png">Physical Distribution Type image</ulink>).</para>
+            element within the &lt;physical&gt; tree of that entity 
+            (<ulink url="eml-physicalDistribution.png">Physical Distribution Type image</ulink>).
+            The structure of the access module itself has not changed (<ulink url="eml-access.html">access 
+            module documentation</ulink> ).</para>
           <para>Example 1. To control access to all the metadata and by default to the data, use an
             &lt;access&gt; element at the top level: <programlisting><![CDATA[
 <eml:eml>
@@ -253,7 +259,9 @@ whats new in 2.1 -->
           <para>The content of the  &lt;gRing&gt; elementwas retyped to make these nodes more usable. This
             element is generally analogous to the FGDC component for ring. This element should now contain 
             a string       comprised of a comma-delimited sequence of longltude and latitude values for vertex
-            coordinates (in decimal degrees), as in: <programlisting><![CDATA[
+            coordinates (in decimal degrees), as in the example below. For more information, see the normative documents 
+            for gRing in the <ulink url="eml-coverage.html#gRing">
+coverage module</ulink>. <programlisting><![CDATA[
 ..
  <gRing>-119.453,35.0 -125,37.5555 -122,40 -119.453,35.0 </gRing>
 ..
@@ -267,19 +275,22 @@ whats new in 2.1 -->
           xs:float</para>
         </question>
         <answer>
-          <para>In EML 2.0.1, &lt;bounds&gt; elements elements were typed as 
+          <para>In EML 2.0.1, &lt;bounds&gt; elements  were typed as 
           xs:decimal and did not support scientific notation. The base data type 
-          was changed to 'xs:float' to accommodate both decimal and scientific 
+          was changed to 'xs:float' in EML 2.1.0 to accommodate both decimal and scientific 
           notation while maintaining backward compatibility. Authors should keep 
           in mind that there are still advantages to using decimal numbers for bounds, 
           because the decimal data type maintains precision during storage while 
           the floating point type does not. An alternative datatype, "precisionDecimal" 
           (corresponding to the IEEE type "floating-point decimal”), may be available 
-          in the next version of XML Schema (i.e. v1.1, a working draft as of late 2008).
+          in the next version of XML Schema (i.e.,  v1.1, a working draft as of late 2008).
            It combines features of both the decimal and float types in that it supports 
            the same values and notation of a float, but is treated as decimal in arithmetic 
            and storage. The typing of this element may be changed to this new 
-           type in a future release of EML. </para>
+           type in a future release of EML.  For more information, see the normative
+           documentation for <ulink url="eml-attribute.html#NumericDomainType">
+           NumericDomainType</ulink>.</para>
+           
           <para>In EML 2.1.0, bounds can be written as: <programlisting><![CDATA[
 <attribute>
  ...
@@ -305,10 +316,11 @@ whats new in 2.1 -->
           and EML authors were instructed to include a vertical datum along 
           with the unit. In EML 2.1.0 this has been revised. Altitudes are now 
           restricted to lengths in Standard Units (e.g. meter, foot, etc), and the 
-          datum must be placed in the geographicDescription element. Document 
+          datum include as part of the textual geographicDescription element. Document 
           authors should note that including any additional content in the  
           &lt;altitudeUnits&gt; element other than a length value, such as the datum, 
-          is not valid in EML 2.1.0.<programlisting><![CDATA[
+          is not valid in EML 2.1.0. For a list of allowable units, see <ulink url="eml-coverage.html#altitudeUnits">
+          the normative description for &lt;altitudeUnits&gt;</ulink>. <programlisting><![CDATA[
 ..
 <boundingCoordinates>
  ...
@@ -339,7 +351,9 @@ whats new in 2.1 -->
            are consistent with the intended use of this field, which is to support mapping 
            the general geographic coverage of EML resources. Authors should keep in 
            mind that very specific descriptions of spatial data can be accommodated by 
-           EML modules dedicated to that purpose. <programlisting><![CDATA[
+           EML modules dedicated to that purpose. More information on bounding coordinates can
+           be found in the <ulink url="eml-coverage.html#boundingCoordinates">normative technical
+           documents</ulink>.<programlisting><![CDATA[
 ..
 <boundingCoordinates>
  <westBoundingCoordinate>-120.2534</westBoundingCoordinate>
@@ -358,12 +372,12 @@ whats new in 2.1 -->
         </question>
         <answer>
           <para>In EML 2.0.1, elements of the string data type were allowed to be 
-          empty or contain only whitespace, even for required elements. This feature 
+          empty or contain only whitespace. This feature 
           was occasionally exploited as a work-around to force incomplete documents 
-          to validate in XML editors and the Metacat harvester, but this practice can 
-          potentially cause problems parsing and using EML in tools such as Kepler. 
-          In EML 2.1.0, string-content is now typed as "NonEmptyString" and string 
-          entities are required to have minimal string content. So, whereas the following 
+          to validate in XML editors and the Metacat harvester, but this practice may
+           cause problems in document parsing or for EML tools such as Kepler. 
+          In EML 2.1.0, string content is now typed as "NonEmptyString" and string 
+          entities are required to have minimal non-whitespace content. So, whereas the following 
           content would have been allowed in EML 2.0.1: <programlisting><![CDATA[
 ...
   <mediumName> </mediumName>
@@ -421,7 +435,7 @@ or
         </question>
         <answer>
           <para>In EML 2.0.1, both "&lt;method&gt;" and "&lt;methods&gt;" elements were included 
-          in te schema, which caused confusion for some authors. In EML
+          in the schema, which caused confusion for some authors. In EML
             2.1.0, instances of the MethodsType have been standardized to 
             "methods". </para>
           <para>In EML 2.0.1, this path existed: <programlisting><![CDATA[
@@ -476,9 +490,9 @@ or
           <para>A Citation may have an optional &lt;contact&gt; tree</para>
         </question>
         <answer>
-          <para>Also, an optional &lt;contact&gt; tree has been added  in eml-literature.xsd
+          <para>Also in eml-literature.xsd, an optional &lt;contact&gt; tree has been added
             to permit a contact to be designated for a publication. For example, a contact 
-could be provided for reprint requests
+could be provided for reprint requests.
             <programlisting/>
           </para>
         </answer>
@@ -560,7 +574,7 @@ converting your eml -->
           <para>Converting EML instances using the XSL stylesheet</para>
         </question>
         <answer>
-          <para>You will first need to identify or obtain a program (or programming language module) capable of transforming XML using an XSL stylesheet. Suitable programs are available for all computer platforms, and modules are included in or available for most programming and scripting languages. For example, Linux distributions generally include a command line utility called 'xsltproc', which is described below.
+          <para>You will first need to identify or obtain a program (or programming language module) capable of transforming XML using an XSL stylesheet. Suitable programs are available for all computer platforms, and modules are included in or are available for most programming and scripting languages. For example, Linux distributions generally include a command line utility called 'xsltproc', which is described below.
             <!-- There is also a utility written in Java from the
             ecoinformatics project: <ulink url="http://knb.ecoinformatics.org"
             >http://knb.ecoinformatics.org</ulink>. -->
@@ -568,17 +582,22 @@ converting your eml -->
               <listitem>
                 <para>Here are examples illustrating how to transform an EML document from the
                  command line using xsltproc. In the first example, the redirect operator is used to save
-                 the output to a file.     An explicit output argument can also be used instead of a redirect, e.g.:
-       xsltproc -output eml210_doc.xml eml201to210.xsl eml201_doc.xml
+                 the output to a file.     An explicit output argument can also be used instead of a redirect (second example).
+       
                   <programlisting>
  xsltproc eml201to210.xsl eml201_doc.xml > eml210_doc.xml
                   </programlisting>
+                  <programlisting>
+ xsltproc -output eml210_doc.xml eml201to210.xsl eml201_doc.xml
+              </programlisting>
                 To include a new value for the packageId attribute, the stylesheet will accept a parameter 
                  called 'package-id' from the calling program:
                   <programlisting>
  xsltproc -stringparam package-id knb-lter-sbc.1006.4 eml201to210.xsl eml201_doc.xml > eml210_doc.xml 
                   </programlisting>
-                       More complete documentation for the xsltproc program is available at http://xmlsoft.org/XSLT/xsltproc2.html.
+                       More complete documentation for the xsltproc program is available at 
+                       <ulink url="http://xmlsoft.org/XSLT/xsltproc2.html">http://xmlsoft.org/XSLT/xsltproc2.html</ulink>, or with
+                       "man xsltproc" at your system prompt.
                 </para>
               </listitem>
               <listitem>
@@ -605,13 +624,31 @@ msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programl
           <para>Validity of new EML 2.1.0 documents</para>
         </question>
         <answer>
-          <para>Document authors are advised to check the validity of their new EML 2.1 using the
-            EML parser after transformation for two reasons. First, additionalMetadata sections are
-            parsed laxly, and so it is possible for additionalMetadata content in EML-2.0.0/1 to
-            contain markup (i.e., access trees) that when moved, would result in invalid EML 2.1.0.
-            Secondly, in EML 2.1.0, the content of several elements has been more tightly
-            constrained (e.g., latitude and longitude), and so some content that was valid in EML
-            2.0.1 will not be valid EML 2.1.0. EML instance documents can be validated in two ways: <orderedlist>
+                <para>
+           Because of the flexibility allowed in EML, the stylesheet may encounter certain EML 2.0.1 structures that cannot be transformed as stated in the list above. In some cases, this may mean that the document must be examined manually and adapted before it can be transformed with the stylesheet, or transformed by your own custom method. If the stylesheet encounters the following conditions, it will create a template EML 2.1.0 document, and issue a message stating the problem:
+          <orderedlist>
+              <listitem>
+                <para>An access tree is present in additonalMetadata, but an adjacent describes element did not reference a distribution node. The access tree will be left in additionalMetadata, and the rest of the document transformed. 
+                </para>
+              </listitem>
+            <listitem>
+                <para>Two (or more) access trees are present in additonalMetadata, and reference the same distribution element via their sibling describes tags. If the "orderBy" attributes on all access elements match, then the access trees will be merged (with rules listed in document order) and moved to the appropriate distribution element. If the "orderBy" attributes are not identical, the stylesheet will not attempt to resolve the issue.  The access trees will all remain in additionalMetadata (while the rest of the document transformed) and a message will be printed to notify the user.</para>
+              </listitem>
+              <listitem>
+                <para>Empty content appears in an element which is typed as "nonEmptyString" in EML2.1.0. The document is transformed but the user warned that it will not be valid EML 2.1.0 due to the missing content. </para>
+              </listitem>
+ 
+            </orderedlist>
+          </para>
+          <para>In addition to those  noted above, there are possible EML constructs which the stylesheet cannot detect, but which might result in invalid EML 2.1.0. For example, by design additionalMetadata sections are
+            parsed laxly, and so it is possible for their content in EML-2.0.0/1 to
+            contain access trees that are not valid EML.
+            Also, the content of several elements (in addition to strings) has been more tightly
+            constrained in EML 2.1.0 (e.g., latitude and longitude), but only empty content is 
+            reasonably detected by the transformation stylesheet.</para>
+            <para>
+            For these reasons, document authors are advised to check the validity of their new EML 2.1 using the
+            EML parser after transformation. EML instance documents can be validated in two ways: <orderedlist>
               <listitem>
                 <para>With the <ulink url="http://knb.ecoinformatics.org/emlparser/ ">online EML
                     Parser. </ulink>
@@ -624,21 +661,7 @@ msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programl
               </listitem>
             </orderedlist>
           </para>
-          <para>
-           There are 3 cases in which the stylesheeet issues a warning or stops a transformation.  
-          <orderedlist>
-              <listitem>
-                <para>An access tree is present in additonalMetadata, but could not be moved because an adjacent describes element did not reference a distribution node: The stylesheet prints a warning message and the transformation continues without moving the access tree.
-                </para>
-              </listitem>
-              <listitem>
-                <para>Empty content in an element now typed nonEmptyString: transformation is stopped, and a message printed with the path to the invalid content. </para>
-              </listitem>
-                           <listitem>
-                <para>something elset. </para>
-              </listitem>
-            </orderedlist>
-          </para>
+  
         </answer>
       </qandaentry>
       <qandaentry>
