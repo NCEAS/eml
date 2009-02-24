@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: tao $'
- *        '$Date: 2009-02-24 00:34:43 $'
- *    '$Revision: 1.10 $'
+ *        '$Date: 2009-02-24 00:45:48 $'
+ *    '$Revision: 1.11 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -194,6 +194,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
    */
   public static void main(String[] args)
   {
+	  //System.out.println("the args length is "+args.length);
 	  if(args.length > 0)
 	    {
 		  System.out.println("-----------------------------------------------------------------------");
@@ -203,7 +204,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
 	      System.out.println("-----------------------------------------------------------------------");
 	    }
 
-	    if(args.length > 3)
+	    if(args.length > 2)
 	    {
 	      System.out.println("Invalid number of arguments.");
 	      System.exit(0);
@@ -213,15 +214,15 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
 	    String schemaLocation ="eml://ecoinformatics.org/eml-2.1.0 ../eml.xsd "+ 
 	    "http://www.xml-cml.org/schema/stmml-1.1 ../stmml.xsd ";
 	
-	    if(args.length == 3)
+	    if(args.length == 2)
 	    {
-	      emlfile = args[1];
-	      schemaLocation = args[2];
+	      emlfile = args[0];
+	      schemaLocation = args[1];
 	      //System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
 	    }
-	    else if(args.length == 2)
+	    else if(args.length == 1)
 	    {
-	      emlfile = args[1];
+	      emlfile = args[0];
 	    }
 	    else
 	    {
