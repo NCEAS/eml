@@ -14,8 +14,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: tao $'
- *        '$Date: 2008-10-09 00:01:59 $'
- *    '$Revision: 1.9 $'
+ *        '$Date: 2009-02-24 00:34:43 $'
+ *    '$Revision: 1.10 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -160,7 +160,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     {
       parser = XMLReaderFactory.createXMLReader(parserName);
     }
-    System.out.println("namespace in doc is "+namespaceInDoc);
+    //System.out.println("namespace in doc is "+namespaceInDoc);
     // Set Handlers in the parser
     parser.setContentHandler((ContentHandler)this);
     parser.setErrorHandler((ErrorHandler)this);
@@ -186,5 +186,65 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     }
     // Parse the document
     parser.parse(new InputSource(xml));
+  }
+  
+  
+  /**
+   * Main method will be called by the script file rnEML parser
+   */
+  public static void main(String[] args)
+  {
+	  if(args.length > 0)
+	    {
+		  System.out.println("-----------------------------------------------------------------------");
+	      System.out.println("SAX validate Parser:");
+	      System.out.println("This parser WILL VALIDATE your eml file against the schema");
+	      System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema -schemaLocation]");
+	      System.out.println("-----------------------------------------------------------------------");
+	    }
+
+	    if(args.length > 3)
+	    {
+	      System.out.println("Invalid number of arguments.");
+	      System.exit(0);
+	    }
+
+	    String emlfile = "";
+	    String schemaLocation ="eml://ecoinformatics.org/eml-2.1.0 ../eml.xsd "+ 
+	    "http://www.xml-cml.org/schema/stmml-1.1 ../stmml.xsd ";
+	
+	    if(args.length == 3)
+	    {
+	      emlfile = args[1];
+	      schemaLocation = args[2];
+	      //System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
+	    }
+	    else if(args.length == 2)
+	    {
+	      emlfile = args[1];
+	    }
+	    else
+	    {
+
+	      System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema location]");
+	      System.out.println("  <eml file> = the EML file to parse");
+	      System.out.println("  <schema location> = use an alternate schema location. The default one is \"eml://ecoinformatics.org/eml-2.1.0 ../eml.xsd\"");
+	      
+	      System.exit(0);
+	    }
+	    
+	    String namespaceInDoc = null;
+	    
+	    try{
+	    	//System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
+	        SAXValidate validator = new SAXValidate(true);
+	        validator.runTest(new FileReader(emlfile), "DEFAULT", schemaLocation, namespaceInDoc);
+	        System.out.println(emlfile+ " is XML-schema valid. There were no XML errors found in your document.");
+	      }
+	      catch(Exception e)
+	      {
+	    	  System.out.println("Error: " + e.getMessage());
+	      }
+
   }
 }
