@@ -35,8 +35,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.46 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.47 $'
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -61,7 +61,7 @@
           <para>
             The eml-dataTable module is used to describe the logical
             characteristics of each tabular set of information in a dataset. A
-            series of comma-sparated text files may be considered a dataset,
+            series of comma-separated text files may be considered a dataset,
             and each file would subsequently be considered a dataTable entity
             within the dataset.  Since the eml-dataTable module extends the
             eml-entity module, it uses all of the common entity elements to
@@ -92,9 +92,9 @@
         the dataset identified by its name. This element can contain
         information about the dataTable's orientation, number of records, case
         sensitivity, and temporal, geographic and taxonomic coverage. Because
-        the dataTable element refers to the complex type 'dataTableType', it
-        must contain the elements defined for dataTableType. See the
-        description for dataTableType to review component element
+        the dataTable element refers to the complex type 'DataTableType', it
+        must contain all the elements defined for the type. 
+        description for DataTableType to review component element
         rules.</doc:description>
         
       </xs:appinfo>

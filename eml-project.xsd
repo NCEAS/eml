@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.82 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.83 $'
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
@@ -194,13 +194,13 @@
               <doc:tooltip>Description of the study area.</doc:tooltip>
               <doc:summary>Description of the physical area associated with the
               research project, potentially including coverage, climate,
-              geology, distrubances, etc.</doc:summary>
+              geology, disturbances, etc.</doc:summary>
               <doc:description>The studyAreaDescription field documents the
               physical area associated with the research project. It can
               include descriptions of the geographic, temporal, and taxonomic
               coverage of the research location and descriptions of domains
               (themes) of interest such as climate, geology, soils or
-              distrubances or reference to citable biological or geophysical
+              disturbances or reference to citable biological or geophysical
               classification systems such as the Bailey Ecoregions or the
               Holdridge Life Zones.</doc:description>
             </xs:appinfo>
@@ -265,7 +265,7 @@
                                   classification, if applicable. The values of
                                   biogeophysical classification systems, e.g.
                                   Bailey-Ecoregions, often take the form of an
-                                  ID or Code along with a text representaiton.
+                                  ID or Code along with a text representation.
                                   For example, the ID/Code M131 refers to the
                                   phrase "Open Woodland -Tundra". M131 is an
                                   unambiguous reference to a more detailed
@@ -292,7 +292,7 @@
                           <doc:summary>A citation for this
                           descriptor.</doc:summary>
                           <doc:description>A citation for this
-                          desciptor.</doc:description>
+                          descriptor.</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -424,7 +424,7 @@
         <doc:tooltip>Descriptor Theme Type</doc:tooltip>
         <doc:summary>The type of descriptor theme or the name of a
         classification system.</doc:summary>
-        <doc:description>The descriptorType is used to represent either the
+        <doc:description>The DescriptorType is used to represent either the
         name of a citable classification system/controlled vocabulary such as
         the Bailey classification of ecoregions or a domain of physical
         descriptors such as climate or disturbances.</doc:description>

@@ -21,8 +21,8 @@
 
      For Details: http://knb.ecoinformatics.org/
         '$Author: obrien $'
-          '$Date: 2008-12-12 00:49:34 $'
-      '$Revision: 1.80 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.81 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@
         </para>
           </section>
         </doc:moduleDescription>
-        <doc:recommendedUsage>Any data object that is being desribed by EML
+        <doc:recommendedUsage>Any data object that is being described by EML
         needs this information so the entities and attributes that reside
         with in the data object can be extracted. </doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -113,7 +113,7 @@
         metadata).</para>
             <para>Like many other EML elements, a physical Type can
         contain a reference to another physical element defined elsewhere in the document
-        iInstead of a description of the resource.        Using
+        instead of a description of the resource.        Using
         a reference means that the referenced physical is identical, not just
         in name but identical in its complete description.  </para>
           </section>
@@ -132,7 +132,7 @@
               possibly distinct from the entity name in that one physical
               object can contain multiple entities, even though that is not
               a recommended practice.  The objectName often is the filename
-              of a file in a filesytem or that is accessible on the network.
+              of a file in a file system or that is accessible on the network.
               </doc:description>
               <doc:example>rainfall-sev-2002-10.txt</doc:example>
             </xs:appinfo>
@@ -180,7 +180,7 @@
                     identical to the original.</doc:summary>
               <doc:description>This element describes authentication
                     procedures or techniques, typically by giving a checksum
-                    value for the onject. The method used to compute the
+                    value for the object. The method used to compute the
                     authentication value (e.g., MD5) is listed in the method
                     attribute.</doc:description>
               <doc:example>f5b2177ea03aea73de12da81f896fe40</doc:example>
@@ -217,7 +217,7 @@
                 <doc:description>This element lists a compression method used
                 to compress the object, such as zip, compress, etc. Compression
                 and encoding methods must be listed in the order in which they
-                were applied, so that decompression and deencoding should
+                were applied, so that decompression and decoding should
                 occur in the reverse order of the listing. For example,
                 if a file is compressed using zip and then encoded using
                 MIME base64, the compression method would be listed first
@@ -235,9 +235,9 @@
                 <doc:summary>Name of a encoding method applied
                 </doc:summary>
                 <doc:description>This element lists a encoding method used
-                to encode the object, such as base64, binhex, etc. Compression
+                to encode the object, such as base64, BinHex, etc. Compression
                 and encoding methods must be listed in the order in which they
-                were applied, so that decompression and deencoding should
+                were applied, so that decompression and decoding should
                 occur in the reverse order of the listing. For example,
                 if a file is compressed using zip and then encoded using
                 MIME base64, the compression method would be listed first
@@ -344,7 +344,7 @@
                           Windows/DOS. Multiline records are usually delimited
                           with two line ending characters, for example on UNIX
                           it would be two linefeed characters (\n\n). As record
-                          delimeters are often non-printing characters, one can
+                          delimiters are often non-printing characters, one can
                           use either the special value "\n" to represent a
                           linefeed (ASCII 0x0a) and "\r" to represent a carriage
                           return (ASCII 0x0d).  Alternatively, one can use the
@@ -368,12 +368,12 @@
                           Windows/DOS. Multiline records are usually delimited
                           with two line ending characters, for example on UNIX
                           it would be two linefeed characters (\n\n). As line
-                          delimeters are often non-printing characters, one can
+                          delimiters are often non-printing characters, one can
                           use either the special value "\n" to represent a
                           linefeed (ASCII 0x0a) and "\r" to represent a carriage
                           return (ASCII 0x0d).  Alternatively, one can use the
                           hex value to represent character values (e.g., 0x0a).
-                          If this value is not provided, prcessors should
+                          If this value is not provided, processors should
                           assume that the physical line delimiter is the same
                           as the record delimiter.
                           </doc:description>
@@ -395,7 +395,7 @@
                           them. If this value is not provided, processors should
                           assume that records are wholly contained on one
                           physical line.  If the value is greater than 1, then
-                          processers should examine the lineNumber field for
+                          processors should examine the lineNumber field for
                           each attribute to determine which line of the
                           record contains the information.</doc:description>
                           <doc:example>3</doc:example>
@@ -409,7 +409,7 @@
                           <doc:summary>The maximum number of characters in any
                           record in the physical file.
                           </doc:summary>
-                          <doc:description>The maximum number of chanracters
+                          <doc:description>The maximum number of characters
                           in any record in the physical file.  For delimited
                           files, the record length varies and this is not
                           particularly useful.  However, for fixed format files
@@ -431,7 +431,7 @@
                           If set to 'column', then the attributes are in
                           columns. If set to 'row', then the attributes
                           are in rows.  Row orientation is rare,  but some
-                          systems such as Splus and R utilize it.
+                          systems such as SPlus and R utilize it.
 
                           For example, some data with column orientation:
                           DATE          PLOT           SPECIES
@@ -530,9 +530,9 @@
                                   If it is set to yes, then consecutive
                                   delimiters will be collapsed to one.  If set
                                   to no or absent, then consecutive delimiters 
-                                  will be treated as seperate delimiters. 
+                                  will be treated as separate delimiters. 
                                   Default behaviour is no; hence, consecutive
-                                  delimiters will be treated as seperate
+                                  delimiters will be treated as separate
                                   delimiters, by default.
                                   </doc:description>
                                   <doc:example>yes</doc:example>
@@ -554,9 +554,9 @@
                                   for delimiter escaping</doc:summary>
                                   <doc:description>This element specifies
                                   a character to be used in the object for
-                                  quoting values so that field delimeters can
+                                  quoting values so that field delimiters can
                                   be used within the value. This basically
-                                  allows delimeter "escaping". The quoteChacter
+                                  allows delimiter "escaping". The quoteChacter
                                   is typically a " or '. When a processor
                                   encounters a quote character, it should
                                   not interpret any following characters as
@@ -614,7 +614,7 @@
                             and textDelimited elements should correspond to
                             the order of the attributes as described in the
                             entity. Thus, for a delimited file with fourteen
-                            attributs, one should provide exactly fourteen
+                            attributes, one should provide exactly fourteen
                             textDelimited elements.
                             </doc:description>
                           </xs:appinfo>
@@ -802,10 +802,10 @@
                                         delimiters will be collapsed
                                         to one.  If set to no or absent,
                                         then consecutive delimiters will
-                                        be treated as seperate delimiters.
+                                        be treated as separate delimiters.
                                         Default behaviour is no; hence,
                                         consecutive delimiters will be treated
-                                        as seperate delimiters, by default.
+                                        as separate delimiters, by default.
                                         </doc:description>
                                         <doc:example>yes</doc:example>
                                         <doc:example>no</doc:example>
@@ -861,9 +861,9 @@
                                         <doc:description>This element
                                         specifies a character to be used in
                                         the object for quoting values so
-                                        that field delimeters can be used
+                                        that field delimiters can be used
                                         within the value. This basically
-                                        allows delimeter "escaping". The
+                                        allows delimiter "escaping". The
                                         quoteChacter is typically a " or
                                         '. When a processor encounters
                                         a quote character, it should not
@@ -923,14 +923,14 @@
                     formatted object.
                     </doc:summary>
                     <doc:description>Information about a non-text or
-                    propriateary formatted object.
+                    proprietary formatted object.
                     The description names the format explicitly, but assumes
                     a processor implicitly knows how to parse that format
                     to extract the data.  A format version can be included.
                     This is mainly used for proprietary formats, including
                     binary files like Microsoft Excel and text formats like
                     ESRI's ArcInfo export format.  This is not a recommended
-                    way to permenantly archive data because the software to
+                    way to permanently archive data because the software to
                     parse the format is unlikely to be available over extended
                     periods, but is included to allow for commonly used
                     physical formats.
@@ -1296,7 +1296,7 @@ phys:online type -->
             represented either as a URL or as the series of named parameters 
             needed to connect. The URL field can contain a simple web address 
             or an entire query string. The connection element allows the components 
-            of a complex protocol to be desribed individually.   </para>
+            of a complex protocol to be described individually.   </para>
             <para>The PhysicalOnlineType differs from the
             <ulink url="eml-resource.html#OnlineType">
                 <citetitle>res:OnlineType </citetitle>
@@ -1304,7 +1304,7 @@ phys:online type -->
           in that this type only allows a connectionDefinition 
              to appear as the child of a connection. In other words, in a 
              PhysicalOnlineType, the connectionDefinition cannot be abstracted, and
-             must be included as part of an actual connection..
+             must be included as part of an actual connection.
              </para>
           </section>
         </doc:description>
@@ -1316,7 +1316,7 @@ phys:online type -->
           <xs:appinfo>
             <doc:tooltip>onlineDescription</doc:tooltip>
             <doc:summary>onlineDescription</doc:summary>
-            <doc:description>The onlineDescirption element can hold a brief description of the content of the online element's online|offline|inline child. This description element could supply content for an html anchor tag.  
+            <doc:description>The onlineDescription element can hold a brief description of the content of the online element's online|offline|inline child. This description element could supply content for an html anchor tag.  
               </doc:description>
           </xs:appinfo>
         </xs:annotation>

@@ -44,8 +44,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.45 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.46 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@
             resulting from procedures stored in a database
           </title>
           <para>
-            The StoredProcedure module is meant to capture information on
+            The storedProcedure module is meant to capture information on
             procedures that produce data output in the form of a data table.
             In an RDBMS one can code complex queries and transactions into
             stored procedures and then invoke them directly from front-end
@@ -80,7 +80,7 @@
           </para>
         </section>
         </doc:moduleDescription>
-        <doc:recommendedUsage>Use the StoredProcedure module to document
+        <doc:recommendedUsage>Use the storedProcedure module to document
         datasets that use storedProcedures to retrieve archived
         data.</doc:recommendedUsage>
         <doc:standAlone>yes</doc:standAlone>
@@ -93,11 +93,11 @@
         <doc:tooltip>Stored Procedure&gt;</doc:tooltip>
         <doc:summary>The storedProcedure element documents stored
         procedures.</doc:summary>
-        <doc:description>The StoredProcedure element is meant to capture
+        <doc:description>The storedProcedure element is meant to capture
         information on procedures that produce data output in the form of a
         data table. In an RDBMS one can code complex queries and transactions
         into stored procedures and then invoke them directly from front-end
-        applications. This element allows the optional describtion of any
+        applications. This element allows the optional description of any
         parameters that are expected to be passed to the procedure when it is
         called. A common use of a stored procedure is to rotate a data table 
         from attributes in columns to attributes in rows for statistical 
@@ -111,7 +111,7 @@
       <xs:appinfo>
         <doc:tooltip>Stored Procedure complex type&gt;</doc:tooltip>
         <doc:summary>Structure for documenting a stored procedure</doc:summary>
-        <doc:description>The StoredProcedure complex type defines the structure
+        <doc:description>The StoredProcedureType complex type defines the structure
         for documenting a stored procedure.</doc:description>
         
       </xs:appinfo>
@@ -222,7 +222,7 @@
             <doc:tooltip>Repeats</doc:tooltip>
             <doc:summary>Whether or not the parameter repeats.</doc:summary>
             <doc:description>The repeats field is used to document whether or
-            not the parameter being described can be repeted when invoking the
+            not the parameter being described can be repeated when invoking the
             stored procedure.</doc:description>
             <doc:example>true</doc:example>
             

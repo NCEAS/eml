@@ -32,8 +32,8 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:41 $'
-      '$Revision: 1.49 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -79,9 +79,9 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Spatial Raster</doc:tooltip>
-        <doc:summary>Description of a gis layer composed of raster
+        <doc:summary>Description of a GIS layer composed of raster
         pixels.</doc:summary>
-        <doc:description>Description of a gis layer composed of raster pixels
+        <doc:description>Description of a GIS layer composed of raster pixels
         comprising a regular-pattern grid. Generally, a raster object may be
         thought of as a pattern of closely spaced rows of dots that
         collectively form an image. Raster spatial objects are used to locate
@@ -134,7 +134,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
               <doc:summary>The means by which positional information in this entity is
               related to points on the earth's surface.</doc:summary>
               <doc:description>Spatial Referencing systems define the coordinates used to
-              describe horizonal and vertical locations. These are typically either geographic, projected
+              describe horizontal and vertical locations. These are typically either geographic, projected
               planar, or arbitrary planar.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -143,9 +143,9 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Georeferenc information</doc:tooltip>
-              <doc:summary>Information on how to position the grid wtihin the coordinate
+              <doc:summary>Information on how to position the grid within the coordinate
                     system defined in the spatial reference module.</doc:summary>
-              <doc:description>Information on how to position the grid wtihin the coordinate
+              <doc:description>Information on how to position the grid within the coordinate
                     system defined in the spatial reference module. </doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -339,9 +339,9 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                       <xs:annotation>
                         <xs:appinfo>
                           <doc:tooltip>X slope</doc:tooltip>
-                          <doc:summary>Slope describing transformation of grid cell distances into x coorinates. 
+                          <doc:summary>Slope describing transformation of grid cell distances into x coordinates. 
                           </doc:summary>
-                          <doc:description>Slope describing transformation of grid cell distances into x coorinates.
+                          <doc:description>Slope describing transformation of grid cell distances into x coordinates.
                            </doc:description>
                           <doc:example>5.0123</doc:example>
                         </xs:appinfo>
@@ -384,7 +384,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
               <doc:summary>
               The accuracy of horizontal locational measurements within the data.
               </doc:summary>
-              <doc:description>Horizonal accuracy may be reported either as a quantitative estimate
+              <doc:description>Horizontal accuracy may be reported either as a quantitative estimate
               expressed in the units of the coordinate system or as a text assessment.
               </doc:description>
             </xs:appinfo>
@@ -397,7 +397,7 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
               <doc:summary>The accuracy of vertical locational measurements within the data.
 </doc:summary>
               <doc:description>Vertical accuracy may be reported either as a quantitative estimate
-              expressed in the units of the height or depth measurment system or as a text
+              expressed in the units of the height or depth measurement system or as a text
               assessment.
               </doc:description>
             </xs:appinfo>
@@ -568,10 +568,10 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Illumination Azimuth Angle</doc:tooltip>
-                    <doc:summary>Illumitation azimuth measured in degrees
+                    <doc:summary>Illumination azimuth measured in degrees
                     clockwise from true north at the time the image is
                     taken.</doc:summary>
-                    <doc:description>Illumitation azimuth measured in degrees
+                    <doc:description>Illumination azimuth measured in degrees
                     clockwise from true north at the time the image is
                     taken.</doc:description>
                     <doc:example>45.5</doc:example>
@@ -631,11 +631,11 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Preprocessing Type Code</doc:tooltip>
-                    <doc:summary>Image distributor's code that idnetifies the
-                    level of radiometric and geometric proseccing applied
+                    <doc:summary>Image distributor's code that identifies the
+                    level of radiometric and geometric processing applied
                     against the image.</doc:summary>
-                    <doc:description>Image distributor's code that idnetifies
-                    the level of radiometric and geometric proseccing applied
+                    <doc:description>Image distributor's code that identifies
+                    the level of radiometric and geometric processing applied
                     against the image.</doc:description>
                     <doc:example>LEVELl1A, SPOTVIEWORTHO</doc:example>
                   </xs:appinfo>
@@ -926,8 +926,8 @@ targetNamespace="eml://ecoinformatics.org/spatialRaster-2.1.0">
               <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Method</doc:tooltip>
-                  <doc:summary>The method used to caclulate the accuracy value.</doc:summary>
-                  <doc:description>Identification and explanation of the method used to caclulate the quantitative 
+                  <doc:summary>The method used to calculate the accuracy value.</doc:summary>
+                  <doc:description>Identification and explanation of the method used to calculate the quantitative 
                   accuracy assessment.</doc:description>
                   <doc:example>Error expressed as root mean square of 5 control points. </doc:example>
                 </xs:appinfo>

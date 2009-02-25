@@ -30,8 +30,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.58 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.59 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@
               resource was published, which may be different from where the
               resource was created.</doc:description>
               <doc:example>San Francisco, CA, USA</doc:example>
-              <doc:example>New Yor, NY, USA</doc:example>
+              <doc:example>New York, NY, USA</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -205,7 +205,7 @@
               the project in which this dataset was collected.</doc:summary>
               <doc:description>The project field contains information on
               the project in which this dataset was collected.  It includes
-              information such as project personell, funding, study area,
+              information such as project personnel, funding, study area,
               project design and related projects.  The project description
               can also contain documentation on subprojects.</doc:description>
             </xs:appinfo>
@@ -220,7 +220,7 @@
                 that make up this dataset.</doc:summary>
                 <doc:description>The dataTable field documents the dataTable(s)
                 that make up this dataset.  A dataTable could be anything from
-                a Comma Seperated Value (CSV) file to a spreadsheet to a table
+                a Comma Separated Value (CSV) file to a spreadsheet to a table
                 in an RDBMS.</doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -331,10 +331,10 @@
           <xs:appinfo>
             <doc:tooltip>Maintenance Update Frequency</doc:tooltip>
             <doc:summary>Frequency with which changes and additions are made
-            to the datset
+            to the dataset
             after the initial dataset is completed.</doc:summary>
             <doc:description>Frequency with which changes and additions are made
-            to the datset
+            to the dataset
             after the initial dataset is completed.  The values for this
             field must come from the enumeration MaintUpFreqType.</doc:description>
           </xs:appinfo>
@@ -359,7 +359,7 @@
                   <doc:summary>An expression describing the scope to which the
                   documented change was
                   applied.</doc:summary>
-                  <doc:description>The expression should unambigously identify
+                  <doc:description>The expression should unambiguously identify
                   the entity(s) and attribute(s) that were
                   changed.</doc:description>
                 </xs:appinfo>

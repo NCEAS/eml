@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-23 23:27:55 $'
-      '$Revision: 1.80 $'
+          '$Date: 2009-02-25 23:51:53 $'
+      '$Revision: 1.81 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@
               may be accompanied by an optional &lt;access&gt; element 
               that is used to establish the default access
               control for the entire EML package.  
-              If this access element is ommitted from the
+              If this access element is omitted from the
               document, then the package submitter should be
               given full access to the package but all other users should
               be denied all access.  To allow the package to be publicly viewable,
@@ -84,7 +84,7 @@
               only to the data in the parent distribution element, and not to the metadata.
               Thus, it will control access to the content of the &lt;inline&gt;
               element, as well as resources that are referenced by the
-              &lt;online/url&gt; and &lt;online/connection&gt; elements.
+              &lt;online/url&gt; and &lt;online/connection&gt; paths.
               These exceptions to access for particular data resources are
               applied after the default access rules at the package-level have been
                applied, 

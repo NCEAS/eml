@@ -38,8 +38,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.28 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -67,11 +67,11 @@
             The eml-methods module describes the methods
             followed in the creation of the dataset, including description of
             field, laboratory and processing steps, sampling methods and units,
-            quality control proceudures.  The eml-methods module is used
+            quality control procedures.  The eml-methods module is used
             to describe the <emphasis>actual</emphasis>
             procedures that are used in the creation or the subsequent
             processing of a dataset. Likewise, eml-methods is used to describe
-            proccesses that have been used to define / improve the quality of a
+            processes that have been used to define / improve the quality of a
             data file, or to identify potential problems with the data file.
             Note that the eml-protocol module is intended to be used to document
             a <emphasis>prescribed</emphasis> procedure, whereas the eml-method
@@ -81,7 +81,7 @@
             and the term "method" is used in the
             "descriptive" sense.  This distinction allows managers to
             build a protocol library of well-known, established protocols
-            (procedures), but also document what procedure was truely performed
+            (procedures), but also document what procedure was truly performed
             in relation to the established protocol.  The method may have
             diverged from the protocol purposefully, or perhaps incidentally,
             but the procedural lineage is still preserved and understandable.
@@ -316,7 +316,7 @@
             <doc:description>The qualityControl field provides a location for
             the description of actions taken to either control or assess the
             quality of data resulting from the associated method step. A
-            quality control description should identifiy a quality goal and
+            quality control description should identify a quality goal and
             describe prescriptive steps taken to ensure that the data meet
             those standards and/or postscriptive steps taken to assess the
             extent to which they are met. A quality control statement is
@@ -346,12 +346,12 @@
               a protocol resource or entering the structured protocol
               information</doc:description>
               <doc:example>1.Collect tissues from algae of
-              interest. a.We are currently
+              interest. a. We are currently
               collecting Egregia menziezii, Mazzaella splendens, M. flaccida,
               Hedophyllum sessile, Postelsia palmaeformis and Fucus gardneri.We
               stopped collecting Neorhodomela larix and Odonthalia floccosa
               because they can be heavily fouled and we feared that would skew
-              the results. b.We collect a 7-10 cm
+              the results. b. We collect a 7-10 cm
               blade or branch from each plant. For Egregia, try to sample
               small, young plants or take the base of the blade. For Postelsia,
               take a few of the blades. The other plants are small enough so a
@@ -379,7 +379,7 @@
                 <doc:summary>Protocol description relating to the methods
               used.</doc:summary>
                 <doc:description>The protocol field is used to either reference a
-              protocol resource or describe methods and identify the proccesses
+              protocol resource or describe methods and identify the processes
               that have been used to define / improve the quality of a data
               file, also used to identify potential problems with the data
               file.</doc:description>
@@ -418,7 +418,7 @@
             <doc:tooltip>substep</doc:tooltip>
             <doc:summary/>
             <doc:description>This fields allows the nesting of additional method
-            steps within this step.  This is useful for heirarchical method
+            steps within this step.  This is useful for hierarchical method
             descriptions.</doc:description>
           </xs:appinfo>
         </xs:annotation>

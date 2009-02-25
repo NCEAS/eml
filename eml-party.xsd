@@ -19,8 +19,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:40 $'
-      '$Revision: 1.54 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.55 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@
         resource. It is intended to be used to fully document contact
         information for many types of associations, such as owner, manager,
         steward, curator, etc.</para>
-            <para>Note that the the content model for a responsible party type 
+            <para>Note that the content model for a responsible party type 
         allows a sequence of choices for the first
         element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. 
         This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements 
@@ -260,8 +260,8 @@
               <doc:summary>The email address of the contact.</doc:summary>
               <doc:description>The electronic mail address is the email address
               for the party. It is intended to be an Internet SMTP email
-              address, which should consist of a username folowed by the @
-              symbol, followd by the email server domain name address. Other
+              address, which should consist of a username followed by the @
+              symbol, followed by the email server domain name address. Other
               address types are allowable.</doc:description>
               <doc:example>my-email@mydomain.edu</doc:example>
             </xs:appinfo>
@@ -290,10 +290,10 @@
               <doc:summary>An identifier that links this party to a
               directory of personnel</doc:summary>
               <doc:description>An identifier that links this party to a
-              directory of personnell.  Although specific contact information
+              directory of personnel.  Although specific contact information
               for a party might change, the underlying correspondence to a
-              real individual does not.  This identifer provides a pointer
-              within a personnell directory that may contain further, and possibly
+              real individual does not.  This identifier provides a pointer
+              within a personnel directory that may contain further, and possibly
               more current, information about the party.
               </doc:description>
               <doc:example>uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</doc:example>
@@ -312,7 +312,7 @@
                       to which this userId applies. This will generally
                       be a URL that shows how to look up information, for
                       example an LDAP url. However, it could also be a
-                      non-parseable description of the directory system if
+                      non-parsable description of the directory system if
                       that is all that is available.</doc:description>
                       <doc:example>
                         ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org
@@ -415,7 +415,7 @@
             individual associated with the resource. This is typically the family name
             of an individual, for example, the name by which s/he is referred to in citations.
             </doc:description>
-            <doc:example>San GIl</doc:example>
+            <doc:example>San Gil</doc:example>
             <doc:example>Curtis-Ainsworth</doc:example>
             <doc:example>Tao</doc:example>
           </xs:appinfo>
@@ -443,7 +443,7 @@
               <doc:summary>The location for postal deliveries.</doc:summary>
               <doc:description>The delivery point field is used for the
               physical address for postal communication. This field is used to
-              accomodate the many different international conventions that are
+              accommodate the many different international conventions that are
               the equivalent to a U.S. 'street address'.</doc:description>
               <doc:example>7209 Coast Drive, Building 44</doc:example>
             </xs:appinfo>
@@ -467,7 +467,7 @@
               <doc:summary>The political area of a country.</doc:summary>
               <doc:description>The administrative area field is the equivalent
               of a 'state' in the U.S., or Province in Canada. This field is
-              intended to accomodate the many types of international
+              intended to accommodate the many types of international
               administrative areas.</doc:description>
               <doc:example>Colorado</doc:example>
             </xs:appinfo>
@@ -495,7 +495,7 @@
               address.</doc:summary>
               <doc:description>The country field is used for the name of the
               contact's country.</doc:description>
-              <doc:example>U.S.A</doc:example>
+              <doc:example>U.S.A.</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>

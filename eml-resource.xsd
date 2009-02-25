@@ -21,8 +21,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-23 03:24:16 $'
-      '$Revision: 1.92 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.93 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@
         described.</doc:summary>
         <doc:description>The 'ResourceBase' complexType contains information
         that is inherited by each resource type that is being documented. The
-        subelements with the resource base are common to all
+        sub-elements with the resource base are common to all
         resources.</doc:description>
         <doc:example>Please see the individual sub-fields for specific
         examples.</doc:example>
@@ -283,7 +283,7 @@
                   <doc:tooltip>Keyword</doc:tooltip>
                   <doc:summary>A single keyword that describes the
                   resource.</doc:summary>
-                  <doc:description>This field names a keyword or keyphrase that
+                  <doc:description>This field names a keyword or key phrase that
                   concisely describes the resource or is related to the
                   resource. Each keyword field should contain one and only one
                   keyword (i.e., keywords should not be separated by commas or
@@ -353,7 +353,7 @@
             reference a service providing such information. Rights information
             encompasses Intellectual Property Rights (IPR), Copyright, and
             various Property Rights. In the case of a data set, rights might
-            incude requirements for use, requirements for attribution, or other
+            include requirements for use, requirements for attribution, or other
             requirements the owner would like to impose.</doc:description>
             <doc:example>Copyright 2001 Regents of the University of California
             Santa Barbara. Free for use by all individuals provided that the
@@ -418,7 +418,7 @@
             their "id" can be used in the "references" element of 
             metadataProvider and contact.  This reduces the likelihood of
             error by reducing redundancy, and allows one to specify that
-            two pieces of information are identical.  To be a vaild EML
+            two pieces of information are identical.  To be a valid EML
             document, the content of every "references" element MUST be
             defined in the document as the value of an "id" attribute on
             some element within the document.  Other critical rules
@@ -543,7 +543,7 @@
         <doc:description>The data management system within which an
         identifier is in scope and therefore unique. This is typically
         a URL (Uniform Resource Locator) that indicates a data
-        management system.  All identifers that share a system must
+        management system.  All identifiers that share a system must
         be unique. In other words, if the same identifier is used in
         two locations with identical systems, then by definition the
         objects at which they point are in fact the same object.
@@ -658,7 +658,7 @@
                             protocol by name, with a detailed description 
                             and its required parameters. A connectionDefinition 
                     lists all of the parameters needed for the connection
-                    and possible default values for each. A defintion provided in this
+                    and possible default values for each. A definition provided in this
                     element may be used in other parts of the EML document.</doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -730,7 +730,7 @@
               should include the session cookie in the HTTP header.  To
               retrieve an object, the client then would send an HTTP POST
               in http-url-encoded format, with an action parameter set to
-              "get" and the docid paramter set to the identifier for the
+              "get" and the docid parameter set to the identifier for the
               desired object.  The response will either be an XML document
               or a multipart-form-encoded response containing data.
               </doc:example>
@@ -795,7 +795,7 @@
                     declares common information that might be shared by several
                     connections as default values.  Parameter values provided
                     in the connection always override any default values
-                    provided in the conneciton definition.</doc:description>
+                    provided in the connection definition.</doc:description>
                     <doc:example>metacat.nceas.ucsb.edu</doc:example>
                   </xs:appinfo>
                 </xs:annotation>
@@ -942,7 +942,7 @@ inline type -->
               named parameters needed to connect. The URL field can contain 
               a simple web address or an entire query string. The connection
                element allows the components of a complex protocol to 
-               be desribed individually. The connectionDefinition element 
+               be described individually. The connectionDefinition element 
                can also be appear outside of the connection elements, 
                so that it can be defined once and referenced by several connections. 
                </para>
@@ -980,9 +980,9 @@ inline type -->
               <doc:description>A URL (Uniform Resource Locator) from which this additional 
               information can be obtained, or from which the resource can be downloaded 
               directly. In the resource module, the distribution URL is generally meant for 
-              informaitonal purposes, and the "function" attribute should be set to "information". 
+              informational purposes, and the "function" attribute should be set to "information". 
               However, if the URL returns the data stream itself, then the "function" attribute 
-              should be set to "download".  See the Type Defintion for more information.</doc:description>
+              should be set to "download".  See the Type Definition for more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -993,7 +993,7 @@ inline type -->
               <doc:summary>A connection to a data service</doc:summary>
               <doc:description>A description of the information needed to make an application 
               connection to a data service. The connection contains a connectionDefinition 
-              and optional parameters for overriding defaults. See the Type Defintion for 
+              and optional parameters for overriding defaults. See the Type Definition for 
               more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -1084,7 +1084,7 @@ connectionType -->
                     parameterDefinition that is present in the
                     connectionDefinition, although parameters that were
                     defined with a defaultValue in their parameterDefinition
-                    can be ommitted. All information about how to use the
+                    can be omitted. All information about how to use the
                     parameters to establish a session and extract data is
                     present in the connectionDefinition, possibly implicitly
                     by naming a connection schemeName that is well-known. 

@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-22 00:47:41 $'
-      '$Revision: 1.49 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.50 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@
               and/or operating systems like Pentium/Linux, Pentium/NT and so
               on. Hardware and Software descriptions that have different
               requirements can be placed here.</doc:description>
-              <doc:example>Please see the examples for each subelement of the
+              <doc:example>Please see the examples for each sub-element of the
               implementation type.</doc:example>
             </xs:appinfo>
           </xs:annotation>
@@ -131,9 +131,9 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Physical Size</doc:tooltip>
-                    <doc:summary>Physical size of an implemetation.
+                    <doc:summary>Physical size of an implementation.
                     </doc:summary>
-                    <doc:description>The physical size of an implemetation on
+                    <doc:description>The physical size of an implementation on
                     disk.</doc:description>
                     <doc:example>100 Megabytes</doc:example>
                   </xs:appinfo>
@@ -243,9 +243,9 @@
                   <xs:appinfo>
                     <doc:tooltip>Runtime Memory Usage</doc:tooltip>
                     <doc:summary>The minimum amount of memory required to run
-                    an lmplementation.</doc:summary>
+                    an implementation.</doc:summary>
                     <doc:description>The minimum amount of memory required to run
-                    an lmplementation.</doc:description>
+                    an implementation.</doc:description>
                     <doc:example>32 Megabytes</doc:example>
                     <doc:example>128 MB</doc:example>
                   </xs:appinfo>
@@ -388,7 +388,7 @@
         software package is dependent upon.</doc:summary>
         <doc:description>The dependency element is recursive. It is a
         sub-element of the software Element but it also has as a sub-element
-        its parent element Software Package. Dependecy has been made optional
+        its parent element Software Package. Dependency has been made optional
         because to make it mandatory does not allow the recursion to end.
         Dependency has also been made a sub-element of implementation because
         there can be both implementation and package level dependencies within

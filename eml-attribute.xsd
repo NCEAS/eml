@@ -23,8 +23,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-24 01:07:31 $'
-      '$Revision: 1.122 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.123 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -145,8 +145,8 @@
             arbitrary. There was clearly a need, however, to allow for the
             interoperability of dateTime formats. EML 2.0 tries to provide an
             unambiguous mechanism for describing the format of dateTime
-            values by providing a separate category for datetime values. This
-            "datetime" measurement scale allows users to explicitly label 
+            values by providing a separate category for date and  time values. This
+            "dateTime" measurement scale allows users to explicitly label 
             attributes that contain Gregorian date and time values, and allows
             them to provide the information needed to parse these values into
             their appropriate components (e.g., days, months, years)./</para>
@@ -321,7 +321,7 @@
                       The default and recommended system is the XML Schema data
                       type system. For details go to http://www.w3.org. If
                       another system is used (such as Java or C++ types),
-                      typeSystem should be be changed to match the
+                      typeSystem should be changed to match the
                       system.</doc:description>
                       <doc:example>
                       http://www.w3.org/2001/XMLSchema-datatypes</doc:example>

@@ -22,8 +22,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-12-18 00:17:16 $'
-      '$Revision: 1.94 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.95 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,9 +66,9 @@
           </para>
             <para>
             The temporal coverage section allows for the definition of either a
-            single date/time, or a range of dates/times. These date/times may be
+            single date or time, or a range of dates or times. These may be
             expressed as a calendar date according to the ISO 8601 Date and Time
-            Specification, or or by using an alternate time scale, such as the
+            Specification, or by using an alternate time scale, such as the
             geologic time scale. Currently, EML does not have specific fields to indicate
             that a data resource may be "ongoing." Two examples are data tables 
 			that are planned to be appended in the future, or resources 
@@ -83,7 +83,7 @@
 			general content for the endDate (such as only the current year) so that the 
 			data are accurately described, and searches return datasets as expected.
 			A future version of EML will 
-            accomodate such data types with coverage elements specific to their needs.
+            accommodate such data types with coverage elements specific to their needs.
           </para>
             <para>
             The taxonomic coverage section allows for detailed description of
@@ -136,7 +136,7 @@
               <doc:description>Geographic Coverage is a container for spatial
               information about a project, a resource, or an entity within a
               resource. It allows a bounding box for the overall coverage (in
-              lat long), and also allows descriptin of arbitrary polygons with
+              lat long), and also allows description of arbitrary polygons with
               exclusions.</doc:description>
               <doc:example>Please see the individual sub fields for specific
               examples.</doc:example>
@@ -150,8 +150,8 @@
               <doc:summary>Temporal coverage information.</doc:summary>
               <doc:description>This field specifies temporal coverage, and
               allows coverages to be a single point in time, multiple points in
-              time, or a range of dates. Dates can be expressed in tems of both
-              calander dates and geologic dating systems.</doc:description>
+              time, or a range of dates. Dates can be expressed in terms of both
+              calendar dates and geologic dating systems.</doc:description>
               <doc:example>Please see the individual sub fields for specific
               examples.</doc:example>
             </xs:appinfo>
@@ -201,8 +201,8 @@
         <doc:summary>Temporal coverage information.</doc:summary>
         <doc:description>The temporal coverage fields are intended to be used
         in describing the date and time of an event. It allows for three
-        general descriptions: a single date/time, multiple date/times, and a
-        range of date/times.</doc:description>
+        general descriptions: a single date or time, multiple dates or times, and a
+        range of date or times.</doc:description>
         <doc:example>Please see the individual sub fields for specific
         examples.</doc:example>
       </xs:appinfo>
@@ -332,9 +332,9 @@
               Greenwich Mean Time, or GMT), with a special UTC designator
               ("Z"), 2) local time, together with a time zone offset in hours
               and minutes. A time zone offset of "+hh:mm" indicates that the
-              date/time uses a local time zone which is "hh" hours and "mm"
+              date or time uses a local time zone which is "hh" hours and "mm"
               minutes ahead of UTC. A time zone offset of "-hh:mm" indicates
-              that the date/time uses a local time zone which is "hh" hours
+              a local time zone which is "hh" hours
               and "mm" minutes behind UTC.</doc:description>
               <doc:example>1) 08:31:22Z , which means eight thirty one and 22
               seconds in the morning at Coordinated Universal Time (Greenwich
@@ -544,7 +544,7 @@ the spatialReference schema.</doc:description>
               included by using the elements in the spatialReference schema.</doc:summary>
               <doc:description>
                 <section>
-                  <para>Boundind Coordinates are the four margins (N, S, E, W) of a bounding box, 
+                  <para>Bounding Coordinates are the four margins (N, S, E, W) of a bounding box, 
               or when considered in lat-lon pairs, the corners of the box. These elements are meant to convey general 
               information and are not for accurate mapping.  More specific information may be
               included by using the elements in the spatialReference schema.</para>
@@ -560,7 +560,7 @@ the spatialReference schema.</doc:description>
               northBoundingCoordinate and southBoundingCoordinate, and likewise
              for westBoundingCoordinate and eastBoundingCoordinate. </para>
                   <para>In the case of a data set that comprises 
-                    all longtudes (e.g., a horizontal band between 2 parallels that fully 
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
                     encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
                     eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
                     appropriate to specify both values as "180" (or any other meridian), but this could 
@@ -787,11 +787,11 @@ the spatialReference schema.</doc:description>
                     datasetGPolygon.  This is the outer part of the doughnut
                     shape that encompasses the broadest area of coverage. 
                     It can be created either by a gRing (list of points) or 3 or more gRingPoints. 
-                    See the subelements and their Type definintions for more specific 
+                    See the sub-elements and their Type definitions for more specific 
                     information.</para>
                         <para>
                     This element is generally analogous to the FGDC outer ring although
-                    somewhat differently specified.  Documentation for an FGCD G-Ring 
+                    somewhat differently specified.  Documentation for an FGDC G-Ring 
                     states that 4 points are required 
                     to define a polygon, and the first and last should be identical. 
                     However this is not enforceable in XML Schema, and so in EML
@@ -814,7 +814,7 @@ the spatialReference schema.</doc:description>
                             <doc:tooltip>G Ring Point</doc:tooltip>
                             <doc:summary>A single geographic location</doc:summary>
                             <doc:description>A single geographic location.  As a child of &lt;datasetGPolygonOuterGRing&gt;
-                            a minimum of 3 are required to define a polygon. The polygon is presumed to be closed. Please see the sub elements and the Type descriptionfor more information about creating a point location.</doc:description>
+                            a minimum of 3 are required to define a polygon. The polygon is presumed to be closed. Please see the sub elements and the Type description for more information about creating a point location.</doc:description>
                           </xs:appinfo>
                         </xs:annotation>
                       </xs:element>
@@ -825,7 +825,7 @@ the spatialReference schema.</doc:description>
                           <doc:tooltip>G-Ring</doc:tooltip>
                           <doc:description>A set of ordered pairs of floating-point numbers,
         The number of points in the string is not enforced by EML. 
-        However, authors should note that in order for this field is to be directly translated to FGCD, 4 points should
+        However, authors should note that in order for this field is to be directly translated to FGDC, 4 points should
         be included in the string. See the Type for more information on constructing the string. </doc:description>
                           <!--  <doc:example> 12.453,15.0 5,101 -111,45</doc:example> -->
                         </xs:appinfo>
@@ -849,16 +849,16 @@ the spatialReference schema.</doc:description>
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).  This is the center of the doughnut
                     shape created by the datasetGPolygon. It can be created either by
-                    a gRing (list of points) or one or more gRingPoints. See the subelements and their 
-                    Type definintions for more information.</para>
+                    a gRing (list of points) or one or more gRingPoints. See the sub-elements and their 
+                    Type definitions for more information.</para>
                         <para>
                         This element is generally analogous to an FGDC exclusion ring "Data Set G-Polygon 
                         Exclusion G-Ring", although it's children are
-                    somewhat differently described.  Documentation for the FGCD component states that
+                    somewhat differently described.  Documentation for the FGDC component states that
                     4 points are required to define a polygon, and the first and last should be identical. 
                     However this EML element requires only one point so that a single point can be
                     excluded,  presumably, a single station.  If multiple single stations are to be 
-                    excluded, then authors should include mutlple &lt;datasetGPolygonExclusionGRing&gt;s.
+                    excluded, then authors should include multiple &lt;datasetGPolygonExclusionGRing&gt;s.
                                                 </para>
                       </section>
                     </doc:description>
@@ -873,7 +873,8 @@ the spatialReference schema.</doc:description>
                           <doc:summary>A single geographic location</doc:summary>
                           <doc:description>A single geographic location.  This is useful if you
         register your datasets by a single geospatial point, such as the
-        lat/long of your research station. Please see the sub elements and the Type descriptionfor more information on constructing a gRingPoint</doc:description>
+        lat/long of your research station. Please see the sub elements and the Type description 
+		for more information on constructing a gRingPoint</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
                     </xs:element>
@@ -978,19 +979,19 @@ the spatialReference schema.</doc:description>
         Longitude and latitude are specified in decimal degrees with north
         latitudes positive and south negative, east longitude positive and west
         negative</para>
-            <para>Note on the relationship to FGCD:
+            <para>Note on the relationship to FGDC:
         This element is generally analogous to the FGDC component for ring, 
-        although implemented somewhat differently. Documentation for FGCD
+        although implemented somewhat differently. Documentation for FGDC
         states that 4 points are required to define a polygon, and the first and last 
         should be identical, although this is not enforceable in XML Schema. In addition,
         EML does not enforce any pattern on the string used for a GRingType, so that
         it may be used differently as a child of EML's &lt;datasetGPolygonOuterGRing&gt;  
         or &lt;datasetGPolygonExclusionGRing&gt; elements.
-        If authors of EML instance documents wish the conents of this element  to be 
-        directly translated to FGCD, they should comply with the example below when
+        If authors of EML instance documents wish the contents of this element  to be 
+        directly translated to FGDC, they should comply with the example below when
         constructing their strings. Alternatively, in most cases, a sequence of gRingPoints 
         can be used in EML instances, which can be processed into content for an 
-        FDGC Data Set G-Polygon G-Ring.</para>
+        FGDC Data Set G-Polygon G-Ring.</para>
           </section>
         </doc:description>
         <doc:example>This is an acceptable gRing:
@@ -1017,7 +1018,7 @@ the spatialReference schema.</doc:description>
         <doc:tooltip>Taxonomic coverage</doc:tooltip>
         <doc:summary>Taxonomic coverage information.</doc:summary>
         <doc:description>Taxonomic Coverage is a container for taxonomic
-        information about a a project, a resource, or an entity within a
+        information about a project, a resource, or an entity within a
         resource.</doc:description>
         <doc:example>Please see the individual sub-fields for specific
         examples.</doc:example>
@@ -1080,7 +1081,7 @@ the spatialReference schema.</doc:description>
                   <xs:appinfo>
                     <doc:tooltip>Non-authoritative citation</doc:tooltip>
                     <doc:summary/>
-                    <doc:description>Information on any nonauthoritative
+                    <doc:description>Information on any non-authoritative
                     materials (e.g. field guides) useful for reconstructing the
                     actual identification process.</doc:description>
                   </xs:appinfo>
@@ -1116,10 +1117,10 @@ the spatialReference schema.</doc:description>
                     <doc:tooltip>Taxonomic completeness</doc:tooltip>
                     <doc:summary/>
                     <doc:description>Information concerning the proportions and
-                    treatment of unidentified materials ; estimates of the
-                    importance, and identities of misidentifications, uncertain
-                    determinations, synonyms or other incorrect usages; taxa
-                    not well treated or requiring further work; and expertise
+                    treatment of unidentified materials, estimates of the
+                    importance and possible identities of uncertain
+                    determinations, synonyms or other incorrect usages, taxa
+                    not well treated or requiring further work, and expertise
                     of field workers.</doc:description>
                     <doc:example>materials sent to experts, and not yet
                     determined</doc:example>
@@ -1267,7 +1268,7 @@ the spatialReference schema.</doc:description>
             <doc:description>The name representing the taxonomic rank of the
             taxon being described. The values included may be referenced from
             an authoritative source such as the Integrated Taxonomic
-            Information Sytem (ITIS)in the U.S. (http://www/itis.usda.gov)
+            Information System (ITIS)in the U.S. (http://www/itis.usda.gov)
             and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget). Also,
             Species2000 is another source of taxonomic information, found at
             (http://www.sp2000.org)</doc:description>

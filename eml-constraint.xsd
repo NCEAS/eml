@@ -26,8 +26,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-11-14 23:50:13 $'
-      '$Revision: 1.52 $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.53 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -147,7 +147,7 @@
             <doc:summary>A unique key in the entity</doc:summary>
             <doc:description>The uniqueKey element represents a unique key
             within the referenced entity. This is different from a primary key
-            in that it does not form any implicit foriegn key relationships to
+            in that it does not form any implicit foreign key relationships to
             other entities, however it is required to be unique within the
             entity.</doc:description>
             <doc:example>date</doc:example>
@@ -245,7 +245,7 @@
                 version of a scriptable analysis system such as SAS, Matlab, R,
                 or SPlus.
                 </doc:description>
-                <doc:example>perl 5.6.1</doc:example>
+                <doc:example>Perl 5.6.1</doc:example>
                 
               </xs:appinfo>
             </xs:annotation>
@@ -411,7 +411,7 @@
             <doc:tooltip>Name of the constraint</doc:tooltip>
             <doc:summary>A meaningfull name of the constraint.</doc:summary>
             <doc:description>The constraintName element is a name which
-            represents a human readible and meaningful name for the
+            represents a human readable and meaningful name for the
             constraint.</doc:description>
             <doc:example>PrimaryKey_birdSurvey</doc:example>
             
@@ -485,7 +485,7 @@
             constraint.</doc:summary>
             <doc:description>The entityReference element contains the id of the
             entity to which a foreign key refers, otherwise known as the
-            parent-entity or parent-table. This should be an identifer that
+            parent-entity or parent-table. This should be an identifier that
             matches one of the "identifier" elements for an
             entity.</doc:description>
             <doc:example>knb.79.4</doc:example>
@@ -505,7 +505,7 @@
             the child's primary key. Non-identifying relationships propagate the
             parent's primary key as a non-key attribute of the child
             entity.</doc:description>
-            <doc:example>felationshipType code</doc:example>
+            <doc:example>relationshipType code</doc:example>
             
           </xs:appinfo>
         </xs:annotation>
@@ -526,7 +526,7 @@
             <doc:description>The cardinality element represents a statement of
             the relationship between parent and child entities. Cardinality is
             expressed as the ratio of related parent and child
-            entities. Cardinality 1 to N is a specific form of cardinalty in
+            entities. Cardinality 1 to N is a specific form of cardinality in
             which zero or one parent records are related to a specified number
             of child records. The cardinality ratio for the parent entity
             depends on whether the "existence" is mandatory (one or more) or

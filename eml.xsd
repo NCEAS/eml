@@ -15,7 +15,7 @@
       University of New Mexico Center for Environmental Studies, Arizona State University Other
       funding: National Science Foundation (see README for details) The David and Lucile Packard
       Foundation For Details: http://knb.ecoinformatics.org/ '$Author: obrien $' '$Date: 2008/04/09
-      21:31:41 $' '$Revision: 1.58 $' This program is free software; you can redistribute it and/or
+      21:31:41 $' '$Revision: 1.59 $' This program is free software; you can redistribute it and/or
       modify it under the terms of the GNU General Public License as published by the Free Software
       Foundation; either version 2 of the License, or (at your option) any later version. This
       program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
@@ -86,13 +86,13 @@
         <doc:tooltip>Ecological Metadata</doc:tooltip>
         <doc:summary>A collection of EML metadata and additional metadata linked using the inline
           references.</doc:summary>
-        <doc:description>The "eml" element allows for the inclusion of of any metadata content in a
+        <doc:description>The "eml" element allows for the inclusion of any metadata content in a
           single EML document. In general, dataset resources, literature resources, and software
           resources, or another type that extends eml-resource are described using an eml document.
           The eml document represents a "package" that can contain both metadata and data. It can
           optionally include non-EML metadata through the flexibility of the "additionalMetadata"
           element. Any additional metadata that is provided can provide a pointer into the EML
-          metadata indicating what the context of the additional metadata is (ie, what it
+          metadata indicating what the context of the additional metadata is (i.e., what it
           describes). For example, a spatial raster image might be described in EML, and an FGDC
           CSDGM metadata document could be included in the additionalMetadata element with a pointer
           to the EML spatialRaster element to indicate that the FGDC metadata is providing
@@ -107,7 +107,7 @@
             <xs:appinfo>
               <doc:tooltip>Access</doc:tooltip>
               <doc:summary>Access control rules for the entire resource, which can be overridden by access rules in distribution trees</doc:summary>
-              <doc:description>An optional access tree at this location controls access to the entire metadata document. If this access element is ommitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access. </doc:description>
+              <doc:description>An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access. </doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -120,7 +120,7 @@
                   data entities such as data tables. </doc:summary>
                 <doc:description>A resource that describes a data set, which can include one or more
                   data entities such as data tables and spatial images (raster and vector). If
-                  included, this represents the primary resource that is desciribed in this eml
+                  included, this represents the primary resource that is described in this eml
                   document. </doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -133,7 +133,7 @@
                   a bibliography. </doc:summary>
                 <doc:description>A resource that describes a literature citation that one might find
                   in a bibliography. If included, this represents the primary resource that is
-                  desciribed in this eml document. </doc:description>
+                  described in this eml document. </doc:description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -145,7 +145,7 @@
                   commercial and non-commercial software as well as data processing programs. </doc:summary>
                 <doc:description>A resource that describes a software package, which can include
                   commercial and non-commercial software as well as data processing programs. If
-                  included, this represents the primary resource that is desciribed in this eml
+                  included, this represents the primary resource that is described in this eml
                   document. </doc:description>
               </xs:appinfo>
             </xs:annotation>
@@ -158,7 +158,7 @@
                   or more descriptions of methods and procedures. </doc:summary>
                 <doc:description>A resource that describes a scientific protocol, which can include
                   one or more descriptions of methods and procedures. If included, this represents
-                  the primary resource that is desciribed in this eml document. </doc:description>
+                  the primary resource that is described in this eml document. </doc:description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
@@ -183,9 +183,9 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Describes Reference</doc:tooltip>
-                    <doc:summary>A pointer to the id attribute for the subportion of the resource
+                    <doc:summary>A pointer to the id attribute for the sub-portion of the resource
                       that is described by this additional metadata. </doc:summary>
-                    <doc:description>A pointer to the id attribute for the subportion of the
+                    <doc:description>A pointer to the id attribute for the sub-portion of the
                       resource that is described by this additional metadata. This is a formal field
                       in that it is an error to provide a value in the "describes" element that does
                       not correspond to the value of one of the "id" attributes in another eml
@@ -211,7 +211,7 @@
                       field describes the element referenced in the 'describes' element preceding
                       it. The content of this field is any well-formed XML fragment. If that content
                       contains namespace declarations, and if the namespace declaration can be
-                      resolved to a schema defniition, then the content will be validated against
+                      resolved to a schema definition, then the content will be validated against
                       that schema definition. If no namespace is present, or if no schema can be
                       resolved, validation for this fragment will be skipped (validation is "lax"). </doc:description>
                     <doc:example><![CDATA[
