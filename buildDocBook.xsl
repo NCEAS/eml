@@ -15,8 +15,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-08-27 21:30:04 $'
-      '$Revision: 1.61 $'
+          '$Date: 2009-02-26 21:10:21 $'
+      '$Revision: 1.62 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@
         extended by creating a new module that describes the resource (e.g. a
         detailed soils metadata profile that extends eml-dataset).  The intent
         is to provide a common set of core modules for information exchange,
-        but to allow for futute customizations of the language without the
+        but to allow for future customizations of the language without the
         need of going through a lengthy 'approval' process.
         </para>
         </listitem>
@@ -116,7 +116,7 @@
         standards that have evolved from the expertise of groups in other
         disciplines.  Whenever possible, EML adopted entire trees of
         information in order to facilitate conversion of EML documents into
-        other metadata languages.  EML was designed with with the following
+        other metadata languages.  EML was designed with the following
         standards in mind: Dublin Core Metadata Initiative, the Content
         Standard for Digital Geospatial Metadata (CSDGM from the US geological
         Survey's Federal Geographic Data Committee (FGDC)), the Biological
@@ -159,7 +159,7 @@
         used to express the concepts defined in the content model).
         The normative sections below define the content model and the
         XML Schema documents distributed with EML define the syntactic
-        implementation. For the forseeable future, XML Schema will be the
+        implementation. For the foreseeable future, XML Schema will be the
         syntactic specification, although it may change later.
         </para>
         </listitem>
@@ -278,7 +278,7 @@
             (e.g. a series of tabular data files, or a set of GIS features, or a
             number of tables in a relational database).  Each entity within a
             dataset may contain one or more attributes (e.g. multiple columns in
-            a datafile, multiple attributes of a GIS feature, or multiple
+            a data file, multiple attributes of a GIS feature, or multiple
             columns of a database table).  Lastly, there may be both simple or
             complex  relationships among the entities within a dataset.  The
             relationships, or the constraints that are to be enforced in the
@@ -406,7 +406,7 @@
         EML allows the reuse of previously defined structured content (DOM
         sub-trees) through the use of key/keyRef type references.  In order
         for an EML package to remain cohesive and to allow for the cross
-        platform compatability of packages, the following rules with respect
+        platform compatibility of packages, the following rules with respect
         to packaging must be followed.
       </para>
       <itemizedlist>

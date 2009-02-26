@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2008-12-03 23:04:33 $'
-      '$Revision: 1.27 $'
+          '$Date: 2009-02-26 21:10:21 $'
+      '$Revision: 1.28 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@
         <ulink url="../members.html">voluntary project members</ulink> 
         who donate their time and experience in order to advance
         information management for ecology. Project decisions are made by
-        concensus according to the voting procedures described in the <ulink url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
+        consensus according to the voting procedures described in the <ulink url="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
         Charter</ulink>.  Significant contributions for these recent releases
         have come from individuals at NCEAS, the Long Term Ecological
         Research Program (CAP, NET, KBS, JRN), and the Joseph W. Jones
@@ -189,7 +189,7 @@
       </question>
       <answer>
         <para>Yes, there are provisions in the eml-physical module for
-        descriptions of online data resources.. The eml-physical module
+        descriptions of online data resources. The eml-physical module
         describes the structural characteristics of data formats as delivered
         over the wire or as found in a file system. One physical object (which
         can be a bytestream or an object in a file system) might contain
@@ -336,7 +336,7 @@
         is a multipurpose XML metadata and data repository that is optimized
         for use with EML. If you store your metadata in a relational database
         management system or plan to then there are also solutions.
-        <ulink url="http://xml.apache.org/cocoon/">Cocooon</ulink>
+        <ulink url="http://xml.apache.org/cocoon/">Cocoon</ulink>
 
         and
         <ulink url="http://ces.asu.edu/bdi/Subjects/Xanthoria/">
@@ -377,7 +377,7 @@
       <answer>
         <para>With "id" attributes and "references" elements
         in each module. Certain modules within EML allow you to
-        identify specific subtrees with a unique identifier (id). This 
+        identify specific sub-trees with a unique identifier (id). This 
         identifier can then be used in place of content in other parts 
         of the EML document by placing it in a "references" element.</para>
       </answer>
@@ -391,7 +391,7 @@
         element and acts as the overall identifier for the package. The content
         model for each CT is a choice between the existing content model and a
         new element named "references" of type "xs:string". This element is
-        used to hold a reference to an existing subtree identified by its id.
+        used to hold a reference to an existing sub-tree identified by its id.
         This relationship between the "references" element and the "id"
         identifiers is enforced by defining a "key" for the "id"
         elements and a "keyref" for the "references" elements. This use of
@@ -406,7 +406,7 @@
         key validation is shipped with the EML distribution (see the
         "EML Parser").
         
-        Here's a fragemnt of an example xml doc to illustrate:
+        Here's a fragment of an example xml doc to illustrate:
         <programlisting><![CDATA[
             ...
             <creator id="id.p1">
@@ -505,7 +505,7 @@
         hierarchical so where you use different elements is very important. For
         instance, if you use a TemporalCoverage element and reference it to a
         dataset element, you are saying that that entire dataset took place
-        during that time. If, instead, you reference it to a DataTable, you
+        during that time. If, instead, you reference it to a dataTable, you
         are saying that only that table was covered by that time period. You
         must gauge exactly what you are trying to describe in the structure
         that you are using. Questions about possible bugs in the definitions
@@ -525,11 +525,11 @@
         <para> The eml-methods module describes the methods followed
         in the creation of the dataset being described, including
         description of field, laboratory and processing steps,
-        sampling methods and units, quality control proceudures. The
+        sampling methods and units, quality control procedures. The
         eml-methods module is used to describe the "actual" procedures
         that are used in the creation or the subsequent processing of
         a dataset. Likewise, eml-methods is used to describe
-        proccesses that have been used to define / improve the quality
+        processes that have been used to define / improve the quality
         of a data file, or to identify potential problems with the
         data file. The eml-protocol module is intended to be used to
         document a "prescribed" procedure, whereas the eml-method
@@ -539,7 +539,7 @@
         "method" is used in the "descriptive" sense. This distinction
         allows managers to build a protocol library of well-known,
         established protocols (procedures), but also document what
-        procedure was truely performed in relation to the established
+        procedure was truly performed in relation to the established
         protocol. The method may have diverged from the protocol
         purposefully, or perhaps incidentally, but the procedural
         lineage is still preserved and understandable.

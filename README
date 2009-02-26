@@ -13,8 +13,8 @@
 #     For Details: http://knb.ecoinformatics.org/
 #
 #        '$Author: obrien $'
-#          '$Date: 2008-12-09 19:19:10 $'
-#      '$Revision: 1.44 $'
+#          '$Date: 2009-02-26 21:10:21 $'
+#      '$Revision: 1.45 $'
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -185,12 +185,13 @@ Schema changes:
 
 Parser :
 3232: EML parser should use full-schema-checking
+3836: runEMLParser script should include sax-validate
 
 Stylesheets :
 3508: create a stylesheet for EML2.0.x to EML 2.1.0
 3590: eml-documentation stylesheet problem with derived content.
 2048: param attributeindex defined twice in eml-settings.xsl
-2085: Access ontrol rules adapted for 2.0.1 and 2.1 (currently not shown)
+2085: Access control rules adapted for 2.0.1 and 2.1 (currently not shown)
 2147: EML Stylesheet problem with web address URL's
 2226: EML2 style sheet double the number of complex delimited f...
 3492: the word 'unit' should be pluralized by default

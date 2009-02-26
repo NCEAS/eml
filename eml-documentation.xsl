@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2008-12-16 00:36:56 $'
- *    '$Revision: 1.54 $'
+ *        '$Date: 2009-02-26 21:10:21 $'
+ *    '$Revision: 1.55 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -804,9 +804,9 @@
         <!--<xsl:value-of select="./xs:appinfo/doc:description"/>-->
         <xsl:apply-templates select="./xs:appinfo/doc:description" mode="docbook"></xsl:apply-templates>
         <xsl:if test="./xs:appinfo/doc:example">
-          <br>
+          <br></br>
             <span class="boldtext">Example(s): </span>
-          </br>
+          <br></br>
           <xsl:for-each select="./xs:appinfo/doc:example">
             <xsl:value-of select="."></xsl:value-of>
             <br></br>
