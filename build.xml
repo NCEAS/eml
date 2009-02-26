@@ -14,9 +14,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: tao $'
-          '$Date: 2008-12-01 19:52:58 $'
-      '$Revision: 1.111 $'
+        '$Author: obrien $'
+          '$Date: 2009-02-26 00:16:16 $'
+      '$Revision: 1.112 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,14 +50,15 @@
 		<property name="servletpath" value="/emlparser"/>
 		<property name="version" value="2.1.0"/>
 		<!-- namespaces that the servlet should auto resolve -->
-		<property name="namespaces"
+	<property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
               eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
-			  eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
-			  eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
-			  eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
+              eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
+			        eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
+			        eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
               http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
-			  http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
+			       http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
+		
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
@@ -143,7 +144,7 @@
 	<!-- Generate HTML documentation using an XSLT transform -->
 	<!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-	<target name="docs" depends="init,docbookhtml,faqhtml,tablehtml">
+	<target name="docs" depends="init,docbookhtml,faqhtml,tablehtml,eml210infohtml">
 		<style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
            includes="*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
 		<style basedir="." destdir="${build.docs}" style="members.xsl" classpath="${cpath}" 
@@ -187,7 +188,7 @@
 		<mkdir dir="${ver.docs}"/>
 		<mkdir dir="${ver.src}"/>
 		<mkdir dir="${ver.tst}"/>
-		<mkdir dir="${ver.dir}/style"/>
+<!--		<mkdir dir="${ver.dir}/style"/> -->
 		<copy file="./build.xml" todir="${ver.dir}"/>
 		<copy file="./LICENSE" todir="${ver.dir}"/>
 		<copy file="./README" todir="${ver.dir}"/>
@@ -220,9 +221,9 @@
 				<exclude name="${datamanager.dir}/**"/>
 			</fileset>
 		</copy>
-		<copy todir="${ver.dir}/style">
+<!--		<copy todir="${ver.dir}/style">
 			<fileset dir="${style.dir}"/>
-		</copy>
+		</copy> -->
 
 		<delete file="./eml-${version}.zip"/>
 		<zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
