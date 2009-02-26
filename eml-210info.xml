@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-24 21:54:39 $'
-      '$Revision: 1.14 $'
+          '$Date: 2009-02-26 00:33:34 $'
+      '$Revision: 1.15 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -256,9 +256,9 @@ whats new in 2.1 -->
           <para>Typing of &lt;gRing&gt; corrected</para>
         </question>
         <answer>
-          <para>The content of the  &lt;gRing&gt; elementwas retyped to make these nodes more usable. This
+          <para>The content of the  &lt;gRing&gt; element was retyped to make these nodes more usable. This
             element is generally analogous to the FGDC component for ring. This element should now contain 
-            a string       comprised of a comma-delimited sequence of longltude and latitude values for vertex
+            a string       comprised of a comma-delimited sequence of longitude and latitude values for vertex
             coordinates (in decimal degrees), as in the example below. For more information, see the normative documents 
             for gRing in the <ulink url="eml-coverage.html#gRing">
 coverage module</ulink>. <programlisting><![CDATA[
@@ -281,7 +281,7 @@ coverage module</ulink>. <programlisting><![CDATA[
           notation while maintaining backward compatibility. Authors should keep 
           in mind that there are still advantages to using decimal numbers for bounds, 
           because the decimal data type maintains precision during storage while 
-          the floating point type does not. An alternative datatype, "precisionDecimal" 
+          the floating point type does not. An alternative type, "precisionDecimal" 
           (corresponding to the IEEE type "floating-point decimal”), may be available 
           in the next version of XML Schema (i.e.,  v1.1, a working draft as of late 2008).
            It combines features of both the decimal and float types in that it supports 
@@ -589,7 +589,7 @@ converting your eml -->
           </listitem>
                    <listitem>
          <para>Download the EML Utilities module which includes the transformation stylesheet "eml201to210.xsl"
-         from <ulink url="PUT A VALID URL HERE">PUT A VALID URL HERE</ulink>.</para>
+         from <ulink url="http://knb.ecoinformatics.org/software/eml/">http://knb.ecoinformatics.org/software/eml/</ulink>.</para>
           </listitem>
         </orderedlist>
         </para>
@@ -604,7 +604,7 @@ converting your eml -->
                   <programlisting>
  xsltproc eml201to210.xsl eml201_doc.xml > eml210_doc.xml                  </programlisting>
                   <programlisting>
- xsltproc -output eml210_doc.xml path/to/styelsheet/eml201to210.xsl eml201_doc.xml              </programlisting>
+ xsltproc -output eml210_doc.xml path/to/stylesheet/eml201to210.xsl eml201_doc.xml              </programlisting>
                 To include a new value for the packageId attribute, the stylesheet will accept a parameter 
                  called 'package-id' from the calling program:
                   <programlisting>
@@ -647,14 +647,14 @@ msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programl
            create valid EML 2.1.0.
           <orderedlist>
               <listitem>
-                <para>An &lt;access&gt; tree is present in &lt;additonalMetadata&gt;, but an adjacent &lt;describes&gt; 
+                <para>An &lt;access&gt; tree is present in &lt;additionalMetadata&gt;, but an adjacent &lt;describes&gt; 
                 element did not reference a &lt;distribution&gt; node. The &lt;access&gt; tree will be left in 
                 &lt;additionalMetadata&gt;, the rest of the document transformed, and a message printed to 
                 notify the user. 
                 </para>
               </listitem>
             <listitem>
-                <para>Two (or more) &lt;access&gt; trees are present in &lt;additonalMetadata&gt;, and 
+                <para>Two (or more) &lt;access&gt; trees are present in &lt;additionalMetadata&gt;, and 
                 reference the same &lt;distribution&gt; element via their sibling &lt;describes&gt; tags. 
                 If the "orderBy" attributes on all &lt;access&gt; elements match, then the &lt;access&gt; 
                 trees will be merged (with rules listed in document order) and moved to the appropriate 
@@ -663,15 +663,15 @@ msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programl
                 (while the rest of the document transformed) and a message will be printed to notify the user.</para>
               </listitem>
               <listitem>
-                <para>Empty content appears in an element which is typed as "nonEmptyString" in EML2.1.0.
+                <para>Empty content appears in an element which is typed as "NonEmptyString" in EML2.1.0.
                  The document is transformed but the user warned that it will not be valid EML 2.1.0 due to the 
                  missing content. </para>
               </listitem>
  
             </orderedlist>
           </para>
-          <para>In addition to those noted above, there are possible EML constructs which the stylesheet c
-          annot detect, but which might result in invalid EML 2.1.0. For example, by design &lt;additionalMetadata&gt; 
+          <para>In addition to those noted above, there are possible EML constructs which the stylesheet
+          cannot detect, but which might result in invalid EML 2.1.0. For example, by design &lt;additionalMetadata&gt; 
           sections are            parsed laxly, and so it is possible for their content in EML-2.0.0/1 to
             contain &lt;access&gt; trees that are not valid EML.
             Also, the content of several elements has been more tightly
