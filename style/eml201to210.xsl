@@ -134,6 +134,9 @@
         </xsl:choose>
       </xsl:for-each>
     </xsl:element>
+	 <xsl:message terminate="no">
+		 <xsl:call-template name="output_message4_warn"/>
+	  </xsl:message>
   </xsl:template>
 
   <!-- handle make changes under main module (dataset, citation, protocol and software) -->
@@ -257,8 +260,8 @@
               </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message terminate="yes">
-                <xsl:call-template name="output_message1_fail">
+              <xsl:message terminate="no">
+                <xsl:call-template name="output_message1_warn">
                 <xsl:with-param name="current_node" select="current()"></xsl:with-param>
               </xsl:call-template> </xsl:message>
             </xsl:otherwise>
@@ -336,7 +339,7 @@
   <xsl:template match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
-        <xsl:call-template name="output_message3_fail">
+        <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
       </xsl:message>
@@ -345,7 +348,7 @@
   <xsl:template mode="copy-no-ns-with-access-move" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
-        <xsl:call-template name="output_message3_fail">
+        <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
       </xsl:message>
@@ -354,7 +357,7 @@
   <xsl:template mode="copy-no-ns" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
-        <xsl:call-template name="output_message3_fail">
+        <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="name(.)"/>
         </xsl:call-template>
       </xsl:message>
@@ -411,6 +414,7 @@
     <xsl:param name="current_node"/>
     <!-- test if this additionalMetadata part has "access" element-->
     <xsl:variable name="accessCount" select="count(access | metadata/access)"></xsl:variable>
+	
     <xsl:choose>
       <xsl:when test="$accessCount &lt; 1">
         <!-- no access tree here. Scenario 1 -->
@@ -461,10 +465,12 @@
           </xsl:when>
           <xsl:otherwise>
             <!-- Scenario 2 and 3 -->
+			 <xsl:variable name="describes" select="./describes"/>
             <xsl:call-template name="handle-describe-access-in-additional-metadata">
-              <!--select node-set of describe which doesn't refer physical/distribtuion or software/implmentation/distribution -->
+              <!--select node-set of describe which doesn't refer physical/distribtuion or software/implmentation/distribution and it doesn't have both "denyFirst" and "allowFirst"-->
               <xsl:with-param name="describes-list"
-                select="./describes[not(//physical/distribution/@id =.) and not(//software/implementation/distribution/@id = .)] "
+                select="./describes[(not(//physical/distribution/@id =.) and not(//software/implementation/distribution/@id = .)) or
+				   ((//physical/distribution/@id =. or //software/implementation/distribution/@id = .) and (//additionalMetadata[describes = $describes and (access[@order='allowFirst'] or metadata/access[@order='allowFirst'])] and //additionalMetadata[describes = $describes and (access[@order='denyFirst'] or metadata/access[@order='denyFirst'])]))]"
               ></xsl:with-param>
             </xsl:call-template>
           </xsl:otherwise>
@@ -544,10 +550,10 @@
     these templates output mesages for the user if an additionalMetdata section cant be moved. -->
   <!-- 
     this message for scenario 1, order attribute conflict -->
-  <xsl:template name="output_message1_fail">
+  <xsl:template name="output_message1_warn">
     <xsl:param name="current_node"/>
     <xsl:text>
-      Conversion to EML2.1 failed:
+      Warning:
       The EML 2.0.1 document you wish to transform has multiple access subtrees in addtionalMetadata 
       blocks which describe the same entity.  However, their "order" attributes do not match, so these 
       access rules cannot be combinded under the entity's distribution node. Please fix the incoming 
@@ -572,12 +578,24 @@
     <xsl:value-of select="$current_node"/>
   </xsl:template>
 	
-  <xsl:template name="output_message3_fail">
+  <!-- message for empty string element-->
+  <xsl:template name="output_message3_warn">
     <xsl:param name="current_node"/>
     <xsl:text>
       Warning:
-      The EML 2.0.1 document has empty string value in some elements which shouldn't be empty string in EML 2.1.0 sepcification - </xsl:text>
+      The EML 2.0.1 document has an empty string (or whitespace) in an element which cannot be empty in EML 2.1.0 sepcification - </xsl:text>
     <xsl:value-of select="$current_node"/>
+</xsl:template>    
+	
+	
+	<!-- message for reminding  user  that the eml 210 document may be invalid-->
+  <xsl:template name="output_message4_warn">
+ 
+    <xsl:text>
+      Warning:
+      The EML 2.0.1 document has been transformed into an EML 2.1.0 document. However, you should check if it is valid. 
+	  See http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-210info.html for more information.</xsl:text>
+    
 </xsl:template>    
   <!-- 
     
