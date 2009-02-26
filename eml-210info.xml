@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-26 00:33:34 $'
-      '$Revision: 1.15 $'
+          '$Date: 2009-02-26 17:39:29 $'
+      '$Revision: 1.16 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -527,18 +527,14 @@ converting your eml -->
           <para>About the EML conversion stylesheet</para>
         </question>
         <answer>
-          <para>An XSL stylesheet, 'eml201to210.xsl' is provided with the EML 2.1.0
-          distribution to convert valid EML 2.0-series documents to EML 2.1.0.
-          The intent of this reference to not to provide comprehensive
-            instructions for transforming XML documents since adequate information is available
-            elsewhere. A few specific examples will be given here, along with recommended 
-            practices and discussion of issues            likely to occur when transforming EML 2.0 to 2.1.  
-            The reader is referred to XSLT references available at W3C schools 
-            (http://www.w3schools.com/xsl/), Wikipedia (http://www.wikipedia.org/), W3C 
-            (http://www.w3.org/Style/XSL/) and various books for more information about 
-            using XSLT to transform XML documents.</para>
-          <para>The stylesheet performs these basic tasks: <orderedlist>
-              <listitem>
+          <para>An XSL stylesheet is provided with the EML Utilities
+           to convert valid EML 2.0-series documents to EML 2.1.0 (see 
+           <ulink url="http://knb.ecoinformatics.org/software/eml/">http://knb.ecoinformatics.org/software/eml/</ulink>). 
+           Users will need to obtain their own program capable of transforming XML 
+           using a XSL. The stylesheet performs  basic tasks to create a 
+           template EML 2.1.0 document (below). For more information, see the Utilities documentation.
+           <orderedlist>
+          <listitem>
                 <para>Updates namespaces to eml-2.1.0 and stmml-1.1</para>
               </listitem>
               <listitem>
@@ -546,90 +542,20 @@ converting your eml -->
                   &lt;metadata&gt; tags</para>
               </listitem>
               <listitem>
-                <para>Renames elements &lt;method&gt; and &lt;datetime&gt;</para>
+                <para>Renames elements whose spelling has changed (&lt;method&gt; and &lt;datetime&gt;)</para>
               </listitem>
               <listitem>
-                <para>Moves access trees:</para>
-                <orderedlist>
-                  <listitem>
-                    <para>if an access tree was a child of a dataset, citation, software or
-                      protocol, it will be moved to the eml-level.</para>
+                <para>Copies access trees from &lt;additionalMetadata&gt; to other parts of the document (for common 
+                constructs)</para>
                   </listitem>
-                  <listitem>
-                    <para>if an access tree is found in an &lt;additionalMetadata&gt; section which
-                     references
-                      a distribution node via a &lt;describes&gt; element, it will be
-                      moved to the corresponding distribution node.</para>
-                  </listitem>
-                </orderedlist>
-              </listitem>
               <listitem>
-                <para>Replaces the content of the "packageId" attribute (see
-                the root element, &lt;eml:eml&gt;) when a parameter named "package-id"
-                is passed to it. Without the parameter, the existing packageId content is retained.</para>
+                <para>Optionally replaces the content of the "packageId" attribute on the root 
+                element, &lt;eml:eml&gt;, using a parameter</para>
               </listitem>
             </orderedlist>
-          </para>
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question>
-          <para>Converting EML instances using the XSL stylesheet</para>
-        </question>
-        <answer>
-        <para></para>
-        <para>Software: 
-        <orderedlist>
-          <listitem>
-         <para>You will first need to identify or obtain a program (or programming language module) 
-         capable of transforming XML using an XSL stylesheet. Suitable programs are available for 
-         all computer platforms, and modules are included in or are available for most programming 
-         and scripting languages. For example, Linux distributions generally include a command line utility 
-         called "xsltproc".</para>
-          </listitem>
-                   <listitem>
-         <para>Download the EML Utilities module which includes the transformation stylesheet "eml201to210.xsl"
-         from <ulink url="http://knb.ecoinformatics.org/software/eml/">http://knb.ecoinformatics.org/software/eml/</ulink>.</para>
-          </listitem>
-        </orderedlist>
-        </para>
+    </para>
         
-          <para>Examples:
-             <orderedlist>
-              <listitem>
-                <para>Here are examples illustrating how to transform an EML document from the
-                 command line using xsltproc. In the first example, the redirect operator is used to save
-                 the output to a file.     An explicit output argument can also be used instead of a redirect.
-       
-                  <programlisting>
- xsltproc eml201to210.xsl eml201_doc.xml > eml210_doc.xml                  </programlisting>
-                  <programlisting>
- xsltproc -output eml210_doc.xml path/to/stylesheet/eml201to210.xsl eml201_doc.xml              </programlisting>
-                To include a new value for the packageId attribute, the stylesheet will accept a parameter 
-                 called 'package-id' from the calling program:
-                  <programlisting>
- xsltproc -stringparam package-id knb-lter-sbc.1006.4 eml201to210.xsl eml201_doc.xml > eml210_doc.xml                   </programlisting>
-                       More complete documentation for the xsltproc program is available at 
-                       <ulink url="http://xmlsoft.org/XSLT/xsltproc2.html">http://xmlsoft.org/XSLT/xsltproc2.html</ulink>, or with
-                       "man xsltproc" at your system prompt.
-                </para>
-              </listitem>
-              <listitem>
-                <para> Methods in the Apache Xalan Java library (<ulink url="http://xml.apache.org/xalan-j/commandline.html">http://xml.apache.org/xalan-j/commandline.html</ulink>) can also be used to run the transform from a Linux, Macintosh or Windows command line if a Java JRE (Java runtime environment) and the Xalan classes are installed. Use the ‘-IN’ parameter to specify the source document, ‘-XSL’ parameter to specify the stylesheet, and ‘-OUT’ parameter to specify the output filename, as follows:
-                    <programlisting>
-java org.apache.xalan.xslt.Process -IN eml201_doc.xml -XSL eml201to210.xsl -OUT eml210_doc.xml                </programlisting>
-                </para>
-              </listitem>
-              <listitem>
-                <para>Windows users can also use Microsoft MSXML and the msxsl.exe command line utility, 
-                  which is freely available
-                  from sources such as  <ulink url="http://www.download.com/windows/">CNET</ulink> and included with SynchroSoft’s oXygen XML editor.
-                    <programlisting>
-msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programlisting>
-                </para>
-              </listitem>
-            </orderedlist>
-          </para>
+ 
         </answer>
       </qandaentry>
       <qandaentry>
@@ -639,84 +565,38 @@ msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                </programl
         <answer>
                 <para>
            Because of the flexibility allowed in EML, the stylesheet may encounter EML 2.0.1 structures that 
-           cannot be transformed as stated above or that may result in invalid EML 2.1.0 after processing. 
-           The stylesheet is able to detect some of these conditions (below). In these cases, the stylesheet 
-           creates the new EML 2.1.0 document, but also issues an alert about the potential problem. This 
-           may mean that the EML 2.0.1 document must be a) examined manually, edited and reprocessed, 
-           b) transformed by your own custom method, or c) the stylesheet's output used as a template to 
-           create valid EML 2.1.0.
-          <orderedlist>
-              <listitem>
-                <para>An &lt;access&gt; tree is present in &lt;additionalMetadata&gt;, but an adjacent &lt;describes&gt; 
-                element did not reference a &lt;distribution&gt; node. The &lt;access&gt; tree will be left in 
-                &lt;additionalMetadata&gt;, the rest of the document transformed, and a message printed to 
-                notify the user. 
-                </para>
-              </listitem>
-            <listitem>
-                <para>Two (or more) &lt;access&gt; trees are present in &lt;additionalMetadata&gt;, and 
-                reference the same &lt;distribution&gt; element via their sibling &lt;describes&gt; tags. 
-                If the "orderBy" attributes on all &lt;access&gt; elements match, then the &lt;access&gt; 
-                trees will be merged (with rules listed in document order) and moved to the appropriate 
-                &lt;distribution&gt; element. If the "orderBy" attributes are not identical, the stylesheet 
-                will not attempt to resolve the issue.  The &lt;access&gt; trees will all remain in &lt;additionalMetadata&gt; 
-                (while the rest of the document transformed) and a message will be printed to notify the user.</para>
-              </listitem>
-              <listitem>
-                <para>Empty content appears in an element which is typed as "NonEmptyString" in EML2.1.0.
-                 The document is transformed but the user warned that it will not be valid EML 2.1.0 due to the 
-                 missing content. </para>
-              </listitem>
- 
-            </orderedlist>
-          </para>
-          <para>In addition to those noted above, there are possible EML constructs which the stylesheet
-          cannot detect, but which might result in invalid EML 2.1.0. For example, by design &lt;additionalMetadata&gt; 
-          sections are            parsed laxly, and so it is possible for their content in EML-2.0.0/1 to
-            contain &lt;access&gt; trees that are not valid EML.
-            Also, the content of several elements has been more tightly
-            constrained in EML 2.1.0 (e.g., latitude and longitude), but only empty content is 
-            reasonably detected by the transformation stylesheet.</para>
-            <para>
-            For these reasons, document authors are advised to check the validity of their new EML 2.1 using the
-            EML parser after transformation. EML instance documents can be validated in two ways: <orderedlist>
+           cannot be transformed or that may result in invalid EML 2.1.0 after processing. 
+           For example, by design &lt;additionalMetadata&gt; sections are parsed laxly, and 
+           so it is possible for their content in EML-2.0.0/1 to contain &lt;access&gt; trees 
+           which are invalid. Also, the content of several elements has been more tightly
+            constrained in EML 2.1.0 (e.g., latitude and longitude), and data types are not 
+            detectable by a stylesheet. Document authors are advised to check the validity of 
+            their new EML 2.1.0 after transformation. EML instance documents 
+            can be validated in these ways: <orderedlist>
               <listitem>
                 <para>With the <ulink url="http://knb.ecoinformatics.org/emlparser/ ">online EML
-                    Parser. </ulink>
+                    Parser</ulink>. The online parser will validate all versions of EML.
                 </para>
               </listitem>
               <listitem>
                 <para>Using the Parser that comes with EML. To execute it, change into the 'lib'
                   directory of the EML release and run the 'runEMLParser' script passing your EML
-                  instance file as a parameter. The script performs two actions: it validates the document against the
-                  EML 2.1 schema, and it checks the validity of references and id attributes (as of EML 2.1.0).</para>
-              </listitem>
-            </orderedlist>
-          </para>
-  
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question>
-          <para>Notes regarding EML and Metacat</para>
-        </question>
-        <answer>
-          <para>
-            <orderedlist>
-              <listitem>
+                  instance file as a parameter. The script performs two actions: it checks the validity of references 
+                  and id attributes, and it validates the document against the EML 2.1 schema.
+                  The EML parser included with the distribution is capable of checking only EML 2.1.0 documents, and 
+                  <emphasis>cannot</emphasis> be used to validate earlier versions (e.g., EML 2.0.1).
+                  </para>
+              </listitem> 
+                    <listitem>
                 <para>If you are planning to contribute your EML 2.1.0  document to a Metacat repository, note 
                   that the Metacat servlet checks incoming documents for validity as part of the insertion process.
                 </para>
               </listitem>
-              <listitem>
-                <para>Metacat submitters should be aware that some EML instances have content in the
-                  'packageId' attribute which is intended to match Metacat's docid. In this case, it is 
-                  recommended that you make use of the stylesheet's 'package-id' parameter to increment
-                  the revision number.</para>
-              </listitem>
             </orderedlist>
           </para>
-        </answer>
+  
+   
+    </answer>
       </qandaentry>
     </qandaset>
     <para>&nbsp;</para>
