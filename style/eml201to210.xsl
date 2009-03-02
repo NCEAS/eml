@@ -340,7 +340,7 @@
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
-          <xsl:with-param name="current_node" select="name(.)"/>
+          <xsl:with-param name="current_node" select="."/>
         </xsl:call-template>
       </xsl:message>
   </xsl:template>
@@ -349,7 +349,7 @@
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
-          <xsl:with-param name="current_node" select="name(.)"/>
+          <xsl:with-param name="current_node" select="."/>
         </xsl:call-template>
       </xsl:message>
   </xsl:template>
@@ -358,7 +358,7 @@
        and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
-          <xsl:with-param name="current_node" select="name(.)"/>
+          <xsl:with-param name="current_node" select="."/>
         </xsl:call-template>
       </xsl:message>
   </xsl:template>
@@ -584,7 +584,7 @@
     <xsl:text>
       Warning:
       The EML 2.0.1 document has an empty string (or whitespace) in an element which cannot be empty in EML 2.1.0 sepcification - </xsl:text>
-    <xsl:value-of select="$current_node"/>
+    <xsl:apply-templates select="$current_node" mode="get-full-path"/>
 </xsl:template>    
 	
 	
@@ -600,6 +600,14 @@
   <!-- 
     
     end of user message templates -->
+	
+	<!-- get full path of given element-->
+    <xsl:template match="node()" mode="get-full-path">
+      <xsl:for-each select="ancestor-or-self::*">
+        <xsl:text>/</xsl:text><xsl:value-of select="name()" />
+      </xsl:for-each>
+    </xsl:template>
+
 
 
 
