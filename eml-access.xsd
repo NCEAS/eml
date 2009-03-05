@@ -18,9 +18,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: obrien $'
-          '$Date: 2009-02-25 23:51:53 $'
-      '$Revision: 1.81 $'
+        '$Author: jones $'
+          '$Date: 2009-03-05 18:59:36 $'
+      '$Revision: 1.82 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -62,9 +62,8 @@
 			  <orderedlist>
 			  <listitem>
 			  <para>
-			  1) Each top-level resource module
-              (eml-dataset, eml-literature, eml-software, and eml-protocol)
-              may be accompanied by an optional &lt;access&gt; element 
+			  1) The top-level "eml" element may have an optional
+              &lt;access&gt; element 
               that is used to establish the default access
               control for the entire EML package.  
               If this access element is omitted from the
@@ -132,7 +131,7 @@
         ...
           &lt;distribution&gt;
           ...
-            &lt;access 
+            &lt;access id="access123"
             authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org" 
             order="allowFirst"&gt;
               &lt;deny&gt;
@@ -150,7 +149,7 @@
           &lt;distribution&gt;
             ...
             &lt;access&gt;
-              &lt;references&gt;entity123&lt;/references&gt;
+              &lt;references&gt;access123&lt;/references&gt;
             &lt;/access&gt;
           &lt;/distribution&gt;
         &lt;/physical&gt;
@@ -178,7 +177,7 @@
             <para>
             In summary, access rules can be applied in two places in an
             eml document. Default access rules are established
-            in the top &lt;access&gt; element for the main eml resource (e.g.,
+            in the top &lt;access&gt; element for the main eml document (e.g.,
             "/eml/access").  These default rules can be overridden
             for particular data entities by adding additional &lt;access&gt;
             elements in the physical/distribution trees of those entities.
