@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:res="eml://ecoinformatics.org/resource-2.1.0" xmlns="eml://ecoinformatics.org/access-2.1.0" targetNamespace="eml://ecoinformatics.org/access-2.1.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" schemaLocation="eml-resource.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" 
+  xmlns:res="eml://ecoinformatics.org/resource-2.1.0" 
+  xmlns="eml://ecoinformatics.org/access-2.1.0" 
+  targetNamespace="eml://ecoinformatics.org/access-2.1.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" 
+             schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.1.0" 
+             schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-access.xsd,v $'
@@ -18,9 +24,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2009-03-05 18:59:36 $'
-      '$Revision: 1.82 $'
+        '$Author: cjones $'
+          '$Date: 2009-03-05 20:08:47 $'
+      '$Revision: 1.83 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -59,56 +65,84 @@
             <para>        
               There are two mechanisms for including access control 
               via the eml-access module: 
-			  <orderedlist>
-			  <listitem>
-			  <para>
-			  1) The top-level "eml" element may have an optional
-              &lt;access&gt; element 
-              that is used to establish the default access
-              control for the entire EML package.  
-              If this access element is omitted from the
-              document, then the package submitter should be
-              given full access to the package but all other users should
-              be denied all access.  To allow the package to be publicly viewable,
-              the EML author must explicitly include a rule stating so.
-              </para>
-			  </listitem>
-			  <listitem>
-			  <para>
-			  2) Exceptions for particular entity-level
-              components of the package can be controlled at a finer grain by
-              using an access description in that entity's physical/distribution
-              tree.  
-              When access control rules are specified at this level, they apply
-              only to the data in the parent distribution element, and not to the metadata.
-              Thus, it will control access to the content of the &lt;inline&gt;
-              element, as well as resources that are referenced by the
-              &lt;online/url&gt; and &lt;online/connection&gt; paths.
-              These exceptions to access for particular data resources are
-              applied after the default access rules at the package-level have been
-               applied, 
-              so  they effectively override the default rules when they overlap.
-			  </para></listitem></orderedlist>
-              </para>
-			  <para>In previous versions of EML access rules for entity-level
-              distribution were contained
-              in &lt;additionalMetadata&gt; sections and referenced via the 
-              &lt;describes&gt; tag. Although in theory these could have referenced 
-             any node, in application such node-level access control is problematic. 
-             Since the most common uses of access control rules were to limit access
-             to specific data entities, the access tree has been placed there explicitly
-             in EML 2.1.0. </para>
-            
+              <orderedlist>
+                <listitem>
+                  <para>
+                    The top-level "eml" element may have an optional 
+                    &lt;access&gt; element that is used to establish the 
+                    default access control for the entire EML package. If 
+                    this access element is omitted from the document, then 
+                    the package submitter should be given full access to the 
+                    package but all other users should be denied all access. 
+                    To allow the package to be publicly viewable, the EML 
+                    author must explicitly include a rule stating so.  Barring 
+                    the existence of a distribution-level &lt;access&gt; element 
+                    (see below), access to data entities will be controlled by 
+                    the package-level &lt;access&gt; element in the 
+                    &lt;eml&gt; element.
+                  </para>
+                </listitem>
+                <listitem>
+                  <para>
+                    Exceptions for particular entity-level components of the 
+                    package can be controlled at a finer grain by using an 
+                    access description in that entity's physical/distribution 
+                    tree. When access control rules are specified at this 
+                    level, they apply only to the data in the parent 
+                    distribution element, and not to the metadata. Thus, it 
+                    will control access to the content of the &lt;inline&gt; 
+                    element, as well as resources that are referenced by the 
+                    &lt;online/url&gt; and &lt;online/connection&gt; paths. 
+                    These exceptions to access for particular data resources 
+                    are applied after the default access rules at the 
+                    package-level have been applied, so they effectively 
+                    override the default rules when they overlap.
+                  </para>
+                </listitem>
+              </orderedlist>
+            </para>
             <para>
-            Access is specified with a choice of child elements, either &lt;allow&gt;
-              or &lt;deny&gt;. Within these rules, values can be assigned for each
-              &lt;principal&gt; using the &lt;permission&gt;
-              element. Users given "read" permission can view the resource;
-              "write" allows changes to the resource excluding changes to the
-              access rules; "changePermission" includes "write" plus the
-              changing of access rules. Users allowed "all" permissions; may do all
-              of the above.
-             </para>
+              In previous versions of EML access rules for entity-level 
+              distribution were contained in &lt;additionalMetadata&gt; 
+              sections and referenced via the &lt;describes&gt; tag. 
+              Although in theory these could have referenced any node, in 
+              application such node-level access control is problematic. 
+              Since the most common uses of access control rules were to 
+              limit access to specific data entities, the access tree has 
+              been placed there explicitly in EML 2.1.0.
+            </para>          
+            <para>
+              Access is specified with a choice of child elements, either 
+              &lt;allow&gt; or &lt;deny&gt;. Within these rules, values can 
+              be assigned for each &lt;principal&gt; using the 
+              &lt;permission&gt; element. Users given &quot;read&quot; permission can 
+              view the resource; &quot;write&quot; allows changes to the resource 
+              excluding changes to the access rules; &quot;changePermission&quot; 
+              includes &quot;write&quot; plus the changing of access rules. Users 
+              allowed &quot;all&quot; permissions; may do all of the above.  Access to 
+              data and metadata is affected by the order attribute of the 
+              &lt;access&gt; element. It is possible for a deny rule to 
+              override an allow rule, and vice versa.  In the case where the 
+              order attribute is set to &quot;allowFirst&quot;, and there are rules 
+              similar to the following (with non-critical sections deleted):
+<literalLayout>
+  &lt;deny&gt;
+    &lt;principal&gt;public&lt;/principal&gt;
+    &lt;permission&gt;read&lt;/permission&gt;
+  &lt;/deny&gt;
+  &lt;allow&gt;
+    &lt;principal&gt;uid=alice,o=NASA,dc=ecoinformatics,dc=org&lt;/principal&gt;
+    &lt;permission&gt;read&lt;/permission&gt;
+  &lt;/allow&gt;
+</literalLayout>
+              the principal &quot;uid=alice ...&quot; will be denied access, 
+              because it is a member of the special &quot;public&quot; 
+              principal, and the deny rule is processed second. For this 
+              allow rule to truly allow access to that principal, the order 
+              attribute should be set to &quot;denyFirst&quot;, and the 
+              allow rule will override the deny rule when it is processed 
+              second.              
+            </para>
             <para>
               An example is given below, with non-critical sections deleted:
 <literalLayout>
@@ -159,13 +193,14 @@
   &lt;eml&gt;
 </literalLayout>
               In this example, the overall default access is to allow the 
-              user=alice (but no one else) to read and write all metadata and data.
-              However,
-              under "entity123" and "entity234", there is an additional rule
-              saying that user=alice does not have write permission.  The net
-              effect is that Alice can read and make changes to the metadata,
-              but cannot make changes to the two data entities. In addition, Alice 
-              cannot change these access rules; although the submitter can.
+              user=alice (but no one else) to read and write all metadata 
+              and data. However, under &quot;entity123&quot; and 
+              &quot;entity234&quot;, there is an additional rule saying 
+              that user=alice does not have write permission. The net 
+              effect is that Alice can read and make changes to the 
+              metadata, but cannot make changes to the two data entities. 
+              In addition, Alice cannot change these access rules; although 
+              the submitter can.
             </para>
             <para>
               This example also shows how the eml-access module, like other modules,
