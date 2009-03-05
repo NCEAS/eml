@@ -17,8 +17,8 @@
      For Details: http://knb.ecoinformatics.org/
 
         '$Author: obrien $'
-          '$Date: 2009-02-26 21:10:21 $'
-      '$Revision: 1.28 $'
+          '$Date: 2009-03-05 22:39:37 $'
+      '$Revision: 1.29 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -175,11 +175,7 @@
         <ulink url="http://knb.ecoinformatics.org/software">
         http://knb.ecoinformatics.org/software</ulink>.  Morpho currently
         supports the EML 2.1.0 release.</para>
-        <para>In addition, the <ulink url="http://ces.asu.edu/bdi/Subjects/xylographa/">Xylographa</ulink>
-        and <ulink url="http://ces.asu.edu/bdi/Subjects/Xanthoria/">Xanthoria
-        systems</ulink> are designed to assist in editing EML documents and
-        in producing EML-compliant metadata from existing database systems.
-        </para>
+
       </answer>
     </qandaentry>
     <qandaentry id="id.8">
@@ -277,7 +273,7 @@
                 </listitem>
                 <listitem>
                   <para>Use a vendor neutral Database-to-XML generator such as
-                <ulink url="http://xml.apache.org/cocoon/">Cocoon</ulink>
+                <ulink url="http://cocoon.apache.org/">Cocoon</ulink>
 
                 (an Apache open source free tool). Cocoon can query the
                 database, generate XML, and has a tool for creating the XSL
