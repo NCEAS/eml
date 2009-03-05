@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2009-02-26 21:10:21 $'
- *    '$Revision: 1.55 $'
+ *        '$Date: 2009-03-05 20:54:40 $'
+ *    '$Revision: 1.56 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -179,7 +179,7 @@
       <xsl:attribute name="id">
         <xsl:value-of select="./doc:moduleName"></xsl:value-of>
       </xsl:attribute>
-      <tr>
+        <tr>
         <td class="tablepanel"> Recommended Usage: </td>
         <td class="tablepanel">
           <xsl:value-of select="normalize-space(./doc:recommendedUsage)"></xsl:value-of>
@@ -213,6 +213,12 @@
           ></xsl:value-of>
         </td>
       </tr>
+      
+      <xsl:choose>
+        <xsl:when test="//doc:moduleName = 'eml-unitTypeDefinitions' ">
+          <!-- no image row -->
+          </xsl:when>
+    <xsl:otherwise>
       <tr>
         <td class="tablepanel"> View an image of the schema: </td>
         <td class="tablepanel">
@@ -223,6 +229,9 @@
             <xsl:value-of select="//doc:moduleName"></xsl:value-of> image</a>
         </td>
       </tr>
+    </xsl:otherwise>
+    </xsl:choose>
+    
     </table>
   </xsl:template>
 
