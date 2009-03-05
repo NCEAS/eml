@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2009-03-05 20:54:40 $'
- *    '$Revision: 1.56 $'
+ *        '$Date: 2009-03-05 22:27:42 $'
+ *    '$Revision: 1.57 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -745,12 +745,17 @@
           </span>
         </xsl:when>
         <xsl:otherwise>
-          <a class="sitelink">
+          <a class="sitelink"> 
+             <xsl:call-template name="externalNamespaceLink">
+              <xsl:with-param name="typename" select="./@base"></xsl:with-param>
+            </xsl:call-template>
+                
+            <!-- 
             <xsl:attribute name="href">
               <xsl:text>#</xsl:text>
               <xsl:value-of select="./@base"></xsl:value-of>
             </xsl:attribute>
-            <xsl:value-of select="./@base"></xsl:value-of>
+            <xsl:value-of select="./@base"></xsl:value-of> -->
           </a>
         </xsl:otherwise>
       </xsl:choose> (by <xsl:value-of select="name(.)"></xsl:value-of>) </p>
@@ -855,6 +860,17 @@
           <xsl:value-of select="$typename"></xsl:value-of>
         </a>
       </xsl:when>
+      <xsl:when test="$namespaceprefix = 'pro'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-protocol.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when>
+      
+      
       <xsl:when test="$namespaceprefix = 'md'">
         <a class="sitelink">
           <xsl:attribute name="href">
@@ -972,6 +988,44 @@
           <xsl:value-of select="$typename"></xsl:value-of>
         </a>
       </xsl:when>
+      <xsl:when test="$namespaceprefix = 'sr'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-spatialRaster.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'sv' ">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-spatialVector.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when>
+      <xsl:when test="$namespaceprefix = 'sp' ">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-storedProcedure.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when>   
+      <xsl:when test="$namespaceprefix = 'v'">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-view.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when> 
+     
+      
       <xsl:when test="$namespaceprefix = 'prot'">
         <a class="sitelink">
           <xsl:attribute name="href">
