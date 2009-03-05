@@ -16,9 +16,9 @@
                   The David and Lucile Packard Foundation
      For Details: http://knb.ecoinformatics.org/
 
-        '$Author: jones $'
-          '$Date: 2009-03-05 18:57:21 $'
-      '$Revision: 1.18 $'
+        '$Author: obrien $'
+          '$Date: 2009-03-05 19:49:33 $'
+      '$Revision: 1.19 $'
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -530,8 +530,7 @@ converting your eml -->
           <para>An XSL stylesheet is provided with the EML Utilities
            to convert valid EML 2.0-series documents to EML 2.1.0 (see 
            <ulink url="http://knb.ecoinformatics.org/software/eml/">http://knb.ecoinformatics.org/software/eml/</ulink>). 
-           Users will need to obtain their own program capable of transforming XML 
-           using a XSL. The stylesheet performs  basic tasks to create a 
+           The stylesheet performs  basic tasks to create a 
            template EML 2.1.0 document (below). For more information, see the Utilities documentation.
            <orderedlist>
           <listitem>
@@ -589,7 +588,7 @@ converting your eml -->
               </listitem> 
                     <listitem>
                 <para>If you are planning to contribute your EML 2.1.0  document to a Metacat repository, note 
-                  That the Metacat servlet checks all versions of incoming EML for validity as part of the insertion process. 
+                  that the Metacat servlet checks all versions of incoming EML for validity as part of the insertion process. 
                 </para>
               </listitem>
             </orderedlist>
