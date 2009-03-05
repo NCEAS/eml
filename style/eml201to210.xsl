@@ -337,7 +337,7 @@
 	<!-- if the element has no element child and value is empty string or whitespace and element name is not recordDelimiter, physicalLineDelimiter and fieldDelimiter,
       the tranformation will be terminated. -->
   <xsl:template match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
-       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+       and  name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
@@ -346,7 +346,7 @@
   </xsl:template>
     
   <xsl:template mode="copy-no-ns-with-access-move" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
-       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+       and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
@@ -355,7 +355,7 @@
   </xsl:template>
     
   <xsl:template mode="copy-no-ns" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
-       and name(.) != 'para' and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+       and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
