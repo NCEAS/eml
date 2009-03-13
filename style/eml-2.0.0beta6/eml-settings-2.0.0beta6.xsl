@@ -7,8 +7,8 @@
   *  For Details: http://www.nceas.ucsb.edu/
   *
   *   '$Author: tao $'
-  *     '$Date: 2009-03-13 17:19:55 $'
-  * '$Revision: 1.4.8.1 $'
+  *     '$Date: 2009-03-13 18:05:06 $'
+  * '$Revision: 1.4.8.2 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@
 -->
     
   <xsl:param name="qformat">default</xsl:param>
+  <xsl:param name="contextURL"/>
   
 <!-- 
     /**
@@ -66,7 +67,7 @@
     */
 -->
 
-<xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
+<xsl:param name="stylePath"><xsl:value-of select="$contextURL" />/style/skins</xsl:param>
 
 
 <!--
@@ -82,7 +83,7 @@
     */
 -->
 
-<xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>     
+<xsl:param name="styleCommonPath"><xsl:value-of select="$contextURL" />/style/common</xsl:param>     
     
 <!-- 
     /**
