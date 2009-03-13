@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-12-06 01:43:32 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: tao $'
+  *     '$Date: 2009-03-13 17:19:55 $'
+  * '$Revision: 1.4.8.1 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -73,11 +73,11 @@
         <ul>
           <xsl:for-each select="//triple">
             <li>
-             <a><xsl:attribute name="href"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=@default-style@&docid=]]><xsl:value-of select="./subject"/></xsl:attribute><xsl:value-of select="./subject"/></a>
+             <a><xsl:attribute name="href"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]><xsl:value-of select="./subject"/></xsl:attribute><xsl:value-of select="./subject"/></a>
              <xsl:text> </xsl:text>
              <xsl:value-of select="./relationship"/>
              <xsl:text> </xsl:text>
-             <a><xsl:attribute name="href"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=@default-style@&docid=]]><xsl:value-of select="./object"/></xsl:attribute><xsl:value-of select="./object"/></a>
+             <a><xsl:attribute name="href"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]><xsl:value-of select="./object"/></xsl:attribute><xsl:value-of select="./object"/></a>
             </li>
           </xsl:for-each>
         </ul>

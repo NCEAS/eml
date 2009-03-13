@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: brooke $'
-  *     '$Date: 2003-11-25 17:18:39 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: tao $'
+  *     '$Date: 2009-03-13 17:19:55 $'
+  * '$Revision: 1.4.8.1 $'
   * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,11 +33,6 @@
   * transformation of xml files that are valid with respect to the 
   * applicable dtd of the Ecological Metadata Language (EML).
   
-  * Some of these paths incorporate values of the form: @token-name@; these are 
-  * intended to allow an Ant (http://jakarta.apache.org/ant/index.html) build 
-  * script to replace the tokens automatically with the correct values at build/
-  * install time.  If Ant is not used, the tokens may simply be edited by hand 
-  * to point to the correct resources.   
   * Note that the values given below may be overridden by passing parameters to 
   * the XSLT processor programatically, although the procedure for doing so is 
   * vendor-specific.  Note also that these parameter definitions will be overridden 
@@ -57,7 +52,7 @@
     */
 -->
     
-  <xsl:param name="qformat">@default-style@</xsl:param>
+  <xsl:param name="qformat">default</xsl:param>
   
 <!-- 
     /**
@@ -71,7 +66,7 @@
     */
 -->
 
-<xsl:param name="stylePath">@style-skins-path@</xsl:param>
+<xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
 
 
 <!--
@@ -87,7 +82,7 @@
     */
 -->
 
-<xsl:param name="styleCommonPath">@style-common-path@</xsl:param>     
+<xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>     
     
 <!-- 
     /**
@@ -105,7 +100,7 @@
     */
 -->
 
-    <xsl:param name="tripleURI"><![CDATA[@html-path@/servlet/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
+    <xsl:param name="tripleURI"><xsl:value-of select="$contextURL" /><![CDATA[/metacat?action=read&qformat=]]><xsl:value-of select="$qformat" /><![CDATA[&docid=]]></xsl:param>
     
   
 <!-- 
