@@ -1,0 +1,140 @@
+#       Copyright: 1997-2002 Regents of the University of California,
+#                            University of New Mexico, and
+#                            Arizona State University
+#        Sponsors: National Center for Ecological Analysis and Synthesis and
+#                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+#                     University of California Santa Barbara
+#                  Long-Term Ecological Research Network Office,
+#                     University of New Mexico
+#                  Center for Environmental Studies, Arizona State University
+#   Other funding: National Science Foundation (see README for details)
+#                  The David and Lucile Packard Foundation
+#     For Details: http://knb.ecoinformatics.org/
+#
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+UTILITIES for EML (Ecological Metadata Language)
+---------------------------------
+
+Version: 0.9.0
+
+Feedback and bugs to: eml-dev@ecoinformatics.org
+                      http://bugzilla.ecoinformatics.org
+
+Contributors: Matt Jones (jones@nceas.ucsb.edu)
+              Chad Berkley (berkley@nceas.ucsb.edu)
+              Jivka Bojilova (bojilova@nceas.ucsb.edu)
+              Dan Higgins (higgins@nceas.ucsb.edu)
+              Chris Jones (cjones@lifesci.ucsb.edu)
+              Corinna Gries (corinna@asu.edu)
+              Peter McCartney (peter.mccartney@asu.edu)
+              James Brunt (jbrunt@lternet.edu)
+              David Blankman (dblankman@lternet.edu)
+              Owen Eddins (oeddins@lternet.edu)
+              Mark Schildhauer (schild@nceas.ucsb.edu)
+              John Harris (harris@nceas.ucsb.edu)
+              Matthew Brooke (brooke@nceas.ucsb.edu)
+              Scott Chapal (scott.chapal@jonesctr.org)
+              Tim Bergsma (tbergsma@kbs.msu.edu)
+              Ken Ramsey (kramsey@jornada.nmsu.edu)
+              Saurabh Garg (sgarg@nceas.ucsb.edu)
+              Margaret O'Brien (mob@msi.ucsb.edu)
+	            Mark Servilla (servilla@lternet.edu)
+	            James Brunt (brunt@lternet.edu)
+			  
+Web site: http://knb.ecoinformatics.org/software/
+
+The EML-Utilities consists of a number of files which are useful for handling
+EML instance documents. Many of these files were included with the EML distribution
+in versions through EML-2.0.1.
+
+
+DOCUMENTATION
+-------------
+This README comprises the documentation. See individual files for embedded notes 
+and comments. The style directory contains a README to accompany one file.
+
+
+
+FILES
+-----
+############
+The files in this distribution are a part of the EML Utilities 0.9.0 release.
+############
+
+lib/
+beta6toeml2/ java classes and templates for converting EML-beta6 to EML-2.0 
+eml2tonbii/  files for converting EML2.0 to NBII schema instances
+esri2eml/    stylesheet for converting ESRI to EML-2.0.1
+
+
+style/
+eml201to210.xsl:  XSLT templates to convert EML-2.0.x instance documents into EML-2.1.0
+README:           instructions for using eml201to210.xsl
+
+These files for rendering EML into HTML for a browser:
+ascii-treeview.xsl: Default view of an xml tree when no template is found.
+branding.js:        for including header and style material to HTML
+default.js:         for including header and style material to HTML
+style/eml/*.xsl:    XSLT files for rendering EML instance documents in HTML.
+
+
+
+############
+This RELEASE of the EML UTilities can be retrieved from CVS using the
+tag "RELEASE_EML_UTILS_0_9_0".  
+############
+
+
+HIGHLIGHTS IN THIS RELEASE
+--------------------------
+This is a preliminary release so that material which accompanied previous
+versions of EML is still available. It is expected that the structure 
+and content of EML-Utilties will change substantially in the future.
+
+
+
+KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
+-----------------------------------------------------------
+1. conversion stylesheets are not located consistently.
+2. documentation is not included.
+
+
+
+Legalese
+--------
+This software is copyrighted (1997-2002) by The Regents of the University
+of California, University of New Mexico, and Arizona State University and
+licensed under the GNU GPL; see the 'LICENSE' file for details.
+
+This material is based upon work supported by the National Science Foundation
+under Grant No. 0225676, DEB-9980154, DBI-9904777, DEB-0072909, DBI-9983132,
+and DEB-9634135.  Any opinions, findings and conclusions or recommendations
+expressed in this material are those of the author(s) and do not necessarily
+reflect the views of the National Science Foundation (NSF).
+
+This product includes software developed by the Apache Software 
+Foundation (http://www.apache.org/). See the LICENSE file in lib/apache
+for details.
+
+The source code, object code, and documentation in the com.oreilly.servlet 
+package is copyright and owned by Jason Hunter. See the cos-license.html file
+for details of the license.  Licensor retains title to and ownership of the 
+Software and all enhancements, modifications, and updates to the Software.
+
+This product includes software developed by the JDOM Project 
+(http://www.jdom.org/). See jdom-LICENSE.txt for details.
+
