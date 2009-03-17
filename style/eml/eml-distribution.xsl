@@ -6,9 +6,9 @@
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-09 22:44:43 $'
-  * '$Revision: 1.5 $'
+  *   '$Author: obrien $'
+  *     '$Date: 2009-03-17 20:36:38 $'
+  * '$Revision: 1.6 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -150,6 +150,12 @@
 		  <xsl:attribute name="target">_blank</xsl:attribute>
 
 		  <xsl:choose>
+      <!-- onlineDescription is a sib of url or connection, and might be used
+      in a resource level distribution. In a physical tree, the objectName
+      is required, so that should appear as the anchor instead -->
+        <xsl:when test="../onlineDescription">
+					  <xsl:value-of select="../onlineDescription"/>
+			  </xsl:when>
 			  <xsl:when test="../../../objectName">
 					  <xsl:value-of select="../../../objectName"/>
 			  </xsl:when>
