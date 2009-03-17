@@ -15,8 +15,8 @@
  *   For Details: http://knb.ecoinformatics.org/
  *
  *      '$Author: obrien $'
- *        '$Date: 2009-03-05 22:27:42 $'
- *    '$Revision: 1.57 $'
+ *        '$Date: 2009-03-17 17:00:12 $'
+ *    '$Revision: 1.58 $'
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -745,18 +745,21 @@
           </span>
         </xsl:when>
         <xsl:otherwise>
-          <a class="sitelink"> 
+      
              <xsl:call-template name="externalNamespaceLink">
               <xsl:with-param name="typename" select="./@base"></xsl:with-param>
             </xsl:call-template>
                 
             <!-- 
+              <a class="sitelink"> 
             <xsl:attribute name="href">
               <xsl:text>#</xsl:text>
               <xsl:value-of select="./@base"></xsl:value-of>
             </xsl:attribute>
-            <xsl:value-of select="./@base"></xsl:value-of> -->
-          </a>
+            <xsl:value-of select="./@base"></xsl:value-of> 
+            </a>
+            -->
+         
         </xsl:otherwise>
       </xsl:choose> (by <xsl:value-of select="name(.)"></xsl:value-of>) </p>
 
