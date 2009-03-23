@@ -54,7 +54,7 @@ public class DataTranspose {
 		
 		//do the header, based on widest entry
 		List header = new ArrayList(widestRow.keySet());
-		retTable.add(header);
+		retTable.add(header.toArray(new String[0]));
 		
 		//now the value rows
 		Iterator rowIter = table.values().iterator();
@@ -67,7 +67,7 @@ public class DataTranspose {
 				Object key = columnIter.next();
 				row.add(rowMap.get(key));
 			}
-			retTable.add(row);
+			retTable.add(row.toArray(new String[0]));
 		}
 		
 		return retTable;
