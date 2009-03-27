@@ -2,8 +2,8 @@
  *    '$RCSfile: DocumentDataPackageParser.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-08-19 22:13:01 $'
- *   '$Revision: 1.3 $'
+ *       '$Date: 2009-03-27 20:21:34 $'
+ *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
  *
@@ -260,9 +260,10 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
 					//get the text value of the node
 					//TODO should we use DOM level 3 and assume java 1.5?
 					String nodeTextContent = null; //attributeNode.getTextContent();
-					if (attributeNode.getFirstChild() != null && attributeNode.getFirstChild().getNodeType() == Node.TEXT_NODE) {
-						nodeTextContent = attributeNode.getFirstChild().getNodeValue();
-					}
+					nodeTextContent = attributeNode.getTextContent();
+//					if (attributeNode.getFirstChild() != null && attributeNode.getFirstChild().getNodeType() == Node.TEXT_NODE) {
+//						nodeTextContent = attributeNode.getFirstChild().getNodeValue();
+//					}
 					
 					//add the attribute to the Map, taking care to handle multiples
 					String columnLabel = attributeLabel;
