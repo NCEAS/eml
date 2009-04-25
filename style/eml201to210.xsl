@@ -338,6 +338,10 @@
       the tranformation will be terminated. -->
   <xsl:template match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and  name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+            <xsl:copy-of select="@*"></xsl:copy-of>
+            <xsl:value-of select="' '"/>
+      </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
@@ -347,6 +351,10 @@
     
   <xsl:template mode="copy-no-ns-with-access-move" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+            <xsl:copy-of select="@*"></xsl:copy-of>
+            <xsl:value-of select="' '"/>
+      </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
@@ -356,6 +364,10 @@
     
   <xsl:template mode="copy-no-ns" match="*[not(*) and ((text() and not(normalize-space(text()) != '')) or .='') 
        and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+            <xsl:copy-of select="@*"></xsl:copy-of>
+            <xsl:value-of select="' '"/>
+      </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
           <xsl:with-param name="current_node" select="."/>
