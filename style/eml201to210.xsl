@@ -340,7 +340,7 @@
        and  name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
             <xsl:copy-of select="@*"></xsl:copy-of>
-            <xsl:value-of select="' '"/>
+            <xsl:value-of select="."/>
       </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
@@ -353,7 +353,7 @@
        and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
             <xsl:copy-of select="@*"></xsl:copy-of>
-            <xsl:value-of select="' '"/>
+            <xsl:value-of select="."/>
       </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
@@ -366,7 +366,7 @@
        and name(.) != 'recordDelimiter' and name(.) != 'physicalLineDelimiter' and name(.) != 'fieldDelimiter' ]">
       <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
             <xsl:copy-of select="@*"></xsl:copy-of>
-            <xsl:value-of select="' '"/>
+            <xsl:value-of select="."/>
       </xsl:element>
       <xsl:message terminate="no">
         <xsl:call-template name="output_message3_warn">
