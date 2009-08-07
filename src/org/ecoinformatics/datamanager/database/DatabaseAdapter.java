@@ -2,7 +2,7 @@
  *    '$RCSfile: DatabaseAdapter.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2008-06-17 23:21:28 $'
+ *       '$Date: 2008/06/17 23:21:28 $'
  *   '$Revision: 1.21 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
@@ -69,6 +69,7 @@ public abstract class DatabaseAdapter {
 	public static final String        SEMICOLON = ";";
 	public static final String      SINGLEQUOTE = "'";
 	public static final String           VALUES = "VALUES";
+	public static final String           NULL = "null";
   
   
   /*

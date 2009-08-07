@@ -2,7 +2,7 @@
  *    '$RCSfile: SelectionItem.java,v $'
  *
  *     '$Author: tao $'
- *       '$Date: 2006-12-09 01:16:17 $'
+ *       '$Date: 2006/12/09 01:16:17 $'
  *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
@@ -125,8 +125,9 @@ public class SelectionItem
 		}
 		else
 		{
-			throw new UnWellFormedQueryException(
-                        UnWellFormedQueryException.SELECTION_ATTRIBUTE_IS_NULL);
+			selectionItem = DatabaseAdapter.NULL;
+//			throw new UnWellFormedQueryException(
+//                        UnWellFormedQueryException.SELECTION_ATTRIBUTE_IS_NULL);
 		}
 		return selectionItem;
 	}
