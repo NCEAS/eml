@@ -14,7 +14,7 @@ import edu.ucsb.nceas.utilities.OrderedMap;
 public class DataTranspose {
 
 	
-	public static List transpose(ResultSet rs, int idCol, int pivotCol) throws SQLException {
+	public static List transpose(ResultSet rs, int idCol, int pivotCol, boolean omitIdValues) throws SQLException {
 		OrderedMap table = new OrderedMap();
 		OrderedMap widestRow = new OrderedMap();
 		int colCount = rs.getMetaData().getColumnCount();
@@ -58,6 +58,7 @@ public class DataTranspose {
 		
 		//now the value rows
 		Iterator rowIter = table.values().iterator();
+		int rowCount = 1;
 		while (rowIter.hasNext()) {
 			OrderedMap rowMap = (OrderedMap) rowIter.next();
 			List row = new ArrayList();
@@ -65,8 +66,14 @@ public class DataTranspose {
 			Iterator columnIter = widestRow.keySet().iterator();
 			while (columnIter.hasNext()) {
 				Object key = columnIter.next();
-				row.add(rowMap.get(key));
+				Object value = rowMap.get(key);
+				//hide the value used for Ids - just increment row
+				if (key.equals(idColName) && omitIdValues) {
+					value = String.valueOf(rowCount);
+				}
+				row.add(value);
 			}
+			rowCount++;
 			retTable.add(row.toArray(new String[0]));
 		}
 		
