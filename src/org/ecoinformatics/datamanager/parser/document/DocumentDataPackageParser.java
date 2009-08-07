@@ -2,7 +2,7 @@
  *    '$RCSfile: DocumentDataPackageParser.java,v $'
  *
  *     '$Author: leinfelder $'
- *       '$Date: 2009-03-27 20:21:34 $'
+ *       '$Date: 2009/03/27 20:21:34 $'
  *   '$Revision: 1.4 $'
  *
  *  For Details: http://kepler.ecoinformatics.org
@@ -268,7 +268,13 @@ public class DocumentDataPackageParser implements DataPackageParserInterface
 					//add the attribute to the Map, taking care to handle multiples
 					String columnLabel = attributeLabel;
 					if (record.containsKey(columnLabel)) {
-						columnLabel = columnLabel + "_" + i;
+						if (i == 1) {
+							//get the first original label without the number and reassign it with "_1"
+							Object firstValue = record.get(columnLabel);
+							//record.remove(columnLabel);
+							record.put(columnLabel + "_" + i, firstValue);
+						}
+						columnLabel = columnLabel + "_" + (i+1);
 					}
 					record.put(columnLabel, nodeTextContent);
 					
