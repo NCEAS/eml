@@ -101,7 +101,7 @@ public class DocumentDataPackageHandler {
 
 	private void downloadDocument() throws Exception {
 		
-		log.info("starting the download");
+		log.debug("starting the download");
 				
 		final String id = docId;
 		final EcogridEndPointInterface endpoint = ecogridEndPointInterface;
@@ -110,6 +110,8 @@ public class DocumentDataPackageHandler {
 		service.execute(
 			new Runnable() {
 				public void run() {
+					long startTime = System.currentTimeMillis();
+
 					try {
 						if (ecogridEndPointInterface instanceof AuthenticatedEcogridEndPointInterface) {
 							AuthenticatedQueryServiceGetToStreamClient authenticatedEcogridClient = 
@@ -129,6 +131,10 @@ public class DocumentDataPackageHandler {
 							ecogridClient.get(id, outputStream);
 						}
 						outputStream.close();
+						
+						long endTime = System.currentTimeMillis();
+						log.debug((endTime - startTime) + " ms to download document data");
+						
 						log.debug("Done downloading id=" + id);
 						
 					} catch (Exception e) {
@@ -143,12 +149,19 @@ public class DocumentDataPackageHandler {
 		service.shutdown();
 		service.awaitTermination(0, TimeUnit.SECONDS);
 			
+		log.debug("done with the download");
+
+		long startTime = System.currentTimeMillis();
+
 		//set up the parser, and parse
 		ddpp = new DocumentDataPackageParser(docId);
 		ddpp.setAttributeXPathMap(attributeMap);
 		ddpp.parse(inputStream);
 		
 		loaded = true;
+		
+		long endTime = System.currentTimeMillis();
+		log.debug((endTime - startTime) + " ms to parse document data");
 		
 		log.debug("downloaded data");
 		

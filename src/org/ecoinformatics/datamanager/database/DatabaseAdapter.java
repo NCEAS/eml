@@ -531,9 +531,9 @@ public abstract class DatabaseAdapter {
       attributeSql.append(dbDataType);
       firstAttribute = false;
 
-      log.info("Attribute Name: " + attributeName);
-      log.info("DB Field Name : " + fieldName);
-      log.info("dbDataType    : " + dbDataType + "\n");
+      log.debug("Attribute Name: " + attributeName);
+      log.debug("DB Field Name : " + fieldName);
+      log.debug("dbDataType    : " + dbDataType + "\n");
     }
 
     return attributeSql.toString();

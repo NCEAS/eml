@@ -82,6 +82,8 @@ public class DocumentHandler {
 		service.execute(
 			new Runnable() {
 				public void run() {
+					long startTime = System.currentTimeMillis();
+
 					//get from the ecogrid
 					try {
 						if (ecogridEndPointInterface instanceof AuthenticatedEcogridEndPointInterface) {
@@ -102,6 +104,8 @@ public class DocumentHandler {
 							ecogridClient.get(id, outputStream);
 						}
 						outputStream.close();
+						long endTime = System.currentTimeMillis();
+						log.debug((endTime - startTime) + " ms to download: " + docId);
 						log.debug("Done downloading id=" + id);
 						
 					} catch (Exception e) {
