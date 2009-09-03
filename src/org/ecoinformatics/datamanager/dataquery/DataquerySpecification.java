@@ -102,6 +102,8 @@ public class DataquerySpecification extends DefaultHandler
             
     private Stack entityStack = new Stack();
     
+    private Stack attributeStack = new Stack();
+    
     private Stack conditionStack = new Stack();
     
     private Stack logicalStack = new Stack();
@@ -336,6 +338,9 @@ public class DataquerySpecification extends DefaultHandler
     	//save for later
     	entityStack.push(entity);
     }
+    private void startAttribute(BasicNode currentNode) {
+    	attributeStack.push(currentNode);
+    }
     private void startCondition(BasicNode currentNode) {
     	inCondition = true;
     	
@@ -434,6 +439,9 @@ public class DataquerySpecification extends DefaultHandler
         if (currentNode.getTagName().equals("entity")) {
         	startEntity(currentNode);
         }
+        if (currentNode.getTagName().equals("attribute")) {
+        	startAttribute(currentNode);
+        }
         if (currentNode.getTagName().equals("condition")) {
         	startCondition(currentNode);
         }
@@ -466,39 +474,7 @@ public class DataquerySpecification extends DefaultHandler
     	//pop, done with the subquery
     	subQueryStack.pop();
     }
-    
-    private void endEntity(BasicNode leaving) {
-    	//reset the document datapackage handler
-    	if (ddpHandler != null) {
-    		//done with this
-    		ddpHandler = null;
-    	}
-
-    	//in selection
-    	if (conditionStack.isEmpty()) {
-        	//pop, done with the entity
-        	Entity entity = (Entity) entityStack.pop();
-        	
-        	//add to query
-        	Query query = (Query) queryStack.peek();
-        	query.addTableItem(new TableItem(entity));
-    	}
-    	
-    	if (!subQueryStack.isEmpty()) {
-        	//pop, done with the entity
-        	Entity entity = (Entity) entityStack.pop();
-
-    		Query subQuery = (Query) subQueryStack.peek();
-    		subQuery.addTableItem(new TableItem(entity));
-    	}
-    }
-    
-    private void endPathexpr(BasicNode leaving) {
-    	String labelAttribute = leaving.getAttribute("label");
-    	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());
-    }
-    
-    private void endAttribute(BasicNode leaving) {
+    private void constructEntity() {
     	//try to load the metadata if we need to
 		if (ddpHandler != null) {
     		try {
@@ -523,59 +499,107 @@ public class DataquerySpecification extends DefaultHandler
 				e.printStackTrace();
 			}
     	}
-    	
-    	//look up the attribute from this entity
+		
+		//look up the attribute from this entity
     	Entity entity = (Entity) entityStack.peek();
-    	Attribute attribute = null;
     	
-    	String indexAttribute = leaving.getAttribute("index");
-    	if (indexAttribute != null) {
-        	int index = Integer.parseInt(indexAttribute);
-        	attribute = entity.getAttributes()[index];
-    	}
-    	else {
-    		//TODO allow multiple matches on "name"?
-    		String nameAttribute = leaving.getAttribute("name");
-    		attribute = entity.getAttributeList().getAttribute(nameAttribute);
-    	}
+    	//process the attributes
+    	while (!attributeStack.empty()) {
+    		BasicNode leaving = (BasicNode) attributeStack.pop();
     	
-    	//process conditions here
-    	if (!conditionStack.isEmpty()) {	
-    		//intitial part of the condition
-    		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
-        	if (condition instanceof Condition) {
-        		condition = new Condition(entity, attribute, null, null);
-			}
-        	else if (condition instanceof SubQueryClause) {
-        		Query subQuery = null;
-        		if (subQueryStack.isEmpty()) {
-        			subQuery = new Query();
-        		}
-        		else {
-        			subQuery = (Query) subQueryStack.peek();
-        		}
-        		SelectionItem selection = new SelectionItem(entity, attribute);
-        		subQuery.addSelectionItem(selection);
-        		condition = new SubQueryClause(entity, attribute, null, subQuery);
-			}
-        	else if (condition instanceof Join) {
-        		if (!((Join)condition).isLeftSet()) {
-        			((Join)condition).setLeft(entity, attribute);
-        		}
-        		else if (!((Join)condition).isRightSet()) {
-        			((Join)condition).setRight(entity, attribute);
-        		}
-        	}
-        	conditionStack.push(condition);
+	    	Attribute attribute = null;
+	    	
+	    	String indexAttribute = leaving.getAttribute("index");
+	    	if (indexAttribute != null) {
+	        	int index = Integer.parseInt(indexAttribute);
+	        	attribute = entity.getAttributes()[index];
+	    	}
+	    	else {
+	    		//TODO allow multiple matches on "name"?
+	    		String nameAttribute = leaving.getAttribute("name");
+	    		attribute = entity.getAttributeList().getAttribute(nameAttribute);
+	    	}
+	    	
+	    	//process conditions here
+	    	if (!conditionStack.isEmpty()) {	
+	    		//intitial part of the condition
+	    		ConditionInterface condition = (ConditionInterface) conditionStack.pop();
+	        	if (condition instanceof Condition) {
+	        		condition = new Condition(entity, attribute, null, null);
+				}
+	        	else if (condition instanceof SubQueryClause) {
+	        		Query subQuery = null;
+	        		if (subQueryStack.isEmpty()) {
+	        			subQuery = new Query();
+	        		}
+	        		else {
+	        			subQuery = (Query) subQueryStack.peek();
+	        		}
+	        		SelectionItem selection = new SelectionItem(entity, attribute);
+	        		subQuery.addSelectionItem(selection);
+	        		// if we have the operator from before, we should use it
+	        		String operator = ((SubQueryClause) condition).getOperator();
+	        		condition = new SubQueryClause(entity, attribute, operator, subQuery);
+				}
+	        	else if (condition instanceof Join) {
+	        		if (!((Join)condition).isLeftSet()) {
+	        			((Join)condition).setLeft(entity, attribute);
+	        		}
+	        		else if (!((Join)condition).isRightSet()) {
+	        			((Join)condition).setRight(entity, attribute);
+	        		}
+	        	}
+	        	conditionStack.push(condition);
+	        	
+	    	}
+	    	else {
+	        	Query query = (Query) queryStack.peek();
+	
+	    		//create the selectionItem and add to the query
+	        	SelectionItem selection = new SelectionItem(entity, attribute);
+	        	query.addSelectionItem(selection);
+	    	}
+	    	
+    	}//while
+    }
+    
+    private void endEntity(BasicNode leaving) {
+    	
+    	// construct the entity
+    	constructEntity();
+    	
+    	//in selection
+    	if (conditionStack.isEmpty()) {
+        	//pop, done with the entity
+        	Entity entity = (Entity) entityStack.pop();
         	
-    	}
-    	else {
+        	//add to query
         	Query query = (Query) queryStack.peek();
-
-    		//create the selectionItem and add to the query
-        	SelectionItem selection = new SelectionItem(entity, attribute);
-        	query.addSelectionItem(selection);
+        	query.addTableItem(new TableItem(entity));
     	}
+    	
+    	if (!subQueryStack.isEmpty()) {
+        	//pop, done with the entity
+        	Entity entity = (Entity) entityStack.pop();
+
+    		Query subQuery = (Query) subQueryStack.peek();
+    		subQuery.addTableItem(new TableItem(entity));
+    	}
+    	
+    	//reset the document datapackage handler
+    	if (ddpHandler != null) {
+    		//done with this
+    		ddpHandler = null;
+    	}
+    }
+    
+    private void endPathexpr(BasicNode leaving) {
+    	String labelAttribute = leaving.getAttribute("label");
+    	ddpHandler.getAttributeMap().put(labelAttribute, textBuffer.toString().trim());
+    }
+    
+    private void endAttribute(BasicNode leaving) {
+    	//moved to end of entity
     }
     
     private void endOperator(BasicNode leaving) {
