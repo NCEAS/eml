@@ -64,8 +64,11 @@
 					<entity index="0">
 						<attribute index="0"/>
 						<attribute index="1"/>
+						<attribute index="2"/>
+						<attribute name="RH"/>
 					</entity>
 				</datapackage>
+				<staticItem name="fakeColumn" value="otherTable"/>
 			</selection>
 			<where>
 				<and>
@@ -90,13 +93,13 @@
 						<left>
 							<datapackage id="tao.1.1">
 								<entity index="0">
-									<attribute index="1"/>
+									<attribute index="0"/>
 								</entity>
 							</datapackage>
 						</left>
 						<operator>=</operator>
 						<right>
-							<value>happy</value>
+							<value>01/01/01</value>
 						</right>
 					</condition>
 					
@@ -125,26 +128,26 @@
 											<left>
 												<datapackage id="tao.1.1">
 													<entity index="0">
-														<attribute index="1"/>
+														<attribute index="0"/>
 													</entity>
 												</datapackage>
 											</left>
 											<operator>=</operator>
 											<right>
-												<value>100</value>
+												<value>01/01/01</value>
 											</right>
 										</condition>
 										<condition type="condition">
 											<left>
 												<datapackage id="tao.1.1">
 													<entity index="0">
-														<attribute index="1"/>
+														<attribute index="0"/>
 													</entity>
 												</datapackage>
 											</left>
 											<operator>=</operator>											
 											<right>
-												<value>200</value>
+												<value>01/02/01</value>
 											</right>
 										</condition>
 									</and>	
@@ -165,7 +168,7 @@
 							</left>
 							<operator>=</operator>
 							<right>
-								<value>1234</value>
+								<value>01/01/01</value>
 							</right>
 						</condition>
 						<condition type="condition">
@@ -178,7 +181,7 @@
 							</left>
 							<operator>=</operator>
 							<right>
-								<value>5678</value>
+								<value>01/01/01</value>
 							</right>
 						</condition>
 					</or>
