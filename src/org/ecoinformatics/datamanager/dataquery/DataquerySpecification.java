@@ -38,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -102,7 +103,7 @@ public class DataquerySpecification extends DefaultHandler
             
     private Stack entityStack = new Stack();
     
-    private Stack attributeStack = new Stack();
+    private Vector attributes = new Vector();
     
     private Stack conditionStack = new Stack();
     
@@ -339,7 +340,7 @@ public class DataquerySpecification extends DefaultHandler
     	entityStack.push(entity);
     }
     private void startAttribute(BasicNode currentNode) {
-    	attributeStack.push(currentNode);
+    	attributes.add(currentNode);
     }
     private void startCondition(BasicNode currentNode) {
     	inCondition = true;
@@ -504,8 +505,8 @@ public class DataquerySpecification extends DefaultHandler
     	Entity entity = (Entity) entityStack.peek();
     	
     	//process the attributes
-    	while (!attributeStack.empty()) {
-    		BasicNode leaving = (BasicNode) attributeStack.pop();
+    	for (int i = 0; i < attributes.size(); i++ ) {
+    		BasicNode leaving = (BasicNode) attributes.get(i);
     	
 	    	Attribute attribute = null;
 	    	
@@ -560,7 +561,9 @@ public class DataquerySpecification extends DefaultHandler
 	        	query.addSelectionItem(selection);
 	    	}
 	    	
-    	}//while
+    	}//loop
+    	// done with those
+    	attributes.clear();
     }
     
     private void endEntity(BasicNode leaving) {
