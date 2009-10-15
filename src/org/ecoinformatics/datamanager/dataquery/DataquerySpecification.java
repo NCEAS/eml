@@ -463,6 +463,12 @@ public class DataquerySpecification extends DefaultHandler
     	for (int i = 0; i < queryList.size(); i++) {
     		union.addQuery((Query) queryList.get(i));
     	}
+    	
+    	String orderAttr = leaving.getAttribute("order");
+    	if (orderAttr != null) {
+    		boolean orderQueryList = Boolean.parseBoolean(orderAttr);
+    		union.setOrderQueryList(orderQueryList);
+    	}
     }
     
     private void endQuery(BasicNode leaving) {

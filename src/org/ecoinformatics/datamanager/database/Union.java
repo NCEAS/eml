@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.ecoinformatics.datamanager.parser.Attribute;
+
 /**
  * This class represents a union of multiple sql queries in java.
  * @author leinfelder
@@ -45,6 +47,7 @@ public class Union
    //class fields
 	private List queryList = null;
 	private String unionType = null;
+	private boolean orderQueryList = false;
 	
 	//constants
 	public static final String UNION = "UNION";
@@ -76,6 +79,14 @@ public class Union
 		this.unionType = unionType;
 	}
 	
+	public boolean isOrderQueryList() {
+		return orderQueryList;
+	}
+
+	public void setOrderQueryList(boolean orderQueryList) {
+		this.orderQueryList = orderQueryList;
+	}
+
 	/**
 	 * Helper method to remove trailing semicolon
 	 * @param input String to remove trailing semicolon
@@ -87,6 +98,38 @@ public class Union
 			temp = input.substring(0, input.lastIndexOf(Query.SEMICOLON));
 		}
 		return temp;
+	}
+	
+	private void orderQueryList() {
+		// init the wideness-trackers
+		Query widestQuery = (Query) queryList.get(0);
+		int widestSelectionCount = 0;
+		Iterator queryIter = this.queryList.iterator();
+		while (queryIter.hasNext()) {
+			Query query = (Query) queryIter.next();
+			int attributeCount = query.getSelectionList().length;
+			int nonNullAttributeCounter = 0;
+			for (int i = 0; i < attributeCount; i++) {
+				SelectionItem selectionItem = query.getSelectionList()[i];
+				Attribute attribute = selectionItem.getAttribute();
+				if (attribute != null) {
+					nonNullAttributeCounter = i;
+					// check if we got wider
+					if (widestSelectionCount < nonNullAttributeCounter) {
+						widestSelectionCount = nonNullAttributeCounter;
+					}
+				}
+			}
+			if (nonNullAttributeCounter == widestSelectionCount) {
+				widestQuery = query;
+			}
+		}
+		
+		// now we have the widest non-null attribute query
+		// swap it out
+		queryList.remove(widestQuery);
+		queryList.add(0, widestQuery);
+				
 	}
 	
 	/**
@@ -118,6 +161,10 @@ public class Union
 	public String toSQLString() throws UnWellFormedQueryException {
 		
 		StringBuffer sql = new StringBuffer();
+		
+		if (orderQueryList) {
+			this.orderQueryList();
+		}
 		
 		Iterator queryIter = this.queryList.iterator();
 		

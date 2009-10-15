@@ -71,6 +71,26 @@ public class SelectionItem
 	}
 	
     
+	public Entity getEntity() {
+		return entity;
+	}
+
+
+	public void setEntity(Entity entity) {
+		this.entity = entity;
+	}
+
+
+	public Attribute getAttribute() {
+		return attribute;
+	}
+
+
+	public void setAttribute(Attribute attribute) {
+		this.attribute = attribute;
+	}
+
+
 	/**
 	 * Gets one selection item string (real name in DB) in sql query string.
      * 

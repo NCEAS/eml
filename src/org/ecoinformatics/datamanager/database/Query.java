@@ -130,6 +130,10 @@ public class Query
 		return false;
 	}
 	
+	public SelectionItem[] getSelectionList() {
+		return selectionList;
+	}
+	
 	/**
 	 * Set where clause to the query
 	 * @param where where clause need be set

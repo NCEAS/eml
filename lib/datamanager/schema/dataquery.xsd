@@ -19,6 +19,7 @@
         <xs:sequence>
             <xs:element name="query" type="queryType" maxOccurs="unbounded"/>
         </xs:sequence>
+        <xs:attribute name="order" type="xs:boolean" use="optional" default="false"/>
     </xs:complexType>
     
     <xs:complexType name="queryType">
