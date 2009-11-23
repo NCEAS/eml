@@ -64,10 +64,10 @@ import edu.ucsb.nceas.utilities.OrderedMap;
 
 public class DocumentDataPackageParserTest extends TestCase {
 
-	private static final String TEST_SERVER = "http://localhost:8080/knb/metacat";
+	private static final String TEST_SERVER = "http://knb.ecoinformatics.org/knb/metacat";
 
 	//private static final String TEST_DOCID = "leinfelder.799.1";
-	private static final String TEST_DOCID = "leinfelder.807.8";
+	private static final String TEST_DOCID = "tao.1.1";
 
 	/*
 	 * Class fields
@@ -79,7 +79,7 @@ public class DocumentDataPackageParserTest extends TestCase {
 	 */
 	private DataManager dataManager;
 	private DatabaseConnectionPoolInterface connectionPool = null;
-	private EcogridEndPointInterface endPointInfo = null;
+	private ConfigurableEcogridEndPoint endPointInfo = null;
 	
 	/*
 	 * Constructors
@@ -136,6 +136,7 @@ public class DocumentDataPackageParserTest extends TestCase {
 		String dbAdapterName = connectionPool.getDBAdapterName();
 		dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
 		endPointInfo = new ConfigurableEcogridEndPoint();
+		endPointInfo.setSessionId("badSession");
 	}
 
 	/**
@@ -155,10 +156,9 @@ public class DocumentDataPackageParserTest extends TestCase {
 		//the "columns" to extract from the metadata document 
 		Map attributeMap = new OrderedMap();
 		attributeMap.put("id", "//@packageId");
-		attributeMap.put("title", "//assessment/@title");
-		attributeMap.put("duration", "//assessment/duration");
+		attributeMap.put("title", "//title");
+		attributeMap.put("author", "//surName");
 		attributeMap.put("badColumn", "//does/not/exist");
-		attributeMap.put("item", "//assessmentItems/assessmentItem/assessmentItemId");
 				
 		ddph.setDocId(TEST_DOCID);
 		ddph.setEcogridEndPointInterface(endPointInfo);
