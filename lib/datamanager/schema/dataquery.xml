@@ -8,23 +8,30 @@
 		This sample XML is parsed by the Data Manager to produce the following SQL
 		(formatted for improved legibility):
 		
-		SELECT Datos_Meteorologicos.DATE,Datos_Meteorologicos.TIME 
-		FROM Datos_Meteorologicos  where Datos_Meteorologicos.DATE = '1' 
+		SELECT Datos_Meteorologicos.DATE,
+			Datos_Meteorologicos.TIME,
+			Datos_Meteorologicos.T_AIR,
+			Datos_Meteorologicos.RH,
+			'otherTable' AS fakeColumn 
+		FROM Datos_Meteorologicos  
+		where  Datos_Meteorologicos.DATE = Datos_Meteorologicos.TIME 
+		AND Datos_Meteorologicos.DATE = '01/01/01' 
+		AND Datos_Meteorologicos.TIME IN 
+			(SELECT Datos_Meteorologicos.TIME 
+			FROM Datos_Meteorologicos  
+			where  Datos_Meteorologicos.DATE = '01/01/01' 
+			AND Datos_Meteorologicos.DATE = '01/02/01'  ) 
+		AND ( Datos_Meteorologicos.DATE = '01/01/01' OR Datos_Meteorologicos.DATE = '01/01/01' )  
 		
 		UNION ALL 
 		
-		SELECT Datos_Meteorologicos.DATE,Datos_Meteorologicos.TIME 
+		SELECT Datos_Meteorologicos.DATE,
+			Datos_Meteorologicos.TIME,
+			Datos_Meteorologicos.T_AIR,
+			Datos_Meteorologicos.RH,
+			'blah' AS fakeColumn 
 		FROM Datos_Meteorologicos  
-		where  Datos_Meteorologicos.DATE = Datos_Meteorologicos.TIME 
-		AND Datos_Meteorologicos.TIME = 'happy' 
-		AND Datos_Meteorologicos.TIME IN (
-			SELECT Datos_Meteorologicos.TIME FROM Datos_Meteorologicos  
-			where  Datos_Meteorologicos.TIME = '100' 
-			AND Datos_Meteorologicos.TIME = '200'  
-		) 
-		AND ( 
-			Datos_Meteorologicos.DATE = '1234' OR Datos_Meteorologicos.DATE = '5678' 
-		) ;
+		where Datos_Meteorologicos.T_AIR >= 15;
 		
 	-->
 	<union order="true">
