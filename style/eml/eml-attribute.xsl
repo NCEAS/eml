@@ -42,8 +42,8 @@
    <xsl:param name="entityindex"/>
 
    <table xsl:use-attribute-sets="cellspacing" class="{$tableattributeStyle}" width="100%">
-     <xsl:choose>
-      <xsl:when test="$displaymodule!='printall'">
+     <!--<xsl:choose>
+      <xsl:when test="$displaymodule!='printall'">-->
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -65,7 +65,7 @@
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
-     </xsl:when>
+     <!--</xsl:when>-->
      <!-- Comment out redundent call
      <xsl:otherwise>
      <xsl:choose>
@@ -90,7 +90,7 @@
       </xsl:choose>
      </xsl:otherwise>
      -->
-    </xsl:choose>
+    <!--</xsl:choose>-->
   </table>
 </xsl:template>
 
