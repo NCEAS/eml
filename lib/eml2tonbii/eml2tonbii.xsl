@@ -31,7 +31,20 @@
   * convert an XML file in eml2 format to nbii fromat
 *
 *
-* 
+*
+**** Log of Changes, January 19, 2010. Jing Tao. ***
+** Summary:
+*      The modification makes the style sheet work with eml-2.0.0, eml-2.0.1 and eml-2.1.0.
+*	
+** Itemized list of changes.
+* 1. Use "/*[local-name() = 'eml']" to replace "/eml:eml/" in xpath throught out the entire file.
+* 2. Line 1384, 1386 and 1391, use "or" condition to handle "/eml/dataset/access" or "/eml/access".
+* 3. Line 1938 and 1940, use "or" condition to hanlde "//measurmentScale/datetime" or "//measurmentScale/dateTime"
+* 4. Line 1392, using "Deny" to replace "Allow".
+* 5  Line 3149, use "Ecological Metadata Langualge 2.x " to replace "Ecological Metadata Langualge 2.0".
+* 5. Line 3152, use "Ecological Metadata Language 2.x" to repalce "Ecological Metadata Language 2.0.1".
+************************************************************************************************************************
+ 
 **** Log of Changes, September 2005. Inigo San Gil.****
 *
 **  Summary
@@ -153,12 +166,12 @@ version="1.0">
       <!-- only the 'idinfo' and 'metainfo' elements are required -->
       <!-- start the 'idinfo' branch -->      
 	 <xsl:variable name="packageID">
-				<xsl:value-of select="/eml:eml/@packageId"/>
+				<xsl:value-of select="/*[local-name() = 'eml']/@packageId"/>
 	 </xsl:variable>
       <xsl:element name="idinfo">
         <xsl:element name="citation">
           <xsl:element name="citeinfo">
-            <xsl:for-each select="/eml:eml/dataset/creator">
+            <xsl:for-each select="/*[local-name() = 'eml']/dataset/creator">
             <!-- This is a loop over all the dataset 'creator' elements
              Note that dataset itself might be 'referenced' rather
              than exist 'in-place'. More likely, however, is that
@@ -198,8 +211,8 @@ version="1.0">
             <xsl:element name="pubdate">
             <!-- pubdate is optional in eml2 -->
               <xsl:choose>
-                <xsl:when test="/eml:eml/dataset/pubDate!=''">
-                  <xsl:value-of select="/eml:eml/dataset/pubDate"/>
+                <xsl:when test="/*[local-name() = 'eml']/dataset/pubDate!=''">
+                  <xsl:value-of select="/*[local-name() = 'eml']/dataset/pubDate"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="'N/A'"/>
@@ -212,7 +225,7 @@ version="1.0">
               </xsl:element>
             </xsl:if>
             <xsl:element name="title">
-              <xsl:value-of select="/eml:eml/dataset/title"/>
+              <xsl:value-of select="/*[local-name() = 'eml']/dataset/title"/>
             </xsl:element>
              <xsl:if test="$show_optional">
               <xsl:element name="edition">                             <!-- ISG: POSSIBLE ADD: version, but packet version is not neccrly title edition -->
@@ -223,22 +236,22 @@ version="1.0">
             <!-- Geospatial Data Presentation Form - the mode in which the 
                        geospatial data are represented. -->      
               <xsl:choose>
-                <xsl:when test="/eml:eml/dataset/dataTable!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/dataTable!=''">
                   <xsl:value-of select="'tabular digital data'"/>       <!-- ISG: changed from dataTable to tabular digital data"  -->
                 </xsl:when>
-                <xsl:when test="/eml:eml/dataset/spatialRaster!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/spatialRaster!=''">
                   <xsl:value-of select="'raster digital data'"/>			<!-- ISG: changed from spatialRaster to "raster digital data" -->
                 </xsl:when>
-                <xsl:when test="/eml:eml/dataset/spatialVector!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/spatialVector!=''">
                   <xsl:value-of select="'spatial vector data'"/>         <!-- ISG: changed from spatialVector data  to "spatial vector data" -->
                 </xsl:when>
-                <xsl:when test="/eml:eml/dataset/storedProcedure!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/storedProcedure!=''">
                   <xsl:value-of select="'procedure'"/>                       <!-- ISG: added procedure -->
                 </xsl:when>
-                <xsl:when test="/eml:eml/dataset/view!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/view!=''">
                   <xsl:value-of select="'view'"/>                                <!-- ISG: added view -->
                 </xsl:when>
-                <xsl:when test="/eml:eml/dataset/otherEntity!=''">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/otherEntity!=''">
                   <xsl:value-of select="'entity'"/>                               <!-- ISG: added entity -->
                 </xsl:when>
                 <xsl:otherwise>
@@ -249,8 +262,8 @@ version="1.0">
              <xsl:if test="$show_optional">
               <xsl:element name="serinfo">
                 <xsl:element name="sername">
-					<xsl:if test="/eml:eml/dataset/series!=''">
-						<xsl:value-of select="/eml:eml/dataset/series" />    <!-- ISG: series added -->
+					<xsl:if test="/*[local-name() = 'eml']/dataset/series!=''">
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/series" />    <!-- ISG: series added -->
 					</xsl:if>
                 </xsl:element>
                 <xsl:element name="issue">
@@ -261,17 +274,17 @@ version="1.0">
              <xsl:if test="$show_optional">
               <xsl:element name="pubinfo">
                 <xsl:element name="pubplace">
-					<xsl:if test="/eml:eml/dataset/pubPlace!=''">
-						<xsl:value-of select="/eml:eml/dataset/pubPlace" />    <!-- ISG: pubPlace added -->
+					<xsl:if test="/*[local-name() = 'eml']/dataset/pubPlace!=''">
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/pubPlace" />    <!-- ISG: pubPlace added -->
 					</xsl:if>
                 </xsl:element>
                 <xsl:element name="publish">
-					<xsl:if test="/eml:eml/dataset/publisher/individualName/surName!=''">
-						<xsl:value-of select="/eml:eml/dataset/publisher/individualName/surName" /><xsl:value-of select="', '"/>
-						<xsl:value-of select="/eml:eml/dataset/publisher/individualName/givenName" />    <!-- ISG: publisher individual added -->
+					<xsl:if test="/*[local-name() = 'eml']/dataset/publisher/individualName/surName!=''">
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/publisher/individualName/surName" /><xsl:value-of select="', '"/>
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/publisher/individualName/givenName" />    <!-- ISG: publisher individual added -->
 					</xsl:if>
-					<xsl:if test="/eml:eml/dataset/publisher/organizationName!=''">
-						<xsl:value-of select="/eml:eml/dataset/publisher/organizationName" />              <!-- ISG: publisher org. name added -->
+					<xsl:if test="/*[local-name() = 'eml']/dataset/publisher/organizationName!=''">
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/publisher/organizationName" />              <!-- ISG: publisher org. name added -->
 					</xsl:if>
                 </xsl:element>
               </xsl:element>
@@ -279,7 +292,7 @@ version="1.0">
              <xsl:if test="$show_optional">
               <xsl:element name="othercit"><!-- ISG added Oct 31 2005: Addresses for originators -->
               <!-- 'origin' corresponds to the name of the 'creator'  in eml2, but <origin> cannot accept contact info. we put it here. -->
-				<xsl:for-each select="/eml:eml/dataset/creator">
+				<xsl:for-each select="/*[local-name() = 'eml']/dataset/creator">
 					<!-- Need to capture info into $cc again -->
 				  <xsl:variable name="cc">
 					<xsl:choose>
@@ -330,8 +343,8 @@ version="1.0">
             </xsl:if>
              <xsl:if test="$show_optional">
               <xsl:element name="onlink">														<!-- ISG: url location added -->
-				<xsl:if test="/eml:eml/dataset/distribution/online/url!=''">
-					<xsl:value-of select="/eml:eml/dataset/distribution/online/url" />
+				<xsl:if test="/*[local-name() = 'eml']/dataset/distribution/online/url!=''">
+					<xsl:value-of select="/*[local-name() = 'eml']/dataset/distribution/online/url" />
 				</xsl:if>
               </xsl:element>
             </xsl:if>
@@ -344,8 +357,8 @@ version="1.0">
         <xsl:element name="descript">
           <xsl:element name="abstract">
             <xsl:choose>
-              <xsl:when test="/eml:eml/dataset/abstract!=''">
-                <xsl:value-of select="/eml:eml/dataset/abstract"/>
+              <xsl:when test="/*[local-name() = 'eml']/dataset/abstract!=''">
+                <xsl:value-of select="/*[local-name() = 'eml']/dataset/abstract"/>
                 <!-- abstract can be complex element in eml2; this useage will simply concatenate text -->
               </xsl:when>
               <xsl:otherwise>
@@ -355,8 +368,8 @@ version="1.0">
           </xsl:element>
           <xsl:element name="purpose">											<!-- ISG: BDP purpose contents not mapped. Added EML purpose -->
 			<xsl:choose>
-				<xsl:when test="/eml:eml/dataset/purpose!=''">
-					<xsl:value-of select="/eml:eml/dataset/purpose" />
+				<xsl:when test="/*[local-name() = 'eml']/dataset/purpose!=''">
+					<xsl:value-of select="/*[local-name() = 'eml']/dataset/purpose" />
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="'N/A'"/>
@@ -365,8 +378,8 @@ version="1.0">
           </xsl:element>
           <xsl:if test="$show_optional">
             <xsl:element name="supplinf">											<!-- ISG: BDP supplemental info contents not mapped. Added EML additionalInfo -->
-				<xsl:if test="/eml:eml/dataset/additionalInfo!=''">
-					<xsl:value-of select="/eml:eml/dataset/additionalInfo" />
+				<xsl:if test="/*[local-name() = 'eml']/dataset/additionalInfo!=''">
+					<xsl:value-of select="/*[local-name() = 'eml']/dataset/additionalInfo" />
 				</xsl:if>
             </xsl:element>
           </xsl:if>
@@ -375,51 +388,51 @@ version="1.0">
         <xsl:element name="timeperd">
           <xsl:element name="timeinfo">
 			<xsl:variable name="singledates">					<!-- store here the number of single date times used in the EML instance -->
-				<xsl:value-of select="count(/eml:eml/dataset/coverage/temporalCoverage/singleDateTime)" />
+				<xsl:value-of select="count(/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime)" />
 			</xsl:variable>
 					    <xsl:choose>
 							<xsl:when test="$singledates=1">				<!-- Case: A single date -->
 								<xsl:element name="sngdate">
 									<xsl:choose>
-										<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate!=''">    <!-- a single date, standard date -->
+										<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/calendarDate!=''">    <!-- a single date, standard date -->
 											<xsl:element name="caldate">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/calendarDate"/>
 											</xsl:element>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/time!=''">						<!-- add time, if there is any specified -->
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/time!=''">						<!-- add time, if there is any specified -->
 												<xsl:element name="time">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/time"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/time"/>
 												</xsl:element>
 											</xsl:if>
 										</xsl:when>
-										<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName!=''">
+										<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName!=''">
 										<xsl:element name="geolage">
 											<xsl:element name="geolscal">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName"/>
 											</xsl:element>
 											<xsl:element name="geolest">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeEstimate"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeEstimate"/>
 											</xsl:element>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeUncertainty!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeUncertainty!=''">
 												<xsl:element name="geolun">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeUncertainty"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeUncertainty"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeExplanation!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeExplanation!=''">
 												<xsl:element name="geolexpl">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeExplanation"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleAgeExplanation"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if  test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/title!=''">
+											<xsl:if  test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/title!=''">
 												<xsl:element name="geolcit">
 													<xsl:element name="citeinfo">
 														<xsl:element name="origin">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
 														</xsl:element>
 														<xsl:choose>
-															<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/pubDate!=''">
+															<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/pubDate!=''">
 																<xsl:element name="pubdate">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/pubDate"/>
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/pubDate"/>
 																</xsl:element>
 															</xsl:when>
 															<xsl:otherwise>
@@ -427,20 +440,20 @@ version="1.0">
 															</xsl:otherwise>
 														</xsl:choose>
 														<xsl:element name="title">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/title"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/title"/>
 														</xsl:element>
 														<xsl:element name="geoform"><xsl:value-of select="'Standard'"/></xsl:element>
-														<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/series!=''">
+														<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/series!=''">
 															<xsl:element name="sername">
 																<xsl:element name="serinfo">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/series"/>
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/series"/>
 																</xsl:element>
 																<xsl:element name="issue"><xsl:value-of select="'Unknown'"/></xsl:element>
 															</xsl:element>
 														</xsl:if>
-													    <xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
+													    <xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
 															<xsl:element name="onlink">
-																<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>
+																<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>
 															</xsl:element>
 														</xsl:if>
 													</xsl:element>
@@ -454,8 +467,8 @@ version="1.0">
   							<xsl:when test="$singledates &gt; 1">				<!-- Case: Multiple single dates -->
   								<xsl:element name="mdattim">
 									<xsl:choose>
-										<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate!=''">
-											<xsl:for-each select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/calendarDate">
+										<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/calendarDate!=''">
+											<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/calendarDate">
 												<xsl:element name="sngdate">
 													<xsl:element name="caldate">
 														<xsl:value-of select="."/>
@@ -463,8 +476,8 @@ version="1.0">
 												</xsl:element>
 											</xsl:for-each>
 										</xsl:when>
-										<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName!=''">
-										<xsl:for-each select="/eml:eml/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale">
+										<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale/timeScaleName!=''">
+										<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/singleDateTime/alternativeTimeScale">
 											<xsl:element name="geolage">
 												<xsl:element name="geolscal">
 													<xsl:value-of select="timeScaleName"/>
@@ -526,57 +539,57 @@ version="1.0">
 							</xsl:when>   <!-- end case multiple single dates. -->
 							<xsl:when test="$singledates &lt; 1">
 								<xsl:choose>
-								<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate!=''">    <!-- a range of dates, standard date -->
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate!=''">    <!-- a range of dates, standard date -->
 									<xsl:element name="rngdates">
 										<xsl:element name="begdate">
-											<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/calendarDate"/>
 										</xsl:element>
-										<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time!=''">
+										<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time!=''">
 											<xsl:element name="begtime">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/time"/>
 											</xsl:element>
 										</xsl:if>
 										<xsl:element name="enddate">
-											<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/calendarDate"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/calendarDate"/>
 										</xsl:element>
-										<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time!=''">
+										<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time!=''">
 											<xsl:element name="endtime">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/time"/>
 											</xsl:element>
 										</xsl:if>
 									</xsl:element>
 								</xsl:when>
-								<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleName!=''">    <!-- a range of dates, alternative date -->
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleName!=''">    <!-- a range of dates, alternative date -->
 									<xsl:element name="rngdates">
 									<xsl:element name="beggeol">
 										<xsl:element name="geolage">
 											<xsl:element name="geolscal">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleName" />   
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleName" />   
 											</xsl:element>
 											<xsl:element name="geolest">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeEstimate"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeEstimate"/>
 											</xsl:element>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeUncertainty!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeUncertainty!=''">
 												<xsl:element name="geolun">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeUncertainty"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeUncertainty"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeExplanation!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeExplanation!=''">
 												<xsl:element name="geolexpl">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeExplanation"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleAgeExplanation"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/title!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/title!=''">
 												<xsl:element name="geolcit">
 													<xsl:element name="citeinfo">
 														<xsl:element name="origin">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
 														</xsl:element>
 														<xsl:choose>
-															<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/pubDate!=''">
+															<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/pubDate!=''">
 																<xsl:element name="pubdate">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/pubDate"/>														
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/pubDate"/>														
 																</xsl:element>
 															</xsl:when>
 															<xsl:otherwise>
@@ -584,22 +597,22 @@ version="1.0">
 															</xsl:otherwise>
 														</xsl:choose>
 														<xsl:element name="title">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/title"/>			
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/title"/>			
 														</xsl:element>
 														<xsl:element name="geoform">
 															<xsl:value-of select="'Standard'"/>																	
 														</xsl:element>
-														<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/series!=''">
+														<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/series!=''">
 															<xsl:element name="serinfo">
 																<xsl:element name="sername">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/series"/>														
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/series"/>														
 																</xsl:element>
 																<xsl:element name="issue"><xsl:value-of select="'Unknown'"/></xsl:element>
 															</xsl:element>
 														</xsl:if>
-														<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
+														<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
 															<xsl:element name="onlink">
-																<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>														
+																<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/beginDate/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>														
 															</xsl:element>
 														</xsl:if>
 													</xsl:element>
@@ -610,32 +623,32 @@ version="1.0">
 									<xsl:element name="endgeol">
 										<xsl:element name="geolage">
 											<xsl:element name="geolscal">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleName" />   
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleName" />   
 											</xsl:element>
 											<xsl:element name="geolest">
-												<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeEstimate"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeEstimate"/>
 											</xsl:element>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeUncertainty!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeUncertainty!=''">
 												<xsl:element name="geolun">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeUncertainty"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeUncertainty"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeExplanation!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeExplanation!=''">
 												<xsl:element name="geolexpl">
-													<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeExplanation"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleAgeExplanation"/>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/title!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/title!=''">
 												<xsl:element name="geolcit">
 													<xsl:element name="citeinfo">
 														<xsl:element name="origin">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/creator/individualName/surName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/creator/organizationName"/>
 														</xsl:element>
 														<xsl:choose>
-															<xsl:when test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/pubDate!=''">
+															<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/pubDate!=''">
 																<xsl:element name="pubdate">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/pubDate"/>														
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/pubDate"/>														
 																</xsl:element>
 															</xsl:when>
 															<xsl:otherwise>
@@ -643,22 +656,22 @@ version="1.0">
 															</xsl:otherwise>
 														</xsl:choose>
 														<xsl:element name="title">
-															<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/title"/>			
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/title"/>			
 														</xsl:element>
 														<xsl:element name="geoform">
 															<xsl:value-of select="'Standard'"/>																	
 														</xsl:element>
-														<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/series!=''">
+														<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/series!=''">
 															<xsl:element name="serinfo">
 																<xsl:element name="sername">
-																	<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/series"/>														
+																	<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/series"/>														
 																</xsl:element>
 																<xsl:element name="issue"><xsl:value-of select="'Unknown'"/></xsl:element>
 															</xsl:element>
 														</xsl:if>
-														<xsl:if test="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
+														<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/distribution/online/url!=''">
 															<xsl:element name="onlink">
-																<xsl:value-of select="/eml:eml/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>														
+																<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/temporalCoverage/rangeOfDates/endDate/alternativeTimeScale/timeScaleCitation/distribution/online/url"/>														
 															</xsl:element>
 														</xsl:if>
 													</xsl:element>
@@ -690,8 +703,8 @@ version="1.0">
           </xsl:element>
           <xsl:element name="update">
             <xsl:choose>
-              <xsl:when test="/eml:eml/dataset/maintenance!=''"> <!-- ISG :we should consider all EML maintenance tag, not just the optional frequency. -->
-                <xsl:value-of select="/eml:eml/dataset/maintenance"/> <!-- flatten out all element -->
+              <xsl:when test="/*[local-name() = 'eml']/dataset/maintenance!=''"> <!-- ISG :we should consider all EML maintenance tag, not just the optional frequency. -->
+                <xsl:value-of select="/*[local-name() = 'eml']/dataset/maintenance"/> <!-- flatten out all element -->
               </xsl:when>
               <xsl:otherwise>
                 <xsl:value-of select="'Unknown'"/>
@@ -706,58 +719,58 @@ version="1.0">
              This implementation just insert data from the first instance -->
         <xsl:choose>
           <!-- this 'when' test catches the top level geographic coverage element -->
-          <xsl:when test="/eml:eml/dataset/coverage/geographicCoverage!=''">
+          <xsl:when test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage!=''">
             <xsl:element name="spdom">
-					<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/geographicDescription">
+					<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/geographicDescription">
 						<xsl:element name="descgeog">
 							<xsl:value-of select="."/>
 						</xsl:element>
 					</xsl:for-each>
 					<xsl:element name="bounding">
-						<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate">				
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate">				
 							<xsl:element name="westbc">
 								<xsl:value-of select="."/>
 							</xsl:element>									
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate">
 							<xsl:element name="eastbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate">
 							<xsl:element name="northbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate">
 							<xsl:element name="southbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
 						<xsl:element name="boundalt">
-							<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMinimum">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMinimum">
 								<xsl:element name="altmin">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
-							<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMaximum">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMaximum">
 								<xsl:element name="almax">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
-							<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeUnits">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeUnits">
 								<xsl:element name="altunits">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
 						</xsl:element>
 					</xsl:element>
-					<xsl:if test="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon!=''">
+					<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon!=''">
 					<xsl:element name="dsgpoly">
 						<xsl:element name="dsgpolyo">
 							<xsl:choose>
-								<xsl:when test="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint/gRingLatitude!=''">
-									<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint">
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint/gRingLatitude!=''">
+									<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint">
 										<xsl:element name="grngpoin">
 											<xsl:element name="gringlat">
 												<xsl:value-of select="gRingLatitude"/>
@@ -768,12 +781,12 @@ version="1.0">
 										</xsl:element>
 									</xsl:for-each>
 								</xsl:when>
-								<xsl:when test="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude!=''">		
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude!=''">		
 								<!-- in this case we are dealing with pairs of latitude-longitude pairs that are mapped into gring in the BDP standard -->
 									<xsl:element name="gring">
-										<xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude"/>
 										<xsl:value-of select="','"/>
-										<xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLongitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLongitude"/>
 									</xsl:element>
 								</xsl:when>							
 							</xsl:choose>
@@ -781,8 +794,8 @@ version="1.0">
 						<!-- in EML, the exclusion or Inner ring is optional.. so if it is not existing, make it a zero in bdp -->
 						<xsl:element name="dsgpolyx">
 							<xsl:choose>
-								<xsl:when test="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint/gRingLatitude!=''">
-									<xsl:for-each select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint">
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint/gRingLatitude!=''">
+									<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint">
 										<xsl:element name="grngpoin">
 											<xsl:element name="gringlat">
 												<xsl:value-of select="gRingLatitude"/>
@@ -793,13 +806,13 @@ version="1.0">
 										</xsl:element>
 									</xsl:for-each>
 								</xsl:when>
-								<xsl:when test="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude!=''">		
+								<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude!=''">		
 								<!-- in this case we are dealing with pairs of latitude-longitude pairs that are mapped into gring in the BDP standard -->
 								<!-- as is, it will flatten the contents into the gring. It may need some work to be more accurate -->
 									<xsl:element name="gring">
-										<xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude"/>
 										<xsl:value-of select="','"/>
-										<xsl:value-of select="/eml:eml/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLongitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLongitude"/>
 									</xsl:element>
 								</xsl:when>
 								<xsl:otherwise>
@@ -815,58 +828,58 @@ version="1.0">
 				</xsl:element>
           </xsl:when>
           <!-- Use geocoverage if it is part of the first entitiy -->
-          <xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage!=''">
+          <xsl:when test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage!=''">
            <xsl:element name="spdom">
-					<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/geographicDescription">
+					<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/geographicDescription">
 						<xsl:element name="descgeog">
 							<xsl:value-of select="."/>
 						</xsl:element>
 					</xsl:for-each>
 					<xsl:element name="bounding">
-						<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate">				
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/westBoundingCoordinate">				
 							<xsl:element name="westbc">
 								<xsl:value-of select="."/>
 							</xsl:element>									
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/eastBoundingCoordinate">
 							<xsl:element name="eastbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/northBoundingCoordinate">
 							<xsl:element name="northbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
-						<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate">
+						<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/southBoundingCoordinate">
 							<xsl:element name="southbc">
 								<xsl:value-of select="."/>
 							</xsl:element>
 						</xsl:for-each>
 						<xsl:element name="boundalt">
-							<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMinimum">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMinimum">
 								<xsl:element name="altmin">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
-							<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMaximum">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeMaximum">
 								<xsl:element name="almax">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
-							<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeUnits">
+							<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/boundingCoordinates/boundingAltitudes/altitudeUnits">
 								<xsl:element name="altunits">
 									<xsl:value-of select="."/>
 								</xsl:element>
 							</xsl:for-each>
 						</xsl:element>
 					</xsl:element>
-					<xsl:if test="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon!=''">
+					<xsl:if test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon!=''">
 					<xsl:element name="dsgpoly">
 						<xsl:element name="dsgpolyo">
 							<xsl:choose>
-								<xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint/gRingLatitude!=''">
-									<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint">
+								<xsl:when test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint/gRingLatitude!=''">
+									<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRingPoint">
 										<xsl:element name="grngpoin">
 											<xsl:element name="gringlat">
 												<xsl:value-of select="gRingLatitude"/>
@@ -877,12 +890,12 @@ version="1.0">
 										</xsl:element>
 									</xsl:for-each>
 								</xsl:when>
-								<xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude!=''">		
+								<xsl:when test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude!=''">		
 								<!-- in this case we are dealing with pairs of latitude-longitude pairs that are mapped into gring in the BDP standard -->
 									<xsl:element name="gring">
-										<xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLatitude"/>
 										<xsl:value-of select="','"/>
-										<xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLongitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonOuterGRing/gRing/gRingLongitude"/>
 									</xsl:element>
 								</xsl:when>							
 							</xsl:choose>
@@ -890,8 +903,8 @@ version="1.0">
 						<!-- in EML, the exclusion or Inner ring is optional.. so if it is not existing, make it a zero in bdp -->
 						<xsl:element name="dsgpolyx">
 							<xsl:choose>
-								<xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint/gRingLatitude!=''">
-									<xsl:for-each select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint">
+								<xsl:when test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint/gRingLatitude!=''">
+									<xsl:for-each select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRingPoint">
 										<xsl:element name="grngpoin">
 											<xsl:element name="gringlat">
 												<xsl:value-of select="gRingLatitude"/>
@@ -902,13 +915,13 @@ version="1.0">
 										</xsl:element>
 									</xsl:for-each>
 								</xsl:when>
-								<xsl:when test="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude!=''">		
+								<xsl:when test="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude!=''">		
 								<!-- in this case we are dealing with pairs of latitude-longitude pairs that are mapped into gring in the BDP standard -->
 								<!-- as is, it will flatten the contents into the gring. It may need some work to be more accurate -->
 									<xsl:element name="gring">
-										<xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLatitude"/>
 										<xsl:value-of select="','"/>
-										<xsl:value-of select="/eml:eml/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLongitude"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/*/coverage/geographicCoverage/datasetGPolygon/datasetGPolygonExclusionGRing/gRing/gRingLongitude"/>
 									</xsl:element>
 								</xsl:when>
 								<xsl:otherwise>
@@ -927,9 +940,9 @@ version="1.0">
         
         <xsl:element name="keywords">
           <xsl:choose>
-            <xsl:when test="/eml:eml/dataset/keywordSet!=''">
-              <xsl:for-each select="/eml:eml/dataset/keywordSet">
-                <xsl:variable name="current_thes" select="/eml:eml/dataset/keywordSet/keywordThesaurus"/>
+            <xsl:when test="/*[local-name() = 'eml']/dataset/keywordSet!=''">
+              <xsl:for-each select="/*[local-name() = 'eml']/dataset/keywordSet">
+                <xsl:variable name="current_thes" select="/*[local-name() = 'eml']/dataset/keywordSet/keywordThesaurus"/>
                 <xsl:for-each select="./keyword">
                   <xsl:choose>
                     <xsl:when test="./@keywordType='theme'">
@@ -1035,7 +1048,7 @@ version="1.0">
         </xsl:element>  
           
         <!-- loop over all coverage elements in the eml2 doc -->
-        <xsl:for-each select="/eml:eml//coverage">
+        <xsl:for-each select="/*[local-name() = 'eml']//coverage">
           <!-- 'references' handling for coverage -->
           <xsl:variable name="cc_cov">
               <xsl:choose>
@@ -1097,23 +1110,23 @@ version="1.0">
                   		   <!-- all these elements are mandatory if applicable, until the taxonomic classification, that is mandatory
 							however, if you put something here, then you need at least classsys and classcit/citeinfo+mandatory citeinfo els., 
 							last we would also need taxonomic procedures -->
-					<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem!=''">
+					<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem!=''">
     					<xsl:element name="taxonsys">
 							<xsl:element name="classsys">
 								<xsl:element name="classcit">
 									<xsl:element name="citeinfo">
-										<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/creator/individualName/surName">
+										<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/creator/individualName/surName">
 											<xsl:element name="origin"><!-- this is also mandatory in EML (when parent is populated)-->
 												<xsl:value-of select="."/>
 											</xsl:element>
 										</xsl:for-each>
-										<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/creator/organizationName">
+										<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/creator/organizationName">
 											<xsl:element name="origin">
 												<xsl:value-of select="."/>
 											</xsl:element>
 										</xsl:for-each>
 										<xsl:choose>
-											<xsl:when test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/pubDate!=''">
+											<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/pubDate!=''">
 												<xsl:element name="pubdate">
 													<xsl:value-of select="eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/pubDate"/>
 												</xsl:element>
@@ -1121,12 +1134,12 @@ version="1.0">
 											<xsl:otherwise><xsl:element name="pubdate"><xsl:value-of select="'N/A'"/></xsl:element></xsl:otherwise>
 										</xsl:choose>
 										<xsl:element name="title"> <!-- mandatory in EML (when parent element is populated -->
-											<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/title"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/title"/>
 										</xsl:element>
 										<xsl:element name="geoform"><!-- hard coded -->
 											<xsl:value-of select="'Standard'"/>
 										</xsl:element>
-										<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/series!=''">
+										<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/series!=''">
 											<xsl:element name="serinfo">
 												<xsl:element name="sername">
 													<xsl:value-of select="."/>
@@ -1136,16 +1149,16 @@ version="1.0">
 												</xsl:element>
 											</xsl:element>
 										</xsl:if>
-										<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/distribution/online/url!=''">
+										<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/distribution/online/url!=''">
 											<xsl:element name="onlink">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/distribution/online/url"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemCitation/distribution/online/url"/>
 											</xsl:element>
 										</xsl:if>
 									</xsl:element> <!-- end of citeinfo -->
 								</xsl:element>    <!-- end of classcit-->
 								<xsl:choose>
-									<xsl:when test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemModifications!=''">
-										<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemModifications">
+									<xsl:when test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemModifications!=''">
+										<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/classificationSystem/classificationSystemModifications">
 											<xsl:element name="classmod">			
 												<xsl:value-of select="."/>
 											</xsl:element>
@@ -1158,40 +1171,40 @@ version="1.0">
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:element> <!-- end of classsys -->		
-							<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference!=''"><!--optional in EML-->
+							<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference!=''"><!--optional in EML-->
 									<xsl:element name="idref">
 										<xsl:element name="citeinfo">
-											<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/creator/individualName/surname">
+											<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/creator/individualName/surname">
 												<xsl:element name="origin">
 													<xsl:value-of select="."/>
 												</xsl:element>
 											</xsl:for-each><!-- somewhere here. lots of conditionals to be placed before this line -->
-											<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/creator/organizationName">
+											<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/creator/organizationName">
 												<xsl:element name="origin">
 													<xsl:value-of select="."/>
 												</xsl:element>
 											</xsl:for-each>
-											<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/pubDate!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/pubDate!=''">
 												<xsl:element name="pubdate">
-													<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/pubDate"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/pubDate"/>
 												</xsl:element>
 											</xsl:if>
 											<xsl:element name="geoform">
 												<xsl:value-of select="'Standard'"/>
 											</xsl:element>
-											<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/series!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/series!=''">
 												<xsl:element name="serinfo">
 													<xsl:element name="sername">
-														<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/series"/>
+														<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/series"/>
 													</xsl:element>
 													<xsl:element name="issue">
 														<xsl:value-of select="'Unknown'"/>
 													</xsl:element>
 												</xsl:element>
 											</xsl:if>
-											<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/distribution/online/url!=''">
+											<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/distribution/online/url!=''">
 												<xsl:element name="onlink">
-													<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/distribution/online/url"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identificationReference/distribution/online/url"/>
 												</xsl:element>
 											</xsl:if>
 										</xsl:element>
@@ -1201,22 +1214,22 @@ version="1.0">
 									<xsl:element name="cntinfo">
 										<xsl:element name="cntperp">
 											<xsl:element name="cntper">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/surName"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/surName"/>
 												<xsl:value-of select="', '"/>
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/givenName"/>												
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/givenName"/>												
 											</xsl:element>
 											<xsl:element name="cntorg">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/organizationName"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/organizationName"/>
 									        </xsl:element>
 										</xsl:element>
 										<xsl:element name="cntorgp">
 											<xsl:element name="cntorg">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/organizationName"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/organizationName"/>
 									        </xsl:element>
 										    <xsl:element name="cntper">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/surName"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/surName"/>
 												<xsl:value-of select="', '"/>
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/givenName"/>												
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/individualName/givenName"/>												
 											</xsl:element>
 										</xsl:element>
 										<xsl:element name="cntaddr">
@@ -1224,64 +1237,64 @@ version="1.0">
 												<xsl:value-of select="'Mailing'"/>
 											</xsl:element>
 											<xsl:element name="address">
-												<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/deliveryPoint">
+												<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/deliveryPoint">
 													<xsl:value-of select="."/>
 												</xsl:for-each>
 											</xsl:element>
 											<xsl:element name="city">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/city"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/city"/>
 											</xsl:element>
 											<xsl:element name="state">
-													<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/administrativearea"/>
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/administrativearea"/>
 											</xsl:element>
 											<xsl:element name="postal">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/postal"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/postal"/>
 											</xsl:element>
 											<xsl:element name="country">
-												<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/country"/>
+												<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/address/country"/>
 											</xsl:element>
 										</xsl:element>
 										<xsl:element name="cntvoice">
-											<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/phone"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/phone"/>
 										</xsl:element>
 										<xsl:element name="cntemail">
-											<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/electronicMailAddress"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/identifierName/electronicMailAddress"/>
 										</xsl:element>
 									</xsl:element>
 							</xsl:element> <!-- end of ider (identifierName) -->
 							<xsl:element name="taxonpro">
-									<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicProcedures"/>
+									<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicProcedures"/>
 							</xsl:element>
-							<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicCompleteness!=''">
+							<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicCompleteness!=''">
 									<xsl:element name="taxoncom">
-										<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicCompleteness"/>
+										<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/taxonomicCompleteness"/>
 									</xsl:element>
 							</xsl:if>
-							<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers!=''">
+							<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers!=''">
 									<xsl:element name="vouchers">
 										<xsl:element name="specimen">
-											<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/specimen"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/specimen"/>
 										</xsl:element>
 										<xsl:element name="reposit">
 											<xsl:element name="cntinfo">
 													<xsl:element name="cntperp">
 														<xsl:element name="cntper">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/surName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/surName"/>
 															<xsl:value-of select="', '"/>
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/givenName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/givenName"/>
 														</xsl:element>
 														<xsl:element name="cntorg">	
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/organizationName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/organizationName"/>
 														</xsl:element>
 													</xsl:element>
 													<xsl:element name="cntorgp">
 														<xsl:element name="cntorg">	
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/organizationName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/organizationName"/>
 														</xsl:element>
 														<xsl:element name="cntper">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/surName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/surName"/>
 															<xsl:value-of select="', '"/>
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/givenName"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/individualName/givenName"/>
 														</xsl:element>
 													</xsl:element>
 													<xsl:element name="cntaddr">
@@ -1289,28 +1302,28 @@ version="1.0">
 															<xsl:value-of select="'Mailing'"/>
 														</xsl:element>
 														<xsl:element name="address">
-															<xsl:for-each select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/deliveryPoint">
+															<xsl:for-each select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/deliveryPoint">
 																<xsl:value-of select="."/>
 															</xsl:for-each>
 														</xsl:element>
 														<xsl:element name="city">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/city"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/city"/>
 														</xsl:element>
 														<xsl:element name="state">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/administrativeArea"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/administrativeArea"/>
 														</xsl:element>
 														<xsl:element name="postal">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/postalCode"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/postalCode"/>
 														</xsl:element>
 														<xsl:element name="country">
-															<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/country"/>
+															<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/address/country"/>
 														</xsl:element>
 													</xsl:element>
 													<xsl:element name="cntvoice">
-														<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/phone"/>
+														<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/phone"/>
 													</xsl:element>
 													<xsl:element name="cntemail">
-														<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/electronicMailAddress"/>
+														<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/taxonomicSystem/vouchers/repository/originator/electronicMailAddress"/>
 													</xsl:element>
 											</xsl:element> <!-- end of cntinfo -->
 										</xsl:element> <!-- reposit -->
@@ -1318,9 +1331,9 @@ version="1.0">
 							</xsl:if> <!-- endif vouchers -->
 						</xsl:element> <!-- end of Taxonomic System MAY BE MISSING AN </EL>-->
 					</xsl:if> <!--possible end of conditional for taxonsssys -->
-					<xsl:if test="/eml:eml/dataset/coverage/taxonomicCoverage/generalTaxonomicCoverage">
+					<xsl:if test="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/generalTaxonomicCoverage">
 						<xsl:element name="taxongen">
-							<xsl:value-of select="/eml:eml/dataset/coverage/taxonomicCoverage/generalTaxonomicCoverage"/>
+							<xsl:value-of select="/*[local-name() = 'eml']/dataset/coverage/taxonomicCoverage/generalTaxonomicCoverage"/>
 						</xsl:element>
 					</xsl:if>  <!-- end of code insertion (taxonomic Coverage ) -->
                   <xsl:element name="taxoncl">
@@ -1368,15 +1381,15 @@ version="1.0">
         </xsl:for-each>
         
         <xsl:choose>
-          <xsl:when test="/eml:eml/dataset/access!=''">
+          <xsl:when test="/*[local-name() = 'eml']/dataset/access!='' or /*[local-name() = 'eml']/access!=''">
             <xsl:element name="accconst">
-			   <xsl:for-each select="/eml:eml/dataset/access/allow">	
+			   <xsl:for-each select="/*[local-name() = 'eml']/dataset/access/allow | /*[local-name() = 'eml']/access/allow">	
 					<xsl:value-of select="'Allow  '"/><xsl:value-of select="permission"/><xsl:value-of select="' to users: '"/><xsl:value-of select="principal"/>
 					<xsl:text>
 					</xsl:text><!-- a separator -->
 				</xsl:for-each>
-				<xsl:for-each select="/eml:eml/dataset/access/deny">	
-					<xsl:value-of select="'Allow  '"/><xsl:value-of select="permission"/><xsl:value-of select="' to users: '"/><xsl:value-of select="principal"/>
+				<xsl:for-each select="/*[local-name() = 'eml']/dataset/access/deny | /*[local-name() = 'eml']/access/deny">	
+					<xsl:value-of select="'Deny  '"/><xsl:value-of select="permission"/><xsl:value-of select="' to users: '"/><xsl:value-of select="principal"/>
                     <xsl:text>
 					</xsl:text><!-- a separator -->
 				</xsl:for-each>
@@ -1389,9 +1402,9 @@ version="1.0">
           </xsl:otherwise>
         </xsl:choose>  
         <xsl:choose>
-			<xsl:when test="/eml:eml/dataset/intellectualRights!=''">
+			<xsl:when test="/*[local-name() = 'eml']/dataset/intellectualRights!=''">
 				<xsl:element name="useconst">
-					<xsl:value-of select="/eml:eml/dataset/intellectualRights"/>
+					<xsl:value-of select="/*[local-name() = 'eml']/dataset/intellectualRights"/>
 				</xsl:element>  
 			</xsl:when>
             <xsl:otherwise>
@@ -1404,7 +1417,7 @@ version="1.0">
         <xsl:if test="$show_optional">
           <xsl:element name="ptcontac">  <!-- ISG, added contact info.  -->
 			  <xsl:element name="cntinfo">
-				<xsl:for-each select="/eml:eml/dataset/contact[1]">  <!-- Here is the 1st EML contact found. -->
+				<xsl:for-each select="/*[local-name() = 'eml']/dataset/contact[1]">  <!-- Here is the 1st EML contact found. -->
 				  <xsl:variable name="contact_c">
 						<xsl:choose>
 						  <xsl:when test="./references!=''">
@@ -1535,7 +1548,7 @@ version="1.0">
         </xsl:if>
         <xsl:if test="$show_optional">
           <xsl:element name="datacred"> <!-- add either an associated Parties and funding agency. lump all here..-->
-			 <xsl:for-each select="/eml:eml/dataset/associatedParty">
+			 <xsl:for-each select="/*[local-name() = 'eml']/dataset/associatedParty">
 				  <xsl:text>  
 					</xsl:text><!-- put a new line character -->
 				 <xsl:value-of select="individualName/surName"/>
@@ -1547,10 +1560,10 @@ version="1.0">
 					 <xsl:value-of select="'position name:'"/><xsl:value-of select="role"/>
 				 </xsl:if>
 			 </xsl:for-each>
-			 <xsl:if test="/eml:eml/dataset/project/funding!=''">
+			 <xsl:if test="/*[local-name() = 'eml']/dataset/project/funding!=''">
 				 <xsl:text>    
    				 </xsl:text><!-- put a new line character -->
-				 <xsl:value-of select="'Funding:'"/><xsl:value-of select="/eml:eml/dataset/project/funding"/>
+				 <xsl:value-of select="'Funding:'"/><xsl:value-of select="/*[local-name() = 'eml']/dataset/project/funding"/>
 			 </xsl:if>
           </xsl:element>
         </xsl:if>
@@ -1579,10 +1592,10 @@ version="1.0">
 
 			<xsl:element name="logic">
 				<xsl:choose>
-					<xsl:when test="/eml:eml/dataset/methods/qualityControl!=''">
-						<xsl:value-of select="/eml:eml/dataset/methods/qualityControl/description"/>
-					    <xsl:if test="/eml:eml/dataset/methods/qualityControl/protocol!=''">
-							<xsl:value-of select="/eml:eml/dataset/methods/qualityControl/protocol"/>
+					<xsl:when test="/*[local-name() = 'eml']/dataset/methods/qualityControl!=''">
+						<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/qualityControl/description"/>
+					    <xsl:if test="/*[local-name() = 'eml']/dataset/methods/qualityControl/protocol!=''">
+							<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/qualityControl/protocol"/>
 						</xsl:if>
 					</xsl:when>
 					<xsl:otherwise>
@@ -1592,8 +1605,8 @@ version="1.0">
 			</xsl:element>
 			<xsl:element name="complete"><xsl:value-of select="Unknown"/></xsl:element>
 			<xsl:element name="lineage">
-				<xsl:if test="/eml:eml/dataset/methods/methodStep!=''">
-					<xsl:for-each select="/eml:eml/dataset/methods/methodStep">
+				<xsl:if test="/*[local-name() = 'eml']/dataset/methods/methodStep!=''">
+					<xsl:for-each select="/*[local-name() = 'eml']/dataset/methods/methodStep">
 						<xsl:element name="method">
 							<xsl:element name="methodtype">
 								<xsl:value-of select="'Method Type; field, lab, etc'"/>
@@ -1601,21 +1614,21 @@ version="1.0">
 							<xsl:element name="methoddesc">
 								<xsl:value-of select="description"/>
 							</xsl:element>
-							<xsl:if test="/eml:eml/dataset/methods/methodStep/citation!=''">
+							<xsl:if test="/*[local-name() = 'eml']/dataset/methods/methodStep/citation!=''">
 								<xsl:element name="methcite">
 									<xsl:element name="citeinfo">
 										<xsl:element name="origin">
-											<xsl:value-of select="/eml:eml/dataset/methods/methodStep/citation/creator"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/methodStep/citation/creator"/>
 										</xsl:element>
 										<xsl:element name="pubdate">
 											<xsl:choose>
-												<xsl:when test="/eml:eml/dataset/methods/methodStep/citation/pubDate!=''">
-													<xsl:value-of select="/eml:eml/dataset/methods/methodStep/citation/pubDate"/>
+												<xsl:when test="/*[local-name() = 'eml']/dataset/methods/methodStep/citation/pubDate!=''">
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/methodStep/citation/pubDate"/>
 												</xsl:when>
 												<xsl:otherwise><xsl:value-of select="'N/A'"/></xsl:otherwise>
 											</xsl:choose>
 										</xsl:element>
-										<xsl:element name="title"><xsl:value-of select="/eml:eml/dataset/methods/methodStep/citation/title"/></xsl:element>
+										<xsl:element name="title"><xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/methodStep/citation/title"/></xsl:element>
 										<xsl:element name="geoform"><xsl:value-of select="'document'"/></xsl:element>
 									</xsl:element>
 								</xsl:element>
@@ -1623,7 +1636,7 @@ version="1.0">
 						</xsl:element>
 					</xsl:for-each>
 				</xsl:if>
-				<xsl:if test="/eml:eml/dataset/methods/sampling!=''">
+				<xsl:if test="/*[local-name() = 'eml']/dataset/methods/sampling!=''">
 					<xsl:element name="method">
 						<xsl:element name="methodtype">
 							<xsl:value-of select="'Sampling methods'"/>
@@ -1632,21 +1645,21 @@ version="1.0">
 								<xsl:value-of select="samplingDescription"/>
 								<xsl:value-of select="studyExtent"/>
 							</xsl:element>
-							<xsl:if test="/eml:eml/dataset/methods/sampling/citation!=''">
+							<xsl:if test="/*[local-name() = 'eml']/dataset/methods/sampling/citation!=''">
 								<xsl:element name="methcite">
 									<xsl:element name="citeinfo">
 										<xsl:element name="origin">
-											<xsl:value-of select="/eml:eml/dataset/methods/sampling/citation/creator"/>
+											<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/sampling/citation/creator"/>
 										</xsl:element>
 										<xsl:element name="pubdate">
 											<xsl:choose>
-												<xsl:when test="/eml:eml/dataset/methods/sampling/citation/pubDate!=''">
-													<xsl:value-of select="/eml:eml/dataset/methods/sampling/citation/pubDate"/>
+												<xsl:when test="/*[local-name() = 'eml']/dataset/methods/sampling/citation/pubDate!=''">
+													<xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/sampling/citation/pubDate"/>
 												</xsl:when>
 												<xsl:otherwise><xsl:value-of select="'N/A'"/></xsl:otherwise>
 											</xsl:choose>
 										</xsl:element>
-										<xsl:element name="title"><xsl:value-of select="/eml:eml/dataset/methods/sampling/citation/title"/></xsl:element>
+										<xsl:element name="title"><xsl:value-of select="/*[local-name() = 'eml']/dataset/methods/sampling/citation/title"/></xsl:element>
 										<xsl:element name="geoform"><xsl:value-of select="'document'"/></xsl:element>
 									</xsl:element>
 								</xsl:element>
@@ -1672,7 +1685,7 @@ version="1.0">
       Only the first set of spatial data will be copied -->
       
       <!-- NEED TO HANDLE 'REFERENCES' -->
-      <xsl:if test="/eml:eml/dataset/spatialRaster!=''">
+      <xsl:if test="/*[local-name() = 'eml']/dataset/spatialRaster!=''">
         <!-- apparently, there are numerous elements in eml2 spatialRaster
              which have no equivalent in nbii/fgdc rastinfo element! -->
         <xsl:element name="spdoinfo">
@@ -1686,7 +1699,7 @@ version="1.0">
                  in fgdc, this element has allowed values of 'Point', 'Pixel', 
                  'Grid Cell' or 'Voxel'-->
               <xsl:choose>
-                <xsl:when test="/eml:eml/dataset/spatialRaster/cellGeometry='pixel'">
+                <xsl:when test="/*[local-name() = 'eml']/dataset/spatialRaster/cellGeometry='pixel'">
                   <xsl:value-of select="'Pixel'"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -1695,28 +1708,28 @@ version="1.0">
               </xsl:choose>
             </xsl:element>
             <xsl:element name="rowcount">
-              <xsl:value-of select="/eml:eml/dataset/spatialRaster/rows"/>
+              <xsl:value-of select="/*[local-name() = 'eml']/dataset/spatialRaster/rows"/>
             </xsl:element>
             <xsl:element name="colcount">
-              <xsl:value-of select="/eml:eml/dataset/spatialRaster/columns"/>
+              <xsl:value-of select="/*[local-name() = 'eml']/dataset/spatialRaster/columns"/>
             </xsl:element>
             <xsl:element name="vrtcount">
-              <xsl:value-of select="/eml:eml/dataset/spatialRaster/verticals"/>
+              <xsl:value-of select="/*[local-name() = 'eml']/dataset/spatialRaster/verticals"/>
             </xsl:element>
           </xsl:element>
         </xsl:element>
       </xsl:if>
       <!-- NEED TO HANDLE 'REFERENCES' -->
-      <xsl:if test="/eml:eml/dataset/spatialVector!=''">
+      <xsl:if test="/*[local-name() = 'eml']/dataset/spatialVector!=''">
         <xsl:element name="spdoinfo">
           <xsl:element name="direct">
             <xsl:value-of select="'Vector'"/>
           </xsl:element>
-          <xsl:for-each select="/eml:eml/dataset/spatialVector/geometry">
+          <xsl:for-each select="/*[local-name() = 'eml']/dataset/spatialVector/geometry">
             <xsl:element name="ptvctinf">
               <xsl:element name="sdtsterm">
                 <xsl:element name="sdtstype">
-                  <xsl:variable name="geotype" select="/eml:eml/dataset/spatialVector/geometry"/>
+                  <xsl:variable name="geotype" select="/*[local-name() = 'eml']/dataset/spatialVector/geometry"/>
                   <!-- mapping of eml2 geometry types to fgdc; multi... types very uncertain! -->
 				   <xsl:choose>
 								<xsl:when test="$geotype='LineString'"><xsl:value-of select="'String'"/></xsl:when>
@@ -1743,10 +1756,10 @@ version="1.0">
             basically the same as would be in the horizCoordSysDef tag -->
      
      <xsl:choose>
-       <xsl:when test="/eml:eml/dataset/spatialRaster/spatialReference!=''">
+       <xsl:when test="/*[local-name() = 'eml']/dataset/spatialRaster/spatialReference!=''">
        <!-- Note: spatialRefenence is required in spatialRaster, but NOT in spatialVector! -->
          <xsl:choose>
-           <xsl:when test="/eml:eml/dataset/spatialRaster/spatialReference/horizCoordSysDef!=''">
+           <xsl:when test="/*[local-name() = 'eml']/dataset/spatialRaster/spatialReference/horizCoordSysDef!=''">
              <xsl:element name="spref">
                <xsl:element name="horizsys">
                  <xsl:element name="planar">
@@ -1799,9 +1812,9 @@ version="1.0">
 <!-- start the 'eainfo' branch -->      
 <!-- create only if there is entity data in the eml2 document --> 
    <!-- Need to test correct iterations over attributes... not so sure logic works-->
-      <xsl:if test="/eml:eml/dataset/dataTable!='' or /eml:eml/dataset/spatialVector!='' or /eml:eml/dataset/spatialRaster!=''  or /eml:eml/dataset/storedProcedure!='' or /eml:eml/dataset/view!='' or /eml:eml/dataset/otherEntity!='' " >
+      <xsl:if test="/*[local-name() = 'eml']/dataset/dataTable!='' or /*[local-name() = 'eml']/dataset/spatialVector!='' or /*[local-name() = 'eml']/dataset/spatialRaster!=''  or /*[local-name() = 'eml']/dataset/storedProcedure!='' or /*[local-name() = 'eml']/dataset/view!='' or /*[local-name() = 'eml']/dataset/otherEntity!='' " >
         <xsl:element name="eainfo">
-          <xsl:for-each select="(/eml:eml/dataset/dataTable) | (/eml:eml/dataset/spatialVector) | (/eml:eml/dataset/spatialRaster) | (/eml:eml/dataset/storedProcedure)  | (/eml:eml/dataset/view)  | (/eml:eml/dataset/otherEntity)  ">
+          <xsl:for-each select="(/*[local-name() = 'eml']/dataset/dataTable) | (/*[local-name() = 'eml']/dataset/spatialVector) | (/*[local-name() = 'eml']/dataset/spatialRaster) | (/*[local-name() = 'eml']/dataset/storedProcedure)  | (/*[local-name() = 'eml']/dataset/view)  | (/*[local-name() = 'eml']/dataset/otherEntity)  ">
            
             <xsl:variable name="cc">
               <xsl:choose>
@@ -1922,10 +1935,10 @@ version="1.0">
                           </xsl:element>
                         </xsl:element>
                       </xsl:when>
-                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale/datetime!=''">
+                      <xsl:when test="xalan:nodeset($cc-attr)//measurementScale/datetime!='' or xalan:nodeset($cc-attr)//measurementScale/dateTime!='' ">
                         <xsl:element name="udom">
                           <xsl:value-of select="'Date time'"/>
-                          <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale/datetime"/>
+                          <xsl:value-of select="xalan:nodeset($cc-attr)//measurementScale/datetime | xalan:nodeset($cc-attr)//measurementScale/datetTime"/>
                         </xsl:element>
                       </xsl:when>
                     </xsl:choose>
@@ -1951,8 +1964,8 @@ version="1.0">
           <xsl:element name="distrib">
             <xsl:element name="cntinfo">
 	  		 <xsl:choose>
-			   <xsl:when test="/eml:eml/dataset/publisher!=''">  <!-- if publisher, use it as ditributor -->
-				 <xsl:for-each select="/eml:eml/dataset/publisher">
+			   <xsl:when test="/*[local-name() = 'eml']/dataset/publisher!=''">  <!-- if publisher, use it as ditributor -->
+				 <xsl:for-each select="/*[local-name() = 'eml']/dataset/publisher">
 					<xsl:variable name="cc">
 					  <xsl:choose>
 						<xsl:when test="./references!=''">
@@ -2131,7 +2144,7 @@ version="1.0">
 			   </xsl:when>		<!-- end of case there is an EML publsher element -->
 			   
 			   <xsl:otherwise> <!-- use the contact person in EML mandatory -->
-				 <xsl:for-each select="/eml:eml/dataset/contact[1]">
+				 <xsl:for-each select="/*[local-name() = 'eml']/dataset/contact[1]">
 				  <xsl:variable name="cc">
 					  <xsl:choose>
 						<xsl:when test="./references!=''">
@@ -2322,9 +2335,9 @@ version="1.0">
          </xsl:element>
           
           <xsl:choose>
-				<xsl:when test="/eml:eml/dataset/*/physical!=''">
+				<xsl:when test="/*[local-name() = 'eml']/dataset/*/physical!=''">
 		            <xsl:element name="stdorder">
-					  <xsl:for-each select="/eml:eml/dataset/*/physical"> <!-- This looks for an EML <physical> element, but we may compromise and use a <distribution> element that it is likely to be present even when physical is not -->
+					  <xsl:for-each select="/*[local-name() = 'eml']/dataset/*/physical"> <!-- This looks for an EML <physical> element, but we may compromise and use a <distribution> element that it is likely to be present even when physical is not -->
 						<xsl:variable name="cc-phys">
 							<xsl:choose>
 							  <xsl:when test="./references!=''">
@@ -2642,9 +2655,9 @@ version="1.0">
 						   </xsl:element>
 					</xsl:element>  <!-- end stdorder element, for the case we have a physical element -->
 				</xsl:when>
-				<xsl:when test="/eml:eml/dataset/distribution!=''">
+				<xsl:when test="/*[local-name() = 'eml']/dataset/distribution!=''">
 				  <xsl:element name="stdorder">
-					  <xsl:for-each select="/eml:eml/dataset/distribution"> <!-- This looks for an EML <distribution> element that it is likely to be present even when physical is not -->
+					  <xsl:for-each select="/*[local-name() = 'eml']/dataset/distribution"> <!-- This looks for an EML <distribution> element that it is likely to be present even when physical is not -->
 						<xsl:variable name="cc-phys">
 							<xsl:choose>
 							  <xsl:when test="./references!=''">
@@ -2660,16 +2673,16 @@ version="1.0">
 						  <xsl:element name="digtinfo">
 							<xsl:element name="formname">
 								<xsl:choose><!-- the file is online, if a dataTable, assume ASCII, if vector or raster, put that..-->
-									<xsl:when test="/eml:eml/dataset/dataTable!=''">
+									<xsl:when test="/*[local-name() = 'eml']/dataset/dataTable!=''">
 									  <xsl:value-of select="'ASCII'"/>  <!-- if a dataTable, assume ASCII-->
 									</xsl:when>
-									<xsl:when test="/eml:eml/dataset/spatialRaster!=''">
+									<xsl:when test="/*[local-name() = 'eml']/dataset/spatialRaster!=''">
 									  <xsl:value-of select="'Spatial Raster'"/>  <!-- a raster type-->
 									</xsl:when>
-									<xsl:when test="/eml:eml/dataset/spatialVector!=''">
+									<xsl:when test="/*[local-name() = 'eml']/dataset/spatialVector!=''">
 									  <xsl:value-of select="'Spatial Vector'"/>  <!-- a vector-->
 									</xsl:when>
-									<xsl:when test="/eml:eml/dataset/view!=''">
+									<xsl:when test="/*[local-name() = 'eml']/dataset/view!=''">
 									  <xsl:value-of select="'Image'"/>  <!-- Image looks like-->
 									</xsl:when>								
 									<xsl:otherwise>
@@ -2783,8 +2796,8 @@ version="1.0">
       <xsl:element name="metainfo">
         <xsl:element name="metd">
 			<xsl:choose>
-				<xsl:when test="/eml:eml/dataset/pubDate!=''">
-					<xsl:value-of select="/eml:eml/dataset/pubDate"/> <!-- metadata and data published at the same time -->				
+				<xsl:when test="/*[local-name() = 'eml']/dataset/pubDate!=''">
+					<xsl:value-of select="/*[local-name() = 'eml']/dataset/pubDate"/> <!-- metadata and data published at the same time -->				
 				</xsl:when>
 				<xsl:otherwise>
 				  <xsl:value-of select="'N/A'"/>
@@ -2802,8 +2815,8 @@ version="1.0">
         <xsl:element name="metc">
           <xsl:element name="cntinfo">		
           <xsl:choose>
-			<xsl:when test="/eml:eml/dataset/metadataProvider!=''">
-			  <xsl:for-each select="/eml:eml/dataset/metadataProvider[1]">  <!-- Here the metadata Provider should be mapped. I. -->
+			<xsl:when test="/*[local-name() = 'eml']/dataset/metadataProvider!=''">
+			  <xsl:for-each select="/*[local-name() = 'eml']/dataset/metadataProvider[1]">  <!-- Here the metadata Provider should be mapped. I. -->
 				  <xsl:variable name="cc">
 					<xsl:choose>
 					  <xsl:when test="./references!=''">
@@ -2965,7 +2978,7 @@ version="1.0">
 			  </xsl:for-each>		
 			</xsl:when>
 			<xsl:otherwise> <!-- default to the contact -->
-			  <xsl:for-each select="/eml:eml/dataset/contact[1]">  <!--  default to the "contact". -->
+			  <xsl:for-each select="/*[local-name() = 'eml']/dataset/contact[1]">  <!--  default to the "contact". -->
 				  <xsl:variable name="cc">
 					<xsl:choose>
 					  <xsl:when test="./references!=''">
@@ -3133,10 +3146,10 @@ version="1.0">
           </xsl:element>
         </xsl:element>
         <xsl:element name="metstdn">
-          <xsl:value-of select="'FGDC/NBII Content Standard for Digital Geospatial Metadata (from Ecological Metadata Langualge 2.0)'"/>
+          <xsl:value-of select="'FGDC/NBII Content Standard for Digital Geospatial Metadata (from Ecological Metadata Langualge 2.x)'"/>
         </xsl:element>
         <xsl:element name="metstdv">
-          <xsl:value-of select="'1999 Version (from Ecological Metadata Langualge 2.0.1)'"/>
+          <xsl:value-of select="'1999 Version (from Ecological Metadata Langualge 2.x)'"/>
         </xsl:element>
         <xsl:if test="$show_optional">
           <xsl:element name="mettc">
