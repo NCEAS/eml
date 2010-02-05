@@ -1,0 +1,330 @@
+ /*
+  *   '$RCSfile: default.css,v $'
+  *     Purpose: Default style sheet for KNB project web pages 
+  *              Using this stylesheet rather than placing styles directly in 
+  *              the KNB web documents allows us to globally change the 
+  *              formatting styles of the entire site in one easy place.
+  *   Copyright: 2000 Regents of the University of California and the
+  *               National Center for Ecological Analysis and Synthesis
+  *     Authors: Matt Jones
+  *
+  *    '$Author: jones $'
+  *      '$Date: 2009-03-05 18:56:15 $'
+  *  '$Revision: 1.32 $'
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+
+
+  
+/******************************************************************************/  
+/******************************************************************************/  
+/**  COMMON : USED BY EML STYLESHEETS AND OTHER PAGES                        **/
+/******************************************************************************/  
+/******************************************************************************/  
+
+/*** styles that override html tags ***/
+
+body {
+    padding: 0px;
+    margin: 10px;
+    color: #333333; 
+    background-color: #ffffff;
+    font-weight: normal;
+    font-size: 12px; 
+    font-family: Verdana,Arial,Helvetica,sans-serif; 
+}
+
+a {
+    color: #669933;
+    font-weight: bold;
+    font-size: 12px; 
+    text-decoration: none; 
+    text-align: left;
+}
+
+a:hover {
+    color: #ff9933;
+    text-decoration: underline; 
+}
+
+h1 {
+  font-size: 24px;
+  font-family: Georgia, Times New Roman, Times, serif;
+  text-align: center;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: Georgia, Times New Roman, Times, serif;
+}
+
+h3 {
+  font-size: 16px;
+  font-family: Georgia, Times New Roman, Times, serif;
+  text-align: center;
+  }
+
+td {
+    font-size: 12px; 
+    line-height: 1.5;
+}
+
+p { 
+    margin: 5px; 
+}
+
+p + p { 
+    margin: 5px; 
+    text-indent: 2em; 
+}
+
+p.label { 
+    color: #333333; 
+    font-weight: bold; 
+}
+
+p.contact { 
+    color: #333333; 
+    padding: 1em;
+    font-size: 0.75em; 
+    font-weight: normal;
+    font-style: italic; 
+}
+
+
+/*** custom styles ***/
+
+#mainTableAligmentStyle {
+    width: 100%;
+}
+
+.mainContainerTableStyle {
+    width: 100%;
+}
+
+.title {
+    font-family: Georgia, Times New Roman, Times, serif;
+    color:  #0247A8;
+    font-size: 24px; 
+    font-weight: bold;
+}
+
+.subtitle {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666666; 
+    margin-left: 3em;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    font-weight: normal;  
+}
+
+.sectiontitle {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666666;
+    margin-top: 1em;
+	margin-bottom: 0.25em;						
+}
+
+.tabledefault {
+    background: white;
+    color: #555555;
+    width: 100%; 
+    font-size: 12px; 
+    line-height: 1.2;
+    left-padding: 5px;
+    right-padding: 5px; 
+}
+
+.tablehead {
+    background-color: #B3D4FF;
+    color: #0040A1; 
+    font-size: 14px; 
+    font-weight: bold; 
+    border-top: solid #ffffff 5px;
+    border-bottom: solid #ffffff 2px;
+    padding-left: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.roweven {
+    background: white; 
+}
+
+.rowodd {
+    background: white; 
+}
+  
+.emphasis { 
+    color: red; 
+}
+
+    
+/******************************************************************************/  
+/******************************************************************************/  
+/**  USED BY EML STYLESHEETS ONLY - NO OTHERS                                **/
+/******************************************************************************/  
+/******************************************************************************/  
+
+.mainContainerTable {
+    width: 750px;
+    background-color: #ffffff; 
+    font-size: 12px;
+}
+
+.linkedHeaderStyle {
+    background: #B2D2FE;
+    border-top: solid #ffffff 5px;
+    padding-left: 15%;
+    text-align: left;
+    font-weight: bold; 
+}
+
+.highlight  {
+    background-color: #dddddd; 
+    font-size: 12px;
+    border: solid #ffffff 1px;
+    padding-right: 4px;
+    text-align: right;
+    
+}
+
+.highlightAttrib {
+    background-color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: solid #cccccc  2px;
+    padding-left: 4px;
+
+}
+
+.searchresultsdivider {
+	background-color: #dddddd;
+}
+
+
+.citation  {
+    color: black;
+    background-color: #FFFFFF;
+    font-size: 1.2em; 
+    padding-left: 10px;
+}
+
+.lsid {
+    text-decoration: underline; 
+}
+
+.secondCol {
+    background-color: #ffffff; 
+    font-size: 12px; 
+    padding-left: 2px;
+    padding-right: 2px;
+
+}
+
+.bordered {
+    background-color: #ffffff; 
+    font-size: 12px; 
+    text-align: left;
+    padding: 5px;
+    border-bottom: solid #dddddd 1px;
+    width: 350px;
+}
+
+.coleven {
+    background-color: #ffffff; 
+    font-size: 12px;
+    padding: 5px;
+    text-align: left;
+    border-bottom: solid #dddddd 1px;
+}
+
+.colodd {
+    background-color: #ffffff; 
+    font-size: 12px;
+    padding: 5px;
+    text-align: left;
+    border-bottom: solid #dddddd 1px;
+}
+.emptycolumn {
+    width: 1px; 
+    border: 1px solid #ffffff;
+    }
+
+.innercolodd {
+    font-size: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: left;
+}
+
+.innercoleven {
+    font-size: 10px; 
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: left;
+}    
+
+
+/******************************************************************************/  
+/******************************************************************************/  
+/**  USED BY OTHER PAGES ONLY - NOT EML STYLESHEETS                          **/
+/******************************************************************************/  
+/******************************************************************************/  
+
+
+.tablepanel {
+    background: #ffffff;
+    color: #555555;
+    font-size: 12px; 
+    left-padding: 5px;
+    right-padding: 5px; 
+}
+
+.tablehead2 {
+    background: white;
+    vertical-align: bottom;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.plaintext {
+    color: #555555;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.boldtext {
+    color: #333333;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.rowevenemphasis {
+  background: #9ab3de;
+  font-weight: bold;
+}
+
+.rowoddemphasis {
+  background: #cccccc;
+  font-weight: bold;
+}
+
