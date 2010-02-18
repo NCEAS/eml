@@ -139,6 +139,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
     
     if (inputStream != null) {
       try {
+      //TODO: broken pipe error with this
         inputStream.close();
       } 
       catch (Exception e) {
