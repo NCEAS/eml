@@ -757,6 +757,7 @@ public class DownloadHandler implements Runnable
     		{
     			DataStorageInterface storage = dataStorageClassList[i];
                 
+    			//if (storage != null && storage.isCompleted(url))
     			if (storage != null)
     			{
     			  storage.finishSerialize(url, error);
@@ -846,91 +847,53 @@ public class DownloadHandler implements Runnable
      * to StorageSystem. It only handles http or ftp protocals. It does not
      * handle ecogrid protocol.
      */
-    protected boolean writeRemoteInputStreamIntoDataStorage(
-                                                         InputStream filestream)
-            throws IOException
-    {
-    	boolean successFlag = false;
-    	//System.out.println("in download method!!!!!!!!!!!!!!!!!!11");
-    	String error = null;
-        
-    	if (filestream != null) 
-    	{            
-	     	 NeededOutputStream [] outputStreamList = getOutputStreamList();
-		   	 byte [] c = new byte[1024];
-		   	 int bread = filestream.read(c, 0, 1024);
-		   	 boolean oneLoopSuccess = true;
-             
-		        while (bread != -1) 
-		        {   //FileOutputStream osw = new FileOutputStream(localFile);
-		          //System.out.println("before ouptustreamList is not null");
-                  
-		       	  if (outputStreamList != null)
-		       	  {
-		       		 //System.out.println("after ouptustreamList i not null");
-                    
-		       		 for (int i = 0; i<outputStreamList.length; i++)
-		       		 {
-		       			 NeededOutputStream neededOutput = outputStreamList[i];
-                         
-		       			 if (neededOutput != null)
-		       			 {
-		       				 OutputStream output = 
-                                                 neededOutput.getOutputStream();
-		       				 boolean need = neededOutput.getNeeded();
-                             
-		           			 if (output != null && need)
-		           			 {	           				 
-		                            output.write(c, 0, bread);
-                                    
-		                            if(oneLoopSuccess)
-		                            {
-		                           	 successFlag = true;
-		                            }
-		           			 }
-		           			 else if (output != null)
-		           			 {
-		           				 if(oneLoopSuccess)
-		                         {
-		                           	 successFlag = true;
-		                         }
-		           			 }
-		           			 else if (output == null && !need)
-		           			 {
-		           				if(oneLoopSuccess)
-		                         {
-		                           	 successFlag = true;
-		                         }
-		           			 }
-		           			 else
-		           			 {
-		           				 oneLoopSuccess = false;
-		           				 successFlag = false;
-		           			 }
-		       			 }
-		       			 else
-		       			 {
-		       				 oneLoopSuccess = false;
-		       			 }
-		       		 }
-		       	  }
-		       	  else
-		       	  {
-		       		  successFlag = false;
-		       	  }
-                  
-		       	  bread = filestream.read(c, 0, 1024);
-		       }
-                
-		       filestream.close();
-		       finishSerialize(error);
-		       //System.out.println("the success is "+successFlag);
-		       return successFlag;
-	    }
-	    else
-	    {
-	    		return successFlag;
-	    }
-    }
+	protected boolean writeRemoteInputStreamIntoDataStorage(InputStream inputStream)  throws IOException {
+		boolean successFlag = false;
+
+		try {
+			NeededOutputStream[] outputStreamList = getOutputStreamList();
+
+			if (outputStreamList != null) {
+				// start reading, to write to the ouputstreams
+				byte[] b = new byte[1024];
+				int bytesRead = inputStream.read(b, 0, 1024);
+				
+				NeededOutputStream stream = null;
+				OutputStream os = null;
+				while (bytesRead > -1) {
+					// write to each outputstreams
+					for (int i = 0; i < outputStreamList.length; i++) {
+						stream = outputStreamList[i];
+						if (stream != null && stream.getNeeded()) {
+							os = stream.getOutputStream();
+							os.write(b);	
+						}
+					}
+					// get the next bytes
+					bytesRead = inputStream.read(b, 0, 1024);
+				}
+				// done writing to the streams
+				for (int i = 0; i < outputStreamList.length; i++) {
+					stream = outputStreamList[i];
+					if (stream != null && stream.getNeeded()) {
+						os.flush();
+						os.close();
+					}
+				}
+				successFlag = true;
+				//String error = null;
+				//finishSerialize(error);
+			} else {
+				successFlag = false;
+			}
+
+			return successFlag;
+
+		} catch (Exception ee) {
+			successFlag = false;
+			return successFlag;
+		}		
+
+	}
     
 }
