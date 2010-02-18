@@ -473,6 +473,7 @@ public class DelimitedReader extends TextDataReader
 	      catch (Exception e)
 	      {
 	        //log.debug("Couldn't read data from input stream");
+	    	  e.printStackTrace();
 	        rowData = new StringBuffer();
 	      }
 	    }
