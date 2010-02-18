@@ -481,6 +481,7 @@ public class DownloadHandler implements Runnable
         
         if (resourceName != null && 
             (resourceName.startsWith("http://") ||
+             resourceName.startsWith("https://") ||
              resourceName.startsWith("file://") ||
              resourceName.startsWith("ftp://") 
             )
