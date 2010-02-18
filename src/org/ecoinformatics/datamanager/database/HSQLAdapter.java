@@ -79,6 +79,10 @@ public class HSQLAdapter extends DatabaseAdapter {
 		formatString = formatString.replaceAll("P", "p");
 		//TODO: this may not be an exhaustive list for dealing with the conversion
 
+		// remove any quotes from the dates
+		// TODO: should this be handled elsewhere?
+		value = value.replaceAll("\"", "");
+		
 		Timestamp timestamp = null;
 		SimpleDateFormat sdf = new SimpleDateFormat(formatString);
 		Date temp = sdf.parse(value);
