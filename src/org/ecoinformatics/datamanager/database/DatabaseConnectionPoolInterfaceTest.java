@@ -31,17 +31,10 @@
  */
 package org.ecoinformatics.datamanager.database;
 
-import edu.ucsb.nceas.utilities.Options;
-
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.ResourceBundle;
 
 /**
  * This class implements DataConnetionPoolInterface to provide
@@ -50,13 +43,11 @@ import junit.framework.TestSuite;
  * @author tao
  *
  */
-public class DatabaseConnectionPoolInterfaceTest 
-        extends TestCase implements DatabaseConnectionPoolInterface
+public class DatabaseConnectionPoolInterfaceTest implements DatabaseConnectionPoolInterface
 {
 	  /* Configuration directory and file name for the properties file */
-	    private static final String CONFIG_DIR = "lib/datamanager";
-	    private static final String CONFIG_NAME = "datamanager.properties";
-	    private static Options options = null;
+	    private static final String CONFIG_NAME = "datamanager";
+	    private static ResourceBundle properties = null;
 	    private static String dbDriver = null;
 	    private static String dbURL    = null;
 	    private static String dbUser  = null;
@@ -64,7 +55,7 @@ public class DatabaseConnectionPoolInterfaceTest
 	    private static String databaseAdapterName = null;
 	    
 	    /**
-	     * Constructor. Loading dabase parameter from property file
+	     * Constructor. Loading database parameter from property file
 	     *
 	     */
 	    public DatabaseConnectionPoolInterfaceTest()
@@ -76,24 +67,22 @@ public class DatabaseConnectionPoolInterfaceTest
 	     * Loads Data Manager options from a configuration file.
 	     */
 	    private static void loadOptions() {
-	      String configDir = CONFIG_DIR;    
-	      File propertyFile = new File(configDir, CONFIG_NAME);
+	      properties = ResourceBundle.getBundle(CONFIG_NAME);
 
 	      try {
-	        options = Options.initialize(propertyFile);
-	        dbDriver = options.getOption("dbDriver");
-	        dbURL = options.getOption("dbURL");
-	        dbUser = options.getOption("dbUser");
-	        dbPassword = options.getOption("dbPassword");
-	        databaseAdapterName = options.getOption("dbAdapter");
+	        dbDriver = properties.getString("dbDriver");
+	        dbURL = properties.getString("dbURL");
+	        dbUser = properties.getString("dbUser");
+	        dbPassword = properties.getString("dbPassword");
+	        databaseAdapterName = properties.getString("dbAdapter");
 	      } 
-	      catch (IOException e) {
-	        System.out.println("Error in loading options: " + e.getMessage());
+	      catch (Exception e) {
+	        System.out.println("Error in loading properties: " + e.getMessage());
 	      }
 	    }
 	   
 	    /**
-	     * Get dabase adpater name.
+	     * Get database adapter name.
 	     * @return database adapter name
 	     */
 	    public String getDBAdapterName()
@@ -154,15 +143,6 @@ public class DatabaseConnectionPoolInterfaceTest
 		   }
            
 		   return success;
-	   }
-	
-	 /**
-	   * This is not a test class, so it is empty here.
-	   */
-	   public static Test suite()
-	   {
-	     TestSuite suite = new TestSuite();
-	     return suite;
 	   }
 }
 
