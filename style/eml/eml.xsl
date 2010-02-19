@@ -42,7 +42,7 @@
       <head>
         <title><xsl:value-of select="./eml:eml/dataset/title"/></title>
         <link rel="stylesheet" type="text/css"
-              href="{$contextURL}/style/skins/{$qformat}/{$qformat}.css"></link>
+              href="{$stylePath}/{$qformat}/{$qformat}.css"></link>
         <script language="Javascript" type="text/JavaScript"
                 src="{$contextURL}/style/skins/{$qformat}/{$qformat}.js"></script>
         <script language="Javascript"
