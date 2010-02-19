@@ -86,11 +86,11 @@
    
    <!--************** creates lsid dataset id **************-->
    <xsl:template name="lsid">
-		<xsl:variable name="lsidString" select="concat('urn:lsid:',string($lsidauthority),':')"/>
-		<xsl:variable name="lsidString" select="concat($lsidString, substring-before(string(../@packageId),'.'), ':')"/>
-		<xsl:variable name="lsidString" select="concat($lsidString, substring-before(substring-after(string(../@packageId),'.'),'.'), ':')"/>
-		<xsl:variable name="lsidString" select="concat($lsidString, substring-after(substring-after(string(../@packageId),'.'),'.'))"/>
-		<xsl:value-of select="$lsidString"/>
+		<xsl:variable name="lsidString1" select="concat('urn:lsid:',string($lsidauthority),':')"/>
+		<xsl:variable name="lsidString2" select="concat($lsidString1, substring-before(string(../@packageId),'.'), ':')"/>
+		<xsl:variable name="lsidString3" select="concat($lsidString2, substring-before(substring-after(string(../@packageId),'.'),'.'), ':')"/>
+		<xsl:variable name="lsidString4" select="concat($lsidString3, substring-after(substring-after(string(../@packageId),'.'),'.'))"/>
+		<xsl:value-of select="$lsidString4"/>
    </xsl:template>
    
    <!--************** creates citation for a creator in "Last FM" format **************-->
