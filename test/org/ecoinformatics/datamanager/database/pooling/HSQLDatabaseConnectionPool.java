@@ -31,12 +31,9 @@
  */
 package org.ecoinformatics.datamanager.database.pooling;
 
-import edu.ucsb.nceas.utilities.Options;
-
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,9 +55,8 @@ public class HSQLDatabaseConnectionPool implements
 
 	
 	/* Configuration directory and file name for the properties file */
-	private static final String CONFIG_DIR = "lib/datamanager";
-	private static final String CONFIG_NAME = "pool.properties";
-	private static Options options = null;
+	private static final String CONFIG_NAME = "datamanager";
+	private static ResourceBundle options = null;
 	private static String databaseName = null;
 	private static String user = null;
 	private static String password = null;
@@ -90,16 +86,14 @@ public class HSQLDatabaseConnectionPool implements
 	 * Loads Data Manager options from a configuration file.
 	 */
 	private static void loadOptions() {
-		String configDir = CONFIG_DIR;
-		File propertyFile = new File(configDir, CONFIG_NAME);
 
 		try {
-			options = Options.initialize(propertyFile);
-			databaseName = options.getOption("databaseName");
-			user = options.getOption("user");
-			password = options.getOption("password");
-			databaseAdapterName = options.getOption("dbAdapter");
-		} catch (IOException e) {
+			options = ResourceBundle.getBundle(CONFIG_NAME);
+			databaseName = options.getString("dbName");
+			user = options.getString("dbUser");
+			password = options.getString("dbPassword");
+			databaseAdapterName = options.getString("dbAdapter");
+		} catch (Exception e) {
 			System.out.println("Error in loading options: " + e.getMessage());
 		}
 	}

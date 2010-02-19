@@ -31,12 +31,10 @@
  */
 package org.ecoinformatics.datamanager.database.pooling;
 
-import edu.ucsb.nceas.utilities.Options;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -56,10 +54,9 @@ public class DatabaseConnectionPoolFactory {
 
 	
 	/* Configuration directory and file name for the properties file */
-	private static final String CONFIG_DIR = "lib/datamanager";
-	private static final String CONFIG_NAME = "pool.properties";
+	private static final String CONFIG_NAME = "datamanager";
 	
-	private static Options options = null;
+	private static ResourceBundle options = null;
 	private static String implementationClass = null;
 		
 	static {
@@ -77,14 +74,12 @@ public class DatabaseConnectionPoolFactory {
 	 * Loads Data Manager options from a configuration file.
 	 */
 	private static void loadOptions() {
-		String configDir = CONFIG_DIR;
-		File propertyFile = new File(configDir, CONFIG_NAME);
 
 		try {
-			options = Options.initialize(propertyFile);
-			implementationClass = options.getOption("implementationClass");
+			options = ResourceBundle.getBundle(CONFIG_NAME);
+			implementationClass = options.getString("dbImplementationClass");
 		} 
-		catch (IOException e) {
+		catch (Exception e) {
 			System.out.println("Error in loading options: " + e.getMessage());
 		}
 	}
