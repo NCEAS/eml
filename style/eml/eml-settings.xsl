@@ -155,7 +155,7 @@
 <!-- the levle of distribution -->
     <xsl:param name="distributionlevel"/>
 <!-- the index of attribute in attribute list-->
-    <xsl:param name="attributeindex"/>
+<!--    <xsl:param name="attributeindex"/> -->
 <!-- the index of additional metadata-->
     <xsl:param name="additionalmetadataindex">1</xsl:param>
 <!-- attribute set to get rid of cell spacing-->
