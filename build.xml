@@ -793,5 +793,22 @@
 	</target>
 
 	<!-- End of targets for Data Manager library -->
+	
+	<target name="kepler-style-jar" depends="init" description="Generates a kepler-styles.jar for Kepler">
+       <mkdir dir="${build.dir}/kepler/style/eml-2.1.0"/>
+       <mkdir dir="${build.dir}/kepler/style/kepler"/>
+       <copy todir="${build.dir}/kepler/style/eml-2.1.0" filtering="yes">
+		   <fileset dir="style/eml">
+                    <include name="*.xsl" />
+           </fileset>
+	   </copy>
+		<copy todir="${build.dir}/kepler/style/kepler" filtering="yes">
+           <fileset dir="../kepler/core/resources/style">
+                    <include name="kepler.css" />
+           </fileset>
+       </copy>
+       <jar jarfile="${build.dir}/kepler/kepler-styles.jar" 
+         basedir="${build.dir}/kepler"/>
+	</target>
 
 </project>
