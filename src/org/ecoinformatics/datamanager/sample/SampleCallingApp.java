@@ -1,6 +1,5 @@
 package org.ecoinformatics.datamanager.sample;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -9,8 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import edu.ucsb.nceas.utilities.Options;
+import java.util.ResourceBundle;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.database.Condition;
@@ -56,13 +54,12 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
    * information as well as the sample metadata document used by this 
    * application.
    */
-  private static final String CONFIG_DIR = "lib/datamanager";
-  private static final String CONFIG_NAME = "datamanager.properties";
+  private static final String CONFIG_NAME = "datamanager";
 
   /*
    * These fields will be assigned values when the properties file is loaded. 
    */
-  private static Options options = null;
+  private static ResourceBundle options = null;
   private static String dbDriver = null;
   private static String dbURL = null;
   private static String dbUser = null;
@@ -155,25 +152,23 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
    * Loads Data Manager options from a configuration file.
    */
   private static void loadOptions() {
-    String configDir = CONFIG_DIR;
-    File propertyFile = new File(configDir, CONFIG_NAME);
 
     try {
       // Load database connection options
-      options = Options.initialize(propertyFile);
-      dbDriver = options.getOption("dbDriver");
-      dbURL = options.getOption("dbURL");
-      dbUser = options.getOption("dbUser");
-      dbPassword = options.getOption("dbPassword");
-      databaseAdapterName = options.getOption("dbAdapter");
+      options = ResourceBundle.getBundle(CONFIG_NAME);
+      dbDriver = options.getString("dbDriver");
+      dbURL = options.getString("dbURL");
+      dbUser = options.getString("dbUser");
+      dbPassword = options.getString("dbPassword");
+      databaseAdapterName = options.getString("dbAdapter");
       
       // Load sample document and Metacat server options
-      testDocument = options.getOption("testDocument");
-      testServer = options.getOption("testServer");
-      entityName = options.getOption("entityName");
-      packageID = options.getOption("packageID");
+      testDocument = options.getString("testDocument");
+      testServer = options.getString("testServer");
+      entityName = options.getString("entityName");
+      packageID = options.getString("packageID");
     } 
-    catch (IOException e) {
+    catch (Exception e) {
       System.err.println("Error in loading options: " + e.getMessage());
     }
   }

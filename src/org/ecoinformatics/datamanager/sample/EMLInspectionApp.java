@@ -1,12 +1,12 @@
 package org.ecoinformatics.datamanager.sample;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.database.ConnectionNotAvailableException;
@@ -14,8 +14,6 @@ import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
-
-import edu.ucsb.nceas.utilities.Options;
 
 /**
  * This class is a sample calling application to demonstrate use of the
@@ -35,19 +33,18 @@ public class EMLInspectionApp implements DatabaseConnectionPoolInterface {
      */
 
     /*
-     * Configuration directory and file name for the properties file. You can
+     * Configuration file name for the properties file. You can
      * edit the properties in this file to change the database connection
      * information as well as the sample metadata document used by this 
      * application.
      */
-    private static final String CONFIG_DIR = "lib/datamanager";
 
-    private static final String CONFIG_NAME = "datamanager.properties";
+    private static final String CONFIG_NAME = "datamanager";
 
     /*
      * These fields will be assigned values when the properties file is loaded. 
      */
-    private static Options options = null;
+    private static ResourceBundle options = null;
 
     private static String testDocument = null;
 
@@ -85,16 +82,14 @@ public class EMLInspectionApp implements DatabaseConnectionPoolInterface {
      * Loads Data Manager options from a configuration file.
      */
     private static void loadOptions() {
-        String configDir = CONFIG_DIR;
-        File propertyFile = new File(configDir, CONFIG_NAME);
 
         try {
-            options = Options.initialize(propertyFile);
+            options = ResourceBundle.getBundle(CONFIG_NAME);
 
             // Load sample document and Metacat server options
-            testDocument = options.getOption("testDocument");
-            testServer = options.getOption("testServer");
-        } catch (IOException e) {
+            testDocument = options.getString("testDocument");
+            testServer = options.getString("testServer");
+        } catch (Exception e) {
             System.err.println("Error in loading options: " + e.getMessage());
         }
     }
