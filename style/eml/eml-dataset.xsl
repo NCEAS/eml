@@ -430,7 +430,7 @@
 	<tr><td  width="{$firstColWidth}" class="{$firstColStyle}">
 	  <xsl:value-of select="$showtype"/>:</td>
   <td width="{$secondColWidth}" class="{$secondColStyle}"> 
-	  <xsl:value-of select="./physical/objectName"/>
+	  <xsl:value-of select="./entityName"/> 
             (<a><xsl:attribute name="href">
             <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>View Metadata </a> 
 	    <xsl:text>  </xsl:text>
