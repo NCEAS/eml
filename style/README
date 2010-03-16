@@ -1,0 +1,119 @@
+Converting EML documents from v2.0.0/1 to v2.1.0
+
+2.1. 	About the EML conversion stylesheet
+An XSL stylesheet, 'eml201to210.xsl' is provided to convert valid 
+EML 2.0-series documents to EML 2.1.0. The intent of this reference to not 
+to provide comprehensive instructions for transforming XML documents since 
+adequate information is available elsewhere. A few specific examples will 
+be given here, along with recommended practices and discussion of issues 
+likely to occur when transforming EML 2.0 to 2.1. The reader is referred to 
+XSLT references available at W3C schools (http://www.w3schools.com/xsl/), 
+Wikipedia (http://www.wikipedia.org/), W3C (http://www.w3.org/Style/XSL/) 
+and various books for more information about using XSLT to transform XML 
+documents.
+  
+The stylesheet performs these basic tasks:
+   1. Updates namespaces to eml-2.1.0 and stmml-1.1
+   2. Encloses XML markup within <additionalMetadata> sections in <metadata> tags
+   3. Renames elements <method> and <datetime>
+   4. Moves access trees:
+         1. if an access tree was a child of a dataset, citation, software or protocol, it will be moved to the eml-level.
+         2. if an access tree is found in an <additionalMetadata> section which references a distribution node via a <describes> element, it will be moved to the corresponding distribution node.
+   5. Replaces the content of the "packageId" attribute (see the root element, <eml:eml>) when a parameter named "package-id" is passed to it. Without the parameter, the existing packageId content is retained.
+
+2.2. 	Converting EML instances using the XSL stylesheet
+Software:
+   1. You will first need to identify or obtain a program (or programming language module) capable of transforming XML using an XSL stylesheet. Suitable programs are available for all computer platforms, and modules are included in or are available for most programming and scripting languages. For example, Linux distributions generally include a command line utility called "xsltproc".
+   2. Download the EML Utilities module which includes the transformation stylesheet "eml201to210.xsl" from http://knb.ecoinformatics.org/software/eml/.
+
+Examples:
+   1. Here are examples illustrating how to transform an EML document from 
+   the command line using xsltproc. In the first example, the redirect 
+   operator is used to save the output to a file. An explicit output argument 
+   can also be used instead of a redirect.
+
+       xsltproc eml201to210.xsl eml201_doc.xml > eml210_doc.xml                  
+
+       xsltproc -output eml210_doc.xml path/to/stylesheet/eml201to210.xsl eml201_doc.xml              
+
+   To include a new value for the packageId attribute, the stylesheet 
+   will accept a parameter called 'package-id' from the calling program:
+
+       xsltproc -stringparam package-id knb-lter-sbc.1006.4 eml201to210.xsl eml201_doc.xml > eml210_doc.xml                   
+
+   More complete documentation for the xsltproc program is available at 
+   http://xmlsoft.org/XSLT/xsltproc2.html, or with "man xsltproc" at your 
+   system prompt.
+
+   2. Methods in the Apache Xalan Java library 
+   (http://xml.apache.org/xalan-j/commandline.html) can also be used to run 
+   the transform from a Linux, Macintosh or Windows command line if a Java 
+   JRE (Java runtime environment) and the Xalan classes are installed. Use 
+   the ‘-IN’ parameter to specify the source document, ‘-XSL’ parameter to 
+   specify the stylesheet, and ‘-OUT’ parameter to specify the output filename, 
+   as follows:
+
+      java org.apache.xalan.xslt.Process -IN eml201_doc.xml -XSL eml201to210.xsl -OUT eml210_doc.xml                
+
+   3. Windows users can also use Microsoft MSXML and the msxsl.exe command 
+   line utility, which is freely available from sources such as CNET and 
+   included with SynchroSoft’s oXygen XML editor.
+
+      msxsl eml201_doc.xml eml201to210.xsl -o eml210_doc.xml                
+
+2.3. 	Validity of new EML 2.1.0 documents
+Because of the flexibility allowed in EML, the stylesheet may encounter EML 
+2.0.1 structures that cannot be transformed as stated above or that may result 
+in invalid EML 2.1.0 after processing. The stylesheet is able to detect some 
+of these conditions (below). In these cases, the stylesheet creates the new 
+EML 2.1.0 document, but also issues an alert about the potential problem. 
+This may mean that the EML 2.0.1 document must be a) examined manually, edited 
+and reprocessed, b) transformed by your own custom method, or c) the 
+stylesheet's output used as a template to create valid EML 2.1.0.
+
+   1. An <access> tree is present in <additionalMetadata>, but an adjacent 
+   <describes> element did not reference a <distribution> node. The <access> 
+   tree will be left in <additionalMetadata>, the rest of the document 
+   transformed, and a message printed to notify the user.
+   2. Two (or more) <access> trees are present in <additionalMetadata>, and 
+   reference the same <distribution> element via their sibling <describes> 
+   tags. If the "orderBy" attributes on all <access> elements match, then 
+   the <access> trees will be merged (with rules listed in document order) 
+   and moved to the appropriate <distribution> element. If the "orderBy" 
+   attributes are not identical, the stylesheet will not attempt to resolve 
+   the issue. The <access> trees will all remain in <additionalMetadata> 
+   (while the rest of the document transformed) and a message will be printed 
+   to notify the user.
+   3. Empty content appears in an element which is typed as "NonEmptyString" 
+   in EML2.1.0. The document is transformed but the user warned that it will 
+   not be valid EML 2.1.0 due to the missing content. 
+
+In addition to those noted above, there are possible EML constructs which 
+the stylesheet cannot detect, but which might result in invalid EML 2.1.0. 
+For example, by design <additionalMetadata> sections are parsed laxly, and 
+so it is possible for their content in EML-2.0.0/1 to contain <access> trees 
+that are not valid EML. Also, the content of several elements has been more 
+tightly constrained in EML 2.1.0 (e.g., latitude and longitude), but only 
+empty content is reasonably detected by the transformation stylesheet.
+
+For these reasons, document authors are advised to check the validity of 
+their new EML 2.1 using the EML parser after transformation. EML instance 
+documents can be validated these ways:
+
+   1. With the online EML Parser.
+   2. Using the Parser that comes with EML. To execute it, change into the 
+   'lib' directory of the EML release and run the 'runEMLParser' script 
+   passing your EML instance file as a parameter. The script performs two 
+   actions: it validates the document against the EML 2.1 schema, and it 
+   checks the validity of references and id attributes (as of EML 2.1.0).
+
+2.4. 	Notes regarding EML and Metacat
+   1. If you are planning to contribute your EML 2.1.0 document to a Metacat 
+   repository, note that the Metacat servlet checks incoming documents for 
+   validity as part of the insertion process.
+   2. Metacat submitters should be aware that some EML instances have content 
+   in the 'packageId' attribute which is intended to match Metacat's docid. 
+   In this case, it is recommended that you make use of the stylesheet's '
+   package-id' parameter to increment the revision number.
+
+ 
