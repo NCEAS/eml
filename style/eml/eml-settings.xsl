@@ -110,6 +110,9 @@
   <xsl:param name="insertTemplate">1</xsl:param>
 
 
+<!-- for getting the server context and cgi locations -->  
+  <xsl:param name="contextURL"/>
+	
 <!--
    /**
     *   the path of the directory where the XSL and CSS files reside - starts
@@ -122,7 +125,7 @@
     */
 -->
 
-    <xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
+    <xsl:param name="stylePath"><xsl:value-of select="$contextURL" />/style/skins</xsl:param>
 
 
 <!--
@@ -137,7 +140,7 @@
     */
 -->
 
-    <xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>
+    <xsl:param name="styleCommonPath"><xsl:value-of select="$contextURL" />/style/common</xsl:param>
 
 	
 <!--the docid of xml which is processed-->
@@ -175,8 +178,7 @@
 	<xsl:param name="registryname"></xsl:param>
 
   
-<!-- for getting the server context and cgi locations -->  
-  <xsl:param name="contextURL"/>
+
   <xsl:param name="cgi-prefix"/>
   
 <!-- for access to "protected" documents/files -->  
