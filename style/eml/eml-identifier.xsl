@@ -74,10 +74,16 @@
 				
 	        	<xsl:choose>
 	        		<xsl:when test="boolean($registryurl)">
-	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).
+	        			(<a> 
+	        				<xsl:attribute name="target">_top</xsl:attribute>
+	        			    <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/>
+	        			 </a>).
 	        		</xsl:when>
 	        		<xsl:otherwise>
-	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>).				
+	        			(<a> 
+	        				<xsl:attribute name="target">_top</xsl:attribute>
+	        			    <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/>
+	        			 </a>).				
 	        		</xsl:otherwise>
 	        	</xsl:choose>
 				<br />
