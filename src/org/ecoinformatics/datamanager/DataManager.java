@@ -352,6 +352,23 @@ public class DataManager {
     return success;
   }
   
+  /**
+   * Creates each table described in the datapackage
+   * @param dataPackage
+   * @return boolean indicating success or failure of the operation
+   * @throws SQLException
+   * @throws Exception
+   */
+  public boolean createTables(DataPackage dataPackage)
+	  throws SQLException, Exception {
+	boolean success;
+	
+	DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
+	success = databaseHandler.generateTables(dataPackage);
+	
+	return success;
+	}
+  
 
   /**
    * Gets the database field name for a given entity attribute. First, we
