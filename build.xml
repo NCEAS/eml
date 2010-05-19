@@ -583,7 +583,8 @@
              of the test to run. If user enters no value, runs this test by
              default. -->
 		<property name="default-datamanager-test" value="DataManagerTest" />
-
+		<property name="default-datamanager-run" value="org.ecoinformatics.datamanager.util.TableGenerator" />
+		
 		<property name="axis" value="${datamanager.lib}/axis.jar"/>
 		<property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
 		<property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
@@ -716,6 +717,31 @@
 		<delete file="./${datamanager-version}.tar"/>
 	</target>
 
+	<target name="run-datamanager-one" depends="jar-datamanager-lib">
+			<!-- Run one class in the data manager library. -->
+
+			<!-- Prompt user for the classname.
+	           If user enters a null value, use the default-datamanager-test -->
+			<input 
+	         message="Please enter name of class to run: "
+	         addproperty="class-to-run"
+	         defaultvalue="${default-datamanager-run}"
+	      />
+			<input 
+		         message="Please enter arguments for the class: "
+		         addproperty="class-to-run-args"
+		         defaultvalue="tao.1.1 http://knb.ecoinformatics.org/knb/metacat sessionid"
+		      />
+
+			<!-- run the class -->
+			<java classname="${class-to-run}">
+				<arg line="${class-to-run-args}"/>
+				<classpath>
+					<pathelement path="${cpath.datamanager}:${build.dest}:${srcdir}" />
+				</classpath>
+			
+			</java>
+		</target>
 
 	<target name="test-datamanager-init" depends="compile-datamanager-lib">
 		<!-- copy and compile the data manager tests prior to running "junit" -->
