@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1"
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
@@ -502,9 +502,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -535,9 +535,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -571,9 +571,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -607,9 +607,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;

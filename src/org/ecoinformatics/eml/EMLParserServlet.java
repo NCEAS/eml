@@ -72,6 +72,7 @@ public class EMLParserServlet extends HttpServlet
   private Hashtable params = new Hashtable();
   private static final String namespaces = "@namespaces@";
   private static final String NAMESPACEKEYWORD = "xmlns";
+  public static final String EML2_1_1NAMESPACE = "eml://ecoinformatics.org/eml-2.1.1";
   public static final String EML2_1_0NAMESPACE = "eml://ecoinformatics.org/eml-2.1.0";
   public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
   public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
@@ -389,6 +390,7 @@ public class EMLParserServlet extends HttpServlet
       String eml2_0_0NameSpace = EML2_0_0NAMESPACE;
       String eml2_0_1NameSpace = EML2_0_1NAMESPACE;
       String eml2_1_0NameSpace = EML2_1_0NAMESPACE;
+      String eml2_1_1NameSpace = EML2_1_1NAMESPACE;
       
       if (xml == null) {
           //System.out.println("Validation for schema is "+ namespace);
@@ -456,6 +458,8 @@ public class EMLParserServlet extends HttpServlet
                   namespace = eml2_0_1NameSpace;
               } else if (namespaceString.indexOf(eml2_1_0NameSpace) != -1) {
                   namespace = eml2_1_0NameSpace;
+              } else if (namespaceString.indexOf(eml2_1_1NameSpace) != -1) {
+                  namespace = eml2_1_1NameSpace;
               } else {
                   namespace = namespaceString;
               }

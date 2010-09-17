@@ -48,17 +48,36 @@
 		<property name="servletdir" value="emlparser"/>
 		<!-- the path to the servlet from the servletdir -->
 		<property name="servletpath" value="/emlparser"/>
-		<property name="version" value="2.1.0"/>
+		<property name="version" value="2.1.1"/>
 		<!-- namespaces that the servlet should auto resolve -->
+		
+	<!-- LOCAL TEST VALUES -->	
 	<property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
-              eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
-              eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
-			        eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
-			        eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
-              http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
-			       http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
+				eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
+				eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
+				eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
+				eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
+				eml://ecoinformatics.org/eml-2.1.1 eml.xsd
+				eml://ecoinformatics.org/literature-2.1.1 eml-literature.xsd
+				eml://ecoinformatics.org/project-2.1.1 eml-project.xsd
+				http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
+				http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
 		
+		<!-- PRODUCTION VALUES -->
+		<!--
+		<property name="namespaces"
+              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
+				eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
+				eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
+				eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
+				eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
+				eml://ecoinformatics.org/eml-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml.xsd
+				eml://ecoinformatics.org/literature-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-literature.xsd
+				eml://ecoinformatics.org/project-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-project.xsd
+				http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
+				http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
+		-->
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
