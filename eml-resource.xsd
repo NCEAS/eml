@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:txt="eml://ecoinformatics.org/text-2.1.0" xmlns:rp="eml://ecoinformatics.org/party-2.1.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" xmlns="eml://ecoinformatics.org/resource-2.1.0" targetNamespace="eml://ecoinformatics.org/resource-2.1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0" xmlns:txt="eml://ecoinformatics.org/text-2.1.0" xmlns:rp="eml://ecoinformatics.org/party-2.1.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.1.0" xmlns="eml://ecoinformatics.org/resource-2.1.0" targetNamespace="eml://ecoinformatics.org/resource-2.1.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/party-2.1.0" schemaLocation="eml-party.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.1.0" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/text-2.1.0" schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
+  
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -123,7 +125,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="title" type="NonEmptyStringType" maxOccurs="unbounded">
+      <xs:element name="title" type="i18nNonEmptyStringType" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Title</doc:tooltip>
@@ -292,8 +294,8 @@
                 </xs:appinfo>
               </xs:annotation>
               <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="NonEmptyStringType">
+                <xs:complexContent>
+                  <xs:extension base="i18nNonEmptyStringType">
                     <xs:attribute name="keywordType" type="KeyTypeCode" use="optional">
                       <xs:annotation>
                         <xs:appinfo>
@@ -310,7 +312,7 @@
                       </xs:annotation>
                     </xs:attribute>
                   </xs:extension>
-                </xs:simpleContent>
+                </xs:complexContent>
               </xs:complexType>
             </xs:element>
             <xs:element name="keywordThesaurus" type="NonEmptyStringType" minOccurs="0">
@@ -1177,4 +1179,19 @@ connectionType -->
       <xs:pattern value="[\s]*[\S][\s\S]*"/>
     </xs:restriction>
   </xs:simpleType>
+	
+	<xs:complexType name="i18nNonEmptyStringType" mixed="true">
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="NonEmptyStringType">
+							<xs:attribute ref="xml:lang" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  
 </xs:schema>
