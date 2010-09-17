@@ -138,7 +138,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="organizationName" type="res:NonEmptyStringType">
+          <xs:element name="organizationName" type="res:i18nNonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Organization name</doc:tooltip>
@@ -173,7 +173,6 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="positionName" type="res:NonEmptyStringType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Position Name</doc:tooltip>
@@ -253,7 +252,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="electronicMailAddress" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="electronicMailAddress" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Email address</doc:tooltip>
@@ -375,7 +374,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="salutation" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="salutation" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Salutation</doc:tooltip>
@@ -388,7 +387,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="givenName" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="givenName" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Given name</doc:tooltip>
@@ -406,7 +405,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="surName" type="res:NonEmptyStringType">
+      <xs:element name="surName" type="res:i18nNonEmptyStringType">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Last name</doc:tooltip>
@@ -436,7 +435,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:sequence>
-        <xs:element name="deliveryPoint" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="deliveryPoint" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Delivery point</doc:tooltip>
@@ -449,7 +448,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="city" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:element name="city" type="res:i18nNonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>City</doc:tooltip>
@@ -460,7 +459,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="administrativeArea" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:element name="administrativeArea" type="res:i18nNonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Administrative area</doc:tooltip>
@@ -473,7 +472,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="postalCode" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:element name="postalCode" type="res:i18nNonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Postal code</doc:tooltip>
@@ -487,7 +486,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="country" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:element name="country" type="res:i18nNonEmptyStringType" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Country</doc:tooltip>
