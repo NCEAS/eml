@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns="eml://ecoinformatics.org/text-2.1.0"
     xmlns:txt="eml://ecoinformatics.org/text-2.1.0"
     xmlns:doc="eml://ecoinformatics.org/documentation-2.1.0"
     targetNamespace="eml://ecoinformatics.org/text-2.1.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.0"
-  schemaLocation="eml-documentation.xsd"/>
+  	schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" 
+  	schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -144,6 +147,15 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
+		<xs:element name="value" type="i18nString" minOccurs="0" maxOccurs="unbounded">
+	        <xs:annotation>
+	          <xs:appinfo>
+	            <doc:tooltip>Localized string for the paragraph</doc:tooltip>
+	            <doc:summary>Language translation for the paragraph</doc:summary>
+	            <doc:description>Language translation as specified by the xml:lang attribute</doc:description>
+	          </xs:appinfo>
+			</xs:annotation>
+		</xs:element>
       <xs:element name="itemizedlist" type="ListType">
         <xs:annotation>
           <xs:appinfo>
@@ -172,7 +184,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="emphasis" type="xs:string">
+      <xs:element name="emphasis">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Emphasis</doc:tooltip>
@@ -181,9 +193,13 @@
              Emphasized text is generally rendered as boldfaced or otherwise
              distinct from the surrounding text.
              This markup is a subset of DocBook.</doc:description>
-
           </xs:appinfo>
         </xs:annotation>
+        <xs:complexType mixed="true">
+        	<xs:sequence>
+        		<xs:element name="value" type="i18nString" minOccurs="0" maxOccurs="unbounded"/>
+        	</xs:sequence>
+        </xs:complexType>
       </xs:element>
       <xs:element name="subscript" type="SubSuperScriptType">
         <xs:annotation>
@@ -207,7 +223,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="literalLayout" type="xs:string">
+      <xs:element name="literalLayout">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>literalLayout</doc:tooltip>
@@ -217,6 +233,11 @@
             be altered.</doc:description>
           </xs:appinfo>
         </xs:annotation>
+        <xs:complexType mixed="true">
+        	<xs:sequence>
+        		<xs:element name="value" type="i18nString" minOccurs="0" maxOccurs="unbounded"/>
+        	</xs:sequence>
+        </xs:complexType>
       </xs:element>
       
       
@@ -402,6 +423,7 @@
         </xs:element>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:complexType name="SubSuperScriptType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -416,6 +438,15 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
+    	<xs:element name="value" type="i18nString" minOccurs="0" maxOccurs="unbounded">
+	        <xs:annotation>
+	          <xs:appinfo>
+	            <doc:tooltip>Localized string for the sub/superscript</doc:tooltip>
+	            <doc:summary>Language translation for the sub/superscript</doc:summary>
+	            <doc:description>Language translation as specified by the xml:lang attribute</doc:description>
+	          </xs:appinfo>
+			</xs:annotation>
+		</xs:element>
       <xs:element name="subscript" type="SubSuperScriptType">
         <xs:annotation>
           <xs:appinfo>
@@ -440,4 +471,28 @@
       </xs:element>
     </xs:choice>
   </xs:complexType>
+  
+	<xs:complexType name="i18nString">
+		<xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Localized string</doc:tooltip>
+            <doc:summary>Language translation for the text</doc:summary>
+            <doc:description>Language translation as specified by the xml:lang attribute</doc:description>
+          </xs:appinfo>
+        </xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="xml:lang">
+					<xs:annotation>
+		              <xs:appinfo>
+		                <doc:tooltip>xml:lang</doc:tooltip>
+		                <doc:summary>language code for element content</doc:summary>
+		                <doc:description>Specifies the language</doc:description>
+		                <doc:example>xml:lang="en-US"</doc:example>
+		              </xs:appinfo>
+		            </xs:annotation> 
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 </xs:schema>
