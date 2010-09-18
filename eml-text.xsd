@@ -84,10 +84,10 @@
         of relevant subsections that allow the use of titles, sections, and
         paragraphs in the text block. This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+  
   <xs:complexType name="TextType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -98,7 +98,6 @@
         of relevant subsections that allow the use of titles, sections, and
         paragraphs in the text block. This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
@@ -111,7 +110,6 @@
             grouping related paragraphs of text together, with
             an optional title.  This markup is a subset of DocBook.
             </doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -126,12 +124,13 @@
             markup tags, including emphasis, subscript,
             superscript, and lists. This markup is a subset of DocBook.
             </doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:choice>
+    <xs:attribute ref="xml:lang"/>
   </xs:complexType>
+  
   <xs:complexType name="ParagraphType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -143,7 +142,6 @@
         markup tags, including emphasis, subscript,
         superscript, lists and links. This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -166,7 +164,6 @@
             list is generally displayed as a bulleted list.
             This markup is a subset of DocBook.
             </doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -180,7 +177,6 @@
             paragraph.  The list is generally displayed as a numbered
             list. This markup is a subset of DocBook.
             </doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -199,6 +195,7 @@
         	<xs:sequence>
         		<xs:element name="value" type="i18nString" minOccurs="0" maxOccurs="unbounded"/>
         	</xs:sequence>
+        	<xs:attribute ref="xml:lang"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="subscript" type="SubSuperScriptType">
@@ -208,7 +205,6 @@
             <doc:summary>A subscript in a text paragraph.</doc:summary>
             <doc:description>A subscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -219,7 +215,6 @@
             <doc:summary>A superscript in a text paragraph.</doc:summary>
             <doc:description>A superscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -239,11 +234,6 @@
         	</xs:sequence>
         </xs:complexType>
       </xs:element>
-      
-      
-      <!--
-        
-      -->
       <xs:element name="ulink" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -278,17 +268,10 @@
           </xs:attribute>
         </xs:complexType>
       </xs:element>
-      <!--
-        
-        
-      -->
-      
-      
-      
-      
-      
     </xs:choice>
+    <xs:attribute ref="xml:lang"/>
   </xs:complexType>
+  
   <xs:complexType name="SectionType">
     <xs:annotation>
       <xs:appinfo>
@@ -298,7 +281,6 @@
         grouping related paragraphs (or other sections) of text together, with
         an optional title.  This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -310,7 +292,6 @@
             <doc:description>The optional title for a section.
             This markup is a subset of DocBook.
             </doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -326,7 +307,6 @@
               markup tags, including emphasis, subscript,
               superscript, and lists. This markup is a subset of DocBook.
               </doc:description>
-
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -339,13 +319,14 @@
               grouping related paragraphs of text together, with
               an optional title.  This markup is a subset of DocBook.
               </doc:description>
-
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
       </xs:choice>
     </xs:sequence>
+    <xs:attribute ref="xml:lang"/>
   </xs:complexType>
+  
   <xs:complexType name="ListType">
     <xs:annotation>
       <xs:appinfo>
@@ -355,7 +336,6 @@
         is used by both orderedlist elements and itemizedlist elements.
         This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -386,7 +366,6 @@
                     markup tags, including emphasis, subscript,
                     superscript, and lists. This markup is a subset of DocBook.
                     </doc:description>
-
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -400,7 +379,6 @@
                     list is generally displayed as a bulleted list.
                     This markup is a subset of DocBook.
                     </doc:description>
-
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -414,7 +392,6 @@
                     paragraph.  The list is generally displayed as a numbered
                     list. This markup is a subset of DocBook.
                     </doc:description>
-
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
@@ -434,7 +411,6 @@
         This type is used by both subscript and superscript elements to define
         their recursive content. This markup is a subset of DocBook.
         </doc:description>
-
       </xs:appinfo>
     </xs:annotation>
     <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -454,7 +430,6 @@
             <doc:summary>A subscript in a text paragraph.</doc:summary>
             <doc:description>A subscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -465,11 +440,11 @@
             <doc:summary>A superscript in a text paragraph.</doc:summary>
             <doc:description>A superscript in a text paragraph.
              This markup is a subset of DocBook.</doc:description>
-
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:choice>
+    <xs:attribute ref="xml:lang"/>
   </xs:complexType>
   
 	<xs:complexType name="i18nString">
