@@ -1181,12 +1181,34 @@ connectionType -->
   </xs:simpleType>
 	
 	<xs:complexType name="i18nNonEmptyStringType" mixed="true">
+		<xs:annotation>
+	      <xs:appinfo>
+	        <doc:tooltip>i18n Non Empty String Type</doc:tooltip>
+	        <doc:summary>i18n Non Empty String Type</doc:summary>
+	        <doc:description>This type specifies a content pattern for all elements 
+	          that require language translations. The xml:lang attribute
+	          can be used to define the default language for element content.
+	          Additional translations should be included as child 'value'
+	          elements that also have an optional xml:lang attribute.</doc:description>
+	      </xs:appinfo>
+	    </xs:annotation>
 		<xs:sequence>
 			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
+					<xs:annotation>
+				      <xs:appinfo>
+				        <doc:tooltip>i18n Value</doc:tooltip>
+				        <doc:summary>i18n Value</doc:summary>
+				        <doc:description>Allows multiple language translations 
+				        to appear as children of a mixed-content parent element. The xml:lang attribute
+				        is optional and will override any xml:lang attribute that has been
+				        specified in the ancestor elements. The content is subject to the same
+				        rules defined by NonEmptyStringType. </doc:description>
+				      </xs:appinfo>
+				    </xs:annotation>
 					<xs:simpleContent>
 						<xs:extension base="NonEmptyStringType">
-							<xs:attribute ref="xml:lang" />
+							<xs:attribute ref="xml:lang" use="optional"/>
 						</xs:extension>
 					</xs:simpleContent>
 				</xs:complexType>
