@@ -411,46 +411,66 @@
 			<example>
               <title>Internationalization techniques</title>
               <para>
-	            To maximaized data discovery operations (search), core metadata should be provided 
-	            in English. The core elements can be augmented with translations in a native language. 
-	            Additional detailed metadata can also be provided in the native language as declared using
-	            the xml:lang attribute. Authors can opt to include English translations 
-	            of this detailed metadata as they see fit.
+	            Core metadata should be provided in English. 
+	            The core elements can be augmented with translations in a native language. 
+	            Detailed metadata can be provided in the native language as declared using the xml:lang attribute. 
+	            Authors can opt to include English translations of this detailed metadata as they see fit.
 	          </para>
 	          <para>
-	          	In our example we have a metadata document authored primarily in English but with Portuguese translations. 
-	          	The xml:lang="pt_BR" attribute denotes element content that is provided in the native language.
-	          	The xml:lang="en_US" attribute at the root of the EML document indicates that, unless otherwise specified, 
-	          	the content of the document is supplied in English (United States).
+	          	The following example metadata document is provided primarily in Portuguese but includes English translations
+	          	of core metadata fields. 
+	          	The xml:lang="pt_BR" attribute at the root of the EML document indicates that, unless otherwise specified, 
+	          	the content of the document is supplied in Portuguese (Brazil).
+	          	The xml:lang="en_US" attributes on child elements denote that the content of that element is provided in English.
 
-	          	Core metadata (title) is provided in English, supplemented with a Portuguese translation using the 
-	          	value tag and an xml:lang attribute that overrides the root language declaration of the document.
-
-	          	The abstract is primarily given in Portuguese, with an English translation provided as a supplement.
-	          	Note that internationalized fields can utilize the xml:lang attribute as well as nested value elements
-	          	with their respective xml:lang attributes.
+	          	Core metadata (i.e. title) is provided in English, supplemented with a Portuguese translation using the 
+	          	value tag with an xml:lang attribute. Note that child elements can override the 
+	          	root language declaration of the document as well as the language declaration of their containing elements.
+	          	
+	          	The abstract element is primarily given in Portuguese (as inherited from the root language declaration), 
+	          	with an English translation.
+	          </para>
+	          <para>
+	          	Many EML fields are repeatable (i.e. keyword) so that multiple values can be provided for the same concept. 
+	          	Translations for these fields should be included as nested value tags to indicate that they are equivalent concepts 
+	          	expressed in different languages rather than entirely different concepts.
 	          </para>
               	<literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb" 
-    xml:lang="en_US"
+    xml:lang="pt_BR"
     xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
-    &lt;title&gt;
+  
+    &lt;!-- English title with Portuguese translation --&gt;    
+    &lt;title xml:lang=""en_US" &gt;
     	Sample Dataset Description
     	&lt;value xml:lang="pt_BR" &gt;Exemplo Descrição Dataset&lt;/value&gt;
     &lt;/title&gt;
     ...
-    &lt;abstract xml:lang="pt_BR" &gt;
+    &lt;!-- Portuguese abstract with English translation --&gt;    
+    &lt;abstract&gt;
     	&lt;para&gt;
 	    	Neste exemplo, a tradução em Inglês é secundário
 	    	&lt;value xml:lang="en_US" &gt;In this example, the English translation is secondary&lt;/value&gt;
     	&lt;para&gt;
     &lt;/abstract&gt;
+    ...
+    &lt;!-- two keywords, each with an equivalent translation --&gt;    
+    &lt;keywordSet&gt;
+    	&lt;keyword keywordType="theme"&gt;
+	    	árvore
+	    	&lt;value xml:lang="en_US" &gt;tree&lt;/value&gt;
+    	&lt;keyword&gt;
+    	&lt;keyword keywordType="theme"&gt;
+	    	água
+	    	&lt;value xml:lang="en_US" &gt;water&lt;/value&gt;
+    	&lt;keyword&gt;
+    &lt;/keywordSet&gt;
     ...
   &lt;/dataset&gt;
 &lt;/eml:eml&gt;
