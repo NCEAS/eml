@@ -374,6 +374,90 @@
           </para>
       </section>
     </section>
+    
+    <section>
+        <title>
+          Internationalization - Metadata in multiple languages
+        </title>
+          <para>
+            EML supports internationalization using the i18nNonEmptyStringType. 
+            Fields defined as this type include:
+            <itemizedlist>
+		        <listitem>
+		          <para>Title</para>
+		        </listitem>
+		        <listitem>
+		          <para>Keyword</para>
+		        </listitem>
+		        <listitem>
+		          <para>Contact information (e.g. names, organizations, addresses)</para>
+		        </listitem>
+			</itemizedlist> 
+          </para>
+          <para>
+            TextType fields also support language translations. These fields include:
+            <itemizedlist>
+		        <listitem>
+		          <para>Abstract</para>
+		        </listitem>
+		        <listitem>
+		          <para>Methods</para>
+		        </listitem>
+		        <listitem>
+		          <para>Protocol</para>
+		        </listitem>
+			</itemizedlist> 
+          </para>
+			<example>
+              <title>Internationalization techniques</title>
+              <para>
+	            To maximaized data discovery operations (search), core metadata should be provided 
+	            in English. The core elements can be augmented with translations in a native language. 
+	            Additional detailed metadata can also be provided in the native language as declared using
+	            the xml:lang attribute. Authors can opt to include English translations 
+	            of this detailed metadata as they see fit.
+	          </para>
+	          <para>
+	          	In our example we have a metadata document authored primarily in English but with Portuguese translations. 
+	          	The xml:lang="pt_BR" attribute denotes element content that is provided in the native language.
+	          	The xml:lang="en_US" attribute at the root of the EML document indicates that, unless otherwise specified, 
+	          	the content of the document is supplied in English (United States).
+
+	          	Core metadata (title) is provided in English, supplemented with a Portuguese translation using the 
+	          	value tag and an xml:lang attribute that overrides the root language declaration of the document.
+
+	          	The abstract is primarily given in Portuguese, with an English translation provided as a supplement.
+	          	Note that internationalized fields can utilize the xml:lang attribute as well as nested value elements
+	          	with their respective xml:lang attributes.
+	          </para>
+              	<literalLayout>
+&lt;?xml version="1.0"?&gt;
+&lt;eml:eml
+    packageId="eml.1.1" system="knb" 
+    xml:lang="en_US"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+
+  &lt;dataset id="ds.1"&gt;
+    &lt;title&gt;
+    	Sample Dataset Description
+    	&lt;value xml:lang="pt_BR" &gt;Exemplo Descrição Dataset&lt;/value&gt;
+    &lt;/title&gt;
+    ...
+    &lt;abstract xml:lang="pt_BR" &gt;
+    	&lt;para&gt;
+	    	Neste exemplo, a tradução em Inglês é secundário
+	    	&lt;value xml:lang="en_US" &gt;In this example, the English translation is secondary&lt;/value&gt;
+    	&lt;para&gt;
+    &lt;/abstract&gt;
+    ...
+  &lt;/dataset&gt;
+&lt;/eml:eml&gt;
+				</literalLayout>
+            </example>
+    </section>
+    
   </chapter>
 
   <chapter id="technicalArch">
