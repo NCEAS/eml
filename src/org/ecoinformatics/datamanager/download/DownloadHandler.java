@@ -866,7 +866,7 @@ public class DownloadHandler implements Runnable
 						stream = outputStreamList[i];
 						if (stream != null && stream.getNeeded()) {
 							os = stream.getOutputStream();
-							os.write(b);	
+              os.write(b, 0, bytesRead);
 						}
 					}
 					// get the next bytes
