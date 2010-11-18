@@ -643,7 +643,7 @@ public class Eml200Parser
                                     domain = enumerDomain;
                                 }
                             }
-                        } else if (name.equals("datetime")) {
+                        } else if (name.equalsIgnoreCase("datetime")) {
                             DateTimeDomain date = new DateTimeDomain();
                             String formatString = 
                                 (xpathapi.selectSingleNode(n,"./formatString")).
