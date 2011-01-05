@@ -146,11 +146,11 @@
         </tr>
         <tr>
           <td class="{$accessfirstColStyle}">Auth System:</td>
-          <td class="{$secondColStyle}"><xsl:value-of select="./@authSystem"/></td>
+          <td class="{$secondColStyle}" colspan="2"><xsl:value-of select="./@authSystem"/></td>
         </tr>
         <tr>
           <td class="{$accessfirstColStyle}">Order:</td>
-          <td class="{$secondColStyle}"><xsl:value-of select="./@order"/></td>
+          <td class="{$secondColStyle}" colspan="2"><xsl:value-of select="./@order"/></td>
         </tr>
   </xsl:template>
 

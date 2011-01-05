@@ -615,92 +615,235 @@
       </tr>
     </xsl:for-each>
   </xsl:template>
+  
+	<xsl:template name="datasetentity">
+		<xsl:if test="dataTable or spatialRaster or spatialVector or storedProcedures or view or otherEntity">
+			<tr>
+				<th colspan="2">
+					<xsl:text>Data Table, Image, and Other Data Details:</xsl:text>
+				</th>
+			</tr>
+		</xsl:if>
+		<tr>
+			<td colspan="2">
+				<xsl:call-template name="xml" />
+			</td>
+		</tr>
+		<xsl:choose>
+			<xsl:when test="$displaymodule!='printall'">
+				<xsl:for-each select="dataTable">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">dataTable</xsl:with-param>
+						<xsl:with-param name="showtype">Data Table</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+				<xsl:for-each select="spatialRaster">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">spatialRaster</xsl:with-param>
+						<xsl:with-param name="showtype">Spatial Raster</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+				<xsl:for-each select="spatialVector">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">spatialVector</xsl:with-param>
+						<xsl:with-param name="showtype">Spatial Vector</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+				<xsl:for-each select="storedProcedure">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">storedProcedure</xsl:with-param>
+						<xsl:with-param name="showtype">Stored Procedure</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+				<xsl:for-each select="view">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">view</xsl:with-param>
+						<xsl:with-param name="showtype">View</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+				<xsl:for-each select="otherEntity">
+					<xsl:call-template name="entityurl">
+						<xsl:with-param name="type">otherEntity</xsl:with-param>
+						<xsl:with-param name="showtype">Other Data</xsl:with-param>
+						<xsl:with-param name="index" select="position()" />
+					</xsl:call-template>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:for-each select="dataTable">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>Data Table:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">dataTable</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:for-each select="spatialRaster">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>Spatial Raster:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">spatialRaster</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:for-each select="spatialVector">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>Spatial Vector:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">spatialVector</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:for-each select="storedProcedure">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>Stored Procedure:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">storedProcedure</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:for-each select="view">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>View:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">view</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:for-each select="otherEntity">
+					<xsl:variable name="currentNode" select="position()" />
+					<xsl:for-each select="../.">
+						<tr>
+							<td class="{$subHeaderStyle}" colspan="2">
+								<xsl:text>Other Entity:</xsl:text>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xsl:call-template name="chooseentity">
+									<xsl:with-param name="entitytype">otherEntity</xsl:with-param>
+									<xsl:with-param name="entityindex" select="$currentNode" />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:for-each>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
-
-
-  <xsl:template name="datasetentity" >
-   <xsl:if test="dataTable or spatialRaster or spatialVector or storedProcedures or view or otherEntity">
-      <tr>
-        <th>
-        <xsl:text>Data Table, Image, and Other Data Details:</xsl:text>
-        </th>
-      </tr>
-   </xsl:if>
-    <xsl:for-each select="dataTable">
-      <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">dataTable</xsl:with-param>
-        <xsl:with-param name="showtype">Data Table</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-   <xsl:for-each select="spatialRaster">
-     <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">spatialRaster</xsl:with-param>
-        <xsl:with-param name="showtype">Spatial Raster</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-   <xsl:for-each select="spatialVector">
-      <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">spatialVector</xsl:with-param>
-        <xsl:with-param name="showtype">Spatial Vector</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-   <xsl:for-each select="storedProcedure">
-     <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">storedProcedure</xsl:with-param>
-        <xsl:with-param name="showtype">Stored Procedure</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-   <xsl:for-each select="view">
-      <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">view</xsl:with-param>
-        <xsl:with-param name="showtype">View</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-   <xsl:for-each select="otherEntity">
-      <xsl:call-template name="entityurl">
-        <xsl:with-param name="type">otherEntity</xsl:with-param>
-        <xsl:with-param name="showtype">Other Data</xsl:with-param>
-        <xsl:with-param name="index" select="position()"/>
-      </xsl:call-template>
-   </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template name="entityurl">
-     <xsl:param name="showtype"/>
-     <xsl:param name="type"/>
-     <xsl:param name="index"/>
-      <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <tr>
-              <td class="{$firstColStyle}">
-                <a>
-                <xsl:attribute name="href">
-                <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/>
-                </xsl:attribute>
-                <xsl:value-of select="./entityName"/> (<xsl:value-of select="$showtype"/>)</a>
-            </td>
-         </tr>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-         <tr>
-            <td class="{$firstColStyle}">
-             <a><xsl:attribute name="href">
-              <xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>
-             <xsl:value-of select="./entityName"/> (<xsl:value-of select="$showtype"/>)</a>
-            </td>
-         </tr>
-       </xsl:otherwise>
-     </xsl:choose>
-  </xsl:template>
+	<xsl:template name="entityurl">
+		<xsl:param name="showtype" />
+		<xsl:param name="type" />
+		<xsl:param name="index" />
+		<xsl:choose>
+			<xsl:when test="references!=''">
+				<xsl:variable name="ref_id" select="references" />
+				<xsl:variable name="references" select="$ids[@id=$ref_id]" />
+				<xsl:for-each select="$references">
+					<tr>
+						<td class="{$firstColStyle}">
+							Metadata:
+							<a>
+								<xsl:attribute name="href">
+									<xsl:value-of select="$tripleURI" /><xsl:value-of select="$docid" />&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/>
+								</xsl:attribute>
+								<b><xsl:value-of select="./physical/objectName"/></b>
+							</a>
+						</td>
+					</tr>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<tr>
+					<td width="{$firstColWidth}" class="{$firstColStyle}">
+						<xsl:value-of select="$showtype"/>:</td>
+					<td width="{$secondColWidth}" class="{$secondColStyle}"> 
+						<xsl:value-of select="./entityName"/> 
+						(<a>
+						<xsl:attribute name="href">
+						<xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/>&amp;displaymodule=entity&amp;entitytype=<xsl:value-of select="$type"/>&amp;entityindex=<xsl:value-of select="$index"/></xsl:attribute>
+						View Metadata</a> 
+						<xsl:text> </xsl:text>
+					    <xsl:choose>
+						    <xsl:when test="./physical/distribution/online/url"> 
+						    	| 
+						    	<xsl:variable name="URL" select="./physical/distribution/online/url"/>
+					            <a>
+									<xsl:choose>
+										<xsl:when test="starts-with($URL,'ecogrid')">
+											<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
+											<xsl:variable name="dataDocID" select="substring-after($URL1, '/')"/>
+											<xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$dataDocID"/></xsl:attribute>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:attribute name="href"><xsl:value-of select="$URL"/></xsl:attribute>
+										</xsl:otherwise>
+									</xsl:choose>
+								<xsl:attribute name="target">_blank</xsl:attribute>
+								Download File <img src="/knb/style/images/page_white_put.png" style="margin:0px 0px; padding:0px;" border="0" alt="download"/></a>
+							</xsl:when>
+						</xsl:choose>)
+					</td>
+				</tr>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
   <xsl:template match="text()" mode="dataset" />
   <xsl:template match="text()" mode="resource" />

@@ -73,6 +73,9 @@
      <xsl:for-each select="protocol">
        <xsl:call-template name="emlprotocol"/>
      </xsl:for-each>
+     <xsl:for-each select="access">
+		<xsl:call-template name="topaccess"/>
+	 </xsl:for-each>
      <!-- Additional metadata-->
      <xsl:choose>
        <xsl:when test="$displaymodule='additionalmetadata'">
@@ -1102,15 +1105,36 @@
      <!--********************************************************
              download xml part
        ********************************************************-->
-   <xsl:template name="xml">
-     <xsl:param name="index"/>
-        <br />
-        <a>
-          <xsl:attribute name="href">
-            <xsl:value-of select="$xmlURI"/>
-            <xsl:value-of select="$docid"/>
-          </xsl:attribute>
-          View the original XML Data (EML format)
-        </a>
-   </xsl:template>
+	<xsl:template name="xml">
+		<xsl:param name="index" />
+		<table width="100%">
+			<tr>
+				<td width="{$firstColWidth}" class="highlight">Metadata download:</td>
+				<td width="{$secondColWidth}" class="secondCol">
+					<a>
+						<xsl:attribute name="href">
+           					<xsl:value-of select="$xmlURI" /><xsl:value-of select="$docid" />
+           				</xsl:attribute>
+						Ecological Metadata Language (EML) File
+					</a>
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+	
+	<!--********************************************************
+                   access part
+       ********************************************************-->
+	<xsl:template name="topaccess">
+		<xsl:if test="$displaymodule='dataset' or $displaymodule='printall'">
+			<tr>
+			<td colspan="2">
+				<xsl:call-template name="access">
+				<xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
+				  <xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
+				</xsl:call-template>
+			</td>
+			</tr>
+		</xsl:if>
+	</xsl:template>
 </xsl:stylesheet>
