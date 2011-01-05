@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-software.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matt Jones
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-09 22:44:43 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
   <xsl:template name="software">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+    <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -77,10 +77,10 @@
            <xsl:with-param name="softwaresubHeaderStyle" select="$softwaresubHeaderStyle"/>
         </xsl:call-template>
          <xsl:for-each select="dependency">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Dependency
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                  &#160;
                 </td>
            </tr>
@@ -120,10 +120,10 @@
             </td>
         </tr>
         <xsl:for-each select="distribution">
-           <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+           <tr><td class="{$softwarefirstColStyle}">
              Distribution:
             </td>
-            <td width="{$secondColWidth}">
+            <td>
                <xsl:call-template name="distribution">
                  <xsl:with-param name="disfirstColStyle" select="$softwarefirstColStyle"/>
                  <xsl:with-param name="dissubHeaderStyle" select="$softwaresubHeaderStyle"/>
@@ -132,100 +132,100 @@
         </tr>
         </xsl:for-each>
         <xsl:for-each select="size">
-           <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+           <tr><td class="{$softwarefirstColStyle}">
              Size:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
              <xsl:value-of select="."/>
             </td>
         </tr>
         </xsl:for-each>
         <xsl:for-each select="language">
-           <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+           <tr><td class="{$softwarefirstColStyle}">
                 Language:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="LanguageValue"/>
                 </td>
            </tr>
            <xsl:if test="LanguageCodeStandard">
-             <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+             <tr><td class="{$softwarefirstColStyle}">
                 Language Code Standard:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="LanguageValue"/>
                 </td>
              </tr>
            </xsl:if>
         </xsl:for-each>
         <xsl:for-each select="operatingSystem">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Operating System:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="machineProcessor">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Operating System:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="virtualMachine">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Virtual Machine:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
          <xsl:for-each select="diskUsage">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Disk Usage:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="runtimeMemoryUsage">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Run Time Memory Usage:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="programmingLanguage">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Programming Language:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="checksum">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Check Sum:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                   <xsl:value-of select="."/>
                 </td>
            </tr>
         </xsl:for-each>
         <xsl:for-each select="dependency">
-          <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+          <tr><td class="{$softwarefirstColStyle}">
                 Dependency:
                 </td>
-                <td width="{$secondColWidth}" class="{$secondColStyle}">
+                <td class="{$secondColStyle}">
                  &#160;
                 </td>
            </tr>
@@ -241,10 +241,10 @@
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:param name="softwaresubHeaderStyle"/>
     <xsl:for-each select="../dependency">
-      <tr><td width="{$firstColWidth}" class="{$softwarefirstColStyle}">
+      <tr><td class="{$softwarefirstColStyle}">
            <b><xsl:value-of select="action"/></b> <xsl:text> Depend on</xsl:text>
         </td>
-        <td width="{$secondColWidth}">
+        <td>
             <xsl:for-each select="software">
                <xsl:call-template name="software">
                   <xsl:with-param name="softwarefirstColStyle" select="$softwarefirstColStyle"/>
@@ -259,8 +259,8 @@
   <xsl:template name="version">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:for-each select="version">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-        Version Number:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <tr><td class="{$firstColStyle}">
+        Version Number:</td><td class="{$secondColStyle}">
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>
@@ -268,8 +268,8 @@
   <xsl:template name="licenseURL">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:for-each select="licenseURL">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            License URL:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <tr><td class="{$firstColStyle}">
+            License URL:</td><td class="{$secondColStyle}">
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>
@@ -277,8 +277,8 @@
   <xsl:template name="license">
     <xsl:param name="softwarefirstColStyle"/>
     <xsl:for-each select="license">
-        <tr><td width="{$firstColWidth}" class="{$firstColStyle}">
-            License:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+        <tr><td class="{$firstColStyle}">
+            License:</td><td class="{$secondColStyle}">
         <xsl:value-of select="."/></td></tr>
     </xsl:for-each>
   </xsl:template>

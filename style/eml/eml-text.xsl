@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-text.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -31,20 +31,21 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <xsl:output method="html" encoding="iso-8859-1"
-              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
-              indent="yes" />  
-
+  <xsl:output method="html" encoding="UTF-8"
+    doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+    doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+    indent="yes" />  
 
 <!-- This module is for text module in eml2 document. It is a table and self contained-->
 
   <xsl:template name="text">
         <xsl:param name="textfirstColStyle" />
+        <xsl:param name="textsecondColStyle" />
         <xsl:if test="(section and normalize-space(section)!='') or (para and normalize-space(para)!='')">
-        <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-          <xsl:apply-templates  select="." mode="text"/>
-        </table>
+          <xsl:apply-templates mode="text">
+            <xsl:with-param name="textfirstColStyle" select="$textfirstColStyle"/>
+            <xsl:with-param name="textsecondColStyle" select="$textsecondColStyle" />
+          </xsl:apply-templates>
       </xsl:if>
   </xsl:template>
 
@@ -52,82 +53,68 @@
   <!-- *********************************************************************** -->
   <!-- Template for section-->
    <xsl:template match="section" mode="text">
-      <xsl:param name="textfirstColStyle" />
       <xsl:if test="normalize-space(.)!=''">
+      	<div class="sectionText">
         <xsl:if test="title and normalize-space(title)!=''">
-          <tr>
-            <td width="100%" align="left" class="{$secondColStyle}" >
-              <b><xsl:value-of select="title"/></b>
-            </td>
-          </tr>
+              <h4 class="bold"><xsl:value-of select="title"/></h4>
         </xsl:if>
         <xsl:if test="para and normalize-space(para)!=''">
-          <tr>
-            <td width="100%" class="{$secondColStyle}">
               <xsl:apply-templates select="para" mode="lowlevel"/>
-            </td>
-           </tr>
          </xsl:if>
          <xsl:if test="section and normalize-space(section)!=''">
-          <tr>
-            <td width="100%" class="{$secondColStyle}">
               <xsl:apply-templates select="section" mode="lowlevel"/>
-            </td>
-         </tr>
         </xsl:if>
+        </div>
       </xsl:if>
   </xsl:template>
 
   <!-- Section template for low level. Cteate a nested table and second column -->
   <xsl:template match="section" mode="lowlevel">
-     <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+     <div class="section">
       <xsl:if test="title and normalize-space(title)!=''">
-        <tr>
-          <td width="10%" class="{$secondColStyle}">
-            &#160;
-          </td>
-          <td class="{$secondColStyle}" width="90%" align="left">
-            <xsl:value-of select="title"/>
-          </td>
-        </tr>
+        <h4 class="bold"><xsl:value-of select="title"/></h4>
       </xsl:if>
       <xsl:if test="para and normalize-space(para)!=''">
-        <tr>
-          <td width="10%"  class="{$secondColStyle}">
-           &#160;
-          </td>
-          <td width="90%" class="{$secondColStyle}">
-            <xsl:apply-templates select="para" mode="lowlevel"/>
-          </td>
-        </tr>
-       </xsl:if>
-       <xsl:if test="section and normalize-space(section)!=''">
-           <tr>
-          <td width="10%"  class="{$secondColStyle}">
-           &#160;
-          </td>
-          <td width="90%" class="{$secondColStyle}">
-            <xsl:apply-templates select="section" mode="lowlevel"/>
-          </td>
-        </tr>
-       </xsl:if>
-     </table>
+        <xsl:apply-templates select="para" mode="lowlevel"/>
+      </xsl:if>
+      <xsl:if test="section and normalize-space(section)!=''">
+        <xsl:apply-templates select="section" mode="lowlevel"/>
+      </xsl:if>
+     </div>
   </xsl:template>
 
   <!-- para template for text mode-->
    <xsl:template match="para" mode="text">
-    <xsl:param name="textfirstColStyle"/>
-    <tr>
-      <td width="100%" class="{$secondColStyle}">
-         <xsl:apply-templates mode="lowlevel"/>
-      </td>
-    </tr>
+    	<xsl:param name="textfirstColStyle"/>
+    	<div class="para">
+   			<xsl:apply-templates mode="lowlevel"/>
+   		</div>	
   </xsl:template>
 
   <!-- para template without table structure. It does actually transfer.
        Currently, only get the text and it need more revision-->
   <xsl:template match="para" mode="lowlevel">
-       <xsl:value-of select="."/><br/>
+      <xsl:if test="normalize-space(./text()) = ''">
+      	<xsl:apply-templates mode="lowlevel"/>
+      </xsl:if>
+      <p>
+      	<xsl:call-template name="i18n">
+   			<xsl:with-param name="i18nElement" select="."/>
+   		</xsl:call-template>
+      </p>
+  </xsl:template>
+  
+  <!-- match any translation values -->
+  <xsl:template match="value" mode="lowlevel">
+      <span class="translation">
+		<!-- the primary value -->
+		<xsl:if test="./text() != ''">
+			<xsl:if test="./@xml:lang != ''">
+				(<xsl:value-of select="./@xml:lang"/>)
+			</xsl:if>
+			<xsl:value-of select="./text()"/>
+		</xsl:if>
+      </span>
   </xsl:template>
 
 </xsl:stylesheet>

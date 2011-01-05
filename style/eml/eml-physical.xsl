@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-physical.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: sgarg $'
-  *     '$Date: 2005-12-16 20:55:16 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@
       <xsl:param name="distributionindex"/>
       <xsl:param name="physicalfirstColStyle"/>
       <xsl:param name="notshowdistribution"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+      <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -125,9 +125,9 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="objectName">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Object Name:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
         <xsl:value-of select="."/></td>
       </tr>
     </xsl:for-each>
@@ -137,9 +137,9 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="size">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Size:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
         <xsl:value-of select="."/><xsl:text> </xsl:text><xsl:value-of select="./@unit"/></td>
       </tr>
     </xsl:for-each>
@@ -149,12 +149,12 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="authentication">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Authentication:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/><xsl:text> </xsl:text>
           <xsl:if test="./@method">
-            Calculated By<xsl:text> </xsl:text><xsl:value-of select="./@method"/>
+            Caculated By<xsl:text> </xsl:text><xsl:value-of select="./@method"/>
           </xsl:if>
         </td>
       </tr>
@@ -165,9 +165,9 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="compressionMethod">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Compression Method:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
         <xsl:value-of select="."/></td>
       </tr>
     </xsl:for-each>
@@ -177,9 +177,9 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="encodingMethod">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Encoding Method:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
         <xsl:value-of select="."/></td>
       </tr>
     </xsl:for-each>
@@ -189,9 +189,9 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="characterEncoding">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Character Encoding:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$secondColStyle}">
         <xsl:value-of select="."/></td>
       </tr>
     </xsl:for-each>
@@ -205,10 +205,10 @@
    <xsl:param name="physicalfirstColStyle"/>
    <xsl:for-each select="dataFormat/textFormat">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Text Format:</td>
-        <td width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}">
+        <td>
+          <table class="{$tabledefaultStyle}">
             <xsl:apply-templates>
               <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
             </xsl:apply-templates>
@@ -224,65 +224,65 @@
   <xsl:template match="numHeaderLines">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Number of Header Lines:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Number of Header Lines:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="numFooterLines">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Number of Foot Lines:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Number of Foot Lines:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="recordDelimiter">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Record Delimiter:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Record Delimiter:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="physicalLineDelimiter">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Line Delimiter:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Line Delimiter:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="numPhysicalLinesPerRecord">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Line Number For One Record:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Line Number For One Record:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="maxRecordLength">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Maximum Record Length:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Maximum Record Length:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="attributeOrientation">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Attribute Orientation:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$physicalfirstColStyle}">Maximum Record Length:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="simpleDelimited">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Simple Delimited:</td>
-        <td  width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+        <td class="{$physicalfirstColStyle}">Simple Delimited:</td>
+        <td >
+          <table class="{$tabledefaultStyle}">
             <xsl:apply-templates>
               <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
             </xsl:apply-templates>
@@ -294,9 +294,9 @@
   <xsl:template match="complex">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Complex Delimited:</td>
-        <td  width="{$secondColWidth}">
-           <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+        <td class="{$physicalfirstColStyle}">Complex Delimited:</td>
+        <td >
+           <table class="{$tabledefaultStyle}">
              <xsl:call-template name="textFixed">
                 <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
              </xsl:call-template>
@@ -312,9 +312,9 @@
   <xsl:template name="textFixed">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Text Fixed:</td>
-        <td  width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+        <td class="{$physicalfirstColStyle}">Text Fixed:</td>
+        <td >
+          <table class="{$tabledefaultStyle}">
             <xsl:apply-templates>
               <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
             </xsl:apply-templates>
@@ -326,9 +326,9 @@
   <xsl:template name="textDelimited">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Text Delimited:</td>
-        <td  width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+        <td class="{$physicalfirstColStyle}">Text Delimited:</td>
+        <td >
+          <table class="{$tabledefaultStyle}">
             <xsl:apply-templates>
               <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
             </xsl:apply-templates>
@@ -337,27 +337,19 @@
         </tr>
   </xsl:template>
 
-  <xsl:template match="collapseDelimiters">
-        <xsl:param name="physicalfirstColStyle"/>
-        <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Consecutive Delimiters are Single:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
-        </tr>
-  </xsl:template>
-
   <xsl:template match="quoteCharacter">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Quote Character:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Quote Character:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
    <xsl:template match="literalCharacter">
        <xsl:param name="physicalfirstColStyle"/>
        <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Literal Character:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Literal Character:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
@@ -365,30 +357,30 @@
   <xsl:template match="fieldDelimiter">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Field Delimeter:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Field Delimeter:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="fieldWidth">
         <xsl:param name="physicalfirstColStyle"/>
-        <tr><td class="{$firstColStyle}" width="{$firstColWidth}">Field Width:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <tr><td class="{$firstColStyle}">Field Width:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="lineNumber">
         <xsl:param name="physicalfirstColStyle"/>
-        <tr><td class="{$firstColStyle}" width="{$firstColWidth}">Line Number:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <tr><td class="{$firstColStyle}">Line Number:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="fieldStartColumn">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Field Start Column:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Field Start Column:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
@@ -400,10 +392,10 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="dataFormat/externallyDefinedFormat">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Externally Defined Format:</td>
-        <td width="{$secondColWidth}">
-          <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}">
+        <td>
+          <table class="{$tabledefaultStyle}">
             <xsl:apply-templates>
               <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
             </xsl:apply-templates>
@@ -416,8 +408,8 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:if test="normalize-space(.)!=''">
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Format Name:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Format Name:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
     </xsl:if>
   </xsl:template>
@@ -425,16 +417,16 @@
   <xsl:template match="formatVersion">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Format Version:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}"><xsl:value-of select="."/></td>
+        <td class="{$firstColStyle}">Format Version:</td>
+        <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
 
   <xsl:template match="citation">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">Citation: </td>
-        <td width="{$secondColWidth}">
+        <td class="{$physicalfirstColStyle}">Citation: </td>
+        <td>
           <xsl:call-template name="citation">
             <xsl:with-param name="citationfirstColStyle" select="$physicalfirstColStyle"/>
              <xsl:with-param name="citationsubHeaderStyle" select="$subHeaderStyle"/>
@@ -450,10 +442,10 @@
     <xsl:param name="physicalfirstColStyle"/>
     <xsl:for-each select="dataFormat/binaryRasterFormat">
       <tr>
-        <td class="{$physicalfirstColStyle}" width="{$firstColWidth}">
+        <td class="{$physicalfirstColStyle}">
         Binary Raster Format:</td>
-        <td width="{$secondColWidth}">
-           <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}">
+        <td>
+           <table class="{$tabledefaultStyle}">
              <xsl:apply-templates>
                <xsl:with-param name="physicalfirstColStyle" select="$physicalfirstColStyle"/>
              </xsl:apply-templates>
@@ -467,8 +459,8 @@
   <xsl:template match="rowColumnOrientation">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Orientation:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Orientation:</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -477,18 +469,18 @@
   <xsl:template match="multiBand">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Multiple Bands:</td>
-        <td width="{$secondColWidth}">
-         <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+        <td class="{$firstColStyle}">Multiple Bands:</td>
+        <td>
+         <table class="{$tabledefaultStyle}">
             <tr>
-                <td class="{$firstColStyle}" width="{$firstColWidth}">Number of Spectral Bands:</td>
-                <td class="{$secondColStyle}" width="{$secondColWidth}">
+                <td class="{$firstColStyle}">Number of Spectral Bands:</td>
+                <td class="{$secondColStyle}">
                 <xsl:value-of select="./nbands"/>
               </td>
             </tr>
             <tr>
-               <td class="{$firstColStyle}" width="{$firstColWidth}">Layout:</td>
-               <td class="{$secondColStyle}" width="{$secondColWidth}">
+               <td class="{$firstColStyle}">Layout:</td>
+               <td class="{$secondColStyle}">
                <xsl:value-of select="./layout"/>
                </td>
            </tr>
@@ -501,8 +493,8 @@
   <xsl:template match="nbits">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Number of Bits (/pixel/band):</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Number of Bits (/pixel/band):</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -511,8 +503,8 @@
   <xsl:template match="byteorder">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Byte Order:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Byte Order:</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -521,8 +513,8 @@
   <xsl:template match="skipbytes">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Skipped Bytes:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Skipped Bytes:</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -531,8 +523,8 @@
   <xsl:template match="bandrowbytes">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Number of Bytes (/band/row):</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Number of Bytes (/band/row):</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -541,8 +533,8 @@
   <xsl:template match="totalrowbytes">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Total Number of Byte (/row):</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Total Number of Byte (/row):</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>
@@ -551,8 +543,8 @@
   <xsl:template match="bandgapbytes">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$firstColStyle}" width="{$firstColWidth}">Number of Bytes between Bands:</td>
-        <td class="{$secondColStyle}" width="{$secondColWidth}">
+        <td class="{$firstColStyle}">Number of Bytes between Bands:</td>
+        <td class="{$secondColStyle}">
           <xsl:value-of select="."/>
         </td>
         </tr>

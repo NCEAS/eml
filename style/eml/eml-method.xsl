@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-method.xsl,v $'
+  *  '$RCSfile$'
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -30,18 +30,22 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-
- <xsl:output method="html" encoding="iso-8859-1"
-              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-              doctype-system="http://www.w3.org/TR/html4/loose.dtd"
-              indent="yes" />  
+  <xsl:output method="html" encoding="iso-8859-1"
+    doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+    doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+    indent="yes" />  
 
  <xsl:template name="method">
   <xsl:param name="methodfirstColStyle"/>
   <xsl:param name="methodsubHeaderStyle"/>
-  <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+  <table class="{$tabledefaultStyle}">
+    <tr>
+      <th colspan="2">
+        Step by Step Procedures
+      </th>
+    </tr>
     <xsl:for-each select="methodStep">
-     <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+     <tr><td class="{$methodfirstColStyle}">
           <b>Step<xsl:text> </xsl:text><xsl:value-of select="position()"/>:</b>
          </td>
          <td width="${secondColWidth}" class="{$secondColStyle}">
@@ -60,7 +64,7 @@
      </xsl:call-template>
     </xsl:for-each>
     <xsl:for-each select="qualityControl">
-      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+      <tr><td class="{$methodfirstColStyle}">
           <b>Quality Control Step<xsl:text> </xsl:text><xsl:value-of select="position()"/>:</b>
          </td>
          <td width="${secondColWidth}" class="{$secondColStyle}">
@@ -108,7 +112,7 @@
       </xsl:call-template>
    </xsl:for-each>
    <xsl:for-each select="samplingDescription">
-     <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+     <tr><td class="{$methodfirstColStyle}">
          Sampling Description:
          </td>
          <td width="${secondColWidth}">
@@ -124,7 +128,7 @@
       </xsl:call-template>
    </xsl:for-each>
    <xsl:for-each select="citation">
-      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+      <tr><td class="{$methodfirstColStyle}">
          Sampling Citation:
          </td>
          <td width="${secondColWidth}">
@@ -141,7 +145,7 @@
     <xsl:param name="methodfirstColStyle"/>
     <xsl:param name="methodsubHeaderStyle"/>
     <xsl:for-each select="coverage">
-        <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+        <tr><td class="{$methodfirstColStyle}">
          Sampling Coverage:
          </td>
          <td width="${secondColWidth}">
@@ -151,7 +155,7 @@
        </tr>
     </xsl:for-each>
     <xsl:for-each select="description">
-      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+      <tr><td class="{$methodfirstColStyle}">
          Sampling Area And Frequency:
          </td>
          <td width="${secondColWidth}" >
@@ -166,7 +170,7 @@
  <xsl:template name="spatialSamplingUnits">
    <xsl:param name="methodfirstColStyle"/>
    <xsl:for-each select="referenceEntityId">
-      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+      <tr><td class="{$methodfirstColStyle}">
          Sampling Unit Reference:
          </td>
          <td width="${secondColWidth}" class="{$secondColStyle}">
@@ -175,7 +179,7 @@
       </tr>
    </xsl:for-each>
    <xsl:for-each select="coverage">
-      <tr><td width="{$firstColWidth}" class="{$methodfirstColStyle}">
+      <tr><td class="{$methodfirstColStyle}">
          Sampling Unit Location:
          </td>
          <td width="${secondColWidth}">

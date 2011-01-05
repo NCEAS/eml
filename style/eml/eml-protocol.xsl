@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-protocol.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-09 22:44:43 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
   <xsl:template name="protocol">
     <xsl:param name="protocolfirstColStyle"/>
     <xsl:param name="protocolsubHeaderStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+    <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -91,10 +91,10 @@
     <xsl:param name="protocolfirstColStyle"/>
     <xsl:param name="protocolsubHeaderStyle"/>
     <xsl:for-each select="description">
-      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+      <tr><td class="{$protocolfirstColStyle}">
           Description:
           </td>
-          <td width="{$secondColWidth}">
+          <td>
              <xsl:call-template name="text">
                <xsl:with-param name="textfirstColStyle" select="$protocolfirstColStyle"/>
              </xsl:call-template>
@@ -102,10 +102,10 @@
       </tr>
      </xsl:for-each>
     <xsl:for-each select="citation">
-      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+      <tr><td class="{$protocolfirstColStyle}">
           Citation:
           </td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
            &#160;
           </td>
       </tr>
@@ -118,10 +118,10 @@
       </tr>
     </xsl:for-each>
      <xsl:for-each select="protocol">
-      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+      <tr><td class="{$protocolfirstColStyle}">
           Protocol:
           </td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
            &#160;
           </td>
       </tr>
@@ -134,10 +134,10 @@
       </tr>
     </xsl:for-each>
     <xsl:for-each select="instrumentation">
-        <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+        <tr><td class="{$protocolfirstColStyle}">
           Instrument(s):
           </td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
             <xsl:value-of select="."/>
           </td>
       </tr>
@@ -152,10 +152,10 @@
       </tr>
     </xsl:for-each>
     <xsl:for-each select="subStep">
-      <tr><td width="{$firstColWidth}" class="{$protocolfirstColStyle}">
+      <tr><td class="{$protocolfirstColStyle}">
           Substep<xsl:text> </xsl:text><xsl:value-of select="position()"/>
           </td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
            &#160;
           </td>
       </tr>

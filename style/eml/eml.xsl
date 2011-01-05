@@ -29,10 +29,10 @@
   * module of the Ecological Metadata Language (EML) into an HTML format
   * suitable for rendering with modern web browsers.
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-function" xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-function" xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" version="1.0">
   <xsl:import href="emlroot.xsl"/>
 
-  <xsl:output method="html" encoding="iso-8859-1"
+  <xsl:output method="html" encoding="UTF-8"
               doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
               doctype-system="http://www.w3.org/TR/html4/loose.dtd"
               indent="yes" />
@@ -42,7 +42,7 @@
       <head>
         <title><xsl:value-of select="./eml:eml/dataset/title"/></title>
         <link rel="stylesheet" type="text/css"
-              href="{$stylePath}/{$qformat}/{$qformat}.css"></link>
+              href="{$contextURL}/style/skins/{$qformat}/{$qformat}.css"></link>
         <script language="Javascript" type="text/JavaScript"
                 src="{$contextURL}/style/skins/{$qformat}/{$qformat}.js"></script>
         <script language="Javascript"
@@ -52,33 +52,28 @@
       <body>
 
         <div id="{$mainTableAligmentStyle}">
-         <!-- 
+          <script language="JavaScript" type="text/JavaScript">
 	     <xsl:if test="$insertTemplate='0'">
                  <xsl:comment>insertTemplateOpening('<xsl:value-of select="$contextURL" />');//</xsl:comment>
-         </xsl:if>
-	     -->
+             </xsl:if>
 	     <xsl:if test="$insertTemplate='1'">
-	     	<script language="JavaScript" type="text/JavaScript">
                  insertTemplateOpening('<xsl:value-of select="$contextURL" />');
-          	</script>             
-          </xsl:if>
-
+             </xsl:if>
+          </script>
 
           <table xsl:use-attribute-sets="cellspacing" width="100%"
                                         class="{$mainContainerTableStyle}">
           <xsl:apply-templates select="*[local-name()='eml']"/>
           </table>
 
-		<!--
-			<xsl:if test="$insertTemplate='0'">
+	  <script language="JavaScript" type="text/JavaScript">
+	     <xsl:if test="$insertTemplate='0'">
                <xsl:comment>insertTemplateClosing('<xsl:value-of select="$contextURL" />');//</xsl:comment>
              </xsl:if>
-		-->    
-		<xsl:if test="$insertTemplate='1'">
-			<script language="JavaScript" type="text/JavaScript">
-				insertTemplateClosing('<xsl:value-of select="$contextURL" />');
-			</script>
-		</xsl:if>
+	     <xsl:if test="$insertTemplate='1'">
+                 insertTemplateClosing('<xsl:value-of select="$contextURL" />');
+             </xsl:if>
+          </script>
         </div>
       </body>
     </html>

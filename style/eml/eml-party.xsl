@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-party.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2007-11-01 22:45:17 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
 
   <xsl:template name="party">
       <xsl:param name="partyfirstColStyle"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+      <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -66,8 +66,8 @@
   <xsl:template match="individualName" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-        <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
-            Individual:</td><td width="{$secondColWidth}" class="{$secondColStyle}" >
+        <tr><td class="{$partyfirstColStyle}" >
+            Individual:</td><td class="{$secondColStyle}" >
            <b><xsl:value-of select="./salutation"/><xsl:text> </xsl:text>
            <xsl:value-of select="./givenName"/><xsl:text> </xsl:text>
            <xsl:value-of select="./surName"/></b>
@@ -79,16 +79,9 @@
   <xsl:template match="organizationName" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-        <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
-        Organization:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-		<xsl:choose>
-			<xsl:when test="boolean(../individualName) or boolean(../positionName)">
-				<xsl:value-of select="."/>
-			</xsl:when>
-			<xsl:otherwise>
-				<b><xsl:value-of select="."/></b>
-			</xsl:otherwise>
-		</xsl:choose>
+        <tr><td class="{$partyfirstColStyle}" >
+        Organization:</td><td class="{$secondColStyle}">
+        <b><xsl:value-of select="."/></b>
         </td></tr>
       </xsl:if>
   </xsl:template>
@@ -97,17 +90,9 @@
   <xsl:template match="positionName" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-      <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}">
-        Position:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
-		<xsl:choose>
-			<xsl:when test="boolean(../individualName)">
-				<xsl:value-of select="."/>
-			</xsl:when>
-			<xsl:otherwise>
-				<b><xsl:value-of select="."/></b>
-			</xsl:otherwise>
-		</xsl:choose>
-		</td></tr>
+      <tr><td class="{$partyfirstColStyle}">
+        Position:</td><td class="{$secondColStyle}">
+        <xsl:value-of select="."/></td></tr>
       </xsl:if>
   </xsl:template>
 
@@ -124,7 +109,7 @@
    <!-- This template will be call by other place-->
    <xsl:template name="address">
       <xsl:param name="partyfirstColStyle"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
+      <table class="{$tablepartyStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -147,9 +132,9 @@
    <xsl:template name="addressCommon">
     <xsl:param name="partyfirstColStyle"/>
     <xsl:if test="normalize-space(.)!=''">
-    <tr><td width="{$firstColWidth}" valign="top" class="{$partyfirstColStyle}">
-        Address:</td><td width="{$secondColWidth}" >
-    <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
+    <tr><td class="{$partyfirstColStyle}">
+        Address:</td><td>
+    <table class="{$tablepartyStyle}">
     <xsl:for-each select="deliveryPoint">
     <tr><td class="{$secondColStyle}"><xsl:value-of select="."/><xsl:text>, </xsl:text></td></tr>
     </xsl:for-each>
@@ -170,12 +155,12 @@
 
   <xsl:template match="phone" mode="party">
       <xsl:param name="partyfirstColStyle"/>
-      <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
+      <tr><td class="{$partyfirstColStyle}" >
              Phone:
           </td>
-          <td width="{$secondColWidth}">
-            <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
-              <tr><td width="100%" class="{$secondColStyle}">
+          <td>
+            <table class="{$tablepartyStyle}">
+              <tr><td class="{$secondColStyle}">
                      <xsl:value-of select="."/>
                      <xsl:if test="normalize-space(./@phonetype)!=''">
                        <xsl:text> (</xsl:text><xsl:value-of select="./@phonetype"/><xsl:text>)</xsl:text>
@@ -191,20 +176,15 @@
   <xsl:template match="electronicMailAddress" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-       <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
+       <tr><td class="{$partyfirstColStyle}" >
             Email Address:
           </td>
-          <td width="{$secondColWidth}">
-            <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
-              <tr><td width="100%" class="{$secondColStyle}">
-                 <xsl:if test="$withHTMLLinks='1'">
-                   <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+          <td>
+            <table class="{$tablepartyStyle}">
+              <tr><td class="{$secondColStyle}">
+                    <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
                     <xsl:value-of select="."/></a>
-                  </xsl:if>
-                  <xsl:if test="$withHTMLLinks='0'">
-                    <xsl:value-of select="."/>
-                  </xsl:if>
-                </td>
+                   </td>
               </tr>
             </table>
           </td>
@@ -216,20 +196,15 @@
   <xsl:template match="onlineUrl" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-      <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
+      <tr><td class="{$partyfirstColStyle}" >
             Web Address:
           </td>
-          <td width="{$secondColWidth}">
-             <table xsl:use-attribute-sets="cellspacing" class="{$tablepartyStyle}" width="100%">
-               <tr><td width="100%" class="{$secondColStyle}">
-                 <xsl:if test="$withHTMLLinks='1'">
-                   <a><xsl:attribute name="href"><xsl:if test="not(contains(.,':/'))">http://</xsl:if><xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
-                   <xsl:value-of select="."/></a>
-                 </xsl:if>
-                 <xsl:if test="$withHTMLLinks='0'">
-                   <xsl:value-of select="."/>
-                 </xsl:if>
-                 </td>
+          <td>
+             <table class="{$tablepartyStyle}">
+               <tr><td class="{$secondColStyle}">
+                     <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                     <xsl:value-of select="."/></a>
+                    </td>
                </tr>
              </table>
            </td>
@@ -241,8 +216,8 @@
   <xsl:template match="userId" mode="party">
       <xsl:param name="partyfirstColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
-      <tr><td width="{$firstColWidth}" class="{$partyfirstColStyle}" >
-        Id:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+      <tr><td class="{$partyfirstColStyle}" >
+        Id:</td><td class="{$secondColStyle}">
         <xsl:value-of select="."/></td></tr>
       </xsl:if>
   </xsl:template>

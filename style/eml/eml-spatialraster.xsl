@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-spatialraster.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Jivka Bojilova
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-10 01:42:28 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
       <xsl:param name="spatialrastersubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+      <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -119,12 +119,12 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="methods | method">
+    <xsl:if test="method">
        <tr><td class="{$spatialrastersubHeaderStyle}" colspan="2">
         Method Description:
       </td></tr>
     </xsl:if>
-    <xsl:for-each select="methods | method">
+    <xsl:for-each select="method">
       <tr><td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$spatialrasterfirstColStyle"/>
@@ -177,100 +177,100 @@
       </xsl:call-template>
     </xsl:for-each>
     <xsl:for-each select="cellSizeXDirection">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Cell Size(X):
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="cellSizeYDirection">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Cell Size(Y):
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="numberOfBands">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Number of Bands:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="rasterOrigin">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Origin:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="columns">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Max Raster Objects(X):
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="rows">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Max Raster Objects(Y):
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="verticals">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Max Raster Objects(Z):
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="cellGeometry">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Cell Geometry:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="toneGradation">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Number of Colors:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="scaleFactor">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Scale Factor:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
      <xsl:for-each select="offset">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Offset:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
@@ -283,7 +283,7 @@
         <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
+    <xsl:if test="$withAttributes='1'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="spatialRasterAttributeList">
         <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
@@ -333,19 +333,19 @@
   <xsl:template name="spatialReferenceCommon">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:for-each select="horizCoordSysName">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Name of Coordinate System:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="horizCoordSysDef/geogCoordSys">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Definition of <xsl:text> </xsl:text><xsl:value-of select="../@name"/> <xsl:text> </xsl:text> (Geographic Coordinate System):
             </td>
-            <td width="{$secondColWidth}">
+            <td>
               <xsl:call-template name="geogCoordSysType">
                  <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
               </xsl:call-template>
@@ -354,10 +354,10 @@
     </xsl:for-each>
     <xsl:for-each select="horizCoordSysDef/projCoordSys">
       <xsl:for-each select="geogCoordSys">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Definition of<xsl:text> </xsl:text><xsl:value-of select="../../@name"/><xsl:text> </xsl:text>(Geographic Coordinate System):
             </td>
-            <td width="{$secondColWidth}">
+            <td>
               <xsl:call-template name="geogCoordSysType">
                  <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
               </xsl:call-template>
@@ -365,22 +365,22 @@
        </tr>
      </xsl:for-each>
      <xsl:for-each select="projection">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Projection in Geo Coord. System:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="parameter">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           <xsl:value-of select="./@name"/>:
                          </td>
-                         <td width="{$secondColWidth}">
-                             <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+                         <td>
+                             <table class="{$tabledefaultStyle}">
                                 <tr>
-                                    <td width="{$firstColWidth}" class="{$secondColStyle}">
+                                    <td class="{$secondColStyle}">
                                       <xsl:value-of select="./@value"/>
                                     </td>
-                                    <td width="{$secondColWidth}" class="{$secondColStyle}">
+                                    <td class="{$secondColStyle}">
                                        <xsl:value-of select="./@description"/>
                                     </td>
                                  </tr>
@@ -389,10 +389,10 @@
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="unit">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Unit:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="./@name"/>
                         </td>
                    </tr>
@@ -403,43 +403,43 @@
      </xsl:for-each>
     </xsl:for-each>
     <xsl:for-each select="vertCoordSys/altitudeSysDef">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Altitude System Definition:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="altitudeDatumName">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           Datum:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="altitudeResolution">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Resolution:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="altitudeDistanceUnits">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Distance Unit:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="altitudeEncodingMethod">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Encoding Method:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
@@ -449,43 +449,43 @@
        </tr>
     </xsl:for-each>
     <xsl:for-each select="vertCoordSys/depthSysDef">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
             Depth System Definition:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="depthDatumName">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           Datum:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="depthResolution">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Resolution:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="depthDistanceUnits">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Distance Unit:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="depthEncodingMethod">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Encoding Method:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
@@ -498,40 +498,40 @@
 
   <xsl:template name="geogCoordSysType">
    <xsl:param name="spatialrasterfirstColStyle"/>
-   <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+   <table class="{$tabledefaultStyle}">
       <xsl:for-each select="datum">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Datum:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="./@name"/>
             </td>
         </tr>
       </xsl:for-each>
       <xsl:for-each select="spheroid">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Spheroid:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-                  <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+            <td>
+               <table class="{$tabledefaultStyle}">
+                  <tr><td class="{$spatialrasterfirstColStyle}">
                        Name:
                        </td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                       <td class="{$secondColStyle}">
                         <xsl:value-of select="./@name"/>
                        </td>
                    </tr>
-                   <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                   <tr><td class="{$spatialrasterfirstColStyle}">
                        Semi Axis Major:
                        </td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                       <td class="{$secondColStyle}">
                         <xsl:value-of select="./@semiAxisMajor"/>
                        </td>
                    </tr>
-                   <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                   <tr><td class="{$spatialrasterfirstColStyle}">
                        Denom Flat Ratio:
                        </td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                       <td class="{$secondColStyle}">
                         <xsl:value-of select="./@denomFlatRatio"/>
                        </td>
                    </tr>
@@ -541,22 +541,22 @@
         </tr>
       </xsl:for-each>
        <xsl:for-each select="primeMeridian">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Prime Meridian:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-                  <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+            <td>
+               <table class="{$tabledefaultStyle}">
+                  <tr><td class="{$spatialrasterfirstColStyle}">
                        Name:
                        </td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                       <td class="{$secondColStyle}">
                         <xsl:value-of select="./@name"/>
                        </td>
                    </tr>
-                   <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                   <tr><td class="{$spatialrasterfirstColStyle}">
                        Longitude:
                        </td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                       <td class="{$secondColStyle}">
                         <xsl:value-of select="./@longitude"/>
                        </td>
                    </tr>
@@ -565,10 +565,10 @@
         </tr>
       </xsl:for-each>
      <xsl:for-each select="unit">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Unit:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
               <xsl:value-of select="./@name"/>
             </td>
         </tr>
@@ -582,43 +582,43 @@
  <xsl:template name="georeferenceInfo">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:for-each select="cornerPoint">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
             Corner Point:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="corner">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           Corner:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="xCoordinate">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           xCoordinate:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="yCoordinate">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           yCoordinate:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="pointInPixel">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Point in Pixel:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
@@ -628,52 +628,52 @@
        </tr>
     </xsl:for-each>
     <xsl:for-each select="controlPoint">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Control Point:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="column">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           Column Location:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="row">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           Row Location:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="xCoordinate">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           xCoordinate:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="yCoordinate">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           yCoordinate:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="pointInPixel">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Point in Pixel:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
@@ -683,43 +683,43 @@
        </tr>
     </xsl:for-each>
     <xsl:for-each select="bilinearFit">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
             Bilinear Fit:
             </td>
-            <td width="{$secondColWidth}">
-               <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+               <table class="{$tabledefaultStyle}">
                  <xsl:for-each select="xIntercept">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                           X Intercept:
                          </td>
-                         <td width="{$secondColWidth}" class="{$secondColStyle}">
+                         <td class="{$secondColStyle}">
                             <xsl:value-of select="."/>
                           </td>
                       </tr>
                  </xsl:for-each>
                  <xsl:for-each select="xSlope">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           X Slope:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="yIntercept">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Y Intercept:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
                 </xsl:for-each>
                 <xsl:for-each select="ySlope">
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                           Y Slope:
                         </td>
-                        <td width="{$secondColWidth}" class="{$secondColStyle}">
+                        <td class="{$secondColStyle}">
                            <xsl:value-of select="."/>
                         </td>
                    </tr>
@@ -736,32 +736,32 @@
  <xsl:template name="dataQuality">
    <xsl:param name="spatialrasterfirstColStyle"/>
    <xsl:for-each select="accuracyReport">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
              Report:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
    </xsl:for-each>
    <xsl:if test="quantitativeAccuracyReport">
-       <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+       <tr><td class="{$spatialrasterfirstColStyle}">
              Quantitative Report:
             </td>
-            <td width="{$secondColWidth}">
-                <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+            <td>
+                <table class="{$tabledefaultStyle}">
                   <xsl:for-each select="quantitativeAccuracyReport">
-                     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                     <tr><td class="{$spatialrasterfirstColStyle}">
                          Accuracy Value:
                       </td>
-                      <td width="{$secondColWidth}" class="{$secondColStyle}">
+                      <td class="{$secondColStyle}">
                         <xsl:value-of select="quantitativeAccuracyValue"/>
                       </td>
                     </tr>
-                    <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+                    <tr><td class="{$spatialrasterfirstColStyle}">
                          Method:
                       </td>
-                      <td width="{$secondColWidth}" class="{$secondColStyle}">
+                      <td class="{$secondColStyle}">
                         <xsl:value-of select="quantitativeAccuracyMethod"/>
                       </td>
                     </tr>
@@ -778,127 +778,127 @@
   <xsl:template name="imageDescription">
     <xsl:param name="spatialrasterfirstColStyle"/>
     <xsl:for-each select="illuminationElevationAngle">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Illumination Elevation:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="illuminationAzimuthAngle">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Illumination Azimuth:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="imageOrientationAngle">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Image Orientation:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="imagingCondition">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Code Affectting Quality of Image:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="imageQualityCode">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Quality:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="cloudCoverPercentage">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Cloud Coverage:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="preProcessingTypeCode">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              PreProcessing:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="compressionGenerationQuality">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Compression Quality:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="triangulationIndicator">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Triangulation Indicator:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="radionmetricDataAvailability">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Availability of Radionmetric Data:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="cameraCalibrationInformationAvailability">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Availability of Camera Calibration Correction:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="filmDistortionInformationAvailability">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Availability of Calibration Reseau:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="lensDistortionInformationAvailability">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Availability of Lens Aberration Correction:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
        </tr>
     </xsl:for-each>
     <xsl:for-each select="bandDescription">
-     <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+     <tr><td class="{$spatialrasterfirstColStyle}">
              Availability of Lens Aberration Correction:
             </td>
-            <td width="{$secondColWidth}">
+            <td>
                <xsl:call-template name="bandDescription">
                   <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
                </xsl:call-template>
@@ -912,48 +912,48 @@
       ************************************************-->
   <xsl:template name="bandDescription">
     <xsl:param name="spatialrasterfirstColStyle"/>
-    <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+    <table class="{$tabledefaultStyle}">
       <xsl:for-each select="sequenceIdentifier">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
             Sequence Identifier:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
         </tr>
      </xsl:for-each>
      <xsl:for-each select="highWavelength">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              High Wave Length:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
         </tr>
      </xsl:for-each>
      <xsl:for-each select="lowWaveLength">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              High Wave Length:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
         </tr>
      </xsl:for-each>
      <xsl:for-each select="waveLengthUnits">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Wave Length Units:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
         </tr>
      </xsl:for-each>
      <xsl:for-each select="peakResponse">
-        <tr><td width="{$firstColWidth}" class="{$spatialrasterfirstColStyle}">
+        <tr><td class="{$spatialrasterfirstColStyle}">
              Peak Response:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
                 <xsl:value-of select="."/>
             </td>
         </tr>

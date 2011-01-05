@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-constraint.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@
   <!-- This module is for constraint. And it is self contained-->
   <xsl:template name="constraint">
      <xsl:param name="constraintfirstColStyle"/>
-     <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+     <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -95,17 +95,17 @@
   <!--Keys part-->
   <xsl:template name="primaryKey">
     <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Primary Key:</td>
-          <td width="{$secondColWidth}">
-            <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+            <table class="{$tabledefaultStyle}">
                  <xsl:call-template name="constraintBaseGroup">
                     <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                  </xsl:call-template>
                  <xsl:for-each select="key/attributeReference">
-                      <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                      <tr><td class="{$constraintfirstColStyle}">
                             <xsl:text>Key:</xsl:text></td>
-                          <td width="{$secondColWidth}" class="{$secondColStyle}">
+                          <td class="{$secondColStyle}">
                             <xsl:value-of select="."/></td>
                       </tr>
                  </xsl:for-each>
@@ -117,17 +117,17 @@
 
   <xsl:template name="uniqueKey">
     <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Unique Key:</td>
-          <td width="{$secondColWidth}">
-             <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+             <table class="{$tabledefaultStyle}">
                   <xsl:call-template name="constraintBaseGroup">
                      <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                   </xsl:call-template>
                   <xsl:for-each select="key/attributeReference">
-                     <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                     <tr><td class="{$constraintfirstColStyle}">
                              <xsl:text>Key:</xsl:text></td>
-                          <td width="{$secondColWidth}" class="{$secondColStyle}">
+                          <td class="{$secondColStyle}">
                             <xsl:value-of select="."/></td>
                       </tr>
                   </xsl:for-each>
@@ -138,17 +138,17 @@
 
    <xsl:template name="checkConstraint">
     <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Checking Constraint: </td>
-          <td width="{$secondColWidth}">
-              <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+              <table class="{$tabledefaultStyle}">
                     <xsl:call-template name="constraintBaseGroup">
                        <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                     </xsl:call-template>
                     <xsl:for-each select="checkCondition">
-                         <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                         <tr><td class="{$constraintfirstColStyle}">
                                    <xsl:text>Check Condition:</xsl:text></td>
-                             <td width="{$secondColWidth}" class="{$secondColStyle}">
+                             <td class="{$secondColStyle}">
                                    <xsl:value-of select="."/></td>
                          </tr>
                     </xsl:for-each>
@@ -159,45 +159,45 @@
 
   <xsl:template name="foreignKey">
      <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Foreign Key:</td>
-          <td width="{$secondColWidth}">
-              <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+              <table class="{$tabledefaultStyle}">
                   <xsl:call-template name="constraintBaseGroup">
                         <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                    </xsl:call-template>
                    <xsl:for-each select="key/attributeReference">
-                      <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                      <tr><td class="{$constraintfirstColStyle}">
                              <xsl:text>Key:</xsl:text></td>
-                          <td width="{$secondColWidth}" class="{$secondColStyle}">
+                          <td class="{$secondColStyle}">
                              <xsl:value-of select="."/></td>
                       </tr>
                   </xsl:for-each>
-                  <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
-                          <xsl:text>Entity Reference:</xsl:text></td>
-                       <td width="{$secondColWidth}" class="{$secondColStyle}">
+                  <tr><td class="{$constraintfirstColStyle}">
+                          <xsl:text>Data Object Reference:</xsl:text></td>
+                       <td class="{$secondColStyle}">
                            <xsl:value-of select="entityReference"/></td>
                    </tr>
                    <xsl:if test="relationshipType and normalize-space(relationshipType)!=''">
-                        <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                        <tr><td class="{$constraintfirstColStyle}">
                                 <xsl:text>Relationship:</xsl:text></td>
-                             <td width="{$secondColWidth}" class="{$secondColStyle}">
+                             <td class="{$secondColStyle}">
                                  <xsl:value-of select="relationshipType"/></td>
                          </tr>
                     </xsl:if>
                     <xsl:if test="cardinality and normalize-space(cardinality)!=''">
-                          <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                          <tr><td class="{$constraintfirstColStyle}">
                                  <xsl:text>Cardinality:</xsl:text></td>
-                              <td width="{$secondColWidth}">
-                                  <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-                                        <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                              <td>
+                                  <table class="{$tabledefaultStyle}">
+                                        <tr><td class="{$constraintfirstColStyle}">
                                                 <xsl:text>Parent:</xsl:text></td>
-                                             <td width="{$secondColWidth}" class="{$secondColStyle}">
+                                             <td class="{$secondColStyle}">
                                                  <xsl:value-of select="cardinality/parentOccurences"/></td>
                                         </tr>
-                                        <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                                        <tr><td class="{$constraintfirstColStyle}">
                                                 <xsl:text>Children</xsl:text></td>
-                                            <td width="{$secondColWidth}" class="{$secondColStyle}">
+                                            <td class="{$secondColStyle}">
                                                  <xsl:value-of select="cardinality/childOccurences"/></td>
                                          </tr>
                                    </table>
@@ -212,17 +212,17 @@
 
   <xsl:template name="joinCondition">
     <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Join Condition:</td>
-          <td width="{$secondColWidth}">
-              <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+              <table class="{$tabledefaultStyle}">
                    <xsl:call-template name="foreignKey">
                         <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                    </xsl:call-template>
                    <xsl:for-each select="referencedKey/attributeReference">
-                      <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                      <tr><td class="{$constraintfirstColStyle}">
                              <xsl:text>Referenced Key:</xsl:text></td>
-                          <td width="{$secondColWidth}" class="{$secondColStyle}">
+                          <td class="{$secondColStyle}">
                               <xsl:value-of select="."/></td>
                        </tr>
                    </xsl:for-each>
@@ -233,17 +233,17 @@
 
   <xsl:template name="notNullConstraint">
     <xsl:param name="constraintfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+    <tr><td class="{$constraintfirstColStyle}">
           Not Null Constraint:</td>
-          <td width="{$secondColWidth}">
-              <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+          <td>
+              <table class="{$tabledefaultStyle}">
                    <xsl:call-template name="constraintBaseGroup">
                        <xsl:with-param name="constraintfirstColStyle" select="$constraintfirstColStyle"/>
                    </xsl:call-template>
                    <xsl:for-each select="key/attributeReference">
-                        <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+                        <tr><td class="{$constraintfirstColStyle}">
                                  <xsl:text>Key:</xsl:text></td>
-                            <td width="{$secondColWidth}" class="{$secondColStyle}">
+                            <td class="{$secondColStyle}">
                                  <xsl:value-of select="."/></td>
                         </tr>
                    </xsl:for-each>
@@ -254,15 +254,15 @@
 
   <xsl:template name="constraintBaseGroup">
     <xsl:param name="constraintfirstColStyle"/>
-     <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+     <tr><td class="{$constraintfirstColStyle}">
           <xsl:text>Name:</xsl:text></td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
          <xsl:value-of select="constraintName"/></td>
      </tr>
      <xsl:if test="constraintDescription and normalize-space(constraintDescription)!=''">
-       <tr><td width="{$firstColWidth}" class="{$constraintfirstColStyle}">
+       <tr><td class="{$constraintfirstColStyle}">
           <xsl:text>Description:</xsl:text></td>
-          <td width="{$secondColWidth}" class="{$secondColStyle}">
+          <td class="{$secondColStyle}">
           <xsl:value-of select="constraintDescription"/></td>
       </tr>
      </xsl:if>

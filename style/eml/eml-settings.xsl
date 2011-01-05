@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-settings.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Matthew Brooke
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: leinfelder $'
-  *     '$Date: 2008-05-13 19:30:47 $'
-  * '$Revision: 1.7 $'
+  *   '$Author: barteau $'
+  *     '$Date: 2008-01-15 17:12:44 -0800 (Tue, 15 Jan 2008) $'
+  * '$Revision: 3689 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,11 @@
   * transformation of xml files that are valid with respect to the
   * applicable dtd of the Ecological Metadata Language (EML).
 
+  * Some of these paths incorporate values of the form: @token-name@; these are
+  * intended to allow an Ant (http://jakarta.apache.org/ant/index.html) build
+  * script to replace the tokens automatically with the correct values at build/
+  * install time.  If Ant is not used, the tokens may simply be edited by hand
+  * to point to the correct resources.
   * Note that the values given below may be overridden by passing parameters to
   * the XSLT processor programatically, although the procedure for doing so is
   * vendor-specific.  Note also that these parameter definitions will be overridden
@@ -42,6 +47,7 @@
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
 
 <!--
     /**
@@ -110,9 +116,6 @@
   <xsl:param name="insertTemplate">1</xsl:param>
 
 
-<!-- for getting the server context and cgi locations -->  
-  <xsl:param name="contextURL"/>
-	
 <!--
    /**
     *   the path of the directory where the XSL and CSS files reside - starts
@@ -125,7 +128,7 @@
     */
 -->
 
-    <xsl:param name="stylePath"><xsl:value-of select="$contextURL" />/style/skins</xsl:param>
+    <xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
 
 
 <!--
@@ -140,9 +143,8 @@
     */
 -->
 
-    <xsl:param name="styleCommonPath"><xsl:value-of select="$contextURL" />/style/common</xsl:param>
+    <xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>
 
-	
 <!--the docid of xml which is processed-->
     <xsl:param name="docid"/>
 <!-- type of entity, data table or spacial raster or others-->
@@ -157,8 +159,6 @@
     <xsl:param name="distributionindex"/>
 <!-- the levle of distribution -->
     <xsl:param name="distributionlevel"/>
-<!-- the index of attribute in attribute list-->
-<!--    <xsl:param name="attributeindex"/> -->
 <!-- the index of additional metadata-->
     <xsl:param name="additionalmetadataindex">1</xsl:param>
 <!-- attribute set to get rid of cell spacing-->
@@ -166,9 +166,6 @@
       <xsl:attribute name="cellpadding">0</xsl:attribute>
       <xsl:attribute name="cellspacing">0</xsl:attribute>
     </xsl:attribute-set>
-	
-	
-	
 
 <!-- determines whether to use metacat or LSID identiers-->
 	<xsl:param name="lsidauthority"></xsl:param>
@@ -178,7 +175,8 @@
 	<xsl:param name="registryname"></xsl:param>
 
   
-
+<!-- for getting the server context and cgi locations -->  
+  <xsl:param name="contextURL"/>
   <xsl:param name="cgi-prefix"/>
   
 <!-- for access to "protected" documents/files -->  
@@ -241,13 +239,13 @@
   <xsl:param name="firstColWidth" select="'15%'"/>
 
 <!-- the style for the first column -->
-  <xsl:param name="firstColStyle" select="'highlight'"/>
+  <xsl:param name="firstColStyle" select="'rowodd'"/>
 
 <!--    the width for the second column (but see note above) -->
   <xsl:param name="secondColWidth" select="'85%'"/>
 
 <!-- the style for the second column -->
-  <xsl:param name="secondColStyle" select="'secondCol'"/>
+  <xsl:param name="secondColStyle" select="'roweven'"/>
 
 <!-- the style for the attribute table -->
   <xsl:param name="tableattributeStyle" select="'tableattribute'"/>
@@ -269,13 +267,16 @@
 
 
 <!-- the default alignment style for the wrapper around the main tables -->
+  <!--
   <xsl:param name="mainTableAligmentStyle" select="'mainTableAligmentStyle'"/>
+  -->
+  <xsl:param name="mainTableAligmentStyle" select="'content'"/>
 
 <!-- the default style for the main container table -->
-  <xsl:param name="mainContainerTableStyle" select="'mainContainerTableStyle'"/>
+  <xsl:param name="mainContainerTableStyle" select="'group group_border'"/>
 
 <!-- the default style for all other tables -->
-  <xsl:param name="tabledefaultStyle" select="'tabledefault'"/>
+  <xsl:param name="tabledefaultStyle" select="'subGroup subGroup_border onehundred_percent'"/>
 
 <!-- the style for table party -->
   <xsl:param name="tablepartyStyle" select="'tableparty'"/>

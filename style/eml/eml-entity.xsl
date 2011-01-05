@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-entity.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Jivka Bojilova
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-26 23:09:45 $'
-  * '$Revision: 1.1 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -41,29 +41,29 @@
 
   <xsl:template name="entityName">
     <xsl:param name="entityfirstColStyle"/>
-    <tr><td width="{$firstColWidth}" class="{$entityfirstColStyle}">
-    Name:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+    <tr><td class="{$entityfirstColStyle}">
+    Name:</td><td class="{$secondColStyle}">
     <b><xsl:value-of select="."/></b></td></tr>
   </xsl:template>
   
   <xsl:template name="entityalternateIdentifier">
      <xsl:param name="entityfirstColStyle"/>
-     <tr><td width="{$firstColWidth}" class="{$entityfirstColStyle}">
-            Identifier:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+     <tr><td class="{$entityfirstColStyle}">
+            Identifier:</td><td class="{$secondColStyle}">
             <xsl:value-of select="."/></td></tr>
   </xsl:template>
   
   <xsl:template name="entityDescription">
       <xsl:param name="entityfirstColStyle"/> 
-      <tr><td width="{$firstColWidth}" class="{$entityfirstColStyle}">
-      Description:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+      <tr><td class="{$entityfirstColStyle}">
+      Description:</td><td class="{$secondColStyle}">
       <xsl:value-of select="."/></td></tr>
   </xsl:template>
   
   <xsl:template name="entityadditionalInfo">
       <xsl:param name="entityfirstColStyle"/> 
-      <tr><td width="{$firstColWidth}" class="{$entityfirstColStyle}">
-      Additional Info:</td><td width="{$secondColWidth}">
+      <tr><td class="{$entityfirstColStyle}">
+      Additional Info:</td><td>
         <xsl:call-template name="text"/>
       </td></tr>
   </xsl:template>

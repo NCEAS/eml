@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-attribute-enumeratedDomain.xsl,v $'
+  *  '$RCSfile$'
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: berkley $'
-  *     '$Date: 2004-07-27 00:28:44 $'
-  * '$Revision: 1.2 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -36,13 +36,8 @@
               indent="yes" />  
 
    <xsl:template name="nonNumericDomain">
-     <xsl:param name="docid"/>
-     <xsl:param name="displaymodule"/>
-     <xsl:param name="entitytype"/>
-     <xsl:param name="entityindex"/>
-     <xsl:param name="attributeindex"/>
      <xsl:param name="nondomainfirstColStyle"/>
-     <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+     <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -79,23 +74,23 @@
 
   <xsl:template name="textDomain">
        <xsl:param name="nondomainfirstColStyle"/>
-       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Text Domain</b></td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+       <tr><td class="{$nondomainfirstColStyle}"><b>Text Domain</b></td>
+            <td class="{$secondColStyle}">&#160;
             </td>
        </tr>
-       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Definition</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="definition"/>
+       <tr><td class="{$nondomainfirstColStyle}">Definition</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="definition"/>
             </td>
         </tr>
         <xsl:for-each select="parttern">
-          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Pattern</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="."/>
+          <tr><td class="{$nondomainfirstColStyle}">Pattern</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="."/>
             </td>
           </tr>
         </xsl:for-each>
         <xsl:if test="source">
-          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Source</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="source"/>
+          <tr><td class="{$nondomainfirstColStyle}">Source</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="source"/>
             </td>
           </tr>
         </xsl:if>
@@ -104,36 +99,30 @@
   <xsl:template name="enumeratedDomain">
      <xsl:param name="nondomainfirstColStyle"/>
      <xsl:if test="codeDefinition">
-        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain</b></td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+        <tr><td class="{$nondomainfirstColStyle}"><b>Enumerated Domain</b></td>
+            <td class="{$secondColStyle}">&#160;
             </td>
        </tr>
        <xsl:for-each select="codeDefinition">
-              <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Code Definition</td>
-                   <td width="{$secondColWidth}">
-                      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
-                           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
-                              Order
-                              </td>
-                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="./@order"/></td>
-
-                           </tr>
-                          <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+              <tr><td class="{$nondomainfirstColStyle}">Code Definition</td>
+                   <td>
+                      <table class="{$tabledefaultStyle}">
+                          <tr><td class="{$nondomainfirstColStyle}">
                                Code
                               </td>
-                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="code"/></td>
+                               <td class="{$secondColStyle}"><xsl:value-of select="code"/></td>
 
                            </tr>
-                           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+                           <tr><td class="{$nondomainfirstColStyle}">
                                Definition
                               </td>
-                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="definition"/></td>
+                               <td class="{$secondColStyle}"><xsl:value-of select="definition"/></td>
 
                            </tr>
-                           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">
+                           <tr><td class="{$nondomainfirstColStyle}">
                                Source
                               </td>
-                               <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="source"/></td>
+                               <td class="{$secondColStyle}"><xsl:value-of select="source"/></td>
                           </tr>
                       </table>
                    </td>
@@ -141,17 +130,17 @@
          </xsl:for-each>
      </xsl:if>
      <xsl:if test="externalCodeSet">
-        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain(External Set)</b></td>
-            <td width="{$secondColWidth}">&#160;
+        <tr><td class="{$nondomainfirstColStyle}"><b>Enumerated Domain (External Set)</b></td>
+            <td>&#160;
            </td>
         </tr>
-        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Set Name:</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="externalCodeSet/codesetName"/>
+        <tr><td class="{$nondomainfirstColStyle}">Set Name:</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="externalCodeSet/codesetName"/>
            </td>
         </tr>
         <xsl:for-each select="externalCodeSet/citation">
-           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Citation:</td>
-               <td width="{$secondColWidth}">
+           <tr><td class="{$nondomainfirstColStyle}">Citation:</td>
+               <td>
                   <xsl:call-template name="citation">
                       <xsl:with-param name="citationfirstColStyle" select="$nondomainfirstColStyle"/>
                    </xsl:call-template>
@@ -159,35 +148,32 @@
            </tr>
         </xsl:for-each>
         <xsl:for-each select="externalCodeSet/codesetURL">
-           <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">URL</td>
-               <td width="{$secondColWidth}" class="{$secondColStyle}">
+           <tr><td class="{$nondomainfirstColStyle}">URL</td>
+               <td class="{$secondColStyle}">
                  <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:value-of select="."/></a>
               </td>
            </tr>
         </xsl:for-each>
      </xsl:if>
      <xsl:if test="entityCodeList">
-        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}"><b>Enumerated Domain(Entity)</b></td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">&#160;
+        <tr><td class="{$nondomainfirstColStyle}"><b>Enumerated Domain (Data Object)</b></td>
+            <td class="{$secondColStyle}">&#160;
             </td>
        </tr>
-        <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Entity Reference</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/entityReference"/>
+        <tr><td class="{$nondomainfirstColStyle}">Data Object Reference</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="entityCodeList/entityReference"/>
             </td>
        </tr>
-       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Value Reference</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/valueAttributeReference"/>
+       <tr><td class="{$nondomainfirstColStyle}">Attribute Value Reference</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="entityCodeList/valueAttributeReference"/>
+            </td>
+       </tr>
+       <tr><td class="{$nondomainfirstColStyle}">Attribute Definition Reference</td>
+            <td class="{$secondColStyle}"><xsl:value-of select="entityCodeList/definitionAttributeReference"/>
             </td>
        </tr>
      </xsl:if>
-       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Definition Reference</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/definitionAttributeReference"/>
-            </td>
-       </tr>
-       <tr><td width="{$firstColWidth}" class="{$nondomainfirstColStyle}">Attribute Definition Order</td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}"><xsl:value-of select="entityCodeList/orderAttributeReference"/>
-            </td>
-       </tr>
+
   </xsl:template>
 
 

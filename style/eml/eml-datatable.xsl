@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-datatable.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Jivka Bojilova
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-10 01:32:50 $'
-  * '$Revision: 1.4 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
       <xsl:param name="datatablesubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="850px">
+      <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -68,7 +68,6 @@
       </xsl:choose>
       </table>
   </xsl:template>
-
 
   <xsl:template name="datatablecommon">
     <xsl:param name="datatablefirstColStyle"/>
@@ -95,16 +94,6 @@
           <xsl:with-param name="entityfirstColStyle" select="$datatablefirstColStyle"/>
        </xsl:call-template>
     </xsl:for-each>
-   <xsl:for-each select="physical">
-       <xsl:call-template name="showdistribution">
-          <xsl:with-param name="docid" select="$docid"/>
-          <xsl:with-param name="entityindex" select="$entityindex"/>
-          <xsl:with-param name="physicalindex" select="position()"/>
-          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
-          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
-       </xsl:call-template>
-    </xsl:for-each>
-  
     <!-- call physical moduel without show distribution(we want see it later)-->
     <xsl:if test="physical">
        <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
@@ -141,12 +130,12 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="methods | method">
+    <xsl:if test="method">
        <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
         Method Description:
       </td></tr>
     </xsl:if>
-    <xsl:for-each select="methods | method">
+    <xsl:for-each select="method">
       <tr><td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$datatablefirstColStyle"/>
@@ -166,7 +155,7 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-     <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
+     <xsl:if test="$withAttributes='1'">
       <xsl:for-each select="attributeList">
        <xsl:call-template name="datatableattributeList">
          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
@@ -176,7 +165,16 @@
        </xsl:call-template>
       </xsl:for-each>
      </xsl:if>
-     <!-- Here to display distribution info (the physical selection was moved near the top-->
+     <!-- Here to display distribution info-->
+    <xsl:for-each select="physical">
+       <xsl:call-template name="showdistribution">
+          <xsl:with-param name="docid" select="$docid"/>
+          <xsl:with-param name="entityindex" select="$entityindex"/>
+          <xsl:with-param name="physicalindex" select="position()"/>
+          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
+          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
+       </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
 
@@ -184,16 +182,16 @@
 
   <xsl:template name="datatablecaseSensitive">
        <xsl:param name="datatablefirstColStyle"/>
-       <tr><td width="{$firstColWidth}" class="{$datatablefirstColStyle}">
-       Case Sensitive?</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+       <tr><td class="{$datatablefirstColStyle}">
+       Case Sensitive?</td><td class="{$secondColStyle}">
        <xsl:value-of select="."/></td></tr>
 
   </xsl:template>
 
   <xsl:template name="datatablenumberOfRecords">
        <xsl:param name="datatablefirstColStyle"/>
-       <tr><td width="{$firstColWidth}" class="{$datatablefirstColStyle}">
-            Number Of Records:</td><td width="{$secondColWidth}" class="{$secondColStyle}">
+       <tr><td class="{$datatablefirstColStyle}">
+            Number Of Records:</td><td class="{$secondColStyle}">
        <xsl:value-of select="."/></td></tr>
   </xsl:template>
 
@@ -232,14 +230,12 @@
     <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
         <xsl:text>Attribute(s) Info:</xsl:text>
     </td></tr>
-    <tr><td colspan="2"> 
-		    <div style="overflow:auto; height:100%; width:850px;">
+    <tr><td colspan="2">
          <xsl:call-template name="attributelist">
            <xsl:with-param name="docid" select="$docid"/>
            <xsl:with-param name="entitytype" select="$entitytype"/>
            <xsl:with-param name="entityindex" select="$entityindex"/>
          </xsl:call-template>
-                   </div>
        </td>
     </tr>
   </xsl:template>

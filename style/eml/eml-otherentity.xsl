@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  *  '$RCSfile: eml-otherentity.xsl,v $'
+  *  '$RCSfile$'
   *      Authors: Jivka Bojilova
   *    Copyright: 2000 Regents of the University of California and the
   *               National Center for Ecological Analysis and Synthesis
   *  For Details: http://www.nceas.ucsb.edu/
   *
-  *   '$Author: tao $'
-  *     '$Date: 2008-12-10 01:42:28 $'
-  * '$Revision: 1.3 $'
+  *   '$Author: cjones $'
+  *     '$Date: 2006-11-17 13:37:07 -0800 (Fri, 17 Nov 2006) $'
+  * '$Revision: 3094 $'
   *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@
       <xsl:param name="otherentitysubHeaderStyle"/>
       <xsl:param name="docid"/>
       <xsl:param name="entityindex"/>
-      <table xsl:use-attribute-sets="cellspacing" class="{$tabledefaultStyle}" width="100%">
+      <table class="{$tabledefaultStyle}">
         <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
@@ -80,10 +80,10 @@
        </xsl:call-template>
     </xsl:for-each>
     <xsl:for-each select="entityType">
-       <tr><td width="{$firstColWidth}" class="{$otherentityfirstColStyle}">
-            Entity Type:
+       <tr><td class="{$otherentityfirstColStyle}">
+            Data Object Type:
             </td>
-            <td width="{$secondColWidth}" class="{$secondColStyle}">
+            <td class="{$secondColStyle}">
             <xsl:value-of select="."/>
             </td>
        </tr>
@@ -129,12 +129,12 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="methods | method">
+    <xsl:if test="method">
        <tr><td class="{$otherentitysubHeaderStyle}" colspan="2">
         Method Description:
       </td></tr>
     </xsl:if>
-    <xsl:for-each select="methods | method">
+    <xsl:for-each select="method">
       <tr><td colspan="2">
         <xsl:call-template name="method">
           <xsl:with-param name="methodfirstColStyle" select="$otherentityfirstColStyle"/>
@@ -154,7 +154,7 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
+    <xsl:if test="$withAttributes='1'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="otherEntityAttributeList">
         <xsl:with-param name="otherentityfirstColStyle" select="$otherentityfirstColStyle"/>

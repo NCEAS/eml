@@ -38,7 +38,6 @@ instruction below.
 
 
 <xsl:template name="additionalmetadata">
-  <xsl:param name="additionalmetadataindex"/>
       <h3>Additional Metadata</h3>
     <pre>
     <xsl:text>additionalMetadata&#xA;</xsl:text>
