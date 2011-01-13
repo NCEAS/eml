@@ -140,26 +140,28 @@
           <xsl:attribute name="target">_blank</xsl:attribute>
           <xsl:value-of select="."/>
         </a>
-        <!-- stats for hosted documents loaded with ajax call -->
-        <xsl:if test="starts-with($URL,'ecogrid')">
-			<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
-			<xsl:variable name="docID" select="substring-after($URL1, '/')"/>
-			<xsl:variable name="divID">dataStats</xsl:variable>
-			<span>
-          		<xsl:attribute name="id">
-          			<xsl:value-of select="$divID" />
-          		</xsl:attribute>
-			</span>
-			<script language="JavaScript">
-				if (window.loadStats) {
-					loadStats(
-						'<xsl:value-of select="$divID" />', 
-						'<xsl:value-of select="$docID" />', 
-						'<xsl:value-of select="$contextURL" />/metacat', 
-						'<xsl:value-of select="$qformat" />');
-				}
-			</script>
-		</xsl:if>			
+        <xsl:if test="$withHTMLLinks = '1'">
+	        <!-- stats for hosted documents loaded with ajax call -->
+	        <xsl:if test="starts-with($URL,'ecogrid')">
+				<xsl:variable name="URL1" select="substring-after($URL, 'ecogrid://')"/>
+				<xsl:variable name="docID" select="substring-after($URL1, '/')"/>
+				<xsl:variable name="divID">dataStats</xsl:variable>
+				<span>
+	          		<xsl:attribute name="id">
+	          			<xsl:value-of select="$divID" />
+	          		</xsl:attribute>
+				</span>
+				<script language="JavaScript">
+					if (window.loadStats) {
+						loadStats(
+							'<xsl:value-of select="$divID" />', 
+							'<xsl:value-of select="$docID" />', 
+							'<xsl:value-of select="$contextURL" />/metacat', 
+							'<xsl:value-of select="$qformat" />');
+					}
+				</script>
+			</xsl:if>
+		</xsl:if>		
        </td>
     </tr>
   </xsl:template>

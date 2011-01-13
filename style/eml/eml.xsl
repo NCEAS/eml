@@ -42,38 +42,32 @@
       <head>
         <title><xsl:value-of select="./eml:eml/dataset/title"/></title>
         <link rel="stylesheet" type="text/css"
-              href="{$contextURL}/style/skins/{$qformat}/{$qformat}.css"></link>
+              href="{$stylePath}/{$qformat}/{$qformat}.css"></link>
         <script language="Javascript" type="text/JavaScript"
-                src="{$contextURL}/style/skins/{$qformat}/{$qformat}.js"></script>
+                src="{$stylePath}/{$qformat}/{$qformat}.js"></script>
         <script language="Javascript"
                 type="text/JavaScript"
-                src="{$contextURL}/style/common/branding.js"></script>
+                src="{$styleCommonPath}/branding.js"></script>
       </head>
       <body>
 
         <div id="{$mainTableAligmentStyle}">
-          <script language="JavaScript" type="text/JavaScript">
-	     <xsl:if test="$insertTemplate='0'">
-                 <xsl:comment>insertTemplateOpening('<xsl:value-of select="$contextURL" />');//</xsl:comment>
-             </xsl:if>
-	     <xsl:if test="$insertTemplate='1'">
-                 insertTemplateOpening('<xsl:value-of select="$contextURL" />');
-             </xsl:if>
-          </script>
+		<xsl:if test="$insertTemplate='1'">
+			<script language="JavaScript" type="text/JavaScript">
+				insertTemplateOpening('<xsl:value-of select="$contextURL" />');
+			</script>
+		</xsl:if>
 
           <table xsl:use-attribute-sets="cellspacing" width="100%"
                                         class="{$mainContainerTableStyle}">
-          <xsl:apply-templates select="*[local-name()='eml']"/>
+          	<xsl:apply-templates select="*[local-name()='eml']"/>
           </table>
 
-	  <script language="JavaScript" type="text/JavaScript">
-	     <xsl:if test="$insertTemplate='0'">
-               <xsl:comment>insertTemplateClosing('<xsl:value-of select="$contextURL" />');//</xsl:comment>
-             </xsl:if>
-	     <xsl:if test="$insertTemplate='1'">
+		<xsl:if test="$insertTemplate='1'">
+			<script language="JavaScript" type="text/JavaScript">
                  insertTemplateClosing('<xsl:value-of select="$contextURL" />');
-             </xsl:if>
-          </script>
+			</script>
+		</xsl:if>
         </div>
       </body>
     </html>

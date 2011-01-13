@@ -31,7 +31,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <xsl:output method="html" encoding="iso-8859-1"
+  <xsl:output method="html" encoding="UTF-8"
     doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
     indent="yes" />  
@@ -47,17 +47,19 @@
           <td class="{$IDfirstColStyle}">Identifier:</td>
           <td class="{$IDsecondColStyle}">
           	<xsl:value-of select="$packageID"/>
-          	<!-- stats loaded with ajax call -->
-			<span id="stats"></span>
-			<script language="JavaScript">
-				if (window.loadStats) {
-					loadStats(
-						'stats', 
-						'<xsl:value-of select="$packageID" />', 
-						'<xsl:value-of select="$contextURL" />/metacat',
-						'<xsl:value-of select="$qformat" />');
-				}
-			</script>
+			<xsl:if test="$withHTMLLinks = '1'">
+	          	<!-- stats loaded with ajax call -->
+				<span id="stats"></span>
+				<script language="JavaScript">
+					if (window.loadStats) {
+						loadStats(
+							'stats', 
+							'<xsl:value-of select="$packageID" />', 
+							'<xsl:value-of select="$contextURL" />/metacat',
+							'<xsl:value-of select="$qformat" />');
+					}
+				</script>
+			</xsl:if>
 			<!--  BRL - removing this section per MBJ 20101210
 	          <xsl:if test="normalize-space(../@system)!=''">
 	            <xsl:text> (in the </xsl:text>
@@ -125,15 +127,18 @@
 				    </xsl:choose>
                 </span>
 				
-	        	<xsl:choose>
-	        		<xsl:when test="boolean($registryurl)">
-	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)
-	        		</xsl:when>
-	        		<xsl:otherwise>
-	        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)				
-	        		</xsl:otherwise>
-	        	</xsl:choose>
-				<br />
+				<!-- show link? -->
+				<xsl:if test="$withHTMLLinks = '1'">
+		        	<xsl:choose>
+		        		<xsl:when test="boolean($registryurl)">
+		        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)
+		        		</xsl:when>
+		        		<xsl:otherwise>
+		        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)				
+		        		</xsl:otherwise>
+		        	</xsl:choose>
+					<br />
+				</xsl:if>	
         </td>
      </tr>
    </xsl:template>

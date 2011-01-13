@@ -68,6 +68,7 @@
   </xsl:template>
   
   <xsl:template name="datasetmixed">
+  	<!-- redundant with the citation, BRL 01/13/2011
 		<h3>
 	 		<xsl:choose>
 	     		<xsl:when test="normalize-space(./title) != ''">
@@ -82,6 +83,7 @@
 			     </xsl:otherwise>
 	     	</xsl:choose>
 	 	</h3>
+	 -->	
      <!-- citation -->
      <table class="group group_border onehundred_percent">
      	<xsl:for-each select=".">
@@ -200,9 +202,11 @@
          <td class="fortyfive_percent">
            <!-- create a second easy access table listing the data entities -->
            <xsl:if test="dataTable|spatialRaster|spatialVector|storedProcedure|view|otherEntity">
-           <table class="{$tabledefaultStyle}">
-             <xsl:call-template name="datasetentity"/>
-           </table>
+           <xsl:if test="$withEntityLinks='1'">
+               <table class="{$tabledefaultStyle}">
+	             <xsl:call-template name="datasetentity"/>
+	           </table>
+             </xsl:if>
            </xsl:if>
          </td>
        </tr>
