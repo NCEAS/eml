@@ -196,7 +196,7 @@
         <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialvectorfirstColStyle"/>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1'">
+    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="spatialVectorAttributeList">
         <xsl:with-param name="spatialvectorfirstColStyle" select="$spatialvectorfirstColStyle"/>

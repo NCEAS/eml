@@ -190,7 +190,7 @@
             </td>
        </tr>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1'">
+    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="storedProcedureAttributeList">
         <xsl:with-param name="storedprocedurefirstColStyle" select="$storedprocedurefirstColStyle"/>

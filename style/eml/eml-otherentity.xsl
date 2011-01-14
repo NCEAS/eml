@@ -154,7 +154,7 @@
         </xsl:call-template>
       </td></tr>
     </xsl:for-each>
-    <xsl:if test="$withAttributes='1'">
+    <xsl:if test="$withAttributes='1' or $displaymodule='printall'">
     <xsl:for-each select="attributeList">
       <xsl:call-template name="otherEntityAttributeList">
         <xsl:with-param name="otherentityfirstColStyle" select="$otherentityfirstColStyle"/>

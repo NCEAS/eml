@@ -44,20 +44,6 @@
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
              <xsl:call-template name="datasetmixed"/>
-             <!--
-             <xsl:call-template name="datasetresource"/>
-             <xsl:call-template name="datasetaccess"/>
-             <xsl:call-template name="datasetpurpose"/>
-             <xsl:call-template name="datasetmaintenance"/>
-             <xsl:call-template name="datasetcontact"/>
-             <xsl:call-template name="datasetpublisher"/>
-             <xsl:call-template name="datasetpubplace"/>
-             <xsl:call-template name="datasetmethod"/>
-             <xsl:call-template name="datasetproject"/>
-             <xsl:if test="$withEntityLinks='1'">
-               <xsl:call-template name="datasetentity"/>
-             </xsl:if>
-             -->
           </xsl:for-each>
        </xsl:when>
        <xsl:otherwise>
@@ -202,7 +188,7 @@
          <td class="fortyfive_percent">
            <!-- create a second easy access table listing the data entities -->
            <xsl:if test="dataTable|spatialRaster|spatialVector|storedProcedure|view|otherEntity">
-           <xsl:if test="$withEntityLinks='1'">
+           <xsl:if test="$withEntityLinks='1' or $displaymodule = 'printall'">
                <table class="{$tabledefaultStyle}">
 	             <xsl:call-template name="datasetentity"/>
 	           </table>
