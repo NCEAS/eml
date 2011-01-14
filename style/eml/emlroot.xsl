@@ -78,7 +78,7 @@
 	 </xsl:for-each>
      <!-- Additional metadata-->
      <xsl:choose>
-       <xsl:when test="$displaymodule='additionalmetadata'">
+       <xsl:when test="$displaymodule='additionalmetadata' or $displaymodule='printall'">
          <xsl:for-each select="additionalMetadata">
            <xsl:if test="$additionalmetadataindex=position()">
               <div class="{$tabledefaultStyle}">
@@ -88,7 +88,7 @@
          </xsl:for-each>
        </xsl:when>
        <xsl:otherwise>
-         <xsl:if test="$displaymodule='dataset'">
+         <xsl:if test="$displaymodule='dataset' or $displaymodule='printall'">
            <xsl:if test="$withAdditionalMetadataLink='1'">
              <xsl:for-each select="additionalMetadata">
                <div class="{$tabledefaultStyle}">
@@ -140,6 +140,9 @@
     <xsl:if test="$displaymodule='attributedetail'">
        <xsl:call-template name="entityparam"/>
     </xsl:if>
+    <xsl:if test="$displaymodule='printall'">
+		<xsl:call-template name="printalltemplate"/>
+	</xsl:if>
    </xsl:template>
 
    <!--*************** Data set diaplay *************-->
@@ -249,6 +252,11 @@
       </tr>
    </xsl:template>
 
+   <!--************************Print all display module************************-->
+   <xsl:template name="printalltemplate">
+ 	<!-- find the subtree to process -->
+             <xsl:call-template name="datasetpart"/>
+   </xsl:template>
 
    <xsl:template name="entityparam">
      <xsl:choose>
@@ -496,7 +504,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="dataTable">
                                         <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>
@@ -513,7 +521,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="dataTable">
                                         <xsl:with-param name="datatablefirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="datatablesubHeaderStyle" select="$subHeaderStyle"/>
@@ -540,7 +548,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="spatialRaster">
                                         <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>
@@ -557,7 +565,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="spatialRaster">
                                         <xsl:with-param name="spatialrasterfirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="spatialrastersubHeaderStyle" select="$subHeaderStyle"/>
@@ -584,7 +592,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="spatialVector">
                                        <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>
@@ -601,7 +609,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="spatialVector">
                                         <xsl:with-param name="spatialvectorfirstColStyle" select="$firstColStyle"/>
                                         <xsl:with-param name="spatialvectorsubHeaderStyle" select="$subHeaderStyle"/>
@@ -628,7 +636,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="storedProcedure">
                                        <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>
@@ -645,7 +653,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="storedProcedure">
                                        <xsl:with-param name="storedprocedurefirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="storedproceduresubHeaderStyle" select="$subHeaderStyle"/>
@@ -672,7 +680,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="view">
                                        <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>
@@ -689,7 +697,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="view">
                                        <xsl:with-param name="viewfirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="viewsubHeaderStyle" select="$subHeaderStyle"/>
@@ -716,7 +724,7 @@
                         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
                           <xsl:for-each select="$references">
                               <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="otherEntity">
                                        <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>
@@ -733,7 +741,7 @@
                      </xsl:when>
                      <xsl:otherwise>
                        <xsl:choose>
-                                 <xsl:when test="$displaymodule='entity'">
+                                 <xsl:when test="$displaymodule='entity' or $displaymodule='printall'">
                                     <xsl:call-template name="otherEntity">
                                        <xsl:with-param name="otherentityfirstColStyle" select="$firstColStyle"/>
                                        <xsl:with-param name="otherentitysubHeaderStyle" select="$subHeaderStyle"/>
