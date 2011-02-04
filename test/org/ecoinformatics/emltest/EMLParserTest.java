@@ -122,8 +122,9 @@ public class EMLParserTest extends TestCase
             File invalidFile = (File)invalidList.elementAt(i);
             try { System.err.println("Invalidating file: " + invalidFile.getName());
                 emlp = new EMLParser(invalidFile);
-                failures++;
+                
             } catch (Exception e) {
+               failures++;
                assertTrue(e.getMessage() != null);
                break;
             }
