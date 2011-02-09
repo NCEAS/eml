@@ -100,7 +100,11 @@
           </xsl:when>
 
           <xsl:when test="name()='additionalMetadata'">
-            <xsl:apply-templates mode="handle-additionalMetadata" select="."></xsl:apply-templates>
+            <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+              <xsl:copy-of select="@*"></xsl:copy-of>
+              <xsl:apply-templates mode="handle-elements-under-main-module" select="."
+              ></xsl:apply-templates>
+            </xsl:element>
           </xsl:when>
 
         </xsl:choose>
