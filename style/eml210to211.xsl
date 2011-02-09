@@ -67,6 +67,14 @@
 
       <xsl:for-each select="/*/*">
         <xsl:choose>
+          <xsl:when test="name()='access'">
+            <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+              <xsl:copy-of select="@*"></xsl:copy-of>
+              <xsl:apply-templates mode="handle-elements-under-main-module" select="."
+              ></xsl:apply-templates>
+            </xsl:element>
+          </xsl:when>
+          
           <xsl:when test="name()='dataset'">
             <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
               <xsl:copy-of select="@*"></xsl:copy-of>
