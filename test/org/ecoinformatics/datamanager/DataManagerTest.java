@@ -36,27 +36,17 @@ public class DataManagerTest extends TestCase {
   
   private DataManager dataManager;
   private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
-  
-//  private final String TEST_DOCUMENT = "knb-lter-mcm.7002.1";
-//  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
-//  private final int ENTITY_NUMBER_EXPECTED = 5;
 
-//  private final String TEST_DOCUMENT = "tao.1.1";
-//  private final String TEST_SERVER ="http://knb.ecoinformatics.org/knb/metacat";
-//  private final int ENTITY_NUMBER_EXPECTED = 1;
-  
-  private final String COLUMN_1 = "column1";
-  private final String COLUMN_2 = "column2";
-  private final String ENTITY_NAME = "head-line.data";
+  private final String COLUMN_1 = "site";
+  private final String COLUMN_2 = "year";
+  private final String ENTITY_NAME = "INS-GCEM-0011_1_3.TXT";
   private final int    ENTITY_NUMBER_EXPECTED = 1;
-  private final int    NUMBER_OF_COLUMNS = 2;
-  private final String QUERY_ENTITY_NAME = "INS-GCEM-0011_1_3.TXT";;
-  private final String QUERY_PACKAGE_ID = "knb-lter-gce.1.9";
+  private final int    NUMBER_OF_COLUMNS = 7;
   private final String QUERY_TEST_DOCUMENT = "knb-lter-gce.1.9";
   private final String QUERY_TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
-  private final String TABLE_NAME = "head_line_data";
-  private final String TEST_DOCUMENT = "tao.12106.2";
-  private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
+  private final String TABLE_NAME = "INS_GCEM_0011_1_3_TXT";
+  private final String TEST_DOCUMENT = "knb-lter-gce.1.9";
+  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
   
   
   /*
