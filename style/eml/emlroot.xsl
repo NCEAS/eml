@@ -104,7 +104,13 @@
      <!-- xml format-->
      <xsl:if test="$displaymodule='dataset'">
        <xsl:if test="$withOriginalXMLLink='1'">
-         <xsl:call-template name="xml"/>
+			<tr>
+				<td colspan="2">
+			       	<table class="subGroup subGroup_border onehundred_percent">
+			         	<xsl:call-template name="xml"/>
+			         </table>
+				</td>
+			</tr>  
        </xsl:if>
      </xsl:if>
    </xsl:template>
@@ -1115,7 +1121,6 @@
        ********************************************************-->
 	<xsl:template name="xml">
 		<xsl:param name="index" />
-		<table width="100%">
 			<tr>
 				<td width="{$firstColWidth}" class="rowodd">Metadata download:</td>
 				<td width="{$secondColWidth}" class="roweven">
@@ -1127,7 +1132,6 @@
 					</a>
 				</td>
 			</tr>
-		</table>
 	</xsl:template>
 	
 	<!--********************************************************
@@ -1136,12 +1140,12 @@
 	<xsl:template name="topaccess">
 		<xsl:if test="$displaymodule='dataset' or $displaymodule='printall'">
 			<tr>
-			<td colspan="2">
-				<xsl:call-template name="access">
-				<xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
-				  <xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
-				</xsl:call-template>
-			</td>
+				<td colspan="2">
+					<xsl:call-template name="access">
+						<xsl:with-param name="accessfirstColStyle" select="$firstColStyle"/>
+						<xsl:with-param name="accesssubHeaderStyle" select="$subHeaderStyle"/>
+					</xsl:call-template>
+				</td>
 			</tr>
 		</xsl:if>
 	</xsl:template>
