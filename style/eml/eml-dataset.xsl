@@ -205,7 +205,7 @@
 
        <!-- add in the creators using a two column table -->
        <xsl:if test="creator">
-         <th colspan="2">Data Set Owners:</th>
+         <tr><th colspan="2">Data Set Owners:</th></tr>
          <xsl:for-each select="creator">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -230,7 +230,7 @@
 
        <!-- add in the contacts using a two column table -->
        <xsl:if test="contact">
-         <th colspan="2">Data Set Contacts:</th>
+         <tr><th colspan="2">Data Set Contacts:</th></tr>
          <xsl:for-each select="creator">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -255,7 +255,7 @@
 
        <!-- add in the associatedParty using a two column table -->
        <xsl:if test="associatedParty">
-         <th colspan="2">Associated Parties:</th>
+         <tr><th colspan="2">Associated Parties:</th></tr>
          <xsl:for-each select="associatedParty">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -280,7 +280,7 @@
 
        <!-- add in the metadataProviders using a two column table -->
        <xsl:if test="metadataProvider">
-         <th colspan="2">Metadata Providers:</th>
+         <tr><th colspan="2">Metadata Providers:</th></tr>
          <xsl:for-each select="metadataProvider">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -305,7 +305,7 @@
 
        <!-- add in the publishers using a two column table -->
        <xsl:if test="publisher">
-         <th colspan="2">Data Set Publishers:</th>
+         <tr><th colspan="2">Data Set Publishers:</th></tr>
          <xsl:for-each select="publisher">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -614,11 +614,9 @@
 				</th>
 			</tr>
 		</xsl:if>
-		<tr>
-			<td colspan="2">
-				<xsl:call-template name="xml" />
-			</td>
-		</tr>
+		
+		<xsl:call-template name="xml" />
+			
 		<xsl:choose>
 			<xsl:when test="$displaymodule!='printall'">
 				<xsl:for-each select="dataTable">
