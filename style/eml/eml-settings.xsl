@@ -116,35 +116,6 @@
   <xsl:param name="insertTemplate">1</xsl:param>
 
 
-<!--
-   /**
-    *   the path of the directory where the XSL and CSS files reside - starts
-    *   with context name, eg: /myContextRoot/styleDirectory.
-    *   (As found in "http://hostname:port/myContextRoot/styleDirectory").
-    *   Needs leading slash but not trailing slash
-    *
-    *   EXAMPLE:
-    *       <xsl:param name="stylePath">/brooke/style</xsl:param>
-    */
--->
-
-    <xsl:param name="stylePath">{$contextURL}/style/skins</xsl:param>
-
-
-<!--
-   /*
-    *   the path of the directory where the common javascript and css files
-    *   reside - i.e the files that are not skin-specific. Starts
-    *   with context name, eg: /myContextRoot/styleCommonDirectory.
-    *   (As found in "http://hostname:port/myContextRoot/styleCommonDirectory").
-    *
-    *   EXAMPLE
-    *       <xsl:param name="styleCommonPath">/brooke/style/common</xsl:param>
-    */
--->
-
-    <xsl:param name="styleCommonPath">{$contextURL}/style/common</xsl:param>
-
 <!--the docid of xml which is processed-->
     <xsl:param name="docid"/>
 <!-- type of entity, data table or spacial raster or others-->
@@ -288,5 +259,34 @@
 
 <!-- the first column width of attribute table-->
   <xsl:param name="attributefirstColWidth" select="'15%'"/>
+
+<!--
+   /**
+    *   the path of the directory where the XSL and CSS files reside - starts
+    *   with context name, eg: /myContextRoot/styleDirectory.
+    *   (As found in "http://hostname:port/myContextRoot/styleDirectory").
+    *   Needs leading slash but not trailing slash
+    *
+    *   EXAMPLE:
+    *       <xsl:param name="stylePath">/brooke/style</xsl:param>
+    */
+-->
+
+    <xsl:param name="stylePath"><xsl:value-of select="$contextURL" />/style/skins</xsl:param>
+
+
+<!--
+   /*
+    *   the path of the directory where the common javascript and css files
+    *   reside - i.e the files that are not skin-specific. Starts
+    *   with context name, eg: /myContextRoot/styleCommonDirectory.
+    *   (As found in "http://hostname:port/myContextRoot/styleCommonDirectory").
+    *
+    *   EXAMPLE
+    *       <xsl:param name="styleCommonPath">/brooke/style/common</xsl:param>
+    */
+-->
+
+    <xsl:param name="styleCommonPath"><xsl:value-of select="$contextURL" />/style/common</xsl:param>
 
 </xsl:stylesheet>

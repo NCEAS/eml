@@ -60,7 +60,11 @@
 
           <table xsl:use-attribute-sets="cellspacing" width="100%"
                                         class="{$mainContainerTableStyle}">
-          	<xsl:apply-templates select="*[local-name()='eml']"/>
+			<tr>
+				<td>
+					<xsl:apply-templates select="*[local-name()='eml']"/>
+				</td>
+			</tr>		
           </table>
 
 		<xsl:if test="$insertTemplate='1'">
