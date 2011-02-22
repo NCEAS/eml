@@ -100,7 +100,7 @@ public class Entity extends DataObjectDescription
     private boolean simpleDelimited  = true;
     private TextComplexDataFormat[] dataFormatArray = null;
     private String physicalLineDelimiter  = null;
-    private boolean collapseDelimiter = false;
+    private boolean collapseDelimiters = false;
     private String packageId = null;
     private String quoteCharacter = null;
     private String literalCharacter = null;
@@ -415,21 +415,21 @@ public class Entity extends DataObjectDescription
      * 
      * @return  true if can collapse consecutive delimiters, else false.
      */
-    public boolean getCollapseDelimiter()
+    public boolean getCollapseDelimiters()
     {
-    	return this.collapseDelimiter;
+    	return this.collapseDelimiters;
     }
   
     
     /**
      * Sets the collapse delimiter value.
      * 
-     * @param collapseDelimiter  the value to set for collapseDelimiter, a
-     *                           boolean
+     * @param collapseDelimiters  the value to set for collapseDelimiters, a
+     *                            boolean
      */
-    public void setCollaplseDelimiter(boolean collapseDelimiter)
+    public void setCollapseDelimiters(boolean collapseDelimiters)
     {
-    	this.collapseDelimiter = collapseDelimiter;
+    	this.collapseDelimiters = collapseDelimiters;
     }
     
     

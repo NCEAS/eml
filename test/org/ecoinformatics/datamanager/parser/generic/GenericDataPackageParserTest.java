@@ -94,8 +94,8 @@ public class GenericDataPackageParserTest extends TestCase
 	  boolean isSimpleDelimited = entity.isSimpleDelimited();
 	  assertTrue(isSimpleDelimited == true);
 
-      boolean collapseDelimiter = entity.getCollapseDelimiter();
-	  assertTrue(collapseDelimiter == false);
+      boolean collapseDelimiters = entity.getCollapseDelimiters();
+	  assertTrue(collapseDelimiters == false);
 
       String compressedMethod = entity.getCompressionMethod();
 	  //System.out.println("compressedMethod "+compressedMethod);

@@ -41,7 +41,7 @@ public class TextDelimitedDataFormatTest extends TestCase
    {
      TestSuite suite = new TestSuite();
      suite.addTest(new TextDelimitedDataFormatTest("testLineNumberGetterAndSetter"));
-     suite.addTest(new TextDelimitedDataFormatTest("testCollapseDelimiterGetterAndSetter"));
+     suite.addTest(new TextDelimitedDataFormatTest("testCollapseDelimitersGetterAndSetter"));
      suite.addTest(new TextDelimitedDataFormatTest("testQuoteCharaterGetterAndSetter"));
      suite.addTest(new TextDelimitedDataFormatTest("testFieldDelimiterGetterAndSetter"));
      return suite;
@@ -87,14 +87,14 @@ public class TextDelimitedDataFormatTest extends TestCase
   
 
   /**
-   * Test getter and setter methods for the collapseDelimiter field.
+   * Test getter and setter methods for the collapseDelimiters field.
    */
-  public void testCollapseDelimiterGetterAndSetter()
+  public void testCollapseDelimitersGetterAndSetter()
   {
-	  String collapseDelimiter = " ";
-	  format.setCollapseDelimiter(collapseDelimiter);
-	  String gotCollapseDelimiter = format.getCollapseDelimiter();
-	  assertEquals(collapseDelimiter, gotCollapseDelimiter);
+	  String collapseDelimiters = " ";
+	  format.setCollapseDelimiters(collapseDelimiters);
+	  String gotCollapseDelimiters = format.getCollapseDelimiters();
+	  assertEquals(collapseDelimiters, gotCollapseDelimiters);
   }
   
   

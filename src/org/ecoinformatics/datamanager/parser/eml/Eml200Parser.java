@@ -759,7 +759,7 @@ public class Eml200Parser
         boolean isZipDataFile   = false;
         boolean isTarDataFile   = false;
         boolean isSimpleDelimited = true;
-        boolean isCollapseDelimiter = false;
+        boolean isCollapseDelimiters = false;
         TextComplexDataFormat[] formatArray = null;
          
         for (int i = 0; i < entityNodeListLength; i++) {
@@ -853,18 +853,18 @@ public class Eml200Parser
            }
            
 //         Here is the simple delimited data file
-           NodeList collapseDelimiterNL = xpathapi.selectNodeList(entity,
+           NodeList collapseDelimitersNL = xpathapi.selectNodeList(entity,
            "physical/dataFormat/textFormat/simpleDelimited/collapseDelimiters");
            
-           if (collapseDelimiterNL != null && 
-               collapseDelimiterNL.getLength() > 0) {
+           if (collapseDelimitersNL != null && 
+               collapseDelimitersNL.getLength() > 0) {
              
-               String collapseDelimiter = 
-                     collapseDelimiterNL.item(0).getFirstChild().getNodeValue();
+               String collapseDelimiters = 
+                     collapseDelimitersNL.item(0).getFirstChild().getNodeValue();
                
-               if (collapseDelimiter.equalsIgnoreCase("yes"))
+               if (collapseDelimiters.equalsIgnoreCase("yes"))
                {
-                   isCollapseDelimiter = true;
+                   isCollapseDelimiters = true;
                } 
            }
            
@@ -1052,7 +1052,7 @@ public class Eml200Parser
         	  entityObject.setLiteralCharacter(literalCharacter);
           }
           
-          entityObject.setCollaplseDelimiter(isCollapseDelimiter);
+          entityObject.setCollapseDelimiters(isCollapseDelimiters);
             
           //System.out.println("in eml200 parser, the recordDelimiter is "+
           //                   recordDelimiter);
@@ -1201,7 +1201,7 @@ public class Eml200Parser
                format.setLineNumber(lineNumber);
            }
            else if (elementName != null && 
-                    elementName.equals("collapseDelimiter") && 
+                    elementName.equals("collapseDelimiters") && 
                     format != null)
            {
                String collapse = kid.getFirstChild().getNodeValue();
@@ -1210,7 +1210,7 @@ public class Eml200Parser
         		//log.debug("The collapse delimiter "+collapse);
         	   }
                
-               format.setCollapseDelimiter(collapse);
+               format.setCollapseDelimiters(collapse);
            }
            else if (elementName != null && 
                     elementName.equals("quoteCharacter") && 

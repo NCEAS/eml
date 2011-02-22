@@ -61,7 +61,7 @@ public class DelimitedReader extends TextDataReader
   private int numCols;
   private String delimiter;
   private String lineEnding;
-  private boolean collapseDelimiter = false;
+  private boolean collapseDelimiters = false;
   private int numFooterLines = 0;
   private Vector footerBuffer = new Vector();
   private boolean initializedFooterBuffer = false;
@@ -313,14 +313,14 @@ public class DelimitedReader extends TextDataReader
   
   
   /**
-   * Method to set collapseDilimiter boolean value.
+   * Method to set collapseDelimiters boolean value.
    * 
-   * @param collapseDelimiter   if true, consecutive delimiters are collapsed
+   * @param collapseDelimiters  if true, consecutive delimiters are collapsed
    *                            into a single delimiter
    */
-  public void setCollapseDelimiter(boolean collapseDelimiter)
+  public void setCollapseDelimiters(boolean collapseDelimiters)
   {
-	  this.collapseDelimiter = collapseDelimiter;
+	  this.collapseDelimiters = collapseDelimiters;
   }
   
   
@@ -519,7 +519,7 @@ public class DelimitedReader extends TextDataReader
     if (quoteCharacter == null && literalCharacter == null)
     {
     	//In this path, there is no quote character, we can spit data directly
-	    if (!collapseDelimiter)
+	    if (!collapseDelimiters)
 	    {
 	    	s = data.split(delimiter);
 	    }
@@ -721,7 +721,7 @@ public class DelimitedReader extends TextDataReader
 			  }
 
 			  ////here we should treat sequential delimiter as single delimiter
-			  if (collapseDelimiter)
+			  if (collapseDelimiters)
 			  {
 				  priviousDelimiterIndex = currentDelimiterIndex;
 				  currentDelimiterIndex = i;

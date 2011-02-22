@@ -42,7 +42,7 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
      * Instance fields
      */
     private String fieldDelimiter;   //string that separates fields in text
-    private String collapseDelimiter; //treat the consecutive delimters as 
+    private String collapseDelimiters; //treat the consecutive delimters as 
                                       //single or not
     private long   lineNumber;       //the physical line number
     private String[] quoteCharater;  //for escape delimiter
@@ -69,24 +69,24 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
      */
     
     /**
-     * Gets the value of the collapseDelimiter field.
+     * Gets the value of the collapseDelimiters field.
      * 
-     * @return the collapseDelimiter value
+     * @return the collapseDelimiters value
      */
-    public String getCollapseDelimiter()
+    public String getCollapseDelimiters()
     {
-        return collapseDelimiter;
+        return collapseDelimiters;
     }
     
     
     /**
-     * Sets the value of the collapseDelimiter field.
+     * Sets the value of the collapseDelimiters field.
      * 
-     * @param collapseDelimiter The collapseDelimiter value to set
+     * @param collapseDelimiters The collapseDelimiters value to set
      */
-    public void setCollapseDelimiter(String collapseDelimiter)
+    public void setCollapseDelimiters(String collapseDelimiters)
     {
-        this.collapseDelimiter = collapseDelimiter;
+        this.collapseDelimiters = collapseDelimiters;
     }
     
     
