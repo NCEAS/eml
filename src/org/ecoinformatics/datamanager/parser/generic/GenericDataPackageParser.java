@@ -1306,7 +1306,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                quoteArray[i] = (String)quoteList.elementAt(i);
            }
            
-           format.setQuoteCharater(quoteArray);
+           format.setQuoteCharacterArray(quoteArray);
        }
        
        return format;

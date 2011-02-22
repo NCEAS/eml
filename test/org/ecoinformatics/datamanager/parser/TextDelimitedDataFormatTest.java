@@ -108,8 +108,8 @@ public class TextDelimitedDataFormatTest extends TestCase
 	  String[] quote = new String[2];
 	  quote[0] = quote1;
 	  quote[1] = quote2;
-	  format.setQuoteCharater(quote);
-	  String[] gotQuote = format.getQuoteCharater();
+	  format.setQuoteCharacterArray(quote);
+	  String[] gotQuote = format.getQuoteCharacterArray();
 	  assertEquals(quote, gotQuote);
   }
   

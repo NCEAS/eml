@@ -45,7 +45,7 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
     private String collapseDelimiters; //treat the consecutive delimters as 
                                       //single or not
     private long   lineNumber;       //the physical line number
-    private String[] quoteCharater;  //for escape delimiter
+    private String[] quoteCharacterArray;  //for escape delimiter
   
     
     /*
@@ -135,24 +135,25 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
     
     
     /**
-     * Gets the value of the quoteCharacter field.
+     * Gets the value of the quoteCharacterArray field.
      * 
-     * @return Returns the quoteCharater value, a String[]
+     * @return  the quoteCharacterArray value, a String[]
      */
-    public String[] getQuoteCharater()
+    public String[] getQuoteCharacterArray()
     {
-        return quoteCharater;
+        return quoteCharacterArray;
     }
     
     
     /**
-     * Sets the value of the quoteCharacter field to a list of Strings.
+     * Sets the value of the quoteCharacterArray field to a 
+     * list of Strings.
      * 
-     * @param quoteCharater The quoteCharater value to set, a String[]
+     * @param quoteCharacterArray The array value to set, a String[]
      */
-    public void setQuoteCharater(String[] quoteCharater)
+    public void setQuoteCharacterArray(String[] quoteCharacterArray)
     {
-        this.quoteCharater = quoteCharater;
+        this.quoteCharacterArray = quoteCharacterArray;
     }
     
 }

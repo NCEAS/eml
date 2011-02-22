@@ -33,9 +33,7 @@
 package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
-//import org.kepler.objectmanager.data.DataObjectDescription;
 import org.ecoinformatics.datamanager.parser.Domain;
-//import src.org.kepler.objectmanager.data.DataObjectDescription;
 
 
 /**

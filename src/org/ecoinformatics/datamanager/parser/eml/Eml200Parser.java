@@ -78,7 +78,7 @@ public class Eml200Parser
      */
 
     // constants
-    public static final String TABLEENTITY = "//dataset/dataTable";
+    public static final String DATATABLEENTITY = "//dataset/dataTable";
     public static final String SPATIALRASTERENTITY = "//dataset/spatialRaster";
     public static final String SPATIALVECTORENTITY = "//dataset/spatialVector";
     public static final String STOREDPROCEDUREENTITY = 
@@ -112,8 +112,10 @@ public class Eml200Parser
     //private DataTypeResolver dtr = DataTypeResolver.instanceOf();
     private int elementId = 0;
     //private boolean hasImageEntity = false;
-    private int complexFormatsNumber = 0;
-    private Hashtable attributeListHash = new Hashtable();
+    private int numberOfComplexFormats = 0;
+    // Associates attributeList id values with attributeList objects
+    private Hashtable<String, AttributeList> attributeListIdHash = 
+                                     new Hashtable<String, AttributeList>();
     //private boolean hasMissingValue = false;
     private DataPackage emlDataPackage = null;
     
@@ -169,7 +171,7 @@ public class Eml200Parser
      */
     private void parseDocument(Document doc) throws Exception
     {
-        NodeList entities;
+        NodeList dataTableEntities;
         NodeList spatialRasterEntities;
         NodeList spatialVectorEntities;
         NodeList otherEntities;
@@ -189,7 +191,7 @@ public class Eml200Parser
             
         	emlDataPackage        = new DataPackage(packageId);
             // now dataTable, spatialRaster and spatialVector are handled
-            entities              = xpathapi.selectNodeList(doc, TABLEENTITY);
+            dataTableEntities     = xpathapi.selectNodeList(doc, DATATABLEENTITY);
             spatialRasterEntities = 
                               xpathapi.selectNodeList(doc, SPATIALRASTERENTITY);
             spatialVectorEntities = 
@@ -205,7 +207,7 @@ public class Eml200Parser
         
         try {
             //log.debug("Processing entities");
-            processEntities(xpathapi, entities, TABLEENTITY, packageId);
+            processEntities(xpathapi, dataTableEntities, DATATABLEENTITY, packageId);
             //TODO: current we still treat them as TableEntity java object, 
             //in future we need add new SpatialRasterEntity and SpatialVector
             // object for them
@@ -309,70 +311,73 @@ public class Eml200Parser
     
     
     /**
-     * Processes the attribute list element.
+     * Processes the attributeList element.
      * 
      * @param  xpathapi  XPath API
-     * @param  attList   a NodeList
+     * @param  attributeListNodeList   a NodeList
      * @param  entObj    the entity object whose attribute list is processed
      */
     private void processAttributeList(CachedXPathAPI xpathapi, 
-                                      NodeList attList, 
+                                      NodeList attributeListNodeList, 
                                       Entity entObj) 
             throws Exception
     {
         AttributeList attributeList = new AttributeList();
-        Node attListNode = attList.item(0);
-        // get attributeList element's attribute - id
-        NamedNodeMap idAttribute = attListNode.getAttributes();
+        Node attributeListNode = attributeListNodeList.item(0);
+        // Get attributeList element's id attribute
+        NamedNodeMap attributeListNodeAttributes = 
+            attributeListNode.getAttributes();
         String idString = null;
         
-        if (idAttribute != null)
+        if (attributeListNodeAttributes != null)
         {
-          Node id = idAttribute.getNamedItem(ID);
+          Node idNode = attributeListNodeAttributes.getNamedItem(ID);
           
-          if ( id != null)
+          if (idNode != null)
           {
-            idString = id.getNodeValue();
+            idString = idNode.getNodeValue();
             attributeList.setId(idString);
             
-        	if(isDebugging) {
+        	  if (isDebugging) {
                //log.debug("The id value for the attributelist is " + idString);
-        	}
+        	  }
           }
         }
         
-        NodeList attNodeList = xpathapi.selectNodeList(attListNode, 
-                                                       "attribute");
-        NodeList referenceNodeList = xpathapi.selectNodeList(attListNode, 
-                                                             "references");
+        NodeList attributeNodeList = 
+          xpathapi.selectNodeList(attributeListNode, "attribute");
+        NodeList referencesNodeList = 
+          xpathapi.selectNodeList(attributeListNode, "references");
         
-        if (attNodeList != null && attNodeList.getLength() > 0) 
+        if (attributeNodeList != null && 
+            attributeNodeList.getLength() > 0) 
         {
-            processAttributes(xpathapi, attNodeList, attributeList);
+            processAttributes(xpathapi, attributeNodeList, attributeList);
             
             if (idString != null)
             {
-               attributeListHash.put(idString , attributeList);
+               attributeListIdHash.put(idString , attributeList);
             }
         }
-        else if (referenceNodeList != null && referenceNodeList.getLength() > 0) 
+        else if (referencesNodeList != null && 
+                 referencesNodeList.getLength() > 0) 
         {
             // get the references id 
-            Node referenceNode = referenceNodeList.item(0);
+            Node referencesNode = referencesNodeList.item(0);
             
-        	if(isDebugging) {
+        	  if (isDebugging) {
                 //log.debug("The reference node's name is "+
                 //          referenceNode.getNodeName());
-        	}
+        	  }
             
-            String referenceId = referenceNode.getFirstChild().getNodeValue();
+            String referencesId = referencesNode.getFirstChild().getNodeValue();
             
-        	if(isDebugging) {
-        		//log.debug("the reference id is "+ referenceId);
-        	}
+        	  if (isDebugging) {
+        		  //log.debug("the reference id is "+ referenceId);
+        	  }
             
-            attributeList = (AttributeList) attributeListHash.get(referenceId);
-        } 
+            attributeList = (AttributeList) attributeListIdHash.get(referencesId);
+        }
         else
         {
        	    //log.debug(
@@ -382,14 +387,17 @@ public class Eml200Parser
           
         if (!entityObject.isSimpleDelimited())
         {
-           int length = attributeList.getAttributes().length;
+           int numberOfAttributes = attributeList.getAttributes().length;
            
-           
-           if (length != complexFormatsNumber || 
-              (length == complexFormatsNumber && complexFormatsNumber == 0))
+           if (numberOfAttributes != numberOfComplexFormats || 
+                (
+                  (numberOfAttributes == numberOfComplexFormats) && 
+                  (numberOfComplexFormats == 0)
+                )
+              )
            {
-               throw new Exception("Complex format elements should have"+
-                       " some number as attribute number");
+               throw new Exception("Complex format elements should have " +
+                                   "same number as attribute number");
            }
            else
            {
@@ -405,21 +413,21 @@ public class Eml200Parser
      * Processes the attributes in an attribute list. Called by
      * processAttributeList().
      * 
-     * @param  xpathapi          the XPath API
-     * @param  atts              a node list
-     * @param  attributeListObj  an AttributeList
+     * @param  xpathapi           the XPath API
+     * @param  attributesNodeList a node list
+     * @param  attributeList      an AttributeList object
      */
     private void processAttributes(CachedXPathAPI xpathapi, 
-                                   NodeList atts, 
-                                   AttributeList attributeListObj)
-                    throws Exception
+                                   NodeList attributesNodeList, 
+                                   AttributeList attributeList)
+            throws Exception
     {
+        int attributesNodeListLength = attributesNodeList.getLength();
         
-        
-        for (int i = 0; i < atts.getLength(); i++) { //go through each
-                                                     // attribute
-            Node att = atts.item(i);
-            NodeList attChildren = att.getChildNodes();
+        // Process each attribute
+        for (int i = 0; i < attributesNodeListLength; i++) {
+            Node attributeNode = attributesNodeList.item(i);
+            NodeList attributeNodeChildren = attributeNode.getChildNodes();
             //NamedNodeMap attAttributes = att.getAttributes();
 
             String attName = "";
@@ -431,125 +439,138 @@ public class Eml200Parser
             String attMeasurementScale = "";
             String attPrecision = "";
             Domain domain = null;
-            Vector missingCodeVector = new Vector();
+            Vector missingValueCodeVector = new Vector();
             String id = null;
             double numberPrecision = 0;
             // get attribute id
-            NamedNodeMap attributeNode = att.getAttributes();
+            NamedNodeMap attributeNodeAttributesMap = 
+                attributeNode.getAttributes();
             
-            if (attributeNode != null)
+            if (attributeNodeAttributesMap != null)
             {
-                  Node idNode =  attributeNode.getNamedItem(ID);
+                Node idNode =  attributeNodeAttributesMap.getNamedItem(ID);
                   
-                  if (idNode != null)
-                  {
-                	  id = idNode.getNodeValue();
-                  }
+                if (idNode != null)
+                {
+                    id = idNode.getNodeValue();
+                }
             }
             
             elementId++;
 
-            for (int j = 0; j < attChildren.getLength(); j++) {
-                Node child = attChildren.item(j);
-                String childName = child.getNodeName();
-                if (childName.equals("attributeName")) {
-                    attName = child.getFirstChild().getNodeValue()
+            for (int j = 0; j < attributeNodeChildren.getLength(); j++) {
+                Node childNode = attributeNodeChildren.item(j);
+                String childNodeName = childNode.getNodeName();
+                if (childNodeName.equals("attributeName")) {
+                    attName = childNode.getFirstChild().getNodeValue()
                                    .trim().replace('.', '_');
-                } else if (childName.equals("attributeLabel")) {
-                    attLabel = child.getFirstChild().getNodeValue().trim();
-                } else if (childName.equals("attributeDefinition")) {
-                    attDefinition = child.getFirstChild().getNodeValue().trim();
-                } else if (childName.equals("measurementScale")) {
+                } else if (childNodeName.equals("attributeLabel")) {
+                    attLabel = childNode.getFirstChild().getNodeValue().trim();
+                } else if (childNodeName.equals("attributeDefinition")) {
+                    attDefinition = childNode.getFirstChild().getNodeValue().trim();
+                } else if (childNodeName.equals("measurementScale")) {
                     //unit is tricky because it can be custom or standard
                     //Vector info = new Vector();
                     //int domainType = Domain.DOM_NONE;
-                    NodeList msNodeList = child.getChildNodes();
+                    NodeList measurementScaleChildNodes = childNode.getChildNodes();
                     
-                    for (int k = 0; k < msNodeList.getLength(); k++) {
-                        Node n = msNodeList.item(k);
-                        String name = n.getNodeName();
+                    for (int k = 0; k < measurementScaleChildNodes.getLength(); k++) {
+                        Node measurementScaleChildNode = 
+                            measurementScaleChildNodes.item(k);
+                        String measurementScaleChildNodeName = 
+                            measurementScaleChildNode.getNodeName();
                         
-                        if (name.equals("interval") || name.equals("ratio")) {
+                        if (measurementScaleChildNodeName.equals("interval") || 
+                            measurementScaleChildNodeName.equals("ratio")
+                           ) {
                             String numberType = null;
                             String min = "", max = "";
-                            Node sUnit = xpathapi.selectSingleNode(n,
-                                            "unit/standardUnit");
-                            Node cUnit = xpathapi.selectSingleNode(n,
-                                            "unit/customUnit");
+                            Node standardUnitNode = 
+                              xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                        "unit/standardUnit");
+                            Node customUnitNode = 
+                              xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                        "unit/customUnit");
                             
-                            if (sUnit != null) {
-                                attUnit = sUnit.getFirstChild().getNodeValue();
+                            if (standardUnitNode != null) {
+                                attUnit = standardUnitNode.getFirstChild().getNodeValue();
                                 attUnitType = Attribute.STANDARDUNIT;
-                            } else if (cUnit != null) {
-                                attUnit = cUnit.getFirstChild().getNodeValue();
+                            } else if (customUnitNode != null) {
+                                attUnit = customUnitNode.getFirstChild().getNodeValue();
                                 attUnitType = Attribute.CUSTOMUNIT;
                             } else {
-                                System.err.println("xpath didn't work");
+                                System.err.println("Unable to determine attribute unit.");
                             }
                             
-                            Node precision = xpathapi.selectSingleNode(n,
-                                            "precision");
+                            Node precisionNode = 
+                                xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                          "precision");
                             
-                            if (precision != null) {
+                            if (precisionNode != null) {
                                 // precision is optional in EML201 so if it is
                                 // not provided, the attPrecision will be the
                                 // empty string
-                                attPrecision = precision.getFirstChild()
+                                attPrecision = precisionNode.getFirstChild()
                                                         .getNodeValue();
                                 numberPrecision = 
                                        (new Double(attPrecision)).doubleValue();
                                 
                             }
                             
-                            Node dNode = 
-                                  xpathapi.selectSingleNode(n, "numericDomain");
-                            NodeList numberKids = dNode.getChildNodes();
+                            Node numericDomainNode = 
+                                xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                          "numericDomain");
+                            NodeList numericDomainChildNodes = 
+                                numericDomainNode.getChildNodes();
                             
-                            for (int index = 0; index < numberKids.getLength(); 
+                            for (int index = 0; 
+                                 index < numericDomainChildNodes.getLength(); 
                                  index++)
                             {
-                                String dName = 
-                                           numberKids.item(index).getNodeName();
+                                String numericDomainChildNodeName = 
+                                    numericDomainChildNodes.item(index).getNodeName();
                                 
-                                if (dName.equals("numberType")) // got number
-                                                                // type
+                                if (numericDomainChildNodeName.equals("numberType"))
                                 {
+                                    // Got number type
                                     numberType = 
-                                          numberKids.item(index).getFirstChild()
-                                                    .getNodeValue();
+                                        numericDomainChildNodes.item(index)
+                                                               .getFirstChild()
+                                                               .getNodeValue();
                                     
-                                	if (isDebugging) {
-                                 //log.debug("The number type is "+ numberType);
-                                	}
+                                	  if (isDebugging) {
+                                      //log.debug("The number type is "+ numberType);
+                                	  }
                                 }
-                                else if (dName.equals("boundsGroup"))
-                                // got bounds group
+                                else if (numericDomainChildNodeName.equals("boundsGroup"))
                                 {
-                                    NodeList boundsList = xpathapi
-                                            .selectNodeList(dNode, "./bounds");
+                                    // Got bounds group
+                                    NodeList boundsNodeList = 
+                                        xpathapi.selectNodeList(numericDomainNode, 
+                                                                "./bounds");
                                     
-                                    for (i = 0; i < boundsList.getLength(); i++)
+                                    for (i = 0; i < boundsNodeList.getLength(); i++)
                                     {
-                                        NodeList nl;
-                                        Node bound;
+                                        NodeList aNodeList;
+                                        Node boundsNode;
 
                                         //String exclMin = null, exclMax = null;
                                         try
                                         {
-                                            nl = xpathapi.selectNodeList(
-                                                    boundsList.item(i),
+                                            aNodeList = xpathapi.selectNodeList(
+                                                    boundsNodeList.item(i),
                                                     "./minimum");
-                                            bound = nl.item(0);
-                                            min = bound.getFirstChild()
+                                            boundsNode = aNodeList.item(0);
+                                            min = boundsNode.getFirstChild()
                                                     .getNodeValue();
                                             /*exclMin = bound.getAttributes()
                                                     .getNamedItem("exclusive")
                                                     .getNodeValue();*/
-                                            nl = xpathapi.selectNodeList(
-                                                    boundsList.item(0),
+                                            aNodeList = xpathapi.selectNodeList(
+                                                    boundsNodeList.item(0),
                                                     "./maximum");
-                                            bound = nl.item(0);
-                                            max = bound.getFirstChild()
+                                            boundsNode = aNodeList.item(0);
+                                            max = boundsNode.getFirstChild()
                                                     .getNodeValue();
                                             /*exclMax = bound.getAttributes()
                                                     .getNamedItem("exclusive")
@@ -576,46 +597,58 @@ public class Eml200Parser
                             	maxNum = new Double(max);
                             }
                             
-                            NumericDomain numDomain = 
+                            NumericDomain numericDomain = 
                                   new NumericDomain(numberType, minNum, maxNum);
-                            numDomain.setPrecision(numberPrecision);
-                            domain = numDomain;
+                            numericDomain.setPrecision(numberPrecision);
+                            domain = numericDomain;
                            
-                        } else if (name.equals("nominal")
-                                        || name.equals("ordinal")) {
-                            NodeList list = 
-                              xpathapi.selectSingleNode(n, "nonNumericDomain")
-                                .getChildNodes();
+                        } else if (measurementScaleChildNodeName.equals("nominal")
+                                || measurementScaleChildNodeName.equals("ordinal")) {
+                            NodeList nonNumericDomainChildNodes = 
+                              xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                        "nonNumericDomain")
+                                      .getChildNodes();
                             
-                            for (int m = 0; m < list.getLength(); m++)
+                            for (int m = 0; 
+                                 m < nonNumericDomainChildNodes.getLength(); 
+                                 m++)
                             {
-                                Node dNode = list.item(m);
-                                String dName = dNode.getNodeName();
+                                Node nonNumericDomainChildNode = 
+                                    nonNumericDomainChildNodes.item(m);
+                                String nonNumericDomainChildNodeName = 
+                                    nonNumericDomainChildNode.getNodeName();
                                 
-                                if (dName.equals("textDomain")) {
+                                if (nonNumericDomainChildNodeName.
+                                        equals("textDomain")) {
                                     TextDomain textDomain = new TextDomain();
-                                    NodeList definitionL = 
+                                    NodeList definitionNodeList = 
                                       xpathapi.selectNodeList(
-                                                         dNode, "./definition");
-                                    Node defintionNode = definitionL.item(0);
+                                                  nonNumericDomainChildNode, 
+                                                  "./definition");
+                                    Node defintionNode = definitionNodeList.item(0);
                                     String definition = 
-                                      defintionNode.getFirstChild().
-                                                                 getNodeValue();
+                                      defintionNode.
+                                      getFirstChild().
+                                      getNodeValue();
                                 	
                                     if(isDebugging) {
                                       //log.debug(
                                       // "The definition value is "+definition);
-                                	}
+                                	  }
                                     
                                     textDomain.setDefinition(definition);
-                                    NodeList nl = xpathapi.selectNodeList(dNode,
-                                                    "./pattern");
+                                    NodeList patternNodeList = 
+                                      xpathapi.selectNodeList(
+                                          nonNumericDomainChildNode,
+                                          "./pattern");
                                     
                                     String[] patternList = 
-                                                     new String[nl.getLength()]; 
+                                      new String[patternNodeList.getLength()];
                                     
-                                    for (int l = 0; l < nl.getLength(); l++) {
-                                      patternList[l] = nl.item(l).
+                                    for (int l = 0; 
+                                         l < patternNodeList.getLength(); 
+                                         l++) {
+                                      patternList[l] = patternNodeList.item(l).
                                                        getFirstChild().
                                                        getNodeValue();
                                     }
@@ -627,63 +660,77 @@ public class Eml200Parser
                                     
                                     domain = textDomain;
                                    
-                                } else if (dName.equals("enumeratedDomain")) {
-                                    EnumeratedDomain enumerDomain = 
-                                                         new EnumeratedDomain();
+                                } else if (nonNumericDomainChildNodeName.
+                                           equals("enumeratedDomain")) {
+                                    EnumeratedDomain enumeratedDomain = 
+                                        new EnumeratedDomain();
                                     Vector info = new Vector();
-                                    NodeList nl = xpathapi.selectNodeList(dNode,
-                                                    "./codeDefinition");
                                     
-                                    for (int l = 0; l < nl.getLength(); l++) {
-                                        info.add(nl.item(l).getFirstChild()
-                                                        .getNodeValue());
+                                    NodeList codeDefinitionNodeList = 
+                                      xpathapi.selectNodeList(
+                                          nonNumericDomainChildNode,
+                                          "./codeDefinition");
+                                    
+                                    for (int l = 0; 
+                                         l < codeDefinitionNodeList.getLength(); 
+                                         l++) {
+                                        info.add(codeDefinitionNodeList.item(l).
+                                                 getFirstChild().getNodeValue());
                                     }
                                     
-                                    enumerDomain.setInfo(info);
-                                    domain = enumerDomain;
+                                    enumeratedDomain.setInfo(info);
+                                    domain = enumeratedDomain;
                                 }
                             }
-                        } else if (name.equalsIgnoreCase("datetime")) {
+                        } else if (measurementScaleChildNodeName.
+                                       equalsIgnoreCase("datetime")) {
                             DateTimeDomain date = new DateTimeDomain();
                             String formatString = 
-                                (xpathapi.selectSingleNode(n,"./formatString")).
+                              (xpathapi.selectSingleNode(measurementScaleChildNode,
+                                                         "./formatString")).
                                           getFirstChild().
                                           getNodeValue();
                             
-                        	if(isDebugging) {
-                        	  //log.debug(
+                        	  if (isDebugging) {
+                        	    //log.debug(
                               //          "The format string in date time is " 
                               //          + formatString);
-                        	}
+                        	  }
                             date.setFormatString(formatString);
                             domain = date;
                         }
                     }
                 }
-                else if (childName.equals("missingValueCode"))
+                else if (childNodeName.equals("missingValueCode"))
                 {
-               		//log.debug("in missilng valueCode");
-                    NodeList missingNodeList = child.getChildNodes();
+               		  //log.debug("in missingValueCode");
+                    NodeList missingValueCodeChildNodes = 
+                        childNode.getChildNodes();
                     
-                    for (int k = 0; k < missingNodeList.getLength(); k++) 
+                    for (int k = 0; 
+                         k < missingValueCodeChildNodes.getLength(); 
+                         k++) 
                     {
-                        Node n = missingNodeList.item(k);
-                        String name = n.getNodeName();
+                        Node missingValueCodeChildNode = 
+                            missingValueCodeChildNodes.item(k);
+                        String missingValueCodeChildNodeName = 
+                            missingValueCodeChildNode.getNodeName();
                         
-                        if (name.equals("code"))
+                        if (missingValueCodeChildNodeName.equals("code"))
                         {
-                            Node missingCodeTextNode = n.getFirstChild();
+                            Node missingValueCodeTextNode = 
+                                missingValueCodeChildNode.getFirstChild();
                             
-                            if (missingCodeTextNode != null)
+                            if (missingValueCodeTextNode != null)
                             {
-	                            String missingCode = 
-                                             missingCodeTextNode.getNodeValue();
+	                            String missingValueCode = 
+                                  missingValueCodeTextNode.getNodeValue();
                                 
-	                        	if(isDebugging) {
-	                        	//log.debug("the missing code is "+missingCode);
-	                        	}
+	                        	  if(isDebugging) {
+	                        	    //log.debug("the missing code is "+missingCode);
+	                        	  }
                                 
-	                            missingCodeVector.add(missingCode);
+	                            missingValueCodeVector.add(missingValueCode);
 	                            //hasMissingValue = true;
                             }
                         }
@@ -701,51 +748,54 @@ public class Eml200Parser
         		//log.debug("The final type is " + resolvedType);
         	}*/
            
-            Attribute attObj = new Attribute(id, attName, attLabel,
+            Attribute attObj = 
+              new Attribute(id, attName, attLabel,
                             attDefinition, attUnit, attUnitType,
                             attMeasurementScale, domain);
             
-            //add missing code into attribute
-            for (int k=0; k<missingCodeVector.size(); k++)
+            // Add missing value code into attribute
+            for (int k = 0; k < missingValueCodeVector.size(); k++)
             {
-                String missingCodeValue = 
-                                        (String) missingCodeVector.elementAt(k);
-            	if(isDebugging) {
-            		//log.debug("the mssing value code " + missingCodeValue + 
-                    //          " was added to attribute");
-            	}
+                String missingValueCode = 
+                       (String) missingValueCodeVector.elementAt(k);
+            	  if (isDebugging) {
+            		  //log.debug("the mssing value code " + missingCodeValue + 
+                  //          " was added to attribute");
+            	  }
                 
-                attObj.addMissingValueCode(missingCodeValue);
+                attObj.addMissingValueCode(missingValueCode);
             }
             
-            attributeListObj.add(attObj);
+            attributeList.add(attObj);
         }
     }
     
 
     /**
-     * Pulls the entity information out of the XML and stores it in a hashtable.
+     * Pulls the entity information out of the XML and stores it in a hash table.
      */
     private void processEntities(CachedXPathAPI xpathapi, 
-                                 NodeList entities, String xpath, String packageId) 
+                                 NodeList entitiesNodeList, 
+                                 String xpath, 
+                                 String packageId)
             throws SAXException,
                    javax.xml.transform.TransformerException, 
                    Exception
     { 
-        //make sure that entities is not null
-        if(entities == null)
+        // Make sure that entities is not null
+        if (entitiesNodeList == null)
         {
           return;
         }
         
-        int entityNodeListLength = entities.getLength();
+        int entityNodeListLength = entitiesNodeList.getLength();
         numEntities = numEntities + entityNodeListLength;
         String entityName = "";
         String entityDescription = "";
         String entityOrientation = "";
         String entityCaseSensitive = "";
         String entityNumberOfRecords = "-1";
-        String physicalFile = "";
+        String onlineUrl = "";
         String numHeaderLines = "0";
         int numFooterLines = 0;
         String fieldDelimiter = null;
@@ -772,12 +822,12 @@ public class Eml200Parser
             
              //go through the entities and put the information into the hash.
             elementId++;
-            Node entity = entities.item(i);
+            Node entityNode = entitiesNodeList.item(i);
             String id = null;
-            NamedNodeMap attributeNode = entity.getAttributes();
+            NamedNodeMap entityNodeAttributes = entityNode.getAttributes();
             
-            if (attributeNode != null) {        
-                Node idNode = attributeNode.getNamedItem(ID);
+            if (entityNodeAttributes != null) {        
+                Node idNode = entityNodeAttributes.getNamedItem(ID);
                 
                 if (idNode != null)
                 {
@@ -785,20 +835,20 @@ public class Eml200Parser
                 }
             }
             
-            NodeList entityChildren = entity.getChildNodes();
+            NodeList entityNodeChildren = entityNode.getChildNodes();
             
-            for (int j = 0; j < entityChildren.getLength(); j++) {
-                Node child = entityChildren.item(j);
-                String childName = child.getNodeName();
+            for (int j = 0; j < entityNodeChildren.getLength(); j++) {
+                Node childNode = entityNodeChildren.item(j);
+                String childName = childNode.getNodeName();
 
                 if (childName.equals("entityName")) {
-                    entityName = child.getFirstChild().getNodeValue();
+                    entityName = childNode.getFirstChild().getNodeValue();
                 } else if (childName.equals("entityDescription")) {
-                    entityDescription = child.getFirstChild().getNodeValue();
+                    entityDescription = childNode.getFirstChild().getNodeValue();
                 } else if (childName.equals("caseSensitive")) {
-                    entityCaseSensitive = child.getFirstChild().getNodeValue();
+                    entityCaseSensitive = childNode.getFirstChild().getNodeValue();
                 } else if (childName.equals("numberOfRecords")) {
-                    entityNumberOfRecords = child.getFirstChild()
+                    entityNumberOfRecords = childNode.getFirstChild()
                                     .getNodeValue();
                     /*numRecords = (new Integer(entityNumberOfRecords))
                                     .intValue();*/
@@ -806,61 +856,75 @@ public class Eml200Parser
                
             }
             
-            NodeList orientationNodeList = xpathapi.selectNodeList(entity,
-                       "physical/dataFormat/textFormat/attributeOrientation");
+            NodeList attributeOrientationNodeList = 
+                xpathapi.selectNodeList(
+                    entityNode,
+                    "physical/dataFormat/textFormat/attributeOrientation");
             
-            if (orientationNodeList != null && 
-                orientationNodeList.getLength() > 0) {
-                entityOrientation = orientationNodeList.
+            if (attributeOrientationNodeList != null && 
+                attributeOrientationNodeList.getLength() > 0) {
+                entityOrientation = attributeOrientationNodeList.
                                       item(0).getFirstChild().getNodeValue();
 
                }
 
-            NodeList headerLinesNL = xpathapi.selectNodeList(entity,
+            NodeList numHeaderLinesNodeList = xpathapi.selectNodeList(entityNode,
                        "physical/dataFormat/textFormat/numHeaderLines");
             
-            if ((headerLinesNL != null) && (headerLinesNL.getLength() > 0)) {
-                   Node headerLinesNode = headerLinesNL.item(0);
+            if ((numHeaderLinesNodeList != null) && 
+                (numHeaderLinesNodeList.getLength() > 0)
+               ) {
+                Node numHeaderLinesNode = numHeaderLinesNodeList.item(0);
                    
-                   if (headerLinesNode != null) {
-                       numHeaderLines = headerLinesNode.getFirstChild()
-                                       .getNodeValue();
-                   }
-               }
+                if (numHeaderLinesNode != null) {
+                    numHeaderLines = 
+                        numHeaderLinesNode.getFirstChild().getNodeValue();
+                }
+            }
             
-            NodeList footerLinesNL = xpathapi.selectNodeList(entity,
-                          "physical/dataFormat/textFormat/numFooterLines");
+            NodeList numFooterLinesNodeList = 
+              xpathapi.selectNodeList(
+                  entityNode,
+                  "physical/dataFormat/textFormat/numFooterLines"
+                                     );
             
-            if ((footerLinesNL != null) && (footerLinesNL.getLength() > 0)) {
-                Node footerLinesNode = footerLinesNL.item(0);
+            if ((numFooterLinesNodeList != null) && 
+                (numFooterLinesNodeList.getLength() > 0)
+               ) {
+                Node numFooterLinesNode = numFooterLinesNodeList.item(0);
             
-                if (footerLinesNode != null) {
-                         String footerLineStr = footerLinesNode.getFirstChild().
-                                                getNodeValue();
-                         numFooterLines = (new Integer(footerLineStr.trim())).
-                                                       intValue();
-                       }
+                if (numFooterLinesNode != null) {
+                    String numFooterLinesStr = 
+                        numFooterLinesNode.getFirstChild().getNodeValue();
+                    numFooterLines = 
+                        (new Integer(numFooterLinesStr.trim())).intValue();
+                }
             }
            
            // Here is the simple delimited data file
-           NodeList delimiterNL = 
-             xpathapi.selectNodeList(entity,
-               "physical/dataFormat/textFormat/simpleDelimited/fieldDelimiter");
+           NodeList fieldDelimiterNodeList = 
+               xpathapi.selectNodeList(
+                 entityNode,
+                 "physical/dataFormat/textFormat/simpleDelimited/fieldDelimiter"
+                                      );
            
-           if (delimiterNL != null && delimiterNL.getLength() >0) {
-                   fieldDelimiter = delimiterNL.item(0).getFirstChild().
-                                                        getNodeValue();
+           if (fieldDelimiterNodeList != null && 
+               fieldDelimiterNodeList.getLength() >0
+              ) {
+               fieldDelimiter = 
+                 fieldDelimiterNodeList.item(0).getFirstChild().getNodeValue();
            }
            
-//         Here is the simple delimited data file
-           NodeList collapseDelimitersNL = xpathapi.selectNodeList(entity,
-           "physical/dataFormat/textFormat/simpleDelimited/collapseDelimiters");
+           NodeList collapseDelimitersNodeList = 
+             xpathapi.selectNodeList(entityNode,
+               "physical/dataFormat/textFormat/simpleDelimited/collapseDelimiters");
            
-           if (collapseDelimitersNL != null && 
-               collapseDelimitersNL.getLength() > 0) {
+           if (collapseDelimitersNodeList != null && 
+               collapseDelimitersNodeList.getLength() > 0
+              ) {
              
                String collapseDelimiters = 
-                     collapseDelimitersNL.item(0).getFirstChild().getNodeValue();
+                   collapseDelimitersNodeList.item(0).getFirstChild().getNodeValue();
                
                if (collapseDelimiters.equalsIgnoreCase("yes"))
                {
@@ -868,118 +932,124 @@ public class Eml200Parser
                } 
            }
            
-           //Here is the simple delimited data file
-           NodeList quoteCharacterNL = xpathapi.selectNodeList(entity,
-           "physical/dataFormat/textFormat/simpleDelimited/quoteCharacter");
+           NodeList quoteCharacterNodeList = 
+             xpathapi.selectNodeList(entityNode,
+               "physical/dataFormat/textFormat/simpleDelimited/quoteCharacter");
            
-           if (quoteCharacterNL != null && 
-        		   quoteCharacterNL.getLength() > 0) {
-             
-                quoteCharacter = quoteCharacterNL.item(0).getFirstChild().getNodeValue();
-               
-              
+           if (quoteCharacterNodeList != null && 
+        		   quoteCharacterNodeList.getLength() > 0
+        		  ) {
+                quoteCharacter = 
+                  quoteCharacterNodeList.item(0).getFirstChild().getNodeValue();
            }
            
-//         Here is the simple delimited data file
-           NodeList literalCharacterNL = xpathapi.selectNodeList(entity,
-           "physical/dataFormat/textFormat/simpleDelimited/literalCharacter");
+           NodeList literalCharacterNodeList = 
+             xpathapi.selectNodeList(entityNode,
+             "physical/dataFormat/textFormat/simpleDelimited/literalCharacter");
            
-           if (literalCharacterNL != null && 
-        		   literalCharacterNL.getLength() > 0) {
-             
-                literalCharacter = literalCharacterNL.item(0).getFirstChild().getNodeValue();
-               
-              
+           if (literalCharacterNodeList != null && 
+        		   literalCharacterNodeList.getLength() > 0
+        		  ) {
+                literalCharacter = 
+                  literalCharacterNodeList.item(0).getFirstChild().getNodeValue(); 
            }
            
-           // for complex format data file
-           NodeList complexFormatNL = xpathapi.selectNodeList(entity,
-                                      "physical/dataFormat/textFormat/complex");
+           // For complex format data file
+           NodeList complexNodeList = 
+             xpathapi.selectNodeList(entityNode,
+                                     "physical/dataFormat/textFormat/complex");
            
-           if (complexFormatNL != null && complexFormatNL.getLength() > 0)
-           {
-        	 //log.debug("in handle complex text data format");
+           if (complexNodeList != null && 
+               complexNodeList.getLength() > 0
+              ) {
+        	   //log.debug("in handle complex text data format");
              isSimpleDelimited = false;
-             Node complexFormatNode = complexFormatNL.item(0);
-             NodeList complexFormatChildren = complexFormatNode.getChildNodes();
-             int childrenLength = complexFormatChildren.getLength();
+             Node complexNode = complexNodeList.item(0);
+             NodeList complexChildNodes = complexNode.getChildNodes();
+             int complexChildNodesLength = complexChildNodes.getLength();
              Vector formatVector = new Vector();
              
-             for (int k=0; k<childrenLength; k++)
+             for (int k = 0; k < complexChildNodesLength; k++)
              {
-                 Node node = complexFormatChildren.item(k);
+                 Node complexChildNode = complexChildNodes.item(k);
                  
-                 if (node != null && node.getNodeName().equals("textFixed"))
+                 if (complexChildNode != null && 
+                     complexChildNode.getNodeName().equals("textFixed")
+                    )
                  {
-                     TextWidthFixedDataFormat textFixedFormat = 
-                                            handleTextFixedDataFormatNode(node);
+                     TextWidthFixedDataFormat textWidthFixedDataFormat = 
+                         handleTextFixedDataFormatNode(complexChildNode);
                      
-                     if ( textFixedFormat != null)
+                     if (textWidthFixedDataFormat != null)
                      {
-                        formatVector.add(textFixedFormat);
+                        formatVector.add(textWidthFixedDataFormat);
                         //complexFormatsNumber++;
                      }
                  }
-                 else if (node != null && 
-                          node.getNodeName().equals("textDelimited"))
+                 else if (complexChildNode != null && 
+                          complexChildNode.getNodeName().equals("textDelimited")
+                         )
                  {
-                     TextDelimitedDataFormat delimitedFormat = 
-                                     handleComplexDelimitedDataFormatNode(node);
+                     TextDelimitedDataFormat textDelimitedDataFormat = 
+                         handleComplexDelimitedDataFormatNode(complexChildNode);
                      
-                     if (delimitedFormat != null)
+                     if (textDelimitedDataFormat != null)
                      {
-                         formatVector.add(delimitedFormat);
+                         formatVector.add(textDelimitedDataFormat);
                          //complexFormatsNumber++;
                      }
                  }
-              }
+             }
              
-             //transfer vector to array
-             complexFormatsNumber = formatVector.size();
-             formatArray = new TextComplexDataFormat[complexFormatsNumber];
-             for (int j=0; j< complexFormatsNumber; j++)
+             // Transfer vector to array
+             numberOfComplexFormats = formatVector.size();
+             formatArray = new TextComplexDataFormat[numberOfComplexFormats];
+             for (int j = 0; j < numberOfComplexFormats; j++)
              {
                  formatArray[j] =
-                               (TextComplexDataFormat)formatVector.elementAt(j);  
+                               (TextComplexDataFormat)formatVector.elementAt(j);
              }
            }
            
-           NodeList recDelimiterNL = xpathapi.selectNodeList(entity,
-                              "physical/dataFormat/textFormat/recordDelimiter");
+           NodeList recordDelimiterNodeList = 
+               xpathapi.selectNodeList(entityNode,
+                             "physical/dataFormat/textFormat/recordDelimiter");
            
-           if ((recDelimiterNL != null) && (recDelimiterNL.getLength() > 0)) {
+           if ((recordDelimiterNodeList != null) && 
+               (recordDelimiterNodeList.getLength() > 0)
+              ) {
               recordDelimiter = 
-                          recDelimiterNL.item(0).getFirstChild().getNodeValue();
+                recordDelimiterNodeList.item(0).getFirstChild().getNodeValue();
            } else {
               recordDelimiter = "\\r\\n";
            }
            
-           //get the distribution information
-           NodeList distributionNL = xpathapi.selectNodeList(entity,
-                                            "physical/distribution/online/url");
+           // Get the distribution information
+           NodeList urlNodeList = xpathapi.selectNodeList(entityNode,
+                                           "physical/distribution/online/url");
            
-           if (distributionNL != null && distributionNL.getLength() >0)
+           if (urlNodeList != null && urlNodeList.getLength() >0)
            {
-              physicalFile = 
-                          distributionNL.item(0).getFirstChild().getNodeValue();
+               onlineUrl = urlNodeList.item(0).getFirstChild().getNodeValue();
               
-          	  if(isDebugging) {
-        		//log.debug("The url is "+ physicalFile);
-        	  }
+          	   if(isDebugging) {
+        		       //log.debug("The url is "+ onlineUrl);
+        	     }
            }
 
-           //get the compressionMethod information
-           NodeList compressionNL = xpathapi.selectNodeList(entity,
-                                                  "physical/compressionMethod");
+           // Get the compressionMethod information
+           NodeList compressionMethodNodeList = 
+             xpathapi.selectNodeList(entityNode, "physical/compressionMethod");
            
-           if (compressionNL != null && compressionNL.getLength() >0)
-           {
+           if (compressionMethodNodeList != null && 
+               compressionMethodNodeList.getLength() >0
+              ) {
               compressionMethod = 
-                           compressionNL.item(0).getFirstChild().getNodeValue();
+                compressionMethodNodeList.item(0).getFirstChild().getNodeValue();
               
           	  if (isDebugging) {
-        		//log.debug("Compression method is "+compressionMethod);
-        	  }
+                  //log.debug("Compression method is "+compressionMethod);
+        	    }
               
               if (compressionMethod != null && 
                   compressionMethod.equals(Entity.GZIP))
@@ -993,22 +1063,24 @@ public class Eml200Parser
               }
           }
           
-          // get encoding method info (mainly for tar file)
-          NodeList encodingNL = 
-                     xpathapi.selectNodeList(entity, "physical/encodingMethod");
+          // Get encoding method info (mainly for tar file)
+          NodeList encodingMethodNodeList = 
+              xpathapi.selectNodeList(entityNode, "physical/encodingMethod");
           
-          if(encodingNL != null && encodingNL.getLength() > 0)
-          {
-            encodingMethod = encodingNL.item(0).getFirstChild().getNodeValue();
+          if (encodingMethodNodeList != null && 
+              encodingMethodNodeList.getLength() > 0
+             ) {
+              encodingMethod = 
+                encodingMethodNodeList.item(0).getFirstChild().getNodeValue();
             
-        	if(isDebugging) {
-        		//log.debug("encoding method is "+encodingMethod);
-        	}
+        	    if (isDebugging) {
+        		      //log.debug("encoding method is "+encodingMethod);
+        	    }
             
-            if (encodingMethod != null && encodingMethod.equals(Entity.TAR))
-            {
-               isTarDataFile = true;
-            }
+              if (encodingMethod != null && encodingMethod.equals(Entity.TAR))
+              {
+                  isTarDataFile = true;
+              }
           }
 
           if (entityOrientation.trim().equals("column")) {
@@ -1029,14 +1101,14 @@ public class Eml200Parser
                                     new Boolean(entityCaseSensitive),
                                     entityOrientation, 
                                     new Integer(entityNumberOfRecords).
-                                                                    intValue());
+                                                           intValue());
           
           entityObject.setNumHeaderLines((new Integer(numHeaderLines))
-                                                                   .intValue());
+                                                         .intValue());
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
           
-          // for simple dimited data file
+          // For simple delimited data file
           if (fieldDelimiter != null)
           {
              entityObject.setDelimiter(fieldDelimiter);
@@ -1052,13 +1124,9 @@ public class Eml200Parser
         	  entityObject.setLiteralCharacter(literalCharacter);
           }
           
-          entityObject.setCollapseDelimiters(isCollapseDelimiters);
-            
-          //System.out.println("in eml200 parser, the recordDelimiter is "+
-          //                   recordDelimiter);
-          
+          entityObject.setCollapseDelimiters(isCollapseDelimiters);         
           entityObject.setRecordDelimiter(recordDelimiter);
-          entityObject.setURL(physicalFile);
+          entityObject.setURL(onlineUrl);
           entityObject.setCompressionMethod(compressionMethod);
           entityObject.setIsImageEntity(isImageEntity);
           entityObject.setHasGZipDataFile(isGZipDataFile);
@@ -1067,17 +1135,18 @@ public class Eml200Parser
           entityObject.setPackageId(packageId);
             
           try {
-              NodeList attNL = xpathapi.selectNodeList(entity, "attributeList");
-              processAttributeList(xpathapi, attNL, entityObject);
+              NodeList attributeListNodeList = 
+                  xpathapi.selectNodeList(entityNode, "attributeList");
+              processAttributeList(xpathapi, attributeListNodeList, entityObject);
               entityObject.setDataFormatArray(formatArray);  
           } catch (Exception e) {
-                throw new Exception("Error parsing attributes: "
-                                + e.getMessage());
+                throw new Exception("Error parsing attributes: " + 
+                                    e.getMessage());
           }
           
           //entityHash.put(Integer.toString(elementId), entityObject);
           emlDataPackage.add(entityObject);
-          //fileHash.put(elementId, physicalFile); 
+          //fileHash.put(elementId, onlineUrl); 
         } // end for loop
         
     }
@@ -1092,149 +1161,151 @@ public class Eml200Parser
     private TextWidthFixedDataFormat handleTextFixedDataFormatNode(Node node) 
             throws Exception
     {
-       TextWidthFixedDataFormat format = null;
+       TextWidthFixedDataFormat textWidthFixedDataFormat = null;
        
        if (node == null)
        {
-           return format;
+           return textWidthFixedDataFormat;
        }
        
-       NodeList children = node.getChildNodes();
-       int length = children.getLength();
+       NodeList childNodes = node.getChildNodes();
+       int length = childNodes.getLength();
        
-       for (int i = 0; i<length; i++)
+       for (int i = 0; i < length; i++)
        {
-           Node kid = children.item(i);
-           String elementName = kid.getNodeName();
+           Node childNode = childNodes.item(i);
+           String elementName = childNode.getNodeName();
            
            if (elementName != null && elementName.equals("fieldWidth"))
            {
-              String fieldWidthStr = kid.getFirstChild().getNodeValue();
-              
+              String fieldWidthStr = childNode.getFirstChild().getNodeValue();          
               int fieldWidth = (new Integer(fieldWidthStr)).intValue();
               
-          	  if(isDebugging) {
-        		//log.debug("The filed width for fix width in eml is "
+          	  if (isDebugging) {
+        		    //log.debug("The filed width for fix width in eml is "
                 //          + fieldWidth);
-        	  }
+        	    }
               
-              format = new TextWidthFixedDataFormat(fieldWidth);
+              textWidthFixedDataFormat = new TextWidthFixedDataFormat(fieldWidth);
            }
            else if (elementName != null && 
                     elementName.equals("fieldStartColumn") && 
-                    format != null)
+                    textWidthFixedDataFormat != null)
            {
-               String startColumnStr = kid.getFirstChild().getNodeValue();
+               String startColumnStr = childNode.getFirstChild().getNodeValue();
                int startColumn  = (new Integer(startColumnStr)).intValue();
                
-           	   if(isDebugging) {
-        		//log.debug("The start cloumn is "+startColumn);
-        	   }
+           	   if (isDebugging) {
+        		     //log.debug("The start column is " + startColumn);
+        	     }
                
-               format.setFieldStartColumn(startColumn);
+               textWidthFixedDataFormat.setFieldStartColumn(startColumn);
            }
            else if (elementName != null && 
                     elementName.equals("lineNumber") && 
-                    format != null)
+                    textWidthFixedDataFormat != null)
            {
-               String lineNumberStr = kid.getFirstChild().getNodeValue();
+               String lineNumberStr = childNode.getFirstChild().getNodeValue();
                int lineNumber  = (new Integer(lineNumberStr)).intValue();
                
-           	   if(isDebugging) {
-        		//log.debug("The start cloumn is "+lineNumber);
-        	   }
+           	   if (isDebugging) {
+        		     //log.debug("The start column is " + lineNumber);
+        	     }
                
-               format.setLineNumber(lineNumber);
+               textWidthFixedDataFormat.setLineNumber(lineNumber);
            }
        }
        
-       return format;
+       return textWidthFixedDataFormat;
     }
     
     
     /*
-     * This method will digest a delimited data format node and return
-     * a DelimitedFixedFormat object.
+     * This method will digest a complex delimited data format node 
+     * and return a TextDelimitedDataFormat object.
      */
     private TextDelimitedDataFormat handleComplexDelimitedDataFormatNode(
-                                                                      Node node) 
+                                                                      Node node)
             throws Exception
     {
-       TextDelimitedDataFormat format = null;
+       TextDelimitedDataFormat textDelimitedDataFormat = null;
        
        if (node == null)
        {
-           return format;
+           return textDelimitedDataFormat;
        }
        
-       NodeList children = node.getChildNodes();
-       int length = children.getLength();
+       NodeList childNodes = node.getChildNodes();
+       int length = childNodes.getLength();
        Vector quoteList = new Vector();
        
-       for (int i = 0; i<length; i++)
+       for (int i = 0; i < length; i++)
        {
-           Node kid = children.item(i);
-           String elementName = kid.getNodeName();
+           Node childNode = childNodes.item(i);
+           String elementName = childNode.getNodeName();
            
            if (elementName != null && elementName.equals("fieldDelimiter"))
            {
-              String fieldDelimiter = kid.getFirstChild().getNodeValue();
+              String fieldDelimiter = childNode.getFirstChild().getNodeValue();
               
-          	  if(isDebugging) {
-        		//log.debug("The filed delimiter for complex format in eml is "+
+          	  if (isDebugging) {
+        		    //log.debug("The field delimiter for complex format in eml is " +
                 //          fieldDelimiter);
-        	  }
+        	    }
               
-              format = new TextDelimitedDataFormat(fieldDelimiter);
+              textDelimitedDataFormat = new TextDelimitedDataFormat(fieldDelimiter);
            }
            else if (elementName != null && 
                     elementName.equals("lineNumber") && 
-                    format != null)
+                    textDelimitedDataFormat != null)
            {
-               String lineNumberStr = kid.getFirstChild().getNodeValue();
+               String lineNumberStr = childNode.getFirstChild().getNodeValue();
                int lineNumber = (new Integer(lineNumberStr)).intValue();
                
-           	   if(isDebugging) {
-        		//log.debug("The line number is "+lineNumber);
-        	   }
+           	   if (isDebugging) {
+        		     //log.debug("The line number is " + lineNumber);
+        	     }
                
-               format.setLineNumber(lineNumber);
+               textDelimitedDataFormat.setLineNumber(lineNumber);
            }
            else if (elementName != null && 
                     elementName.equals("collapseDelimiters") && 
-                    format != null)
+                    textDelimitedDataFormat != null)
            {
-               String collapse = kid.getFirstChild().getNodeValue();
+               String collapseDelimiters = 
+                   childNode.getFirstChild().getNodeValue();
                
-           	   if(isDebugging) {
-        		//log.debug("The collapse delimiter "+collapse);
-        	   }
+           	   if (isDebugging) {
+        		     //log.debug("The collapse delimiter: " + collapse);
+        	     }
                
-               format.setCollapseDelimiters(collapse);
+               textDelimitedDataFormat.
+                   setCollapseDelimiters(collapseDelimiters);
            }
            else if (elementName != null && 
                     elementName.equals("quoteCharacter") && 
-                    format != null)
+                    textDelimitedDataFormat != null)
            {
-               String quote = kid.getFirstChild().getNodeValue();
-               quoteList.add(quote); 
+               String quoteCharacter = 
+                   childNode.getFirstChild().getNodeValue();
+               quoteList.add(quoteCharacter); 
            }
        } // end for loop
        
        // set up quoteList
-       if (format != null)
+       if (textDelimitedDataFormat != null)
        {
            int size = quoteList.size();
-           String[] quoteArray = new String[size];
+           String[] quoteCharacterArray = new String[size];
            
-           for (int i=0; i<size; i++)
+           for (int i = 0; i < size; i++)
            {
-               quoteArray[i] = (String)quoteList.elementAt(i);
+               quoteCharacterArray[i] = (String)quoteList.elementAt(i);
            }
            
-           format.setQuoteCharater(quoteArray);
+           textDelimitedDataFormat.setQuoteCharacterArray(quoteCharacterArray);
        }
        
-       return format;
+       return textDelimitedDataFormat;
     }
 }
