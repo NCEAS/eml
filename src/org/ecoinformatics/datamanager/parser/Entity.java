@@ -295,7 +295,7 @@ public class Entity extends DataObjectDescription
     /**
      * Sets the quote character in the entity.
      * 
-     * @param quoteCharater  the value of quote character to be set
+     * @param quoteCharacter  the value of quote character to be set
      */
     public void setQuoteCharacter(String quoteCharacter)
     {
@@ -318,7 +318,7 @@ public class Entity extends DataObjectDescription
     /**
      * Sets the literal character in the entity.
      * 
-     * @param literalCharater  the value of literal character to be set
+     * @param literalCharacter  the value of literal character to be set
      */
     public void setLiteralCharacter(String literalCharacter)
     {

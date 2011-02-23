@@ -42,7 +42,7 @@ public class TextDelimitedDataFormatTest extends TestCase
      TestSuite suite = new TestSuite();
      suite.addTest(new TextDelimitedDataFormatTest("testLineNumberGetterAndSetter"));
      suite.addTest(new TextDelimitedDataFormatTest("testCollapseDelimitersGetterAndSetter"));
-     suite.addTest(new TextDelimitedDataFormatTest("testQuoteCharaterGetterAndSetter"));
+     suite.addTest(new TextDelimitedDataFormatTest("testQuoteCharacterArrayGetterAndSetter"));
      suite.addTest(new TextDelimitedDataFormatTest("testFieldDelimiterGetterAndSetter"));
      return suite;
    }
@@ -101,7 +101,7 @@ public class TextDelimitedDataFormatTest extends TestCase
   /**
    * Test getter and setter methods for the quoteCharacter field.
    */
-  public void testQuoteCharaterGetterAndSetter()
+  public void testQuoteCharacterArrayGetterAndSetter()
   {
 	  String quote1 = "'";
 	  String quote2 = "\"";
