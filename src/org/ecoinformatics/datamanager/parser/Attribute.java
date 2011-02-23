@@ -32,6 +32,7 @@
 
 package org.ecoinformatics.datamanager.parser;
 
+import java.util.ArrayList;
 import java.util.Vector;
 import org.ecoinformatics.datamanager.parser.Domain;
 
@@ -67,6 +68,8 @@ public class Attribute extends DataObjectDescription
   //private String precision;
   private Domain domain;
   private Vector missingValueCode = new Vector();
+  private ArrayList<StorageType> storageTypeArray = 
+          new ArrayList<StorageType>();
 
   
   /*
@@ -316,6 +319,28 @@ public class Attribute extends DataObjectDescription
    */
   public void setDBFieldName(String name) {
     dbFieldName = name;
+  }
+
+  
+  /**
+   * Adds a StorageType object to the StorageType array list.
+   * 
+   * @param  storageType, the object to be added to the array list
+   */
+  public void addStorageType(StorageType storageType) {
+    if (storageType != null) {
+      this.storageTypeArray.add(storageType);
+    }
+  }
+  
+
+  /**
+   * Gets the value of the storageTypeArray instance variable.
+   * 
+   * @return  storageTypeArray, an ArrayList<StorageType>
+   */
+  public ArrayList<StorageType> getStorageTypeArray() {
+    return this.storageTypeArray;
   }
 
 }

@@ -33,6 +33,7 @@
 package org.ecoinformatics.datamanager.parser.eml;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -53,6 +54,7 @@ import org.ecoinformatics.datamanager.parser.NumericDomain;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.parser.StorageType;
 import org.ecoinformatics.datamanager.parser.TextComplexDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDelimitedDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDomain;
@@ -90,6 +92,7 @@ public class Eml200Parser
     // private static Log log;
     private static boolean isDebugging;
     private static final String ID = "id";
+    private static final String TYPE_SYSTEM = "typeSystem";
  
     /*static {
       log = LogFactory.getLog( 
@@ -435,13 +438,15 @@ public class Eml200Parser
             String attDefinition = "";
             String attUnit = "";
             String attUnitType = "";
-            //String attStorageType = "";
             String attMeasurementScale = "";
             String attPrecision = "";
             Domain domain = null;
-            Vector missingValueCodeVector = new Vector();
             String id = null;
+            Vector missingValueCodeVector = new Vector();
             double numberPrecision = 0;
+            ArrayList<StorageType> storageTypeArray = 
+                new ArrayList<StorageType>();
+            
             // get attribute id
             NamedNodeMap attributeNodeAttributesMap = 
                 attributeNode.getAttributes();
@@ -461,14 +466,48 @@ public class Eml200Parser
             for (int j = 0; j < attributeNodeChildren.getLength(); j++) {
                 Node childNode = attributeNodeChildren.item(j);
                 String childNodeName = childNode.getNodeName();
+                
                 if (childNodeName.equals("attributeName")) {
                     attName = childNode.getFirstChild().getNodeValue()
                                    .trim().replace('.', '_');
-                } else if (childNodeName.equals("attributeLabel")) {
+                } 
+                else if (childNodeName.equals("attributeLabel")) {
                     attLabel = childNode.getFirstChild().getNodeValue().trim();
-                } else if (childNodeName.equals("attributeDefinition")) {
+                } 
+                else if (childNodeName.equals("attributeDefinition")) {
                     attDefinition = childNode.getFirstChild().getNodeValue().trim();
-                } else if (childNodeName.equals("measurementScale")) {
+                }
+                // Process storageType elements
+                else if (childNodeName.equals("storageType")) {
+                  String storageTypeTextValue = 
+                      childNode.getFirstChild().getNodeValue().trim();
+                  NamedNodeMap storageTypeAttributesMap = childNode.getAttributes();
+                  StorageType storageType;
+                  String typeSystem = "";
+                  Node typeSystemNode = null;
+                  
+                  // Determine whether the typeSystem attribute was specified
+                  if (storageTypeAttributesMap != null) {
+                      typeSystemNode =  
+                          storageTypeAttributesMap.getNamedItem(TYPE_SYSTEM);
+                        
+                      if (typeSystemNode != null) {
+                          typeSystem = typeSystemNode.getNodeValue();
+                      }
+                  }
+                                
+                  // Use the appropriate StorageType constructor depending on 
+                  // whether the 'typeSystem' attribute was specified
+                  if (!typeSystem.equals("")) {
+                      storageType = new StorageType(storageTypeTextValue, typeSystem);
+                  }
+                  else {
+                      storageType = new StorageType(storageTypeTextValue);
+                  }            
+                  
+                  storageTypeArray.add(storageType);
+                }
+                else if (childNodeName.equals("measurementScale")) {
                     //unit is tricky because it can be custom or standard
                     //Vector info = new Vector();
                     //int domainType = Domain.DOM_NONE;
@@ -752,6 +791,12 @@ public class Eml200Parser
               new Attribute(id, attName, attLabel,
                             attDefinition, attUnit, attUnitType,
                             attMeasurementScale, domain);
+            
+            // Add storageType elements to the Attribute object 
+            // if any were parsed in the EML
+            for (StorageType storageType : storageTypeArray) {
+                attObj.addStorageType(storageType);
+            }
             
             // Add missing value code into attribute
             for (int k = 0; k < missingValueCodeVector.size(); k++)
