@@ -31,32 +31,22 @@
  */
 package org.ecoinformatics.datamanager.download.document;
 
-import java.io.IOException;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Vector;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.axis.AxisFault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
 import org.ecoinformatics.datamanager.database.DatabaseHandler;
 import org.ecoinformatics.datamanager.database.SimpleDatabaseLoader;
 import org.ecoinformatics.datamanager.database.VectorReader;
-import org.ecoinformatics.datamanager.download.AuthenticatedEcogridEndPointInterface;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.document.DocumentDataPackage;
 import org.ecoinformatics.datamanager.parser.document.DocumentDataPackageParser;
-import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
-import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
+import org.ecoinformatics.datamanager.util.DocumentDownloadUtil;
 
 public class DocumentDataPackageHandler {
 
@@ -72,21 +62,8 @@ public class DocumentDataPackageHandler {
 	
 	private DocumentDataPackageParser ddpp = null;
 	
-	private PipedInputStream inputStream = null;
-	private PipedOutputStream outputStream = null;
 	
 	public DocumentDataPackageHandler(DatabaseConnectionPoolInterface pool) {
-		
-		//initialize the streams for reading the document from server
-		outputStream = new PipedOutputStream();
-	    inputStream = new PipedInputStream();
-	    
-	    try {
-			outputStream.connect(inputStream);
-		} catch (IOException e1) {
-			log.error("could not connect piped streams! " + e1.getMessage());
-			e1.printStackTrace();
-		}
 	    
 		//initialize the database classes
 		try {
@@ -101,53 +78,9 @@ public class DocumentDataPackageHandler {
 
 	private void downloadDocument() throws Exception {
 		
-		log.debug("starting the download");
-				
-		final String id = docId;
-		final EcogridEndPointInterface endpoint = ecogridEndPointInterface;
-		
-		ExecutorService service = Executors.newSingleThreadExecutor();
-		service.execute(
-			new Runnable() {
-				public void run() {
-					long startTime = System.currentTimeMillis();
-
-					try {
-						if (ecogridEndPointInterface instanceof AuthenticatedEcogridEndPointInterface) {
-							AuthenticatedQueryServiceGetToStreamClient authenticatedEcogridClient = 
-								new AuthenticatedQueryServiceGetToStreamClient(
-				            		new URL(
-				            				((AuthenticatedEcogridEndPointInterface)endpoint).getMetacatAuthenticatedEcogridEndPoint()));
-							authenticatedEcogridClient.get(
-									id,
-									((AuthenticatedEcogridEndPointInterface)endpoint).getSessionId(),
-									outputStream);
-						}
-						else {
-							QueryServiceGetToStreamClient ecogridClient = 
-								new QueryServiceGetToStreamClient(
-				            		new URL(
-				            				endpoint.getMetacatEcogridEndPoint()));
-							ecogridClient.get(id, outputStream);
-						}
-						outputStream.close();
-						
-						long endTime = System.currentTimeMillis();
-						log.debug((endTime - startTime) + " ms to download document data");
-						
-						log.debug("Done downloading id=" + id);
-						
-					} catch (Exception e) {
-						log.error("Error getting document from ecogrid: " + e.getMessage());
-						e.printStackTrace();
-					}
-					
-				}
-			});
-		
-		//wait for the download to complete
-		service.shutdown();
-		service.awaitTermination(0, TimeUnit.SECONDS);
+		// download the document
+		DocumentDownloadUtil ddu = new DocumentDownloadUtil();
+		InputStream inputStream = ddu.downloadDocument(docId, ecogridEndPointInterface);
 			
 		log.debug("done with the download");
 
