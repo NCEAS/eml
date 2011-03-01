@@ -71,6 +71,11 @@ public class Attribute extends DataObjectDescription
   private ArrayList<StorageType> storageTypeArray = 
           new ArrayList<StorageType>();
 
+  // This is an auxiliary variable to store an attribute's 
+  // most appropriate attribute type, as determined by the
+  // database adapter logic.
+  private String attributeType;
+  
   
   /*
    * Constructors
@@ -156,6 +161,16 @@ public class Attribute extends DataObjectDescription
   /*
    * Instance methods
    */
+  
+  /**
+   * Accesses the attributeType instance variable.
+   * 
+   * @return  the value of the attributeType, a String
+   */
+  public String getAttributeType() {
+    return this.attributeType;
+  }
+  
   
   /**
    * Gets the unit for this attribute
@@ -311,6 +326,16 @@ public class Attribute extends DataObjectDescription
     return dbFieldName;
   }
 
+  
+  /**
+   * Sets the attributeType instance variable.
+   * 
+   * @parameter  the attributeType value to set
+   */
+  public void setAttributeType(String attributeType) {
+    this.attributeType = attributeType;
+  }
+  
   
   /**
    * Sets the value of the dbFieldName field.

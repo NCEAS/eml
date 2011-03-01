@@ -96,16 +96,30 @@ public class OracleAdapter extends DatabaseAdapter {
 	}
 	
 
-  
-    /**
-     * Gets attribute type for a given attribute. Attribute types include
-     * text, numeric and et al.
-     * 
-     * @param   attribute  the Attribute whose type we are getting
-     * @return  the attribute type, a String
-     */
+  /**
+   * Gets attribute type for a given attribute. Attribute types include:
+   *   "datetime" (for Postgres or HSQL, but not Oracle?)
+   *   "string"
+   * or, for numeric attributes, one of the allowed EML NumberType values:
+   *   "natural"
+   *   "whole"
+   *   "integer"
+   *   "real"
+   * 
+   * @param  attribute   The Attribute object whose type is being determined.
+   * @return a string value representing the attribute type
+   */
 	 protected String getAttributeType(Attribute attribute) {
-		    String attributeType = "string";
+	    String attributeType = null;
+	    
+	    // Check whether attributeType has already been stored for this attribute
+	    attributeType = attribute.getAttributeType();
+	    if (attributeType != null) {
+	      // If the attribute already knows its attributeType, return it now
+	      return attributeType;
+	    }
+	    
+	    attributeType = "string";
 		    Domain domain = attribute.getDomain();
 		    String className = domain.getClass().getName();
 		    
@@ -119,6 +133,12 @@ public class OracleAdapter extends DatabaseAdapter {
 		      attributeType = numericDomain.getNumberType();
 		    }
 		    
+		    // Store the attributeType in the attribute so that it doesn't
+		    // need to be recalculated with every row of data.
+		    if (attribute != null) {
+		      attribute.setAttributeType(attributeType);
+		    }
+		    
 		    return attributeType;
      }
 		
@@ -128,7 +148,7 @@ public class OracleAdapter extends DatabaseAdapter {
 	  */
 	  protected String mapDataType(String attributeType) {
 	    String dbDataType;
-	    Map map = new HashMap();
+	    Map<String, String> map = new HashMap<String, String>();
 	    
 	    map.put("string", "TEXT");
 	    map.put("integer", "INTEGER");
@@ -136,7 +156,7 @@ public class OracleAdapter extends DatabaseAdapter {
 	    map.put("whole", "INTEGER");
 	    map.put("natural", "INTEGER");
 	    
-	    dbDataType = (String) map.get(attributeType);
+	    dbDataType = map.get(attributeType);
 	    
 	    return dbDataType;
 	  }

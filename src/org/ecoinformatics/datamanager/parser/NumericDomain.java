@@ -58,8 +58,8 @@ public class NumericDomain implements Domain
     * Constructor of numeric domain
     * 
     * @param numberType  the number type of the numeric domain. In EML, a 
-    *                    measurement’s numberType should be defined as real, 
-    *                    natural, whole or integer.
+    *                    measurement’s numberType should be defined as "real", 
+    *                    "natural", "whole" or "integer".
     * @param minimum     lower bound for values this numeric domain
     * @param maximum     upper bound for values in this numeric domain
     */

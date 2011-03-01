@@ -32,6 +32,7 @@
 package org.ecoinformatics.datamanager.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Map;
@@ -43,6 +44,7 @@ import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
 import org.ecoinformatics.datamanager.parser.NumericDomain;
+import org.ecoinformatics.datamanager.parser.StorageType;
 
 /**
  * This class provide a bridge between DatabaseHandler and a specific db.
@@ -70,6 +72,7 @@ public abstract class DatabaseAdapter {
 	public static final String      SINGLEQUOTE = "'";
 	public static final String           VALUES = "VALUES";
 	public static final String           NULL = "null";
+
   
   
   /*
@@ -77,6 +80,8 @@ public abstract class DatabaseAdapter {
    */
 	//subclasses can override this rather than reimplementing entire methods
 	protected String TO_DATE_FUNCTION = "to_timestamp";
+	private final String XML_SCHEMA_DATATYPES = 
+	    "http://www.w3.org/2001/XMLSchema-datatypes";
   
   
   /*
@@ -129,7 +134,7 @@ public abstract class DatabaseAdapter {
    */
   public void assignDbFieldNames(AttributeList attributeList) {
     Attribute[] list = attributeList.getAttributes();
-    TreeMap usedNames = new TreeMap();
+    TreeMap<String, String> usedNames = new TreeMap<String, String>();
     
     int size = list.length;
 
@@ -137,12 +142,12 @@ public abstract class DatabaseAdapter {
       Attribute attribute = list[i];
       String attributeName = attribute.getName();
       String legalDbFieldName = getLegalDbFieldName(attributeName);
-      String foundName = (String) usedNames.get(legalDbFieldName);
+      String foundName = usedNames.get(legalDbFieldName);
       
       while (foundName != null) {
         String mangledName = mangleFieldName(legalDbFieldName);
         legalDbFieldName = mangledName;
-        foundName = (String) usedNames.get(legalDbFieldName);
+        foundName = usedNames.get(legalDbFieldName);
       }
       
       usedNames.put(legalDbFieldName, legalDbFieldName);
@@ -193,13 +198,14 @@ public abstract class DatabaseAdapter {
    */
   public String generateInsertSQL(AttributeList attributeList,
                                   String tableName, 
-                                  Vector oneRowData) throws DataNotMatchingMetadataException, SQLException{
+                                  Vector oneRowData) 
+          throws DataNotMatchingMetadataException, SQLException{
     String sqlString = null;
     int NULLValueCounter = 0;
     int hasValueCounter = 0;
     
     if (attributeList == null) {
-      //log.debug("There is no attribute defination in entity");
+      //log.debug("There is no attribute definition in entity");
       throw new SQLException("The attribute list is null and couldn't generate insert sql statement");
     }
 
@@ -238,13 +244,13 @@ public abstract class DatabaseAdapter {
       if (obj == null) {
         NULLValueCounter++;
         continue;
-      } else {
+      } 
+      else {
         value = (String) obj;
         if (value.trim().equals(""))
         {
         	continue;
-        }
-       
+        }   
       }
       
       Attribute attribute = list[i];
@@ -261,6 +267,7 @@ public abstract class DatabaseAdapter {
           continue;
       }
       String name = attribute.getDBFieldName();
+      String attributeType = getAttributeType(attribute);
       
       if (!firstAttribute) {
         sqlAttributePart.append(COMMA);
@@ -271,11 +278,11 @@ public abstract class DatabaseAdapter {
       Domain domain = attribute.getDomain();
       //System.out.println("the value in element is "+value);
       
-      /* If DateTimeDomain we assign it text type and use to_timestamp to convert
-       * and wrap single quotes around the value.
-       * But only if we have a format string!
+      /* If attributeType is "datetime", convert to a timestamp
+       * and wrap single quotes around the value. But only if we
+       * have a format string!
        */
-      if (domain instanceof DateTimeDomain) {
+      if (attributeType.equals("datetime")) {
       	String formatString = ((DateTimeDomain)domain).getFormatString();
         //System.out.println("in DateTimeDomain " + value);
     	value = escapeSpecialCharacterInData(value);
@@ -299,7 +306,7 @@ public abstract class DatabaseAdapter {
       /* If domain is null or it is not NumericDomain we assign it text type
        * and wrap single quotes around the value.
        */
-      else if (domain == null || !(domain instanceof NumericDomain)) {
+      else if (attributeType.equals("string")) {
         //System.out.println("in non NumericDomain " + value);
     	value = escapeSpecialCharacterInData(value);
         sqlDataPart.append(SINGLEQUOTE);
@@ -312,7 +319,6 @@ public abstract class DatabaseAdapter {
        */
       else {
     	
-        String attributeType = getAttributeType(attribute);
         String dataType = mapDataType(attributeType);
 
         try {
@@ -369,20 +375,95 @@ public abstract class DatabaseAdapter {
     return sqlString;
   }
   
-  
-  
-  
-  
+
   /**
-   * Gets attribute type for a given attribute. Attribute types include
-   * text, numeric and et al.
+   * Gets attribute type for a given attribute. Attribute types include:
+   *   "datetime"
+   *   "string"
+   * or, for numeric attributes, one of the allowed EML NumberType values:
+   *   "natural"
+   *   "whole"
+   *   "integer"
+   *   "real"
    * 
-   * @param  attribute  the Attribute object
-   * @return a String holding the attribute type
+   * @param  attribute   The Attribute object whose type is being determined.
+   * @return a string value representing the attribute type
    */
   protected abstract String getAttributeType(Attribute attribute);
 
 
+  /**
+   * If the metadata provides one or more storageType elements, use
+   * them to determine the attribute type. Since storageType elements
+   * are hints that the metadata provider uses to suggest the appropriate
+   * data type for an attribute, they are more likely to be an accurate
+   * reflection of the data type than relying just on the domain type.
+   * 
+   * (See http://bugzilla.ecoinformatics.org/show_bug.cgi?id=5308 for
+   * additional info.)
+   * 
+   * @param attribute
+   * @param className
+   * @return
+   */
+  protected String getAttributeTypeFromStorageType(Attribute attribute,
+                                                   String className) {
+    String attributeType = null;
+    
+    if (attribute != null) {
+      ArrayList<StorageType> storageTypes = attribute.getStorageTypeArray();
+      for (StorageType storageType : storageTypes) {
+        if (storageType != null) {
+          String textValue = storageType.getTextValue();
+          if ((textValue != null) && (!textValue.equals(""))) {
+            String typeSystem = storageType.getTypeSystem();
+            if ((typeSystem != null) && (!typeSystem.equals(""))) {
+              if (typeSystem.equals(XML_SCHEMA_DATATYPES))
+              {
+                // If one of the storageType element's uses XMLSchema-datatypes,
+                // for its typeSystem, use this to determine the attributeType
+                if (textValue.equalsIgnoreCase("string")) {
+                  attributeType = "string";
+                }
+                else if (textValue.equalsIgnoreCase("int") || 
+                         textValue.equalsIgnoreCase("long") ||
+                         textValue.equalsIgnoreCase("short") ||
+                         textValue.equalsIgnoreCase("integer")
+                         ) {
+                  attributeType = "integer";
+                }
+                else if (textValue.equalsIgnoreCase("float") || 
+                         textValue.equalsIgnoreCase("double")) {
+                  attributeType = "real";
+                }
+                else if (textValue.equalsIgnoreCase("date") || 
+                         textValue.equalsIgnoreCase("dateTime")) {
+                  attributeType = "dateTime";
+                }
+                else {
+                  attributeType = "string";
+                }
+                return attributeType;
+              }
+              else if (textValue.equalsIgnoreCase("integer") ||
+                       textValue.equalsIgnoreCase("datetime") ||
+                       textValue.equalsIgnoreCase("natural") ||
+                       textValue.equalsIgnoreCase("string") ||
+                       textValue.equalsIgnoreCase("real") ||
+                       textValue.equalsIgnoreCase("whole")
+                      ) {
+                attributeType = textValue.toLowerCase();
+              }
+            }
+          }
+        }
+      }
+    } 
+    
+    return attributeType;
+  }
+  
+  
   /**
    * Gets the sql command to count the rows in a given table.
    * 

@@ -148,29 +148,62 @@ public class HSQLAdapter extends DatabaseAdapter {
   }
   
   
-	  /*
-	   * Gets attribute type for a given attribute. Attribute types include
-	   * text, numeric and et al.
-	   * 
-	   */	
-	  protected String getAttributeType(Attribute attribute) {
-		    String attributeType = "string";
-		    Domain domain = attribute.getDomain();
-		    
-		    if (domain instanceof DateTimeDomain) {
-		    	attributeType = "datetime";
-		    }
-		    else if (domain instanceof EnumeratedDomain ||
-		    		domain instanceof TextDomain) {
-			      attributeType = "string";
-			}
-		    else if (domain instanceof NumericDomain) {
-		      NumericDomain numericDomain = (NumericDomain) domain;
-		      attributeType = numericDomain.getNumberType();
-		    }
-		    
-		    return attributeType;
-		  }
+  /**
+   * Gets attribute type for a given attribute. Attribute types include:
+   *   "datetime"
+   *   "string"
+   * or, for numeric attributes, one of the allowed EML NumberType values:
+   *   "natural"
+   *   "whole"
+   *   "integer"
+   *   "real"
+   * 
+   * @param  attribute   The Attribute object whose type is being determined.
+   * @return a string value representing the attribute type
+   */
+  protected String getAttributeType(Attribute attribute) {
+    String attributeType = null;
+    
+    // Check whether attributeType has already been stored for this attribute
+    attributeType = attribute.getAttributeType();
+    if (attributeType != null) {
+      // If the attribute already knows its attributeType, return it now
+      return attributeType;
+    }
+    
+    String className = this.getClass().getName();
+    attributeType = getAttributeTypeFromStorageType(attribute, className);
+    if (attributeType != null) {
+      // If the attributeType can be derived from the storageType(s),
+      // store it in the attribute object and return it now
+      attribute.setAttributeType(attributeType);
+      return attributeType;
+    }
+    
+    // Derive the attributeType from the domain type
+    attributeType = "string";
+    Domain domain = attribute.getDomain();
+
+    if (domain instanceof DateTimeDomain) {
+      attributeType = "datetime";
+    }
+    else if (domain instanceof EnumeratedDomain
+            || domain instanceof TextDomain) {
+          attributeType = "string";
+        } 
+    else if (domain instanceof NumericDomain) {
+      NumericDomain numericDomain = (NumericDomain) domain;
+      attributeType = numericDomain.getNumberType();
+    }
+
+    // Store the attributeType in the attribute so that it doesn't
+    // need to be recalculated with every row of data.
+    if (attribute != null) {
+      attribute.setAttributeType(attributeType);
+    }
+    
+    return attributeType;
+  }
 		  
 	   
 	  /*
@@ -178,7 +211,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	   */
 	  protected String mapDataType(String attributeType) {
 	    String dbDataType;
-	    Map map = new HashMap();
+	    Map<String, String> map = new HashMap<String, String>();
 	    
 	    map.put("string", "LONGVARCHAR");
 	    map.put("integer", "INTEGER");
@@ -187,7 +220,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	    map.put("natural", "INTEGER");
 	    map.put("datetime", "TIMESTAMP");
 	    
-	    dbDataType = (String) map.get(attributeType);
+	    dbDataType = map.get(attributeType);
 	    
 	    return dbDataType;
 	  }
