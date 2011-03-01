@@ -221,9 +221,9 @@ public class DataManagerTest extends TestCase {
           assertEquals("Incorrect number of columns found", 
                        fieldNames.length, NUMBER_OF_COLUMNS);
           assertEquals("First field name does not equal expected value",
-                       fieldNames[0], COLUMN_1);
+                       fieldNames[0].toLowerCase(), COLUMN_1);
           assertEquals("Second field name does not equal expected value",
-                       fieldNames[1], COLUMN_2);
+                       fieldNames[1].toLowerCase(), COLUMN_2);
           
           // Test alternative signature of DataManager.getDBTableName(entity).
           // First, when entity.getDBTableName() is non-null, the method should
