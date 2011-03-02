@@ -156,7 +156,7 @@ public class OracleAdapter extends DatabaseAdapter {
 	    map.put("whole", "INTEGER");
 	    map.put("natural", "INTEGER");
 	    
-	    dbDataType = map.get(attributeType);
+	    dbDataType = map.get(attributeType.toLowerCase());
 	    
 	    return dbDataType;
 	  }

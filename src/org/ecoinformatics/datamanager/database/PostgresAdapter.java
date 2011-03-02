@@ -223,7 +223,7 @@ public class PostgresAdapter extends DatabaseAdapter {
     map.put("natural", "INTEGER");
     map.put("datetime", "TIMESTAMP");
 
-    dbDataType = map.get(attributeType);
+    dbDataType = map.get(attributeType.toLowerCase());
 
     return dbDataType;
   }

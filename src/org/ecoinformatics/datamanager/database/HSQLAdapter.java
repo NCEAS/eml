@@ -87,7 +87,13 @@ public class HSQLAdapter extends DatabaseAdapter {
 		
 		Timestamp timestamp = null;
 		SimpleDateFormat sdf = new SimpleDateFormat(formatString);
-		Date temp = sdf.parse(value);
+		Date temp = null;
+		try {
+			temp = sdf.parse(value);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			throw e;
+		}
 		timestamp = new Timestamp(temp.getTime());
 		
 		return timestamp;
@@ -222,7 +228,7 @@ public class HSQLAdapter extends DatabaseAdapter {
 	    map.put("natural", "INTEGER");
 	    map.put("datetime", "TIMESTAMP");
 	    
-	    dbDataType = map.get(attributeType);
+	    dbDataType = map.get(attributeType.toLowerCase());
 	    
 	    return dbDataType;
 	  }

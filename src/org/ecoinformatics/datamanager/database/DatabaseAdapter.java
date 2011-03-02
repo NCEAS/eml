@@ -282,7 +282,7 @@ public abstract class DatabaseAdapter {
        * and wrap single quotes around the value. But only if we
        * have a format string!
        */
-      if (attributeType.equals("datetime")) {
+      if (attributeType.equalsIgnoreCase("datetime")) {
       	String formatString = ((DateTimeDomain)domain).getFormatString();
         //System.out.println("in DateTimeDomain " + value);
     	value = escapeSpecialCharacterInData(value);
@@ -437,8 +437,8 @@ public abstract class DatabaseAdapter {
                   attributeType = "real";
                 }
                 else if (textValue.equalsIgnoreCase("date") || 
-                         textValue.equalsIgnoreCase("dateTime")) {
-                  attributeType = "dateTime";
+                         textValue.equalsIgnoreCase("datetime")) {
+                  attributeType = "datetime";
                 }
                 else {
                   attributeType = "string";
