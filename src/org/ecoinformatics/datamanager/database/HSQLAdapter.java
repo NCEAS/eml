@@ -77,6 +77,8 @@ public class HSQLAdapter extends DatabaseAdapter {
 		// AM or PM?
 		formatString = formatString.replaceAll("A", "a");
 		formatString = formatString.replaceAll("P", "p");
+		// "T" between date and time
+		formatString = formatString.replaceAll("T", "'T'");
 		//TODO: this may not be an exhaustive list for dealing with the conversion
 
 		// remove any quotes from the dates
