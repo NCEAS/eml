@@ -65,6 +65,7 @@ public interface ConditionInterface
                                                         };
     
     public static final String[] NUMBER_OPERATOR_LIST = {
+        										EQUAL_OPERATOR, 
                                                   LESS_THAN_OPERATOR, 
                                                   LESS_THAN_OR_EQUALS_OPERATOR, 
                                                   GREATER_THAN_OPERATOR, 
