@@ -19,7 +19,7 @@ public class DownloadHandlerTest extends TestCase
 	private static final String CORRECTURL   = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=knb-lter-bes.14.3";
 	private static final String INCORRECTURL = "http://knb.ecoinformacs.org/knb/metacat?action=read&qformat=xml&docid=tao.1.1";
 	private static final String CORRECTURL1   = "http://knb.ecoinformatics.org/knb/metacat?action=read&qformat=xml&docid=knb-lter-arc.1424.1";
-
+  private static final int CORRECTURL_SIZE = 3906; // Expected file size of the EML document
     
     /*
      * Instance fields
@@ -201,7 +201,7 @@ public class DownloadHandlerTest extends TestCase
               
 			  if (identifier == CORRECTURL)
 			  {
-				  assertTrue(dataStorage.getEntitySize(identifier)== 3896);
+				  assertTrue(dataStorage.getEntitySize(identifier) == CORRECTURL_SIZE);
 			  }		  
 		  }
 		  else
