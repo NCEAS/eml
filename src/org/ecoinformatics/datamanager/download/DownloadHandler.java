@@ -35,10 +35,15 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
+import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
@@ -65,7 +70,8 @@ public class DownloadHandler implements Runnable
     private static final int    SLEEPTIME       = 100;
     private static final int    MAXLOOPNUMBER   = 20000;
     
-    protected static Hashtable handlerList = new Hashtable();
+    protected static Hashtable<String, DownloadHandler> handlerList = 
+      new Hashtable<String, DownloadHandler>();
     private static String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
     private static String SRBMACHINE      = "srb-mcat.sdsc.edu";
  
@@ -84,13 +90,29 @@ public class DownloadHandler implements Runnable
 	private Exception exception = null;
 	
 	protected String ecogridEndPoint = "http://ecogrid.ecoinformatics.org/knb/services/QueryService";
+	protected Entity entity = null;
 	protected String sessionId      = null;
-    
+	
     
     /*
      * Constructors
      */
 	
+    /**
+     * This version of the constructor stores the entity object for which the download is 
+     * being performed. This is to support quality reporting, where information about the
+     * associated entity is needed as part of the quality information being reported on.
+     * 
+     * @param entity  the Entity object for which this DownloadHandler is downloading data
+     * @param url     the url (or identifier) of entity need be downloaded
+     */
+    protected DownloadHandler(Entity entity, String url, EcogridEndPointInterface endPoint)
+    {
+      this(url, endPoint);
+      this.entity = entity;
+    }
+  
+  
     /**
      * Constructor of this class
      * @param url  the url (or identifier) of entity need be downloaded
@@ -140,7 +162,7 @@ public class DownloadHandler implements Runnable
         
         if (source != null)
         {
-          handler = (DownloadHandler)handlerList.get(source);
+          handler = handlerList.get(source);
           // assign download handler to one in List      
         }
         
@@ -163,13 +185,42 @@ public class DownloadHandler implements Runnable
         
 		if (handler == null)
 		{
-            System.out.println("Constructing DownloadHandler for URL: " + url);
+      System.out.println("Constructing DownloadHandler for URL: " + url);
 			handler = new DownloadHandler(url, endPoint);
 		}
         
 		return handler;
 	}
 	
+    
+  /**
+   * Gets an instance of the DownloadHandler Object for this URL. This version
+   * of the method passes the associated entity object as a parameter, and
+   * also calls the constructor that accepts the entity object. This is
+   * to support quality reporting. When creating a qualityCheck object relating
+   * to downloading, the DownloadHandler will need some information from the
+   * entity such as the packageId and entity name.
+   * 
+   * @param entity   The entity object for which the download is being performed
+   * @param url The url (or identifier) of entity to be downloaded
+   * @param endPoint the object which provides ecogrid endpoint information
+   * @return  DownloadHandler object associated with this URL
+   * 
+   */
+  public static DownloadHandler getInstance(Entity entity, String url, 
+                                              EcogridEndPointInterface endPoint)
+  {
+    DownloadHandler handler = getHandlerFromHash(url);
+        
+    if (handler == null)
+    {
+      System.out.println("Constructing DownloadHandler for URL: " + url);
+      handler = new DownloadHandler(entity, url, endPoint);
+    }
+        
+    return handler;
+  }
+  
     
     /**
      * Sets the DownloadHandler object into the hash table. This will be called
@@ -197,7 +248,7 @@ public class DownloadHandler implements Runnable
     
     
     /**
-     * Removes the downloadHandler obj fromt he hash table. This method will be
+     * Removes the downloadHandler obj from the hash table. This method will be
      * called at the end of download process. Since it will access a static 
      * variable handlerList in different thread, it should be static and 
      * synchronized;
@@ -467,17 +518,14 @@ public class DownloadHandler implements Runnable
     
     /**
      * Gets content from given source and writes it to DataStorageInterface 
-     * to store them.
-     * 
-     * This method will be called by run()
+     * to store them. This method will be called by run()
      * 
      * @param resourceName  the URL to the source data to be retrieved
      */
     protected boolean getContentFromSource(String resourceName)
     {
-    	 //log.debug("download data from EcogridDataCacheItem URL : " + resourceName);
-    	//System.out.println("in getContent method!!!!!!!!!!!!!!! " +resourceName);
     	boolean successFlag = false;
+    	QualityCheck qualityCheck = null;
         
         if (resourceName != null && 
             (resourceName.startsWith("http://") ||
@@ -486,45 +534,56 @@ public class DownloadHandler implements Runnable
              resourceName.startsWith("ftp://") 
             )
            ) {             
-            // get the data from a URL
-        	//System.out.println("after if !!!!!!!!!!!!!!!!!!11");
+             // get the data from a URL
              try {
-            	 //System.out.println("start try !!!!!!!!!!!!!!!!!!11 "+resourceName);
                  URL url = new URL(resourceName);
-                 //System.out.println("afterURL !!!!!!!!!!!!!!!!!!11");
                  
                  if (url != null) {
-                   //System.out.println("before get inpustream !!!!!!!!!!!!!!!!!!11");
                    InputStream filestream = url.openStream();
-                   //System.out.println("after get inpustream !!!!!!!!!!!!!!!!!!11");
                          
                    try {
                      successFlag = 
-                         this.writeRemoteInputStreamIntoDataStorage(filestream);
+                        this.writeRemoteInputStreamIntoDataStorage(filestream);
                    }
-                   catch (Exception e){
-                     successFlag = false;
+                   catch (IOException e){
                      exception = e;
                    }
-                   
-                   return successFlag;
-                    // }
-                       
                  }
-                 
-                 //log.debug("EcogridDataCacheItem - error connecting to http/file ");
-                 successFlag = false;
-                 exception = new DataSourceNotFoundException("The url is null");
-                 return successFlag;
+                 else {
+                   exception = new DataSourceNotFoundException("The url is null");
+                 }
+             }
+             catch (MalformedURLException e) {
+               exception = new DataSourceNotFoundException(
+                           "The URL '" + resourceName + "' is a malformed URL.");
              }
              catch (IOException ioe) {
-            	 successFlag = false;
-            	 exception = new DataSourceNotFoundException("The url " +
-                                                             resourceName + 
-            			                                   " is not reachable");
-                 return successFlag;
+            	 exception = new DataSourceNotFoundException(
+            	             "The URL '" + resourceName + "' is not reachable");
              }
-             // We will use ecogrid client to handle both ecogrid and srb protocol
+
+             if (entity != null && QualityCheck.getQualityAudit()) {
+               // Store information about this download in a QualityCheck object
+               qualityCheck = new QualityCheck("URL returns data");
+               qualityCheck.setExpected("true");
+               if (successFlag) {
+                 qualityCheck.setStatus(Status.SUCCESS);
+                 qualityCheck.setFound("true");
+                 qualityCheck.setExplanation("Downloaded URL: " + resourceName);
+               }
+               else {
+                 qualityCheck.setStatus(Status.FAIL);
+                 qualityCheck.setFound("false");
+                 String explanation = "Failed to downloaded URL: " + resourceName;
+                 if (exception != null) {
+                   explanation = explanation + "; " + exception.getMessage();
+                 }
+                 qualityCheck.setExplanation(explanation);
+               }
+               entity.addQualityCheck(qualityCheck);
+             }
+             
+             return successFlag;
          }
          else if (resourceName != null && 
                   resourceName.startsWith("ecogrid://")) {
@@ -847,7 +906,8 @@ public class DownloadHandler implements Runnable
      * to StorageSystem. It only handles http or ftp protocals. It does not
      * handle ecogrid protocol.
      */
-	protected boolean writeRemoteInputStreamIntoDataStorage(InputStream inputStream)  throws IOException {
+	protected boolean writeRemoteInputStreamIntoDataStorage(InputStream inputStream)  
+	        throws IOException {
 		boolean successFlag = false;
 
 		try {

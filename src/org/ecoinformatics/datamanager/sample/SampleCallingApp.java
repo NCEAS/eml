@@ -24,6 +24,7 @@ import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
 
   /**
    * This class is a sample calling application to demonstrate use of the
@@ -69,6 +70,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   private static String testServer = null;
   private static String entityName = null;
   private static String packageID = null;
+  private static Boolean qualityAudit = new Boolean("false");  // default value
     
   
   /*
@@ -167,6 +169,20 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       testServer = options.getString("testServer");
       entityName = options.getString("entityName");
       packageID = options.getString("packageID");
+      
+      /* Check the value of the qualityAudit property and call 
+       * QualityCheck.setQualityAudit() accordingly. This controls whether
+       * the Data Manager library will execute with quality auditing turned
+       * on or off.
+       */
+      String qualityAuditStr = options.getString("qualityAudit");
+      if (qualityAuditStr != null &&
+           (qualityAuditStr.equalsIgnoreCase("true") ||
+            qualityAuditStr.equalsIgnoreCase("false")
+           )
+         ) { 
+        QualityCheck.setQualityAudit(qualityAuditStr.toLowerCase());
+      }
     } 
     catch (Exception e) {
       System.err.println("Error in loading options: " + e.getMessage());
