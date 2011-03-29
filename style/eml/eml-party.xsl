@@ -182,7 +182,7 @@
           <td>
             <table class="{$tablepartyStyle}">
               <tr><td class="{$secondColStyle}">
-                    <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                    <a><xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute>
                     <xsl:value-of select="."/></a>
                    </td>
               </tr>
@@ -202,7 +202,7 @@
           <td>
              <table class="{$tablepartyStyle}">
                <tr><td class="{$secondColStyle}">
-                     <a><xsl:attribute name="href">http://<xsl:value-of select="."/></xsl:attribute><xsl:value-of select="./entityName"/>
+                     <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute>
                      <xsl:value-of select="."/></a>
                     </td>
                </tr>
