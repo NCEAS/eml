@@ -48,7 +48,7 @@ public class QualityCheck {
    * Enumeration classes
    */
   
-  public enum Status { SUCCESS, INFO, WARN, FAIL };
+  public enum Status { valid, info, warn, error };
   
   
   /*
@@ -189,19 +189,21 @@ public class QualityCheck {
 	public String toXML() {
 	  String xmlString = null;
 	  StringBuffer xmlStringBuffer = new StringBuffer("");
-    final String type = "data";
+    final String qualityType = "data";
 	  final String system = "knb";
-	  xmlStringBuffer.append("  <qualityCheck type=\"" + type + "\"" +
-	                                      " system=\"" + system + "\"" +
-	                                      " status=\"" + status.toString() + "\" >\n");
-	  xmlStringBuffer.append("    <name>" + name + "</name>\n");
-	  xmlStringBuffer.append("    <description>" + description + "</description>\n");
-	  xmlStringBuffer.append("    <expected>" + expected + "</expected>\n");
-	  xmlStringBuffer.append("    <found>" + found + "</found>\n");
-    xmlStringBuffer.append("    <explanation>" + explanation + "</explanation>\n");
-    xmlStringBuffer.append("    <suggestion>" + suggestion + "</suggestion>\n");
-    xmlStringBuffer.append("    <reference>" + reference + "</reference>\n");
-	  xmlStringBuffer.append("  </qualityCheck>\n");
+	  final String indent = "  ";
+	  xmlStringBuffer.append(indent + indent + "<qualityCheck" +
+	    " qualityType=\"" + qualityType + "\"" +
+	    " system=\"" + system + "\"" +
+	    " status=\"" + status.toString() + "\" >\n");
+	  xmlStringBuffer.append(indent + indent + indent + "<name>" + name + "</name>\n");
+	  xmlStringBuffer.append(indent + indent + indent + "<description>" + description + "</description>\n");
+	  xmlStringBuffer.append(indent + indent + indent + "<expected>" + expected + "</expected>\n");
+	  xmlStringBuffer.append(indent + indent + indent + "<found>" + found + "</found>\n");
+    xmlStringBuffer.append(indent + indent + indent + "<explanation>" + explanation + "</explanation>\n");
+    xmlStringBuffer.append(indent + indent + indent + "<suggestion>" + suggestion + "</suggestion>\n");
+    xmlStringBuffer.append(indent + indent + indent + "<reference>" + reference + "</reference>\n");
+	  xmlStringBuffer.append(indent + indent + "</qualityCheck>\n");
 	  
 	  xmlString = xmlStringBuffer.toString();
 	  return xmlString;

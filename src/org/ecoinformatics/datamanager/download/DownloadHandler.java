@@ -37,7 +37,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
@@ -565,16 +564,18 @@ public class DownloadHandler implements Runnable
              if (entity != null && QualityCheck.getQualityAudit()) {
                // Store information about this download in a QualityCheck object
                qualityCheck = new QualityCheck("URL returns data");
+               qualityCheck.setDescription("Check whether the download URL returns data");
                qualityCheck.setExpected("true");
                if (successFlag) {
-                 qualityCheck.setStatus(Status.SUCCESS);
+                 qualityCheck.setStatus(Status.valid);
                  qualityCheck.setFound("true");
-                 qualityCheck.setExplanation("Downloaded URL: " + resourceName);
+                 String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
+                 qualityCheck.setExplanation("Downloaded URL: " + resourceNameEncoded);
                }
                else {
-                 qualityCheck.setStatus(Status.FAIL);
+                 qualityCheck.setStatus(Status.error);
                  qualityCheck.setFound("false");
-                 String explanation = "Failed to downloaded URL: " + resourceName;
+                 String explanation = "Failed to download data from URL: " + resourceName;
                  if (exception != null) {
                    explanation = explanation + "; " + exception.getMessage();
                  }
