@@ -24,7 +24,7 @@ import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
-import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
 
   /**
    * This class is a sample calling application to demonstrate use of the
@@ -70,7 +70,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   private static String testServer = null;
   private static String entityName = null;
   private static String packageID = null;
-  private static Boolean qualityAudit = new Boolean("false");  // default value
+  private static Boolean qualityReporting = new Boolean("false");  // default value
     
   
   /*
@@ -170,18 +170,18 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       entityName = options.getString("entityName");
       packageID = options.getString("packageID");
       
-      /* Check the value of the qualityAudit property and call 
-       * QualityCheck.setQualityAudit() accordingly. This controls whether
-       * the Data Manager library will execute with quality auditing turned
+      /* Check the value of the qualityReporting property and call 
+       * QualityReport.setQualityReporting() accordingly. This controls whether
+       * the Data Manager library will execute with quality reporting turned
        * on or off.
        */
-      String qualityAuditStr = options.getString("qualityAudit");
-      if (qualityAuditStr != null &&
-           (qualityAuditStr.equalsIgnoreCase("true") ||
-            qualityAuditStr.equalsIgnoreCase("false")
+      String qualityReportingStr = options.getString("qualityReporting");
+      if (qualityReportingStr != null &&
+           (qualityReportingStr.equalsIgnoreCase("true") ||
+            qualityReportingStr.equalsIgnoreCase("false")
            )
          ) { 
-        QualityCheck.setQualityAudit(qualityAuditStr.toLowerCase());
+        QualityReport.setQualityReporting(qualityReportingStr.toLowerCase());
       }
     } 
     catch (Exception e) {

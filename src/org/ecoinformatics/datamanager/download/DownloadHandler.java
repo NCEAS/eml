@@ -42,6 +42,7 @@ import java.util.Hashtable;
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
@@ -561,7 +562,7 @@ public class DownloadHandler implements Runnable
             	             "The URL '" + resourceName + "' is not reachable");
              }
 
-             if (entity != null && QualityCheck.getQualityAudit()) {
+             if (entity != null && QualityReport.isQualityReporting()) {
                // Store information about this download in a QualityCheck object
                qualityCheck = new QualityCheck("URL returns data");
                qualityCheck.setDescription("Check whether the download URL returns data");

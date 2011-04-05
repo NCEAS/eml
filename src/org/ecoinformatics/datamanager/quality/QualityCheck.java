@@ -55,14 +55,7 @@ public class QualityCheck {
    * Class variables
    */
   
-  // Boolean switch to determine whether quality checking is turned on or off
-  // in the application that is using the Data Manager library. It is the
-  // application's responsibility to set this value by reading in the value
-  // of the 'qualityAudit' property and calling the QualityCheck.setQualityAudit() 
-  // static method, passing in the appropriate value.
-  private static Boolean qualityAudit = new Boolean(false);
-  
-  
+
   /*
    * Instance variables
    */
@@ -111,46 +104,6 @@ public class QualityCheck {
    * Class methods
    */
 
-  /**
-   * Returns the qualityAudit value, a Boolean. Other classes in the
-   * Data Manager library call this method to determine whether quality
-   * auditing operations should or should not be executed.
-   * 
-   * @return  qualityAudit. If true, quality auditing is turned on.
-   */
-  public static Boolean getQualityAudit() {
-    return qualityAudit;
-  }
-  
-  
-  /**
-   * Sets the value of qualityAudit using a string parameter. If the string
-   * equals (ignore case) "true", then quality auditing will be turned on.
-   * Any other string value results in quality auditing being turned off (the default
-   * setting).
-   * 
-   * @param trueOrFalse   a string argument. "true" (ignore case) turns on quality
-   *                      auditing
-   */
-  public static void setQualityAudit(String trueOrFalse) {
-    Boolean aBoolean = new Boolean(trueOrFalse);
-    qualityAudit = aBoolean;
-  }
-	
-  
-  /**
-   * Sets the value of qualityAudit using a boolean parameter. If the
-   * argument is true, then quality auditing will be turned on. If false,
-   * then quality auditing will be turned off.
-   * 
-   * @param trueOrFalse    true turns on quality auditing
-   */
-  public static void setQualityAudit(boolean trueOrFalse) {
-    Boolean aBoolean = new Boolean(trueOrFalse);
-    qualityAudit = aBoolean;
-  }
-  
-  
   /*
    * Instance methods
    */
