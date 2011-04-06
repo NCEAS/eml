@@ -35,13 +35,13 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.data.DataObjectDescription;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
-import java.util.ArrayList;
 
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
 import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
+import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
 
 
@@ -108,8 +108,8 @@ public class Entity extends DataObjectDescription
     private String quoteCharacter = null;
     private String literalCharacter = null;
     
-    // List of quality checks that have been performed on this entity
-    private ArrayList<QualityCheck> qualityChecks = new ArrayList<QualityCheck>();
+    private EntityReport entityReport = null;
+    
     
     
     /* 
@@ -164,6 +164,7 @@ public class Entity extends DataObjectDescription
         
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
+        this.entityReport = new EntityReport(this);
     }
 
     
@@ -180,21 +181,14 @@ public class Entity extends DataObjectDescription
 
     
     /**
-     * Adds a quality check to the list of quality checks that have been
-     * performed on this entity.
+     * Adds a quality check to the entity's associated entityReport object.
      * 
      * @param qualityCheck    the new quality check to add to the list
      */
     public void addQualityCheck(QualityCheck qualityCheck) {
-      String name = qualityCheck.getName();
-      
-      if (name.equalsIgnoreCase("URL returns data")) {
-        if (hasQualityCheck(qualityCheck)) {
-          return;
-        }
+      if (entityReport != null) {
+        entityReport.addQualityCheck(qualityCheck);
       }
-
-      qualityChecks.add(qualityCheck);
     }
     
     
@@ -234,17 +228,6 @@ public class Entity extends DataObjectDescription
 
     
     /**
-     * Retrieves the list of quality checks that have been performed on this
-     * entity.
-     * 
-     * @return    an ArrayList of QualityCheck objects
-     */
-    public ArrayList<QualityCheck> getQualityChecks() {
-      return qualityChecks;
-    }
-    
-    
-    /**
      * Gets the number of records in the entity.
      * 
      * @return  the number of records, an int
@@ -255,27 +238,6 @@ public class Entity extends DataObjectDescription
     }
 
     
-    /**
-     * Boolean to determine whether a copy of a quality check already
-     * exists in the list of quality checks for this entity. There are
-     * occasions where we wish not to add duplicate copies of the same
-     * quality check. This method makes it possible to determine whether
-     * the entity already has a copy in its collection.
-     * 
-     * @param qualityCheck   the quality check that we're want to know
-     *                       whether it's already in this entity's list
-     * @return               true if found in this entity, else false
-     */
-    private boolean hasQualityCheck(QualityCheck qualityCheck) {
-      for (QualityCheck qc : qualityChecks) {
-        if (qualityCheck.equals(qc)) {
-          return true;
-        }
-      }  
-      return false;
-    }
-    
-
     /**
      * Sets the number of header lines in the entity.
      * 
@@ -752,6 +714,16 @@ public class Entity extends DataObjectDescription
     public String getEntityIdentifier()
     {
     	return url;
+    }
+    
+    /**
+     * Gets the entityReport object associated with this entity.
+     * 
+     * @return  the entityReport instance variable
+     */
+    public EntityReport getEntityReport()
+    {
+      return entityReport;
     }
     
     /**
