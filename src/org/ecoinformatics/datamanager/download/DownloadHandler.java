@@ -564,19 +564,21 @@ public class DownloadHandler implements Runnable
 
              if (entity != null && QualityReport.isQualityReporting()) {
                // Store information about this download in a QualityCheck object
-               qualityCheck = new QualityCheck("URL returns data");
-               qualityCheck.setDescription("Check whether the download URL returns data");
+               qualityCheck = new QualityCheck("URL is accessible");
+               qualityCheck.setSystem(QualityCheck.System.knb);
+               qualityCheck.setQualityType(QualityCheck.QualityType.congruency);
+               qualityCheck.setDescription("Check whether the download URL is accessible");
                qualityCheck.setExpected("true");
                if (successFlag) {
                  qualityCheck.setStatus(Status.valid);
                  qualityCheck.setFound("true");
                  String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
-                 qualityCheck.setExplanation("Downloaded URL: " + resourceNameEncoded);
+                 qualityCheck.setExplanation("Succeeded in accessing URL: " + resourceNameEncoded);
                }
                else {
                  qualityCheck.setStatus(Status.error);
                  qualityCheck.setFound("false");
-                 String explanation = "Failed to download data from URL: " + resourceName;
+                 String explanation = "Failed to access URL: " + resourceName;
                  if (exception != null) {
                    explanation = explanation + "; " + exception.getMessage();
                  }

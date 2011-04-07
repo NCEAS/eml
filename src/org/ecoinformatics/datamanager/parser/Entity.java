@@ -716,6 +716,7 @@ public class Entity extends DataObjectDescription
     	return url;
     }
     
+    
     /**
      * Gets the entityReport object associated with this entity.
      * 
@@ -725,6 +726,7 @@ public class Entity extends DataObjectDescription
     {
       return entityReport;
     }
+    
     
     /**
      * Sets the identifier for this entity. Currently we use distribution url

@@ -33,6 +33,9 @@ package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.quality.EntityReport;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
 
 /**
  * This class reprents a metadata package information to describe entity
@@ -41,12 +44,19 @@ import java.util.Vector;
  */
 public class DataPackage 
 {
+  
+  /*
+   * Class fields
+   */
+  
+  
   /*
    * Instance fields
    */
   
   private Entity[] entityList = null;
   private String   packageId  = null;
+  private QualityReport qualityReport = null;
   
   
   /*
@@ -60,8 +70,32 @@ public class DataPackage
    */
   public DataPackage(String packageId)
   {
-	this.packageId = packageId;  
+	  this.packageId = packageId;  
+    this.qualityReport = new QualityReport(this);
   }
+  
+  
+  /*
+   * Class methods
+   */
+  
+  
+  /*
+   * Instance methods
+   */
+  
+  /**
+   * Adds a quality check to the data packages's associated 
+   * qualityReport object.
+   * 
+   * @param qualityCheck    the new quality check to add to the list
+   */
+  public void addQualityCheck(QualityCheck qualityCheck) {
+    if (qualityReport != null) {
+      qualityReport.addQualityCheck(qualityCheck);
+    }
+  }
+  
   
   public Entity[] getEntities(String name)
   {
@@ -76,12 +110,14 @@ public class DataPackage
 	  return (Entity[]) list.toArray(new Entity[0]);
   }
   
+  
   public Entity getEntity(String name) {
 	  if (getEntities(name).length > 0) {
 		  return getEntities(name)[0];
 	  }
 	  return null;
   }
+  
   
   /**
    * Adds an entity into the DataPackage
@@ -122,6 +158,17 @@ public class DataPackage
   
   
   /**
+   * Gets the qualityReport object associated with this data package.
+   * 
+   * @return  the qualityReport instance variable
+   */
+  public QualityReport getQualityReport()
+  {
+    return qualityReport;
+  }
+  
+  
+  /**
    * Gets the package identifier for this DataPackage.
    * 
    * @return a string representing the DataPackage identifier
@@ -154,6 +201,7 @@ public class DataPackage
       entityList = tmp;
     }
   }
+  
   
   /***
    * Removes ALL previously added Entity objects from the DataPackage

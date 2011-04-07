@@ -1,8 +1,6 @@
 package org.ecoinformatics.datamanager.quality;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.ecoinformatics.datamanager.parser.Entity;
 
@@ -57,7 +55,11 @@ public class EntityReport {
   public void addQualityCheck(QualityCheck qualityCheck) {
     String name = qualityCheck.getName();
     
-    if (name.equalsIgnoreCase("URL returns data")) {
+    /*
+     * Filter out duplicate cases of the same quality check.
+     * (We need a better approach to specifying these cases.)
+     */
+    if (name.equalsIgnoreCase("URL is accessible")) {
       if (hasQualityCheck(qualityCheck)) {
         return;
       }
@@ -102,40 +104,47 @@ public class EntityReport {
   /**
    * Generate an XML entity report structure from the quality check objects
    * stored in the entity.
+   * 
+   * @param isQualityReport  boolean to determine whether a full XML quality 
+   *        report should be generated; a quality report complies with the XML 
+   *        Schema for quality reports. If specified as 'false', only the 
+   *        entityReport XML fragment is generated, which can then be 
+   *        incorporated into a full quality report by the QualityReport class.
+   *        
+   * @return an XML string representation of a full quality report or just the 
+   *        entityReport XML fragment.
    */
-  public String toXML() {
-    Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String dateCreated = simpleDateFormat.format(now);
-    String xmlString = null;
+  public String toXML(boolean isQualityReport) {
+    String xmlString = null; 
     
-    StringBuffer stringBuffer = new StringBuffer("");
-    String packageId = entity.getPackageId();
-    String entityName = entity.getName();
-    String entityId = entity.getId();
-    
-    stringBuffer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-    stringBuffer.append("<qualityReport>\n");
-    stringBuffer.append("  <creationDate>" + dateCreated + "</creationDate>\n");
-    stringBuffer.append("  <packageId>" + packageId + "</packageId>\n");
-    stringBuffer.append("  <entityReport>\n");
-    stringBuffer.append("    <creationDate>" + dateCreated + "</creationDate>\n");
-    stringBuffer.append("    <packageId>" + packageId + "</packageId>\n");
-    stringBuffer.append("    <entityName>" + entityName + "</entityName>\n");
-    stringBuffer.append("    <entityId>" + entityId + "</entityId>\n");
-    
-    if (entity != null) {
-      if (qualityChecks != null && qualityChecks.size() > 0) {
-        for (QualityCheck aQualityCheck : qualityChecks) {
-          String qualityCheckXML = aQualityCheck.toXML();
-          stringBuffer.append(qualityCheckXML);
+    // Generate a complete quality report when isQualityReport is true.
+    if (isQualityReport) {
+      String packageId = entity.getPackageId();
+      QualityReport qualityReport = new QualityReport(packageId);
+      qualityReport.addEntityReport(this);
+      xmlString = qualityReport.toXML();
+    }
+    // Otherwise generate only the <entityReport> XML fragment
+    else {
+      if (entity != null) {
+        String entityName = entity.getName();
+        String entityId = entity.getId();
+        StringBuffer stringBuffer = new StringBuffer("");
+        stringBuffer.append("  <entityReport>\n");
+        stringBuffer.append("    <entityName>" + entityName + "</entityName>\n");
+        if (entityId != null && !entityId.equals("")) {
+          stringBuffer.append("    <entityId>" + entityId + "</entityId>\n");
+        }  
+        if (qualityChecks != null && qualityChecks.size() > 0) {
+          for (QualityCheck aQualityCheck : qualityChecks) {
+            String qualityCheckXML = aQualityCheck.toXML();
+            stringBuffer.append(qualityCheckXML);
+          }
         }
+        stringBuffer.append("  </entityReport>\n");
+        xmlString = stringBuffer.toString();
       }
     }
-    
-    stringBuffer.append("  </entityReport>\n");
-    stringBuffer.append("</qualityReport>\n");
-    xmlString = stringBuffer.toString();
     
     return xmlString;
   }

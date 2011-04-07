@@ -1,6 +1,11 @@
 package org.ecoinformatics.datamanager.quality;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import org.ecoinformatics.datamanager.parser.DataPackage;
+import org.ecoinformatics.datamanager.parser.Entity;
 
 
 public class QualityReport {
@@ -24,6 +29,9 @@ public class QualityReport {
    * Instance variables
    */
   
+  // The DataPackage object that this QualityReport is reporting on
+  private DataPackage dataPackage;
+  
   private String packageId;     // the eml packageId value
   private String dateCreated;   // the date this quality report was generated
   private ArrayList<QualityCheck> qualityChecks;
@@ -34,13 +42,31 @@ public class QualityReport {
    * Constructors
    */
   
-  public QualityReport(String packageId, String dateCreated) {
-    this.packageId = packageId;
-    this.dateCreated = dateCreated;
+  public QualityReport(DataPackage dataPackage) {
+    this.dataPackage = dataPackage;
+    if (dataPackage != null) {
+      this.packageId = dataPackage.getPackageId();
+    }
+    
+    Date now = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    this.dateCreated = simpleDateFormat.format(now);
+
     this.qualityChecks = new ArrayList<QualityCheck>();
     this.entityReports = new ArrayList<EntityReport>();
   }
 
+  
+  public QualityReport(String packageId) {
+    this.packageId = packageId;
+    
+    Date now = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    this.dateCreated = simpleDateFormat.format(now);
+
+    this.qualityChecks = new ArrayList<QualityCheck>();
+    this.entityReports = new ArrayList<EntityReport>();
+  }
 
   
   /*
@@ -92,6 +118,28 @@ public class QualityReport {
    * Instance methods
    */
 
+  /**
+   * Adds a quality check to the list of quality checks that have been
+   * performed on this data package.
+   * 
+   * @param qualityCheck    the new quality check to add to the list
+   */
+  public void addEntityReport(EntityReport entityReport) {
+    entityReports.add(entityReport);
+  }
+  
+  
+  /**
+   * Adds a quality check to the list of quality checks that have been
+   * performed on this data package.
+   * 
+   * @param qualityCheck    the new quality check to add to the list
+   */
+  public void addQualityCheck(QualityCheck qualityCheck) {
+    qualityChecks.add(qualityCheck);
+  }
+  
+  
   public String getDateCreated() {
     return dateCreated;
   }
@@ -131,5 +179,49 @@ public class QualityReport {
     this.qualityChecks = qualityChecks;
   }
 
+
+  /**
+   * Generates an XML quality report string from the quality check objects
+   * and the entity report objects stored in the data package.
+   * 
+   * @return an XML string representation of the full quality report
+   */
+  public String toXML() {
+    Date now = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String dateCreated = simpleDateFormat.format(now);
+    String xmlString = null;
+    
+    StringBuffer stringBuffer = new StringBuffer("");
+    
+    stringBuffer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    stringBuffer.append("<qualityReport>\n");
+    stringBuffer.append("  <creationDate>" + dateCreated + "</creationDate>\n");
+    stringBuffer.append("  <packageId>" + packageId + "</packageId>\n");
+    
+    // Add quality checks at the data package metadata level
+    if (qualityChecks != null && qualityChecks.size() > 0) {
+      stringBuffer.append("  <metadataReport>\n");
+      for (QualityCheck aQualityCheck : qualityChecks) {
+        String qualityCheckXML = aQualityCheck.toXML();
+        stringBuffer.append(qualityCheckXML);
+      }
+      stringBuffer.append("  </metadataReport>\n");
+    }
+    
+    // Add entity reports and their quality checks at the entity data level
+    if (entityReports != null && entityReports.size() > 0) {
+      boolean isFullReport = false; // We want only the <entityReport> fragment
+      for (EntityReport entityReport : entityReports) {
+        String entityReportXML = entityReport.toXML(isFullReport);
+        stringBuffer.append(entityReportXML);
+      }
+    }
+
+    stringBuffer.append("</qualityReport>\n");
+    xmlString = stringBuffer.toString();
+    
+    return xmlString;
+  }
 
 }

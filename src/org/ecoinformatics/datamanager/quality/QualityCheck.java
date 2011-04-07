@@ -48,7 +48,11 @@ public class QualityCheck {
    * Enumeration classes
    */
   
+  public enum QualityType { congruency, data, metadata };
+  
   public enum Status { valid, info, warn, error };
+
+  public enum System { knb, lter };
   
   
   /*
@@ -72,15 +76,22 @@ public class QualityCheck {
 	// The expected result 
 	private String expected = "";
 	
+  // An explanation as to why the found result differs from the expected result
+  private String explanation = "";
+  
 	// The found result
 	private String found = "";
 	
+  // The type of quality check (see QualityType enum for possible values)
+  private Enum<QualityType> qualityType;
+  
 	// The status of this quality check (see Status enum for possible values)
 	private Enum<Status> status;
 	
-	// An explanation as to why the found result differs from the expected result
-	private String explanation = "";
-	
+  // The system in which this quality check is meaningful
+	// (see System enum for possible values)
+  private Enum<System> system;
+  
 	// Suggested remedy
 	private String suggestion = "";
 	
@@ -97,6 +108,8 @@ public class QualityCheck {
 	 */
   public QualityCheck(String name) {
     this.name = name;
+    this.system = System.knb;
+    this.qualityType = QualityType.congruency;
   }
 
   
@@ -142,12 +155,10 @@ public class QualityCheck {
 	public String toXML() {
 	  String xmlString = null;
 	  StringBuffer xmlStringBuffer = new StringBuffer("");
-    final String qualityType = "data";
-	  final String system = "knb";
 	  final String indent = "  ";
 	  xmlStringBuffer.append(indent + indent + "<qualityCheck" +
-	    " qualityType=\"" + qualityType + "\"" +
-	    " system=\"" + system + "\"" +
+	    " qualityType=\"" + qualityType.toString() + "\"" +
+	    " system=\"" + system.toString() + "\"" +
 	    " status=\"" + status.toString() + "\" >\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<name>" + name + "</name>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<description>" + description + "</description>\n");
@@ -195,6 +206,11 @@ public class QualityCheck {
   }
 
   
+  public Enum<QualityType> getQualityType() {
+    return qualityType;
+  }
+
+  
   public String getReference() {
     return reference;
   }
@@ -202,6 +218,11 @@ public class QualityCheck {
   
   public Enum<Status> getStatus() {
     return status;
+  }
+
+  
+  public Enum<System> getSystem() {
+    return system;
   }
 
   
@@ -240,6 +261,11 @@ public class QualityCheck {
   }
 
 
+  public void setQualityType(Enum<QualityType> qualityType) {
+    this.qualityType = qualityType;
+  }
+
+  
   public void setReference(String reference) {
     this.reference = reference;
   }
@@ -247,6 +273,11 @@ public class QualityCheck {
   
   public void setStatus(Enum<Status> status) {
     this.status = status;
+  }
+
+  
+  public void setSystem(Enum<System> system) {
+    this.system = system;
   }
 
   
