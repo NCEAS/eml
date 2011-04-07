@@ -1,5 +1,6 @@
 package org.ecoinformatics.datamanager.quality;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,6 @@ public class QualityReport {
   private DataPackage dataPackage;
   
   private String packageId;     // the eml packageId value
-  private String dateCreated;   // the date this quality report was generated
   private ArrayList<QualityCheck> qualityChecks;
   private ArrayList<EntityReport> entityReports;
   
@@ -42,28 +42,32 @@ public class QualityReport {
    * Constructors
    */
   
+  /**
+   * Constructor used when we associate a quality report
+   * with an existing data package.
+   * 
+   * @param dataPackage the DataPackage object associated
+   *        with this quality report
+   */
   public QualityReport(DataPackage dataPackage) {
     this.dataPackage = dataPackage;
     if (dataPackage != null) {
       this.packageId = dataPackage.getPackageId();
     }
     
-    Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    this.dateCreated = simpleDateFormat.format(now);
-
     this.qualityChecks = new ArrayList<QualityCheck>();
     this.entityReports = new ArrayList<EntityReport>();
   }
 
   
+  /**
+   * Constructor used when all we initially know about the data
+   * package for the quality report is its packageId.
+   * 
+   * @param packageId  the packageId of the data package
+   */
   public QualityReport(String packageId) {
     this.packageId = packageId;
-    
-    Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    this.dateCreated = simpleDateFormat.format(now);
-
     this.qualityChecks = new ArrayList<QualityCheck>();
     this.entityReports = new ArrayList<EntityReport>();
   }
@@ -140,11 +144,6 @@ public class QualityReport {
   }
   
   
-  public String getDateCreated() {
-    return dateCreated;
-  }
-
-
   public ArrayList<EntityReport> getEntityReports() {
     return entityReports;
   }
@@ -157,11 +156,6 @@ public class QualityReport {
 
   public ArrayList<QualityCheck> getQualityChecks() {
     return qualityChecks;
-  }
-
-
-  public void setDateCreated(String dateCreated) {
-    this.dateCreated = dateCreated;
   }
 
 
@@ -188,8 +182,9 @@ public class QualityReport {
    */
   public String toXML() {
     Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String dateCreated = simpleDateFormat.format(now);
+    SimpleDateFormat dateFormat = 
+        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    String dateCreated = dateFormat.format(now);
     String xmlString = null;
     
     StringBuffer stringBuffer = new StringBuffer("");
