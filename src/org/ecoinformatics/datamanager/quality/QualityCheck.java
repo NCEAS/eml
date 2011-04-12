@@ -156,10 +156,18 @@ public class QualityCheck {
 	  String xmlString = null;
 	  StringBuffer xmlStringBuffer = new StringBuffer("");
 	  final String indent = "  ";
+	  String qualityTypeStr = null;
+	  String systemStr = null;
+	  String statusStr = null;
+	  
+	  if (qualityType != null) { qualityTypeStr = qualityType.toString(); }
+    if (system != null) { systemStr = system.toString(); }
+    if (status != null) { statusStr = status.toString(); }
+	  
 	  xmlStringBuffer.append(indent + indent + "<qualityCheck" +
-	    " qualityType=\"" + qualityType.toString() + "\"" +
-	    " system=\"" + system.toString() + "\"" +
-	    " status=\"" + status.toString() + "\" >\n");
+	    " qualityType=\"" + qualityTypeStr + "\"" +
+	    " system=\"" + systemStr + "\"" +
+	    " status=\"" + statusStr + "\" >\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<name>" + name + "</name>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<description>" + description + "</description>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<expected>" + expected + "</expected>\n");

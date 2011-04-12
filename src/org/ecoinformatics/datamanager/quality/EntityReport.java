@@ -59,7 +59,7 @@ public class EntityReport {
      * Filter out duplicate cases of the same quality check.
      * (We need a better approach to specifying these cases.)
      */
-    if (name.equalsIgnoreCase("URL is accessible")) {
+    if (name.equalsIgnoreCase("Online URLs are live")) {
       if (hasQualityCheck(qualityCheck)) {
         return;
       }

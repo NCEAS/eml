@@ -564,10 +564,10 @@ public class DownloadHandler implements Runnable
 
              if (entity != null && QualityReport.isQualityReporting()) {
                // Store information about this download in a QualityCheck object
-               qualityCheck = new QualityCheck("URL is accessible");
+               qualityCheck = new QualityCheck("Online URLs are live");
                qualityCheck.setSystem(QualityCheck.System.knb);
                qualityCheck.setQualityType(QualityCheck.QualityType.congruency);
-               qualityCheck.setDescription("Check whether the download URL is accessible");
+               qualityCheck.setDescription("Check that online URLs return something");
                qualityCheck.setExpected("true");
                if (successFlag) {
                  qualityCheck.setStatus(Status.valid);

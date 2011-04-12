@@ -15,6 +15,9 @@ import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
  * This class implments the DataStorageInterface to load data into db.
@@ -202,6 +205,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
     String insertSQL = "";
     // System.out.println("====================== start load data into db");
     Vector rowVector = new Vector();
+    int rowCount = 0;
     
     if (entity == null) {
       success = false;
@@ -234,7 +238,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           }
           if (entity.getLiteralCharacter() != null)
           {
-        	delimitedReader.setLiteralCharacter(entity.getLiteralCharacter());
+            delimitedReader.setLiteralCharacter(entity.getLiteralCharacter());
           }
           dataReader = delimitedReader;
         } 
@@ -259,24 +263,36 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       Connection connection = null;
 
       try {
-        // System.out.println("The first row data is "+rowVector);
-    	connection = DataManager.getConnection();
-    	if (connection == null)
-    	{
-    		success = false;
-    		exception = new Exception("The connection to db is null");
-    		completed = true;
-    		return;
-    	}
-    	connection.setAutoCommit(false);
+        System.out.println("************The first row data is: " + rowVector);
+        if (entity != null && QualityReport.isQualityReporting()) {
+          // Store information about this download in a QualityCheck object
+          QualityCheck qualityCheck = new QualityCheck("display some data");
+          qualityCheck.setSystem(QualityCheck.System.knb);
+          qualityCheck.setQualityType(QualityCheck.QualityType.data);
+          qualityCheck.setDescription("Display the first few rows of data");
+          qualityCheck.setExpected("One or more rows of data should be displayed");
+          qualityCheck.setStatus(Status.info);
+          qualityCheck.setFound(rowVector.toString());
+          entity.addQualityCheck(qualityCheck);
+        }
+    	  connection = DataManager.getConnection();
+    	  if (connection == null)
+    	  {
+    		  success = false;
+    		  exception = new Exception("The connection to db is null");
+    		  completed = true;
+    		  return;
+    	  }
+    	  connection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
           insertSQL = databaseAdapter.generateInsertSQL(attributeList,
                                                         tableName, 
                                                         rowVector);
           if (insertSQL != null)
           {
-        	  PreparedStatement statement = connection.prepareStatement(insertSQL);
-        	  statement.execute();
+      	    PreparedStatement statement = connection.prepareStatement(insertSQL);
+      	    statement.execute();
+            rowCount++;
           }
             
           rowVector = dataReader.getOneRowDataVector();
@@ -284,14 +300,35 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         }
         
         connection.commit();
+
+        if (entity != null && QualityReport.isQualityReporting()) {
+          // Store information about this download in a QualityCheck object
+          QualityCheck qualityCheck = new QualityCheck("Number of records check");
+          qualityCheck.setSystem(QualityCheck.System.knb);
+          qualityCheck.setQualityType(QualityCheck.QualityType.congruency);
+          qualityCheck.setDescription("Compare number of records specified in metadata to number of records found in data");
+          int expectedNumberOfRecords = entity.getNumRecords();
+          qualityCheck.setExpected("" + expectedNumberOfRecords);
+          qualityCheck.setFound("" + rowCount);
+          if (expectedNumberOfRecords == rowCount) {
+            qualityCheck.setStatus(Status.valid);
+            qualityCheck.setExplanation("Found expected number of records (" + rowCount + ")");
+          }
+          else {
+            qualityCheck.setStatus(Status.warn);
+            qualityCheck.setExplanation("Expected: " + expectedNumberOfRecords + 
+                                        "; Found: " + rowCount);
+          }
+          entity.addQualityCheck(qualityCheck);
+        }
+
         success = true;
-      } 
+      }
       catch (Exception e) {
         System.err.println("DatabaseLoader.run(): Error message: " + 
                            e.getMessage());
-        System.err.println("Stack trace:");
-        e.printStackTrace();
         System.err.println("SQL string to insert row:\n" + insertSQL);
+        e.printStackTrace();
         
         success = false;
         exception = e;
