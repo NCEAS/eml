@@ -310,14 +310,27 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           int expectedNumberOfRecords = entity.getNumRecords();
           qualityCheck.setExpected("" + expectedNumberOfRecords);
           qualityCheck.setFound("" + rowCount);
+          
           if (expectedNumberOfRecords == rowCount) {
             qualityCheck.setStatus(Status.valid);
-            qualityCheck.setExplanation("Found expected number of records (" + rowCount + ")");
+            qualityCheck.setExplanation(
+                "The expected number of records (" + 
+                rowCount + ") was found in the data table.");
+          }
+          // When 'numberOfRecords' is not specified in the EML, the EML
+          // parser sets the value to -1.
+          else if (expectedNumberOfRecords < 0) {
+            qualityCheck.setStatus(Status.info);
+            qualityCheck.setExplanation(
+              "The number of records found in the data table was: " + 
+              rowCount +
+              ". There was no 'numberOfRecords' value specified in the EML.");
           }
           else {
             qualityCheck.setStatus(Status.warn);
-            qualityCheck.setExplanation("Expected: " + expectedNumberOfRecords + 
-                                        "; Found: " + rowCount);
+            qualityCheck.setExplanation(
+              "The number of records found in the data table does " +
+              "not match the 'numberOfRecords' value specified in the EML.");
           }
           entity.addQualityCheck(qualityCheck);
         }
