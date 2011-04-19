@@ -272,7 +272,7 @@
   <xsl:template match="attributeOrientation">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}">Maximum Record Length:</td>
+        <td class="{$physicalfirstColStyle}">Attribute Orientation:</td>
         <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
