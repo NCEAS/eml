@@ -37,6 +37,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -519,6 +520,50 @@ public class TableMonitor {
     }
           
     return tableName;
+  }
+  
+ 
+  /**
+   * Gets a list of the database table names for all data tables
+   * associated with a specified packageID.
+   * 
+   * @param packageID    the packageID
+   * @return tableNames  a list of database table names associated with
+   *           this packageId, or null if no matches to the packageID 
+   *           were found
+   * @throws SQLException
+   */
+  public ArrayList<String> getDBTableNames(String packageID) 
+          throws SQLException {
+    ArrayList<String> tableNames = null;
+    
+    if (packageID != null) {
+      tableNames = new ArrayList<String>();
+      Connection connection = DataManager.getConnection();
+      String selectString = "SELECT table_name FROM " + DATA_TABLE_REGISTRY +
+                            " WHERE package_id ='" + packageID + "'";
+      Statement stmt = null;
+      
+      try {
+        stmt = connection.createStatement();             
+        ResultSet rs = stmt.executeQuery(selectString);
+      
+        if (rs.next()) {
+          String tableName = rs.getString("table_name");
+          tableNames.add(tableName);
+        }
+      }
+      catch(SQLException e) {
+        System.err.println("SQLException: " + e.getMessage());
+        throw(e);
+      }
+      finally {
+        if (stmt != null) stmt.close();
+        DataManager.returnConnection(connection);
+      }
+    }
+          
+    return tableNames;
   }
   
  

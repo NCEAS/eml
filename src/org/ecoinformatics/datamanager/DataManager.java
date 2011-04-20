@@ -332,9 +332,7 @@ public class DataManager {
  
   /**
    * Drops all tables in a data package. This is simply a pass-through to the
-   * DatabaseHandler class. It's useful in the DataManager class for cleaning
-   * up tables after unit testing, but not sure that we'd want to expose this
-   * as part of the API.
+   * DatabaseHandler class.
    * 
    * @param dataPackage  the DataPackage object whose tables are to be dropped
    * @return true if successful, else false
@@ -347,10 +345,32 @@ public class DataManager {
     boolean success;
 
     DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
-	success = databaseHandler.dropTables(dataPackage);
+	  success = databaseHandler.dropTables(dataPackage);
     
     return success;
   }
+  
+  
+  /**
+   * Drops all tables in a data package based on a packageId value. This is 
+   * simply a pass-through to the DatabaseHandler class.
+   * 
+   * @param  packageId  the packageId associated with tables are to be dropped
+   * @return true if successful, else false
+   * @throws ClassNotFoundException
+   * @throws SQLException
+   * @throws Exception
+   */
+  public boolean dropTables(String packageId)
+          throws ClassNotFoundException, SQLException, Exception {
+    boolean success;
+
+    DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
+    success = databaseHandler.dropTables(packageId);
+    
+    return success;
+  }
+  
   
   /**
    * Creates each table described in the datapackage

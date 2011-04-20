@@ -35,6 +35,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -197,7 +198,26 @@ public class DatabaseHandler
   }
   
 
- 
+  /**
+   * Drops data tables from the database for all entities in a data package
+   * based on a specified packageId string.
+   * 
+   * @param  packageId the package identifier whose data tables are to be dropped
+   * @return true if all data tables were successfully dropped, else false.
+   */
+  public boolean dropTables(String packageId) throws SQLException {
+    boolean success = true;
+    ArrayList<String> tableNames = tableMonitor.getDBTableNames(packageId);
+    
+    if (tableNames != null) {
+      for (String tableName : tableNames) {
+        success = dropTable(tableName) && success;
+      }
+    }
+
+    return success;
+  }
+  
 
   /**
    * Generates a table in the database for a given entity.
