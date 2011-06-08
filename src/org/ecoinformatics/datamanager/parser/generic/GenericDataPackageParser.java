@@ -914,6 +914,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String entityCaseSensitive = "";
         String entityNumberOfRecords = "-1";
         String onlineUrl = "";
+        String format = null;
         String numHeaderLines = "0";
         int numFooterLines = 0;
         String fieldDelimiter = null;
@@ -1154,6 +1155,33 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         		       //log.debug("The url is "+ onlineUrl);
         	     }
            }
+                      
+           /**
+            * Determine file format (mime)
+            * Note: this could be better fleshed out in cases where the delimiter is known
+            * 
+            * physical/dataFormat/textFormat
+            * physical/dataFormat/binaryRasterFormat
+            * physical/dataFormat/externallyDefinedFormat/formatName
+            */
+           NodeList formatNodeList = xpathapi.selectNodeList(entityNode, "physical/dataFormat/externallyDefinedFormat/formatName");
+           if (formatNodeList != null && formatNodeList.getLength() > 0) {
+        	   format = formatNodeList.item(0).getFirstChild().getNodeValue();
+           } else {
+        	   // try binary raster
+        	   formatNodeList = xpathapi.selectNodeList(entityNode, "physical/dataFormat/binaryRasterFormat");
+               if (formatNodeList != null && formatNodeList.getLength() > 0) {
+            	   format = "application/octet-stream";
+               } else {
+            	   formatNodeList = xpathapi.selectNodeList(entityNode, "physical/dataFormat/textFormat");
+                   if (formatNodeList != null && formatNodeList.getLength() > 0) {
+                	   format = "text/plain";
+                   }
+                   if (isSimpleDelimited) {
+                	   format = "text/csv";
+                   }
+               }   
+           }
 
            // Get the compressionMethod information
            NodeList compressionMethodNodeList = 
@@ -1245,6 +1273,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setCollapseDelimiters(isCollapseDelimiters);         
           entityObject.setRecordDelimiter(recordDelimiter);
           entityObject.setURL(onlineUrl);
+          entityObject.setDataFormat(format);
           entityObject.setCompressionMethod(compressionMethod);
           entityObject.setIsImageEntity(isImageEntity);
           entityObject.setHasGZipDataFile(isGZipDataFile);
