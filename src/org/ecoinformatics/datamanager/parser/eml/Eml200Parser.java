@@ -72,6 +72,7 @@ import org.xml.sax.SAXException;
  * get the metadata information which decribes data file.
  * 
  * @author tao
+ * @deprecated Please use the generic.Eml200DataPackageParser class now
  */
 public class Eml200Parser
 {

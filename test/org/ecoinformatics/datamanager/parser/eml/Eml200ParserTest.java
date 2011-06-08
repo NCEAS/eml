@@ -26,9 +26,8 @@ import org.ecoinformatics.datamanager.parser.TextDomain;
  * @tao
  * 
  * JUnit tests for the Eml200Parser class.
- *
+ * @deprecated uses the old parser
  */
-
 public class Eml200ParserTest extends TestCase
 {
   /*

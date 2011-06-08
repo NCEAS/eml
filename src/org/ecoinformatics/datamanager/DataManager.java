@@ -56,8 +56,8 @@ import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
-import org.ecoinformatics.datamanager.parser.eml.Eml200Parser;
 import org.ecoinformatics.datamanager.parser.generic.DataPackageParserInterface;
+import org.ecoinformatics.datamanager.parser.generic.Eml200DataPackageParser;
 
 
 /**
@@ -592,10 +592,10 @@ public class DataManager {
   public DataPackage parseMetadata(InputStream metadataInputStream) 
                                   throws Exception {
     DataPackage dataPackage = null;
-    Eml200Parser eml200Parser = new Eml200Parser();
+    DataPackageParserInterface parser = new Eml200DataPackageParser();
     
-    eml200Parser.parse(metadataInputStream);
-    dataPackage = eml200Parser.getDataPackage();
+    parser.parse(metadataInputStream);
+    dataPackage = parser.getDataPackage();
     
     return dataPackage;
   }
