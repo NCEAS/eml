@@ -245,7 +245,7 @@
         </xs:annotation>
         <xs:complexType mixed="true">
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="citetitle">
+            <xs:element name="citetitle" type="i18nString">
                  <xs:annotation>
                 <xs:appinfo>
                   <doc:tooltip>citetitle</doc:tooltip>
@@ -284,7 +284,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="title" type="xs:string" minOccurs="0">
+      <xs:element name="title" type="i18nString" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Title</doc:tooltip>

@@ -224,7 +224,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="language" type="NonEmptyStringType" minOccurs="0">
+      <xs:element name="language" type="i18nNonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Language</doc:tooltip>
@@ -961,7 +961,7 @@ inline type -->
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="onlineDescription" type="NonEmptyStringType" minOccurs="0">
+      <xs:element name="onlineDescription" type="i18nNonEmptyStringType" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Description of online information</doc:tooltip>

@@ -93,6 +93,7 @@ public class Entity extends DataObjectDescription
 
     private String fileName;       // filename where Entity data is stored
     private String url;            // distribution url for this entity
+    private String format;
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
     private boolean isImageEntity    = false;
@@ -390,6 +391,27 @@ public class Entity extends DataObjectDescription
     public String getURL()
     {
       return this.url;
+    }
+    
+    /**
+     * Sets the format for this entity.
+     * 
+     * @param format    the format string value to be set
+     */
+    public void setDataFormat(String format)
+    {
+      this.format = format;
+    }
+
+    
+    /**
+     * Gets the format value for this entity.
+     * 
+     * @return  the format string value for this entity.
+     */
+    public String getDataFormat()
+    {
+      return this.format;
     }
 
     
