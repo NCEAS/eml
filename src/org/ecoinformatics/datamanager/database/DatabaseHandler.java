@@ -268,8 +268,12 @@ public class DatabaseHandler
         catch (SQLException e) {
           // If something went wrong, drop the table entry from the registry.
           tableMonitor.dropTableEntry(tableName);
-          System.err.println("SQLException: " + e.getMessage());
-          throw (e);
+          String message = "SQLException while generating data table '" + tableName +
+            "' for entity '" + entity.getName() + "': " + e.getMessage() + "\n" +
+            ddlString;
+          System.err.println(message);
+          SQLException se = new SQLException(message);
+          throw (se);
         }
         finally {
           if (stmt != null) stmt.close();
