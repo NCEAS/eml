@@ -479,6 +479,8 @@ public class DownloadHandler implements Runnable
     	//System.out.println("in getContent method!!!!!!!!!!!!!!! " +resourceName);
     	boolean successFlag = false;
         
+      if (resourceName != null) { resourceName = resourceName.trim(); }
+      
         if (resourceName != null && 
             (resourceName.startsWith("http://") ||
              resourceName.startsWith("https://") ||
