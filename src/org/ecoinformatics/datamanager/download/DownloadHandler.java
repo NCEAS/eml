@@ -527,6 +527,8 @@ public class DownloadHandler implements Runnable
     	boolean successFlag = false;
     	QualityCheck qualityCheck = null;
         
+      if (resourceName != null) { resourceName = resourceName.trim(); }
+      
         if (resourceName != null && 
             (resourceName.startsWith("http://") ||
              resourceName.startsWith("https://") ||
