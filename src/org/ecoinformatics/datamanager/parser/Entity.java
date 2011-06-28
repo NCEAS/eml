@@ -97,6 +97,7 @@ public class Entity extends DataObjectDescription
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
     private boolean isImageEntity    = false;
+    private boolean isOtherEntity    = false;
     private boolean hasGZipDataFile  = false;
     private boolean hasZipDataFile   = false;
     private boolean hasTarDataFile   = false;
@@ -659,6 +660,26 @@ public class Entity extends DataObjectDescription
     public void setIsImageEntity(boolean isImageEntity)
     {
       this.isImageEntity = isImageEntity;
+    }
+    
+    
+    /**
+     * Gets the isOtherEntity value.
+     * 
+     * @return isOtherEntity  true if this is an otherEntity entity, else false
+     */
+    public boolean isOtherEntity() {
+      return isOtherEntity;
+    }
+    
+    
+    /**
+     * Sets the isOtherEntity value.
+     * 
+     * @param isOtherEntity  true if this is an otherEntity entity, else false
+     */
+    public void setIsOtherEntity(boolean isOtherEntity) {
+      this.isOtherEntity = isOtherEntity;
     }
     
     

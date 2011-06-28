@@ -391,15 +391,37 @@ public class GenericDataPackageParser implements DataPackageParserInterface
      * 
      * @param  xpathapi  XPath API
      * @param  attributeListNodeList   a NodeList
+     * @param  xpath     the XPath path string to the data entity 
      * @param  entObj    the entity object whose attribute list is processed
      */
     private void processAttributeList(CachedXPathAPI xpathapi, 
                                       NodeList attributeListNodeList, 
+                                      String xpath,
                                       Entity entObj) 
             throws Exception
     {
         AttributeList attributeList = new AttributeList();
         Node attributeListNode = attributeListNodeList.item(0);
+        
+        /*
+         * It is allowable in EML to omit the attributeList for an
+         * 'otherEntity' data entity.
+         */
+        if (attributeListNode == null) {
+          if (xpath != null && xpath.equals(otherEntityPath)) {
+            System.err.println(
+                "No attributeList was specified for otherEntity '" +
+                entObj.getName() + "'. This is allowable in EML."
+                              );
+            return;
+          }
+          else {
+            throw new Exception(
+                "No attributeList was specified for entity '" + 
+                entObj.getName() + "'.");
+          }
+        }
+        
         // Get attributeList element's id attribute
         NamedNodeMap attributeListNodeAttributes = 
             attributeListNode.getAttributes();
@@ -924,6 +946,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String quoteCharacter = null;
         String literalCharacter = null;
         boolean isImageEntity   = false;
+        boolean isOtherEntity = false;
         boolean isGZipDataFile  = false;
         boolean isZipDataFile   = false;
         boolean isTarDataFile   = false;
@@ -933,10 +956,14 @@ public class GenericDataPackageParser implements DataPackageParserInterface
          
         for (int i = 0; i < entityNodeListLength; i++) {
             
-            if (xpath != null && (xpath.equals(spatialRasterEntityPath) 
-                                  || xpath.equals(spatialVectorEntityPath)))
-            {
-              isImageEntity = true;
+            if (xpath != null) {
+              if (xpath.equals(spatialRasterEntityPath) || 
+                  xpath.equals(spatialVectorEntityPath)) {
+                isImageEntity = true;
+              }
+              else if (xpath.equals(otherEntityPath)) {
+                isOtherEntity = true;
+              }
             }
             
              //go through the entities and put the information into the hash.
@@ -1276,6 +1303,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setDataFormat(format);
           entityObject.setCompressionMethod(compressionMethod);
           entityObject.setIsImageEntity(isImageEntity);
+          entityObject.setIsOtherEntity(isOtherEntity);
           entityObject.setHasGZipDataFile(isGZipDataFile);
           entityObject.setHasZipDataFile(isZipDataFile);
           entityObject.setHasTarDataFile(isTarDataFile);
@@ -1284,7 +1312,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           try {
               NodeList attributeListNodeList = 
                   xpathapi.selectNodeList(entityNode, "attributeList");
-              processAttributeList(xpathapi, attributeListNodeList, entityObject);
+              processAttributeList(xpathapi, attributeListNodeList, xpath, entityObject);
               entityObject.setDataFormatArray(formatArray);  
           } catch (Exception e) {
                 throw new Exception("Error parsing attributes: " + 
