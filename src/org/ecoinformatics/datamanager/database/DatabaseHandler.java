@@ -127,27 +127,40 @@ public class DatabaseHandler
     String sqlString;
     
     if ((tableName != null) && (!tableName.trim().equals(""))) {
-      Statement stmt = null;
-      sqlString = databaseAdapter.generateDropTableSQL(tableName);
+      /*
+       * If the table is in the database, drop it.
+       */
+      if (tableMonitor.isTableInDB(tableName)) {
+        Statement stmt = null;
+        sqlString = databaseAdapter.generateDropTableSQL(tableName);
 
-      try {
-        stmt = connection.createStatement();
-        stmt.executeUpdate(sqlString);
-        success = true;
+        try {
+          stmt = connection.createStatement();
+          stmt.executeUpdate(sqlString);
+          success = true;
         
-        /*
-         * Table was dropped, so we need to inform the table monitor that it
-         * should drop the table entry from the data table registry.
-         */
-        success = success && tableMonitor.dropTableEntry(tableName);
-      } 
-      catch (SQLException e) {
-        System.err.println("SQLException: " + e.getMessage());
-        throw (e);
+          /*
+           * Table was dropped, so we need to inform the table monitor that it
+           * should drop the table entry from the data table registry.
+           */
+          success = success && tableMonitor.dropTableEntry(tableName);
+        } 
+        catch (SQLException e) {
+          System.err.println("SQLException: " + e.getMessage());
+          throw (e);
+        }
+        finally {
+          if (stmt != null) stmt.close();
+          DataManager.returnConnection(connection);
+        }
       }
-      finally {
-        if (stmt != null) stmt.close();
-        DataManager.returnConnection(connection);
+      /*
+       * Otherwise just clean up any table entry that may be present
+       * for this table in the TableMonitor registry.
+       */
+      else {
+        tableMonitor.dropTableEntry(tableName); 
+        success = true;
       }
     }
 

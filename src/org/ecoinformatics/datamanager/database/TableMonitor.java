@@ -548,7 +548,7 @@ public class TableMonitor {
         stmt = connection.createStatement();             
         ResultSet rs = stmt.executeQuery(selectString);
       
-        if (rs.next()) {
+        while (rs.next()) {
           String tableName = rs.getString("table_name");
           tableNames.add(tableName);
         }
