@@ -54,6 +54,7 @@ import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.Attribute;
+import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.generic.DataPackageParserInterface;
@@ -527,30 +528,48 @@ public class DataManager {
    *         true if successful, else false.
    */
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
-        throws ClassNotFoundException, SQLException, Exception {
+          throws ClassNotFoundException, SQLException, Exception {
     boolean success = false;
+
+    /*
+     * otherEntity is allowed to optionally omit the attributeList element.
+     * If this is an otherEntity and its attributeList is null, or it is
+     * non-null but it contains an empty attribute array, return success.
+     */
+    if ((entity != null) && (entity.isOtherEntity())) {
+      AttributeList attributeList = entity.getAttributeList();
+      if (attributeList == null) {
+        success = true;
+      }
+      else {
+        Attribute[] attributes = attributeList.getAttributes();
+        if (attributes == null) {
+          success = true;
+        }
+      }
+    }
+    else {  
+      try {
+        DatabaseHandler databaseHandler = 
+                                 new DatabaseHandler(databaseAdapterName);
+
+        // First, generate a table for the entity
+        success = databaseHandler.generateTable(entity);
+
+        // If we have a table, then load the data for the entity.
+        if (success) {
+          success = databaseHandler.loadDataToDB(entity, endPointInfo);
     
-    try
-    {
-	    DatabaseHandler databaseHandler = 
-                                       new DatabaseHandler(databaseAdapterName);
-	    
-	    // First, generate a table for the entity
-	    success = databaseHandler.generateTable(entity);
-	    
-	    // If we have a table, then load the data for the entity.
-	    if (success) {
-	      success = databaseHandler.loadDataToDB(entity, endPointInfo);
-          
           // If the data could not be loaded to the database, drop the table.
           if (!success) {
             databaseHandler.dropTable(entity);
           }
-	    }
+        }
+      }
+      finally {
+      }
     }
-    finally
-    {}
-    
+
     return success;
   }
   
