@@ -272,7 +272,10 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           qualityCheck.setDescription("Display the first few rows of data");
           qualityCheck.setExpected("One or more rows of data should be displayed");
           qualityCheck.setStatus(Status.info);
-          qualityCheck.setFound(rowVector.toString());
+          // Note that rowVector starts and ends with square brackets. We're
+          // using a shortcut by incorporating them into the CDATA tags
+          String foundString = "<![CDATA" + rowVector.toString() + "]>";
+          qualityCheck.setFound(foundString);
           entity.addQualityCheck(qualityCheck);
         }
     	  connection = DataManager.getConnection();
