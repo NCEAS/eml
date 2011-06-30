@@ -263,14 +263,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       Connection connection = null;
 
       try {
-        System.out.println("************The first row data is: " + rowVector);
         if (entity != null && QualityReport.isQualityReporting()) {
-          // Store information about this download in a QualityCheck object
+          // Display the first row of data in a QualityCheck object
           QualityCheck qualityCheck = new QualityCheck("display some data");
           qualityCheck.setSystem(QualityCheck.System.knb);
           qualityCheck.setQualityType(QualityCheck.QualityType.data);
-          qualityCheck.setDescription("Display the first few rows of data");
-          qualityCheck.setExpected("One or more rows of data should be displayed");
+          qualityCheck.setDescription("Display the first row of data");
+          qualityCheck.setExpected("One row of data should be displayed");
           qualityCheck.setStatus(Status.info);
           // Note that rowVector starts and ends with square brackets. We're
           // using a shortcut by incorporating them into the CDATA tags
@@ -305,7 +304,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         connection.commit();
 
         if (entity != null && QualityReport.isQualityReporting()) {
-          // Store information about this download in a QualityCheck object
+          // Store number of records found in a QualityCheck object
           QualityCheck qualityCheck = new QualityCheck("Number of records check");
           qualityCheck.setSystem(QualityCheck.System.knb);
           qualityCheck.setQualityType(QualityCheck.QualityType.congruency);
@@ -343,11 +342,30 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       catch (Exception e) {
         System.err.println("DatabaseLoader.run(): Error message: " + 
                            e.getMessage());
-        System.err.println("SQL string to insert row:\n" + insertSQL);
+        System.err.println("SQL insert string:\n" + insertSQL);
         e.printStackTrace();
         
         success = false;
         exception = e;
+        
+        if (entity != null && QualityReport.isQualityReporting()) {
+          // Capture data loading errors in a qualityCheck object
+          QualityCheck qualityCheck = new QualityCheck("Data load error");
+          qualityCheck.setStatus(Status.error);
+          qualityCheck.setSystem(QualityCheck.System.knb);
+          qualityCheck.setQualityType(QualityCheck.QualityType.data);
+          qualityCheck.setDescription(
+            "Report errors that occur while inserting data into a database");
+          qualityCheck.setExpected("No errors occur during data loading.");
+          qualityCheck.setFound(
+            "One or more errors occurred during data loading.");
+          String explanation = e.getMessage();
+          if (insertSQL != null && !insertSQL.equals("")) {
+            explanation += "\nSQL insert string:\n" + insertSQL;
+          }
+          qualityCheck.setExplanation(explanation);
+          entity.addQualityCheck(qualityCheck);
+        }
         
         try {
           connection.rollback();
