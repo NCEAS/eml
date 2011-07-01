@@ -44,6 +44,9 @@ import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
  * The DatabaseHandler class is the top-level class for interacting with the
@@ -242,6 +245,18 @@ public class DatabaseHandler
     
     boolean success = true;
     String tableName;
+    QualityCheck databaseTableQualityCheck = null;
+    
+    if (QualityReport.isQualityReporting()) {
+      // Initialize the dataLoadQualityCheck
+      databaseTableQualityCheck = new QualityCheck("Create database table");
+      databaseTableQualityCheck.setSystem(QualityCheck.System.knb);
+      databaseTableQualityCheck.setQualityType(QualityCheck.QualityType.metadata);
+      databaseTableQualityCheck.setDescription(
+        "Status of creating a database table");
+      databaseTableQualityCheck.setExpected(
+        "A database table is expected to be generated from the EML attributes.");
+    }
     
     tableName = tableMonitor.addTableEntry(entity);   
 
@@ -249,7 +264,18 @@ public class DatabaseHandler
      * If the table monitor couldn't assign a name, then throw an exception.
      */
     if ((tableName == null) || (tableName.trim().equals(""))) {
-      throw new SQLException("Entity has not been assigned a valid name.");
+      String message = "Entity has not been assigned a valid name.";
+      if (entity != null && QualityReport.isQualityReporting()) {
+        /*
+         * Report database table status as 'error'
+         */
+        databaseTableQualityCheck.setStatus(Status.error);
+        databaseTableQualityCheck.setFound(
+          "An error occurred while creating the database table");
+        databaseTableQualityCheck.setExplanation(message);
+        entity.addQualityCheck(databaseTableQualityCheck);
+      }
+      throw new SQLException(message);
     }
     /*
      * If a table name was assigned for this entity, let's see whether we've 
@@ -277,14 +303,39 @@ public class DatabaseHandler
         try {
           stmt = connection.createStatement();
           stmt.executeUpdate(ddlString);
+          
+          if (entity != null && QualityReport.isQualityReporting()) {
+            /*
+             * Report database table generation status as 'valid'
+             */
+            databaseTableQualityCheck.setStatus(Status.valid);
+            databaseTableQualityCheck.setFound(
+              "A database table was generated from the attributes description");
+            databaseTableQualityCheck.setExplanation(ddlString);
+            entity.addQualityCheck(databaseTableQualityCheck);
+          }
         } 
         catch (SQLException e) {
           // If something went wrong, drop the table entry from the registry.
           tableMonitor.dropTableEntry(tableName);
-          String message = "SQLException while generating data table '" + tableName +
-            "' for entity '" + entity.getName() + "': " + e.getMessage() + "\n" +
-            ddlString;
+          String message = 
+            "SQLException while generating data table '" + tableName +
+            "' for entity '" + entity.getName() + "': " + e.getMessage() + 
+            "\n" + ddlString;
           System.err.println(message);
+          e.printStackTrace();
+          
+          if (entity != null && QualityReport.isQualityReporting()) {
+            /*
+             * Report database table status as 'error'
+             */
+            databaseTableQualityCheck.setStatus(Status.error);
+            databaseTableQualityCheck.setFound(
+              "An error occurred while creating the database table");
+            databaseTableQualityCheck.setExplanation(message);
+            entity.addQualityCheck(databaseTableQualityCheck);
+          }
+          
           SQLException se = new SQLException(message);
           throw (se);
         }
