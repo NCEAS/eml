@@ -248,7 +248,7 @@ public class DatabaseHandler
     QualityCheck databaseTableQualityCheck = null;
     
     if (QualityReport.isQualityReporting()) {
-      // Initialize the dataLoadQualityCheck
+      // Initialize the databaseTableQualityCheck
       databaseTableQualityCheck = new QualityCheck("Create database table");
       databaseTableQualityCheck.setSystem(QualityCheck.System.knb);
       databaseTableQualityCheck.setQualityType(QualityCheck.QualityType.metadata);

@@ -59,6 +59,9 @@ import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.generic.DataPackageParserInterface;
 import org.ecoinformatics.datamanager.parser.generic.Eml200DataPackageParser;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 
 /**
@@ -565,6 +568,29 @@ public class DataManager {
         Attribute[] attributes = attributeList.getAttributes();
         if (attributes == null) {
           success = true;
+        }
+      }
+      
+      if (success) {
+        // Create an informational quality check stating that the data load
+        // was not attempted for this otherEntity entity.
+        if (QualityReport.isQualityReporting()) {
+          QualityCheck dataLoadQualityCheck = new QualityCheck("Data load status");
+          dataLoadQualityCheck.setSystem(QualityCheck.System.knb);
+          dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
+          dataLoadQualityCheck.setDescription(
+            "Status of loading the data table into a database");
+          dataLoadQualityCheck.setExpected(
+            "No errors expected during data loading " +
+            "or data loading was not attempted for this data entity");
+          dataLoadQualityCheck.setStatus(Status.info);
+          dataLoadQualityCheck.setFound(
+            "Data loading was not attempted for this 'otherEntity' " +
+            "because no attribute list was found in the EML");
+          dataLoadQualityCheck.setExplanation(
+            "In EML, a data entity of type 'otherEntity' is not required " +
+            "to document an attribute list");
+          entity.addQualityCheck(dataLoadQualityCheck);
         }
       }
     }
