@@ -945,17 +945,21 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String encodingMethod = "";
         String quoteCharacter = null;
         String literalCharacter = null;
-        boolean isImageEntity   = false;
-        boolean isOtherEntity = false;
-        boolean isGZipDataFile  = false;
-        boolean isZipDataFile   = false;
-        boolean isTarDataFile   = false;
-        boolean isSimpleDelimited = true;
-        boolean isCollapseDelimiters = false;
         TextComplexDataFormat[] formatArray = null;
          
         for (int i = 0; i < entityNodeListLength; i++) {
             
+            boolean hasDistributionOnline = false;
+            boolean hasDistributionOffline = false;
+            boolean hasDistributionInline = false;
+            boolean isOtherEntity = false;
+            boolean isImageEntity   = false;
+            boolean isGZipDataFile  = false;
+            boolean isZipDataFile   = false;
+            boolean isTarDataFile   = false;
+            boolean isSimpleDelimited = true;
+            boolean isCollapseDelimiters = false;
+
             if (xpath != null) {
               if (xpath.equals(spatialRasterEntityPath) || 
                   xpath.equals(spatialVectorEntityPath)) {
@@ -1170,6 +1174,26 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               recordDelimiter = "\\r\\n";
            }
            
+           NodeList onlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/online");
+           NodeList offlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/offline");
+           NodeList inlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/inline");
+           if (onlineNodeList != null && onlineNodeList.getLength() > 0) {
+             hasDistributionOnline = true;
+           }
+           if (offlineNodeList != null && offlineNodeList.getLength() > 0) {
+             hasDistributionOffline = true;
+           }
+           if (inlineNodeList != null && inlineNodeList.getLength() > 0) {
+             hasDistributionInline = true;
+           }
+           
+           
            // Get the distribution information
            NodeList urlNodeList = xpathapi.selectNodeList(entityNode,
                                            "physical/distribution/online/url");
@@ -1308,7 +1332,10 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setHasZipDataFile(isZipDataFile);
           entityObject.setHasTarDataFile(isTarDataFile);
           entityObject.setPackageId(packageId);
-            
+          entityObject.setHasDistributionOnline(hasDistributionOnline);
+          entityObject.setHasDistributionOffline(hasDistributionOffline);
+          entityObject.setHasDistributionInline(hasDistributionInline);
+          
           try {
               NodeList attributeListNodeList = 
                   xpathapi.selectNodeList(entityNode, "attributeList");

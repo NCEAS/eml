@@ -96,6 +96,9 @@ public class Entity extends DataObjectDescription
     private String format;
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
+    private boolean hasDistributionOnline = false;
+    private boolean hasDistributionOffline = false;
+    private boolean hasDistributionInline = false;
     private boolean isImageEntity    = false;
     private boolean isOtherEntity    = false;
     private boolean hasGZipDataFile  = false;
@@ -636,6 +639,78 @@ public class Entity extends DataObjectDescription
     public void setCompressionMethod(String compressionMethod)
     {
       this.compressionMethod = compressionMethod;
+    }
+    
+    
+    /**
+     * Boolean to determine if this entity has at least one distribution 
+     * online element.
+     * 
+     * @return boolean  true if the entity has a distribution online 
+     *                  element, else false
+     */
+    public boolean hasDistributionOnline() {
+      return this.hasDistributionOnline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionOnline field to store whether this entity
+     * has at least one distribution online element.
+     * 
+     * @param distributionOnline   the boolean value to set. true if 
+     *        the entity has a distribution online element, else false
+     */
+    public void setHasDistributionOnline(boolean distributionOnline) {
+      this.hasDistributionOnline = distributionOnline;
+    }
+    
+    
+    /**
+     * Boolean to determine if this entity has at least one distribution 
+     * offline element.
+     * 
+     * @return boolean  true if the entity has a distribution offline 
+     *                  element, else false
+     */
+    public boolean hasDistributionOffline() {
+      return this.hasDistributionOffline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionOffline field to store whether this entity
+     * has at least one distribution offline element.
+     * 
+     * @param distributionOffline   the boolean value to set. true if 
+     *        the entity has a distribution offline element, else false
+     */
+    public void setHasDistributionOffline(boolean distributionOffline) {
+      this.hasDistributionOffline = distributionOffline;
+    }
+    
+    
+    /**
+     * Boolean to determine if this entity has at least one distribution 
+     * inline element.
+     * 
+     * @return boolean  true if the entity has a distribution inline 
+     *                  element, else false
+     */
+    public boolean hasDistributionInline() {
+      return this.hasDistributionInline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionInline field to store whether this entity
+     * has at least one distribution inline element.
+     * 
+     * @param distributionInline   the boolean value to set. true if 
+     *        the entity has a distribution inline element, else false
+     */
+    public void setHasDistributionInline(boolean distributionInline) {
+      this.hasDistributionInline = distributionInline;
     }
     
     

@@ -553,6 +553,18 @@ public class DataManager {
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
           throws ClassNotFoundException, SQLException, Exception {
     boolean success = false;
+    QualityCheck dataLoadQualityCheck = new QualityCheck("Data load status");
+    
+    if (QualityReport.isQualityReporting()) {
+      dataLoadQualityCheck.setSystem(QualityCheck.System.knb);
+      dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
+      dataLoadQualityCheck.setDescription(
+        "Status of loading the data table into a database");
+      dataLoadQualityCheck.setExpected(
+        "No errors expected during data loading " +
+        "or data loading was not attempted for this data entity");
+      dataLoadQualityCheck.setStatus(Status.info);
+    }
 
     /*
      * otherEntity is allowed to optionally omit the attributeList element.
@@ -575,15 +587,6 @@ public class DataManager {
         // Create an informational quality check stating that the data load
         // was not attempted for this otherEntity entity.
         if (QualityReport.isQualityReporting()) {
-          QualityCheck dataLoadQualityCheck = new QualityCheck("Data load status");
-          dataLoadQualityCheck.setSystem(QualityCheck.System.knb);
-          dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
-          dataLoadQualityCheck.setDescription(
-            "Status of loading the data table into a database");
-          dataLoadQualityCheck.setExpected(
-            "No errors expected during data loading " +
-            "or data loading was not attempted for this data entity");
-          dataLoadQualityCheck.setStatus(Status.info);
           dataLoadQualityCheck.setFound(
             "Data loading was not attempted for this 'otherEntity' " +
             "because no attribute list was found in the EML");
@@ -592,6 +595,28 @@ public class DataManager {
             "to document an attribute list");
           entity.addQualityCheck(dataLoadQualityCheck);
         }
+      }
+    }
+    /*
+     * Do not attempt to load data into a database table if the entity
+     * does not have a distribution online and has either distribution
+     * offline or inline.
+     */
+    else if ((entity != null) && 
+             !entity.hasDistributionOnline() &&
+             (entity.hasDistributionOffline() ||
+              entity.hasDistributionInline()
+             )
+            ) {
+      success = true;
+      if (QualityReport.isQualityReporting()) {
+        dataLoadQualityCheck.setFound(
+          "Data loading was not attempted for this entity " +
+          "because its distribution is 'inline' or 'offline'");
+        dataLoadQualityCheck.setExplanation(
+          "Unable to process data entities with distribution " +
+          "set to 'inline' or 'offline'");
+        entity.addQualityCheck(dataLoadQualityCheck);
       }
     }
     else {  
