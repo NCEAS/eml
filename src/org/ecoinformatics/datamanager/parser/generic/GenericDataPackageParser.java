@@ -280,7 +280,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             
         } catch (Exception e) {
             throw new Exception(
-                            "Error extracting entities from eml2.0.0 package.");
+                            "Error extracting entities from eml2.0.0 package.", e);
         }
         
         try {
@@ -299,7 +299,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             processEntities(xpathapi, viewEntities, viewEntityPath, packageId);
             //log.debug("Done processing entities");
         } catch (Exception e) {
-            throw new Exception("Error processing entities: " + e.getMessage());
+            throw new Exception("Error processing entities: " + e.getMessage(), e);
         }
     }
 
@@ -561,21 +561,22 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             for (int j = 0; j < attributeNodeChildren.getLength(); j++) {
                 Node childNode = attributeNodeChildren.item(j);
                 String childNodeName = childNode.getNodeName();
-                
+                String childNodeValue = childNode.getFirstChild() == null ? null: childNode.getFirstChild().getNodeValue();
+                childNodeValue = childNodeValue == null ? childNodeValue : childNodeValue.trim();
                 if (childNodeName.equals("attributeName")) {
-                    attName = childNode.getFirstChild().getNodeValue()
-                                   .trim().replace('.', '_');
+                	if (childNodeValue != null) {
+	                    attName = childNodeValue.replace('.', '_');
+                	}
                 } 
                 else if (childNodeName.equals("attributeLabel")) {
-                    attLabel = childNode.getFirstChild().getNodeValue().trim();
+                    attLabel = childNodeValue;
                 } 
                 else if (childNodeName.equals("attributeDefinition")) {
-                    attDefinition = childNode.getFirstChild().getNodeValue().trim();
+                    attDefinition = childNodeValue;
                 }
                 // Process storageType elements
                 else if (childNodeName.equals("storageType")) {
-                  String storageTypeTextValue = 
-                      childNode.getFirstChild().getNodeValue().trim();
+                  String storageTypeTextValue = childNodeValue;
                   NamedNodeMap storageTypeAttributesMap = childNode.getAttributes();
                   StorageType storageType;
                   String typeSystem = "";
@@ -761,9 +762,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                                   "./definition");
                                     Node defintionNode = definitionNodeList.item(0);
                                     String definition = 
-                                      defintionNode.
-                                      getFirstChild().
-                                      getNodeValue();
+                                    	defintionNode.getFirstChild() == null ? null: defintionNode.getFirstChild().getNodeValue();
                                 	
                                     if(isDebugging) {
                                       //log.debug(
@@ -986,16 +985,16 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             for (int j = 0; j < entityNodeChildren.getLength(); j++) {
                 Node childNode = entityNodeChildren.item(j);
                 String childName = childNode.getNodeName();
+                String childValue = childNode.getFirstChild() == null ? null: childNode.getFirstChild().getNodeValue();
 
                 if (childName.equals("entityName")) {
-                    entityName = childNode.getFirstChild().getNodeValue();
+                    entityName = childValue;
                 } else if (childName.equals("entityDescription")) {
-                    entityDescription = childNode.getFirstChild().getNodeValue();
+                    entityDescription = childValue;
                 } else if (childName.equals("caseSensitive")) {
-                    entityCaseSensitive = childNode.getFirstChild().getNodeValue();
+                    entityCaseSensitive = childValue;
                 } else if (childName.equals("numberOfRecords")) {
-                    entityNumberOfRecords = childNode.getFirstChild()
-                                    .getNodeValue();
+                    entityNumberOfRecords = childValue;
                     /*numRecords = (new Integer(entityNumberOfRecords))
                                     .intValue();*/
                 }                
@@ -1269,8 +1268,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           }
 
           entityObject = new Entity(id, 
-                                    entityName.trim(),
-                                    entityDescription.trim(), 
+        		  					entityName == null ? null: entityName.trim(),
+                                    entityDescription == null ? null: entityDescription.trim(), 
                                     new Boolean(entityCaseSensitive),
                                     entityOrientation, 
                                     new Integer(entityNumberOfRecords).
@@ -1316,7 +1315,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               entityObject.setDataFormatArray(formatArray);  
           } catch (Exception e) {
                 throw new Exception("Error parsing attributes: " + 
-                                    e.getMessage());
+                                    e.getMessage(), e);
           }
           
           //entityHash.put(Integer.toString(elementId), entityObject);
