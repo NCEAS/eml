@@ -164,13 +164,13 @@
 	   		</xsl:for-each>
 	   	</xsl:for-each>
 	   	
-	   	<xsl:if test="string(individualName/surName) != ''"> 
-	   		<xsl:if test="string(organizationName) != ''"> of </xsl:if>
+	   	<!-- only show organization if the person is omitted  -->
+	   	<xsl:if test="string(individualName/surName) = ''"> 
+		   	<xsl:for-each select="organizationName">
+		   		<xsl:value-of select="."/>
+		   	</xsl:for-each>
 	   	</xsl:if>
 	   	
-	   	<xsl:for-each select="organizationName">
-	   		<xsl:value-of select="."/>
-	   	</xsl:for-each>
    </xsl:template>
     
  </xsl:stylesheet>
