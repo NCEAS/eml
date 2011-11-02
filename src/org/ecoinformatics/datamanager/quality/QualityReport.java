@@ -34,7 +34,7 @@ public class QualityReport {
   private DataPackage dataPackage;
   
   private String packageId;     // the eml packageId value
-  private ArrayList<QualityCheck> qualityChecks;
+  private ArrayList<QualityCheck> metadataQualityChecks;
   private ArrayList<EntityReport> entityReports;
   
   
@@ -55,7 +55,7 @@ public class QualityReport {
       this.packageId = dataPackage.getPackageId();
     }
     
-    this.qualityChecks = new ArrayList<QualityCheck>();
+    this.metadataQualityChecks = new ArrayList<QualityCheck>();
     this.entityReports = new ArrayList<EntityReport>();
   }
 
@@ -68,7 +68,7 @@ public class QualityReport {
    */
   public QualityReport(String packageId) {
     this.packageId = packageId;
-    this.qualityChecks = new ArrayList<QualityCheck>();
+    this.metadataQualityChecks = new ArrayList<QualityCheck>();
     this.entityReports = new ArrayList<EntityReport>();
   }
 
@@ -123,8 +123,8 @@ public class QualityReport {
    */
 
   /**
-   * Adds a quality check to the list of quality checks that have been
-   * performed on this data package.
+   * Adds an EntityReport object to the list of entity reports that have been
+   * created for this data package.
    * 
    * @param qualityCheck    the new quality check to add to the list
    */
@@ -139,8 +139,8 @@ public class QualityReport {
    * 
    * @param qualityCheck    the new quality check to add to the list
    */
-  public void addQualityCheck(QualityCheck qualityCheck) {
-    qualityChecks.add(qualityCheck);
+  public void addMetadataQualityCheck(QualityCheck qualityCheck) {
+    metadataQualityChecks.add(qualityCheck);
   }
   
   
@@ -154,8 +154,8 @@ public class QualityReport {
   }
 
 
-  public ArrayList<QualityCheck> getQualityChecks() {
-    return qualityChecks;
+  public ArrayList<QualityCheck> getMetadataQualityChecks() {
+    return metadataQualityChecks;
   }
 
 
@@ -169,8 +169,8 @@ public class QualityReport {
   }
 
 
-  public void setQualityChecks(ArrayList<QualityCheck> qualityChecks) {
-    this.qualityChecks = qualityChecks;
+  public void setMetadataQualityChecks(ArrayList<QualityCheck> qualityChecks) {
+    this.metadataQualityChecks = qualityChecks;
   }
 
 
@@ -195,9 +195,9 @@ public class QualityReport {
     stringBuffer.append("  <packageId>" + packageId + "</packageId>\n");
     
     // Add quality checks at the data package metadata level
-    if (qualityChecks != null && qualityChecks.size() > 0) {
+    if (metadataQualityChecks != null && metadataQualityChecks.size() > 0) {
       stringBuffer.append("  <metadataReport>\n");
-      for (QualityCheck aQualityCheck : qualityChecks) {
+      for (QualityCheck aQualityCheck : metadataQualityChecks) {
         String qualityCheckXML = aQualityCheck.toXML();
         stringBuffer.append(qualityCheckXML);
       }

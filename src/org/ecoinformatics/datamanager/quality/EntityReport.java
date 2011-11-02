@@ -108,7 +108,7 @@ public class EntityReport {
    * @param isQualityReport  boolean to determine whether a full XML quality 
    *        report should be generated; a quality report complies with the XML 
    *        Schema for quality reports. If specified as 'false', only the 
-   *        entityReport XML fragment is generated, which can then be 
+   *        <entityReport> XML element is generated, which can then be 
    *        incorporated into a full quality report by the QualityReport class.
    *        
    * @return an XML string representation of a full quality report or just the 
