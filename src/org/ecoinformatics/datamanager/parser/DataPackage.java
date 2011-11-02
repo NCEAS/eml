@@ -54,6 +54,7 @@ public class DataPackage
    * Instance fields
    */
   
+  private String accessXML = null;       // <access> element XML string
   private Entity[] entityList = null;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
@@ -85,15 +86,25 @@ public class DataPackage
    */
   
   /**
-   * Adds a quality check to the data packages's associated 
+   * Adds a metadata quality check to the data packages's associated 
    * qualityReport object.
    * 
-   * @param qualityCheck    the new quality check to add to the list
+   * @param qualityCheck    the new quality check to add
    */
-  public void addQualityCheck(QualityCheck qualityCheck) {
+  public void addMetadataQualityCheck(QualityCheck qualityCheck) {
     if (qualityReport != null) {
-      qualityReport.addQualityCheck(qualityCheck);
+      qualityReport.addMetadataQualityCheck(qualityCheck);
     }
+  }
+  
+  
+  /**
+   * Getter method for the accessXML field
+   * 
+   * @return  the value of the accessXML field
+   */
+  public String getAccessXML() {
+    return accessXML;
   }
   
   
@@ -208,6 +219,18 @@ public class DataPackage
    */
   public void clearEntityList() {
 	  entityList = null;
+  }
+  
+  
+  /**
+   * Setter method for accessXML field.
+   * 
+   * @param xmlString  the XML string to assign to the
+   *                   accessXML field. Should be a block
+   *                   of <access> XML.
+   */
+  public void setAccessXML(String xmlString) {
+    this.accessXML = xmlString;
   }
   
 }

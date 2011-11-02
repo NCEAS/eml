@@ -114,7 +114,7 @@ public class Entity extends DataObjectDescription
     private String literalCharacter = null;
     
     private EntityReport entityReport = null;
-    
+    private String entityAccessXML = null;
     
     
     /* 
@@ -820,6 +820,29 @@ public class Entity extends DataObjectDescription
     public void setHasTarDataFile(boolean hasTarDataFile)
     {
       this.hasTarDataFile = hasTarDataFile;
+    }
+    
+    
+    /**
+     * Gets the entity <access> XML block and returns it as an XML string.
+     * Will be null in cases where no <access> XML was defined for this
+     * entity. (In such cases, access should default to that of the dataset.)
+     * 
+     * @return  an XML string holding the entity <access> block, or null
+     */
+    public String getEntityAccessXML() {
+      return entityAccessXML;
+    }
+    
+    
+    /**
+     * Sets the value of the entityAccessXML field to a string
+     * which should hold a block of <access> element XML.
+     * 
+     * @param xmlString   the <access> element XML string
+     */
+    public void setEntityAccessXML(String xmlString) {
+      this.entityAccessXML = xmlString;
     }
     
     

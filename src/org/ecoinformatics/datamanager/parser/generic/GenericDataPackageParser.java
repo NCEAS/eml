@@ -33,12 +33,20 @@
 package org.ecoinformatics.datamanager.parser.generic;
 
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
@@ -106,6 +114,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     protected String storedProcedureEntityPath = null;
     protected String viewEntityPath = null;
     protected String otherEntityPath = null;
+    
+    protected String accessPath = null;
+    protected String entityAccessPath = null;
     
     //private Hashtable entityHash = new Hashtable();
     //private Hashtable fileHash = new Hashtable();
@@ -200,6 +211,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		storedProcedureEntityPath = "//dataset/storedProcedure";
 		viewEntityPath = "//dataset/view";
 		otherEntityPath = "//dataset/otherEntity";
+		
+		accessPath = "//access";
+    entityAccessPath = "physical/distribution/access";
 	}
 	
 	/**
@@ -277,6 +291,13 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             otherEntities         = xpathapi.selectNodeList(doc, otherEntityPath);
             viewEntities          = xpathapi.selectNodeList(doc, viewEntityPath);
             
+            
+            // Store <access> XML block because some applications may need it
+            Node accessNode = xpathapi.selectSingleNode(doc, accessPath);
+            if (accessNode != null) {
+              String accessXML = nodeToXmlString(accessNode);
+              emlDataPackage.setAccessXML(accessXML);
+            }
             
         } catch (Exception e) {
             throw new Exception(
@@ -930,6 +951,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         
         int entityNodeListLength = entitiesNodeList.getLength();
         numEntities = numEntities + entityNodeListLength;
+        String entityAccessXML = null;
         String entityName = "";
         String entityDescription = "";
         String entityOrientation = "";
@@ -1174,6 +1196,14 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               recordDelimiter = "\\r\\n";
            }
            
+           // Store the entity access XML since some applications may need it
+           Node entityAccessNode = xpathapi.selectSingleNode(
+                                              entityNode, 
+                                              entityAccessPath);
+           if (entityAccessNode != null) {
+             entityAccessXML = nodeToXmlString(entityAccessNode);
+           }
+           
            NodeList onlineNodeList = xpathapi.selectNodeList(
                                               entityNode,
                                               "physical/distribution/online");
@@ -1335,6 +1365,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setHasDistributionOnline(hasDistributionOnline);
           entityObject.setHasDistributionOffline(hasDistributionOffline);
           entityObject.setHasDistributionInline(hasDistributionInline);
+          entityObject.setEntityAccessXML(entityAccessXML);
           
           try {
               NodeList attributeListNodeList = 
@@ -1510,4 +1541,35 @@ public class GenericDataPackageParser implements DataPackageParserInterface
        
        return textDelimitedDataFormat;
     }
+    
+    /**
+     * Returns an XML representation of the provided node.
+     *  
+     * @param node the node to be represented in XML.
+     * 
+     * @return a string containing an XML representation of the 
+     * provided DOM node. 
+     */
+    public String nodeToXmlString(Node node) {
+        
+        try {
+            
+            Transformer t = TransformerFactory.newInstance().newTransformer();
+            t.setOutputProperty(OutputKeys.INDENT, "yes");
+            
+            DOMSource source = new DOMSource(node);
+            StreamResult result = new StreamResult(new StringWriter());
+
+            t.transform(source, result);
+
+            return result.getWriter().toString();
+
+        } catch (TransformerException e) {
+            throw new IllegalStateException(e);
+        } catch (TransformerFactoryConfigurationError e) {
+            throw new IllegalStateException(e);
+        }
+
+    }
+    
 }
