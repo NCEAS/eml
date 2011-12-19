@@ -86,14 +86,14 @@ public class DataPackage
    */
   
   /**
-   * Adds a metadata quality check to the data packages's associated 
+   * Adds a dataset-level quality check to the data packages's associated 
    * qualityReport object.
    * 
    * @param qualityCheck    the new quality check to add
    */
-  public void addMetadataQualityCheck(QualityCheck qualityCheck) {
+  public void addDatasetQualityCheck(QualityCheck qualityCheck) {
     if (qualityReport != null) {
-      qualityReport.addMetadataQualityCheck(qualityCheck);
+      qualityReport.addDatasetQualityCheck(qualityCheck);
     }
   }
   

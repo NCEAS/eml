@@ -1,6 +1,5 @@
 package org.ecoinformatics.datamanager.quality;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,8 +33,9 @@ public class QualityReport {
   private DataPackage dataPackage;
   
   private String packageId;     // the eml packageId value
-  private ArrayList<QualityCheck> metadataQualityChecks;
-  private ArrayList<EntityReport> entityReports;
+  // A list of dataset-level quality checks
+  private ArrayList<QualityCheck> datasetQualityChecks;
+  // A list of entity-level quality checks
   
   
   /*
@@ -55,21 +55,7 @@ public class QualityReport {
       this.packageId = dataPackage.getPackageId();
     }
     
-    this.metadataQualityChecks = new ArrayList<QualityCheck>();
-    this.entityReports = new ArrayList<EntityReport>();
-  }
-
-  
-  /**
-   * Constructor used when all we initially know about the data
-   * package for the quality report is its packageId.
-   * 
-   * @param packageId  the packageId of the data package
-   */
-  public QualityReport(String packageId) {
-    this.packageId = packageId;
-    this.metadataQualityChecks = new ArrayList<QualityCheck>();
-    this.entityReports = new ArrayList<EntityReport>();
+    this.datasetQualityChecks = new ArrayList<QualityCheck>();
   }
 
   
@@ -117,50 +103,28 @@ public class QualityReport {
   }
   
   
-  
   /*
    * Instance methods
    */
 
   /**
-   * Adds an EntityReport object to the list of entity reports that have been
-   * created for this data package.
-   * 
-   * @param qualityCheck    the new quality check to add to the list
-   */
-  public void addEntityReport(EntityReport entityReport) {
-    entityReports.add(entityReport);
-  }
-  
-  
-  /**
    * Adds a quality check to the list of quality checks that have been
-   * performed on this data package.
+   * performed on this data package at the data set level.
    * 
    * @param qualityCheck    the new quality check to add to the list
    */
-  public void addMetadataQualityCheck(QualityCheck qualityCheck) {
-    metadataQualityChecks.add(qualityCheck);
+  public void addDatasetQualityCheck(QualityCheck qualityCheck) {
+    datasetQualityChecks.add(qualityCheck);
   }
   
   
-  public ArrayList<EntityReport> getEntityReports() {
-    return entityReports;
-  }
-
-
   public String getPackageId() {
     return packageId;
   }
 
 
-  public ArrayList<QualityCheck> getMetadataQualityChecks() {
-    return metadataQualityChecks;
-  }
-
-
-  public void setEntityReports(ArrayList<EntityReport> entityReports) {
-    this.entityReports = entityReports;
+  public ArrayList<QualityCheck> getDatasetQualityChecks() {
+    return datasetQualityChecks;
   }
 
 
@@ -169,8 +133,8 @@ public class QualityReport {
   }
 
 
-  public void setMetadataQualityChecks(ArrayList<QualityCheck> qualityChecks) {
-    this.metadataQualityChecks = qualityChecks;
+  public void setDatasetQualityChecks(ArrayList<QualityCheck> qualityChecks) {
+    this.datasetQualityChecks = qualityChecks;
   }
 
 
@@ -195,21 +159,29 @@ public class QualityReport {
     stringBuffer.append("  <packageId>" + packageId + "</packageId>\n");
     
     // Add quality checks at the data package metadata level
-    if (metadataQualityChecks != null && metadataQualityChecks.size() > 0) {
-      stringBuffer.append("  <metadataReport>\n");
-      for (QualityCheck aQualityCheck : metadataQualityChecks) {
+    stringBuffer.append("  <datasetReport>\n");
+    if (datasetQualityChecks != null && datasetQualityChecks.size() > 0) {
+      for (QualityCheck aQualityCheck : datasetQualityChecks) {
         String qualityCheckXML = aQualityCheck.toXML();
         stringBuffer.append(qualityCheckXML);
       }
-      stringBuffer.append("  </metadataReport>\n");
     }
+    stringBuffer.append("  </datasetReport>\n");
     
-    // Add entity reports and their quality checks at the entity data level
-    if (entityReports != null && entityReports.size() > 0) {
-      boolean isFullReport = false; // We want only the <entityReport> fragment
-      for (EntityReport entityReport : entityReports) {
-        String entityReportXML = entityReport.toXML(isFullReport);
-        stringBuffer.append(entityReportXML);
+    // Add quality checks at the entity level
+    if (this.dataPackage != null) {     
+      Entity[] entityArray = dataPackage.getEntityList();    
+      if (entityArray != null) {
+        for (int i = 0; i < entityArray.length; i++) {
+          Entity entity = entityArray[i];
+          if (entity != null) {
+            EntityReport entityReport = entity.getEntityReport();
+            if (entityReport != null) {
+              String entityReportXML = entityReport.toXML();
+              stringBuffer.append(entityReportXML);
+            }
+          }
+        }
       }
     }
 

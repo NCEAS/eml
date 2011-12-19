@@ -105,27 +105,11 @@ public class EntityReport {
    * Generate an XML entity report structure from the quality check objects
    * stored in the entity.
    * 
-   * @param isQualityReport  boolean to determine whether a full XML quality 
-   *        report should be generated; a quality report complies with the XML 
-   *        Schema for quality reports. If specified as 'false', only the 
-   *        <entityReport> XML element is generated, which can then be 
-   *        incorporated into a full quality report by the QualityReport class.
-   *        
-   * @return an XML string representation of a full quality report or just the 
-   *        entityReport XML fragment.
+   * @return an XML string representation of the <entityReport> XML fragment.
    */
-  public String toXML(boolean isQualityReport) {
+  public String toXML() {
     String xmlString = null; 
     
-    // Generate a complete quality report when isQualityReport is true.
-    if (isQualityReport) {
-      String packageId = entity.getPackageId();
-      QualityReport qualityReport = new QualityReport(packageId);
-      qualityReport.addEntityReport(this);
-      xmlString = qualityReport.toXML();
-    }
-    // Otherwise generate only the <entityReport> XML fragment
-    else {
       if (entity != null) {
         String entityName = entity.getName();
         String entityId = entity.getId();
@@ -144,7 +128,6 @@ public class EntityReport {
         stringBuffer.append("  </entityReport>\n");
         xmlString = stringBuffer.toString();
       }
-    }
     
     return xmlString;
   }
