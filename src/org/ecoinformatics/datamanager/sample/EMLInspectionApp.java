@@ -46,13 +46,9 @@ public class EMLInspectionApp implements DatabaseConnectionPoolInterface {
      */
     private static ResourceBundle options = null;
 
-    private static String testDocument = null;
-
-    private static String testServer = null;
-
-    // This string holds the URL to the sample metadata document as found on
+    // This string holds the URL to the sample metadata document such as found on
     // a Metacat server. It is determined by the values in the properties file.
-    private String documentURL = null;
+    private static String documentURL = null;
 
     /**
      * Constructor. Load database parameters and sample document name from 
@@ -86,9 +82,8 @@ public class EMLInspectionApp implements DatabaseConnectionPoolInterface {
         try {
             options = ResourceBundle.getBundle(CONFIG_NAME);
 
-            // Load sample document and Metacat server options
-            testDocument = options.getString("testDocument");
-            testServer = options.getString("testServer");
+            // Load sample document URL options
+            documentURL = options.getString("documentURL");
         } catch (Exception e) {
             System.err.println("Error in loading options: " + e.getMessage());
         }
@@ -104,8 +99,6 @@ public class EMLInspectionApp implements DatabaseConnectionPoolInterface {
         boolean success = false;
 
         DataManager dataManager = DataManager.getInstance(this, null);
-        documentURL = testServer + "?action=read&qformat=xml&docid="
-                + testDocument;
         InputStream metadataInputStream = null;
         try {
             URL url = new URL(documentURL);

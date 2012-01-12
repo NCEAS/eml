@@ -556,8 +556,9 @@ public class DataManager {
     QualityCheck dataLoadQualityCheck = new QualityCheck("Data load status");
     
     if (QualityReport.isQualityReporting()) {
-      dataLoadQualityCheck.setSystem(QualityCheck.System.knb);
+      dataLoadQualityCheck.setSystem("knb");
       dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
+      dataLoadQualityCheck.setStatusType(QualityCheck.StatusType.error);
       dataLoadQualityCheck.setDescription(
         "Status of loading the data table into a database");
       dataLoadQualityCheck.setExpected(

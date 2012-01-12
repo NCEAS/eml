@@ -250,8 +250,9 @@ public class DatabaseHandler
     if (QualityReport.isQualityReporting()) {
       // Initialize the databaseTableQualityCheck
       databaseTableQualityCheck = new QualityCheck("Create database table");
-      databaseTableQualityCheck.setSystem(QualityCheck.System.knb);
+      databaseTableQualityCheck.setSystem("knb");
       databaseTableQualityCheck.setQualityType(QualityCheck.QualityType.metadata);
+      databaseTableQualityCheck.setStatusType(QualityCheck.StatusType.error);
       databaseTableQualityCheck.setDescription(
         "Status of creating a database table");
       databaseTableQualityCheck.setExpected(

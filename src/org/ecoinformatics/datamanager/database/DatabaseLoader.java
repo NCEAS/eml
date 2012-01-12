@@ -217,8 +217,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       if (QualityReport.isQualityReporting()) {
         // Initialize the dataLoadQualityCheck
         dataLoadQualityCheck = new QualityCheck("Data load status");
-        dataLoadQualityCheck.setSystem(QualityCheck.System.knb);
-        dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
+        dataLoadQualityCheck.setSystem("knb");
+        dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.congruency);
+        dataLoadQualityCheck.setStatusType(QualityCheck.StatusType.error);
         dataLoadQualityCheck.setDescription(
           "Status of loading the data table into a database");
         dataLoadQualityCheck.setExpected(
@@ -296,7 +297,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
            */
           QualityCheck displayDataQualityCheck = 
             new QualityCheck("Display some data");
-          displayDataQualityCheck.setSystem(QualityCheck.System.knb);
+          displayDataQualityCheck.setSystem("knb");
           displayDataQualityCheck.setQualityType(QualityCheck.QualityType.data);
           displayDataQualityCheck.setDescription("Display the first row of data");
           displayDataQualityCheck.setExpected("One row of data should be displayed");
@@ -346,7 +347,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
            */
           QualityCheck numberOfRecordsQualityCheck = 
             new QualityCheck("Number of records check");
-          numberOfRecordsQualityCheck.setSystem(QualityCheck.System.knb);
+          numberOfRecordsQualityCheck.setSystem("knb");
           numberOfRecordsQualityCheck.setQualityType(QualityCheck.QualityType.congruency);
           numberOfRecordsQualityCheck.setDescription(
               "Compare number of records specified in " +

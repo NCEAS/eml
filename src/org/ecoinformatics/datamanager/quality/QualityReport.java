@@ -1,11 +1,16 @@
 package org.ecoinformatics.datamanager.quality;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+
+import edu.ucsb.nceas.utilities.IOUtil;
 
 
 public class QualityReport {
@@ -139,6 +144,39 @@ public class QualityReport {
 
 
   /**
+   * Stores a quality report on the file system.
+   * 
+   * @param   qualityReportFile  the file object where the quality
+   *            report is to be written
+   * @return  true if success storing the report, else false
+   */
+  public boolean storeQualityReport(File qualityReportFile) 
+          throws IOException {
+    boolean success = false;
+    
+    String qualityReportXML = toXML();
+    
+    if (qualityReportXML != null) {
+      StringBuffer stringBuffer = new StringBuffer(qualityReportXML);
+      try {
+        FileWriter fileWriter = new FileWriter(qualityReportFile);
+        IOUtil.writeToWriter(stringBuffer, fileWriter, true);
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+        throw(e);
+      }
+      finally {
+        success = (qualityReportFile != null) && 
+                  (qualityReportFile.exists());
+     }
+    }
+      
+    return success;   
+  }
+
+  
+  /**
    * Generates an XML quality report string from the quality check objects
    * and the entity report objects stored in the data package.
    * 
@@ -154,11 +192,16 @@ public class QualityReport {
     StringBuffer stringBuffer = new StringBuffer("");
     
     stringBuffer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-    stringBuffer.append("<qualityReport>\n");
+    stringBuffer.append("<qr:qualityReport\n");
+    stringBuffer.append("  xmlns=\"eml://ecoinformatics.org/qualityReport\"\n");
+    stringBuffer.append("  xmlns:qr=\"eml://ecoinformatics.org/qualityReport\"\n");
+    stringBuffer.append("  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
+    stringBuffer.append("  xsi:schemaLocation=\"eml://ecoinformatics.org/qualityReport http://svn.lternet.edu/svn/NIS/documents/schemas/quality/qualityReportSchema.xsd\"\n");
+    stringBuffer.append("  >\n");
     stringBuffer.append("  <creationDate>" + dateCreated + "</creationDate>\n");
     stringBuffer.append("  <packageId>" + packageId + "</packageId>\n");
     
-    // Add quality checks at the data package metadata level
+    // Add quality checks at the data set level
     stringBuffer.append("  <datasetReport>\n");
     if (datasetQualityChecks != null && datasetQualityChecks.size() > 0) {
       for (QualityCheck aQualityCheck : datasetQualityChecks) {
@@ -185,7 +228,7 @@ public class QualityReport {
       }
     }
 
-    stringBuffer.append("</qualityReport>\n");
+    stringBuffer.append("</qr:qualityReport>\n");
     xmlString = stringBuffer.toString();
     
     return xmlString;

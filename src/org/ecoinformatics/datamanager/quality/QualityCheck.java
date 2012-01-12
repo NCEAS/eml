@@ -49,15 +49,18 @@ public class QualityCheck {
    */
   
   public enum QualityType { congruency, data, metadata };
-  
+  public enum StatusType { info, warn, error };
   public enum Status { valid, info, warn, error };
 
-  public enum System { knb, lter };
   
   
   /*
    * Class variables
    */
+  
+  private static final QualityType defaultQualityType = QualityType.congruency;
+  private static final StatusType defaultStatusType = StatusType.error;
+  private static final String defaultSystem = "knb";
   
 
   /*
@@ -85,12 +88,14 @@ public class QualityCheck {
   // The type of quality check (see QualityType enum for possible values)
   private Enum<QualityType> qualityType;
   
-	// The status of this quality check (see Status enum for possible values)
-	private Enum<Status> status;
+	// The statusType of this quality check (see StatusType enum for possible values)
+	private Enum<StatusType> statusType;
 	
+  // The status of this quality check (see Status enum for possible values)
+  private Enum<Status> status;
+  
   // The system in which this quality check is meaningful
-	// (see System enum for possible values)
-  private Enum<System> system;
+  private String system;
   
 	// Suggested remedy
 	private String suggestion = "";
@@ -108,8 +113,9 @@ public class QualityCheck {
 	 */
   public QualityCheck(String name) {
     this.name = name;
-    this.system = System.knb;
-    this.qualityType = QualityType.congruency;
+    this.qualityType = defaultQualityType;
+    this.statusType = defaultStatusType;
+    this.system = defaultSystem;
   }
 
   
@@ -157,21 +163,22 @@ public class QualityCheck {
 	  StringBuffer xmlStringBuffer = new StringBuffer("");
 	  final String indent = "  ";
 	  String qualityTypeStr = null;
-	  String systemStr = null;
-	  String statusStr = null;
+	  String statusTypeStr = null;
+    String statusStr = null;
 	  
 	  if (qualityType != null) { qualityTypeStr = qualityType.toString(); }
-    if (system != null) { systemStr = system.toString(); }
+    if (statusType != null) { statusTypeStr = statusType.toString(); }
     if (status != null) { statusStr = status.toString(); }
 	  
 	  xmlStringBuffer.append(indent + indent + "<qualityCheck" +
 	    " qualityType=\"" + qualityTypeStr + "\"" +
-	    " system=\"" + systemStr + "\"" +
-	    " status=\"" + statusStr + "\" >\n");
+	    " system=\"" + system + "\"" +
+	    " statusType=\"" + statusTypeStr + "\" >\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<name>" + name + "</name>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<description>" + description + "</description>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<expected>" + expected + "</expected>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<found>" + found + "</found>\n");
+    xmlStringBuffer.append(indent + indent + indent + "<status>" + statusStr + "</status>\n");
     xmlStringBuffer.append(indent + indent + indent + "<explanation>" + explanation + "</explanation>\n");
     xmlStringBuffer.append(indent + indent + indent + "<suggestion>" + suggestion + "</suggestion>\n");
     xmlStringBuffer.append(indent + indent + indent + "<reference>" + reference + "</reference>\n");
@@ -229,7 +236,12 @@ public class QualityCheck {
   }
 
   
-  public Enum<System> getSystem() {
+  public Enum<StatusType> getStatusType() {
+    return statusType;
+  }
+
+  
+  public String getSystem() {
     return system;
   }
 
@@ -284,7 +296,12 @@ public class QualityCheck {
   }
 
   
-  public void setSystem(Enum<System> system) {
+  public void setStatusType(Enum<StatusType> statusType) {
+    this.statusType = statusType;
+  }
+
+  
+  public void setSystem(String system) {
     this.system = system;
   }
 
