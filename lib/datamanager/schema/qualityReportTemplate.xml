@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qr:qualityReport 
+  xmlns="eml://ecoinformatics.org/qualityReport" 
+  xmlns:qr="eml://ecoinformatics.org/qualityReport" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="eml://ecoinformatics.org/qualityReport http://svn.lternet.edu/svn/NIS/documents/schemas/quality/qualityReportSchema.xsd"
+  >
+  <creationDate>2011-12-01T12:00:00</creationDate>
+  <packageId></packageId>
+  <includeSystem>knb</includeSystem>
+  <includeSystem>lter</includeSystem>
+  <datasetReport>
+  </datasetReport>
+  <entityReport>
+    <entityName></entityName>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>Online URLs are live</name>
+      <description>Check that online URLs return something</description>
+      <expected>true</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
+      <name>Create database table</name>
+      <description>Status of creating a database table</description>
+      <expected>A database table is expected to be generated from the EML attributes.</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="data" system="knb" statusType="info" >
+      <name>Display some data</name>
+      <description>Display the first row of data</description>
+      <expected>One row of data should be displayed</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>Data load status</name>
+      <description>Status of loading the data table into a database</description>
+      <expected>No errors expected during data loading or data loading was not attempted for this data entity</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>Number of records check</name>
+      <description>Compare number of records specified in metadata to number of records found in data</description>
+      <expected></expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+  </entityReport>
+</qr:qualityReport>

@@ -32,6 +32,8 @@
 
 package org.ecoinformatics.datamanager.quality;
 
+import org.ecoinformatics.datamanager.parser.Entity;
+
 
 /**
  * @author dcosta
@@ -50,7 +52,7 @@ public class QualityCheck {
   
   public enum QualityType { congruency, data, metadata };
   public enum StatusType { info, warn, error };
-  public enum Status { valid, info, warn, error };
+  public enum Status { valid, info, warn, error, notChecked };
 
   
   
@@ -107,7 +109,12 @@ public class QualityCheck {
 	/*
 	 * Constructors
 	 */
+	
+	public QualityCheck() {
+	  
+	}
 
+	
 	/**
 	 * Constructs a QualityCheck object, initializing its 'name' value.
 	 */
@@ -117,16 +124,77 @@ public class QualityCheck {
     this.statusType = defaultStatusType;
     this.system = defaultSystem;
   }
+  
+  
+  /**
+   * Constructs a QualityCheck object using another QualityCheck
+   * object as a template.
+   * 
+   * @param name                  the name value for this quality check
+   * @param qualityCheckTemplate  the quality check template object 
+   *                              holding static content
+   */
+  public QualityCheck(String name, QualityCheck qualityCheckTemplate) {
+    this(name);
+    
+    if (qualityCheckTemplate != null) {
+      
+      String system = qualityCheckTemplate.getSystem();
+      setSystem(system);
+      
+      Enum<QualityCheck.QualityType> qualityType = qualityCheckTemplate.getQualityType();
+      setQualityType(qualityType);
+      
+      Enum<QualityCheck.StatusType> statusType = qualityCheckTemplate.getStatusType();
+      setStatusType(statusType);
+    
+      String description = qualityCheckTemplate.getDescription();
+      setDescription(description);
+      
+      String expected = qualityCheckTemplate.getExpected();
+      setExpected(expected);
+             
+      String found = qualityCheckTemplate.getFound();
+      setFound(found);
+      
+      Enum<QualityCheck.Status> status = qualityCheckTemplate.getStatus();
+      setStatus(status);
+      
+      String explanation = qualityCheckTemplate.getExplanation();
+      setExplanation(explanation);
+      
+      String suggestion = qualityCheckTemplate.getSuggestion();
+      setSuggestion(suggestion);
+      
+      String reference = qualityCheckTemplate.getReference();
+      setReference(reference);
+    }
+  }
 
   
   /*
    * Class methods
    */
+  
+  /**
+   * Boolean to determine whether a given quality check should be run for
+   * a given entity.
+   */
+  public static boolean shouldRunQualityCheck(Entity entity, QualityCheck qualityCheck) {
+    boolean shouldRunCheck;
+    
+    shouldRunCheck = QualityReport.isQualityReporting() &&
+                     entity != null &&
+                     qualityCheck != null &&
+                     qualityCheck.isIncluded();
+    
+    return shouldRunCheck;
+  }
 
+  
   /*
    * Instance methods
    */
-  
   
   /**
    * Boolean to test the equality of this QualityCheck objects with another
@@ -249,7 +317,31 @@ public class QualityCheck {
   public String getSuggestion() {
     return suggestion;
   }
-
+  
+  
+  /**
+   * Boolean to determine whether this quality check should
+   * be executed based on whether its system attribute value
+   * is in the list of systems included in the quality report
+   * template document. For example, if the quality report
+   * template document contains <includeSystem> elements for
+   * 'knb' and 'lter':
+   * 
+   *   <includeSystem>knb</includeSystem>
+   *   <includeSystem>lter</includeSystem>
+   * 
+   * and if this quality check has a system
+   * attribute of 'lter', then this method would return true.
+   *
+   */
+  public boolean isIncluded() {
+    boolean isIncluded;
+    
+    isIncluded = QualityReport.isIncludeSystem(this.system);
+    
+    return isIncluded;
+  }
+  
   
   public void setDescription(String description) {
     this.description = description;
@@ -269,6 +361,28 @@ public class QualityCheck {
   public void setExplanation(String explanation) {
     this.explanation = explanation;
   }
+  
+  
+  /**
+   * Sets the status for this quality check to a failed
+   * state. The specific status value that is set depends on
+   * the statusType value.
+   */
+  public void setFailedStatus() {
+    if (statusType == null) {
+      statusType = defaultStatusType;
+    }
+    
+    if (statusType.equals(StatusType.error)) {
+      status = Status.error;
+    }
+    else if (statusType.equals(StatusType.info)) {
+      status = Status.info;
+    }
+    else if (statusType.equals(StatusType.warn)) {
+      status = Status.warn;
+    }
+  }
 
   
   public void setFound(String found) {
@@ -286,6 +400,21 @@ public class QualityCheck {
   }
 
   
+  public void setQualityType(String qualityType) {
+    if (qualityType != null) {
+      if (qualityType.equals("congruency")) {
+        this.qualityType = QualityType.congruency;
+      }
+      else if (qualityType.equals("data")) {
+        this.qualityType = QualityType.data;
+      }
+      else if (qualityType.equals("metadata")) {
+        this.qualityType = QualityType.metadata;
+      }
+    }
+  }
+
+  
   public void setReference(String reference) {
     this.reference = reference;
   }
@@ -296,8 +425,44 @@ public class QualityCheck {
   }
 
   
+  public void setStatus(String status) {
+    if (status != null) {
+      if (status.equals("valid")) {
+        this.status = Status.valid;
+      }
+      else if (status.equals("info")) {
+        this.status = Status.info;
+      }
+      else if (status.equals("warn")) {
+        this.status = Status.warn;
+      }
+      else if (status.equals("error")) {
+        this.status = Status.error;
+      }
+      else if (status.equals("notChecked")) {
+        this.status = Status.notChecked;
+      }
+    }
+  }
+
+  
   public void setStatusType(Enum<StatusType> statusType) {
     this.statusType = statusType;
+  }
+
+  
+  public void setStatusType(String statusType) {
+    if (statusType != null) {
+      if (statusType.equals("info")) {
+        this.statusType = StatusType.info;
+      }
+      else if (statusType.equals("warn")) {
+        this.statusType = StatusType.warn;
+      }
+      else if (statusType.equals("error")) {
+        this.statusType = StatusType.error;
+      }
+    }
   }
 
   

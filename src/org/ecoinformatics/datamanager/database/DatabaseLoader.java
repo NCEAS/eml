@@ -216,15 +216,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
     else {
       if (QualityReport.isQualityReporting()) {
         // Initialize the dataLoadQualityCheck
-        dataLoadQualityCheck = new QualityCheck("Data load status");
-        dataLoadQualityCheck.setSystem("knb");
-        dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.congruency);
-        dataLoadQualityCheck.setStatusType(QualityCheck.StatusType.error);
-        dataLoadQualityCheck.setDescription(
-          "Status of loading the data table into a database");
-        dataLoadQualityCheck.setExpected(
-          "No errors expected during data loading " +
-          "or data loading was not attempted for this data entity");
+        String qualityCheckName = "Data load status";
+        QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+        dataLoadQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
       }
     }
     
@@ -270,11 +264,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         System.err.println("Exception in DatabaseLoader.run(): " + 
                            e.getMessage());
         
-        if (entity != null && QualityReport.isQualityReporting()) {
-          /*
-           * Report data load status as 'error'
-           */
-          dataLoadQualityCheck.setStatus(Status.error);
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          // Report data load status as failed
+          dataLoadQualityCheck.setFailedStatus();
           dataLoadQualityCheck.setFound(
             "One or more errors occurred during data loading");
           String explanation = e.getMessage();
@@ -295,18 +287,18 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           /*
            *  Display the first row of data in a QualityCheck object
            */
-          QualityCheck displayDataQualityCheck = 
-            new QualityCheck("Display some data");
-          displayDataQualityCheck.setSystem("knb");
-          displayDataQualityCheck.setQualityType(QualityCheck.QualityType.data);
-          displayDataQualityCheck.setDescription("Display the first row of data");
-          displayDataQualityCheck.setExpected("One row of data should be displayed");
-          displayDataQualityCheck.setStatus(Status.info);
-          // Note that rowVector starts and ends with square brackets. We're
-          // using a shortcut by incorporating them into the CDATA tags
-          String foundString = "<![CDATA" + rowVector.toString() + "]>";
-          displayDataQualityCheck.setFound(foundString);
-          entity.addQualityCheck(displayDataQualityCheck);
+          String qualityCheckName = "Display some data";
+          QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+          QualityCheck displayDataQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+
+          if (QualityCheck.shouldRunQualityCheck(entity, displayDataQualityCheck)) {
+            // Note that rowVector starts and ends with square brackets. We're
+            // using a shortcut by incorporating them into the CDATA tags
+            String foundString = "<![CDATA" + rowVector.toString() + "]>";
+            displayDataQualityCheck.setFound(foundString);
+            displayDataQualityCheck.setStatus(Status.info);
+            entity.addQualityCheck(displayDataQualityCheck);
+          }
         }
         
     	  connection = DataManager.getConnection();
@@ -333,7 +325,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         }
         connection.commit();
 
-        if (entity != null && QualityReport.isQualityReporting()) {
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
           /*
            *  Report data load status as 'valid'
            */
@@ -345,42 +337,44 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           /*
            * Store number of records found in a QualityCheck object
            */
+          String qualityCheckName = "Number of records check";
+          QualityCheck qualityCheckTemplate = 
+            QualityReport.getQualityCheckTemplate(qualityCheckName);
           QualityCheck numberOfRecordsQualityCheck = 
-            new QualityCheck("Number of records check");
-          numberOfRecordsQualityCheck.setSystem("knb");
-          numberOfRecordsQualityCheck.setQualityType(QualityCheck.QualityType.congruency);
-          numberOfRecordsQualityCheck.setDescription(
-              "Compare number of records specified in " +
-              "metadata to number of records found in data");
-          int expectedNumberOfRecords = entity.getNumRecords();
-          numberOfRecordsQualityCheck.setExpected("" + expectedNumberOfRecords);
-          numberOfRecordsQualityCheck.setFound("" + rowCount);        
-          if (expectedNumberOfRecords == rowCount) {
-            numberOfRecordsQualityCheck.setStatus(Status.valid);
-            numberOfRecordsQualityCheck.setExplanation(
+            new QualityCheck(qualityCheckName, qualityCheckTemplate);
+          if (QualityCheck.shouldRunQualityCheck(entity, numberOfRecordsQualityCheck)) {
+            int expectedNumberOfRecords = entity.getNumRecords();
+            numberOfRecordsQualityCheck.setExpected("" + expectedNumberOfRecords);
+            numberOfRecordsQualityCheck.setFound("" + rowCount);        
+            if (expectedNumberOfRecords == rowCount) {
+              numberOfRecordsQualityCheck.setStatus(Status.valid);
+              numberOfRecordsQualityCheck.setExplanation(
                 "The expected number of records (" + 
                 rowCount + ") was found in the data table.");
+            }
+            // When 'numberOfRecords' is not specified in the EML, the EML
+            // parser sets the value to -1.
+            else if (expectedNumberOfRecords < 0) {
+              numberOfRecordsQualityCheck.setStatus(Status.info);
+              numberOfRecordsQualityCheck.setExplanation(
+                "The number of records found in the data table was: " +  
+                rowCount +
+                ". There was no 'numberOfRecords' value specified in the EML.");
+            }
+            else {
+              // Report number of records check as failed
+              numberOfRecordsQualityCheck.setFailedStatus();
+              numberOfRecordsQualityCheck.setExplanation(
+                "The number of records found in the data table (" + rowCount +
+                ") does not match the 'numberOfRecords' value specified in the EML (" +
+                expectedNumberOfRecords + ")"
+                );
+            }
+            entity.addQualityCheck(numberOfRecordsQualityCheck);
           }
-          // When 'numberOfRecords' is not specified in the EML, the EML
-          // parser sets the value to -1.
-          else if (expectedNumberOfRecords < 0) {
-            numberOfRecordsQualityCheck.setStatus(Status.info);
-            numberOfRecordsQualityCheck.setExplanation(
-              "The number of records found in the data table was: " + 
-              rowCount +
-              ". There was no 'numberOfRecords' value specified in the EML.");
-          }
-          else {
-            numberOfRecordsQualityCheck.setStatus(Status.warn);
-            numberOfRecordsQualityCheck.setExplanation(
-              "The number of records found in the data table does " +
-              "not match the 'numberOfRecords' value specified in the EML.");
-          }
-          entity.addQualityCheck(numberOfRecordsQualityCheck);      
         }
 
         success = true;
-
       }
       catch (Exception e) {
         System.err.println("DatabaseLoader.run(): Error message: " + 
@@ -389,11 +383,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         success = false;
         exception = e;
         
-        if (entity != null && QualityReport.isQualityReporting()) {
-          /*
-           * Report data load status as 'error'
-           */
-          dataLoadQualityCheck.setStatus(Status.error);
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          // Report data load status as failed
+          dataLoadQualityCheck.setFailedStatus();
           dataLoadQualityCheck.setFound(
             "One or more errors occurred during data loading");
           String explanation = e.getMessage();

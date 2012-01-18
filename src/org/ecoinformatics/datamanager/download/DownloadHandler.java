@@ -525,7 +525,7 @@ public class DownloadHandler implements Runnable
     protected boolean getContentFromSource(String resourceName)
     {
     	boolean successFlag = false;
-    	QualityCheck qualityCheck = null;
+    	QualityCheck onlineURLsQualityCheck = null;
         
       if (resourceName != null) { resourceName = resourceName.trim(); }
       
@@ -565,29 +565,32 @@ public class DownloadHandler implements Runnable
              }
 
              if (entity != null && QualityReport.isQualityReporting()) {
-               // Store information about this download in a QualityCheck object
-               qualityCheck = new QualityCheck("Online URLs are live");
-               qualityCheck.setSystem("knb");
-               qualityCheck.setQualityType(QualityCheck.QualityType.congruency);
-               qualityCheck.setStatusType(QualityCheck.StatusType.error);
-               qualityCheck.setDescription("Check that online URLs return something");
-               qualityCheck.setExpected("true");
-               String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
+               // Initialize the "Online URLs are live" quality check
+               String qualityCheckName = "Online URLs are live";
+               QualityCheck qualityCheckTemplate = 
+                 QualityReport.getQualityCheckTemplate(qualityCheckName);
+               onlineURLsQualityCheck = 
+                 new QualityCheck(qualityCheckName, qualityCheckTemplate);
                
-               if (exception == null) {
-                 qualityCheck.setStatus(Status.valid);
-                 qualityCheck.setFound("true");
-                 qualityCheck.setExplanation("Succeeded in accessing URL: " + resourceNameEncoded);
-               }
-               else {
-                 qualityCheck.setStatus(Status.error);
-                 qualityCheck.setFound("false");
-                 String explanation = "Failed to access URL: " + resourceNameEncoded;
-                 explanation = explanation + "; " + exception.getMessage();
-                 qualityCheck.setExplanation(explanation);
-               }
+               if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
+                 String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
                
-               entity.addQualityCheck(qualityCheck);
+                 if (exception == null) {
+                   onlineURLsQualityCheck.setStatus(Status.valid);
+                   onlineURLsQualityCheck.setFound("true");
+                   onlineURLsQualityCheck.setExplanation(
+                     "Succeeded in accessing URL: " + resourceNameEncoded);
+                 }
+                 else {
+                   onlineURLsQualityCheck.setFailedStatus();
+                   onlineURLsQualityCheck.setFound("false");
+                   String explanation = "Failed to access URL: " + resourceNameEncoded;
+                   explanation = explanation + "; " + exception.getMessage();
+                   onlineURLsQualityCheck.setExplanation(explanation);
+                 }
+               
+                 entity.addQualityCheck(onlineURLsQualityCheck);
+               }
              }
              
              return successFlag;

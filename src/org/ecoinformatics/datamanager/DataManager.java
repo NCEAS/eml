@@ -553,19 +553,11 @@ public class DataManager {
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
           throws ClassNotFoundException, SQLException, Exception {
     boolean success = false;
-    QualityCheck dataLoadQualityCheck = new QualityCheck("Data load status");
     
-    if (QualityReport.isQualityReporting()) {
-      dataLoadQualityCheck.setSystem("knb");
-      dataLoadQualityCheck.setQualityType(QualityCheck.QualityType.data);
-      dataLoadQualityCheck.setStatusType(QualityCheck.StatusType.error);
-      dataLoadQualityCheck.setDescription(
-        "Status of loading the data table into a database");
-      dataLoadQualityCheck.setExpected(
-        "No errors expected during data loading " +
-        "or data loading was not attempted for this data entity");
-      dataLoadQualityCheck.setStatus(Status.info);
-    }
+    // Initialize the dataLoadQualityCheck
+    String qualityCheckName = "Data load status";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+    QualityCheck dataLoadQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
 
     /*
      * otherEntity is allowed to optionally omit the attributeList element.
@@ -587,7 +579,7 @@ public class DataManager {
       if (success) {
         // Create an informational quality check stating that the data load
         // was not attempted for this otherEntity entity.
-        if (QualityReport.isQualityReporting()) {
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
           dataLoadQualityCheck.setFound(
             "Data loading was not attempted for this 'otherEntity' " +
             "because no attribute list was found in the EML");
@@ -610,7 +602,7 @@ public class DataManager {
              )
             ) {
       success = true;
-      if (QualityReport.isQualityReporting()) {
+      if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
         dataLoadQualityCheck.setFound(
           "Data loading was not attempted for this entity " +
           "because its distribution is 'inline' or 'offline'");

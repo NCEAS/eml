@@ -249,14 +249,9 @@ public class DatabaseHandler
     
     if (QualityReport.isQualityReporting()) {
       // Initialize the databaseTableQualityCheck
-      databaseTableQualityCheck = new QualityCheck("Create database table");
-      databaseTableQualityCheck.setSystem("knb");
-      databaseTableQualityCheck.setQualityType(QualityCheck.QualityType.metadata);
-      databaseTableQualityCheck.setStatusType(QualityCheck.StatusType.error);
-      databaseTableQualityCheck.setDescription(
-        "Status of creating a database table");
-      databaseTableQualityCheck.setExpected(
-        "A database table is expected to be generated from the EML attributes.");
+      String qualityCheckName = "Create database table";
+      QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+      databaseTableQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
     }
     
     tableName = tableMonitor.addTableEntry(entity);   
@@ -266,18 +261,21 @@ public class DatabaseHandler
      */
     if ((tableName == null) || (tableName.trim().equals(""))) {
       String message = "Entity has not been assigned a valid name.";
-      if (entity != null && QualityReport.isQualityReporting()) {
+      
+      if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
         /*
-         * Report database table status as 'error'
+         * Report database table quality check status as failed
          */
-        databaseTableQualityCheck.setStatus(Status.error);
+        databaseTableQualityCheck.setFailedStatus();
         databaseTableQualityCheck.setFound(
           "An error occurred while creating the database table");
         databaseTableQualityCheck.setExplanation(message);
         entity.addQualityCheck(databaseTableQualityCheck);
       }
+      
       throw new SQLException(message);
     }
+    
     /*
      * If a table name was assigned for this entity, let's see whether we've 
      * already got the table in the database.
@@ -305,7 +303,7 @@ public class DatabaseHandler
           stmt = connection.createStatement();
           stmt.executeUpdate(ddlString);
           
-          if (entity != null && QualityReport.isQualityReporting()) {
+          if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
             /*
              * Report database table generation status as 'valid'
              */
@@ -326,11 +324,11 @@ public class DatabaseHandler
           System.err.println(message);
           e.printStackTrace();
           
-          if (entity != null && QualityReport.isQualityReporting()) {
+          if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
             /*
-             * Report database table status as 'error'
+             * Report database table quality check status as failed
              */
-            databaseTableQualityCheck.setStatus(Status.error);
+            databaseTableQualityCheck.setFailedStatus();
             databaseTableQualityCheck.setFound(
               "An error occurred while creating the database table");
             databaseTableQualityCheck.setExplanation(message);

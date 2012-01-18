@@ -132,6 +132,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   public static void main(String[] args)
     throws MalformedURLException, IOException, Exception {
     boolean success = true;
+
     SampleCallingApp dmm = new SampleCallingApp();
     dmm.setUp();
     success = success && dmm.testParseMetadata();   // Use Case #1
@@ -170,12 +171,14 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
        * on or off.
        */
       String qualityReportingStr = options.getString("qualityReporting");
-      if (qualityReportingStr != null &&
-           (qualityReportingStr.equalsIgnoreCase("true") ||
-            qualityReportingStr.equalsIgnoreCase("false")
-           )
-         ) { 
-        QualityReport.setQualityReporting(qualityReportingStr.toLowerCase());
+      String qualityReportTemplate = options.getString("qualityReportTemplate");
+      if (qualityReportingStr != null) {
+        if (qualityReportingStr.equalsIgnoreCase("true")) {
+          QualityReport.setQualityReporting(true, qualityReportTemplate);
+        }
+        else if (qualityReportingStr.equalsIgnoreCase("false")) {
+          QualityReport.setQualityReporting(false, null);
+        }
       }
     } 
     catch (Exception e) {
