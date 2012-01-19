@@ -71,7 +71,8 @@ public abstract class DatabaseAdapter {
 	public static final String        SEMICOLON = ";";
 	public static final String      SINGLEQUOTE = "'";
 	public static final String           VALUES = "VALUES";
-	public static final String           NULL = "null";
+	public static final String             NULL = "null";
+  public static final String       UNDERSCORE = "_";
 
   
   
@@ -109,9 +110,17 @@ public abstract class DatabaseAdapter {
     String legalName = entityName;
     char[] badChars = {' ', '-', '.', '/'};
     char goodChar = '_';
-    
-    for (int i = 0; i < badChars.length; i++) {
-      legalName = legalName.replace(badChars[i], goodChar);
+
+    if (legalName != null) {
+      for (int i = 0; i < badChars.length; i++) {
+        legalName = legalName.replace(badChars[i], goodChar);
+      }
+
+      // If first character is a digit, prepend an underscore
+      char firstCharacter = legalName.charAt(0);
+      if (Character.isDigit(firstCharacter)) {
+        legalName = UNDERSCORE + legalName;
+      }
     }
     
     return legalName;
