@@ -37,8 +37,8 @@ public class DataManagerTest extends TestCase {
   private DataManager dataManager;
   private EcogridEndPointInterfaceTest endPointInfo = new EcogridEndPointInterfaceTest();
 
-  private final String COLUMN_1 = "site";
-  private final String COLUMN_2 = "year";
+  private final String COLUMN_1 = "\"site\"";
+  private final String COLUMN_2 = "\"year\"";
   private final String ENTITY_NAME = "INS-GCEM-0011_1_3.TXT";
   private final int    ENTITY_NUMBER_EXPECTED = 1;
   private final int    NUMBER_OF_COLUMNS = 7;
@@ -431,9 +431,9 @@ public class DataManagerTest extends TestCase {
       System.out.println("Query SQL = " + query.toSQLString());
       assertEquals("Unexpected value for query.toSQLString()",
                    sqlString,
-                   "SELECT INS_GCEM_0011_1_3_TXT.Site " +
+                   "SELECT INS_GCEM_0011_1_3_TXT.\"Site\" " +
                    "FROM INS_GCEM_0011_1_3_TXT  " +
-                   "where INS_GCEM_0011_1_3_TXT.Count > 2;");
+                   "where INS_GCEM_0011_1_3_TXT.\"Count\" > 2;");
 
       try {
         resultSet = dataManager.selectData(query, dataPackages);

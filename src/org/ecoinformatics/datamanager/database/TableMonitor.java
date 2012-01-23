@@ -476,6 +476,27 @@ public class TableMonitor {
       
       if (rs != null) rs.close();
       DataManager.returnConnection(connection);
+    
+    
+      /*
+       * Ensure that the field names are surrounded by quotes.
+       * (See Bug #2737: 
+       *   http://bugzilla.ecoinformatics.org/show_bug.cgi?id=2737
+       * )
+       */
+      final String QUOTE = DatabaseAdapter.DOUBLEQUOTE;
+      for (int i = 0; i < fieldNames.length; i++) {
+        String fieldName = fieldNames[i];
+        if (fieldName != null) {
+          if (!fieldName.startsWith(QUOTE)) {
+            fieldName = QUOTE + fieldName;
+          }
+          if (!fieldName.endsWith(QUOTE)) {
+            fieldName = fieldName + QUOTE;
+          }
+          fieldNames[i] = fieldName;
+        }
+      }
     }
     
     return fieldNames;

@@ -69,6 +69,7 @@ public abstract class DatabaseAdapter {
 	public static final String      LEFTPARENTH = "(";
 	public static final String     RIGHTPARENTH = ")";
 	public static final String        SEMICOLON = ";";
+  public static final String      DOUBLEQUOTE = "\"";
 	public static final String      SINGLEQUOTE = "'";
 	public static final String           VALUES = "VALUES";
 	public static final String           NULL = "null";
@@ -503,6 +504,14 @@ public abstract class DatabaseAdapter {
     for (int i = 0; i < badChars.length; i++) {
       legalName = legalName.replace(badChars[i], goodChar);
     }
+    
+    /*
+     * Ensure that the field names are surrounded by quotes.
+     * (See Bug #2737: 
+     *   http://bugzilla.ecoinformatics.org/show_bug.cgi?id=2737
+     * )
+     */
+    legalName = DOUBLEQUOTE + legalName + DOUBLEQUOTE;
     
     return legalName;
   }
