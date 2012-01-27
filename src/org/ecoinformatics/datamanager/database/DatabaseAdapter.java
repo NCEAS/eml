@@ -152,7 +152,16 @@ public abstract class DatabaseAdapter {
       }
       
       usedNames.put(legalDbFieldName, legalDbFieldName);
-      attribute.setDBFieldName(legalDbFieldName);
+
+      /*
+       * Ensure that the field names are surrounded by quotes.
+       * (See Bug #2737: 
+       *   http://bugzilla.ecoinformatics.org/show_bug.cgi?id=2737
+       * )
+       */
+      String quotedName = DOUBLEQUOTE + legalDbFieldName + DOUBLEQUOTE;
+      
+      attribute.setDBFieldName(quotedName);
     }
   }
 
@@ -504,14 +513,6 @@ public abstract class DatabaseAdapter {
     for (int i = 0; i < badChars.length; i++) {
       legalName = legalName.replace(badChars[i], goodChar);
     }
-    
-    /*
-     * Ensure that the field names are surrounded by quotes.
-     * (See Bug #2737: 
-     *   http://bugzilla.ecoinformatics.org/show_bug.cgi?id=2737
-     * )
-     */
-    legalName = DOUBLEQUOTE + legalName + DOUBLEQUOTE;
     
     return legalName;
   }
