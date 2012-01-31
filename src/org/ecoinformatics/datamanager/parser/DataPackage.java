@@ -33,12 +33,12 @@ package org.ecoinformatics.datamanager.parser;
 
 import java.util.Vector;
 
-import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
- * This class reprents a metadata package information to describe entity
+ * This class represents a metadata package information to describe entity
  * 
  * @author tao
  */
@@ -55,6 +55,7 @@ public class DataPackage
    */
   
   private String accessXML = null;       // <access> element XML string
+  private String emlNamespace = null;    // e.g. "eml://ecoinformatics.org/eml-2.1.0"
   private Entity[] entityList = null;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
@@ -105,6 +106,15 @@ public class DataPackage
    */
   public String getAccessXML() {
     return accessXML;
+  }
+  
+  
+  /**
+   * Getter method for the emlNamespace field
+   * @return
+   */
+  public String getEmlNamespace() {
+    return emlNamespace;
   }
   
   
@@ -231,6 +241,43 @@ public class DataPackage
    */
   public void setAccessXML(String xmlString) {
     this.accessXML = xmlString;
+  }
+  
+  
+  /**
+   * Setter method for emlNamespace field.
+   * 
+   * @param emlNamespace  the emlNamespace value to set,
+   *                      e.g. "eml://ecoinformatics.org/eml-2.1.0"
+   */
+  public void setEmlNamespace(String emlNamespace) {
+    this.emlNamespace = emlNamespace;
+    
+    if (QualityReport.isQualityReporting()) {
+      // Initialize the emlNamespaceQualityCheck
+      boolean isValidNamespace = false;
+      String qualityCheckName = "EML version 2.1.0 or beyond";
+      QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+      QualityCheck eml210QualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+
+      if (emlNamespace != null) {
+        eml210QualityCheck.setFound(emlNamespace);
+        if (emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.0") ||
+            emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.1")
+           ) {
+          isValidNamespace = true;
+        }
+      }
+      
+      if (isValidNamespace) {
+        eml210QualityCheck.setStatus(Status.valid);
+        eml210QualityCheck.setSuggestion("");
+      }
+      else {
+        eml210QualityCheck.setFailedStatus();
+      }
+      this.addDatasetQualityCheck(eml210QualityCheck);
+    }
   }
   
 }

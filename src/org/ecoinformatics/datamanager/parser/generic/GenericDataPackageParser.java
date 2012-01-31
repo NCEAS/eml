@@ -48,12 +48,8 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
 import org.apache.xpath.CachedXPathAPI;
 
-//import org.kepler.objectmanager.data.DataType;
-//import org.kepler.objectmanager.data.DataTypeResolver;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
@@ -205,7 +201,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 	private void initDefaultXPaths() {
     	//sets the default path values for documents
 		packageIdPath = "//*/@packageId";
-    	tableEntityPath = "//dataset/dataTable";
+    tableEntityPath = "//dataset/dataTable";
 		spatialRasterEntityPath = "//dataset/spatialRaster";
 		spatialVectorEntityPath  = "//dataset/spatialVector";
 		storedProcedureEntityPath = "//dataset/storedProcedure";
@@ -253,7 +249,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         Document doc = builder.parse(is);
         parseDocument(doc);
     }
-
+    
     
     /**
      * Parses the EML document. Now except dataTable, spatialRaster and 
@@ -272,7 +268,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String packageId = null;
         
         try {
-        	// process packageid
+          // process packageid
         	Node packageIdNode = xpathapi.selectSingleNode(doc, packageIdPath);
             
         	if (packageIdNode != null)
@@ -280,8 +276,15 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         	   //System.out.println("in packageIdNode is not null");
         	   packageId          = packageIdNode.getNodeValue();
         	}
+        	
+          emlDataPackage        = new DataPackage(packageId);
+          
+          String emlNamespace = parseEmlNamespace(doc);
+          if (emlDataPackage != null) {
+            emlDataPackage.setEmlNamespace(emlNamespace);
+          }
+        
             
-        	emlDataPackage        = new DataPackage(packageId);
             // now dataTable, spatialRaster and spatialVector are handled
             dataTableEntities              = xpathapi.selectNodeList(doc, tableEntityPath);
             spatialRasterEntities = 
@@ -300,6 +303,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             }
             
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception(
                             "Error extracting entities from eml2.0.0 package.", e);
         }
@@ -406,6 +410,43 @@ public class GenericDataPackageParser implements DataPackageParserInterface
       
     }*/
     
+    
+    /*
+     * Parses the "xmlns:eml" attribute value from the
+     * "eml:eml" element. This value indicates the version of
+     * EML, e.g. "eml://ecoinformatics.org/eml-2.1.0"
+     */
+    private String parseEmlNamespace(Document doc) {
+      String namespaceURI = null;
+      
+      if (doc != null) {
+        NodeList docNodes = doc.getChildNodes();
+      
+        if (docNodes != null) {
+          int len = docNodes.getLength();
+          for (int i = 0; i < len; i++) {
+            Node docNode = docNodes.item(i);
+            String name = docNode.getNodeName();
+          
+            if (name!= null && name.equals("eml:eml")) {
+              NamedNodeMap attributeMap = docNode.getAttributes();
+              int mapLength = attributeMap.getLength();
+              for (int m = 0; m < mapLength; m++) {
+                Node attNode = attributeMap.item(m);
+                String attNodeName = attNode.getNodeName();
+                String attNodeValue = attNode.getNodeValue();
+                if (attNodeName.equals("xmlns:eml")) {
+                  namespaceURI = attNodeValue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return namespaceURI;
+    }
+
     
     /**
      * Processes the attributeList element.

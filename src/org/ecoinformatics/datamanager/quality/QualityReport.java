@@ -62,7 +62,8 @@ public class QualityReport {
   private DataPackage dataPackage;
   
   // A list of dataset-level quality checks
-  private ArrayList<QualityCheck> datasetQualityChecks;
+  private ArrayList<QualityCheck> datasetQualityChecks = 
+    new ArrayList<QualityCheck>();
   
   private String packageId;     // the EML packageId value
   
