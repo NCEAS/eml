@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -34,6 +36,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * Class fields
    */
 	
+  public static Log log = LogFactory.getLog(DatabaseLoader.class);
+
   private static TableMonitor tableMonitor = null;  
   
   
@@ -146,7 +150,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         inputStream.close();
       } 
       catch (Exception e) {
-        System.err.println(
+        log.error(
              "Could not close inputStream in DatabaseLoader.finishSerialize(): "
              + e.getMessage());
       }
@@ -157,7 +161,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         outputStream.close();
       } 
       catch (Exception e) {
-        System.err.println(
+        log.error(
             "Could not close outputStream in DatabaseLoader.finishSerialize(): "
             + e.getMessage());
       }
@@ -261,7 +265,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         rowVector = dataReader.getOneRowDataVector();
       }
       catch (Exception e) {
-        System.err.println("Exception in DatabaseLoader.run(): " + 
+        log.error("Exception in DatabaseLoader.run(): " + 
                            e.getMessage());
         
         if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
@@ -377,9 +381,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         success = true;
       }
       catch (Exception e) {
-        System.err.println("DatabaseLoader.run(): Error message: " + 
-                           e.getMessage());
-        System.err.println("SQL insert string:\n" + insertSQL);        
+        log.error(e.getMessage());
         success = false;
         exception = e;
         
@@ -387,11 +389,9 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           // Report data load status as failed
           dataLoadQualityCheck.setFailedStatus();
           dataLoadQualityCheck.setFound(
-            "One or more errors occurred during data loading");
+            "Error inserting data at row " + 
+            (rowCount +1) + ".");
           String explanation = e.getMessage();
-          if (insertSQL != null && !insertSQL.equals("")) {
-            explanation += "\nSQL insert string:\n" + insertSQL;
-          }
           dataLoadQualityCheck.setExplanation(explanation);
           entity.addQualityCheck(dataLoadQualityCheck);
         }
@@ -400,7 +400,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           connection.rollback();
         } 
         catch (Exception ee) {
-          System.err.println(ee.getMessage());
+          log.error(ee.getMessage());
         }
       } 
       finally {
@@ -408,14 +408,14 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           connection.setAutoCommit(true);
         } 
         catch (Exception ee) {
-          System.err.println(ee.getMessage());
+          log.error(ee.getMessage());
         }
 
         DataManager.returnConnection(connection);
       }
     }
     else {
-      System.err.println("Input stream is null.");
+      log.error("Input stream is null.");
       success = false;
     }
     
@@ -449,7 +449,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       }
     } 
     catch (SQLException e) {
-      System.err.println(e.getMessage());
+      log.error(e.getMessage());
       e.printStackTrace();
     }
 
