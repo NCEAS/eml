@@ -996,7 +996,6 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String entityDescription = "";
         String entityOrientation = "";
         String entityCaseSensitive = "";
-        String entityNumberOfRecords = "-1";
         String onlineUrl = "";
         String format = null;
         String numHeaderLines = "0";
@@ -1011,6 +1010,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
          
         for (int i = 0; i < entityNodeListLength; i++) {
             
+            String entityNumberOfRecords = "-1";
             boolean hasDistributionOnline = false;
             boolean hasDistributionOffline = false;
             boolean hasDistributionInline = false;
