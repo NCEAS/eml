@@ -32,6 +32,9 @@
 
 package org.ecoinformatics.datamanager.quality;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 
 
@@ -57,9 +60,11 @@ public class QualityCheck {
   
   
   /*
-   * Class variables
+   * Class fields
    */
   
+  public static Log log = LogFactory.getLog(QualityCheck.class);
+
   private static final QualityType defaultQualityType = QualityType.congruency;
   private static final StatusType defaultStatusType = StatusType.error;
   private static final String defaultSystem = "knb";
@@ -169,12 +174,33 @@ public class QualityCheck {
       String reference = qualityCheckTemplate.getReference();
       setReference(reference);
     }
+    else {
+      String errorMessage = "No template found for quality check: '" + 
+                            name + "'.";
+      log.error(errorMessage);
+    }
   }
 
   
   /*
    * Class methods
    */
+  
+  /**
+   * Boolean to determine whether a given quality check should be run for
+   * a given data package.
+   */
+  public static boolean shouldRunQualityCheck(DataPackage dataPackage, QualityCheck qualityCheck) {
+    boolean shouldRunCheck;
+    
+    shouldRunCheck = QualityReport.isQualityReporting() &&
+                     dataPackage != null &&
+                     qualityCheck != null &&
+                     qualityCheck.isIncluded();
+    
+    return shouldRunCheck;
+  }
+
   
   /**
    * Boolean to determine whether a given quality check should be run for

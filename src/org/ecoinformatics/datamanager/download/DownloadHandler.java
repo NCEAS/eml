@@ -564,35 +564,33 @@ public class DownloadHandler implements Runnable
             	             "The URL '" + resourceName + "' is not reachable");
              }
 
-             if (entity != null && QualityReport.isQualityReporting()) {
-               // Initialize the "Online URLs are live" quality check
-               String qualityCheckName = "Online URLs are live";
-               QualityCheck qualityCheckTemplate = 
-                 QualityReport.getQualityCheckTemplate(qualityCheckName);
-               onlineURLsQualityCheck = 
-                 new QualityCheck(qualityCheckName, qualityCheckTemplate);
+             // Initialize the "Online URLs are live" quality check
+             String qualityCheckName = "Online URLs are live";
+             QualityCheck qualityCheckTemplate = 
+               QualityReport.getQualityCheckTemplate(qualityCheckName);
+             onlineURLsQualityCheck = 
+               new QualityCheck(qualityCheckName, qualityCheckTemplate);
                
-               if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
-                 String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
+             if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
+               String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
                
-                 if (exception == null) {
-                   onlineURLsQualityCheck.setStatus(Status.valid);
-                   onlineURLsQualityCheck.setFound("true");
-                   onlineURLsQualityCheck.setExplanation(
-                     "Succeeded in accessing URL: " + resourceNameEncoded);
-                 }
-                 else {
-                   onlineURLsQualityCheck.setFailedStatus();
-                   onlineURLsQualityCheck.setFound("false");
-                   String explanation = "Failed to access URL: " + resourceNameEncoded;
-                   explanation = explanation + "; " + exception.getMessage();
-                   onlineURLsQualityCheck.setExplanation(explanation);
-                 }
-               
-                 entity.addQualityCheck(onlineURLsQualityCheck);
+               if (exception == null) {
+                 onlineURLsQualityCheck.setStatus(Status.valid);
+                 onlineURLsQualityCheck.setFound("true");
+                 onlineURLsQualityCheck.setExplanation(
+                   "Succeeded in accessing URL: " + resourceNameEncoded);
                }
+               else {
+                 onlineURLsQualityCheck.setFailedStatus();
+                 onlineURLsQualityCheck.setFound("false");
+                 String explanation = "Failed to access URL: " + resourceNameEncoded;
+                 explanation = explanation + "; " + exception.getMessage();
+                 onlineURLsQualityCheck.setExplanation(explanation);
+               }
+               
+               entity.addQualityCheck(onlineURLsQualityCheck);
              }
-             
+
              return successFlag;
          }
          else if (resourceName != null && 

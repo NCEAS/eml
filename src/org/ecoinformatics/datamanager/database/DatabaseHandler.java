@@ -247,12 +247,10 @@ public class DatabaseHandler
     String tableName;
     QualityCheck databaseTableQualityCheck = null;
     
-    if (QualityReport.isQualityReporting()) {
-      // Initialize the databaseTableQualityCheck
-      String qualityCheckName = "Create database table";
-      QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-      databaseTableQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
-    }
+    // Initialize the databaseTableQualityCheck
+    String qualityCheckName = "Create database table";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+    databaseTableQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
     
     tableName = tableMonitor.addTableEntry(entity);   
 

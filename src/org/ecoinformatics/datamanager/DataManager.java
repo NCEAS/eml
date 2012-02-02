@@ -679,6 +679,7 @@ public class DataManager {
     
     parser.parse(metadataInputStream);
     dataPackage = parser.getDataPackage();
+    dataPackageQuality(dataPackage);
     
     return dataPackage;
   }
@@ -700,9 +701,39 @@ public class DataManager {
 		DataPackage dataPackage = null;
 		genericParser.parse(metadataInputStream);
 		dataPackage = genericParser.getDataPackage();
+    dataPackageQuality(dataPackage);
 
 		return dataPackage;
 	}
+  
+  
+  /*
+   * If quality reporting is enabled, runs quality checks on the
+   * data package and stores the results in its QualityReport
+   * object.
+   */
+  private void dataPackageQuality(DataPackage dataPackage) {
+    // Initialize the duplicateEntityName quality check
+    String duplicateEntityName = "Duplicate entity name check";
+    QualityCheck duplicateEntityTemplate = QualityReport.getQualityCheckTemplate(duplicateEntityName);
+    QualityCheck duplicateEntityQualityCheck = 
+        new QualityCheck(duplicateEntityName, duplicateEntityTemplate);
+    if (QualityCheck.shouldRunQualityCheck(dataPackage, duplicateEntityQualityCheck)) {
+      String duplicateName = dataPackage.findDuplicateEntityName();
+      boolean hasDuplicate = (duplicateName != null);
+      
+      if (hasDuplicate) {
+        duplicateEntityQualityCheck.setFound("Found duplicate entity name: " + 
+                                             duplicateName);
+        duplicateEntityQualityCheck.setFailedStatus();
+      }
+      else {
+        duplicateEntityQualityCheck.setFound("No duplicates found");
+        duplicateEntityQualityCheck.setStatus(Status.valid);
+      }
+      dataPackage.addDatasetQualityCheck(duplicateEntityQualityCheck);
+    }
+  }
   
   
   /**

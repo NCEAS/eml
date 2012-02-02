@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.parser;
 
+import java.util.TreeSet;
 import java.util.Vector;
 
 import org.ecoinformatics.datamanager.quality.QualityReport;
@@ -137,6 +138,39 @@ public class DataPackage
 		  return getEntities(name)[0];
 	  }
 	  return null;
+  }
+  
+  
+  /**
+   * Determine whether the data package contains
+   * two entities with the same entityName value.
+   * 
+   * @return  The duplicate name, or null if no
+   *          duplicate entity names were found
+   */
+  public String findDuplicateEntityName() {
+    String duplicateName = null;
+    
+    Entity[] entityArray = getEntityList();
+    if (entityArray != null) {
+      int len = entityArray.length;
+      TreeSet<String> treeSet = new TreeSet<String>();
+      for (int i = 0; i < len; i++) {
+        Entity entity = entityArray[i];
+        String entityName = entity.getName();
+        if (entityName != null) {
+          if (treeSet.contains(entityName)) {
+            duplicateName = entityName;
+            break;
+          }
+          else {
+            treeSet.add(entityName);
+          }
+        }
+      }
+    }
+    
+    return duplicateName;
   }
   
   
@@ -253,12 +287,14 @@ public class DataPackage
   public void setEmlNamespace(String emlNamespace) {
     this.emlNamespace = emlNamespace;
     
-    if (QualityReport.isQualityReporting()) {
+    // Check the value of the 'xmlns:eml' attribute
+    String qualityCheckName = "EML version 2.1.0 or beyond";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+    QualityCheck eml210QualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, eml210QualityCheck)) {
       // Initialize the emlNamespaceQualityCheck
       boolean isValidNamespace = false;
-      String qualityCheckName = "EML version 2.1.0 or beyond";
-      QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-      QualityCheck eml210QualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
 
       if (emlNamespace != null) {
         eml210QualityCheck.setFound(emlNamespace);

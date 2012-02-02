@@ -20,6 +20,16 @@
       <suggestion>Use an approved namespace.</suggestion>
       <reference></reference>
     </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="error" >
+      <name>Duplicate entity name check</name>
+      <description>Checks that content is not duplicated by other entityName elements in the document</description>
+      <expected>entityName is not a duplicate within the document</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation>Data Manager requires a non-empty, non-duplicate entityName value for every entity</explanation>
+      <suggestion>Declare a non-empty entityName and ensure that there are no duplicate entityName values in the document</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-dataTable.html#numberOfRecords</reference>
+    </qualityCheck>
   </datasetReport>
   <entityReport>
     <entityName></entityName>
@@ -63,7 +73,7 @@
       <suggestion></suggestion>
       <reference></reference>
     </qualityCheck>
-    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+    <qualityCheck qualityType="congruency" system="knb" statusType="warn" >
       <name>Number of records check</name>
       <description>Compare number of records specified in metadata to number of records found in data</description>
       <expected></expected>

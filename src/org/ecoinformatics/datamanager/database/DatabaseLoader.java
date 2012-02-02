@@ -218,12 +218,11 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       return;
     }
     else {
-      if (QualityReport.isQualityReporting()) {
-        // Initialize the dataLoadQualityCheck
-        String qualityCheckName = "Data load status";
-        QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-        dataLoadQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
-      }
+      // Initialize the dataLoadQualityCheck
+      String dataLoadName = "Data load status";
+      QualityCheck dataLoadTemplate = 
+        QualityReport.getQualityCheckTemplate(dataLoadName);
+      dataLoadQualityCheck = new QualityCheck(dataLoadName, dataLoadTemplate);
     }
     
     AttributeList attributeList = entity.getAttributeList();
@@ -287,22 +286,22 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       Connection connection = null;
 
       try {
-        if (entity != null && QualityReport.isQualityReporting()) {
-          /*
-           *  Display the first row of data in a QualityCheck object
-           */
-          String qualityCheckName = "Display some data";
-          QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-          QualityCheck displayDataQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+        /*
+         *  Display the first row of data in a QualityCheck object
+         */
+        String displayDataName = "Display some data";
+        QualityCheck displayDataTemplate = 
+          QualityReport.getQualityCheckTemplate(displayDataName);
+        QualityCheck displayDataQualityCheck = 
+          new QualityCheck(displayDataName, displayDataTemplate);
 
-          if (QualityCheck.shouldRunQualityCheck(entity, displayDataQualityCheck)) {
-            // Note that rowVector starts and ends with square brackets. We're
-            // using a shortcut by incorporating them into the CDATA tags
-            String foundString = "<![CDATA" + rowVector.toString() + "]>";
-            displayDataQualityCheck.setFound(foundString);
-            displayDataQualityCheck.setStatus(Status.info);
-            entity.addQualityCheck(displayDataQualityCheck);
-          }
+        if (QualityCheck.shouldRunQualityCheck(entity, displayDataQualityCheck)) {
+          // Note that rowVector starts and ends with square brackets. We're
+          // using a shortcut by incorporating them into the CDATA tags
+          String foundString = "<![CDATA" + rowVector.toString() + "]>";
+          displayDataQualityCheck.setFound(foundString);
+          displayDataQualityCheck.setStatus(Status.info);
+          entity.addQualityCheck(displayDataQualityCheck);
         }
         
     	  connection = DataManager.getConnection();
@@ -341,11 +340,11 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           /*
            * Store number of records found in a QualityCheck object
            */
-          String qualityCheckName = "Number of records check";
-          QualityCheck qualityCheckTemplate = 
-            QualityReport.getQualityCheckTemplate(qualityCheckName);
+          String numberOfRecordsName = "Number of records check";
+          QualityCheck numberOfRecordsTemplate = 
+            QualityReport.getQualityCheckTemplate(numberOfRecordsName);
           QualityCheck numberOfRecordsQualityCheck = 
-            new QualityCheck(qualityCheckName, qualityCheckTemplate);
+            new QualityCheck(numberOfRecordsName, numberOfRecordsTemplate);
           if (QualityCheck.shouldRunQualityCheck(entity, numberOfRecordsQualityCheck)) {
             int expectedNumberOfRecords = entity.getNumRecords();
             numberOfRecordsQualityCheck.setExpected("" + expectedNumberOfRecords);
@@ -372,7 +371,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
                 "The number of records found in the data table (" + rowCount +
                 ") does not match the 'numberOfRecords' value specified in the EML (" +
                 expectedNumberOfRecords + ")"
-                );
+              );
             }
             entity.addQualityCheck(numberOfRecordsQualityCheck);
           }
@@ -388,9 +387,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
           // Report data load status as failed
           dataLoadQualityCheck.setFailedStatus();
-          dataLoadQualityCheck.setFound(
-            "Error inserting data at row " + 
-            (rowCount +1) + ".");
+          dataLoadQualityCheck.setFound("Error inserting data at row " +
+                                        (rowCount + 1) + ".");
           String explanation = e.getMessage();
           dataLoadQualityCheck.setExplanation(explanation);
           entity.addQualityCheck(dataLoadQualityCheck);
