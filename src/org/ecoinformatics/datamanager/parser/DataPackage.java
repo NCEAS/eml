@@ -34,6 +34,7 @@ package org.ecoinformatics.datamanager.parser;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
@@ -258,7 +259,7 @@ public class DataPackage
   }
   
   
-  /***
+  /**
    * Removes ALL previously added Entity objects from the DataPackage
    */
   public void clearEntityList() {
@@ -266,6 +267,61 @@ public class DataPackage
   }
   
   
+  /**
+   * Boolean to determine whether this data package has at
+   * least one dataset-level quality error. This can be called
+   * after parsing the metadata. If a data package is found to
+   * have a dataset-level quality error, an application may want
+   * to halt processing at that point instead of drilling down
+   * to the entity-level.
+   * 
+   * @return  true if one or more dataset-level quality errors are 
+   *          found, else false
+   */
+  public boolean hasDatasetQualityError() {
+    boolean hasError = (qualityReport != null &&
+                        qualityReport.hasDatasetQualityError());
+    
+    return hasError;
+  }
+
+
+  /**
+   * Boolean to determine whether this data package has at
+   * least one entity-level quality error. 
+   * 
+   * @return  true if one or more entity-level quality errors are 
+   *          found, else false
+   */
+  public boolean hasEntityQualityError() {
+    boolean hasError = false;
+    Entity[] entityArray = getEntityList();
+    for (int i = 0; i < entityArray.length; i++) {
+      Entity entity = entityArray[i];
+      EntityReport entityReport = entity.getEntityReport();
+      if (entityReport != null) {
+        if (entityReport.hasEntityQualityError()) {
+          hasError = true;
+        }
+      }
+    }
+    
+    return hasError;
+  }
+
+
+  /**
+   * Boolean to determine whether this data package has at
+   * least one dataset-level or entity-level quality error. 
+   * 
+   * @return  true if one or more quality errors are 
+   *          found, else false
+   */
+  public boolean hasQualityError() {
+    return hasDatasetQualityError() || hasEntityQualityError();
+  }
+
+
   /**
    * Setter method for accessXML field.
    * 

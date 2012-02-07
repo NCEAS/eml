@@ -346,6 +346,18 @@ public class QualityCheck {
   
   
   /**
+   * Boolean to determine whether this quality check has an
+   * status value of 'error'.
+   * 
+   * @return  true if the quality check has an error status,
+   *          else false
+   */
+  public boolean hasErrorStatus() {
+    return (this.status == Status.error);
+   }
+  
+  
+  /**
    * Boolean to determine whether this quality check should
    * be executed based on whether its system attribute value
    * is in the list of systems included in the quality report

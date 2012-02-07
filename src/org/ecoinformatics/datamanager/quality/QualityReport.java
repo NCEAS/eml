@@ -242,6 +242,26 @@ public class QualityReport {
   public String getPackageId() {
     return packageId;
   }
+  
+  
+  /**
+   * Boolean to determine whether this quality report has at
+   * least one dataset-level quality error. 
+   * 
+   * @return  true if one or more dataset quality errors are found,
+   *          else false
+   */
+  public boolean hasDatasetQualityError() {
+    boolean hasError = false;
+    
+    for (QualityCheck qualityCheck : datasetQualityChecks) {
+      if (qualityCheck.hasErrorStatus()) {
+        hasError = true;
+      }
+    }
+    
+    return hasError;
+  }
 
 
   /**

@@ -81,6 +81,26 @@ public class EntityReport {
   
   
   /**
+   * Boolean to determine whether this entity report has at
+   * least one entity-level quality error. 
+   * 
+   * @return  true if one or more entity quality errors are found,
+   *          else false
+   */
+  public boolean hasEntityQualityError() {
+    boolean hasError = false;
+    
+    for (QualityCheck qualityCheck : qualityChecks) {
+      if (qualityCheck.hasErrorStatus()) {
+        hasError = true;
+      }
+    }
+    
+    return hasError;
+  }
+
+
+  /**
    * Boolean to determine whether a copy of a quality check already
    * exists in the list of quality checks for this entity. There are
    * occasions where we wish not to add duplicate copies of the same
