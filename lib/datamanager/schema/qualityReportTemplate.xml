@@ -21,6 +21,16 @@
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="error" >
+      <name>EML packageId check</name>
+      <description>Check against LTER requirements for scope.identifier.revision</description>
+      <expected>'knb-lter-abc.n.m', where 'abc' is an LTER site acronym and 'n' and 'm' are whole numbers</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion>Value of the packageId attribute must conform with LTER best practices</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="error" >
       <name>Duplicate entity name check</name>
       <description>Checks that content is not duplicated by other entityName elements in the document</description>
       <expected>entityName is not a duplicate within the document</expected>

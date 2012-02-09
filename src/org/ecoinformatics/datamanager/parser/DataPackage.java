@@ -33,6 +33,7 @@ package org.ecoinformatics.datamanager.parser;
 
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
@@ -62,6 +63,8 @@ public class DataPackage
   private String   packageId  = null;
   private QualityReport qualityReport = null;
   
+  private final String LTER_PACKAGE_ID_PATTERN = "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
+  
   
   /*
    * Constructors
@@ -76,6 +79,35 @@ public class DataPackage
   {
 	  this.packageId = packageId;  
     this.qualityReport = new QualityReport(this);
+    
+    qualityCheckPackageId(packageId);
+  }
+  
+  
+  /*
+   * Boolean to determine whether a given packageId conforms to
+   * the string pattern of a particular organization such as LTER.
+   * If the specified system value does not have a regular
+   * expression pattern declared for its packageId, then the
+   * packageId is assumed to be valid by default.
+   */
+  private boolean isValidPackageId(String system, String packageId) {
+    boolean isValid = true;
+    String regexPattern = null;
+    
+    /*
+     * If we have a regular expression pattern string declared for a 
+     * particular organization, use it to validate the packageId
+     */
+    if (system.equalsIgnoreCase("lter")) {
+      regexPattern = LTER_PACKAGE_ID_PATTERN;
+    }
+    
+    if (regexPattern != null) {
+      isValid = Pattern.matches(regexPattern, packageId);
+    }
+
+    return isValid;
   }
   
   
@@ -331,6 +363,39 @@ public class DataPackage
    */
   public void setAccessXML(String xmlString) {
     this.accessXML = xmlString;
+  }
+  
+  
+  /*
+   * Executes the "EML packageId check" when applicable
+   */
+  private void qualityCheckPackageId(String packageId) { 
+    // Check the value of the 'packageId' attribute
+    String qualityCheckName = "EML packageId check";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
+    QualityCheck packageIdQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, packageIdQualityCheck)) {
+      // Initialize the emlNamespaceQualityCheck
+      boolean isValidPackageId = false;
+      String systemAttribute = packageIdQualityCheck.getSystem();
+
+      if (packageId != null) {
+        packageIdQualityCheck.setFound(packageId);
+        if (isValidPackageId(systemAttribute, packageId)) {
+          isValidPackageId = true;
+        }
+      }
+      
+      if (isValidPackageId) {
+        packageIdQualityCheck.setStatus(Status.valid);
+        packageIdQualityCheck.setSuggestion("");
+      }
+      else {
+        packageIdQualityCheck.setFailedStatus();
+      }
+      this.addDatasetQualityCheck(packageIdQualityCheck);
+    }
   }
   
   
