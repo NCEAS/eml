@@ -283,6 +283,11 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           if (emlDataPackage != null) {
             emlDataPackage.setEmlNamespace(emlNamespace);
           }
+          
+          String systemValue = parseSystemAttribute(doc);
+          if (systemValue != null) {
+            emlDataPackage.setSystem(systemValue);
+          }
         
             
             // now dataTable, spatialRaster and spatialVector are handled
@@ -445,6 +450,42 @@ public class GenericDataPackageParser implements DataPackageParserInterface
       }
 
       return namespaceURI;
+    }
+
+    
+    /*
+     * Parses the "@system" attribute value from the
+     * "eml:eml" element.
+     */
+    private String parseSystemAttribute(Document doc) {
+      String systemValue = null;
+      
+      if (doc != null) {
+        NodeList docNodes = doc.getChildNodes();
+      
+        if (docNodes != null) {
+          int len = docNodes.getLength();
+          for (int i = 0; i < len; i++) {
+            Node docNode = docNodes.item(i);
+            String name = docNode.getNodeName();
+          
+            if (name!= null && name.equals("eml:eml")) {
+              NamedNodeMap attributeMap = docNode.getAttributes();
+              int mapLength = attributeMap.getLength();
+              for (int m = 0; m < mapLength; m++) {
+                Node attNode = attributeMap.item(m);
+                String attNodeName = attNode.getNodeName();
+                String attNodeValue = attNode.getNodeValue();
+                if (attNodeName.equals("system")) {
+                  systemValue = attNodeValue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return systemValue;
     }
 
     

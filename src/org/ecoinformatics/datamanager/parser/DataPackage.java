@@ -62,6 +62,7 @@ public class DataPackage
   private Entity[] entityList = null;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
+  private String system = null;
   
   private final String LTER_PACKAGE_ID_PATTERN = "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
   
@@ -257,6 +258,16 @@ public class DataPackage
   
   
   /**
+   * Gets the value of the system attribute.
+   * 
+   * @return  a String, e.g. "knb"
+   */
+  public String getSystem() {
+    return system;
+  }
+  
+  
+  /**
    * Gets the package identifier for this DataPackage.
    * 
    * @return a string representing the DataPackage identifier
@@ -435,6 +446,17 @@ public class DataPackage
       }
       this.addDatasetQualityCheck(eml210QualityCheck);
     }
+  }
+  
+  
+  /**
+   * Sets the value of the 'system' to the specified String 
+   * value.
+   * 
+   * @param systemValue   the 'system' value to set
+   */
+  public void setSystem(String systemValue) {
+    this.system = systemValue;
   }
   
 }
