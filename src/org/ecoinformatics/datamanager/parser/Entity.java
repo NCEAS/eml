@@ -43,6 +43,8 @@ import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
 import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 
 /**
@@ -92,10 +94,13 @@ public class Entity extends DataObjectDescription
                                                   // can be mapped to one table
 
     private String fileName;       // filename where Entity data is stored
-    private String url;            // distribution url for this entity
+    private String url;            // distribution URL for this entity
+    private String urlFunction;    // value of the URL "function" attribute
+    private String urlContentType; // value of URLConnection.getContentType();
     private String format;
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
+    private String firstKilobyte = null;
     private boolean hasDistributionOnline = false;
     private boolean hasDistributionOffline = false;
     private boolean hasDistributionInline = false;
@@ -221,6 +226,15 @@ public class Entity extends DataObjectDescription
     }
 
     
+    /**
+     * Gets the firstKilobyte string of the entity
+     * @return
+     */
+    public String getFirstKilobyte() {
+      return firstKilobyte;
+    }
+
+
     /**
      * Gets the orientation of the table entity.
      * 
@@ -388,6 +402,26 @@ public class Entity extends DataObjectDescription
 
     
     /**
+     * Sets the urlContentType value for this entity.
+     * 
+     * @param url  the urlContentType string value to be set
+     */
+    public void setUrlContentType(String urlContentType) {
+      this.urlContentType = urlContentType;
+    }
+
+
+    /**
+     * Sets the urlFunction value for this entity.
+     * 
+     * @param url    the urlFunction string value to be set
+     */
+    public void setURLFunction(String urlFunction) {
+      this.urlFunction = urlFunction;
+    }
+
+
+    /**
      * Gets the url value for this entity.
      * 
      * @return  the url string value for this entity.
@@ -397,6 +431,27 @@ public class Entity extends DataObjectDescription
       return this.url;
     }
     
+    
+    /**
+     * Gets the urlContentType value for this entity.
+     * 
+     * @return  the urlContentType string value for this entity.
+     */
+    public String getUrlContentType() {
+      return urlContentType;
+    }
+
+
+    /**
+     * Gets the urlFunction value for this entity.
+     * 
+     * @return  the urlFunction string value for this entity.
+     */
+    public String getUrlFunction() {
+      return urlFunction;
+    }
+
+  
     /**
      * Sets the format for this entity.
      * 
@@ -881,6 +936,101 @@ public class Entity extends DataObjectDescription
     }
     
    
+    /**
+     * Sets the firstKilobyte string for the entity. Also,
+     * if quality reporting is enabled, performs quality
+     * checks on the first kilobyte of data.
+     * 
+     * @param firstKilobyte   the string value to set
+     */
+    public void setFirstKilobyte(String firstKilobyte) {
+      this.firstKilobyte = firstKilobyte;
+
+      /*
+       *  Display the first chunk of data as a quality check
+       */
+      String displayDataName = "Display download data";
+      QualityCheck displayDataTemplate = 
+        QualityReport.getQualityCheckTemplate(displayDataName);
+      QualityCheck displayDataQualityCheck = 
+        new QualityCheck(displayDataName, displayDataTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, displayDataQualityCheck)) {
+        /* String twoFiftySix = "";
+        if (firstKilobyte != null) {
+          twoFiftySix = firstKilobyte.substring(0, 256);
+        }
+        String foundString = "<![CDATA\n" + twoFiftySix + "\n]>"; */
+        String foundString = "<![CDATA[\n" + firstKilobyte.trim() + "]]>";
+        displayDataQualityCheck.setFound(foundString);
+        displayDataQualityCheck.setStatus(Status.info);
+        addQualityCheck(displayDataQualityCheck);
+      }
+
+      /*
+       *  Check the veracity of the data returned
+       */
+      String dataCheckName = "URL returns data";
+      QualityCheck dataCheckTemplate = 
+        QualityReport.getQualityCheckTemplate(dataCheckName);
+      QualityCheck dataCheckQualityCheck = 
+        new QualityCheck(dataCheckName, dataCheckTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, dataCheckQualityCheck)) {
+        boolean isHTML = isHTML(firstKilobyte);        
+        if (isHTML) {
+          String found = "The download URL for this entity returns HTML";
+          dataCheckQualityCheck.setFound(found);
+          String explanation = "Either an HTML declaration string or an 'html' element was detected in the data";
+          dataCheckQualityCheck.setExplanation(explanation);
+          String suggestion = "Specify function=\"information\" in the 'url' element when the URL links to an HTML page";
+          dataCheckQualityCheck.setSuggestion(suggestion);
+          dataCheckQualityCheck.setFailedStatus();
+        }
+        else {
+          dataCheckQualityCheck.setStatus(Status.valid);
+          dataCheckQualityCheck.setSuggestion("");
+        }
+        addQualityCheck(dataCheckQualityCheck);
+      }
+    }
+    
+
+    /*
+     * Boolean to determine whether a data sample is 
+     * actually an HTML page. 
+     */
+    private boolean isHTML(String sampleData) {
+      boolean isHTML = false;
+      
+      if (sampleData != null) {
+        String htmlDeclaration = "<!doctype html";
+        String htmlElement1 = "<html ";
+        String htmlElement2 = "<html>";
+        String sampleDataLowerCase = sampleData.toLowerCase();
+        
+        // First check the MIME type
+        if (urlContentType != null &&
+            urlContentType.startsWith("text/html")
+           ) {
+          isHTML = true;
+        }
+        // else look for an HTML declaration
+        else if (sampleDataLowerCase.contains(htmlDeclaration)) {
+          isHTML = true;
+        }
+        // else look for an HTML tag
+        else if (sampleDataLowerCase.contains(htmlElement1) ||
+                 sampleDataLowerCase.contains(htmlElement2)
+                ) {
+          isHTML = true;
+        }
+      }
+      
+      return isHTML;
+    }
+
+    
     /**
      * Boolean to determine if data file in this entity is simple delimited.
      * 

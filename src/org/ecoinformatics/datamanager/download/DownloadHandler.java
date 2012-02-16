@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Hashtable;
 
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
@@ -539,6 +540,12 @@ public class DownloadHandler implements Runnable
              // get the data from a URL
              try {
                  URL url = new URL(resourceName);
+                 URLConnection urlc= url.openConnection();
+                 // Find the right MIME type and set it as content type
+                 String contentType = urlc.getContentType();
+                 if (entity != null) {
+                   entity.setUrlContentType(contentType);
+                 }
                  
                  if (url != null) {
                    InputStream filestream = url.openStream();
@@ -925,6 +932,15 @@ public class DownloadHandler implements Runnable
 				// start reading, to write to the ouputstreams
 				byte[] b = new byte[1024];
 				int bytesRead = inputStream.read(b, 0, 1024);
+				
+				/*
+				 * Store the first kilobyte of data in the entity for
+				 * subsequent use in quality reporting
+				 */
+				if (entity != null && entity.getFirstKilobyte() == null) {
+				  String firstKilobyte = new String(b);
+				  entity.setFirstKilobyte(firstKilobyte);
+				}
 				
 				NeededOutputStream stream = null;
 				OutputStream os = null;

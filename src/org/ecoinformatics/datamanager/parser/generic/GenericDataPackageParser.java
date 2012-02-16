@@ -1038,6 +1038,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String entityOrientation = "";
         String entityCaseSensitive = "";
         String onlineUrl = "";
+        String onlineUrlFunction = null;
         String format = null;
         String numHeaderLines = "0";
         int numFooterLines = 0;
@@ -1309,13 +1310,34 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            NodeList urlNodeList = xpathapi.selectNodeList(entityNode,
                                            "physical/distribution/online/url");
            
-           if (urlNodeList != null && urlNodeList.getLength() >0)
-           {
-               onlineUrl = urlNodeList.item(0).getFirstChild().getNodeValue();
-              
-          	   if(isDebugging) {
-        		       //log.debug("The url is "+ onlineUrl);
-        	     }
+           if (urlNodeList != null && urlNodeList.getLength() > 0) {
+             int len = urlNodeList.getLength();
+             for (int j = 0; j < len; j++) {
+               Node urlNode = urlNodeList.item(j);
+               String urlText = urlNode.getTextContent();
+               String functionText = null;
+               NamedNodeMap urlAttributes = urlNode.getAttributes();
+               int nAttributes = urlAttributes.getLength();
+               for (int k = 0; k < nAttributes; k++) {
+                 Node attributeNode = urlAttributes.item(k);
+                 String nodeName = attributeNode.getNodeName();
+                 if (nodeName.equals("function")) {
+                   functionText = attributeNode.getNodeValue();             
+                 }
+               }
+               
+               /*
+                * Unless this URL has attribute function="information", 
+                * assign it as the download URL for this entity and stop
+                * processing any additional distribution URLs.
+                */
+               if (functionText == null ||
+                   !functionText.equalsIgnoreCase("information")) {
+                 onlineUrl = urlText;
+                 onlineUrlFunction = functionText;
+                 break;
+               }
+             }
            }
                       
            /**
@@ -1435,6 +1457,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setCollapseDelimiters(isCollapseDelimiters);         
           entityObject.setRecordDelimiter(recordDelimiter);
           entityObject.setURL(onlineUrl);
+          entityObject.setURLFunction(onlineUrlFunction);
           entityObject.setDataFormat(format);
           entityObject.setCompressionMethod(compressionMethod);
           entityObject.setIsImageEntity(isImageEntity);

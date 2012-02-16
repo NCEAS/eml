@@ -289,7 +289,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         /*
          *  Display the first row of data in a QualityCheck object
          */
-        String displayDataName = "Display some data";
+        String displayDataName = "Display first insert row";
         QualityCheck displayDataTemplate = 
           QualityReport.getQualityCheckTemplate(displayDataName);
         QualityCheck displayDataQualityCheck = 

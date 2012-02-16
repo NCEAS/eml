@@ -53,10 +53,20 @@
       <suggestion></suggestion>
       <reference></reference>
     </qualityCheck>
-    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
-      <name>Create database table</name>
-      <description>Status of creating a database table</description>
-      <expected>A database table is expected to be generated from the EML attributes.</expected>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>URL returns data</name>
+      <description>Checks whether a URL returns data. Unless the URL is specified to be function="information", the URL should return the resource for download.</description>
+      <expected>A data entity that matches the metadata</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion>URL should return a data entity</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-resource.html#UrlType</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="data" system="knb" statusType="info" >
+      <name>Display download data</name>
+      <description>Display the first kilobyte of data that is downloaded</description>
+      <expected>Up to one kilobyte of data should be displayed</expected>
       <found>notChecked</found>
       <status>notChecked</status>
       <explanation></explanation>
@@ -64,9 +74,19 @@
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="data" system="knb" statusType="info" >
-      <name>Display some data</name>
-      <description>Display the first row of data</description>
-      <expected>One row of data should be displayed</expected>
+      <name>Display first insert row</name>
+      <description>Display the first row of data values to be inserted into the database table</description>
+      <expected>The first row of data values should be displayed</expected>
+      <found>notChecked</found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
+      <name>Create database table</name>
+      <description>Status of creating a database table</description>
+      <expected>A database table is expected to be generated from the EML attributes.</expected>
       <found>notChecked</found>
       <status>notChecked</status>
       <explanation></explanation>
