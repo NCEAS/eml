@@ -961,7 +961,13 @@ public class Entity extends DataObjectDescription
           twoFiftySix = firstKilobyte.substring(0, 256);
         }
         String foundString = "<![CDATA\n" + twoFiftySix + "\n]>"; */
-        String foundString = "<![CDATA[\n" + firstKilobyte.trim() + "]]>";
+        String foundString = null;
+        if (isBinaryData()) {
+          foundString = "*** BINARY DATA ***";
+        }
+        else {
+          foundString = "<![CDATA[\n" + firstKilobyte.trim() + "]]>";
+        }
         displayDataQualityCheck.setFound(foundString);
         displayDataQualityCheck.setStatus(Status.info);
         addQualityCheck(displayDataQualityCheck);
@@ -1028,6 +1034,66 @@ public class Entity extends DataObjectDescription
       }
       
       return isHTML;
+    }
+    
+    
+    /**
+     * Boolean to determine whether this entity's data is binary data
+     * as opposed to character data.
+     * 
+     * @return  true if we determine that the entity has binary data,
+     *          else false
+     */
+    public boolean isBinaryData() {
+      boolean isBinary = false;
+      
+      /*
+       * First check for a binary MIME type
+       */
+      if (isBinaryUrlContentType()) {
+        isBinary = true;
+      }
+      
+      /*
+       * Then check to see whether we know this to be
+       * binary based on the entity type
+       */
+      if (hasGZipDataFile ||
+          hasTarDataFile ||
+          hasZipDataFile ||
+          isImageEntity ||
+          isOtherEntity
+         ) {
+          isBinary = true;
+      }
+
+      return isBinary;
+    }
+    
+    
+    /*
+     * Boolean to determine whether the URL contentType specifies
+     * a binary data type.
+     */
+    private boolean isBinaryUrlContentType() {
+      boolean isBinary = true;
+      
+      if (urlContentType != null) {
+        /*
+         * Check for known text content types
+         */
+        if (urlContentType.startsWith("text/") ||
+            urlContentType.equals("application/xml")
+           ) {
+          isBinary = false;
+        }
+      }
+      else {
+        // Assume it could be text when no content type is specified
+        isBinary = false;
+      }
+      
+      return isBinary;
     }
 
     
