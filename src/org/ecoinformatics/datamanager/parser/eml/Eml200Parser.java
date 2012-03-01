@@ -1157,7 +1157,7 @@ public class Eml200Parser
           // For simple delimited data file
           if (fieldDelimiter != null)
           {
-             entityObject.setDelimiter(fieldDelimiter);
+             entityObject.setFieldDelimiter(fieldDelimiter);
           }
           
           if (quoteCharacter != null)

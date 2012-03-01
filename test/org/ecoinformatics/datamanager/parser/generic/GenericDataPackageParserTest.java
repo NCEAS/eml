@@ -110,7 +110,7 @@ public class GenericDataPackageParserTest extends TestCase
       String definition = entity.getDefinition();
 	  assertEquals(definition, "patterns amoung communities at CDR");
 
-      String delimiter = entity.getDelimiter();
+      String delimiter = entity.getFieldDelimiter();
 	  assertEquals(delimiter, "\\t");
 
       String fileName = entity.getFileName();

@@ -36,6 +36,7 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
 
+import org.ecoinformatics.datamanager.database.DelimitedReader;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
@@ -88,7 +89,7 @@ public class Entity extends DataObjectDescription
     private int          numRecords      = 0;
     private int          numHeaderLines  = 0;
     private int          numFooterLines  = 0;
-    private String       delimiter       = null;
+    private String       fieldDelimiter  = null;
     private String       recordDelimiter = null;
     private boolean      multiple        = false; // if true, multiple inputs 
                                                   // can be mapped to one table
@@ -302,24 +303,69 @@ public class Entity extends DataObjectDescription
 
     
     /**
-     * Sets the delimiter used with this entity.
+     * Sets the fieldDelimiter used with this entity.
      * 
-     * @param  delim   the delimiter string to be set
+     * @param  delimiter   the delimiter string to be set
      */
-    public void setDelimiter(String delim)
+    public void setFieldDelimiter(String delimiter)
     {
-      this.delimiter = delim;
+      this.fieldDelimiter = delimiter;
+      
+      /*
+       *  Check the validity of the fieldDelimiter value
+       */
+      String fieldDelimiterName = "Field delimiter check";
+      QualityCheck fieldDelimiterTemplate = 
+        QualityReport.getQualityCheckTemplate(fieldDelimiterName);
+      QualityCheck fieldDelimiterCheck = 
+        new QualityCheck(fieldDelimiterName, fieldDelimiterTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, fieldDelimiterCheck)) {
+        boolean isValidDelimiter = true;
+        String found = delimiter;
+        String explanation = fieldDelimiterCheck.getExplanation();
+        
+        // Check for bad field delimiters
+        if (delimiter == null || delimiter.equals("")) {
+          isValidDelimiter = false;
+          explanation += " The fieldDelimiter value is null or empty string.";
+        }
+        else {
+          int delimiterLength = delimiter.length();    
+          if (delimiterLength > 1) {
+            String unescapedDelimiter = DelimitedReader.unescapeDelimiter(delimiter);
+            if (delimiter.equals(unescapedDelimiter)) {
+              isValidDelimiter = false;
+              explanation += " The specified delimiter, '" + 
+                             delimiter + "'," +
+                             " is not a recognized fieldDelimiter value.";
+            }
+          }
+        }
+          
+        fieldDelimiterCheck.setFound(found);
+        if (isValidDelimiter) {
+          explanation = "A valid fieldDelimiter value was found";
+          fieldDelimiterCheck.setStatus(Status.valid);
+          fieldDelimiterCheck.setSuggestion("");
+        }
+        else {
+          fieldDelimiterCheck.setFailedStatus();
+        } 
+        fieldDelimiterCheck.setExplanation(explanation);
+        addQualityCheck(fieldDelimiterCheck);
+      }
     }
 
-    
+
     /**
-     * Gets the delimiter used with this entity.
+     * Gets the fieldDelimiter used with this entity.
      * 
-     * @return  the delimiter string value
+     * @return  the fieldDelimiter string value
      */
-    public String getDelimiter()
+    public String getFieldDelimiter()
     {
-      return this.delimiter;
+      return this.fieldDelimiter;
     }
     
     /**

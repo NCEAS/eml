@@ -236,12 +236,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           DelimitedReader delimitedReader = 
             new DelimitedReader(inputStream,
                                 entity.getAttributes().length, 
-                                entity.getDelimiter(), 
+                                entity.getFieldDelimiter(), 
                                 entity.getNumHeaderLines(),
                                 entity.getRecordDelimiter(),
                                 entity.getNumRecords(),
                                 stripHeaderLine
                                );
+          delimitedReader.setEntity(entity);
           delimitedReader.setCollapseDelimiters(entity.getCollapseDelimiters());
           delimitedReader.setNumFooterLines(entity.getNumFooterLines());
           if (entity.getQuoteCharacter() != null)

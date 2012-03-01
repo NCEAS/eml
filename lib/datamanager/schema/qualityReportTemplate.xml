@@ -43,6 +43,16 @@
   </datasetReport>
   <entityReport>
     <entityName></entityName>
+    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
+      <name>Field delimiter check</name>
+      <description>Field delimiters should be one character only</description>
+      <expected>A single character is expected</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>fieldDelimiter should be a single character such as (,;:|) or an escape of a single character such as \t for tab. Decimal or hex values of ASCII characters may be used such as #32, #x20, or 0x20 for the space character.</explanation>
+      <suggestion>Change the fieldDelimiter to a single character or its representation, either decimal, hex or escaped.</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#fieldDelimiter</reference>
+    </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="error" >
       <name>Online URLs are live</name>
       <description>Check that online URLs return something</description>
@@ -81,6 +91,26 @@
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>Field count check: too few</name>
+      <description>Compare number of fields specified in metadata to number of fields found in a data record</description>
+      <expected></expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>A record has a number of fields less than the specified number of attributes.</explanation>
+      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, too few fields). Also check setting for collapseDelimiters.</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <name>Field count check: too many</name>
+      <description>Compare number of fields specified in metadata to number of fields found in a data record</description>
+      <expected></expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>A record has a number of fields more than the specified number of attributes.</explanation>
+      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, extra fields). Also check setting for collapseDelimiters.</suggestion>
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >

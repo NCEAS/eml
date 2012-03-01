@@ -42,8 +42,8 @@ public class TextDelimitedDataFormat implements TextComplexDataFormat
      * Instance fields
      */
     private String fieldDelimiter;   //string that separates fields in text
-    private String collapseDelimiters; //treat the consecutive delimters as 
-                                      //single or not
+    private String collapseDelimiters; //treat consecutive delimiters as 
+                                       //single or not
     private long   lineNumber;       //the physical line number
     private String[] quoteCharacterArray;  //for escape delimiter
   

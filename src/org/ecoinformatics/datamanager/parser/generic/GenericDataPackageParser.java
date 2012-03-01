@@ -1040,7 +1040,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String onlineUrl = "";
         String onlineUrlFunction = null;
         String format = null;
-        String numHeaderLines = "0";
+        int numHeaderLines = 0;
         int numFooterLines = 0;
         String fieldDelimiter = null;
         String recordDelimiter = "";
@@ -1131,8 +1131,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                 Node numHeaderLinesNode = numHeaderLinesNodeList.item(0);
                    
                 if (numHeaderLinesNode != null) {
-                    numHeaderLines = 
+                    String numHeaderLinesStr = 
                         numHeaderLinesNode.getFirstChild().getNodeValue();
+                    numHeaderLines = (new Integer(numHeaderLinesStr.trim())).intValue();
                 }
             }
             
@@ -1155,7 +1156,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                 }
             }
            
-           // Here is the simple delimited data file
+           /*
+            * Simple delimited data file
+            */
            NodeList fieldDelimiterNodeList = 
                xpathapi.selectNodeList(
                  entityNode,
@@ -1206,9 +1209,11 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         		  ) {
                 literalCharacter = 
                   literalCharacterNodeList.item(0).getFirstChild().getNodeValue(); 
-           }
+           } // End simple delimited data file
            
-           // For complex format data file
+           /*
+            *  Complex format data file
+            */
            NodeList complexNodeList = 
              xpathapi.selectNodeList(entityNode,
                                      "physical/dataFormat/textFormat/complex");
@@ -1227,6 +1232,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
              {
                  Node complexChildNode = complexChildNodes.item(k);
                  
+                 /*
+                  * complex, textFixed
+                  */
                  if (complexChildNode != null && 
                      complexChildNode.getNodeName().equals("textFixed")
                     )
@@ -1240,6 +1248,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                         //complexFormatsNumber++;
                      }
                  }
+                 /*
+                  * complex, textDelimited
+                  */
                  else if (complexChildNode != null && 
                           complexChildNode.getNodeName().equals("textDelimited")
                          )
@@ -1263,7 +1274,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                  formatArray[j] =
                                (TextComplexDataFormat)formatVector.elementAt(j);
              }
-           }
+           } // End complex format data file
            
            NodeList recordDelimiterNodeList = 
                xpathapi.selectNodeList(entityNode,
@@ -1433,15 +1444,14 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                     new Integer(entityNumberOfRecords).
                                                            intValue());
           
-          entityObject.setNumHeaderLines((new Integer(numHeaderLines))
-                                                         .intValue());
+          entityObject.setNumHeaderLines(numHeaderLines);
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
           
           // For simple delimited data file
           if (fieldDelimiter != null)
           {
-             entityObject.setDelimiter(fieldDelimiter);
+             entityObject.setFieldDelimiter(fieldDelimiter);
           }
           
           if (quoteCharacter != null)
