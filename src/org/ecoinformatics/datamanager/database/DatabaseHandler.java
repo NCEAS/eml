@@ -248,9 +248,9 @@ public class DatabaseHandler
     QualityCheck databaseTableQualityCheck = null;
     
     // Initialize the databaseTableQualityCheck
-    String qualityCheckName = "Create database table";
-    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-    databaseTableQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+    String qualityCheckIdentifier = "databaseTableCreated";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+    databaseTableQualityCheck = new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
     
     tableName = tableMonitor.addTableEntry(entity);   
 

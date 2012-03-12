@@ -382,9 +382,9 @@ public class DataPackage
    */
   private void qualityCheckPackageId(String packageId) { 
     // Check the value of the 'packageId' attribute
-    String qualityCheckName = "EML packageId check";
-    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-    QualityCheck packageIdQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+    String packageIdIdentifier = "packageIdPattern";
+    QualityCheck packageIdTemplate = QualityReport.getQualityCheckTemplate(packageIdIdentifier);
+    QualityCheck packageIdQualityCheck = new QualityCheck(packageIdIdentifier, packageIdTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, packageIdQualityCheck)) {
       // Initialize the emlNamespaceQualityCheck
@@ -420,16 +420,16 @@ public class DataPackage
     this.emlNamespace = emlNamespace;
     
     // Check the value of the 'xmlns:eml' attribute
-    String qualityCheckName = "EML version 2.1.0 or beyond";
-    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-    QualityCheck eml210QualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+    String emlVersionIdentifier = "emlVersion";
+    QualityCheck emlVersionTemplate = QualityReport.getQualityCheckTemplate(emlVersionIdentifier);
+    QualityCheck emlVersionQualityCheck = new QualityCheck(emlVersionIdentifier, emlVersionTemplate);
 
-    if (QualityCheck.shouldRunQualityCheck(this, eml210QualityCheck)) {
+    if (QualityCheck.shouldRunQualityCheck(this, emlVersionQualityCheck)) {
       // Initialize the emlNamespaceQualityCheck
       boolean isValidNamespace = false;
 
       if (emlNamespace != null) {
-        eml210QualityCheck.setFound(emlNamespace);
+        emlVersionQualityCheck.setFound(emlNamespace);
         if (emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.0") ||
             emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.1")
            ) {
@@ -438,13 +438,13 @@ public class DataPackage
       }
       
       if (isValidNamespace) {
-        eml210QualityCheck.setStatus(Status.valid);
-        eml210QualityCheck.setSuggestion("");
+        emlVersionQualityCheck.setStatus(Status.valid);
+        emlVersionQualityCheck.setSuggestion("");
       }
       else {
-        eml210QualityCheck.setFailedStatus();
+        emlVersionQualityCheck.setFailedStatus();
       }
-      this.addDatasetQualityCheck(eml210QualityCheck);
+      this.addDatasetQualityCheck(emlVersionQualityCheck);
     }
   }
   

@@ -54,6 +54,7 @@
   <xs:element name="qualityCheck">
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="identifier" />
         <xs:element ref="name" />
         <xs:element ref="description"  minOccurs="0" />
         <xs:element ref="emlPath"      minOccurs="0" />
@@ -107,6 +108,7 @@
   <xs:element name="expected"     type="xs:string" />
   <xs:element name="explanation"  type="xs:string" />
   <xs:element name="found"        type="xs:string" />
+  <xs:element name="identifier"   type="xs:string" />
   <xs:element name="name"         type="xs:string" />
   <xs:element name="packageId"    type="xs:string" />
   <xs:element name="reference"    type="xs:string" />

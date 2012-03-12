@@ -74,6 +74,9 @@ public class QualityCheck {
    * Instance variables
    */
 
+  // The quality check identifier
+  private String identifier = "";
+
 	// The name of the quality check.
 	private String name = "";
 
@@ -121,10 +124,10 @@ public class QualityCheck {
 
 	
 	/**
-	 * Constructs a QualityCheck object, initializing its 'name' value.
+	 * Constructs a QualityCheck object, initializing its 'identifier' value.
 	 */
-  public QualityCheck(String name) {
-    this.name = name;
+  public QualityCheck(String identifier) {
+    this.identifier = identifier;
     this.qualityType = defaultQualityType;
     this.statusType = defaultStatusType;
     this.system = defaultSystem;
@@ -135,12 +138,12 @@ public class QualityCheck {
    * Constructs a QualityCheck object using another QualityCheck
    * object as a template.
    * 
-   * @param name                  the name value for this quality check
+   * @param identifier            the identifier value for this quality check
    * @param qualityCheckTemplate  the quality check template object 
    *                              holding static content
    */
-  public QualityCheck(String name, QualityCheck qualityCheckTemplate) {
-    this(name);
+  public QualityCheck(String identifier, QualityCheck qualityCheckTemplate) {
+    this(identifier);
     
     if (qualityCheckTemplate != null) {
       
@@ -176,7 +179,7 @@ public class QualityCheck {
     }
     else {
       String errorMessage = "No template found for quality check: '" + 
-                            name + "'.";
+                            identifier + "'.";
       log.error(errorMessage);
     }
   }
@@ -238,6 +241,7 @@ public class QualityCheck {
             this.expected.equals(qualityCheck.getExpected()) &&
             this.explanation.equals(qualityCheck.getExplanation()) &&
             this.found.equals(qualityCheck.getFound()) &&
+            this.identifier.equals(qualityCheck.getIdentifier()) &&
             this.name.equals(qualityCheck.getName()) &&
             this.reference.equals(qualityCheck.getReference()) &&
             this.status.equals(qualityCheck.getStatus()) &&
@@ -268,6 +272,7 @@ public class QualityCheck {
 	    " qualityType=\"" + qualityTypeStr + "\"" +
 	    " system=\"" + system + "\"" +
 	    " statusType=\"" + statusTypeStr + "\" >\n");
+    xmlStringBuffer.append(indent + indent + indent + "<identifier>" + identifier + "</identifier>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<name>" + name + "</name>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<description>" + description + "</description>\n");
 	  xmlStringBuffer.append(indent + indent + indent + "<expected>" + expected + "</expected>\n");
@@ -307,6 +312,11 @@ public class QualityCheck {
   
   public String getFound() {
     return found;
+  }
+
+  
+  public String getIdentifier() {
+    return identifier;
   }
 
   
@@ -428,6 +438,11 @@ public class QualityCheck {
   }
 
   
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+  }
+
+
   public void setName(String name) {
     this.name = name;
   }

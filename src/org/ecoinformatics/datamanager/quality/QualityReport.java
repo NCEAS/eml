@@ -40,7 +40,7 @@ public class QualityReport {
   private static ArrayList<String> includeSystems;
   
   // Stores a list quality check templates. Each quality check template
-  // holds static content for a given quality check name
+  // holds static content for a given quality check identifier
   private static ArrayList<QualityCheck> qualityCheckTemplates;
 
   /*
@@ -114,15 +114,15 @@ public class QualityReport {
   
   /**
    * Gets the quality check template object (i.e. a QualityCheck object
-   * holding static content for a given quality check name) for the
-   * specified name
+   * holding static content for a given quality check) for the
+   * specified identifier
    */
-  public static QualityCheck getQualityCheckTemplate(String name) {
+  public static QualityCheck getQualityCheckTemplate(String identifier) {
     QualityCheck qualityCheckTemplate = null;
 
-    if (name != null) {
+    if (identifier != null) {
       for (QualityCheck qualityCheck : qualityCheckTemplates) {
-        if (name.equals(qualityCheck.getName())) {
+        if (identifier.equals(qualityCheck.getIdentifier())) {
           qualityCheckTemplate = qualityCheck;
         }
       }
@@ -313,6 +313,13 @@ public class QualityReport {
               qualityCheck.setStatusType(statusType);
             }
             
+            // Get the quality check identifier
+            NodeList identifierNodeList = xpathapi.selectNodeList(qualityCheckNode, "identifier");        
+            if (identifierNodeList != null && identifierNodeList.getLength() > 0) {
+              String identifier = identifierNodeList.item(0).getTextContent();
+              qualityCheck.setIdentifier(identifier);
+            }
+                 
             // Get the quality check name
             NodeList nameNodeList = xpathapi.selectNodeList(qualityCheckNode, "name");        
             if (nameNodeList != null && nameNodeList.getLength() > 0) {

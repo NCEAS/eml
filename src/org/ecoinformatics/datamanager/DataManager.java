@@ -555,9 +555,9 @@ public class DataManager {
     boolean success = false;
     
     // Initialize the dataLoadQualityCheck
-    String qualityCheckName = "Data load status";
-    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckName);
-    QualityCheck dataLoadQualityCheck = new QualityCheck(qualityCheckName, qualityCheckTemplate);
+    String qualityCheckIdentifier = "dataLoadStatus";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+    QualityCheck dataLoadQualityCheck = new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
 
     /*
      * otherEntity is allowed to optionally omit the attributeList element.
@@ -714,10 +714,10 @@ public class DataManager {
    */
   private void dataPackageQuality(DataPackage dataPackage) {
     // Initialize the duplicateEntityName quality check
-    String duplicateEntityName = "Duplicate entity name check";
-    QualityCheck duplicateEntityTemplate = QualityReport.getQualityCheckTemplate(duplicateEntityName);
+    String duplicateEntityIdentifier = "duplicateEntityName";
+    QualityCheck duplicateEntityTemplate = QualityReport.getQualityCheckTemplate(duplicateEntityIdentifier);
     QualityCheck duplicateEntityQualityCheck = 
-        new QualityCheck(duplicateEntityName, duplicateEntityTemplate);
+        new QualityCheck(duplicateEntityIdentifier, duplicateEntityTemplate);
     if (QualityCheck.shouldRunQualityCheck(dataPackage, duplicateEntityQualityCheck)) {
       String duplicateName = dataPackage.findDuplicateEntityName();
       boolean hasDuplicate = (duplicateName != null);

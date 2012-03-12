@@ -314,16 +314,16 @@ public class Entity extends DataObjectDescription
       /*
        *  Check the validity of the fieldDelimiter value
        */
-      String fieldDelimiterName = "Field delimiter check";
+      String fieldDelimiterIdentifier = "fieldDelimiterValid";
       QualityCheck fieldDelimiterTemplate = 
-        QualityReport.getQualityCheckTemplate(fieldDelimiterName);
-      QualityCheck fieldDelimiterCheck = 
-        new QualityCheck(fieldDelimiterName, fieldDelimiterTemplate);
+        QualityReport.getQualityCheckTemplate(fieldDelimiterIdentifier);
+      QualityCheck fieldDelimiterQualityCheck = 
+        new QualityCheck(fieldDelimiterIdentifier, fieldDelimiterTemplate);
 
-      if (QualityCheck.shouldRunQualityCheck(this, fieldDelimiterCheck)) {
+      if (QualityCheck.shouldRunQualityCheck(this, fieldDelimiterQualityCheck)) {
         boolean isValidDelimiter = true;
         String found = delimiter;
-        String explanation = fieldDelimiterCheck.getExplanation();
+        String explanation = fieldDelimiterQualityCheck.getExplanation();
         
         // Check for bad field delimiters
         if (delimiter == null || delimiter.equals("")) {
@@ -343,17 +343,17 @@ public class Entity extends DataObjectDescription
           }
         }
           
-        fieldDelimiterCheck.setFound(found);
+        fieldDelimiterQualityCheck.setFound(found);
         if (isValidDelimiter) {
           explanation = "A valid fieldDelimiter value was found";
-          fieldDelimiterCheck.setStatus(Status.valid);
-          fieldDelimiterCheck.setSuggestion("");
+          fieldDelimiterQualityCheck.setStatus(Status.valid);
+          fieldDelimiterQualityCheck.setSuggestion("");
         }
         else {
-          fieldDelimiterCheck.setFailedStatus();
+          fieldDelimiterQualityCheck.setFailedStatus();
         } 
-        fieldDelimiterCheck.setExplanation(explanation);
-        addQualityCheck(fieldDelimiterCheck);
+        fieldDelimiterQualityCheck.setExplanation(explanation);
+        addQualityCheck(fieldDelimiterQualityCheck);
       }
     }
 
@@ -995,13 +995,13 @@ public class Entity extends DataObjectDescription
       /*
        *  Display the first chunk of data as a quality check
        */
-      String displayDataName = "Display download data";
-      QualityCheck displayDataTemplate = 
-        QualityReport.getQualityCheckTemplate(displayDataName);
-      QualityCheck displayDataQualityCheck = 
-        new QualityCheck(displayDataName, displayDataTemplate);
+      String displayDownloadIdentifier = "displayDownloadData";
+      QualityCheck displayDownloadTemplate = 
+        QualityReport.getQualityCheckTemplate(displayDownloadIdentifier);
+      QualityCheck displayDownloadQualityCheck = 
+        new QualityCheck(displayDownloadIdentifier, displayDownloadTemplate);
 
-      if (QualityCheck.shouldRunQualityCheck(this, displayDataQualityCheck)) {
+      if (QualityCheck.shouldRunQualityCheck(this, displayDownloadQualityCheck)) {
         /* String twoFiftySix = "";
         if (firstKilobyte != null) {
           twoFiftySix = firstKilobyte.substring(0, 256);
@@ -1014,36 +1014,36 @@ public class Entity extends DataObjectDescription
         else {
           foundString = "<![CDATA[\n" + firstKilobyte.trim() + "]]>";
         }
-        displayDataQualityCheck.setFound(foundString);
-        displayDataQualityCheck.setStatus(Status.info);
-        addQualityCheck(displayDataQualityCheck);
+        displayDownloadQualityCheck.setFound(foundString);
+        displayDownloadQualityCheck.setStatus(Status.info);
+        addQualityCheck(displayDownloadQualityCheck);
       }
 
       /*
        *  Check the veracity of the data returned
        */
-      String dataCheckName = "URL returns data";
-      QualityCheck dataCheckTemplate = 
-        QualityReport.getQualityCheckTemplate(dataCheckName);
-      QualityCheck dataCheckQualityCheck = 
-        new QualityCheck(dataCheckName, dataCheckTemplate);
+      String urlDataIdentifier = "urlReturnsData";
+      QualityCheck urlDataTemplate = 
+        QualityReport.getQualityCheckTemplate(urlDataIdentifier);
+      QualityCheck urlDataQualityCheck = 
+        new QualityCheck(urlDataIdentifier, urlDataTemplate);
 
-      if (QualityCheck.shouldRunQualityCheck(this, dataCheckQualityCheck)) {
+      if (QualityCheck.shouldRunQualityCheck(this, urlDataQualityCheck)) {
         boolean isHTML = isHTML(firstKilobyte);        
         if (isHTML) {
           String found = "The download URL for this entity returns HTML";
-          dataCheckQualityCheck.setFound(found);
+          urlDataQualityCheck.setFound(found);
           String explanation = "Either an HTML declaration string or an 'html' element was detected in the data";
-          dataCheckQualityCheck.setExplanation(explanation);
+          urlDataQualityCheck.setExplanation(explanation);
           String suggestion = "Specify function=\"information\" in the 'url' element when the URL links to an HTML page";
-          dataCheckQualityCheck.setSuggestion(suggestion);
-          dataCheckQualityCheck.setFailedStatus();
+          urlDataQualityCheck.setSuggestion(suggestion);
+          urlDataQualityCheck.setFailedStatus();
         }
         else {
-          dataCheckQualityCheck.setStatus(Status.valid);
-          dataCheckQualityCheck.setSuggestion("");
+          urlDataQualityCheck.setStatus(Status.valid);
+          urlDataQualityCheck.setSuggestion("");
         }
-        addQualityCheck(dataCheckQualityCheck);
+        addQualityCheck(urlDataQualityCheck);
       }
     }
     

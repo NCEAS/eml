@@ -521,11 +521,11 @@ public class DelimitedReader extends TextDataReader
       /*
        *  Quality check for too few fields
        */
-      String tooFewName = "Field count check: too few";
+      String tooFewIdentifier = "tooFewFields";
       QualityCheck tooFewTemplate = 
-        QualityReport.getQualityCheckTemplate(tooFewName);
+        QualityReport.getQualityCheckTemplate(tooFewIdentifier);
       QualityCheck tooFewCheck = 
-        new QualityCheck(tooFewName, tooFewTemplate);
+        new QualityCheck(tooFewIdentifier, tooFewTemplate);
 
       if (QualityCheck.shouldRunQualityCheck(entity, tooFewCheck)) {
         boolean foundTooFew = (columnCounter < numCols);
@@ -551,11 +551,11 @@ public class DelimitedReader extends TextDataReader
       /*
        *  Quality check for too many fields
        */
-      String tooManyName = "Field count check: too many";
+      String tooManyIdentifier = "tooManyFields";
       QualityCheck tooManyTemplate = 
-        QualityReport.getQualityCheckTemplate(tooManyName);
+        QualityReport.getQualityCheckTemplate(tooManyIdentifier);
       QualityCheck tooManyCheck = 
-        new QualityCheck(tooManyName, tooManyTemplate);
+        new QualityCheck(tooManyIdentifier, tooManyTemplate);
 
       if (QualityCheck.shouldRunQualityCheck(entity, tooManyCheck)) {
         boolean foundTooMany = (columnCounter > numCols);

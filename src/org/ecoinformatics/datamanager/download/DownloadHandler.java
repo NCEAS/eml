@@ -572,11 +572,11 @@ public class DownloadHandler implements Runnable
              }
 
              // Initialize the "Online URLs are live" quality check
-             String qualityCheckName = "Online URLs are live";
+             String qualityCheckIdentifier = "onlineURLs";
              QualityCheck qualityCheckTemplate = 
-               QualityReport.getQualityCheckTemplate(qualityCheckName);
+               QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
              onlineURLsQualityCheck = 
-               new QualityCheck(qualityCheckName, qualityCheckTemplate);
+               new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
                
              if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
                String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
