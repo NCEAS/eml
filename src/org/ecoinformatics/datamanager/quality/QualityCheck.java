@@ -150,6 +150,9 @@ public class QualityCheck {
       String system = qualityCheckTemplate.getSystem();
       setSystem(system);
       
+      String name = qualityCheckTemplate.getName();
+      setName(name);
+      
       Enum<QualityCheck.QualityType> qualityType = qualityCheckTemplate.getQualityType();
       setQualityType(qualityType);
       
