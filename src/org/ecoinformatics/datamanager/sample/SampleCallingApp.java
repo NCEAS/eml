@@ -1,5 +1,6 @@
 package org.ecoinformatics.datamanager.sample;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -24,6 +25,7 @@ import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityReport;
 
   /**
    * This class is a sample calling application to demonstrate use of the
@@ -65,10 +67,10 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   private static String dbUser = null;
   private static String dbPassword = null;
   private static String databaseAdapterName = null;
-  private static String testDocument = null;
-  private static String testServer = null;
+  private static String documentURL = null;
   private static String entityName = null;
   private static String packageID = null;
+  private static Boolean qualityReporting = new Boolean("false");  // default value
     
   
   /*
@@ -88,10 +90,6 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   // can be subsequently used by other methods.
   private DataPackage dataPackage;
   
-  // This string holds the URL to the sample metadata document as found on
-  // a Metacat server. It is determined by the values in the properties file.
-  private String documentURL = null;
- 
   // A DataStorageInterface object that this class is associated with.
   // The calling application must use an object of this type to interact
   // with the Data Manager's download manager (see testDownloadData()).
@@ -116,7 +114,6 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   public SampleCallingApp() {
     loadOptions();
     dataManager = DataManager.getInstance(this, databaseAdapterName);
-    documentURL = testServer + "?action=read&qformat=xml&docid=" + testDocument;
     dsi = new SampleDataStorage();
     eepi = new EcogridEndPoint();
   }
@@ -135,6 +132,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
   public static void main(String[] args)
     throws MalformedURLException, IOException, Exception {
     boolean success = true;
+
     SampleCallingApp dmm = new SampleCallingApp();
     dmm.setUp();
     success = success && dmm.testParseMetadata();   // Use Case #1
@@ -142,12 +140,12 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
     success = success && dmm.testLoadDataToDB();    // Use Case #3
     success = success && dmm.testSelectData();      // Use Case #4
     success = success && dmm.testEnumerationMethods();  // Miscellaneous other
+    success = success && dmm.testQualityReport();       // Miscellaneous other
     System.err.println("Finished all tests, success = " + success + "\n");
     dmm.tearDown();  // clean-up tables
-    System.exit(0);
   }
-
-
+  
+  
   /**
    * Loads Data Manager options from a configuration file.
    */
@@ -163,10 +161,25 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       databaseAdapterName = options.getString("dbAdapter");
       
       // Load sample document and Metacat server options
-      testDocument = options.getString("testDocument");
-      testServer = options.getString("testServer");
+      documentURL = options.getString("documentURL");
       entityName = options.getString("entityName");
       packageID = options.getString("packageID");
+      
+      /* Check the value of the qualityReporting property and call 
+       * QualityReport.setQualityReporting() accordingly. This controls whether
+       * the Data Manager library will execute with quality reporting turned
+       * on or off.
+       */
+      String qualityReportingStr = options.getString("qualityReporting");
+      String qualityReportTemplate = options.getString("qualityReportTemplate");
+      if (qualityReportingStr != null) {
+        if (qualityReportingStr.equalsIgnoreCase("true")) {
+          QualityReport.setQualityReporting(true, qualityReportTemplate);
+        }
+        else if (qualityReportingStr.equalsIgnoreCase("false")) {
+          QualityReport.setQualityReporting(false, null);
+        }
+      }
     } 
     catch (Exception e) {
       System.err.println("Error in loading options: " + e.getMessage());
@@ -413,6 +426,35 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
 
   
   /**
+   * Test whether a quality report can be generated and stored.
+   * 
+   * @return  success, true if successful, else false
+   */
+  private boolean testQualityReport() {
+    boolean success = false;
+
+    // Assumes that the DataPackage object has already been created in the
+    // previous tests and saved in the 'dataPackage' instance field.
+    if (dataPackage != null) {
+      QualityReport qualityReport = dataPackage.getQualityReport();
+      if (qualityReport != null) {
+        File qualityReportFile = new File("/tmp/quality_report.xml");
+        try {
+          success = qualityReport.storeQualityReport(qualityReportFile);
+        }
+        catch (IOException e) {
+          System.err.println("Error storing quality report file: " + e.getMessage());
+        }
+      }
+    }
+    
+    System.err.println("Finished testQualityReport(), success = " + success
+        + "\n");
+    return success;
+  }
+
+
+  /**
    * Tests Use Case #5, selecting data from a table.
    * Tests the creation and use of a Query object for querying a data table. 
    * Runs a query with a conditional WHERE clause and prints the result set.
@@ -439,7 +481,7 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       entity = entityList[0];
       attributeList = entity.getAttributeList();
       Attribute[] attributes = attributeList.getAttributes();
-      attribute = attributes[6];
+      attribute = attributes[2];
 
     /*
      * Now build a test query, execute it, and compare the result set to

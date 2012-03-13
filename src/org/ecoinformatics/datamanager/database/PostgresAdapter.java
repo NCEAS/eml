@@ -230,6 +230,80 @@ public class PostgresAdapter extends DatabaseAdapter {
 
       
   /**
+   * This method was contributed by M. Gastil-Buhl ("Gastil"),
+   * Moorea Coral Reef LTER. (The implementation has been
+   * slightly modified from the original code.)
+   * 
+   * Transforms an EML 'datetime' format string for use with a
+   * Postgres 'TIMESTAMP' field. 
+   * 
+   * These are examples of valid EML:
+   *  
+   *                    Format string          Example value
+   *                    -------------------    ------------------
+   *     ISO Date       YYYY-MM-DD             2002-10-14
+   *     ISO Datetime   YYYY-MM-DDThh:mm:ss    2002-10-14T09:13:45
+   *     ISO Time       hh:mm:ss               17:13:45
+   *     ISO Time       hh:mm:ss.sss           09:13:45.432
+   *     ISO Time       hh:mm.mm               09:13.42
+   *     Non-standard   DD/MM/YYYY             14/10/2002
+   *     Non-standard   MM/DD/YYYY             10/14/2002
+   *     Non-standard   MM/DD/YY               10/14/02
+   *     Non-standard   YYYY-WWW-DD            2002-OCT-14
+   *     Non-standard   YYYYWWWDD              2002OCT14
+   *     Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
+   *     
+   *  The transformation is needed because Postgres,
+   *  as of Postgres 8.4, is much more picky about timestamp
+   *  formats.
+   *     
+   *  @param   emlFormatString  EML format string for datetime
+   *  @return  pgFormatString   Postgres format string for TIMESTAMP
+   */
+  protected String transformFormatString(String emlFormatString) {
+    String pgFormatString = emlFormatString; //default
+    
+    // switch/case only works for static enums or ints and 
+    // I'm just too lazy to set that up so I'm using if/then.
+    if (emlFormatString.equals("YYYY-MM-DDThh:mm:ss")) {
+      pgFormatString = "YYYY-MM-DDTHH24:MI:ss";
+    }
+    else if (emlFormatString.equals("YYYY-MM-DD hh:mm:ss")) {
+      pgFormatString = "YYYY-MM-DD HH24:MI:ss";
+    }
+    else if (emlFormatString.equals("hh:mm:ss")) {
+      pgFormatString = "HH24:MI:ss";
+    }
+    else if (emlFormatString.equals("hh:mm")) {
+      pgFormatString = "HH24:MI";
+    }
+    else if (emlFormatString.equals("hh:mm:ss.sss")) { 
+      pgFormatString = "HH24:MI:ss.sss";
+    }
+    else if (emlFormatString.equals("hh:mm:ss.ss")) {
+      pgFormatString = "HH24:MI:ss.ss";
+    }
+    else if (emlFormatString.equals("hh:mm:ss.s")) {
+      pgFormatString = "HH24:MI:ss.s";
+    }
+    else if (emlFormatString.equals("YYYY-WWW-DD")) {
+      pgFormatString = "YYYY-Mon-DD";
+    }
+    else if (emlFormatString.equals("YYYY/WWW/DD")) {
+      pgFormatString = "YYYY/Mon/DD";
+    }
+    else if (emlFormatString.equals("DD WWW YYYY")) {
+      pgFormatString = "DD Mon YYYY";
+    }
+    else if (emlFormatString.equals("YYYYWWWDD")) {
+      pgFormatString = "YYYYMonDD";
+    }
+      
+    return pgFormatString;
+  }
+  
+  
+  /**
    * Transform ANSI selection sql to a native db sql command.
    * Not yet implemented.
    * 

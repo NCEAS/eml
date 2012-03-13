@@ -72,7 +72,8 @@ public abstract class DatabaseAdapter {
   public static final String      DOUBLEQUOTE = "\"";
 	public static final String      SINGLEQUOTE = "'";
 	public static final String           VALUES = "VALUES";
-	public static final String           NULL = "null";
+	public static final String             NULL = "null";
+  public static final String       UNDERSCORE = "_";
 
   
   
@@ -110,9 +111,17 @@ public abstract class DatabaseAdapter {
     String legalName = entityName;
     char[] badChars = {' ', '-', '.', '/'};
     char goodChar = '_';
-    
-    for (int i = 0; i < badChars.length; i++) {
-      legalName = legalName.replace(badChars[i], goodChar);
+
+    if (legalName != null) {
+      for (int i = 0; i < badChars.length; i++) {
+        legalName = legalName.replace(badChars[i], goodChar);
+      }
+
+      // If first character is a digit, prepend an underscore
+      char firstCharacter = legalName.charAt(0);
+      if (Character.isDigit(firstCharacter)) {
+        legalName = UNDERSCORE + legalName;
+      }
     }
     
     return legalName;
@@ -215,12 +224,10 @@ public abstract class DatabaseAdapter {
     int hasValueCounter = 0;
     
     if (attributeList == null) {
-      //log.debug("There is no attribute definition in entity");
       throw new SQLException("The attribute list is null and couldn't generate insert sql statement");
     }
 
     if (oneRowData == null || oneRowData.isEmpty()) {
-      //return sqlString;
         throw new SQLException("The the data is null and couldn't generte insert sql statement");
     }
 
@@ -237,8 +244,6 @@ public abstract class DatabaseAdapter {
     Attribute[] list = attributeList.getAttributes();
     
     if (list == null || list.length == 0) {
-      //log.debug("There is no attribute definition in entity");
-      //return sqlString;
         throw new SQLException("The attributes is null and couldn't generate insert sql statement");
     }
     
@@ -266,8 +271,6 @@ public abstract class DatabaseAdapter {
       Attribute attribute = list[i];
       
       if (attribute == null) {
-        //log.debug("One attribute definition is null attribute list");
-        //return null;
           throw new SQLException("Attribute list contains a null attribute");
       }
       String[] missingValues = attribute.getMissingValueCode();
@@ -286,7 +289,6 @@ public abstract class DatabaseAdapter {
       
       sqlAttributePart.append(name);
       Domain domain = attribute.getDomain();
-      //System.out.println("the value in element is "+value);
       
       /* If attributeType is "datetime", convert to a timestamp
        * and wrap single quotes around the value. But only if we
@@ -294,8 +296,9 @@ public abstract class DatabaseAdapter {
        */
       if (attributeType.equalsIgnoreCase("datetime")) {
       	String formatString = ((DateTimeDomain)domain).getFormatString();
-        //System.out.println("in DateTimeDomain " + value);
-    	value = escapeSpecialCharacterInData(value);
+      	// Transform the datetime format string for database compatibility
+        formatString = transformFormatString(formatString);
+        value = escapeSpecialCharacterInData(value);
     	sqlDataPart.append(TO_DATE_FUNCTION);
     	sqlDataPart.append(LEFTPARENTH);
        
@@ -317,7 +320,6 @@ public abstract class DatabaseAdapter {
        * and wrap single quotes around the value.
        */
       else if (attributeType.equals("string")) {
-        //System.out.println("in non NumericDomain " + value);
     	value = escapeSpecialCharacterInData(value);
         sqlDataPart.append(SINGLEQUOTE);
         sqlDataPart.append(value);
@@ -333,44 +335,33 @@ public abstract class DatabaseAdapter {
 
         try {
           if (dataType.equals("FLOAT")) {
-            //System.out.println("in float NumericDomain " + value);
             Float floatObj = new Float(value);
-            /* System.out.println("after generating floatObj numericDomain "
-                                 + value); */
             float floatNum = floatObj.floatValue();
-            //System.out.println("float number " + floatNum);
             sqlDataPart.append(floatNum);
-            //System.out.println("end of float");
           } 
           else {
-            //System.out.println("in integer NumericDomain " + value);
             Integer integerObj = new Integer(value);
-            //System.out.println("after generate Integer Obj NumericDomain "
-            //                   + value);
             int integerNum = integerObj.intValue();
-            //System.out.println("the int value is " + integerNum);
             sqlDataPart.append(integerNum);
-            //System.out.println("end of integer");
           }
         } 
         catch (Exception e) {
-          System.out.println("Error determining numeric value: " + 
-                             e.getMessage());
-          //return sqlString;
-          throw new DataNotMatchingMetadataException("Data "+ value + " is NOT a "+
-        		                                     dataType +" : "+e.getMessage());
+          log.error("Error determining numeric value: " + 
+                    e.getMessage());
+          throw new DataNotMatchingMetadataException(
+              "Data value '" + value + 
+              "' is NOT the expected data type of '" +
+        		  dataType + "'");
         }
         hasValueCounter++;
       }
 
       firstAttribute = false;
-      // insert
     }
     
     // If all data is null, return null value for sql string.
     if (NULLValueCounter == list.length || hasValueCounter==0) {
       return sqlString;
-        //throw new SQLException("All data is null and couldn't generate insert data statement");
     }
     
     sqlAttributePart.append(RIGHTPARENTH);
@@ -380,7 +371,6 @@ public abstract class DatabaseAdapter {
     // Combine the two parts
     sqlAttributePart.append(sqlDataPart.toString());
     sqlString = sqlAttributePart.toString();
-    //System.out.println("the sql command is " + sqlString);
     
     return sqlString;
   }
@@ -628,6 +618,19 @@ public abstract class DatabaseAdapter {
     }
 
     return attributeSql.toString();
+  }
+  
+  
+  /**
+   * Transforms an EML datetime format string for compatibility
+   * with a database timestamp field. The default behavior 
+   * implemented here is to return the original format string.
+   *
+   *  @param   emlFormatString  EML format string for datetime
+   *  @return  emlFormatString  Database format string
+   */
+  protected String transformFormatString(String emlFormatString) {
+    return emlFormatString;
   }
 	  
 	  

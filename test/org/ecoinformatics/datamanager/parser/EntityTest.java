@@ -164,8 +164,8 @@ public class EntityTest extends TestCase
   public void testDelimiter()
   {
 	  String delimiter = ".";
-	  entity.setDelimiter(delimiter);
-	  String gotDelimiter = entity.getDelimiter();
+	  entity.setFieldDelimiter(delimiter);
+	  String gotDelimiter = entity.getFieldDelimiter();
 	  assertEquals(delimiter, gotDelimiter);
   }
   

@@ -36,6 +36,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Vector;
 
+import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
+
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 
@@ -57,7 +62,6 @@ public class DelimitedReader extends TextDataReader
   private int numHeaderLines;
   private int numRecords;
   private boolean stripHeader = false;
-  //private int currentRecord = 0;
   private int numCols;
   private String delimiter;
   private String lineEnding;
@@ -69,6 +73,10 @@ public class DelimitedReader extends TextDataReader
   private String quoteCharacter = null;
   private String literalCharacter = null;
   private boolean includeLiteralCharacter = false;
+  private Entity entity;
+  private int fieldCheckCounter = 0;
+  private final int FIELD_CHECK_MAX = 5; // Max number of field count checks to report
+  private int rowCounter = 0;
   
 
   /*private static Log log;
@@ -258,7 +266,7 @@ public class DelimitedReader extends TextDataReader
           }
           //log.debug("Int value of  delimiter is "+digits);
           
-          newDelimiter = transferDigitsToCharString(radix, digits);
+          newDelimiter = transformDigitsToCharString(radix, digits);
           
       }
       else if (delimiter.startsWith("0x") || delimiter.startsWith("0X"))
@@ -266,7 +274,7 @@ public class DelimitedReader extends TextDataReader
           int radix = 16;
           String digits = delimiter.substring(2, delimiter.length());
           //log.debug("Int value of  delimiter is "+digits);
-          newDelimiter = transferDigitsToCharString(radix, digits);
+          newDelimiter = transformDigitsToCharString(radix, digits);
       }
       
       return newDelimiter;
@@ -281,7 +289,7 @@ public class DelimitedReader extends TextDataReader
    * @param digits       a string holding the digits to be transformed
    * @return             a string holiding the equivalent character value
    */
-  private static String transferDigitsToCharString(int radix, String digits)
+  private static String transformDigitsToCharString(int radix, String digits)
   {
       if (digits == null )
       {
@@ -356,134 +364,110 @@ public class DelimitedReader extends TextDataReader
   
   /**
    * This method is used when data source is an input stream.
-   * Reads one row from the input stream and returns a data vector where element 
-   * is String and the value is field data. After reaching the end of stream, 
-   * empty vector will be returned. So this method can be iterated by a while 
-   * loop until a empty vector is hit. During the iteration, all data in the 
-   * stream will be pulled out.
+   * Reads one row from the input stream and returns a data vector where 
+   * each element is a String and the value is field data. After reaching the
+   * end of stream, an empty vector will be returned. So this method can be 
+   * iterated by a while loop until an empty vector is hit. During the 
+   * iteration, all data in the stream will be pulled out.
    * 
-   * @return Vector
+   * @return Vector<String>
    */
-  public Vector getOneRowDataVector() throws Exception
-  {
-	 //System.out.println("the numFootLines is "+numFooterLines);
-	 if (!initializedFooterBuffer)
-	 {
-		 for (int i=0; i< numFooterLines; i++)
-		 {
-			 //System.out.println("the initialize with footer lines");
-			 String rowData = readOneRowDataString();
-			 //System.out.println("the data vector in initailize is "+rowData.toString());
-			 footerBuffer.add(rowData);
-		 }
+  public Vector<String> getOneRowDataVector() 
+          throws Exception {
+    rowCounter++;
+    if (!initializedFooterBuffer) {
+		  for (int i = 0; i < numFooterLines; i++) {
+			  String rowData = readOneRowDataString();
+			  footerBuffer.add(rowData);
+		  }
          
-		 // this is for no footer lines
-		 if (numFooterLines == 0)
-		 {
-			 //System.out.println("the initialize without footer lines");
-			 String rowData = readOneRowDataString();
-			 //System.out.println("The initial buffere vector is "+rowData.toString());
-			 footerBuffer.add(rowData);
-		 }
+		  // this is for no footer lines
+		  if (numFooterLines == 0) {
+			  String rowData = readOneRowDataString();
+			  footerBuffer.add(rowData);
+		  }
          
-		 initializedFooterBuffer = true;
-	 }
+		  initializedFooterBuffer = true;
+    }
      
-	 String nextRowData = readOneRowDataString();
-	 //System.out.println("the row string data from next row "+nextRowData.toString());
-     String oneRowDataString = null;
-     Vector oneRowDataVector = new Vector();
+    String nextRowData = readOneRowDataString();
+    String oneRowDataString = null;
+    Vector<String> oneRowDataVector = new Vector<String>();
      
-     if (nextRowData != null)
-     {
-    	 //System.out.println("before nextRowData is empty and nextRowData is "+nextRowData.toString());
-    	 oneRowDataString = (String)footerBuffer.remove(0);
-         reIndexFooterBufferVector();
-    	 footerBuffer.add(nextRowData);
-     }
-     else if (numFooterLines==0 && !footerBuffer.isEmpty())
-     {
-    	 //System.out.println("find the last line in fottlines num is 0!!!!!!!!");
-    	 oneRowDataString = (String)footerBuffer.remove(0);
-     }
+    if (nextRowData != null) {
+      oneRowDataString = (String) footerBuffer.remove(0);
+      reIndexFooterBufferVector();
+      footerBuffer.add(nextRowData);
+    }
+    else if (numFooterLines == 0 && !footerBuffer.isEmpty()) {
+      oneRowDataString = (String)footerBuffer.remove(0);
+    }
      
-     //System.out.println("helere!!!");
-     if (oneRowDataString != null)
-	 {
-	      //log.debug("in dataReader is not null");
-	      oneRowDataVector = splitDelimitedRowStringIntoVector(oneRowDataString);
-	 }
-     //System.out.println("the row data from buffer "+oneRowDataVector.toString());
-     return oneRowDataVector;
+    if (oneRowDataString != null) {
+      oneRowDataVector = splitDelimitedRowStringIntoVector(oneRowDataString);
+    }
+
+    return oneRowDataVector;
   }
   
   
   /*
-   * This method will read a row data from vector. It
-   * discard the header lines. but it doesn't discard footer lines
-   * This method will be called by getRowDataVectorFromStream
+   * This method will read a row of data from a vector. It
+   * discards the header lines but it doesn't discard the footer lines.
+   * This method is called by method getRowDataVectorFromStream().
    * 
    * @return   A string holding one row of data.
    */
-  private String readOneRowDataString()
-  {
-	    //Vector oneRowDataVector = new Vector();
-	    StringBuffer rowData = new StringBuffer();
-	    String rowDataString = null;
-	    int singleCharactor; // = -2;
+  private String readOneRowDataString() {
+    StringBuffer rowBuffer = new StringBuffer();
+    String rowDataString = null;
+    int singleCharacter;
 	    
-	    if (dataReader != null)
-	    {
-	      //log.debug("in dataReader is not null");
-	      try
-	      {
-	    	//read the first character to start things off  
-	    	singleCharactor = dataReader.read();
-	        while (singleCharactor != -1)
-	        {
-	          //log.debug("singleCharactor is not EOF");
-	          char charactor = (char)singleCharactor;
-	          rowData.append(charactor);
+    if (dataReader != null) {
+      try {
+        // Read the first character to start things off  
+        singleCharacter = dataReader.read();
+        
+        while (singleCharacter != -1) {
+	        // singleCharacter is not the EOF character
+          char aCharacter = (char) singleCharacter;
+          rowBuffer.append(aCharacter);
               
-	          // find string - line ending in the row data   
-	          if (rowData.indexOf(lineEnding) != -1)
-	          {
-	        	//log.debug("found line ending");
-	            // strip the header lines
-	            if (stripHeader && numHeaderLines >0 && headLineNumberCount < numHeaderLines)
-	            {
-	               // reset string buffer(discard the header line)
-	               rowData = null;
-	               rowData = new StringBuffer();
-	               
-	            }
-	            else
-	            {
-	              rowDataString = rowData.toString();
-	              //log.debug("The row data is " + rowDataString);
-	              break;
-	            }
-                
-	            headLineNumberCount++;
+          // Check for a line ending character in the row data   
+          if (rowBuffer.indexOf(lineEnding) != -1) {
+	          // Strip the header lines
+            if (stripHeader && 
+                numHeaderLines > 0 && 
+                headLineNumberCount < numHeaderLines) {
+	            // Reset string buffer (discard the header line)
+              rowBuffer = null;
+              rowBuffer = new StringBuffer();  
 	          }
-	          //read the next character before looping back
-	          singleCharactor = dataReader.read();
-	        }
-	      }
-	      catch (Exception e)
-	      {
-	        //log.debug("Couldn't read data from input stream");
-	    	  e.printStackTrace();
-	        rowData = new StringBuffer();
-	      }
-	    }
+	          else {
+              rowDataString = rowBuffer.toString();
+              break;
+            }
 
-	    //if we have data for the row, then return it
-	    if (rowData != null && rowData.length() > 0) {
-	    	rowDataString = rowData.toString();
+            headLineNumberCount++;
+          }
+	          
+          // Read the next character before looping back
+          singleCharacter = dataReader.read();
+        }
+      }
+      catch (Exception e) {
+        // Couldn't read data from input stream
+        e.printStackTrace();
+        rowBuffer = new StringBuffer();
 	    }
-	    //System.out.println("the row data before return is "+rowDataString);
-	    return rowDataString;
+    }
+
+    // If we have data for the row, then return it
+    if (rowBuffer != null && rowBuffer.length() > 0) {
+      rowDataString = rowBuffer.toString();
+    }
+    
+    return rowDataString;
   }
   
   
@@ -501,88 +485,148 @@ public class DelimitedReader extends TextDataReader
   
   
   /*
-   * This method will read a delimitered string and put a delimitered part into
-   * an element in a vector. If the vector size is less than the column number
-   * empty string will be added.
+   * This method will read a delimited string and put a delimited part into
+   * an element in a vector. If the vector size is less than the column number,
+   * empty strings will be added.
    * 
    */
-  private Vector splitDelimitedRowStringIntoVector(String data) throws Exception
-  {
-    Vector result = new Vector();
+  private Vector<String> splitDelimitedRowStringIntoVector(String data) 
+          throws Exception {
+    Vector<String> rowVector = new Vector<String>();
     
-    if (data == null)
-    {
-      return result;
+    if (data == null) {
+      return rowVector;
     }
     
-    String[] s = null;
-    if (quoteCharacter == null && literalCharacter == null)
-    {
-    	//In this path, there is no quote character, we can spit data directly
-	    if (!collapseDelimiters)
-	    {
-	    	s = data.split(delimiter);
-	    }
-	    else
-	    {
-	    	String newDelimiterWithRegExpress = delimiter+"+";
-	    	s = data.split(newDelimiterWithRegExpress);
-	    	
-	    }
+    String[] stringArray = null;
+    
+    /*
+     * If there is no quote character, we can split data directly
+     */
+    if (quoteCharacter == null && literalCharacter == null) {
+      String delimiterRegex = collapseDelimiters ? delimiter + "+" : delimiter;
+	    stringArray = data.split(delimiterRegex);
     }
-    else
-    {
-    	//In this path, we should skip any field delimiter in quote charcter.
-    	s = processQuoteCharacterOneRowData(data);
+    /*
+     * Else, we should skip any field delimiters 
+     * found between pairs of quote characters.
+     */
+    else {
+    	stringArray = processQuoteCharacterOneRowData(data);
     }
     
-    if( s != null)
-    {
-    	int columnCounter = s.length;
+    if (stringArray != null) {
+    	int columnCounter = stringArray.length;
         
-    	if ( columnCounter > numCols)
-    	{
+      /*
+       *  Quality check for too few fields
+       */
+      String tooFewIdentifier = "tooFewFields";
+      QualityCheck tooFewTemplate = 
+        QualityReport.getQualityCheckTemplate(tooFewIdentifier);
+      QualityCheck tooFewCheck = 
+        new QualityCheck(tooFewIdentifier, tooFewTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(entity, tooFewCheck)) {
+        boolean foundTooFew = (columnCounter < numCols);
+        if (foundTooFew) {
+          String expected = numCols + " " + fieldWord(numCols);
+          tooFewCheck.setExpected(expected);
+          String found = columnCounter + " " + fieldWord(columnCounter);
+          tooFewCheck.setFound(found);
+          String explanation = 
+            "In row " + rowCounter + 
+            ", fewer fields were found in the row than were expected: ";
+          tooFewCheck.setFailedStatus();
+          explanation += "<![CDATA[" + data.trim() + "]]>";
+          tooFewCheck.setExplanation(explanation);
+          fieldCheckCounter++;
+          // Limit the number of these checks included in the quality report
+          if (fieldCheckCounter <= FIELD_CHECK_MAX) {
+            entity.addQualityCheck(tooFewCheck);
+          }
+        }
+      }
+    
+      /*
+       *  Quality check for too many fields
+       */
+      String tooManyIdentifier = "tooManyFields";
+      QualityCheck tooManyTemplate = 
+        QualityReport.getQualityCheckTemplate(tooManyIdentifier);
+      QualityCheck tooManyCheck = 
+        new QualityCheck(tooManyIdentifier, tooManyTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(entity, tooManyCheck)) {
+        boolean foundTooMany = (columnCounter > numCols);
+        if (foundTooMany) {
+          String expected = numCols + " " + fieldWord(numCols);
+          tooManyCheck.setExpected(expected);
+          String found = columnCounter + " " + fieldWord(columnCounter);
+          tooManyCheck.setFound(found);
+          String explanation = null;
+          String truncatedData = data.trim();
+          if (truncatedData.length() > 200) {
+            truncatedData = truncatedData.substring(0, 200) + "... (truncated)";
+          }
+          explanation = 
+            "In row " + rowCounter +
+            ", more fields were found in the row than were expected: ";
+          tooManyCheck.setFailedStatus();
+          explanation += "<![CDATA[" + truncatedData + "]]>";
+          tooManyCheck.setExplanation(explanation);
+          fieldCheckCounter++;
+          // Limit the number of these checks included in the quality report
+          if (fieldCheckCounter <= FIELD_CHECK_MAX) {
+            entity.addQualityCheck(tooManyCheck);
+          }
+        }
+      }
+    
+      if (columnCounter > numCols) {
     		throw new DataNotMatchingMetadataException(
-                                "Metadata sees data has " 
-                                + numCols +
-    				            " columns, but actually data has " +
-                                columnCounter + " columns. " + 
-                                "Please make sure metadata is correct!"
-                               );
-    	}
+             "Metadata specifies that data has " + numCols +
+    				 " columns, but the actual data has " + columnCounter + 
+    				 " columns. Please check that the metadata is correct.");
+      }
         
-        for (int j = 0; j < s.length; j++) 
-        {
-          
-          if (s[j] != null)
-          {
-            result.addElement(s[j].trim());
-          }
-          else
-          {
-              result.addElement("");
-          }
+      for (int j = 0; j < stringArray.length; j++) {
+        if (stringArray[j] != null) {
+          rowVector.addElement(stringArray[j].trim());
         }
+        else {
+          rowVector.addElement("");
+        }
+      }
         
-        //add any elements that aren't there so that all the records have the
-        //same number of cols
-        if (result.size() < numCols) 
-        {
-          int vsize = result.size();
-          for (int j = 0; j < numCols - vsize; j++) 
-          {
-            result.addElement("");
-          }
+      /*
+       * Pad missing fields with empty strings so that all the records 
+       * have the same number of columns.
+       */
+      int rowVectorSize = rowVector.size();
+      if (rowVectorSize < numCols) {
+        for (int j = 0; j < (numCols - rowVectorSize); j++) {
+          rowVector.addElement("");
         }
+      }
     }
     
-    return result;
+    return rowVector;
+  }
+  
+  
+  /*
+   * Returns singular or plural version of the word "field" for use
+   * in Quality Check output.
+   */
+  private String fieldWord(int numFields) {
+    return ((numFields == 1) ? "field" : "fields");
   }
   
   
   /*
    * In oneRowData, there are quote character in it. Any field delimiter in the
-   * quotes should be skiped.
+   * quotes should be skipped.
    */
   private String[] processQuoteCharacterOneRowData(String oneRowData) throws Exception
   {
@@ -592,7 +636,7 @@ public class DelimitedReader extends TextDataReader
 	  {
 		  return elements;
 	  }
-	  quoteCharacter = transferQuoteCharacter(quoteCharacter);
+	  quoteCharacter = transformQuoteCharacter(quoteCharacter);
 	  char quote = '#';
 	  boolean quoted = false;
 	  if (quoteCharacter != null)
@@ -784,8 +828,8 @@ public class DelimitedReader extends TextDataReader
   
   /*
    * This method will delete the most left char in the given buffer,
-   * and append the new charact at the end. So the buffer size will 
-   * keep same
+   * and append the new char at the end. So the buffer size will 
+   * stay the same.
    */
   private static StringBuffer shiftBuffer(StringBuffer buffer, char newChar)
   {
@@ -808,46 +852,41 @@ public class DelimitedReader extends TextDataReader
   }
   
   /*
-   * If quote character is specified by hex number, we should transfer it
-   * to a character. If quote character is longer than 1 character, it
-   * should be throw an exception
+   * If quote character is specified by hex number, we should transform it
+   * to a character. If quote string is longer than 1 character,
+   * throw an exception.
    */
-  private String transferQuoteCharacter(String quote) throws Exception
-  {
-	  	  String newQuote = quote;
-	  	  if (newQuote == null)
-	  	  {
-	  		  return newQuote;
-	  	  }
-	      else if (newQuote.startsWith("#") && newQuote.length() >1)
-	      {
-             //log.debug("XML entity charactor.");
-	          String digits = newQuote.substring(1, newQuote.length());
-	          int radix = 10;
-	          if (digits.startsWith("x"))
-	          {
-	              //log.debug("Radix is "+ 16);
-	              radix = 16;
-	              digits = digits.substring(1, digits.length());
-	          }
-	          //log.debug("Int value of  delimiter is "+digits);
-          
-             newQuote = transferDigitsToCharString(radix, digits);
-          
-	      }
-	      else if ((newQuote.startsWith("0x") || newQuote.startsWith("0X")) && newQuote.length() >2)
-	      {
-	          int radix = 16;
-	          String digits = newQuote.substring(2, newQuote.length());
-	          //log.debug("Int value of  delimiter is "+digits);
-	          newQuote = transferDigitsToCharString(radix, digits);
-	      }
-          
-	  	  if (newQuote.length() > 1)
-	  	  {
-	  		  throw new Exception("Quote Character length should be 1 character in EML");
-	  	  }
-          return newQuote;
+  private String transformQuoteCharacter(String quote) 
+          throws Exception {
+    String newQuote = quote;
+    
+    if (newQuote == null) {
+      return newQuote;
+    }
+    else if (newQuote.startsWith("#") && 
+             newQuote.length() > 1) {
+      String digits = newQuote.substring(1, newQuote.length());
+	    int radix = 10;
+
+	    if (digits.startsWith("x")) {
+        radix = 16;
+        digits = digits.substring(1, digits.length());
+      }
+
+	    newQuote = transformDigitsToCharString(radix, digits);
+    }
+    else if ((newQuote.startsWith("0x") || newQuote.startsWith("0X")) && 
+             newQuote.length() >2) {
+      int radix = 16;
+      String digits = newQuote.substring(2, newQuote.length());
+      newQuote = transformDigitsToCharString(radix, digits);
+	  }
+   
+    if (newQuote.length() > 1) {
+      throw new Exception("Quote string length should be 1 character in EML");
+    }
+    
+    return newQuote;
   }
   
   /**
@@ -908,6 +947,15 @@ public class DelimitedReader extends TextDataReader
     }
     
     return sb.toString();
+  }
+  
+  
+  /**
+   * Sets the entity value for this 
+   * @param entity
+   */
+  public void setEntity(Entity entity) {
+    this.entity = entity;
   }
   
 }

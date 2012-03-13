@@ -35,11 +35,17 @@ package org.ecoinformatics.datamanager.parser;
 //import org.kepler.objectmanager.data.DataObjectDescription;
 //import org.kepler.objectmanager.cache.DataCacheObject;
 //import org.kepler.objectmanager.data.text.TextComplexDataFormat;
+
+import org.ecoinformatics.datamanager.database.DelimitedReader;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.download.GZipDataHandler;
 import org.ecoinformatics.datamanager.download.TarDataHandler;
 import org.ecoinformatics.datamanager.download.ZipDataHandler;
+import org.ecoinformatics.datamanager.quality.EntityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 
 /**
@@ -83,16 +89,22 @@ public class Entity extends DataObjectDescription
     private int          numRecords      = 0;
     private int          numHeaderLines  = 0;
     private int          numFooterLines  = 0;
-    private String       delimiter       = null;
+    private String       fieldDelimiter  = null;
     private String       recordDelimiter = null;
     private boolean      multiple        = false; // if true, multiple inputs 
                                                   // can be mapped to one table
 
     private String fileName;       // filename where Entity data is stored
-    private String url;            // distribution url for this entity
+    private String url;            // distribution URL for this entity
+    private String urlFunction;    // value of the URL "function" attribute
+    private String urlContentType; // value of URLConnection.getContentType();
     private String format;
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
+    private String firstKilobyte = null;
+    private boolean hasDistributionOnline = false;
+    private boolean hasDistributionOffline = false;
+    private boolean hasDistributionInline = false;
     private boolean isImageEntity    = false;
     private boolean isOtherEntity    = false;
     private boolean hasGZipDataFile  = false;
@@ -107,7 +119,14 @@ public class Entity extends DataObjectDescription
     private String quoteCharacter = null;
     private String literalCharacter = null;
     
-
+    private EntityReport entityReport = null;
+    private String entityAccessXML = null;
+    
+    
+    /* 
+     * Constructors 
+     */
+    
     /**
      * Constructs this object with some extra parameters.
      * 
@@ -156,6 +175,7 @@ public class Entity extends DataObjectDescription
         
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
+        this.entityReport = new EntityReport(this);
     }
 
     
@@ -170,6 +190,18 @@ public class Entity extends DataObjectDescription
       //a.setParent(this);
     }
 
+    
+    /**
+     * Adds a quality check to the entity's associated entityReport object.
+     * 
+     * @param qualityCheck    the new quality check to add to the list
+     */
+    public void addQualityCheck(QualityCheck qualityCheck) {
+      if (entityReport != null) {
+        entityReport.addQualityCheck(qualityCheck);
+      }
+    }
+    
     
     /**
      * Gets the list of attributes for this Entity. 
@@ -195,6 +227,15 @@ public class Entity extends DataObjectDescription
     }
 
     
+    /**
+     * Gets the firstKilobyte string of the entity
+     * @return
+     */
+    public String getFirstKilobyte() {
+      return firstKilobyte;
+    }
+
+
     /**
      * Gets the orientation of the table entity.
      * 
@@ -262,24 +303,69 @@ public class Entity extends DataObjectDescription
 
     
     /**
-     * Sets the delimiter used with this entity.
+     * Sets the fieldDelimiter used with this entity.
      * 
-     * @param  delim   the delimiter string to be set
+     * @param  delimiter   the delimiter string to be set
      */
-    public void setDelimiter(String delim)
+    public void setFieldDelimiter(String delimiter)
     {
-      this.delimiter = delim;
+      this.fieldDelimiter = delimiter;
+      
+      /*
+       *  Check the validity of the fieldDelimiter value
+       */
+      String fieldDelimiterIdentifier = "fieldDelimiterValid";
+      QualityCheck fieldDelimiterTemplate = 
+        QualityReport.getQualityCheckTemplate(fieldDelimiterIdentifier);
+      QualityCheck fieldDelimiterQualityCheck = 
+        new QualityCheck(fieldDelimiterIdentifier, fieldDelimiterTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, fieldDelimiterQualityCheck)) {
+        boolean isValidDelimiter = true;
+        String found = delimiter;
+        String explanation = fieldDelimiterQualityCheck.getExplanation();
+        
+        // Check for bad field delimiters
+        if (delimiter == null || delimiter.equals("")) {
+          isValidDelimiter = false;
+          explanation += " The fieldDelimiter value is null or empty string.";
+        }
+        else {
+          int delimiterLength = delimiter.length();    
+          if (delimiterLength > 1) {
+            String unescapedDelimiter = DelimitedReader.unescapeDelimiter(delimiter);
+            if (delimiter.equals(unescapedDelimiter)) {
+              isValidDelimiter = false;
+              explanation += " The specified delimiter, '" + 
+                             delimiter + "'," +
+                             " is not a recognized fieldDelimiter value.";
+            }
+          }
+        }
+          
+        fieldDelimiterQualityCheck.setFound(found);
+        if (isValidDelimiter) {
+          explanation = "A valid fieldDelimiter value was found";
+          fieldDelimiterQualityCheck.setStatus(Status.valid);
+          fieldDelimiterQualityCheck.setSuggestion("");
+        }
+        else {
+          fieldDelimiterQualityCheck.setFailedStatus();
+        } 
+        fieldDelimiterQualityCheck.setExplanation(explanation);
+        addQualityCheck(fieldDelimiterQualityCheck);
+      }
     }
 
-    
+
     /**
-     * Gets the delimiter used with this entity.
+     * Gets the fieldDelimiter used with this entity.
      * 
-     * @return  the delimiter string value
+     * @return  the fieldDelimiter string value
      */
-    public String getDelimiter()
+    public String getFieldDelimiter()
     {
-      return this.delimiter;
+      return this.fieldDelimiter;
     }
     
     /**
@@ -362,6 +448,26 @@ public class Entity extends DataObjectDescription
 
     
     /**
+     * Sets the urlContentType value for this entity.
+     * 
+     * @param url  the urlContentType string value to be set
+     */
+    public void setUrlContentType(String urlContentType) {
+      this.urlContentType = urlContentType;
+    }
+
+
+    /**
+     * Sets the urlFunction value for this entity.
+     * 
+     * @param url    the urlFunction string value to be set
+     */
+    public void setURLFunction(String urlFunction) {
+      this.urlFunction = urlFunction;
+    }
+
+
+    /**
      * Gets the url value for this entity.
      * 
      * @return  the url string value for this entity.
@@ -371,6 +477,27 @@ public class Entity extends DataObjectDescription
       return this.url;
     }
     
+    
+    /**
+     * Gets the urlContentType value for this entity.
+     * 
+     * @return  the urlContentType string value for this entity.
+     */
+    public String getUrlContentType() {
+      return urlContentType;
+    }
+
+
+    /**
+     * Gets the urlFunction value for this entity.
+     * 
+     * @return  the urlFunction string value for this entity.
+     */
+    public String getUrlFunction() {
+      return urlFunction;
+    }
+
+  
     /**
      * Sets the format for this entity.
      * 
@@ -617,6 +744,78 @@ public class Entity extends DataObjectDescription
     
     
     /**
+     * Boolean to determine if this entity has at least one distribution 
+     * online element.
+     * 
+     * @return boolean  true if the entity has a distribution online 
+     *                  element, else false
+     */
+    public boolean hasDistributionOnline() {
+      return this.hasDistributionOnline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionOnline field to store whether this entity
+     * has at least one distribution online element.
+     * 
+     * @param distributionOnline   the boolean value to set. true if 
+     *        the entity has a distribution online element, else false
+     */
+    public void setHasDistributionOnline(boolean distributionOnline) {
+      this.hasDistributionOnline = distributionOnline;
+    }
+    
+    
+    /**
+     * Boolean to determine if this entity has at least one distribution 
+     * offline element.
+     * 
+     * @return boolean  true if the entity has a distribution offline 
+     *                  element, else false
+     */
+    public boolean hasDistributionOffline() {
+      return this.hasDistributionOffline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionOffline field to store whether this entity
+     * has at least one distribution offline element.
+     * 
+     * @param distributionOffline   the boolean value to set. true if 
+     *        the entity has a distribution offline element, else false
+     */
+    public void setHasDistributionOffline(boolean distributionOffline) {
+      this.hasDistributionOffline = distributionOffline;
+    }
+    
+    
+    /**
+     * Boolean to determine if this entity has at least one distribution 
+     * inline element.
+     * 
+     * @return boolean  true if the entity has a distribution inline 
+     *                  element, else false
+     */
+    public boolean hasDistributionInline() {
+      return this.hasDistributionInline;
+    }
+    
+    
+    /**
+     * Sets the isDistributionInline field to store whether this entity
+     * has at least one distribution inline element.
+     * 
+     * @param distributionInline   the boolean value to set. true if 
+     *        the entity has a distribution inline element, else false
+     */
+    public void setHasDistributionInline(boolean distributionInline) {
+      this.hasDistributionInline = distributionInline;
+    }
+    
+    
+    /**
      * Boolean to determine if this entity is an image entity for SpatialRaster 
      * or SpatialVector
      * 
@@ -726,6 +925,29 @@ public class Entity extends DataObjectDescription
     
     
     /**
+     * Gets the entity <access> XML block and returns it as an XML string.
+     * Will be null in cases where no <access> XML was defined for this
+     * entity. (In such cases, access should default to that of the dataset.)
+     * 
+     * @return  an XML string holding the entity <access> block, or null
+     */
+    public String getEntityAccessXML() {
+      return entityAccessXML;
+    }
+    
+    
+    /**
+     * Sets the value of the entityAccessXML field to a string
+     * which should hold a block of <access> element XML.
+     * 
+     * @param xmlString   the <access> element XML string
+     */
+    public void setEntityAccessXML(String xmlString) {
+      this.entityAccessXML = xmlString;
+    }
+    
+    
+    /**
      * Gets the identifier for this entity. Currently we use distribution url
      * as entity identifier.
      * 
@@ -735,6 +957,18 @@ public class Entity extends DataObjectDescription
     {
     	return url;
     }
+    
+    
+    /**
+     * Gets the entityReport object associated with this entity.
+     * 
+     * @return  the entityReport instance variable
+     */
+    public EntityReport getEntityReport()
+    {
+      return entityReport;
+    }
+    
     
     /**
      * Sets the identifier for this entity. Currently we use distribution url
@@ -748,6 +982,167 @@ public class Entity extends DataObjectDescription
     }
     
    
+    /**
+     * Sets the firstKilobyte string for the entity. Also,
+     * if quality reporting is enabled, performs quality
+     * checks on the first kilobyte of data.
+     * 
+     * @param firstKilobyte   the string value to set
+     */
+    public void setFirstKilobyte(String firstKilobyte) {
+      this.firstKilobyte = firstKilobyte;
+
+      /*
+       *  Display the first chunk of data as a quality check
+       */
+      String displayDownloadIdentifier = "displayDownloadData";
+      QualityCheck displayDownloadTemplate = 
+        QualityReport.getQualityCheckTemplate(displayDownloadIdentifier);
+      QualityCheck displayDownloadQualityCheck = 
+        new QualityCheck(displayDownloadIdentifier, displayDownloadTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, displayDownloadQualityCheck)) {
+        /* String twoFiftySix = "";
+        if (firstKilobyte != null) {
+          twoFiftySix = firstKilobyte.substring(0, 256);
+        }
+        String foundString = "<![CDATA\n" + twoFiftySix + "\n]>"; */
+        String foundString = null;
+        if (isBinaryData()) {
+          foundString = "*** BINARY DATA ***";
+        }
+        else {
+          foundString = "<![CDATA[\n" + firstKilobyte.trim() + "]]>";
+        }
+        displayDownloadQualityCheck.setFound(foundString);
+        displayDownloadQualityCheck.setStatus(Status.info);
+        addQualityCheck(displayDownloadQualityCheck);
+      }
+
+      /*
+       *  Check the veracity of the data returned
+       */
+      String urlDataIdentifier = "urlReturnsData";
+      QualityCheck urlDataTemplate = 
+        QualityReport.getQualityCheckTemplate(urlDataIdentifier);
+      QualityCheck urlDataQualityCheck = 
+        new QualityCheck(urlDataIdentifier, urlDataTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, urlDataQualityCheck)) {
+        boolean isHTML = isHTML(firstKilobyte);        
+        if (isHTML) {
+          String found = "The download URL for this entity returns HTML";
+          urlDataQualityCheck.setFound(found);
+          String explanation = "Either an HTML declaration string or an 'html' element was detected in the data";
+          urlDataQualityCheck.setExplanation(explanation);
+          String suggestion = "Specify function=\"information\" in the 'url' element when the URL links to an HTML page";
+          urlDataQualityCheck.setSuggestion(suggestion);
+          urlDataQualityCheck.setFailedStatus();
+        }
+        else {
+          urlDataQualityCheck.setStatus(Status.valid);
+          urlDataQualityCheck.setSuggestion("");
+        }
+        addQualityCheck(urlDataQualityCheck);
+      }
+    }
+    
+
+    /*
+     * Boolean to determine whether a data sample is 
+     * actually an HTML page. 
+     */
+    private boolean isHTML(String sampleData) {
+      boolean isHTML = false;
+      
+      if (sampleData != null) {
+        String htmlDeclaration = "<!doctype html";
+        String htmlElement1 = "<html ";
+        String htmlElement2 = "<html>";
+        String sampleDataLowerCase = sampleData.toLowerCase();
+        
+        // First check the MIME type
+        if (urlContentType != null &&
+            urlContentType.startsWith("text/html")
+           ) {
+          isHTML = true;
+        }
+        // else look for an HTML declaration
+        else if (sampleDataLowerCase.contains(htmlDeclaration)) {
+          isHTML = true;
+        }
+        // else look for an HTML tag
+        else if (sampleDataLowerCase.contains(htmlElement1) ||
+                 sampleDataLowerCase.contains(htmlElement2)
+                ) {
+          isHTML = true;
+        }
+      }
+      
+      return isHTML;
+    }
+    
+    
+    /**
+     * Boolean to determine whether this entity's data is binary data
+     * as opposed to character data.
+     * 
+     * @return  true if we determine that the entity has binary data,
+     *          else false
+     */
+    public boolean isBinaryData() {
+      boolean isBinary = false;
+      
+      /*
+       * First check for a binary MIME type
+       */
+      if (isBinaryUrlContentType()) {
+        isBinary = true;
+      }
+      
+      /*
+       * Then check to see whether we know this to be
+       * binary based on the entity type
+       */
+      if (hasGZipDataFile ||
+          hasTarDataFile ||
+          hasZipDataFile ||
+          isImageEntity ||
+          isOtherEntity
+         ) {
+          isBinary = true;
+      }
+
+      return isBinary;
+    }
+    
+    
+    /*
+     * Boolean to determine whether the URL contentType specifies
+     * a binary data type.
+     */
+    private boolean isBinaryUrlContentType() {
+      boolean isBinary = true;
+      
+      if (urlContentType != null) {
+        /*
+         * Check for known text content types
+         */
+        if (urlContentType.startsWith("text/") ||
+            urlContentType.equals("application/xml")
+           ) {
+          isBinary = false;
+        }
+      }
+      else {
+        // Assume it could be text when no content type is specified
+        isBinary = false;
+      }
+      
+      return isBinary;
+    }
+
+    
     /**
      * Boolean to determine if data file in this entity is simple delimited.
      * 
@@ -886,7 +1281,7 @@ public class Entity extends DataObjectDescription
             return handler;
         }
             
-        DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
+        DownloadHandler handler = DownloadHandler.getInstance(this, url, endPointInfo);
         return handler;
     }
 

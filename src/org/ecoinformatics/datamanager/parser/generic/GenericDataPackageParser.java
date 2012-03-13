@@ -33,19 +33,23 @@
 package org.ecoinformatics.datamanager.parser.generic;
 
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
 import org.apache.xpath.CachedXPathAPI;
 
-//import org.kepler.objectmanager.data.DataType;
-//import org.kepler.objectmanager.data.DataTypeResolver;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
@@ -106,6 +110,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     protected String storedProcedureEntityPath = null;
     protected String viewEntityPath = null;
     protected String otherEntityPath = null;
+    
+    protected String accessPath = null;
+    protected String entityAccessPath = null;
     
     //private Hashtable entityHash = new Hashtable();
     //private Hashtable fileHash = new Hashtable();
@@ -194,12 +201,15 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 	private void initDefaultXPaths() {
     	//sets the default path values for documents
 		packageIdPath = "//*/@packageId";
-    	tableEntityPath = "//dataset/dataTable";
+    tableEntityPath = "//dataset/dataTable";
 		spatialRasterEntityPath = "//dataset/spatialRaster";
 		spatialVectorEntityPath  = "//dataset/spatialVector";
 		storedProcedureEntityPath = "//dataset/storedProcedure";
 		viewEntityPath = "//dataset/view";
 		otherEntityPath = "//dataset/otherEntity";
+		
+		accessPath = "//access";
+    entityAccessPath = "physical/distribution/access";
 	}
 	
 	/**
@@ -239,7 +249,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         Document doc = builder.parse(is);
         parseDocument(doc);
     }
-
+    
     
     /**
      * Parses the EML document. Now except dataTable, spatialRaster and 
@@ -258,7 +268,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String packageId = null;
         
         try {
-        	// process packageid
+          // process packageid
         	Node packageIdNode = xpathapi.selectSingleNode(doc, packageIdPath);
             
         	if (packageIdNode != null)
@@ -266,8 +276,20 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         	   //System.out.println("in packageIdNode is not null");
         	   packageId          = packageIdNode.getNodeValue();
         	}
+        	
+          emlDataPackage        = new DataPackage(packageId);
+          
+          String emlNamespace = parseEmlNamespace(doc);
+          if (emlDataPackage != null) {
+            emlDataPackage.setEmlNamespace(emlNamespace);
+          }
+          
+          String systemValue = parseSystemAttribute(doc);
+          if (systemValue != null) {
+            emlDataPackage.setSystem(systemValue);
+          }
+        
             
-        	emlDataPackage        = new DataPackage(packageId);
             // now dataTable, spatialRaster and spatialVector are handled
             dataTableEntities              = xpathapi.selectNodeList(doc, tableEntityPath);
             spatialRasterEntities = 
@@ -278,7 +300,15 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             viewEntities          = xpathapi.selectNodeList(doc, viewEntityPath);
             
             
+            // Store <access> XML block because some applications may need it
+            Node accessNode = xpathapi.selectSingleNode(doc, accessPath);
+            if (accessNode != null) {
+              String accessXML = nodeToXmlString(accessNode);
+              emlDataPackage.setAccessXML(accessXML);
+            }
+            
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception(
                             "Error extracting entities from eml2.0.0 package.", e);
         }
@@ -385,6 +415,79 @@ public class GenericDataPackageParser implements DataPackageParserInterface
       
     }*/
     
+    
+    /*
+     * Parses the "xmlns:eml" attribute value from the
+     * "eml:eml" element. This value indicates the version of
+     * EML, e.g. "eml://ecoinformatics.org/eml-2.1.0"
+     */
+    private String parseEmlNamespace(Document doc) {
+      String namespaceURI = null;
+      
+      if (doc != null) {
+        NodeList docNodes = doc.getChildNodes();
+      
+        if (docNodes != null) {
+          int len = docNodes.getLength();
+          for (int i = 0; i < len; i++) {
+            Node docNode = docNodes.item(i);
+            String name = docNode.getNodeName();
+          
+            if (name!= null && name.equals("eml:eml")) {
+              NamedNodeMap attributeMap = docNode.getAttributes();
+              int mapLength = attributeMap.getLength();
+              for (int m = 0; m < mapLength; m++) {
+                Node attNode = attributeMap.item(m);
+                String attNodeName = attNode.getNodeName();
+                String attNodeValue = attNode.getNodeValue();
+                if (attNodeName.equals("xmlns:eml")) {
+                  namespaceURI = attNodeValue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return namespaceURI;
+    }
+
+    
+    /*
+     * Parses the "@system" attribute value from the
+     * "eml:eml" element.
+     */
+    private String parseSystemAttribute(Document doc) {
+      String systemValue = null;
+      
+      if (doc != null) {
+        NodeList docNodes = doc.getChildNodes();
+      
+        if (docNodes != null) {
+          int len = docNodes.getLength();
+          for (int i = 0; i < len; i++) {
+            Node docNode = docNodes.item(i);
+            String name = docNode.getNodeName();
+          
+            if (name!= null && name.equals("eml:eml")) {
+              NamedNodeMap attributeMap = docNode.getAttributes();
+              int mapLength = attributeMap.getLength();
+              for (int m = 0; m < mapLength; m++) {
+                Node attNode = attributeMap.item(m);
+                String attNodeName = attNode.getNodeName();
+                String attNodeValue = attNode.getNodeValue();
+                if (attNodeName.equals("system")) {
+                  systemValue = attNodeValue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return systemValue;
+    }
+
     
     /**
      * Processes the attributeList element.
@@ -929,14 +1032,15 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         
         int entityNodeListLength = entitiesNodeList.getLength();
         numEntities = numEntities + entityNodeListLength;
+        String entityAccessXML = null;
         String entityName = "";
         String entityDescription = "";
         String entityOrientation = "";
         String entityCaseSensitive = "";
-        String entityNumberOfRecords = "-1";
         String onlineUrl = "";
+        String onlineUrlFunction = null;
         String format = null;
-        String numHeaderLines = "0";
+        int numHeaderLines = 0;
         int numFooterLines = 0;
         String fieldDelimiter = null;
         String recordDelimiter = "";
@@ -944,17 +1048,22 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         String encodingMethod = "";
         String quoteCharacter = null;
         String literalCharacter = null;
-        boolean isImageEntity   = false;
-        boolean isOtherEntity = false;
-        boolean isGZipDataFile  = false;
-        boolean isZipDataFile   = false;
-        boolean isTarDataFile   = false;
-        boolean isSimpleDelimited = true;
-        boolean isCollapseDelimiters = false;
         TextComplexDataFormat[] formatArray = null;
          
         for (int i = 0; i < entityNodeListLength; i++) {
             
+            String entityNumberOfRecords = "-1";
+            boolean hasDistributionOnline = false;
+            boolean hasDistributionOffline = false;
+            boolean hasDistributionInline = false;
+            boolean isOtherEntity = false;
+            boolean isImageEntity   = false;
+            boolean isGZipDataFile  = false;
+            boolean isZipDataFile   = false;
+            boolean isTarDataFile   = false;
+            boolean isSimpleDelimited = true;
+            boolean isCollapseDelimiters = false;
+
             if (xpath != null) {
               if (xpath.equals(spatialRasterEntityPath) || 
                   xpath.equals(spatialVectorEntityPath)) {
@@ -1022,8 +1131,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                 Node numHeaderLinesNode = numHeaderLinesNodeList.item(0);
                    
                 if (numHeaderLinesNode != null) {
-                    numHeaderLines = 
+                    String numHeaderLinesStr = 
                         numHeaderLinesNode.getFirstChild().getNodeValue();
+                    numHeaderLines = (new Integer(numHeaderLinesStr.trim())).intValue();
                 }
             }
             
@@ -1046,7 +1156,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                 }
             }
            
-           // Here is the simple delimited data file
+           /*
+            * Simple delimited data file
+            */
            NodeList fieldDelimiterNodeList = 
                xpathapi.selectNodeList(
                  entityNode,
@@ -1097,9 +1209,11 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         		  ) {
                 literalCharacter = 
                   literalCharacterNodeList.item(0).getFirstChild().getNodeValue(); 
-           }
+           } // End simple delimited data file
            
-           // For complex format data file
+           /*
+            *  Complex format data file
+            */
            NodeList complexNodeList = 
              xpathapi.selectNodeList(entityNode,
                                      "physical/dataFormat/textFormat/complex");
@@ -1118,6 +1232,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
              {
                  Node complexChildNode = complexChildNodes.item(k);
                  
+                 /*
+                  * complex, textFixed
+                  */
                  if (complexChildNode != null && 
                      complexChildNode.getNodeName().equals("textFixed")
                     )
@@ -1131,6 +1248,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                         //complexFormatsNumber++;
                      }
                  }
+                 /*
+                  * complex, textDelimited
+                  */
                  else if (complexChildNode != null && 
                           complexChildNode.getNodeName().equals("textDelimited")
                          )
@@ -1154,7 +1274,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                  formatArray[j] =
                                (TextComplexDataFormat)formatVector.elementAt(j);
              }
-           }
+           } // End complex format data file
            
            NodeList recordDelimiterNodeList = 
                xpathapi.selectNodeList(entityNode,
@@ -1169,17 +1289,66 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               recordDelimiter = "\\r\\n";
            }
            
+           // Store the entity access XML since some applications may need it
+           Node entityAccessNode = xpathapi.selectSingleNode(
+                                              entityNode, 
+                                              entityAccessPath);
+           if (entityAccessNode != null) {
+             entityAccessXML = nodeToXmlString(entityAccessNode);
+           }
+           
+           NodeList onlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/online");
+           NodeList offlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/offline");
+           NodeList inlineNodeList = xpathapi.selectNodeList(
+                                              entityNode,
+                                              "physical/distribution/inline");
+           if (onlineNodeList != null && onlineNodeList.getLength() > 0) {
+             hasDistributionOnline = true;
+           }
+           if (offlineNodeList != null && offlineNodeList.getLength() > 0) {
+             hasDistributionOffline = true;
+           }
+           if (inlineNodeList != null && inlineNodeList.getLength() > 0) {
+             hasDistributionInline = true;
+           }
+           
+           
            // Get the distribution information
            NodeList urlNodeList = xpathapi.selectNodeList(entityNode,
                                            "physical/distribution/online/url");
            
-           if (urlNodeList != null && urlNodeList.getLength() >0)
-           {
-               onlineUrl = urlNodeList.item(0).getFirstChild().getNodeValue();
-              
-          	   if(isDebugging) {
-        		       //log.debug("The url is "+ onlineUrl);
-        	     }
+           if (urlNodeList != null && urlNodeList.getLength() > 0) {
+             int len = urlNodeList.getLength();
+             for (int j = 0; j < len; j++) {
+               Node urlNode = urlNodeList.item(j);
+               String urlText = urlNode.getTextContent();
+               String functionText = null;
+               NamedNodeMap urlAttributes = urlNode.getAttributes();
+               int nAttributes = urlAttributes.getLength();
+               for (int k = 0; k < nAttributes; k++) {
+                 Node attributeNode = urlAttributes.item(k);
+                 String nodeName = attributeNode.getNodeName();
+                 if (nodeName.equals("function")) {
+                   functionText = attributeNode.getNodeValue();             
+                 }
+               }
+               
+               /*
+                * Unless this URL has attribute function="information", 
+                * assign it as the download URL for this entity and stop
+                * processing any additional distribution URLs.
+                */
+               if (functionText == null ||
+                   !functionText.equalsIgnoreCase("information")) {
+                 onlineUrl = urlText;
+                 onlineUrlFunction = functionText;
+                 break;
+               }
+             }
            }
                       
            /**
@@ -1275,15 +1444,14 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                     new Integer(entityNumberOfRecords).
                                                            intValue());
           
-          entityObject.setNumHeaderLines((new Integer(numHeaderLines))
-                                                         .intValue());
+          entityObject.setNumHeaderLines(numHeaderLines);
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
           
           // For simple delimited data file
           if (fieldDelimiter != null)
           {
-             entityObject.setDelimiter(fieldDelimiter);
+             entityObject.setFieldDelimiter(fieldDelimiter);
           }
           
           if (quoteCharacter != null)
@@ -1299,6 +1467,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setCollapseDelimiters(isCollapseDelimiters);         
           entityObject.setRecordDelimiter(recordDelimiter);
           entityObject.setURL(onlineUrl);
+          entityObject.setURLFunction(onlineUrlFunction);
           entityObject.setDataFormat(format);
           entityObject.setCompressionMethod(compressionMethod);
           entityObject.setIsImageEntity(isImageEntity);
@@ -1307,7 +1476,11 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setHasZipDataFile(isZipDataFile);
           entityObject.setHasTarDataFile(isTarDataFile);
           entityObject.setPackageId(packageId);
-            
+          entityObject.setHasDistributionOnline(hasDistributionOnline);
+          entityObject.setHasDistributionOffline(hasDistributionOffline);
+          entityObject.setHasDistributionInline(hasDistributionInline);
+          entityObject.setEntityAccessXML(entityAccessXML);
+          
           try {
               NodeList attributeListNodeList = 
                   xpathapi.selectNodeList(entityNode, "attributeList");
@@ -1482,4 +1655,35 @@ public class GenericDataPackageParser implements DataPackageParserInterface
        
        return textDelimitedDataFormat;
     }
+    
+    /**
+     * Returns an XML representation of the provided node.
+     *  
+     * @param node the node to be represented in XML.
+     * 
+     * @return a string containing an XML representation of the 
+     * provided DOM node. 
+     */
+    public String nodeToXmlString(Node node) {
+        
+        try {
+            
+            Transformer t = TransformerFactory.newInstance().newTransformer();
+            t.setOutputProperty(OutputKeys.INDENT, "yes");
+            
+            DOMSource source = new DOMSource(node);
+            StreamResult result = new StreamResult(new StringWriter());
+
+            t.transform(source, result);
+
+            return result.getWriter().toString();
+
+        } catch (TransformerException e) {
+            throw new IllegalStateException(e);
+        } catch (TransformerFactoryConfigurationError e) {
+            throw new IllegalStateException(e);
+        }
+
+    }
+    
 }

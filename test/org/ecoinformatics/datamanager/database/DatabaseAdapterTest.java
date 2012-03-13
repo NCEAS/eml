@@ -41,8 +41,11 @@ public class DatabaseAdapterTest extends TestCase {
    * the expected (i.e. legal) table name.
    */
   public void testGetLegalDBTableName() {
-    String[] badNames = {"table name", "table-name", "table.name"};
-    String[] expectedNames = {"table_name", "table_name", "table_name"};
+    String[] badNames = 
+      {"table name", "table-name", "table.name", "1040 Forms"};
+    
+    String[] expectedNames = 
+      {"table_name", "table_name", "table_name", "_1040_Forms"};
     
     for (int i = 0; i < badNames.length; i++) {
       String legalName = DatabaseAdapter.getLegalDBTableName(badNames[i]);

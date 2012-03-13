@@ -621,7 +621,8 @@
 		<property name="authenticatedqueryservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.AuthenticatedQueryService-stub.jar"/>
 		<property name="authenticationservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.AuthenticationService-stub.jar"/>
 		<property name="putservice" value="${datamanager.lib}/org.ecoinformatics.ecogrid.PutService-stub.jar"/>
-		<property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/>
+		<!-- <property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.0-312.jdbc3.jar"/> -->
+		<property name="postgresql-driver" value="${datamanager.lib}/postgresql-8.3-606.jdbc3.jar"/>
 		<property name="rpc" value="${datamanager.lib}/jaxrpc.jar"/>
 		<property name="saaj" value="${datamanager.lib}/saaj.jar"/>
 		<property name="soap" value="${datamanager.lib}/soap.jar"/>
@@ -645,6 +646,12 @@
 				<exclude name="**/.#*"/>
 			</fileset>
 		</copy>
+    <copy file="./src/datamanager.properties" 
+          todir="${build.dest}" 
+    />   
+    <copy file="./src/endpoint.properties" 
+          todir="${build.dest}" 
+    />   
 		<echo>"cpath.datamanager = ${cpath.datamanager}"</echo>
 		<javac srcdir="${build.src}"
   	            destdir="${build.dest}"
@@ -666,10 +673,6 @@
 				<include name="**/xml-apis.jar"/>
 			</fileset>
 		</unjar>
-		-->
-		<!--
-		<copy file="./${datamanager.lib}/datamanager.properties" 
-    	      todir="${build.dest}"/>
 		-->
 		<jar jarfile="${build.dir}/${datamanager.name}.jar" 
   	         basedir="${build.dest}"

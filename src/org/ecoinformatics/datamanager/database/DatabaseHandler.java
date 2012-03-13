@@ -35,6 +35,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
@@ -43,6 +44,9 @@ import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
  * The DatabaseHandler class is the top-level class for interacting with the
@@ -126,27 +130,40 @@ public class DatabaseHandler
     String sqlString;
     
     if ((tableName != null) && (!tableName.trim().equals(""))) {
-      Statement stmt = null;
-      sqlString = databaseAdapter.generateDropTableSQL(tableName);
+      /*
+       * If the table is in the database, drop it.
+       */
+      if (tableMonitor.isTableInDB(tableName)) {
+        Statement stmt = null;
+        sqlString = databaseAdapter.generateDropTableSQL(tableName);
 
-      try {
-        stmt = connection.createStatement();
-        stmt.executeUpdate(sqlString);
-        success = true;
+        try {
+          stmt = connection.createStatement();
+          stmt.executeUpdate(sqlString);
+          success = true;
         
-        /*
-         * Table was dropped, so we need to inform the table monitor that it
-         * should drop the table entry from the data table registry.
-         */
-        success = success && tableMonitor.dropTableEntry(tableName);
-      } 
-      catch (SQLException e) {
-        System.err.println("SQLException: " + e.getMessage());
-        throw (e);
+          /*
+           * Table was dropped, so we need to inform the table monitor that it
+           * should drop the table entry from the data table registry.
+           */
+          success = success && tableMonitor.dropTableEntry(tableName);
+        } 
+        catch (SQLException e) {
+          System.err.println("SQLException: " + e.getMessage());
+          throw (e);
+        }
+        finally {
+          if (stmt != null) stmt.close();
+          DataManager.returnConnection(connection);
+        }
       }
-      finally {
-        if (stmt != null) stmt.close();
-        DataManager.returnConnection(connection);
+      /*
+       * Otherwise just clean up any table entry that may be present
+       * for this table in the TableMonitor registry.
+       */
+      else {
+        tableMonitor.dropTableEntry(tableName); 
+        success = true;
       }
     }
 
@@ -197,7 +214,26 @@ public class DatabaseHandler
   }
   
 
- 
+  /**
+   * Drops data tables from the database for all entities in a data package
+   * based on a specified packageId string.
+   * 
+   * @param  packageId the package identifier whose data tables are to be dropped
+   * @return true if all data tables were successfully dropped, else false.
+   */
+  public boolean dropTables(String packageId) throws SQLException {
+    boolean success = true;
+    ArrayList<String> tableNames = tableMonitor.getDBTableNames(packageId);
+    
+    if (tableNames != null) {
+      for (String tableName : tableNames) {
+        success = dropTable(tableName) && success;
+      }
+    }
+
+    return success;
+  }
+  
 
   /**
    * Generates a table in the database for a given entity.
@@ -209,6 +245,12 @@ public class DatabaseHandler
     
     boolean success = true;
     String tableName;
+    QualityCheck databaseTableQualityCheck = null;
+    
+    // Initialize the databaseTableQualityCheck
+    String qualityCheckIdentifier = "databaseTableCreated";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+    databaseTableQualityCheck = new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
     
     tableName = tableMonitor.addTableEntry(entity);   
 
@@ -216,8 +258,22 @@ public class DatabaseHandler
      * If the table monitor couldn't assign a name, then throw an exception.
      */
     if ((tableName == null) || (tableName.trim().equals(""))) {
-      throw new SQLException("Entity has not been assigned a valid name.");
+      String message = "Entity has not been assigned a valid name.";
+      
+      if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
+        /*
+         * Report database table quality check status as failed
+         */
+        databaseTableQualityCheck.setFailedStatus();
+        databaseTableQualityCheck.setFound(
+          "An error occurred while creating the database table");
+        databaseTableQualityCheck.setExplanation(message);
+        entity.addQualityCheck(databaseTableQualityCheck);
+      }
+      
+      throw new SQLException(message);
     }
+    
     /*
      * If a table name was assigned for this entity, let's see whether we've 
      * already got the table in the database.
@@ -244,12 +300,41 @@ public class DatabaseHandler
         try {
           stmt = connection.createStatement();
           stmt.executeUpdate(ddlString);
+          
+          if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
+            /*
+             * Report database table generation status as 'valid'
+             */
+            databaseTableQualityCheck.setStatus(Status.valid);
+            databaseTableQualityCheck.setFound(
+              "A database table was generated from the attributes description");
+            databaseTableQualityCheck.setExplanation(ddlString);
+            entity.addQualityCheck(databaseTableQualityCheck);
+          }
         } 
         catch (SQLException e) {
           // If something went wrong, drop the table entry from the registry.
           tableMonitor.dropTableEntry(tableName);
-          System.err.println("SQLException: " + e.getMessage());
-          throw (e);
+          String message = 
+            "SQLException while generating data table '" + tableName +
+            "' for entity '" + entity.getName() + "': " + e.getMessage() + 
+            "\n" + ddlString;
+          System.err.println(message);
+          e.printStackTrace();
+          
+          if (QualityCheck.shouldRunQualityCheck(entity, databaseTableQualityCheck)) {
+            /*
+             * Report database table quality check status as failed
+             */
+            databaseTableQualityCheck.setFailedStatus();
+            databaseTableQualityCheck.setFound(
+              "An error occurred while creating the database table");
+            databaseTableQualityCheck.setExplanation(message);
+            entity.addQualityCheck(databaseTableQualityCheck);
+          }
+          
+          SQLException se = new SQLException(message);
+          throw (se);
         }
         finally {
           if (stmt != null) stmt.close();

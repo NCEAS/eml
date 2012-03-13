@@ -59,6 +59,9 @@ import org.ecoinformatics.datamanager.parser.DataPackage;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.generic.DataPackageParserInterface;
 import org.ecoinformatics.datamanager.parser.generic.Eml200DataPackageParser;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 
 /**
@@ -333,9 +336,7 @@ public class DataManager {
  
   /**
    * Drops all tables in a data package. This is simply a pass-through to the
-   * DatabaseHandler class. It's useful in the DataManager class for cleaning
-   * up tables after unit testing, but not sure that we'd want to expose this
-   * as part of the API.
+   * DatabaseHandler class.
    * 
    * @param dataPackage  the DataPackage object whose tables are to be dropped
    * @return true if successful, else false
@@ -348,10 +349,32 @@ public class DataManager {
     boolean success;
 
     DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
-	success = databaseHandler.dropTables(dataPackage);
+	  success = databaseHandler.dropTables(dataPackage);
     
     return success;
   }
+  
+  
+  /**
+   * Drops all tables in a data package based on a packageId value. This is 
+   * simply a pass-through to the DatabaseHandler class.
+   * 
+   * @param  packageId  the packageId associated with tables are to be dropped
+   * @return true if successful, else false
+   * @throws ClassNotFoundException
+   * @throws SQLException
+   * @throws Exception
+   */
+  public boolean dropTables(String packageId)
+          throws ClassNotFoundException, SQLException, Exception {
+    boolean success;
+
+    DatabaseHandler databaseHandler = new DatabaseHandler(databaseAdapterName);
+    success = databaseHandler.dropTables(packageId);
+    
+    return success;
+  }
+  
   
   /**
    * Creates each table described in the datapackage
@@ -530,6 +553,11 @@ public class DataManager {
   public boolean loadDataToDB(Entity entity, EcogridEndPointInterface endPointInfo) 
           throws ClassNotFoundException, SQLException, Exception {
     boolean success = false;
+    
+    // Initialize the dataLoadQualityCheck
+    String qualityCheckIdentifier = "dataLoadStatus";
+    QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+    QualityCheck dataLoadQualityCheck = new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
 
     /*
      * otherEntity is allowed to optionally omit the attributeList element.
@@ -546,6 +574,42 @@ public class DataManager {
         if (attributes == null) {
           success = true;
         }
+      }
+      
+      if (success) {
+        // Create an informational quality check stating that the data load
+        // was not attempted for this otherEntity entity.
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          dataLoadQualityCheck.setFound(
+            "Data loading was not attempted for this 'otherEntity' " +
+            "because no attribute list was found in the EML");
+          dataLoadQualityCheck.setExplanation(
+            "In EML, a data entity of type 'otherEntity' is not required " +
+            "to document an attribute list");
+          entity.addQualityCheck(dataLoadQualityCheck);
+        }
+      }
+    }
+    /*
+     * Do not attempt to load data into a database table if the entity
+     * does not have a distribution online and has either distribution
+     * offline or inline.
+     */
+    else if ((entity != null) && 
+             !entity.hasDistributionOnline() &&
+             (entity.hasDistributionOffline() ||
+              entity.hasDistributionInline()
+             )
+            ) {
+      success = true;
+      if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+        dataLoadQualityCheck.setFound(
+          "Data loading was not attempted for this entity " +
+          "because its distribution is 'inline' or 'offline'");
+        dataLoadQualityCheck.setExplanation(
+          "Unable to process data entities with distribution " +
+          "set to 'inline' or 'offline'");
+        entity.addQualityCheck(dataLoadQualityCheck);
       }
     }
     else {  
@@ -615,6 +679,7 @@ public class DataManager {
     
     parser.parse(metadataInputStream);
     dataPackage = parser.getDataPackage();
+    dataPackageQuality(dataPackage);
     
     return dataPackage;
   }
@@ -636,9 +701,39 @@ public class DataManager {
 		DataPackage dataPackage = null;
 		genericParser.parse(metadataInputStream);
 		dataPackage = genericParser.getDataPackage();
+    dataPackageQuality(dataPackage);
 
 		return dataPackage;
 	}
+  
+  
+  /*
+   * If quality reporting is enabled, runs quality checks on the
+   * data package and stores the results in its QualityReport
+   * object.
+   */
+  private void dataPackageQuality(DataPackage dataPackage) {
+    // Initialize the duplicateEntityName quality check
+    String duplicateEntityIdentifier = "duplicateEntityName";
+    QualityCheck duplicateEntityTemplate = QualityReport.getQualityCheckTemplate(duplicateEntityIdentifier);
+    QualityCheck duplicateEntityQualityCheck = 
+        new QualityCheck(duplicateEntityIdentifier, duplicateEntityTemplate);
+    if (QualityCheck.shouldRunQualityCheck(dataPackage, duplicateEntityQualityCheck)) {
+      String duplicateName = dataPackage.findDuplicateEntityName();
+      boolean hasDuplicate = (duplicateName != null);
+      
+      if (hasDuplicate) {
+        duplicateEntityQualityCheck.setFound("Found duplicate entity name: " + 
+                                             duplicateName);
+        duplicateEntityQualityCheck.setFailedStatus();
+      }
+      else {
+        duplicateEntityQualityCheck.setFound("No duplicates found");
+        duplicateEntityQualityCheck.setStatus(Status.valid);
+      }
+      dataPackage.addDatasetQualityCheck(duplicateEntityQualityCheck);
+    }
+  }
   
   
   /**

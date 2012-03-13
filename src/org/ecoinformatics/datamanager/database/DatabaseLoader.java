@@ -10,11 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.download.DataSourceNotFoundException;
 import org.ecoinformatics.datamanager.download.DataStorageInterface;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
  * This class implments the DataStorageInterface to load data into db.
@@ -31,6 +36,8 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * Class fields
    */
 	
+  public static Log log = LogFactory.getLog(DatabaseLoader.class);
+
   private static TableMonitor tableMonitor = null;  
   
   
@@ -143,7 +150,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         inputStream.close();
       } 
       catch (Exception e) {
-        System.err.println(
+        log.error(
              "Could not close inputStream in DatabaseLoader.finishSerialize(): "
              + e.getMessage());
       }
@@ -154,7 +161,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         outputStream.close();
       } 
       catch (Exception e) {
-        System.err.println(
+        log.error(
             "Could not close outputStream in DatabaseLoader.finishSerialize(): "
             + e.getMessage());
       }
@@ -199,14 +206,23 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * db. This is the real procedure to load data into db.
    */
   public void run() {
+    QualityCheck dataLoadQualityCheck = null;
     String insertSQL = "";
     // System.out.println("====================== start load data into db");
     Vector rowVector = new Vector();
+    int rowCount = 0;
     
     if (entity == null) {
       success = false;
       completed = true;
       return;
+    }
+    else {
+      // Initialize the dataLoadQualityCheck
+      String dataLoadIdentifier = "dataLoadStatus";
+      QualityCheck dataLoadTemplate = 
+        QualityReport.getQualityCheckTemplate(dataLoadIdentifier);
+      dataLoadQualityCheck = new QualityCheck(dataLoadIdentifier, dataLoadTemplate);
     }
     
     AttributeList attributeList = entity.getAttributeList();
@@ -220,12 +236,13 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           DelimitedReader delimitedReader = 
             new DelimitedReader(inputStream,
                                 entity.getAttributes().length, 
-                                entity.getDelimiter(), 
+                                entity.getFieldDelimiter(), 
                                 entity.getNumHeaderLines(),
                                 entity.getRecordDelimiter(),
                                 entity.getNumRecords(),
                                 stripHeaderLine
                                );
+          delimitedReader.setEntity(entity);
           delimitedReader.setCollapseDelimiters(entity.getCollapseDelimiters());
           delimitedReader.setNumFooterLines(entity.getNumFooterLines());
           if (entity.getQuoteCharacter() != null)
@@ -234,7 +251,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           }
           if (entity.getLiteralCharacter() != null)
           {
-        	delimitedReader.setLiteralCharacter(entity.getLiteralCharacter());
+            delimitedReader.setLiteralCharacter(entity.getLiteralCharacter());
           }
           dataReader = delimitedReader;
         } 
@@ -246,10 +263,21 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
         }
         
         rowVector = dataReader.getOneRowDataVector();
-      } 
+      }
       catch (Exception e) {
-        System.err.println("Error message in DatabaseLoader.run() is "
-                           + e.getMessage());
+        log.error("Exception in DatabaseLoader.run(): " + 
+                           e.getMessage());
+        
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          // Report data load status as failed
+          dataLoadQualityCheck.setFailedStatus();
+          dataLoadQualityCheck.setFound(
+            "One or more errors occurred during data loading");
+          String explanation = e.getMessage();
+          dataLoadQualityCheck.setExplanation(explanation);
+          entity.addQualityCheck(dataLoadQualityCheck);
+        }
+        
         success = false;
         completed = true;
         exception = e;
@@ -259,48 +287,119 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       Connection connection = null;
 
       try {
-        // System.out.println("The first row data is "+rowVector);
-    	connection = DataManager.getConnection();
-    	if (connection == null)
-    	{
-    		success = false;
-    		exception = new Exception("The connection to db is null");
-    		completed = true;
-    		return;
-    	}
-    	connection.setAutoCommit(false);
+        /*
+         *  Display the first row of data in a QualityCheck object
+         */
+        String displayRowIdentifier = "displayFirstInsertRow";
+        QualityCheck displayRowTemplate = 
+          QualityReport.getQualityCheckTemplate(displayRowIdentifier);
+        QualityCheck displayRowQualityCheck = 
+          new QualityCheck(displayRowIdentifier, displayRowTemplate);
+
+        if (QualityCheck.shouldRunQualityCheck(entity, displayRowQualityCheck)) {
+          // Note that rowVector starts and ends with square brackets. We're
+          // using a shortcut by incorporating them into the CDATA tags
+          String foundString = "<![CDATA" + rowVector.toString() + "]>";
+          displayRowQualityCheck.setFound(foundString);
+          displayRowQualityCheck.setStatus(Status.info);
+          entity.addQualityCheck(displayRowQualityCheck);
+        }
+        
+    	  connection = DataManager.getConnection();
+    	  if (connection == null)
+    	  {
+    		  success = false;
+    		  exception = new Exception("The connection to db is null");
+    		  completed = true;
+    		  return;
+    	  }
+    	  connection.setAutoCommit(false);
         while (!rowVector.isEmpty()) {
           insertSQL = databaseAdapter.generateInsertSQL(attributeList,
                                                         tableName, 
                                                         rowVector);
           if (insertSQL != null)
           {
-        	  PreparedStatement statement = connection.prepareStatement(insertSQL);
-        	  statement.execute();
+      	    PreparedStatement statement = connection.prepareStatement(insertSQL);
+      	    statement.execute();
+            rowCount++;
           }
             
           rowVector = dataReader.getOneRowDataVector();
-          // System.out.println("The row data in while loop is "+rowVector);
         }
-        
         connection.commit();
+
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          /*
+           *  Report data load status as 'valid'
+           */
+          dataLoadQualityCheck.setStatus(Status.valid);
+          dataLoadQualityCheck.setFound(
+            "The data table loaded successfully into a database");
+          entity.addQualityCheck(dataLoadQualityCheck);      
+
+          /*
+           * Store number of records found in a QualityCheck object
+           */
+          String numberOfRecordsIdentifier = "numberOfRecords";
+          QualityCheck numberOfRecordsTemplate = 
+            QualityReport.getQualityCheckTemplate(numberOfRecordsIdentifier);
+          QualityCheck numberOfRecordsQualityCheck = 
+            new QualityCheck(numberOfRecordsIdentifier, numberOfRecordsTemplate);
+          if (QualityCheck.shouldRunQualityCheck(entity, numberOfRecordsQualityCheck)) {
+            int expectedNumberOfRecords = entity.getNumRecords();
+            numberOfRecordsQualityCheck.setExpected("" + expectedNumberOfRecords);
+            numberOfRecordsQualityCheck.setFound("" + rowCount);        
+            if (expectedNumberOfRecords == rowCount) {
+              numberOfRecordsQualityCheck.setStatus(Status.valid);
+              numberOfRecordsQualityCheck.setExplanation(
+                "The expected number of records (" + 
+                rowCount + ") was found in the data table.");
+            }
+            // When 'numberOfRecords' is not specified in the EML, the EML
+            // parser sets the value to -1.
+            else if (expectedNumberOfRecords < 0) {
+              numberOfRecordsQualityCheck.setStatus(Status.info);
+              numberOfRecordsQualityCheck.setExplanation(
+                "The number of records found in the data table was: " +  
+                rowCount +
+                ". There was no 'numberOfRecords' value specified in the EML.");
+            }
+            else {
+              // Report number of records check as failed
+              numberOfRecordsQualityCheck.setFailedStatus();
+              numberOfRecordsQualityCheck.setExplanation(
+                "The number of records found in the data table (" + rowCount +
+                ") does not match the 'numberOfRecords' value specified in the EML (" +
+                expectedNumberOfRecords + ")"
+              );
+            }
+            entity.addQualityCheck(numberOfRecordsQualityCheck);
+          }
+        }
+
         success = true;
-      } 
+      }
       catch (Exception e) {
-        System.err.println("DatabaseLoader.run(): Error message: " + 
-                           e.getMessage());
-        System.err.println("Stack trace:");
-        e.printStackTrace();
-        System.err.println("SQL string to insert row:\n" + insertSQL);
-        
+        log.error(e.getMessage());
         success = false;
         exception = e;
+        
+        if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
+          // Report data load status as failed
+          dataLoadQualityCheck.setFailedStatus();
+          dataLoadQualityCheck.setFound("Error inserting data at row " +
+                                        (rowCount + 1) + ".");
+          String explanation = e.getMessage();
+          dataLoadQualityCheck.setExplanation(explanation);
+          entity.addQualityCheck(dataLoadQualityCheck);
+        }
         
         try {
           connection.rollback();
         } 
         catch (Exception ee) {
-          System.err.println(ee.getMessage());
+          log.error(ee.getMessage());
         }
       } 
       finally {
@@ -308,14 +407,14 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           connection.setAutoCommit(true);
         } 
         catch (Exception ee) {
-          System.err.println(ee.getMessage());
+          log.error(ee.getMessage());
         }
 
         DataManager.returnConnection(connection);
       }
-    } 
+    }
     else {
-      System.err.println(" input stream is null");
+      log.error("Input stream is null.");
       success = false;
     }
     
@@ -349,7 +448,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       }
     } 
     catch (SQLException e) {
-      System.err.println(e.getMessage());
+      log.error(e.getMessage());
       e.printStackTrace();
     }
 

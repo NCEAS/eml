@@ -31,22 +31,40 @@
  */
 package org.ecoinformatics.datamanager.parser;
 
+import java.util.TreeSet;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
+import org.ecoinformatics.datamanager.quality.EntityReport;
+import org.ecoinformatics.datamanager.quality.QualityReport;
+import org.ecoinformatics.datamanager.quality.QualityCheck;
+import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
 /**
- * This class reprents a metadata package information to describe entity
+ * This class represents a metadata package information to describe entity
  * 
  * @author tao
  */
 public class DataPackage 
 {
+  
+  /*
+   * Class fields
+   */
+  
+  
   /*
    * Instance fields
    */
   
+  private String accessXML = null;       // <access> element XML string
+  private String emlNamespace = null;    // e.g. "eml://ecoinformatics.org/eml-2.1.0"
   private Entity[] entityList = null;
   private String   packageId  = null;
+  private QualityReport qualityReport = null;
+  private String system = null;
+  
+  private final String LTER_PACKAGE_ID_PATTERN = "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
   
   
   /*
@@ -60,8 +78,80 @@ public class DataPackage
    */
   public DataPackage(String packageId)
   {
-	this.packageId = packageId;  
+	  this.packageId = packageId;  
+    this.qualityReport = new QualityReport(this);
+    
+    qualityCheckPackageId(packageId);
   }
+  
+  
+  /*
+   * Boolean to determine whether a given packageId conforms to
+   * the string pattern of a particular organization such as LTER.
+   * If the specified system value does not have a regular
+   * expression pattern declared for its packageId, then the
+   * packageId is assumed to be valid by default.
+   */
+  private boolean isValidPackageId(String system, String packageId) {
+    boolean isValid = true;
+    String regexPattern = null;
+    
+    /*
+     * If we have a regular expression pattern string declared for a 
+     * particular organization, use it to validate the packageId
+     */
+    if (system.equalsIgnoreCase("lter")) {
+      regexPattern = LTER_PACKAGE_ID_PATTERN;
+    }
+    
+    if (regexPattern != null) {
+      isValid = Pattern.matches(regexPattern, packageId);
+    }
+
+    return isValid;
+  }
+  
+  
+  /*
+   * Class methods
+   */
+  
+  
+  /*
+   * Instance methods
+   */
+  
+  /**
+   * Adds a dataset-level quality check to the data packages's associated 
+   * qualityReport object.
+   * 
+   * @param qualityCheck    the new quality check to add
+   */
+  public void addDatasetQualityCheck(QualityCheck qualityCheck) {
+    if (qualityReport != null) {
+      qualityReport.addDatasetQualityCheck(qualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Getter method for the accessXML field
+   * 
+   * @return  the value of the accessXML field
+   */
+  public String getAccessXML() {
+    return accessXML;
+  }
+  
+  
+  /**
+   * Getter method for the emlNamespace field
+   * @return
+   */
+  public String getEmlNamespace() {
+    return emlNamespace;
+  }
+  
   
   public Entity[] getEntities(String name)
   {
@@ -76,12 +166,47 @@ public class DataPackage
 	  return (Entity[]) list.toArray(new Entity[0]);
   }
   
+  
   public Entity getEntity(String name) {
 	  if (getEntities(name).length > 0) {
 		  return getEntities(name)[0];
 	  }
 	  return null;
   }
+  
+  
+  /**
+   * Determine whether the data package contains
+   * two entities with the same entityName value.
+   * 
+   * @return  The duplicate name, or null if no
+   *          duplicate entity names were found
+   */
+  public String findDuplicateEntityName() {
+    String duplicateName = null;
+    
+    Entity[] entityArray = getEntityList();
+    if (entityArray != null) {
+      int len = entityArray.length;
+      TreeSet<String> treeSet = new TreeSet<String>();
+      for (int i = 0; i < len; i++) {
+        Entity entity = entityArray[i];
+        String entityName = entity.getName();
+        if (entityName != null) {
+          if (treeSet.contains(entityName)) {
+            duplicateName = entityName;
+            break;
+          }
+          else {
+            treeSet.add(entityName);
+          }
+        }
+      }
+    }
+    
+    return duplicateName;
+  }
+  
   
   /**
    * Adds an entity into the DataPackage
@@ -122,6 +247,27 @@ public class DataPackage
   
   
   /**
+   * Gets the qualityReport object associated with this data package.
+   * 
+   * @return  the qualityReport instance variable
+   */
+  public QualityReport getQualityReport()
+  {
+    return qualityReport;
+  }
+  
+  
+  /**
+   * Gets the value of the system attribute.
+   * 
+   * @return  a String, e.g. "knb"
+   */
+  public String getSystem() {
+    return system;
+  }
+  
+  
+  /**
    * Gets the package identifier for this DataPackage.
    * 
    * @return a string representing the DataPackage identifier
@@ -155,11 +301,162 @@ public class DataPackage
     }
   }
   
-  /***
+  
+  /**
    * Removes ALL previously added Entity objects from the DataPackage
    */
   public void clearEntityList() {
 	  entityList = null;
+  }
+  
+  
+  /**
+   * Boolean to determine whether this data package has at
+   * least one dataset-level quality error. This can be called
+   * after parsing the metadata. If a data package is found to
+   * have a dataset-level quality error, an application may want
+   * to halt processing at that point instead of drilling down
+   * to the entity-level.
+   * 
+   * @return  true if one or more dataset-level quality errors are 
+   *          found, else false
+   */
+  public boolean hasDatasetQualityError() {
+    boolean hasError = (qualityReport != null &&
+                        qualityReport.hasDatasetQualityError());
+    
+    return hasError;
+  }
+
+
+  /**
+   * Boolean to determine whether this data package has at
+   * least one entity-level quality error. 
+   * 
+   * @return  true if one or more entity-level quality errors are 
+   *          found, else false
+   */
+  public boolean hasEntityQualityError() {
+    boolean hasError = false;
+    Entity[] entityArray = getEntityList();
+    for (int i = 0; i < entityArray.length; i++) {
+      Entity entity = entityArray[i];
+      EntityReport entityReport = entity.getEntityReport();
+      if (entityReport != null) {
+        if (entityReport.hasEntityQualityError()) {
+          hasError = true;
+        }
+      }
+    }
+    
+    return hasError;
+  }
+
+
+  /**
+   * Boolean to determine whether this data package has at
+   * least one dataset-level or entity-level quality error. 
+   * 
+   * @return  true if one or more quality errors are 
+   *          found, else false
+   */
+  public boolean hasQualityError() {
+    return hasDatasetQualityError() || hasEntityQualityError();
+  }
+
+
+  /**
+   * Setter method for accessXML field.
+   * 
+   * @param xmlString  the XML string to assign to the
+   *                   accessXML field. Should be a block
+   *                   of <access> XML.
+   */
+  public void setAccessXML(String xmlString) {
+    this.accessXML = xmlString;
+  }
+  
+  
+  /*
+   * Executes the "EML packageId check" when applicable
+   */
+  private void qualityCheckPackageId(String packageId) { 
+    // Check the value of the 'packageId' attribute
+    String packageIdIdentifier = "packageIdPattern";
+    QualityCheck packageIdTemplate = QualityReport.getQualityCheckTemplate(packageIdIdentifier);
+    QualityCheck packageIdQualityCheck = new QualityCheck(packageIdIdentifier, packageIdTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, packageIdQualityCheck)) {
+      // Initialize the emlNamespaceQualityCheck
+      boolean isValidPackageId = false;
+      String systemAttribute = packageIdQualityCheck.getSystem();
+
+      if (packageId != null) {
+        packageIdQualityCheck.setFound(packageId);
+        if (isValidPackageId(systemAttribute, packageId)) {
+          isValidPackageId = true;
+        }
+      }
+      
+      if (isValidPackageId) {
+        packageIdQualityCheck.setStatus(Status.valid);
+        packageIdQualityCheck.setSuggestion("");
+      }
+      else {
+        packageIdQualityCheck.setFailedStatus();
+      }
+      this.addDatasetQualityCheck(packageIdQualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Setter method for emlNamespace field.
+   * 
+   * @param emlNamespace  the emlNamespace value to set,
+   *                      e.g. "eml://ecoinformatics.org/eml-2.1.0"
+   */
+  public void setEmlNamespace(String emlNamespace) {
+    this.emlNamespace = emlNamespace;
+    
+    // Check the value of the 'xmlns:eml' attribute
+    String emlVersionIdentifier = "emlVersion";
+    QualityCheck emlVersionTemplate = QualityReport.getQualityCheckTemplate(emlVersionIdentifier);
+    QualityCheck emlVersionQualityCheck = new QualityCheck(emlVersionIdentifier, emlVersionTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, emlVersionQualityCheck)) {
+      // Initialize the emlNamespaceQualityCheck
+      boolean isValidNamespace = false;
+
+      if (emlNamespace != null) {
+        emlVersionQualityCheck.setFound(emlNamespace);
+        if (emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.0") ||
+            emlNamespace.equals("eml://ecoinformatics.org/eml-2.1.1")
+           ) {
+          isValidNamespace = true;
+        }
+      }
+      
+      if (isValidNamespace) {
+        emlVersionQualityCheck.setStatus(Status.valid);
+        emlVersionQualityCheck.setSuggestion("");
+      }
+      else {
+        emlVersionQualityCheck.setFailedStatus();
+      }
+      this.addDatasetQualityCheck(emlVersionQualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Sets the value of the 'system' to the specified String 
+   * value.
+   * 
+   * @param systemValue   the 'system' value to set
+   */
+  public void setSystem(String systemValue) {
+    this.system = systemValue;
   }
   
 }
