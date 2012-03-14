@@ -74,7 +74,8 @@ public class DelimitedReader extends TextDataReader
   private String literalCharacter = null;
   private boolean includeLiteralCharacter = false;
   private Entity entity;
-  private int fieldCheckCounter = 0;
+  private int tooFewFieldsCounter = 0;   // Counts 'tooFewFields' errors
+  private int tooManyFieldsCounter = 0;  // Counts 'tooManyFields' errors
   private final int FIELD_CHECK_MAX = 5; // Max number of field count checks to report
   private int rowCounter = 0;
   
@@ -540,9 +541,9 @@ public class DelimitedReader extends TextDataReader
           tooFewCheck.setFailedStatus();
           explanation += "<![CDATA[" + data.trim() + "]]>";
           tooFewCheck.setExplanation(explanation);
-          fieldCheckCounter++;
+          tooFewFieldsCounter++;
           // Limit the number of these checks included in the quality report
-          if (fieldCheckCounter <= FIELD_CHECK_MAX) {
+          if (tooFewFieldsCounter <= FIELD_CHECK_MAX) {
             entity.addQualityCheck(tooFewCheck);
           }
         }
@@ -575,9 +576,9 @@ public class DelimitedReader extends TextDataReader
           tooManyCheck.setFailedStatus();
           explanation += "<![CDATA[" + truncatedData + "]]>";
           tooManyCheck.setExplanation(explanation);
-          fieldCheckCounter++;
+          tooManyFieldsCounter++;
           // Limit the number of these checks included in the quality report
-          if (fieldCheckCounter <= FIELD_CHECK_MAX) {
+          if (tooManyFieldsCounter <= FIELD_CHECK_MAX) {
             entity.addQualityCheck(tooManyCheck);
           }
         }
@@ -921,6 +922,32 @@ public class DelimitedReader extends TextDataReader
   }
 
   
+  /**
+   * Gets the value of the tooFewFieldsCounter field used in 
+   * quality reporting.
+   * 
+   * @return tooFewFieldsCounter, an int representing the number
+   * of 'tooFewFields' errors that were counted for a given
+   * entity
+   */
+  public int getTooFewFieldsCounter() {
+    return tooFewFieldsCounter;
+  }
+
+
+  /**
+   * Gets the value of the tooManyFieldsCounter field used in 
+   * quality reporting.
+   * 
+   * @return tooManyFieldsCounter, an int representing the
+   * number of 'tooManyFields' errors that were counted for a
+   * given entity.
+   */
+  public int getTooManyFieldsCounter() {
+    return tooManyFieldsCounter;
+  }
+
+
   /**
    * Returns a string representation of the data.
    * 

@@ -206,6 +206,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    * db. This is the real procedure to load data into db.
    */
   public void run() {
+    DelimitedReader delimitedReader = null;
     QualityCheck dataLoadQualityCheck = null;
     String insertSQL = "";
     // System.out.println("====================== start load data into db");
@@ -233,15 +234,15 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
     if (inputStream != null) {
       try {
         if (entity.isSimpleDelimited()) {
-          DelimitedReader delimitedReader = 
-            new DelimitedReader(inputStream,
-                                entity.getAttributes().length, 
-                                entity.getFieldDelimiter(), 
-                                entity.getNumHeaderLines(),
-                                entity.getRecordDelimiter(),
-                                entity.getNumRecords(),
-                                stripHeaderLine
-                               );
+          delimitedReader = new DelimitedReader(
+                                  inputStream,
+                                  entity.getAttributes().length, 
+                                  entity.getFieldDelimiter(), 
+                                  entity.getNumHeaderLines(),
+                                  entity.getRecordDelimiter(),
+                                  entity.getNumRecords(),
+                                  stripHeaderLine
+                                 );
           delimitedReader.setEntity(entity);
           delimitedReader.setCollapseDelimiters(entity.getCollapseDelimiters());
           delimitedReader.setNumFooterLines(entity.getNumFooterLines());
@@ -328,6 +329,46 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           rowVector = dataReader.getOneRowDataVector();
         }
         connection.commit();
+        
+        if (delimitedReader != null) {
+          /*
+           * If no 'tooFewFields' errors were detected, record the
+           * quality check status as 'valid'
+           */
+          String tooFewFieldsIdentifier = "tooFewFields";
+          QualityCheck tooFewFieldsTemplate = 
+            QualityReport.getQualityCheckTemplate(tooFewFieldsIdentifier);
+          QualityCheck tooFewFieldsCheck = 
+            new QualityCheck(tooFewFieldsIdentifier, tooFewFieldsTemplate);
+          if (QualityCheck.shouldRunQualityCheck(entity, tooFewFieldsCheck)) {
+            if (delimitedReader.getTooFewFieldsCounter() == 0) {
+              tooFewFieldsCheck.setExplanation("");
+              tooFewFieldsCheck.setFound("No errors found");
+              tooFewFieldsCheck.setStatus(Status.valid);
+              tooFewFieldsCheck.setSuggestion("");
+              entity.addQualityCheck(tooFewFieldsCheck);
+            }
+          }
+          
+          /*
+           * If no 'tooManyFields' errors were detected, record the
+           * quality check status as 'valid'
+           */
+          String tooManyFieldsIdentifier = "tooManyFields";
+          QualityCheck tooManyFieldsTemplate = 
+            QualityReport.getQualityCheckTemplate(tooManyFieldsIdentifier);
+          QualityCheck tooManyFieldsCheck = 
+            new QualityCheck(tooManyFieldsIdentifier, tooManyFieldsTemplate);
+          if (QualityCheck.shouldRunQualityCheck(entity, tooManyFieldsCheck)) {
+            if (delimitedReader.getTooManyFieldsCounter() == 0) {
+              tooManyFieldsCheck.setExplanation("");
+              tooManyFieldsCheck.setFound("No errors found");
+              tooManyFieldsCheck.setStatus(Status.valid);
+              tooManyFieldsCheck.setSuggestion("");
+              entity.addQualityCheck(tooManyFieldsCheck);
+            }
+          }
+        }
 
         if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
           /*
