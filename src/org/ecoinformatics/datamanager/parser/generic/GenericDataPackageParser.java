@@ -1166,10 +1166,15 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                       );
            
            if (fieldDelimiterNodeList != null && 
-               fieldDelimiterNodeList.getLength() >0
+               (fieldDelimiterNodeList.getLength() > 0)
               ) {
-               fieldDelimiter = 
-                 fieldDelimiterNodeList.item(0).getFirstChild().getNodeValue();
+             Node fieldDelimiterNode = fieldDelimiterNodeList.item(0);
+             if (fieldDelimiterNode != null) {
+               Node firstChild = fieldDelimiterNode.getFirstChild();
+               if (firstChild != null) {
+                 fieldDelimiter = firstChild.getNodeValue();
+               }
+             }
            }
            
            NodeList collapseDelimitersNodeList = 
@@ -1449,10 +1454,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setSimpleDelimited(isSimpleDelimited);
           
           // For simple delimited data file
-          if (fieldDelimiter != null)
-          {
-             entityObject.setFieldDelimiter(fieldDelimiter);
-          }
+          entityObject.setFieldDelimiter(fieldDelimiter);
           
           if (quoteCharacter != null)
           {
@@ -1590,17 +1592,16 @@ public class GenericDataPackageParser implements DataPackageParserInterface
        {
            Node childNode = childNodes.item(i);
            String elementName = childNode.getNodeName();
+           String fieldDelimiter = null;
            
-           if (elementName != null && elementName.equals("fieldDelimiter"))
-           {
-              String fieldDelimiter = childNode.getFirstChild().getNodeValue();
-              
-          	  if (isDebugging) {
-        		    //log.debug("The field delimiter for complex format in eml is " +
-                //          fieldDelimiter);
-        	    }
-              
-              textDelimitedDataFormat = new TextDelimitedDataFormat(fieldDelimiter);
+           if (elementName != null && 
+               elementName.equals("fieldDelimiter")
+              ) {
+             Node firstChild = childNode.getFirstChild();
+             if (firstChild != null) {
+               fieldDelimiter = firstChild.getNodeValue();
+             }           
+             textDelimitedDataFormat = new TextDelimitedDataFormat(fieldDelimiter);
            }
            else if (elementName != null && 
                     elementName.equals("lineNumber") && 
@@ -1608,11 +1609,6 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            {
                String lineNumberStr = childNode.getFirstChild().getNodeValue();
                int lineNumber = (new Integer(lineNumberStr)).intValue();
-               
-           	   if (isDebugging) {
-        		     //log.debug("The line number is " + lineNumber);
-        	     }
-               
                textDelimitedDataFormat.setLineNumber(lineNumber);
            }
            else if (elementName != null && 
@@ -1621,11 +1617,6 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            {
                String collapseDelimiters = 
                    childNode.getFirstChild().getNodeValue();
-               
-           	   if (isDebugging) {
-        		     //log.debug("The collapse delimiter: " + collapse);
-        	     }
-               
                textDelimitedDataFormat.
                    setCollapseDelimiters(collapseDelimiters);
            }
