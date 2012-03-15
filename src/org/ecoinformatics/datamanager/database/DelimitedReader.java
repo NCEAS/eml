@@ -41,9 +41,6 @@ import org.ecoinformatics.datamanager.quality.QualityCheck;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
 
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
-
 /**
  * tokenizes a delimited file.  This reader assumes that one record is on one
  * line which ends with the line
@@ -63,7 +60,7 @@ public class DelimitedReader extends TextDataReader
   private int numRecords;
   private boolean stripHeader = false;
   private int numCols;
-  private String delimiter;
+  private String fieldDelimiter;
   private String lineEnding;
   private boolean collapseDelimiters = false;
   private int numFooterLines = 0;
@@ -110,7 +107,7 @@ public class DelimitedReader extends TextDataReader
     this.numCols = numCols;
     this.numRecords = numRecords;    
     //log.debug("Delimiter is: " + delimiter);
-    this.delimiter = unescapeDelimiter(delimiter);
+    this.fieldDelimiter = unescapeDelimiter(delimiter);
     //log.debug("LineEnding is: " + lineEnding);
     this.lineEnding = unescapeDelimiter(lineEnding);
     
@@ -199,14 +196,14 @@ public class DelimitedReader extends TextDataReader
    * 
    * @param dataStream     InputStream  The input stream
    * @param numCols        int the number of columns
-   * @param delimiter      String the delimiter to tokenize on
+   * @param fieldDelimiter String the field delimiter to tokenize on
    * @param numHeaderLines int numHeaderLines the number of lines to skip at the
    *                       top of the file
    * @param lineEnding     String lineEnding the line ending char(s)...either 
    *                       "\n" (Unix),"\r\n" (Windows) or "\r" (Mac)
    * @param numRecords     int number of rows in the input stream
    */
-  public DelimitedReader(InputStream dataStream, int numCols, String delimiter,
+  public DelimitedReader(InputStream dataStream, int numCols, String fieldDelimiter,
                          int numHeaderLines, String lineEnding, int numRecords, 
                          boolean stripHeader)
   {
@@ -215,7 +212,7 @@ public class DelimitedReader extends TextDataReader
     this.numCols = numCols;
     this.numRecords = numRecords;    
     //log.debug("Delimiter is: " + delimiter);
-    this.delimiter = unescapeDelimiter(delimiter);
+    this.fieldDelimiter = unescapeDelimiter(fieldDelimiter);
     //log.debug("LineEnding is: " + lineEnding);
     this.lineEnding = unescapeDelimiter(lineEnding);
     this.stripHeader = stripHeader;
@@ -505,7 +502,7 @@ public class DelimitedReader extends TextDataReader
      * If there is no quote character, we can split data directly
      */
     if (quoteCharacter == null && literalCharacter == null) {
-      String delimiterRegex = collapseDelimiters ? delimiter + "+" : delimiter;
+      String delimiterRegex = collapseDelimiters ? fieldDelimiter + "+" : fieldDelimiter;
 	    stringArray = data.split(delimiterRegex);
     }
     /*
@@ -661,11 +658,11 @@ public class DelimitedReader extends TextDataReader
 	  int length = oneRowData.length();
 	  int priviousDelimiterIndex = -2;
 	  int currentDelimiterIndex = -2;
-	  int delimiterLength = delimiter.length();
+	  int delimiterLength = fieldDelimiter.length();
 	  boolean startQuote = false;
 	  boolean delimiterAtEnd = false;
 	  //this string buffer is only for deleting if hit a delimiter
-	  StringBuffer delimiterStorage = new StringBuffer(delimiter.length());
+	  StringBuffer delimiterStorage = new StringBuffer(fieldDelimiter.length());
 	  for (int i=0; i<length; i++)
 	  {
 		  currentChar = oneRowData.charAt(i);
@@ -731,7 +728,7 @@ public class DelimitedReader extends TextDataReader
 		  }
 		 
 		  //found a delimiter
-		  if (delimiterStorage.indexOf(delimiter) != -1 && !startQuote)
+		  if (delimiterStorage.indexOf(fieldDelimiter) != -1 && !startQuote)
 		  {
 			  
 			  //check if there is literal character before the delimiter,
@@ -780,7 +777,7 @@ public class DelimitedReader extends TextDataReader
 			  }			  
 			  
 			  String value ="";
-			  int delimiterIndex = fieldData.lastIndexOf(delimiter);
+			  int delimiterIndex = fieldData.lastIndexOf(fieldDelimiter);
 			  if (delimiterIndex ==0)
 			  {
 				  //this path means field data on has delimiter, no real data

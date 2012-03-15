@@ -1043,7 +1043,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         int numHeaderLines = 0;
         int numFooterLines = 0;
         String fieldDelimiter = null;
-        String recordDelimiter = "";
+        String recordDelimiter = "\\r\\n";  // default record delimiter value
         String compressionMethod = "";
         String encodingMethod = "";
         String quoteCharacter = null;
@@ -1288,10 +1288,13 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            if ((recordDelimiterNodeList != null) && 
                (recordDelimiterNodeList.getLength() > 0)
               ) {
-              recordDelimiter = 
-                recordDelimiterNodeList.item(0).getFirstChild().getNodeValue();
-           } else {
-              recordDelimiter = "\\r\\n";
+             Node firstNode = recordDelimiterNodeList.item(0);
+             if (firstNode != null) {
+               Node firstChild = firstNode.getFirstChild();
+               if (firstChild != null) {
+                 recordDelimiter = firstChild.getNodeValue();
+               }
+             }
            }
            
            // Store the entity access XML since some applications may need it

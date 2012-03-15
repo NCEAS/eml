@@ -32,9 +32,7 @@
 
 package org.ecoinformatics.datamanager.parser;
 
-//import org.kepler.objectmanager.data.DataObjectDescription;
-//import org.kepler.objectmanager.cache.DataCacheObject;
-//import org.kepler.objectmanager.data.text.TextComplexDataFormat;
+import java.util.TreeSet;
 
 import org.ecoinformatics.datamanager.database.DelimitedReader;
 import org.ecoinformatics.datamanager.download.DownloadHandler;
@@ -422,6 +420,66 @@ public class Entity extends DataObjectDescription
     public void setRecordDelimiter(String delim)
     {
       this.recordDelimiter = delim;
+      
+      /*
+       *  Do a quality check the recordDelimiter value
+       */
+      String recordDelimiterIdentifier = "recordDelimiterPresent";
+      QualityCheck recordDelimiterTemplate = 
+        QualityReport.getQualityCheckTemplate(recordDelimiterIdentifier);
+      QualityCheck recordDelimiterQualityCheck = 
+        new QualityCheck(recordDelimiterIdentifier, recordDelimiterTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, recordDelimiterQualityCheck)) {
+        boolean isValidDelimiter = true;
+        String found = recordDelimiter;
+        String explanation = recordDelimiterQualityCheck.getExplanation();
+        
+        // Check for unusual record delimiter values
+        if (recordDelimiter == null || recordDelimiter.equals("")) {
+          isValidDelimiter = false;
+          explanation += " The recordDelimiter value is null or an empty string.";
+        }
+        else if (!isSuggestedRecordDelimiter(recordDelimiter)) {
+          isValidDelimiter = false;
+          explanation += 
+            " The specified recordDelimiter, '" + 
+            recordDelimiter + "'," +
+            " is not in the list of suggested recordDelimiter values.";
+        }
+          
+        recordDelimiterQualityCheck.setFound(found);
+        if (isValidDelimiter) {
+          explanation = "A valid recordDelimiter value was found";
+          recordDelimiterQualityCheck.setStatus(Status.valid);
+          recordDelimiterQualityCheck.setSuggestion("");
+        }
+        else {
+          recordDelimiterQualityCheck.setFailedStatus();
+        } 
+        recordDelimiterQualityCheck.setExplanation(explanation);
+        addQualityCheck(recordDelimiterQualityCheck);
+      }
+      
+    }
+    
+    
+    /*
+     * Boolean method used for quality check on record delimiter value
+     */
+    private boolean isSuggestedRecordDelimiter(String recordDelimiter) {
+      boolean isSuggested;
+      
+      TreeSet<String> treeSet = new TreeSet<String>();
+      treeSet.add("\\n");
+      treeSet.add("\\r");
+      treeSet.add("\\r\\n");
+      treeSet.add("#x0A");
+      treeSet.add("#x0D");
+      treeSet.add("#x0D#x0A");
+      isSuggested = treeSet.contains(recordDelimiter);
+      
+      return isSuggested;
     }
 
     

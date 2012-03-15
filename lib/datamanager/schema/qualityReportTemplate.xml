@@ -46,6 +46,17 @@
   </datasetReport>
   <entityReport>
     <entityName></entityName>
+    <qualityCheck qualityType="metadata" system="knb" statusType="warn" >
+      <identifier>recordDelimiterPresent</identifier>
+      <name>Record delimiter is present</name>
+      <description>Check presence of record delimiter. Check that the record delimiter is one of the suggested values.</description>
+      <expected>A record delimiter from a list of suggested values: \n, \r, \r\n, #x0A, #x0D, #x0D#x0A</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>The record delimiter is not present or is not one of the suggested values.</explanation>
+      <suggestion>Add a record delimiter or change the record delimiter to one of the suggested values: \n, \r, \r\n, #x0A, #x0D, #x0D#x0A</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#recordDelimiter</reference>
+    </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >
       <identifier>fieldDelimiterValid</identifier>
       <name>Field delimiter is a single character</name>
