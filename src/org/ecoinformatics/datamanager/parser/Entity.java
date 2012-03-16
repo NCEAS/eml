@@ -467,9 +467,22 @@ public class Entity extends DataObjectDescription
     /*
      * Boolean method used for quality check on record delimiter value
      */
-    private boolean isSuggestedRecordDelimiter(String recordDelimiter) {
+    public boolean isSuggestedRecordDelimiter(String recordDelimiter) {
       boolean isSuggested;
       
+      TreeSet<String> treeSet = suggestedRecordDelimiters();
+      isSuggested = treeSet.contains(recordDelimiter);
+      
+      return isSuggested;
+    }
+    
+    
+    /**
+     * Returns a set of suggested record delimiter values.
+     * 
+     * @return  treeSet, a set of suggested record delimiter values
+     */
+    private TreeSet<String> suggestedRecordDelimiters() {
       TreeSet<String> treeSet = new TreeSet<String>();
       treeSet.add("\\n");
       treeSet.add("\\r");
@@ -477,12 +490,10 @@ public class Entity extends DataObjectDescription
       treeSet.add("#x0A");
       treeSet.add("#x0D");
       treeSet.add("#x0D#x0A");
-      isSuggested = treeSet.contains(recordDelimiter);
-      
-      return isSuggested;
+      return treeSet;
     }
-
     
+ 
     /**
      * Gets the recordDelimiter used with this entity.
      * 
@@ -1098,6 +1109,7 @@ public class Entity extends DataObjectDescription
           urlDataQualityCheck.setFailedStatus();
         }
         else {
+          urlDataQualityCheck.setFound("true");
           urlDataQualityCheck.setStatus(Status.valid);
           urlDataQualityCheck.setSuggestion("");
         }

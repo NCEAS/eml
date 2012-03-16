@@ -15,7 +15,7 @@
       <name>EML version 2.1.0 or beyond</name>
       <description>Check the EML document declaration for version 2.1.0 or higher</description>
       <expected>eml://ecoinformatics.org/eml-2.1.0 or eml://ecoinformatics.org/eml-2.1.1</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
       <suggestion>Use an approved namespace.</suggestion>
@@ -26,7 +26,7 @@
       <name>packageId pattern matches "scope.identifier.revision"</name>
       <description>Check against LTER requirements for scope.identifier.revision</description>
       <expected>'knb-lter-abc.n.m', where 'abc' is an LTER site acronym and 'n' and 'm' are whole numbers</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion>Value of the packageId attribute must conform with LTER best practices</suggestion>
@@ -37,7 +37,7 @@
       <name>There are no duplicate entity names</name>
       <description>Checks that content is not duplicated by other entityName elements in the document</description>
       <expected>entityName is not a duplicate within the document</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation>Data Manager requires a non-empty, non-duplicate entityName value for every entity</explanation>
       <suggestion>Declare a non-empty entityName and ensure that there are no duplicate entityName values in the document</suggestion>
@@ -46,6 +46,39 @@
   </datasetReport>
   <entityReport>
     <entityName></entityName>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <identifier>onlineURLs</identifier>
+      <name>Online URLs are live</name>
+      <description>Check that online URLs return something</description>
+      <expected>true</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
+      <identifier>urlReturnsData</identifier>
+      <name>URL returns data</name>
+      <description>Checks whether a URL returns data. Unless the URL is specified to be function="information", the URL should return the resource for download.</description>
+      <expected>A data entity that matches the metadata</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion>URL should return a data entity</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-resource.html#UrlType</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="data" system="knb" statusType="info" >
+      <identifier>displayDownloadData</identifier>
+      <name>Display downloaded data</name>
+      <description>Display the first kilobyte of data that is downloaded</description>
+      <expected>Up to one kilobyte of data should be displayed</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="warn" >
       <identifier>recordDelimiterPresent</identifier>
       <name>Record delimiter is present</name>
@@ -55,6 +88,17 @@
       <status>notChecked</status>
       <explanation>The record delimiter is not present or is not one of the suggested values.</explanation>
       <suggestion>Add a record delimiter or change the record delimiter to one of the suggested values: \n, \r, \r\n, #x0A, #x0D, #x0D#x0A</suggestion>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#recordDelimiter</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="congruency" system="knb" statusType="warn" >
+      <identifier>examineRecordDelimiter</identifier>
+      <name>If no valid record delimiter is specified in metadata, data are examined and a possible delimiter displayed</name>
+      <description>If we have no valid record delimiter, we assume that \r\n is the delimiter. Search the first row for other record delimiters and see if other delimiters are found.</description>
+      <expected>No other potential record delimiters expected in the first row.</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>Detection of line endings may be automatic on most systems, so this may not be important.</explanation>
+      <suggestion>Ensure that record delimiters are correctly specified.</suggestion>
       <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#recordDelimiter</reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >
@@ -68,45 +112,12 @@
       <suggestion>Change the fieldDelimiter to a single character or its representation, either decimal, hex or escaped.</suggestion>
       <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#fieldDelimiter</reference>
     </qualityCheck>
-    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
-      <identifier>onlineURLs</identifier>
-      <name>Online URLs are live</name>
-      <description>Check that online URLs return something</description>
-      <expected>true</expected>
-      <found>notChecked</found>
-      <status>notChecked</status>
-      <explanation></explanation>
-      <suggestion></suggestion>
-      <reference></reference>
-    </qualityCheck>
-    <qualityCheck qualityType="congruency" system="knb" statusType="error" >
-      <identifier>urlReturnsData</identifier>
-      <name>URL returns data</name>
-      <description>Checks whether a URL returns data. Unless the URL is specified to be function="information", the URL should return the resource for download.</description>
-      <expected>A data entity that matches the metadata</expected>
-      <found>notChecked</found>
-      <status>notChecked</status>
-      <explanation></explanation>
-      <suggestion>URL should return a data entity</suggestion>
-      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-resource.html#UrlType</reference>
-    </qualityCheck>
-    <qualityCheck qualityType="data" system="knb" statusType="info" >
-      <identifier>displayDownloadData</identifier>
-      <name>Display downloaded data</name>
-      <description>Display the first kilobyte of data that is downloaded</description>
-      <expected>Up to one kilobyte of data should be displayed</expected>
-      <found>notChecked</found>
-      <status>notChecked</status>
-      <explanation></explanation>
-      <suggestion></suggestion>
-      <reference></reference>
-    </qualityCheck>
     <qualityCheck qualityType="data" system="knb" statusType="info" >
       <identifier>displayFirstInsertRow</identifier>
       <name>Display first insert row</name>
       <description>Display the first row of data values to be inserted into the database table</description>
       <expected>The first row of data values should be displayed</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion></suggestion>
@@ -139,7 +150,7 @@
       <name>Database table created</name>
       <description>Status of creating a database table</description>
       <expected>A database table is expected to be generated from the EML attributes.</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion></suggestion>
@@ -150,7 +161,7 @@
       <name>Data can be loaded into the database</name>
       <description>Status of loading the data table into a database</description>
       <expected>No errors expected during data loading or data loading was not attempted for this data entity</expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion></suggestion>
@@ -161,7 +172,7 @@
       <name>Number of records in metadata matches number of rows loaded</name>
       <description>Compare number of records specified in metadata to number of records found in data</description>
       <expected></expected>
-      <found>notChecked</found>
+      <found></found>
       <status>notChecked</status>
       <explanation></explanation>
       <suggestion></suggestion>

@@ -34,12 +34,14 @@ package org.ecoinformatics.datamanager.database;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.TreeSet;
 import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
-import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
+import org.ecoinformatics.datamanager.quality.QualityReport;
 
 /**
  * tokenizes a delimited file.  This reader assumes that one record is on one
@@ -71,10 +73,15 @@ public class DelimitedReader extends TextDataReader
   private String literalCharacter = null;
   private boolean includeLiteralCharacter = false;
   private Entity entity;
+  private int rowCounter = 0;
+  
+  
+  // Used for quality reporting purposes
   private int tooFewFieldsCounter = 0;   // Counts 'tooFewFields' errors
   private int tooManyFieldsCounter = 0;  // Counts 'tooManyFields' errors
   private final int FIELD_CHECK_MAX = 5; // Max number of field count checks to report
-  private int rowCounter = 0;
+  private int examineRecordDelimiterCounter = 0; // Counts 'examineRecordDelimiter' checks
+  private final int EXAMINE_RECORD_DELIMITER_MAX = 1; // Max number of examineRecordDelimiter checks
   
 
   /*private static Log log;
@@ -402,10 +409,80 @@ public class DelimitedReader extends TextDataReader
     }
      
     if (oneRowDataString != null) {
+
+      /*
+       * Quality check: 'examineRecordDelimiter'
+       */
+      if (examineRecordDelimiterCounter < EXAMINE_RECORD_DELIMITER_MAX) {
+        /*
+         * If no valid record delimiter is specified in metadata, first row of 
+         * data is examined and a potential delimiter displayed.
+         */
+        String examineRecordDelimiter = "examineRecordDelimiter";
+        QualityCheck examineRecordDelimiterTemplate = QualityReport
+            .getQualityCheckTemplate(examineRecordDelimiter);
+        QualityCheck examineRecordDelimiterQualityCheck = new QualityCheck(
+            examineRecordDelimiter, examineRecordDelimiterTemplate);
+
+        if (QualityCheck.shouldRunQualityCheck(entity,
+            examineRecordDelimiterQualityCheck)) {
+          String recordDelimiter = entity.getRecordDelimiter();
+          
+          /*
+           * If metadata didn't specify a valid record delimiter, check
+           * whether other potential candidates can be identified.
+           */
+          if (!entity.isSuggestedRecordDelimiter(recordDelimiter)) {
+            ArrayList<String> otherDelimiters = otherRecordDelimiters(oneRowDataString);
+            if (otherDelimiters.size() > 0) {
+              examineRecordDelimiterQualityCheck.setFound(otherDelimiters.toString());
+            }
+            else {
+              examineRecordDelimiterQualityCheck.setFound(
+                  "No other potential record delimiters were detected");
+            }
+            examineRecordDelimiterQualityCheck.setFailedStatus();
+          }
+          else {
+            examineRecordDelimiterQualityCheck.setFound(
+                "A valid record delimiter was previously detected");
+            examineRecordDelimiterQualityCheck.setStatus(Status.valid);
+            examineRecordDelimiterQualityCheck.setSuggestion("");
+          }
+          
+          entity.addQualityCheck(examineRecordDelimiterQualityCheck);
+        }
+        examineRecordDelimiterCounter++;
+      }
+      
       oneRowDataVector = splitDelimitedRowStringIntoVector(oneRowDataString);
     }
 
     return oneRowDataVector;
+  }
+  
+  
+  /*
+   * Used in quality reporting for the 'examineRecordDelimiter' quality check.
+   * Check whether a row of data contains other potential record delimiters.
+   */
+  private ArrayList<String> otherRecordDelimiters(String row) {
+    ArrayList<String> otherDelimiters = new ArrayList<String>();
+    
+    if (row != null && !row.equals("")) {
+      TreeSet<String> commonDelimiters = new TreeSet<String>();
+      commonDelimiters.add("\n");
+      commonDelimiters.add("\r");
+      commonDelimiters.add("\r\n");
+     
+      for (String commonDelimiter : commonDelimiters) {
+        if (row.contains(commonDelimiter)) {
+          otherDelimiters.add(commonDelimiter);
+        }
+      }
+    }
+    
+    return otherDelimiters;
   }
   
   

@@ -76,7 +76,7 @@ public abstract class TextDataReader {
    * 
    * @return Vector constains one row data
    */
-  public abstract Vector getOneRowDataVector() throws Exception;
+  public abstract Vector<String> getOneRowDataVector() throws Exception;
    
   
   /**

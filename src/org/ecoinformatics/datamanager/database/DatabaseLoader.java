@@ -209,8 +209,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
     DelimitedReader delimitedReader = null;
     QualityCheck dataLoadQualityCheck = null;
     String insertSQL = "";
-    // System.out.println("====================== start load data into db");
-    Vector rowVector = new Vector();
+    Vector<String> rowVector = new Vector<String>();
     int rowCount = 0;
     
     if (entity == null) {
@@ -306,7 +305,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           entity.addQualityCheck(displayRowQualityCheck);
         }
         
-    	  connection = DataManager.getConnection();
+        connection = DataManager.getConnection();
     	  if (connection == null)
     	  {
     		  success = false;
