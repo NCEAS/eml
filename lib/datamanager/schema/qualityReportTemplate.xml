@@ -92,8 +92,8 @@
     </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="warn" >
       <identifier>examineRecordDelimiter</identifier>
-      <name>If no valid record delimiter is specified in metadata, data are examined and a possible delimiter displayed</name>
-      <description>If we have no valid record delimiter, we assume that \r\n is the delimiter. Search the first row for other record delimiters and see if other delimiters are found.</description>
+      <name>Data are examined and possible record delimiters are displayed</name>
+      <description>If no record delimiter was specified, we assume that \r\n is the delimiter. Search the first row for other record delimiters and see if other delimiters are found.</description>
       <expected>No other potential record delimiters expected in the first row.</expected>
       <found></found>
       <status>notChecked</status>

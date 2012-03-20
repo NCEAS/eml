@@ -25,7 +25,7 @@ public class EntityReport {
   private Entity entity;
   
   // List of quality checks that have been performed on this entity
-  private ArrayList<QualityCheck> qualityChecks = new ArrayList<QualityCheck>();
+  private ArrayList<QualityCheck> qualityChecks = null;
 
   /*
    * Constructors
@@ -33,6 +33,7 @@ public class EntityReport {
   
   public EntityReport(Entity entity) {
     this.entity = entity;
+    qualityChecks = new ArrayList<QualityCheck>();
   }
 
   
@@ -53,13 +54,13 @@ public class EntityReport {
    * @param qualityCheck    the new quality check to add to the list
    */
   public void addQualityCheck(QualityCheck qualityCheck) {
-    String name = qualityCheck.getName();
+    String identifier = qualityCheck.getIdentifier();
     
     /*
      * Filter out duplicate cases of the same quality check.
      * (We need a better approach to specifying these cases.)
      */
-    if (name.equalsIgnoreCase("Online URLs are live")) {
+    if (identifier.equalsIgnoreCase("onlineURLs")) {
       if (hasQualityCheck(qualityCheck)) {
         return;
       }

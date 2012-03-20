@@ -711,7 +711,6 @@ public class TableMonitor {
       tableList[i] = (String) vector.get(i);
     }
 
-    System.err.println(tableList.toString());
     return tableList;
   }
   

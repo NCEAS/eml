@@ -426,30 +426,37 @@ public class DelimitedReader extends TextDataReader
 
         if (QualityCheck.shouldRunQualityCheck(entity,
             examineRecordDelimiterQualityCheck)) {
-          String recordDelimiter = entity.getRecordDelimiter();
+          String found = null;
+          String metadataRecordDelimiter = entity.getMetadataRecordDelimiter();
           
           /*
            * If metadata didn't specify a valid record delimiter, check
            * whether other potential candidates can be identified.
            */
-          if (!entity.isSuggestedRecordDelimiter(recordDelimiter)) {
-            ArrayList<String> otherDelimiters = otherRecordDelimiters(oneRowDataString);
-            if (otherDelimiters.size() > 0) {
-              examineRecordDelimiterQualityCheck.setFound(otherDelimiters.toString());
-            }
-            else {
-              examineRecordDelimiterQualityCheck.setFound(
-                  "No other potential record delimiters were detected");
-            }
+          ArrayList<String> otherDelimiters = otherRecordDelimiters(oneRowDataString, metadataRecordDelimiter);
+          boolean hasSuggestedDelimiter = 
+            entity.isSuggestedRecordDelimiter(metadataRecordDelimiter);
+         
+          if (otherDelimiters.size() > 0) {
+            found = 
+              "Other potential record delimiters were found in the first row: ";
+            found += otherDelimiters.toString();
             examineRecordDelimiterQualityCheck.setFailedStatus();
           }
           else {
-            examineRecordDelimiterQualityCheck.setFound(
-                "A valid record delimiter was previously detected");
-            examineRecordDelimiterQualityCheck.setStatus(Status.valid);
-            examineRecordDelimiterQualityCheck.setSuggestion("");
+            found = "No other potential record delimiters were detected.";
+            if (hasSuggestedDelimiter) {
+              found += " A valid record delimiter was previously detected";
+              examineRecordDelimiterQualityCheck.setStatus(Status.valid);
+              examineRecordDelimiterQualityCheck.setExplanation("");
+              examineRecordDelimiterQualityCheck.setSuggestion("");
+            }
+            else {
+              examineRecordDelimiterQualityCheck.setFailedStatus();
+            }
           }
-          
+
+          examineRecordDelimiterQualityCheck.setFound(found);
           entity.addQualityCheck(examineRecordDelimiterQualityCheck);
         }
         examineRecordDelimiterCounter++;
@@ -464,22 +471,43 @@ public class DelimitedReader extends TextDataReader
   
   /*
    * Used in quality reporting for the 'examineRecordDelimiter' quality check.
-   * Check whether a row of data contains other potential record delimiters.
+   * Check whether a row of data contains other potential record delimiters
+   * besides the record delimiter specified in the metadata.
    */
-  private ArrayList<String> otherRecordDelimiters(String row) {
+  private ArrayList<String> otherRecordDelimiters(String row, String metadataDelimiter) {
     ArrayList<String> otherDelimiters = new ArrayList<String>();
     
-    if (row != null && !row.equals("")) {
-      TreeSet<String> commonDelimiters = new TreeSet<String>();
-      commonDelimiters.add("\n");
-      commonDelimiters.add("\r");
-      commonDelimiters.add("\r\n");
-     
-      for (String commonDelimiter : commonDelimiters) {
-        if (row.contains(commonDelimiter)) {
-          otherDelimiters.add(commonDelimiter);
+    if (row != null) {
+        if (row.contains("\n")) {
+          if (metadataDelimiter == null || 
+               (!metadataDelimiter.equals("\\n") && 
+                !metadataDelimiter.equals("#x0A")
+               )
+             ) {
+            otherDelimiters.add("\\n");
+          }
         }
-      }
+
+        if (row.contains("\r")) {
+          if (metadataDelimiter == null || 
+               (!metadataDelimiter.equals("\\r") && 
+                !metadataDelimiter.equals("#x0D")
+               )
+             ) {
+            otherDelimiters.add("\\r");
+          }
+        }
+
+        if (row.contains("\r\n")) {
+          if (metadataDelimiter == null || 
+               (!metadataDelimiter.equals("\\r\\n") && 
+                !metadataDelimiter.equals("#x0D#x0A")
+               )
+             ) {
+            otherDelimiters.add("\\r\\n");
+          }
+        }
+
     }
     
     return otherDelimiters;

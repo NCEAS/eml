@@ -89,9 +89,16 @@ public class Entity extends DataObjectDescription
     private int          numFooterLines  = 0;
     private String       fieldDelimiter  = null;
     private String       recordDelimiter = null;
+    
+    /*
+     * The record delimiter value as stored in the metadata.
+     * This might be different from the value used for processing the entity.
+     * It's useful to know the original metadata value for quality checking.
+     */
+    private String       metadataRecordDelimiter = null;
+    
     private boolean      multiple        = false; // if true, multiple inputs 
                                                   // can be mapped to one table
-
     private String fileName;       // filename where Entity data is stored
     private String url;            // distribution URL for this entity
     private String urlFunction;    // value of the URL "function" attribute
@@ -198,6 +205,7 @@ public class Entity extends DataObjectDescription
       if (entityReport != null) {
         entityReport.addQualityCheck(qualityCheck);
       }
+      System.err.println("  Adding quality check '" + qualityCheck.getIdentifier() + "' to entity: " + this.toString());
     }
     
     
@@ -420,9 +428,42 @@ public class Entity extends DataObjectDescription
     public void setRecordDelimiter(String delim)
     {
       this.recordDelimiter = delim;
+    }
+    
+   
+    /**
+     * Gets the metadata record delimiter value that was specified for
+     * this entity. May be null or an empty string.
+     * 
+     * @returns  the metadataRecordDelimiter value
+     */
+    public String getMetadataRecordDelimiter() {
+      return this.metadataRecordDelimiter;
+    }
+
+
+    /**
+     * Sets the metadata record delimiter value that was specified for
+     * this entity. May be null or an empty string.
+     * 
+     * @param  delim  the record delimiter string value to be set
+     */
+    public void setMetadataRecordDelimiter(String metadataRecordDelimiter) {
+      this.metadataRecordDelimiter = metadataRecordDelimiter;
       
+      checkRecordDelimiter(metadataRecordDelimiter);
+    }
+
+
+    /**
+     * Do a quality check on the recordDelimiter metadata value
+     * 
+     * @param metadataValue   The record delimiter string as specified in the 
+     *                        metadata
+     */
+    public void checkRecordDelimiter(String metadataValue) {
       /*
-       *  Do a quality check the recordDelimiter value
+       *  Do a quality check on the recordDelimiter value
        */
       String recordDelimiterIdentifier = "recordDelimiterPresent";
       QualityCheck recordDelimiterTemplate = 
@@ -432,19 +473,19 @@ public class Entity extends DataObjectDescription
 
       if (QualityCheck.shouldRunQualityCheck(this, recordDelimiterQualityCheck)) {
         boolean isValidDelimiter = true;
-        String found = recordDelimiter;
+        String found = metadataValue;
         String explanation = recordDelimiterQualityCheck.getExplanation();
         
         // Check for unusual record delimiter values
-        if (recordDelimiter == null || recordDelimiter.equals("")) {
+        if (metadataValue == null || metadataValue.equals("")) {
           isValidDelimiter = false;
           explanation += " The recordDelimiter value is null or an empty string.";
         }
-        else if (!isSuggestedRecordDelimiter(recordDelimiter)) {
+        else if (!isSuggestedRecordDelimiter(metadataValue)) {
           isValidDelimiter = false;
           explanation += 
             " The specified recordDelimiter, '" + 
-            recordDelimiter + "'," +
+            metadataValue + "'," +
             " is not in the list of suggested recordDelimiter values.";
         }
           
@@ -468,10 +509,12 @@ public class Entity extends DataObjectDescription
      * Boolean method used for quality check on record delimiter value
      */
     public boolean isSuggestedRecordDelimiter(String recordDelimiter) {
-      boolean isSuggested;
+      boolean isSuggested = false;
       
-      TreeSet<String> treeSet = suggestedRecordDelimiters();
-      isSuggested = treeSet.contains(recordDelimiter);
+      if (recordDelimiter != null) {
+        TreeSet<String> treeSet = suggestedRecordDelimiters();
+        isSuggested = treeSet.contains(recordDelimiter);
+      }
       
       return isSuggested;
     }

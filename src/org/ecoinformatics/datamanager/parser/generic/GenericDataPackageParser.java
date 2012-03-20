@@ -128,6 +128,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                      new Hashtable<String, AttributeList>();
     //private boolean hasMissingValue = false;
     private DataPackage emlDataPackage = null;
+    private final String DEFAULT_RECORD_DELIMITER = "\\r\\n";
     
     /**
      * Default constructor - no custom xpath parameters
@@ -1043,7 +1044,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         int numHeaderLines = 0;
         int numFooterLines = 0;
         String fieldDelimiter = null;
-        String recordDelimiter = "\\r\\n";  // default record delimiter value
+        String recordDelimiter = DEFAULT_RECORD_DELIMITER;
+        String metadataRecordDelimiter = null; // The record delimiter specified in the metadata
         String compressionMethod = "";
         String encodingMethod = "";
         String quoteCharacter = null;
@@ -1292,7 +1294,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
              if (firstNode != null) {
                Node firstChild = firstNode.getFirstChild();
                if (firstChild != null) {
-                 recordDelimiter = firstChild.getNodeValue();
+                 metadataRecordDelimiter = firstChild.getNodeValue();
+                 recordDelimiter = metadataRecordDelimiter;
                }
              }
            }
@@ -1470,6 +1473,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           }
           
           entityObject.setCollapseDelimiters(isCollapseDelimiters);         
+          entityObject.setMetadataRecordDelimiter(metadataRecordDelimiter);
           entityObject.setRecordDelimiter(recordDelimiter);
           entityObject.setURL(onlineUrl);
           entityObject.setURLFunction(onlineUrlFunction);
