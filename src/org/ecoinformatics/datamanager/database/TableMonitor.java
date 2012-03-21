@@ -313,7 +313,7 @@ public class TableMonitor {
       "  TABLE_NAME varchar(64), " +         // database table name
       "  PACKAGE_ID varchar(64), " +         // package id
       "  ENTITY_IDENTIFIER varchar(256), " + // entity identifier
-      "  ENTITY_NAME varchar(64), " +        // entity name
+      "  ENTITY_NAME varchar(256), " +        // entity name
       "  CREATION_DATE date, " +             // creation date
       "  LAST_USAGE_DATE date, " +           // last usage date
       "  PRIORITY int" +                     // expiration policy

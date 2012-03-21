@@ -84,6 +84,7 @@ public abstract class DatabaseAdapter {
 	protected String TO_DATE_FUNCTION = "to_timestamp";
 	private final String XML_SCHEMA_DATATYPES = 
 	    "http://www.w3.org/2001/XMLSchema-datatypes";
+	protected static final int DEFAULT_TABLE_NAME_MAX_LENGTH = 30;
   
   
   /*
@@ -94,7 +95,13 @@ public abstract class DatabaseAdapter {
   /*
    * Class methods
    */
- 
+	
+	
+	public static int getTableNameMaxLength() {
+	  return DEFAULT_TABLE_NAME_MAX_LENGTH;
+	}
+
+	
   /**
    * Given an entity name, return a well-formed table name. This is a generic
    * implementation that should work for most databases. This method should be
@@ -108,9 +115,16 @@ public abstract class DatabaseAdapter {
    *                     name
    */
   public static String getLegalDBTableName(String entityName) {
-    String legalName = entityName;
+    final int tableNameMaxLength = getTableNameMaxLength();
+    String legalName = null;
     char[] badChars = {' ', '-', '.', '/'};
     char goodChar = '_';
+    
+    if (entityName != null) {
+      int entityNameLength = entityName.length();
+      int legalNameLength = Math.min(entityNameLength, tableNameMaxLength);
+      legalName = entityName.substring(0, legalNameLength);
+    }
 
     if (legalName != null) {
       for (int i = 0; i < badChars.length; i++) {

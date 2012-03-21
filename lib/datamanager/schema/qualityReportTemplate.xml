@@ -46,6 +46,17 @@
   </datasetReport>
   <entityReport>
     <entityName></entityName>
+    <qualityCheck qualityType="metadata" system="knb" statusType="warn" >
+      <identifier>entityNameLength</identifier>
+      <name>Length of entityName is not excessive (less than 100 char)</name>
+      <description>length of entity name is less than 100 characters</description>
+      <expected>entityName value is 100 characters or less</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation></explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="error" >
       <identifier>onlineURLs</identifier>
       <name>Online URLs are live</name>

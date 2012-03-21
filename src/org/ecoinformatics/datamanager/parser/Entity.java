@@ -168,19 +168,13 @@ public class Entity extends DataObjectDescription
             AttributeList attributeList)
     {
         super(id, name, description);
-        //attributeList = new AttributeList();
         fileName = "";
-        this.attributeList = attributeList;
-        
-        /*if (attributeList != null) {
-            for (int i=0; i<attributeList.length; i++) {
-                this.add(attributeList[i]);
-            }
-        }*/
-        
+        this.attributeList = attributeList;       
         this.caseSensitive = new Boolean(false);
         this.orientation = "";
         this.entityReport = new EntityReport(this);
+        
+        checkEntityName(name);
     }
 
     
@@ -452,6 +446,44 @@ public class Entity extends DataObjectDescription
       this.metadataRecordDelimiter = metadataRecordDelimiter;
       
       checkRecordDelimiter(metadataRecordDelimiter);
+    }
+    
+    
+    /**
+     * Do a quality check on the entityName metadata value
+     * 
+     * @param entityName   The 'entityName' string as specified in the 
+     *                     metadata
+     */
+    private void checkEntityName(String entityName) {
+      /*
+       *  Do a quality check on the entityName value
+       */
+      final int ENTITY_NAME_MAX_LENGTH = 100;
+      String entityNameIdentifier = "entityNameLength";
+      QualityCheck entityNameTemplate = 
+        QualityReport.getQualityCheckTemplate(entityNameIdentifier);
+      QualityCheck entityNameQualityCheck = 
+        new QualityCheck(entityNameIdentifier, entityNameTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, entityNameQualityCheck)) {
+        boolean isValidLength = false;
+        int nameLength = (entityName == null) ? 0 : entityName.length();
+        Integer found = new Integer(nameLength);
+        if (found <= ENTITY_NAME_MAX_LENGTH) {
+          isValidLength = true;
+        }
+        
+        entityNameQualityCheck.setFound(found.toString());
+        if (isValidLength) {
+          entityNameQualityCheck.setStatus(Status.valid);
+        }
+        else {
+          entityNameQualityCheck.setFailedStatus();
+        }
+        
+        addQualityCheck(entityNameQualityCheck);
+      }
     }
 
 
