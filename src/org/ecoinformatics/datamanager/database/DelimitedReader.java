@@ -218,9 +218,7 @@ public class DelimitedReader extends TextDataReader
     this.numHeaderLines = numHeaderLines;
     this.numCols = numCols;
     this.numRecords = numRecords;    
-    //log.debug("Delimiter is: " + delimiter);
     this.fieldDelimiter = unescapeDelimiter(fieldDelimiter);
-    //log.debug("LineEnding is: " + lineEnding);
     this.lineEnding = unescapeDelimiter(lineEnding);
     this.stripHeader = stripHeader;
 
@@ -259,27 +257,58 @@ public class DelimitedReader extends TextDataReader
       } else if (delimiter.equals("\\r\\n")) {
           //log.debug("CRNL interpreted incorrectly as string.");
           newDelimiter = "\r\n";
-      } else if (delimiter.startsWith("#")){
-          //log.debug("XML entity charactor.");
-          String digits = delimiter.substring(1, delimiter.length());
-          int radix = 10;
-          if (digits.startsWith("x"))
-          {
-              //log.debug("Radix is "+ 16);
+      } else if (delimiter.startsWith("#")) {
+          /*
+           * Handle some common two-character escape sequences used as
+           * record delimiters
+           */
+          if (delimiter.equalsIgnoreCase("#x0D#x0A")) {
+            newDelimiter = "\r\n";
+          }
+          else if (delimiter.equalsIgnoreCase("#x0A#x0D")) {
+            newDelimiter = "\n\r";
+          }
+          else if (delimiter.equalsIgnoreCase("#x0A#x0A")) {
+            newDelimiter = "\n\n";
+          }
+          else if (delimiter.equalsIgnoreCase("#x0D#x0D")) {
+            newDelimiter = "\r\r";
+          }
+          else {
+            String digits = delimiter.substring(1, delimiter.length());
+            int radix = 10;
+            if (digits.startsWith("x"))
+            {
               radix = 16;
               digits = digits.substring(1, digits.length());
+            }
+          
+            newDelimiter = transformDigitsToCharString(radix, digits);
           }
-          //log.debug("Int value of  delimiter is "+digits);
-          
-          newDelimiter = transformDigitsToCharString(radix, digits);
-          
       }
       else if (delimiter.startsWith("0x") || delimiter.startsWith("0X"))
       {
+        /*
+         * Handle some common two-character escape sequences used as
+         * record delimiters
+         */
+        if (delimiter.equalsIgnoreCase("0x0D0x0A")) {
+          newDelimiter = "\r\n";
+        }
+        else if (delimiter.equalsIgnoreCase("0x0A0x0D")) {
+          newDelimiter = "\n\r";
+        }
+        else if (delimiter.equalsIgnoreCase("0x0A0x0A")) {
+          newDelimiter = "\n\n";
+        }
+        else if (delimiter.equalsIgnoreCase("0x0D0x0D")) {
+          newDelimiter = "\r\r";
+        }
+        else {
           int radix = 16;
           String digits = delimiter.substring(2, delimiter.length());
-          //log.debug("Int value of  delimiter is "+digits);
           newDelimiter = transformDigitsToCharString(radix, digits);
+        }
       }
       
       return newDelimiter;
@@ -300,13 +329,22 @@ public class DelimitedReader extends TextDataReader
       {
           return null;
       }
-      Integer integer = Integer.valueOf(digits, radix);
-      int inter = integer.intValue();
-      //log.debug("The decimal value of char is "+ inter);
-      char charactor =(char)inter;
-      String newDelimiter = Character.toString(charactor);
-      //log.debug("The new delimter is "+newDelimiter);
-      return newDelimiter;
+      
+      try {
+        Integer integer = Integer.valueOf(digits, radix);
+        int anInt = integer.intValue();
+        char aChar =(char) anInt;
+        String newDelimiter = Character.toString(aChar);
+        return newDelimiter;
+      }
+      catch (NumberFormatException e) {
+        String message = 
+            "An error occurred while attempting to unescape a " +
+            "delimiter value. Error transforming string '" + digits + 
+            "' to an integer value.";
+        NumberFormatException newException = new NumberFormatException(message);
+        throw newException;
+      }
   }
     
   
