@@ -513,38 +513,42 @@ public class DelimitedReader extends TextDataReader
    * besides the record delimiter specified in the metadata.
    */
   private ArrayList<String> otherRecordDelimiters(String row, String metadataDelimiter) {
+    boolean foundTwoCharacterDelimiter = false;
     ArrayList<String> otherDelimiters = new ArrayList<String>();
     
     if (row != null) {
-        if (row.contains("\n")) {
-          if (metadataDelimiter == null || 
-               (!metadataDelimiter.equals("\\n") && 
-                !metadataDelimiter.equals("#x0A")
+      if (row.contains("\r\n")) {
+        foundTwoCharacterDelimiter = true;
+        if (metadataDelimiter == null
+            || (!metadataDelimiter.equals("\\r\\n") && 
+                !metadataDelimiter.equalsIgnoreCase("#x0D#x0A")
                )
-             ) {
-            otherDelimiters.add("\\n");
-          }
+           ) {
+          otherDelimiters.add("\\r\\n");
         }
+      }
 
-        if (row.contains("\r")) {
-          if (metadataDelimiter == null || 
-               (!metadataDelimiter.equals("\\r") && 
-                !metadataDelimiter.equals("#x0D")
+      if (row.contains("\n")) {
+        if (metadataDelimiter == null
+            || (!metadataDelimiter.equals("\\n") && 
+                !metadataDelimiter.equalsIgnoreCase("#x0A") &&
+                !foundTwoCharacterDelimiter
                )
-             ) {
-            otherDelimiters.add("\\r");
-          }
+           ) {
+          otherDelimiters.add("\\n");
         }
+      }
 
-        if (row.contains("\r\n")) {
-          if (metadataDelimiter == null || 
-               (!metadataDelimiter.equals("\\r\\n") && 
-                !metadataDelimiter.equals("#x0D#x0A")
+      if (row.contains("\r")) {
+        if (metadataDelimiter == null
+            || (!metadataDelimiter.equals("\\r") && 
+                !metadataDelimiter.equalsIgnoreCase("#x0D") &&
+                !foundTwoCharacterDelimiter
                )
-             ) {
-            otherDelimiters.add("\\r\\n");
-          }
+           ) {
+          otherDelimiters.add("\\r");
         }
+      }
 
     }
     
