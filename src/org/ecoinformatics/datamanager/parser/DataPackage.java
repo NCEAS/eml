@@ -60,6 +60,7 @@ public class DataPackage
   private String accessXML = null;       // <access> element XML string
   private String emlNamespace = null;    // e.g. "eml://ecoinformatics.org/eml-2.1.0"
   private Entity[] entityList = null;
+  private int numberOfMethodsElements = 0;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
   private String system = null;
@@ -353,6 +354,17 @@ public class DataPackage
   }
 
 
+  /*
+   * Gets the value of the numberOfMethodsElements variable.
+   * 
+   * @return   the number of methods elements detected in this
+   *           data package
+   */
+  public int getNumberOfMethodsElements() {
+    return numberOfMethodsElements;
+  }
+
+
   /**
    * Boolean to determine whether this data package has at
    * least one dataset-level or entity-level quality error. 
@@ -449,6 +461,42 @@ public class DataPackage
   }
   
   
+  /**
+   * Set the value of the hasMethodsElement instance variable.
+   * 
+   * @param   n  the number of methods elements detected in
+   *             this data package
+   */
+  public void setNumberOfMethodsElements(int n) {
+    this.numberOfMethodsElements = n;
+
+    /*
+     *  Do a quality check for the presence of at least
+     *  one 'methods' element
+     */
+    String methodsElementIdentifier = "methodsElementPresent";
+    QualityCheck methodsElementTemplate = 
+      QualityReport.getQualityCheckTemplate(methodsElementIdentifier);
+    QualityCheck methodsElementQualityCheck = 
+      new QualityCheck(methodsElementIdentifier, methodsElementTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, methodsElementQualityCheck)) {
+      String found = "Number of 'methods' elements found: " + numberOfMethodsElements;
+      methodsElementQualityCheck.setFound(found);
+      if (numberOfMethodsElements > 0) {
+        methodsElementQualityCheck.setStatus(Status.valid);
+        methodsElementQualityCheck.setExplanation("");
+        methodsElementQualityCheck.setSuggestion("");
+      }
+      else {
+        methodsElementQualityCheck.setFailedStatus();
+      }
+      
+      addDatasetQualityCheck(methodsElementQualityCheck);
+    }
+  }
+
+
   /**
    * Sets the value of the 'system' to the specified String 
    * value.

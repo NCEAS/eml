@@ -32,6 +32,17 @@
       <suggestion>Value of the packageId attribute must conform with LTER best practices</suggestion>
       <reference></reference>
     </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>methodsElementPresent</identifier>
+      <name>A 'methods' element is present</name>
+      <description>All datasets should contain a 'methods' element, at a minimum a link to a separate methods doc.</description>
+      <expected>presence of 'methods' at one or more xpaths.</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>As a minimum, a reference to an external protocol should be given at the dataset level. However, detailed methods at this level are preferable. If further refinement is needed, methods can be defined for individual data entities or even individual attributes if necessary.</explanation>
+      <suggestion>Since they are mostly for human consumption, one detailed description of all steps taken at the dataset level is frequently sufficient and more user friendly.</suggestion>
+      <reference>EML Best Practices, p. 28</reference>
+    </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="error" >
       <identifier>duplicateEntityName</identifier>
       <name>There are no duplicate entity names</name>

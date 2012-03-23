@@ -289,7 +289,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           if (systemValue != null) {
             emlDataPackage.setSystem(systemValue);
           }
-        
+          
+          int nMethodsElements = countMethodsElements(xpathapi, doc);
+          emlDataPackage.setNumberOfMethodsElements(nMethodsElements);
             
             // now dataTable, spatialRaster and spatialVector are handled
             dataTableEntities              = xpathapi.selectNodeList(doc, tableEntityPath);
@@ -451,6 +453,29 @@ public class GenericDataPackageParser implements DataPackageParserInterface
       }
 
       return namespaceURI;
+    }
+
+    
+    /*
+     * Counts the number of "methods" elements. This
+     * is used in a quality check while parsing EML 2.1.0
+     * documents.
+     */
+    private int countMethodsElements(CachedXPathAPI xpathapi, Document doc) {
+      int nMethodsElements = 0;
+      final String xPath = "//methods";
+      
+      try {
+        NodeList methodsList = xpathapi.selectNodeList(doc, xPath);        
+        nMethodsElements = methodsList.getLength();
+      }
+      catch (TransformerException e) {
+        System.err.println(
+            "TransformerException while detecting 'methods' element: " + 
+            e.getMessage());
+      }
+      
+      return nMethodsElements;
     }
 
     
