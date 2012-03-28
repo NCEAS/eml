@@ -31,6 +31,7 @@
  */
 package org.ecoinformatics.datamanager.parser;
 
+import java.io.StringReader;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -39,6 +40,12 @@ import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
+import org.ecoinformatics.eml.EMLParser;
+import org.ecoinformatics.eml.SAXValidate;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
+import edu.ucsb.nceas.utilities.XMLUtilities;
 
 /**
  * This class represents a metadata package information to describe entity
@@ -52,6 +59,21 @@ public class DataPackage
    * Class fields
    */
   
+  /*
+   * Used for the 'schemaValid' quality check
+   */
+  private static final String schemaLocation = 
+    "eml://ecoinformatics.org/eml-2.0.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.0/eml.xsd " +
+    "eml://ecoinformatics.org/eml-2.0.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/eml.xsd " +
+    "eml://ecoinformatics.org/eml-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml.xsd " +
+    "eml://ecoinformatics.org/literature-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-literature.xsd " +
+    "eml://ecoinformatics.org/project-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-project.xsd " +
+    "eml://ecoinformatics.org/eml-2.1.1 eml.xsd " +
+    "eml://ecoinformatics.org/literature-2.1.1 eml-literature.xsd " +
+    "eml://ecoinformatics.org/project-2.1.1 eml-project.xsd " +
+    "http://www.xml-cml.org/schema/stmml http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/stmml.xsd " +
+    "http://www.xml-cml.org/schema/stmml-1.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/stmml.xsd";
+  
   
   /*
    * Instance fields
@@ -60,6 +82,8 @@ public class DataPackage
   private String accessXML = null;       // <access> element XML string
   private String emlNamespace = null;    // e.g. "eml://ecoinformatics.org/eml-2.1.0"
   private Entity[] entityList = null;
+  private boolean parserValid = false;
+  private boolean schemaValid = false;
   private int numberOfMethodsElements = 0;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
@@ -86,6 +110,26 @@ public class DataPackage
   }
   
   
+  /**
+   * Gets the parserValid value
+   * 
+   * @return  the value of the parserValid variable
+   */
+  public boolean isParserValid() {
+    return parserValid;
+  }
+
+
+  /**
+   * Gets the schemaValid value
+   * 
+   * @return  the value of the schemaValid variable
+   */
+  public boolean isSchemaValid() {
+    return schemaValid;
+  }
+
+
   /*
    * Boolean to determine whether a given packageId conforms to
    * the string pattern of a particular organization such as LTER.
@@ -457,6 +501,87 @@ public class DataPackage
         emlVersionQualityCheck.setFailedStatus();
       }
       this.addDatasetQualityCheck(emlVersionQualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Performs the 'schemaValid' quality check.
+   * 
+   * @param doc            the XML DOM document object
+   * @param namespaceInDoc the namespace value specified in the document
+   */
+  public void checkSchemaValid(Document doc, String namespaceInDoc) {
+    String schemaValidIdentifier = "schemaValid";
+    QualityCheck schemaValidTemplate = 
+      QualityReport.getQualityCheckTemplate(schemaValidIdentifier);
+    QualityCheck schemaValidQualityCheck = 
+      new QualityCheck(schemaValidIdentifier, schemaValidTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, schemaValidQualityCheck)) {
+      // Initialize the schemaValidQualityCheck
+      boolean validateSchema = true;
+      String found = "";
+      final String parserName = "DEFAULT";
+
+      Node documentElement = doc.getDocumentElement();
+      String xmlString = XMLUtilities.getDOMTreeAsString(documentElement);
+      StringReader stringReader = new StringReader(xmlString);
+      SAXValidate saxValidate = new SAXValidate(validateSchema);
+    
+      try {
+        saxValidate.runTest(stringReader, parserName, schemaLocation, namespaceInDoc);
+        found = "Document validated for namespace: '" + namespaceInDoc + "'";
+        schemaValidQualityCheck.setStatus(Status.valid);
+        schemaValidQualityCheck.setSuggestion("");
+        this.schemaValid = true;
+      }
+      catch (Exception e) {
+        found = "Failed to validate for namespace: '" + namespaceInDoc + 
+                "'; " + e.getMessage();
+        schemaValidQualityCheck.setFailedStatus();
+      }
+      
+      schemaValidQualityCheck.setFound(found);
+      this.addDatasetQualityCheck(schemaValidQualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Performs the 'parserValid' quality check, using the 'EML IDs
+   * and References Parser' code in the org.ecoinformatics.eml.EMLParser 
+   * class.
+   * 
+   * @param doc            the XML DOM document object
+   */
+  public void checkParserValid(Document doc) {
+    String parserValidIdentifier = "parserValid";
+    QualityCheck parserValidTemplate = 
+      QualityReport.getQualityCheckTemplate(parserValidIdentifier);
+    QualityCheck parserValidQualityCheck = 
+      new QualityCheck(parserValidIdentifier, parserValidTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, parserValidQualityCheck)) {
+      // Initialize the parserValidQualityCheck
+      String found = "";
+      Node documentElement = doc.getDocumentElement();
+      String xmlString = XMLUtilities.getDOMTreeAsString(documentElement);
+   
+      try {
+        EMLParser emlParser = new EMLParser(xmlString);
+        found = "EML IDs and references parser succeeded";
+        parserValidQualityCheck.setStatus(Status.valid);
+        parserValidQualityCheck.setSuggestion("");
+        this.parserValid = true;
+      }
+      catch (Exception e) {
+        found = "Failed to parse IDs and references: " + e.getMessage();
+        parserValidQualityCheck.setFailedStatus();
+      }
+      
+      parserValidQualityCheck.setFound(found);
+      this.addDatasetQualityCheck(parserValidQualityCheck);
     }
   }
   

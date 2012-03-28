@@ -285,6 +285,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             emlDataPackage.setEmlNamespace(emlNamespace);
           }
           
+          emlDataPackage.checkSchemaValid(doc, emlNamespace);
+          emlDataPackage.checkParserValid(doc);
+          
           String systemValue = parseSystemAttribute(doc);
           if (systemValue != null) {
             emlDataPackage.setSystem(systemValue);

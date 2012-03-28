@@ -21,6 +21,28 @@
       <suggestion>Use an approved namespace.</suggestion>
       <reference></reference>
     </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
+      <identifier>schemaValid</identifier>
+      <name>Document is schema-valid EML</name>
+      <description>Check document schema validity</description>
+      <expected>schema-valid</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
+      <suggestion>Make this doc valid..</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="error" >
+      <identifier>parserValid</identifier>
+      <name>Document is EML parser-valid</name>
+      <description>Check document using the EML IDs and references parser</description>
+      <expected>Validates with the EML IDs and references parser</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
+      <suggestion>Resolve issues with IDs and references.</suggestion>
+      <reference></reference>
+    </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="error" >
       <identifier>packageIdPattern</identifier>
       <name>packageId pattern matches "scope.identifier.revision"</name>

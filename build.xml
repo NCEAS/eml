@@ -581,22 +581,24 @@
 	</target>
 
 	<!--
-      The following set of targets support the Data Manager library:
-
-        init-datamanager-lib      
-        compile-datamanager-lib
-        dist-datamanager-lib
-        jar-datamanager-lib
-        test-datamanager-init (used internally only)
-        test-datamanager-all
-        test-datamanager-one
-        
-      Applications can use this library's API to manage EML data (as well as
-      other types of data). The library is currently housed under the 'eml'
-      module in CVS. At some point in the future, it may be broken out into its
-      own module.
-    -->
-
+		The following set of targets support the Data Manager library:
+		
+		init-datamanager-lib      
+		compile-datamanager-lib	
+		jar-datamanager-lib
+		dist-datamanager-lib
+		run-datamanager-one
+		test-datamanager-init (used internally only)
+		test-datamanager-all
+		test-datamanager-one
+		javadoc-datamanager-lib
+		
+		Applications can use this library's API to manage EML data (as well as
+		other types of data). The library is currently housed under the 'eml'
+		module in SVN. At some point in the future, it may be broken out into its
+		own module.
+	-->
+	
 	<target name="init-datamanager-lib" depends="init">
 		<property name="datamanager.lib" value="lib/datamanager"/>
 		<property name="version.datamanager" value="1.0.0"/>
@@ -631,10 +633,10 @@
 		<property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
 		<property name="cpath.datamanager" 
-                  value="${junit}:${axis}:${discover}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}:${datamanager.name}.jar"/>
+			value="${junit}:${axis}:${discover}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${configxml}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
 	</target>
 
-	<target name="compile-datamanager-lib" depends="init-datamanager-lib">
+	<target name="compile-datamanager-lib" depends="init-datamanager-lib,compile">
 		<mkdir dir="${build.dest}"/>
 		<mkdir dir="${build.src}"/>
 		<copy todir="${build.src}" filtering="yes">
@@ -660,23 +662,9 @@
 	</target>
 
 	<target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
-		<!--
-		<unjar dest="${build.dest}">
-			<fileset dir="./${datamanager.lib}">
-				<include name="**/*.jar"/>
-				<exclude name="log4j*.jar"/>
-			</fileset>
-		</unjar>
-		<unjar dest="${build.dest}">
-			<fileset dir="./lib/apache">
-				<include name="**/xalan.jar"/>
-				<include name="**/xml-apis.jar"/>
-			</fileset>
-		</unjar>
-		-->
 		<jar jarfile="${build.dir}/${datamanager.name}.jar" 
   	         basedir="${build.dest}"
-  	         excludes="org/ecoinformatics/datamanager/**/**Test.class"
+  	         excludes="org/ecoinformatics/**/**Test.class"
   	    />
 	</target>
 
