@@ -66,10 +66,11 @@
    <xsl:template name="protocolcommon">
         <xsl:param name="protocolfirstColStyle"/>
         <xsl:param name="protocolsubHeaderStyle"/>
-        <xsl:call-template name="resource">
-           <xsl:with-param name="resfirstColStyle" select="$protocolfirstColStyle"/>
-           <xsl:with-param name="ressubHeaderStyle" select="$protocolsubHeaderStyle"/>
-           <xsl:with-param name="creator">Author(s):</xsl:with-param>
+        
+        <!-- template for protocol shows minimum elements (author, title, dist) -->
+		<xsl:call-template name="protocol_simple">
+           <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+           <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
         </xsl:call-template>
         <xsl:for-each select="proceduralStep">
           <tr><td colspan="2" class="{$protocolsubHeaderStyle}">
@@ -122,14 +123,10 @@
           Protocol:
           </td>
           <td class="{$secondColStyle}">
-           &#160;
-          </td>
-      </tr>
-      <tr><td colspan="2">
-          <xsl:call-template name="protocol">
-            <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
-            <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
-          </xsl:call-template>
+			<xsl:call-template name="protocol">
+	            <xsl:with-param name="protocolfirstColStyle" select="$protocolfirstColStyle"/>
+	            <xsl:with-param name="protocolsubHeaderStyle" select="$protocolsubHeaderStyle"/>
+ 			</xsl:call-template>
           </td>
       </tr>
     </xsl:for-each>
@@ -179,4 +176,51 @@
        </tr>
     </xsl:for-each>
   </xsl:template>
+  
+  <!-- this template creates a small table for a protocol tree with minimum required 
+	content (title/creator/distribution). Only called in this stylesheet. It would be
+	better to reuse the resource templates? but those currently are written for 
+	toplevel, and that style is too prominent for this location. use modes? 
+	but all calls to resource templates would be affected.
+	-->
+	<xsl:template name="protocol_simple">
+		<xsl:param name="protocolfirstColStyle"/>
+		<xsl:param name="protocolsubHeaderStyle"/>
+		<!--<table class="{$tabledefaultStyle}">  -->
+		
+		<xsl:for-each select="creator/individualName/surName">
+			<tr>	
+				<td class="{$protocolfirstColStyle}">
+				<xsl:text>Author: </xsl:text>
+				</td>
+				<td><xsl:value-of select="."/>
+				</td>
+			</tr>
+		</xsl:for-each>
+   
+		<xsl:for-each select="title">
+			<tr>
+			  <td class="{$protocolfirstColStyle}">
+			  <xsl:text>Title: </xsl:text>
+			  </td>
+			  <td><xsl:value-of select="."/>
+			  </td>
+			</tr>
+		</xsl:for-each>
+ 
+	<xsl:for-each select="distribution">
+      <!--<tr>
+        <td>
+         the template 'distribution' in eml-distribution.2.0.0.xsl. seems to be for
+				data tables. use the resourcedistribution template instead (eml-resource.2.0.0.xsl)  -->
+            <xsl:call-template name="resourcedistribution">
+              <xsl:with-param name="resfirstColStyle" select="$protocolfirstColStyle"/>
+              <xsl:with-param name="ressubHeaderStyle" select="$protocolsubHeaderStyle"/> 
+			</xsl:call-template>
+		<!-- </td>
+		</tr>  -->
+		</xsl:for-each>
+		<!-- </table> -->
+	</xsl:template>
+	
 </xsl:stylesheet>

@@ -281,7 +281,7 @@
 			<xsl:if test="./@xml:lang != ''">
 				(<xsl:value-of select="./@xml:lang"/>)
 			</xsl:if>
-			<xsl:value-of select="$i18nElement/text()"/>
+			<xsl:value-of select="$i18nElement/."/>
 		</xsl:if>
 		<!-- any translations -->
 		<xsl:if test="count($i18nElement/value) > 0">
