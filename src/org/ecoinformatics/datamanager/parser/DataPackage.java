@@ -31,10 +31,17 @@
  */
 package org.ecoinformatics.datamanager.parser;
 
+import java.io.File;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
+
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
@@ -110,56 +117,65 @@ public class DataPackage
   }
   
   
-  /**
-   * Gets the parserValid value
-   * 
-   * @return  the value of the parserValid variable
-   */
-  public boolean isParserValid() {
-    return parserValid;
-  }
-
-
-  /**
-   * Gets the schemaValid value
-   * 
-   * @return  the value of the schemaValid variable
-   */
-  public boolean isSchemaValid() {
-    return schemaValid;
-  }
-
-
-  /*
-   * Boolean to determine whether a given packageId conforms to
-   * the string pattern of a particular organization such as LTER.
-   * If the specified system value does not have a regular
-   * expression pattern declared for its packageId, then the
-   * packageId is assumed to be valid by default.
-   */
-  private boolean isValidPackageId(String system, String packageId) {
-    boolean isValid = true;
-    String regexPattern = null;
-    
-    /*
-     * If we have a regular expression pattern string declared for a 
-     * particular organization, use it to validate the packageId
-     */
-    if (system.equalsIgnoreCase("lter")) {
-      regexPattern = LTER_PACKAGE_ID_PATTERN;
-    }
-    
-    if (regexPattern != null) {
-      isValid = Pattern.matches(regexPattern, packageId);
-    }
-
-    return isValid;
-  }
-  
-  
   /*
    * Class methods
    */
+  
+  /**
+   * Applies the EML dereferencing stylesheet (whose path is set in the 
+   * properties file and stored in the QualityReport class) to transform 
+   * the original EML document to a fully dereferenced EML document.
+   * 
+   * @param originalEmlString  the original EML XML string
+   * @return emlString   the result of the transformation from the 
+   *                     original EML to the dereferenced EML
+   * @throws IllegalStateException
+   *                     if an error occurs during the transformation process
+   */
+  public static String dereferenceEML(String originalEmlString) 
+          throws IllegalStateException {
+    String dereferencedEmlString = "";
+    Result result;
+    StringWriter stringWriter = new StringWriter();
+    javax.xml.transform.Transformer transformer;
+    javax.xml.transform.TransformerFactory transformerFactory;
+    final String xslPath = QualityReport.getEmlDereferencerXSLTPath();
+    Source xmlSource;
+    File xsltFile = new File(xslPath);            
+    Source xsltSource;
+    
+    StringReader stringReader = new StringReader(originalEmlString);
+    xmlSource = new javax.xml.transform.stream.StreamSource(stringReader);
+    xsltSource = new javax.xml.transform.stream.StreamSource(xsltFile);
+    result = new javax.xml.transform.stream.StreamResult(stringWriter);
+    String transformerFactoryValue = System.getProperty("javax.xml.transform.TransformerFactory");
+    System.out.println("javax.xml.transform.TransformerFactory :" + transformerFactoryValue);
+    transformerFactory = javax.xml.transform.TransformerFactory.newInstance();
+
+    try {
+      transformer = transformerFactory.newTransformer(xsltSource);      
+      transformer.transform(xmlSource, result);
+      dereferencedEmlString = stringWriter.toString();
+    }
+    catch (TransformerConfigurationException e) {
+      Throwable x = e;
+      if (e.getException() != null) {
+        x = e.getException();    
+      }
+      x.printStackTrace();
+      throw new IllegalStateException(e);
+    }
+    catch (TransformerException e) {
+      Throwable x = e;
+      if (e.getException() != null) {
+        x = e.getException();    
+      }
+      x.printStackTrace(); 
+      throw new IllegalStateException(e);
+    }
+      
+    return dereferencedEmlString;
+  }
   
   
   /*
@@ -422,6 +438,53 @@ public class DataPackage
 
 
   /**
+   * Gets the parserValid value
+   * 
+   * @return  the value of the parserValid variable
+   */
+  public boolean isParserValid() {
+    return parserValid;
+  }
+
+
+  /**
+   * Gets the schemaValid value
+   * 
+   * @return  the value of the schemaValid variable
+   */
+  public boolean isSchemaValid() {
+    return schemaValid;
+  }
+
+
+  /*
+   * Boolean to determine whether a given packageId conforms to
+   * the string pattern of a particular organization such as LTER.
+   * If the specified system value does not have a regular
+   * expression pattern declared for its packageId, then the
+   * packageId is assumed to be valid by default.
+   */
+  private boolean isValidPackageId(String system, String packageId) {
+    boolean isValid = true;
+    String regexPattern = null;
+    
+    /*
+     * If we have a regular expression pattern string declared for a 
+     * particular organization, use it to validate the packageId
+     */
+    if (system.equalsIgnoreCase("lter")) {
+      regexPattern = LTER_PACKAGE_ID_PATTERN;
+    }
+    
+    if (regexPattern != null) {
+      isValid = Pattern.matches(regexPattern, packageId);
+    }
+
+    return isValid;
+  }
+  
+  
+  /**
    * Setter method for accessXML field.
    * 
    * @param xmlString  the XML string to assign to the
@@ -582,6 +645,55 @@ public class DataPackage
       
       parserValidQualityCheck.setFound(found);
       this.addDatasetQualityCheck(parserValidQualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Performs the 'schemaValidDereferenced' quality check.
+   * Checks schema validity after the original document has
+   * been dereferenced (i.e. all references to "id" elements
+   * have been substituted with the actual elements.) An XSLT
+   * stylesheet is used for performing the dereferencing.
+   * 
+   * @param doc            the XML DOM document object
+   * @param namespaceInDoc the namespace value specified in the document
+   */
+  public void checkSchemaValidDereferenced(Document doc, String namespaceInDoc) {
+    String identifier = "schemaValidDereferenced";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      // Initialize the schemaValidQualityCheck
+      boolean validateSchema = true;
+      String found = "";
+      final String parserName = "DEFAULT";
+
+      Node documentElement = doc.getDocumentElement();
+      String xmlString = XMLUtilities.getDOMTreeAsString(documentElement);
+      String deferencedXmlString = DataPackage.dereferenceEML(xmlString);
+      
+      StringReader stringReader = new StringReader(deferencedXmlString);
+      SAXValidate saxValidate = new SAXValidate(validateSchema);
+    
+      try {
+        saxValidate.runTest(stringReader, parserName, schemaLocation, namespaceInDoc);
+        found = "Dereferenced document validated for namespace: '" + namespaceInDoc + "'";
+        qualityCheck.setStatus(Status.valid);
+        qualityCheck.setSuggestion("");
+        this.schemaValid = true;
+      }
+      catch (Exception e) {
+        found = "Failed to validate dereferenced document for namespace: '" + namespaceInDoc + 
+                "'; " + e.getMessage();
+        qualityCheck.setFailedStatus();
+      }
+      
+      qualityCheck.setFound(found);
+      this.addDatasetQualityCheck(qualityCheck);
     }
   }
   

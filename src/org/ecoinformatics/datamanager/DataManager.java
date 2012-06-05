@@ -630,6 +630,9 @@ public class DataManager {
           }
         }
       }
+      catch (SQLException e) {
+        success = false;
+      }
       finally {
       }
     }

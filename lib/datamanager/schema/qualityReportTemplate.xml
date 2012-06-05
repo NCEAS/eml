@@ -29,7 +29,7 @@
       <found></found>
       <status>notChecked</status>
       <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
-      <suggestion>Make this doc valid..</suggestion>
+      <suggestion>Make this doc valid.</suggestion>
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >
@@ -41,6 +41,17 @@
       <status>notChecked</status>
       <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
       <suggestion>Resolve issues with IDs and references.</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="error" >
+      <identifier>schemaValidDereferenced</identifier>
+      <name>Dereferenced document is schema-valid EML</name>
+      <description>References are dereferenced, and the resulting file validated</description>
+      <expected>schema-valid</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>Validity of this quality report is dependent on this check being valid.</explanation>
+      <suggestion>Make sure that references refer to the correct elements.</suggestion>
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="error" >

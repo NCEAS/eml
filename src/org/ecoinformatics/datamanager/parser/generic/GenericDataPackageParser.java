@@ -287,6 +287,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           
           emlDataPackage.checkSchemaValid(doc, emlNamespace);
           emlDataPackage.checkParserValid(doc);
+          emlDataPackage.checkSchemaValidDereferenced(doc, emlNamespace);
           
           String systemValue = parseSystemAttribute(doc);
           if (systemValue != null) {
@@ -1486,10 +1487,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setNumHeaderLines(numHeaderLines);
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
-          
-          // For simple delimited data file
-          entityObject.setFieldDelimiter(fieldDelimiter);
-          
+            
           if (quoteCharacter != null)
           {
         	  entityObject.setQuoteCharacter(quoteCharacter);
@@ -1501,7 +1499,6 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           }
           
           entityObject.setCollapseDelimiters(isCollapseDelimiters);         
-          entityObject.setMetadataRecordDelimiter(metadataRecordDelimiter);
           entityObject.setRecordDelimiter(recordDelimiter);
           entityObject.setURL(onlineUrl);
           entityObject.setURLFunction(onlineUrlFunction);
@@ -1517,6 +1514,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setHasDistributionOffline(hasDistributionOffline);
           entityObject.setHasDistributionInline(hasDistributionInline);
           entityObject.setEntityAccessXML(entityAccessXML);
+          entityObject.setFieldDelimiter(fieldDelimiter);
+          entityObject.setMetadataRecordDelimiter(metadataRecordDelimiter);
           
           try {
               NodeList attributeListNodeList = 

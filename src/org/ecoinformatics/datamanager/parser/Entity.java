@@ -348,6 +348,11 @@ public class Entity extends DataObjectDescription
           fieldDelimiterQualityCheck.setStatus(Status.valid);
           fieldDelimiterQualityCheck.setSuggestion("");
         }
+        else if (getIsImageEntity() || isOtherEntity()) {
+          explanation = "A fieldDelimiter value in not required for binary entities";
+          fieldDelimiterQualityCheck.setStatus(Status.info);
+          fieldDelimiterQualityCheck.setSuggestion("");
+        }
         else {
           fieldDelimiterQualityCheck.setFailedStatus();
         } 
@@ -524,6 +529,11 @@ public class Entity extends DataObjectDescription
         if (isValidDelimiter) {
           explanation = "A valid recordDelimiter value was found";
           recordDelimiterQualityCheck.setStatus(Status.valid);
+          recordDelimiterQualityCheck.setSuggestion("");
+        }
+        else if (getIsImageEntity() || isOtherEntity()) {
+          explanation = "A recordDelimiter value in not required for binary entities";
+          recordDelimiterQualityCheck.setStatus(Status.info);
           recordDelimiterQualityCheck.setSuggestion("");
         }
         else {

@@ -53,6 +53,7 @@ public class QualityReport {
    */
   private static Boolean qualityReporting = new Boolean(false);
   private static String qualityReportTemplatePath = null;
+  private static String emlDereferencerXSLTPath = null;
   
   /*
    * Instance variables
@@ -112,6 +113,14 @@ public class QualityReport {
    */
   
   
+  /**
+   * Gets the value of the emlDereferencerXSLTPath instance variable.
+   */
+  public static String getEmlDereferencerXSLTPath() {
+    return emlDereferencerXSLTPath;
+  }
+
+
   /**
    * Gets the quality check template object (i.e. a QualityCheck object
    * holding static content for a given quality check) for the
@@ -191,6 +200,18 @@ public class QualityReport {
    */
   public static void setQualityReportTemplatePath(String path) {
     qualityReportTemplatePath = path;
+  }
+  
+
+  /**
+   * Sets the string value of the path to the emlDereferencerXSLT file.
+   * This is the XSLT used by the schemaValidDereferenced quality check.
+   * It converts EML to fully dereferenced EML.
+   * 
+   * @param path
+   */
+  public static void setEmlDereferencerXSLTPath(String path) {
+    emlDereferencerXSLTPath = path;
   }
   
 
