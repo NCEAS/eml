@@ -98,11 +98,11 @@
         <xsl:variable name="ref_id" select="references"/>
         <xsl:variable name="references" select="$ids[@id=$ref_id]" />
         <xsl:for-each select="$references">
-          <xsl:for-each select="geographicCoverage">
+        	
             <table class="{$tabledefaultStyle}">
               <xsl:call-template name="geographicCovCommon" />
             </table>
-          </xsl:for-each>
+            
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
