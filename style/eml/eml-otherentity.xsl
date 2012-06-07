@@ -117,6 +117,17 @@
         </xsl:call-template>
          </td></tr>
      </xsl:for-each>
+     
+    <!-- Here to display distribution info-->
+    <xsl:for-each select="physical">
+       <xsl:call-template name="otherEntityShowDistribution">
+          <xsl:with-param name="docid" select="$docid"/>
+          <xsl:with-param name="entityindex" select="$entityindex"/>
+          <xsl:with-param name="physicalindex" select="position()"/>
+          <xsl:with-param name="otherentityfirstColStyle" select="$otherentityfirstColStyle"/>
+          <xsl:with-param name="otherentitysubHeaderStyle" select="$otherentitysubHeaderStyle"/>
+       </xsl:call-template>
+    </xsl:for-each>
 
     <xsl:if test="coverage">
        <tr><td class="{$otherentitysubHeaderStyle}" colspan="2">
@@ -164,16 +175,7 @@
       </xsl:call-template>
     </xsl:for-each>
     </xsl:if>
-     <!-- Here to display distribution info-->
-    <xsl:for-each select="physical">
-       <xsl:call-template name="otherEntityShowDistribution">
-          <xsl:with-param name="docid" select="$docid"/>
-          <xsl:with-param name="entityindex" select="$entityindex"/>
-          <xsl:with-param name="physicalindex" select="position()"/>
-          <xsl:with-param name="otherentityfirstColStyle" select="$otherentityfirstColStyle"/>
-          <xsl:with-param name="otherentitysubHeaderStyle" select="$otherentitysubHeaderStyle"/>
-       </xsl:call-template>
-    </xsl:for-each>
+    
   </xsl:template>
 
   <xsl:template name="otherEntityShowDistribution">
