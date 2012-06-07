@@ -186,7 +186,7 @@
       <found></found>
       <status>notChecked</status>
       <explanation>A record has a number of fields less than the specified number of attributes.</explanation>
-      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, too few fields). Also check setting for collapseDelimiters.</suggestion>
+      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, too few fields). Also check these elements in metadata: collapseDelimiters, recordDelimiter, fieldDelimiter, quoteCharacter.</suggestion>
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="error" >
@@ -197,7 +197,7 @@
       <found></found>
       <status>notChecked</status>
       <explanation>A record has a number of fields more than the specified number of attributes.</explanation>
-      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, extra fields). Also check setting for collapseDelimiters.</suggestion>
+      <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, extra fields). Also check these elements in metadata: collapseDelimiters, recordDelimiter, fieldDelimiter, quoteCharacter.</suggestion>
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >
