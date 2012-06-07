@@ -1,0 +1,368 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <title>User Guide to the Data Manager Library API</title> 
+    <meta http-equiv="description" content="this document describes the Data Manager Library">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  </head>
+  
+  <body>
+
+
+<H2>User Guide to the Data Manager Library API</H2>
+
+<H3>Overview</H3>
+
+The purpose of the Data Manager Library is to provide an Application Programming Interface (API)
+through which a calling application can access an EML (or other metadata) document, parse its contents, download its related data
+entities, store those data entities as tables in a relational database, and query those tables
+using SQL-like constructs.
+
+
+<H3>Installation and Configuration</H3>
+
+<H4>Minimum Requirements</H4>
+
+<OL>
+
+<LI>
+One of the following relational database management systems:
+</LI>
+
+<UL>
+<LI>HSQL</LI>
+<LI>Oracle</LI>
+<LI>PostgreSQL</LI>
+
+</UL>
+
+<LI>
+A recent Java SDK; j2sdk1.4.2 or later is required.
+</LI>
+
+</OL>
+
+<H4>Installation</H4>
+
+Download and uncompress file <code>datamanager-1.0.0.zip</code> (Windows) or 
+<code>datamanager-1.0.0.tar.gz</code> (Linux or Unix).
+The Java application that uses this library (referred to throughout this document as the Calling 
+Application) should include the <code>datamanager.jar</code> file in its Java classpath.
+
+
+<H3>Using the Data Manager Library API</H3>
+
+The Calling Application interacts with the Data Manager Library through its API. The API exposes
+to the Calling Application a set of public methods in the following Java class:<br><br>
+
+org.ecoinformatics.datamanager.DataManager<br><br>
+  
+The capabilities provided to the Calling Application and their related methods in the DataManager
+class are summarized in the table below:
+<br><br>
+
+<TABLE border=true>
+  <TR>
+    <TH>
+    Use Case
+    </TH>
+    <TH>
+    Capability
+    </TH>
+    <TH>
+    DataManager Method Name
+    </TH>
+  </TR>
+  <TR>
+    <TD>
+    1
+    </TD>
+    <TD>
+    Parse a metadata document to obtain information about the entities and attributes in the data package
+    </TD>
+    <TD>
+    <code>parseMetadata()</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    2
+    </TD>
+    <TD>
+    Download data from the remote source to a local data store
+    </TD>
+    <TD>
+    <code>downloadData()</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    3
+    </TD>
+    <TD>
+    Load data into a relational database table; supported relational database management systems are HSQL, Oracle, and PostgreSQL
+    </TD>
+    <TD>
+    <code>loadDataToDB()</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    4
+    </TD>
+    <TD>
+    Query the data from the relational database
+    </TD>
+    <TD>
+    <code>selectData()</code>
+    </TD>
+  </TR>
+</TABLE>
+
+<br><br>
+
+Use cases corresponding to these four capabilities are 
+detailed in <a href="../uml/useCases.pdf">useCases.pdf</a>.
+
+<H4>Requirements of the Calling Application</H4>
+The Calling Application is required to provide class implementations of the following interfaces:
+
+<UL>
+
+<LI>org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface
+<p>
+The Calling Application is required to implement a class containing methods to get a database connection
+from a connection pool, return a database connection to the connection pool, and get the database 
+adapter name corresponding to the RDBMS being used by the application.
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/SampleCallingApp.java
+described in the Sample Calling Application section below.
+</LI>
+
+<LI>org.ecoinformatics.datamanager.download.DataStorageInterface
+<p>
+The Calling Application is required to implement a class containing methods to interact with the
+Data Manager Library to download data to the local data store. Although the Data Manager Library is 
+responsible for downloading data from the remote site to the local data store, it makes no assumptions
+about where to store data in the local data store or how the data store should be managed.
+The Data Manager Library relies on the Calling Application to provide it with a set of methods
+that can be called to start serialization of the data, finish serialization of the data, 
+and determine whether the data already exists in the local store.
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/SampleDataStorage.java
+described in the Sample Calling Application section below.
+</LI>
+
+<LI>org.ecoinformatics.datamanager.download.EcogridEndPointInterface
+<p>
+The Calling Application is required to implement a class containing methods to provide a Metacat Ecogrid
+end point, provide a SRB Ecogrid end point, and provide a SRB machine name. 
+<p>
+An example of an implementing class can be found in 
+src/org/ecoinformatics/datamanager/sample/EcogridEndPoint.java
+described in the Sample Calling Application section below.
+</LI>
+
+</UL>
+  
+  
+<H3>Sample Calling Application</H3>
+
+A sample Calling Application is provided with the distribution in package
+<code>org.ecoinformatics.datamanager.sample</code>. It is configured to
+load database connectivity properties and other properties at run-time
+from file datamanager.properties (as accessible in your classpath). The user may edit this
+file and modify these properties in accordance with local database settings.
+
+<p>
+The sample Calling Application consists of three classes, 
+described in the table below:
+
+<TABLE border=true>
+  <TR>
+    <TH>
+    Class
+    </TH>
+    <TH>
+    Purpose
+    </TH>
+    <TH>
+    Implements Interface
+    </TH>
+  </TR>
+  <TR>
+    <TD>
+    <code>SampleCallingApp</code>
+    </TD>
+    <TD>
+    Main program for the sample Calling Application. Executes a number of small tests to demonstrate
+    the use cases supported by the Data Manager Library API.
+    </TD>
+    <TD>
+    <code>DatabaseConnectionPoolInterface</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    <code>SampleDataStorage</code>
+    </TD>
+    <TD>
+    Demonstrates implementation of DataStorageInterface
+    </TD>
+    <TD>
+    <code>DataStorageInterface</code>
+    </TD>
+  <TR>
+    <TD>
+    <code>EcogridEndPoint</code>
+    </TD>
+    <TD>
+    Demonstrates implementation of EcogridEndPointInterface
+    </TD>
+    <TD>
+    <code>EcogridEndPointInterface</code>
+    </TD>
+  </TR>
+</TABLE>
+
+<p>
+To run the sample Calling Application, change directory to the top-level of the Data Manager Library
+distribution (the directory that contains the datamanager.jar file). For example:
+<pre><code>
+cd C:\datamanager-1.0.0
+</code></pre>
+Next, run the following command:
+<pre><code>
+java -cp "datamanager.jar" org.ecoinformatics.datamanager.sample.SampleCallingApp
+</code></pre>
+<p>
+If it executes successfully, the output of the sample Calling Application will look similar to the following:
+<pre><code>
+Finished testParseMetadata(), success = true
+
+Constructing DownloadHandler for URL: http://gce-lter.marsci.uga.edu/lter/asp/db/send_file.asp?name=metacat-user&email=none&affiliation=LNO&notify=0&accession=INS-GCEM-0011&filename=INS-GCEM-0011_1_3.TXT
+
+the identifier is ============ tao2075037663
+the identifier is ============ tao2075037663
+Finished testDownloadData(), success = true
+
+[Ljava.lang.String;@16cd7d5
+[Ljava.lang.String;@cdedfd
+Attribute Name: Site
+DB Field Name : Site
+dbDataType    : TEXT
+
+Attribute Name: Year
+DB Field Name : Year
+dbDataType    : TEXT
+
+Attribute Name: Month
+DB Field Name : Month
+dbDataType    : TEXT
+
+Attribute Name: Day
+DB Field Name : Day
+dbDataType    : TEXT
+
+Attribute Name: Transect
+DB Field Name : Transect
+dbDataType    : TEXT
+
+Attribute Name: Species_Code
+DB Field Name : Species_Code
+dbDataType    : TEXT
+
+Attribute Name: Count
+DB Field Name : Count
+dbDataType    : INTEGER
+
+Constructing DownloadHandler for URL: http://gce-lter.marsci.uga.edu/lter/asp/db/send_file.asp?name=metacat-user&email=none&affiliation=LNO&notify=0&accession=INS-GCEM-0011&filename=INS-GCEM-0011_1_3.TXT
+Finished testLoadDataToDB(), success = true
+
+Query SQL = 'SELECT INS_GCEM_0011_1_3_TXT.Count FROM INS_GCEM_0011_1_3_TXT  where INS_GCEM_0011_1_3_TXT.Count > 1;'
+Printing all records with 'count' value greater than 1
+resultSet[1], count =  2
+resultSet[2], count =  3
+resultSet[3], count =  2
+resultSet[4], count =  2
+resultSet[5], count =  2
+resultSet[6], count =  4
+resultSet[7], count =  2
+resultSet[8], count =  3
+resultSet[9], count =  5
+resultSet[10], count =  8
+resultSet[11], count =  5
+resultSet[12], count =  8
+resultSet[13], count =  5
+resultSet[14], count =  9
+resultSet[15], count =  7
+Finished testSelectData(), success = true
+
+tableName: INS_GCEM_0011_1_3_TXT
+  fieldNames[0]: site
+  fieldNames[1]: year
+  fieldNames[2]: month
+  fieldNames[3]: day
+  fieldNames[4]: transect
+  fieldNames[5]: species_code
+  fieldNames[6]: count
+Finished testEnumerationMethods(), success = true
+
+Finished all tests, success = true
+
+Finished dropping tables.
+</code></pre>
+
+<H3>Future Enhancements</H3>
+
+Additional capabilities planned for the Data Manager Library will include:
+<br><br>
+
+<TABLE border=true>
+  <TR>
+    <TH>
+    Use Case
+    </TH>
+    <TH>
+    Capability
+    </TH>
+    <TH>
+    DataManager Method Name
+    </TH>
+  </TR>
+  <TR>
+    <TD>
+    5
+    </TD>
+    <TD>
+Set an upper limit on the size of the database. The Data Manager Library will monitor the size
+of the database, and if the upper limit (as set by the Calling Application) is exceeded, old data tables
+will be dropped as needed to free up space in the database.
+    </TD>
+    <TD>
+    <code>setDatabaseSize()</code>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    6
+    </TD>
+    <TD>
+Set a life-span priority on individual data tables. This relates to the previous capability 
+(Use Case 5), in that the Calling Application may single out individual data tables as high priority 
+to indicate that they should <em>not</em> be dropped when the database exceeds the specified size 
+limit.
+    </TD>
+    <TD>
+    <code>setTableExpirationPolicy()</code>
+    </TD>
+  </TR>
+</TABLE>
+
+  </body>
+</html>
