@@ -187,7 +187,7 @@
       <status>notChecked</status>
       <explanation>A record has a number of fields less than the specified number of attributes.</explanation>
       <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, too few fields). Also check these elements in metadata: collapseDelimiters, recordDelimiter, fieldDelimiter, quoteCharacter.</suggestion>
-      <reference></reference>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#dataFormat</reference>
     </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="error" >
       <identifier>tooManyFields</identifier>
@@ -198,7 +198,7 @@
       <status>notChecked</status>
       <explanation>A record has a number of fields more than the specified number of attributes.</explanation>
       <suggestion>Check the row for problems (un-escaped delimiters, unquoted strings, extra fields). Also check these elements in metadata: collapseDelimiters, recordDelimiter, fieldDelimiter, quoteCharacter.</suggestion>
-      <reference></reference>
+      <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#dataFormat</reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="knb" statusType="error" >
       <identifier>databaseTableCreated</identifier>

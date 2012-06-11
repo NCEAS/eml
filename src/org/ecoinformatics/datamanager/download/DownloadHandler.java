@@ -579,19 +579,20 @@ public class DownloadHandler implements Runnable
                new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
                
              if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
-               String resourceNameEncoded = "<![CDATA[" + resourceName + "]]>";
+               String resourceNameEscaped = embedInCDATA(resourceName);
                
                if (exception == null) {
                  onlineURLsQualityCheck.setStatus(Status.valid);
                  onlineURLsQualityCheck.setFound("true");
                  onlineURLsQualityCheck.setExplanation(
-                   "Succeeded in accessing URL: " + resourceNameEncoded);
+                   "Succeeded in accessing URL: " + resourceNameEscaped);
                }
                else {
                  onlineURLsQualityCheck.setFailedStatus();
                  onlineURLsQualityCheck.setFound("false");
-                 String explanation = "Failed to access URL: " + resourceNameEncoded;
-                 explanation = explanation + "; " + exception.getMessage();
+                 String explanation = "Failed to access URL: " + resourceNameEscaped;
+                 explanation = explanation + "; " + 
+                               embedInCDATA(exception.getMessage());
                  onlineURLsQualityCheck.setExplanation(explanation);
                }
                
@@ -634,6 +635,14 @@ public class DownloadHandler implements Runnable
         	 successFlag = false;
              return successFlag;
          }
+    }
+    
+    
+    /*
+     * Embeds a string value inside CDATA opening and closing tags.
+     */
+    private String embedInCDATA(String value) {
+      return "<![CDATA[" + value + "]]>";
     }
     
     
