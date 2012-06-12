@@ -40,8 +40,8 @@
 		<!-- These are properties you'll need to change to install the parser
       servlet on your system. -->
 		<!-- where to install the servlet -->
-		<property name="servlet.install.dir"
-              value="/var/www/org.ecoinformatics.knb/emlparser"/>
+		<!--<property name="servlet.install.dir" value="/var/www/org.ecoinformatics.knb/emlparser"/>-->
+		<property name="servlet.install.dir" value="/var/lib/tomcat6/webapps/emlparser"/>
 		<!-- the server the servlet will run on -->
 		<property name="server" value="http://knb.ecoinformatics.org"/>
 		<!--the servlet context directory-->
