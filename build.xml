@@ -90,6 +90,7 @@
 		<property name="eml2_0_0-tag" value="RELEASE_EML_2_0_0_UPDATE_1"/>
 		<property name="eml2_0_1-tag" value="RELEASE_EML_2_0_1"/>
 		<property name="eml2_1_0-tag" value="RELEASE_EML_2_1_0"/>
+		<property name="eml2_1_1-tag" value="RELEASE_EML_2_1_1"/>
 	</target>
 
 	<target name="init" depends="config">
@@ -558,6 +559,19 @@
 				<include name="*.xsd"/>
 			</fileset>
 		</copy>
+		
+		<!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
+				<echo>Getting EML 2.1.1 from SVN: ${svnroot}/tags/${eml2_1_1-tag}</echo>
+				<svn>
+					<export srcUrl="${svnroot}/tags/${eml2_1_1-tag}" force="true"
+						destPath="${servlettempdir}/eml_${eml2_1_1-tag}" />
+				</svn>
+				<mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
+				<copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
+					<fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
+						<include name="*.xsd"/>
+					</fileset>
+				</copy>
 
 	</target>
 
