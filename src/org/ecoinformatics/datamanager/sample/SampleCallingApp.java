@@ -175,6 +175,8 @@ public class SampleCallingApp implements DatabaseConnectionPoolInterface {
       if (qualityReportingStr != null) {
         if (qualityReportingStr.equalsIgnoreCase("true")) {
           QualityReport.setQualityReporting(true, qualityReportTemplate);
+          String emlDereferencerXSLT = options.getString("emlDereferencerXSLT");
+          QualityReport.setEmlDereferencerXSLTPath(emlDereferencerXSLT);
         }
         else if (qualityReportingStr.equalsIgnoreCase("false")) {
           QualityReport.setQualityReporting(false, null);

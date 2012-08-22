@@ -92,6 +92,10 @@ public class DataPackage
   private boolean parserValid = false;
   private boolean schemaValid = false;
   private int numberOfMethodsElements = 0;
+  private int numberOfCoverageElements = 0;
+  private int numberOfGeographicCoverageElements = 0;
+  private int numberOfTaxonomicCoverageElements = 0;
+  private int numberOfTemporalCoverageElements = 0;
   private String   packageId  = null;
   private QualityReport qualityReport = null;
   private String system = null;
@@ -699,10 +703,11 @@ public class DataPackage
   
   
   /**
-   * Set the value of the hasMethodsElement instance variable.
+   * Set the value of the numberOfMethodsElements instance variable
+   * and run a quality check based on the value.
    * 
    * @param   n  the number of methods elements detected in
-   *             this data package
+   *             this data package by the parser
    */
   public void setNumberOfMethodsElements(int n) {
     this.numberOfMethodsElements = n;
@@ -730,6 +735,127 @@ public class DataPackage
       }
       
       addDatasetQualityCheck(methodsElementQualityCheck);
+    }
+  }
+
+
+  /**
+   * Set the value of the numberOfCoverageElements instance variable
+   * and run a quality check based on the value.
+   * 
+   * @param   n  the number of coverage elements detected in
+   *             this data package by the parser
+   */
+  public void setNumberOfCoverageElements(int n) {
+    this.numberOfCoverageElements = n;
+
+    /*
+     *  Do a quality check for the presence of at least
+     *  one 'coverage' element
+     */
+    String identifier = "coveragePresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      String found = numberOfCoverageElements + " 'coverage' element(s) found.";
+      qualityCheck.setFound(found);
+      if (numberOfCoverageElements > 0) {
+        qualityCheck.setStatus(Status.valid);
+        qualityCheck.setExplanation("");
+        qualityCheck.setSuggestion("");
+      }
+      else {
+        qualityCheck.setFailedStatus();
+      }
+      
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+
+
+  /**
+   * Set the value of the numberOfGeographicCoverageElements instance 
+   * variable and run a quality check based on the value.
+   * 
+   * @param   n  the number of geographicCoverage elements detected in
+   *             this data package by the parser
+   */
+  public void setNumberOfGeographicCoverageElements(int n) {
+    this.numberOfGeographicCoverageElements = n;
+
+    /*
+     *  Do a quality check to report the number of
+     *  'geographicCoverage' elements detected
+     */
+    String identifier = "geographicCoveragePresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      String found = numberOfGeographicCoverageElements + " 'geographicCoverage' element(s) found.";
+      qualityCheck.setFound(found);      
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+
+
+  /**
+   * Set the value of the numberOfTaxonomicCoverageElements instance 
+   * variable and run a quality check based on the value.
+   * 
+   * @param   n  the number of taxonomicCoverage elements detected in
+   *             this data package by the parser
+   */
+  public void setNumberOfTaxonomicCoverageElements(int n) {
+    this.numberOfTaxonomicCoverageElements = n;
+
+    /*
+     *  Do a quality check to report the number of
+     *  'taxonomicCoverage' elements detected
+     */
+    String identifier = "taxonomicCoveragePresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      String found = numberOfTaxonomicCoverageElements + " 'taxonomicCoverage' element(s) found.";
+      qualityCheck.setFound(found);      
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+
+
+  /**
+   * Set the value of the numberOfTemporalCoverageElements instance 
+   * variable and run a quality check based on the value.
+   * 
+   * @param   n  the number of temporalCoverage elements detected in
+   *             this data package by the parser
+   */
+  public void setNumberOfTemporalCoverageElements(int n) {
+    this.numberOfTemporalCoverageElements = n;
+
+    /*
+     *  Do a quality check to report the number of
+     *  'temporalCoverage' elements detected
+     */
+    String identifier = "temporalCoveragePresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      String found = numberOfTemporalCoverageElements + " 'temporalCoverage' element(s) found.";
+     qualityCheck.setFound(found);      
+      addDatasetQualityCheck(qualityCheck);
     }
   }
 

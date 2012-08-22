@@ -191,23 +191,28 @@ public class DownloadHandlerTest extends TestCase
           
 		  if (success)
 		  {
-			  assertTrue(dataStorage.doesDataExist(identifier) == true);
-			  assertTrue(handler.isSuccess() == true);
+			  assertTrue("The data should exist only if the handler returned a success status",
+			             dataStorage.doesDataExist(identifier) == true);
+			  assertTrue("The handler returned a failed status but was expected to succeed",
+			             handler.isSuccess() == true);
               
 			  if (identifier == CORRECTURL)
 			  {
 			    long fileSize = dataStorage.getEntitySize(identifier);
-				  assertTrue(fileSize == CORRECTURL_SIZE);
+				  assertTrue("The file size was not the expected value", 
+				             fileSize == CORRECTURL_SIZE);
 	        System.err.println("expected: " + CORRECTURL_SIZE + "; found: " + fileSize);
 			  }		  
 		  }
 		  else
 		  {
 			  //assertTrue(dataStorage.doesDataExist(identifier) == false);
-			  assertTrue(handler.isSuccess() == false);
+			  assertTrue("The handler returned a success status but was expected to fail",
+			             handler.isSuccess() == false);
 		  }
           
-		  assertTrue(handler.isBusy() == false);
+		  assertTrue("The handler reports that it is busy but it should not be busy", 
+		             handler.isBusy() == false);
 	  }
 	  
 	  
@@ -382,9 +387,12 @@ public class DownloadHandlerTest extends TestCase
 			  assertTrue(fileSize == CORRECTURL1_SIZE);
 		  }
           
-		  assertTrue(handler.isBusy() == false);
-		  assertTrue(result == success);
-		  assertTrue(dataStorage.doesDataExist(url) == success);
+		  assertTrue("The handler reports that it is busy but it should not be busy", 
+		             handler.isBusy() == false);
+		  assertTrue("The handler returned '" + result + "' but the expected return value was '" + success + "'",
+		             result == success);
+		  assertTrue("The data should exist only if the handler returned a success status", 
+		             dataStorage.doesDataExist(url) == success);
 	  }
 	  
 }

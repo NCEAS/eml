@@ -294,8 +294,16 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             emlDataPackage.setSystem(systemValue);
           }
           
-          int nMethodsElements = countMethodsElements(xpathapi, doc);
+          int nMethodsElements = countElements(xpathapi, doc, "methods");
           emlDataPackage.setNumberOfMethodsElements(nMethodsElements);
+          int nCoverageElements = countElements(xpathapi, doc, "coverage");
+          emlDataPackage.setNumberOfCoverageElements(nCoverageElements);
+          int nGeographicCoverageElements = countElements(xpathapi, doc, "geographicCoverage");
+          emlDataPackage.setNumberOfGeographicCoverageElements(nGeographicCoverageElements);
+          int nTaxonomicCoverageElements = countElements(xpathapi, doc, "taxonomicCoverage");
+          emlDataPackage.setNumberOfTaxonomicCoverageElements(nTaxonomicCoverageElements);
+          int nTemporalCoverageElements = countElements(xpathapi, doc, "temporalCoverage");
+          emlDataPackage.setNumberOfTemporalCoverageElements(nTemporalCoverageElements);
             
             // now dataTable, spatialRaster and spatialVector are handled
             dataTableEntities              = xpathapi.selectNodeList(doc, tableEntityPath);
@@ -461,13 +469,13 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 
     
     /*
-     * Counts the number of "methods" elements. This
-     * is used in a quality check while parsing EML 2.1.0
+     * Counts the number of elements with the specified elementName. This
+     * is used to implement presence/absence quality checks while parsing EML 2.1.0
      * documents.
      */
-    private int countMethodsElements(CachedXPathAPI xpathapi, Document doc) {
+    private int countElements(CachedXPathAPI xpathapi, Document doc, String elementName) {
       int nMethodsElements = 0;
-      final String xPath = "//methods";
+      final String xPath = "//" + elementName;
       
       try {
         NodeList methodsList = xpathapi.selectNodeList(doc, xPath);        
