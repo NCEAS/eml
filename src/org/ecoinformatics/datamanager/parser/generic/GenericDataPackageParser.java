@@ -112,6 +112,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     protected String otherEntityPath = null;
     
     protected String accessPath = null;
+    protected String datasetTitlePath = null;
+    protected String datasetAbstractPath = null;
     protected String entityAccessPath = null;
     
     //private Hashtable entityHash = new Hashtable();
@@ -210,6 +212,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		otherEntityPath = "//dataset/otherEntity";
 		
 		accessPath = "//access";
+    datasetTitlePath = "//dataset/title";
+    datasetAbstractPath = "//dataset/abstract//para";
     entityAccessPath = "physical/distribution/access";
 	}
 	
@@ -322,6 +326,17 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               emlDataPackage.setAccessXML(accessXML);
             }
             
+            // Store the dataset title
+            Node datasetTitleNode = xpathapi.selectSingleNode(doc, datasetTitlePath);
+            if (datasetTitleNode != null) {
+              String titleText = datasetTitleNode.getTextContent();
+              emlDataPackage.setTitle(titleText);
+            }
+            
+            // Parse the dataset abstract text
+            NodeList datasetAbstractNodeList = xpathapi.selectNodeList(doc, datasetAbstractPath);
+            parseDatasetAbstract(datasetAbstractNodeList);
+      
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(
@@ -1717,6 +1732,23 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             throw new IllegalStateException(e);
         }
 
+    }
+    
+    
+    /*
+     * Parses the dataset abstract text content for purposes of quality reporting.
+     */
+    private void parseDatasetAbstract(NodeList datasetAbstractNodeList) {
+      if (datasetAbstractNodeList != null) {
+        StringBuffer stringBuffer = new StringBuffer("");
+        for (int i = 0; i < datasetAbstractNodeList.getLength(); i++) {
+          Node paraNode = datasetAbstractNodeList.item(i);
+          String paraText = paraNode.getTextContent();
+          stringBuffer.append(" " + paraText);
+        }
+        String abstractText = stringBuffer.toString();
+        emlDataPackage.checkDatasetAbstract(abstractText);
+      }      
     }
     
 }

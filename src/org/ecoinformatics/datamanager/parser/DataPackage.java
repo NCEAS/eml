@@ -36,6 +36,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.transform.Result;
@@ -99,6 +100,7 @@ public class DataPackage
   private String   packageId  = null;
   private QualityReport qualityReport = null;
   private String system = null;
+  private String title = null;
   
   private final String LTER_PACKAGE_ID_PATTERN = "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
   
@@ -868,6 +870,101 @@ public class DataPackage
    */
   public void setSystem(String systemValue) {
     this.system = systemValue;
+  }
+  
+  
+  /**
+   * Sets the value of the 'title' to the specified String 
+   * value.
+   * 
+   * @param titleText  the title value to set
+   */
+  public void setTitle(String titleText) {
+    this.title = titleText;
+
+    /*
+     *  Do a quality check on the number of words in the
+     *  dataset title text
+     */
+    String identifier = "titleLength";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      int wordCount = wordCount(titleText);
+      String found = wordCount + " words found.";
+      qualityCheck.setFound(found);    
+
+      if (wordCount >= 5) {
+        qualityCheck.setStatus(Status.valid);
+        qualityCheck.setExplanation("");
+        qualityCheck.setSuggestion("");
+      }
+      else {
+        qualityCheck.setFailedStatus();
+      }
+
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+  
+  
+  /**
+   * Checks the number of words in the dataset abstract text.
+   * 
+   * @param abstractText  the abstract text to be analyzed
+   */
+  public void checkDatasetAbstract(String abstractText) {
+    /*
+     *  Do a quality check on the number of words in the
+     *  dataset abstract text
+     */
+    String identifier = "datasetAbstractLength";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      int wordCount = wordCount(abstractText);
+      String found = wordCount + " words found.";
+      qualityCheck.setFound(found);    
+
+      if (wordCount >= 20) {
+        qualityCheck.setStatus(Status.valid);
+        qualityCheck.setExplanation("");
+        qualityCheck.setSuggestion("");
+      }
+      else {
+        qualityCheck.setFailedStatus();
+      }
+
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+  
+  
+  /* 
+   * Count the words in a string of text. Useful for several different
+   * quality checks.
+   */
+  private int wordCount(String text) {
+    int wordCount = 0;
+    
+    if ((text != null) && (!text.equals(""))) {      
+      String[] wordList = text.split("[\\s\\n]");
+      int listLength = wordList.length;
+      for (int i = 0; i < listLength; i++) {
+        String word = wordList[i];
+        if (word.length() >= 3) {
+          wordCount++;
+        }
+      }
+    }    
+    
+    return wordCount;
   }
   
 }

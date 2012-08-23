@@ -120,6 +120,28 @@
       <suggestion>Most datasets have a temporal range.</suggestion>
       <reference>EML Best Practices v.2, p. 24</reference>
     </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>titleLength</identifier>
+      <name>Dataset title length is at 5 least words.</name>
+      <description>If the title is shorter than 5 words, it might be insufficient. Title word count between 7 and 20 including prepositions and numbers.</description>
+      <expected>Between 7 and 20 words</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>Best Practices document, page 13, says write a good title. This is the first view of a dataset. This is the first view of a dataset. To include what, where and when requires at least 7 words.</explanation>
+      <suggestion>If title is too short, ensure title covers what, where and when. If title is too long, title more concisely.</suggestion>
+      <reference>EML Best Practices, v.2, p. 13</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>datasetAbstractLength</identifier>
+      <name>Dataset abstract element is a minimum of 20 words</name>
+      <description>Check the length of a dataset abstract and warn if less than 20 words.</description>
+      <expected>An abstract is 20 words or more.</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>An abstract helps a user determine if the dataset is useful for a specific purpose. An abstract is usually a paragraph.</explanation>
+      <suggestion>Add an abstract.</suggestion>
+      <reference>EML Best Practices</reference>
+    </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="error" >
       <identifier>duplicateEntityName</identifier>
       <name>There are no duplicate entity names</name>
