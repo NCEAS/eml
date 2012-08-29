@@ -92,6 +92,7 @@ public class DataPackage
   private Entity[] entityList = null;
   private boolean parserValid = false;
   private boolean schemaValid = false;
+  private int numberOfKeywordElements = 0;
   private int numberOfMethodsElements = 0;
   private int numberOfCoverageElements = 0;
   private int numberOfGeographicCoverageElements = 0;
@@ -421,6 +422,17 @@ public class DataPackage
 
 
   /*
+   * Gets the value of the numberOfKeywordElements variable.
+   * 
+   * @return   the number of keyword elements detected in this
+   *           data package
+   */
+  public int getNumberOfKeywordElements() {
+    return numberOfKeywordElements;
+  }
+
+
+  /*
    * Gets the value of the numberOfMethodsElements variable.
    * 
    * @return   the number of methods elements detected in this
@@ -705,6 +717,43 @@ public class DataPackage
   
   
   /**
+   * Set the value of the numberOfKeywordElements instance variable
+   * and run a quality check based on the value.
+   * 
+   * @param   n  the number of keyword elements detected in
+   *             this data package by the parser
+   */
+  public void setNumberOfKeywordElements(int n) {
+    this.numberOfKeywordElements = n;
+
+    /*
+     *  Do a quality check for the presence of at least
+     *  one 'keyword' element
+     */
+    String qualityCheckIdentifier = "keywordPresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+      String found = numberOfKeywordElements + " 'keyword' element(s) found";
+      qualityCheck.setFound(found);
+      if (numberOfKeywordElements > 0) {
+        qualityCheck.setStatus(Status.valid);
+        qualityCheck.setExplanation("");
+        qualityCheck.setSuggestion("");
+      }
+      else {
+        qualityCheck.setFailedStatus();
+      }
+      
+      addDatasetQualityCheck(qualityCheck);
+    }
+  }
+
+
+  /**
    * Set the value of the numberOfMethodsElements instance variable
    * and run a quality check based on the value.
    * 
@@ -725,7 +774,7 @@ public class DataPackage
       new QualityCheck(methodsElementIdentifier, methodsElementTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, methodsElementQualityCheck)) {
-      String found = "Number of 'methods' elements found: " + numberOfMethodsElements;
+      String found = numberOfMethodsElements + " 'methods' element(s) found";
       methodsElementQualityCheck.setFound(found);
       if (numberOfMethodsElements > 0) {
         methodsElementQualityCheck.setStatus(Status.valid);
@@ -762,7 +811,7 @@ public class DataPackage
       new QualityCheck(identifier, qualityCheckTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
-      String found = numberOfCoverageElements + " 'coverage' element(s) found.";
+      String found = numberOfCoverageElements + " 'coverage' element(s) found";
       qualityCheck.setFound(found);
       if (numberOfCoverageElements > 0) {
         qualityCheck.setStatus(Status.valid);
@@ -799,7 +848,7 @@ public class DataPackage
       new QualityCheck(identifier, qualityCheckTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
-      String found = numberOfGeographicCoverageElements + " 'geographicCoverage' element(s) found.";
+      String found = numberOfGeographicCoverageElements + " 'geographicCoverage' element(s) found";
       qualityCheck.setFound(found);      
       addDatasetQualityCheck(qualityCheck);
     }
@@ -827,7 +876,7 @@ public class DataPackage
       new QualityCheck(identifier, qualityCheckTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
-      String found = numberOfTaxonomicCoverageElements + " 'taxonomicCoverage' element(s) found.";
+      String found = numberOfTaxonomicCoverageElements + " 'taxonomicCoverage' element(s) found";
       qualityCheck.setFound(found);      
       addDatasetQualityCheck(qualityCheck);
     }
@@ -855,7 +904,7 @@ public class DataPackage
       new QualityCheck(identifier, qualityCheckTemplate);
 
     if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
-      String found = numberOfTemporalCoverageElements + " 'temporalCoverage' element(s) found.";
+      String found = numberOfTemporalCoverageElements + " 'temporalCoverage' element(s) found";
      qualityCheck.setFound(found);      
       addDatasetQualityCheck(qualityCheck);
     }

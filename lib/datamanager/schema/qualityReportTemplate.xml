@@ -66,6 +66,17 @@
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>keywordPresent</identifier>
+      <name>keyword element is present</name>
+      <description>Checks to see if at least one keyword is present</description>
+      <expected>Presence of one or more keyword elements</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>The LTER portal allows searches on keywords. This check is a precursor for checking on keywords from the controlled vocabulary.</explanation>
+      <suggestion>Add at least one keyword.</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
       <identifier>methodsElementPresent</identifier>
       <name>A 'methods' element is present</name>
       <description>All datasets should contain a 'methods' element, at a minimum a link to a separate methods doc.</description>

@@ -298,6 +298,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             emlDataPackage.setSystem(systemValue);
           }
           
+          int nKeywordElements = countElements(xpathapi, doc, "keyword");
+          emlDataPackage.setNumberOfKeywordElements(nKeywordElements);
           int nMethodsElements = countElements(xpathapi, doc, "methods");
           emlDataPackage.setNumberOfMethodsElements(nMethodsElements);
           int nCoverageElements = countElements(xpathapi, doc, "coverage");
