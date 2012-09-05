@@ -232,7 +232,7 @@
   <xsl:template match="numFooterLines">
         <xsl:param name="physicalfirstColStyle"/>
         <tr>
-        <td class="{$physicalfirstColStyle}">Number of Foot Lines:</td>
+        <td class="{$physicalfirstColStyle}">Number of Footer Lines:</td>
         <td class="{$secondColStyle}"><xsl:value-of select="."/></td>
         </tr>
   </xsl:template>
