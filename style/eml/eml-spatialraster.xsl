@@ -108,6 +108,18 @@
          </td></tr>
       </xsl:for-each>
     </xsl:if>
+    
+    <!-- Here to display distribution info-->
+    <xsl:for-each select="physical">
+       <xsl:call-template name="spatialRasterShowDistribution">
+          <xsl:with-param name="docid" select="$docid"/>
+          <xsl:with-param name="entityindex" select="$entityindex"/>
+          <xsl:with-param name="physicalindex" select="position()"/>
+          <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
+          <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>
+       </xsl:call-template>
+    </xsl:for-each>
+    
     <xsl:if test="coverage">
        <tr><td class="{$spatialrastersubHeaderStyle}" colspan="2">
         Coverage Description:
@@ -293,16 +305,7 @@
       </xsl:call-template>
     </xsl:for-each>
     </xsl:if>
-    <!-- Here to display distribution info-->
-    <xsl:for-each select="physical">
-       <xsl:call-template name="spatialRasterShowDistribution">
-          <xsl:with-param name="docid" select="$docid"/>
-          <xsl:with-param name="entityindex" select="$entityindex"/>
-          <xsl:with-param name="physicalindex" select="position()"/>
-          <xsl:with-param name="spatialrasterfirstColStyle" select="$spatialrasterfirstColStyle"/>
-          <xsl:with-param name="spatialrastersubHeaderStyle" select="$spatialrastersubHeaderStyle"/>
-       </xsl:call-template>
-    </xsl:for-each>
+    
   </xsl:template>
 
   <!--****************************************************

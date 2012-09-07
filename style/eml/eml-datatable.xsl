@@ -119,6 +119,18 @@
           <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
        </xsl:call-template>
     </xsl:for-each>
+    
+    <!-- Here to display distribution info-->
+    <xsl:for-each select="physical">
+       <xsl:call-template name="showdistribution">
+          <xsl:with-param name="docid" select="$docid"/>
+          <xsl:with-param name="entityindex" select="$entityindex"/>
+          <xsl:with-param name="physicalindex" select="position()"/>
+          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
+          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
+       </xsl:call-template>
+    </xsl:for-each>
+    
     <xsl:if test="coverage">
        <tr><td class="{$datatablesubHeaderStyle}" colspan="2">
         Coverage Description:
@@ -165,16 +177,7 @@
        </xsl:call-template>
       </xsl:for-each>
      </xsl:if>
-     <!-- Here to display distribution info-->
-    <xsl:for-each select="physical">
-       <xsl:call-template name="showdistribution">
-          <xsl:with-param name="docid" select="$docid"/>
-          <xsl:with-param name="entityindex" select="$entityindex"/>
-          <xsl:with-param name="physicalindex" select="position()"/>
-          <xsl:with-param name="datatablefirstColStyle" select="$datatablefirstColStyle"/>
-          <xsl:with-param name="datatablesubHeaderStyle" select="$datatablesubHeaderStyle"/>
-       </xsl:call-template>
-    </xsl:for-each>
+     
   </xsl:template>
 
 
