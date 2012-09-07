@@ -231,7 +231,7 @@
        <!-- add in the contacts using a two column table -->
        <xsl:if test="contact">
          <tr><th colspan="2">Data Set Contacts:</th></tr>
-         <xsl:for-each select="creator">
+         <xsl:for-each select="contact">
          <tr>
            <xsl:if test="position() mod 2 = 1">
              <td class="fortyfive_percent">
