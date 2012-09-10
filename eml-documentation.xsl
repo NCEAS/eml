@@ -45,6 +45,7 @@
         <link rel="stylesheet" type="text/css" href="../default.css"></link>
       </head>
       <body>
+      	<div class="book">
         <!-- display the module name and description -->
         <table border="0" width="100%">
           <tr valign="top">
@@ -127,6 +128,7 @@
         <p class="contact"> Web Contact: <a href="mailto:jones@nceas.ucsb.edu"
           >jones@nceas.ucsb.edu</a>
         </p>
+        </div>
       </body>
     </html>
   </xsl:template>
