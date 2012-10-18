@@ -104,13 +104,25 @@
              <!-- put in the identifier and system that the ID belongs to -->
              <xsl:if test="../@packageId">
              <xsl:for-each select="../@packageId">
-             <xsl:call-template name="identifier">
-               <xsl:with-param name="packageID" select="$docid"/>
-               <!-- <xsl:with-param name="packageID" select="../@packageId"/>-->
-               <xsl:with-param name="system" select="../@system"/>
-               <xsl:with-param name="IDfirstColStyle" select="$firstColStyle"/>
-               <xsl:with-param name="IDsecondColStyle" select="$secondColStyle"/>
-             </xsl:call-template>
+             	<xsl:choose>
+             		<xsl:when test="$docid != ''" >
+             			<!-- use docid parameter when we have it -->         	
+						<xsl:call-template name="identifier">
+							<xsl:with-param name="packageID" select="$docid"/>
+							<xsl:with-param name="system" select="../@system"/>
+							<xsl:with-param name="IDfirstColStyle" select="$firstColStyle"/>
+							<xsl:with-param name="IDsecondColStyle" select="$secondColStyle"/>
+						</xsl:call-template>
+		             </xsl:when>
+		             <xsl:otherwise>
+		             	<xsl:call-template name="identifier">
+			               <xsl:with-param name="packageID" select="../@packageId"/>
+			               <xsl:with-param name="system" select="../@system"/>
+			               <xsl:with-param name="IDfirstColStyle" select="$firstColStyle"/>
+			               <xsl:with-param name="IDsecondColStyle" select="$secondColStyle"/>
+			             </xsl:call-template>
+		             </xsl:otherwise>
+	             </xsl:choose>
              </xsl:for-each>
              </xsl:if>
              <!-- put in the alternate identifiers -->
