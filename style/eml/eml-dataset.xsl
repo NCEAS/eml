@@ -105,7 +105,8 @@
              <xsl:if test="../@packageId">
              <xsl:for-each select="../@packageId">
              <xsl:call-template name="identifier">
-               <xsl:with-param name="packageID" select="../@packageId"/>
+               <xsl:with-param name="packageID" select="$docid"/>
+               <!-- <xsl:with-param name="packageID" select="../@packageId"/>-->
                <xsl:with-param name="system" select="../@system"/>
                <xsl:with-param name="IDfirstColStyle" select="$firstColStyle"/>
                <xsl:with-param name="IDsecondColStyle" select="$secondColStyle"/>
