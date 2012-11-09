@@ -81,9 +81,7 @@
        <xsl:when test="$displaymodule='additionalmetadata' or $displaymodule='printall'">
          <xsl:for-each select="additionalMetadata">
            <xsl:if test="$additionalmetadataindex=position()">
-              <div class="{$tabledefaultStyle}">
-                 <xsl:call-template name="additionalmetadata"/>
-               </div>
+                 <xsl:call-template name="additionalmetadatapart"/>
             </xsl:if>
          </xsl:for-each>
        </xsl:when>
@@ -1102,7 +1100,7 @@
    </xsl:template>
 
       <!--********************************************************
-             additionalmetadata part
+             additionalmetadata url
        ********************************************************-->
    <xsl:template name="additionalmetadataURL">
      <xsl:param name="index"/>
@@ -1115,6 +1113,18 @@
          </td>
        </tr>
      </table>
+   </xsl:template>
+	<!--********************************************************
+             additionalmetadata part
+       ********************************************************-->
+   <xsl:template name="additionalmetadatapart">
+		<tr>
+			<td colspan="2">
+				<div class="{$tabledefaultStyle}">
+					<xsl:call-template name="additionalmetadata"/>
+				</div>					
+			</td>
+		</tr>
    </xsl:template>
      <!--********************************************************
              download xml part
