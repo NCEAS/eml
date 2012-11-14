@@ -311,6 +311,7 @@
   <!-- The sixth row for meaturement domain-->
   <tr><th class="rowodd">Measurement Domain</th>
    <xsl:for-each select="attribute">
+	<xsl:variable name="attributeindex" select="position()"/>
     <xsl:variable name="stripes">
               <xsl:choose>
                 <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
@@ -334,7 +335,7 @@
                     <xsl:with-param name="docid" select="$docid"/>
                     <xsl:with-param name="entitytype" select="$entitytype"/>
                     <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="position()"/>
+                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
                     <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
@@ -348,7 +349,7 @@
                       <xsl:with-param name="docid" select="$docid"/>
                       <xsl:with-param name="entitytype" select="$entitytype"/>
                       <xsl:with-param name="entityindex" select="$entityindex"/>
-                      <xsl:with-param name="attributeindex" select="position()"/>
+                      <xsl:with-param name="attributeindex" select="$attributeindex"/>
                       <xsl:with-param name="stripes" select="$innerstripes"/>
                 </xsl:call-template>
               </xsl:for-each>
