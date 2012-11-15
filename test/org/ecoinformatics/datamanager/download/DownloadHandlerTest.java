@@ -162,9 +162,10 @@ public class DownloadHandlerTest extends TestCase
                                         String identifier, 
                                         boolean hasDataStorage)
 	  {	  
+      System.err.printf("url: %s,  identifier: %s\n", url, identifier);
+      System.err.println("Starting DownloadHandler.");
 		  DownloadHandler handler = 
                                  DownloadHandler.getInstance(url, endPointInfo);
-		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
           
 		  if (hasDataStorage)
@@ -174,18 +175,23 @@ public class DownloadHandlerTest extends TestCase
 		    handler.setDataStorageClassList(list);
 		  }
           
-		  //System.out.println("here2");
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
 		  Thread downloadThread = new Thread(handler);
-		  //System.out.println("here3");
+	    System.err.println("Starting DownloadHandler.");
 		  downloadThread.start();
-		  //System.out.println("here4");
           
 		  while(!handler.isCompleted())
 		  {
-			 
+	      System.err.println("Waiting for DownloadHandler to complete.");
+	      try {
+	       Thread.sleep(1000);
+	      }
+	      catch (InterruptedException e) {
+	        System.err.println(e.getMessage());
+	      }
 		  }
+	    System.err.println("DownloadHandler finished.");
           
 		  //assertTrue(handler.isSuccess() == true);
           
@@ -235,17 +241,14 @@ public class DownloadHandlerTest extends TestCase
 		  
 		  DownloadHandler handler = 
                                  DownloadHandler.getInstance(url, endPointInfo);
-		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
      	  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
 		  handler.setDataStorageClassList(list);
 		  
-		  //System.out.println("here2");
 		  assertTrue(handler.isBusy() == false);
 		  assertTrue(handler.isSuccess() == false);
 		  Thread downloadThread = new Thread(handler);
-		  //System.out.println("here3");
 		  downloadThread.start();
 		  // start the second handler
 		  DownloadHandler handler2 = 
@@ -254,22 +257,28 @@ public class DownloadHandlerTest extends TestCase
 		  Thread downloadThread2 = new Thread(handler2);
 		  downloadThread2.start();
 		  //assertTrue(handler == handler2);
-		  //System.out.println("the handler is "+handler);
-		  //System.out.println("the handler2 is "+handler2);
-		  //System.out.println("here4");
+		  System.err.println("the handler is "+handler);
+		  System.err.println("the handler2 is "+handler2);
           
+		  try {
 		  while(!handler.isCompleted())
 		  {
-			 
+	      System.err.println("Waiting for DownloadHandler to complete.");
+	      Thread.sleep(1000);
 		  }
           
 		  while(!handler2.isCompleted())
 		  {
-			 
+	      System.err.println("Waiting for DownloadHandler to complete.");
+	      Thread.sleep(1000);
+		  }
+		  }
+		  catch (InterruptedException e) {
+        System.err.println(e.getMessage());
 		  }
           
-		  //System.out.println("the handler is ===="+handler);
-		  //System.out.println("the handler2 is ===="+handler2);
+		  System.err.println("the handler is ===="+handler);
+		  System.err.println("the handler2 is ===="+handler2);
 		  //assertTrue(handler.isSuccess() == true);
 		  assertTrue(dataStorage.doesDataExist(url) == true);
 	      assertTrue(handler.isSuccess() == true);

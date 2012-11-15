@@ -273,7 +273,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           dataLoadQualityCheck.setFailedStatus();
           dataLoadQualityCheck.setFound(
             "One or more errors occurred during data loading");
-          String explanation = e.getMessage();
+          String explanation = "<![CDATA[" + e.getMessage() + "]]>";
           dataLoadQualityCheck.setExplanation(explanation);
           entity.addQualityCheck(dataLoadQualityCheck);
         }
@@ -430,7 +430,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           dataLoadQualityCheck.setFailedStatus();
           dataLoadQualityCheck.setFound("Error inserting data at row " +
                                         (rowCount + 1) + ".");
-          String explanation = e.getMessage();
+          String explanation = "<![CDATA[" + e.getMessage() + "]]>";
           dataLoadQualityCheck.setExplanation(explanation);
           entity.addQualityCheck(dataLoadQualityCheck);
         }

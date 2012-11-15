@@ -232,10 +232,14 @@ public class DatabaseLoaderTest extends TestCase {
     assertTrue(handler.isBusy() == false);
     assertTrue(handler.isSuccess() == false);
     Thread downloadThread = new Thread(handler);
+    System.err.println("Starting DownloadHandler.");
     downloadThread.start();
 
     while (!handler.isCompleted()) {
+      System.err.println("Waiting for DownloadHandler to complete.");
+      Thread.sleep(1000);
     }
+    System.err.println("DownloadHandler finished.");
 
     /*
      * Check that the data table does exist, and that one of the values in the

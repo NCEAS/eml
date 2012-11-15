@@ -139,13 +139,19 @@ public class GZipDataHandlerTest extends TestCase
 		  assertTrue(handler.isSuccess() == false);
 		  Thread downloadThread = new Thread(handler);
 		  //System.out.println("here3");
-		  downloadThread.start();
-		  //System.out.println("here4");
-          
-		  while(!handler.isCompleted())
-		  {
-			 
-		  }
+      downloadThread.start();
+      
+      while(!handler.isCompleted())
+      {
+        System.err.println("Waiting for DownloadHandler to complete.");
+        try {
+         Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+          System.err.println(e.getMessage());
+        }
+      }
+      System.err.println("DownloadHandler finished.");
           
 		  //assertTrue(handler.isSuccess() == true);
 		  if (success)
