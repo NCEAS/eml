@@ -213,7 +213,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		
 		accessPath = "//access";
     datasetTitlePath = "//dataset/title";
-    datasetAbstractPath = "//dataset/abstract//para";
+    datasetAbstractPath = "//dataset/abstract";
     entityAccessPath = "physical/distribution/access";
 	}
 	
