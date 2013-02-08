@@ -198,6 +198,7 @@ public class Entity extends DataObjectDescription
     public void addQualityCheck(QualityCheck qualityCheck) {
       if (entityReport != null) {
         entityReport.addQualityCheck(qualityCheck);
+        System.err.printf("  Entity: %s  Quality Check: %23s  Status: %5s\n", this, qualityCheck.getIdentifier(), qualityCheck.getStatus());
       }
     }
     

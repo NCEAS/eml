@@ -40,6 +40,8 @@ import java.sql.SQLException;
 
 
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.database.ConnectionNotAvailableException;
 import org.ecoinformatics.datamanager.database.DatabaseAdapter;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
@@ -85,6 +87,8 @@ public class DataManager {
   /*
    * Class fields
    */
+
+  public static Log log = LogFactory.getLog(DataManager.class);
 
   /* Holds the singleton object for this class */
   private static DataManager dataManager = null;
@@ -168,13 +172,13 @@ public class DataManager {
               }
               catch(Exception e) 
               {
-                 System.err.println("Error in DataManager.getConnection(): " +
+                 log.error("Error in DataManager.getConnection(): " +
                                     e.getMessage());
               }
           }
           catch (SQLException sql)
           {
-            System.err.println("Error in DataManager.getConnection(): " +
+            log.error("Error in DataManager.getConnection(): " +
                                sql.getMessage());
           }
           
@@ -277,6 +281,7 @@ public class DataManager {
    */
   public boolean downloadData(Entity entity, EcogridEndPointInterface endPointInfo,
                               DataStorageInterface[] dataStorageList) {
+    log.debug(String.format("***** Downloading data for: %s, entity: %s\n", entity.getPackageId(), entity.getName()));
     DownloadHandler downloadHandler = entity.getDownloadHandler(endPointInfo);
     boolean success = false;
     
@@ -297,8 +302,7 @@ public class DataManager {
     	
       } 
       catch (Exception e) {
-        System.err.println("Error downloading entity name '" + 
-                           entity.getName() + "': " + e.getMessage());
+        log.error("Error downloading entity name '" + entity.getName() + "': " + e.getMessage());
         success = false;
       }
     }
@@ -554,6 +558,7 @@ public class DataManager {
           throws ClassNotFoundException, SQLException, Exception {
     boolean success = false;
     
+    log.debug(String.format("***** Loading data to DB for: %s, entity: %s\n", entity.getPackageId(), entity.getName()));
     // Initialize the dataLoadQualityCheck
     String qualityCheckIdentifier = "dataLoadStatus";
     QualityCheck qualityCheckTemplate = QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);

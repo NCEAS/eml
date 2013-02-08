@@ -40,6 +40,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Hashtable;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
@@ -63,7 +65,9 @@ public class DownloadHandler implements Runnable
    * Class fields
    */
   
-    /*
+  public static Log log = LogFactory.getLog(DownloadHandler.class);
+
+  /*
      * Constants
      */   
     private static final String SRBUSERNAME     = "testuser.sdsc";
@@ -186,7 +190,7 @@ public class DownloadHandler implements Runnable
         
 		if (handler == null)
 		{
-      System.out.println("Constructing DownloadHandler for URL: " + url);
+      log.debug("Constructing DownloadHandler for URL: " + url);
 			handler = new DownloadHandler(url, endPoint);
 		}
         
@@ -215,7 +219,7 @@ public class DownloadHandler implements Runnable
         
     if (handler == null)
     {
-      System.out.println("Constructing DownloadHandler for URL: " + url);
+      log.debug("Constructing DownloadHandler for URL: " + url);
       handler = new DownloadHandler(entity, url, endPoint);
     }
         
@@ -331,7 +335,7 @@ public class DownloadHandler implements Runnable
     	}
     	catch(Exception e)
     	{
-    	   System.err.println("Error in DownloadHandler run method"+e.getMessage());
+    	   log.error("Error in DownloadHandler run method" + e.getMessage());
     	}
         
     	//System.out.println("after get source"+url);
@@ -527,6 +531,7 @@ public class DownloadHandler implements Runnable
     {
     	boolean successFlag = false;
     	QualityCheck onlineURLsQualityCheck = null;
+    	boolean onlineURLsException = false;  // used to determine status of onlineURLs quality check
         
       if (resourceName != null) { resourceName = resourceName.trim(); }
       
@@ -556,19 +561,26 @@ public class DownloadHandler implements Runnable
                    }
                    catch (IOException e){
                      exception = e;
+                     String errorMessage = e.getMessage();
+                     if (errorMessage.startsWith("0 bytes were read")) {
+                       onlineURLsException = true;
+                     }
                    }
                  }
                  else {
                    exception = new DataSourceNotFoundException("The url is null");
+                   onlineURLsException = true;
                  }
              }
              catch (MalformedURLException e) {
                exception = new DataSourceNotFoundException(
                            "The URL '" + resourceName + "' is a malformed URL.");
+               onlineURLsException = true;
              }
              catch (IOException ioe) {
             	 exception = new DataSourceNotFoundException(
             	             "The URL '" + resourceName + "' is not reachable");
+               onlineURLsException = true;
              }
 
              // Initialize the "Online URLs are live" quality check
@@ -581,7 +593,7 @@ public class DownloadHandler implements Runnable
              if (QualityCheck.shouldRunQualityCheck(entity, onlineURLsQualityCheck)) {
                String resourceNameEscaped = embedInCDATA(resourceName);
                
-               if (exception == null) {
+               if (!onlineURLsException) {
                  onlineURLsQualityCheck.setStatus(Status.valid);
                  onlineURLsQualityCheck.setFound("true");
                  onlineURLsQualityCheck.setExplanation(
@@ -801,6 +813,7 @@ public class DownloadHandler implements Runnable
                  
 	  			 if (dataStorge != null && !dataStorge.doesDataExist(url))
 	  			 {
+	  		     log.debug("DownloadHandler.startSerialize()");
 	  				 OutputStream osw = dataStorge.startSerialize(url);
 	  				 NeededOutputStream stream = new NeededOutputStream(osw, 
                                                                         true);
@@ -847,6 +860,7 @@ public class DownloadHandler implements Runnable
     			}
     		}
     	}
+    	log.debug("DownloadHandler.finishSerialize()");
     }
     
     
@@ -942,6 +956,13 @@ public class DownloadHandler implements Runnable
 				byte[] b = new byte[1024];
 				int bytesRead = inputStream.read(b, 0, 1024);
 				
+				if (bytesRead < 1) {
+				  throw new IOException("0 bytes were read from the data source.");
+				}
+				
+				int kilobytes = 1;
+        //System.err.printf("  Kilobytes read: .\n");
+				
 				/*
 				 * Store the first kilobyte of data in the entity for
 				 * subsequent use in quality reporting
@@ -964,7 +985,19 @@ public class DownloadHandler implements Runnable
 					}
 					// get the next bytes
 					bytesRead = inputStream.read(b, 0, 1024);
+					kilobytes++;
+					/*if (kilobytes < 1000) {
+            System.err.printf(".");
+            if (kilobytes % 100 == 0) {
+              System.err.printf("\n");
+            }
+					}					
+					else if (kilobytes % 1000 == 0) {
+	          System.err.printf("\n  Kilobytes read: %d", kilobytes);
+					}*/
 				}
+        //System.err.printf("\n");
+
 				// done writing to the streams
 				for (int i = 0; i < outputStreamList.length; i++) {
 					stream = outputStreamList[i];
@@ -976,13 +1009,21 @@ public class DownloadHandler implements Runnable
 				successFlag = true;
 				//String error = null;
 				//finishSerialize(error);
+				log.info(String.format("  Total Kilobytes Read: %d\n", kilobytes));
+				log.debug("DownloadHandler.finishSerialize()");
 			} else {
 				successFlag = false;
 			}
 
 			return successFlag;
 
-		} catch (Exception ee) {
+		}
+		catch (IOException e) {
+		  successFlag = false;
+		  e.printStackTrace();
+		  throw(e);
+		}
+		catch (Exception ee) {
 			successFlag = false;
 			return successFlag;
 		}		

@@ -122,6 +122,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
    *         is to be serialized.
    */
   public OutputStream startSerialize(String identifier) {
+    log.debug("DatabaseLoader.startSerialize()");
     completed = false;
     success = false;
     Thread newThread = new Thread(this);
@@ -167,6 +168,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       }
     }
 
+    log.debug("DatabaseLoader.finishSerialize()");
   }
 		  
 
