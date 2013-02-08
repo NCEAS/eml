@@ -43,7 +43,6 @@ import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DateTimeDomain;
 import org.ecoinformatics.datamanager.parser.Domain;
-import org.ecoinformatics.datamanager.parser.NumericDomain;
 import org.ecoinformatics.datamanager.parser.StorageType;
 
 /**
@@ -117,7 +116,7 @@ public abstract class DatabaseAdapter {
   public static String getLegalDBTableName(String entityName) {
     final int tableNameMaxLength = getTableNameMaxLength();
     String legalName = null;
-    char[] badChars = {' ', '-', '.', '/'};
+    char[] badChars = {' ', '-', '.', '/', ','};
     char goodChar = '_';
     
     if (entityName != null) {
