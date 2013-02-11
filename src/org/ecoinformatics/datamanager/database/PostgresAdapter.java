@@ -265,37 +265,37 @@ public class PostgresAdapter extends DatabaseAdapter {
     
     // switch/case only works for static enums or ints and 
     // I'm just too lazy to set that up so I'm using if/then.
-    if (emlFormatString.equals("YYYY-MM-DDThh:mm:ss")) {
+    if (emlFormatString.equalsIgnoreCase("YYYY-MM-DDThh:mm:ss")) {
       pgFormatString = "YYYY-MM-DDTHH24:MI:ss";
     }
-    else if (emlFormatString.equals("YYYY-MM-DD hh:mm:ss")) {
+    else if (emlFormatString.equalsIgnoreCase("YYYY-MM-DD hh:mm:ss")) {
       pgFormatString = "YYYY-MM-DD HH24:MI:ss";
     }
-    else if (emlFormatString.equals("hh:mm:ss")) {
+    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss")) {
       pgFormatString = "HH24:MI:ss";
     }
-    else if (emlFormatString.equals("hh:mm")) {
+    else if (emlFormatString.equalsIgnoreCase("hh:mm")) {
       pgFormatString = "HH24:MI";
     }
-    else if (emlFormatString.equals("hh:mm:ss.sss")) { 
+    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.sss")) { 
       pgFormatString = "HH24:MI:ss.sss";
     }
-    else if (emlFormatString.equals("hh:mm:ss.ss")) {
+    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.ss")) {
       pgFormatString = "HH24:MI:ss.ss";
     }
-    else if (emlFormatString.equals("hh:mm:ss.s")) {
+    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.s")) {
       pgFormatString = "HH24:MI:ss.s";
     }
-    else if (emlFormatString.equals("YYYY-WWW-DD")) {
+    else if (emlFormatString.equalsIgnoreCase("YYYY-WWW-DD")) {
       pgFormatString = "YYYY-Mon-DD";
     }
-    else if (emlFormatString.equals("YYYY/WWW/DD")) {
+    else if (emlFormatString.equalsIgnoreCase("YYYY/WWW/DD")) {
       pgFormatString = "YYYY/Mon/DD";
     }
-    else if (emlFormatString.equals("DD WWW YYYY")) {
+    else if (emlFormatString.equalsIgnoreCase("DD WWW YYYY")) {
       pgFormatString = "DD Mon YYYY";
     }
-    else if (emlFormatString.equals("YYYYWWWDD")) {
+    else if (emlFormatString.equalsIgnoreCase("YYYYWWWDD")) {
       pgFormatString = "YYYYMonDD";
     }
       
