@@ -76,7 +76,7 @@ public class DataPackage
     "eml://ecoinformatics.org/eml-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml.xsd " +
     "eml://ecoinformatics.org/literature-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-literature.xsd " +
     "eml://ecoinformatics.org/project-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-project.xsd " +
-    "eml://ecoinformatics.org/eml-2.1.1 eml.xsd " +
+    "eml://ecoinformatics.org/eml-2.1.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml.xsd " +
     "eml://ecoinformatics.org/literature-2.1.1 eml-literature.xsd " +
     "eml://ecoinformatics.org/project-2.1.1 eml-project.xsd " +
     "http://www.xml-cml.org/schema/stmml http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/stmml.xsd " +
