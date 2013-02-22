@@ -82,6 +82,7 @@ public class DelimitedReader extends TextDataReader
   private final int FIELD_CHECK_MAX = 5; // Max number of field count checks to report
   private int examineRecordDelimiterCounter = 0; // Counts 'examineRecordDelimiter' checks
   private final int EXAMINE_RECORD_DELIMITER_MAX = 1; // Max number of examineRecordDelimiter checks
+  private boolean hasRecordDelimiter = false; // Set to true when the record delimiter is found in the data table
   
 
   /*private static Log log;
@@ -590,6 +591,7 @@ public class DelimitedReader extends TextDataReader
 	          }
 	          else {
               rowDataString = rowBuffer.toString();
+              hasRecordDelimiter = true;
               break;
             }
 
@@ -1089,6 +1091,14 @@ public class DelimitedReader extends TextDataReader
    */
   public int getTooManyFieldsCounter() {
     return tooManyFieldsCounter;
+  }
+  
+  
+  /*
+   * Returns the value of the boolean instance variable, hasRecordDelimiter.
+   */
+  public boolean hasRecordDelimiter() {
+    return hasRecordDelimiter;
   }
 
 

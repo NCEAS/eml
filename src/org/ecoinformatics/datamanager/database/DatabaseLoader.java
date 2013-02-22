@@ -344,7 +344,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           if (QualityCheck.shouldRunQualityCheck(entity, tooFewFieldsCheck)) {
             if (delimitedReader.getTooFewFieldsCounter() == 0) {
               tooFewFieldsCheck.setExplanation("");
-              tooFewFieldsCheck.setFound("No errors found");
+              tooFewFieldsCheck.setFound("No errors detected");
               tooFewFieldsCheck.setStatus(Status.valid);
               tooFewFieldsCheck.setSuggestion("");
               entity.addQualityCheck(tooFewFieldsCheck);
@@ -363,23 +363,45 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           if (QualityCheck.shouldRunQualityCheck(entity, tooManyFieldsCheck)) {
             if (delimitedReader.getTooManyFieldsCounter() == 0) {
               tooManyFieldsCheck.setExplanation("");
-              tooManyFieldsCheck.setFound("No errors found");
+              tooManyFieldsCheck.setFound("No errors detected");
               tooManyFieldsCheck.setStatus(Status.valid);
               tooManyFieldsCheck.setSuggestion("");
               entity.addQualityCheck(tooManyFieldsCheck);
             }
           }
+
+          /*
+           * If no delimiter string was found in the data, record the
+           * an examineRecordDelimiter quality check as 'error'
+           */
+          String examineRecordDelimiterIdentifier = "examineRecordDelimiter";
+          QualityCheck examineRecordDelimiterTemplate = 
+            QualityReport.getQualityCheckTemplate(examineRecordDelimiterIdentifier);
+          QualityCheck examineRecordDelimiter = 
+            new QualityCheck(examineRecordDelimiterIdentifier, examineRecordDelimiterTemplate);
+          if (QualityCheck.shouldRunQualityCheck(entity, examineRecordDelimiter)) {
+            if (!delimitedReader.hasRecordDelimiter()) {
+              examineRecordDelimiter.setExplanation("No record delimiter was found in the data entity");
+              examineRecordDelimiter.setFound("No record delimiter was found");
+              examineRecordDelimiter.setStatus(Status.error);
+              examineRecordDelimiter.setSuggestion("Check that the record delimiter is specified in the metadata");
+              entity.addQualityCheck(examineRecordDelimiter);
+            }
+          }
         }
 
         if (QualityCheck.shouldRunQualityCheck(entity, dataLoadQualityCheck)) {
-          /*
-           *  Report data load status as 'valid'
-           */
-          dataLoadQualityCheck.setStatus(Status.valid);
-          dataLoadQualityCheck.setFound(
-            "The data table loaded successfully into a database");
-          entity.addQualityCheck(dataLoadQualityCheck);      
 
+          if (rowCount > 0) {         
+            dataLoadQualityCheck.setStatus(Status.valid);
+            dataLoadQualityCheck.setFound("The data table loaded successfully into a database");
+          }
+          else {
+            dataLoadQualityCheck.setFailedStatus();
+            dataLoadQualityCheck.setFound("No data could be loaded into a database");
+          }
+          entity.addQualityCheck(dataLoadQualityCheck);   
+           
           /*
            * Store number of records found in a QualityCheck object
            */
@@ -397,6 +419,14 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
               numberOfRecordsQualityCheck.setExplanation(
                 "The expected number of records (" + 
                 rowCount + ") was found in the data table.");
+            }
+            // When zero records were counted, set an error status
+            else if ((expectedNumberOfRecords != 0) && (rowCount == 0)) {
+              numberOfRecordsQualityCheck.setFailedStatus();
+              numberOfRecordsQualityCheck.setExplanation(
+                "The number of records found in the data table was: " +  
+                rowCount +
+                ". Check that a valid record delimiter was specified in the metadata.");
             }
             // When 'numberOfRecords' is not specified in the EML, the EML
             // parser sets the value to -1.
