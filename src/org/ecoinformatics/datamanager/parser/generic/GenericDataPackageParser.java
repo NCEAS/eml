@@ -1118,6 +1118,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             boolean isZipDataFile   = false;
             boolean isTarDataFile   = false;
             boolean isSimpleDelimited = true;
+            boolean isTextFixed = false;
             boolean isCollapseDelimiters = false;
 
             if (xpath != null) {
@@ -1306,6 +1307,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                      if (textWidthFixedDataFormat != null)
                      {
                         formatVector.add(textWidthFixedDataFormat);
+                        isTextFixed = true;
                         //complexFormatsNumber++;
                      }
                  }
@@ -1500,6 +1502,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           } else {
               entityCaseSensitive = "false";
           }
+          
+          System.err.println(String.format("Package ID: %s  Entity: %s", packageId, entityName));
 
           entityObject = new Entity(id, 
         		  					entityName == null ? null: entityName.trim(),
@@ -1512,6 +1516,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           entityObject.setNumHeaderLines(numHeaderLines);
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
+          entityObject.setTextFixed(isTextFixed);
             
           if (quoteCharacter != null)
           {

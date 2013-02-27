@@ -117,6 +117,7 @@ public class Entity extends DataObjectDescription
     private boolean hasTarDataFile   = false;
     //private DataCacheObject dataCacheObject = null;
     private boolean simpleDelimited  = true;
+    private boolean textFixed        = false;
     private TextComplexDataFormat[] dataFormatArray = null;
     private String physicalLineDelimiter  = null;
     private boolean collapseDelimiters = false;
@@ -326,37 +327,46 @@ public class Entity extends DataObjectDescription
         String explanation = fieldDelimiterQualityCheck.getExplanation();
         
         // Check for bad field delimiters
-        if (delimiter == null || delimiter.equals("")) {
-          isValidDelimiter = false;
-          explanation += " The fieldDelimiter value is null or empty string.";
-        }
-        else {
-          int delimiterLength = delimiter.length();    
-          if (delimiterLength > 1) {
-            String unescapedDelimiter = DelimitedReader.unescapeDelimiter(delimiter);
-            if (delimiter.equals(unescapedDelimiter)) {
-              isValidDelimiter = false;
-              explanation += " The specified delimiter, '" + 
+        if (!this.isTextFixed()) {
+          if (delimiter == null || delimiter.equals("")) {
+            isValidDelimiter = false;
+            explanation += " The fieldDelimiter value is null or empty string.";
+          }
+          else {
+            int delimiterLength = delimiter.length();    
+            if (delimiterLength > 1) {
+              String unescapedDelimiter = DelimitedReader.unescapeDelimiter(delimiter);
+              if (delimiter.equals(unescapedDelimiter)) {
+                isValidDelimiter = false;
+                explanation += " The specified delimiter, '" + 
                              delimiter + "'," +
                              " is not a recognized fieldDelimiter value.";
+              }
             }
           }
         }
           
         fieldDelimiterQualityCheck.setFound(found);
-        if (isValidDelimiter) {
+        
+        if (this.isTextFixed()) {
+          explanation = "A fieldDelimiter value is not used when describing fixed text entities";
+          fieldDelimiterQualityCheck.setStatus(Status.info);
+          fieldDelimiterQualityCheck.setSuggestion("");
+        }
+        else if (isValidDelimiter) {
           explanation = "A valid fieldDelimiter value was found";
           fieldDelimiterQualityCheck.setStatus(Status.valid);
           fieldDelimiterQualityCheck.setSuggestion("");
         }
         else if (getIsImageEntity() || isOtherEntity()) {
-          explanation = "A fieldDelimiter value in not required for binary entities";
+          explanation = "A fieldDelimiter value is not required for binary entities";
           fieldDelimiterQualityCheck.setStatus(Status.info);
           fieldDelimiterQualityCheck.setSuggestion("");
         }
         else {
           fieldDelimiterQualityCheck.setFailedStatus();
         } 
+        
         fieldDelimiterQualityCheck.setExplanation(explanation);
         addQualityCheck(fieldDelimiterQualityCheck);
       }
@@ -1310,6 +1320,17 @@ public class Entity extends DataObjectDescription
     
     
     /**
+     * Boolean to determine if data file in this entity is fixed text.
+     * 
+     * @return Returns the textFixed boolean value
+     */
+    public boolean isTextFixed()
+    {
+        return textFixed;
+    }
+    
+    
+    /**
      * Sets the value of the simpleDelimited field.
      * 
      * @param simpleDelimited The simpleDelimited boolean value to set.
@@ -1317,6 +1338,17 @@ public class Entity extends DataObjectDescription
     public void setSimpleDelimited(boolean simpleDelimited)
     {
         this.simpleDelimited = simpleDelimited;
+    }
+    
+    
+    /**
+     * Sets the value of the textFixed field.
+     * 
+     * @param textFixed The textFixed boolean value to set.
+     */
+    public void setTextFixed(boolean textFixed)
+    {
+        this.textFixed = textFixed;
     }
     
     
