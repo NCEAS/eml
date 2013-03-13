@@ -36,7 +36,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.TreeSet;
 import java.util.Vector;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.transform.Result;
@@ -957,6 +956,14 @@ public class DataPackage
 
       addDatasetQualityCheck(qualityCheck);
     }
+  }
+  
+  /**
+   * Returns the package title
+   * @return
+   */
+  public String getTitle() {
+	  return this.title;
   }
   
   
