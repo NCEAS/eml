@@ -106,6 +106,7 @@ public class Entity extends DataObjectDescription
     private String format;
     private String dbTableName;    // the unique table name will be stored in DB
     private String compressionMethod = null;
+    private boolean externallyDefinedFormat = false;
     private String firstKilobyte = null;
     private boolean hasDistributionOnline = false;
     private boolean hasDistributionOffline = false;
@@ -358,8 +359,8 @@ public class Entity extends DataObjectDescription
           fieldDelimiterQualityCheck.setStatus(Status.valid);
           fieldDelimiterQualityCheck.setSuggestion("");
         }
-        else if (getIsImageEntity() || isOtherEntity()) {
-          explanation = "A fieldDelimiter value is not required for binary entities";
+        else if (getIsImageEntity() || isOtherEntity() || isExternallyDefinedFormat()) {
+          explanation = "A fieldDelimiter value is not checked for binary entities or entities with an externally defined format";
           fieldDelimiterQualityCheck.setStatus(Status.info);
           fieldDelimiterQualityCheck.setSuggestion("");
         }
@@ -542,8 +543,8 @@ public class Entity extends DataObjectDescription
           recordDelimiterQualityCheck.setStatus(Status.valid);
           recordDelimiterQualityCheck.setSuggestion("");
         }
-        else if (getIsImageEntity() || isOtherEntity()) {
-          explanation = "A recordDelimiter value in not required for binary entities";
+        else if (getIsImageEntity() || isOtherEntity() || isExternallyDefinedFormat()) {
+          explanation = "A recordDelimiter value is not checked for binary entities or entities with an externally defined format";
           recordDelimiterQualityCheck.setStatus(Status.info);
           recordDelimiterQualityCheck.setSuggestion("");
         }
@@ -1309,6 +1310,18 @@ public class Entity extends DataObjectDescription
 
     
     /**
+     * Boolean to determine if data file in this entity uses an
+     * externally defined format.
+     * 
+     * @return Returns the externallyDefinedFormat boolean value
+     */
+    public boolean isExternallyDefinedFormat()
+    {
+        return externallyDefinedFormat;
+    }
+    
+    
+    /**
      * Boolean to determine if data file in this entity is simple delimited.
      * 
      * @return Returns the simpleDelimited boolean value
@@ -1327,6 +1340,17 @@ public class Entity extends DataObjectDescription
     public boolean isTextFixed()
     {
         return textFixed;
+    }
+    
+    
+    /**
+     * Sets the value of the externallyDefinedFormat field.
+     * 
+     * @param textFixed The textFixed boolean value to set.
+     */
+    public void setExternallyDefinedFormat(boolean externallyDefinedFormat)
+    {
+        this.externallyDefinedFormat = externallyDefinedFormat;
     }
     
     

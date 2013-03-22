@@ -1112,6 +1112,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             boolean hasDistributionOnline = false;
             boolean hasDistributionOffline = false;
             boolean hasDistributionInline = false;
+            boolean isExternallyDefinedFormat = false;
             boolean isOtherEntity = false;
             boolean isImageEntity   = false;
             boolean isGZipDataFile  = false;
@@ -1429,6 +1430,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            NodeList formatNodeList = xpathapi.selectNodeList(entityNode, "physical/dataFormat/externallyDefinedFormat/formatName");
            if (formatNodeList != null && formatNodeList.getLength() > 0) {
         	   format = formatNodeList.item(0).getFirstChild().getNodeValue();
+        	   isExternallyDefinedFormat = true;
            } else {
         	   // try binary raster
         	   formatNodeList = xpathapi.selectNodeList(entityNode, "physical/dataFormat/binaryRasterFormat");
@@ -1513,6 +1515,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                     new Integer(entityNumberOfRecords).
                                                            intValue());
           
+          entityObject.setExternallyDefinedFormat(isExternallyDefinedFormat);
           entityObject.setNumHeaderLines(numHeaderLines);
           entityObject.setNumFooterLines(numFooterLines);
           entityObject.setSimpleDelimited(isSimpleDelimited);
