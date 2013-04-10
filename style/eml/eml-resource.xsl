@@ -42,7 +42,7 @@
   <xsl:template name="resource">
     <xsl:param name="resfirstColStyle"/>
     <xsl:param name="ressubHeaderStyle"/>
-    <xsl:param name="creator">Data Set Owner(s):</xsl:param>
+    <xsl:param name="creator">Data Set Creator(s):</xsl:param>
   </xsl:template>
 
   <!-- style the alternate identifier elements -->

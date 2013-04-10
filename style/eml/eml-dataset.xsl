@@ -218,7 +218,7 @@
 
        <!-- add in the creators using a two column table -->
        <xsl:if test="creator">
-         <tr><th colspan="2">Data Set Owners:</th></tr>
+         <tr><th colspan="2">Data Set Creators:</th></tr>
          <xsl:for-each select="creator">
          <tr>
            <xsl:if test="position() mod 2 = 1">
