@@ -1087,27 +1087,27 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         
         int entityNodeListLength = entitiesNodeList.getLength();
         numEntities = numEntities + entityNodeListLength;
-        String entityAccessXML = null;
-        String entityName = "";
-        String entityDescription = "";
-        String entityOrientation = "";
-        String entityCaseSensitive = "";
-        String onlineUrl = "";
-        String onlineUrlFunction = null;
-        String format = null;
-        int numHeaderLines = 0;
-        int numFooterLines = 0;
-        String fieldDelimiter = null;
-        String recordDelimiter = DEFAULT_RECORD_DELIMITER;
-        String metadataRecordDelimiter = null; // The record delimiter specified in the metadata
-        String compressionMethod = "";
-        String encodingMethod = "";
-        String quoteCharacter = null;
-        String literalCharacter = null;
-        TextComplexDataFormat[] formatArray = null;
-         
+
         for (int i = 0; i < entityNodeListLength; i++) {
-            
+        
+            String entityAccessXML = null;
+            String entityName = "";
+            String entityDescription = "";
+            String entityOrientation = "";
+            String entityCaseSensitive = "";
+            String onlineUrl = "";
+            String onlineUrlFunction = null;
+            String format = null;
+            int numHeaderLines = 0;
+            int numFooterLines = 0;
+            String fieldDelimiter = null;
+            String recordDelimiter = DEFAULT_RECORD_DELIMITER;
+            String metadataRecordDelimiter = null; // The record delimiter specified in the metadata
+            String compressionMethod = "";
+            String encodingMethod = "";
+            String quoteCharacter = null;
+            String literalCharacter = null;
+            TextComplexDataFormat[] formatArray = null;        
             String entityNumberOfRecords = "-1";
             boolean hasDistributionOnline = false;
             boolean hasDistributionOffline = false;
