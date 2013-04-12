@@ -35,6 +35,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -541,14 +542,27 @@ public class DownloadHandler implements Runnable
              resourceName.startsWith("file://") ||
              resourceName.startsWith("ftp://") 
             )
-           ) {             
+           ) {
              // get the data from a URL
              try {
                  URL url = new URL(resourceName);
-                 URLConnection urlc= url.openConnection();
-                 // Find the right MIME type and set it as content type
-                 String contentType = urlc.getContentType();
+
                  if (entity != null) {
+                   String contentType = null;
+                   
+                   // Find the right MIME type and set it as content type
+                   if (resourceName.startsWith("http")) {
+                     HttpURLConnection httpURLConnection = (HttpURLConnection)  url.openConnection();
+                     httpURLConnection.setRequestMethod("HEAD");
+                     httpURLConnection.connect();
+                     contentType = httpURLConnection.getContentType();
+                   }
+                   else {
+                     URLConnection urlConnection= url.openConnection();
+                     urlConnection.connect();
+                     contentType = urlConnection.getContentType();
+                   }
+                 
                    entity.setUrlContentType(contentType);
                  }
                  
@@ -566,10 +580,6 @@ public class DownloadHandler implements Runnable
                        onlineURLsException = true;
                      }
                    }
-                 }
-                 else {
-                   exception = new DataSourceNotFoundException("The url is null");
-                   onlineURLsException = true;
                  }
              }
              catch (MalformedURLException e) {
