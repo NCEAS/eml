@@ -47,6 +47,7 @@ import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
+import org.ecoinformatics.datamanager.quality.QualityCheck.StatusType;
 import org.ecoinformatics.eml.EMLParser;
 import org.ecoinformatics.eml.SAXValidate;
 import org.w3c.dom.Document;
@@ -102,7 +103,10 @@ public class DataPackage
   private String system = null;
   private String title = null;
   
-  private final String LTER_PACKAGE_ID_PATTERN = "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
+  private final String IDENTIFIER_WITH_LEADING_ZERO_PATTERN = "^[A-Za-z_0-9\\-]+\\.0\\d+\\.\\d+$";
+  private final String REVISION_WITH_LEADING_ZERO_PATTERN =   "^[A-Za-z_0-9\\-]+\\.\\d+\\.0\\d+$";
+  private final String LTER_PACKAGE_ID_PATTERN =              "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
+  private final String METACAT_PACKAGE_ID_PATTERN =           "^[A-Za-z_0-9\\-]+\\.\\d+\\.\\d+$";
   
   
   /*
@@ -454,6 +458,50 @@ public class DataPackage
   }
 
 
+  /*
+   * Boolean to determine whether a given packageId has an
+   * identifier with a leading zero character. This usually causes problems
+   * with subsequent processing of the data package and should be
+   * flagged as an error. A zero by itself is acceptable, however.
+   * 
+   * Examples:
+   * 
+   *     "datapackage.012.12"    // returns true
+   *     "datapackage.0.12"      // returns false
+   *     "datapackage.10.12"     // returns false
+   */
+  private boolean identifierHasLeadingZero(String packageId) {
+    boolean hasLeadingZero = false;
+    
+    String regexPattern = IDENTIFIER_WITH_LEADING_ZERO_PATTERN;   
+    hasLeadingZero = Pattern.matches(regexPattern, packageId);
+
+    return hasLeadingZero;
+  }
+  
+  
+  /*
+   * Boolean to determine whether a given packageId has a
+   * revision with a leading zero character. If true, this may cause problems
+   * with subsequent processing of the data package and should be
+   * flagged as an error. A zero by itself is acceptable, however.
+   * 
+   * Examples:
+   * 
+   *     "datapackage.12.012"    // returns true
+   *     "datapackage.12.0"      // returns false
+   *     "datapackage.12.11"     // returns false
+   */
+  private boolean revisionHasLeadingZero(String packageId) {
+    boolean hasLeadingZero = false;
+    
+    String regexPattern = REVISION_WITH_LEADING_ZERO_PATTERN;   
+    hasLeadingZero = Pattern.matches(regexPattern, packageId);
+
+    return hasLeadingZero;
+  }
+  
+  
   /**
    * Gets the parserValid value
    * 
@@ -481,7 +529,24 @@ public class DataPackage
    * expression pattern declared for its packageId, then the
    * packageId is assumed to be valid by default.
    */
-  private boolean isValidPackageId(String system, String packageId) {
+  private boolean isValidPackageIdForMetacat(String packageId) {
+    boolean isValid = true;
+    String regexPattern = METACAT_PACKAGE_ID_PATTERN;
+    
+    isValid = Pattern.matches(regexPattern, packageId);
+ 
+    return isValid;
+  }
+  
+  
+  /*
+   * Boolean to determine whether a given packageId conforms to
+   * the string pattern of a particular organization such as LTER.
+   * If the specified system value does not have a regular
+   * expression pattern declared for its packageId, then the
+   * packageId is assumed to be valid by default.
+   */
+  private boolean isValidPackageIdForOrganization(String system, String packageId) {
     boolean isValid = true;
     String regexPattern = null;
     
@@ -524,23 +589,34 @@ public class DataPackage
 
     if (QualityCheck.shouldRunQualityCheck(this, packageIdQualityCheck)) {
       // Initialize the emlNamespaceQualityCheck
-      boolean isValidPackageId = false;
       String systemAttribute = packageIdQualityCheck.getSystem();
 
       if (packageId != null) {
         packageIdQualityCheck.setFound(packageId);
-        if (isValidPackageId(systemAttribute, packageId)) {
-          isValidPackageId = true;
-        }
       }
       
-      if (isValidPackageId) {
+      if (!isValidPackageIdForMetacat(packageId)) {
+        packageIdQualityCheck.setStatus(Status.error);
+        packageIdQualityCheck.setExplanation("The packageId value should match the pattern 'scope.identifier.revision'.");
+      }
+      else if (identifierHasLeadingZero(packageId)) {
+        packageIdQualityCheck.setStatus(Status.error);
+        packageIdQualityCheck.setExplanation("A leading zero was found in the identifier. The identifier value must be a whole number.");
+        packageIdQualityCheck.setSuggestion("Remove leading zeros from the identifier value.");
+      }
+      else if (revisionHasLeadingZero(packageId)) {
+        packageIdQualityCheck.setStatus(Status.error);
+        packageIdQualityCheck.setExplanation("A leading zero was found in the revision. The revision value must be a whole number.");
+        packageIdQualityCheck.setSuggestion("Remove leading zeros from the revision value.");
+      }
+      else if (isValidPackageIdForOrganization(systemAttribute, packageId)) {
         packageIdQualityCheck.setStatus(Status.valid);
         packageIdQualityCheck.setSuggestion("");
       }
       else {
         packageIdQualityCheck.setFailedStatus();
       }
+      
       this.addDatasetQualityCheck(packageIdQualityCheck);
     }
   }
