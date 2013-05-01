@@ -288,6 +288,7 @@ public class DatabaseHandler
        * field names for the attributes.
        */
       String ddlString = databaseAdapter.generateDDL(attributeList,tableName);
+      String ddlStringEscaped = String.format("<![CDATA[%s]]>", ddlString);
       
       /*
        * If the table is not already in the database, generate it. If it's
@@ -308,7 +309,7 @@ public class DatabaseHandler
             databaseTableQualityCheck.setStatus(Status.valid);
             databaseTableQualityCheck.setFound(
               "A database table was generated from the attributes description");
-            databaseTableQualityCheck.setExplanation(ddlString);
+            databaseTableQualityCheck.setExplanation(ddlStringEscaped);
             entity.addQualityCheck(databaseTableQualityCheck);
           }
         } 
@@ -318,7 +319,7 @@ public class DatabaseHandler
           String message = 
             "SQLException while generating data table '" + tableName +
             "' for entity '" + entity.getName() + "': " + e.getMessage() + 
-            "\n" + ddlString;
+            "\n" + ddlStringEscaped;
           System.err.println(message);
           e.printStackTrace();
           
