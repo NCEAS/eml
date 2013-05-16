@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 
+import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.ecogrid.authenticatedqueryservice.AuthenticatedQueryServiceGetToStreamClient;
 import org.ecoinformatics.ecogrid.queryservice.QueryServiceGetToStreamClient;
 
@@ -53,6 +54,18 @@ public abstract class ArchivedDataHandler extends DownloadHandler
    * Constructors
    */
   
+  /**
+   * Constructor
+   * @param entity The entity object whose data is being downloaded
+   * @param url  The url of entity which need be downloaded
+   * @param endPoint the object which provides ecogrid endpoint information
+   */
+    protected ArchivedDataHandler(Entity entity, String url, EcogridEndPointInterface endPoint)
+    {
+      super(entity, url, endPoint);
+    }
+
+    
 	/**
 	 * Constructor
 	 * @param url  The url of entity which need be downloaded

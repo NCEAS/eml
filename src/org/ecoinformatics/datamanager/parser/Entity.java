@@ -1476,19 +1476,19 @@ public class Entity extends DataObjectDescription
     {
         if (hasZipDataFile)
         {
-            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(url, endPointInfo);
+            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(this, url, endPointInfo);
             return handler;
         }
         
         if (hasGZipDataFile)
         {
-            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(url, endPointInfo);
+            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(this, url, endPointInfo);
             return handler;
         }
         
         if (hasTarDataFile)
         {
-            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(url, endPointInfo);
+            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(this, url, endPointInfo);
             return handler;
         }
             

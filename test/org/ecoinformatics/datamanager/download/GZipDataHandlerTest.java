@@ -121,9 +121,9 @@ public class GZipDataHandlerTest extends TestCase
 	   * Test download method
 	   */
 	  private void testDownload(boolean success, String url, String identifier)
-	  {  
+	  { 
 		  GZipDataHandler handler = 
-                      GZipDataHandler.getGZipHandlerInstance(url, endPointInfo);
+                      GZipDataHandler.getGZipHandlerInstance(null, url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
           

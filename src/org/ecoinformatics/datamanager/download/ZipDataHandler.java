@@ -38,6 +38,8 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.ecoinformatics.datamanager.parser.Entity;
+
 
 /**
  * This is a sub-class of CompressedDataHandler class. It will handle 
@@ -56,6 +58,19 @@ public class ZipDataHandler extends CompressedDataHandler
     /**
      * Constructor
      * 
+     * @param entity The entity object whose data is being downloaded
+     * @param url  The url (or identifier) of the zipped entity
+     * @param endPoint the object which provides ecogrid endpoint information
+     */
+    protected ZipDataHandler(Entity entity, String url, EcogridEndPointInterface endPoint)
+    {
+      super(entity, url, endPoint);
+    }
+
+
+    /**
+     * Constructor
+     * 
      * @param url  The url (or identifier) of the zipped entity
      * @param endPoint the object which provides ecogrid endpoint information
      */
@@ -69,27 +84,28 @@ public class ZipDataHandler extends CompressedDataHandler
      * Class methods
 	 */
   
-	/**
-	 * Gets the GZipDataHandler Object.
+    /**
+     * Gets the GZipDataHandler Object.
      * 
-	 * @param url The url (or identifier) of entity need be downloaded
-	 * @param endPoint the object which provides ecogrid endpoint information
-	 * @return  GZipDataHandler object with the url
-	 */
-	public static ZipDataHandler getZipHandlerInstance(
-                                             String url, 
-                                             EcogridEndPointInterface endPoint)
-	{
-		ZipDataHandler  zipHandler = (ZipDataHandler)getHandlerFromHash(url);
-        
-		if (zipHandler == null)
-		{
-			zipHandler = new ZipDataHandler(url, endPoint);;
-		}
-		return zipHandler;
-	}
-    
-    
+     * @param  entity The entity object whose data is being downloaded. Used for
+     *                quality reporting. Can be set to null in cases where we 
+     *                don't need a back-pointer to the entity.
+     * @param  url The url (or identifier) of entity need be downloaded
+     * @param  endPoint the object which provides ecogrid endpoint information
+     */
+    public static ZipDataHandler getZipHandlerInstance (Entity entity,
+                                                        String url, 
+                                                        EcogridEndPointInterface endPoint) {
+      ZipDataHandler  zipHandler = (ZipDataHandler) getHandlerFromHash(url);
+          
+      if (zipHandler == null) {
+        zipHandler = new ZipDataHandler(entity, url, endPoint);
+      }
+      
+      return zipHandler;
+    }
+      
+      
     /*
      * Instance methods
      */
@@ -97,14 +113,13 @@ public class ZipDataHandler extends CompressedDataHandler
     
    /*
     * Overwrite the method in DownloadHandler in order to uncompressed 
-    * entity first. We only write first file (if it has mutiple entities) 
+    * entity first. We only write first file (if it has multiple entities) 
     * to DataStorageInterface.
     */
    protected boolean writeRemoteInputStreamIntoDataStorage(InputStream in) 
            throws IOException
    {
 	   boolean success = false;
-	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
 	   ZipInputStream zipInputStream = null;
        
 	   if (in == null)
@@ -117,35 +132,34 @@ public class ZipDataHandler extends CompressedDataHandler
 		   zipInputStream = new ZipInputStream(in);
 		   ZipEntry entry = zipInputStream.getNextEntry();
 		   int index = 0;
-		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
-           
-		   while (entry != null && index <1)
-		   {
-			  //System.out.println("the zip entry name is "+entry.getName());
-			  if (entry.isDirectory())
-			  {
-				  entry = zipInputStream.getNextEntry();
-				  continue;
-			  }
-              
-			  // this method will close the zipInpustream, and zipInpustream is not null!!!
-		      success = 
-                    super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
-		      //System.out.println("after get succes from super class");
-		      index++;
-		      //System.out.println("end of while ");
-		   }
-           
-		   //System.out.println("zip sucess flag "+success);
-		   return success;		   
-	   }
-	   catch (Exception e)
-	   {
-		   success =false;
-		   //System.out.println("the error is "+e.getMessage());
-	   }
        
-	   //System.out.println("the end of method");
+      if (entry != null) {
+        while (entry != null && index < 1) {
+          if (entry.isDirectory()) {
+            entry = zipInputStream.getNextEntry();
+            continue;
+          }
+
+          // this method will close the zipInpustream, and zipInpustream is not
+          // null!!!
+          success = super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
+          index++;
+        }
+      }
+      else {
+        throw new IOException("No entries found in zip file.");
+      }
+	   }
+     catch (Exception e)
+     {
+       String errorMsg = String.format("%s %s: %s", 
+                                       ONLINE_URLS_EXCEPTION_MESSAGE,
+                                       "Error downloading zip file", 
+                                       e.getMessage()
+                                      );       
+       throw new IOException(errorMsg);
+     }
+       
 	   return success;
    }
    

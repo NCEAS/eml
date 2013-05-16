@@ -36,6 +36,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.ecoinformatics.datamanager.parser.Entity;
+
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarInputStream;
 
@@ -53,11 +55,24 @@ public class TarDataHandler extends ArchivedDataHandler
    * Constructors
    */
   
+  /**
+   * Constructor
+   * @param entity The entity object whose data is being downloaded. Used for
+   *               quality reporting. Can be set to null in cases where we 
+   *               don't need a back-pointer to the entity.
+   * @param url  The url (or identifier) of the tar entity
+   * @param endPoint the object which provides ecogrid endpoint information
+  */
+  protected TarDataHandler(Entity entity, String url, EcogridEndPointInterface endPoint)
+  {
+    super(entity, url, endPoint);
+  }
+
     /*
      * Constructor
      * @param url  The url (or identifier) of the tar entity
      * @param endPoint the object which provides ecogrid endpoint information
-   */
+     */
   protected TarDataHandler(String url, EcogridEndPointInterface endPoint)
   {
     super(url, endPoint);
@@ -67,26 +82,27 @@ public class TarDataHandler extends ArchivedDataHandler
    * Class methods
    */  
   
-	/**
-	 * Gets the TarDataHandler object
-     * 
-	 * @param   url The url (or identifier) of entity need be downloaded
-	 * @param   endPoint the object which provides ecogrid endpoint information
-	 * @return  TarDataHandler object associated with this url
-	 */
-	public static TarDataHandler getTarHandlerInstance(
-                                              String url, 
-                                              EcogridEndPointInterface endPoint)
-	{
-		TarDataHandler  tarHandler = (TarDataHandler)getHandlerFromHash(url);
+  /**
+   * Gets the TarDataHandler object
+   * 
+   * @param   entity The entity object whose data is being downloaded, possibly null
+   * @param   url The url (or identifier) of entity need be downloaded
+   * @param   endPoint the object which provides ecogrid endpoint information
+   * @return  TarDataHandler object associated with this url
+   */
+  public static TarDataHandler getTarHandlerInstance(Entity entity,
+                                                     String url, 
+                                                     EcogridEndPointInterface endPoint)
+  {
+    TarDataHandler  tarHandler = (TarDataHandler)getHandlerFromHash(url);
         
-		if (tarHandler == null)
-		{
-			tarHandler = new TarDataHandler(url, endPoint);;
-		}
+    if (tarHandler == null)
+    {
+      tarHandler = new TarDataHandler(entity, url, endPoint);
+    }
         
-		return tarHandler;
-	}
+    return tarHandler;
+  }
  
     
     /*
@@ -98,46 +114,42 @@ public class TarDataHandler extends ArchivedDataHandler
             throws IOException
     {
  	   boolean success = false;
- 	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
  	   TarInputStream tarInputStream = null;
        
  	   if (in == null)
  	   {
  		   return success;
  	   }
+ 	   
  	   try
  	   {
  		   tarInputStream = new TarInputStream(in);
  		   TarEntry entry = tarInputStream.getNextEntry();
  		   int index = 0;
- 		   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
            
- 		   while (entry != null && index <1)
+ 		   while ((entry != null) && (index < 1))
  		   {
- 			  //System.out.println("the zip entry name is "+entry.getName());
  			  if (entry.isDirectory())
  			  {
  				  entry = tarInputStream.getNextEntry();
  				  continue;
  			  }
               
- 			  // this method will close the zipInpustream, and zipInpustream is not null!!!
+ 			  // this method will close the tarInputStream, and tarInputStream is not null!!!
  		      success = super.writeRemoteInputStreamIntoDataStorage(tarInputStream);
- 		      //System.out.println("after get succes from super class");
  		      index++;
- 		      //System.out.println("end of while ");
- 		   }
-           
- 		   //System.out.println("zip sucess flag "+success);
- 		   return success;		   
+ 		   }        
  	   }
- 	   catch (Exception e)
- 	   {
- 		   success =false;
- 		   //System.out.println("the error is "+e.getMessage());
- 	   }
+     catch (IOException e)
+     {
+       String errorMsg = String.format("%s %s: %s", 
+                                       ONLINE_URLS_EXCEPTION_MESSAGE,
+                                       "Error downloading tar file", 
+                                       e.getMessage()
+                                      );       
+       throw new IOException(errorMsg);
+     }
        
- 	   //System.out.println("the end of method");
  	   return success;
     }
     

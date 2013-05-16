@@ -37,6 +37,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 
+import org.ecoinformatics.datamanager.parser.Entity;
+
 
 /**
  * This is a sub-class of CompressedDataHandler class. It will handle download
@@ -48,6 +50,22 @@ import java.util.zip.GZIPInputStream;
  */
 public class GZipDataHandler extends CompressedDataHandler
 {
+  
+   /**
+    * Constructor
+    * 
+    * @param entity The entity object whose data is being downloaded. Used for
+    *               quality reporting. Can be set to null in cases where we 
+    *               don't need a back-pointer to the entity.
+    * @param url  the url (or identifier) of Gzipped data entity
+    * @param endPoint the object which provides ecogrid endpoint information
+    */
+    protected GZipDataHandler(Entity entity, String url, EcogridEndPointInterface endPoint)
+    {
+          super(entity, url, endPoint);
+    }
+
+
     /**
      * Constructor
      * @param url  the url (or identifier) of Gzipped data entity
@@ -63,27 +81,27 @@ public class GZipDataHandler extends CompressedDataHandler
    * Class methods
    */
   
-	/**
-	 * Gets the GZipDataHandler Object
+    /**
+     * Gets the GZipDataHandler Object
      * 
-	 * @param url The url (or identifier) of entity need be downloaded
+     * @param entity The entity associated with the handler, possibly null
+     * @param url The url (or identifier) of entity need be downloaded
      * @param endPoint  the EcogridEndPointInterface object
-	 * @return  GZipDataHandler object associated with the url
-	 */
-	public static GZipDataHandler getGZipHandlerInstance(
-                                  String url, EcogridEndPointInterface endPoint)
-	{
-		GZipDataHandler  gzipHandler = (GZipDataHandler)getHandlerFromHash(url);
-        
-		if (gzipHandler == null)
-		{
-			gzipHandler = new GZipDataHandler(url, endPoint);
-		}
-        
-		return gzipHandler;
-	}
-	
-    
+     * @return  GZipDataHandler object associated with the url
+     */
+     public static GZipDataHandler getGZipHandlerInstance(Entity entity,
+                                                          String url, 
+                                                          EcogridEndPointInterface endPoint) {
+       GZipDataHandler  gzipHandler = (GZipDataHandler) getHandlerFromHash(url);
+           
+       if (gzipHandler == null) {        
+         gzipHandler = new GZipDataHandler(entity, url, endPoint);
+       }
+           
+       return gzipHandler;
+     }
+     
+       
    /*
     * Overwrites the the method in DownloadHandler in order to uncompressed it.
     * It only writes the first file (if have mutiple) into DataStorageInterface
@@ -92,8 +110,7 @@ public class GZipDataHandler extends CompressedDataHandler
            throws IOException
    {
 	   boolean success = false;
-	   //System.out.println("in zip method!!!!!!!!!!!!!!!!!!11");
-	   GZIPInputStream zipInputStream = null;
+	   GZIPInputStream gzipInputStream = null;
        
 	   if (in == null)
 	   {
@@ -102,19 +119,20 @@ public class GZipDataHandler extends CompressedDataHandler
        
 	   try
 	   {
-		   zipInputStream = new GZIPInputStream(in);
+		   gzipInputStream = new GZIPInputStream(in);
 		   //this method will close the zipInpustream, and zipInpustream is not null!!!
-		   success = super.writeRemoteInputStreamIntoDataStorage(zipInputStream);
-		   //System.out.println("after get succes from super class");
-			    
+		   success = super.writeRemoteInputStreamIntoDataStorage(gzipInputStream);			    
 	   }
-	   catch (Exception e)
+	   catch (IOException e)
 	   {
-		   //success = false;
-		   System.err.println("the error is "+e.getMessage());
+	     String errorMsg = String.format("%s %s: %s", 
+	                                     ONLINE_URLS_EXCEPTION_MESSAGE,
+	                                     "Error downloading gzip file", 
+	                                     e.getMessage()
+	                                    );	     
+       throw new IOException(errorMsg);
 	   }
        
-	   //System.out.println("the end of method");
 	   return success;
    }
    

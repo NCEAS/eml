@@ -67,6 +67,8 @@ public class DownloadHandler implements Runnable
    */
   
   public static Log log = LogFactory.getLog(DownloadHandler.class);
+  // Used in quality reporting
+  protected final static String ONLINE_URLS_EXCEPTION_MESSAGE = "Error reading from the data source.";
 
   /*
      * Constants
@@ -573,10 +575,10 @@ public class DownloadHandler implements Runnable
                      successFlag = 
                         this.writeRemoteInputStreamIntoDataStorage(filestream);
                    }
-                   catch (IOException e){
+                   catch (IOException e) {
                      exception = e;
                      String errorMessage = e.getMessage();
-                     if (errorMessage.startsWith("0 bytes were read")) {
+                     if (errorMessage.startsWith(ONLINE_URLS_EXCEPTION_MESSAGE)) {
                        onlineURLsException = true;
                      }
                    }
@@ -967,7 +969,8 @@ public class DownloadHandler implements Runnable
 				int bytesRead = inputStream.read(b, 0, 1024);
 				
 				if (bytesRead < 1) {
-				  throw new IOException("0 bytes were read from the data source.");
+				  throw new IOException(
+				      String.format("%s %s", ONLINE_URLS_EXCEPTION_MESSAGE, "0 bytes were read."));
 				}
 				
 				int kilobytes = 1;

@@ -123,7 +123,7 @@ public class TarDataHandlerTest extends TestCase
                                         String identifier)
 	  {
 		  TarDataHandler handler = 
-                        TarDataHandler.getTarHandlerInstance(url, endPointInfo);
+                        TarDataHandler.getTarHandlerInstance(null, url, endPointInfo);
 		  //System.out.println("here1");
 		  DataStorageTest dataStorage = new DataStorageTest();
           
@@ -191,7 +191,7 @@ public class TarDataHandlerTest extends TestCase
               throws Exception
 	  {
 		  TarDataHandler handler = 
-                        TarDataHandler.getTarHandlerInstance(url, endPointInfo);
+                        TarDataHandler.getTarHandlerInstance(null, url, endPointInfo);
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
