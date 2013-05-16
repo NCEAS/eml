@@ -116,7 +116,7 @@ public abstract class DatabaseAdapter {
   public static String getLegalDBTableName(String entityName) {
     final int tableNameMaxLength = getTableNameMaxLength();
     String legalName = null;
-    char[] badChars = {' ', '-', '.', '/', ','};
+    char[] badChars = {' ', '-', '.', '/', ',', '(', ')', '<', '>'};
     char goodChar = '_';
     
     if (entityName != null) {
