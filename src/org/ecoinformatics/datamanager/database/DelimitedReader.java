@@ -778,7 +778,7 @@ public class DelimitedReader extends TextDataReader
   private String[] processQuoteCharacterOneRowData(String oneRowData) throws Exception
   {
 	  String[] elements = null;
-	  Vector elementsVector = new Vector();
+	  Vector<String> elementsVector = new Vector<String>();
 	  if (oneRowData == null)
 	  {
 		  return elements;
@@ -860,16 +860,11 @@ public class DelimitedReader extends TextDataReader
 			  {
 				  if (!startQuote)
 				  {
-					  //System.out.println("start quote");
 					  startQuote = true;
 				  }
 				  else 
 				  {
-					  //System.out.println("end quote");
-					  // at end of quote
-					  //put string buffers value into vector and reset string buffer
-					  startQuote = false;
-					 
+					  startQuote = false;					 
 				  }
 			  }
 			  
@@ -880,8 +875,8 @@ public class DelimitedReader extends TextDataReader
 		  if (delimiterStorage.indexOf(fieldDelimiter) != -1 && !startQuote)
 		  {
 			  
-			  //check if there is literal character before the delimiter,
-			  //if does, this we should skip this delmiter
+			  //check if there is literal escape character before the delimiter,
+			  //if there is, then we should skip this delimiter
 			  int indexOfCharBeforeDelimiter = i - delimiterLength;
 			  boolean escapeDelimiter = false;
 			  if (literaled && indexOfCharBeforeDelimiter >= 0)
@@ -970,8 +965,36 @@ public class DelimitedReader extends TextDataReader
 	  {
 		  elements[i] =(String)elementsVector.elementAt(i);
 	  }
+	  
+	  if (quoted) {
+	    elements = stripQuotes(elements, quote);
+	  }
+	  
 	  return elements;
   }
+  
+  
+  /*
+   * Strips the quote character off the beginning and end of the elements in
+   * the array.
+   */
+  private String[] stripQuotes(String[] elements, char quote) {
+	  for (int i = 0; i < elements.length; i++) {
+		  String element = elements[i];
+		  if (element != null) element = element.trim();
+		  int len = element.length();
+		  if ((len > 1) && 
+              (element.charAt(0) == quote) && 
+              (element.charAt(len-1) == quote)
+             ) {
+			  String newElement = element.substring(1, len-1);
+			  elements[i] = newElement;
+		  }
+	  }
+	  
+	  return elements;
+  }
+  
   
   /*
    * This method will delete the most left char in the given buffer,
