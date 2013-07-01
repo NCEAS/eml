@@ -324,6 +324,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
           {
       	    PreparedStatement statement = connection.prepareStatement(insertSQL);
       	    statement.execute();
+      	    statement.close();
             rowCount++;
           }
             
@@ -454,6 +455,7 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
       }
       catch (Exception e) {
         log.error(e.getMessage());
+        e.printStackTrace();
         success = false;
         exception = e;
         

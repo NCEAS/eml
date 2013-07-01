@@ -75,6 +75,21 @@ public class PostgresAdapter extends DatabaseAdapter {
   public static final String WHERE = "WHERE";
   
   
+  private static final String[][] datetimeTransformationTable =
+	  { 
+	    {"YYYY-MM-DDThh:mm:ss", "YYYY-MM-DDTHH24:MI:ss"},
+	    {"YYYY-MM-DD hh:mm:ss", "YYYY-MM-DD HH24:MI:ss"},
+	    {"hh:mm:ss", "HH24:MI:ss"},
+	    {"hh:mm", "HH24:MI"},
+	    {"hh:mm:ss.sss", "HH24:MI:ss.sss"},
+	    {"hh:mm:ss.ss", "HH24:MI:ss.ss"},
+	    {"hh:mm:ss.s", "HH24:MI:ss.s"},
+	    {"YYYY-WWW-DD", "YYYY-Mon-DD"},
+	    {"YYYY/WWW/DD", "YYYY/Mon/DD"},
+	    {"DD WWW YYYY", "DD Mon YYYY"},
+	    {"YYYYWWWDD", "YYYYMonDD"}
+	  };
+ 
   
   /*
    * Instance Fields
@@ -263,42 +278,18 @@ public class PostgresAdapter extends DatabaseAdapter {
   protected String transformFormatString(String emlFormatString) {
     String pgFormatString = emlFormatString; //default
     
-    // switch/case only works for static enums or ints and 
-    // I'm just too lazy to set that up so I'm using if/then.
-    if (emlFormatString.equalsIgnoreCase("YYYY-MM-DDThh:mm:ss")) {
-      pgFormatString = "YYYY-MM-DDTHH24:MI:ss";
+    for (int i = 0; i < datetimeTransformationTable.length; i++) {
+    	String emlFormat = datetimeTransformationTable[i][0];
+    	String pgFormat = datetimeTransformationTable[i][1];    	
+        String emlFormatZulu = emlFormat + "Z";
+    	if (emlFormatString.equalsIgnoreCase(emlFormat) || 
+    	    emlFormatString.equalsIgnoreCase(emlFormatZulu)
+    	   ) {
+    		pgFormatString = pgFormat;
+    		break;
+    	}
     }
-    else if (emlFormatString.equalsIgnoreCase("YYYY-MM-DD hh:mm:ss")) {
-      pgFormatString = "YYYY-MM-DD HH24:MI:ss";
-    }
-    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss")) {
-      pgFormatString = "HH24:MI:ss";
-    }
-    else if (emlFormatString.equalsIgnoreCase("hh:mm")) {
-      pgFormatString = "HH24:MI";
-    }
-    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.sss")) { 
-      pgFormatString = "HH24:MI:ss.sss";
-    }
-    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.ss")) {
-      pgFormatString = "HH24:MI:ss.ss";
-    }
-    else if (emlFormatString.equalsIgnoreCase("hh:mm:ss.s")) {
-      pgFormatString = "HH24:MI:ss.s";
-    }
-    else if (emlFormatString.equalsIgnoreCase("YYYY-WWW-DD")) {
-      pgFormatString = "YYYY-Mon-DD";
-    }
-    else if (emlFormatString.equalsIgnoreCase("YYYY/WWW/DD")) {
-      pgFormatString = "YYYY/Mon/DD";
-    }
-    else if (emlFormatString.equalsIgnoreCase("DD WWW YYYY")) {
-      pgFormatString = "DD Mon YYYY";
-    }
-    else if (emlFormatString.equalsIgnoreCase("YYYYWWWDD")) {
-      pgFormatString = "YYYYMonDD";
-    }
-      
+          
     return pgFormatString;
   }
   
