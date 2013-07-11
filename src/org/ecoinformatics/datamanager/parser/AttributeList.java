@@ -44,7 +44,7 @@ public class AttributeList
   /*
    * Instance Fields
    */
-   private Vector attributes   = new Vector();
+   private Vector<Attribute> attributes   = new Vector<Attribute>();
    private String id           = null;
    private boolean isReference = false;
    private String referenceId  = null;
@@ -59,7 +59,7 @@ public class AttributeList
    * Constructs an AttributeList object
    */
   public AttributeList() {
-    attributes = new Vector();
+    attributes = new Vector<Attribute>();
   }
    
   
@@ -134,6 +134,30 @@ public class AttributeList
   }
     
     
+  /**
+   * Gets the names for the attributes in this AttributeList.
+   * 
+   * @return   an array of Strings objects, or null if there are no
+   *           attributes in the list. 
+   */
+  public String[] getNames() {
+    if (attributes == null || attributes.size() == 0) {
+      return null;
+    } 
+    else {
+      int size = attributes.size();
+      String[] list = new String[size];
+      
+      for (int i = 0; i < size; i++) {
+        Attribute attribute = (Attribute) attributes.elementAt(i);
+        list[i] = attribute.getName();
+      }
+      
+      return list;
+    }
+  }
+  
+  
   /**
    * Sets the id
    * 
@@ -225,7 +249,7 @@ public class AttributeList
 	  } 
 	  else {
 		  
-	      Vector list = new Vector();
+	      Vector<Attribute> list = new Vector<Attribute>();
 		  for (int i = 0; i < attributes.size(); i++) {
 			  Attribute a = (Attribute) attributes.elementAt(i);
 			  if (a.getName().equals(name)) {

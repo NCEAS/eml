@@ -32,6 +32,7 @@
 
 package org.ecoinformatics.datamanager.parser;
 
+import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.ecoinformatics.datamanager.database.DelimitedReader;
@@ -85,8 +86,8 @@ public class Entity extends DataObjectDescription
     private Boolean      caseSensitive;
     private String       orientation;
     private int          numRecords      = 0;
-    private int          numHeaderLines  = 0;
-    private int          numFooterLines  = 0;
+    private Integer      numHeaderLines  = null;
+    private Integer      numFooterLines  = null;
     private String       fieldDelimiter  = null;
     private String       recordDelimiter = null;
     
@@ -177,6 +178,7 @@ public class Entity extends DataObjectDescription
         this.entityReport = new EntityReport(this);
         
         checkEntityName(name);
+        checkEntityDescription(description);
     }
 
     
@@ -265,9 +267,33 @@ public class Entity extends DataObjectDescription
      * 
      * @param  numHeaderLines  the value of the number of header lines to be set
      */
-    public void setNumHeaderLines(int numHeaderLines)
+    public void setNumHeaderLines(Integer numHeaderLines)
     {
       this.numHeaderLines = numHeaderLines;
+
+      /*
+       *  Do a quality check for the presence of numHeaderLines element
+       */
+      String identifier = "numHeaderLinesPresent";
+      QualityCheck qualityCheckTemplate = 
+        QualityReport.getQualityCheckTemplate(identifier);
+      QualityCheck qualityCheck = 
+        new QualityCheck(identifier, qualityCheckTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+        boolean hasNumHeaderLines = (numHeaderLines != null);
+        String found = null;
+        if (hasNumHeaderLines) {
+            found = String.format("'numHeaderLines' element: %s", numHeaderLines.toString());
+        	qualityCheck.setExplanation("");
+        	qualityCheck.setSuggestion("");
+        }
+        else {
+            found = "No 'numHeaderLines' element found";
+        }
+        qualityCheck.setFound(found);
+        addQualityCheck(qualityCheck);
+      }
     }
     
     
@@ -276,10 +302,34 @@ public class Entity extends DataObjectDescription
      * 
      * @param numFooterLines  the value of the number of footer lines to be set
      */
-    public void setNumFooterLines(int numFooterLines)
-    {
-    	this.numFooterLines = numFooterLines;
-    }
+	public void setNumFooterLines(Integer numFooterLines) {
+		this.numFooterLines = numFooterLines;
+
+		/*
+		 * Do a quality check for the presence of numFooterLines element
+		 */
+		String identifier = "numFooterLinesPresent";
+		QualityCheck qualityCheckTemplate = QualityReport
+				.getQualityCheckTemplate(identifier);
+		QualityCheck qualityCheck = new QualityCheck(identifier,
+				qualityCheckTemplate);
+
+		if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+			boolean hasNumFooterLines = (numFooterLines != null);
+			String found = null;
+			if (hasNumFooterLines) {
+				found = String.format("'numFooterLines' element: %s",
+						numFooterLines.toString());
+				qualityCheck.setExplanation("");
+				qualityCheck.setSuggestion("");
+			}
+			else {
+				found = "No 'numFooterLines' element found";
+			}
+			qualityCheck.setFound(found);
+			addQualityCheck(qualityCheck);
+		}
+	}
 
     
     /**
@@ -287,21 +337,29 @@ public class Entity extends DataObjectDescription
      * 
      * @return  a value indicating the number of header lines
      */
-    public int getNumHeaderLines()
-    {
-      return this.numHeaderLines;
-    }
-    
-    
-    /**
-     * Gets the number of footer lines in the entity.
-     * 
-     * @return   a value indication the number of footer lines
-     */
-    public int getNumFooterLines()
-    {
-    	return this.numFooterLines;
-    }
+	public int getNumHeaderLines() {
+		if (numHeaderLines == null) {
+			return 0;
+		}
+		else {
+			return this.numHeaderLines.intValue();
+		}
+	}
+
+
+	/**
+	 * Gets the number of footer lines in the entity.
+	 * 
+	 * @return a value indication the number of footer lines
+	 */
+	public int getNumFooterLines() {
+		if (numFooterLines == null) {
+			return 0;
+		}
+		else {
+			return this.numFooterLines.intValue();
+		}
+	}
 
     
     /**
@@ -465,6 +523,34 @@ public class Entity extends DataObjectDescription
     }
     
     
+    /**
+     * Do a quality check on the entityDescription metadata value
+     * 
+     * @param description  The 'entityDescription' string as specified in the 
+     *                     metadata
+     */
+    private void checkEntityDescription(String description) {
+      String qualityCheckIdentifier = "entityDescriptionPresent";
+      QualityCheck qualityCheckTemplate = 
+        QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+      QualityCheck qualityCheck = 
+        new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
+
+      if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+        Boolean hasEntityDescription = ((description != null) && (description.length() > 0));
+        qualityCheck.setFound(hasEntityDescription.toString());
+        if (hasEntityDescription) {
+          qualityCheck.setStatus(Status.valid);
+        }
+        else {
+          qualityCheck.setFailedStatus();
+        }
+        
+        addQualityCheck(qualityCheck);
+      }
+    }
+
+
     /**
      * Do a quality check on the entityName metadata value
      * 
@@ -1429,6 +1515,77 @@ public class Entity extends DataObjectDescription
     public void setAttributeList(AttributeList list)
     {
         this.attributeList = list;
+
+        /*
+         *  Check for duplicate attribute names
+         */
+        String qualityCheckIdentifier = "attributeNamesUnique";
+        QualityCheck qualityCheckTemplate = 
+          QualityReport.getQualityCheckTemplate(qualityCheckIdentifier);
+        QualityCheck qualityCheck = 
+          new QualityCheck(qualityCheckIdentifier, qualityCheckTemplate);
+
+        if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+          String duplicateAttributeNames = duplicateAttributeNames(list);
+          if (duplicateAttributeNames != null) {
+            String found = String.format("Duplicate attributeName values: %s", duplicateAttributeNames);
+            qualityCheck.setFound(found);
+            qualityCheck.setFailedStatus();
+          }
+          else {
+            qualityCheck.setFound("true");
+            qualityCheck.setStatus(Status.valid);
+            qualityCheck.setSuggestion("");
+          }
+          addQualityCheck(qualityCheck);
+        }
+    }
+    
+    
+    /*
+     * Returns a comma-separated list of duplicate attribute names found in this
+     * entity's attribute list, or null if no duplicates were discovered.
+     * Used by the attributeNamesUnique quality check.
+     */
+    private String duplicateAttributeNames(AttributeList attributeList) {
+    	String duplicates = null;
+    	
+    	if (attributeList != null) {
+    	  String[] attributeNames = attributeList.getNames(); 
+    	  if (attributeNames != null) {
+    	    StringBuffer stringBuffer = new StringBuffer("");
+    	    HashMap<String, Integer> duplicatesMap = new HashMap<String, Integer>();
+    	    
+    	    for (int i = 0; i < attributeNames.length; i++) {
+    		  String attributeName = attributeNames[i];
+    		  Integer value = duplicatesMap.get(attributeName);
+    		  if (value == null) {
+    			  duplicatesMap.put(attributeName, 1);
+    		  }
+    		  else {
+    			  duplicatesMap.put(attributeName, ++value);
+    		  }
+    	    }
+    	    
+    	    for (String attributeName : duplicatesMap.keySet()) {
+    	    	Integer value = duplicatesMap.get(attributeName);
+    	    	if (value > 1) {
+    	    		stringBuffer.append(String.format("'%s', ", attributeName));
+    	    	}
+    	    }
+    	    
+    	    duplicates = stringBuffer.toString();  
+    	    // Trim off trailing comma and space
+    	    if (duplicates.length() > 2) {
+    	      duplicates = duplicates.substring(0, duplicates.length() - 2);
+    	    }
+    	    else {
+    	    	duplicates = null;
+    	    }
+    	  }
+    	}
+    	
+    	return duplicates;
     }
     
     

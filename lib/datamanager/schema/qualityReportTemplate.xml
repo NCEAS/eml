@@ -66,6 +66,23 @@
       <reference></reference>
     </qualityCheck>
     <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>pubDatePresent</identifier>
+      <name>'pubDate' element is present</name>
+      <description>Check for presence of the pubDate element</description>
+      <expected>The date that the dataset was submitted for publication in PASTA must be included.
+            (The EML schema does not require this element, but when present, it does constrain its
+            format to YYYY-MM-DD or just YYYY. Citation format uses only the YYYY portion even if a
+            full date is entered.)  
+      </expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>'pubDate is part of citation'. 'pubDate' qualifies use of "ongoing" in other metadata elements.</explanation>
+      <suggestion>The year of public release of data online should be listed as the 'pubDate'
+            element. The 'pubDate' should be updated when data and/or metadata are updated or re-released. 
+            The format can be either a 4-digit year (YYYY), or an ISO date (YYYY-MM-DD).</suggestion>
+      <reference>EML Best Practices v.2, p. 17</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
       <identifier>keywordPresent</identifier>
       <name>keyword element is present</name>
       <description>Checks to see if at least one keyword is present</description>
@@ -178,6 +195,39 @@
       <suggestion></suggestion>
       <reference></reference>
     </qualityCheck>
+    <qualityCheck qualityType="metadata" system="lter" statusType="warn" >
+      <identifier>entityDescriptionPresent</identifier>
+      <name>An entity description is present</name>
+      <description>Check for presence of an entity description.</description>
+      <expected>EML Best practices pp. 32-33, "...should have enough information for a user..."</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>With entityName sometimes serving as a file name rather than a title, it is important to be very descriptive here.</explanation>
+      <suggestion></suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="info" >
+      <identifier>numHeaderLinesPresent</identifier>
+      <name>'numHeaderLines' element is present</name>
+      <description>Check for presence of the 'numHeaderLines' element.</description>
+      <expected>Document contains 'numHeaderLines' element.</expected>
+      <found></found>
+      <status>info</status>
+      <explanation>If data file contains header lines, 'numHeaderLines' must be specified.</explanation>
+      <suggestion>Add 'numHeaderLines' element if needed.</suggestion>
+      <reference></reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="info" >
+      <identifier>numFooterLinesPresent</identifier>
+      <name>'numFooterLines' element is present</name>
+      <description>Check for presence of the 'numFooterLines' element.</description>
+      <expected>Document contains 'numFooterLines' element.</expected>
+      <found></found>
+      <status>info</status>
+      <explanation>If data file contains footer lines, 'numFooterLines' must be specified.</explanation>
+      <suggestion>Add 'numFooterLines' element if needed.</suggestion>
+      <reference></reference>
+    </qualityCheck>
     <qualityCheck qualityType="congruency" system="knb" statusType="error" >
       <identifier>onlineURLs</identifier>
       <name>Online URLs are live</name>
@@ -243,6 +293,17 @@
       <explanation>fieldDelimiter should be a single character such as (,;:|) or an escape of a single character such as \t for tab. Decimal or hex values of ASCII characters may be used such as #32, #x20, or 0x20 for the space character.</explanation>
       <suggestion>Change the fieldDelimiter to a single character or its representation, either decimal, hex or escaped.</suggestion>
       <reference>http://knb.ecoinformatics.org/software/eml/eml-2.1.0/eml-physical.html#fieldDelimiter</reference>
+    </qualityCheck>
+    <qualityCheck qualityType="metadata" system="knb" statusType="warn" >
+      <identifier>attributeNamesUnique</identifier>
+      <name>Attribute names are unique</name>
+      <description>Checks if attributeName values are unique in the table. Not required by EML.</description>
+      <expected>Unique attribute names.</expected>
+      <found></found>
+      <status>notChecked</status>
+      <explanation>A good table does not have duplicate column names.</explanation>
+      <suggestion>Check attribute names; best practice says these should be unique.</suggestion>
+      <reference>EML Best Practices</reference>
     </qualityCheck>
     <qualityCheck qualityType="data" system="knb" statusType="info" >
       <identifier>displayFirstInsertRow</identifier>

@@ -104,6 +104,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     
     // previously these were constants, now member variables with defaults
     protected String packageIdPath = null;
+    protected String pubDatePath = null;
     protected String tableEntityPath = null;
     protected String spatialRasterEntityPath = null;
     protected String spatialVectorEntityPath  = null;
@@ -132,6 +133,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     private DataPackage emlDataPackage = null;
     private final String DEFAULT_RECORD_DELIMITER = "\\r\\n";
     
+    
     /**
      * Default constructor - no custom xpath parameters
      */
@@ -139,6 +141,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     	//sets the default path values for documents
 		this.initDefaultXPaths();
     }
+    
     
     /**
      * Constructor that accepts only the packageIdPath.
@@ -154,10 +157,12 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		this.packageIdPath = packageIdPath;
     }
 
+    
     /**
      * Constructor that accepts xpath input strings 
      * for many more datapackage element locations
 	 * @param packageIdPath
+	 * @param pubDatePath
 	 * @param tableEntityPath
 	 * @param spatialRasterEntityPath
 	 * @param spatialVectorEntityPath
@@ -165,7 +170,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 	 * @param viewEntityPath
 	 * @param otherEntityPath
 	 */
-	public GenericDataPackageParser(String packageIdPath, String tableEntityPath,
+	public GenericDataPackageParser(String packageIdPath, String pubDatePath, String tableEntityPath,
 			String spatialRasterEntityPath, String spatialVectorEntityPath,
 			String storedProcedureEntityPath, String viewEntityPath,
 			String otherEntityPath) {
@@ -176,6 +181,9 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		//set the paths that are provided (not null)
 		if (packageIdPath != null) {
 			this.packageIdPath = packageIdPath;
+		}
+		if (pubDatePath != null) {
+			this.pubDatePath = pubDatePath;
 		}
 		if (tableEntityPath != null) {
 			this.tableEntityPath = tableEntityPath;
@@ -197,25 +205,27 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		}	
 	}
 
+	
 	/**
 	 * sets the default xpath strings for locating datapackage elements
 	 * note that root element can be anything with a packageId attribute
 	 */
 	private void initDefaultXPaths() {
-    	//sets the default path values for documents
+		// sets the default path values for documents
 		packageIdPath = "//*/@packageId";
-    tableEntityPath = "//dataset/dataTable";
+		pubDatePath = "//dataset/pubDate";
+		tableEntityPath = "//dataset/dataTable";
 		spatialRasterEntityPath = "//dataset/spatialRaster";
-		spatialVectorEntityPath  = "//dataset/spatialVector";
+		spatialVectorEntityPath = "//dataset/spatialVector";
 		storedProcedureEntityPath = "//dataset/storedProcedure";
 		viewEntityPath = "//dataset/view";
 		otherEntityPath = "//dataset/otherEntity";
-		
 		accessPath = "//access";
-    datasetTitlePath = "//dataset/title";
-    datasetAbstractPath = "//dataset/abstract";
-    entityAccessPath = "physical/distribution/access";
+		datasetTitlePath = "//dataset/title";
+		datasetAbstractPath = "//dataset/abstract";
+		entityAccessPath = "physical/distribution/access";
 	}
+
 	
 	/**
      * Returns a hashtable of with the id of the entity as the key and the data
@@ -334,6 +344,14 @@ public class GenericDataPackageParser implements DataPackageParserInterface
               String titleText = datasetTitleNode.getTextContent();
               emlDataPackage.setTitle(titleText);
             }
+            
+            // Store the pubDate
+            String pubDate = null;
+            Node pubDateNode = xpathapi.selectSingleNode(doc, pubDatePath);
+            if (pubDateNode != null) {
+              pubDate = pubDateNode.getTextContent().trim();
+            }
+            emlDataPackage.setPubDate(pubDate);
             
             // Parse the dataset abstract text
             NodeList datasetAbstractNodeList = xpathapi.selectNodeList(doc, datasetAbstractPath);
@@ -1098,8 +1116,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             String onlineUrl = "";
             String onlineUrlFunction = null;
             String format = null;
-            int numHeaderLines = 0;
-            int numFooterLines = 0;
+            Integer numHeaderLines = null;
+            Integer numFooterLines = null;
             String fieldDelimiter = null;
             String recordDelimiter = DEFAULT_RECORD_DELIMITER;
             String metadataRecordDelimiter = null; // The record delimiter specified in the metadata
@@ -1191,7 +1209,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                 if (numHeaderLinesNode != null) {
                     String numHeaderLinesStr = 
                         numHeaderLinesNode.getFirstChild().getNodeValue();
-                    numHeaderLines = (new Integer(numHeaderLinesStr.trim())).intValue();
+                    numHeaderLines = new Integer(numHeaderLinesStr.trim());
                 }
             }
             
@@ -1210,7 +1228,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                     String numFooterLinesStr = 
                         numFooterLinesNode.getFirstChild().getNodeValue();
                     numFooterLines = 
-                        (new Integer(numFooterLinesStr.trim())).intValue();
+                        new Integer(numFooterLinesStr.trim());
                 }
             }
            

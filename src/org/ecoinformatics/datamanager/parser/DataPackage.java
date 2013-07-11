@@ -34,6 +34,7 @@ package org.ecoinformatics.datamanager.parser;
 import java.io.File;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -47,7 +48,6 @@ import org.ecoinformatics.datamanager.quality.EntityReport;
 import org.ecoinformatics.datamanager.quality.QualityReport;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
 import org.ecoinformatics.datamanager.quality.QualityCheck.Status;
-import org.ecoinformatics.datamanager.quality.QualityCheck.StatusType;
 import org.ecoinformatics.eml.EMLParser;
 import org.ecoinformatics.eml.SAXValidate;
 import org.w3c.dom.Document;
@@ -67,20 +67,31 @@ public class DataPackage
    * Class fields
    */
   
+	  private static final String IDENTIFIER_WITH_LEADING_ZERO_PATTERN = "^[A-Za-z_0-9\\-]+\\.0\\d+\\.\\d+$";
+	  private static final String REVISION_WITH_LEADING_ZERO_PATTERN =   "^[A-Za-z_0-9\\-]+\\.\\d+\\.0\\d+$";
+	  //private static final String LTER_PACKAGE_ID_PATTERN =              "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
+	  private static final String METACAT_PACKAGE_ID_PATTERN =           "^[A-Za-z_0-9\\-]+\\.\\d+\\.\\d+$";
+	  
+	  
+	  /* A comma-separated list of allowable scope values. This value should be set
+	   * to non-null by applications that use the 'packageIdPattern' quality check.
+	   */
+	  private static String scopeRegistry = null;
+
   /*
    * Used for the 'schemaValid' quality check
    */
   private static final String schemaLocation = 
-    "eml://ecoinformatics.org/eml-2.0.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.0/eml.xsd " +
-    "eml://ecoinformatics.org/eml-2.0.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/eml.xsd " +
-    "eml://ecoinformatics.org/eml-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml.xsd " +
-    "eml://ecoinformatics.org/literature-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-literature.xsd " +
-    "eml://ecoinformatics.org/project-2.1.0 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-project.xsd " +
+    "eml://ecoinformatics.org/eml-2.0.0 http://nis.lternet.edu/schemas/eml/eml-2.0.0/eml.xsd " +
+    "eml://ecoinformatics.org/eml-2.0.1 http://nis.lternet.edu/schemas/eml/eml-2.0.1/eml.xsd " +
+    "eml://ecoinformatics.org/eml-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml.xsd " +
+    "eml://ecoinformatics.org/literature-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml-literature.xsd " +
+    "eml://ecoinformatics.org/project-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml-project.xsd " +
     "eml://ecoinformatics.org/eml-2.1.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml.xsd " +
     "eml://ecoinformatics.org/literature-2.1.1 eml-literature.xsd " +
     "eml://ecoinformatics.org/project-2.1.1 eml-project.xsd " +
-    "http://www.xml-cml.org/schema/stmml http://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/stmml.xsd " +
-    "http://www.xml-cml.org/schema/stmml-1.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/stmml.xsd";
+    "http://www.xml-cml.org/schema/stmml http://nis.lternet.edu/schemas/eml/eml-2.0.1/stmml.xsd " +
+    "http://www.xml-cml.org/schema/stmml-1.1 http://nis.lternet.edu/schemas/eml/eml-2.1.0/stmml.xsd";
   
   
   /*
@@ -98,15 +109,12 @@ public class DataPackage
   private int numberOfGeographicCoverageElements = 0;
   private int numberOfTaxonomicCoverageElements = 0;
   private int numberOfTemporalCoverageElements = 0;
-  private String   packageId  = null;
+  private String packageId  = null;
+  private String pubDate;
   private QualityReport qualityReport = null;
   private String system = null;
   private String title = null;
   
-  private final String IDENTIFIER_WITH_LEADING_ZERO_PATTERN = "^[A-Za-z_0-9\\-]+\\.0\\d+\\.\\d+$";
-  private final String REVISION_WITH_LEADING_ZERO_PATTERN =   "^[A-Za-z_0-9\\-]+\\.\\d+\\.0\\d+$";
-  private final String LTER_PACKAGE_ID_PATTERN =              "^knb-lter-[a-z][a-z][a-z]\\.\\d+\\.\\d+$";
-  private final String METACAT_PACKAGE_ID_PATTERN =           "^[A-Za-z_0-9\\-]+\\.\\d+\\.\\d+$";
   
   
   /*
@@ -185,6 +193,18 @@ public class DataPackage
     }
       
     return dereferencedEmlString;
+  }
+  
+  
+  /**
+   * Sets the value of the scope registry, for use by the
+   * 'packageIdPattern' quality check.
+   * 
+   * @param scopeRegistry  A comma-separated list of allowable
+   *   data package scope values, e.g. "scope1,scope2,scope3".
+   */
+  public static void setScopeRegistry(String scopeRegistry) {
+	  DataPackage.scopeRegistry = scopeRegistry;
   }
   
   
@@ -540,30 +560,30 @@ public class DataPackage
   
   
   /*
-   * Boolean to determine whether a given packageId conforms to
-   * the string pattern of a particular organization such as LTER.
-   * If the specified system value does not have a regular
-   * expression pattern declared for its packageId, then the
-   * packageId is assumed to be valid by default.
+   * Boolean to determine whether a given packageId scope value conforms to
+   * the allowed set of scopes of a particular organization such as LTER.
    */
-  private boolean isValidPackageIdForOrganization(String system, String packageId) {
-    boolean isValid = true;
-    String regexPattern = null;
-    
-    /*
-     * If we have a regular expression pattern string declared for a 
-     * particular organization, use it to validate the packageId
-     */
-    if (system.equalsIgnoreCase("lter")) {
-      regexPattern = LTER_PACKAGE_ID_PATTERN;
-    }
-    
-    if (regexPattern != null) {
-      isValid = Pattern.matches(regexPattern, packageId);
-    }
+	private boolean isValidScope(String packageId) {
+		boolean isValid = false;
 
-    return isValid;
-  }
+		if (packageId == null)
+			return false;
+		if (scopeRegistry == null)
+			return true;
+
+		StringTokenizer stringTokenizer = new StringTokenizer(scopeRegistry, ",");
+		final int tokenCount = stringTokenizer.countTokens();
+
+		for (int i = 0; i < tokenCount; i++) {
+			String token = stringTokenizer.nextToken();
+			if (packageId.startsWith(token + ".")) {
+				isValid = true;
+				break;
+			}
+		}
+
+		return isValid;
+	}
   
   
   /**
@@ -586,10 +606,13 @@ public class DataPackage
     String packageIdIdentifier = "packageIdPattern";
     QualityCheck packageIdTemplate = QualityReport.getQualityCheckTemplate(packageIdIdentifier);
     QualityCheck packageIdQualityCheck = new QualityCheck(packageIdIdentifier, packageIdTemplate);
+	String systemAttribute = packageIdQualityCheck.getSystem();
 
     if (QualityCheck.shouldRunQualityCheck(this, packageIdQualityCheck)) {
-      // Initialize the emlNamespaceQualityCheck
-      String systemAttribute = packageIdQualityCheck.getSystem();
+    	
+      if (scopeRegistry != null) {
+    	packageIdQualityCheck.setExpected("'scope.n.m', where 'n' and 'm' are integers and 'scope' is one of an allowed set of values");
+      }
 
       if (packageId != null) {
         packageIdQualityCheck.setFound(packageId);
@@ -609,12 +632,23 @@ public class DataPackage
         packageIdQualityCheck.setExplanation("A leading zero was found in the revision. The revision value must be a whole number.");
         packageIdQualityCheck.setSuggestion("Remove leading zeros from the revision value.");
       }
-      else if (isValidPackageIdForOrganization(systemAttribute, packageId)) {
+      else if (isValidScope(packageId)) {
         packageIdQualityCheck.setStatus(Status.valid);
         packageIdQualityCheck.setSuggestion("");
       }
       else {
         packageIdQualityCheck.setFailedStatus();
+        if (scopeRegistry != null) {
+        	packageIdQualityCheck.setExplanation(String.format(
+        			"A packageId should start with one of the following scope values: %s",
+        			scopeRegistry));
+        	if (systemAttribute != null && systemAttribute.equals("lter")) {
+        	  packageIdQualityCheck.setSuggestion(
+            		"Use a scope value that you are authorized to use for your site or project, " +
+                    "or you may request that a new scope value be added to the list of allowed " +
+            	    "values by contacting tech_support@LTERnet.edu.");
+        	}
+        }
       }
       
       this.addDatasetQualityCheck(packageIdQualityCheck);
@@ -986,6 +1020,43 @@ public class DataPackage
   }
 
 
+  /**
+   * Sets the value of the 'pubDate' to the specified String 
+   * value.
+   * 
+   * @param systemValue   the 'pubDate' value to set
+   */
+  public void setPubDate(String pubDate) {
+    this.pubDate = pubDate;
+
+    /*
+     *  Do a quality check on pubDate presence
+     */
+    String identifier = "pubDatePresent";
+    QualityCheck qualityCheckTemplate = 
+      QualityReport.getQualityCheckTemplate(identifier);
+    QualityCheck qualityCheck = 
+      new QualityCheck(identifier, qualityCheckTemplate);
+
+    if (QualityCheck.shouldRunQualityCheck(this, qualityCheck)) {
+    	boolean hasPubDate = ((pubDate != null) && (pubDate.length() >= 4));
+    	String found = pubDate;
+
+        if (hasPubDate) {
+            qualityCheck.setStatus(Status.valid);
+            qualityCheck.setExplanation("");
+            qualityCheck.setSuggestion("");
+        }
+        else {
+        	found = "pubDate not found";
+            qualityCheck.setFailedStatus();
+        }
+        qualityCheck.setFound(found);      
+        addDatasetQualityCheck(qualityCheck);
+    }
+  }
+  
+  
   /**
    * Sets the value of the 'system' to the specified String 
    * value.
