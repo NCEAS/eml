@@ -163,10 +163,10 @@ public class EMLParser
    * @param xmlReader the xml need to parse
    * @param configFile the alternate config file to use
    */
-  public EMLParser(String xmlReader)
+  public EMLParser(String xmlString)
          throws EMLParserException, IOException
   {
-    if (xmlReader == null || xmlReader.equals(""))
+    if (xmlString == null || xmlString.equals(""))
     {
       throw new EMLParserException("The string need to be parse is null");
     }
@@ -181,7 +181,6 @@ public class EMLParser
       throw new EMLParserException("Config file not found: " + e.getMessage());
     }
     // catch the String reader
-    String xmlString = xmlReader;
     parseConfig();
     parseKeys(xmlString);
     parseKeyrefs(xmlString);

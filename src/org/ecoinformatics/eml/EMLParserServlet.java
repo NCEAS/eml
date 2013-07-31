@@ -32,31 +32,32 @@
 
 package org.ecoinformatics.eml;
 
-import java.io.*;
-import java.lang.*;
-import java.util.*;
-import java.lang.reflect.*;
-import java.net.*;
-import java.util.zip.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Enumeration;
+import java.util.Hashtable;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.xml.sax.SAXException;
 
 import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.ParamPart;
 import com.oreilly.servlet.multipart.Part;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUtils;
-import javax.servlet.ServletOutputStream;
-
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * Servlet interface for the EMLParser
@@ -137,39 +138,10 @@ public class EMLParserServlet extends HttpServlet
     html.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD html 4.0//EN\">");
     html.append("<html>");
     html.append("<head>");
-    html.append("<title>EML ID and References Parser</title>");
-    html.append("<link rel=\"stylesheet\" type=\"text/css\" ");
-    html.append("href=\"http://knb.ecoinformatics.org/default.css\">");
+    html.append("<title>EML Parser</title>");
     html.append("</head>");
     html.append("<body>");
-    html.append("<table class=\"tabledefault\" width=\"100%\">");
-    html.append("<tbody>");
-    html.append("<tr>");
-    html.append("<td rowspan=\"2\">");
-    html.append("<img src=\"http://knb.ecoinformatics.org/images/KNBLogo.gif\">");
-    html.append("</td>");
-    html.append("<td colspan=\"7\"><div class=\"title\">");
-    html.append("EML ID and References Parser</div></td>");
-    html.append("</tr>");
-    html.append("<tr>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/\" ");
-    html.append("class=\"toollink\"> KNB Home </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/data.html\" ");
-    html.append("class=\"toollink\"> Data </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/people.html\" ");
-    html.append("class=\"toollink\"> People </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/informatics\" ");
-    html.append("class=\"toollink\"> Informatics </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/biodiversity\" ");
-    html.append("class=\"toollink\"> Biocomplexity </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/education\" ");
-    html.append("class=\"toollink\"> Education </a></td>");
-    html.append("<td><a href=\"http://knb.ecoinformatics.org/software\" ");
-    html.append("class=\"toollink\"> Software </a></td>");
-    html.append("</tr>");
-    html.append("</tbody>");
-    html.append("</table>");
-    html.append("<hr>");
+    html.append("<h3>EML Parser</h3>");
 
     HttpSession sess = request.getSession(true);
     String sess_id = "";
@@ -184,13 +156,7 @@ public class EMLParserServlet extends HttpServlet
                          ise.getMessage());
     }
 
-    File tempdir = new File("@tempdir@");
-    if(!tempdir.exists())
-    {
-      tempdir.mkdirs();
-    }
-
-    tempfile = new File("@tempdir@/.tmpfile." + sess_id);
+    tempfile = File.createTempFile(".emlparser", ".tmp");
 
     if (ctype != null && ctype.startsWith("multipart/form-data"))
     { //deal with multipart encoding of the package zip file
@@ -237,7 +203,7 @@ public class EMLParserServlet extends HttpServlet
       String doctext = ((String[])params.get("doctext"))[0];
       if(doctext == null || doctext.trim().equals(""))
       {
-        html.append("<h2>Error.  Submitted document is null.</h2>");
+        html.append("<h4>Error.  Submitted document is null.</h4>");
       }
       else
       {
@@ -257,13 +223,12 @@ public class EMLParserServlet extends HttpServlet
     }
     else
     {
-      html.append("<h2>Error.  Action '").append(action);
-      html.append("' not registered</h2>");
+      html.append("<h4>Error.  Action '").append(action);
+      html.append("' not registered</h4>");
     }
 
     tempfile.delete();
 
-    html.append("<hr><a href=\"/emlparser\">Back</a> to the previous page.");
     html.append("</body></html>");
     response.setContentType("text/html");
     out.println(html.toString());
@@ -278,55 +243,55 @@ public class EMLParserServlet extends HttpServlet
     {
       if(tempfile != null)
       {
-        EMLParser parser = new EMLParser(tempfile,
-                           new File("@servletconfigfile@"));
-        html.append("<h2>EML specific tests: Passed.</h2><p>The tests which ");
+        EMLParser parser = new EMLParser(tempfile);
+        html.append("<h4>EML specific tests: Passed.</h4><p>The tests which ");
         html.append("are specific to EML, including validation that IDs are ");
 	html.append("present and properly referenced, have passed.</p>");
       }
       else
       {
-        html.append("<h2>Error: The file sent to the parser was null.</h2>");
+        html.append("<h4>Error: The file sent to the parser was null.</h4>");
       }
     }
     catch(Exception e)
     {
-      html.append("<h2>EML specific tests: Failed.</h2><p>The following errors were found:");
+      html.append("<h4>EML specific tests: Failed.</h4><p>The following errors were found:");
       html.append("</p><p>").append(e.getMessage()).append("</p>");
     }
 
     try
     {
+    	// TODO: handle UTF-8
       Reader xmlReader = new FileReader(tempfile);
       String namespaceInDoc = findNamespace(xmlReader);
       xmlReader.close();
       System.out.println("The namespace in xml is "+namespaceInDoc);
       SAXValidate validator = new SAXValidate(true);
       validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces, namespaceInDoc);
-      html.append("<hr><h2>XML specific tests: Passed.</h2>");
+      html.append("<hr><h4>XML specific tests: Passed.</h4>");
       html.append("<p>Document is XML-schema valid. There were no XML errors found in your document.</p>");
     }
     catch(IOException ioe)
     {
-      html.append("<hr><h2>IOException: Error reading file</h2>");
+      html.append("<hr><h4>IOException: Error reading file</h4>");
       html.append("<p>").append(ioe.getMessage()).append("</p>");
     }
     catch(ClassNotFoundException cnfe)
     {
-      html.append("<hr><h2>Parser class not found</h2>");
+      html.append("<hr><h4>Parser class not found</h4>");
       html.append("<p>").append(cnfe.getMessage()).append("</p>");
     }
     catch(SAXException se)
     {
       if(se.getMessage().indexOf("WARNING") != -1)
       {
-        html.append("<hr><h2>XML-Schema Warning</h2><p>The following warnings ");
+        html.append("<hr><h4>XML-Schema Warning</h4><p>The following warnings ");
         html.append("were issued about your document: </p><p>");
         html.append(se.getMessage()).append("</p>");
       }
       else
       {
-        html.append("<hr><h2>XML specific tests: Failed</h2><p>");
+        html.append("<hr><h4>XML specific tests: Failed</h4><p>");
         html.append("The following errors were ");
         html.append("found:</p><p>").append(se.getMessage()).append("</p>");
       }

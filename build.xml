@@ -41,7 +41,8 @@
       servlet on your system. -->
 		<!-- where to install the servlet -->
 		<!--<property name="servlet.install.dir" value="/var/www/org.ecoinformatics.knb/emlparser"/>-->
-		<property name="servlet.install.dir" value="/var/lib/tomcat6/webapps/emlparser"/>
+		<!--<property name="servlet.install.dir" value="/var/lib/tomcat6/webapps/emlparser"/>-->
+		<property name="servlet.install.dir" value="build/emlparser"/>
 		<!-- the server the servlet will run on -->
 		<property name="server" value="http://knb.ecoinformatics.org"/>
 		<!--the servlet context directory-->
@@ -81,7 +82,7 @@
 
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
-		<property name="servlettempdir" value="/tmp/emlparser"/>
+		<property name="servlettempdir" value="build/emlparser"/>
 		<filter token="tempdir" value="${servlettempdir}"/>
 		<property environment="env"/>
 		<property name="svnroot" value="https://code.ecoinformatics.org/code/eml/"/>
@@ -574,18 +575,29 @@
 		</copy>
 		
 		<!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
-				<echo>Getting EML 2.1.1 from SVN: ${svnroot}/tags/${eml2_1_1-tag}</echo>
-				<svn>
-					<export srcUrl="${svnroot}/tags/${eml2_1_1-tag}" force="true"
-						destPath="${servlettempdir}/eml_${eml2_1_1-tag}" />
-				</svn>
-				<mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
-				<copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
-					<fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
-						<include name="*.xsd"/>
-					</fileset>
-				</copy>
-
+		<echo>Getting EML 2.1.1 from SVN: ${svnroot}/tags/${eml2_1_1-tag}</echo>
+		<svn>
+			<export srcUrl="${svnroot}/tags/${eml2_1_1-tag}" force="true"
+				destPath="${servlettempdir}/eml_${eml2_1_1-tag}" />
+		</svn>
+		<mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
+		<copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
+			<fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
+				<include name="*.xsd"/>
+			</fileset>
+		</copy>
+		
+	</target>
+	
+	<target name="emlparser_war" depends="servletinstall">
+		<mkdir dir="${dist.dir}" />
+		<war destfile="${dist.dir}/${servletdir}.war"
+			webxml="${servlet.install.dir}/WEB-INF/web.xml">
+			<fileset dir="${servlet.install.dir}" />
+			<lib dir="${servlet.install.dir}/WEB-INF/lib" />
+			<webinf dir="${servlet.install.dir}/WEB-INF" />
+		</war>
+	
 	</target>
 
 	<target name="clean" depends="init">
