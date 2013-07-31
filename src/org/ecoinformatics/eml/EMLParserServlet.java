@@ -229,6 +229,8 @@ public class EMLParserServlet extends HttpServlet
 
     tempfile.delete();
 
+    html.append("<hr><a href=\"/emlparser\">Back</a> to the previous page.");
+    
     html.append("</body></html>");
     response.setContentType("text/html");
     out.println(html.toString());
