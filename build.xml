@@ -105,7 +105,7 @@
 		<property name="build.tests" value="${build.dir}/tests"/>
 		<property name="build.src" value="${build.dir}/src"/>
 		<property name="build.dest" value="${build.dir}/classes"/>
-		<property name="build.docs" value="docs"/>
+		<property name="build.docs" value="${build.dir}/docs"/>
 		<property name="build.javadocs" value="${build.dir}/javadocs"/>
 		<property name="build.stripped" value="stripped"/>
 		<property name="style.dir" value="./style"/>
@@ -587,9 +587,17 @@
 			</fileset>
 		</copy>
 		
+		<!-- Copy EML docs -->
+		<echo>Copying EML documentation from ${build.docs} </echo>
+		<mkdir dir="${servlet.install.dir}/docs" />
+		<copy todir="${servlet.install.dir}/docs" filtering="yes">
+			<fileset dir="${build.docs}">
+			</fileset>
+		</copy>
+		
 	</target>
 	
-	<target name="emlparser_war" depends="servletinstall">
+	<target name="emlparser_war" depends="docs, servletinstall">
 		<mkdir dir="${dist.dir}" />
 		<war destfile="${dist.dir}/${servletdir}.war"
 			webxml="${servlet.install.dir}/WEB-INF/web.xml">
@@ -602,15 +610,6 @@
 
 	<target name="clean" depends="init">
 		<delete dir="./build"/>
-		<delete>
-			<fileset dir="${build.docs}">
-				<include name="**/*.*"/>
-				<exclude name="datamanager/**/*"/>
-				<exclude name="**/CVS*"/>
-				<exclude name="**/.#*"/>
-			</fileset>
-		</delete>
-		<delete dir="${build.docs}/eml-${version}"/>
 		<delete dir="./dist"/>
 		<delete file="${eml-version}.zip"/>
 		<delete file="${eml-version}.tar.gz"/>
