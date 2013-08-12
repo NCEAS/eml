@@ -590,7 +590,7 @@
 		<!-- Copy EML docs -->
 		<echo>Copying EML documentation from ${build.docs} </echo>
 		<mkdir dir="${servlet.install.dir}/docs" />
-		<copy todir="${servlet.install.dir}/docs" filtering="yes">
+		<copy todir="${servlet.install.dir}/docs">
 			<fileset dir="${build.docs}">
 			</fileset>
 		</copy>
