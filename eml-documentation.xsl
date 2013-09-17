@@ -50,9 +50,9 @@
         <table border="0" width="100%">
           <tr valign="top">
             <td>
-              <div class="title"> Module Documentation: <xsl:value-of select="//doc:moduleName"
+              <h1> Module Documentation: <xsl:value-of select="//doc:moduleName"
                 ></xsl:value-of>
-              </div>
+              </h1>
             </td>
             <td>
               <a href="index.html" class="navlink">Back to EML Contents</a>
@@ -154,12 +154,12 @@
   </xsl:template>
 
   <xsl:template match="ulink" mode="docbook">
-    <a>
+    <h4>
       <xsl:attribute name="href">
         <xsl:value-of select="./@url"></xsl:value-of>
       </xsl:attribute>
       <xsl:value-of select="."></xsl:value-of>
-    </a>
+    </h4>
   </xsl:template>
 
   <xsl:template match="doc:description" mode="docbook">
@@ -168,15 +168,15 @@
 
 
   <xsl:template match="title" mode="docbook">
-    <div class="sectiontitle">
+    <h3>
       <xsl:value-of select="."></xsl:value-of>
-    </div>
+    </h3>
   </xsl:template>
 
   <!-- Build the Detail Table after the Module documentation description -->
   <xsl:template match="doc:moduleDocs" mode="detailtable">
     <xsl:param name="importedBy"></xsl:param>
-    <div class="title">Module details</div>
+    <h2>Module details</h2>
     <table class="tabledefault" border="0">
       <xsl:attribute name="id">
         <xsl:value-of select="./doc:moduleName"></xsl:value-of>
@@ -248,8 +248,9 @@
             <xsl:attribute name="name">
               <xsl:value-of select="./@name"></xsl:value-of>
             </xsl:attribute>
-            <!-- and display the name of the element-->
-            <xsl:value-of select="./@name"></xsl:value-of>&#160; </a>
+          </a>
+          <!-- and display the name of the element-->
+          <h4><xsl:value-of select="./@name"></xsl:value-of>&#160;</h4>
         </td>
         <xsl:choose>
           <xsl:when test="name(.)='xs:element'">
@@ -605,9 +606,11 @@
             </xsl:if>
           </xsl:attribute>
           <!-- and display the name of the attribute-->
+        </a>
+        <h4>
           <xsl:value-of select="./@name"></xsl:value-of>
           <xsl:value-of select="./@ref"></xsl:value-of>
-        </a>
+        </h4>
       </td>
     </tr>
     <tr>
@@ -685,8 +688,10 @@
               <xsl:attribute name="name">
                 <xsl:value-of select="./@name"></xsl:value-of>
               </xsl:attribute>
+           </a>
+           <h4>
               <xsl:value-of select="./@name"></xsl:value-of>
-            </a>
+            </h4>
           </h3>
         </td>
       </tr>
