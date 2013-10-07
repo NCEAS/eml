@@ -585,13 +585,12 @@ public class DownloadHandler implements Runnable
                  }
              }
              catch (MalformedURLException e) {
-               exception = new DataSourceNotFoundException(
-                           "The URL '" + resourceName + "' is a malformed URL.");
-               onlineURLsException = true;
+               exception = new DataSourceNotFoundException(String.format(
+                   "The URL '%s' is a malformed URL: %s", resourceName, e.getMessage()));
              }
-             catch (IOException ioe) {
-            	 exception = new DataSourceNotFoundException(
-            	             "The URL '" + resourceName + "' is not reachable");
+             catch (IOException e) {
+            	 exception = new DataSourceNotFoundException(String.format(
+            	   "The URL '%s' is not reachable: %s", resourceName, e.getMessage()));
                onlineURLsException = true;
              }
 
