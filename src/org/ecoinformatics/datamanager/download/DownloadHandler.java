@@ -582,6 +582,9 @@ public class DownloadHandler implements Runnable
                        onlineURLsException = true;
                      }
                    }
+                   finally {
+                	 filestream.close();
+                   }
                  }
              }
              catch (MalformedURLException e) {
