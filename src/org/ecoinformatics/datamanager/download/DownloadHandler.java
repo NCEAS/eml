@@ -43,6 +43,9 @@ import java.util.Hashtable;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+
 import org.ecoinformatics.datamanager.database.DatabaseLoader;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.quality.QualityCheck;
@@ -66,13 +69,16 @@ public class DownloadHandler implements Runnable
    * Class fields
    */
   
+  private static String anonymousFtpPasswd = "anonymous@domain.org";
   public static Log log = LogFactory.getLog(DownloadHandler.class);
   // Used in quality reporting
   protected final static String ONLINE_URLS_EXCEPTION_MESSAGE = "Error reading from the data source.";
 
+  
   /*
-     * Constants
-     */   
+   * Constants
+   */   
+    private static final String ANONYMOUS       = "anonymous";
     private static final String SRBUSERNAME     = "testuser.sdsc";
     private static final String SRBPASSWD       = "TESTUSER";
     private static final int    SLEEPTIME       = 100;
@@ -83,6 +89,7 @@ public class DownloadHandler implements Runnable
     private static String SRBENDPOINT     = "http://srbbrick8.sdsc.edu:8080/SRBImpl/services/SRBQueryService";
     private static String SRBMACHINE      = "srb-mcat.sdsc.edu";
  
+    
 	/*
 	 * Instance fields
 	 */
@@ -142,7 +149,7 @@ public class DownloadHandler implements Runnable
             		ecogridEndPoint = ((AuthenticatedEcogridEndPointInterface)endPoint).getMetacatAuthenticatedEcogridEndPoint();
             	}
             }
-        }
+        }     
         //loadOptions();
         //this.identifier = identifier;
         //this.dataStorageClassList = dataStorageClassList;
@@ -280,6 +287,19 @@ public class DownloadHandler implements Runnable
     }
     
     
+    /**
+     * Setter method for the anonymousFtpPasswd class variable.
+     * 
+     * @param passwd  The anonymous FTP password setting. FTP servers
+     *                usually just check that the value parses as a
+     *                syntactically valid email address such as
+     *                'anonymous@domain.org' (the default setting).
+     */
+    public static void setAnonymousFtpPasswd(String passwd) {
+    	anonymousFtpPasswd = passwd;
+    }
+    
+    
     /*
      * Instance methods
      */
@@ -338,7 +358,7 @@ public class DownloadHandler implements Runnable
     	}
     	catch(Exception e)
     	{
-    	   log.error("Error in DownloadHandler run method" + e.getMessage());
+    	   log.error("Error in DownloadHandler run method " + e.getMessage());
     	}
         
     	//System.out.println("after get source"+url);
@@ -548,6 +568,7 @@ public class DownloadHandler implements Runnable
              // get the data from a URL
              try {
                  URL url = new URL(resourceName);
+                 boolean isFTP = false;
 
                  if (entity != null) {
                    String contentType = null;
@@ -559,16 +580,20 @@ public class DownloadHandler implements Runnable
                      httpURLConnection.connect();
                      contentType = httpURLConnection.getContentType();
                    }
-                   else {
+                   else if (resourceName.startsWith("file")) {
                      URLConnection urlConnection= url.openConnection();
                      urlConnection.connect();
                      contentType = urlConnection.getContentType();
+                   }
+                   else { // FTP
+                	 isFTP = true;
+                     contentType = "application/octet-stream";
                    }
                  
                    entity.setUrlContentType(contentType);
                  }
                  
-                 if (url != null) {
+                 if (!isFTP) { // HTTP(S) or FILE
                    InputStream filestream = url.openStream();
                          
                    try {
@@ -584,6 +609,56 @@ public class DownloadHandler implements Runnable
                    }
                    finally {
                 	 filestream.close();
+                   }
+                 } else { // FTP
+                   String[] urlParts = resourceName.split("/");
+                   String address = urlParts[2];
+                   String dir = "/";
+                   for (int i = 3; i < urlParts.length - 1; i++) {
+                     dir += urlParts[i] + "/";
+                   }
+                   String fileName = urlParts[urlParts.length - 1];
+                   FTPClient ftpClient = new FTPClient();
+                   ftpClient.connect(address);
+                   ftpClient.login(ANONYMOUS, anonymousFtpPasswd);
+                   ftpClient.changeWorkingDirectory(dir);
+                   ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                   ftpClient.enterLocalPassiveMode();  // necessary to avoid firewall blocking
+                   InputStream filestream = ftpClient.retrieveFileStream(fileName);
+                   try {
+                     successFlag =
+                         this.writeRemoteInputStreamIntoDataStorage(filestream);
+                   }
+                   catch (IOException e) {
+                     exception = e;
+                     String errorMessage = e.getMessage();
+                     if (errorMessage.startsWith(ONLINE_URLS_EXCEPTION_MESSAGE)) {
+                       onlineURLsException = true;
+                     }
+                   }
+                   finally {
+                     try {
+                       filestream.close();
+                     } catch (IOException e) {
+                       exception = new DataSourceNotFoundException(
+                         String.format("Error closing local file '%s': %s",
+                         resourceName, e.getMessage()));
+                       onlineURLsException = true;
+                     }
+                   }
+
+                   // logout and disconnect if FTP session
+                   if (resourceName.startsWith("ftp") && ftpClient != null) {
+                     try {
+                       ftpClient.enterLocalActiveMode();
+                       ftpClient.logout();
+                       ftpClient.disconnect();
+                     } catch (IOException e) {
+                       exception = new DataSourceNotFoundException(
+                         String.format("Error disconnecting from FTP with resource '%s': %s",
+                                       resourceName, e.getMessage()));
+                       onlineURLsException = true;
+                     }
                    }
                  }
              }

@@ -654,6 +654,7 @@
 		
 		<property name="axis" value="${datamanager.lib}/axis.jar"/>
 		<property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
+		<property name="ftp" value="${datamanager.lib}/commons-net-3.3.jar"/>
 		<property name="hsql" value="${datamanager.lib}/hsqldb.jar"/>
 		<property name="log" value="${datamanager.lib}/commons-logging.jar"/>
 		<property name="log4j" value="${datamanager.lib}/log4j-1.2.8.jar"/>
@@ -671,7 +672,7 @@
 		<property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
 		<property name="cpath.datamanager" 
-			value="${junit}:${axis}:${discover}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${configxml}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
+			value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${configxml}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
 	</target>
 
 	<target name="compile-datamanager-lib" depends="init-datamanager-lib,compile">

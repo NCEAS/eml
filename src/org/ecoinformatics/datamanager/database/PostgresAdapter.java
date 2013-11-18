@@ -253,7 +253,7 @@ public class PostgresAdapter extends DatabaseAdapter {
    */
   protected String transformDatetime(String datetimeString) {
     if (datetimeString != null) {
-    	// Postgres 8.4 and higher doesn't like the "T" for timezone
+    	// Postgres 8.4 and higher doesn't like the "T" character so replace with space
     	datetimeString = datetimeString.replace('T', ' ');
     }
     
