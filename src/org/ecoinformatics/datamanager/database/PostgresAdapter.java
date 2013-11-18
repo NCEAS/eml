@@ -77,7 +77,7 @@ public class PostgresAdapter extends DatabaseAdapter {
   
   private static final String[][] datetimeTransformationTable =
 	  { 
-	    {"YYYY-MM-DDThh:mm:ss", "YYYY-MM-DDTHH24:MI:ss"},
+	    {"YYYY-MM-DDThh:mm:ss", "YYYY-MM-DD HH24:MI:ss"},
 	    {"YYYY-MM-DD hh:mm:ss", "YYYY-MM-DD HH24:MI:ss"},
 	    {"hh:mm:ss", "HH24:MI:ss"},
 	    {"hh:mm", "HH24:MI"},
@@ -244,6 +244,23 @@ public class PostgresAdapter extends DatabaseAdapter {
   }
 
       
+  /**
+   * Transforms a datetime string value for compatibility
+   * with a database timestamp field. 
+   *
+   *  @param   datetimeString  A date string as found in a data table
+   *  @return  datetimeString  The transformed datetime string.
+   */
+  protected String transformDatetime(String datetimeString) {
+    if (datetimeString != null) {
+    	// Postgres 8.4 and higher doesn't like the "T" for timezone
+    	datetimeString = datetimeString.replace('T', ' ');
+    }
+    
+    return datetimeString;
+  }
+	  
+	  
   /**
    * This method was contributed by M. Gastil-Buhl ("Gastil"),
    * Moorea Coral Reef LTER. (The implementation has been

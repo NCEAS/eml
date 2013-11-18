@@ -309,8 +309,13 @@ public abstract class DatabaseAdapter {
        */
       if (attributeType.equalsIgnoreCase("datetime")) {
       	String formatString = ((DateTimeDomain)domain).getFormatString();
+      	
       	// Transform the datetime format string for database compatibility
         formatString = transformFormatString(formatString);
+        
+        // Transform the datetime value for database compatibility
+        value = transformDatetime(value);
+        
         value = escapeSpecialCharacterInData(value);
     	sqlDataPart.append(TO_DATE_FUNCTION);
     	sqlDataPart.append(LEFTPARENTH);
@@ -634,6 +639,19 @@ public abstract class DatabaseAdapter {
   }
   
   
+  /**
+   * Transforms a datetime string value for compatibility
+   * with a database timestamp field. The default behavior 
+   * implemented here is to return the original datetime string.
+   *
+   *  @param   datetimeString  A datetime string as found in a data table
+   *  @return  datetimeString  The transformed datetime string
+   */
+  protected String transformDatetime(String datetimeString) {
+    return datetimeString;
+  }
+	  
+	  
   /**
    * Transforms an EML datetime format string for compatibility
    * with a database timestamp field. The default behavior 
