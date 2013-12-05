@@ -1259,15 +1259,19 @@ public class GenericDataPackageParser implements DataPackageParserInterface
            
            if (collapseDelimitersNodeList != null && 
                collapseDelimitersNodeList.getLength() > 0
-              ) {
-             
-               String collapseDelimiters = 
-                   collapseDelimitersNodeList.item(0).getFirstChild().getNodeValue();
-               
-               if (collapseDelimiters.equalsIgnoreCase("yes"))
-               {
-                   isCollapseDelimiters = true;
-               } 
+              ) {     	   
+        	   Node firstNode = collapseDelimitersNodeList.item(0);
+        	   if (firstNode != null) {
+        		   Node firstChild = firstNode.getFirstChild();
+        		   if (firstChild != null) {
+        			   String collapseDelimiters = firstChild.getNodeValue();
+        			   if (collapseDelimiters != null) {
+        	               if (collapseDelimiters.equalsIgnoreCase("yes")) {
+        	                   isCollapseDelimiters = true;
+        	               } 
+        			   }
+        		   }
+        	   }
            }
            
            NodeList quoteCharacterNodeList = 
