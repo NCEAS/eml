@@ -936,15 +936,17 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                                       xpathapi.selectNodeList(
                                                   nonNumericDomainChildNode, 
                                                   "./definition");
-                                    Node defintionNode = definitionNodeList.item(0);
-                                    String definition = 
-                                    	defintionNode.getFirstChild() == null ? null: defintionNode.getFirstChild().getNodeValue();
-                                	
-                                    if(isDebugging) {
-                                      //log.debug(
-                                      // "The definition value is "+definition);
-                                	  }
                                     
+                                    Node defintionNode = definitionNodeList.item(0);
+                                    
+                                    String definition = null;          
+                                    if (defintionNode != null) {
+                                    	definition = 
+                                    	  defintionNode.getFirstChild() == null ? 
+                                            null : 
+                                    	    defintionNode.getFirstChild().getNodeValue();
+                                    }
+                                	
                                     textDomain.setDefinition(definition);
                                     NodeList patternNodeList = 
                                       xpathapi.selectNodeList(
