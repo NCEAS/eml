@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:v="eml://ecoinformatics.org/view-2.1.1" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.1.1" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.1.1" xmlns:md="eml://ecoinformatics.org/methods-2.1.1" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.1.1" xmlns:proj="eml://ecoinformatics.org/project-2.1.1" xmlns:dat="eml://ecoinformatics.org/dataTable-2.1.1" xmlns:ent="eml://ecoinformatics.org/entity-2.1.1" xmlns:acc="eml://ecoinformatics.org/access-2.1.1" xmlns="eml://ecoinformatics.org/dataset-2.1.1" xmlns:res="eml://ecoinformatics.org/resource-2.1.1" xmlns:rp="eml://ecoinformatics.org/party-2.1.1" xmlns:txt="eml://ecoinformatics.org/text-2.1.1" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1" targetNamespace="eml://ecoinformatics.org/dataset-2.1.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:v="eml://ecoinformatics.org/view-2.1.1" xmlns:sp="eml://ecoinformatics.org/storedProcedure-2.1.1" xmlns:sv="eml://ecoinformatics.org/spatialVector-2.1.1" xmlns:md="eml://ecoinformatics.org/methods-2.1.1" xmlns:sr="eml://ecoinformatics.org/spatialRaster-2.1.1" xmlns:proj="eml://ecoinformatics.org/project-2.1.1" xmlns:dat="eml://ecoinformatics.org/dataTable-2.1.1" xmlns:ent="eml://ecoinformatics.org/entity-2.1.1" xmlns:acc="eml://ecoinformatics.org/access-2.1.1" xmlns="eml://ecoinformatics.org/dataset-2.1.1" xmlns:res="eml://ecoinformatics.org/resource-2.1.1" xmlns:rp="eml://ecoinformatics.org/party-2.1.1" xmlns:txt="eml://ecoinformatics.org/text-2.1.1" xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1" xmlns:cit="eml://ecoinformatics.org/literature-2.1.1" targetNamespace="eml://ecoinformatics.org/dataset-2.1.1">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.1.1" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.1.1" schemaLocation="eml-resource.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/party-2.1.1" schemaLocation="eml-party.xsd"/>
@@ -13,6 +13,7 @@
   <xs:import namespace="eml://ecoinformatics.org/storedProcedure-2.1.1" schemaLocation="eml-storedProcedure.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/text-2.1.1" schemaLocation="eml-text.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/view-2.1.1" schemaLocation="eml-view.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/literature-2.1.1" schemaLocation="eml-view.xsd"/>
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-dataset.xsd,v $'
@@ -295,6 +296,20 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
+        <xs:element name="citation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Data Citation</doc:tooltip>
+              <doc:summary>A citation to articles or products in which the 
+              dataset is used or referenced.</doc:summary>
+              <doc:description>A citation to articles or products in which the 
+              dataset is used or referenced. The citation element contains 
+              general information about a literature resource that has used or 
+              references this dataset resource. 
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
       </xs:sequence>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
