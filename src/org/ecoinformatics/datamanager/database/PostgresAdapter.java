@@ -34,6 +34,8 @@ package org.ecoinformatics.datamanager.database;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
@@ -255,8 +257,12 @@ public class PostgresAdapter extends DatabaseAdapter {
    */
   protected String transformDatetime(String datetimeString) {
     if (datetimeString != null) {
-    	// Postgres 8.4 and higher doesn't like the "T" character so replace with space
-    	datetimeString = datetimeString.replace('T', ' ');
+		Pattern pattern = Pattern.compile(".+\\d+T\\d+.+");
+		Matcher matcher = pattern.matcher(datetimeString);
+		if (matcher.matches()) {
+    	  // Postgres 8.4 and higher doesn't like the "T" character so replace with space
+    	  datetimeString = datetimeString.replace('T', ' ');
+		}
     }
     
     return datetimeString;
