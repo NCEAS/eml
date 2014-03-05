@@ -44,7 +44,7 @@
 		<!--<property name="servlet.install.dir" value="/var/lib/tomcat6/webapps/emlparser"/>-->
 		<property name="servlet.install.dir" value="build/emlparser"/>
 		<!-- the server the servlet will run on -->
-		<property name="server" value="http://knb.ecoinformatics.org"/>
+		<property name="server" value="https://knb.ecoinformatics.org"/>
 		<!--the servlet context directory-->
 		<property name="servletdir" value="emlparser"/>
 		<!-- the path to the servlet from the servletdir -->
@@ -127,7 +127,7 @@
 		<property name="junit" value="lib/junit.jar"/>
 		<property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
-		<filter token="server" value="http://knb.ecoinformatics.org"/>
+		<filter token="server" value="https://knb.ecoinformatics.org"/>
 		<filter token="docrooturl" value=""/>
 		<filter token="version" value="${version}"/>
 		<filter token="eml-version" value="${eml-version}"/>
