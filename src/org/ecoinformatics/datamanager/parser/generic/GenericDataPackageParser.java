@@ -114,6 +114,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     
     protected String accessPath = null;
     protected String datasetTitlePath = null;
+    protected String datasetCreatorPath = null;
     protected String datasetAbstractPath = null;
     protected String entityAccessPath = null;
     
@@ -222,6 +223,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		otherEntityPath = "//dataset/otherEntity";
 		accessPath = "//access";
 		datasetTitlePath = "//dataset/title";
+		datasetCreatorPath = "//dataset/creator/individualName";
 		datasetAbstractPath = "//dataset/abstract";
 		entityAccessPath = "physical/distribution/access";
 	}
@@ -343,6 +345,22 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             if (datasetTitleNode != null) {
               String titleText = datasetTitleNode.getTextContent();
               emlDataPackage.setTitle(titleText);
+            }
+            
+            // Store the dataset creators
+            NodeList datasetCreatorNodeList = xpathapi.selectNodeList(doc, datasetCreatorPath);
+            if (datasetCreatorNodeList != null) {
+            	for (int i = 0; i < datasetCreatorNodeList.getLength(); i++) {
+            		Node datasetCreatorNode = datasetCreatorNodeList.item(i);
+            		Node surNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "surName");
+            		Node givenNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "givenName");
+            		String creatorText = surNameNode.getTextContent();
+            		if (givenNameNode != null) {
+            			creatorText = givenNameNode.getTextContent() + " " + creatorText;
+            		}
+                    emlDataPackage.getCreators().add(creatorText);
+            	}
+              
             }
             
             // Store the pubDate

@@ -34,6 +34,8 @@ package org.ecoinformatics.datamanager.parser;
 import java.io.File;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.Vector;
@@ -114,8 +116,8 @@ public class DataPackage
   private QualityReport qualityReport = null;
   private String system = null;
   private String title = null;
-  
-  
+  private List<String> creators = null;
+    
   
   /*
    * Constructors
@@ -130,6 +132,7 @@ public class DataPackage
   {
 	  this.packageId = packageId;  
     this.qualityReport = new QualityReport(this);
+    this.creators = new ArrayList<String>();
     
     qualityCheckPackageId(packageId);
   }
@@ -1114,7 +1117,17 @@ public class DataPackage
   }
   
   
-  /**
+  public List<String> getCreators() {
+	return creators;
+}
+
+
+public void setCreators(List<String> creators) {
+	this.creators = creators;
+}
+
+
+/**
    * Checks the number of words in the dataset abstract text.
    * 
    * @param abstractText  the abstract text to be analyzed
