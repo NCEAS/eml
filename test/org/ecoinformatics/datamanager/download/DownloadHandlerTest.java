@@ -16,9 +16,9 @@ public class DownloadHandlerTest extends TestCase
      * Class fields
      */
   
-	private static final String CORRECTURL   = "http://knb.ecoinformatics.org/knb/metacat/knb-lter-bes.14.3";
-	private static final String INCORRECTURL = "http://knb.ecoinformatcs.org/knb/metacat/knb-lter-bes.14.3";
-	private static final String CORRECTURL1   = "http://knb.ecoinformatics.org/knb/metacat/knb-lter-arc.1424.1";
+	private static final String CORRECTURL   = "https://knb.ecoinformatics.org/knb/metacat/knb-lter-bes.14.3";
+	private static final String INCORRECTURL = "https://knb.ecoinformatcs.org/knb/metacat/knb-lter-bes.14.3";
+	private static final String CORRECTURL1   = "https://knb.ecoinformatics.org/knb/metacat/knb-lter-arc.1424.1";
   private static final long CORRECTURL_SIZE = 3906; // Expected file size of knb-lter-bes.14.3
   private static final long CORRECTURL1_SIZE = 8172; // Expected file size of knb-lter-arc.1424.1
     
@@ -114,7 +114,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testDownloadFailed()
 	  {
-		  String url = "http://knb.ecoinformatics.org/knb/metacat/tao.1.1";
+		  String url = "https://knb.ecoinformatics.org/knb/metacat/tao.1.1";
 		  testDownloadByThread(false, url, url, false);
 	  }
 	  
@@ -228,7 +228,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void tesDownloadHandlerWithSameUrl()
 	  {
-		  String url = "http://knb.ecoinformatics.org/knb/metacat/adler.5.1";
+		  String url = "https://knb.ecoinformatics.org/knb/metacat/adler.5.1";
 		  processDownloadHandlersWithSameUrl(url);
 	  }
 	  
@@ -344,7 +344,7 @@ public class DownloadHandlerTest extends TestCase
 	  public void testSameURLByDownload() throws Exception
 	  {
 	    final long EXPECTED_SIZE = 5524181;
-		  final String url = "http://knb.ecoinformatics.org/knb/metacat/" +
+		  final String url = "https://knb.ecoinformatics.org/knb/metacat/" +
                          "ALEXXX_015ADCP015R00_19990817.40.1";
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
