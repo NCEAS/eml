@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -58,6 +59,7 @@ import org.ecoinformatics.datamanager.parser.NumericDomain;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.Entity;
+import org.ecoinformatics.datamanager.parser.Party;
 import org.ecoinformatics.datamanager.parser.StorageType;
 import org.ecoinformatics.datamanager.parser.TextComplexDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDelimitedDataFormat;
@@ -223,7 +225,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		otherEntityPath = "//dataset/otherEntity";
 		accessPath = "//access";
 		datasetTitlePath = "//dataset/title";
-		datasetCreatorPath = "//dataset/creator/individualName";
+		datasetCreatorPath = "//dataset/creator";
 		datasetAbstractPath = "//dataset/abstract";
 		entityAccessPath = "physical/distribution/access";
 	}
@@ -352,13 +354,31 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             if (datasetCreatorNodeList != null) {
             	for (int i = 0; i < datasetCreatorNodeList.getLength(); i++) {
             		Node datasetCreatorNode = datasetCreatorNodeList.item(i);
-            		Node surNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "surName");
-            		Node givenNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "givenName");
-            		String creatorText = surNameNode.getTextContent();
-            		if (givenNameNode != null) {
-            			creatorText = givenNameNode.getTextContent() + " " + creatorText;
+            		
+					String surName = null;
+                    List<String> givenNames = null;
+					String organization = null;
+					
+					Node surNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "individualName/surName");
+            		if (surNameNode != null) {
+            			surName = surNameNode.getTextContent();
             		}
-                    emlDataPackage.getCreators().add(creatorText);
+            		
+					Node givenNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "individualName/givenName");
+            		if (givenNameNode != null) {
+            			if (givenNames == null) {
+            				givenNames = new ArrayList<String>();
+            			}
+            			givenNames.add(givenNameNode.getTextContent());
+            		}
+            		
+            		Node orgNode = xpathapi.selectSingleNode(datasetCreatorNode, "organizationName");
+            		if (orgNode != null) {
+            			organization = orgNode.getTextContent();
+            		}
+            		
+					Party party = new Party(surName, givenNames, organization);
+					emlDataPackage.getCreators().add(party );
             	}
               
             }

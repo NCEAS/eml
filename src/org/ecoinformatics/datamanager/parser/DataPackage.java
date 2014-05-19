@@ -116,7 +116,7 @@ public class DataPackage
   private QualityReport qualityReport = null;
   private String system = null;
   private String title = null;
-  private List<String> creators = null;
+  private List<Party> creators = null;
     
   
   /*
@@ -132,7 +132,7 @@ public class DataPackage
   {
 	  this.packageId = packageId;  
     this.qualityReport = new QualityReport(this);
-    this.creators = new ArrayList<String>();
+    this.creators = new ArrayList<Party>();
     
     qualityCheckPackageId(packageId);
   }
@@ -1117,12 +1117,12 @@ public class DataPackage
   }
   
   
-  public List<String> getCreators() {
+  public List<Party> getCreators() {
 	return creators;
 }
 
 
-public void setCreators(List<String> creators) {
+public void setCreators(List<Party> creators) {
 	this.creators = creators;
 }
 
