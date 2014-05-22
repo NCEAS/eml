@@ -75,50 +75,72 @@
 
 
   <!-- First row for attribute name-->
-  <tr><th class="rowodd">Name</th>
-  <xsl:for-each select="attribute">
-    <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <th><xsl:value-of select="attributeName"/></th>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-          <th><xsl:value-of select="attributeName"/></th>
-        </xsl:otherwise>
-     </xsl:choose>
-  </xsl:for-each>
+  <tr>
+  	<th class="rowodd">Name</th>
+  	<th class="rowodd">Column Label</th>
+  	<!--another row for Semantics -->
+  	<xsl:if test="$annotationId != ''">
+		<th class="rowodd">Measurement</th>
+	</xsl:if>
+  	<th class="rowodd">Definition</th>
+  	<th class="rowodd">Type of Value</th>
+  	<th class="rowodd">Measurement Type</th>
+  	<th class="rowodd">Measurement Domain</th>
+  	<th class="rowodd">Missing Value Code</th>
+  	<th class="rowodd">Accuracy Report</th>
+  	<th class="rowodd">Accuracy Assessment</th>
+  	<th class="rowodd">Coverage</th>
+  	<th class="rowodd">Method</th>
   </tr>
-
-  <!-- Second row for attribute label-->
-  <tr><th class="rowodd">Column Label</th>
-   <xsl:for-each select="attribute">
-    <xsl:variable name="stripes">
+  
+  <xsl:for-each select="attribute">
+  
+  	<xsl:variable name="attributeindex" select="position()"/>
+  	<xsl:variable name="stripes">
               <xsl:choose>
                 <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
                 <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
               </xsl:choose>
     </xsl:variable>
+     <xsl:variable name="innerstripes">
+              <xsl:choose>
+                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$innercolevenStyle"/></xsl:when>
+                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$innercoloddStyle"/></xsl:when>
+              </xsl:choose>
+    </xsl:variable>
+    
+  	<tr>
+  	
+  	<td class="{$stripes}">
     <xsl:choose>
+         <xsl:when test="references!=''">
+          <xsl:variable name="ref_id" select="references"/>
+          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+          <xsl:for-each select="$references">
+            <xsl:value-of select="attributeName"/>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+        	<xsl:value-of select="attributeName"/>
+        </xsl:otherwise>
+     </xsl:choose>
+     </td>
+     
+     <td class="{$stripes}">
+     <xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
              <xsl:choose>
                 <xsl:when test="attributeLabel!=''">
-                  <td colspan="1" align="center" class="{$stripes}">
                      <xsl:for-each select="attributeLabel">
                        <xsl:value-of select="."/>
                          &#160;<br />
                        </xsl:for-each>
-                  </td>
                 </xsl:when>
                 <xsl:otherwise>
-                   <td colspan="1" align="center" class="{$stripes}">
                        &#160;<br />
-                   </td>
                 </xsl:otherwise>
               </xsl:choose>
           </xsl:for-each>
@@ -126,34 +148,22 @@
         <xsl:otherwise>
              <xsl:choose>
                 <xsl:when test="attributeLabel!=''">
-                  <td colspan="1" align="center" class="{$stripes}">
                      <xsl:for-each select="attributeLabel">
                        <xsl:value-of select="."/>
                          &#160;<br/>
                        </xsl:for-each>
-                  </td>
                 </xsl:when>
                 <xsl:otherwise>
-                   <td colspan="1" align="center" class="{$stripes}">
                        &#160;<br />
-                   </td>
                 </xsl:otherwise>
               </xsl:choose>
         </xsl:otherwise>
      </xsl:choose>
-   </xsl:for-each>
-  </tr>
-  
-  <!--another row for Semantics -->
-  <xsl:if test="$annotationId != ''">
-	  <tr><th class="rowodd">Measurement</th>
-	  <xsl:for-each select="attribute">
-		<xsl:variable name="stripes">
-			<xsl:choose>
-				<xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-				<xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-			</xsl:choose>
-		</xsl:variable>
+     </td>
+     
+     <!--another row for Semantics -->
+  	<xsl:if test="$annotationId != ''">
+	 
 		<td class="{$stripes}">
 			<!-- handle references -->
 			<xsl:variable name="finalAttributeName">
@@ -192,399 +202,259 @@
 			</script>
 		
 		</td>
-	  </xsl:for-each>
-	  </tr>
-	</xsl:if>
-	
-  <!-- Third row for attribute defination-->
-  <tr><th class="rowodd">Definition</th>
-    <xsl:for-each select="attribute">
-      <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-              </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-           <xsl:for-each select="$references">
-             <td colspan="1" align="center" class="{$stripes}">
-               <xsl:value-of select="attributeDefinition"/>
-             </td>
-           </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-          <td colspan="1" align="center" class="{$stripes}">
-             <xsl:value-of select="attributeDefinition"/>
-          </td>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
-
-  <!-- The fourth row for attribute storage type-->
-   <tr><th class="rowodd">Type of Value</th>
-     <xsl:for-each select="attribute">
-      <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-              </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <xsl:choose>
-              <xsl:when test="storageType!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <xsl:for-each select="storageType">
-                      <xsl:value-of select="."/>
-                       &#160;<br/>
-                    </xsl:for-each>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                  <td colspan="1" align="center" class="{$stripes}">
-                       &#160;
-                   </td>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <xsl:choose>
-              <xsl:when test="storageType!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <xsl:for-each select="storageType">
-                      <xsl:value-of select="."/>
-                       &#160;<br/>
-                    </xsl:for-each>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                  <td colspan="1" align="center" class="{$stripes}">
-                       &#160;
-                   </td>
-              </xsl:otherwise>
-            </xsl:choose>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
-
-  <!-- The fifth row for meaturement type-->
-  <tr><th class="rowodd">Measurement Type</th>
-   <xsl:for-each select="attribute">
-    <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-              </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <td colspan="1" align="center" class="{$stripes}">
-              <xsl:for-each select="measurementScale">
-                 <xsl:value-of select="local-name(./*)"/>
-              </xsl:for-each>
-            </td>
-         </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <td colspan="1" align="center" class="{$stripes}">
-              <xsl:for-each select="measurementScale">
-                 <xsl:value-of select="local-name(./*)"/>
-              </xsl:for-each>
-           </td>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
-
-  <!-- The sixth row for meaturement domain-->
-  <tr><th class="rowodd">Measurement Domain</th>
-   <xsl:for-each select="attribute">
-	<xsl:variable name="attributeindex" select="position()"/>
-    <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-              </xsl:choose>
-    </xsl:variable>
-     <xsl:variable name="innerstripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$innercolevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$innercoloddStyle"/></xsl:when>
-              </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <td colspan="1" align="center" class="{$stripes}">
-              <xsl:for-each select="measurementScale">
-                <xsl:call-template name="measurementscale">
-                    <xsl:with-param name="docid" select="$docid"/>
-                    <xsl:with-param name="entitytype" select="$entitytype"/>
-                    <xsl:with-param name="entityindex" select="$entityindex"/>
-                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
-                    <xsl:with-param name="stripes" select="$innerstripes"/>
-                </xsl:call-template>
-              </xsl:for-each>
-            </td>
-         </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <td colspan="1" align="center" class="{$stripes}">
-              <xsl:for-each select="measurementScale">
-                <xsl:call-template name="measurementscale">
-                      <xsl:with-param name="docid" select="$docid"/>
-                      <xsl:with-param name="entitytype" select="$entitytype"/>
-                      <xsl:with-param name="entityindex" select="$entityindex"/>
-                      <xsl:with-param name="attributeindex" select="$attributeindex"/>
-                      <xsl:with-param name="stripes" select="$innerstripes"/>
-                </xsl:call-template>
-              </xsl:for-each>
-           </td>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
-
-
-  <!-- The seventh row for missing value code-->
-  <tr><th class="rowodd">Missing Value Code</th>
-    <xsl:for-each select="attribute">
-      <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-              </xsl:choose>
-     </xsl:variable>
-     <xsl:variable name="innerstripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$innercolevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$innercoloddStyle"/></xsl:when>
-              </xsl:choose>
-     </xsl:variable>
-     <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <xsl:choose>
-              <xsl:when test="missingValueCode!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <table>
-                       <xsl:for-each select="missingValueCode">
-                          <tr><td class="{$innerstripes}"><b>Code</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="code"/></td></tr>
-                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
-                               <td class="{$innerstripes}"><xsl:value-of select="codeExplanation"/></td>
-                          </tr>
-                       </xsl:for-each>
-                   </table>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                <td colspan="1" class="{$stripes}">
-                   &#160;
-                </td>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <xsl:choose>
-              <xsl:when test="missingValueCode!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <table>
-                       <xsl:for-each select="missingValueCode">
-                          <tr><td class="{$innerstripes}"><b>Code</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="code"/></td></tr>
-                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
-                               <td class="{$innerstripes}"><xsl:value-of select="codeExplanation"/></td>
-                          </tr>
-                       </xsl:for-each>
-                   </table>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                <td colspan="1" align="center" class="{$stripes}">
-                   &#160;
-                </td>
-              </xsl:otherwise>
-            </xsl:choose>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
-
-
-  <!-- The eighth row for accuracy report-->
-  <tr><th class="rowodd">Accuracy Report</th>
-     <xsl:for-each select="attribute">
-     <xsl:variable name="stripes">
-         <xsl:choose>
-             <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-             <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-         </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <xsl:choose>
-               <xsl:when test="accuracy!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <xsl:for-each select="accuracy">
-                          <xsl:value-of select="attributeAccuracyReport"/>
-                    </xsl:for-each>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                <td colspan="1" align="center" class="{$stripes}">
-                  &#160;
-                </td>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <xsl:choose>
-               <xsl:when test="accuracy!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                    <xsl:for-each select="accuracy">
-                          <xsl:value-of select="attributeAccuracyReport"/>
-                    </xsl:for-each>
-                 </td>
-              </xsl:when>
-              <xsl:otherwise>
-                <td colspan="1" align="center" class="{$stripes}">
-                  &#160;
-                </td>
-              </xsl:otherwise>
-            </xsl:choose>
-        </xsl:otherwise>
-     </xsl:choose>
-  </xsl:for-each>
-  </tr>
-
-  <!-- The nineth row for quality accuracy accessment -->
-  <tr><th class="rowodd">Accuracy Assessment</th>
-     <xsl:for-each select="attribute">
-     <xsl:variable name="stripes">
-         <xsl:choose>
-             <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-             <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-         </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="innerstripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$innercolevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$innercoloddStyle"/></xsl:when>
-              </xsl:choose>
-     </xsl:variable>
-     <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <xsl:choose>
-               <xsl:when test="accuracy/quantitativeAttributeAccuracyAssessment!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                   <xsl:for-each select="accuracy">
-                     <table>
-                       <xsl:for-each select="quantitativeAttributeAccuracyAssessment">
-                          <tr><td class="{$innerstripes}"><b>Value</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyValue"/></td>
-                          </tr>
-                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyExplanation"/></td>
-                          </tr>
-                      </xsl:for-each>
-                   </table>
-                 </xsl:for-each>
-               </td>
-             </xsl:when>
-             <xsl:otherwise>
-                <td colspan="1" align="center" class="{$stripes}">
-                  &#160;
-                </td>
-             </xsl:otherwise>
-           </xsl:choose>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <xsl:choose>
-               <xsl:when test="accuracy/quantitativeAttributeAccuracyAssessment!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                   <xsl:for-each select="accuracy">
-                     <table>
-                       <xsl:for-each select="quantitativeAttributeAccuracyAssessment">
-                          <tr><td class="{$innerstripes}"><b>Value</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyValue"/></td>
-                          </tr>
-                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
-                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyExplanation"/></td>
-                          </tr>
-                      </xsl:for-each>
-                   </table>
-                 </xsl:for-each>
-               </td>
-             </xsl:when>
-             <xsl:otherwise>
-                <td colspan="1" align="center" class="{$stripes}">
-                  &#160;
-                </td>
-             </xsl:otherwise>
-           </xsl:choose>
-        </xsl:otherwise>
-     </xsl:choose>
-  </xsl:for-each>
-  </tr>
-
-   <!-- The tenth row for coverage-->
-  <tr><th class="rowodd">Coverage</th>
-   <xsl:for-each select="attribute">
-    <xsl:variable name="index" select="position()"/>
-    <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-              </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
+		
+		</xsl:if>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	           <xsl:for-each select="$references">
+	               <xsl:value-of select="attributeDefinition"/>
+	           </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	             <xsl:value-of select="attributeDefinition"/>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	            <xsl:choose>
+	              <xsl:when test="storageType!=''">
+	                    <xsl:for-each select="storageType">
+	                      <xsl:value-of select="."/>
+	                       &#160;<br/>
+	                    </xsl:for-each>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                       &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	          </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	           <xsl:choose>
+	              <xsl:when test="storageType!=''">
+	                    <xsl:for-each select="storageType">
+	                      <xsl:value-of select="."/>
+	                       &#160;<br/>
+	                    </xsl:for-each>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                       &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	              <xsl:for-each select="measurementScale">
+	                 <xsl:value-of select="local-name(./*)"/>
+	              </xsl:for-each>
+	         </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	              <xsl:for-each select="measurementScale">
+	                 <xsl:value-of select="local-name(./*)"/>
+	              </xsl:for-each>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	              <xsl:for-each select="measurementScale">
+	                <xsl:call-template name="measurementscale">
+	                    <xsl:with-param name="docid" select="$docid"/>
+	                    <xsl:with-param name="entitytype" select="$entitytype"/>
+	                    <xsl:with-param name="entityindex" select="$entityindex"/>
+	                    <xsl:with-param name="attributeindex" select="$attributeindex"/>
+	                    <xsl:with-param name="stripes" select="$innerstripes"/>
+	                </xsl:call-template>
+	              </xsl:for-each>
+	         </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	              <xsl:for-each select="measurementScale">
+	                <xsl:call-template name="measurementscale">
+	                      <xsl:with-param name="docid" select="$docid"/>
+	                      <xsl:with-param name="entitytype" select="$entitytype"/>
+	                      <xsl:with-param name="entityindex" select="$entityindex"/>
+	                      <xsl:with-param name="attributeindex" select="$attributeindex"/>
+	                      <xsl:with-param name="stripes" select="$innerstripes"/>
+	                </xsl:call-template>
+	              </xsl:for-each>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+		
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	            <xsl:choose>
+	              <xsl:when test="missingValueCode!=''">
+	                    <table>
+	                       <xsl:for-each select="missingValueCode">
+	                          <tr><td class="{$innerstripes}"><b>Code</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="code"/></td></tr>
+	                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
+	                               <td class="{$innerstripes}"><xsl:value-of select="codeExplanation"/></td>
+	                          </tr>
+	                       </xsl:for-each>
+	                   </table>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                   &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	          </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	           <xsl:choose>
+	              <xsl:when test="missingValueCode!=''">
+	                    <table>
+	                       <xsl:for-each select="missingValueCode">
+	                          <tr><td class="{$innerstripes}"><b>Code</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="code"/></td></tr>
+	                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
+	                               <td class="{$innerstripes}"><xsl:value-of select="codeExplanation"/></td>
+	                          </tr>
+	                       </xsl:for-each>
+	                   </table>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                   &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	            <xsl:choose>
+	               <xsl:when test="accuracy!=''">
+	                    <xsl:for-each select="accuracy">
+	                          <xsl:value-of select="attributeAccuracyReport"/>
+	                    </xsl:for-each>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                  &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	          </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	           <xsl:choose>
+	               <xsl:when test="accuracy!=''">
+	                    <xsl:for-each select="accuracy">
+	                          <xsl:value-of select="attributeAccuracyReport"/>
+	                    </xsl:for-each>
+	              </xsl:when>
+	              <xsl:otherwise>
+	                  &#160;
+	              </xsl:otherwise>
+	            </xsl:choose>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	            <xsl:choose>
+	               <xsl:when test="accuracy/quantitativeAttributeAccuracyAssessment!=''">
+	                   <xsl:for-each select="accuracy">
+	                     <table>
+	                       <xsl:for-each select="quantitativeAttributeAccuracyAssessment">
+	                          <tr><td class="{$innerstripes}"><b>Value</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyValue"/></td>
+	                          </tr>
+	                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyExplanation"/></td>
+	                          </tr>
+	                      </xsl:for-each>
+	                   </table>
+	                 </xsl:for-each>
+	             </xsl:when>
+	             <xsl:otherwise>
+	                  &#160;
+	             </xsl:otherwise>
+	           </xsl:choose>
+	          </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	           <xsl:choose>
+	               <xsl:when test="accuracy/quantitativeAttributeAccuracyAssessment!=''">
+	                   <xsl:for-each select="accuracy">
+	                     <table>
+	                       <xsl:for-each select="quantitativeAttributeAccuracyAssessment">
+	                          <tr><td class="{$innerstripes}"><b>Value</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyValue"/></td>
+	                          </tr>
+	                          <tr><td class="{$innerstripes}"><b>Expl</b></td>
+	                              <td class="{$innerstripes}"><xsl:value-of select="attributeAccuracyExplanation"/></td>
+	                          </tr>
+	                      </xsl:for-each>
+	                   </table>
+	                 </xsl:for-each>
+	             </xsl:when>
+	             <xsl:otherwise>
+	                  &#160;
+	             </xsl:otherwise>
+	           </xsl:choose>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
          <xsl:when test="references!=''">
           <xsl:variable name="ref_id" select="references"/>
           <xsl:variable name="references" select="$ids[@id=$ref_id]" />
           <xsl:for-each select="$references">
             <xsl:choose>
                <xsl:when test="coverage!=''">
-                  <td colspan="1" align="center" class="{$stripes}">
                     <xsl:for-each select="coverage">
                       <xsl:call-template name="attributecoverage">
                          <xsl:with-param name="docid" select="$docid"/>
                          <xsl:with-param name="entitytype" select="$entitytype"/>
                          <xsl:with-param name="entityindex" select="$entityindex"/>
-                         <xsl:with-param name="attributeindex" select="$index"/>
+                         <xsl:with-param name="attributeindex" select="$attributeindex"/>
                       </xsl:call-template>
                     </xsl:for-each>
-                  </td>
                </xsl:when>
                <xsl:otherwise>
-                  <td colspan="1" align="center" class="{$stripes}">
                    &#160;
-                  </td>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:for-each>
@@ -592,89 +462,72 @@
         <xsl:otherwise>
           <xsl:choose>
                <xsl:when test="coverage!=''">
-                  <td colspan="1" align="center" class="{$stripes}">
                     <xsl:for-each select="coverage">
                       <xsl:call-template name="attributecoverage">
                          <xsl:with-param name="docid" select="$docid"/>
                          <xsl:with-param name="entitytype" select="$entitytype"/>
                          <xsl:with-param name="entityindex" select="$entityindex"/>
-                         <xsl:with-param name="attributeindex" select="$index"/>
+                         <xsl:with-param name="attributeindex" select="$attributeindex"/>
                       </xsl:call-template>
                     </xsl:for-each>
-                  </td>
                </xsl:when>
                <xsl:otherwise>
-                  <td colspan="1" align="center" class="{$stripes}">
                    &#160;
-                  </td>
                </xsl:otherwise>
             </xsl:choose>
         </xsl:otherwise>
      </xsl:choose>
-   </xsl:for-each>
-  </tr>
+		</td>
+		
+		<td class="{$stripes}">
+			<xsl:choose>
+	         <xsl:when test="references!=''">
+	          <xsl:variable name="ref_id" select="references"/>
+	          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
+	          <xsl:for-each select="$references">
+	            <xsl:choose>
+	               <xsl:when test="method!=''">
+	                   <xsl:for-each select="method">
+	                     <xsl:call-template name="attributemethod">
+	                       <xsl:with-param name="docid" select="$docid"/>
+	                       <xsl:with-param name="entitytype" select="$entitytype"/>
+	                       <xsl:with-param name="entityindex" select="$entityindex"/>
+	                       <xsl:with-param name="attributeindex" select="$attributeindex"/>
+	                     </xsl:call-template>
+	                   </xsl:for-each>
+	               </xsl:when>
+	               <xsl:otherwise>
+	                   &#160;
+	               </xsl:otherwise>
+	            </xsl:choose>
+	         </xsl:for-each>
+	        </xsl:when>
+	        <xsl:otherwise>
+	           <xsl:choose>
+	               <xsl:when test="method!=''">
+	                   <xsl:for-each select="method">
+	                     <xsl:call-template name="attributemethod">
+	                       <xsl:with-param name="docid" select="$docid"/>
+	                       <xsl:with-param name="entitytype" select="$entitytype"/>
+	                       <xsl:with-param name="entityindex" select="$entityindex"/>
+	                       <xsl:with-param name="attributeindex" select="$attributeindex"/>
+	                     </xsl:call-template>
+	                   </xsl:for-each>
+	               </xsl:when>
+	               <xsl:otherwise>
+	                   &#160;
+	               </xsl:otherwise>
+	            </xsl:choose>
+	        </xsl:otherwise>
+	     </xsl:choose>
+		
+		</td>
+		
+     
+  	</tr>
+  </xsl:for-each>
 
 
-   <!-- The eleventh row for method-->
-  <tr><th class="rowodd">Method</th>
-   <xsl:for-each select="attribute">
-    <xsl:variable name="index" select="position()"/>
-    <xsl:variable name="stripes">
-              <xsl:choose>
-                <xsl:when test="position() mod 2 = 0"><xsl:value-of select="$colevenStyle"/></xsl:when>
-                <xsl:when test="position() mod 2 = 1"><xsl:value-of select="$coloddStyle"/></xsl:when>
-              </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-         <xsl:when test="references!=''">
-          <xsl:variable name="ref_id" select="references"/>
-          <xsl:variable name="references" select="$ids[@id=$ref_id]" />
-          <xsl:for-each select="$references">
-            <xsl:choose>
-               <xsl:when test="method!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                   <xsl:for-each select="method">
-                     <xsl:call-template name="attributemethod">
-                       <xsl:with-param name="docid" select="$docid"/>
-                       <xsl:with-param name="entitytype" select="$entitytype"/>
-                       <xsl:with-param name="entityindex" select="$entityindex"/>
-                       <xsl:with-param name="attributeindex" select="$index"/>
-                     </xsl:call-template>
-                   </xsl:for-each>
-                 </td>
-               </xsl:when>
-               <xsl:otherwise>
-                 <td colspan="1" align="center" class="{$stripes}">
-                   &#160;
-                 </td>
-               </xsl:otherwise>
-            </xsl:choose>
-         </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-           <xsl:choose>
-               <xsl:when test="method!=''">
-                 <td colspan="1" align="center" class="{$stripes}">
-                   <xsl:for-each select="method">
-                     <xsl:call-template name="attributemethod">
-                       <xsl:with-param name="docid" select="$docid"/>
-                       <xsl:with-param name="entitytype" select="$entitytype"/>
-                       <xsl:with-param name="entityindex" select="$entityindex"/>
-                       <xsl:with-param name="attributeindex" select="$index"/>
-                     </xsl:call-template>
-                   </xsl:for-each>
-                 </td>
-               </xsl:when>
-               <xsl:otherwise>
-                 <td colspan="1" align="center" class="{$stripes}">
-                   &#160;
-                 </td>
-               </xsl:otherwise>
-            </xsl:choose>
-        </xsl:otherwise>
-     </xsl:choose>
-   </xsl:for-each>
-  </tr>
  </xsl:template>
 
 
