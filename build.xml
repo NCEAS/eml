@@ -519,6 +519,29 @@
 			</batchtest>
 		</junit>
 	</target>
+	
+	<target name="runonetest" depends="jar">
+		<!-- Prompt user for the test name. -->
+			<input 
+	         message="Please enter name of test to run: "
+	         addproperty="test-to-run"
+	         defaultvalue="HtmlToPdfTest"
+	      />
+		<junit printsummary="yes" haltonfailure="no" fork="no"
+            haltonerror="no">
+			<classpath>
+				<pathelement path="${cpath}:${build.dir}/${name}-test.jar:${build.dir}/${name}.jar" />
+			</classpath>
+
+			<formatter type="plain" />
+
+			<batchtest fork="yes" todir="${build.dir}">
+				<fileset dir="${build.tests}">
+					<include name="**/${test-to-run}.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
 
 	<target name="servletinstall" depends="jar">
 		<copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
