@@ -83,11 +83,17 @@ public class HtmlToPdfTest extends TestCase
     	try {
 
 	        // transform EML to HTML
-	    	String emlFile = "build/tests/eml-sample.xml";
+    		String workingPath = "build/tests/";
+    		
+    		String emlFileName = "eml-sample"; 
+    		
+	    	String emlFileExtension = ".xml";
+	    	
+	    	String emlFile = workingPath + emlFileName + emlFileExtension;
 	    	
 	    	String xslFile = "style/eml/eml.xsl";
 	    	
-	    	String htmlFile = emlFile + ".html";
+	    	String htmlFile = workingPath + emlFileName + ".html";
 	    	
 	    	Transformer transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(new File(xslFile)));
 	    	 // add some property for style sheet
@@ -103,7 +109,7 @@ public class HtmlToPdfTest extends TestCase
 	    	transformer.transform(new StreamSource(new File(emlFile)), new StreamResult(new File(htmlFile)));
 	    	
 	    	// convert HTML to PDF
-	    	String pdfFile = emlFile + ".pdf";
+	    	String pdfFile = workingPath + emlFileName + ".pdf";
 	    	
 			HtmlToPdf.export(htmlFile, pdfFile);
 			
