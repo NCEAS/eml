@@ -406,6 +406,10 @@
 				<exclude name="emlconversions/**"/>
 			</fileset>
 		</copy>
+		
+		<!-- set up the html css for testing -->
+		<copy file="default.css" todir="${build.tests}/default" filtering="yes"/>
+
         <echo>
       ************************************************
                     copied some stuff to ${build.tests}
