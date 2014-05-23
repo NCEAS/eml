@@ -44,7 +44,7 @@
 		<!--<property name="servlet.install.dir" value="/var/lib/tomcat6/webapps/emlparser"/>-->
 		<property name="servlet.install.dir" value="build/emlparser"/>
 		<!-- the server the servlet will run on -->
-		<property name="server" value="http://knb.ecoinformatics.org"/>
+		<property name="server" value="https://knb.ecoinformatics.org"/>
 		<!--the servlet context directory-->
 		<property name="servletdir" value="emlparser"/>
 		<!-- the path to the servlet from the servletdir -->
@@ -113,18 +113,24 @@
 		<property name="configfileinemljar" value="/config.xml"/>
 
 		<property name="xmlp"
-        value="lib/apache/xercesImpl.jar"/>
-		<property name="api"
-        value="lib/apache/xmlParserAPIs.jar"/>
+        	value="lib/xercesImpl.jar"/>
+		<property name="serializer"
+        	value="lib/serializer.jar"/>
 		<property name="xalan"
-        value="lib/apache/xalan.jar"/>
+        	value="lib/xalan.jar"/>
 		<property name="xml-apis"
-        value="lib/apache/xml-apis.jar"/>
+        	value="lib/xml-apis-xerces-2.9.1.jar"/>
+		<property name="itext" value="lib/iText-2.0.8.jar"/>
+		<property name="renderer" value="lib/core-renderer.jar"/>
+		<property name="renderer-min" value="lib/core-renderer-minimal.jar"/>
+		<property name="jtidy" value="lib/jtidy-r938.jar"/>
+
 		<property name="jdom" value="lib/jdom.jar"/>
 		<property name="cos" value="lib/cos.jar"/>
 		<property name="servlet" value="lib/apache/servlet.jar"/>
 		<property name="configxml" value="lib/configxml.jar"/>
 		<property name="junit" value="lib/junit.jar"/>
+		
 		<property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
 		<filter token="server" value="http://knb.ecoinformatics.org"/>
@@ -149,7 +155,7 @@
 		<property name="ver.src" value="${ver.dir}/src"/>
 		<property name="ver.tst" value="${ver.dir}/test"/>
 		<property name="package.home" value="org/ecoinformatics" />
-		<property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${api}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
+		<property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
 		<!-- These two Data Manager Library properties need to be declared here
          so that the Data Manager Library can be excluded from the default eml

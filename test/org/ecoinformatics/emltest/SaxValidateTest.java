@@ -139,9 +139,9 @@ public class SaxValidateTest extends TestCase
     {
       SAXValidate test = new SAXValidate(false);
       assertTrue(test != null);
-      System.err.println("Validating the docs/eml-@version@/eml-docbook.xml " +
+      System.err.println("Validating the build/docs/eml-@version@/eml-docbook.xml " +
               "file.");
-      File f = new File("docs/eml-@version@/eml-docbook.xml");
+      File f = new File("build/docs/eml-@version@/eml-docbook.xml");
       if(!f.exists())
       {
         System.err.println("The file eml-@version@/eml-docbook.xml is not " +
@@ -154,7 +154,7 @@ public class SaxValidateTest extends TestCase
 
       try
       {
-        test.runTest(new FileReader("docs/eml-@version@/eml-docbook.xml"),
+        test.runTest(new FileReader("build/docs/eml-@version@/eml-docbook.xml"),
                                     DEFAULT_PARSER);
       }
       catch(Exception e)
