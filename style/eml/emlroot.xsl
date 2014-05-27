@@ -1132,8 +1132,8 @@
 	<xsl:template name="xml">
 		<xsl:param name="index" />
 			<tr>
-				<td width="{$firstColWidth}" class="rowodd">Metadata download:</td>
-				<td width="{$secondColWidth}" class="roweven">
+				<td class="rowodd">Metadata download</td>
+				<td class="roweven">
 					<a>
 						<xsl:attribute name="href">
            					<xsl:value-of select="$xmlURI" /><xsl:value-of select="$docid" />

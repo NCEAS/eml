@@ -109,7 +109,7 @@
               </xsl:choose>
     </xsl:variable>
     
-  	<tr>
+  	<tr class="attributes">
   	
   	<td class="{$stripes}">
     <xsl:choose>

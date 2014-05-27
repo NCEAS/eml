@@ -79,10 +79,10 @@
      
      <table class="subGroup onehundred_percent">
        <tr>
-         <td class="fortyfive_percent">
+         <td>
            <!-- style the identifying information into a small table -->
            <table class="{$tabledefaultStyle}">
-             <tr><th colspan="2">General Information:</th></tr>
+             <tr><th colspan="2"><h4>General Information</h4></th></tr>
              <!-- put in the title -->
              <xsl:if test="./title">
                <xsl:for-each select="./title">
@@ -197,6 +197,8 @@
              </xsl:if>
            </table>
          </td>
+         </tr>
+         <tr>
          <!-- begin the second column of the 'Data Set Description' section -->
          <td class="fortyfive_percent">
            <!-- create a second easy access table listing the data entities -->
@@ -218,7 +220,7 @@
 
        <!-- add in the creators using a two column table -->
        <xsl:if test="creator">
-         <tr><th colspan="2">Data Set Creators:</th></tr>
+         <tr><th colspan="2"><h4>Data Set Creators</h4></th></tr>
          <xsl:for-each select="creator">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -243,7 +245,7 @@
 
        <!-- add in the contacts using a two column table -->
        <xsl:if test="contact">
-         <tr><th colspan="2">Data Set Contacts:</th></tr>
+         <tr><th colspan="2"><h4>Data Set Contacts</h4></th></tr>
          <xsl:for-each select="contact">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -268,7 +270,7 @@
 
        <!-- add in the associatedParty using a two column table -->
        <xsl:if test="associatedParty">
-         <tr><th colspan="2">Associated Parties:</th></tr>
+         <tr><th colspan="2"><h4>Associated Parties</h4></th></tr>
          <xsl:for-each select="associatedParty">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -293,7 +295,7 @@
 
        <!-- add in the metadataProviders using a two column table -->
        <xsl:if test="metadataProvider">
-         <tr><th colspan="2">Metadata Providers:</th></tr>
+         <tr><th colspan="2"><h4>Metadata Providers</h4></th></tr>
          <xsl:for-each select="metadataProvider">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -318,7 +320,7 @@
 
        <!-- add in the publishers using a two column table -->
        <xsl:if test="publisher">
-         <tr><th colspan="2">Data Set Publishers:</th></tr>
+         <tr><th colspan="2"><h4>Data Set Publishers</h4></th></tr>
          <xsl:for-each select="publisher">
          <tr>
            <xsl:if test="position() mod 2 = 1">
@@ -454,7 +456,7 @@
   <xsl:template name="datasetpurpose">
     <xsl:for-each select="purpose">
       <tr><td colspan="2">
-           <xsl:text>Purpose:</xsl:text>
+           <h4><xsl:text>Purpose</xsl:text></h4>
         </td>
        </tr>
        <tr>
@@ -473,7 +475,7 @@
   <xsl:template name="datasetmaintenance">
     <xsl:for-each select="maintenance">
       <tr><td colspan="2">
-        <xsl:text>Maintenance:</xsl:text>
+        <h4><xsl:text>Maintenance:</xsl:text></h4>
      </td></tr>
      <xsl:call-template name="mantenancedescription"/>
       <tr>
@@ -546,7 +548,7 @@
 
   <xsl:template name="datasetcontact">
     <tr><td colspan="2">
-        <xsl:text>Contact:</xsl:text>
+        <h4><xsl:text>Contact:</xsl:text></h4>
      </td></tr>
     <xsl:for-each select="contact">
      <tr><td colspan="2">
@@ -560,7 +562,7 @@
   <xsl:template name="datasetpublisher">
    <xsl:for-each select="publisher">
      <tr><td colspan="2">
-        <xsl:text>Publisher:</xsl:text>
+        <h4><xsl:text>Publisher:</xsl:text></h4>
      </td></tr>
      <tr><td colspan="2">
        <xsl:call-template name="party">
@@ -623,7 +625,7 @@
 		<xsl:if test="dataTable or spatialRaster or spatialVector or storedProcedures or view or otherEntity">
 			<tr>
 				<th colspan="2">
-					<xsl:text>Data Table, Image, and Other Data Details:</xsl:text>
+					<h4><xsl:text>Data Table, Image, and Other Data Details:</xsl:text></h4>
 				</th>
 			</tr>
 		</xsl:if>
@@ -685,7 +687,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td colspan="2">
 								<xsl:call-template name="chooseentity">
 									<xsl:with-param name="entitytype">dataTable</xsl:with-param>
 									<xsl:with-param name="entityindex" select="$currentNode" />

@@ -16,13 +16,16 @@
 
 
 /* Color Scheme:
- *    dark blue:                  #003366
- *    aqua blue:                  #0066CC
- *    aqua green:                 #006666
- *    white:                      #FFFFFF
- *    dark tan(kelp color):       #666600
- *    light tan:                  #CCCC99
+ *	  blue:						  #0066CC
+ * 	  turquoise					  #00A8CC
+ * 	  orange					  #CC9600
+ *    light blue				  #F1F5F8
  */
+
+@page { 
+	size: 8.5in 11in;
+	margin: 5%;
+}
 
 
 /*
@@ -30,8 +33,6 @@
 */
 
 body {
-    width:                   100%;
-    min-width:			800px;
     /* width:expression(document.body.clientWidth < 800? "800px": "auto");  */ /* hack for ie min width */
 
     margin:                     0px 0px 0px 0px;
@@ -44,10 +45,20 @@ body {
 
     font-style:                 normal;
     font-weight:                normal;
-    font-size:                  100%;
-    font-family:                "Myriad Pro", "Myriad Web Pro", "Myriad Web", "Myriad", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     text-decoration:            none;
-  }
+  
+    max-width: 900px;
+    color: #444;
+}
+tbody {
+    max-width: 100%;
+    display: block;
+}
+table, tbody, tr {
+    max-width: 100%;
+}
 
 body>div img {
     padding:                    0px 0px 0px 0px;
@@ -91,12 +102,13 @@ html>body #header {
 /* top margin required to clear sibling (logo is 100px tall)*/
 
 #content {
-    margin:                     0px 0px 0px 0px ; 
-    background-color:           #ffffff;
-    border:                     0px;
+    /* margin:                     0px 0px 0px 0px ; */ 
+    /* background-color:           #ffffff; */
+    /* border:                     0px; */
     /* margin:                     0px 0px 0px 0px;
  */
-    }
+    width: 100%;
+}
 
 
 
@@ -262,9 +274,14 @@ html>body #right_sidebar {
 
 
 
-
-
-
+/** Citation at the top of EML HTML page **/
+.group .citation{
+	background-color: #F1F5F8;
+	padding: 1%;
+	border-radius: 5px;
+	border: 1px solid #D8DCE0;
+	font-size: 1.2em;
+}
 
 
 
@@ -402,7 +419,8 @@ p ol,p ul, p dl, ol ul {
 
 ul,ol {
     padding:                    0px;
-    /* margin:                     0px 0px 0px 15px; */
+    margin-left:				20px;
+    list-style:					circle;
     }
 
 
@@ -429,10 +447,10 @@ ul,ol {
 
 
 div {
-    color:                      #003366;
-    font-style:                 normal;
-    font-weight:                normal;
-    text-decoration:            none;
+    /* color:                      #003366; */
+    /* font-style:                 normal; */
+    /* font-weight:                normal; */
+    /* text-decoration:            none; */
   }
 
   
@@ -456,11 +474,11 @@ small {
  * but could be changed for different effect
  */
 pre {
-    color:                      #003366;
     padding:                    10px;
     font-style:                 normal;
     font-weight:                normal;
     text-decoration:            none;
+    overflow-wrap:				break-word;
   }
   
 pre.inline {
@@ -514,14 +532,13 @@ h2 {
 
 /* slightly larger font, set bold */
 h3 {
-    color:                      #003366;
-    background-color:           #ffffff;
     padding:                    0;
-    font-size:                  14pt;
+    font-size:                  1.3em;
+    line-height:				1.5em;
     font-style:                 normal;
     font-weight:                700;
     text-decoration:            none;
-   /*  margin-bottom:                 0px; */
+    margin-bottom:              0px;
   }
 
 
@@ -544,35 +561,30 @@ h3 {
 /* slightly larger, no bold */  
 /* make margins around h4 all the same, and a little larger than h5 */
 h4 {
-    color:                      #003366;
     padding:                    0;
     font-size:                  12pt;
     font-style:                 normal;
-    font-weight:                400;
+    font-weight:                600;
     text-decoration:            none;
-    margin-top:			10px;
-    margin-bottom:                 0px;
+    margin-top:					0px;
+    margin-bottom:              0px;
 
   }
 
-/* slightly smaller font */  
-/* moz-net-fox and ie have different default margins for h5 - make them uniform */
+/* Us for subtitles*/  
 h5 {
-    color:                      #003366;
+	color:						#666666;
     padding:                    0;
-    font-size:                  12pt;
+    font-size:                  1em;
     font-style:                 normal;
     font-weight:                400;
     text-decoration:            none;
-    margin-bottom:                 0px; 
-    margin-top:                 7px; 
-
-
+    margin:						0px;
+    line-height:				1em;
   }
 
 /* very small font */  
 h6 {
-    color:                      #003366;
     background-color:           #FFFFFF;
     padding:                    0;
     font-size:                  10pt;
@@ -592,7 +604,6 @@ hr {
     border-top:                 #003366 0px solid;
     width:                      450px;
     height:                     2px;
-    color:                      #003366;
     background-color:           #003366;
     /*border-width:               none;
     border-color:               #003366; */
@@ -615,28 +626,16 @@ hr {
  * except underline on hover
 */
 a:link {
-    color:                      #333333;
+    color:                      #0066CC;
     background:                 transparent;
 /*    background-color:           #FFFFFF; */
     text-decoration:            none;
   }
-a:visited {
-    color:                      #333333;
-    background:                  transparent;
-/*    background-color:           #FFFFFF; */
-    text-decoration:            none;
-  } 
 a:hover {
-    color:                      #000000;
-    background:                 transparent;
-/*    background-color:           #FFFFFF; */
-    text-decoration:            underline;
+    color:                      #00A8CC;
   } 
 a:active { 
-    color:                      #333333;
-    background:                 transparent;
-/*    background-color:           #FFFFFF; */
-    text-decoration:            none;
+    color:                      #CC9600;
   }
 
 /* Menu Link properties
@@ -783,15 +782,18 @@ a img {
  */
 
  td {
-    color:                      #003366;
-    font-style:                 normal;
-    font-size:                  95%;
-    font-weight:                normal;
+    /* color:                      #003366; */
+    /* font-style:                 normal; */
+    /* font-size:                  95%; */
+    /* font-weight:                normal; */
     text-decoration:            none;    
     border:                     0px;
     padding:                    0px;
     vertical-align:             top; 
-  }
+  
+    max-width: 900px;
+    /* display: inline-block; */
+}
   
 /* Classes for the footer area */
   
@@ -865,35 +867,37 @@ a img {
    browsers support the CSS3 border-radius attribute, this 
    should be switched.*/
 .group {
-    padding:                    0;
-    color:                      #003366;
-    min-width:                  800px;
+    /* padding:                    0; */
+    /* color:                      #003366; */
+    /* min-width:                  800px; */
     voice-family:               "\"}\""; /* begin ie5win hack */
     voice-family:               inherit;
     -moz-border-radius:         10px; /* end ie5win hack */
     }
 /* Children of the group get some padding */
 .group * {
-    padding:                    2px;
+    padding: 2px;
     }
  
 .group_border {
     /* aqua-green border */
-    border:                     #006666 solid 1px;
-    }
+    /* border:                     #006666 solid 1px; */
+    max-width: 100%;
+    display: block;
+}
 
 .subGroup {
-    padding:                    3px;
-    color:                      #003366;
+    /* padding:                    3px; */
+    /* color:                      #003366; */
     voice-family:               "\"}\""; /* begin ie5win hack */
     voice-family:               inherit;
     -moz-border-radius:         10px; /* end ie5win hack */
     }
  
 .subGroup_border {
-    /* blue-ish border */
-    border:                     #94c1d4 solid 1px;
-    }
+    border: #DDD solid 1px;
+	border-radius: 5px;
+}
 
 /* This selector causes the 'section' tables to indent under the overarching div
  * tags */
@@ -925,14 +929,16 @@ table.right {
     clear:                      left;
     }
 
-th {
-    border-bottom:              #006666 solid 1px;
-    color:                      #003366;
-    padding:                    0;
-    margin:                     0;
+.group th {
+    /* border-bottom:              #006666 solid 1px; */
+    /* color:                      #003366; */
+    padding: 2px;
+    /* margin:                     0; */
     text-align:                 left;
-    font-style:                 normal;
-    font-weight:                700;
+    /* font-style:                 normal; */
+    /* font-weight:                700; */
+    font-weight: bold;
+    font-size: .9em;
 }
 
 th.rowheader {
@@ -941,35 +947,20 @@ th.rowheader {
     }
 
 .rowodd {
-    border-bottom:              #94c1d4 dotted 1px;
-    border-top:                 #94c1d4 dotted 1px;
-    background-color:           #f1f8f8;
-    padding:                    0;
-    margin:                     0;
-} 
-
-.roweven {
-    padding:                    0;
-    margin:                     0;
+    /* border-bottom:              #94c1d4 dotted 1px; */
+    /* border-top:                 #94c1d4 dotted 1px; */
+    background-color:           #F1F5F8;
+    /* padding:                    0; */
+    /* margin:                     0; */
 } 
 
 .coleven {
-    border-left:                #94c1d4 dotted 1px;
-    border-right:               #94c1d4 dotted 1px;
-    background-color:           #f1f8f8;
-    padding-left:               2px;
-    padding-right:              2px;
-    text-align: left;
+    border-right:               #BAC4CF solid 1px;
+    background-color:           #F1F5F8;
 }
 
-.colodd {
-    padding-left:               2px;
-    padding-right:              2px;
-    text-align:                 left;
-}
 
 .innercolodd {
-    border:                     solid #94c1d4 1px;
     font-size:                  .75em;
     padding-left:               2px;
     padding-right:              2px;
@@ -977,7 +968,6 @@ th.rowheader {
 }
 
 .innercoleven {
-    border:                     solid #94c1d4 1px;
     background-color:           #f1f8f8;
     font-size:                  .75em;
     padding-left:               2px;
@@ -986,7 +976,7 @@ th.rowheader {
 }    
 
 .onehundred_percent {
-    width:                      100%;
+     width:                      100%; 
     }
 
 .eighty_percent {
@@ -1007,8 +997,9 @@ th.rowheader {
     }
 
 .fortyfive_percent {
-    width:                      45%;
-    }
+    /* width:                      45%; */
+    display: block;
+}
 
 .forty_percent {
     width:                      40%;
@@ -1184,13 +1175,12 @@ iframe classes
     margin:                     0;
 }
 .tablehead {
-    border-bottom:              #006666 solid 1px;
-    color:                      #003366;
-    padding:                    0;
-    margin:                     0;
     text-align:                 left;
     font-style:                 normal;
     font-weight:                700;
+    font-size:					1em;
+    padding-top:				.2em;
+    padding-bottom:				.2em;
 }
 
 /**
@@ -1224,3 +1214,12 @@ div.sectiontitle {
     text-decoration:            none;
 }
 
+/** For attributes table **/
+tr.attributes{
+	font-size: 0.9em;
+}
+
+
+@page { 
+	size: 11in 11in;
+}

@@ -78,13 +78,9 @@
     <xsl:template name="datasetcitation">
         <tr>
         	<th>
-        		Data Set Citation:
+        		<h4>Data Set Citation</h4>
+        		<h5>When using this data, please cite the data package</h5>
         	</th>
-        </tr>
-        <tr>
-        	<td>
-        		When using this data, please cite the data package:
-        	</td>
         </tr>
         <tr>
         	<td class="citation">
