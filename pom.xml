@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.ecoinformatics.eml</groupId>
+	<artifactId>datamanager</artifactId>
+	<packaging>jar</packaging>
+	<version>0.9.0-SNAPSHOT</version>
+	<name>datamanager</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+	
+		<!-- HTML to PDF -->
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>core-renderer</artifactId>
+			<version>R8</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jtidy</groupId>
+			<artifactId>jtidy</artifactId>
+			<version>r938</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>edu.ucsb.nceas</groupId>
+			<artifactId>utilities</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
+		</dependency>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.0-312.jdbc3</version>
+		</dependency>
+		<dependency>
+			<groupId>javatar</groupId>
+			<artifactId>javatar</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0b8</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- LOCAL libraries that are not in any maven repo -->
+		<dependency>
+			<groupId>edu.ucsb.nceas</groupId>
+			<artifactId>configxml</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/configxml.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.ecoinformatics.ecogrid</groupId>
+			<artifactId>AuthenticatedQueryService-stub</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/datamanager/org.ecoinformatics.ecogrid.AuthenticatedQueryService-stub.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.ecoinformatics.ecogrid</groupId>
+			<artifactId>AuthenticationService-stub</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/datamanager/org.ecoinformatics.ecogrid.AuthenticationService-stub.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.ecoinformatics.ecogrid</groupId>
+			<artifactId>PutService-stub</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/datamanager/org.ecoinformatics.ecogrid.PutService-stub.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.ecoinformatics.ecogrid</groupId>
+			<artifactId>QueryService-stub</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/datamanager/org.ecoinformatics.ecogrid.QueryService-stub.jar</systemPath>
+		</dependency>
+			
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

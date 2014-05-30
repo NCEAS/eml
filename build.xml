@@ -97,9 +97,11 @@
 	<target name="init" depends="config">
 		<property name="name" value="eml"/>
 		<property name="eml-version" value="eml-${version}"/>
-		<property name="testdir" value="./test" />
-		<property name="srcdir" value="./src" />
-		<property name="invalid.dir" value="${testdir}/invalidEML"/>
+		<property name="testdir" value="./src/test/java" />
+		<property name="test.resources.dir" value="./src/test/resources" />
+		<property name="srcdir" value="./src/main/java" />
+		<property name="src.resources.dir" value="./src/main/resources" />
+		<property name="invalid.dir" value="${test.resources.dir}/invalidEML"/>
 		<property name="sample.dir" value="lib/sample"/>
 		<property name="build.dir" value="build"/>
 		<property name="build.tests" value="${build.dir}/tests"/>
@@ -137,7 +139,7 @@
 		<filter token="docrooturl" value=""/>
 		<filter token="version" value="${version}"/>
 		<filter token="eml-version" value="${eml-version}"/>
-		<filter token="testdir" value="${testdir}" />
+		<filter token="testdir" value="${test.resources.dir}" />
 		<filter token="srcdir" value="${srcdir}" />
 		<filter token="invalid.dir" value="${invalid.dir}" />
 		<filter token="config.file" value="${config.file}" />
@@ -246,7 +248,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${ver.src}" filtering="yes">
-			<fileset dir="./src">
+			<fileset dir="${srcdir}">
 				<exclude name="emlconversions/**"/>
 				<exclude name="${datamanager.dir}/**"/>
 			</fileset>
@@ -466,7 +468,7 @@
 	<target name="test" depends="compile-test">
 
 		<!--copy the sample docs into the test directory so they get validated-->
-		<copy todir="${testdir}">
+		<copy todir="${test.resources.dir}">
 			<fileset dir="${sample.dir}">
 				<exclude name="**/CVS*"/>
 				<exclude name="**/.#*"/>
@@ -560,8 +562,7 @@
           tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
 		<copy file="${xmlp}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
-		<copy file="${api}"
-          tofile="${servlet.install.dir}/WEB-INF/lib/xmlParserAPIs.jar"/>
+
 		<!--<copy todir="${servlet.install.dir}/schema/${eml-version}">
 			<fileset dir=".">
 				<include name="*.xsd"/>
@@ -720,10 +721,10 @@
 				<exclude name="**/.#*"/>
 			</fileset>
 		</copy>
-    <copy file="./src/datamanager.properties" 
+    <copy file="${src.resources.dir}/datamanager.properties" 
           todir="${build.dest}" 
     />   
-    <copy file="./src/endpoint.properties" 
+    <copy file="${src.resources.dir}/endpoint.properties" 
           todir="${build.dest}" 
     />   
 		<echo>"cpath.datamanager = ${cpath.datamanager}"</echo>
