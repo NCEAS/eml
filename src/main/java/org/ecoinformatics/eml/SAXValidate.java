@@ -120,7 +120,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
   {
     ConfigXML config;
     String namespaces;
-    URL configFile = getClass().getResource("@configfileinemljar@");
+    URL configFile = getClass().getResource("/config.xml");
     try
     {
       config = new ConfigXML(configFile.openStream());

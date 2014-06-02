@@ -118,7 +118,7 @@ public class EMLParser
   {
     //this(xml, new File("@config.file@"));
     this.xml = xml;
-    URL configFile = getClass().getResource("@configfileinemljar@");
+    URL configFile = getClass().getResource("/config.xml");
     try
     {
 
@@ -170,7 +170,7 @@ public class EMLParser
     {
       throw new EMLParserException("The string need to be parse is null");
     }
-    URL configFile = getClass().getResource("@configfileinemljar@");
+    URL configFile = getClass().getResource("/config.xml");
     try
     {
 

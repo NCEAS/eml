@@ -111,8 +111,7 @@
 		<property name="build.javadocs" value="${build.dir}/javadocs"/>
 		<property name="build.stripped" value="stripped"/>
 		<property name="style.dir" value="./style"/>
-		<property name="config.file" value="lib/config.xml"/>
-		<property name="configfileinemljar" value="/config.xml"/>
+		<property name="config.file" value="${src.resources.dir}/config.xml"/>
 
 		<property name="xmlp"
         	value="lib/xercesImpl.jar"/>
@@ -148,7 +147,6 @@
 		<filter token="server" value="${server}"/>
 		<filter token="servletdir" value="${servletdir}"/>
 		<filter token="servletpath" value="${servletpath}"/>
-		<filter token="configfileinemljar" value="${configfileinemljar}" />
 
 		<property name="dist.dir" value="./dist"/>
 		<property name="ver.dir" value="${dist.dir}/eml-${version}"/>
@@ -549,7 +547,7 @@
 		<copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
 		<copy file="lib/sample/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
-		<copy file="lib/config.xml" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
+		<copy file="${config.file}" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
 		<copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
 		<copy file="${configxml}"
           tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
