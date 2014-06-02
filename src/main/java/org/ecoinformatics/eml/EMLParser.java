@@ -67,7 +67,8 @@ import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 import javax.xml.transform.dom.*;
 
-import edu.ucsb.nceas.configxml.*;
+import edu.ucsb.nceas.utilities.config.ConfigXML;
+
 
 /**
  * This is a SAX parser to validate EML packages.  This parser will validate

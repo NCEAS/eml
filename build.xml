@@ -129,7 +129,6 @@
 		<property name="jdom" value="lib/jdom.jar"/>
 		<property name="cos" value="lib/cos.jar"/>
 		<property name="servlet" value="lib/apache/servlet.jar"/>
-		<property name="configxml" value="lib/configxml.jar"/>
 		<property name="junit" value="lib/junit.jar"/>
 		
 		<property name="htmldocbook-style"
@@ -155,7 +154,7 @@
 		<property name="ver.src" value="${ver.dir}/src"/>
 		<property name="ver.tst" value="${ver.dir}/test"/>
 		<property name="package.home" value="org/ecoinformatics" />
-		<property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${configxml}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
+		<property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
 		<!-- These two Data Manager Library properties need to be declared here
          so that the Data Manager Library can be excluded from the default eml
@@ -549,8 +548,6 @@
           tofile="${servlet.install.dir}/eml-sample.xml"/>
 		<copy file="${config.file}" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
 		<copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
-		<copy file="${configxml}"
-          tofile="${servlet.install.dir}/WEB-INF/lib/configxml.jar"/>
 		<copy file="${cos}" tofile="${servlet.install.dir}/WEB-INF/lib/cos.jar"/>
 		<copy file="lib/eml.jar"
           tofile="${servlet.install.dir}/WEB-INF/lib/eml.jar"/>
@@ -704,7 +701,7 @@
 		<property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
 		<property name="cpath.datamanager" 
-			value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${configxml}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
+			value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
 	</target>
 
 	<target name="compile-datamanager-lib" depends="init-datamanager-lib,compile">

@@ -94,13 +94,6 @@
 		
 		<!-- LOCAL libraries that are not in any maven repo -->
 		<dependency>
-			<groupId>edu.ucsb.nceas</groupId>
-			<artifactId>configxml</artifactId>
-			<version>0.9.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/configxml.jar</systemPath>
-		</dependency>
-		<dependency>
 			<groupId>org.ecoinformatics.ecogrid</groupId>
 			<artifactId>AuthenticatedQueryService-stub</artifactId>
 			<version>0.9.0</version>

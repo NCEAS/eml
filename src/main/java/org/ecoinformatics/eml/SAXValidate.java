@@ -54,7 +54,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
-import edu.ucsb.nceas.configxml.*;
+import edu.ucsb.nceas.utilities.config.ConfigXML;
 
 /**
  * Validate an XML document using a SAX parser
