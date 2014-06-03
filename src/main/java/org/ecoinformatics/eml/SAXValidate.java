@@ -122,7 +122,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     {
       throw new SAXException("Config file not found: " + e.getMessage());
     }
-    System.out.println("===========namespace"+namespaces);
+    System.out.println("Using configured schemaLocation namespaces: " + namespaces);
     runTest(xml, parserName, namespaces, namespaceIndoc);
   }
 
@@ -137,7 +137,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
    * @exception SAXException
    * @exception SAXParserException
    */
-  public void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
+  private void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
            throws IOException, ClassNotFoundException,
            SAXException, SAXParseException
   {

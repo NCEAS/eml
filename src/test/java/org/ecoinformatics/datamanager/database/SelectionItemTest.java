@@ -83,11 +83,11 @@ public class SelectionItemTest extends TestCase {
 	   try
 	   {
 		   item1.toSQLString();
-		   assertTrue("attribute is null, should catch exception", 1==2);
+		   assertTrue("attribute is null - which is now allowed, should NOT catch exception", 1==1);
 	   }
 	   catch (UnWellFormedQueryException e)
 	   {
-		   assertTrue("attribute is null, should catch exception", 1==1);
+		   fail("attribute is null - which is now allowed, should NOT catch exception");
 	   }
        
 	   TextDomain domain = new TextDomain();

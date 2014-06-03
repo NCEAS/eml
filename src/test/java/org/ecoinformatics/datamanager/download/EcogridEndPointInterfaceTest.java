@@ -46,6 +46,8 @@ import junit.framework.TestSuite;
 public class EcogridEndPointInterfaceTest extends TestCase 
                                           implements EcogridEndPointInterface 
 {  
+	//private static String URL_PREFIX = "http://localhost:8080/knb/services";
+	private static String URL_PREFIX = "https://knb.ecoinformatics.org/knb/services";
 	 /**
 	    * Gets the end point which Metacat implements ecogrid interface.
 	    * This end point will be used to handle ecogrid protocol
@@ -54,21 +56,21 @@ public class EcogridEndPointInterfaceTest extends TestCase
 	    */
 	   public String getMetacatEcogridEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/QueryService";
+		   return URL_PREFIX + "/QueryService";
 	   }
 	   
 	   public String getMetacatEcogridAuthEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/AuthenticationService";
+		   return URL_PREFIX + "/AuthenticationService";
 	   }
 	   
 	   public String getMetacatEcogridPutEndPoint()
 	   {
-		   return "http://localhost:8080/knb/services/PutService";
+		   return URL_PREFIX + "/PutService";
 	   }
 	   
 	   public String getMetacatEcogridIdentifierEndPoint() {
-			return "http://localhost:8080/knb/services/IdentifierService";
+			return URL_PREFIX + "/IdentifierService";
 		}
 	   
        

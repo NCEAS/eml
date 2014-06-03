@@ -106,7 +106,6 @@ public class EMLParser
    */
   public EMLParser(File xml)
   {
-    //this(xml, new File("@config.file@"));
     this.xml = xml;
     URL configFile = getClass().getResource("/config.xml");
     try

@@ -81,22 +81,6 @@ public class DataPackage
 	  private static String scopeRegistry = null;
 
   /*
-   * Used for the 'schemaValid' quality check
-   */
-  private static final String schemaLocation = 
-    "eml://ecoinformatics.org/eml-2.0.0 http://nis.lternet.edu/schemas/eml/eml-2.0.0/eml.xsd " +
-    "eml://ecoinformatics.org/eml-2.0.1 http://nis.lternet.edu/schemas/eml/eml-2.0.1/eml.xsd " +
-    "eml://ecoinformatics.org/eml-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml.xsd " +
-    "eml://ecoinformatics.org/literature-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml-literature.xsd " +
-    "eml://ecoinformatics.org/project-2.1.0 http://nis.lternet.edu/schemas/eml/eml-2.1.0/eml-project.xsd " +
-    "eml://ecoinformatics.org/eml-2.1.1 http://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml.xsd " +
-    "eml://ecoinformatics.org/literature-2.1.1 eml-literature.xsd " +
-    "eml://ecoinformatics.org/project-2.1.1 eml-project.xsd " +
-    "http://www.xml-cml.org/schema/stmml http://nis.lternet.edu/schemas/eml/eml-2.0.1/stmml.xsd " +
-    "http://www.xml-cml.org/schema/stmml-1.1 http://nis.lternet.edu/schemas/eml/eml-2.1.0/stmml.xsd";
-  
-  
-  /*
    * Instance fields
    */
   
@@ -723,7 +707,7 @@ public class DataPackage
       SAXValidate saxValidate = new SAXValidate(validateSchema);
     
       try {
-        saxValidate.runTest(stringReader, parserName, schemaLocation, namespaceInDoc);
+        saxValidate.runTest(stringReader, parserName, namespaceInDoc);
         found = "Document validated for namespace: '" + namespaceInDoc + "'";
         schemaValidQualityCheck.setStatus(Status.valid);
         schemaValidQualityCheck.setSuggestion("");
@@ -810,7 +794,7 @@ public class DataPackage
       SAXValidate saxValidate = new SAXValidate(validateSchema);
     
       try {
-        saxValidate.runTest(stringReader, parserName, schemaLocation, namespaceInDoc);
+        saxValidate.runTest(stringReader, parserName, namespaceInDoc);
         found = "Dereferenced document validated for namespace: '" + namespaceInDoc + "'";
         qualityCheck.setStatus(Status.valid);
         qualityCheck.setSuggestion("");

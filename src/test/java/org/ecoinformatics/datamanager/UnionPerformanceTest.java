@@ -3,6 +3,8 @@ package org.ecoinformatics.datamanager;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -33,7 +35,7 @@ public class UnionPerformanceTest extends TestCase {
 	public static Log log = LogFactory.getLog(UnionPerformanceTest.class);
 
 	private final String QUERY_TEST_DOCUMENT = "cburt.5.2";
-	private final String QUERY_TEST_SERVER = "http://data.piscoweb.org/catalog/metacat";
+	private final String QUERY_TEST_SERVER = "https://knb.ecoinformatics.org/knb/metacat";
 	
 	//private final String QUERY_TEST_DOCUMENT = "leinfelder.253.6";
 	//private final String QUERY_TEST_SERVER = "http://localhost:8080/knb/metacat";
@@ -44,7 +46,7 @@ public class UnionPerformanceTest extends TestCase {
 	private DataManager dataManager;
 	private DatabaseConnectionPoolInterface connectionPool = null;
 	private EcogridEndPointInterface endPointInfo = null;
-	private int conditionColumnIndex = 0;
+	private int conditionColumnIndex = 3;
 	
 	/*
 	 * Constructors
@@ -156,15 +158,15 @@ public class UnionPerformanceTest extends TestCase {
 		String testDbTable = DataManager.getDBTableName(dataPackage.getEntityList()[0]);
 		log.debug("testDbTable=" + testDbTable);
 		
-		if (testDbTable == null ) {
+		//if (testDbTable == null ) {
 			//load the package
 			success = dataManager.loadDataToDB(dataPackage, endPointInfo);
 			log.debug("loadedDataToDB completed");
-		}
-		else {
+		//}
+		//else {
 			//don't try to get the data again
-			success = true;
-		}
+			//success = true;
+		//}
 		
 		log.debug("loaded data to db, success=" + success);
 

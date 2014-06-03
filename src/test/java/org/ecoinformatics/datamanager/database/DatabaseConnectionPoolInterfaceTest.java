@@ -36,6 +36,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import junit.framework.TestCase;
+
 /**
  * This class implements DataConnetionPoolInterface to provide
  * a connection for testing. Database information in this class
@@ -43,7 +45,7 @@ import java.util.ResourceBundle;
  * @author tao
  *
  */
-public class DatabaseConnectionPoolInterfaceTest implements DatabaseConnectionPoolInterface
+public class DatabaseConnectionPoolInterfaceTest extends TestCase implements DatabaseConnectionPoolInterface
 {
 	  /* Configuration directory and file name for the properties file */
 	    private static final String CONFIG_NAME = "datamanager";
@@ -53,6 +55,11 @@ public class DatabaseConnectionPoolInterfaceTest implements DatabaseConnectionPo
 	    private static String dbUser  = null;
 	    private static String dbPassword = null;
 	    private static String databaseAdapterName = null;
+	    
+	    
+	    public void testInit() {
+	    	assertTrue(true);
+	    }
 	    
 	    /**
 	     * Constructor. Loading database parameter from property file

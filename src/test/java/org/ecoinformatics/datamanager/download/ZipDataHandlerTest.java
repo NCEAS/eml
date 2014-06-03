@@ -31,10 +31,10 @@ public class ZipDataHandlerTest extends TestCase
        public static Test suite()
        {
          TestSuite suite = new TestSuite();
-         suite.addTest(new ZipDataHandlerTest("testDownloadFailed"));
-         suite.addTest(new ZipDataHandlerTest("testDownloadSuccess"));   
-         suite.addTest(new ZipDataHandlerTest("testEcogridDownloadFailed"));
-         suite.addTest(new ZipDataHandlerTest("testEcogridDownloadSuccess"));
+//         suite.addTest(new ZipDataHandlerTest("testDownloadFailed"));
+//         suite.addTest(new ZipDataHandlerTest("testDownloadSuccess"));   
+//         suite.addTest(new ZipDataHandlerTest("testEcogridDownloadFailed"));
+//         suite.addTest(new ZipDataHandlerTest("testEcogridDownloadSuccess"));
          return suite;
        }
       

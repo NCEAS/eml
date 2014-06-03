@@ -2,8 +2,6 @@
  *  '$RCSfile: EMLParserTest.java,v $'
  *  Copyright: 2000 Regents of the University of California and the
  *              National Center for Ecological Analysis and Synthesis
- *    Authors: @authors@
- *    Release: @release@
  *
  *   '$Author: walbridge $'
  *     '$Date: 2008-11-05 23:00:46 $'
@@ -26,16 +24,14 @@
 
 package org.ecoinformatics.emltest;
 
-import org.ecoinformatics.eml.*;
+import java.io.File;
+import java.util.Vector;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestResult;
 import junit.framework.TestSuite;
 
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+import org.ecoinformatics.eml.EMLParser;
 
 /**
  * A JUnit test for testing the EMLParser
@@ -44,8 +40,8 @@ import java.lang.*;
  */
 public class EMLParserTest extends TestCase
 {
-    private final static String TEST_DIR = "@testdir@";
-    private final static String INVALID_DIR = "@invalid.dir@";
+    private final static String TEST_DIR = "./src/test/resources";
+    private final static String INVALID_DIR = TEST_DIR + "/invalidEML";
     private final static String ERROR1 = INVALID_DIR + "/eml-error1.xml";
     private final static String ERROR3 = INVALID_DIR + "/eml-error3.xml";
     private final static String ERROR4 = INVALID_DIR + "/eml-error4.xml";

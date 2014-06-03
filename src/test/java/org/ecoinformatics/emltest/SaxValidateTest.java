@@ -2,8 +2,6 @@
  *  '$RCSfile: SaxValidateTest.java,v $'
  *  Copyright: 2000 Regents of the University of California and the
  *              National Center for Ecological Analysis and Synthesis
- *    Authors: @authors@
- *    Release: @release@
  *
  *   '$Author: tao $'
  *     '$Date: 2008-10-09 00:03:43 $'
@@ -67,7 +65,7 @@ public class SaxValidateTest extends TestCase
     // The parser to use for validation
     private final static String
                 DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
-    private final static String TEST_DIR = "@testdir@";
+    private final static String TEST_DIR = "./src/test/resources/";
 
     /**
      * Constructor to build the test

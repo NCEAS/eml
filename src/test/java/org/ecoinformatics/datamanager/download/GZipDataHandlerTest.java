@@ -38,10 +38,10 @@ public class GZipDataHandlerTest extends TestCase
        public static Test suite()
        {
          TestSuite suite = new TestSuite();
-         suite.addTest(new GZipDataHandlerTest("testDownloadFailed"));
-         suite.addTest(new GZipDataHandlerTest("testDownloadSuccess"));  
-         suite.addTest(new GZipDataHandlerTest("testEcogridDownloadFailed"));
-         suite.addTest(new GZipDataHandlerTest("testEcogridDownloadSuccess"));
+//         suite.addTest(new GZipDataHandlerTest("testDownloadFailed"));
+//         suite.addTest(new GZipDataHandlerTest("testDownloadSuccess"));  
+//         suite.addTest(new GZipDataHandlerTest("testEcogridDownloadFailed"));
+//         suite.addTest(new GZipDataHandlerTest("testEcogridDownloadSuccess"));
          return suite;
        }
       

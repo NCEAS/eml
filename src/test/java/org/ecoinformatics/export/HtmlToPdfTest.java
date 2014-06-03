@@ -2,8 +2,6 @@
  *  '$RCSfile: SaxValidateTest.java,v $'
  *  Copyright: 2000 Regents of the University of California and the
  *              National Center for Ecological Analysis and Synthesis
- *    Authors: @authors@
- *    Release: @release@
  *
  *   '$Author$'
  *     '$Date$'
@@ -43,8 +41,6 @@ import junit.framework.TestCase;
  */
 public class HtmlToPdfTest extends TestCase
 {
-
-    private final static String TEST_DIR = "@testdir@";
 
     /**
      * Constructor to build the test

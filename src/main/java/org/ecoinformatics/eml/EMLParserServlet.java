@@ -71,7 +71,6 @@ public class EMLParserServlet extends HttpServlet
   private static HttpServletResponse response;
   private static PrintWriter out = null;
   private Hashtable params = new Hashtable();
-  private static final String namespaces = "@namespaces@";
   private static final String NAMESPACEKEYWORD = "xmlns";
   public static final String EML2_1_1NAMESPACE = "eml://ecoinformatics.org/eml-2.1.1";
   public static final String EML2_1_0NAMESPACE = "eml://ecoinformatics.org/eml-2.1.0";
@@ -269,7 +268,7 @@ public class EMLParserServlet extends HttpServlet
       xmlReader.close();
       System.out.println("The namespace in xml is "+namespaceInDoc);
       SAXValidate validator = new SAXValidate(true);
-      validator.runTest(new FileReader(tempfile), "DEFAULT", namespaces, namespaceInDoc);
+      validator.runTest(new FileReader(tempfile), "DEFAULT", namespaceInDoc);
       html.append("<hr><h4>XML specific tests: Passed.</h4>");
       html.append("<p>Document is XML-schema valid. There were no XML errors found in your document.</p>");
     }

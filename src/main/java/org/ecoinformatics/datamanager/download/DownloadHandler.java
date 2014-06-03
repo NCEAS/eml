@@ -729,7 +729,7 @@ public class DownloadHandler implements Runnable
              // elegent way to do this
              //mEndPoint = Config.getValue("//ecogridService/srb/endPoint");
              // pass this docid and get data item
-             //log.debug("before get srb data@@@@@@@@@@@@@@@@@@@@@@@@@@");
+             //log.debug("before get srb data");
              return getContentFromEcoGridSource(SRBENDPOINT, srbIdentifier);
          }
          else {
@@ -833,7 +833,8 @@ public class DownloadHandler implements Runnable
 	        }
 	        catch(Exception ee)
 	        {
-	            //log.debug("EcogridDataCacheItem - error connecting to Ecogrid ", ee);
+	            log.error("DownloadHandler - error getting content from Ecogrid ", ee);
+	            ee.printStackTrace();
 	            successFlag = false;
 	            return successFlag;
 	        }

@@ -65,21 +65,6 @@
 				http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
 				http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
 		
-		<!-- PRODUCTION VALUES -->
-		<!--
-		<property name="namespaces"
-              value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
-				eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
-				eml://ecoinformatics.org/eml-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml.xsd
-				eml://ecoinformatics.org/literature-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-literature.xsd
-				eml://ecoinformatics.org/project-2.1.0 ${server}/${servletdir}/schema/eml-2.1.0/eml-project.xsd
-				eml://ecoinformatics.org/eml-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml.xsd
-				eml://ecoinformatics.org/literature-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-literature.xsd
-				eml://ecoinformatics.org/project-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-project.xsd
-				http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
-				http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
-		-->
-
 		<!-- the path from the tomcat/bin directory to the config.xml file -->
 		<property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
 		<property name="servlettempdir" value="build/emlparser"/>
@@ -130,10 +115,12 @@
 		<property name="cos" value="lib/cos.jar"/>
 		<property name="servlet" value="lib/apache/servlet.jar"/>
 		<property name="junit" value="lib/junit.jar"/>
+		<property name="utilities" value="lib/utilities.jar"/>
+
 		
 		<property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
-		<filter token="server" value="http://knb.ecoinformatics.org"/>
+		<filter token="server" value="https://knb.ecoinformatics.org"/>
 		<filter token="docrooturl" value=""/>
 		<filter token="version" value="${version}"/>
 		<filter token="eml-version" value="${eml-version}"/>
@@ -154,7 +141,7 @@
 		<property name="ver.src" value="${ver.dir}/src"/>
 		<property name="ver.tst" value="${ver.dir}/test"/>
 		<property name="package.home" value="org/ecoinformatics" />
-		<property name="cpath" value="${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
+		<property name="cpath" value="${utilities}:${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
 		<!-- These two Data Manager Library properties need to be declared here
          so that the Data Manager Library can be excluded from the default eml
@@ -462,7 +449,7 @@
 	</target>
 
 	<!-- use the ant "junit" task to run JUnit tests. -->
-	<target name="test" depends="compile-test">
+	<target name="test" depends="compile-test,docbook">
 
 		<!--copy the sample docs into the test directory so they get validated-->
 		<copy todir="${test.resources.dir}">
@@ -523,7 +510,7 @@
 		<!-- Prompt user for the test name. -->
 			<input 
 	         message="Please enter name of test to run: "
-	         addproperty="test-to-run"
+	         addproperty="testtorun"
 	         defaultvalue="HtmlToPdfTest"
 	      />
 		<junit printsummary="yes" haltonfailure="no" fork="no"
@@ -536,7 +523,7 @@
 
 			<batchtest fork="yes" todir="${build.dir}">
 				<fileset dir="${build.tests}">
-					<include name="**/${test-to-run}.java" />
+					<include name="**/${testtorun}.java" />
 				</fileset>
 			</batchtest>
 		</junit>
@@ -697,7 +684,6 @@
 		<property name="saaj" value="${datamanager.lib}/saaj.jar"/>
 		<property name="soap" value="${datamanager.lib}/soap.jar"/>
 		<property name="tar" value="${datamanager.lib}/tar.jar"/>
-		<property name="utilities" value="${datamanager.lib}/utilities.jar"/>
 		<property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
 		<property name="cpath.datamanager" 
@@ -848,13 +834,13 @@
 
 	<target name="test-datamanager-all" depends="test-datamanager-init">
 		<!-- use the ant "junit" task to run JUnit tests for data manager lib. -->
-		<junit printsummary="yes" haltonfailure="no" fork="no"
+		<junit printsummary="yes" haltonfailure="no" fork="yes"
              haltonerror="no">
 			<classpath>
 				<pathelement path="${cpath.datamanager}:${build.dest}" />
 			</classpath>
 			<formatter type="plain" />
-			<batchtest fork="no" todir="${build.dir}">
+			<batchtest fork="yes" todir="${build.dir}">
 				<fileset dir="${build.src}">
 					<include name="**/*Test.java" />
 				</fileset>
@@ -874,13 +860,13 @@
       />
 
 		<!-- use the ant "junit" task to run a single test in data manager lib. -->
-		<junit printsummary="yes" haltonfailure="no" fork="no"
+		<junit printsummary="yes" haltonfailure="no" fork="yes"
              haltonerror="no" showoutput="true" >
 			<classpath>
 				<pathelement path="${cpath.datamanager}:${build.dest}" />
 			</classpath>
 			<formatter type="plain" />
-			<batchtest fork="no" todir="${build.dir}">
+			<batchtest fork="yes" todir="${build.dir}">
 				<fileset dir="${build.src}">
 					<include name="**/${test-to-run}.java" />
 				</fileset>

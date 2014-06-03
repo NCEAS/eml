@@ -184,7 +184,7 @@ public class DatabaseHandler
     tableName = entity.getDBTableName();
     
     if ((tableName == null) || (tableName.equals(""))) {
-      throw(new SQLException("Entity does not have a valid name."));
+      throw(new SQLException("Entity does not have a valid name. " + tableName));
     }
     else {
       success = dropTable(tableName);

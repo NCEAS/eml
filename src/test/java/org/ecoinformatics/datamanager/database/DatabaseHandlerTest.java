@@ -33,8 +33,8 @@ public class DatabaseHandlerTest extends TestCase {
   private Connection dbConnection  = null;            // the database connection
   private DatabaseConnectionPoolInterfaceTest connectionPool = null;
   private String dbAdapterName = null;
-  private final String TEST_DOCUMENT = "tao.12103.2";
-  private final String TEST_SERVER = "http://pacific.msi.ucsb.edu:8080/knb/metacat";
+  private final String TEST_DOCUMENT = "tao.12061.1";
+  private final String TEST_SERVER = "https://knb.ecoinformatics.org/knb/metacat";
   
   
     
@@ -304,7 +304,7 @@ public class DatabaseHandlerTest extends TestCase {
 	      
 	      boolean successLoadingData = databaseHandler.loadDataToDB(dataPackage, endPointInfo);
 	      assertTrue("Couldn't load data, but it shoud be sucessful", successLoadingData);
-	      String sql = "select column_1 from head_linedata where column_2=2;";
+	      String sql = "select \"Column1\" from header_footer_consecutive_data where \"Column2\"=2;";
 		  Connection connection = connectionPool.getConnection();
 		  Statement statement = connection.createStatement();
 		  ResultSet result = statement.executeQuery(sql);
