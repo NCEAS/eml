@@ -1,5 +1,6 @@
 package org.ecoinformatics.datamanager.database;
 
+import org.ecoinformatics.datamanager.DataManager;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.Entity;
 import org.ecoinformatics.datamanager.parser.TextDomain;
@@ -71,6 +72,11 @@ public class JoinTest extends TestCase {
    */
   protected void setUp() throws Exception {
     super.setUp();
+    DatabaseConnectionPoolInterfaceTest connectionPool = 
+            new DatabaseConnectionPoolInterfaceTest();
+    String dbAdapterName = connectionPool.getDBAdapterName();
+    DataManager.getInstance(connectionPool, dbAdapterName);
+
   }
 
 

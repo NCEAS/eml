@@ -110,6 +110,7 @@
 		<property name="renderer" value="lib/core-renderer.jar"/>
 		<property name="renderer-min" value="lib/core-renderer-minimal.jar"/>
 		<property name="jtidy" value="lib/jtidy-r938.jar"/>
+		<property name="io" value="lib/commons-io-2.0.jar"/>
 
 		<property name="jdom" value="lib/jdom.jar"/>
 		<property name="cos" value="lib/cos.jar"/>
@@ -141,7 +142,7 @@
 		<property name="ver.src" value="${ver.dir}/src"/>
 		<property name="ver.tst" value="${ver.dir}/test"/>
 		<property name="package.home" value="org/ecoinformatics" />
-		<property name="cpath" value="${utilities}:${servlet}:${cos}:${xalan}:${xml-apis}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
+		<property name="cpath" value="${utilities}:${servlet}:${cos}:${xalan}:${xml-apis}:${io}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
 		<!-- These two Data Manager Library properties need to be declared here
          so that the Data Manager Library can be excluded from the default eml
@@ -392,10 +393,7 @@
 				<exclude name="emlconversions/**"/>
 			</fileset>
 		</copy>
-		
-		<!-- set up the html css for testing -->
-		<copy file="default.css" todir="${build.tests}/default" filtering="yes"/>
-
+	
         <echo>
       ************************************************
                     copied some stuff to ${build.tests}
@@ -687,7 +685,7 @@
 		<property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
 		<property name="cpath.datamanager" 
-			value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${xalan}:${xml-apis}"/>
+			value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${io}:${xalan}:${xml-apis}"/>
 	</target>
 
 	<target name="compile-datamanager-lib" depends="init-datamanager-lib,compile">

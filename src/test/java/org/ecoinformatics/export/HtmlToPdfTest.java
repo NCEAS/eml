@@ -26,11 +26,15 @@ package org.ecoinformatics.export;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import org.apache.commons.io.IOUtils;
 
 import junit.framework.TestCase;
 
@@ -79,20 +83,32 @@ public class HtmlToPdfTest extends TestCase
     	try {
     		
 	        // transform EML to HTML
-    		String workingPath = "build/tests/";
+    		
+    		String srcPath = "src/test/resources/";
+
+    		String workingPath = "build/";
     		
     		String emlFileName = "eml-sample"; 
     		
 	    	String emlFileExtension = ".xml";
 	    	
-	    	String emlFile = workingPath + emlFileName + emlFileExtension;
+	    	String emlFile = srcPath + emlFileName + emlFileExtension;
 	    	
 	    	String xslFile = "style/eml/eml.xsl";
 	    	
 	    	String htmlFile = workingPath + emlFileName + ".html";
-	    	
+
+	    	// set up the css file
+	    	File cssDir = new File(workingPath + "default");
+	    	if (!cssDir.exists()) {
+	    		cssDir.mkdir();
+	    	}
+	    	File cssFile = new File("default.css");
+	    	File targetCssFile = new File(cssDir, cssFile.getName());
+			IOUtils.copy(new FileInputStream(cssFile), new FileOutputStream(targetCssFile));
 	    	Transformer transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(new File(xslFile)));
-	    	 // add some property for style sheet
+	    	
+	    	// add some property for style sheet
             transformer.clearParameters();
             transformer.setParameter("href_path_extension", ".html");
             transformer.setParameter("package_id",          "test.1.1");

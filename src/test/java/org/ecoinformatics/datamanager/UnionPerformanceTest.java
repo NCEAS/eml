@@ -3,8 +3,6 @@ package org.ecoinformatics.datamanager;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.util.Calendar;
-import java.util.Date;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -14,14 +12,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ecoinformatics.datamanager.database.Condition;
 import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterface;
+import org.ecoinformatics.datamanager.database.DatabaseConnectionPoolInterfaceTest;
 import org.ecoinformatics.datamanager.database.Query;
 import org.ecoinformatics.datamanager.database.SelectionItem;
 import org.ecoinformatics.datamanager.database.TableItem;
 import org.ecoinformatics.datamanager.database.Union;
 import org.ecoinformatics.datamanager.database.WhereClause;
-import org.ecoinformatics.datamanager.database.pooling.DatabaseConnectionPoolFactory;
-import org.ecoinformatics.datamanager.download.ConfigurableEcogridEndPoint;
 import org.ecoinformatics.datamanager.download.EcogridEndPointInterface;
+import org.ecoinformatics.datamanager.download.EcogridEndPointInterfaceTest;
 import org.ecoinformatics.datamanager.parser.Attribute;
 import org.ecoinformatics.datamanager.parser.AttributeList;
 import org.ecoinformatics.datamanager.parser.DataPackage;
@@ -34,9 +32,9 @@ public class UnionPerformanceTest extends TestCase {
 	 */
 	public static Log log = LogFactory.getLog(UnionPerformanceTest.class);
 
-	private final String QUERY_TEST_DOCUMENT = "cburt.5.2";
+	private final String QUERY_TEST_DOCUMENT = "knb-lter-gce.1.9";
 	private final String QUERY_TEST_SERVER = "https://knb.ecoinformatics.org/knb/metacat";
-	
+
 	//private final String QUERY_TEST_DOCUMENT = "leinfelder.253.6";
 	//private final String QUERY_TEST_SERVER = "http://localhost:8080/knb/metacat";
 	
@@ -46,7 +44,7 @@ public class UnionPerformanceTest extends TestCase {
 	private DataManager dataManager;
 	private DatabaseConnectionPoolInterface connectionPool = null;
 	private EcogridEndPointInterface endPointInfo = null;
-	private int conditionColumnIndex = 3;
+	private int conditionColumnIndex = 0;
 	
 	/*
 	 * Constructors
@@ -96,12 +94,11 @@ public class UnionPerformanceTest extends TestCase {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		connectionPool = 
-			DatabaseConnectionPoolFactory.getDatabaseConnectionPoolInterface();
-			//new PostgresDatabaseConnectionPool();
+		DatabaseConnectionPoolInterfaceTest connectionPool = 
+                new DatabaseConnectionPoolInterfaceTest();
 		String dbAdapterName = connectionPool.getDBAdapterName();
 		dataManager = DataManager.getInstance(connectionPool, dbAdapterName);
-		endPointInfo = new ConfigurableEcogridEndPoint();
+		endPointInfo = new EcogridEndPointInterfaceTest();
 	}
 
 	/**
@@ -161,12 +158,12 @@ public class UnionPerformanceTest extends TestCase {
 		//if (testDbTable == null ) {
 			//load the package
 			success = dataManager.loadDataToDB(dataPackage, endPointInfo);
-			log.debug("loadedDataToDB completed");
-		//}
-		//else {
+			log.error("loadedDataToDB completed");
+//		}
+//		else {
 			//don't try to get the data again
-			//success = true;
-		//}
+			success = true;
+//		}
 		
 		log.debug("loaded data to db, success=" + success);
 
@@ -231,10 +228,10 @@ public class UnionPerformanceTest extends TestCase {
 				int j = 1;
 
 				while (resultSet.next()) {
-					Object column0 = resultSet.getObject(1);
-					Object column1 = resultSet.getObject(2);
+					Object column0 = resultSet.getString(1);
+					//Object column1 = resultSet.getObject(2);
 					log.debug("resultSet[" + j + "], column0 =  " + column0);
-					log.debug("resultSet[" + j + "], column1 =  " + column1);
+					//log.error("resultSet[" + j + "], column1 =  " + column1);
 					j++;
 					//just the first one
 					//break;

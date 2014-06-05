@@ -25,35 +25,19 @@
 package org.ecoinformatics.emltest;
 
 
-import org.ecoinformatics.eml.SAXValidate;
-import org.ecoinformatics.eml.EMLParserServlet;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FilenameFilter;
+import java.util.Vector;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestResult;
 import junit.framework.TestSuite;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.DTDHandler;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.ecoinformatics.eml.EMLParserServlet;
+import org.ecoinformatics.eml.SAXValidate;
 import org.xml.sax.SAXParseException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.ext.DeclHandler;
-import org.xml.sax.ext.LexicalHandler;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.helpers.XMLReaderFactory;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Vector;
 
 /**
  * A JUnit test for testing instance document validity
@@ -137,37 +121,37 @@ public class SaxValidateTest extends TestCase
     {
       SAXValidate test = new SAXValidate(false);
       assertTrue(test != null);
-      System.err.println("Validating the build/docs/eml-@version@/eml-docbook.xml " +
-              "file.");
-      File f = new File("build/docs/eml-@version@/eml-docbook.xml");
-      if(!f.exists())
+      File docsDir = new File("build/docs");
+      FilenameFilter filter = FileFilterUtils.and(FileFilterUtils.directoryFileFilter(), FileFilterUtils.prefixFileFilter("eml-"));
+      File f = new File(docsDir.listFiles(filter)[0], "eml-docbook.xml");
+      System.err.println("Validating " + f.getAbsolutePath());
+
+      if (!f.exists())
       {
-        System.err.println("The file eml-@version@/eml-docbook.xml is not " +
-             "in the docs directory.  You " +
-             "must run 'ant docbook' before running this test.");
-        fail("The file eml-@version@/eml-docbook.xml is not in the " +
-             "docs directory.  You must run 'ant docbook' before running " +
-             "this test.");
+    	  String msg = "The file " + f.getAbsolutePath() + " is not " +
+    	             "in the docs directory.  You " +
+    	             "must run 'ant docbook' before running this test.";
+	        System.err.println(msg);
+	        fail(msg);
       }
 
       try
       {
-        test.runTest(new FileReader("build/docs/eml-@version@/eml-docbook.xml"),
-                                    DEFAULT_PARSER);
+        test.runTest(new FileReader(f), DEFAULT_PARSER);
       }
       catch(Exception e)
       {
         String msg = e.getMessage();
-        if(msg.equals("Attribute \"xmlns:xs\" must be declared for element " +
+        if (msg.equals("Attribute \"xmlns:xs\" must be declared for element " +
                       "type \"book\"."))
         {
           //if its just this message. the file is valid.
-          System.err.println("eml-docbook.xsl is valid");
+          System.err.println(f.getAbsolutePath() + " is valid");
         }
         else
         {
-          System.err.println("eml-docbook.xsl is NOT valid: " + msg);
-          fail("eml-docbook.xml NOT valid: " + msg);
+          System.err.println(f.getAbsolutePath() + " is NOT valid: " + msg);
+          fail(f.getAbsolutePath() + " is NOT valid: " + msg);
         }
       }
     }

@@ -130,8 +130,9 @@ public class Join implements ConditionInterface
 		  attribute1Name = DataManager.getDBFieldName(entity1, attribute1);
 		  attribute2Name = DataManager.getDBFieldName(entity2, attribute2);
 	  }
-	  catch(SQLException sql)
+	  catch(Exception sql)
 	  {
+		  sql.printStackTrace();
 		  System.out.println("Entity or Atribute name is null "+sql.getMessage());
 	  }
 	  
