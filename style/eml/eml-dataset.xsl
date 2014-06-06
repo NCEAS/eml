@@ -839,7 +839,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								<xsl:attribute name="target">_blank</xsl:attribute>
-								Download File <img src="/knb/style/images/page_white_put.png" style="margin:0px 0px; padding:0px;" border="0" alt="download"/></a>
+								Download File <img src="{$stylePath}/images/page_white_put.png" style="margin:0px 0px; padding:0px;" border="0" alt="download"/></a>
 							</xsl:when>
 						</xsl:choose>)
 					</td>
