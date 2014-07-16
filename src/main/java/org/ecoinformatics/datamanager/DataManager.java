@@ -271,7 +271,11 @@ public class DataManager {
   /**
    * Downloads a single entity using the calling application's data storage
    * interface. This allows the calling application to manage its data store
-   * in its own way. This method implements Use Case #2.
+   * in its own way. This method implements Use Case #2. 
+   * 
+   * This version of the method sets preserveFormat to false. This is
+   * the Data Manager Library's original default behavior: gzip, zip,
+   * or tar files are expanded when downloaded.
    * 
    * @param  entity the entity whose data is to be downloaded
    * @param  endPointInfo which provides ecogrid endpoint information
@@ -281,25 +285,39 @@ public class DataManager {
    */
   public boolean downloadData(Entity entity, EcogridEndPointInterface endPointInfo,
                               DataStorageInterface[] dataStorageList) {
+	  boolean preserveFormat = false;
+	  return downloadData(entity, endPointInfo, dataStorageList, preserveFormat);
+  }
+ 
+  
+  /**
+   * Downloads a single entity using the calling application's data storage
+   * interface. This allows the calling application to manage its data store
+   * in its own way. This method implements Use Case #2.
+   * 
+   * This newer version of the method accepts a boolean value, preserveFormat.
+   * Setting preserveFormat to false invokes the Data Manager Library's 
+   * original default behavior: an object with a compressionMethod of 'gzip'
+   * or 'zip' or an encodingMethod of 'tar' is expanded when downloaded.
+   * However, when set to true, the object is downloaded with its original format 
+   * preserved.
+   * 
+   * @param  entity the entity whose data is to be downloaded
+   * @param  endPointInfo which provides ecogrid endpoint information
+   * @param  dataStorageList the destination (data storage) of the downloading
+   * @param  preserveFormat when set to true, do not unzip or un-tar the entity
+   * @return a boolean value indicating the success of the download operation.
+   *         true if successful, else false.
+   */
+  public boolean downloadData(Entity entity, EcogridEndPointInterface endPointInfo,
+                              DataStorageInterface[] dataStorageList, boolean preserveFormat) {
     log.debug(String.format("***** Downloading data for: %s, entity: %s\n", entity.getPackageId(), entity.getName()));
-    DownloadHandler downloadHandler = entity.getDownloadHandler(endPointInfo);
+    DownloadHandler downloadHandler = entity.getDownloadHandler(endPointInfo, preserveFormat);
     boolean success = false;
     
     if (downloadHandler != null) {
-      
-
       try {
-        
-    	/*downloadHandler.setDataStorageCladdList(dataStorageList);
-        Thread loadData = new Thread(downloadHandler);
-        loadData.start();
-        
-        while (!downloadHandler.isCompleted()) {
-        }
-        
-        success = downloadHandler.isSuccess();*/
-    	success = downloadHandler.download(dataStorageList);
-    	
+    	success = downloadHandler.download(dataStorageList);  	
       } 
       catch (Exception e) {
         log.error("Error downloading entity name '" + entity.getName() + "': " + e.getMessage());

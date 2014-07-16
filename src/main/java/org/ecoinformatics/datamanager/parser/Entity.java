@@ -1620,10 +1620,9 @@ public class Entity extends DataObjectDescription
     
     /**
      * Get the DownloadHandler associated with this entity, which may be a 
-     * sub-class of DownloadHandler. Currently we only handle one situation, 
-     * e.g. one of DownloadHandler, ZipDataHandler, GZipDataHandler, and 
-     * TarDataHandler. In the future we will implement to allow for a 
-     * combination of the above cases.
+     * sub-class of DownloadHandler. This version of the method calls the
+     * two-parameter version, with 'preserveFormat' set to false as
+     * the default behavior.
      * 
      * @param  endPointInfo  the object provides ecogrid end point information
      * @return the DownloadHandler object which will download data for this
@@ -1631,26 +1630,47 @@ public class Entity extends DataObjectDescription
      */
     public DownloadHandler getDownloadHandler(EcogridEndPointInterface endPointInfo)
     {
-        if (hasZipDataFile)
-        {
-            ZipDataHandler handler = ZipDataHandler.getZipHandlerInstance(this, url, endPointInfo);
-            return handler;
-        }
-        
-        if (hasGZipDataFile)
-        {
-            GZipDataHandler handler = GZipDataHandler.getGZipHandlerInstance(this, url, endPointInfo);
-            return handler;
-        }
-        
-        if (hasTarDataFile)
-        {
-            TarDataHandler handler = TarDataHandler.getTarHandlerInstance(this, url, endPointInfo);
-            return handler;
-        }
-            
-        DownloadHandler handler = DownloadHandler.getInstance(this, url, endPointInfo);
-        return handler;
+    	boolean preserveFormat = false; // default behavior is to unzip or un-tar
+    	return getDownloadHandler(endPointInfo, preserveFormat);
     }
 
+    
+    /**
+     * Get the DownloadHandler associated with this entity, which may be a 
+     * sub-class of DownloadHandler. Currently we only handle one situation, 
+     * e.g. one of DownloadHandler, ZipDataHandler, GZipDataHandler, and 
+     * TarDataHandler. In the future we will implement to allow for a 
+     * combination of the above cases.
+     * 
+     * @param  endPointInfo  the object provides ecogrid end point information
+     * @param  preserveFormat when set to true, do not decompress or un-tar the entity
+     * @return the DownloadHandler object which will download data for this
+     *         entity
+     */
+	public DownloadHandler getDownloadHandler(
+			EcogridEndPointInterface endPointInfo, boolean preserveFormat) {
+		DownloadHandler handler = null;
+		
+		if (!preserveFormat) {
+			if (hasZipDataFile) {
+				handler = ZipDataHandler.getZipHandlerInstance(this, url,
+						endPointInfo);
+			}
+			else if (hasGZipDataFile) {
+				handler = GZipDataHandler.getGZipHandlerInstance(this, url,
+						endPointInfo);
+			}
+			else if (hasTarDataFile) {
+				handler = TarDataHandler.getTarHandlerInstance(this, url,
+						endPointInfo);
+			}
+		}
+
+		if (handler == null) {
+			handler = DownloadHandler.getInstance(this, url, endPointInfo);
+		}
+		
+		return handler;
+	}
+	
 }
