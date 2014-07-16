@@ -85,6 +85,7 @@ public class PostgresAdapter extends DatabaseAdapter {
 	    {"YYYY-MM-DD hh:mm", "YYYY-MM-DD HH24:MI"},
 	    {"hh:mm:ss", "HH24:MI:ss"},
 	    {"hh:mm", "HH24:MI"},
+	    {"hhmm", "HH24MI"},
 	    {"hh:mm:ss.sss", "HH24:MI:ss.sss"},
 	    {"hh:mm:ss.ss", "HH24:MI:ss.ss"},
 	    {"hh:mm:ss.s", "HH24:MI:ss.s"},
