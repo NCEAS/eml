@@ -33,7 +33,7 @@ public class DataquerySpecificationTest extends TestCase {
   
   private DataManager dataManager;
   
-  private String fileName = "lib/datamanager/schema/dataquery.xml";
+  private String fileName = "lib/datamanager/schema/dataquery_gce.xml";
   
   private String parserName = "org.apache.xerces.parsers.SAXParser";
   
@@ -63,7 +63,7 @@ public class DataquerySpecificationTest extends TestCase {
     TestSuite testSuite = new TestSuite();
     
     //comment out for now. BRL 2014/06/03
-    //testSuite.addTest(new DataquerySpecificationTest("testParseQuery"));
+    testSuite.addTest(new DataquerySpecificationTest("testParseQuery"));
     return testSuite;
   }
   
@@ -169,7 +169,7 @@ public class DataquerySpecificationTest extends TestCase {
 				row += column;
 				row += "\t";
 			}
-			log.debug(row);
+			log.info(row);
 
 			while (resultSet.next()) {
 				row = "";
@@ -178,7 +178,7 @@ public class DataquerySpecificationTest extends TestCase {
 					row += value;
 					row += "\t";
 				}
-				log.debug(row);
+				log.info(row);
 			}
 		} 
   }
