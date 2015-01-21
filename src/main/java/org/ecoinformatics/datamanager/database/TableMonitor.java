@@ -355,7 +355,6 @@ public class TableMonitor {
     try {
       stmt = connection.createStatement();
       rowCount = stmt.executeUpdate(deleteString);
-      connection.commit();
       success = (rowCount == 1);
     }
     catch(SQLException e) {
