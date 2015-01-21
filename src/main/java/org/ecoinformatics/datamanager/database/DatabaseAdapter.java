@@ -681,13 +681,17 @@ public abstract class DatabaseAdapter {
   /*
    * This method will escape special character, e.g. single quote ('), in the string data 
    * value. If the string has a single quote without escape, it will cause a problem.
-   * For example: insert into table (comment) values ('here's it') will cause a problem.
-   * However, insert into table (comment) values ('here\'s it') will be fine.
+   * The standard SQL syntax for escaping a single quote is to double it up.
+   * For example: 
+   * 	INSERT INTO TABLE (comment) VALUES ('here's it'); 
+   * will cause a problem. While,
+   * 	INSERT INTO TABLE (comment) VALUES ('here''s it');
+   * will be fine.
    */
   protected String escapeSpecialCharacterInData(String data)
   {
 	  String[] specialArray = {"'"};
-	  String escape = "\\\\";
+	  String escape = "'";
 	  if (data == null)
 	  {
 		  return data;
@@ -696,7 +700,9 @@ public abstract class DatabaseAdapter {
 	  for (int i=0; i<size; i++)
 	  {
 		  String special = specialArray[i];
-		  data = data.replaceAll(special, escape+special);
+		  if (data.contains(special)) {
+			  data = data.replaceAll(special, escape+special);
+		  }
 	  }
 	  return data;
   }
