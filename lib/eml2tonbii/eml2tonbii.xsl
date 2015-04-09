@@ -283,7 +283,7 @@ version="1.0">
 					    	<xsl:value-of select="/*[local-name() = 'eml']/dataset/pubPlace" />
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="'N/A'">
+                            <xsl:value-of select="'N/A'"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:element>
@@ -297,9 +297,9 @@ version="1.0">
 					    	<xsl:value-of select="/*[local-name() = 'eml']/dataset/publisher/organizationName" />
 					    </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="'N/A'">
+                            <xsl:value-of select="'N/A'"/>
                         </xsl:otherwise>
-                    <xsl:choose>
+                    </xsl:choose>
                 </xsl:element>
               </xsl:element>
             </xsl:if>
@@ -2049,7 +2049,7 @@ version="1.0">
 							     <xsl:value-of select="xalan:nodeset($cc)//individualName[1]/surName"/>
 							</xsl:element>
 							<xsl:if test="$show_optional">
-                                <xsl:if test"xalan:nodeset($cc)//organizationName != ''">
+                                <xsl:if test="xalan:nodeset($cc)//organizationName != ''">
 							        <xsl:element name="cntorg">
 							        	  <xsl:value-of select="xalan:nodeset($cc)//organizationName"/>						
 							        </xsl:element>
@@ -2057,7 +2057,7 @@ version="1.0">
 							</xsl:if>  
 						  </xsl:element>
 						</xsl:when>
-						<xsl:when test="xalan:nodeset($cc)//organizationName! = ''">
+						<xsl:when test="xalan:nodeset($cc)//organizationName != ''">
 						  <xsl:element name="cntorgp">
 							<xsl:element name="cntorg">
 							  <xsl:value-of select="xalan:nodeset($cc)//organizationName"/>
