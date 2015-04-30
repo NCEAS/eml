@@ -42,11 +42,12 @@ public class DataManagerTest extends TestCase {
   private final String ENTITY_NAME = "INS-GCEM-0011_1_3.TXT";
   private final int    ENTITY_NUMBER_EXPECTED = 1;
   private final int    NUMBER_OF_COLUMNS = 7;
-  private final String QUERY_TEST_DOCUMENT = "knb-lter-gce.1.9";
-  private final String QUERY_TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
+  private final String QUERY_TEST_DOCUMENT = "knb-lter-gce.1.9.xml";
+  private final String QUERY_TEST_SERVER = "http://svn.lternet.edu/svn/NIS/master/DataPackageManager/test/data/";
   private final String TABLE_NAME = "INS_GCEM_0011_1_3_TXT";
-  private final String TEST_DOCUMENT = "knb-lter-gce.1.9";
-  private final String TEST_SERVER = "http://metacat.lternet.edu/knb/metacat";
+  private final String TEST_DOCUMENT = "knb-lter-gce.1.9.xml";
+  private final String TEST_PACKAGE_ID = "knb-lter-gce.1.9";
+  private final String TEST_SERVER = "http://svn.lternet.edu/svn/NIS/master/DataPackageManager/test/data/";
   
   
   /*
@@ -128,9 +129,7 @@ public class DataManagerTest extends TestCase {
   public void testDownloadData() 
           throws MalformedURLException, IOException, Exception {
     DataPackage dataPackage = null;
-    String documentURL = TEST_SERVER + 
-                         "?action=read&qformat=xml&docid=" + 
-                         TEST_DOCUMENT;
+    String documentURL = TEST_SERVER + TEST_DOCUMENT;
     InputStream metadataInputStream;
     boolean success = false;
     DataStorageTest[] testStorageList = new DataStorageTest[1];
@@ -183,9 +182,7 @@ public class DataManagerTest extends TestCase {
   public void testLoadDataToDB() 
         throws MalformedURLException, IOException, Exception {
     DataPackage dataPackage = null;
-    String documentURL = TEST_SERVER + 
-                         "?action=read&qformat=xml&docid=" + 
-                         TEST_DOCUMENT;
+    String documentURL = TEST_SERVER + TEST_DOCUMENT;
     InputStream metadataInputStream;
     boolean success = false;
     URL url;
@@ -207,7 +204,7 @@ public class DataManagerTest extends TestCase {
          * DataManager.getDBFieldNames(packageID, entityName)
          */
         if (success) {
-          String packageID = TEST_DOCUMENT;
+          String packageID = TEST_PACKAGE_ID;
           String entityName = ENTITY_NAME;
           String tableName = DataManager.getDBTableName(packageID, entityName);
           assertNotNull("null value for tableName (case 1)", tableName);
@@ -318,9 +315,7 @@ public class DataManagerTest extends TestCase {
         throws MalformedURLException, IOException, Exception {
     DataPackage dataPackage = null;
     InputStream metadataInputStream;
-    String documentURL = TEST_SERVER + 
-                         "?action=read&qformat=xml&docid=" + 
-                         TEST_DOCUMENT;
+    String documentURL = TEST_SERVER + TEST_DOCUMENT;
     URL url;
     
     try {
@@ -372,9 +367,7 @@ public class DataManagerTest extends TestCase {
     Attribute countAttribute;
     DataPackage dataPackage = null;
     DataPackage[] dataPackages = null;
-    String documentURL = QUERY_TEST_SERVER + 
-                         "?action=read&qformat=xml&docid=" + 
-                         QUERY_TEST_DOCUMENT;
+    String documentURL = QUERY_TEST_SERVER + QUERY_TEST_DOCUMENT;
     Entity entity = null;
     InputStream inputStream = null;
     String operator = ">";
