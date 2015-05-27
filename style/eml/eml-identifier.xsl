@@ -84,57 +84,59 @@
         </tr>
         <tr>
         	<td class="citation">
-	        	<xsl:for-each select="creator">
-	        		<xsl:if test="position() &gt; 1">
-	        			<xsl:if test="last() &gt; 2">, </xsl:if>
-	        			<xsl:if test="position() = last()"> and</xsl:if>
-	        			<xsl:text> </xsl:text>
-	        		</xsl:if>
-	        		<xsl:call-template name="creatorCitation" />
-	        		<xsl:if test="position() = last()">.</xsl:if>
-	        		<xsl:text> </xsl:text>    		
-	        	</xsl:for-each>
-	        	
-	        	<xsl:value-of select="substring(string(pubDate),1,4)"/>
-	        	<xsl:if test="substring(string(pubDate),1,4) != ''">.</xsl:if>
-	        	
-	        	<br/>
-	        	<!-- title -->
-				<b>
-				<xsl:for-each select="./title">
-		     		<xsl:call-template name="i18n">
-		     			<xsl:with-param name="i18nElement" select="."/>
-		     		</xsl:call-template>
-		     	</xsl:for-each>				
-				</b>
-				<br/>
-				<xsl:if test="boolean($registryname)">
-					<xsl:value-of select="$registryname"/>: 
-				</xsl:if>
-				
-                <span class="lsid">
-				    <xsl:choose>
-					    <xsl:when test="boolean($lsidauthority)">
-						    <xsl:call-template name="lsid"/>
-					    </xsl:when>
-					    <xsl:otherwise>
-						    <xsl:value-of select="../@packageId"/>
-					    </xsl:otherwise>
-				    </xsl:choose>
-                </span>
-				
-				<!-- show link? -->
-				<xsl:if test="$withHTMLLinks = '1'">
-		        	<xsl:choose>
-		        		<xsl:when test="boolean($registryurl)">
-		        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)
-		        		</xsl:when>
-		        		<xsl:otherwise>
-		        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)				
-		        		</xsl:otherwise>
-		        	</xsl:choose>
-					<br />
-				</xsl:if>	
+        		<cite>
+		        	<xsl:for-each select="creator">
+		        		<xsl:if test="position() &gt; 1">
+		        			<xsl:if test="last() &gt; 2">, </xsl:if>
+		        			<xsl:if test="position() = last()"> and</xsl:if>
+		        			<xsl:text> </xsl:text>
+		        		</xsl:if>
+		        		<xsl:call-template name="creatorCitation" />
+		        		<xsl:if test="position() = last()">.</xsl:if>
+		        		<xsl:text> </xsl:text>    		
+		        	</xsl:for-each>
+		        	
+		        	<xsl:value-of select="substring(string(pubDate),1,4)"/>
+		        	<xsl:if test="substring(string(pubDate),1,4) != ''">.</xsl:if>
+		        	
+		        	<br/>
+		        	<!-- title -->
+					<b>
+					<xsl:for-each select="./title">
+			     		<xsl:call-template name="i18n">
+			     			<xsl:with-param name="i18nElement" select="."/>
+			     		</xsl:call-template>
+			     	</xsl:for-each>				
+					</b>
+					<br/>
+					<xsl:if test="boolean($registryname)">
+						<xsl:value-of select="$registryname"/>: 
+					</xsl:if>
+					
+	                <span class="lsid">
+					    <xsl:choose>
+						    <xsl:when test="boolean($lsidauthority)">
+							    <xsl:call-template name="lsid"/>
+						    </xsl:when>
+						    <xsl:otherwise>
+							    <xsl:value-of select="../@packageId"/>
+						    </xsl:otherwise>
+					    </xsl:choose>
+	                </span>
+					
+					<!-- show link? -->
+					<xsl:if test="$withHTMLLinks = '1'">
+			        	<xsl:choose>
+			        		<xsl:when test="boolean($registryurl)">
+			        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$registryurl"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)
+			        		</xsl:when>
+			        		<xsl:otherwise>
+			        			(<a> <xsl:attribute name="href"><xsl:value-of select="$tripleURI"/><xsl:value-of select="$docid"/></xsl:attribute> <xsl:value-of select="$contextURL"/>/metacat/<xsl:value-of select="../@packageId"/>/<xsl:value-of select="$qformat"/></a>)				
+			        		</xsl:otherwise>
+			        	</xsl:choose>
+						<br />
+					</xsl:if>	
+				</cite>
         </td>
      </tr>
    </xsl:template>

@@ -41,7 +41,7 @@
   <xsl:template name="text">
         <xsl:param name="textfirstColStyle" />
         <xsl:param name="textsecondColStyle" />
-        <xsl:if test="(section and normalize-space(section)!='') or (para and normalize-space(para)!='')">
+        <xsl:if test="(section and normalize-space(section)!='') or (para and normalize-space(para)!='') or (.!='')">
           <xsl:apply-templates mode="text">
             <xsl:with-param name="textfirstColStyle" select="$textfirstColStyle"/>
             <xsl:with-param name="textsecondColStyle" select="$textsecondColStyle" />
