@@ -82,7 +82,7 @@ public class DownloadHandler implements Runnable
     private static final String SRBUSERNAME     = "testuser.sdsc";
     private static final String SRBPASSWD       = "TESTUSER";
     private static final int    SLEEPTIME       = 100;
-    private static final int    MAXLOOPNUMBER   = 20000;
+    private static final int    MAXLOOPNUMBER   = 200000;
     
     protected static Hashtable<String, DownloadHandler> handlerList = 
       new Hashtable<String, DownloadHandler>();
