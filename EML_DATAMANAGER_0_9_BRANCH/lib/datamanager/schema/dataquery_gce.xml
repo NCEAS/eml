@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- sample data query specification instance for the datamanager library -->
+<dq:dataquery 
+	xmlns:dq="eml://ecoinformatics.org/dataquery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="eml://ecoinformatics.org/dataquery dataquery.xsd ">
+	<!--
+		This sample XML is parsed by the Data Manager to produce the following SQL
+		(formatted for improved legibility):
+		
+	-->
+	<!-- first query in UNION -->
+	<query distinct="false">
+		<selection>
+			<datapackage id="knb-lter-gce.1.9">
+				<entity name="INS-GCEM-0011_1_3.TXT">
+					<attribute index="0"/>
+					<attribute index="1"/>
+					<attribute index="5"/>
+					<attribute index="6"/>
+				</entity>
+			</datapackage>
+		</selection>
+		<where>
+			<condition type="condition">
+				<left>
+					<datapackage id="knb-lter-gce.1.9">
+						<entity index="0">
+							<attribute index="6"/>
+						</entity>
+					</datapackage>
+				</left>
+				<operator>>=</operator>					
+				<right>
+					<value>5</value>
+				</right>
+			</condition>
+		</where>
+	</query>
+		
+</dq:dataquery>

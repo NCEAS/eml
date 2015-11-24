@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config>
+  <key name="identifierKey">
+    <selector xpath="//dateTimeDomain|//nonNumericDomain|//numericDomain|//access|//attributeList|//attribute|//constraint|//coverage|//temporalCoverage|//geographicCoverage|//taxonomicCoverage|//dataset|//dataSource|//dataTable|//otherEntity|//citation|//address|//conferenceLocation|//party|//originator|//creator|//contact|//publisher|//editor|//recipient|//performer|//institution|//metadataProvider|//associatedParty|//personnel|//physical|//connectionDefinition|//distribution|//researchProject|//project|//relatedProject|//software|//spatialRaster|//spatialReference|//spatialVector|//storedProcedure|//view|//protocol|//additionalMetadata"/>
+    <field xpath="@id"/>
+  </key>
+  <key name="attributeIdentifierKey">
+    <selector xpath="//attribute"/>
+    <field xpath="@id"/>
+  </key>
+  <key name="entityIdentifierKey">
+    <selector xpath="//dataTable|//spatialRaster|//spatialVector|//storedProcedure|//view"/>
+    <field xpath="@id"/>
+  </key>
+  <key name="unitIdentifierKey">
+    <selector xpath="//unitList/unit"/>
+    <field xpath="@id"/>
+  </key>
+
+  <keyref name="replacementReference" refer="identifierKey">
+    <selector xpath="//references"/>
+    <field xpath="."/>
+  </keyref>
+  <keyref name="describesReference" refer="identifierKey">
+    <selector xpath="//additionalMetadata/describes"/>
+    <field xpath="."/>
+  </keyref>
+  <keyref name="entityReference" refer="entityIdentifierKey">
+    <selector xpath="//entityReference"/>
+    <field xpath="."/>
+  </keyref>
+  <keyref name="attributeReference" refer="attributeIdentifierKey">
+    <selector xpath="//attributeReference|.//valueAttributeReference|.//definitionAttributeReference"/>
+    <field xpath="."/>
+  </keyref>
+  <keyref name="unitReference" refer="unitIdentifierKey">
+    <selector xpath="//unit/customUnit"/>
+    <field xpath="."/>
+  </keyref>
+  
+  <namespaces>
+  	eml://ecoinformatics.org/eml-2.0.0 https://knb.ecoinformatics.org/emlparser/schema/eml-2.0.0/eml.xsd     
+  	eml://ecoinformatics.org/eml-2.0.1  https://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/eml.xsd     
+  	eml://ecoinformatics.org/eml-2.1.0 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml.xsd    
+  	eml://ecoinformatics.org/eml-2.1.1 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml.xsd       	 
+  	eml://ecoinformatics.org/literature-2.1.0 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-literature.xsd     
+  	eml://ecoinformatics.org/project-2.1.0 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/eml-project.xsd     
+  	eml://ecoinformatics.org/literature-2.1.1 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml-literature.xsd     
+  	eml://ecoinformatics.org/project-2.1.1 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.1/eml-project.xsd     
+  	http://www.xml-cml.org/schema/stmml-1.1 https://knb.ecoinformatics.org/emlparser/schema/eml-2.1.0/stmml.xsd     
+  	http://www.xml-cml.org/schema/stmml https://knb.ecoinformatics.org/emlparser/schema/eml-2.0.1/stmml.xsd
+  </namespaces>
+  
+  
+</config>
