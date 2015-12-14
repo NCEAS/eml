@@ -382,10 +382,15 @@ public class DatabaseLoader implements DataStorageInterface, Runnable
             new QualityCheck(examineRecordDelimiterIdentifier, examineRecordDelimiterTemplate);
           if (QualityCheck.shouldRunQualityCheck(entity, examineRecordDelimiter)) {
             if (!delimitedReader.hasRecordDelimiter()) {
-              examineRecordDelimiter.setExplanation("No record delimiter was found in the data entity");
-              examineRecordDelimiter.setFound("No record delimiter was found");
+              String explanation = "No record delimiter was found in the data entity.";
+              if (delimitedReader.exceedsRecordLengthLimit()) {
+            	  int recordLengthLimit = delimitedReader.getRecordLengthLimit();
+            	  explanation = String.format("The first %d characters of the data entity were examined and no record delimiter was found matching the record delimiter specified in the metadata.", recordLengthLimit);
+              }
+              examineRecordDelimiter.setExplanation(explanation);
+              examineRecordDelimiter.setFound("No record delimiter was found.");
               examineRecordDelimiter.setStatus(Status.error);
-              examineRecordDelimiter.setSuggestion("Check that the record delimiter is specified in the metadata");
+              examineRecordDelimiter.setSuggestion("Check that the record delimiter is specified in the metadata.");
               entity.addQualityCheck(examineRecordDelimiter);
             }
           }

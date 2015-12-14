@@ -35,7 +35,6 @@ package org.ecoinformatics.datamanager.database;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.TreeSet;
 import java.util.Vector;
 
 import org.ecoinformatics.datamanager.parser.Entity;
@@ -83,6 +82,14 @@ public class DelimitedReader extends TextDataReader
   private int examineRecordDelimiterCounter = 0; // Counts 'examineRecordDelimiter' checks
   private final int EXAMINE_RECORD_DELIMITER_MAX = 1; // Max number of examineRecordDelimiter checks
   private boolean hasRecordDelimiter = false; // Set to true when the record delimiter is found in the data table
+
+  /*
+   * Maximum length of a record. Exceeding this limit usually indicates incongruency between the
+   * record delimiter declared in the metadata versus the actual record delimiter in the data entity.
+   */
+  private final int recordLengthLimit = 10000; 
+  private boolean exceedsRecordLengthLimit = false; // When true, indicates that maximum record length has been exceeded
+	  
   
 
   /*private static Log log;
@@ -508,6 +515,17 @@ public class DelimitedReader extends TextDataReader
   }
   
   
+  
+  /**
+   * Get the value of the <code>recordLengthLimit</code> instance variable, a constant.
+   * 
+   * @return   the value of the <code>recordLengthLimit</code> instance variable, a constant.
+   */
+  public int getRecordLengthLimit() {
+	  return recordLengthLimit;
+  }
+  
+  
   /*
    * Used in quality reporting for the 'examineRecordDelimiter' quality check.
    * Check whether a row of data contains other potential record delimiters
@@ -569,15 +587,18 @@ public class DelimitedReader extends TextDataReader
     String rowDataString = null;
     int singleCharacter;
 	    
-    if (dataReader != null) {
+    if ((dataReader != null) && (!this.exceedsRecordLengthLimit)) {
       try {
         // Read the first character to start things off  
         singleCharacter = dataReader.read();
         
-        while (singleCharacter != -1) {
+        while ((singleCharacter != -1) && (!this.exceedsRecordLengthLimit)) {
 	        // singleCharacter is not the EOF character
           char aCharacter = (char) singleCharacter;
           rowBuffer.append(aCharacter);
+          if (rowBuffer.length() > recordLengthLimit) {
+        	  this.exceedsRecordLengthLimit = true;
+          }
               
           // Check for a line ending character in the row data   
           if (rowBuffer.indexOf(lineEnding) != -1) {
@@ -640,6 +661,7 @@ public class DelimitedReader extends TextDataReader
   private Vector<String> splitDelimitedRowStringIntoVector(String data) 
           throws Exception {
     Vector<String> rowVector = new Vector<String>();
+    int maxExplanationLength = 200;
     
     if (data == null) {
       return rowVector;
@@ -685,7 +707,11 @@ public class DelimitedReader extends TextDataReader
             "In row " + rowCounter + 
             ", fewer fields were found in the row than were expected: ";
           tooFewCheck.setFailedStatus();
-          explanation += "<![CDATA[" + data.trim() + "]]>";
+          String truncatedData = data.trim();
+          if (truncatedData.length() > maxExplanationLength) {
+            truncatedData = truncatedData.substring(0, maxExplanationLength) + "... (truncated)";
+          }
+          explanation += "<![CDATA[" + truncatedData + "]]>";
           tooFewCheck.setExplanation(explanation);
           tooFewFieldsCounter++;
           // Limit the number of these checks included in the quality report
@@ -713,8 +739,8 @@ public class DelimitedReader extends TextDataReader
           tooManyCheck.setFound(found);
           String explanation = null;
           String truncatedData = data.trim();
-          if (truncatedData.length() > 200) {
-            truncatedData = truncatedData.substring(0, 200) + "... (truncated)";
+          if (truncatedData.length() > maxExplanationLength) {
+            truncatedData = truncatedData.substring(0, maxExplanationLength) + "... (truncated)";
           }
           explanation = 
             "In row " + rowCounter +
@@ -1117,6 +1143,14 @@ public class DelimitedReader extends TextDataReader
   }
   
   
+  /*
+   * Returns the value of the boolean instance variable, exceedsRecordLengthLimit.
+   */
+  public boolean exceedsRecordLengthLimit() {
+    return exceedsRecordLengthLimit;
+  }
+
+
   /*
    * Returns the value of the boolean instance variable, hasRecordDelimiter.
    */

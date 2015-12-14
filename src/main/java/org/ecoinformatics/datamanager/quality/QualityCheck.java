@@ -407,10 +407,42 @@ public class QualityCheck {
   public void setExpected(String expected) {
     this.expected = expected;
   }
+  
+  
+  /*
+   * Some quality checks wrap CDATA tags around their "found"
+   * or "explanation" content to ensure that the quality report XML is 
+   * valid. But what if the content itself contains one or more CDATA 
+   * elements? The end tag of the embedded CDATA element will prematurely 
+   * end the quality check's outer CDATA element. This method averts that 
+   * situation by modifying the embedded CDATA end tags ("]]>") to render 
+   * them harmless.
+   */
+  private String checkForEmbeddedCDATA(String text) {
+	  String checkedText = text;
+	  final String cdataStart = "<![CDATA[";
+	  final String cdataEnd = "]]>";
+	  final String cdataEndEscaped = "] ] >";
+	  
+	  if ((checkedText != null) && 
+		   checkedText.startsWith(cdataStart) &&
+		   checkedText.endsWith(cdataEnd)
+		 ) {
+		  // Pull the content out of the CDATA wrapper tags
+		  String contentText = checkedText.substring(9, (checkedText.length() - 3));
+		  if ((contentText != null) && contentText.contains(cdataEnd)) {
+			  // Neutralize any embedded CDATA end tags
+			  String escapedText = contentText.replace(cdataEnd, cdataEndEscaped);
+			  checkedText = String.format("%s%s%s", cdataStart, escapedText, cdataEnd);
+		  }
+	  }
+	  
+	  return checkedText;
+  }
 
   
   public void setExplanation(String explanation) {
-    this.explanation = explanation;
+    this.explanation = checkForEmbeddedCDATA(explanation);
   }
   
   
@@ -437,7 +469,7 @@ public class QualityCheck {
 
   
   public void setFound(String found) {
-    this.found = found;
+    this.found = checkForEmbeddedCDATA(found);
   }
 
   
