@@ -566,6 +566,9 @@ public class DownloadHandler implements Runnable
             )
            ) {
              // get the data from a URL
+            int responseCode = 0;
+            String responseMessage = null;
+            
              try {
                  URL url = new URL(resourceName);
                  boolean isFTP = false;
@@ -575,10 +578,12 @@ public class DownloadHandler implements Runnable
                    
                    // Find the right MIME type and set it as content type
                    if (resourceName.startsWith("http")) {
-                     HttpURLConnection httpURLConnection = (HttpURLConnection)  url.openConnection();
+                	 HttpURLConnection httpURLConnection = (HttpURLConnection)  url.openConnection();
                      httpURLConnection.setRequestMethod("HEAD");
                      httpURLConnection.connect();
                      contentType = httpURLConnection.getContentType();
+                     responseCode = httpURLConnection.getResponseCode();
+                     responseMessage = httpURLConnection.getResponseMessage();
                    }
                    else if (resourceName.startsWith("file")) {
                      URLConnection urlConnection= url.openConnection();
@@ -595,7 +600,7 @@ public class DownloadHandler implements Runnable
                  
                  if (!isFTP) { // HTTP(S) or FILE
                    InputStream filestream = url.openStream();
-                         
+
                    try {
                      successFlag = 
                         this.writeRemoteInputStreamIntoDataStorage(filestream);
@@ -663,13 +668,19 @@ public class DownloadHandler implements Runnable
                  }
              }
              catch (MalformedURLException e) {
-               exception = new DataSourceNotFoundException(String.format(
-                   "The URL '%s' is a malformed URL: %s", resourceName, e.getMessage()));
+            	 String eClassName = e.getClass().getName();
+            	 String eMessage = String.format("%s: %s", eClassName, e.getMessage());
+            	 exception = new DataSourceNotFoundException(String.format(
+            			 "The URL '%s' is a malformed URL: %s", resourceName, eMessage));
              }
              catch (IOException e) {
+            	 String eClassName = e.getClass().getName();
+            	 String eMessage = String.format("%s: %s", eClassName, e.getMessage());
+            	 if (responseCode > 0) {
+            		 eMessage = String.format("Response Code: %d %s; %s", responseCode, responseMessage, eMessage);
+            	 }
             	 exception = new DataSourceNotFoundException(String.format(
-            	   "The URL '%s' is not reachable: %s", resourceName, e.getMessage()));
-               onlineURLsException = true;
+            			 "The URL '%s' is not reachable: %s", resourceName, eMessage));
              }
 
              // Initialize the "Online URLs are live" quality check
