@@ -1819,6 +1819,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           stringBuffer.append(" " + paraText);
         }
         String abstractText = stringBuffer.toString();
+        emlDataPackage.setAbstract(abstractText);
         emlDataPackage.checkDatasetAbstract(abstractText);
       }      
     }
