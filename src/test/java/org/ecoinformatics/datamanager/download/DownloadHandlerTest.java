@@ -16,11 +16,12 @@ public class DownloadHandlerTest extends TestCase
      * Class fields
      */
   
-	private static final String CORRECTURL   = "https://knb.ecoinformatics.org/knb/metacat/knb-lter-bes.14.3";
-	private static final String INCORRECTURL = "https://knb.ecoinformatcs.org/knb/metacat/knb-lter-bes.14.3";
-	private static final String CORRECTURL1   = "https://knb.ecoinformatics.org/knb/metacat/knb-lter-arc.1424.1";
-  private static final long CORRECTURL_SIZE = 3906; // Expected file size of knb-lter-bes.14.3
-  private static final long CORRECTURL1_SIZE = 8172; // Expected file size of knb-lter-arc.1424.1
+	private static final String METADATA_URL   = "https://pasta-s.lternet.edu/package/metadata/eml/knb-lter-arc/1424/5";
+	private static final long METADATA_EXPECTED_SIZE = 27550; // Expected size of metadata file
+	private static final String INCORRECT_METADATA_URL = "https://pasta-s.lternet.edu/package/metadata/eml/knb-lter-arc/1424/1";
+	private static final String DATA_URL = "https://pasta-s.lternet.edu/package/data/eml/knb-lter-arc/1424/5/dec159de2bffcb968c7f3084a838ca18";
+	private static final long DATA_EXPECTED_SIZE = 40309; // Expected size of data file
+
     
     /*
      * Instance fields
@@ -103,7 +104,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testDownloadSuccess()
 	  {
-		  testDownloadByThread(true, CORRECTURL, CORRECTURL, true);
+		  testDownloadByThread(true, METADATA_URL, METADATA_URL, true);
 	  }
 	  
       
@@ -126,7 +127,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testDownloadFromIncorrectURL()
 	  {
-		  testDownloadByThread(false, INCORRECTURL, INCORRECTURL, true);
+		  testDownloadByThread(false, INCORRECT_METADATA_URL, INCORRECT_METADATA_URL, true);
 	  }
       
       
@@ -202,12 +203,12 @@ public class DownloadHandlerTest extends TestCase
 			  assertTrue("The handler returned a failed status but was expected to succeed",
 			             handler.isSuccess() == true);
               
-			  if (identifier == CORRECTURL)
+			  if (identifier == METADATA_URL)
 			  {
 			    long fileSize = dataStorage.getEntitySize(identifier);
 				  assertTrue("The file size was not the expected value", 
-				             fileSize == CORRECTURL_SIZE);
-	        System.err.println("expected: " + CORRECTURL_SIZE + "; found: " + fileSize);
+				             fileSize == METADATA_EXPECTED_SIZE);
+	        System.err.println("expected: " + METADATA_EXPECTED_SIZE + "; found: " + fileSize);
 			  }		  
 		  }
 		  else
@@ -228,8 +229,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void tesDownloadHandlerWithSameUrl()
 	  {
-		  String url = "https://knb.ecoinformatics.org/knb/metacat/adler.5.1";
-		  processDownloadHandlersWithSameUrl(url);
+		  processDownloadHandlersWithSameUrl(METADATA_URL);
 	  }
 	  
 	  
@@ -295,7 +295,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testCorrectURLByDownload() throws Exception
 	  {
-		  String url = CORRECTURL1;
+		  String url = METADATA_URL;
 		  testDownloadMethod(true, url);
 	  }
 	  
@@ -307,7 +307,7 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testInCorrectURLByDownload() throws Exception
 	  {
-		  String url = INCORRECTURL;
+		  String url = INCORRECT_METADATA_URL;
 		  testDownloadMethod(false, url);
 	  }
 	  
@@ -343,22 +343,19 @@ public class DownloadHandlerTest extends TestCase
 	   */
 	  public void testSameURLByDownload() throws Exception
 	  {
-	    final long EXPECTED_SIZE = 5524181;
-		  final String url = "https://knb.ecoinformatics.org/knb/metacat/" +
-                         "ALEXXX_015ADCP015R00_19990817.40.1";
 		  DataStorageTest dataStorage = new DataStorageTest();
 		  DataStorageTest[] list = new DataStorageTest[1];
 		  list[0] = dataStorage;
-		  DownloadHandler handler = DownloadHandler.getInstance(url, endPointInfo);
-		  DownloadHandler handler1 = DownloadHandler.getInstance(url, endPointInfo);
+		  DownloadHandler handler = DownloadHandler.getInstance(DATA_URL, endPointInfo);
+		  DownloadHandler handler1 = DownloadHandler.getInstance(DATA_URL, endPointInfo);
 		  boolean result1 = handler.download(list);
 		  boolean result2 = handler1.download(list);
 		  assertTrue(result1 == true);
 		  assertTrue(result2 == true);
-		  assertTrue(dataStorage.doesDataExist(url) == true);
-		  long fileSize = dataStorage.getEntitySize(url);
-      System.err.println("expected: " + EXPECTED_SIZE + "; found: " + fileSize);
-		  assertTrue(fileSize == EXPECTED_SIZE);
+		  assertTrue(dataStorage.doesDataExist(DATA_URL) == true);
+		  long fileSize = dataStorage.getEntitySize(DATA_URL);
+		  System.err.println("expected: " + DATA_EXPECTED_SIZE + "; found: " + fileSize);
+		  assertTrue(fileSize == DATA_EXPECTED_SIZE);
 	  }
 	  
       
@@ -381,7 +378,7 @@ public class DownloadHandlerTest extends TestCase
 		  }
 		  catch (Exception e)
 		  {
-			  if (url == INCORRECTURL)
+			  if (url == INCORRECT_METADATA_URL)
 			  {
 		        assertTrue("The exception should be an instance of " +
                            "DataSourceNotFoundException", 
@@ -389,11 +386,11 @@ public class DownloadHandlerTest extends TestCase
 			  }
 		  }
           
-		  if (url == CORRECTURL1)
+		  if (url == METADATA_URL)
 		  {
 		    long fileSize = dataStorage.getEntitySize(url);
-		    System.err.println("expected: " + CORRECTURL1_SIZE + "; found: " + fileSize);
-			  assertTrue(fileSize == CORRECTURL1_SIZE);
+		    System.err.println("expected: " + METADATA_EXPECTED_SIZE + "; found: " + fileSize);
+			  assertTrue(fileSize == METADATA_EXPECTED_SIZE);
 		  }
           
 		  assertTrue("The handler reports that it is busy but it should not be busy", 
