@@ -2,10 +2,6 @@
 
 [![EML](https://img.shields.io/badge/eml-2.1.1-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
-- [doi:10.5063/F1M61H5X](http://doi.org/10.5063/F1M61H5X)
-- **License**: [Apache 2](http://opensource.org/licenses/Apache-2.0)
-- [Package source code on Github](https://github.com/DataONEorg/rdataone)
-- [**Submit Bugs and feature requests**](https://github.com/DataONEorg/rdataone/issues)
 - **Contributors**: Matthew B. Jones (jones@nceas.ucsb.edu), Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu)
 - **Version**: 2.1.0
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
