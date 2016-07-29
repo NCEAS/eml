@@ -44,8 +44,6 @@ version of the EML Specification, which is the definitive document explaining
 the rules associated with the Ecological Metadata Language.
 
 ## FILES
-The files in this distribution are a part of the EML 2.1.0 release.
-
 The files in this directory include a "docs" directory that contains the
 EML Specification and all documentation for the modules, and an XML Schema
 document for each of the modules that make up EML.  Also included is a schema
