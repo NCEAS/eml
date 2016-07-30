@@ -34,6 +34,44 @@
 -->
 <project name="eml" default="docs" basedir=".">
 
+	<!-- Allow integration with Git projects -->
+    <macrodef name = "git">
+        <attribute name = "command" />
+        <attribute name = "dir" default = "" />
+        <element name = "args" optional = "true" />
+        <sequential>
+            <echo message = "git @{command}" />
+            <exec executable = "git" dir = "@{dir}">
+                <arg value = "@{command}" />
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+    <macrodef name = "git-clone-pull">
+        <attribute name = "repository" />
+        <attribute name = "dest" />
+        <attribute name = "refname" />
+        <sequential>
+            <git command = "clone">
+                <args>
+                    <arg value = "@{repository}" />
+                    <arg value = "@{dest}" />
+                </args>
+            </git>
+            <git command = "checkout" dir = "@{dest}">
+                <args>
+                    <arg value = "@{refname}" />
+                </args>
+            </git>
+            <git command = "pull" dir = "@{dest}" >
+                <args>
+                    <arg value = "@{repository}" />
+                    <arg value = "@{refname}" />
+                </args>
+            </git>
+        </sequential>
+    </macrodef>
+
 	<target name="config">
 		<property file="build.properties"/>
 		<!-- User specified properties -->
@@ -70,8 +108,7 @@
 		<property name="servlettempdir" value="build/emlparser"/>
 		<filter token="tempdir" value="${servlettempdir}"/>
 		<property environment="env"/>
-		<property name="svnroot" value="https://code.ecoinformatics.org/code/eml/"/>
-		<echo>Using ${svnroot}"</echo>
+		<property name="eml.git.repository.url" value="https://github.com/NCEAS/eml.git" />
 		<property name="eml-module" value="eml"/>
 		<property name="eml2_0_0-tag" value="RELEASE_EML_2_0_0_UPDATE_1"/>
 		<property name="eml2_0_1-tag" value="RELEASE_EML_2_0_1"/>
@@ -153,13 +190,6 @@
 
 		<mkdir dir="${build.docs}/eml-${version}"/>
 		
-		<path id="svn.classpath">
-			<pathelement location="lib/svnjavahl.jar" />
-			<pathelement location="lib/svnant.jar" />
-			<pathelement location="lib/svnClientAdapter.jar" />
-		</path>
-		<taskdef resource="svntask.properties"
-			classpathref="svn.classpath" />
 	</target>
 
 
@@ -550,11 +580,9 @@
 		</copy>-->
 
 		<!-- Copy eml-2.0.0 schema. Add code here for copying any other schemas. -->
-		<echo>Getting EML 2.0.0 from SVN: ${svnroot}/tags/${eml2_0_0-tag}</echo>
-		<svn>
-			<export srcUrl="${svnroot}/tags/${eml2_0_0-tag}" force="true"
-				destPath="${servlettempdir}/eml_${eml2_0_0-tag}" />
-		</svn>
+		<echo>Getting EML 2.0.0 from source: ${eml2_0_0-tag}</echo>
+		<git-clone-pull repository="${eml.git.repository.url}" 
+						dest="${servlettempdir}/eml_${eml2_0_0-tag}" refname="${eml2_0_0-tag}" />
 		<mkdir dir="${servlet.install.dir}/schema/eml-2.0.0" />
 		<copy todir="${servlet.install.dir}/schema/eml-2.0.0" filtering="yes">
 			<fileset dir="${servlettempdir}/eml_${eml2_0_0-tag}">
@@ -563,11 +591,9 @@
 		</copy>
 		
 		<!-- Copy eml-2.0.1 schema. Add code here for copying any other schemas. -->
-		<echo>Getting EML 2.0.1 from SVN: ${svnroot}/tags/${eml2_0_1-tag}</echo>
-		<svn>
-			<export srcUrl="${svnroot}/tags/${eml2_0_1-tag}" force="true"
-				destPath="${servlettempdir}/eml_${eml2_0_1-tag}" />
-		</svn>
+		<echo>Getting EML 2.0.1 from source: ${eml2_0_1-tag}</echo>
+		<git-clone-pull repository="${eml.git.repository.url}" 
+						dest="${servlettempdir}/eml_${eml2_0_1-tag}" refname="${eml2_0_1-tag}" />
 		<mkdir dir="${servlet.install.dir}/schema/eml-2.0.1" />
 		<copy todir="${servlet.install.dir}/schema/eml-2.0.1" filtering="yes">
 			<fileset dir="${servlettempdir}/eml_${eml2_0_1-tag}">
@@ -576,11 +602,9 @@
 		</copy>
 		
 		<!-- Copy eml-2.1.0 schema. Add code here for copying any other schemas. -->
-		<echo>Getting EML 2.1.0 from SVN: ${svnroot}/tags/${eml2_1_0-tag}</echo>
-		<svn>
-			<export srcUrl="${svnroot}/tags/${eml2_1_0-tag}" force="true"
-				destPath="${servlettempdir}/eml_${eml2_1_0-tag}" />
-		</svn>
+		<echo>Getting EML 2.1.0 from source: ${eml2_1_0-tag}</echo>
+		<git-clone-pull repository="${eml.git.repository.url}" 
+						dest="${servlettempdir}/eml_${eml2_1_0-tag}" refname="${eml2_1_0-tag}" />
 		<mkdir dir="${servlet.install.dir}/schema/eml-2.1.0" />
 		<copy todir="${servlet.install.dir}/schema/eml-2.1.0" filtering="yes">
 			<fileset dir="${servlettempdir}/eml_${eml2_1_0-tag}">
@@ -589,11 +613,9 @@
 		</copy>
 		
 		<!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
-		<echo>Getting EML 2.1.1 from SVN: ${svnroot}/tags/${eml2_1_1-tag}</echo>
-		<svn>
-			<export srcUrl="${svnroot}/tags/${eml2_1_1-tag}" force="true"
-				destPath="${servlettempdir}/eml_${eml2_1_1-tag}" />
-		</svn>
+		<echo>Getting EML 2.1.1 from source: ${eml2_1_1-tag}</echo>
+		<git-clone-pull repository="${eml.git.repository.url}" 
+						dest="${servlettempdir}/eml_${eml2_1_1-tag}" refname="${eml2_1_1-tag}" />
 		<mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
 		<copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
 			<fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
