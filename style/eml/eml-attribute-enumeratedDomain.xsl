@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   *  '$RCSfile$'
   *    Copyright: 2000 Regents of the University of California and the
@@ -30,7 +30,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <xsl:output method="html" encoding="iso-8859-1"
+  <xsl:output method="html" encoding="UTF-8"
               doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
               doctype-system="http://www.w3.org/TR/html4/loose.dtd"
               indent="yes" />  
