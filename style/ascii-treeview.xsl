@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
 ASCII XML Tree Viewer 1.0 (13 Feb 2001)
@@ -26,7 +26,7 @@ instruction below.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-<xsl:output method="html" />
+<xsl:output method="html" encoding="UTF-8" />
 
 <!-- uncomment the following to ignore whitespace-only text nodes -->
 <!-- xsl:strip-space elements="*" -->

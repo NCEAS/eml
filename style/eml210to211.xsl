@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" version="1.0">
-  <xsl:output method="xml" indent="yes"></xsl:output>
+  <xsl:output method="xml" encoding="UTF-8" indent="yes"></xsl:output>
   <!--<xsl:strip-space elements="*"></xsl:strip-space>-->
   <xsl:param name="package-id" select="'newID'"/>
 	
