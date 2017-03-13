@@ -53,7 +53,44 @@ document illustrating the use of EML. The "test" directory contains a number
 of sample instance documents used for testing the schemas, and an application
 for checking document validity under JUnit (see http://junit.org).
 
-## HIGHLIGHTS IN THIS RELEASE
+## RELEASE NOTES
+- (see also http://github.com/NCEAS/eml/issues)
+
+### 2.1.1 
+
+#### Internationalization in EML 2.1.1
+EML 2.1.1 introduces internationalization capabilities that can be used in most
+text-based elements. Version 2.1.1 remains backward-compatible with the previous
+2.1.0 release. Authors can safely upgrade existing 2.1.0 documents to 2.1.1
+without altering any content, though adding additional language translations is
+encouraged.
+
+By allowing mixed element content, nested translation elements can be included
+without altering or introducing ambiguity with respect to EML element
+cardinality. Translation elements use standard xml:lang attributes to specify
+the language used for their content. Translation elements can be nested such
+that child elements may inherit or override the language used by their
+ancestors. The top-level EML element may include an xml:lang attribute which
+will apply to every element in the document unless a child element includes a
+different xml:lang attribute to override the document default.
+
+Multi-lingual authors of EML should carefully consider their primary target
+audience when deciding the default document language. Early adopters should be
+aware search tools like Metacat will require custom configuration in order to
+search arbitrarily nested translations.
+
+The internationalization feature allows authors to place any language in <value>
+tags nested within most EML text fields. The xml:lang attribute should be used
+to explicitly declare the language used.
+
+Additional documentation and examples are available in the EML specification.
+The i18nNonEmptyStringType is used for simple text, while i18nString for more
+structured text elements.
+
+#### Schema changes:
+    - [76](https://github.com/NCEAS/eml/issues/76): internationalization needed in EML
+
+### 2.1.0   (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 This release addresses bugs which caused the schema to be invalid with
 respect to the W3C specifications using modern validators
 (e.g., http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor,
@@ -81,19 +118,6 @@ parts of stmml.xsd, it was decided to the advance the namespace used for
 stmml-related files to "stmml-1.1", in keeping with the pattern of version
 naming in EML. The stmml authors have been contacted.
 
-## KNOWN ISSUES (see also http://github.com/NCEAS/eml/issues)
-Some areas of EML remain problematic for particular data types, and these
-are being addressed by sub-groups of the EML development group. These
-will be addressed in a backwards-incompatible release in the future. Areas
-of future development include:
-1. use of external (or multiple) dictionaries
-2. handling of ongoing data, (e.g.,use of temporal coverage elements)
-3. spatial datasets and map projections
-
-## BUGS FIXED AND NEW FEATURES IN CURRENT RELEASE
-- (see also http://github.com/NCEAS/eml/issues)
-
-### 2.1.0   (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - Schema changes:
     - 1132: eml.xsd, physical.xsd: fix access rule ambiguities
     - 2054: eml.xsd: added the <metadata> tag to additionalMetadata
