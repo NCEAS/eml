@@ -8,6 +8,13 @@
 - **Bug reports**: http://github.com/NCEAS/eml/issues
 - **Web site**: http://knb.ecoinformatics.org/software/eml
 - **Source code**: http://github.com/NCEAS/eml
+- **Validation service**: https://knb.ecoinformatics.org/emlparser/
+
+- **EML 2.1.1 Specification**
+    - [Read it online](https://knb.ecoinformatics.org/#external//emlparser/docs/eml-2.1.1/index.html)
+    - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the 
+      EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language. 
+      In addition, the full documentation on the modules is provided in HTML format.
 
 The Ecological Metadata Language consists of a number of modules that define
 an XML markup syntax for ecologically relevant metadata.  It was originally
@@ -90,7 +97,7 @@ structured text elements.
 #### Schema changes:
     - [76](https://github.com/NCEAS/eml/issues/76): internationalization needed in EML
 
-### 2.1.0   (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### 2.1.0  (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 This release addresses bugs which caused the schema to be invalid with
 respect to the W3C specifications using modern validators
 (e.g., http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor,
@@ -149,9 +156,7 @@ naming in EML. The stmml authors have been contacted.
     - 3492: the word 'unit' should be pluralized by default
 
 
-PREVIOUS RELEASES
---------------------------------------------------------------------------
-### 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 249: Update XSLT stylesheets for EML 2.0 modules
 - 939: spelling errors for 'its' in index
 - 960: parser not correctly parsing <describes> tag in additiona...
@@ -173,13 +178,13 @@ PREVIOUS RELEASES
 - 1529: no tag to specify how to handle mutltiple, repeated delimimeters
 - 1652: eml-constraint documentation error
 
-### 2.0.0 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 670: DateTimeDomain id/reference validation
 - 924: make date time its own measurement scale
 - 661: spell check eml-attribute.xsd and synchronize with unitDi
 - 918: example tag in eml:documentation
 
-### 2.0.0rc3 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 471: eml spec overview document     
 - 624: eml-methods/methodsType needs clarification on choice/seq...     
 - 627: links broken in EML FAQ     
@@ -195,7 +200,7 @@ PREVIOUS RELEASES
 - 634: Documentation of reference elements in the schemas
 - 656: physical should be repeatable
 
-### RC2 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 568: accommodate of stateful connection information   
 - 586: resolve validation problem with missing keys     
 - 588: Remove lineage tags in documentation stylesheets     
@@ -212,7 +217,7 @@ PREVIOUS RELEASES
 - 608: release preparation tasks for EML2.0.0rc2
 - 622: redundancy in eml-physical/binaryRaster
 
-### RC1 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
+### RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 471: created an EML specification overview document
 - 495: created FAQ for EML
 - 588: removed lineage tags from documentation stylesheet
@@ -256,7 +261,7 @@ PREVIOUS RELEASES
 6. Numerous bug fixes (see bugzilla.ecoinformatics.org)
 
 ## Copyright and License
-Copyright: 1997-2016 Regents of the University of California,
+Copyright: 1997-2017 Regents of the University of California,
                      University of New Mexico, and
                      Arizona State University
 
