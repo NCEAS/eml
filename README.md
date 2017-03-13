@@ -5,7 +5,7 @@
 - **Contributors**: Matthew B. Jones (jones@nceas.ucsb.edu), Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu)
 - **Version**: 2.1.1
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
-- **Bug reports**: http://bugzilla.ecoinformatics.org
+- **Bug reports**: http://github.com/NCEAS/eml/issues
 - **Web site**: http://knb.ecoinformatics.org/software/eml
 - **Source code**: http://github.com/NCEAS/eml
 
@@ -81,7 +81,7 @@ parts of stmml.xsd, it was decided to the advance the namespace used for
 stmml-related files to "stmml-1.1", in keeping with the pattern of version
 naming in EML. The stmml authors have been contacted.
 
-## KNOWN ISSUES (see also http://bugzilla.ecoinformatics.org/)
+## KNOWN ISSUES (see also http://github.com/NCEAS/eml/issues)
 Some areas of EML remain problematic for particular data types, and these
 are being addressed by sub-groups of the EML development group. These
 will be addressed in a backwards-incompatible release in the future. Areas
@@ -91,9 +91,9 @@ of future development include:
 3. spatial datasets and map projections
 
 ## BUGS FIXED AND NEW FEATURES IN CURRENT RELEASE
-- (see also http://bugzilla.ecoinformatics.org/)
+- (see also http://github.com/NCEAS/eml/issues)
 
-### 2.1.0   (numbers refer to the corresponding Bugzilla bug)
+### 2.1.0   (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - Schema changes:
     - 1132: eml.xsd, physical.xsd: fix access rule ambiguities
     - 2054: eml.xsd: added the <metadata> tag to additionalMetadata
@@ -127,7 +127,7 @@ of future development include:
 
 PREVIOUS RELEASES
 --------------------------------------------------------------------------
-### 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug)
+### 2.0.1 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 249: Update XSLT stylesheets for EML 2.0 modules
 - 939: spelling errors for 'its' in index
 - 960: parser not correctly parsing <describes> tag in additiona...
@@ -149,13 +149,13 @@ PREVIOUS RELEASES
 - 1529: no tag to specify how to handle mutltiple, repeated delimimeters
 - 1652: eml-constraint documentation error
 
-### 2.0.0 Changes- (numbers refer to the corresponding Bugzilla bug)
+### 2.0.0 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 670: DateTimeDomain id/reference validation
 - 924: make date time its own measurement scale
 - 661: spell check eml-attribute.xsd and synchronize with unitDi
 - 918: example tag in eml:documentation
 
-### 2.0.0rc3 Changes- (numbers refer to the corresponding Bugzilla bug)
+### 2.0.0rc3 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 471: eml spec overview document     
 - 624: eml-methods/methodsType needs clarification on choice/seq...     
 - 627: links broken in EML FAQ     
@@ -171,7 +171,7 @@ PREVIOUS RELEASES
 - 634: Documentation of reference elements in the schemas
 - 656: physical should be repeatable
 
-### RC2 Changes- (numbers refer to the corresponding Bugzilla bug)
+### RC2 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 568: accommodate of stateful connection information   
 - 586: resolve validation problem with missing keys     
 - 588: Remove lineage tags in documentation stylesheets     
@@ -188,7 +188,7 @@ PREVIOUS RELEASES
 - 608: release preparation tasks for EML2.0.0rc2
 - 622: redundancy in eml-physical/binaryRaster
 
-### RC1 Changes- (numbers refer to the corresponding Bugzilla bug)
+### RC1 Changes- (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)
 - 471: created an EML specification overview document
 - 495: created FAQ for EML
 - 588: removed lineage tags from documentation stylesheet
