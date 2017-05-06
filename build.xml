@@ -87,7 +87,7 @@
         <property name="servletdir" value="emlparser"/>
         <!-- the path to the servlet from the servletdir -->
         <property name="servletpath" value="/emlparser"/>
-        <property name="version" value="2.1.1"/>
+        <property name="version" value="2.2.0"/>
         <!-- namespaces that the servlet should auto resolve -->
         
     <!-- LOCAL TEST VALUES -->    
@@ -114,6 +114,7 @@
         <property name="eml2_0_1-tag" value="RELEASE_EML_2_0_1"/>
         <property name="eml2_1_0-tag" value="RELEASE_EML_2_1_0"/>
         <property name="eml2_1_1-tag" value="RELEASE_EML_2_1_1"/>
+        <property name="eml2_2_0-tag" value="RELEASE_EML_2_2_0"/>
     </target>
 
     <target name="init" depends="config">
@@ -198,7 +199,7 @@
         your CLASSPATH in order for this to work -->
     <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml,eml210infohtml,eml211infohtml">
         <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
-           includes="*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
+            includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
         <style basedir="." destdir="${build.docs}" style="members.xsl" classpath="${cpath}" 
            includes="members.xml" processor="trax"/>
         <copy todir="${build.docs}" filtering="yes">
@@ -209,7 +210,7 @@
         </copy>
         <copy todir="${build.docs}/eml-${version}" filtering="no">
             <fileset dir=".">
-                <include name="*.png"/>
+                <include name="img/*.png"/>
                 <include name="eml-dublinCore.html"/>
             </fileset>
         </copy>
@@ -287,7 +288,7 @@
 
     <target name="docbook" depends="init">
         <style basedir="." style="buildDocBook.xsl"
-           in="eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
+            in="xsd/eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
            classpath="${cpath}" processor="trax"/>
         <style basedir="." style="sortDocBook.xsl"
            in="${build.dir}/eml-docbook-nosort.xml"
@@ -388,7 +389,7 @@
     <target name="tablehtml" depends="init">
         <copy file="default.css" todir="${build.docs}"/>
         <style basedir="." style="buildDependencyTable.xsl"
-           in="eml.xsd"
+            in="xsd/eml.xsd"
            out="${build.docs}/eml-${version}/eml-dependencies.html"
            classpath="${cpath}" processor="trax"/>
         <echo>

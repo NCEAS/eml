@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
                 version="1.0">
 <xsl:output method="xml" indent="yes"/>
 <xsl:output doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
@@ -188,11 +188,11 @@
       </title>
       <!-- Get the eml module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-resource module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-resource.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-resource.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
     <section>
@@ -211,19 +211,19 @@
         </para>
       <!-- Get the eml-dataset module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-dataset.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-dataset.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-literature module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-literature.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-literature.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-software module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-software.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-software.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-protocol module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-protocol.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-protocol.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
     <section>
@@ -245,27 +245,27 @@
           </para>
       <!-- Get the eml-access module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-access.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-access.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-physical module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-physical.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-physical.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-party module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-party.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-party.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-coverage module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-coverage.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-coverage.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-project module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-project.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-project.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-methods module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-methods.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-methods.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
     <section>
@@ -292,15 +292,15 @@
           </para>
       <!-- Get the eml-entity module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-entity.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-entity.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-attribute module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-attribute.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-attribute.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-constraint module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-constraint.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-constraint.xsd')//doc:moduleDescription/*"
         mode="copy"/>
         <!--section>
           <title>
@@ -328,27 +328,27 @@
           </para>
       <!-- Get the eml-dataTable module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-dataTable.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-dataTable.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-spatialRaster module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-spatialRaster.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-spatialRaster.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-spatialVector module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-spatialVector.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-spatialVector.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-spatialReference module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-spatialReference.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-spatialReference.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-storedProcedure module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-storedProcedure.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-storedProcedure.xsd')//doc:moduleDescription/*"
         mode="copy"/>
       <!-- Get the eml-view module description from the xsd file -->
       <xsl:apply-templates
-        select="document('eml-view.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-view.xsd')//doc:moduleDescription/*"
         mode="copy"/>
     </section>
     <section>
@@ -363,7 +363,7 @@
             paragraphs, lists, subscript, superscript, emphasis, etc.)
           </para>
       <xsl:apply-templates
-           select="document('eml-text.xsd')//doc:moduleDescription/*"
+          select="document('xsd/eml-text.xsd')//doc:moduleDescription/*"
            mode="copy"/>
       <section>
           <title>Dependency Chart</title>
@@ -440,9 +440,9 @@
 &lt;eml:eml
     packageId="eml.1.1" system="knb" 
     xml:lang="pt_BR"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
   
@@ -606,9 +606,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -639,9 +639,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -675,9 +675,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -711,9 +711,9 @@
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd"&gt;
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
     &lt;title&gt;Sample Dataset Description&lt;/title&gt;
@@ -1063,7 +1063,7 @@
   <title><xsl:value-of select="./doc:moduleName"/></title>
   <para>Normative technical docs for
   <ulink>
-    <xsl:attribute name="url">./<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
+      <xsl:attribute name="url">./xsd/<xsl:value-of select="./doc:moduleName"/>.html</xsl:attribute>
     <xsl:value-of select="./doc:moduleName"/>
   </ulink>
   </para>
@@ -1113,7 +1113,7 @@
   <indexentry>
     <primaryie>
       <ulink>
-        <xsl:attribute name="url">./<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
+          <xsl:attribute name="url">./xsd/<xsl:value-of select="//doc:moduleName"/>.html#<xsl:value-of select="@name"/></xsl:attribute>
         <xsl:value-of select="@name"/></ulink>-<xsl:value-of select="//doc:moduleName"/>
     </primaryie>
   </indexentry>

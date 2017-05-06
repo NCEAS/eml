@@ -34,7 +34,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1"
+                xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
                 version="1.0">
 <xsl:output method="html" indent="yes"/>
 

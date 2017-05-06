@@ -29,7 +29,7 @@
   * module of the Ecological Metadata Language (EML) into an HTML format
   * suitable for rendering with modern web browsers.
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-function" xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/02/xpath-function" xmlns:eml="eml://ecoinformatics.org/eml-2.2.0" version="1.0">
   <xsl:import href="emlroot.xsl"/>
 
   <xsl:output method="html" encoding="UTF-8"

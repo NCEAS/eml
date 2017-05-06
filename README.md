@@ -1,17 +1,17 @@
 # EML: Ecological Metadata Language
 
-[![EML](https://img.shields.io/badge/eml-2.1.1-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
+[![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
 - **Contributors**: Matthew B. Jones (jones@nceas.ucsb.edu), Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu)
-- **Version**: 2.1.1
+- **Version**: 2.2.0
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
 - **Bug reports**: http://github.com/NCEAS/eml/issues
 - **Web site**: http://knb.ecoinformatics.org/software/eml
 - **Source code**: http://github.com/NCEAS/eml
 - **Validation service**: https://knb.ecoinformatics.org/emlparser/
 
-- **EML 2.1.1 Specification**
-    - [Read it online](https://knb.ecoinformatics.org/#external//emlparser/docs/eml-2.1.1/index.html)
+- **EML 2.2.0 Specification**
+    - [Read it online](https://knb.ecoinformatics.org/#external//emlparser/docs/eml-2.2.0/index.html)
     - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the 
       EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language. 
       In addition, the full documentation on the modules is provided in HTML format.
@@ -63,6 +63,12 @@ for checking document validity under JUnit (see http://junit.org).
 ## RELEASE NOTES
 - (see also http://github.com/NCEAS/eml/issues)
 
+### 2.2.0
+
+#### Major New Features
+
+#### Schema changes:
+ 
 ### 2.1.1 
 
 #### Internationalization in EML 2.1.1

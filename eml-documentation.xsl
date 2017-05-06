@@ -35,7 +35,7 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.1.1" version="1.0">
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" version="1.0">
   <xsl:output method="html"></xsl:output>
   <xsl:template match="/">
     <html>
@@ -225,7 +225,7 @@
         <td class="tablepanel"> View an image of the schema: </td>
         <td class="tablepanel">
           <a>
-            <xsl:attribute name="href">
+              <xsl:attribute name="href"><xsl:text>../img/</xsl:text>
               <xsl:value-of select="//doc:moduleName"></xsl:value-of>.png</xsl:attribute>
             <xsl:attribute name="target">offline</xsl:attribute>
             <xsl:value-of select="//doc:moduleName"></xsl:value-of> image</a>
