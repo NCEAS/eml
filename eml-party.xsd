@@ -296,7 +296,10 @@
               within a directory of individuals that may contain further, and 
               possibly more current, information about the party.
               </doc:description>
-              <doc:example>uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</doc:example>
+              <doc:example>http://orcid.org/0000-0002-1825-0097</doc:example>
+              <doc:example>
+                uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org
+              </doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -314,6 +317,7 @@
                       example an LDAP URL. However, it could also be a
                       non-parsable description of the directory system if
                       that is all that is available.</doc:description>
+                      <doc:example>http://orcid.org</doc:example>
                       <doc:example>
                         ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org
                       </doc:example>
