@@ -222,7 +222,7 @@
     <target name="stripdocs" depends="init">
         <mkdir dir="${build.stripped}"/>
         <style basedir="." destdir="${build.stripped}" extension=".xsd"
-           style="removeAnnotation.xsl" includes="*.xsd" classpath="${cpath}" processor="trax"/>
+            style="${style.dir}/removeAnnotation.xsl" includes="*.xsd" classpath="${cpath}" processor="trax"/>
         <echo>
 
            ******************************************
