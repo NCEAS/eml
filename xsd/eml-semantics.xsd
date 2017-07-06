@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns="eml://ecoinformatics.org/semantics-2.2.0" targetNamespace="eml://ecoinformatics.org/semantics-2.2.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+    Copyright: 2017 Regents of the University of California
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:appinfo>
+      <doc:moduleDocs>
+        <doc:moduleName>eml-semantics</doc:moduleName>
+        <doc:moduleDescription>
+          <section xmlns="">
+            <title>
+                The eml-semantics module - Semantic annotations for formalizing meaning
+          </title>
+          <para>
+                The eml-semantics module defines types and elements for annotating other
+                structures within EML with semantically-precise terms from various
+                controlled vocabularies.  This is accomplished by associating the global
+                URI for a term along with the common label for the term with one of the
+                elements within EML, such as an attribute, an entity, or an overall dataset.
+                It is used throughout the other EML modules where detailed semantic 
+                information is needed.
+          </para>
+          </section>
+        </doc:moduleDescription>
+        <doc:recommendedUsage>all datasets</doc:recommendedUsage>
+        <doc:standAlone>yes</doc:standAlone>
+      </doc:moduleDocs>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexType name="SemanticAnnotation">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Semantic annotation</doc:tooltip>
+        <doc:summary>A semantically-precise term associated with another element.
+        </doc:summary>
+        <doc:description>
+          <section xmlns="">
+            <para>The SemanticAnnotation Type contains 
+                elements that are used to associate a controlled term from a specific
+                formal vocabulary with other elements within EML.  For example, one
+                might want to provide the precise set of terms from an ontology that
+                clarify the measurement semantics of an attribute within a data set, 
+                or associate a specific term with a data table or dataset.
+            </para>
+          </section>
+        </doc:description>
+        <doc:example>Please see the examples for the particular
+        subfields.</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="termURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Term URI</doc:tooltip>
+              <doc:summary>The persistent URI used to identify a term from a vocabulary.
+              </doc:summary>
+              <doc:description>The URI for a term that is drawn from a controlled
+                  vocabulary such as a published ontology or controlled term list. These terms
+                  should provide a semantically-precise definition of the term, inlcuding various
+                  relationships to related terms.  Term URIs are typically drawn from formal
+                  ontologies that provide well-defined logical semantics and provide for various
+                  types of reasoning about term equivalence and overlap.
+                  Term URIs should be persistent and unique over decades,
+                  and the meaning of the terms associated with the URI should be stable
+                  over time as well. These URIs are usually constructed using
+                  an additional abstraction layer via link resolvers, rather than directly
+                  resolving to the term definition itself.  Thus, when resolving the termURI, 
+                  software user agents should be prepared to follow multiple redirects before
+                  finally resolving the current location of the term definition.
+              </doc:description>
+              <doc:example>http://</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="termLabel" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Term Label</doc:tooltip>
+              <doc:summary>
+                  A human readable representation of the controlled term. 
+              </doc:summary>
+              <doc:description>
+                  A label that provides a human readable representation of
+                  the controlled term. The label is often used to represent the controlled
+                  term when displaying annotations in software. The label is often redundant
+                  with one or more labels that are defined in the controlled vocabulary itself,
+                  but is repreated here within the EML document to make it easy for consumers to
+                  display the annotation to users.  Other labels, including labels in multiple
+                  languages, may often be accessible from within the ontology or controlled
+                  vocabularly accessible at the termURI.  Term definitions and relationships to 
+                  other terms are also typically provided within the vocabularly accessible 
+                  at the termURI.  Software and people can resolve the term URI to find out 
+                  the definition of the term and retrieve additional labels and other metadata
+                  about the term for presentation to users.
+              </doc:description>
+              <doc:example>Net Primary Production</doc:example>
+              <doc:example>Carbon</doc:example>
+              <doc:example>Density</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:element name="annotation" type="SemanticAnnotation">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>Semantic Annotation</doc:tooltip>
+        <doc:summary>A precisely-defined semantic term.
+        </doc:summary>
+        <doc:description>The annotation represents a precisely-defined semantic
+            term that is used to annotate another structure within EML, such as an
+            attribute, entity, or dataset.
+        </doc:description>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>
