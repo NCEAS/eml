@@ -200,8 +200,6 @@
     <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml,eml210infohtml,eml211infohtml">
         <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
             includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
-        <style basedir="." destdir="${build.docs}" style="members.xsl" classpath="${cpath}" 
-           includes="members.xml" processor="trax"/>
         <copy todir="${build.docs}" filtering="yes">
             <fileset dir=".">
                 <include name="index.html"/>
