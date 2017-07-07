@@ -126,10 +126,11 @@
              </xsl:for-each>
              </xsl:if>
              <!-- put in the alternate identifiers -->
-             <xsl:if test="keywordSet">
+             <xsl:if test="alternateIdentifier">
              <xsl:for-each select="alternateIdentifier">
                <xsl:call-template name="resourcealternateIdentifier">
-                 <xsl:with-param name="resfirstColStyle" select="$firstColStyle"/>
+                   <xsl:with-param name="system" select="./@system"/>
+                   <xsl:with-param name="resfirstColStyle" select="$firstColStyle"/>
                  <xsl:with-param name="ressecondColStyle" select="$secondColStyle"/>
                </xsl:call-template>
              </xsl:for-each>

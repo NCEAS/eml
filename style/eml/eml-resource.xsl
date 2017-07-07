@@ -47,6 +47,7 @@
 
   <!-- style the alternate identifier elements -->
   <xsl:template name="resourcealternateIdentifier" >
+      <xsl:param name="system"/>
       <xsl:param name="resfirstColStyle"/>
       <xsl:param name="ressecondColStyle"/>
       <xsl:if test="normalize-space(.)!=''">
@@ -56,6 +57,9 @@
         	<xsl:call-template name="i18n">
        			<xsl:with-param name="i18nElement" select="."/>
        		</xsl:call-template>
+          <xsl:if test="normalize-space($system)!=''">
+              &#160;(<xsl:value-of select="$system"/>)
+          </xsl:if>
         </td>
       </tr>
       </xsl:if>
