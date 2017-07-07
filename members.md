@@ -41,24 +41,26 @@ EML project members. Contributions should be submitted as pull
 requests, and will be reviewed and merged by an EML project member.
 
 ## Current maintainers
-
-| Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu |
-| Mark Schiuldhauer | NCEAS, UCSB | schild@nceas.ucsb.edu |
-| Chris Jones | NCEAS, UCSB | cjones@nceas.ucsb.edu |
-| Corinna Gries | EDI, UW | gries@ecoinformatics.org |
-| Ken Ramsey | LTER JRN, NMSU | ramsey@ecoinformatics.org |
-| Margaret O'Brien | EDI, UCSB | obrien@ecoinformatics.org |
-| Mark Servilla | EDI, UNM | servilla@ecoinformatics.org |
+Name | Organization | Email
+----|---------------|------
+Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu
+Mark Schiuldhauer | NCEAS, UCSB | schild@nceas.ucsb.edu
+Chris Jones | NCEAS, UCSB | cjones@nceas.ucsb.edu
+Corinna Gries | EDI, UW | gries@ecoinformatics.org
+Ken Ramsey | LTER JRN, NMSU | ramsey@ecoinformatics.org
+Margaret O'Brien | EDI, UCSB | obrien@ecoinformatics.org
+Mark Servilla | EDI, UNM | servilla@ecoinformatics.org
 
 ## Past maintainers
-
-| Chad Berkley | NCEAS, UCSB | berkley@nceas.ucsb.edu |
-| James Brunt | LTER, UNM | brunt@ecoinformatics.org |
-| David Blankman | LTER-Israel, Ma'arg | blankman@ecoinformatics.org |
-| Daniel Higgens | NCEAS, UCSB | higgins@nceas.ucsb.edu |
-| Peter McCartney | LTER CAP, ASU | mccartney@ecoinformatics.org |
-| Matthew Brooke | NCEAS, UCSB | brooke@ecoinformatics.org |
-| Scott Chapal | Jones Ecological Research Center | chapal@ecoinformatics.org |
-| Tim Bergsma | LTER KBS, MSU | bergsma@ecoinformatics.org |
-| Sid Garg | NCEAS, UCSB | sgarg@ecoinformatics.org |
+Name | Organization | Email
+----|---------------|------
+Chad Berkley | NCEAS, UCSB | berkley@nceas.ucsb.edu
+James Brunt | LTER, UNM | brunt@ecoinformatics.org
+David Blankman | LTER-Israel, Ma'arg | blankman@ecoinformatics.org
+Daniel Higgens | NCEAS, UCSB | higgins@nceas.ucsb.edu
+Peter McCartney | LTER CAP, ASU | mccartney@ecoinformatics.org
+Matthew Brooke | NCEAS, UCSB | brooke@ecoinformatics.org
+Scott Chapal | Jones Ecological Research Center | chapal@ecoinformatics.org
+Tim Bergsma | LTER KBS, MSU | bergsma@ecoinformatics.org
+Sid Garg | NCEAS, UCSB | sgarg@ecoinformatics.org
 
