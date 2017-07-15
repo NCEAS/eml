@@ -9,7 +9,7 @@
 - **Web site**: http://knb.ecoinformatics.org/software/eml
 - **Source code**: http://github.com/NCEAS/eml
 - **Validation service**: https://knb.ecoinformatics.org/emlparser/
-- **Slack Discussion channel**: #eml on https://slack.nceas.ucsb.edu
+- **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
 
 - **EML 2.1.1 Specification**
     - [Read it online](https://knb.ecoinformatics.org/#external//emlparser/docs/eml-2.1.1/index.html)
