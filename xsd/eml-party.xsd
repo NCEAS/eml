@@ -288,15 +288,18 @@
             <xs:appinfo>
               <doc:tooltip>User Identifier</doc:tooltip>
               <doc:summary>An identifier that links this party to a
-              directory of personnel</doc:summary>
+              directory of individuals</doc:summary>
               <doc:description>An identifier that links this party to a
-              directory of personnel.  Although specific contact information
+              directory of individuals.  Although specific contact information
               for a party might change, the underlying correspondence to a
               real individual does not.  This identifier provides a pointer
-              within a personnel directory that may contain further, and possibly
-              more current, information about the party.
+              within a directory of individuals that may contain further, and 
+              possibly more current, information about the party.
               </doc:description>
-              <doc:example>uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</doc:example>
+              <doc:example>http://orcid.org/0000-0002-1825-0097</doc:example>
+              <doc:example>
+                uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org
+              </doc:example>
             </xs:appinfo>
           </xs:annotation>
           <xs:complexType>
@@ -311,9 +314,10 @@
                       <doc:description>This attribute names the directory system
                       to which this userId applies. This will generally
                       be a URL that shows how to look up information, for
-                      example an LDAP url. However, it could also be a
+                      example an LDAP URL. However, it could also be a
                       non-parsable description of the directory system if
                       that is all that is available.</doc:description>
+                      <doc:example>http://orcid.org</doc:example>
                       <doc:example>
                         ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org
                       </doc:example>
