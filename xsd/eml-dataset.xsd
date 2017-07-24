@@ -429,7 +429,8 @@
       <xs:enumeration value="monthly"/>
       <xs:enumeration value="notPlanned"/>
       <xs:enumeration value="weekly"/>
-      <xs:enumeration value="unkown"/>
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="unkown"/>  <!-- deprecated, keep for compat., spelling error from prior version -->
       <xs:enumeration value="otherMaintenancePeriod"/>
     </xs:restriction>
   </xs:simpleType>
