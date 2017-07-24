@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <eml:eml
     packageId="eml.1.1" system="knb"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd">
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 ../../../xsd/eml.xsd">
 
 <dataset>
   <title>Data from Cedar Creek LTER on productivity and species richness
@@ -55,6 +55,10 @@
     <keyword>species-area</keyword>
     <keyword>species richness</keyword>
   </keywordSet>
+  <annotation>
+      <termURI>http://purl.obolibrary.org/obo/ENVO_01000177</termURI>
+      <termLabel>grassland biome</termLabel>
+  </annotation>
   <contact>
     <references>clarence.lehman</references>
   </contact>
@@ -83,6 +87,10 @@
         </online>
       </distribution>
     </physical>
+    <annotation>
+        <termURI>http://purl.obolibrary.org/obo/ENVO_00000260</termURI>
+        <termLabel>prarie</termLabel>
+    </annotation>
     <attributeList id="at.1">
       <attribute id="att.1">
         <attributeName>fld</attributeName>
@@ -277,6 +285,18 @@
             </numericDomain>
           </ratio>
         </measurementScale>
+        <annotation>
+            <termURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</termURI>
+            <termLabel>Mass</termLabel>
+        </annotation>
+        <annotation>
+            <termURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</termURI>
+            <termLabel>Kilogram</termLabel>
+        </annotation>
+        <annotation>
+            <termURI>http://example.com/example-vocab-1.owl#PlantSample</termURI>
+            <termLabel>Plant Sample</termLabel>
+        </annotation>
       </attribute>
       <attribute id="att.13">
         <attributeName>sppm2</attributeName>
@@ -324,7 +344,7 @@
 <additionalMetadata>
 <metadata>
 <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
-    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
+    xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 ../../../xsd/stmml.xsd">
     <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
     <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
     <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
