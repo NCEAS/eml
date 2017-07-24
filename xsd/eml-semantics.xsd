@@ -64,8 +64,7 @@
         subfields.</doc:example>
       </xs:appinfo>
     </xs:annotation>
-    <xs:choice>
-      <xs:sequence>
+    <xs:sequence>
         <xs:element name="termURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
@@ -117,11 +116,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-      </xs:sequence>
-    </xs:choice>
-    <xs:attribute name="id" type="res:IDType" use="optional"/>
-    <xs:attribute name="system" type="res:SystemType" use="optional"/>
-    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="annotation" type="SemanticAnnotation">
     <xs:annotation>
@@ -129,8 +124,8 @@
         <doc:tooltip>Semantic Annotation</doc:tooltip>
         <doc:summary>A precisely-defined semantic term.
         </doc:summary>
-        <doc:description>The annotation represents a precisely-defined semantic
-            term that is used to annotate another structure within EML, such as an
+        <doc:description>An annotation represents a precisely-defined semantic
+            term that is used to label another structure within EML, such as an
             attribute, entity, or dataset.
         </doc:description>
       </xs:appinfo>
