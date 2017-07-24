@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:txt="eml://ecoinformatics.org/text-2.2.0" xmlns:rp="eml://ecoinformatics.org/party-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns="eml://ecoinformatics.org/resource-2.2.0" targetNamespace="eml://ecoinformatics.org/resource-2.2.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:txt="eml://ecoinformatics.org/text-2.2.0" xmlns:rp="eml://ecoinformatics.org/party-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns:sem="eml://ecoinformatics.org/semantics-2.2.0" xmlns="eml://ecoinformatics.org/resource-2.2.0" targetNamespace="eml://ecoinformatics.org/resource-2.2.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/party-2.2.0" schemaLocation="eml-party.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/text-2.2.0" schemaLocation="eml-text.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
   
   <xs:annotation>
@@ -387,6 +388,24 @@
             entire extent to which all of the data might
             apply.</doc:description>
             <doc:example>See the coverage module for examples.</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="annotation" type="sem:SemanticAnnotation"
+                  minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Semantic Annotation</doc:tooltip>
+            <doc:summary>A precisely-defined semantic type for this resource.
+            </doc:summary>
+            <doc:description>An annotation represents a precisely-defined semantic
+                  type that applies to this resource.  This semantic type is used to
+                  associate precise semantics with the resource.  Each annotation
+                  consists of a termURI which is the canonical reference fo the term, and 
+                  a termLabel that can be used to display the term to users.  The termURI is
+                  typically resolvable to a controlled vocabulary that provides a definition,
+                  relationships to other terms, and multiple labels for displaying the term.
+            </doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>

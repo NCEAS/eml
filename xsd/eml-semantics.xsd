@@ -83,9 +83,12 @@
                   an additional abstraction layer via link resolvers, rather than directly
                   resolving to the term definition itself.  Thus, when resolving the termURI, 
                   software user agents should be prepared to follow multiple redirects before
-                  finally resolving the current location of the term definition.
+                  finally resolving the current location of the term definition. However, there
+                  is no requirement that termURIs need to be resolvable, and metadata parsers should
+                  expect to find termURIs that do not resolve and are only used as unique URIs for the term.
               </doc:description>
-              <doc:example>http://</doc:example>
+              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</doc:example>
+              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -110,6 +113,8 @@
                   the definition of the term and retrieve additional labels and other metadata
                   about the term for presentation to users.
               </doc:description>
+              <doc:example>Mass</doc:example>
+              <doc:example>Kilogram</doc:example>
               <doc:example>Net Primary Production</doc:example>
               <doc:example>Carbon</doc:example>
               <doc:example>Density</doc:example>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:cit="eml://ecoinformatics.org/literature-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns:md="eml://ecoinformatics.org/methods-2.2.0" xmlns="eml://ecoinformatics.org/attribute-2.2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:unit="eml://ecoinformatics.org/units-2.2.0" targetNamespace="eml://ecoinformatics.org/attribute-2.2.0">
+<xs:schema xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:cit="eml://ecoinformatics.org/literature-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns:md="eml://ecoinformatics.org/methods-2.2.0" xmlns="eml://ecoinformatics.org/attribute-2.2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:unit="eml://ecoinformatics.org/units-2.2.0" xmlns:sem="eml://ecoinformatics.org/semantics-2.2.0" targetNamespace="eml://ecoinformatics.org/attribute-2.2.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/methods-2.2.0" schemaLocation="eml-methods.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/literature-2.2.0" schemaLocation="eml-literature.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/units-2.2.0" schemaLocation="eml-unitTypeDefinitions.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-attribute.xsd,v $'
@@ -751,6 +752,27 @@
               possibly override methods provided at a higher level such as
               entity or dataset.
               Please see the eml-methods module for complete documentation.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="annotation" type="sem:SemanticAnnotation"
+                    minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Semantic Annotation</doc:tooltip>
+              <doc:summary>A precisely-defined semantic type for this attribute.
+              </doc:summary>
+              <doc:description>An annotation represents a precisely-defined semantic
+                  type that applies to this attribute.  This semantic type is used to
+                  associate precise measurement semantics with the attribute, including 
+                  the property that is being measured (oboe:Characteristic), the entity
+                  that is being measured (oboe:Entity), and the measurement standard for
+                  interpreting values for this attribute (oboe:Standard). Each annotation
+                  consists of a termURI which is the canonical reference fo the term, and
+                  a termLabel that can be used to display the term to users.  The termURI is
+                  typically resolvable to a controlled vocabulary that provides a definition,
+                  relationships to other terms, and multiple labels for displaying the term.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>
