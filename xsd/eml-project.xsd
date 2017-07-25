@@ -180,11 +180,29 @@
             <xs:appinfo>
               <doc:tooltip>Funding</doc:tooltip>
               <doc:summary>Funding information.</doc:summary>
-              <doc:description>The funding field is used to provide information
-              about funding sources for the project such as: grant and contract
-              numbers; names and addresses of funding sources. Other
-              funding-related information may also be
+              <doc:description>The funding field is used to provide general information
+              about the funding for a project, generally in prose form. This field is
+              included for historical compatibility, and has been replaced by the
+              award field that provides structured information about funding
               included.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="award" type="AwardType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Award information</doc:tooltip>
+              <doc:summary>Award information.</doc:summary>
+              <doc:description>The award field is used to provide specific information
+              about the funding awards for a project in a structured format.  Sub-fields
+              are provided for the name of the funding agency, the Open Funder Registry
+              identifiers for the agency and program that made the award, the award 
+              number assigned, the title of the award, and the URL to the award page
+              describing the award. The award field replaces the earlier funding field
+              from prior EML version releases.  In general, the funding agency should be
+              listed with a cross-reference to the appropriate identifier from the 
+              Open Funder Registry (included in the EML distribution.
+              </doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -417,6 +435,104 @@
     <xs:attribute name="id" type="res:IDType" use="optional"/>
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:complexType name="AwardType">
+    <xs:annotation>
+      <xs:appinfo>
+        <doc:tooltip>AwardType</doc:tooltip>
+        <doc:summary>Information about a funding award.
+        resource.</doc:summary>
+        <doc:description>
+          <section xmlns="">
+            <para>The AwardType is used to enter information about a funding award
+        associated with a project.  The containing project contains the list of 
+        investigators and for the award, while the `award` field contains specifics
+        such as the agency name, award number, and funding program identifiers.</para>
+          </section>
+        </doc:description>
+        <doc:example>Please see the examples within each subfield.</doc:example>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+<!--
+<funder_name>National Science Foundation</funder_name >
+<funder_identifier>https://doi.org/10.13039/00000001<funder_identifier>
+<award_number>1546024</award_number>
+<title>Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</title>
+<awardURL>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</awardURL>
+-->
+
+      <xs:element name="funder_name" type="res:i18nNonEmptyStringType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Funder Name</doc:tooltip>
+            <doc:summary>The name of the funding institution that made this award</doc:summary>
+            <doc:description>The name of the funding institution, with fully expanded acronyms
+            to show the full, official name of the funding agency.
+            </doc:description>
+            <doc:example>National Science Foundation</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="funder_identifier" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Funder identifier</doc:tooltip>
+            <doc:summary>The identifier of the funding agency.</doc:summary>
+            <doc:description>The funder identifier is used to provide one or more
+            canonical identifiers that reference the funder.  These identifiers 
+            should be globally unique.  The most common form of a funder identifier
+            is a DOI identifier of an institution or program drawn from the CrossRef
+            Open Funder Registry (https://github.com/Crossref/open-funder-registry), 
+            which assigns DOIs to each funding agency and to their programs, and 
+            links these together in a navigable hierarchy.  A copy of the current
+            Funder Registry is included as an RDF file with EML for reference, but
+            as the list is constantly growing, users can retrieve new copies of the
+            RDF file to get updates and current metadata about funders.
+            </doc:description>
+            <doc:example>http://dx.doi.org/10.13039/100000001</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="award_number" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Award Number</doc:tooltip>
+            <doc:summary>The assigned award number.</doc:summary>
+            <doc:description>The award_number field provides the unique identifier used by
+            the funder to uniquely identify an award.  These are typically alphanumeric values
+            that are unique within the system used by a given funder.   
+            </doc:description>
+            <doc:example>1546024</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="title" type="res:i18nNonEmptyStringType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Title</doc:tooltip>
+            <doc:summary>The title of the award.</doc:summary>
+            <doc:description>The title field is used for the title of the award or grant 
+            being described.
+            </doc:description>
+            <doc:example>Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="award_url" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Award URL</doc:tooltip>
+            <doc:summary>The URL associated with award.</doc:summary>
+            <doc:description>Typically, the award_url is use to find and locate the award, and
+            generally addresses the internet location to find out more information about the
+            award. 
+            </doc:description>
+            <doc:example>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="DescriptorType">
     <xs:annotation>
