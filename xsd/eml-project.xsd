@@ -468,7 +468,9 @@
             <doc:tooltip>Funder Name</doc:tooltip>
             <doc:summary>The name of the funding institution that made this award</doc:summary>
             <doc:description>The name of the funding institution, with fully expanded acronyms
-            to show the full, official name of the funding agency.
+            to show the full, official name of the funding agency. In general, this should match
+            the official name of the funder as listed in an Authority such as the CrossRef Open 
+            Funder Registry.
             </doc:description>
             <doc:example>National Science Foundation</doc:example>
           </xs:appinfo>
@@ -526,7 +528,7 @@
             <doc:summary>The URL associated with award.</doc:summary>
             <doc:description>Typically, the award_url is use to find and locate the award, and
             generally addresses the internet location to find out more information about the
-            award. 
+            award.  This should point to a funder site for the award, rather than a project site.
             </doc:description>
             <doc:example>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</doc:example>
           </xs:appinfo>
