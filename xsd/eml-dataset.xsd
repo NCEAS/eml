@@ -299,16 +299,19 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
-        <xs:element name="citation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="usageCitation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Data Citation</doc:tooltip>
+              <doc:tooltip>Usage Citation</doc:tooltip>
               <doc:summary>A citation to articles or products in which the 
               dataset is used or referenced.</doc:summary>
               <doc:description>A citation to articles or products in which the 
               dataset is used or referenced. The citation element contains 
               general information about a literature resource that has used or 
-              references this dataset resource. 
+              references this dataset resource. It is not expected that the list of
+              usageCitations will necessarily be complete, but rather they serve as 
+              examples and pointers to scholarly works in which this dataset has been
+              used.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>
