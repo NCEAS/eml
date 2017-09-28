@@ -457,7 +457,7 @@
     	&lt;para&gt;
 	    	Neste exemplo, a tradução em Inglês é secundário
 	    	&lt;value xml:lang="en_US"&gt;In this example, the English translation is secondary&lt;/value&gt;
-    	&lt;para&gt;
+    	&lt;/para&gt;
     &lt;/abstract&gt;
     ...
     &lt;!-- two keywords, each with an equivalent translation --&gt;    
@@ -465,11 +465,11 @@
     	&lt;keyword keywordType="theme"&gt;
 	    	árvore
 	    	&lt;value xml:lang="en_US"&gt;tree&lt;/value&gt;
-    	&lt;keyword&gt;
+    	&lt;/keyword&gt;
     	&lt;keyword keywordType="theme"&gt;
 	    	água
 	    	&lt;value xml:lang="en_US"&gt;water&lt;/value&gt;
-    	&lt;keyword&gt;
+    	&lt;/keyword&gt;
     &lt;/keywordSet&gt;
     ...
   &lt;/dataset&gt;
