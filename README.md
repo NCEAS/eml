@@ -6,6 +6,7 @@
 - **Version**: 2.2.0 (**In development, not yet released**)
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
 - **Bug reports**: http://github.com/NCEAS/eml/issues
+- **Task Board**: https://waffle.io/NCEAS/eml
 - **Web site**: http://knb.ecoinformatics.org/software/eml
 - **Source code**: http://github.com/NCEAS/eml
 - **Validation service**: https://knb.ecoinformatics.org/emlparser/
