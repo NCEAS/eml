@@ -447,29 +447,29 @@
   &lt;dataset id="ds.1"&gt;
   
     &lt;!-- English title with Portuguese translation --&gt;    
-    &lt;title xml:lang=""en_US"&gt;
+    &lt;title xml:lang="en-US"&gt;
     	Sample Dataset Description
-    	&lt;value xml:lang="pt_BR"&gt;Exemplo Descrição Dataset&lt;/value&gt;
+    	&lt;value xml:lang="pt-BR"&gt;Exemplo Descrição Dataset&lt;/value&gt;
     &lt;/title&gt;
     ...
     &lt;!-- Portuguese abstract with English translation --&gt;    
     &lt;abstract&gt;
     	&lt;para&gt;
 	    	Neste exemplo, a tradução em Inglês é secundário
-	    	&lt;value xml:lang="en_US"&gt;In this example, the English translation is secondary&lt;/value&gt;
-    	&lt;para&gt;
+	    	&lt;value xml:lang=""&gt;In this example, the English translation is secondary&lt;/value&gt;
+    	&lt;/para&gt;
     &lt;/abstract&gt;
     ...
     &lt;!-- two keywords, each with an equivalent translation --&gt;    
     &lt;keywordSet&gt;
     	&lt;keyword keywordType="theme"&gt;
 	    	árvore
-	    	&lt;value xml:lang="en_US"&gt;tree&lt;/value&gt;
-    	&lt;keyword&gt;
+	    	&lt;value xml:lang="en-US"&gt;tree&lt;/value&gt;
+    	&lt;/keyword&gt;
     	&lt;keyword keywordType="theme"&gt;
 	    	água
-	    	&lt;value xml:lang="en_US"&gt;water&lt;/value&gt;
-    	&lt;keyword&gt;
+	    	&lt;value xml:lang="en-US"&gt;water&lt;/value&gt;
+    	&lt;/keyword&gt;
     &lt;/keywordSet&gt;
     ...
   &lt;/dataset&gt;
