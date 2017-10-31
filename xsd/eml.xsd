@@ -7,7 +7,7 @@
 	xmlns:acc="eml://ecoinformatics.org/access-2.2.0" 
 	xmlns:eml="eml://ecoinformatics.org/eml-2.2.0" 
 	xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
-	xmlns:prot="eml://ecoinformatics.org/protocol-2.2.0" 
+	xmlns:pro="eml://ecoinformatics.org/protocol-2.2.0" 
 	xmlns:ds="eml://ecoinformatics.org/dataset-2.2.0" 
 	xmlns:cit="eml://ecoinformatics.org/literature-2.2.0" 
 	xmlns:sw="eml://ecoinformatics.org/software-2.2.0" 
@@ -163,7 +163,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="protocol" type="prot:ProtocolType">
+          <xs:element name="protocol" type="pro:ProtocolType">
             <xs:annotation>
               <xs:appinfo>
                 <doc:tooltip>Protocol Resource</doc:tooltip>
