@@ -1,5 +1,6 @@
 # EML: Ecological Metadata Language
 
+[![Build Status](https://travis-ci.org/NCEAS/eml.svg?branch=BRANCH_EML_2_2)](https://travis-ci.org/NCEAS/eml)
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
 - **Contributors**: Matthew B. Jones (jones@nceas.ucsb.edu), Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu)
