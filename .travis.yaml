@@ -1,0 +1,10 @@
+language: bash
+
+addons:
+  apt:
+    packages:
+    - xmlstarlet
+
+script:
+    - xmlstarlet val -e -s xsd/eml.xsd lib/sample/eml-sample.xml
+
