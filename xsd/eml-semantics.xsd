@@ -28,13 +28,17 @@
                 The eml-semantics module - Semantic annotations for formalizing meaning
           </title>
           <para>
-                The eml-semantics module defines types and elements for annotating other
-                structures within EML with semantically-precise terms from various
-                controlled vocabularies.  This is accomplished by associating the global
-                URI for a term along with the common label for the term with one of the
-                elements within EML, such as an attribute, an entity, or an overall dataset.
-                It is used throughout the other EML modules where detailed semantic 
-                information is needed.
+                The eml-semantics module defines types and elements for
+                annotating other structures within EML with semantically-precise
+                statements from various controlled vocabularies.  This is
+                accomplished by associating the global URI for a property and
+                value with elements from EML, such as an attribute, an entity,
+                or a dataset. It is used throughout the other EML modules where
+                detailed semantic information is needed. For example, given an
+                EML attribute named "tmpair", one might want to indicate
+                semantically that the attribute is measuring the property
+                "Temperature" from a sample of the entity "Air", where both of
+                those terms are defined precisely in controlled vocabularies.
           </para>
           </section>
         </doc:moduleDescription>
@@ -47,16 +51,18 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Semantic annotation</doc:tooltip>
-        <doc:summary>A semantically-precise term associated with another element.
+        <doc:summary>A semantically-precise statement about an EML element.
         </doc:summary>
         <doc:description>
           <section xmlns="">
-            <para>The SemanticAnnotation Type contains 
-                elements that are used to associate a controlled term from a specific
-                formal vocabulary with other elements within EML.  For example, one
-                might want to provide the precise set of terms from an ontology that
-                clarify the measurement semantics of an attribute within a data set, 
-                or associate a specific term with a data table or dataset.
+            <para>The SemanticAnnotation Type contains
+                elements that are used to associate a semantic statement using
+                a property and value from specific formal vocabularies with
+                other elements within EML.  For example, one
+                might want to provide the precise set of semantic statements that
+                clarify the measurement semantics of an attribute (variable)
+                within a data set, or associate a specific statement with a
+                data table or dataset.
             </para>
           </section>
         </doc:description>
@@ -65,53 +71,107 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-        <xs:element name="termURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
+        <xs:element name="propertyURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Term URI</doc:tooltip>
-              <doc:summary>The persistent URI used to identify a term from a vocabulary.
+              <doc:tooltip>Property URI</doc:tooltip>
+              <doc:summary>The persistent URI used to identify a property from a vocabulary.
               </doc:summary>
-              <doc:description>The URI for a term that is drawn from a controlled
-                  vocabulary such as a published ontology or controlled term list. These terms
-                  should provide a semantically-precise definition of the term, inlcuding various
-                  relationships to related terms.  Term URIs are typically drawn from formal
-                  ontologies that provide well-defined logical semantics and provide for various
-                  types of reasoning about term equivalence and overlap.
-                  Term URIs should be persistent and unique over decades,
-                  and the meaning of the terms associated with the URI should be stable
-                  over time as well. These URIs are usually constructed using
-                  an additional abstraction layer via link resolvers, rather than directly
-                  resolving to the term definition itself.  Thus, when resolving the termURI, 
-                  software user agents should be prepared to follow multiple redirects before
-                  finally resolving the current location of the term definition. However, there
-                  is no requirement that termURIs need to be resolvable, and metadata parsers should
-                  expect to find termURIs that do not resolve and are only used as unique URIs for the term.
+              <doc:description>The URI for a property that is drawn from a controlled
+                  vocabulary, and that links the subject of this annotation
+                  (which is implied by its parent elements) to the annotation value.
+              </doc:description>
+              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#ofCharacteristic</doc:example>
+              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#usesStandard</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="propertyLabel" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Property Label</doc:tooltip>
+              <doc:summary>
+                  A human readable representation of the controlled property.
+              </doc:summary>
+              <doc:description>
+                  A label that provides a human readable representation of
+                  the controlled property. The label is often used to represent
+                  the controlled property when displaying annotations in
+                  software. The label is often redundant with one or more labels
+                  that are defined in the controlled vocabulary itself,
+                  but is repreated here within the EML document to make it easy
+                  for consumers to display the annotation to users.  Other
+                  labels, including labels in multiple languages, may often be
+                  accessible from within the ontology or controlled
+                  vocabularly accessible at the propertyURI.  Property definitions
+                  and relationships to other properties are also typically
+                  provided within the vocabularly accessible at the propertyURI.
+                  Software and people may be able to resolve the URI to find out
+                  the definition and retrieve additional labels and other metadata
+                  for presentation to users.
+              </doc:description>
+              <doc:example>has characteristic</doc:example>
+              <doc:example>uses protocol</doc:example>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="valueURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Value URI</doc:tooltip>
+              <doc:summary>The persistent URI used to identify a value from a vocabulary.
+              </doc:summary>
+              <doc:description>The URI for a value that is drawn from a controlled
+                  vocabulary such as a published ontology or controlled term list. The
+                  value represents the object of a semantic statement in which the
+                  subject is the containing element, the property is defined by
+                  the sibling propertyURI, and this valueURI element represents
+                  the object.  These values should be precisely defined,
+                  including defining various relationships to related concepts.
+                  Value URIs are typically drawn from formal ontologies that
+                  provide well-defined logical semantics and provide for various
+                  types of reasoning about value equivalence and overlap.
+                  Value URIs should be persistent and unique over decades,
+                  and the meaning of the values associated with the URI should
+                  be stable over time as well. These URIs are usually constructed
+                  using an additional abstraction layer via link resolvers,
+                  rather than directly resolving to the term definition itself.
+                  Thus, when resolving the valueURI, software user agents should
+                  be prepared to follow multiple redirects before finally
+                  resolving the current location of the value definition.
+                  However, there is no requirement that valueURIs need to be
+                  resolvable, and metadata parsers should expect to find
+                  valueURIs that do not resolve and are only used as unique
+                  URIs for the value.
               </doc:description>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</doc:example>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="termLabel" minOccurs="1" maxOccurs="1">
+        <xs:element name="valueLabel" minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
-              <doc:tooltip>Term Label</doc:tooltip>
+              <doc:tooltip>Value Label</doc:tooltip>
               <doc:summary>
-                  A human readable representation of the controlled term. 
+                  A human readable representation of the controlled value.
               </doc:summary>
               <doc:description>
                   A label that provides a human readable representation of
-                  the controlled term. The label is often used to represent the controlled
-                  term when displaying annotations in software. The label is often redundant
-                  with one or more labels that are defined in the controlled vocabulary itself,
-                  but is repreated here within the EML document to make it easy for consumers to
-                  display the annotation to users.  Other labels, including labels in multiple
-                  languages, may often be accessible from within the ontology or controlled
-                  vocabularly accessible at the termURI.  Term definitions and relationships to 
-                  other terms are also typically provided within the vocabularly accessible 
-                  at the termURI.  Software and people can resolve the term URI to find out 
-                  the definition of the term and retrieve additional labels and other metadata
-                  about the term for presentation to users.
+                  the controlled value. The label is often used to represent the
+                  controlled value when displaying annotations in software. The
+                  label is often redundant with one or more labels that are
+                  defined in the controlled vocabulary itself, but is repreated
+                  here within the EML document to make it easy for consumers to
+                  display the annotation to users.  Other labels, including
+                  labels in multiple languages, may often be accessible from
+                  within the ontology or controlled vocabularly accessible at
+                  the valueURI.  Value definitions and relationships to
+                  other terms are also typically provided within the vocabularly
+                  accessible at the valueURI.  Software and people can resolve
+                  the value URI to find out the definition of the value and
+                  retrieve additional labels and other metadata about the value
+                  for presentation to users.
               </doc:description>
               <doc:example>Mass</doc:example>
               <doc:example>Kilogram</doc:example>
@@ -127,12 +187,30 @@
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Semantic Annotation</doc:tooltip>
-        <doc:summary>A precisely-defined semantic term.
+        <doc:summary>A precisely-defined semantic statement.
         </doc:summary>
         <doc:description>An annotation represents a precisely-defined semantic
-            term that is used to label another structure within EML, such as an
-            attribute, entity, or dataset.
+            statement that is used to semantically label another structure
+            within EML, such as an attribute, entity, or dataset. The annotation
+            is composed of a subject (implied by the element containing
+            the annotation or pointed at from within eml:additionalMetadata), a
+            property that defines the relationship between the
+            subject and the object of the statement, and the value of that
+            property. This is equivalent to RDF Statements that consist of a
+            Subject, Predicate, and Object.  More concretely, the annotation
+            provides a way to state that an element within EML has a specific
+            property with a specific value.
         </doc:description>
+        <doc:example>For example, a common annotation would state that a containing
+            'attribute' uses a measurement unit of 'grams'. This would be equivalent
+            to defining a statement using the OBOE design pattern that says:
+            'attribute7' 'oboe:usesStandard' 'oboe:Gram', where 'attribute7' is
+            shorthand for the attribute in EML containing the annotation, and
+            'oboe:' is shorthand for the full OBOE URI. In this example,
+            'attribute7' is the subject represented as the id of the attribute
+            containing the annotation, 'oboe:standard' is the propertyURI for the
+            statement, and 'oboe:Gram' is the object of the statement.
+        </doc:example>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>

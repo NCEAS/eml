@@ -761,18 +761,23 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Semantic Annotation</doc:tooltip>
-              <doc:summary>A precisely-defined semantic type for this attribute.
+              <doc:summary>A precisely-defined semantic statement for this attribute.
               </doc:summary>
               <doc:description>An annotation represents a precisely-defined semantic
-                  type that applies to this attribute.  This semantic type is used to
-                  associate precise measurement semantics with the attribute, including 
-                  the property that is being measured (oboe:Characteristic), the entity
-                  that is being measured (oboe:Entity), and the measurement standard for
-                  interpreting values for this attribute (oboe:Standard). Each annotation
-                  consists of a termURI which is the canonical reference fo the term, and
-                  a termLabel that can be used to display the term to users.  The termURI is
-                  typically resolvable to a controlled vocabulary that provides a definition,
-                  relationships to other terms, and multiple labels for displaying the term.
+                  statement that applies to this attribute.  This semantic
+                  statement is used to associate precise measurement semantics
+                  with the attribute, such as the property that is being measured
+                  (e.g., oboe:Characteristic), the entity that is being measured
+                  (e.g., oboe:Entity), and the measurement standard for
+                  interpreting values for this attribute (e.g., oboe:Standard).
+                  Each annotation consists of a propertyURI and valueURI that
+                  define the property and value of the statement.  The subject
+                  of the statement is the eml:attribute that contains the
+                  annotation. The propertyLabel and valueLabel can be used
+                  to display the statement to users.  Each URI is
+                  typically resolvable to a controlled vocabulary that provides
+                  a definition, relationships to other terms, and multiple
+                  labels for displaying the statement.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>

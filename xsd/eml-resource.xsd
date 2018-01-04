@@ -396,15 +396,19 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Semantic Annotation</doc:tooltip>
-            <doc:summary>A precisely-defined semantic type for this resource.
+            <doc:summary>A precisely-defined semantic statement about this resource.
             </doc:summary>
             <doc:description>An annotation represents a precisely-defined semantic
-                  type that applies to this resource.  This semantic type is used to
-                  associate precise semantics with the resource.  Each annotation
-                  consists of a termURI which is the canonical reference fo the term, and 
-                  a termLabel that can be used to display the term to users.  The termURI is
-                  typically resolvable to a controlled vocabulary that provides a definition,
-                  relationships to other terms, and multiple labels for displaying the term.
+                  statement that applies to this resource.  This semantic
+                  statement is used to associate precise semantics with the
+                  resource.  Each annotation consists of a propertyURI and
+                  valueURI that define a property and value that apply to the
+                  resource. The subject of the statement is implicitly the
+                  eml:resource that contains the annotation.  The propertyLabel
+                  and valueLabel can be used to display the statement to users.
+                  Each URI is typically resolvable to a controlled vocabulary
+                  that provides a definition, relationships to other terms, and
+                  multiple labels for displaying the statement.
             </doc:description>
           </xs:appinfo>
         </xs:annotation>

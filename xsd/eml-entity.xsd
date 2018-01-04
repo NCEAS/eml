@@ -287,15 +287,17 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Semantic Annotation</doc:tooltip>
-            <doc:summary>A precisely-defined semantic type for this entity.
+            <doc:summary>A precisely-defined semantic statement about this entity.
             </doc:summary>
             <doc:description>An annotation represents a precisely-defined semantic
-                 type that applies to this entity.  This semantic type is used to
-                  associate precise measurement semantics with the entity.  Each annotation
-                  consists of a termURI which is the canonical reference fo the term, and 
-                  a termLabel that can be used to display the term to users.  The termURI is
-                  typically resolvable to a controlled vocabulary that provides a definition,
-                  relationships to other terms, and multiple labels for displaying the term.
+                  statement that applies to this entity.  This semantic statement
+                  is used to associate precise measurement semantics with the
+                  entity.  Each annotation consists of a propertyURI and valueURI,
+                  which define a property and a value that apply to the entity.
+                  The propertyLabel and valueLabel can be used to display the
+                  value to users.  Each URI is typically resolvable to a
+                  controlled vocabulary that provides a definition, relationships
+                  to other terms, and multiple labels for displaying the statement.
             </doc:description>
           </xs:appinfo>
         </xs:annotation>
