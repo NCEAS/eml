@@ -56,8 +56,10 @@
     <keyword>species richness</keyword>
   </keywordSet>
   <annotation>
-      <termURI>http://purl.obolibrary.org/obo/ENVO_01000177</termURI>
-      <termLabel>grassland biome</termLabel>
+      <propertyURI>http://purl.org/dc/elements/1.1/subject</propertyURI>
+      <propertyLabel>Subject</propertyLabel>
+      <valueURI>http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+      <valueLabel>grassland biome</valueLabel>
   </annotation>
   <contact>
     <references>clarence.lehman</references>
@@ -87,10 +89,6 @@
         </online>
       </distribution>
     </physical>
-    <annotation>
-        <termURI>http://purl.obolibrary.org/obo/ENVO_00000260</termURI>
-        <termLabel>prarie</termLabel>
-    </annotation>
     <attributeList id="at.1">
       <attribute id="att.1">
         <attributeName>fld</attributeName>
@@ -286,16 +284,22 @@
           </ratio>
         </measurementScale>
         <annotation>
-            <termURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</termURI>
-            <termLabel>Mass</termLabel>
+            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofCharacteristic</propertyURI>
+            <propertyLabel>Characteristic</propertyLabel>
+            <valueURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</valueURI>
+            <valueLabel>Mass</valueLabel>
         </annotation>
         <annotation>
-            <termURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</termURI>
-            <termLabel>Kilogram</termLabel>
+            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#usesStandard</propertyURI>
+            <propertyLabel>unit</propertyLabel>
+            <valueURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</valueURI>
+            <valueLabel>Kilogram</valueLabel>
         </annotation>
         <annotation>
-            <termURI>http://example.com/example-vocab-1.owl#PlantSample</termURI>
-            <termLabel>Plant Sample</termLabel>
+            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofEntity</propertyURI>
+            <propertyLabel>entity</propertyLabel>
+            <valueURI>http://example.com/example-vocab-1.owl#PlantSample</valueURI>
+            <valueLabel>Plant Sample</valueLabel>
         </annotation>
       </attribute>
       <attribute id="att.13">
