@@ -44,7 +44,7 @@ requests, and will be reviewed and merged by an EML project member.
 Name | Organization | Email
 ----|---------------|------
 Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu
-Mark Schiuldhauer | NCEAS, UCSB | schild@nceas.ucsb.edu
+Mark Schildhauer | NCEAS, UCSB | schild@nceas.ucsb.edu
 Chris Jones | NCEAS, UCSB | cjones@nceas.ucsb.edu
 Corinna Gries | EDI, UW | gries@ecoinformatics.org
 Ken Ramsey | LTER JRN, NMSU | ramsey@ecoinformatics.org
