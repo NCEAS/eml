@@ -129,11 +129,80 @@
               <doc:summary>A synopsis of the purpose of this
               dataset.</doc:summary>
               <doc:description>A synopsis of the purpose of this
-              dataset.  It may include one or more paragraphs as well as 
-              inline links to table(s) and figure(s) that summarize the 
-              data included in the data paper, including a summary of key 
+              dataset.  It may include one or more paragraphs as well as
+              inline links to table(s) and figure(s) that summarize the
+              data included in the data paper, including a summary of key
               findings if appropriate. Note that this element requires DocBook style
               formatting.  See eml-text for more information.</doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="introduction" type="txt:TextType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Introduction</doc:tooltip>
+              <doc:summary>An overview of the background and context for the dataset.</doc:summary>
+              <doc:description>One to many paragraphs that provide background
+                  and context for the dataset with appropriate figures and
+                  references.  This is similar to the introduction for a journal
+                  article, and would include, for example, project objectives,
+                  hypotheses being addressed, what is known about the pattern or
+                  process under study, how the data have been used to date
+                  (including references), and how they could be used in the future.
+                  The introduction may include figure(s) and table(s) by first
+                  attaching those entities to the dataset (e.g., dataTable,
+                  otherEntity), providing an id attribute for that entity, and
+                  then referencing that entity id in the text of the introduction
+                  using Markdown's syntax for inline images. See eml-text for
+                  more information on formatting within this section.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="gettingStarted" type="txt:TextType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Getting Started</doc:tooltip>
+              <doc:summary>A high level overview of interpretation, structure,
+                  and content of the dataset.</doc:summary>
+              <doc:description>One or more paragraphs that describe the overall
+                  interpretation, content and structure of the dataset.  For
+                  example, the number and names of data files, they types of
+                  measurements that they contain, how those data files fit
+                  together in an overall design, and how they relate to the
+                  data collections methods, experimental design, and sampling
+                  design that are described in other EML sections.  One might
+                  describe any specialized software that is available and/or may
+                  be necessary for analyzing or interpreting the data, and
+                  possibly include a high level description of data formats if
+                  they are unusual, keeping in mind that detailed desriptions
+                  of data structure and format are contained in the entity
+                  sections of EML. Citations, inline figures, and inline
+                  images can be included via inline references in Markdown
+                  sections. See eml-text for more information on formatting
+                  within this section.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="acknowledgements" type="txt:TextType" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Acknowledgements</doc:tooltip>
+              <doc:summary>Text that acknowledges funders and other key
+                  contributors.
+              </doc:summary>
+              <doc:description>One or more sentences that acknowledge funders
+                  and other key contributors to the study (excluding the
+                  dataset authors listed in the creator field). Note that
+                  funding awards are also listed by award number in the
+                  eml-project award element, which provides a structured
+                  list of funders, award numbers, and award URIs for the dataset.
+                  When displaying acknowledgements, client software should
+                  provide both the information in this acknowledgements element
+                  as well as links from the award element. See eml-text for
+                  more information on formatting within this section.
+              </doc:description>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -303,13 +372,13 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Usage Citation</doc:tooltip>
-              <doc:summary>A citation to articles or products in which the 
+              <doc:summary>A citation to articles or products in which the
               dataset is used or referenced.</doc:summary>
-              <doc:description>A citation to articles or products in which the 
-              dataset is used or referenced. The citation element contains 
-              general information about a literature resource that has used or 
+              <doc:description>A citation to articles or products in which the
+              dataset is used or referenced. The citation element contains
+              general information about a literature resource that has used or
               references this dataset resource. It is not expected that the list of
-              usageCitations will necessarily be complete, but rather they serve as 
+              usageCitations will necessarily be complete, but rather they serve as
               examples and pointers to scholarly works in which this dataset has been
               used.
               </doc:description>
