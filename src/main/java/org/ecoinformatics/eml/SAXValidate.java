@@ -179,8 +179,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
     // Parse the document
     parser.parse(new InputSource(xml));
   }
-  
-  
+
+
   /**
    * Main method will be called by the script file rnEML parser
    */
@@ -203,9 +203,9 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
 	    }
 
 	    String emlfile = "";
-	    String schemaLocation ="eml://ecoinformatics.org/eml-2.1.1 ../eml.xsd "+ 
-	    "http://www.xml-cml.org/schema/stmml-1.1 ../stmml.xsd ";
-	
+	    String schemaLocation ="eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd "+
+	    "http://www.xml-cml.org/schema/stmml-1.1 ../xsd/stmml.xsd ";
+
 	    if(args.length == 2)
 	    {
 	      emlfile = args[0];
@@ -221,13 +221,13 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
 
 	      System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema location]");
 	      System.out.println("  <eml file> = the EML file to parse");
-	      System.out.println("  <schema location> = use an alternate schema location. The default one is \"eml://ecoinformatics.org/eml-2.1.1 ../eml.xsd\"");
-	      
+	      System.out.println("  <schema location> = use an alternate schema location. The default one is \"eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd\"");
+
 	      System.exit(0);
 	    }
-	    
+
 	    String namespaceInDoc = null;
-	    
+
 	    try{
 	    	//System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
 	        SAXValidate validator = new SAXValidate(true);
