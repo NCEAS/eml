@@ -8,8 +8,8 @@
     targetNamespace="eml://ecoinformatics.org/text-2.2.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
   	schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="http://www.w3.org/XML/1998/namespace" 
-  	schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+  	schemaLocation="xml.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -87,7 +87,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="TextType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -130,7 +130,7 @@
     </xs:choice>
     <xs:attribute ref="xml:lang"/>
   </xs:complexType>
-  
+
   <xs:complexType name="ParagraphType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -264,14 +264,14 @@
                 <doc:description>the url attribute contains the location of the work for a link. This markup is a subset of DocBook.</doc:description>
                 <doc:example>url="http://dublincore.org/documents/usageguide/"</doc:example>
               </xs:appinfo>
-            </xs:annotation>            
+            </xs:annotation>
           </xs:attribute>
         </xs:complexType>
       </xs:element>
     </xs:choice>
     <xs:attribute ref="xml:lang"/>
   </xs:complexType>
-  
+
   <xs:complexType name="SectionType">
     <xs:annotation>
       <xs:appinfo>
@@ -326,7 +326,7 @@
     </xs:sequence>
     <xs:attribute ref="xml:lang"/>
   </xs:complexType>
-  
+
   <xs:complexType name="ListType">
     <xs:annotation>
       <xs:appinfo>
@@ -400,7 +400,7 @@
         </xs:element>
     </xs:sequence>
   </xs:complexType>
-  
+
   <xs:complexType name="SubSuperScriptType" mixed="true">
     <xs:annotation>
       <xs:appinfo>
@@ -446,7 +446,7 @@
     </xs:choice>
     <xs:attribute ref="xml:lang"/>
   </xs:complexType>
-  
+
 	<xs:complexType name="i18nString">
 		<xs:annotation>
           <xs:appinfo>
@@ -465,7 +465,7 @@
 		                <doc:description>Specifies the language</doc:description>
 		                <doc:example>xml:lang="en-US"</doc:example>
 		              </xs:appinfo>
-		            </xs:annotation> 
+		            </xs:annotation>
 				</xs:attribute>
 			</xs:extension>
 		</xs:simpleContent>

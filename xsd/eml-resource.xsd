@@ -5,8 +5,8 @@
   <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/text-2.2.0" schemaLocation="eml-text.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
-  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
-  
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
   <xs:annotation>
     <xs:documentation>
        '$RCSfile: eml-resource.xsd,v $'
@@ -440,7 +440,7 @@
             EML document. For example, if the same person is the creator,
             metadataProvider, and contact for a dataset, their name and address
             can be provided once as part of the "creator" element, and then
-            their "id" can be used in the "references" element of 
+            their "id" can be used in the "references" element of
             metadataProvider and contact.  This reduces the likelihood of
             error by reducing redundancy, and allows one to specify that
             two pieces of information are identical.  To be a valid EML
@@ -478,7 +478,7 @@
           <xs:appinfo>
             <doc:tooltip>Place Keywords</doc:tooltip>
             <doc:summary>Keywords pertaining to a spatial location</doc:summary>
-            <doc:description>Keywords naming geographic locations associated 
+            <doc:description>Keywords naming geographic locations associated
             with the data set.</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -488,7 +488,7 @@
           <xs:appinfo>
             <doc:tooltip>Stratum Keywords</doc:tooltip>
             <doc:summary>Keywords pertaining to a vertical stratum</doc:summary>
-            <doc:description>Keywords naming vertical strata associated 
+            <doc:description>Keywords naming vertical strata associated
             with the data set (e.g., soil horizons).</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -498,7 +498,7 @@
           <xs:appinfo>
             <doc:tooltip>Temporal Keywords</doc:tooltip>
             <doc:summary>Keywords pertaining to temporal data</doc:summary>
-            <doc:description>Keywords listing time periods associated 
+            <doc:description>Keywords listing time periods associated
             with the data set.</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -508,7 +508,7 @@
           <xs:appinfo>
             <doc:tooltip>Thematic Keywords</doc:tooltip>
             <doc:summary>Keywords pertaining to thematic subject</doc:summary>
-            <doc:description>Keywords naming thematics subjects associated 
+            <doc:description>Keywords naming thematics subjects associated
             with the data set.</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -518,7 +518,7 @@
           <xs:appinfo>
             <doc:tooltip>Taxonomic Keywords</doc:tooltip>
             <doc:summary>Keywords pertaining to taxon information</doc:summary>
-            <doc:description>Keywords listing taxonomic terms associated 
+            <doc:description>Keywords listing taxonomic terms associated
             with the data set.  Note that lists of species names or other taxon
             lists should be presented in the taxonomicCoverage element.
             </doc:description>
@@ -613,19 +613,19 @@
         <doc:description>
           <section xmlns="">
             <para>Distribution information for accessing the
-              resource by one of three methods: online, offline or inline. Generally, 
-              the Type at the resource level is intended to be informational, although 
+              resource by one of three methods: online, offline or inline. Generally,
+              the Type at the resource level is intended to be informational, although
               elements are
               included to describe a complex connection protocol.
              </para>
             <para>For more information, see the sub-elements. Also
-             compare to 
+             compare to
              <ulink url="./eml-physical.html#PhysicalDistributionType">
                 <citetitle>
              phys:PhysicalDistributionType</citetitle>
               </ulink>.
-             
-             
+
+
              </para>
           </section>
         </doc:description>
@@ -639,7 +639,7 @@
               <doc:tooltip>distribution/online</doc:tooltip>
               <doc:summary>Online distribution information</doc:summary>
               <doc:description>This element contains information for accessing the
-              resource online, represented either as a URL a connection, or 
+              resource online, represented either as a URL a connection, or
               a connectionDefinition which may be referenced in other parts of
               the EML document. See the Type definition for more information. </doc:description>
             </xs:appinfo>
@@ -650,8 +650,8 @@
             <xs:appinfo>
               <doc:tooltip>Offline distribution</doc:tooltip>
               <doc:summary>data are available offline</doc:summary>
-              <doc:description>This element is for data which are distributed offline, 
-         generally by request. See the Type 
+              <doc:description>This element is for data which are distributed offline,
+         generally by request. See the Type
         definition for more information.         </doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -661,7 +661,7 @@
             <xs:appinfo>
               <doc:tooltip>Inline distribution</doc:tooltip>
               <doc:summary>data distributed inline in the metadata.</doc:summary>
-              <doc:description>The data are distributed inline, with the metadata. See the Type 
+              <doc:description>The data are distributed inline, with the metadata. See the Type
         definition for more information.         </doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -678,10 +678,10 @@
       <xs:appinfo>
         <doc:tooltip>Connection Definition</doc:tooltip>
         <doc:summary>Definition of the connection protocol.   </doc:summary>
-        <doc:description>Definition of the connection protocol.   
+        <doc:description>Definition of the connection protocol.
         The definition has a "scheme" which identifies the
-                            protocol by name, with a detailed description 
-                            and its required parameters. A connectionDefinition 
+                            protocol by name, with a detailed description
+                            and its required parameters. A connectionDefinition
                     lists all of the parameters needed for the connection
                     and possible default values for each. A definition provided in this
                     element may be used in other parts of the EML document.</doc:description>
@@ -849,8 +849,8 @@ inline type -->
               metadata by providing it inside of the "inline" element.  For
               many text formats, the data can be simply included directly in
               the element.  However, certain character sequences are invalid in
-              an XML document (e.g., &lt;), so care will need to be taken to 
-              either 1) wrap the data in a CDATA section if needed, or 
+              an XML document (e.g., &lt;), so care will need to be taken to
+              either 1) wrap the data in a CDATA section if needed, or
               2) encode the data using a text encoding algorithm such as
               base64, and then include that in a CDATA section.  The latter
               will be necessary for binary formats.
@@ -964,17 +964,17 @@ inline type -->
           <section xmlns="">
             <para>Distribution information for accessing the
               resource online, represented either as a URL or as the series of
-              named parameters needed to connect. The URL field can contain 
+              named parameters needed to connect. The URL field can contain
               a simple web address or an entire query string. The connection
-               element allows the components of a complex protocol to 
-               be described individually. The connectionDefinition element 
-               can also be appear outside of the connection elements, 
-               so that it can be defined once and referenced by several connections. 
+               element allows the components of a complex protocol to
+               be described individually. The connectionDefinition element
+               can also be appear outside of the connection elements,
+               so that it can be defined once and referenced by several connections.
                </para>
             <para>
-               Also see the 
+               Also see the
                <ulink url="./eml-physical.html#PhysicalOnlineType">
-                <citetitle>phys:PhysicalOnlineType</citetitle></ulink>, 
+                <citetitle>phys:PhysicalOnlineType</citetitle></ulink>,
                which may be more
                appropriate for describing the online connections to a specific entity
                described by this metadata document.
@@ -989,9 +989,9 @@ inline type -->
           <xs:appinfo>
             <doc:tooltip>Description of online information</doc:tooltip>
             <doc:summary>Brief description of the the content of online</doc:summary>
-            <doc:description>This element can hold a brief description of the content 
-            of the online element's online|offline|inline child. This description element could 
-            supply content for an html anchor tag. 
+            <doc:description>This element can hold a brief description of the content
+            of the online element's online|offline|inline child. This description element could
+            supply content for an html anchor tag.
 </doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -1002,11 +1002,11 @@ inline type -->
             <xs:appinfo>
               <doc:tooltip>URL</doc:tooltip>
               <doc:summary>A URL or this resource.</doc:summary>
-              <doc:description>A URL (Uniform Resource Locator) from which this additional 
-              information can be obtained, or from which the resource can be downloaded 
-              directly. In the resource module, the distribution URL is generally meant for 
-              informational purposes, and the "function" attribute should be set to "information". 
-              However, if the URL returns the data stream itself, then the "function" attribute 
+              <doc:description>A URL (Uniform Resource Locator) from which this additional
+              information can be obtained, or from which the resource can be downloaded
+              directly. In the resource module, the distribution URL is generally meant for
+              informational purposes, and the "function" attribute should be set to "information".
+              However, if the URL returns the data stream itself, then the "function" attribute
               should be set to "download".  See the Type Definition for more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -1016,9 +1016,9 @@ inline type -->
             <xs:appinfo>
               <doc:tooltip>Connection</doc:tooltip>
               <doc:summary>A connection to a data service</doc:summary>
-              <doc:description>A description of the information needed to make an application 
-              connection to a data service. The connection contains a connectionDefinition 
-              and optional parameters for overriding defaults. See the Type Definition for 
+              <doc:description>A description of the information needed to make an application
+              connection to a data service. The connection contains a connectionDefinition
+              and optional parameters for overriding defaults. See the Type Definition for
               more information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -1029,7 +1029,7 @@ inline type -->
               <doc:tooltip>Connection Definition</doc:tooltip>
               <doc:summary>The definition of a connection
         that will be used in another location in the EML
-        document                         
+        document
                             </doc:summary>
               <doc:description>
 The definition of a type of connection
@@ -1040,11 +1040,11 @@ The definition of a type of connection
         connection element).  This connectionDefinition may be
         used by multiple connections (e.g., to download different files
         from the same database), but each connection must provide or
-        reference a valid connection definition.              
-              
+        reference a valid connection definition.
+
      The definition has a "scheme" which identifies the
-                            protocol by name, with a detailed description 
-                            and its required parameters. A connectionDefinition 
+                            protocol by name, with a detailed description
+                            and its required parameters. A connectionDefinition
                     lists all of the parameters needed for the connection
                     and possible default values for each. </doc:description>
             </xs:appinfo>
@@ -1053,7 +1053,7 @@ The definition of a type of connection
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
-  <!-- 
+  <!--
 
 URL Type -->
   <xs:complexType name="UrlType">
@@ -1069,8 +1069,8 @@ URL Type -->
                     provides further information about downloading the
                     object but does not directly return the data stream, then
                     the "function" attribute should be set to "information".
-                    If accessing the URL would directly return the data stream, 
-                    then the "function" attribute should be set to "download".  
+                    If accessing the URL would directly return the data stream,
+                    then the "function" attribute should be set to "download".
                     If the "function" attribute is omitted, then "download"
                     is implied for the URL function.
                     In more complex cases where a non-standard connection
@@ -1112,7 +1112,7 @@ connectionType -->
                     can be omitted. All information about how to use the
                     parameters to establish a session and extract data is
                     present in the connectionDefinition, possibly implicitly
-                    by naming a connection schemeName that is well-known. 
+                    by naming a connection schemeName that is well-known.
                     See descriptions
                     of the child element types for further information.
                     </doc:description>
@@ -1188,12 +1188,12 @@ connectionType -->
       <xs:appinfo>
         <doc:tooltip>Non Empty String Type</doc:tooltip>
         <doc:summary>Non Empty String Type</doc:summary>
-        <doc:description>This type specifies a content pattern for all elements 
-          that are required by EML to ensure that there is actual content (i.e., 
+        <doc:description>This type specifies a content pattern for all elements
+          that are required by EML to ensure that there is actual content (i.e.,
           not just whitespace). The pattern described can be interpreted as
           "at least one non-whitespace character, followed
           by any number of whitespace plus not-whitespace characters. "
-          Leading and/or trailing whitespace is allowed, and whitespace 
+          Leading and/or trailing whitespace is allowed, and whitespace
           may include carriage returns and newlines.</doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -1202,13 +1202,13 @@ connectionType -->
       <xs:pattern value="[\s]*[\S][\s\S]*"/>
     </xs:restriction>
   </xs:simpleType>
-	
+
 	<xs:complexType name="i18nNonEmptyStringType" mixed="true">
 		<xs:annotation>
 	      <xs:appinfo>
 	        <doc:tooltip>i18n Non Empty String Type</doc:tooltip>
 	        <doc:summary>i18n Non Empty String Type</doc:summary>
-	        <doc:description>This type specifies a content pattern for all elements 
+	        <doc:description>This type specifies a content pattern for all elements
 	          that require language translations. The xml:lang attribute
 	          can be used to define the default language for element content.
 	          Additional translations should be included as child 'value'
@@ -1222,7 +1222,7 @@ connectionType -->
 				      <xs:appinfo>
 				        <doc:tooltip>i18n Value</doc:tooltip>
 				        <doc:summary>i18n Value</doc:summary>
-				        <doc:description>Allows multiple language translations 
+				        <doc:description>Allows multiple language translations
 				        to appear as children of a mixed-content parent element. The xml:lang attribute
 				        is optional and will override any xml:lang attribute that has been
 				        specified in the ancestor elements. The content is subject to the same
@@ -1239,5 +1239,5 @@ connectionType -->
 		</xs:sequence>
 		<xs:attribute ref="xml:lang" use="optional" />
 	</xs:complexType>
-  
+
 </xs:schema>
