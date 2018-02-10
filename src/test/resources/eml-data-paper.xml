@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-<eml:eml packageId="doi:10.xxxx/example/A672144.v1" system="http://knb.ecoinformatics.org" xmlns:eml="eml://ecoinformatics.org/eml-2.2.0">
+<eml:eml packageId="doi:10.xxxx/example/A672144.v1"
+    system="http://knb.ecoinformatics.org"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
 
     <dataset>
         <title>Test data paper: Assessing ocean and atmosphere coupling using carbon flux measurements in the Beaufort Sea.</title>
@@ -56,8 +60,36 @@
             <valueURI>http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
             <valueLabel>grassland biome</valueLabel>
         </annotation>
-        <introduction>An introduction goes here.</introduction>
-        <gettingStarted>A getting started guide goes here.</gettingStarted>
+        <introduction>
+            <markdown>
+                An introduction goes here.
+
+                It can include multiple paragraphs. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought.
+
+                And bulleted lists:
+
+                - Science
+                - Engineering
+                - Math
+
+                Plus, it can include all of the other features of
+                [Github Flavored Markdown (GFM)]().
+            </markdown>
+        </introduction>
+        <gettingStarted>
+            <markdown>
+                Some intro text in the getting started, then break into subsections.
+
+                ## Level 2 heading
+
+                We use a level 2 heading because Level 1 would be at the same level as
+                the main sections of the paper.
+
+                ## Another level 2 heading
+                With some information.
+
+            </markdown>
+        </gettingStarted>
         <acknowledgements>An acknowledgements paragraph goes here.</acknowledgements>
         <contact>
             <references>http://orcid.org/0000-0003-0077-4738</references>
