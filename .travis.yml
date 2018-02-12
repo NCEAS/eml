@@ -7,4 +7,4 @@ addons:
 
 script:
     - xmlstarlet val -e -s xsd/eml.xsd lib/sample/eml-sample.xml
-
+    - ant test
