@@ -1052,6 +1052,15 @@
           <xsl:value-of select="$typename"></xsl:value-of>
         </a>
       </xsl:when>
+      <xsl:when test="$namespaceprefix = 'sem' ">
+        <a class="sitelink">
+          <xsl:attribute name="href">
+            <xsl:text>eml-semantics.html#</xsl:text>
+            <xsl:value-of select="substring-after($typename, ':')"></xsl:value-of>
+          </xsl:attribute>
+          <xsl:value-of select="$typename"></xsl:value-of>
+        </a>
+      </xsl:when>
 
       <xsl:otherwise>
         <a class="sitelink">
