@@ -364,7 +364,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="license" type="LicenseType" minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="licensed" type="LicenseType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>License</doc:tooltip>
@@ -1318,7 +1318,7 @@ connectionType -->
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-        <xs:element name="licenseName" type="OnlineType" minOccurs="1">
+        <xs:element name="licenseName" type="NonEmptyStringType" minOccurs="1">
             <xs:annotation>
                 <xs:appinfo>
                     <doc:tooltip>License Name</doc:tooltip>
