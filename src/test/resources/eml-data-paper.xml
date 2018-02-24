@@ -47,15 +47,15 @@
             <electronicMailAddress>brun@nceas.ucsb.edu</electronicMailAddress>
             <userId directory="https://orcid.org">http://orcid.org/0000-0003-0077-4738</userId>
         </creator>
-        
+
         <abstract>
             <markdown>
                 This is the data paper abstract.
-                
-                Sample equation: 
-                
+
+                Sample equation:
+
                 $$\left( x + a \right)^{n} = \sum_{k = 0}^{n}{\left( \frac{n}{k} \right)x^{k}a^{n - k}}$$
-                
+
             </markdown>
         </abstract>
         <keywordSet>
@@ -65,6 +65,11 @@
             <keyword>species-area</keyword>
             <keyword>species richness</keyword>
         </keywordSet>
+        <license>
+            <licenseName>Apache License 2.0</licenseName>
+            <url>https://spdx.org/licenses/Apache-2.0.html</url>
+            <identifier>Apache-2.0</identifier>
+        </license>
         <annotation>
             <propertyURI>http://purl.org/dc/elements/1.1/subject</propertyURI>
             <propertyLabel>Subject</propertyLabel>
@@ -85,9 +90,9 @@
 
                 Plus, it can include all of the other features of
                 [Github Flavored Markdown (GFM)](https://github.github.com/gfm/).
-                
-               
-                
+
+
+
             </markdown>
         </introduction>
         <gettingStarted>

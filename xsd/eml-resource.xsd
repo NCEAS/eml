@@ -364,6 +364,40 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      <xs:element name="license" type="LicenseType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>License</doc:tooltip>
+            <doc:summary>Information identifying a well-known license for the metadata and data
+            </doc:summary>
+            <doc:description>This element provides information on how the resource is licensed
+                and what rights may be available to users.   While data are often not
+                copyrightable in the US and other jurisdictions, it is still useful
+                to clarify rights by declaring a CC0, CC-BY, or similar license for both the
+                metadata and data.  Whatever license is declared here is intended to apply to
+                all metadata and data described in the metadata record, including attached data
+                resources such as external files and databases.  If multiple license elements
+                are provided, this indicates that the resource can be used under the terms of
+                any of the listed licenses. The field is meant to be highly structured
+                to allow machine-interpretable licenses to be asserted for the resource.  This
+                is done by identifying a well-defined license or contract and providing
+                the SPDX license key or the license URL, and the name of the license.
+                Where posisble, the name, URL, and SPDX key should match the values found in
+                the official SPDX license vocabulary (https://spdx.org/licenses/).  If
+                the license is not found in SPDX, then other well-established URIs for
+                licenses can be used, but avoid using arbitrary URIs that
+                are not maintained for persistence.
+            </doc:description>
+            <doc:example><![CDATA[
+                <license>
+                    <licenseName>Apache License 2.0</licenseName>
+                    <url>https://spdx.org/licenses/Apache-2.0.html</url>
+                    <identifier>Apache-2.0</identifier>
+                </license>
+          ]]></doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="distribution" type="DistributionType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -372,7 +406,7 @@
             and offline</doc:summary>
             <doc:description>This element provides information on how the
             resource is distributed. When used at the resource level, this element can provide
-             only general information, but elements for describing connections to online
+            only general information, but elements for describing connections to online
             systems are provided. See the Type for specific recommendations and examples.</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -1244,5 +1278,88 @@ connectionType -->
 		</xs:sequence>
 		<xs:attribute ref="xml:lang" use="optional" />
 	</xs:complexType>
+
+  <xs:complexType name="LicenseType">
+    <xs:annotation>
+      <xs:appinfo>
+          <doc:tooltip>License</doc:tooltip>
+          <doc:summary>Information identifying a well-known license for the metadata and data
+          </doc:summary>
+          <doc:description>
+              <section xmlns="">
+              <para>This element provides information on how the resource is licensed
+              and what rights may be available to users.   While data are often not
+              copyrightable in the US and other jurisdictions, it is still useful
+              to clarify rights by declaring a CC0, CC-BY, or similar license for both the
+              metadata and data.  Whatever license is declared here is intended to apply to
+              all metadata and data described in the metadata record, including attached data
+              resources such as external files and databases.  If multiple license elements
+              are provided, this indicates that the resource can be used under the terms of
+              any of the listed licenses.</para>
+              <para>The field is meant to be highly structured
+              to allow machine-interpretable licenses to be asserted for the resource.  This
+              is done by identifying a well-defined license or contract and providing
+              the SPDX license key or the license URL, and the name of the license.
+              Where posisble, the name, URL, and SPDX key should match the values found in
+              the official SPDX license vocabulary (see
+              <ulink url="https://spdx.org/licenses/"><citetitle>SPDX License List</citetitle></ulink>).
+              If the license is not found in SPDX, then other well-established URIs for
+              licenses can be used, but avoid using arbitrary URIs that
+              are not maintained for persistence.</para>
+              </section>
+          </doc:description>
+          <doc:example><![CDATA[
+              <license>
+                  <licenseName>Apache License 2.0</licenseName>
+                  <url>https://spdx.org/licenses/Apache-2.0.html</url>
+                  <identifier>Apache-2.0</identifier>
+              </license>
+           ]]></doc:example>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="licenseName" type="OnlineType" minOccurs="1">
+            <xs:annotation>
+                <xs:appinfo>
+                    <doc:tooltip>License Name</doc:tooltip>
+                    <doc:summary>The official name of the license</doc:summary>
+                    <doc:description>The official name of a license that applies to the
+                        data and metadata described in this metadata record.
+                        The name should match the name of a well-known license from
+                        the SPDX license vocabulary or a similar persistent vocabulary.
+                    </doc:description>
+                    <doc:example>Apache License 2.0</doc:example>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:element>
+        <xs:element name="url" type="xs:anyURI" minOccurs="0">
+            <xs:annotation>
+                <xs:appinfo>
+                    <doc:tooltip>License URL</doc:tooltip>
+                    <doc:summary>The persistent URL for the license</doc:summary>
+                    <doc:description>The persistent URL for the license, typically
+                        a SPDX URL, or an official URL from another well-known
+                        license vocabulary.  Users should avoid using arbitrary
+                        URLs that are not the official URL for a license.
+                    </doc:description>
+                    <doc:example>https://spdx.org/licenses/Apache-2.0.html</doc:example>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:element>
+        <xs:element name="identifier" type="NonEmptyStringType" minOccurs="0">
+            <xs:annotation>
+                <xs:appinfo>
+                    <doc:tooltip>License Identifier</doc:tooltip>
+                    <doc:summary>License Identifier</doc:summary>
+                    <doc:description>The official identifier for the license, which
+                        should be drawn from the SPDX license vocabulary, or a similar
+                        well-known license vocabulary.
+                    </doc:description>
+                    <doc:example>Apache-2.0</doc:example>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:element>
+    </xs:sequence>
+</xs:complexType>
 
 </xs:schema>
