@@ -71,7 +71,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-        <xs:element name="propertyURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
+        <xs:element name="propertyURI" type="xs:anyURI" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Property URI</doc:tooltip>
@@ -80,13 +80,17 @@
               <doc:description>The URI for a property that is drawn from a controlled
                   vocabulary, and that links the subject of this annotation
                   (which is implied by its parent elements) to the annotation value.
+                  The propertyURI represents a semantically well-defined concept
+                  that one wants to apply to an element within EML.  The propertyURI
+                  and its associated label are optional. If omitted, then the interpretation
+                  of the associated valueURI depends on where the annotation occurs.
               </doc:description>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#ofCharacteristic</doc:example>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#usesStandard</doc:example>
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element name="propertyLabel" minOccurs="1" maxOccurs="1">
+        <xs:element name="propertyLabel" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Property Label</doc:tooltip>

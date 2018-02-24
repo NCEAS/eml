@@ -775,9 +775,12 @@
                   of the statement is the eml:attribute that contains the
                   annotation. The propertyLabel and valueLabel can be used
                   to display the statement to users.  Each URI is
-                  typically resolvable to a controlled vocabulary that provides
+                  resolvable to a controlled vocabulary that provides
                   a definition, relationships to other terms, and multiple
-                  labels for displaying the statement.
+                  labels for displaying the statement.  The propertyURI and propertyLabel
+                  fields are optional.  When they are omitted for an attribute defniition,
+                  then users should assume thatthe property being asserted is
+                  <code>oboe:MeasurementType</code>.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>
