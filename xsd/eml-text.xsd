@@ -128,8 +128,8 @@
                             </para>
                             <para>
                                 Within a Markdown block, one can use embedded images to specify the location where an inline image
-                                should be displayed within the document.  For example, he syntax for an embedded image uses the
-                                markdown reference syntax, for example  <code>![Figure 1][fig.1.ab567w]</code>, where "fig.1.ab567w"
+                                should be displayed within the document.  For example, the syntax for an embedded image uses the
+                                markdown reference syntax, for example <code>![Figure 1][fig.1.ab567w]</code>, where "fig.1.ab567w"
                                 is the unique <code>id</code> attribute for the entity containing the reference to the image.  When
                                 client tools process such image links, they should inline the image data from that entity at the
                                 location specified, which may involve , for example, resolving the image url from an
