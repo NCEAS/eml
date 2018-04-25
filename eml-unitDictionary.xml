@@ -70,8 +70,7 @@
     <stmml:unit unitType="" id="centimeterCubedPerCentimeterCubed"
         name="centimeterCubedPerCentimeterCubed"/>
     <stmml:unit unitType="" id="centimeterPerSecond" name="centimeterPerSecond"/>
-    <stmml:unit unitType="" id="centimeterPerYear" name="centimeterPerYear"
-        deprecatedInFavorOf="centimeterPerYear">
+    <stmml:unit unitType="" id="centimeterPerYear" name="centimeterPerYear">
         <stmml:description>centimeter Per Year</stmml:description>
     </stmml:unit>
     <stmml:unit unitType="" id="centimetersPerSecond" name="centimetersPerSecond"
@@ -550,7 +549,7 @@
     <stmml:unit unitType="" id="millimeter" name="millimeter">
         <stmml:description>.001 meters</stmml:description>
     </stmml:unit>
-    <stmml:unit unitType="" id="millimeterPerDay " name="millimeterPerDay "/>
+    <stmml:unit unitType="" id="millimeterPerDay" name="millimeterPerDay"/>
     <stmml:unit unitType="" id="millimeterPerSecond" name="millimeterPerSecond"/>
     <stmml:unit unitType="" id="millimetersPerSecond" name="millimetersPerSecond"
         deprecatedInFavorOf="millimeterPerSecond">
@@ -609,7 +608,11 @@
     <stmml:unit unitType="" id="molesPerGram" name="molesPerGram" deprecatedInFavorOf="molePerGram">
         <stmml:description>moles per gram</stmml:description>
     </stmml:unit>
-    <stmml:unit unitType="" id="molesPerHectare" name="molesPerHectare">
+    <stmml:unit unitType="" id="molesPerHectare" name="molesPerHectare"
+        deprecatedInFavorOf="molePerHectare">
+        <stmml:description>Unit of areal concentration</stmml:description>
+    </stmml:unit>
+      <stmml:unit unitType="" id="molePerHectare" name="molesPerHectare">
         <stmml:description>Unit of areal concentration</stmml:description>
     </stmml:unit>
     <stmml:unit unitType="" id="molesPerKilogram" name="molesPerKilogram"
