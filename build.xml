@@ -499,8 +499,7 @@
     </echo>
     
         <!-- use the ant "junit" task to run JUnit tests. -->
-        <junit printsummary="yes" haltonfailure="no" fork="no"
-            haltonerror="no">
+        <junit printsummary="yes" haltonfailure="no" fork="no" haltonerror="no" failureproperty="test.failed">
             <classpath>
                 <pathelement path="${cpath}:${build.dir}/${name}-test.jar:${build.dir}/${name}.jar" />
             </classpath>
@@ -514,6 +513,7 @@
                 </fileset>
             </batchtest>
         </junit>
+        <fail message="Test failure detected, check test results." if="test.failed" />
     </target>
 
     <target name="emlparsertest" depends="jar">
