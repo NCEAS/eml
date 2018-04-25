@@ -1,154 +1,749 @@
-<?xml version="1.0"?>
-<eml:eml packageId="doi:10.xxxx/example/A672144.v1"
-    system="http://knb.ecoinformatics.org"
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml
     xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+    xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"
+    packageId="doi:10.18739/A2KK3F" system="https://arcticdata.io">
+  <dataset>
+    <title>Polaris Project 2017: Permafrost carbon and nitrogen, Yukon-Kuskokwim Delta, Alaska</title>
+    <creator id="2019575536373362">
+      <individualName>
+        <givenName>Sarah</givenName>
+        <surName>Ludwig</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <positionName>Lab Manager/Research Assistant</positionName>
+      <address>
+          <deliveryPoint>735 State St.</deliveryPoint>
+          <deliveryPoint>Suite 300</deliveryPoint>
+          <city>Santa Barbara</city>
+          <administrativeArea>CA</administrativeArea>
+          <postalCode>93101</postalCode>
+          <country>USA</country>
+      </address>
+      <phone>805-893-2500</phone>
+      <electronicMailAddress>sludwig@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2873-479X</userId>
+    </creator>
+    <creator id="9992214252095328">
+      <individualName>
+        <givenName>Robert</givenName>
+        <surName>Holmes</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <electronicMailAddress>rmholmes@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+    </creator>
+    <creator id="8156978609012437">
+      <individualName>
+        <givenName>Susan</givenName>
+        <surName>Natali</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <electronicMailAddress>snatali@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+    </creator>
+    <creator id="8420885715518522">
+      <individualName>
+        <givenName>Paul</givenName>
+        <surName>Mann</surName>
+      </individualName>
+      <electronicMailAddress>paul.mann@northumbria.ac.uk</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+    </creator>
+    <creator id="3797538992650953">
+      <individualName>
+        <givenName>John</givenName>
+        <surName>Schade</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <electronicMailAddress>jschade@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+    </creator>
+    <creator id="3544038763228814">
+      <individualName>
+        <givenName>Laura</givenName>
+        <surName>Jardine</surName>
+      </individualName>
+      <electronicMailAddress>lejardine@my.okcu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+    </creator>
+    <metadataProvider id="6019419358085258">
+      <individualName>
+        <givenName>Sarah</givenName>
+        <surName>Ludwig</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <positionName>Lab Manager/Research Assistant</positionName>
+      <electronicMailAddress>sludwig@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2873-479X</userId>
+    </metadataProvider>
+    <associatedParty id="2028315064169590">
+      <individualName>
+        <givenName>Robert</givenName>
+        <surName>Holmes</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <electronicMailAddress>rmholmes@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+      <role>principalInvestigator</role>
+    </associatedParty>
+    <associatedParty id="4991560866029394">
+      <individualName>
+        <givenName>Susan</givenName>
+        <surName>Natali</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <electronicMailAddress>snatali@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+      <role>coPrincipalInvestigator</role>
+    </associatedParty>
+    <associatedParty id="1201517145181284">
+      <individualName>
+        <givenName>Paul</givenName>
+        <surName>Mann</surName>
+      </individualName>
+      <electronicMailAddress>paul.mann@northumbria.ac.uk</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
+      <role>coPrincipalInvestigator</role>
+    </associatedParty>
+    <pubDate>2018-03-19</pubDate>
+    <abstract>
+      <markdown>This project is integrating scientific research in the Arctic with education and outreach, with a strong central focus on engaging undergraduate students and visiting faculty from groups that have had little involvement in Arctic science to date. The central element of the project is a month-long research expedition to the Yukon River Delta in Alaska. The expedition provides a deep intellectual and cultural immersion in the context of an authentic research experience that is paramount for "hooking" students and keeping them moving along the pipeline to careers as Arctic scientists. The overarching scientific issue that drives the research is the vulnerability and fate of ancient carbon stored in Arctic permafrost (permanently frozen ground). Widespread permafrost thaw is expected to occur this century, but large uncertainties remain in estimating the timing, magnitude, and form of carbon that will be released when thawed. Project participants are working in collaborative research groups to make fundamental scientific discoveries related to the vulnerability of permafrost carbon in the Yukon River Delta and the potential implications of permafrost thaw in this region for the global climate system. This data set includes permafrost cores, with ammonium, nitrate, volumetric ice content, N mineralization rates, %C, and %N results from the 2017 expedition.
+      </markdown>
+    </abstract>
+    <keywordSet>
+      <keyword>arctic</keyword>
+      <keyword>sediment</keyword>
+      <keyword>carbon</keyword>
+      <keyword>nitrogen</keyword>
+      <keyword>fire</keyword>
+      <keyword>alaska</keyword>
+      <keywordThesaurus>None</keywordThesaurus>
+    </keywordSet>
+    <licensed>
+        <licenseName>Creative Commons Attribution 4.0 International</licenseName>
+        <url>https://spdx.org/licenses/CC-BY-4.0.html</url>
+        <identifier>CC-BY-4.0</identifier>
+    </licensed>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>These data are from the Yukon-Kuskokwim River Delta, Alaska, approximately halfway between Bethel and St. Mary's. The region recently burned in 2015 and has older burns from 1972. The area is flat with numerous lakes and wetlands. Terrestrial landscapes are peat plateaus roughly 1-3 meters above wetlands, stream, and lakes. All of these samples are from lake sediment cores. </geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-163.3736</westBoundingCoordinate>
+          <eastBoundingCoordinate>-162.3953</eastBoundingCoordinate>
+          <northBoundingCoordinate>61.3053</northBoundingCoordinate>
+          <southBoundingCoordinate>61.1861</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2017-06-25</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2017-08-06</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <annotation>
+        <propertyURI>http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <propertyLabel>Subject</propertyLabel>
+        <valueURI>http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+        <valueLabel>grassland biome</valueLabel>
+    </annotation>
+    <purpose>
+        <markdown>
+            A synopsis of the dataset describes its purpose and contents, including
+            one or more paragraphs as well as table(s) and figure(s) that summarize
+            the data included in the data paper, including a summary of key findings
+            if appropriate.
+        </markdown>
+    </purpose>
+    <introduction>
+        <markdown>
+            An introduction goes here.
 
-    <dataset>
-        <title>Test data paper: Assessing ocean and atmosphere coupling using carbon flux measurements in the Beaufort Sea.</title>
-        <creator id="http://orcid.org/0000-0003-0077-4738">
+            It can include multiple paragraphs. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought.
+
+            And bulleted lists:
+
+            - Science
+            - Engineering
+            - Math
+
+            It can also include equations:
+
+            $$\left( x + a \right)^{n} = \sum_{k = 0}^{n}{\left( \frac{n}{k} \right)x^{k}a^{n - k}}$$
+
+            Plus, it can include all of the other features of [Github Flavored Markdown (GFM)](https://github.github.com/gfm/).
+        </markdown>
+    </introduction>
+    <gettingStarted>
+        <markdown>
+            Some intro text in the getting started, then break into subsections.  Note that the first line
+            of markdown text defines the starting column for all subsequent indenting.
+
+            ## Level 2 heading
+
+            We use a level 2 heading because Level 1 would be at the same level as
+            the main sections of the paper.
+
+            ## Another level 2 heading
+            With some information.
+        </markdown>
+    </gettingStarted>
+    <acknowledgements>
+        Many thanks to the field staff and volunteers involved in collecting and compiling data on swallow breeding phenology and performance (in alphabetical order): E. Beaton, T. Bryant, L. Burke, M, Courtenay, B. Crosby, D. Farrar, S. Lau, A. MacDonald, H. Mann, A. McKeen, D. Nickerson, N. Sobhani, and staff from Environment and Climate Change Canada. In addition, we would like to thank all the volunteers who contributed to the Maritime Nest Records Scheme. We also thank all the private landowners, Acadia University, Ducks Unlimited Canada, Environment and Climate Change Canada, and Parks Canada for permitting access to their properties for field research. Special thanks to P. Thomas and B. Whittam at Environment and Climate Change Canada for supporting this work, A. Smith at Environment and Climate Change Canada for helpful discussions on BBS trends, and to A. Horn, A. Smith, J. Sauer, and two anonymous reviewers for providing helpful comments on earlier drafts. Funding was provided by (in alphabetical order) the Canadian Wildlife Federation, Environment and Climate Change Canada, the Natural Science and Engineering Research Council of Canada, New Brunswick Wildlife Trust Fund, Nova Scotia Habitat Conservation Fund, and Wildlife Preservation Canada. This represents Bowdoin Scientific Station contribution no. 2589.
+    </acknowledgements>
+    <contact id="2429813205698750">
+      <individualName>
+        <givenName>Sarah</givenName>
+        <surName>Ludwig</surName>
+      </individualName>
+      <organizationName>Woods Hole Research Center</organizationName>
+      <positionName>Lab Manager/Research Assistant</positionName>
+      <electronicMailAddress>sludwig@whrc.org</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2873-479X</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <section>
+            <title>Permafrost Cores</title>
+            <para>Thawed horizon was excavated, and frozen cores were drilled using a SIPRE drill. Samples were cleaned, wrapped, and kept frozen until analysis in the lab. Samples were sectioned by horizon or split such that each subsection was not longer than ~10 cm. Each subsection was analyzed for bulk density, soil moisture, soil organic carbon, %N, %C, volumetric ice content, extracted with 2 M KCl for NO3, and NH4. Additionally, net nitrogen mineralization rates were measured by similarly extracting subsamples that incubated for 30 days.</para>
+          </section>
+        </description>
+      </methodStep>
+      <sampling>
+        <studyExtent>
+          <description>
+            <para>All samples were collected in June 2017. Samples were collected in unburned peat plateaus, as well as those that burned in 2015 and 1972. Locations of samples within each site was selected randomly.</para>
+          </description>
+        </studyExtent>
+        <samplingDescription>
+          <para>Site locations were chosen such that they were within either hiking distance or a short helicopter flight from our basecamp.</para>
+        </samplingDescription>
+      </sampling>
+      <qualityControl>
+          <description>
+            <para>Samples were verified by resampling 5% of all physical samples by an independent observer, and comparing results for
+                inter-observer consistency.</para>
+          </description>
+      </qualityControl>
+    </methods>
+    <project>
+      <title>Polaris: Catalyzing Demographic Change in the Arctic Research Community through an Immersive and Sustained Undergraduate Research Experience</title>
+      <personnel>
+        <individualName>
+          <givenName>Sarah</givenName>
+          <surName>Ludwig</surName>
+        </individualName>
+        <role>originator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Robert</givenName>
+          <surName>Holmes</surName>
+        </individualName>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Paul</givenName>
+          <surName>Mann</surName>
+        </individualName>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Ambrose</givenName>
+          <surName>Jearld</surName>
+        </individualName>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Susan</givenName>
+          <surName>Natali</surName>
+        </individualName>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>John</givenName>
+          <surName>Schade</surName>
+        </individualName>
+        <role>Former Co-Principal Investigator</role>
+      </personnel>
+      <award>
+          <funderName>National Science Foundation</funderName>
+          <funderIdentifier>https://doi.org/10.13039/00000001</funderIdentifier>
+          <awardNumber>1546024</awardNumber>
+          <title>Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</title>
+          <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</awardUrl>
+      </award>
+    </project>
+    <dataTable>
+      <entityName>Polaris_2017_Permafrost.csv</entityName>
+      <entityDescription>This data set includes permafrost cores, with ammonium, nitrate, volumetric ice content, N mineralization rates, %C, and %N results from the 2017 expedition</entityDescription>
+      <physical scope="document">
+        <objectName>Polaris_2017_Permafrost.csv</objectName>
+        <size unit="bytes">17172</size>
+        <authentication method="SHA1">ce9f97dd4f1cee964faf02942a34383ae31da1f5</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/csv</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution scope="document">
+          <online>
+            <url function="download">https://cn.dataone.org/cn/v2/resolve/urn:uuid:ec704da8-f174-49db-b993-bae479cdc5d9</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Date</attributeName>
+          <attributeDefinition>Sample collection year</attributeDefinition>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Sample ID</attributeName>
+          <attributeDefinition>Unique identifier that is a combination of site name, core number, and subsection number</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Unique identifier that is a combination of site name, core number, and subsection number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Site ID</attributeName>
+          <attributeDefinition>72B = 1972 burn, B = 2015 burn, U = unburned, number corresponds to replicate</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>72B = 1972 burn, B = 2015 burn, U = unburned, number corresponds to replicate</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Landcover type</attributeName>
+          <attributeDefinition>Landcover type. Either peat plateau, fen, or drained lake</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Landcover type. Either peat plateau, fen, or drained lake</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Burn history</attributeName>
+          <attributeDefinition>Old burn corresponds to 1972 fires, recent burn to 2015 fires</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Old burn corresponds to 1972 fires, recent burn to 2015 fires</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Latitude</attributeName>
+          <attributeDefinition>Latitude of collection site</attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit>arc_degree</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Longitude</attributeName>
+          <attributeDefinition>Longitude of collection site</attributeDefinition>
+          <measurementScale>
+            <interval>
+              <unit>
+                <customUnit>arc_degree</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Thaw depth (cm) =moss+OL</attributeName>
+          <attributeDefinition>Thaw depth measured in soil pit, includes live moss/lichen layer + thawed organic layer below</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Moss/lichen depth (cm)</attributeName>
+          <attributeDefinition>Depth of live moss/lichen layer on top of organic layer</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Thawed soil depth (cm)</attributeName>
+          <attributeDefinition>Soil depth is thawed layer (here all organic) below live moss/lichen layer</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>section top (cm)</attributeName>
+          <attributeDefinition>Top of frozen subsection (0 cm means beginning of frozen ground)</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>section bottom (cm)</attributeName>
+          <attributeDefinition>Bottom of frozen section (mostly in 10 cm increments)</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>section height (cm)</attributeName>
+          <attributeDefinition>Length of subsection used for subsequent analyses. Sometimes the 10cm segment was further split</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>actual top (cm)</attributeName>
+          <attributeDefinition>Adjusts frozen core depth by adding thaw depth and accoutning for when sections are split to accurately place sample in the soil profile</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>actual bottom (cm)</attributeName>
+          <attributeDefinition>Adjusts frozen core depth by adding thaw depth and accoutning for when sections are split to accurately place sample in the soil profile</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Sample type</attributeName>
+          <attributeDefinition>Since we sampled in July, some of the frozen soil we drilled is actually active layer and some is permafrost. We used our average September thaw depths from other studies to estimate frozen active layer depth cutoffs</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Since we sampled in July, some of the frozen soil we drilled is actually active layer and some is permafrost. We used our average September thaw depths from other studies to estimate frozen active layer depth cutoffs</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Bulk Density (g/cm3)</attributeName>
+          <attributeDefinition>Bulk density of the sample: Dry weight/volume</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gramsPerCubicCentimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>soil moisture %</attributeName>
+          <attributeDefinition>Percent moisture in the soil: (wet - dry weight)/wet weight * 100</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>GWC g/g</attributeName>
+          <attributeDefinition>Gravimetric water content in the sediment: (wet-dry weight)/dry weight</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gramsPerGram</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>VIC (cm3/cm3)</attributeName>
+          <attributeDefinition>Volumetric ice content: GWC * bulk density * 0.9167 g/cm3</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>cubicCentimetersPerCubicCentimeters</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>SOM %</attributeName>
+          <attributeDefinition>Percent soil organic matter measured by loss on ignition</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>C mg/mg</attributeName>
+          <attributeDefinition>Proportion carbon in dry soil</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>milligramsPerMilligram</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>N mg/mg</attributeName>
+          <attributeDefinition>Proportion nitrogen in dry soil</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>milligramsPerMilligram</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>C/N</attributeName>
+          <attributeDefinition>Ratio of carbon to nitrogen in dry soil</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>NH4 (ug/g-soil)</attributeName>
+          <attributeDefinition>Concentration of ammonium in dry soil from 2M KCl extractions</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramsPerGramSoil</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>NO3 (ug/g-soil)</attributeName>
+          <attributeDefinition>Concentration of nitrate in dry soil from 2M KCl extractions</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramsPerGramSoil</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Net N mineralization rate (ugN/g-soil/day)</attributeName>
+          <attributeDefinition>Net nitrogen mineralization rate measured by incubating soils for 30 days and extracting with 2M KCl</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microgramsPerGramSoilPerDay</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>"NA"</code>
+            <codeExplanation>NA corresponds to not measured</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Frozen DIN N-mg/m2</attributeName>
+          <attributeDefinition>Soil dissolved inorganic nitrogen pool scaled to segment height</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>milligramsPerSquareMeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Frozen N g/m2</attributeName>
+          <attributeDefinition>Soil total nitrogen pool scaled segment height</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gramsPerSquareMeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Frozen C g/m2</attributeName>
+          <attributeDefinition>Soil carbon pool scaled to segment height</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gramsPerSquareMeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+    </dataTable>
+    <usageCitation>
+        <title>Title for a paper that used this dataset.</title>
+        <creator>
             <individualName>
-                <salutation>Mr.</salutation>
-                <givenName>Matthew</givenName>
-                <surName>Jones</surName>
+                <givenName>Mark</givenName>
+                <surName>Jarkady</surName>
             </individualName>
-            <address>
-                <deliveryPoint>National Center for Ecological Analysis and Synthesis
-                </deliveryPoint>
-                <deliveryPoint>735 State St.</deliveryPoint>
-                <deliveryPoint>Suite 300</deliveryPoint>
-                <city>Santa Barbara</city>
-                <administrativeArea>CA</administrativeArea>
-                <postalCode>93101</postalCode>
-                <country>USA</country>
-            </address>
-            <phone>805-893-2500</phone>
-            <electronicMailAddress>jones@nceas.ucsb.edu</electronicMailAddress>
-            <userId directory="https://orcid.org">http://orcid.org/0000-0003-0077-4738</userId>
         </creator>
-        <creator id="julien.brun">
-            <individualName>
-                <salutation>Dr.</salutation>
-                <givenName>Julien</givenName>
-                <surName>Brun</surName>
-            </individualName>
-            <address>
-                <deliveryPoint>National Center for Ecological Analysis and Synthesis
-                </deliveryPoint>
-                <deliveryPoint>735 State St.</deliveryPoint>
-                <deliveryPoint>Suite 300</deliveryPoint>
-                <city>Santa Barbara</city>
-                <administrativeArea>CA</administrativeArea>
-                <postalCode>93101</postalCode>
-                <country>USA</country>
-            </address>
-            <phone>805-893-2500</phone>
-            <electronicMailAddress>brun@nceas.ucsb.edu</electronicMailAddress>
-            <userId directory="https://orcid.org">http://orcid.org/0000-0003-0077-4738</userId>
-        </creator>
-
-        <abstract>
-            <markdown>
-                This is the data paper abstract.
-
-                Sample equation:
-
-                $$\left( x + a \right)^{n} = \sum_{k = 0}^{n}{\left( \frac{n}{k} \right)x^{k}a^{n - k}}$$
-
-            </markdown>
-        </abstract>
-        <keywordSet>
-            <keyword>Old field grassland</keyword>
-            <keyword>biomass</keyword>
-            <keyword>productivity</keyword>
-            <keyword>species-area</keyword>
-            <keyword>species richness</keyword>
-        </keywordSet>
-        <licensed>
-            <licenseName>Apache License 2.0</licenseName>
-            <url>https://spdx.org/licenses/Apache-2.0.html</url>
-            <identifier>Apache-2.0</identifier>
-        </licensed>
-        <annotation>
-            <propertyURI>http://purl.org/dc/elements/1.1/subject</propertyURI>
-            <propertyLabel>Subject</propertyLabel>
-            <valueURI>http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
-            <valueLabel>grassland biome</valueLabel>
-        </annotation>
-        <introduction>
-            <markdown>
-                An introduction goes here.
-
-                It can include multiple paragraphs. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought.
-
-                And bulleted lists:
-
-                - Science
-                - Engineering
-                - Math
-
-                Plus, it can include all of the other features of
-                [Github Flavored Markdown (GFM)](https://github.github.com/gfm/).
-
-
-
-            </markdown>
-        </introduction>
-        <gettingStarted>
-            <markdown>
-                Some intro text in the getting started, then break into subsections.  Note that the first line
-                of markdown text defines the starting column for all subsequent indenting.
-
-                ## Level 2 heading
-
-                We use a level 2 heading because Level 1 would be at the same level as
-                the main sections of the paper.
-
-                ## Another level 2 heading
-                With some information.
-            </markdown>
-        </gettingStarted>
-        <acknowledgements>An acknowledgements paragraph goes here.</acknowledgements>
-        <contact>
-            <references>http://orcid.org/0000-0003-0077-4738</references>
-        </contact>
-        <contact>
-            <references>julien.brun</references>
-        </contact>
-        <project>
-            <title>Arctic Data Center</title>
-            <personnel>
-                <individualName>
-                    <salutation>Mr.</salutation>
-                    <givenName>Matthew</givenName>
-                    <surName>Jones</surName>
-                </individualName>
-                <address>
-                    <deliveryPoint>National Center for Ecological Analysis and Synthesis
-                    </deliveryPoint>
-                    <deliveryPoint>735 State St.</deliveryPoint>
-                    <deliveryPoint>Suite 300</deliveryPoint>
-                    <city>Santa Barbara</city>
-                    <administrativeArea>CA</administrativeArea>
-                    <postalCode>93101</postalCode>
-                    <country>USA</country>
-                </address>
-                <phone>805-893-2500</phone>
-                <electronicMailAddress>jones@nceas.ucsb.edu</electronicMailAddress>
-                <userId directory="https://orcid.org">http://orcid.org/0000-0003-0077-4738</userId>
-                <role>Principal Investigator</role>
-            </personnel>
-            <funding>
-                <para>Funding is from a grant from the National Science Foundation.</para>
-            </funding>
-            <award>
-                <funderName>National Science Foundation</funderName>
-                <funderIdentifier>https://doi.org/10.13039/00000001</funderIdentifier>
-                <awardNumber>1546024</awardNumber>
-                <title>Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</title>
-                <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</awardUrl>
-            </award>
-        </project>
-    </dataset>
+        <pubDate>2017</pubDate>
+        <article>
+            <journal>EcoSphere</journal>
+            <publicationPlace>https://doi.org/10.1002/ecs2.2166</publicationPlace>
+        </article>
+    </usageCitation>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <unitList xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <unit id="arc_degree" abbreviation="°" name="arc_degree" parentSI="dimensionless" unitType="dimensionless" multiplierToSI="0.01745329"/>
+        <unit id="milligramsPerMilligram" abbreviation="mg/mg" name="milligramsPerMilligram" parentSI="gramsPerGram" unitType="massPerMass" multiplierToSI="1"/>
+        <unit id="microgramsPerGramSoil" abbreviation="ug/g-soil" name="microgramsPerGramSoil" unitType="massPerMass"/>
+        <unit id="microgramsPerGramSoilPerDay" abbreviation="ug/g-soil/day" name="microgramsPerGramSoilPerDay" unitType="massPerMassFlux"/>
+      </unitList>
+    </metadata>
+  </additionalMetadata>
 </eml:eml>
