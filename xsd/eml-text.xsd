@@ -132,13 +132,34 @@
                                 markdown reference syntax, for example <code>![Figure 1][fig.1.ab567w]</code>, where "fig.1.ab567w"
                                 is the unique <code>id</code> attribute for the entity containing the reference to the image.  When
                                 client tools process such image links, they should inline the image data from that entity at the
-                                location specified, which may involve , for example, resolving the image url from an
+                                location specified, which may involve, for example, resolving the image url from an
                                 <code>otherEntity</code> section.  This means that there is an implied link in all Markdown
                                 documents of the form <code>[id]: url/to/image  "Optional title attribute"</code>, which is derived
                                 from the metadata for each entity within a document.  Users do not need to insert these links in
                                 order to use them, but client software that might be generating HTML from the markdown will likely
                                 need to generate them from the entity metadata if they are using an external Markdown pre-processor
                                 to handle conversion to HTML and other languages.
+                            </para>
+                            <para>
+                                Inline citations can also be used to cite scholarly works in the text of an EML
+                                document.  This follows the Pandoc syntax for citation keys, in which the citation keys
+                                are in inside square brackets and separated by semicolons. Each citation is identified
+                                by a key, which consists of an ‘@’ symbol and the citation identifier from the entry for
+                                that citation. Citation keys may optionally have a prefix, a locator, and a suffix to
+                                further qualify what is being cited.  For example, a simple citation would be
+                                constructed as '[@fegraus_2005]', and a list would be '[@jones_2001; @fegraus_2005]'.  
+                                The keys must be present in either the 'id' field of a
+                                citation element in the EML document, or as the BibTex key in a 'bibtex' entry in the
+                                EML document.  It is a validation error to cite an entry for which the corresponding
+                                citation key is not present in the EML document, and it is a validation error for the
+                                same citation key to be reused across citation and bibtex elements in the document (each
+                                citation identifier must be unique within the document).  Clients that parse and display
+                                EML documents should first gather up all citation and bibtex elements in the document to
+                                create a citation database in bibtext format, and then pass that database along with the
+                                text in markdown sections to pandoc or an equivalent tool to convert the citations into
+                                properly formatted, human readable citations.  Pandoc supports the use of Citation Style
+                                Language (CSL) files to specify the formatting of citations upon conversion.  See
+                                http://citationstyles.org/ for more details.
                             </para>
                             <para>
                                 Because bulleted lists and other structures within Markdown are dependent on indenting the raw

@@ -103,7 +103,7 @@
             <xs:appinfo>
               <doc:tooltip>Contact</doc:tooltip>
               <doc:summary>An optional contact individual for this citation</doc:summary>
-              <doc:description>The contact field contains information about an alternate person to be contacted 
+              <doc:description>The contact field contains information about an alternate person to be contacted
               about this citation. Usually, the first author serves as the contact for a citation resource, e.g., a reprint request. In some cases, an alternate individual(s) may serve that function, and can be indicated here. Since contact is of the type rp:ResponsibleParty, a reference may be used.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -273,6 +273,16 @@
           </xs:element>
         </xs:choice>
       </xs:sequence>
+      <xs:element name="bibtex" type="xs:string">
+          <xs:annotation>
+              <xs:appinfo>
+                  <doc:tooltip>Bibtex Citation</doc:tooltip>
+                  <doc:summary>Citation in Bibtex format.</doc:summary>
+                  <doc:description>The bibtex field provides a parseable citation formatted according to
+                      the Bibtex formatting conventions. The citation entry is assigned a unique key that must be unique across all bibtex fields in the EML document. The citation key can be used in markdown sections of the text to refer to this citation using the pandoc-style of inline citation keys.  See the markdown element for more details.  The record is delimited using curly braces. Most reference software can both import and export citations in Bibtex format, so this is a simpler representation to produce and consume than native EML citation representations.</doc:description>
+              </xs:appinfo>
+          </xs:annotation>
+      </xs:element>
       <xs:group ref="res:ReferencesGroup"/>
     </xs:choice>
     <xs:attribute name="id" type="res:IDType" use="optional"/>
@@ -1219,5 +1229,29 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CitationListType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="citation" type="CitationType">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>citation</doc:tooltip>
+                        <doc:summary>A citation within a list of citations.</doc:summary>
+                        <doc:description>A citation within a list of citations, usually used for a literatureCited
+                            cited list or similar. Each citation is formatted following the EML CitationType
+                            structure.</doc:description>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bibtex" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <doc:tooltip>Bibtex Citation List</doc:tooltip>
+                        <doc:summary>List of citations in Bibtex format.</doc:summary>
+                        <doc:description>The bibtex field provides a parseable list of citations formatted according to the Bibtex formatting conventions. Each citation entry is assigned a unique key that must be unique across all bibtex fields in the EML document. The citation key can be used in markdown sections of the text to refer to this citation using the pandoc-style of inline citation keys.  See the markdown element for more details. The record is delimited using curly braces. Most reference software can both import and export citations in Bibtex format, so this is a simpler representation to produce and consume than native EML citation representations.</doc:description>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
   </xs:complexType>
 </xs:schema>

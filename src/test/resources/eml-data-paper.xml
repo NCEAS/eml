@@ -108,7 +108,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0000-0000-0000</userId>
       <role>coPrincipalInvestigator</role>
     </associatedParty>
-    <pubDate>2018-03-19</pubDate>
+    <pubDate>2018</pubDate>
     <abstract>
       <markdown>This project is integrating scientific research in the Arctic with education and outreach, with a strong central focus on engaging undergraduate students and visiting faculty from groups that have had little involvement in Arctic science to date. The central element of the project is a month-long research expedition to the Yukon River Delta in Alaska. The expedition provides a deep intellectual and cultural immersion in the context of an authentic research experience that is paramount for "hooking" students and keeping them moving along the pipeline to careers as Arctic scientists. The overarching scientific issue that drives the research is the vulnerability and fate of ancient carbon stored in Arctic permafrost (permanently frozen ground). Widespread permafrost thaw is expected to occur this century, but large uncertainties remain in estimating the timing, magnitude, and form of carbon that will be released when thawed. Project participants are working in collaborative research groups to make fundamental scientific discoveries related to the vulnerability of permafrost carbon in the Yukon River Delta and the potential implications of permafrost thaw in this region for the global climate system. This data set includes permafrost cores, with ammonium, nitrate, volumetric ice content, N mineralization rates, %C, and %N results from the 2017 expedition.
       </markdown>
@@ -168,7 +168,13 @@
 
             It can include multiple paragraphs. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought. And these paragraphs should have enough text to wrap in a wide browser.  So, repeat that last thought.
 
-            And bulleted lists:
+            Text can also cite other works, such as [@jones_2001], in which case the associated key must be present
+            as either the citation identifier in a `bibtex` element in the EML document, or as the `id` attribute on
+            one of the `citation` elements in the EML document.  These identifiers must be unique across the document.  Tools
+            such as Pandoc will readily convert these citations and citation entries into various formats, including HTML, PDF,
+            and others.
+
+            And bulleted lists are also supported:
 
             - Science
             - Engineering
@@ -721,20 +727,111 @@
         </attribute>
       </attributeList>
     </dataTable>
+    <referencePublication>
+        <bibtex>
+            @article{ludwig_2018,
+                title = {Permafrost carbon and nitrogen, Yukon-Kuskokwim Delta, Alaska},
+                url = {http://ecosphere.esa.org/article/yyyy.zzzzzzz},
+                doi = {10.xxxx/yyyy.zzzzzz},
+                journal = {EcoSphere},
+                author = {Ludwig, Sarah},
+                year = {2018}
+            }
+        </bibtex>
+    </referencePublication>
     <usageCitation>
-        <title>Title for a paper that used this dataset.</title>
-        <creator>
-            <individualName>
-                <givenName>Mark</givenName>
-                <surName>Jarkady</surName>
-            </individualName>
-        </creator>
-        <pubDate>2017</pubDate>
-        <article>
-            <journal>EcoSphere</journal>
-            <publicationPlace>https://doi.org/10.1002/ecs2.2166</publicationPlace>
-        </article>
+        <bibtex>
+            @article{jones_2001,
+                title = {Managing scientific metadata},
+                volume = {5},
+                issn = {10897801},
+                url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=957896},
+                doi = {10.1109/4236.957896},
+                number = {5},
+                journal = {IEEE Internet Computing},
+                author = {Jones, Matthew B. and Berkley, Chad and Bojilova, Jivka and Schildhauer, Mark},
+                year = {2001},
+                pages = {59--68}
+            }
+        </bibtex>
     </usageCitation>
+    <literatureCited>
+        <citation>
+            <bibtex>
+                @article{fegraus_2005,
+                     title = {Maximizing the {Value} of {Ecological} {Data} with {Structured} {Metadata}: {An} {Introduction} to {Ecological} {Metadata} {Language} ({EML}) and {Principles} for {Metadata} {Creation}},
+                     journal = {Bulletin of the Ecological Society of America},
+                     author = {Fegraus, Eric H. and Andelman, Sandy and Jones, Matthew B. and Schildhauer, Mark},
+                     year = {2005},
+                     pages = {158--168}
+                 }
+            </bibtex>
+        </citation>
+        <citation>
+            <title>Title for a paper that used this dataset.</title>
+            <creator>
+                <individualName>
+                    <givenName>Mark</givenName>
+                    <surName>Jarkady</surName>
+                </individualName>
+            </creator>
+            <pubDate>2017</pubDate>
+            <article>
+                <journal>EcoSphere</journal>
+                <publicationPlace>https://doi.org/10.1002/ecs2.2166</publicationPlace>
+            </article>
+        </citation>
+        <bibtex>
+        @article{hampton_2017,
+            title = {Skills and {Knowledge} for {Data}-{Intensive} {Environmental} {Research}},
+            volume = {67},
+            copyright = {All rights reserved},
+            issn = {0006-3568, 1525-3244},
+            url = {https://academic.oup.com/bioscience/article-lookup/doi/10.1093/biosci/bix025},
+            doi = {10.1093/biosci/bix025},
+            language = {en},
+            number = {6},
+            urldate = {2018-02-15},
+            journal = {BioScience},
+            author = {Hampton, Stephanie E. and Jones, Matthew B. and Wasser, Leah A. and Schildhauer, Mark P. and Supp, Sarah R. and Brun, Julien and Hernandez, Rebecca R. and Boettiger, Carl and Collins, Scott L. and Gross, Louis J. and Fernández, Denny S. and Budden, Amber and White, Ethan P. and Teal, Tracy K. and Labou, Stephanie G. and Aukema, Juliann E.},
+            month = jun,
+            year = {2017},
+            pages = {546--557}
+        }
+
+        @article{brinckman_2018,
+            title = {Computing environments for reproducibility: {Capturing} the “{Whole} {Tale}”},
+            copyright = {All rights reserved},
+            issn = {0167739X},
+            shorttitle = {Computing environments for reproducibility},
+            url = {http://linkinghub.elsevier.com/retrieve/pii/S0167739X17310695},
+            doi = {10.1016/j.future.2017.12.029},
+            language = {en},
+            urldate = {2018-04-16},
+            journal = {Future Generation Computer Systems},
+            author = {Brinckman, Adam and Chard, Kyle and Gaffney, Niall and Hategan, Mihael and Jones, Matthew B. and Kowalik, Kacper and Kulasekaran, Sivakumar and Ludäscher, Bertram and Mecum, Bryce D. and Nabrzyski, Jarek and Stodden, Victoria and Taylor, Ian J. and Turk, Matthew J. and Turner, Kandace},
+            month = feb,
+            year = {2018}
+        }
+
+        @article{collins_2018,
+            title = {Temporal heterogeneity increases with spatial heterogeneity in ecological communities},
+            volume = {99},
+            copyright = {All rights reserved},
+            issn = {00129658},
+            url = {http://doi.wiley.com/10.1002/ecy.2154},
+            doi = {10.1002/ecy.2154},
+            language = {en},
+            number = {4},
+            urldate = {2018-04-16},
+            journal = {Ecology},
+            author = {Collins, Scott L. and Avolio, Meghan L. and Gries, Corinna and Hallett, Lauren M. and Koerner, Sally E. and La Pierre, Kimberly J. and Rypel, Andrew L. and Sokol, Eric R. and Fey, Samuel B. and Flynn, Dan F. B. and Jones, Sydney K. and Ladwig, Laura M. and Ripplinger, Julie and Jones, Matt B.},
+            month = apr,
+            year = {2018},
+            pages = {858--865}
+        }
+        </bibtex>
+    </literatureCited>
   </dataset>
   <additionalMetadata>
     <metadata>

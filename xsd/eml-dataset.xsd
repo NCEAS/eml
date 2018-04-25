@@ -368,6 +368,16 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
+        <xs:element name="referencePublication" type="cit:CitationType" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Reference Publication</doc:tooltip>
+              <doc:summary>A citation to an additional publication that serves as an important reference for a dataset.</doc:summary>
+              <doc:description>A citation to an additional publication that serves as an important reference for a dataset. People using this dataset should generally cite the dataset itself (using the creator, pubDate, title, publisher, and packageId fields), and consider providing an additional citation to the Reference Publication. Common cases where a Reference Publication may be useful include when a data paper is published that describes the dataset, or when a paper is intended to be the canonical or examplar reference to the dataset.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="usageCitation" type="cit:CitationType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
@@ -381,6 +391,20 @@
               usageCitations will necessarily be complete, but rather they serve as
               examples and pointers to scholarly works in which this dataset has been
               used.
+              </doc:description>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="literatureCited" type="cit:CitationListType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <doc:tooltip>Literature Cited</doc:tooltip>
+              <doc:summary>A citation to articles or products which were referenced
+              in the dataset or its associated metadata.</doc:summary>
+              <doc:description>A citation to articles or products which were referenced
+              in the dataset or its associated metadata. The list represents the bibliography
+              of works related to the dataset, whether for reference, comparison, or others
+              purposes.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>
