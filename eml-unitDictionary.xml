@@ -32,11 +32,11 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
-<stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+<stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2"
                 xmlns:sch="http://www.ascc.net/xml/schematron"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xmlns="http://www.xml-cml.org/schema/stmml-1.1"
-                xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
+                xmlns="http://www.xml-cml.org/schema/stmml-1.2"
+                xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.2 xsd/stmml.xsd">
 <!-- ======================================================================= -->
 <!-- ========================= fundamental types =========================== -->
 <!-- ======================================================================= -->
@@ -1369,7 +1369,7 @@
   </unit>
 
   <!--dimensionless-->
-  <unit id="percent" name="percent" unitType="dimensionless" parentSI="dimensionless" multiplierToSI="" abbreviation="%"  udunitsSynonym="percent">
+  <unit id="percent" name="percent" unitType="dimensionless" parentSI="dimensionless" multiplierToSI="1" abbreviation="%"  udunitsSynonym="percent">
     <description>percent</description>
   </unit>
   
