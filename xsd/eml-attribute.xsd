@@ -132,7 +132,7 @@
             seems to fall in a gray area between the logical and physical
             aspects of stored data. Neither comfortable with eliminating it nor
             with making it required, the authors left it available but optional
-            under attribute. In addition, it is repeatable so that different 
+            under attribute. In addition, it is repeatable so that different
             storage types can be provided for various systems (e.g., different
             databases might use different types for columns, even though the
             domain of the attribute is the same regardless of which database
@@ -147,7 +147,7 @@
             interoperability of dateTime formats. EML 2.0 tries to provide an
             unambiguous mechanism for describing the format of dateTime
             values by providing a separate category for date and  time values. This
-            "dateTime" measurement scale allows users to explicitly label 
+            "dateTime" measurement scale allows users to explicitly label
             attributes that contain Gregorian date and time values, and allows
             them to provide the information needed to parse these values into
             their appropriate components (e.g., days, months, years)./</para>
@@ -287,7 +287,7 @@
               <doc:tooltip>Storage Type</doc:tooltip>
               <doc:summary>Storage type hint for this field</doc:summary>
               <doc:description>This element describes the storage type,
-              for data in a RDBMS (or other data management system) field. 
+              for data in a RDBMS (or other data management system) field.
               As many systems do not
               provide for fine-grained restrictions on types, this type will
               often be a superset of the allowed domain defined in
@@ -376,7 +376,7 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Nominal scale</doc:tooltip>
-                    <doc:summary>Characteristics used to define nominal 
+                    <doc:summary>Characteristics used to define nominal
                     (categorical) scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
@@ -398,7 +398,7 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Ordinal scale</doc:tooltip>
-                    <doc:summary>Characteristics used to define ordinal 
+                    <doc:summary>Characteristics used to define ordinal
                     (ordered) scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
@@ -423,7 +423,7 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Interval scale</doc:tooltip>
-                    <doc:summary>Characteristics used to define interval 
+                    <doc:summary>Characteristics used to define interval
                     scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is an
@@ -449,7 +449,7 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Ratio scale</doc:tooltip>
-                    <doc:summary>Characteristics used to define ratio 
+                    <doc:summary>Characteristics used to define ratio
                     scale attributes</doc:summary>
                     <doc:description>This field is used for defining the
                     characteristics of this variable if it is a
@@ -476,7 +476,7 @@
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>Date/Time scale</doc:tooltip>
-                    <doc:summary>Characteristics used to define date and 
+                    <doc:summary>Characteristics used to define date and
                     time attributes</doc:summary>
                     <doc:description>
                       <para xmlns="">The dateTime field is used for defining the
@@ -489,12 +489,12 @@
                     a fixed point) but they sometimes only behave as ordinals
                     (because the calendar is not predetermined, for some
                     dateTime values one can only find out the order of
-                    the points and not the magnitude of the duration 
+                    the points and not the magnitude of the duration
                     between those points).  Thus, the dateTime scale provides
                     the information necessary to properly understand and
-                    parse date and time values without improperly 
+                    parse date and time values without improperly
                     labeling them under one of the more traditional scales.</para>
-                      <para xmlns="">Date and time values are unlike any other measured values.  
+                      <para xmlns="">Date and time values are unlike any other measured values.
                       Note that the dateTime field would not be used if
               one is recording time durations.  In that case, one should use a
               standard unit such as seconds, nominalMinute or nominalDay, or a
@@ -601,7 +601,7 @@
               string for dateTime values allows one to accurately calculate the
               duration in SI second units between two measured dateTime values,
               assuming that the conversion software has a detailed knowledge of
-              the Gregorian calendar. 
+              the Gregorian calendar.
               </para>
                           </doc:description>
                           <doc:example>YYYY-MM-DDThh:mm:ss</doc:example>
@@ -773,14 +773,11 @@
                   Each annotation consists of a propertyURI and valueURI that
                   define the property and value of the statement.  The subject
                   of the statement is the eml:attribute that contains the
-                  annotation. The propertyLabel and valueLabel can be used
+                  annotation. The associated labels can be used
                   to display the statement to users.  Each URI is
                   resolvable to a controlled vocabulary that provides
                   a definition, relationships to other terms, and multiple
-                  labels for displaying the statement.  The propertyURI and propertyLabel
-                  fields are optional.  When they are omitted for an attribute defniition,
-                  then users should assume thatthe property being asserted is
-                  <code>oboe:MeasurementType</code>.
+                  labels for displaying the statement.
               </doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -890,7 +887,7 @@
             <doc:tooltip>Standard Unit</doc:tooltip>
             <doc:summary>The name of a standard unit used to make this
             measurement</doc:summary>
-            <doc:description>Use the standardUnit element if the unit for this attribute has 
+            <doc:description>Use the standardUnit element if the unit for this attribute has
             been defined in the Standard Unit Dictionary.
             The list of "standard" units includes the SI base units and many compound units based
             on SI, plus and some commonly used units which are not SI. The list is by no means
@@ -910,7 +907,7 @@
             <doc:summary>The name of a custom unit used to make this
             measurement.</doc:summary>
             <doc:description>The customUnit element is for units that are
-             not part of the standard list provided with EML. The customUnit 
+             not part of the standard list provided with EML. The customUnit
              must correspond to an id in the
             document where its definition is provided using the STMML
             syntax. The customUnit definition will most likely be in
@@ -926,14 +923,14 @@
       <xs:appinfo>
         <doc:tooltip>Precision</doc:tooltip>
         <doc:summary>The precision of the measurement.</doc:summary>
-        <doc:description>Precision indicates how close together or how 
-        repeatable measurements are.  A precise measuring instrument will give 
-        very nearly the same result each time it is used. This means that 
-        someone interpreting the data should expect that if a measurement were 
-        repeated, most measured values would fall within the interval specified 
+        <doc:description>Precision indicates how close together or how
+        repeatable measurements are.  A precise measuring instrument will give
+        very nearly the same result each time it is used. This means that
+        someone interpreting the data should expect that if a measurement were
+        repeated, most measured values would fall within the interval specified
         by the precision. The value of precision should be expressed in the
-        same unit as the measurement. For example, for an attribute with unit 
-        "meter", a precision of "0.1" would be interpreted to mean that most 
+        same unit as the measurement. For example, for an attribute with unit
+        "meter", a precision of "0.1" would be interpreted to mean that most
         repeat measurements would fall within an interval of 1/10th of a meter.
         </doc:description>
         <doc:example>0.1</doc:example>
@@ -962,9 +959,9 @@
         text domain is usually used for comment and notes attributes,
         and other character attributes that don't have a precise set of
         constrained values. This is an important field for post processing
-        and error checking of the dataset. It represents a formal 
-        specification of the value space for the attribute, and so there 
-        should never be a value for the attribute that falls outside of 
+        and error checking of the dataset. It represents a formal
+        specification of the value space for the attribute, and so there
+        should never be a value for the attribute that falls outside of
         the set of values prescribed by the domain.</doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -1027,10 +1024,10 @@
                           <doc:summary>Definition of the associated code
                           </doc:summary>
                           <doc:description>The definition describes the
-                          code with which it is associated in enough 
+                          code with which it is associated in enough
                           detail for scientists to interpret the meaning
                           of the coded values.</doc:description>
-                          <doc:example>high density, above 10 per square 
+                          <doc:example>high density, above 10 per square
                           meter</doc:example>
                         </xs:appinfo>
                       </xs:annotation>
@@ -1060,13 +1057,13 @@
                     <xs:annotation>
                       <xs:appinfo>
                         <doc:tooltip>Order</doc:tooltip>
-                        <doc:summary>Mechanism for specifying what the 
-			order of the code-definitions included should 
+                        <doc:summary>Mechanism for specifying what the
+			order of the code-definitions included should
 			be</doc:summary>
-                        <doc:description>Ordinal scale measurements have a discrete list 
-			of values with a specific ordering of those values. This attributes 
-			specifies that order from low to high. For example, for LOW, 
-            MEDIUM, HIGH, the order attribute might be "LOW=1, MEDIUM=2 and 
+                        <doc:description>Ordinal scale measurements have a discrete list
+			of values with a specific ordering of those values. This attributes
+			specifies that order from low to high. For example, for LOW,
+            MEDIUM, HIGH, the order attribute might be "LOW=1, MEDIUM=2 and
             HIGH=3".
                   	</doc:description>
                       </xs:appinfo>
@@ -1148,7 +1145,7 @@
                     <doc:description>The entityCodeList is a list of
                     codes and their definitions in a data
                     entity that is present in this dataset. The fields
-                    specify exactly which entity it is, and which 
+                    specify exactly which entity it is, and which
                     attributes of that entity contain the codes, their
                     definitions, and the order of the values.</doc:description>
                   </xs:appinfo>
@@ -1406,7 +1403,7 @@
         description for the attribute.  For example, if the format
         string is "YYYY-MM-DD", then a valid minimum in the domain
         would be "2001-05-29".  The "bounds" element is optional, and
-        if it is missing then any legitimate value from the Gregorian 
+        if it is missing then any legitimate value from the Gregorian
         calendar system is allowed in the attribute as long as its
         representation matches its corresponding formatString.
         </doc:description>
@@ -1430,7 +1427,7 @@
         minimum and maximum values of a numeric attribute. These
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
-        a given data set (descriptive). 
+        a given data set (descriptive).
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -1445,7 +1442,7 @@
         minimum and maximum values of a numeric attribute. These
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
-        a given data set (descriptive). Either or both a minimum and maximum may 
+        a given data set (descriptive). Either or both a minimum and maximum may
         be set, and each has an attribute "exclusive" to define how the value should
         be interpreted.
         </doc:description>
@@ -1553,7 +1550,7 @@
         For example, if the format
         string is "YYYY-MM-DD", then a valid minimum in the domain
         would be "2001-05-29".  The "bounds" element is optional, and
-        if it is missing then any legitimate value from the Gregorian 
+        if it is missing then any legitimate value from the Gregorian
         calendar system is allowed in the attribute as long as its
         representation matches its corresponding formatString.
         </doc:description>
@@ -1570,7 +1567,7 @@
         minimum and maximum dates of a dateTime attribute. These
         are theoretical or permitted values (ie. prescriptive), and
         not necessarily the actual minimum and maximum observed in
-        a given data set (descriptive). Either or both a minimum and maximum may 
+        a given data set (descriptive). Either or both a minimum and maximum may
         be set, and each has an attribute "exclusive" to define how the value should
         be interpreted.
         </doc:description>
@@ -1705,7 +1702,7 @@
             </doc:summary>
             <doc:description>The number type for this attribute consists
             of the 'integer' numbers, which are the natural numbers, plus the
-            zero value, plus the negatives of the natural numbers: ..., -4, -3, 
+            zero value, plus the negatives of the natural numbers: ..., -4, -3,
             -2, -1, 0, 1, 2, 3, 4, ...
             </doc:description>
           </xs:appinfo>
@@ -1719,7 +1716,7 @@
             </doc:summary>
             <doc:description>The number type for this attribute consists
             of the 'real' numbers, which contains both the rational numbers
-            that can be expressed as fractions and the irrational numbers 
+            that can be expressed as fractions and the irrational numbers
             that can not be expressed as fractions (such as the square root of 2).
             </doc:description>
             <doc:example>4.1516</doc:example>

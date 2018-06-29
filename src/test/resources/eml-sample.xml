@@ -48,6 +48,13 @@
     <phone>208-236-2933</phone>
     <electronicMailAddress>inouye@lter.umn.edu</electronicMailAddress>
   </creator>
+  <creator id="adam.shepherd">
+    <individualName>
+      <salutation>Mr.</salutation>
+      <givenName>Adam</givenName>
+      <surName>Shepherd</surName>
+    </individualName>
+  </creator>
   <keywordSet>
     <keyword>Old field grassland</keyword>
     <keyword>biomass</keyword>
@@ -56,10 +63,8 @@
     <keyword>species richness</keyword>
   </keywordSet>
   <annotation>
-      <propertyURI>http://purl.org/dc/elements/1.1/subject</propertyURI>
-      <propertyLabel>Subject</propertyLabel>
-      <valueURI>http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
-      <valueLabel>grassland biome</valueLabel>
+      <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+      <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
   </annotation>
   <contact>
     <references>clarence.lehman</references>
@@ -84,7 +89,7 @@
           <awardUrl>https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</awardUrl>
       </award>
   </project>
-  <dataTable id="xyz">
+  <dataTable id="CDR-biodiv-table">
     <entityName>CDR LTER-patterns among communities.txt</entityName>
     <entityDescription>patterns amoung communities at CDR</entityDescription>
     <physical>
@@ -301,22 +306,16 @@
           </ratio>
         </measurementScale>
         <annotation>
-            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofCharacteristic</propertyURI>
-            <propertyLabel>Characteristic</propertyLabel>
-            <valueURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</valueURI>
-            <valueLabel>Mass</valueLabel>
+            <propertyURI label="of characteristic">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofCharacteristic</propertyURI>
+            <valueURI label="Mass">http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</valueURI>
         </annotation>
         <annotation>
-            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#usesStandard</propertyURI>
-            <propertyLabel>unit</propertyLabel>
-            <valueURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</valueURI>
-            <valueLabel>Kilogram</valueLabel>
+            <propertyURI label="uses unit">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#usesStandard</propertyURI>
+            <valueURI label="Kilogram">http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</valueURI>
         </annotation>
         <annotation>
-            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofEntity</propertyURI>
-            <propertyLabel>entity</propertyLabel>
-            <valueURI>http://example.com/example-vocab-1.owl#PlantSample</valueURI>
-            <valueLabel>Plant Sample</valueLabel>
+            <propertyURI label="of entity">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofEntity</propertyURI>
+            <valueURI label="Plant Sample">http://example.com/example-vocab-1.owl#PlantSample</valueURI>
         </annotation>
       </attribute>
       <attribute id="att.13">
@@ -362,6 +361,20 @@
     <numberOfRecords>22</numberOfRecords>
   </dataTable>
 </dataset>
+<annotations>
+    <annotation references="CDR-biodiv-table">
+        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+    </annotation>
+    <annotation references="adam.shepherd">
+        <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
+        <valueURI label="Person">https://schema.org/Person</valueURI>
+    </annotation>
+    <annotation references="adam.shepherd">
+        <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
+        <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+    </annotation>
+</annotations>
 <additionalMetadata>
 <metadata>
 <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
@@ -371,5 +384,14 @@
     <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
   </stmml:unitList>
   </metadata>
+</additionalMetadata>
+<additionalMetadata>
+    <describes>adam.shepherd</describes>
+    <metadata>
+        <annotation>
+            <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
+            <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+        </annotation>
+    </metadata>
 </additionalMetadata>
 </eml:eml>
