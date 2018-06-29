@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         packageId="eml-1.2" system="knb"
+         xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
+         <software>
+             <alternateIdentifier>eml2</alternateIdentifier>
+             <title>eml2: Create and Manipulate Data using the Ecological Metadata Language</title>
+             <creator id="http://orcid.org/0000-0002-1642-628X">
+                 <individualName>
+                     <givenName>Carl</givenName>
+                     <surName>Boettiger</surName>
+                 </individualName>
+                 <address/>
+                 <electronicMailAddress>cboettig@gmail.com</electronicMailAddress>
+             </creator>
+             <abstract>A successor to the 'EML' R package which provides the same high level
+                 functions for creating and extracting data from 'EML' files, while
+                 providing a simpler and more user friendly lower level interface.
+             </abstract>
+             <implementation>
+                 <distribution>
+                     <online>
+                         <url>https://github.com/cboettig/eml2</url>
+                     </online>
+                 </distribution>
+                 <size>466.612KB</size>
+                 <programmingLanguage>R 3.5.0</programmingLanguage>
+             </implementation>
+             <dependency>
+                 <action>install</action>
+                 <software>
+                     <alternateIdentifier>xml2</alternateIdentifier>
+                     <title>xml2</title>
+                     <creator>
+                         <references>http://orcid.org/0000-0002-1642-628X</references>
+                     </creator>
+                     <implementation>
+                         <distribution>
+                             <online>
+                                 <url>https://github.com/cboettig/eml2</url>
+                             </online>
+                         </distribution>
+                         <size>466.612KB</size>
+                         <programmingLanguage>R 3.5.0</programmingLanguage>
+                     </implementation>
+                     <licenseURL>https://spdx.org/licenses/MIT</licenseURL>
+                     <version>1.4</version>
+                 </software>
+             </dependency>
+             <licenseURL>https://spdx.org/licenses/MIT</licenseURL>
+             <version>xxx</version>
+         </software>
+</eml:eml>
