@@ -438,16 +438,11 @@
                   resource.  Each annotation consists of a propertyURI and
                   valueURI that define a property and value that apply to the
                   resource. The subject of the statement is implicitly the
-                  eml:resource that contains the annotation.  The propertyLabel
-                  and valueLabel can be used to display the statement to users.
+                  eml:resource that contains the annotation.  The associated
+                  labels can be used to display the statement to users.
                   Each URI is resolvable to a controlled vocabulary
                   that provides a definition, relationships to other terms, and
                   multiple labels for displaying the statement.
-                  The propertyURI and propertyLabel fields are optional.  When
-                  they are omitted for a resource,
-                 then users should assume that the property being asserted is
-                 from the Dublin Core Element Set vocabulary and represents the
-                 <code>dc:subject</code> for the entity.
             </doc:description>
           </xs:appinfo>
         </xs:annotation>
