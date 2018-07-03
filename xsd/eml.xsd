@@ -11,6 +11,7 @@
 	xmlns:ds="eml://ecoinformatics.org/dataset-2.2.0"
 	xmlns:cit="eml://ecoinformatics.org/literature-2.2.0"
 	xmlns:sw="eml://ecoinformatics.org/software-2.2.0"
+	xmlns:sem="eml://ecoinformatics.org/semantics-2.2.0"
 	targetNamespace="eml://ecoinformatics.org/eml-2.2.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/dataset-2.2.0" schemaLocation="eml-dataset.xsd"/>
@@ -19,6 +20,7 @@
   <xs:import namespace="eml://ecoinformatics.org/protocol-2.2.0" schemaLocation="eml-protocol.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/access-2.2.0" schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
   <xs:annotation>
     <xs:documentation> '$RCSfile: eml.xsd,v $' Copyright: 1997-2002 Regents of the University of
@@ -176,6 +178,57 @@
             </xs:annotation>
           </xs:element>
         </xs:choice>
+		<xs:element name="annotations" minOccurs="0" maxOccurs="1">
+			<xs:annotation>
+				<xs:appinfo>
+					<doc:tooltip>Semantic Annotation List</doc:tooltip>
+					<doc:summary>A list of precisely-defined semantic statements about this resource.
+					</doc:summary>
+					<doc:description>A list of annotations defining precise semantics
+						for parts of this resource.  The list consists of a set
+						of annotation elements, each referring to a subject within
+						the EML document using its references attribute, which provides
+						a pointer to the id of the element being annotated.
+					</doc:description>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="annotation" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:appinfo>
+								<doc:tooltip>Semantic Annotation</doc:tooltip>
+								<doc:summary>A precisely-defined semantic statement about
+									an element in the EML document.
+								</doc:summary>
+								<doc:description>An annotation represents a precisely-defined semantic
+									statement that applies to this resource.  This semantic
+									statement is used to associate precise semantics with a
+									particular element in the EML document.  The id of the
+									element being annotated is listed in the references attribute,
+									and must point to a unique id within the EML document.
+									Each annotation consists of a propertyURI and
+									valueURI that define a property and value that apply to the
+									resource. The subject of the statement is implicitly the
+									element that is listed in the references attribute.
+									The associated labels can be used to display the statement to users.
+									Each URI is resolvable to a controlled vocabulary
+									that provides a definition, relationships to other terms, and
+									multiple labels for displaying the statement.
+								</doc:description>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="sem:SemanticAnnotation">
+									<xs:attribute name="references" type="xs:string" use="required"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
         <xs:element name="additionalMetadata" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>

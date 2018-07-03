@@ -285,7 +285,7 @@
                   </xs:appinfo>
                 </xs:annotation>
               </xs:element>
-              <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="dependency" type="DependencyType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:appinfo>
                     <doc:tooltip>dependency</doc:tooltip>
@@ -299,7 +299,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element ref="dependency" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dependency" type="DependencyType" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>dependency</doc:tooltip>
@@ -380,22 +380,21 @@
       <xs:enumeration value="assert"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="dependency">
-    <xs:annotation>
-      <xs:appinfo>
-        <doc:tooltip>Dependency</doc:tooltip>
-        <doc:summary>Dependency describes the software package(s) that the
-        software package is dependent upon.</doc:summary>
-        <doc:description>The dependency element is recursive. It is a
-        sub-element of the software Element but it also has as a sub-element
-        its parent element Software Package. Dependency has been made optional
-        because to make it mandatory does not allow the recursion to end.
-        Dependency has also been made a sub-element of implementation because
-        there can be both implementation and package level dependencies within
-        a package.</doc:description>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexType>
+  <xs:complexType name="DependencyType">
+      <xs:annotation>
+        <xs:appinfo>
+          <doc:tooltip>Dependency</doc:tooltip>
+          <doc:summary>Dependency describes the software package(s) that the
+          software package is dependent upon.</doc:summary>
+          <doc:description>The dependency element is recursive. It is a
+          sub-element of the software Element but it also has as a sub-element
+          its parent element Software Package. Dependency has been made optional
+          because to make it mandatory does not allow the recursion to end.
+          Dependency has also been made a sub-element of implementation because
+          there can be both implementation and package level dependencies within
+          a package.</doc:description>
+        </xs:appinfo>
+      </xs:annotation>
       <xs:sequence>
         <xs:element name="action" type="Action">
           <xs:annotation>
@@ -415,8 +414,8 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element ref="software"/>
+        <xs:element name="software" type="SoftwareType"/>
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  </xs:complexType>
+  <xs:element name="dependency" type="DependencyType"/>
 </xs:schema>

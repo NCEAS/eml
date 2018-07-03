@@ -3,40 +3,34 @@
     system="http://knb.ecoinformatics.org"
     xmlns:dt="eml://ecoinformatics.org/dataTable-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="eml://ecoinformatics.org/dataTable-2.2.0
-    xsd/eml-dataTable.xsd">
+    xsi:schemaLocation="eml://ecoinformatics.org/dataTable-2.2.0 xsd/eml-dataTable.xsd">
     <alternateIdentifier>TEMPID234</alternateIdentifier>
     <entityName>Test Data</entityName>
     <entityDescription>This is a test entity that is fake.</entityDescription>
     <additionalInfo><para>This is test data</para></additionalInfo>
     <attributeList>
-      <attribute id="attribute01">
-        <attributeName>tmpair</attributeName>
-        <attributeLabel>Air Temperature</attributeLabel>
-        <attributeDefinition>Air temperature at 1m from ground.
-        </attributeDefinition>
-        <storageType>float</storageType>
-        <measurementScale>
-          <interval>
-            <unit><standardUnit>celsius</standardUnit></unit>
-            <precision>0.5</precision>
-            <numericDomain id="nd.1">
-              <numberType>real</numberType>
-            </numericDomain>
-          </interval>
-        </measurementScale>
-        <annotation>
-            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofCharacteristic</propertyURI>
-            <propertyLabel>characteristic</propertyLabel>
-            <valueURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Temperature</valueURI>
-            <valueLabel>Temperature</valueLabel>
-        </annotation>
-        <annotation>
-            <propertyURI>http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofEntity</propertyURI>
-            <propertyLabel>entity</propertyLabel>
-            <valueURI>http://purl.obolibrary.org/obo/ENVO_00002005</valueURI>
-            <valueLabel>air</valueLabel>
-        </annotation>
-      </attribute>
+        <attribute id="attribute01">
+            <attributeName>tmpair</attributeName>
+            <attributeLabel>Air Temperature</attributeLabel>
+            <attributeDefinition>Air temperature at 1m from ground.</attributeDefinition>
+            <storageType>float</storageType>
+            <measurementScale>
+                <interval>
+                    <unit><standardUnit>celsius</standardUnit></unit>
+                    <precision>0.5</precision>
+                    <numericDomain id="nd.1">
+                        <numberType>real</numberType>
+                    </numericDomain>
+                </interval>
+            </measurementScale>
+            <annotation>
+                <propertyURI label="ofCharacteristic"> http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofCharacteristic</propertyURI>
+                <valueURI label="Temperature"> http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Temperature</valueURI>
+            </annotation>
+            <annotation>
+                <propertyURI label='entity'> http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#ofEntity</propertyURI>
+                <valueURI label='air'> http://purl.obolibrary.org/obo/ENVO_00002005</valueURI>
+            </annotation>
+        </attribute>
     </attributeList>
 </dt:dataTable>

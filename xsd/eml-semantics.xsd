@@ -25,7 +25,8 @@
         <doc:moduleDescription>
           <section xmlns="">
             <title>
-                The eml-semantics module - Semantic annotations for formalizing meaning
+                The eml-semantics module - Semantic annotations for formalized
+                statements about EML components
           </title>
           <para>
                 The eml-semantics module defines types and elements for
@@ -39,6 +40,14 @@
                 semantically that the attribute is measuring the property
                 "Temperature" from a sample of the entity "Air", where both of
                 those terms are defined precisely in controlled vocabularies.
+                The eml-semantics module defines an 'annotation' element and
+                associated type that can be used within EML resources (dataset,
+                software, etc.), EML Entities (dataTable, spatialRaster,
+                spatialVector, otherEntity), and EML Attributes.  They can also
+                be applied within the EML additionalMetadata field to label
+                arbitrary structures within EML, in which case the subject of
+                the annotation is the element listed in the describes element
+                within the additionalMetadata field.
           </para>
           </section>
         </doc:moduleDescription>
@@ -63,6 +72,14 @@
                 clarify the measurement semantics of an attribute (variable)
                 within a data set, or associate a specific statement with a
                 data table or dataset.
+                The eml-semantics module defines an 'annotation' element and
+                associated type that can be used within EML resources (dataset,
+                software, etc.), EML Entities (dataTable, spatialRaster,
+                spatialVector, otherEntity), and EML Attributes.  They can also
+                be applied within the EML additionalMetadata field to label
+                arbitrary structures within EML, in which case the subject of
+                the annotation is the element listed in the describes element
+                within the additionalMetadata field.
             </para>
           </section>
         </doc:description>
@@ -71,55 +88,77 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-        <xs:element name="propertyURI" type="xs:anyURI" minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Property URI</doc:tooltip>
-              <doc:summary>The persistent URI used to identify a property from a vocabulary.
-              </doc:summary>
-              <doc:description>The URI for a property that is drawn from a controlled
-                  vocabulary, and that links the subject of this annotation
-                  (which is implied by its parent elements) to the annotation value.
-                  The propertyURI represents a semantically well-defined concept
-                  that one wants to apply to an element within EML.  The propertyURI
-                  and its associated label are optional. If omitted, then the interpretation
-                  of the associated valueURI depends on where the annotation occurs.
-              </doc:description>
-              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#ofCharacteristic</doc:example>
-              <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#usesStandard</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
+        <xs:element name="propertyURI" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+                <xs:appinfo>
+                    <doc:tooltip>Property URI</doc:tooltip>
+                    <doc:summary>The persistent URI used to identify a property from a vocabulary.
+                    </doc:summary>
+                    <doc:description>The URI for a property that is drawn from a controlled
+                        vocabulary, and that links the subject of this annotation
+                        (which is implied by its parent element) to the annotation value.
+                        The propertyURI represents a semantically well-defined concept
+                        that one wants to apply to an element within EML.
+                        These properties should be precisely defined,
+                        including defining various relationships to related concepts.
+                        Property URIs are typically drawn from formal ontologies that
+                        provide well-defined logical semantics and provide for various
+                        types of reasoning about equivalence and overlap.
+                        Property URIs should be persistent and unique over decades,
+                        and the meaning of the URI should
+                        be stable over time as well. These URIs are usually constructed
+                        using an additional abstraction layer via link resolvers,
+                        rather than directly resolving to the term definition itself.
+                        Thus, when resolving the propertyURI, software user agents should
+                        be prepared to follow multiple redirects before finally
+                        resolving the current location of the definition.
+                        However, there is no requirement that propertyURIs need to be
+                        resolvable, and metadata parsers should expect to find
+                        propertyURIs that do not resolve and are only used as unique
+                        URIs for the property (i.e., a name).
+
+                    </doc:description>
+                    <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#ofCharacteristic</doc:example>
+                    <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#usesStandard</doc:example>
+                </xs:appinfo>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:simpleContent>
+                    <xs:extension base="xs:anyURI">
+                        <xs:attribute name="label" type="xs:string" use="required">
+                            <xs:annotation>
+                              <xs:appinfo>
+                                <doc:tooltip>Property Label</doc:tooltip>
+                                <doc:summary>
+                                    A human readable representation of the controlled property.
+                                </doc:summary>
+                                <doc:description>
+                                    A label that provides a human readable representation of
+                                    the controlled property. The label is often used to represent
+                                    the controlled property when displaying annotations in
+                                    software. The label is often redundant with one or more labels
+                                    that are defined in the controlled vocabulary itself,
+                                    but is repreated here within the EML document to make it easy
+                                    for consumers to display the annotation to users.  Other
+                                    labels, including labels in multiple languages, may often be
+                                    accessible from within the ontology or controlled
+                                    vocabularly accessible at the propertyURI.  Property definitions
+                                    and relationships to other properties are also typically
+                                    provided within the vocabularly accessible at the propertyURI.
+                                    Software and people may be able to resolve the URI to find out
+                                    the definition and retrieve additional labels and other metadata
+                                    for presentation to users.
+                                </doc:description>
+                                <doc:example>has characteristic</doc:example>
+                                <doc:example>uses protocol</doc:example>
+                              </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
         </xs:element>
-        <xs:element name="propertyLabel" minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Property Label</doc:tooltip>
-              <doc:summary>
-                  A human readable representation of the controlled property.
-              </doc:summary>
-              <doc:description>
-                  A label that provides a human readable representation of
-                  the controlled property. The label is often used to represent
-                  the controlled property when displaying annotations in
-                  software. The label is often redundant with one or more labels
-                  that are defined in the controlled vocabulary itself,
-                  but is repreated here within the EML document to make it easy
-                  for consumers to display the annotation to users.  Other
-                  labels, including labels in multiple languages, may often be
-                  accessible from within the ontology or controlled
-                  vocabularly accessible at the propertyURI.  Property definitions
-                  and relationships to other properties are also typically
-                  provided within the vocabularly accessible at the propertyURI.
-                  Software and people may be able to resolve the URI to find out
-                  the definition and retrieve additional labels and other metadata
-                  for presentation to users.
-              </doc:description>
-              <doc:example>has characteristic</doc:example>
-              <doc:example>uses protocol</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="valueURI" type="xs:anyURI" minOccurs="1" maxOccurs="1">
+        <xs:element name="valueURI" minOccurs="1" maxOccurs="1">
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Value URI</doc:tooltip>
@@ -146,44 +185,50 @@
                   However, there is no requirement that valueURIs need to be
                   resolvable, and metadata parsers should expect to find
                   valueURIs that do not resolve and are only used as unique
-                  URIs for the value.
+                  URIs for the value (i.e., a name)
               </doc:description>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#Mass</doc:example>
               <doc:example>http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#Kilogram</doc:example>
             </xs:appinfo>
           </xs:annotation>
-        </xs:element>
-        <xs:element name="valueLabel" minOccurs="1" maxOccurs="1">
-          <xs:annotation>
-            <xs:appinfo>
-              <doc:tooltip>Value Label</doc:tooltip>
-              <doc:summary>
-                  A human readable representation of the controlled value.
-              </doc:summary>
-              <doc:description>
-                  A label that provides a human readable representation of
-                  the controlled value. The label is often used to represent the
-                  controlled value when displaying annotations in software. The
-                  label is often redundant with one or more labels that are
-                  defined in the controlled vocabulary itself, but is repreated
-                  here within the EML document to make it easy for consumers to
-                  display the annotation to users.  Other labels, including
-                  labels in multiple languages, may often be accessible from
-                  within the ontology or controlled vocabularly accessible at
-                  the valueURI.  Value definitions and relationships to
-                  other terms are also typically provided within the vocabularly
-                  accessible at the valueURI.  Software and people can resolve
-                  the value URI to find out the definition of the value and
-                  retrieve additional labels and other metadata about the value
-                  for presentation to users.
-              </doc:description>
-              <doc:example>Mass</doc:example>
-              <doc:example>Kilogram</doc:example>
-              <doc:example>Net Primary Production</doc:example>
-              <doc:example>Carbon</doc:example>
-              <doc:example>Density</doc:example>
-            </xs:appinfo>
-          </xs:annotation>
+          <xs:complexType>
+              <xs:simpleContent>
+                  <xs:extension base="xs:anyURI">
+                      <xs:attribute name="label" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <doc:tooltip>Value Label</doc:tooltip>
+                              <doc:summary>
+                                  A human readable representation of the controlled value.
+                              </doc:summary>
+                              <doc:description>
+                                  A label that provides a human readable representation of
+                                  the controlled value. The label is often used to represent the
+                                  controlled value when displaying annotations in software. The
+                                  label is often redundant with one or more labels that are
+                                  defined in the controlled vocabulary itself, but is repreated
+                                  here within the EML document to make it easy for consumers to
+                                  display the annotation to users.  Other labels, including
+                                  labels in multiple languages, may often be accessible from
+                                  within the ontology or controlled vocabularly accessible at
+                                  the valueURI.  Value definitions and relationships to
+                                  other terms are also typically provided within the vocabularly
+                                  accessible at the valueURI.  Software and people can resolve
+                                  the value URI to find out the definition of the value and
+                                  retrieve additional labels and other metadata about the value
+                                  for presentation to users.
+                              </doc:description>
+                              <doc:example>Mass</doc:example>
+                              <doc:example>Kilogram</doc:example>
+                              <doc:example>Net Primary Production</doc:example>
+                              <doc:example>Carbon</doc:example>
+                              <doc:example>Density</doc:example>
+                            </xs:appinfo>
+                          </xs:annotation>
+                      </xs:attribute>
+                  </xs:extension>
+              </xs:simpleContent>
+          </xs:complexType>
         </xs:element>
     </xs:sequence>
   </xs:complexType>

@@ -294,15 +294,10 @@
                   is used to associate precise measurement semantics with the
                   entity.  Each annotation consists of a propertyURI and valueURI,
                   which define a property and a value that apply to the entity.
-                  The propertyLabel and valueLabel can be used to display the
+                  The associated labels can be used to display the property and
                   value to users.  Each URI is resolvable to a
                   controlled vocabulary that provides a definition, relationships
                   to other terms, and multiple labels for displaying the statement.
-                  The propertyURI and propertyLabel fields are optional.  When
-                  they are omitted for an entity defniition,
-                 then users should assume that the property being asserted is
-                 from the Dublin Core Element Set vocabulary and represents the
-                 <code>dc:subject</code> for the entity.
             </doc:description>
           </xs:appinfo>
         </xs:annotation>
