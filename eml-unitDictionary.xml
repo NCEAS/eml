@@ -240,7 +240,7 @@
   </unitType>
 
   <unitType id="arealMassDensity" name="arealMassDensity">
-    <!--kilogramsPerSquareMeter-->
+    <!--kilogramPerSquareMeter-->
     <dimension name="mass"/>
     <dimension name="length" power="-2"/>
   </unitType>
@@ -967,27 +967,27 @@
     udunitsSynonym="kilogram/meter^2">
     <description>kilograms per square meter</description>
   </unit>
-  <unit id="gramsPerSquareMeter" name="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter"
+  <unit id="gramsPerSquareMeter" name="gramsPerSquareMeter" parentSI="kilogramPerMeterSquared"
     unitType="arealMassDensity" multiplierToSI="0.001" abbreviation="g/m²"
     deprecatedInFavorOf="gramPerMeterSquared" udunitsSynonym="gram/meter^2">
     <description>grams per square meter</description>
   </unit>
   <unit id="milligramsPerSquareMeter" name="milligramsPerSquareMeter" unitType="arealMassDensity"
-    parentSI="kilogramsPerSquareMeter" multiplierToSI="0.000001" abbreviation="mg/m²"
+    parentSI="kilogramPerMeterSquared" multiplierToSI="0.000001" abbreviation="mg/m²"
     deprecatedInFavorOf="milligramPerMeterSquared" udunitsSynonym="milligram/meter^2">
     <description>milligrams Per Square Meter</description>
   </unit>
   <unit id="kilogramsPerHectare" name="kilogramsPerHectare" unitType="arealMassDensity"
-    parentSI="kilogramsPerSquareMeter" multiplierToSI="0.0001"
+    parentSI="kilogramPerMeterSquared" multiplierToSI="0.0001"
     deprecatedInFavorOf="kilogramPerHectare" udunitsSynonym="kilogram/hectare">
     <description>kilograms per hectare</description>
   </unit>
   <unit id="tonnePerHectare" name="tonnePerHectare" unitType="arealMassDensity"
-    parentSI="kilogramsPerSquareMeter" multiplierToSI="0.1" udunitsSynonym="metric_ton/hectare">
+    parentSI="kilogramPerMeterSquared" multiplierToSI="0.1" udunitsSynonym="metric_ton/hectare">
     <description>metric ton or tonne per hectare</description>
   </unit>
   <unit id="poundsPerSquareInch" name="poundsPerSquareInch" unitType="arealMassDensity" 
-    parentSI="kilogramsPerSquareMeter" multiplierToSI="703.0696" abbreviation="lbs/in²"
+    parentSI="kilogramPerMeterSquared" multiplierToSI="703.0696" abbreviation="lbs/in²"
     deprecatedInFavorOf="poundPerInchSquared"
     udunitsSynonym="avoirdupois_pound/international_inch^2">
     <description>lbs/square inch</description>
@@ -1024,7 +1024,7 @@
     <description>avoirdupois pounds per acre</description>
   </unit>
   <unit id="poundPerInchSquared" name="poundPerInchSquared" unitType="arealMassDensity"
-    parentSI="kilogramsPerSquareMeter" multiplierToSI="703.0696" abbreviation="lbs/in²"
+    parentSI="kilogramPerMeterSquared" multiplierToSI="703.0696" abbreviation="lbs/in²"
     udunitsSynonym="avoirdupois_pound/international_inch^2">
     <description>micromoles per square meter per second</description>
   </unit>
@@ -1037,37 +1037,37 @@
   </unit>
   
   <unit id="milliGramsPerMilliLiter" name="milliGramsPerMilliLiter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="1" abbreviation="kg/m³"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="1" abbreviation="kg/m³"
     deprecatedInFavorOf="milligramPerMilliliter" udunitsSynonym="milligram/milliliter">
     <description>milligrams per milliliter</description>
   </unit>
   <unit id="gramsPerLiter" name="gramsPerLiter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="1" abbreviation="g/l"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="1" abbreviation="g/l"
     deprecatedInFavorOf="gramPerLiter" udunitsSynonym="gram/liter">
     <description>grams per liter</description>
   </unit>
   <unit id="milligramsPerCubicMeter" name="milligramsPerCubicMeter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="0.000001" abbreviation="mg/m³"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="0.000001" abbreviation="mg/m³"
     deprecatedInFavorOf="milligramPerMeterCubed" udunitsSynonym="milligram/meter^3">
     <description>milligrams Per Cubic Meter</description>
   </unit>
   <unit id="microgramsPerLiter" name="microgramsPerLiter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="0.000001" abbreviation="μg/l"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="0.000001" abbreviation="μg/l"
     deprecatedInFavorOf="microgramPerLiter" udunitsSynonym="microgram/liter">
     <description>micrograms/liter</description>
   </unit>
   <unit id="milligramsPerLiter" name="milligramsPerLiter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="0.001" abbreviation="mg/l"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="0.001" abbreviation="mg/l"
     deprecatedInFavorOf="milligramPerLiter" udunitsSynonym="milligram/liter">
     <description>milligrams/liter</description>
   </unit>
   <unit id="gramsPerCubicCentimeter" name="gramsPerCubicCentimeter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="1000" abbreviation="g/cm³"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="1000" abbreviation="g/cm³"
     deprecatedInFavorOf="gramPerCentimeterCubed" udunitsSynonym="gram/centimeter^3">
     <description>grams per cubic centimeter</description>
   </unit>
   <unit id="gramsPerMilliliter" name="gramsPerMilliliter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="1000" abbreviation="g/ml"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="1000" abbreviation="g/ml"
     deprecatedInFavorOf="gramPerMilliliter" udunitsSynonym="gram/milliliter">
     <description>grams per milliliter</description>
   </unit>
@@ -1113,7 +1113,7 @@
     <description>megagrams per cubic meter</description>
   </unit>
   <unit id="milligramPerMilliliter" name="milligramPerMilliliter" unitType="massDensity"
-    parentSI="kilogramsPerCubicMeter" multiplierToSI="1" abbreviation="mg/ml"
+    parentSI="kilogramPerMeterCubed" multiplierToSI="1" abbreviation="mg/ml"
     udunitsSynonym="milligram/milliliter">
     <description>micromoles per square meter per second</description>
   </unit>
@@ -1145,12 +1145,12 @@
     <description>liters per second</description>
   </unit>
   <unit id="cubicMetersPerSecond" name="cubicMetersPerSecond" unitType="volumetricRate"
-    parentSI="litersPerSecond" multiplierToSI="1000" abbreviation="m³/s"
+    parentSI="literPerSecond" multiplierToSI="1000" abbreviation="m³/s"
     deprecatedInFavorOf="meterCubedPerSecond" udunitsSynonym="meter^3/second">
     <description>cubic meters per second</description>
   </unit>
   <unit id="cubicFeetPerSecond" name="cubicFeetPerSecond" unitType="volumetricRate"
-    parentSI="litersPerSecond" multiplierToSI="28.316874" abbreviation="ft³/s"
+    parentSI="literPerSecond" multiplierToSI="28.316874" abbreviation="ft³/s"
     deprecatedInFavorOf="footCubedPerSecond" udunitsSynonym="international_foot^3/second">
     <description>cubic feet per second</description>
   </unit>
@@ -1254,13 +1254,13 @@
     <description>liters per square meter</description>
   </unit>
   <unit id="bushelsPerAcre" name="bushelsPerAcre" unitType="volumetricArea"
-    parentSI="litersPerSquareMeter" multiplierToSI="0.00870" deprecatedInFavorOf="bushelPerAcre"
+    parentSI="literPerMeterSquared" multiplierToSI="0.00870" deprecatedInFavorOf="bushelPerAcre"
     udunitsSynonym="bushel/acre">
     <description>bushels per acre -- 1 bushel = 35.23907 liters/1 acre = 4046.8564
       squareMeters</description>
   </unit>
   <unit id="litersPerHectare" name="litersPerHectare" unitType="volumetricArea"
-    parentSI="litersPerSquareMeter" multiplierToSI="0.0001" deprecatedInFavorOf="literPerHectare"
+    parentSI="literPerMeterSquared" multiplierToSI="0.0001" deprecatedInFavorOf="literPerHectare"
     udunitsSynonym="liter/hectare">
     <description>liters per hectare</description>
   </unit>
@@ -1358,12 +1358,12 @@
     <description>miles per minute</description>
   </unit>
   <unit id="centimetersPerSecond" name="centimetersPerSecond" unitType="speed"
-    parentSI="metersPerSecond" multiplierToSI="0.01" abbreviation="cm/s"
+    parentSI="meterPerSecond" multiplierToSI="0.01" abbreviation="cm/s"
     deprecatedInFavorOf="centimeterPerSecond" udunitsSynonym="centimeter/second">
     <description>centimeters per second</description>
   </unit>
   <unit id="millimetersPerSecond" name="millimetersPerSecond" unitType="speed"
-    parentSI="metersPerSecond" multiplierToSI="0.001" abbreviation="mm/s"
+    parentSI="meterPerSecond" multiplierToSI="0.001" abbreviation="mm/s"
     deprecatedInFavorOf="millimeterPerSecond" udunitsSynonym="millimeter/second">
     <description>millimeters per second</description>
   </unit>
@@ -1372,7 +1372,7 @@
     deprecatedInFavorOf="centimeterPerYear" udunitsSynonym="centimeter/common_year">
     <description>centimeter Per Year</description>
   </unit>
-  <unit id="knots" name="knots" unitType="speed" parentSI="metersPerSecond"
+  <unit id="knots" name="knots" unitType="speed" parentSI="meterPerSecond"
     multiplierToSI="0.514444" deprecatedInFavorOf="knot" udunitsSynonym="international_knot">
     <description>knots</description>
   </unit>
@@ -1522,7 +1522,7 @@
     <description>mole per cubic meter</description>
   </unit>
   <unit id="molarity" name="molarity" unitType="amountOfSubstanceConcentration"
-    parentSI="molesPerCubicMeter" multiplierToSI="1000" abbreviation="M"
+    parentSI="molePerMeterCubed" multiplierToSI="1000" abbreviation="M"
     deprecatedInFavorOf="molePerLiter" udunitsSynonym="mole/liter">
     <description>molarity = moles/liter</description>
   </unit>
@@ -1654,30 +1654,30 @@
     <description>kilograms per meter sqared per second</description>
   </unit>
   <unit id="gramsPerCentimeterSquaredPerSecond" name="gramsPerCentimeterSquaredPerSecond"
-    unitType="massFlux" parentSI="kilogramsPerMeterSquaredPerSecond" multiplierToSI="10"
+    unitType="massFlux" parentSI="kilogramPerMeterSquaredPerSecond" multiplierToSI="10"
     deprecatedInFavorOf="gramPerCentimeterSquaredPerSecond"
     udunitsSynonym="gram/centimeter^2/second">
     <description>grams Per Centimeter Squared Per Second</description>
   </unit>
   <unit id="gramsPerMeterSquaredPerYear" name="gramsPerMeterSquaredPerYear"
-    unitType="massFlux" parentSI="kilogramsPerMeterSquaredPerSecond"
+    unitType="massFlux" parentSI="kilogramPerMeterSquaredPerSecond"
     multiplierToSI="0.0000000000317098" deprecatedInFavorOf="gramPerMeterSquaredPerYear"
     udunitsSynonym="gram/meter^2/common_year">
     <description>grams Per Meter Squared Per Year</description>
   </unit>
   <unit id="gramsPerHectarePerDay" name="gramsPerHectarePerDay" unitType="massFlux"
-    parentSI="kilogramsPerMeterSquaredPerSecond" multiplierToSI="0.0000000000011574"
+    parentSI="kilogramPerMeterSquaredPerSecond" multiplierToSI="0.0000000000011574"
     deprecatedInFavorOf="gramPerDayPerHectare" udunitsSynonym="gram/hectare/day">
     <description>grams Per Hectare Per Day</description>
   </unit>
   <unit id="kilogramsPerHectarePerYear" name="kilogramsPerHectarePerYear"
-    unitType="massFlux" parentSI="kilogramsPerMeterSquaredPerSecond"
+    unitType="massFlux" parentSI="kilogramPerMeterSquaredPerSecond"
     multiplierToSI="0.000000000003170979" deprecatedInFavorOf="kilogramPerHectarePerYear"
     udunitsSynonym="kilogram/hectare/common_year">
     <description>kilograms Per Hectare Per Year</description>
   </unit>
   <unit id="kilogramsPerMeterSquaredPerYear" name="kilogramsPerMeterSquaredPerYear"
-    unitType="massFlux" parentSI="kilogramsPerMeterSquaredPerSecond"
+    unitType="massFlux" parentSI="kilogramPerMeterSquaredPerSecond"
     multiplierToSI="0.00000003170979" deprecatedInFavorOf="kilogramPerMeterSquaredPerYear"
     udunitsSynonym="kilogram/meter^2/common_year">
     <description>kilograms Per Meter Squared Per Year</description>
@@ -1738,12 +1738,12 @@
     <description>moles per kilogram</description>
   </unit>
   <unit id="molesPerGram" name="molesPerGram" unitType="amountOfSubstanceWeight"
-    parentSI="molesPerKilogram" multiplierToSI="1000" deprecatedInFavorOf="molePerGram"
+    parentSI="molePerKilogram" multiplierToSI="1000" deprecatedInFavorOf="molePerGram"
     udunitsSynonym="mole/gram">
     <description>moles per gram</description>
   </unit>
   <unit id="millimolesPerGram" name="millimolesPerGram" unitType="amountOfSubstanceWeight"
-    parentSI="molesPerKilogram" multiplierToSI="1" deprecatedInFavorOf="millimolePerGram"
+    parentSI="molePerKilogram" multiplierToSI="1" deprecatedInFavorOf="millimolePerGram"
     udunitsSynonym="millimole/gram">
     <description>millimoles per gram</description>
   </unit>
@@ -1755,7 +1755,7 @@
     <description>moles per kilogram per second</description>
   </unit>
   <unit id="nanomolesPerGramPerSecond" name="nanomolesPerGramPerSecond"
-    parentSI="molesPerKilogramPerSecond" multiplierToSI="0.000001"
+    parentSI="molePerKilogramPerSecond" multiplierToSI="0.000001"
     unitType="amountOfSubstanceWeightRate" deprecatedInFavorOf="nanomolePerGramPerSecond"
     udunitsSynonym="nanomole/gram/second">
     <description>nanomoles Per Gram Per Second</description>
@@ -1804,12 +1804,12 @@
     abbreviation="kg/s" deprecatedInFavorOf="kilogramPerSecond" udunitsSynonym="kilogram/second">
     <description>kilograms per second</description>
   </unit>
-  <unit id="tonnesPerYear" name="tonnesPerYear" unitType="massRate" parentSI="kilogramsPerSecond"
+  <unit id="tonnesPerYear" name="tonnesPerYear" unitType="massRate" parentSI="kilogramPerSecond"
     multiplierToSI="0.0000317" deprecatedInFavorOf="tonnePerYear"
     udunitsSynonym="metric_ton/common_year">
     <description>tonnes Per Year</description>
   </unit>
-  <unit id="gramsPerYear" name="gramsPerYear" unitType="massRate" parentSI="kilogramsPerSecond"
+  <unit id="gramsPerYear" name="gramsPerYear" unitType="massRate" parentSI="kilogramPerSecond"
     multiplierToSI="0.0000000000317" abbreviation="g/yr" deprecatedInFavorOf="gramPerYear"
     udunitsSynonym="gram/common_year">
     <description>grams Per Year</description>
