@@ -1294,6 +1294,42 @@ the spatialReference schema.</doc:description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      <xs:element name="taxonId" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:appinfo>
+            <doc:tooltip>Taxonomic Identifier</doc:tooltip>
+            <doc:summary>Element holds the ID for this taxon in an authoritative source.</doc:summary>
+            <doc:description>The identifier for this 
+              taxon from an authority such as ITIS or USDA Plant Database. more, TBD
+              The </doc:description>
+            <doc:example>TO DO. see userId for example structure</doc:example>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="provider" type="xs:string" use="required">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <doc:tooltip>Taxon ID Provider</doc:tooltip>
+                    <doc:summary>The taxonomic authority or catalog from which the
+                      taxonId can be retrieved.</doc:summary>
+                    <doc:description>This attribute names the taxonomic authority or catalog
+                      to which this taxonId applies. taxonId providers should be chosen for
+                      their stability and longevity, with an established name. 
+                      Minimally (but discouraged), the provider could  be a
+                      non-parsable description.</doc:description>
+                    <doc:example>https://itis.gov</doc:example>
+                    <doc:example>ITIS</doc:example>
+                    <doc:example>https://eol.org</doc:example>
+                    <doc:example>WoRMS</doc:example>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:appinfo>
@@ -1306,6 +1342,7 @@ the spatialReference schema.</doc:description>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
   </xs:complexType>
   <!--
 <xs:element name="taxonomicClassification" type="TaxonomicClassificationType" maxOccurs="unbounded">
