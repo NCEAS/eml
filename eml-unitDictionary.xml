@@ -433,11 +433,12 @@
 
   <unit id="candela" name="candela" unitType="luminosity" abbreviation="cd" multiplierToSI="1"
     udunitsSynonym="candela">
-    <description>SI unit of luminosity</description>
+    <description>SI base unit of luminous intensity (luminous power per unti solid angle emitted
+    by a point light source in a particular direction)</description>
   </unit>
 
   <unit id="number" name="number" unitType="dimensionless" udunitsSynonym="count">
-    <description>a number</description>
+    <description>a quantity or amount</description>
   </unit>
 
   <unit id="cubicMeter" name="cubicMeter" unitType="volume" multiplierToSI="1" abbreviation="m³"
@@ -450,7 +451,7 @@
   leap seconds and leap days except for nominalLeapYear.-->
   <unit id="nominalMinute" name="nominalMinute" unitType="time" parentSI="second"
     multiplierToSI="60" udunitsSynonym="minute">
-    <description>one minute excluding leap seconds, 60 seconds</description>
+    <description>one minute of time excluding leap seconds, 60 seconds</description>
   </unit>
   <unit id="nominalHour" name="nominalHour" unitType="time" parentSI="second" multiplierToSI="3600"
     udunitsSynonym="hour">
@@ -513,12 +514,15 @@
 
   <unit id="tonne" name="tonne" unitType="mass" parentSI="kilogram" multiplierToSI="1000"
     abbreviation="T" udunitsSynonym="metric_ton">
-    <description>metric ton or tonne</description>
+    <description>unit of mass equal to 1,000 kilograms, equivalent to approximately 2,204.6 
+      pounds,1.102 short tons (US) or 0.984 long tons (imperial). 
+      Not part of the SI, but accepted for use with SI units and prefixes</description>
   </unit>
 
   <unit id="pound" name="pound" parentSI="kilogram" abbreviation="lbs" multiplierToSI="0.4536"
     udunitsSynonym="avoirdupois_pound">
-    <description>1 pound in the Avoirdupois (commerce) scale</description>
+    <description>1 pound (symbol lb) in the Avoirdupois (commerce) scale, and defined 
+      as exactly 0.45359237 kg. Also equal to 16 avoirdupois ounces and to 7,000 grains.</description>
   </unit>
   <unit id="ton" name="ton" parentSI="kilogram" abbreviation="ton" multiplierToSI="907.1999"
     udunitsSynonym="short_ton">
@@ -533,7 +537,8 @@
 
   <unit id="fahrenheit" name="fahrenheit" parentSI="kelvin" abbreviation="F" multiplierToSI="0.556"
     constantToSI="255.402" udunitsSynonym="fahrenheit">
-    <description>An obsolescent unit of temperature still used in popular meteorology</description>
+    <description>unit for temperature on the scale in which water freezes at 32 and boils 
+      at 212 under standard conditions.</description>
   </unit>
 
   <!--length-->
@@ -584,7 +589,8 @@
 
   <unit id="inch" name="inch" parentSI="meter" abbreviation="in" multiplierToSI="0.0254"
     udunitsSynonym="international_inch">
-    <description>An imperial measure of length</description>
+    <description>unit of length in the (British) imperial and United States systems 
+      usually understood as 1/12 f a foot.</description>
   </unit>
   <unit id="Foot_US" name="Foot_US" parentSI="meter" abbreviation="usft" multiplierToSI="0.3048006"
     udunitsSynonym="US_survey_foot">
@@ -603,7 +609,8 @@
   </unit>
   <unit id="nauticalMile" name="nauticalMile" parentSI="meter" multiplierToSI="1852"
     udunitsSynonym="nautical_mile">
-    <description>nautical mile</description>
+    <description>defined as exactly 1,852 meters (6,076.1 ft; 1.1508 mi). Historically, 
+      defined as one minute of latitude.</description>
   </unit>
   <unit id="yard" name="yard" parentSI="meter" abbreviation="yard" multiplierToSI="0.9144"
     udunitsSynonym="international_yard">
@@ -762,7 +769,7 @@
   </unit>
   <unit id="hertz" name="hertz" unitType="frequency" multiplierToSI="1" abbreviation="Hz"
     udunitsSynonym="hertz">
-    <description>hertz</description>
+    <description>derived unit of frequency in the SI, defined as one cycle per second</description>
   </unit>
   <unit id="millihertz" name="millihertz" parentSI="hertz" unitType="frequency"
     multiplierToSI="0.001" abbreviation="mHz" udunitsSynonym="millihertz">
@@ -782,11 +789,12 @@
   </unit>
   <unit id="calorie" name="calorie" unitType="energy" parentSI="joule" multiplierToSI="4.1868"
     abbreviation="cal" udunitsSynonym="IT_calorie">
-    <description>1 cal = 4.1868 J</description>
+    <description>unit of energy: amount of energy to raise the temperature of one gram of water 
+      by one degree Celsius at a pressure of one atmosphere. cal = 4.1868 J</description>
   </unit>
   <unit id="britishThermalUnit" name="britishThermalUnit" unitType="energy" parentSI="joule"
     multiplierToSI="1055.0559" abbreviation="btu" udunitsSynonym="IT_Btu">
-    <description>1 btu = 1055.0559 J</description>
+    <description>an energy unit: 1 btu = 1055.0559 J</description>
   </unit>
   <unit id="footPound" name="footPound" unitType="energy" parentSI="joule" multiplierToSI="1.355818"
     udunitsSynonym="international_foot pound_force">
@@ -795,173 +803,194 @@
   <unit id="langley" name="langley" abbreviation="Ly" 
     unitType="arealEnergyDensity" parentSI="joulePerMeterSquared" multiplierToSI="41840" constantToSI="0"
     udunitsSynonym="langley">
-    <description>unit of energy density: = 41840 joule/m^2, = 1 calorie/cm^2</description>
+    <description>unit of energy density = 41840 joule/m^2, = 1 calorie/cm^2</description>
   </unit>
   <!--luminosity-->
   <unit id="lumen" name="lumen" unitType="luminosity" multiplierToSI="1" abbreviation="lm"
     udunitsSynonym="lumen">
-    <description>lumen</description>
+    <description>SI unit for the total quantity of visible light in a defined beam or angle.
+      1 lumen/m^2 = 1 lux. 1 lumen = 1 candela * steradian </description>
   </unit>
 
   <!--illuminance-->
   <unit id="lux" name="lux" unitType="illuminance" multiplierToSI="1" abbreviation="lx"
     udunitsSynonym="lux">
-    <description>lux</description>
+    <description>SI derived unit for illuminance, or luminous flux per unit area. 1 lx = 1 lm/m^2 = 1 cd * sr/m^2</description>
   </unit>
 
   <!--radionucleotide Activity-->
   <unit id="becquerel" name="becquerel" unitType="radionucleotideActivity" multiplierToSI="1"
     abbreviation="Bq" udunitsSynonym="becquerel">
-    <description>becquerel</description>
+    <description>SI derived unit of radioactivity. the activity of a quantity of radioactive material in which 
+      one nucleus decays per second, and equivalent to an inverse second, s^-1.</description>
   </unit>
 
   <!--specific energy-->
   <unit id="gray" name="gray" unitType="specificEnergy" multiplierToSI="1" abbreviation="Gy"
     udunitsSynonym="gray">
-    <description>gray</description>
+    <description>SI derived unit of ionizing radiation, defined as the absorption of one joule of 
+      radiation energy per kilogram of matter (= 1 J/kg)</description>
   </unit>
 
   <!--dose equivalent-->
   <unit id="sievert" name="sievert" unitType="doseEquivalent" multiplierToSI="1" abbreviation="Sv"
     udunitsSynonym="sievert">
-    <description>sievert</description>
+    <description>SI derived unit of ionizing radiation dose (health effect of low levels of ionizing 
+      radiation on humans). 1 Sv =  100 rem (rem is an older, non-SI unit)</description>
   </unit>
 
   <!--catalytic activity-->
   <unit id="katal" name="katal" unitType="catalyticActivity" multiplierToSI="1" abbreviation="kat"
     udunitsSynonym="katal">
-    <description>katal</description>
+    <description>derived SI unit for quantifying enzymatic activity.A property of the catalyst 
+      (not rate of reaction), expressed in moles/second.</description>
   </unit>
 
   <!--inductance-->
   <unit id="henry" name="henry" unitType="inductance" multiplierToSI="1" abbreviation="H"
     udunitsSynonym="henry">
-    <description>henry</description>
+    <description>SI derived unit for inductance; in SI base units: kg * m^2 * s^-2 * A^-2</description>
   </unit>
 
   <!--power-->
   <unit id="megawatt" name="megawatt" unitType="power" parentSI="watt" multiplierToSI="1000000"
     abbreviation="MW" udunitsSynonym="megawatt">
-    <description>megawatt</description>
+    <description>unit of power, to quantify rate of energy transfer. 1 W = J/s</description>
   </unit>
   <unit id="kilowatt" name="kilowatt" unitType="power" parentSI="watt" multiplierToSI="1000"
     abbreviation="kW" udunitsSynonym="kilowatt">
-    <description>kilowatt</description>
+    <description>unit of power, to quantify rate of energy transfer. 1 W = J/s</description>
   </unit>
   <unit id="watt" name="watt" unitType="power" multiplierToSI="1" abbreviation="W"
     udunitsSynonym="watt">
-    <description>watt = J/s</description>
+    <description>unit of power, to quantify rate of energy transfer. 1 W = J/s</description>
   </unit>
   <unit id="milliwatt" name="milliwatt" unitType="power" parentSI="watt" multiplierToSI="0.001"
     abbreviation="mW" udunitsSynonym="milliwatt">
-    <description>milliwatt</description>
+    <description>unit of power, to quantify rate of energy transfer. 1 W = J/s</description>
   </unit>
 
   <!--potiential difference-->
   <unit id="megavolt" name="megavolt" unitType="potentialDifference" parentSI="volt"
     multiplierToSI="1000000" abbreviation="MV" udunitsSynonym="megavolt">
-    <description>megavolt</description>
+    <description>Derived unit for electric potential, electric potential difference, 
+      and electromotive force. 1 V = kg * m^2 * s^-3 * A^-1</description>
   </unit>
   <unit id="kilovolt" name="kilovolt" unitType="potentialDifference" parentSI="volt"
     multiplierToSI="1000" abbreviation="kV" udunitsSynonym="kilovolt">
-    <description>kilovolt</description>
+    <description>Derived unit for electric potential, electric potential difference, 
+      and electromotive force. 1 V = kg * m^2 * s^-3 * A^-1</description>
   </unit>
   <unit id="volt" name="volt" unitType="potentialDifference" multiplierToSI="1" abbreviation="V"
     udunitsSynonym="volt">
-    <description>volt</description>
+    <description>Derived unit for electric potential, electric potential difference, 
+      and electromotive force. 1 V = kg * m^2 * s^-3 * A^-1</description>
   </unit>
   <unit id="millivolt" name="millivolt" unitType="potentialDifference" parentSI="volt"
     multiplierToSI="0.001" abbreviation="mV" udunitsSynonym="millivolt">
-    <description>millivolt</description>
+    <description>Derived unit for electric potential, electric potential difference, 
+      and electromotive force. 1 V = kg * m^2 * s^-3 * A^-1</description>
   </unit>
 
   <!--capacitance-->
   <unit id="farad" name="farad" unitType="capacitance" multiplierToSI="1" abbreviation="F"
     udunitsSynonym="farad">
-    <description>farad</description>
+    <description>SI derived unit of electrical capacitance, the ability of a body to store an 
+      electrical charge. 1 F = s^4 * A^2 *m^-2 * kg^-1</description>
   </unit>
 
   <!--resistance-->
   <unit id="ohm" name="ohm" unitType="resistance" multiplierToSI="1" abbreviation="Ω"
     udunitsSynonym="ohm">
-    <description>ohm</description>
+    <description>an electrical resistance between two points of a conductor when a constant potential 
+      difference of one volt, 
+      applied to these points, produces in the conductor a current of one ampere</description>
   </unit>
 
   <!--resistivity-->
   <unit id="ohmMeter" name="ohmMeter" unitType="resistivity" multiplierToSI="1" abbreviation="Ωm"
     udunitsSynonym="ohm meter">
-    <description>ohm meters</description>
+    <description>SI unit of electrical resistivity (fundamental property that quantifies how strongly a material 
+      opposes the flow of electric current). reciprocal of electrical conductivity. </description>
   </unit>
 
   <!--conductivity-->
   <unit id="siemensPerMeter" name="siemensPerMeter" unitType="" parentSI="siemensPerMeter"
     multiplierToSI="1" abbreviation="S/m" udunitsSynonym="siemens/meter">
-    <description>siemens per meter</description>
+    <description>SI unit for conductivity, measure of a material's ability to conduct an 
+      electric current.</description>
   </unit>
   <unit id="siemensPerCentimeter" name="siemensPerCentimeter" unitType="" parentSI="siemensPerMeter"
     multiplierToSI=".01" abbreviation="S/cm" udunitsSynonym="siemens/centimeter">
-    <description>siemens per centimeter</description>
+    <description>SI unit for conductivity, measure of a material's ability to conduct an 
+      electric current.</description>
   </unit>
   
   <!--conductance-->
   <unit id="siemen" name="siemen" unitType="conductance" multiplierToSI="1" abbreviation="S"
     deprecatedInFavorOf="siemens" udunitsSynonym="siemens">
-    <description>siemen</description>
+    <description>siemens</description>
   </unit>
 
   <unit id="siemens" name="siemens" unitType="" parentSI="siemens" multiplierToSI="1"
     abbreviation="S" udunitsSynonym="siemens">
-    <description>siemens</description>
+    <description>SI derived unit of electric conductance, susceptance and admittance 
+      (reciprocals of resistance, reactance, and impedance respectively). One siemens is equal 
+      to the reciprocal of one ohm (and also called "mho")</description>
   </unit>
 
   <!--magneticFlux-->
   <unit id="weber" name="weber" unitType="magneticFlux" multiplierToSI="1" abbreviation="Wb"
     udunitsSynonym="weber">
-    <description>weber</description>
+    <description>the SI unit of magnetic flux</description>
   </unit>
 
   <!--magneticFluxDensity-->
   <unit id="tesla" name="tesla" unitType="magneticFluxDensity" multiplierToSI="1" abbreviation="T"
     udunitsSynonym="tesla">
-    <description>tesla</description>
+    <description>unit for flux density. 1 tesla = 1 Wb/m^2 (one weber per square meter).</description>
   </unit>
 
   <!--pressure-->
   <unit id="pascal" name="pascal" unitType="pressure" multiplierToSI="1" abbreviation="Pa"
     udunitsSynonym="pascal">
-    <description>pascal</description>
+    <description>SI derived unit of pressure, 1 pascal = 1 newton/m^2</description>
   </unit>
   <unit id="megapascal" name="megapascal" unitType="pressure" parentSI="pascal"
     multiplierToSI="1000000" abbreviation="MPa" udunitsSynonym="megapascal">
-    <description>megapascal</description>
+    <description>SI derived unit of pressure, 1 pascal = 1 newton/m^2</description>
   </unit>
   <unit id="kilopascal" name="kilopascal" unitType="pressure" parentSI="pascal"
     multiplierToSI="1000" abbreviation="kPa" udunitsSynonym="kilopascal">
-    <description>kilopascal</description>
-  </unit>
-
-  <unit id="atmosphere" name="atmosphere" parentSI="pascal" unitType="pressure"
-    multiplierToSI="101325" abbreviation="atm" udunitsSynonym="standard_atmosphere">
-    <description>1 atmosphere = 101325 pascals </description>
-  </unit>
-  <unit id="bar" name="bar" parentSI="pascal" unitType="pressure" multiplierToSI="100000"
-    abbreviation="bar" udunitsSynonym="bar">
-    <description>1 bar = 100000 pascals</description>
-  </unit>
-  <unit id="millibar" name="millibar" parentSI="pascal" unitType="pressure" multiplierToSI="100"
-    abbreviation="mbar" udunitsSynonym="millibar">
-    <description>millibar</description>
-  </unit>
-  <unit id="decibar" name="decibar" parentSI="pascal" unitType="pressure" multiplierToSI="10000"
-    abbreviation="dbar" udunitsSynonym="decibar">
-    <description>decibar</description>
+    <description>SI derived unit of pressure, 1 pascal = 1 newton/m^2</description>
   </unit>
   <unit id="hectopascal" name="hectopascal" parentSI="pascal" unitType="pressure" multiplierToSI="100"
     abbreviation="hPa" udunitsSynonym="hectopascal">
-    <description>hectopascal</description>
+    <description>SI derived unit of pressure, 1 pascal = 1 newton/m^2</description>
   </unit>
+  
+  <unit id="atmosphere" name="atmosphere" parentSI="pascal" unitType="pressure"
+    multiplierToSI="101325" abbreviation="atm" udunitsSynonym="standard_atmosphere">
+    <description>unit of pressure defined as 101325 Pa (1.01325 bar), sometimes used as a 
+      reference or standard pressure</description>
+  </unit>
+  <unit id="bar" name="bar" parentSI="pascal" unitType="pressure" multiplierToSI="100000"
+    abbreviation="bar" udunitsSynonym="bar">
+    <description>non-SI unit for pressure (deprecated in some fields). 1 bar = 100000 Pa</description>
+  </unit>
+  <unit id="millibar" name="millibar" parentSI="pascal" unitType="pressure" multiplierToSI="100"
+    abbreviation="mbar" udunitsSynonym="millibar">
+    <description>non-SI unit for pressure (deprecated in some fields). 1 millibar = 1 hPa (100 Pa)</description>
+  </unit>
+  <unit id="decibar" name="decibar" parentSI="pascal" unitType="pressure" multiplierToSI="10000"
+    abbreviation="dbar" udunitsSynonym="decibar">
+    <description>non-SI unit for pressure. 1 decibar = .1 bar. Decibars are commonly used in aquatic 
+      environments because 1 db is approximately equal to depth in meters.</description>
+  </unit>
+ 
 
   <!--arealMassDensity-->
+  <!--deprecated -->
   <unit id="kilogramsPerSquareMeter" name="kilogramsPerSquareMeter" unitType="arealMassDensity"
     multiplierToSI="1" abbreviation="kg/m²" deprecatedInFavorOf="kilogramPerMeterSquared"
     udunitsSynonym="kilogram/meter^2">
@@ -982,6 +1011,7 @@
     deprecatedInFavorOf="kilogramPerHectare" udunitsSynonym="kilogram/hectare">
     <description>kilograms per hectare</description>
   </unit>
+  
   <unit id="tonnePerHectare" name="tonnePerHectare" unitType="arealMassDensity"
     parentSI="kilogramPerMeterSquared" multiplierToSI="0.1" udunitsSynonym="metric_ton/hectare">
     <description>metric ton or tonne per hectare</description>
@@ -1026,7 +1056,7 @@
   <unit id="poundPerInchSquared" name="poundPerInchSquared" unitType="arealMassDensity"
     parentSI="kilogramPerMeterSquared" multiplierToSI="703.0696" abbreviation="lbs/in²"
     udunitsSynonym="avoirdupois_pound/international_inch^2">
-    <description>micromoles per square meter per second</description>
+    <description>avoirdupois pounds per square inch</description>
   </unit>
 
 
@@ -1256,7 +1286,7 @@
   <unit id="bushelsPerAcre" name="bushelsPerAcre" unitType="volumetricArea"
     parentSI="literPerMeterSquared" multiplierToSI="0.00870" deprecatedInFavorOf="bushelPerAcre"
     udunitsSynonym="bushel/acre">
-    <description>bushels per acre -- 1 bushel = 35.23907 liters/1 acre = 4046.8564
+    <description>bushels per acre, 1 bushel = 35.23907 liters/1 acre = 4046.8564
       squareMeters</description>
   </unit>
   <unit id="litersPerHectare" name="litersPerHectare" unitType="volumetricArea"
@@ -1268,7 +1298,7 @@
   <unit id="bushelPerAcre" name="bushelPerAcre" unitType="volumetricArea"
     parentSI="literPerMeterSquared" multiplierToSI="0.00870" abbreviation="bu/acre"
     udunitsSynonym="bushel/acre">
-    <description>bushels per acre -- 1 bushel = 35.23907 liters/1 acre = 4046.8564
+    <description>bushels per acre, 1 bushel = 35.23907 liters/1 acre = 4046.8564
       squareMeters</description>
   </unit>
   <unit id="literPerHectare" name="literPerHectare" unitType="volumetricArea"
@@ -1410,7 +1440,7 @@
   </unit>
   <unit id="knot" name="knot" unitType="speed" parentSI="meterPerSecond"
     multiplierToSI="0.514444444444444" abbreviation="knot" udunitsSynonym="international_knot">
-    <description>knot</description>
+    <description>unit of speed equal to one nautical mile per hour, exactly 1.852 km/hour</description>
   </unit>
   <unit id="meterPerDay" name="meterPerDay" unitType="speed" parentSI="meterPerSecond"
     multiplierToSI=".0000115741" abbreviation="m/day" udunitsSynonym="meter/day">
@@ -1466,7 +1496,7 @@
   </unit>
   <unit id="inverseMeter" name="inverseMeter" unitType="lengthReciprocal" multiplierToSI="1"
     udunitsSynonym="meter^-1">
-    <description>1/meters</description>
+    <description>reciprocal of meter, or 1/meters</description>
   </unit>
   <unit id="inverseCentimeter" name="inverseCentimeter" unitType="lengthReciprocal"
     multiplierToSI=".01" udunitsSynonym="meter^-1">
@@ -1501,13 +1531,13 @@
   <unit id="amperePerSquareMeter" name="amperePerSquareMeter" unitType="currentDensity"
     multiplierToSI="1" abbreviation="A/m²" deprecatedInFavorOf="amperePerMeterSquared"
     udunitsSynonym="ampere/meter^2">
-    <description>ampere per meter squared</description>
+    <description>ampere per meter squared, unit of current density</description>
   </unit>
 
   <unit id="amperePerMeterSquared" name="amperePerMeterSquared" unitType="currentDensity"
     parentSI="amperePerMeterSquared" multiplierToSI="1" abbreviation="A/m²"
     udunitsSynonym="ampere/meter^2">
-    <description>amperes per square meter</description>
+    <description>amperes per square meter, unit of current density</description>
   </unit>
 
   <!--magneticFieldStrength-->
@@ -1550,7 +1580,7 @@
   <unit id="nanomolePerLiter" name="nanomolePerLiter" unitType="amountOfSubstanceConcentration"
     parentSI="molePerMeterCubed" multiplierToSI="0.000001" abbreviation="nmol/l"
     udunitsSynonym="nanomole/liter">
-    <description>nanoomoles per liter</description>
+    <description>nanomoles per liter</description>
   </unit>
   <unit id="millimolePerMeterCubed" name="millimolePerMeterCubed" unitType="amountOfSubstanceConcentration"
     parentSI="molePerMeterCubed" multiplierToSI=".001" abbreviation="mol/m³"
@@ -1563,7 +1593,7 @@
     <description>concentration of charge (on dissolved ions). conversions must know the name of the ion; 
       a single multiplier to SI is not possible</description>
   </unit>
-  <unit id="miilliequivalentPerLiter" name="miilliequivalentPerLiter" unitType="amountOfSubstanceConcentration"
+  <unit id="milliequivalentPerLiter" name="milliequivalentPerLiter" unitType="amountOfSubstanceConcentration"
     parentSI="molePerMeterCubed" abbreviation="mE/l">
     <description>concentration of charge (on dissolved ions). conversions must know the name of the ion; 
       a single multiplier to SI is not possible</description>
@@ -1605,20 +1635,22 @@
   <unit id="candelaPerSquareMeter" name="candelaPerSquareMeter" unitType="luminance"
     multiplierToSI="1" abbreviation="cd/m²" deprecatedInFavorOf="candelaPerMeterSquared"
     udunitsSynonym="candela/meter^2">
-    <description>candela Per Square Meter</description>
+    <description>candela Per Square Meter (1 lux)</description>
   </unit>
 
   <unit id="candelaPerMeterSquared" name="candelaPerMeterSquared" unitType="luminance"
     parentSI="candelaPerMeterSquared" multiplierToSI="1" abbreviation="cd/m²"
     udunitsSynonym="candela/meter^2">
-    <description/>
+    <description>candela Per Square Meter (1 lux)</description>
   </unit>
 
   <!--transmissivity-->
   <unit id="metersSquaredPerSecond" name="metersSquaredPerSecond" unitType="transmissivity"
     multiplierToSI="1" abbreviation="m²/s" deprecatedInFavorOf="meterSquaredPerSecond"
     udunitsSynonym="meter^2/second">
-    <description>meters squared per second</description>
+    <description>meters squared per second, SI unit for kinematic viscosity, specific relative 
+      angular momentum and thermal diffusivity. The unit may be better understood when phrased 
+      as "meter per second times meter" (velocity of an object with respect to a position).</description>
   </unit>
   <unit id="metersSquaredPerDay" name="metersSquaredPerDay" unitType="transmissivity"
     parentSI="metersSquaredPerSecond" multiplierToSI="0.00001157407" abbreviation="m²/day"
@@ -1644,7 +1676,9 @@
   <unit id="meterSquaredPerSecond" name="meterSquaredPerSecond" unitType="transmissivity"
     parentSI="meterSquaredPerSecond" multiplierToSI="1" abbreviation="m²/s"
     udunitsSynonym="meter^2/second">
-    <description>square meters per second</description>
+    <description>meters squared per second, SI unit for kinematic viscosity, specific relative 
+      angular momentum and thermal diffusivity. The unit may be better understood when phrased 
+      as "meter per second times meter" (velocity of an object with respect to a position).</description>
   </unit>
 
   <!--massFlux-->
@@ -1832,7 +1866,7 @@
   <!--numeric densities-->
   <unit id="numberPerMeterSquared" name="numberPerMeterSquared" unitType="arealDensity"
     multiplierToSI="1" udunitsSynonym="count/meter^2">
-    <description>number per meter squared</description>
+    <description>number per meter squared, e.g., for a population density.</description>
   </unit>
   <unit id="numberPerKilometerSquared" name="numberPerKilometerSquared" unitType="arealDensity"
     parentSI="numberPerMeterSquared" multiplierToSI="0.000001" udunitsSynonym="count/kilometer^2">
@@ -2066,7 +2100,7 @@
     udunitsSynonym="micromole/meter^2/second">
     <description>micromoles per square meter per second</description>
   </unit>
-  <unit id="micromolePerCentimeterSquaredPerSecond" name="micromolePerMeterSquaredPerSecond" unitType=""
+  <unit id="micromolePerCentimeterSquaredPerSecond" name="micromolePerCentimeterSquaredPerSecond" unitType=""
     parentSI="molePerMeterSquaredPerSecond" multiplierToSI="0.01" abbreviation="µmol/cm²/s"
     udunitsSynonym="micromole/centimeter^2/second">
     <description>micromoles per square centimeter per second</description>
@@ -2081,6 +2115,6 @@
   <unit id="langleyPerDay" name="langleyPerDay" abbreviation="Ly/day" 
     unitType="arealEnergyDensityRate" parentSI="joulePerMeterSquaredPerSecond" multiplierToSI="0.484259" constantToSI="0"
     udunitsSynonym="langley/day">
-    <description>Langley (Ly) per day. Ly is a unit of energy density: = 41840 joule/m^2, = 1 calorie/cm^2</description>
+    <description>Langley (Ly) per day. Ly is a unit of energy density = 41840 joule/m^2, = 1 calorie/cm^2</description>
   </unit>
 </stmml:unitList>
