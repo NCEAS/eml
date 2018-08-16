@@ -483,7 +483,7 @@
                     characteristics of the attribute if it contains
                     date and time values. DateTime is used when the values
                     fall on the Gregorian calendar system.  DateTime values
-                    are special because the have properties of interval
+                    are special because they have properties of interval
                     values (most of the time it is legitimate to treat them
                     as interval values by converting them to a duration from
                     a fixed point) but they sometimes only behave as ordinals
@@ -559,26 +559,40 @@
                   Non-standard   DD/MM/YYYY             14/10/2002
                   Non-standard   MM/DD/YYYY             10/14/2002
                   Non-standard   MM/DD/YY               10/14/02
-                  Non-standard   YYYY-WWW-DD            2002-OCT-14
-                  Non-standard   YYYYWWWDD              2002OCT14
+                  Non-standard   YYYY-MMM-DD            2002-OCT-14
+                  Non-standard   YYYYMMMDD              2002OCT14
                   Non-standard   YYYY-MM-DD hh:mm:ss    2002-10-14 09:13:45
               </literalLayout>
                             </para>
                             <para xmlns="">
               Some notes about these examples.  First, the ISO 8601 standard is
-              strict about the order of date components and the separators that
-              are legal.  Best practice is to follow the ISO 8601 format
-              precisely.  However, we recognize that existing data contain
+              strict about the date components, their order, and the separators; 
+              e.g., date parts are upper case, and time parts are lower case. 
+              If no UTC relation information is given, the time is assumed to be in local 
+              time. Assuming local time is ambiguous even when communicating within a 
+              single time zone, given variations in Daylight Saving Time. 
+              Best practice is to follow the ISO 8601 format precisely and accurately.  
+                            </para>
+                            <para xmlns="">
+              <emphasis>In particular, please note that these are all non-standard 
+                according to ISO:</emphasis>
+              <literalLayout>
+                use of a slash (/) to separate date components, 
+                a space to separate date and time components, 
+                using a twelve-hour time with am/pm designator, 
+                placing any of the components out of descending order                 
+              </literalLayout>
+                            </para>
+                            <para xmlns="">
+              
+              However, we recognize that existing data contain
               non-standard dates, and existing equipment (e.g., sensors) may
-              still be producing non-standard dates.  Consequently, we have
-              provided the formatting string with additional characters to
-              describe the date formats. In particular note that the use of a
-              slash (/) to separate date components, a space to separate date
-              and time components, using a twelve-hour time with am/pm
-              designator, and placing any of the components out of
-              descending order is non-standard according to ISO.  Nevertheless,
-              these formats can be described using the format string to
-              accommodate existing data.
+              still be producing non-standard dates.  
+              Further, data parsers often apply individual interpretations. E.g., Java
+              interprets HH on a 24-hr clock and hh on a 12-hr clock, and MM as a 
+              padded integer for month but MMM as a 3-letter abbreviation.
+              Consequently, the formatting string can contain characters as needed
+               to accommodate existing data.
               </para>
                             <para xmlns="">
               Decimal dateTime values can be extended by indicating in
@@ -602,8 +616,8 @@
               duration in SI second units between two measured dateTime values,
               assuming that the conversion software has a detailed knowledge of
               the Gregorian calendar.
-              </para>
-                          </doc:description>
+                            </para>         
+                          </doc:description>           
                           <doc:example>YYYY-MM-DDThh:mm:ss</doc:example>
                           <doc:example>YYYY-MM-DD</doc:example>
                           <doc:example>YYYY</doc:example>
