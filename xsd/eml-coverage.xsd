@@ -1263,18 +1263,21 @@ the spatialReference schema.</doc:description>
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Taxon rank value</doc:tooltip>
-            <doc:summary>The name representing the taxonomic rank of the
-            taxon being described.</doc:summary>
-            <doc:description>The name representing the taxonomic rank of the
-            taxon being described. The values included may be referenced from
-            an authoritative source such as the Integrated Taxonomic
-            Information System (ITIS)in the U.S. (http://www/itis.usda.gov)
-            and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget). Also,
+            <doc:summary>The taxonomic rank name being described.</doc:summary>
+            <doc:description>The name for the taxonomic rank being described. 
+              Typically the values are from authoritative sources
+              such as the Integrated Taxonomic
+            Information System (ITIS) in the U.S. (http://www/itis.usda.gov)
+            and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget).  
             Species2000 is another source of taxonomic information, found at
-            (http://www.sp2000.org)</doc:description>
-            <doc:example>'Acer' would be an example of a genus rank value, and
-            'Acer rubrum' would be an example of a species rank value with the 
-            common name of 'Red Maple'.</doc:example>
+            (http://www.sp2000.org). Note that for the taxonomic rank "species", the
+            accepted practice is to use binomial nomenclaure, i.e., a combination of
+            the genus name plus species epithet is required to denote the species. Therefore
+            the "species" is <emphasis>not the species epithet alone</emphasis>.</doc:description>
+            <doc:example>For the rank genus, 'Acer' is an example of the rank value,
+            'Acer rubrum' for a species rank value, and a 
+            common name of 'Red Maple'. Additional examples of "species" are 
+            "Homo sapiens" and "Tyrannosaurus rex". </doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -1296,10 +1299,14 @@ the spatialReference schema.</doc:description>
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Taxonomic Identifier</doc:tooltip>
-            <doc:summary>Element holds the ID for this taxon in an authoritative source.</doc:summary>
+            <doc:summary>Element holds an ID and ID-provider for this taxon. </doc:summary>
             <doc:description>The identifier for this 
-              taxon from an authority such as ITIS or USDA Plant Database. </doc:description>
-            <doc:example>TO DO. see userId for example structure</doc:example>
+              taxon from an authority, such as ITIS or USDA Plant Database. Using an external
+            system identifer allows referencing of additional information about a taxon, e.g., 
+            authoritative names, historical synonyms, published descriptions or rank 
+            hierarchies.</doc:description>
+            <doc:example>11274</doc:example>
+            <doc:example>35122</doc:example>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -1310,12 +1317,15 @@ the spatialReference schema.</doc:description>
                   <xs:appinfo>
                     <doc:tooltip>Taxon ID Provider</doc:tooltip>
                     <doc:summary>The taxonomic authority or catalog from which the
-                      taxonId can be retrieved.</doc:summary>
+                      taxonId can be retrieved, defined
+                      as the namespace URI for the provider.</doc:summary>
                     <doc:description>This attribute holds the namespace URI 
-                      for the taxonomic authority or catalog
-                      to which this taxonId applies. taxonId providers should be chosen for
-                      their stability and longevity.</doc:description>
+                      for the taxonomic authority or catalog to which this taxonId applies. 
+                      taxonId providers should be chosen for their stability and longevity, 
+                      and with discernable website URIs or APIs.</doc:description>
                     <doc:example>ITIS</doc:example>
+                    <doc:example>NCBI</doc:example>
+                    <doc:example>USDA</doc:example>
                     <doc:example>EOL</doc:example>
                     <doc:example>WoRMS</doc:example>
                   </xs:appinfo>
