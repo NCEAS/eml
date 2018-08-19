@@ -197,7 +197,7 @@
     <!-- Generate HTML documentation using an XSLT transform -->
     <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-    <target name="docs" depends="init,docbookhtml,faqhtml,tablehtml,eml210infohtml,eml211infohtml">
+    <target name="docs" depends="init,docbookhtml,tablehtml">
         <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
             includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
         <copy todir="${build.docs}" filtering="yes">
@@ -325,63 +325,6 @@
         is docs/eml-${version}/eml-docbook.html.
       ************************************************
     </echo>
-    </target>
-
-    <target name="faqhtml" depends="docbookhtml">
-        <echo>
-      ************************************************
-        Note that if this does not work for you,
-        you need to check the newest version of
-        Xalan out from the Apache CVS server and
-        put the new xalan.jar file in your classpath.
-        This will not work with Xalan 2.3.1!
-      ************************************************
-    </echo>
-        <style basedir="." style="${htmldocbook-style}"
-           in="eml-faq.xml"
-           out="${build.docs}/eml-${version}/eml-faq.html"
-           classpath="${cpath}" processor="trax"/>
-        <echo>
-      ************************************************
-        FAQ rendered to HTML.  The html file
-        is docs/eml-${version}/eml-faq.html.
-      ************************************************
-    </echo>
-    </target>
-    
-    <target name="eml210infohtml" depends="docbookhtml">
-        <echo>
-      ************************************************
-        Note that if this does not work for you,
-        you need to check the newest version of
-        Xalan out from the Apache CVS server and
-        put the new xalan.jar file in your classpath.
-        This will not work with Xalan 2.3.1!
-      ************************************************
-    </echo>
-        <style basedir="." style="${htmldocbook-style}"
-           in="eml-210info.xml"
-           out="${build.docs}/eml-${version}/eml-210info.html"
-           classpath="${cpath}" processor="trax"/>
-        <echo>
-      ************************************************
-        EML-210info has been rendered to HTML.  The html file
-        is docs/eml-${version}/eml-info210.html.
-      ************************************************
-    </echo>
-    </target>
-    
-    <target name="eml211infohtml" depends="docbookhtml">
-        <style basedir="." style="${htmldocbook-style}"
-           in="eml-211info.xml"
-           out="${build.docs}/eml-${version}/eml-211info.html"
-           classpath="${cpath}" processor="trax"/>
-        <echo>
-          ************************************************
-            EML-211info has been rendered to HTML.  The html file
-            is docs/eml-${version}/eml-info211.html.
-          ************************************************
-        </echo>
     </target>
 
     <target name="tablehtml" depends="init">
