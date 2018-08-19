@@ -8,16 +8,16 @@ Send any comments, errors, or suggestions to <eml-dev@ecoinformatics.org> or by 
 
 You can access the EML specification online by reading it in HTML format, or you can download the entire specification, including both the HTML documentation and the XML Schema files.
 
-- [EML Specification](eml-@version@/index.html) -- Read it online
+- [EML Specification](docs/eml-2.2.0/index.html) -- Read it online
 
     OR
 
-- [Download EML](/software/dist)  
+- [Download EML](https://knb.ecoinformatics.org/software/dist)  
     - The download consists of the EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language. In addition, the full documentation on the modules is provided in HTML format.
 
-- [Changes to EML in version 2.1.1](eml-211info.md)
+- [Changes to EML in version 2.1.1](docs/eml-211info.md)
 
-- [EML Frequently Asked Questions (FAQ)](eml-faq.md)
+- [EML Frequently Asked Questions (FAQ)](docs/eml-faq.md)
 
 - [Validation service for EML](/@servletdir@/)  
     - In addition to the online service found at the previous link, the EML distribution itself contains the validation software for your use (see "lib/runEMLParser" for details on how to run it).
