@@ -103,7 +103,7 @@
                                 </xsl:variable>
                                 <td align="center">
 
-                                    <xsl:for-each select="document($modFile)//xs:import">
+                                    <xsl:for-each select="document(concat('xsd/', $modFile))//xs:import">
 
                                         <xsl:variable name="importedDoc">
                                             <xsl:value-of select="substring-before(./@schemaLocation, '.')"/>
