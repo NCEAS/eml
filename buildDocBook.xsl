@@ -208,22 +208,22 @@
         Likewise, citations are used throughout the top-level resource
         modules by importing the literature module.
         </para>
-      <!-- Get the eml-dataset module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-dataset.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-literature module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-literature.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-software module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-software.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-protocol module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-protocol.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
+        <!-- Get the eml-dataset module description from the xsd file -->
+        <xsl:apply-templates
+            select="document('xsd/eml-dataset.xsd')//doc:moduleDescription/*"
+            mode="copy"/>
+        <!-- Get the eml-literature module description from the xsd file -->
+        <xsl:apply-templates
+            select="document('xsd/eml-literature.xsd')//doc:moduleDescription/*"
+            mode="copy"/>
+        <!-- Get the eml-software module description from the xsd file -->
+        <xsl:apply-templates
+            select="document('xsd/eml-software.xsd')//doc:moduleDescription/*"
+            mode="copy"/>
+        <!-- Get the eml-protocol module description from the xsd file -->
+        <xsl:apply-templates
+            select="document('xsd/eml-protocol.xsd')//doc:moduleDescription/*"
+            mode="copy"/>
     </section>
     <section>
         <title>
@@ -242,30 +242,30 @@
             module may be used for a particular column of a dataset, rather
             than the entire dataset as a whole.
           </para>
-      <!-- Get the eml-access module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-access.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-physical module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-physical.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-party module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-party.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-coverage module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-coverage.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-project module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-project.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-methods module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-methods.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
+          <!-- Get the eml-access module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-access.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-physical module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-physical.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-party module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-party.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-coverage module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-coverage.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-project module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-project.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-methods module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-methods.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
     </section>
     <section>
         <title>
@@ -289,18 +289,18 @@
             spatialRaster, spatialVector, etc...) which are described
             in the next section.
           </para>
-      <!-- Get the eml-entity module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-entity.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-attribute module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-attribute.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-constraint module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-constraint.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
+          <!-- Get the eml-entity module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-entity.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-attribute module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-attribute.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-constraint module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-constraint.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
         <!--section>
           <title>
             The stmml module - Definitions for creating a unit
@@ -325,30 +325,30 @@
              in both eml-spatialRaster and eml-spatialVector.  It is described
              here in relation to those two modules.
           </para>
-      <!-- Get the eml-dataTable module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-dataTable.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-spatialRaster module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-spatialRaster.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-spatialVector module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-spatialVector.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-spatialReference module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-spatialReference.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-storedProcedure module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-storedProcedure.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
-      <!-- Get the eml-view module description from the xsd file -->
-      <xsl:apply-templates
-          select="document('xsd/eml-view.xsd')//doc:moduleDescription/*"
-        mode="copy"/>
+          <!-- Get the eml-dataTable module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-dataTable.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-spatialRaster module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-spatialRaster.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-spatialVector module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-spatialVector.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-spatialReference module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-spatialReference.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-storedProcedure module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-storedProcedure.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
+          <!-- Get the eml-view module description from the xsd file -->
+          <xsl:apply-templates
+              select="document('xsd/eml-view.xsd')//doc:moduleDescription/*"
+              mode="copy"/>
     </section>
     <section>
         <title>
@@ -361,9 +361,9 @@
             of text-based constructs to enhance a document (including sections,
             paragraphs, lists, subscript, superscript, emphasis, etc.)
           </para>
-      <xsl:apply-templates
-          select="document('xsd/eml-text.xsd')//doc:moduleDescription/*"
-           mode="copy"/>
+          <xsl:apply-templates
+              select="document('xsd/eml-text.xsd')//doc:moduleDescription/*"
+               mode="copy"/>
       <section>
           <title>Dependency Chart</title>
           <para>
@@ -373,110 +373,110 @@
           </para>
       </section>
     </section>
-    
+
     <section>
         <title>
           Internationalization - Metadata in multiple languages
         </title>
           <para>
-            EML supports internationalization using the i18nNonEmptyStringType. 
+            EML supports internationalization using the i18nNonEmptyStringType.
             Fields defined as this type include:
             <itemizedlist>
-		        <listitem>
-		          <para>Title</para>
-		        </listitem>
-		        <listitem>
-		          <para>Keyword</para>
-		        </listitem>
-		        <listitem>
-		          <para>Contact information (e.g. names, organizations, addresses)</para>
-		        </listitem>
-			</itemizedlist> 
+                <listitem>
+                  <para>Title</para>
+                </listitem>
+                <listitem>
+                  <para>Keyword</para>
+                </listitem>
+                <listitem>
+                  <para>Contact information (e.g. names, organizations, addresses)</para>
+                </listitem>
+            </itemizedlist>
           </para>
           <para>
             TextType fields also support language translations. These fields include:
             <itemizedlist>
-		        <listitem>
-		          <para>Abstract</para>
-		        </listitem>
-		        <listitem>
-		          <para>Methods</para>
-		        </listitem>
-		        <listitem>
-		          <para>Protocol</para>
-		        </listitem>
-			</itemizedlist> 
+                <listitem>
+                  <para>Abstract</para>
+                </listitem>
+                <listitem>
+                  <para>Methods</para>
+                </listitem>
+                <listitem>
+                  <para>Protocol</para>
+                </listitem>
+            </itemizedlist>
           </para>
-			<example>
+            <example>
               <title>Internationalization techniques</title>
               <para>
-	            Core metadata should be provided in English. 
-	            The core elements can be augmented with translations in a native language. 
-	            Detailed metadata can be provided in the native language as declared using the xml:lang attribute. 
-	            Authors can opt to include English translations of this detailed metadata as they see fit.
-	          </para>
-	          <para>
-	          	The following example metadata document is provided primarily in Portuguese but includes English translations
-	          	of core metadata fields. 
-	          	The xml:lang="pt_BR" attribute at the root of the EML document indicates that, unless otherwise specified, 
-	          	the content of the document is supplied in Portuguese (Brazil).
-	          	The xml:lang="en_US" attributes on child elements denote that the content of that element is provided in English.
+                Core metadata should be provided in English.
+                The core elements can be augmented with translations in a native language.
+                Detailed metadata can be provided in the native language as declared using the xml:lang attribute.
+                Authors can opt to include English translations of this detailed metadata as they see fit.
+              </para>
+              <para>
+                  The following example metadata document is provided primarily in Portuguese but includes English translations
+                  of core metadata fields.
+                  The xml:lang="pt_BR" attribute at the root of the EML document indicates that, unless otherwise specified,
+                  the content of the document is supplied in Portuguese (Brazil).
+                  The xml:lang="en_US" attributes on child elements denote that the content of that element is provided in English.
 
-	          	Core metadata (i.e. title) is provided in English, supplemented with a Portuguese translation using the 
-	          	value tag with an xml:lang attribute. Note that child elements can override the 
-	          	root language declaration of the document as well as the language declaration of their containing elements.
-	          	
-	          	The abstract element is primarily given in Portuguese (as inherited from the root language declaration), 
-	          	with an English translation.
-	          </para>
-	          <para>
-	          	Many EML fields are repeatable (i.e. keyword) so that multiple values can be provided for the same concept. 
-	          	Translations for these fields should be included as nested value tags to indicate that they are equivalent concepts 
-	          	expressed in different languages rather than entirely different concepts.
-	          </para>
-              	<literalLayout>
+                  Core metadata (i.e. title) is provided in English, supplemented with a Portuguese translation using the
+                  value tag with an xml:lang attribute. Note that child elements can override the
+                  root language declaration of the document as well as the language declaration of their containing elements.
+
+                  The abstract element is primarily given in Portuguese (as inherited from the root language declaration),
+                  with an English translation.
+              </para>
+              <para>
+                  Many EML fields are repeatable (i.e. keyword) so that multiple values can be provided for the same concept.
+                  Translations for these fields should be included as nested value tags to indicate that they are equivalent concepts
+                  expressed in different languages rather than entirely different concepts.
+              </para>
+                  <literalLayout>
 &lt;?xml version="1.0"?&gt;
 &lt;eml:eml
-    packageId="eml.1.1" system="knb" 
+    packageId="eml.1.1" system="knb"
     xml:lang="pt_BR"
     xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd"&gt;
 
   &lt;dataset id="ds.1"&gt;
-  
-    &lt;!-- English title with Portuguese translation --&gt;    
+
+    &lt;!-- English title with Portuguese translation --&gt;
     &lt;title xml:lang="en-US"&gt;
-    	Sample Dataset Description
-    	&lt;value xml:lang="pt-BR"&gt;Exemplo Descrição Dataset&lt;/value&gt;
+        Sample Dataset Description
+        &lt;value xml:lang="pt-BR"&gt;Exemplo Descrição Dataset&lt;/value&gt;
     &lt;/title&gt;
     ...
-    &lt;!-- Portuguese abstract with English translation --&gt;    
+    &lt;!-- Portuguese abstract with English translation --&gt;
     &lt;abstract&gt;
-    	&lt;para&gt;
-	    	Neste exemplo, a tradução em Inglês é secundário
-	    	&lt;value xml:lang=""&gt;In this example, the English translation is secondary&lt;/value&gt;
-    	&lt;/para&gt;
+        &lt;para&gt;
+            Neste exemplo, a tradução em Inglês é secundário
+            &lt;value xml:lang=""&gt;In this example, the English translation is secondary&lt;/value&gt;
+        &lt;/para&gt;
     &lt;/abstract&gt;
     ...
-    &lt;!-- two keywords, each with an equivalent translation --&gt;    
+    &lt;!-- two keywords, each with an equivalent translation --&gt;
     &lt;keywordSet&gt;
-    	&lt;keyword keywordType="theme"&gt;
-	    	árvore
-	    	&lt;value xml:lang="en-US"&gt;tree&lt;/value&gt;
-    	&lt;/keyword&gt;
-    	&lt;keyword keywordType="theme"&gt;
-	    	água
-	    	&lt;value xml:lang="en-US"&gt;water&lt;/value&gt;
-    	&lt;/keyword&gt;
+        &lt;keyword keywordType="theme"&gt;
+            árvore
+            &lt;value xml:lang="en-US"&gt;tree&lt;/value&gt;
+        &lt;/keyword&gt;
+        &lt;keyword keywordType="theme"&gt;
+            água
+            &lt;value xml:lang="en-US"&gt;water&lt;/value&gt;
+        &lt;/keyword&gt;
     &lt;/keywordSet&gt;
     ...
   &lt;/dataset&gt;
 &lt;/eml:eml&gt;
-				</literalLayout>
+                </literalLayout>
             </example>
     </section>
-    
+
   </chapter>
 
   <chapter id="technicalArch">
@@ -515,12 +515,13 @@
       <itemizedlist>
         <listitem>
           <para>
-          An ID is required on the eml root element.
+          An ID is required on the eml root element in the packageId attribute.
           </para>
         </listitem>
         <listitem>
           <para>
-          IDs are optional on all other elements.
+          IDs are optional on all other elements, except elements which are
+          the subject of annotations.
           </para>
         </listitem>
         <listitem>
@@ -538,8 +539,8 @@
         <listitem>
           <para>
           If a user wants to reuse content to indicate the repetition of an
-          object, a reference must be used. Two identical ids with the same system 
-	  attribute cannot exist in a single document.
+          object, a reference must be used. Two identical ids with the same system
+      attribute cannot exist in a single document.
           </para>
         </listitem>
         <listitem>
@@ -562,7 +563,7 @@
           <para>
           If an element references another element, it must not have an
           ID itself. The system attribute must have the same value in both the
-	  target and referencing elements or it must be absent in both.
+          target and referencing elements or it must be absent in both.
           </para>
         </listitem>
         <listitem>
@@ -1118,4 +1119,3 @@
   </indexentry>
 </xsl:template>
 </xsl:stylesheet>
-
