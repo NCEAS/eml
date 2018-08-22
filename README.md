@@ -14,7 +14,7 @@
 - **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
 
 - **EML 2.2.0 Specification**
-    - [Read it online](https://knb.ecoinformatics.org/#external//emlparser/docs/eml-2.2.0/index.html)
+    - [Read it online](docs/)
     - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the 
       EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language. 
       In addition, the full documentation on the modules is provided in HTML format.
