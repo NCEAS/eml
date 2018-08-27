@@ -42,7 +42,7 @@
       <head>
         <title>
           <xsl:value-of select="//doc:moduleName"></xsl:value-of> Documentation </title>
-        <link rel="stylesheet" type="text/css" href="../default.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../default.css"></link>
       </head>
       <body>
       	<div class="book">
