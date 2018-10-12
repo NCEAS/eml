@@ -2,10 +2,12 @@
 
 [EML FAQs](./eml-faq.html)
 
-Several modifications to the EML schema made in version 2.2.0 will require
-changes to how EML documents are structured, and these changes are highlighted
-here. EML authors should also refer to the affected sections in the normative
-schema documents for complete usage information and examples.
+This document highlights changes and new features in EML 2.2.  EML authors
+should also refer to the affected sections in the normative schema documents
+for complete usage information and examples.
+
+EML 2.2 is backward compatible, i.e., EML 2.0 and 2.1 documents could be
+relabled as EML 2.2 without violating the schema. However, some predefined values, particularly units, are deprecated in favor of new values to fix mispellings or inconsistencies. EML authors are encouraged to migrate away from deprecated values.
 
 **EML MAINTAINERS: Is this in the works??????**  
 > Existing EML 2.1-series documents can be converted to EML 2.2.0 using the XSL
@@ -79,15 +81,15 @@ Example of &lt;literatureCited&gt; element in EML 2.2.0:
    <citation>
       <title>Title for a paper that used this dataset.</title>
       <creator>
-            <individualName>
-               <givenName>Mark</givenName>
-               <surName>Jarkady</surName>
-            </individualName>
+         <individualName>
+            <givenName>Mark</givenName>
+            <surName>Jarkady</surName>
+         </individualName>
       </creator>
       <pubDate>2017</pubDate>
       <article>
-            <journal>EcoSphere</journal>
-            <publicationPlace>https://doi.org/10.1002/ecs2.2166</publicationPlace>
+         <journal>EcoSphere</journal>
+         <publicationPlace>https://doi.org/10.1002/ecs2.2166</publicationPlace>
       </article>
    </citation>
    <bibtex>
@@ -347,13 +349,6 @@ external identifiers, e.g., to a code from a system like ITIS or WoRMS.
    <taxonId provider="https://www.ncbi.nlm.nih.gov/taxonomy">35122</taxonId>
 </taxonomicClassification>
 ```
-
-NEEDS REVIEW: Other Possible New stuffs
-=======================================
-
-* authentication element should have its method attribute required #276
-* add user-agent field for indicating generator / serialization tool used #273
-* Add publication date property to keywordSet #257
 
 Converting EML documents from v2.1.0/1 to v2.2.0
 ================================================
