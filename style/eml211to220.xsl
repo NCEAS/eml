@@ -120,12 +120,11 @@
             </xsl:element>
           </xsl:when>
 
-          <xsl:when test="name() = 'additionalMetadata'">
-            <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-              
+          <!-- note: the pattern for additionalMetadata element follows the template from the more complex 
+              eml201to210 stylesheet, whereas the others follow the eml210to211 -->  
+          <xsl:when test="name() = 'additionalMetadata'">         
               <xsl:copy-of select="@*"/>
-              <xsl:apply-templates mode="handle-elements-under-main-module" select="."/>
-            </xsl:element>
+              <xsl:apply-templates mode="copy-no-ns" select="."/>
           </xsl:when>
 
         </xsl:choose>
@@ -181,5 +180,55 @@
       <xsl:value-of select="name()"/>
     </xsl:for-each>
   </xsl:template>
+
+  <!-- copy node and children without showing default namespace. 
+		But if the namespace is stmml, the namespace will be changed to stmml-1.1 -->
+  <xsl:template mode="copy-no-ns" match="*">
+    <xsl:choose>
+      <!--handle stmml element and attribute-->
+      <xsl:when test="namespace-uri() = 'http://www.xml-cml.org/schema/stmml-1.1'">
+        <xsl:element name="stmml:{local-name()}" namespace="http://www.xml-cml.org/schema/stmml-1.2">
+          <xsl:for-each select="@*">
+            <xsl:choose>
+              <xsl:when test="namespace-uri() = 'http://www.w3.org/2001/XMLSchema-instance'">
+                <xsl:attribute name="xsi:{local-name()}"
+                  namespace="http://www.w3.org/2001/XMLSchema-instance">
+                  <xsl:variable name="value" select="."/>
+                  <xsl:choose>
+                    <!--change stmml to stmml-1.1 in attribute-->
+                    <xsl:when
+                      test="contains($value, &quot;http://www.xml-cml.org/schema/stmml-1.1&quot;)">
+                      <xsl:call-template name="replace-string">
+                        <xsl:with-param name="text" select="$value"/>
+                        <xsl:with-param name="replace"
+                          select="'http://www.xml-cml.org/schema/stmml-1.1'"/>
+                        <xsl:with-param name="with"
+                          select="'http://www.xml-cml.org/schema/stmml-1.2'"/>
+                      </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:copy-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+          <xsl:apply-templates mode="copy-no-ns"/>
+        </xsl:element>
+      </xsl:when>
+      <!--handle non-stmml element-->
+      <xsl:otherwise>
+        <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+          <xsl:copy-of select="@*"/>
+          <xsl:apply-templates mode="copy-no-ns"/>
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
 </xsl:stylesheet>
