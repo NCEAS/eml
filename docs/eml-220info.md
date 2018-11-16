@@ -79,7 +79,7 @@ Example of &lt;literatureCited&gt; element in EML 2.2.0:
       </bibtex>
    </citation>
    <citation>
-      <title>Title for a paper that used this dataset.</title>
+      <title>Title of a paper that this dataset, or its metadata, references.</title>
       <creator>
          <individualName>
             <givenName>Mark</givenName>
