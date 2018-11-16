@@ -3,8 +3,14 @@
 [![Build Status](https://travis-ci.org/NCEAS/eml.svg?branch=BRANCH_EML_2_2)](https://travis-ci.org/NCEAS/eml)
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
-- **Contributors**: Matthew B. Jones (jones@nceas.ucsb.edu), Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu)
+*Cite as*:
+Matthew B. Jones,  Margaret O'Brien, Bryce Mecum, Carl Boettiger, Mark Schildhauer, Mitchell Maier, Timothy Whitaker. 2018. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. **DOI TO BE ISSUED**
+
+*Abstract:*
+The Ecological Metadata Language (EML) defines a comprehensive, vocabulary and a readable XML markup syntax for documenting research data.  It is in widespread use in the earth and environmental sciences, and increasingly in other research disciplines as well.  EML is a community-maintained specification, and evolves to meet the data documentation needs of researchers who want to openly document, preserve, and share data and outputs.  EML includes modules for identifying and citing data packages, for describing the spatial, temporal, taxonomic, and thematic extent of data, for describing research methods and protocols, for describing the structure and content of data within sometimes complex packages of data, and for precisely annotating data with semantic vocabularies. EML includes metadata fields to fully detail data papers that are published in journals specializing in scientific data sharing and preservation.
+
 - **Version**: 2.2.0 (**In development, not yet released**)
+- **DOI**: (**NOT YET ISSUED**)
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
 - **Bug reports**: http://github.com/NCEAS/eml/issues
 - **Task Board**: https://waffle.io/NCEAS/eml
@@ -15,53 +21,28 @@
 
 - **EML 2.2.0 Specification**
     - [Read it online](docs/)
-    - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the 
-      EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language. 
+    - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the
+      EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language.
       In addition, the full documentation on the modules is provided in HTML format.
 
-The Ecological Metadata Language consists of a number of modules that define
-an XML markup syntax for ecologically relevant metadata.  It was originally
-based on work done by the [ESA Committee on the Future of Long-Term
-Ecological Data](http://esa.sdsc.edu/FLED/FLED.html) and on a related paper
-on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological
-sciences" Vol 7(1). pp. 330-342.).  Version 1.4 follows that paper closely in
-its content implementation, but Version 2 has been modified substantially after
-experience using the specification and from feedback from the ecological
-community.
-
-This release represents the consensus view of a large number of knowledgeable
-scientists and data managers on what metadata are relevant to ecological
-data and how best to represent it.  Of course, many might differ in opinion
-about specific decisions made during the development of EML; we would like to
-encourage users to faithfully use the specification in the spirit of
-community building.  It is better if we all use a metadata language that covers
-most of our needs than to modify it and use one that is perfect but not shared
-with anybody.
-
-It is notable that some of the rules regarding EML that are important are
-expressed only in the EML specification, not in the XML Schema files.  This is
-because XML Schema was not able to express some of the constraints that we
-felt were important to creating a coherent metadata document, particularly
-with respect to identifiers and references to identifiers.  Thus, we have
-included a EML Validity Parser.  It checks both EML rules and the schema
-rules to be sure an XML document is a valid EML document.  It is included
-with the release, and provided as an online service. See docs/index.html.
-
 ## DOCUMENTATION
-Please see the docs/index.html directory for a a list of the relevant
-documents pertaining to EML.  In particular, this release ships with a full
-version of the EML Specification, which is the definitive document explaining
-the rules associated with the Ecological Metadata Language.
+
+Please see the docs/index.html directory for a list of the relevant documents pertaining to EML.  In particular, this release ships with a full version of the EML Specification, which is the definitive document explaining the rules associated with the Ecological Metadata Language.
+
+## HISTORY OF EML
+
+EML was originally based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification and from feedback from the ecological community, and versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
+
+## VALIDATION
+Some of the rules regarding EML that are important are expressed only in the EML specification, not in the XML Schema files.  This is because XML Schema was not able to express some of the constraints that we felt were important to creating a coherent metadata document, particularly with respect to identifiers and references to identifiers.  Thus, we have included a EML Validity Parser.  It checks both EML rules and the schema rules to be sure an XML document is a valid EML document.  It is included with the release, and provided as an online service. See docs/index.html.
 
 ## FILES
-The files in this directory include a "docs" directory that contains the
-EML Specification and all documentation for the modules, and an XML Schema
-document for each of the modules that make up EML.  Also included is a schema
-for supporting documentation, and an instance document defining standard
-attribute units for EML. The "lib/sample/eml-sample.xml" file is a sample
-document illustrating the use of EML. The "test" directory contains a number
-of sample instance documents used for testing the schemas, and an application
-for checking document validity under JUnit (see http://junit.org).
+
+The files in this directory include a "docs" directory that contains the EML Specification and all documentation for the modules, and an xsd directory with an XML Schema document for each of the modules that make up EML.  Also included is a schema for supporting documentation, and an instance document defining standard attribute units for EML. The "lib/sample/eml-sample.xml" file is a sample document illustrating the use of EML. The "test" directory contains a number of sample instance documents used for testing the schemas, and an application for checking document validity under JUnit (see http://junit.org).
+
+## CONTRIBUTORS
+
+Matthew B. Jones (jones@nceas.ucsb.edu),  Chad Berkley (berkley@nceas.ucsb.edu), Jivka Bojilova (bojilova@nceas.ucsb.edu), Dan Higgins (higgins@nceas.ucsb.edu), Chris Jones (cjones@lifesci.ucsb.edu), Corinna Gries (corinna@asu.edu), Peter McCartney (peter.mccartney@asu.edu), James Brunt (jbrunt@lternet.edu), David Blankman (dblankman@lternet.edu), Owen Eddins (oeddins@lternet.edu), Mark Schildhauer (schild@nceas.ucsb.edu), John Harris (harris@nceas.ucsb.edu), Matthew Brooke (brooke@nceas.ucsb.edu), Scott Chapal (scott.chapal@jonesctr.org), Tim Bergsma (tbergsma@kbs.msu.edu), Ken Ramsey (kramsey@jornada.nmsu.edu), Saurabh Garg (sgarg@nceas.ucsb.edu), Margaret O'Brien (mob@msi.ucsb.edu), Mark Servilla (servilla@lternet.edu), James Brunt (brunt@lternet.edu), Bryce Mecum (mecum@nceas.ucsb.edu), Carl Boettiger (cboettig@berkeley.edu), Mitchell Maier, Timothy Whitaker (whiteaker@utexas.edu)
 
 ## RELEASE NOTES
 - (see also http://github.com/NCEAS/eml/issues)
@@ -71,8 +52,8 @@ for checking document validity under JUnit (see http://junit.org).
 #### Major New Features
 
 #### Schema changes:
- 
-### 2.1.1 
+
+### 2.1.1
 
 #### Internationalization in EML 2.1.1
 EML 2.1.1 introduces internationalization capabilities that can be used in most
