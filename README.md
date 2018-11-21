@@ -93,9 +93,9 @@ respect to the W3C specifications using modern validators
 (e.g., http://www.w3.org/2001/03/webdata/xsv). Although the changes were minor,
 one was incompatible with 2.0 releases, which necessitated the version
 number "2.1". In the 2.0 series, the content model for additionalMetadata
-included an element <describes> whose cardinality was 0..many, alongside
-<xs:any>. This construct is non-deterministic, and so a child element
-was added to the additionalMetadata section to contain the <xs:any> content.
+included an element `<describes>` whose cardinality was 0..many, alongside
+`<xs:any>`. This construct is non-deterministic, and so a child element
+was added to the additionalMetadata section to contain the `<xs:any>` content.
 Additionally, several elements of txt:TypeText required additional
 definition so that mixed content could be accommodated. These errors
 were not apparent with validation software available in 2004-2005, but
